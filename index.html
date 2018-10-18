@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="246713460433-g85pkuoudgfofq08ck23amr5vpsiohgi.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="email">
+    <meta name="google-signin-client_id" content="246713460433-amkv0f52nfalrhm5s7r2jgoqup6jtt4m.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
@@ -23,14 +23,44 @@
 
         var id_token = googleUser.getAuthResponse().id_token;
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://yourbackend.example.com/tokensignin');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            console.log('Signed in as: ' + xhr.responseText);
-        };
-        xhr.send('idtoken=' + id_token);
-    };
+        procesGoS(id_token).then();
+
+        // fetch('http://localhost:8000/go/s')
+        //     .then(function (r) {
+        //         return r;
+        //     });
+        //
+        // var xhr = new XMLHttpRequest();
+        // xhr.open('POST', 'http://localhost:8000/go/s');
+        // xhr.setRequestHeader('User-Agent', 'vc');
+        // xhr.setRequestHeader('Content-Type', 'gos');
+        // xhr.setRequestHeader('Accept-Language', '');
+        // xhr.onload = function() {
+        //     console.log('Signed in as: ' + xhr.responseText);
+        // };
+        // xhr.send('idtoken=' + id_token);
+    }
+
+    async function procesGoS(token) {
+        let res = await getGoS(token)
+        console.log(res)
+    }
+
+    async function getGoS(body) {
+        let h = new Headers()
+
+        h.set('Content-Type', '')
+        h.set('User-Agent', '')
+        h.set('Accept-Language', '')
+        h.set('Accept', '')
+
+        return await fetch('http://localhost:8080/go/s', {
+            body,
+            credentials: 'omit',
+            headers: h,
+            method: 'PUT',
+        })
+    }
 </script>
 </body>
 </html>
