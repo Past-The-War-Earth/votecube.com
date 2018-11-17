@@ -3,196 +3,50 @@
     <!--<meta name="google-signin-scope" content="email">-->
     <!--<meta name="google-signin-client_id" content="246713460433-amkv0f52nfalrhm5s7r2jgoqup6jtt4m.apps.googleusercontent.com">-->
     <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <link rel="stylesheet" href="css/touch.css"/>
 </head>
-<body>
-<!--<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>-->
-<div class="scene">
-    <div class="cube">
-        <div class="cube__face cube__face--front">front</div>
-        <div class="cube__face cube__face--back">back</div>
-        <div class="cube__face cube__face--right">right</div>
-        <div class="cube__face cube__face--left">left</div>
-        <div class="cube__face cube__face--top">top</div>
-        <div class="cube__face cube__face--bottom">bottom</div>
-    </div>
+
+<body id="experiment">
+<div class="wrapper">
+
+    <article id="viewport">
+        <section id="cube">
+            <div
+                    id="s1"
+            >1</div>
+            <div
+                 id="s2"
+            >
+                2
+            </div>
+            <div
+                    id="s3"
+            >
+                3
+            </div>
+            <div
+                    id="s4"
+            >
+                4
+            </div>
+            <div
+                    id="s5"
+            >
+                5
+            </div>
+            <div
+                    id="s6"
+            >
+                6
+            </div>
+        </section>
+    </article>
+
 </div>
-<p class="radio-group">
-    <label>
-        <input type="radio" name="rotate-cube-side" value="front" checked/> front
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="right"/> right
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="back"/> back
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="left"/> left
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="top"/> top
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="bottom"/> bottom
-    </label>
-</p>
-<table>
-    <tr>
-        <td>
-        </td>
-        <td>
-            <button
-                    onclick="moveUp()"
-            >Move Up</button>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>
-            <button
-                    onclick="moveLeft()"
-            >Move Left</button>
-        </td>
-        <td></td>
-        <td>
-            <button
-                    onclick="moveRight()"
-            >Move Right</button>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <button
-                    onclick="moveDown()"
-            >Move Down</button>
-        </td>
-        <td></td>
-    </tr>
-</table>
-<script>
-    var cube = document.querySelector('.cube');
-    var radioGroup = document.querySelector('.radio-group');
-    var currentClass = '';
-
-    function changeSide() {
-        var checkedRadio = radioGroup.querySelector(':checked');
-        changeClass(checkedRadio.value);
-    }
-
-    function changeClass(
-        position
-    ) {
-        var showClass = 'show-' + position;
-        if ( currentClass ) {
-            cube.classList.remove( currentClass );
-        }
-        cube.classList.add( showClass );
-        currentClass = showClass;
-        currentPosition = position;
-    }
-
-    // set initial side
-    changeSide();
-
-    radioGroup.addEventListener( 'change', changeSide );
-
-    var currentPosition = 'front';
-
-    function moveLeft() {
-        switch(currentPosition) {
-            case 'front':
-                changeClass('left');
-                break;
-            case 'left':
-                changeClass('back');
-                break;
-            case 'back':
-                changeClass('right');
-                break;
-            case 'right':
-                changeClass('front');
-                break;
-            case 'top':
-                changeClass('left');
-                break;
-            case 'bottom':
-                changeClass('right');
-                break;
-        }
-    }
-
-    function moveRight() {
-        switch(currentPosition) {
-            case 'front':
-                changeClass('right');
-                break;
-            case 'left':
-                changeClass('front');
-                break;
-            case 'back':
-                changeClass('left');
-                break;
-            case 'right':
-                changeClass('back');
-                break;
-            case 'top':
-                changeClass('right');
-                break;
-            case 'bottom':
-                changeClass('left');
-                break;
-        }
-    }
-
-    function moveUp() {
-        switch(currentPosition) {
-            case 'front':
-                changeClass('top');
-                break;
-            case 'left':
-                changeClass('top');
-                break;
-            case 'back':
-                changeClass('top');
-                break;
-            case 'right':
-                changeClass('top');
-                break;
-            case 'top':
-                changeClass('back');
-                break;
-            case 'bottom':
-                changeClass('font');
-                break;
-        }
-    }
-
-    function moveDown() {
-        switch(currentPosition) {
-            case 'front':
-                changeClass('bottom');
-                break;
-            case 'left':
-                changeClass('bottom');
-                break;
-            case 'back':
-                changeClass('bottom');
-                break;
-            case 'right':
-                changeClass('bottom');
-                break;
-            case 'top':
-                changeClass('front');
-                break;
-            case 'bottom':
-                changeClass('back');
-                break;
-        }
-
-    }
-</script>
+<script src="js/touch.js"></script>
 </body>
 </html>

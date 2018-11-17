@@ -1,14 +1,10 @@
-h2 {
-    margin-top: 0;
-}
-
-.viewport {
+#viewport {
     perspective: 800px;
     perspective-origin: 50% 200px;
     transform: scale(0.75,0.75);
 }
 
-.cube {
+#cube {
     position: relative;
     margin: 0 auto 100px;
     height: 400px;
@@ -18,17 +14,17 @@ h2 {
     transform: rotateX(-10deg) rotateY(20deg);
 }
 
-.cube h2 {
+#cube h2 {
     color: #fff;
     padding-top: 0;
     margin-top: 0;
 }
 
-.cube a {
+#cube a {
     color: #fff;
 }
 
-.cube > div {
+#cube > div {
     position: absolute;
     height: 360px;
     width: 360px;
@@ -41,27 +37,27 @@ h2 {
     border-radius: 3px;
 }
 
-.cube > .s1  {
+#cube #s1  {
     transform: rotateX(90deg) translateZ(200px);
 }
 
-.cube > .s2 {
+#cube #s2 {
     transform: translateZ(200px);
 }
 
-.cube > .s3 {
+#cube #s3 {
     transform: rotateY(90deg) translateZ(200px);
 }
 
-.cube > .s4 {
+#cube #s4 {
     transform: rotateY(180deg) translateZ(200px);
 }
 
-.cube > .s5 {
+#cube #s5 {
     transform: rotateY(-90deg) translateZ(200px);
 }
 
-.cube > .s6 {
+#cube #s6 {
     transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
 }
 
