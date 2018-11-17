@@ -4,14 +4,18 @@ var d = document;
 
 var vp = gcl('.viewport');
 
-var evLns = {
+// Event Listeners
+var eLs = {
     mp: {},
-}
+    ad(ev, ln) {
+        eCA(this.mp, ev).push(ln)
+    }
+};
 
 var evLn = {
     mp: {},
     ad(ev, ln) {
-        enClAr(this.mp, ev).push(ln)
+        eCA(this.mp, ev).push(ln)
     },
     rm(ev) {
         ar = mp[ev]
@@ -21,25 +25,41 @@ var evLn = {
     }
 }
 
-function enClMp(mp, k) {
-    if(mp[k]) {
+// Ensure Child Map
+function eCM(
+    mp, // map
+    k // key
+) {
+    if (mp[k]) {
         return mp[k]
     }
     return mp[k] = {}
 }
 
-function enClAr(mp, k) {
-    if(mp[k]) {
+// Ensure Child Array
+function eCA(
+    mp, // key
+    k // map
+) {
+    if (mp[k]) {
         return mp[k]
     }
     return mp[k] = []
 }
 
-function gCl(cl) {
+// Get by Class Name
+function gCN(
+    cl // class name
+) {
     return d.getElementsByClassName(cl)
 }
 
-function adE(tg, ev, cb) {
+// Add event listener
+function aEL(
+    tg, // target
+    ev, // event
+    cb // callback
+) {
     tg.addEventListener(ev, cb)
 
 
@@ -48,14 +68,22 @@ function adE(tg, ev, cb) {
     }
 }
 
-function rmE(tg, ev) {
+// Remove Event Listener
+function rEL(
+    tg, // target
+    ev // event
+) {
     tg.removeEventListener(ev)
     return function (ev2) {
         tg.removeEventListener(ev2)
     }
 }
 
-function dEv(tg, ev) {
+// dispatch event
+function dE(
+    tg, // target
+    ev // event
+) {
     tg.dispatchEvent(ev)
     return function (ev2) {
         tg.dispatchEvent(ev2)
@@ -89,14 +117,14 @@ viewport.duration = function () {
     return d;
 }();
 
-var adD = adE(document, 'keydown', function (evt) {
-    switch (evt.keyCode) {
+var adD = aEL(document, 'keydown', function (ev) {
+    switch (ev.keyCode) {
         case 37: // left
             viewport.move({y: viewport.y - 90});
             break;
 
         case 38: // up
-            evt.preventDefault();
+            ev.preventDefault();
             viewport.move({x: viewport.x + 90});
             break;
 
@@ -105,7 +133,7 @@ var adD = adE(document, 'keydown', function (evt) {
             break;
 
         case 40: // down
-            evt.preventDefault();
+            ev.preventDefault();
             viewport.move({x: viewport.x - 90});
             break;
 
@@ -118,22 +146,32 @@ var adD = adE(document, 'keydown', function (evt) {
     }
     ;
 })
-('mousedown', onMdTs)
-('touchstart', onMdTs);
+('mousedown', oMdTs)
+('touchstart', oMdTs);
+
+// is tag
+function iT(
+    tN // tag name
+) {
+    if(!tN) {
+        return iT;
+    }
+    return iT
+}
 
 /**
  * On mousedown or touchstart
  */
-function onMdTs(evt) {
+function oMdTs(ev) {
     delete mouse.last;
     // clicks on links, images, or videos
-    if ($(evt.target).is('a, iframe')) {
+    if ($(ev.target).is('a, iframe')) {
         return true;
     }
 
-    evt.originalEvent.touches ? evt = evt.originalEvent.touches[0] : null;
-    mouse.start.x = evt.pageX;
-    mouse.start.y = evt.pageY;
+    ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null;
+    mouse.start.x = ev.pageX;
+    mouse.start.y = ev.pageY;
     $(document).bind('mousemove touchmove', function (event) {
         // Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
         if (!touch || !(event.originalEvent && event.originalEvent.touches.length > 1)) {
