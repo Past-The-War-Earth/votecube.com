@@ -134,23 +134,23 @@ function pD(
 dLM.ad('keydown', function (ev) {
     switch (ev.keyCode) {
         case 37: // left
-            viewport.move({y: viewport.y - 90})
+            viewport.move({y: viewport.y - 30})
             break
 
         case 38: // up
             // prevent default
             pD(ev)
-            viewport.move({x: viewport.x + 90})
+            viewport.move({x: viewport.x + 30})
             break
 
         case 39: // right
-            viewport.move({y: viewport.y + 90})
+            viewport.move({y: viewport.y + 30})
             break
 
         case 40: // down
             // prevent default
             pD(ev)
-            viewport.move({x: viewport.x - 90})
+            viewport.move({x: viewport.x - 30})
             break
 
         case 27: //esc
