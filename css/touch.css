@@ -1,7 +1,9 @@
 #viewport {
-    perspective: 800px;
-    perspective-origin: 50% 200px;
+    padding-top: 70px;
+    perspective: 1000px;
+    perspective-origin: 50% 442px;
     transform: scale(0.75,0.75);
+    width: 520px;
 }
 
 #cube {
@@ -11,7 +13,7 @@
     width: 400px;
     transition: transform 50ms linear;
     transform-style: preserve-3d;
-    transform: rotateX(-10deg) rotateY(20deg);
+    /*transform: rotateX(-45deg) rotateY(45deg);*/
 }
 
 #cube h2 {
