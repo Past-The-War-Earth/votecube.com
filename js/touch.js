@@ -60,6 +60,11 @@ function moveCoordinates(
     percentArray,
     currentIndex
 ) {
+    let multiplier = 1;
+    if(currentIndex < 0) {
+        multiplier = -1;
+        currentIndex = -currentIndex;
+    }
     let page = currentIndex / 8
     let index = currentIndex % 8
 
@@ -68,7 +73,7 @@ function moveCoordinates(
         index = 0
     }
 
-    return page * 360 + percentArray[index]
+    return (page * 360 + percentArray[index]) * multiplier;
 }
 
 
