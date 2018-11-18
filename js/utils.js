@@ -25,10 +25,12 @@ var LM = {
                 rm(
                     eN // event name
                 ) {
-                    ar = this.lM.get(eN).forEach((ln) => {
-                        tg.removeEventListener(eN, ln)
-                    })
-                    delete this.lM.delete(eN)
+                    if (this.lM.has(eN)) {
+                        for (let ln of this.lM.get(eN)) {
+                            tg.removeEventListener(eN, ln)
+                        }
+                        this.lM.delete(eN)
+                    }
 
                     return (eN2) => {
                         return this.rm(eN2)
@@ -80,7 +82,7 @@ function dE(
     eN, // Event Name,
     eO // Event Object
 ) {
-    tg.dispatchEvent(new CustomEvent(eN, { detail: eO }))
+    tg.dispatchEvent(new CustomEvent(eN, {detail: eO}))
     return (
         eO2 // event object
     ) => {

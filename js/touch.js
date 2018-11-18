@@ -9,11 +9,11 @@ Need to be able to find 2 numbers to move by by:
     Direction of movement
         x
         y
-    So that's a 4 dimensional array
+    So that'startCoords a 4 dimensional array
 var M = [ // starting x rotations
     [ // x = 0
         [ // y = 0
-            [ // m(x) = 0
+            [ // mouse(x) = 0
                 0, 0, 0
             ]
         ]
@@ -38,10 +38,8 @@ var mouse = {
         ) {
             if (moveX)
                 this.x = moveCoordinates(Px, this.xi += xBy)
-            else if (moveY)
+            if (moveY)
                 this.y = moveCoordinates(Py, this.yi += yBy)
-            else
-                return
 
             this.el.style["transform"] = "rotateX(" + this.x + "deg) rotateY(" + this.y + "deg)"
         },
@@ -61,11 +59,11 @@ function moveCoordinates(
     currentIndex
 ) {
     let multiplier = 1;
-    if(currentIndex < 0) {
+    if (currentIndex < 0) {
         multiplier = -1;
         currentIndex = -currentIndex;
     }
-    let page = currentIndex / 8
+    let page = Math.floor(currentIndex / 8)
     let index = currentIndex % 8
 
     if (index === 8) {

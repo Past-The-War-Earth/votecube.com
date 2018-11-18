@@ -45,7 +45,7 @@ async function getGoS(body) {
     h.set('Accept-Language', '')
     h.set('Accept', '')
 
-    return await fetch('http://localhost:8080/go/s', {
+    return await fetch('http://localhost:8080/go/startCoords', {
         body,
         credentials: 'omit',
         headers: h,
