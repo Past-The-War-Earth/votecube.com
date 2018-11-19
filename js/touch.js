@@ -10,21 +10,17 @@ for(var i = 0; i < DIVISIONS; i++) {
     Px[i] = Py[i] = i * 15
     var xMatrix = []
     for(var j = 0; j < DIVISIONS; j++) {
-        // xMatrix.push([0, 0, 0, 0, 0, 0])
+        xMatrix.push([0, 0, 0, 0, 0, 0])
     }
     MATRIX.push(xMatrix)
 }
-// 3-D
-// 10, 10, 80       30, 10, 60      45, 45, 10
-// 5,  35, 60       15, 35, 50      33, 33, 33
-//                  20, 40, 30      30, 40, 30
-//                  10, 60, 30      20, 60, 20
-//                                  10, 90,  0      15, 85,  0
+// 2   1   3        2   1   3        2   1   3       2   1   3
+//         100
+//     20, 80       10, 10, 80       30, 10, 60      45, 45, 10
+//     40, 60       5,  35, 60       15, 35, 50      33, 33, 33
+//     50, 50                        20, 40, 40      30, 40, 30
+//                                   10, 60, 30      20, 60, 20
 
-// 2-D
-// 20, 80
-// 40, 60
-// 50, 50
 /*
 Need to be able to find 2 numbers to move by by:
     Starting rotation:
@@ -74,10 +70,10 @@ var mouse = {
     },
     touch = D.ontouchmove !== undefined,
     viewport = {
-        x: -30,
-        xi: -2,
-        y: -45,
-        yi: -3,
+        x: 0,
+        xi: 0,
+        y: -90,
+        yi: -6,
         el: gQ('#cube'),
         move(
             moveX, xBy, moveY, yBy
