@@ -27,46 +27,35 @@ var MATRIX_VALUE_TEMPLATE =
 
 // same for every 4 MATRIX_TEMPLATE_DIRECTED POSITIONS
 var MATRIX_MOVE_X_Y = [
-    // right side up - top showing
+    // 4 of each, repeating - right side up - top showing
     [-1, 1], // left top right
     [-1, -1], // right top left
     [1, 1],  // left bottom left
     [1, -1]   // right bottom left
-    // upside down, repeats in movement
+    // next 16 - upside down, repeats in movement
 ]
-var MATRIX_MOVE_RIGHT = 1;
 var MATRIX_TEMPLATE_DIRECTED_POSITIONS = [
     // right side up
     // left top right, x-index offset, y-index offset
-    [5, 1, 2, 18, 0],
-    [4, 1, 5, 18, 6],
-    [3, 1, 4, 18, 12],
-    [2, 1, 3, 18, 18],
+    [4, 0, 1, 18, 0],
+    [3, 0, 4, 18, 6],
+    [2, 0, 3, 18, 12],
+    [1, 0, 2, 18, 18],
     // right top left
-    [2, 1, 5, 18, 3],
-    [5, 1, 4, 18, 9],
-    [4, 1, 3, 18, 15],
-    [3, 1, 2, 18, 21],
+    [1, 0, 4, 18, 3],
+    [4, 0, 3, 18, 9],
+    [3, 0, 2, 18, 15],
+    [2, 0, 1, 18, 21],
 
-    // top and bottom are flipped
+    // next 8 - top and bottom are flipped (5 instead of 0)
 
-    // left bottom right
-    // [5, 6, 2, 0, 0],
-    // [4, 6, 5, 0, 6],
-    // [3, 6, 4, 0, 12],
-    // [2, 6, 3, 0, 18],
-    // right bottom left
-    // [2, 6, 5, 0, 3],
-    // [5, 6, 4, 0, 9],
-    // [4, 6, 3, 0, 15],
-    // [3, 6, 2, 0, 21],
 
-    // upside down, 1'st and 3'rd are swapped, second is flipped,
+    // next 16 - upside down, 1'st and 3'rd are swapped, second is flipped (5 to 0 and back),
     // initial offset 180 abs(-12), 180 (12)
 
 ]
 
-// right side up - bottom showing - same moves
+// 4 of each, repeating - right side up - top showing
 var temp_matrix_move_x_y = [];
 for (let i = 0; i < 4; i++) {
     for (let i = 0; i < 4; i++) {
@@ -74,31 +63,88 @@ for (let i = 0; i < 4; i++) {
     }
 }
 
-// upside down, repeats in movement
+// next 16 - upside down, repeats in movement
 for (let i = 0; i < 16; i++) {
     temp_matrix_move_x_y.push(temp_matrix_move_x_y[i])
 }
 MATRIX_MOVE_X_Y = temp_matrix_move_x_y
 
-// top and bottom are flipped
+// next 8 - top and bottom are flipped (5 instead of 0)
 for (let i = 0; i < 8; i++) {
     let template = MATRIX_TEMPLATE_DIRECTED_POSITIONS[i]
-    MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[0], 6, template[2], template[3], template[4]])
+    MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[0], 5, template[2], template[3], template[4]])
 }
 
-// // upside down, 1'st and 3'rd are swapped, second is flipped,
-//     // initial offset -180 (-12), 180 (12)
+// next 16 - upside down, 1'st and 3'rd are swapped, second is flipped (5 to 0 and back),
+// initial offset -180 abs(-12), 180 (12)
 for (let i = 0; i < 16; i++) {
     let template = MATRIX_TEMPLATE_DIRECTED_POSITIONS[i]
-    let upDown = template[1] == 1 ? 6 : 1
+    let upDown = template[1] == 0 ? 5 : 0
     MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[2], upDown, template[0], Math.abs(template[3] - 12), template[4] + 12])
 }
 
-// // 7 x 7 coordinates matrix
-// var MATRIX_COORDINATES = [[], [], [], [], [], [], []]
-// for (let i = 0; i < 16; i++) {
-//
-// }
+var VALUE_MATRIX = [
+    [],[],[],[],[],[],
+    [],[],[],[],[],[],
+    [],[],[],[],[],[],
+    [],[],[],[],[],[]
+]
+
+populateValueMatrix();
+
+function populateValueMatrix() {
+    for(let i = 0; i < 32; i++) {
+        let subMatrixPositions = MATRIX_TEMPLATE_DIRECTED_POSITIONS[i]
+        let moveSubMatrix = MATRIX_MOVE_X_Y[i]
+        let startY = getStartY(moveSubMatrix)
+        let endY = getEndY(moveSubMatrix)
+        let yPlus = isPositiveDirectionY(moveSubMatrix)
+        for(let y = startY; yPlus ? y < endY : y >= endY; yPlus ? y++ : y--) {
+            let startX = getStartX(moveSubMatrix)
+            let endX = getEndX(moveSubMatrix)
+            let xPlus = isPositiveDirectionX(moveSubMatrix)
+            for(let x = startX; xPlus ? x < endX : x >= endX; xPlus ? x++ : x--) {
+                console.log('.')
+            }
+        }
+    }
+}
+
+function isPositiveDirectionX(
+    moveSubMatrix
+) {
+    return moveSubMatrix[0] == 1 ? 1 : 0
+}
+
+function getStartX(
+    moveSubMatrix
+) {
+    return moveSubMatrix[0] == 1 ? 0 : 3
+}
+
+function getEndX(
+    moveSubMatrix
+) {
+    return moveSubMatrix[0] == 1 ? 4 : 0
+}
+
+function isPositiveDirectionY(
+    moveSubMatrix
+) {
+    return moveSubMatrix[1] == 1 ? 1 : 0
+}
+
+function getStartY(
+    moveSubMatrix
+) {
+    return moveSubMatrix[1] == 1 ? 0 : 6
+}
+
+function getEndY(
+    moveSubMatrix
+) {
+    return moveSubMatrix[1] == 1 ? 7 : 0
+}
 
 
 // function S(a, b, c, d, e, f) {
