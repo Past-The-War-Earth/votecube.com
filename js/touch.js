@@ -145,26 +145,25 @@ var mouse = {
     }
 
 function move(xMove, yMove) {
-    if(yMove == 32) {
+    if(yMove == 24) {
         return;
     }
     setTimeout(function () {
-        if(xMove == 5) {
+        if(xMove == 24) {
             moveY(0, ++yMove);
         } else {
             moveX(++xMove, yMove);
         }
-        viewport.move(0, 0, 1, MATRIX_MOVE_X_Y[i][1])
-    }, 256);
+    }, moveSpeed);
 }
 
 function moveX(x, y) {
-    viewport.move(0, 0, 1, MATRIX_MOVE_X_Y[y][1])
+    viewport.move(0, 0, 1, 1)
     move(x, y)
 }
 
 function moveY(x, y) {
-    viewport.move(1, MATRIX_MOVE_X_Y[y][0])
+    viewport.move(1, 1)
     move(x, y)
 }
 setTimeout(function () {

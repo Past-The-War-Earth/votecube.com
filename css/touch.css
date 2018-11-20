@@ -10,7 +10,7 @@
     margin: 0 auto 100px;
     height: 400px;
     width: 400px;
-    transition: transform 256ms linear;
+    transition: transform 128ms linear;
     transform-style: preserve-3d;
     /*transform: rotateX(0deg) rotateY(-90deg);*/
 }

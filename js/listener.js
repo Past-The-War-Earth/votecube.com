@@ -33,6 +33,14 @@ dLM.ad('keydown', function (ev) {
         case 27: //esc
             viewport.reset()
             break
+        case 109:
+            if (moveSpeed > 128)
+                moveSpeed /= 2
+            break
+        case 107:
+            if (moveSpeed < 4096)
+                moveSpeed *= 2
+            break
 
         default:
             break
@@ -43,6 +51,8 @@ dLM.ad('keydown', function (ev) {
 ('touchstart', oMdTs)
 ('mouseup', rmMmTm)
 ('touchend', rmMmTm)
+
+var moveSpeed = 256;
 
 /**
  * On mousedown or touchstart
