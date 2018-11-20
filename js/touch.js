@@ -27,9 +27,9 @@ var MATRIX_VALUE_TEMPLATE =
 
 // same for every 4 MATRIX_TEMPLATE_DIRECTED POSITIONS
 var MATRIX_MOVE_X_Y = [
-    // right side up
-    [-1, 1], // right top left
-    [-1, -1], // left top right
+    // right side up - top showing
+    [-1, 1], // left top right
+    [-1, -1], // right top left
     [1, 1],  // left bottom left
     [1, -1]   // right bottom left
     // upside down, repeats in movement
@@ -38,44 +38,45 @@ var MATRIX_MOVE_RIGHT = 1;
 var MATRIX_TEMPLATE_DIRECTED_POSITIONS = [
     // right side up
     // left top right, x-index offset, y-index offset
-    [5, 1, 2, 0, 0],
-    [2, 1, 3, 0, -6],
-    [3, 1, 4, 0, -12],
-    [4, 1, 5, 0, -18],
+    [5, 1, 2, 18, 0],
+    [4, 1, 5, 18, 6],
+    [3, 1, 4, 18, 12],
+    [2, 1, 3, 18, 18],
     // right top left
-    [2, 1, 5, 0, 0],
-    [5, 1, 4, 0, 6],
-    [4, 1, 3, 0, 12],
-    [3, 1, 2, 0, 18],
+    [2, 1, 5, 18, 3],
+    [5, 1, 4, 18, 9],
+    [4, 1, 3, 18, 15],
+    [3, 1, 2, 18, 21],
 
     // top and bottom are flipped
 
     // left bottom right
     // [5, 6, 2, 0, 0],
-    // [2, 6, 3, 0, -6],
-    // [3, 6, 4, 0, -12],
-    // [4, 6, 5, 0, -18],
+    // [4, 6, 5, 0, 6],
+    // [3, 6, 4, 0, 12],
+    // [2, 6, 3, 0, 18],
     // right bottom left
-    // [2, 6, 5, 0, 0],
-    // [5, 6, 4, 0, 6],
-    // [4, 6, 3, 0, 12],
-    // [3, 6, 2, 0, 18],
+    // [2, 6, 5, 0, 3],
+    // [5, 6, 4, 0, 9],
+    // [4, 6, 3, 0, 15],
+    // [3, 6, 2, 0, 21],
 
     // upside down, 1'st and 3'rd are swapped, second is flipped,
-    // initial offset -180, 180
+    // initial offset 180 abs(-12), 180 (12)
 
 ]
 
-// upside down, repeats in movement
+// right side up - bottom showing - same moves
+var temp_matrix_move_x_y = [];
 for (let i = 0; i < 4; i++) {
-    MATRIX_MOVE_X_Y.push(MATRIX_MOVE_X_Y[i])
+    for (let i = 0; i < 4; i++) {
+        temp_matrix_move_x_y.push(MATRIX_MOVE_X_Y[i]);
+    }
 }
 
-// same for every 4 MATRIX_TEMPLATE_DIRECTED POSITIONS
-var temp_matrix_move_x_y = [];
-for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 4; j++)
-        temp_matrix_move_x_y.push(MATRIX_MOVE_X_Y[i])
+// upside down, repeats in movement
+for (let i = 0; i < 16; i++) {
+    temp_matrix_move_x_y.push(temp_matrix_move_x_y[i])
 }
 MATRIX_MOVE_X_Y = temp_matrix_move_x_y
 
@@ -86,12 +87,18 @@ for (let i = 0; i < 8; i++) {
 }
 
 // // upside down, 1'st and 3'rd are swapped, second is flipped,
-//     // initial offset -180, 180
+//     // initial offset -180 (-12), 180 (12)
 for (let i = 0; i < 16; i++) {
     let template = MATRIX_TEMPLATE_DIRECTED_POSITIONS[i]
     let upDown = template[1] == 1 ? 6 : 1
-    MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[2], upDown, template[0], template[3] - 180, template[4] + 180])
+    MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[2], upDown, template[0], Math.abs(template[3] - 12), template[4] + 12])
 }
+
+// // 7 x 7 coordinates matrix
+// var MATRIX_COORDINATES = [[], [], [], [], [], [], []]
+// for (let i = 0; i < 16; i++) {
+//
+// }
 
 
 // function S(a, b, c, d, e, f) {
@@ -130,10 +137,27 @@ var mouse = {
         move(
             moveX, xBy, moveY, yBy
         ) {
+            if (!moveX && !moveY)
+                return
             if (moveX)
                 this.x = moveCoordinates(Px, this.xi += xBy)[0]
             if (moveY)
                 this.y = moveCoordinates(Py, this.yi += yBy)[0]
+            // console.log('x: ' + this.x + '\t\ty: ' + this.y);
+            // console.log('xi: ' + this.xi + '\t\tyi: ' + this.yi);
+            let xiRemainder = getMod24AbsRemainder(this.xi)
+            let yiRemainder = getMod24AbsRemainder(this.yi)
+
+            // Hav a position, now need to map it to the right frame of matrix
+
+            let boundaryX = xiRemainder % 6 == 0
+            let boundaryY = yiRemainder % 6 == 0
+
+            if (boundaryX && boundaryY) {
+                console.log('axis-aligned full square');
+            }
+
+            console.log('xiRem: ' + xiRemainder + '\t\tyiRem: ' + yiRemainder);
 
             this.el.style["transform"] = "rotateX(" + this.x + "deg) rotateY(" + this.y + "deg)"
         },
@@ -144,12 +168,25 @@ var mouse = {
         }
     }
 
+function getMod24AbsRemainder(num) {
+    let remainder = num % DIVISIONS
+    if (remainder < 0) {
+        remainder = 24 + remainder
+    }
+    // remainder = Math.round(remainder)
+    // if (remainder == 24) {
+    //     remainder = 0
+    // }
+    return remainder
+}
+
+
 function move(xMove, yMove) {
-    if(yMove == 24) {
+    if (yMove == 24) {
         return;
     }
     setTimeout(function () {
-        if(xMove == 24) {
+        if (xMove == 24) {
             moveY(0, ++yMove);
         } else {
             moveX(++xMove, yMove);
@@ -166,9 +203,10 @@ function moveY(x, y) {
     viewport.move(1, 1)
     move(x, y)
 }
-setTimeout(function () {
-    move(0, 0)
-});
+
+// setTimeout(function () {
+//     move(0, 0)
+// });
 
 viewport.duration = function () {
     var d = touch ? 50 : 500
