@@ -1,18 +1,9 @@
-// var Px = [0, 5, 15, 30, 40, 45, 50, 60, 75, 85, 90, 95, 105, 120, 130, 135, 140, 150, 165, 175, 180, 185, 195, 210, 220, 225, 230, 240, 255, 265, 270, 275, 285, 300, 310, 315, 320, 330, 345, 355]
-// var Py = [0, 5, 15, 30, 40, 45, 50, 60, 75, 85, 90, 95, 105, 120, 130, 135, 140, 150, 165, 175, 180, 185, 195, 210, 220, 225, 230, 240, 255, 265, 270, 275, 285, 300, 310, 315, 320, 330, 345, 355]
-
 var Px = []
 var Py = []
-// var MATRIX = []
 var DIVISIONS = 24
 
 for (var i = 0; i < DIVISIONS; i++) {
     Px[i] = Py[i] = i * 15
-    // var xMatrix = []
-    // for (var j = 0; j < DIVISIONS; j++) {
-    //     xMatrix.push([0, 0, 0, 0, 0, 0])
-    // }
-    // MATRIX.push(xMatrix)
 }
 
 // 5   1   2        5   1   2        5   1   2       5   1   2
@@ -82,15 +73,17 @@ for (let i = 0; i < 8; i++) {
 for (let i = 0; i < 16; i++) {
     let template = MATRIX_TEMPLATE_DIRECTED_POSITIONS[i]
     let upDown = template[1] == 0 ? 5 : 0
-    MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[2], upDown, template[0], Math.abs(template[3] - 12), (template[4] + 12) % 24])
+    MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[2], upDown, template[0], Math.abs(template[3] - 12), template[4] + 12])
 }
 
-var VALUE_MATRIX = [
-    [], [], [], [], [], [],
-    [], [], [], [], [], [],
-    [], [], [], [], [], [],
-    [], [], [], [], [], []
-]
+var VALUE_MATRIX = []
+for (let i = 0; i < 24; i++) {
+    let xSubMatrix = []
+    VALUE_MATRIX.push(xSubMatrix)
+    for (let j = 0; j < 24; j++) {
+        xSubMatrix.push([])
+    }
+}
 
 populateValueMatrix();
 
@@ -100,51 +93,31 @@ function populateValueMatrix() {
         let moveSubMatrix = MATRIX_MOVE_X_Y[i]
 
         let positionStartX = subMatrixPositions[3]
-        let positionStartY = subMatrixPositions[3]
+        let positionStartY = subMatrixPositions[4]
         let loopStartX = moveSubMatrix[1] == 1 ? 0 : 6
         let loopEndX = moveSubMatrix[1] == 1 ? 7 : 0
         let isPositiveDirectionX = moveSubMatrix[1] == 1 ? 1 : 0
-        // if (isPositiveDirectionX && positionStartX == 24) {
-        //     positionStartX = 0
-        // }
         for (let x = loopStartX;
              isPositiveDirectionX ? x < loopEndX : x >= loopEndX;
              isPositiveDirectionX ? x++ : x--) {
             let loopStartY = moveSubMatrix[0] == 1 ? 0 : 3
             let loopEndY = moveSubMatrix[0] == 1 ? 4 : 0
             let isPositiveDirectionY = moveSubMatrix[0] == 1 ? 1 : 0
+            let xValueTemplate = MATRIX_VALUE_TEMPLATE[x]
             for (let y = loopStartY;
                  isPositiveDirectionY ? y < loopEndY : y >= loopEndY;
                  isPositiveDirectionY ? y++ : y--) {
-                VALUE_MATRIX[positionStartX % 24]
+                let yValueTemplate = xValueTemplate[y]
+                let values = [0, 0, 0, 0, 0, 0]
+                values[subMatrixPositions[0]] = yValueTemplate[0]
+                values[subMatrixPositions[1]] = yValueTemplate[1]
+                values[subMatrixPositions[2]] = yValueTemplate[2]
+                VALUE_MATRIX[(positionStartX + x) % 24][(positionStartY + y) % 24]
+                    = values
             }
         }
     }
 }
-
-
-// function S(a, b, c, d, e, f) {
-//     MATRIX[viewport.xi][viewport.yi] = [a, b, c, d, e, f]
-// }
-//
-// function printMatrix() {
-//     for (var i = 0; i < DIVISIONS; i++) {
-//         var xMatrix = MATRIX[i]
-//         for (var j = 0; j < DIVISIONS; j++) {
-//             var yMatrix = xMatrix[j]
-//             var str = ''
-//             for (var k = 0; k < 6; k++) {
-//                 str = str + yMatrix[k] + '\t'
-//             }
-//             console.log(str)
-//         }
-//         console.log()
-//         MATRIX.push(xMatrix)
-//     }
-//     console.log()
-//     console.log()
-//     console.log()
-// }
 
 var mouse = {
         start: {}
@@ -179,6 +152,7 @@ var mouse = {
                 console.log('axis-aligned full square');
             }
 
+            setDisplayedSurfacePercentages(VALUE_MATRIX[xiRemainder][yiRemainder])
             console.log('xiRem: ' + xiRemainder + '\t\tyiRem: ' + yiRemainder);
 
             this.el.style["transform"] = "rotateX(" + this.x + "deg) rotateY(" + this.y + "deg)"
@@ -235,6 +209,15 @@ viewport.duration = function () {
     VP.style.transitionDuration = d + "ms"
     return d
 }()
+
+var DISPLAYED_SURFACE_PERCENTAGES = [gQ('#n0'), gQ('#n1'), gQ('#n2'), gQ('#n3'), gQ('#n4'), gQ('#n5')]
+
+function setDisplayedSurfacePercentages(values) {
+    for(let i = 0; i < 6; i++) {
+        DISPLAYED_SURFACE_PERCENTAGES[i].innerText = values[i]
+    }
+}
+setDisplayedSurfacePercentages(VALUE_MATRIX[0][0])
 
 function moveCoordinates(
     percentArray,
