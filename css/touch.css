@@ -53,17 +53,20 @@
 }
 
 #c4 {
-    background: hsla(180, 100%, 50%, 0.95);
+    background: hsla( 60, 100%, 50%, 0.95);
+    /*background: hsla(180, 100%, 50%, 0.95);*/
     transform: rotateY(180deg) translateZ(200px);
 }
 
 #c5 {
-    background: hsla(240, 100%, 50%, 0.95);
+    background: hsla(120, 100%, 50%, 0.95);
+    /*background: hsla(240, 100%, 50%, 0.95);*/
     transform: rotateY(-90deg) translateZ(200px);
 }
 
 #c6 {
-    background: hsla(300, 100%, 50%, 0.95);
+    /*background: hsla(300, 100%, 50%, 0.95);*/
+    background: hsla(  0, 100%, 50%, 0.95);
     transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
 }
 
