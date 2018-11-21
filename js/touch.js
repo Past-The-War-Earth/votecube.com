@@ -27,7 +27,8 @@ var MATRIX_VALUE_TEMPLATE =
 
 // same for every 4 MATRIX_TEMPLATE_DIRECTED POSITIONS
 var MATRIX_MOVE_X_Y = [
-    // 4 of each, repeating - right side up - top showing
+    // right side up
+    // 4 sequential positions for each entry, repeating (16 total)
     [-1, 1], // left top right
     [-1, -1], // right top left
     [1, 1],  // left bottom left
@@ -36,11 +37,11 @@ var MATRIX_MOVE_X_Y = [
 ]
 var MATRIX_TEMPLATE_DIRECTED_POSITIONS = [
     // right side up
-    // left top right, x-index offset, y-index offset
-    [4, 0, 1, 18, 0],
-    [3, 0, 4, 18, 6],
-    [2, 0, 3, 18, 12],
-    [1, 0, 2, 18, 18],
+    // left top right, x-index start, y-index start
+    [4, 0, 1, 24, 0],
+    [3, 0, 4, 24, 6],
+    [2, 0, 3, 24, 12],
+    [1, 0, 2, 24, 18],
     // right top left
     [1, 0, 4, 18, 3],
     [4, 0, 3, 18, 9],
@@ -51,11 +52,12 @@ var MATRIX_TEMPLATE_DIRECTED_POSITIONS = [
 
 
     // next 16 - upside down, 1'st and 3'rd are swapped, second is flipped (5 to 0 and back),
-    // initial offset 180 abs(-12), 180 (12)
+    // initial offset 180 abs(-12), 180 (+12%24)
 
 ]
 
-// 4 of each, repeating - right side up - top showing
+// right side up
+// 4 sequential positions for each entry, repeating (16 total)
 var temp_matrix_move_x_y = [];
 for (let i = 0; i < 4; i++) {
     for (let i = 0; i < 4; i++) {
@@ -80,70 +82,44 @@ for (let i = 0; i < 8; i++) {
 for (let i = 0; i < 16; i++) {
     let template = MATRIX_TEMPLATE_DIRECTED_POSITIONS[i]
     let upDown = template[1] == 0 ? 5 : 0
-    MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[2], upDown, template[0], Math.abs(template[3] - 12), template[4] + 12])
+    MATRIX_TEMPLATE_DIRECTED_POSITIONS.push([template[2], upDown, template[0], Math.abs(template[3] - 12), (template[4] + 12) % 24])
 }
 
 var VALUE_MATRIX = [
-    [],[],[],[],[],[],
-    [],[],[],[],[],[],
-    [],[],[],[],[],[],
-    [],[],[],[],[],[]
+    [], [], [], [], [], [],
+    [], [], [], [], [], [],
+    [], [], [], [], [], [],
+    [], [], [], [], [], []
 ]
 
 populateValueMatrix();
 
 function populateValueMatrix() {
-    for(let i = 0; i < 32; i++) {
+    for (let i = 0; i < 32; i++) {
         let subMatrixPositions = MATRIX_TEMPLATE_DIRECTED_POSITIONS[i]
         let moveSubMatrix = MATRIX_MOVE_X_Y[i]
-        let startY = getStartY(moveSubMatrix)
-        let endY = getEndY(moveSubMatrix)
-        let yPlus = isPositiveDirectionY(moveSubMatrix)
-        for(let y = startY; yPlus ? y < endY : y >= endY; yPlus ? y++ : y--) {
-            let startX = getStartX(moveSubMatrix)
-            let endX = getEndX(moveSubMatrix)
-            let xPlus = isPositiveDirectionX(moveSubMatrix)
-            for(let x = startX; xPlus ? x < endX : x >= endX; xPlus ? x++ : x--) {
-                console.log('.')
+
+        let positionStartX = subMatrixPositions[3]
+        let positionStartY = subMatrixPositions[3]
+        let loopStartX = moveSubMatrix[1] == 1 ? 0 : 6
+        let loopEndX = moveSubMatrix[1] == 1 ? 7 : 0
+        let isPositiveDirectionX = moveSubMatrix[1] == 1 ? 1 : 0
+        // if (isPositiveDirectionX && positionStartX == 24) {
+        //     positionStartX = 0
+        // }
+        for (let x = loopStartX;
+             isPositiveDirectionX ? x < loopEndX : x >= loopEndX;
+             isPositiveDirectionX ? x++ : x--) {
+            let loopStartY = moveSubMatrix[0] == 1 ? 0 : 3
+            let loopEndY = moveSubMatrix[0] == 1 ? 4 : 0
+            let isPositiveDirectionY = moveSubMatrix[0] == 1 ? 1 : 0
+            for (let y = loopStartY;
+                 isPositiveDirectionY ? y < loopEndY : y >= loopEndY;
+                 isPositiveDirectionY ? y++ : y--) {
+                VALUE_MATRIX[positionStartX % 24]
             }
         }
     }
-}
-
-function isPositiveDirectionX(
-    moveSubMatrix
-) {
-    return moveSubMatrix[0] == 1 ? 1 : 0
-}
-
-function getStartX(
-    moveSubMatrix
-) {
-    return moveSubMatrix[0] == 1 ? 0 : 3
-}
-
-function getEndX(
-    moveSubMatrix
-) {
-    return moveSubMatrix[0] == 1 ? 4 : 0
-}
-
-function isPositiveDirectionY(
-    moveSubMatrix
-) {
-    return moveSubMatrix[1] == 1 ? 1 : 0
-}
-
-function getStartY(
-    moveSubMatrix
-) {
-    return moveSubMatrix[1] == 1 ? 0 : 6
-}
-
-function getEndY(
-    moveSubMatrix
-) {
-    return moveSubMatrix[1] == 1 ? 7 : 0
 }
 
 
