@@ -1,0 +1,9 @@
+{
+  "main": "lib/index.js",
+  "name": "@votecube/cube-logic",
+  "typings": "lib/index",
+  "version": "0.0.1",
+  "devDependencies": {
+    "typescript": "^3.2.2"
+  }
+}

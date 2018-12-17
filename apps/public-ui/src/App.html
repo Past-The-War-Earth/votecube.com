@@ -1,0 +1,90 @@
+<!--
+<svg
+        width="50" height="50" xmlns="http://www.w3.org/2000/svg"
+        on:click="test()"
+>
+    &lt;!&ndash; Created with SVG-edit - https://github.com/SVG-Edit/svgedit&ndash;&gt;
+    <g class="layer">
+        <title>Layer 1</title>
+        <circle cx="25.04944" cy="24.95393" fill="#FF0000" id="svg_4"
+                r="24.08726"
+                stroke="#FF0000" stroke-width="3"
+                transform="rotate(179.928 25.0494 24.9539)"/>
+        <text fill="#FFFFFF" font-family="monospace" font-size="24"
+              id="svg_5"
+              stroke="#FFFFFF" stroke-width="0" text-anchor="middle"
+              transform="rotate(0.321025 27.4393 23.2802) matrix(1.44163 0 0 1.64003 16.5919 -4.80528)"
+              x="7.53445" xml:space="preserve" y="25.169">&gt;</text>
+    </g>
+</svg>
+-->
+<article
+        class="{activeClass}"
+        id="layout"
+>
+    <!-- Menu toggle -->
+    <!--
+            <TopBar @mainMenuActive={{isMenuActive}}></TopBar>
+    -->
+    <a
+            class="menu-link {activeClass}"
+            href="#menu"
+            id="menuLink"
+            on:click="toggleMenu()"
+    >
+        <!--Hamburger icon -->
+        <span></span>
+    </a>
+    <!--    <Menu @active={isMenuActive} @selected={{action toggleMenu}}></Menu>
+        -->
+    <section
+            id="main"
+            on:click="clickMain()"
+    >
+        <CubeVote></CubeVote>
+    </section>
+</article>
+
+<script>
+    import CubeVote from './pages/cube/CubeVote.html'
+
+    export default {
+        components: {
+            CubeVote
+        },
+        data() {
+            return {
+                isMenuActive: false
+            }
+        },
+        computed: {
+            activeClass: ({isMenuActive}) => isMenuActive ? 'active' : ''
+        },
+        methods: {
+            clickMain() {
+                // if (DOM_API.e(menuElementIdSelector)
+                //   .className
+                //   .indexOf('active') !== -1) {
+                if (this.get().isMenuActive) {
+                    this.toggleMenu()
+                }
+            },
+            toggleMenu() {
+                this.set({isMenuActive: !this.get().isMenuActive})
+            }
+        },
+        onupdate({ changed, current, previous }) {
+            // this fires after oncreate, and after every state change
+            // once the DOM is synchronised with the data
+            console.log(`App DOM has been updated`);
+        }
+    }
+</script>
+
+<style>
+    /*
+        h1 {
+            color: purple;
+        }
+        */
+</style>

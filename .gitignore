@@ -3,8 +3,10 @@ npm-debug.log
 # Ignore NPM package folders
 node_modules
 
-# Ignore test build files
-/lib
+# Ignore build files
+lib
+bundle.js
+1.1.js
 
 # Ignore Rush temporary files
 /common/temp/**

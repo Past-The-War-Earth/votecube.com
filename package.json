@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "name": "votecube-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diapco/votecube-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diapco/votecube-ui/issues"
+  },
+  "homepage": "https://github.com/diapco/votecube-ui#readme"
+}
