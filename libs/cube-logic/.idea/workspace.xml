@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/Viewport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/Viewport.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/MatrixValueChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/MatrixValueChooser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/MutationApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/MutationApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/PercentagePositionChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/PercentagePositionChooser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/types.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,56 +21,14 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/index.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="110">
-                  <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-                  <folding>
-                    <element signature="e#0#53#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/cube/Viewport.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#0#109#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/cube/cubeMoveMatrix.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="22">
-                  <caret line="32" column="24" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="458">
-                  <caret line="230" selection-start-line="230" selection-end-line="231" />
+                <state relative-caret-position="535">
+                  <caret line="179" column="14" lean-forward="true" selection-start-line="179" selection-start-column="14" selection-end-line="179" selection-end-column="14" />
                   <folding>
                     <element signature="e#0#68#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/cube/mutation/types.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="242">
-                  <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -123,8 +76,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="528">
-                  <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
+                <state relative-caret-position="374">
+                  <caret line="89" column="34" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="34" />
                   <folding>
                     <element signature="e#0#68#0" expanded="true" />
                   </folding>
@@ -253,12 +206,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1545013705078</updated>
-      <workItem from="1545013706370" duration="26692000" />
+      <workItem from="1545013706370" duration="27354000" />
     </task>
+    <task id="LOCAL-00001" summary="debugging arrow based movement">
+      <created>1545320530019</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1545320530019</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26692000" />
+    <option name="totallyTimeSpent" value="27354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -286,6 +247,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="debugging arrow based movement" />
+    <option name="LAST_COMMIT_MESSAGE" value="debugging arrow based movement" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../tsconfig.core.json">
@@ -385,8 +350,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="230" selection-start-line="230" selection-end-line="231" />
+        <state relative-caret-position="535">
+          <caret line="179" column="14" lean-forward="true" selection-start-line="179" selection-start-column="14" selection-end-line="179" selection-end-column="14" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
           </folding>

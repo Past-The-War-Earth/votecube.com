@@ -22,6 +22,7 @@ export interface MinDistancePosition {
 	i: number
 	j: number
 	dist: DistanceFromMatrixPosition
+	moves: 1 | 2
 }
 
 export interface MinDistForPosition {
@@ -174,9 +175,20 @@ export class FinalPositionFinder {
 				if (!minDist
 					|| minDist.dist > maxDistance) {
 					minDist = {
+						dist: maxDistance,
 						i,
 						j,
-						dist: maxDistance
+						moves: Math.abs(i) + Math.abs(j) as 1 | 2
+					}
+				} else if(minDist && minDist.dist == maxDistance) {
+					let moves = Math.abs(i) + Math.abs(j) as 1 | 2
+					if(moves < minDist.moves) {
+						minDist = {
+							dist: maxDistance,
+							i,
+							j,
+							moves
+						}
 					}
 				}
 			}
