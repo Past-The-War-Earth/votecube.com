@@ -1,12 +1,19 @@
 import {
 	Direction,
-	PositionPercent
-} from '../cubeMovement'
+	PositionPercent,
+	PositionPercentages
+}                      from '../cubeMovement'
 import {
 	Dimension,
-	ValueArrayPosition,
+	DimensionDirection,
 	Viewport
-} from '../Viewport'
+}                      from '../Viewport'
+import {PercentChange} from './types'
+
+export interface PositionsToChange {
+	inc: DimensionDirection
+	dec: DimensionDirection
+}
 
 export class PercentagePositionChooser {
 
@@ -16,40 +23,155 @@ export class PercentagePositionChooser {
 		direction: Direction,
 		viewport: Viewport
 	): void {
-		let dimensionToPreserve = this.getDimensionToPreserve(dimension, viewport)
-		let dimensionToMove     = this.getDimensionToMove(dimension, dimensionToPreserve)
-
-		let positionsToSetAndZeroOut = this.getPositionsToSetAndZeroOut(dimension, direction)
+		const positionsToChange = this.getPositionsToChange(direction)
 
 		let positionPercentages                            = viewport.pp
-		positionPercentages[positionsToSetAndZeroOut.set]  = percent
-		positionPercentages[positionsToSetAndZeroOut.zero] = 0
+		positionPercentages[dimension][positionsToChange.inc]  = percent
+		positionPercentages[dimension][positionsToChange.dec] = 0
 
-		let positionsToPreserve        = this.getPositionsForDimension(dimensionToPreserve)
-		let positivePositionToPreserve = positionPercentages[positionsToPreserve[0]]
-		let negativePositionToPreserve = positionPercentages[positionsToPreserve[1]]
-		let valueToPreserve            = positivePositionToPreserve + negativePositionToPreserve
+		this.adjustDimensions(dimension, viewport)
+	}
 
-		let valueToMove
-		if (valueToPreserve + percent >= 100) {
-			valueToPreserve = 100 - percent
-			if (!negativePositionToPreserve) {
-				positionPercentages[positionsToPreserve[0]] = valueToPreserve
+	changePositionPercentages(
+		dimension: Dimension,
+		percentChange: PercentChange,
+		direction: Direction,
+		viewport: Viewport
+	) {
+		this.updateDimensionPercentages(
+			dimension,
+			percentChange,
+			direction,
+			viewport
+		)
+		this.adjustDimensions(dimension, viewport)
+	}
+
+	private updateDimensionPercentages(
+		dimension: Dimension,
+		percentChange: PercentChange,
+		direction: Direction,
+		viewport: Viewport
+	): void {
+		const positionsToChange = this.getPositionsToChange(direction)
+
+		const positionPercentages     = viewport.pp
+		const existingValueToIncrease = positionPercentages[dimension][positionsToChange.inc]
+		const existingValueToDecrease = positionPercentages[dimension][positionsToChange.dec]
+
+		// let decrease, increase
+		if (existingValueToIncrease === 0) {
+			if (existingValueToDecrease > 0) {
+				const decreasedValue = existingValueToDecrease - percentChange as PositionPercent
+				if (decreasedValue >= 0) {
+					// decrease = percentChange
+					// increase = 0
+					positionPercentages[dimension][positionsToChange.dec] = decreasedValue
+				} else {
+					const decrease                                        = percentChange - existingValueToDecrease
+					const increase                                        = percentChange - decrease as PositionPercent
+					positionPercentages[dimension][positionsToChange.inc] = increase
+					positionPercentages[dimension][positionsToChange.dec] = 0
+				}
 			} else {
-				positionPercentages[positionsToPreserve[1]] = valueToPreserve
+				// decrease = 0
+				// increase = percentChange
+				positionPercentages[dimension][positionsToChange.inc] = percentChange
 			}
-			valueToMove = 0
 		} else {
-			valueToMove = 100 - valueToPreserve + percent
-		}
-
-		let positionsToMove = this.getPositionsForDimension(dimensionToMove)
-		if (positionPercentages[positionsToMove[0]]) {
-			positionPercentages[positionsToMove[0]] = valueToMove
-		} else {
-			positionPercentages[positionsToMove[1]] = valueToMove
+			// No decrease is necessary, user is clicking on a button
+			// that has a value associated with it
+			// decrease = 0
+			const increasedValue = existingValueToIncrease + percentChange as PositionPercent
+			if (increasedValue <= 100) {
+				// increase = percentChange
+				positionPercentages[dimension][positionsToChange.inc] = increasedValue
+			} else {
+				// increase = 100 - existingValueToIncrease
+				positionPercentages[dimension][positionsToChange.inc] = 100
+			}
 		}
 	}
+
+	private adjustDimensions(
+		dimension: Dimension,
+		viewport: Viewport,
+	): void {
+		const positionPercentages      = viewport.pp
+		const newChangedDimensionValue = this.getDimensionValue(dimension, viewport)
+		let i                          = -1
+		let dimensionToPreserve        = this.getDimensionToPreserve(dimension, viewport)
+		let dimensionToMove            = this.getDimensionToMove(dimension, dimensionToPreserve)
+		let otherDimensions            = [dimensionToMove, dimensionToPreserve]
+		let otherDimensionValues, totalValue
+		do {
+			otherDimensionValues = [
+				this.getDimensionValue(dimensionToMove, viewport),
+				this.getDimensionValue(dimensionToPreserve, viewport)
+			]
+
+			totalValue = newChangedDimensionValue + otherDimensionValues[0] + otherDimensionValues[1]
+			if (totalValue == 100) {
+				return
+			}
+			i++
+		} while (this.adjustDimension(
+			positionPercentages,
+			otherDimensions[i],
+			otherDimensionValues[i],
+			totalValue))
+
+	}
+
+	private adjustDimension(
+		positionPercentages: PositionPercentages,
+		dimension: Dimension,
+		currentDimensionValue: number,
+		totalValue: number
+	): boolean {
+		if (totalValue > 100) {
+			const reduceBy = totalValue - 100
+			if (currentDimensionValue >= reduceBy) {
+				if (positionPercentages[dimension].minus) {
+					positionPercentages[dimension].minus -= reduceBy
+				} else {
+					positionPercentages[dimension].plus -= reduceBy
+				}
+				return true
+			}
+			positionPercentages[dimension].minus = 0
+			positionPercentages[dimension].plus  = 0
+			return false
+		}
+		// total value < 100
+		const increaseBy = 100 - totalValue
+
+		if (currentDimensionValue + increaseBy <= 100) {
+			if (positionPercentages[dimension].minus) {
+				positionPercentages[dimension].minus += increaseBy
+			} else {
+				positionPercentages[dimension].plus += increaseBy
+			}
+			return true
+		}
+
+		if (positionPercentages[dimension].minus) {
+			positionPercentages[dimension].minus = 100
+		} else {
+			positionPercentages[dimension].plus = 100
+		}
+		return false
+	}
+
+	private getDimensionValue(
+		dimension: Dimension,
+		viewport: Viewport
+	) {
+		const positionPercentages = viewport.pp
+
+		return positionPercentages[dimension].minus + positionPercentages[dimension].plus
+	}
+
 
 	private getDimensionToPreserve(
 		dimension: Dimension,
@@ -102,66 +224,20 @@ export class PercentagePositionChooser {
 		}
 	}
 
-	private getPositionsToSetAndZeroOut(
-		dimension: Dimension,
+	private getPositionsToChange(
 		direction: Direction
-	): {
-		set: ValueArrayPosition
-		zero: ValueArrayPosition
-	} {
-		switch (dimension) {
-			case 'x':
-				switch (direction) {
-					case 1:
-						return {
-							set: 0,
-							zero: 5
-						}
-					case -1:
-						return {
-							set: 5,
-							zero: 0
-						}
+	): PositionsToChange {
+		switch (direction) {
+			case 1:
+				return {
+					inc: 'plus',
+					dec: 'minus'
 				}
-			case 'y':
-				switch (direction) {
-					case 1:
-						return {
-							set: 1,
-							zero: 3
-						}
-					case -1:
-						return {
-							set: 3,
-							zero: 1
-						}
+			case -1:
+				return {
+					inc: 'minus',
+					dec: 'plus'
 				}
-			case 'z':
-				switch (direction) {
-					case 1:
-						return {
-							set: 2,
-							zero: 4
-						}
-					case -1:
-						return {
-							set: 4,
-							zero: 2
-						}
-				}
-		}
-	}
-
-	private getPositionsForDimension(
-		dimension: Dimension
-	): [ValueArrayPosition, ValueArrayPosition] {
-		switch (dimension) {
-			case 'x':
-				return [0, 5]
-			case 'y':
-				return [1, 3]
-			case 'z':
-				return [2, 4]
 		}
 	}
 

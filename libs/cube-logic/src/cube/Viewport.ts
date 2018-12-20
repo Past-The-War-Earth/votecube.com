@@ -64,6 +64,7 @@ export interface VisibleDirection {
 }
 
 export type Dimension = 'x' | 'y' | 'z'
+export type DimensionDirection = 'minus' | 'plus'
 
 export type ValueArrayPosition = 0 | 1 | 2 | 3 | 4 | 5
 

@@ -13,6 +13,7 @@ import {DegreePositionChooser}     from './DegreePositionChooser'
 import {FinalPositionFinder}       from './FinalPositionFinder'
 import {MatrixValueChooser}        from './MatrixValueChooser'
 import {PercentagePositionChooser} from './PercentagePositionChooser'
+import {PercentChange}             from './types'
 
 export interface IMutationApi {
 
@@ -74,7 +75,7 @@ export class MutationApi
 	moveXToPercent(
 		movePercent: PositionPercent
 	): void {
-		this.moveToPercent('x', movePercent, this.vp.vd.x)
+		this.moveToPercent('x', movePercent, null, this.vp.vd.x)
 	}
 
 	moveY(
@@ -86,7 +87,7 @@ export class MutationApi
 	moveYToPercent(
 		movePercent: PositionPercent
 	): void {
-		this.moveToPercent('y', movePercent, this.vp.vd.y)
+		this.moveToPercent('y', movePercent, null, this.vp.vd.y)
 	}
 
 	moveZ(
@@ -98,7 +99,7 @@ export class MutationApi
 	moveZToPercent(
 		movePercent: PositionPercent
 	): void {
-		this.moveToPercent('z', movePercent, this.vp.vd.z)
+		this.moveToPercent('z', movePercent, null, this.vp.vd.z)
 	}
 
 	private move(
@@ -123,8 +124,7 @@ export class MutationApi
 				break
 		}
 
-		this.moveToPercent(dimension,
-			nextStep * percentChange as PositionPercent, direction)
+		this.moveToPercent(dimension, null, percentChange, direction)
 	}
 
 	private getNextStep(
@@ -177,7 +177,8 @@ export class MutationApi
 
 	private moveToPercent(
 		dimension: Dimension,
-		percent: PositionPercent,
+		newPercent: PositionPercent,
+		percentChange: PercentChange,
 		direction: Direction
 	): void {
 		// First see the order of recently moved dimensions
@@ -190,7 +191,11 @@ export class MutationApi
 			this.vp.rmd.pop()
 		}
 
-		this.percentagePositionChooser.setPositionPercentages(dimension, percent, direction, this.vp)
+		if (percentChange) {
+			this.percentagePositionChooser.changePositionPercentages(dimension, percentChange, direction, this.vp)
+		} else {
+			this.percentagePositionChooser.setPositionPercentages(dimension, newPercent, direction, this.vp)
+		}
 
 		const closestMatrixPosition = this.matrixValueChooser.getClosestMatrixPosition(this.vp)
 

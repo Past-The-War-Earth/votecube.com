@@ -197,40 +197,39 @@ export class MatrixValueChooser {
 		dist: DistanceFromMatrixPosition
 		mPos: MatrixPosition
 	} {
-		let i: DistanceFromMatrixPosition = 0
-		let secondDimensionArray
-		for (; i < 4; i++) {
-			secondDimensionArray = minimumDistanceMatches[i]
-			if (secondDimensionArray) {
-				break
+		let mPos: MatrixPosition
+		let dist: DistanceFromMatrixPosition
+		let i: DistanceFromMatrixPosition | -1 = -1
+		while (!mPos) {
+			i++
+			const secondDimensionArray = minimumDistanceMatches[i]
+			let thirdDimensionArray
+			let j: DistanceFromMatrixPosition = 0
+			for (; j < 4; j++) {
+				thirdDimensionArray = secondDimensionArray[j]
+				if (thirdDimensionArray && thirdDimensionArray.length) {
+					break
+				}
 			}
-		}
-		let thirdDimensionArray
-		let j: DistanceFromMatrixPosition = 0
-		for (; j < 4; j++) {
-			thirdDimensionArray = secondDimensionArray[j]
-			if (thirdDimensionArray) {
-				break
+			let k: DistanceFromMatrixPosition = 0
+			for (; k < 4; k++) {
+				if (thirdDimensionArray[k]) {
+					break
+				}
 			}
+			dist = (i > j
+				? (i > k
+					? i
+					: k)
+				: (j > k
+					? j
+					: k)) as DistanceFromMatrixPosition
+			mPos = minimumDistanceMatches[i][j][k]
 		}
-		let k: DistanceFromMatrixPosition = 0
-		for (; k < 4; k++) {
-			if (thirdDimensionArray[k]) {
-				break
-			}
-		}
-		const dist: DistanceFromMatrixPosition = (i > j
-			? (i > k
-				? i
-				: k)
-			: (j > k
-				? j
-				: k)) as DistanceFromMatrixPosition
-
 
 		return {
 			dist,
-			mPos: minimumDistanceMatches[i][j][k]
+			mPos
 		}
 	}
 }
