@@ -1,7 +1,7 @@
 import {
 	Direction,
 	PositionPercent,
-	PositionPercentages
+	IPositionPercentages
 }                      from '../cubeMovement'
 import {
 	Dimension,
@@ -10,7 +10,7 @@ import {
 }                      from '../Viewport'
 import {PercentChange} from './types'
 
-export interface PositionsToChange {
+export interface IPositionsToChange {
 	inc: DimensionDirection
 	dec: DimensionDirection
 }
@@ -111,7 +111,7 @@ export class PercentagePositionChooser {
 			]
 
 			totalValue = newChangedDimensionValue + otherDimensionValues[0] + otherDimensionValues[1]
-			if (totalValue == 100) {
+			if (totalValue === 100) {
 				return
 			}
 			i++
@@ -124,7 +124,7 @@ export class PercentagePositionChooser {
 	}
 
 	private adjustDimension(
-		positionPercentages: PositionPercentages,
+		positionPercentages: IPositionPercentages,
 		dimension: Dimension,
 		currentDimensionValue: number,
 		totalValue: number
@@ -171,7 +171,6 @@ export class PercentagePositionChooser {
 
 		return positionPercentages[dimension].minus + positionPercentages[dimension].plus
 	}
-
 
 	private getDimensionToPreserve(
 		dimension: Dimension,
@@ -226,17 +225,17 @@ export class PercentagePositionChooser {
 
 	private getPositionsToChange(
 		direction: Direction
-	): PositionsToChange {
+	): IPositionsToChange {
 		switch (direction) {
 			case 1:
 				return {
-					inc: 'plus',
-					dec: 'minus'
+					dec: 'minus',
+					inc: 'plus'
 				}
 			case -1:
 				return {
-					inc: 'minus',
-					dec: 'plus'
+					dec: 'plus',
+					inc: 'minus'
 				}
 		}
 	}

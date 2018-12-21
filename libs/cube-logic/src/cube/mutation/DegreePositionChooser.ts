@@ -1,14 +1,15 @@
-import {Viewport}      from '../Viewport'
-import {FinalPosition} from './types'
+import {Viewport}       from '../Viewport'
+import {IFinalPosition} from './types'
 
 export class DegreePositionChooser {
 
 	setFinalDegrees(
-		finalPosition: FinalPosition,
+		finalPosition: IFinalPosition,
 		viewport: Viewport
 	): void {
 		viewport.x = this.getDimDegrees(viewport.x, finalPosition.x)
 		viewport.y = this.getDimDegrees(viewport.y, finalPosition.y)
+		viewport.moveToDegree()
 	}
 
 	private getDimDegrees(
@@ -17,7 +18,7 @@ export class DegreePositionChooser {
 	): number {
 		let rotationMultiplier = Math.floor(Math.abs(currentDegrees / 360))
 
-		if(currentDegrees < 0){
+		if (currentDegrees < 0) {
 			rotationMultiplier = -rotationMultiplier
 		}
 

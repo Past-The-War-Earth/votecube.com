@@ -39,6 +39,11 @@ export type PositionValues = [
 	PositionPercent, PositionPercent, PositionPercent
 	]
 
+export const NUM_VALS               = 6
+export const STEP_DEGS              = 5
+export const NUM_DIVS: NumDivisions = 72
+
+/* tslint:disable:max-line-length */
 //  4   0   1
 const fiveDegreeValueTemplate = [
 	[[0, 0, 100], [0, 0, 100], [0, 0, 100], [6, 0, 94], [13, 0, 87], [20, 0, 80], [28, 0, 72], [35, 0, 65], [42, 0, 58], [50, 0, 50]],
@@ -61,6 +66,7 @@ const fiveDegreeValueTemplate = [
 	[[0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0]],
 	[[0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0]],
 ]
+/* tslint:enable:max-line-length */
 
 //  4   0   1    4   0   1    4   0   1    4   0   1
 const fifteenDegreeValueTemplate = [
@@ -124,7 +130,6 @@ let matrixTemplateDirectedPositions = [
 
 	// next 8 - top and bottom are flipped (5 instead of 0)
 
-
 	// next 16 - upside down, second is flipped (5 to 0 and back),
 	// initial offset 180 abs(-12), 180 (+12%24)
 
@@ -155,7 +160,7 @@ for (let i = 0; i < 8; i++) {
 // initial offset -180 abs(-12), 180 (12)
 for (let i = 0; i < 16; i++) {
 	let template = matrixTemplateDirectedPositions[i]
-	let upDown   = template[1] == 0 ? 5 : 0
+	let upDown   = template[1] === 0 ? 5 : 0
 	matrixTemplateDirectedPositions.push([template[0], upDown, template[2], Math.abs(template[3] - 12), template[4] + 12])
 }
 
@@ -191,17 +196,19 @@ export function populateValueMatrix(
 
 		const positionStartX       = subMatrixPositions[3] * indexStartMultiplier
 		const positionStartY       = subMatrixPositions[4] * indexStartMultiplier
-		const loopEndX             = moveSubMatrix[0] == 1 ? endX : -endX
-		const isPositiveDirectionX = moveSubMatrix[0] == 1 ? 1 : 0
-		for (let x = 0;
-		     isPositiveDirectionX ? x < loopEndX : x > loopEndX;
-		     isPositiveDirectionX ? x++ : x--) {
-			const loopEndY             = moveSubMatrix[1] == 1 ? endY : -endY
-			const isPositiveDirectionY = moveSubMatrix[1] == 1 ? 1 : 0
+		const loopEndX             = moveSubMatrix[0] === 1 ? endX : -endX
+		const isPositiveDirectionX = moveSubMatrix[0] === 1 ? 1 : 0
+		for (
+			let x = 0;
+			isPositiveDirectionX ? x < loopEndX : x > loopEndX;
+			isPositiveDirectionX ? x++ : x--) {
+			const loopEndY             = moveSubMatrix[1] === 1 ? endY : -endY
+			const isPositiveDirectionY = moveSubMatrix[1] === 1 ? 1 : 0
 			const xValueTemplate       = matrixValueTemplate[Math.abs(x)]
-			for (let y = 0;
-			     isPositiveDirectionY ? y < loopEndY : y > loopEndY;
-			     isPositiveDirectionY ? y++ : y--) {
+			for (
+				let y = 0;
+				isPositiveDirectionY ? y < loopEndY : y > loopEndY;
+				isPositiveDirectionY ? y++ : y--) {
 				const yValueTemplate                    = xValueTemplate[Math.abs(y)]
 				const values                            = [0, 0, 0, 0, 0, 0]
 				values[subMatrixPositions[0]]           = yValueTemplate[0]

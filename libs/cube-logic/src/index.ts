@@ -1,8 +1,8 @@
-import {ValuesOutCallback} from './cube/cubeMovement'
-import {MutationApi}       from './cube/mutation/MutationApi'
+import {IValuesOutCallback} from './cube/cubeMovement'
+import {MutationApi}        from './cube/mutation/MutationApi'
 
 export async function setViewImport(
-	cb?: ValuesOutCallback
+	cb?: IValuesOutCallback
 ): Promise<MutationApi> {
 	const eventListener = await import ('./cube/eventListener')
 
@@ -12,8 +12,8 @@ export async function setViewImport(
 export {IMutationApi} from './cube/mutation/MutationApi'
 export {ZoomIndex}    from './cube/cubeMoveMatrix'
 export {
-	DimensionPercentages,
-	PositionPercentages,
+	IDimensionPercentages,
+	IPositionPercentages,
 	Direction,
 	PositionPercent
 }                     from './cube/cubeMovement'

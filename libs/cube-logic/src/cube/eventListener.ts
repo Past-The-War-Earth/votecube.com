@@ -1,15 +1,14 @@
 import {
 	gQ,
-	IsKnownElementOfTag,
 	iT,
 	LM,
 	pD
 }                 from '../utils/utils'
 import {
 	Bool,
+	IValuesOutCallback,
 	mouse,
-	Move,
-	ValuesOutCallback
+	Move
 }                 from './cubeMovement'
 import {
 	mutationApi,
@@ -17,7 +16,7 @@ import {
 }                 from './mutation/MutationApi'
 import {viewport} from './Viewport'
 
-export interface MoveViewportEvent {
+export interface IMoveViewportEvent {
 	x: number;
 	y: number;
 }
@@ -29,9 +28,8 @@ export interface MoveViewportEvent {
 // export const dLM = LM.ad(D)
 export const dLM = LM.ad(document)
 
-
 export function setViewPort(
-	cb?: ValuesOutCallback
+	cb?: IValuesOutCallback
 ): MutationApi {
 	viewport.reset()
 	viewport.cb = cb
@@ -74,15 +72,17 @@ dLM.ad('keydown', function (ev) {
 			if (!viewport.el) {
 				return
 			}
-			if (moveSpeed > 128)
+			if (moveSpeed > 128) {
 				moveSpeed /= 2
+			}
 			break
 		case 107:
 			if (!viewport.el) {
 				return
 			}
-			if (moveSpeed < 4096)
+			if (moveSpeed < 4096) {
 				moveSpeed *= 2
+			}
 			break
 
 		default:
@@ -111,14 +111,14 @@ function oMdTs(
 	delete mouse.last
 
 	// clicks on links, images, or videos
-	if ((<IsKnownElementOfTag>(<IsKnownElementOfTag>iT(<Element>ev.target, 'A'))('IFRAME'))()) {
+	if (iT(ev.target as Element, 'A')('IFRAME')()) {
 		return true
 	}
 
 	// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
-	let p: MouseEvent | Touch = (<TouchEvent>ev).touches
-		? (<TouchEvent>ev).touches[0]
-		: <MouseEvent>ev
+	let p: MouseEvent | Touch = (ev as TouchEvent).touches
+		? (ev as TouchEvent).touches[0]
+		: ev as MouseEvent
 	// console.log('---===<<<((( mouse start )))>>>===---')
 	mouse.start.x             = p.screenX
 	mouse.start.y             = p.screenY
@@ -159,22 +159,24 @@ function rmMmTm() {
 	dLM.rm('mousemove')('touchmove')
 }
 
-var lastMove = 0
+let lastMove = 0
 
 function moveViewport(
-	event: MoveViewportEvent // event
+	event: IMoveViewportEvent // event
 ) {
 	let mouseObject = mouse
 	let startCoords = mouseObject.start
 	let lastCoords  = mouseObject.last
 
-	let dx, dy,
-			vx: DirectionVector,
-			vy: DirectionVector,
-			moveX: 0 | 1           = 0,
-			xBy: MovementDirection = 0,
-			moveY: 0 | 1           = 0,
-			yBy: MovementDirection = 0
+	let
+		dx,
+		dy,
+		vx: DirectionVector,
+		vy: DirectionVector,
+		moveX: 0 | 1           = 0,
+		xBy: MovementDirection = 0,
+		moveY: 0 | 1           = 0,
+		yBy: MovementDirection = 0
 	// directionChanged = 0
 
 	let now: number = new Date().getTime()
@@ -230,22 +232,20 @@ function moveViewport(
 	dx = vx[1]
 	dy = vy[1]
 
-	// If general directionVector is in X
 	if (dx >= 4 && dx / 4 > dy) {
+		// If general directionVector is in X
 		// console.log('dx >= 4 && dx / 4 > dy')
 		yBy   = vx[0]
 		moveY = 1
-	}
-	// If general directionVector is in Y
-	else if (dy >= 4 && dy / 4 > dx) {
+	} else if (dy >= 4 && dy / 4 > dx) {
+		// If general directionVector is in Y
 		// console.log('dy >= 4 && dy / 4 > dx')
-		xBy   = <MovementDirection>-vy[0]
+		xBy   = -vy[0] as MovementDirection
 		moveX = 1
-	}
-	// Otherwise its in both x and y
-	else if (dx >= 4 && dy >= 4) {
+	} else if (dx >= 4 && dy >= 4) {
+		// Otherwise its in both x and y
 		// console.log('dx >= 4 && dy >= 4')
-		xBy   = <MovementDirection>-vy[0]
+		xBy   = -vy[0] as MovementDirection
 		yBy   = vx[0]
 		moveX = 1
 		moveY = 1
@@ -260,7 +260,6 @@ function moveViewport(
 			//     // console.log('moving, dir changed:  ' + directionChanged)
 			//     alert('direction changed!');
 			// }
-
 
 			// console.log("moveX: " + xBy + ", moveY: " + yBy)
 			viewport.move(moveX, xBy, moveY, yBy)

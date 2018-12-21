@@ -1,7 +1,7 @@
 import {ZoomIndex}                 from '../cubeMoveMatrix'
 import {
-	DimensionPercentages,
 	Direction,
+	IDimensionPercentages,
 	PositionPercent
 }                                  from '../cubeMovement'
 import {
@@ -19,6 +19,10 @@ export interface IMutationApi {
 
 	changeZoom(
 		zoomIndex: ZoomIndex
+	): void
+
+	manualMove(
+		event: KeyboardEvent
 	): void
 
 	moveX(
@@ -102,10 +106,29 @@ export class MutationApi
 		this.moveToPercent('z', movePercent, null, this.vp.vd.z)
 	}
 
+	manualMove(
+		event: KeyboardEvent
+	): void {
+		function handleManualMove(
+			event
+		) {
+			var myElement     = event.taget
+			var startPosition = myElement.selectionStart
+			var endPosition   = myElement.selectionEnd
+
+			// Check if you've selected text
+			if (startPosition === endPosition) {
+				alert('The position of the cursor is (' + startPosition + '/' + myElement.value.length + ')')
+			} else {
+				alert('Selected text from (' + startPosition + ' to ' + endPosition + ' of ' + myElement.value.length + ')')
+			}
+		}
+	}
+
 	private move(
 		dimension: Dimension,
 		direction: Direction
-		// dimensionPercentages: DimensionPercentages
+		// dimensionPercentages: IDimensionPercentages
 	): void {
 		const dimensionPercentages = this.vp.pp[dimension]
 		if (!this.isChangeAllowed(direction, dimensionPercentages)) {
@@ -153,7 +176,7 @@ export class MutationApi
 		// }
 	}
 
-	private getPercentChange(): 1 | 5 | 20 {
+	private getPercentChange(): PercentChange {
 		switch (this.vp.zm) {
 			case 0:
 				return 20
@@ -166,7 +189,7 @@ export class MutationApi
 
 	private isChangeAllowed(
 		direction: Direction,
-		dimensionPercentages: DimensionPercentages
+		dimensionPercentages: IDimensionPercentages
 	): boolean {
 		let currentValue = direction === 1
 			? dimensionPercentages.plus
@@ -184,7 +207,7 @@ export class MutationApi
 		// First see the order of recently moved dimensions
 
 		this.vp.rmd = this.vp.rmd.filter(
-			changedDim => dimension != changedDim)
+			changedDim => dimension !== changedDim)
 		this.vp.rmd.unshift(dimension)
 		let numPreviousMoves = this.vp.rmd.length
 		if (numPreviousMoves > 3) {

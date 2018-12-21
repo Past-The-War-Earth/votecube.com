@@ -12,19 +12,19 @@ import {
 	Move,
 	moveCoordinates,
 	PositionPercent,
-	PositionPercentages,
+	IPositionPercentages,
 	Pxs,
 	Pys,
-	ValuesOutCallback
+	IValuesOutCallback
 } from './cubeMovement'
 
 export interface Viewport {
 
-	cb: ValuesOutCallback,
+	cb: IValuesOutCallback,
 	cr: CubeRotation,
 	el: Element | null
 	increment: MoveIncrement
-	pp: PositionPercentages
+	pp: IPositionPercentages
 	// Recently Moved Dimension
 	rmd: Dimension[]
 	x: number

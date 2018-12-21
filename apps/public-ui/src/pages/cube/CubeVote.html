@@ -184,6 +184,7 @@
                 </td>
                 <td>
                     <input
+                            on:keydown="yManualMove(event)"
                             style="
                     border: 0px;
                     width: 100%;
@@ -274,46 +275,49 @@
         },
         methods: {
             zoomChange(event) {
-                let currentZoom = parseInt(event.target.value)
-                console.log('zoomChange: ' + currentZoom)
-                let zoomFactor
+                let currentZoom = parseInt(event.target.value);
+                console.log('zoomChange: ' + currentZoom);
+                let zoomFactor;
                 switch (currentZoom) {
                     case 0:
-                        zoomFactor = 0.55
-                        break
+                        zoomFactor = 0.55;
+                        break;
                     case 1:
-                        zoomFactor = 0.65
-                        break
+                        zoomFactor = 0.65;
+                        break;
                     case 2:
-                        zoomFactor = 0.75
+                        zoomFactor = 0.75;
                         break
                 }
-                this.set({currentZoom, zoomFactor})
+                this.set({currentZoom, zoomFactor});
                 this.get().mutationApi.changeZoom(currentZoom)
             },
             moveXLeft() {
-                console.log('moveXLeft')
+                console.log('moveXLeft');
                 this.get().mutationApi.moveX(-1)
             },
             moveXRight() {
-                console.log('moveXRight')
+                console.log('moveXRight');
                 this.get().mutationApi.moveX(1)
             },
             moveYLeft() {
-                console.log('moveYLeft')
+                console.log('moveYLeft');
                 this.get().mutationApi.moveY(-1)
             },
             moveYRight() {
-                console.log('moveYRight')
+                console.log('moveYRight');
                 this.get().mutationApi.moveY(1)
             },
             moveZLeft() {
-                console.log('moveZLeft')
+                console.log('moveZLeft');
                 this.get().mutationApi.moveZ(-1)
             },
             moveZRight() {
-                console.log('moveZRight')
+                console.log('moveZRight');
                 this.get().mutationApi.moveZ(1)
+            },
+            yManualMove(event) {
+                handleManualMove()
             }
         },
         oncreate() {
@@ -328,7 +332,7 @@
                     .then((mutationApi) => {
                         setMutationApi(mutationApi)
                     })
-            }
+            };
             this.setCubeViewPort((
                 mutationApi
                 ) => {
@@ -465,6 +469,21 @@
             : (dirB
                 ? color
                 : 'FFFFFF')
+    }
+
+    function handleManualMove(
+        event
+    ) {
+        var myElement = event.taget;
+        var startPosition = myElement.selectionStart;
+        var endPosition = myElement.selectionEnd;
+
+        // Check if you've selected text
+        if(startPosition == endPosition){
+            alert("The position of the cursor is (" + startPosition + "/" + myElement.value.length + ")");
+        }else{
+            alert("Selected text from ("+ startPosition +" to "+ endPosition + " of " + myElement.value.length + ")");
+        }
     }
 
 </script>

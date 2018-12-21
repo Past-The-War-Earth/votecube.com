@@ -1,10 +1,11 @@
 import {
+	NUM_VALS,
 	PositionValues,
 	VALUE_MATRICES
 } from '../cubeMoveMatrix'
 import {
-	DimensionPercentages,
-	PositionPercentages
+	IDimensionPercentages,
+	IPositionPercentages
 } from '../cubeMovement'
 import {
 	ValueArrayPosition,
@@ -12,19 +13,20 @@ import {
 } from '../Viewport'
 import {
 	DistanceFromMatrixPosition,
-	MatrixPosition
+	IMatrixPosition
 } from './types'
 
+const MAX_DIST = 5
 
 export class MatrixValueChooser {
 
 	getClosestMatrixPosition(
 		viewport: Viewport
-	): MatrixPosition {
+	): IMatrixPosition {
 		let minimumDistanceMatches = this.getMinimumDistanceMatches(viewport)
 
 		let match = this.pickLowestFromDimensionOrder(minimumDistanceMatches[0])
-		for (let i = 1; i < 6; i++) {
+		for (let i = 1; i < NUM_VALS; i++) {
 			let nextMatch = this.pickLowestFromDimensionOrder(minimumDistanceMatches[i])
 			if (match.dist > nextMatch.dist) {
 				match = nextMatch
@@ -36,23 +38,57 @@ export class MatrixValueChooser {
 
 	private getMinimumDistanceMatches(
 		viewport: Viewport
-	): MatrixPosition[][][][] {
+	): IMatrixPosition[][][][] {
 		const zeroedPositions = this.getZeroedPositions(viewport)
 
-		let xYZMinimumDistanceMatches: MatrixPosition[][][]
-					= [[[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []]]
-		let xZYMinimumDistanceMatches: MatrixPosition[][][]
-					= [[[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []]]
-
-		let yXZMinimumDistanceMatches: MatrixPosition[][][]
-					= [[[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []]]
-		let yZXMinimumDistanceMatches: MatrixPosition[][][]
-					= [[[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []]]
-
-		let zXYMinimumDistanceMatches: MatrixPosition[][][]
-					= [[[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []]]
-		let zYXMinimumDistanceMatches: MatrixPosition[][][]
-					= [[[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []], [[], [], [], [], [], []]]
+		let xYZMinimumDistanceMatches: IMatrixPosition[][][] = [
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []]
+		]
+		let xZYMinimumDistanceMatches: IMatrixPosition[][][] = [
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []]
+		]
+		let yXZMinimumDistanceMatches: IMatrixPosition[][][] = [
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []]
+		]
+		let yZXMinimumDistanceMatches: IMatrixPosition[][][] = [
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []]
+		]
+		let zXYMinimumDistanceMatches: IMatrixPosition[][][] = [
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []]
+		]
+		let zYXMinimumDistanceMatches: IMatrixPosition[][][] = [
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []],
+			[[], [], [], [], [], []]
+		]
 
 		// need to find the percentages that best match the specified ones
 		const valueMatrix = VALUE_MATRICES[2]
@@ -61,15 +97,15 @@ export class MatrixValueChooser {
 		zeroedPositions.forEach(
 			position => positionsWithZeroes[position] = true)
 
-		const newPositionPercentages: PositionPercentages = viewport.pp
+		const newPositionPercentages: IPositionPercentages = viewport.pp
 
 		for (let i = 0; i < valueMatrix.length; i++) {
 			const dimensionMatrix = valueMatrix[i]
 			value_loop:
 				for (let j = 0; j < dimensionMatrix.length; j++) {
 					const values = dimensionMatrix[j]
-					for (let k = 0; k < zeroedPositions.length; k++) {
-						if (values[zeroedPositions[k]]) {
+					for (let zeroedPosition of zeroedPositions) {
+						if (values[zeroedPosition]) {
 							continue value_loop
 						}
 					}
@@ -93,34 +129,34 @@ export class MatrixValueChooser {
 					}
 
 					xYZMinimumDistanceMatches[xDistance][yDistance][zDistance] = {
-						values,
 						i,
-						j
+						j,
+						values
 					}
 					yXZMinimumDistanceMatches[yDistance][xDistance][zDistance] = {
-						values,
 						i,
-						j
+						j,
+						values
 					}
 					xZYMinimumDistanceMatches[xDistance][zDistance][yDistance] = {
-						values,
 						i,
-						j
+						j,
+						values
 					}
 					yZXMinimumDistanceMatches[yDistance][zDistance][xDistance] = {
-						values,
 						i,
-						j
+						j,
+						values
 					}
 					zXYMinimumDistanceMatches[zDistance][xDistance][yDistance] = {
-						values,
 						i,
-						j
+						j,
+						values
 					}
 					zYXMinimumDistanceMatches[zDistance][yDistance][xDistance] = {
-						values,
 						i,
-						j
+						j,
+						values
 					}
 				}
 		}
@@ -164,7 +200,7 @@ export class MatrixValueChooser {
 	}
 
 	private getDimensionDistance(
-		newDimensionPercentages: DimensionPercentages,
+		newDimensionPercentages: IDimensionPercentages,
 		positionPercentages: PositionValues,
 		positiveIndex: ValueArrayPosition,
 		negativeIndex: ValueArrayPosition,
@@ -174,7 +210,7 @@ export class MatrixValueChooser {
 		if (!positionsWithZeroes[positiveIndex]) {
 			positiveDistance = Math.abs(positionPercentages[positiveIndex]
 				- newDimensionPercentages.plus)
-			if (positiveDistance > 5) {
+			if (positiveDistance > MAX_DIST) {
 				return undefined
 			}
 		}
@@ -182,7 +218,7 @@ export class MatrixValueChooser {
 		if (!positionsWithZeroes[negativeIndex]) {
 			negativeDistance = Math.abs(positionPercentages[negativeIndex]
 				- newDimensionPercentages.minus)
-			if (negativeDistance > 5) {
+			if (negativeDistance > MAX_DIST) {
 				return undefined
 			}
 		}
@@ -192,30 +228,40 @@ export class MatrixValueChooser {
 	}
 
 	private pickLowestFromDimensionOrder(
-		minimumDistanceMatches: MatrixPosition[][][]
+		minimumDistanceMatches: IMatrixPosition[][][]
 	): {
 		dist: DistanceFromMatrixPosition
-		mPos: MatrixPosition
+		mPos: IMatrixPosition
 	} {
-		let mPos: MatrixPosition
+		let mPos: IMatrixPosition
 		let dist: DistanceFromMatrixPosition
 		let i: DistanceFromMatrixPosition | -1 = -1
 		while (!mPos) {
 			i++
-			const secondDimensionArray = minimumDistanceMatches[i]
+			const secondDimensionArray        = minimumDistanceMatches[i]
 			let thirdDimensionArray
 			let j: DistanceFromMatrixPosition = 0
-			for (; j < 4; j++) {
+			let foundValue                    = false
+			for (; j < MAX_DIST; j++) {
 				thirdDimensionArray = secondDimensionArray[j]
 				if (thirdDimensionArray && thirdDimensionArray.length) {
+					foundValue = true
 					break
 				}
 			}
+			if (!foundValue) {
+				continue
+			}
+			foundValue                        = false
 			let k: DistanceFromMatrixPosition = 0
-			for (; k < 4; k++) {
+			for (; k < MAX_DIST; k++) {
 				if (thirdDimensionArray[k]) {
+					foundValue = true
 					break
 				}
+			}
+			if (!foundValue) {
+				continue
 			}
 			dist = (i > j
 				? (i > k

@@ -20,41 +20,36 @@ export class NodePtr {
 D.el           = document
 */
 
+export interface IGlobalEventListenerMap {
+	tM: Map<Node, IPerElementEventListenerMap>
 
-export interface GlobalEventListenerMap {
 	ad(
 		target: Node // NodePtr
-	): PerElementEventListenerMap
-
-	tM: Map<Node, PerElementEventListenerMap>
+	): IPerElementEventListenerMap
 }
 
-export interface EventListener<E extends Event> {
-	(event: E): void
-}
+export type IEventListener<E extends Event> =
+	(event: E) => void
 
-export interface AddEventListener {
+export type IAddEventListener =
 	(
 		eventName: string,
-		listener: EventListener<any>
-	): AddEventListener
-}
+		listener: IEventListener<any>
+	) => IAddEventListener
 
-export interface RemoveEventListener {
+export type IRemoveEventListener =
 	(
 		eventName: string
-	): RemoveEventListener
-}
+	) => IRemoveEventListener
 
-export interface PerElementEventListenerMap {
-	ad: AddEventListener
-	rm: RemoveEventListener
-	lM: Map<string, EventListener<any>>
+export interface IPerElementEventListenerMap {
+	ad: IAddEventListener
+	rm: IRemoveEventListener
+	lM: Map<string, IEventListener<any>>
 }
-
 
 // Global (per Element) Event Listener map
-export const LM: GlobalEventListenerMap = {
+export const LM: IGlobalEventListenerMap = {
 	tM: new Map(), // Target element Map
 	// Add add event handler to element
 	ad(
@@ -67,10 +62,11 @@ export const LM: GlobalEventListenerMap = {
 				// And a listener fo a particular event
 				ad(
 					eN: string, // event name
-					ln: EventListener<any> // listener
+					ln: IEventListener<any> // listener
 				) {
 					// add to array
-					eCA(this.lM, eN).push(ln)
+					eCA(this.lM, eN)
+						.push(ln)
 					// let node: Node = <Node>tg
 					// if (tg instanceof  NodePtr) {
 					// 	node = tg.val
@@ -80,7 +76,7 @@ export const LM: GlobalEventListenerMap = {
 
 					return (
 						eN2: string,
-						ln2: EventListener<any>
+						ln2: IEventListener<any>
 					) => {
 						return this.ad(eN2, ln2)
 					}
@@ -147,16 +143,15 @@ export function gQ(
 	return document.querySelector(sl)
 }
 
-export interface DispatchEventOnKnownObject<E> {
-	(event: E): DispatchEventOnKnownObject<E>
-}
+export type IDispatchEventOnKnownObject<E> =
+	(event: E) => IDispatchEventOnKnownObject<E>
 
 // dispatch event
 export function dE<E>(
 	tg: Node,  // NodePtr, // target
 	eN: string, // Event Name,
 	eO: E // Event Object
-): DispatchEventOnKnownObject<E> {
+): IDispatchEventOnKnownObject<E> {
 	// tg.val.dispatchEvent(new CustomEvent(eN, {detail: eO}))
 	tg.dispatchEvent(new CustomEvent(eN, {detail: eO}))
 	return (
@@ -166,7 +161,6 @@ export function dE<E>(
 	}
 }
 
-
 // Prevent default
 export function pD(
 	ev: Event // Event
@@ -175,15 +169,23 @@ export function pD(
 }
 
 export interface IsKnownElementOfTag {
-	(tagName?: string): boolean | IsKnownElementOfTag
+	(): boolean
+
+	(tagName: string): IsKnownElementOfTag
 }
 
 // is tag
+export function iT(t: Element): boolean;
 export function iT(
-	t?: Element, // target
+	t: Element,
+	tN: string,
+	aM?: boolean
+): IsKnownElementOfTag;
+export function iT(
+	t: Element, // target
 	tN?: string, // tag name
 	aM?: boolean  // aggregate match
-): boolean | IsKnownElementOfTag {
+): any {
 	if (!tN) {
 		return aM
 	}

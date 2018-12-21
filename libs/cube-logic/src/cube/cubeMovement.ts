@@ -11,9 +11,9 @@ export const Pxs = [[], [], []]
 export const Pys = [[], [], []]
 
 for (let i = 0; i < NUM_DIVISIONS.length; i++) {
-	const divisions = NUM_DIVISIONS[i]
-	const px = Pxs[i]
-	const py = Pys[i]
+	const divisions   = NUM_DIVISIONS[i]
+	const px          = Pxs[i]
+	const py          = Pys[i]
 	let moveIncrement = MOVE_INCREMENTS[i]
 	for (let j = 0; j < divisions; j++) {
 		px[j] = py[j] = j * moveIncrement
@@ -48,44 +48,41 @@ export type PositionPercent =
 
 populateValueMatrices()
 
-export interface Position {
+export interface IPosition {
 	x: number
 	y: number
 }
 
-export interface MousePosition {
-	last?: Position
-	start: Position
+export interface IMousePosition {
+	last?: IPosition
+	start: IPosition
 }
 
-export interface PositionPercentages {
-	x: DimensionPercentages
-	y: DimensionPercentages
-	z: DimensionPercentages
+export interface IPositionPercentages {
+	x: IDimensionPercentages
+	y: IDimensionPercentages
+	z: IDimensionPercentages
 }
 
-export interface DimensionPercentages {
+export interface IDimensionPercentages {
 	minus: PositionPercent
 	plus: PositionPercent
 }
 
-export interface ValuesOutCallback {
-	(values: PositionPercentages): void
-}
+export type IValuesOutCallback =
+	(values: IPositionPercentages) => void
 
-
-export const mouse: MousePosition = {
+export const mouse: IMousePosition = {
 	start: {x: undefined, y: undefined}
 }
-
 
 export function getModXAbsRemainder(
 	num: number,
 	moveIncrement: MoveIncrement
 ): number {
-	const index = MV_INC_IDX[moveIncrement];
-	const divisions = NUM_DIVISIONS[index];
-	let remainder = num % divisions
+	const index     = MV_INC_IDX[moveIncrement]
+	const divisions = NUM_DIVISIONS[index]
+	let remainder   = num % divisions
 	if (remainder < 0) {
 		remainder = divisions + remainder
 	}
@@ -167,8 +164,8 @@ export function moveCoordinates(
 		currentIndex = -currentIndex
 	}
 	let divisions = NUM_DIVISIONS[zoomIndex]
-	let page  = Math.floor(currentIndex / divisions)
-	let index = currentIndex % divisions
+	let page      = Math.floor(currentIndex / divisions)
+	let index     = currentIndex % divisions
 
 	// if (index === divisions) {
 	// 	page++
@@ -181,7 +178,6 @@ export function moveCoordinates(
 
 	return [rotation, angle, index, page, multiplier]
 }
-
 
 /* Just for fun */
 // if(!touch) {
