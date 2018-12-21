@@ -31,7 +31,6 @@ export interface IMinDistancePosition {
 export interface IMinDistForPosition {
 	exactMatches: Set<string>
 	minDist: IMinDistancePosition
-	pos: IMatrixPosition,
 }
 
 export interface IDistancePositions {
@@ -70,10 +69,10 @@ export class FinalPositionFinder {
 		// If the difference is in one dimension
 		if (!minDist.i || !minDist.j) {
 			return this.get1DOffsetFinalPosition(
-				minDistForPosition.pos, minDist)
+				currentPosition, closestMatrixPosition, minDist)
 		} else {
 			return this.get2DOffsetFinalPosition(
-				minDistForPosition.pos, minDist)
+				currentPosition, closestMatrixPosition, minDist)
 		}
 	}
 
@@ -94,7 +93,6 @@ export class FinalPositionFinder {
 			|| (newMinDist.dist === currentDistance
 				&& newMinDist.moves < currentDist.moves)) {
 			minDistForPosition.minDist = newMinDist
-			minDistForPosition.pos     = closestMatrixPosition
 		}
 		distancePositions.exactMatches
 			.map(
@@ -210,6 +208,7 @@ export class FinalPositionFinder {
 	}
 
 	private get1DOffsetFinalPosition(
+		currentPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
 		minDist: IMinDistancePosition
 	): IFinalPosition {
@@ -260,10 +259,11 @@ export class FinalPositionFinder {
 		}
 		let increment = maxDistance / STEP_DEGS
 
-		return Math.round(minDist.dist / increment)
+		return Math.round((maxDistance - minDist.dist) / increment)
 	}
 
 	private get2DOffsetFinalPosition(
+		currentPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
 		minDist: IMinDistancePosition
 	): IFinalPosition {
@@ -308,10 +308,10 @@ export class FinalPositionFinder {
 	} {
 
 		let horizontalDists            = this.getDists(closestMatrixPosition, 0, minDist.j)
-		let largestHorizontalDistIndex = this.getLargestDistIdx(horizontalDists)
+		let [largestHorizontalDistIndex, largestHorizontalDist] = this.getLargestDistAndIdx(horizontalDists)
 
 		let verticalDists            = this.getDists(closestMatrixPosition, minDist.i, 0)
-		let largestVerticalDistIndex = this.getLargestDistIdx(verticalDists)
+		let [largestVerticalDistIndex, largestVerticalDist] = this.getLargestDistAndIdx(verticalDists)
 
 		// get next cell values
 		const nextClosesCellValues = VALUE_MATRICES[2]
@@ -323,8 +323,8 @@ export class FinalPositionFinder {
 					this.getInc(nextClosesCellValues, closestCellValues, largestVerticalDistIndex)
 
 		return {
-			i: Math.round(minDist.dist / horizontalIncrement),
-			j: Math.round(minDist.dist / verticalIncrement)
+			i: Math.round((largestHorizontalDist - minDist.dist) / horizontalIncrement),
+			j: Math.round((largestVerticalDist - minDist.dist) / verticalIncrement)
 		}
 	}
 
@@ -347,9 +347,9 @@ export class FinalPositionFinder {
 		return distances
 	}
 
-	private getLargestDistIdx(
+	private getLargestDistAndIdx(
 		dists: number[]
-	): ValueArrayPosition {
+	): [ValueArrayPosition, DistanceFromMatrixPosition] {
 		let largestDist
 		let largestDistIndex
 		for (let k = 0; k < NUM_VALS; k++) {
@@ -360,7 +360,7 @@ export class FinalPositionFinder {
 			}
 		}
 
-		return largestDistIndex
+		return [largestDistIndex, largestDist]
 	}
 
 	private getInc(

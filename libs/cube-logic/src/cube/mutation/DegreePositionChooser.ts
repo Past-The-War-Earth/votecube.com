@@ -22,7 +22,7 @@ export class DegreePositionChooser {
 			rotationMultiplier = -rotationMultiplier
 		}
 
-		return rotationMultiplier + newDegreeChange
+		return rotationMultiplier * 360 + newDegreeChange
 	}
 
 }
