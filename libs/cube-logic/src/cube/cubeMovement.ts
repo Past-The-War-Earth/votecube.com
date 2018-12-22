@@ -156,15 +156,31 @@ function setDisplayedSurfacePercentages(
 export function moveCoordinates(
 	percentArrays: number[][],
 	zoomIndex: ZoomIndex,
-	currentIndex: number
+	currentDegree: number,
+	move: Move
 ) {
+	if (!move) {
+		return [currentDegree, null, null, null, null]
+	}
 	let multiplier = 1
 	if (currentIndex < 0) {
 		multiplier   = -1
 		currentIndex = -currentIndex
 	}
-	let divisions = NUM_DIVISIONS[zoomIndex]
-	let page      = Math.floor(currentIndex / divisions)
+
+	let zoomMultiplier = 1
+	if (zoomIndex === 1) {
+		zoomMultiplier = 3
+	} else if (zoomIndex === 2) {
+		zoomMultiplier = 15
+	}
+
+	let simpleDegree = currentDegree % 360
+
+	let matrixIndex = Math.floor(simpleDegree / 5 / zoomMultiplier)
+
+	let divisions = NUM_DIVISIONS[2]
+	let page      = Math.floor(currentDegree / 360)
 	let index     = currentIndex % divisions
 
 	// if (index === divisions) {

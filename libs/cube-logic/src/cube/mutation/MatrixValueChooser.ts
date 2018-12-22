@@ -9,7 +9,7 @@ import {
 } from '../cubeMovement'
 import {
 	ValueArrayPosition,
-	Viewport
+	IViewport
 } from '../Viewport'
 import {
 	DistanceFromMatrixPosition,
@@ -21,7 +21,7 @@ const MAX_DIST = 5
 export class MatrixValueChooser {
 
 	getClosestMatrixPosition(
-		viewport: Viewport
+		viewport: IViewport
 	): IMatrixPosition {
 		let minimumDistanceMatches = this.getMinimumDistanceMatches(viewport)
 
@@ -37,7 +37,7 @@ export class MatrixValueChooser {
 	}
 
 	private getMinimumDistanceMatches(
-		viewport: Viewport
+		viewport: IViewport
 	): IMatrixPosition[][][][] {
 		const zeroedPositions = this.getZeroedPositions(viewport)
 
@@ -172,7 +172,7 @@ export class MatrixValueChooser {
 	}
 
 	private getZeroedPositions(
-		viewport: Viewport
+		viewport: IViewport
 	): ValueArrayPosition[] {
 		let positionPercentages = viewport.pp
 

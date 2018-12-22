@@ -1,11 +1,11 @@
-import {Viewport}       from '../Viewport'
+import {IViewport}      from '../Viewport'
 import {IFinalPosition} from './types'
 
 export class DegreePositionChooser {
 
 	setFinalDegrees(
 		finalPosition: IFinalPosition,
-		viewport: Viewport
+		viewport: IViewport
 	): void {
 		viewport.x = this.getDimDegrees(viewport.x, finalPosition.x)
 		viewport.y = this.getDimDegrees(viewport.y, finalPosition.y)

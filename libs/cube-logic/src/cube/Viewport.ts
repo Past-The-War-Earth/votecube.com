@@ -2,26 +2,24 @@ import {
 	MOVE_INCREMENTS,
 	MoveIncrement,
 	MV_INC_IDX,
-	VALUE_MATRICES,
 	ZoomIndex
 } from './cubeMoveMatrix'
 import {
 	Bool,
 	Direction,
 	getModXAbsRemainder,
+	IPositionPercentages,
+	IValuesOutCallback,
 	Move,
 	moveCoordinates,
-	PositionPercent,
-	IPositionPercentages,
 	Pxs,
-	Pys,
-	IValuesOutCallback
+	Pys
 } from './cubeMovement'
 
-export interface Viewport {
+export interface IViewport {
 
 	cb: IValuesOutCallback,
-	cr: CubeRotation,
+	cr: ICubeRotation,
 	el: Element | null
 	increment: MoveIncrement
 	pp: IPositionPercentages
@@ -31,7 +29,7 @@ export interface Viewport {
 	xi: number
 	y: number
 	yi: number
-	vd: VisibleDirection,
+	vd: IVisibleDirection,
 	zm: ZoomIndex
 
 	move(
@@ -52,12 +50,12 @@ export interface Viewport {
 
 }
 
-export interface CubeRotation {
+export interface ICubeRotation {
 	x: number,
 	y: number
 }
 
-export interface VisibleDirection {
+export interface IVisibleDirection {
 	x: Direction,
 	y: Direction,
 	z: Direction
@@ -68,7 +66,7 @@ export type DimensionDirection = 'minus' | 'plus'
 
 export type ValueArrayPosition = 0 | 1 | 2 | 3 | 4 | 5
 
-export const viewport: Viewport = {
+export const viewport: IViewport = {
 	cb: null,
 	cr: {
 		x: 0,
@@ -92,15 +90,15 @@ export const viewport: Viewport = {
 	},
 	// Recently moved dimension
 	rmd: [],
-	x: 0,
-	xi: 0,
-	y: 0,
-	yi: 0,
 	vd: {
 		x: 1,
 		y: 1,
 		z: 1
 	},
+	x: 0,
+	xi: 0,
+	y: 0,
+	yi: 0,
 	zm: MV_INC_IDX[MoveIncrement.FIFTEEN],
 	// zoom: ZoomLevel.FINE,
 	changeZoom(
@@ -161,7 +159,7 @@ export const viewport: Viewport = {
 	moveToDegree(): void {
 		console.log('x: ' + this.x + '\t\ty: ' + this.y)
 		this.cb(this.pp)
-		this.el.style['transform'] = 'rotateX(' + this.x + 'deg) rotateY(' + this.y + 'deg)'
+		this.el.style.transform = 'rotateX(' + this.x + 'deg) rotateY(' + this.y + 'deg)'
 	},
 	reset(): void {
 		if (!this.el) {

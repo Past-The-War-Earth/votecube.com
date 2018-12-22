@@ -6,7 +6,7 @@ import {
 import {
 	Dimension,
 	DimensionDirection,
-	Viewport
+	IViewport
 }                      from '../Viewport'
 import {PercentChange} from './types'
 
@@ -21,7 +21,7 @@ export class PercentagePositionChooser {
 		dimension: Dimension,
 		percent: PositionPercent,
 		direction: Direction,
-		viewport: Viewport
+		viewport: IViewport
 	): void {
 		const positionsToChange = this.getPositionsToChange(direction)
 
@@ -36,7 +36,7 @@ export class PercentagePositionChooser {
 		dimension: Dimension,
 		percentChange: PercentChange,
 		direction: Direction,
-		viewport: Viewport
+		viewport: IViewport
 	) {
 		this.updateDimensionPercentages(
 			dimension,
@@ -51,7 +51,7 @@ export class PercentagePositionChooser {
 		dimension: Dimension,
 		percentChange: PercentChange,
 		direction: Direction,
-		viewport: Viewport
+		viewport: IViewport
 	): void {
 		const positionsToChange = this.getPositionsToChange(direction)
 
@@ -95,7 +95,7 @@ export class PercentagePositionChooser {
 
 	private adjustDimensions(
 		dimension: Dimension,
-		viewport: Viewport,
+		viewport: IViewport,
 	): void {
 		const positionPercentages      = viewport.pp
 		const newChangedDimensionValue = this.getDimensionValue(dimension, viewport)
@@ -165,7 +165,7 @@ export class PercentagePositionChooser {
 
 	private getDimensionValue(
 		dimension: Dimension,
-		viewport: Viewport
+		viewport: IViewport
 	) {
 		const positionPercentages = viewport.pp
 
@@ -174,7 +174,7 @@ export class PercentagePositionChooser {
 
 	private getDimensionToPreserve(
 		dimension: Dimension,
-		viewport: Viewport
+		viewport: IViewport
 	): Dimension {
 		if (viewport.rmd.length > 1) {
 			return viewport.rmd[1]

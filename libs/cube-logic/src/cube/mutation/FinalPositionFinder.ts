@@ -7,7 +7,7 @@ import {
 } from '../cubeMoveMatrix'
 import {
 	ValueArrayPosition,
-	Viewport
+	IViewport
 } from '../Viewport'
 import {
 	DistanceFromMatrixPosition,
@@ -42,7 +42,7 @@ export class FinalPositionFinder {
 
 	findFinalPosition(
 		closestMatrixPosition: IMatrixPosition,
-		viewport: Viewport
+		viewport: IViewport
 	): IFinalPosition {
 		let positionPercentages             = viewport.pp
 		let currentPosition: PositionValues = [

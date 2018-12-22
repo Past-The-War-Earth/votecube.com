@@ -4,9 +4,13 @@
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/Viewport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/Viewport.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/cubeMovement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/cubeMovement.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/DegreePositionChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/DegreePositionChooser.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/FinalPositionFinder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/FinalPositionFinder.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/MatrixValueChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/MatrixValueChooser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/MutationApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/MutationApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/PercentagePositionChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/PercentagePositionChooser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/types.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -80,10 +84,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="x" value="-7" />
+    <option name="y" value="1" />
+    <option name="width" value="1940" />
+    <option name="height" value="1100" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -183,7 +187,7 @@
       <workItem from="1545364047824" duration="1270000" />
       <workItem from="1545367764045" duration="243000" />
       <workItem from="1545368974533" duration="5862000" />
-      <workItem from="1545452029045" duration="899000" />
+      <workItem from="1545452029045" duration="1498000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -203,7 +207,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19731000" />
+    <option name="totallyTimeSpent" value="20330000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />

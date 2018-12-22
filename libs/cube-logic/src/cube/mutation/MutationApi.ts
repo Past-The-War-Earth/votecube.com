@@ -6,7 +6,7 @@ import {
 }                                  from '../cubeMovement'
 import {
 	Dimension,
-	Viewport,
+	IViewport,
 	viewport
 }                                  from '../Viewport'
 import {DegreePositionChooser}     from './DegreePositionChooser'
@@ -60,7 +60,7 @@ export class MutationApi
 	private percentagePositionChooser = new PercentagePositionChooser()
 
 	constructor(
-		private vp: Viewport
+		private vp: IViewport
 	) {
 	}
 
