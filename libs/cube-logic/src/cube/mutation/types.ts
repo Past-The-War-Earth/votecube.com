@@ -10,7 +10,9 @@ export interface IFinalPosition {
 }
 
 export interface IMatrixPosition {
-	values: PositionValues
 	i: number,
-	j: number
+	j: number,
+	done?: boolean;
+	key?: string;
+	values: PositionValues
 }

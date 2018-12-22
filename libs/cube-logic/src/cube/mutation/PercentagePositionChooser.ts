@@ -137,11 +137,11 @@ export class PercentagePositionChooser {
 				} else {
 					positionPercentages[dimension].plus -= reduceBy
 				}
-				return true
+				return false
 			}
 			positionPercentages[dimension].minus = 0
 			positionPercentages[dimension].plus  = 0
-			return false
+			return true
 		}
 		// total value < 100
 		const increaseBy = 100 - totalValue
@@ -152,7 +152,7 @@ export class PercentagePositionChooser {
 			} else {
 				positionPercentages[dimension].plus += increaseBy
 			}
-			return true
+			return false
 		}
 
 		if (positionPercentages[dimension].minus) {
@@ -160,7 +160,7 @@ export class PercentagePositionChooser {
 		} else {
 			positionPercentages[dimension].plus = 100
 		}
-		return false
+		return true
 	}
 
 	private getDimensionValue(
