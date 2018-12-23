@@ -5,6 +5,10 @@ const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
 module.exports = {
+    devServer: {
+        // https://github.com/webpack/webpack-dev-server/issues/1604
+        disableHostCheck: true
+    },
     entry: {
         bundle: ['./src/main.js']
     },

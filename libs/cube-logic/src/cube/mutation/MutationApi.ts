@@ -201,8 +201,8 @@ export class MutationApi
 	private moveToPercent(
 		dimension: Dimension,
 		newPercent: PositionPercent,
-		percentChange: PercentChange,
-		direction: Direction
+		percentChange?: PercentChange,
+		direction?: Direction
 	): void {
 		// First see the order of recently moved dimensions
 
@@ -215,9 +215,11 @@ export class MutationApi
 		}
 
 		if (percentChange) {
-			this.percentagePositionChooser.changePositionPercentages(dimension, percentChange, direction, this.vp)
+			this.percentagePositionChooser.changePositionPercentages(
+				dimension, percentChange, direction, this.vp)
 		} else {
-			this.percentagePositionChooser.setPositionPercentages(dimension, newPercent, direction, this.vp)
+			this.percentagePositionChooser.setPositionPercentages(
+				dimension, newPercent, this.getDirection(dimension, this.vp), this.vp)
 		}
 
 		const closestMatrixPosition = this.matrixValueChooser.getClosestMatrixPosition(this.vp)
@@ -225,6 +227,18 @@ export class MutationApi
 		const finalPosition = this.finalPositionFinder.findFinalPosition(closestMatrixPosition, this.vp)
 
 		this.degreePositionChooser.setFinalDegrees(finalPosition, this.vp)
+	}
+
+	private getDirection(
+		dimension: Dimension,
+		aViewport: IViewport
+	): Direction {
+		let dimensionPercentages = aViewport.pp[dimension]
+		if (dimensionPercentages.minus) {
+			return -1
+		}
+
+		return 1
 	}
 
 }

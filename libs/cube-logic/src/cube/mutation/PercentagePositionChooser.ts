@@ -1,7 +1,7 @@
 import {
 	Direction,
-	PositionPercent,
-	IPositionPercentages
+	IPositionPercentages,
+	PositionPercent
 }                      from '../cubeMovement'
 import {
 	Dimension,
@@ -25,8 +25,8 @@ export class PercentagePositionChooser {
 	): void {
 		const positionsToChange = this.getPositionsToChange(direction)
 
-		let positionPercentages                            = viewport.pp
-		positionPercentages[dimension][positionsToChange.inc]  = percent
+		let positionPercentages                               = viewport.pp
+		positionPercentages[dimension][positionsToChange.inc] = percent
 		positionPercentages[dimension][positionsToChange.dec] = 0
 
 		this.adjustDimensions(dimension, viewport)

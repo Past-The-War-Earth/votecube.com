@@ -4,11 +4,11 @@ import {
 	NUM_VALS,
 	PositionValues,
 	STEP_DEGS,
-	VALUE_MATRICES
+	VALUE_MATRICES,
+	ValueArrayPosition
 } from '../cubeMoveMatrix'
 import {normMatrixIdx} from '../cubeMovement'
 import {
-	ValueArrayPosition,
 	IViewport
 }                      from '../Viewport'
 import {

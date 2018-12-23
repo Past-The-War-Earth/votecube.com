@@ -1,20 +1,18 @@
 import {
 	NUM_VALS,
 	PositionValues,
-	VALUE_MATRICES
-} from '../cubeMoveMatrix'
+	VALUE_MATRICES,
+	ValueArrayPosition
+}                  from '../cubeMoveMatrix'
 import {
 	IDimensionPercentages,
 	IPositionPercentages
-} from '../cubeMovement'
-import {
-	ValueArrayPosition,
-	IViewport
-} from '../Viewport'
+}                  from '../cubeMovement'
+import {IViewport} from '../Viewport'
 import {
 	DistanceFromMatrixPosition,
 	IMatrixPosition
-} from './types'
+}                  from './types'
 
 const MAX_DIST = 5
 

@@ -146,11 +146,11 @@ export function moveCoordinates(
 	zoomIndex: ZoomIndex,
 	currentDegree: number,
 	move: Move
-): number { // [number, MatrixIndex] {
-	if (!move) {
-		// return [currentDegree, null]
-		return currentDegree
-	}
+): [number, MatrixIndex] {
+	// not needed checked higher
+	// if (!move) {
+	// 	return [currentDegree, null]
+	// }
 
 	let zoomMultiplier = 9
 	if (zoomIndex === 1) {
@@ -185,12 +185,10 @@ export function moveCoordinates(
 	// 	index = 0
 	// }
 
-	let rotation = page * 360 + zoomedMatrixIndex * degreeChange
+	let rotation    = page * 360 + zoomedMatrixIndex * degreeChange
+	let matrixIndex = normMatrixIdx(zoomedMatrixIndex * zoomMultiplier)
 
-	return rotation
-	// let matrixIndex = normMatrixIdx(zoomedMatrixIndex / zoomMultiplier)
-	//
-	// return [rotation, matrixIndex]
+	return [rotation, matrixIndex]
 }
 
 export function normMatrixIdx(
@@ -201,6 +199,14 @@ export function normMatrixIdx(
 	}
 
 	return signedMatrixIndex as MatrixIndex
+}
+
+export function getMatrixIdxFromDeg(
+	rotationDegrees: number
+): MatrixIndex {
+	let signedMatrixIndex = Math.floor(rotationDegrees % 360 / STEP_DEGS)
+
+	return normMatrixIdx(signedMatrixIndex)
 }
 
 /* Just for fun */

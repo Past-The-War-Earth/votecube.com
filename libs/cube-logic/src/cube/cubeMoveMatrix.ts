@@ -1,6 +1,6 @@
 import {PositionPercent} from './cubeMovement'
 
-export const VALUE_MATRICES = [[], [], []]
+export const VALUE_MATRICES: PositionValues[][][] = [[], [], []]
 
 export enum MoveIncrement {
 	FORTY_FIVE = 45,
@@ -43,7 +43,6 @@ export const NUM_VALS               = 6
 export const STEP_DEGS              = 5
 export const NUM_DIVS: NumDivisions = 72
 
-
 export type MatrixIndex =
 	0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 	10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 |
@@ -54,9 +53,15 @@ export type MatrixIndex =
 	60 | 61 | 62 | 63 | 64 | 65 | 66 | 67 | 68 | 69 |
 	70 | 71
 
+export type ValueArrayPosition = 0 | 1 | 2 | 3 | 4 | 5
+
+export type PositionValueTemplate = [
+	PositionPercent, PositionPercent, PositionPercent
+	]
+
 /* tslint:disable:max-line-length */
 //  4   0   1
-const fiveDegreeValueTemplate = [
+const fiveDegreeValueTemplate: PositionValueTemplate[][] = [
 	[[0, 0, 100], [0, 0, 100], [0, 0, 100], [6, 0, 94], [13, 0, 87], [20, 0, 80], [28, 0, 72], [35, 0, 65], [42, 0, 58], [50, 0, 50]],
 	[[0, 0, 100], [0, 0, 100], [0, 0, 100], [6, 0, 94], [13, 0, 87], [20, 0, 80], [28, 0, 72], [35, 0, 65], [42, 0, 58], [50, 0, 50]],
 	[[0, 0, 100], [0, 0, 100], [0, 0, 100], [6, 0, 94], [13, 0, 87], [20, 0, 80], [28, 0, 72], [35, 0, 65], [42, 0, 58], [50, 0, 50]],
@@ -80,7 +85,7 @@ const fiveDegreeValueTemplate = [
 /* tslint:enable:max-line-length */
 
 //  4   0   1    4   0   1    4   0   1    4   0   1
-const fifteenDegreeValueTemplate = [
+const fifteenDegreeValueTemplate: PositionValueTemplate[][] = [
 	[[0, 0, 100], [6, 0, 94], [28, 0, 72], [50, 0, 50]],
 	[[0, 6, 94], [5, 6, 89], [26, 6, 68], [47, 6, 47]],
 	[[0, 28, 72], [3, 28, 69], [20, 26, 54], [37, 26, 37]],
@@ -93,7 +98,7 @@ const fifteenDegreeValueTemplate = [
 const fifteenDegreeCombinations = [[100, 0, 0], [95, 5, 0], [90, 10, 0]]
 
 //  4   0   1    4   0   1
-const fortyFiveDegreeValueTemplate = [
+const fortyFiveDegreeValueTemplate: PositionValueTemplate[][] = [
 	[[0, 0, 100], [50, 0, 50]],
 	[[0, 50, 50], [33, 33, 33]],
 	[[0, 100, 0], [0, 100, 0]]
@@ -221,7 +226,7 @@ export function populateValueMatrix(
 				isPositiveDirectionY ? y < loopEndY : y > loopEndY;
 				isPositiveDirectionY ? y++ : y--) {
 				const yValueTemplate                    = xValueTemplate[Math.abs(y)]
-				const values                            = [0, 0, 0, 0, 0, 0]
+				const values: PositionValues            = [0, 0, 0, 0, 0, 0]
 				values[subMatrixPositions[0]]           = yValueTemplate[0]
 				values[subMatrixPositions[1]]           = yValueTemplate[1]
 				values[subMatrixPositions[2]]           = yValueTemplate[2]

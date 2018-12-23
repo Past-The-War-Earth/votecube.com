@@ -2,11 +2,13 @@ import {
 	MOVE_INCREMENTS,
 	MoveIncrement,
 	MV_INC_IDX,
+	VALUE_MATRICES,
 	ZoomIndex
 } from './cubeMoveMatrix'
 import {
 	Bool,
 	Direction,
+	getMatrixIdxFromDeg,
 	IPositionPercentages,
 	IValuesOutCallback,
 	Move,
@@ -60,8 +62,6 @@ export interface IVisibleDirection {
 
 export type Dimension = 'x' | 'y' | 'z'
 export type DimensionDirection = 'minus' | 'plus'
-
-export type ValueArrayPosition = 0 | 1 | 2 | 3 | 4 | 5
 
 export const viewport: IViewport = {
 	cb: null,
@@ -129,21 +129,35 @@ export const viewport: IViewport = {
 		if (!moveX && !moveY) {
 			return
 		}
-		let matrixIndex
+		let xi, yi
 		if (moveX) {
-			// [this.x, matrixIndex] =
-			this.x = moveCoordinates(this.zm, this.x, xBy)
-			// if(matrixIndex != null) {
-			// 	this.xi = matrixIndex
-			// }
+			[this.x, xi] = moveCoordinates(this.zm, this.x, xBy)
+		} else {
+			xi = getMatrixIdxFromDeg(this.x)
 		}
 		if (moveY) {
-			// [this.y, matrixIndex] =
-			this.y = moveCoordinates(this.zm, this.y, yBy)
-			// if(matrixIndex != null) {
-			// 	this.yi = matrixIndex
-			// }
+			[this.y, yi] = moveCoordinates(this.zm, this.y, yBy)
+		} else {
+			yi = getMatrixIdxFromDeg(this.y)
 		}
+
+		const values = VALUE_MATRICES[2][xi][yi]
+
+		this.pp = {
+			x: {
+				minus: values[5],
+				plus: values[0],
+			},
+			y: {
+				minus: values[3],
+				plus: values[1],
+			},
+			z: {
+				minus: values[4],
+				plus: values[2],
+			}
+		}
+
 		// let xiRemainder = getModXAbsRemainder(this.xi, this.increment)
 		// let yiRemainder = getModXAbsRemainder(this.yi, this.increment)
 

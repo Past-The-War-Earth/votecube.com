@@ -86,6 +86,7 @@
                 </td>
                 <td>
                     <input
+                            on:input="xManualMove(this.value)"
                             style="
                 border: 0px;
                 width: 100%;
@@ -135,6 +136,7 @@
                 </td>
                 <td>
                     <input
+                            on:input="zManualMove(this.value)"
                             style="
                     border: 0px;
                     width: 100%;
@@ -185,6 +187,7 @@
                 <td>
                             <!--on:keydown="yManualMove(event)"-->
                     <input
+                            on:input="yManualMove(this.value)"
                             style="
                     border: 0px;
                     width: 100%;
@@ -241,7 +244,7 @@
                     },
                 },
                 currentZoom: 1,
-                zoomFactor: 0.65
+                zoomFactor: 0.65,
             }
         },
         computed: {
@@ -316,8 +319,19 @@
                 console.log('moveZRight');
                 this.get().mutationApi.moveZ(1)
             },
-            yManualMove(event) {
-                handleManualMove()
+            //
+        // 5        37      58
+            xManualMove(value) {
+                // handleManualMove()
+                this.get().mutationApi.moveToPercent('x', parseInt(value))
+            },
+            yManualMove(value) {
+                // handleManualMove()
+                this.get().mutationApi.moveToPercent('y', parseInt(value))
+            },
+            zManualMove(value) {
+                // handleManualMove()
+                this.get().mutationApi.moveToPercent('z', parseInt(value))
             }
         },
         oncreate() {
