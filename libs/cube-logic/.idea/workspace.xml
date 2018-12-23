@@ -4,16 +4,19 @@
     <bookmark url="file://$PROJECT_DIR$/src/cube/mutation/PercentagePositionChooser.ts" line="63" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="">
+    <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="debugging arrow based movement">
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/CubeVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/CubeVote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../common/config/rush/npm-shrinkwrap.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cube/Viewport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/Viewport.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cube/cubeMoveMatrix.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/cubeMoveMatrix.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cube/cubeMovement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/cubeMovement.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/DegreePositionChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/DegreePositionChooser.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/MatrixValueChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/MatrixValueChooser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/MutationApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/MutationApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/PercentagePositionChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/PercentagePositionChooser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../rush.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,11 +34,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/cube/cubeMoveMatrix.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="76">
-                  <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+                <state relative-caret-position="365">
+                  <caret line="46" column="23" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="23" />
                 </state>
               </provider>
             </entry>
@@ -43,8 +46,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-211">
-                  <caret line="131" column="10" selection-start-line="131" selection-start-column="10" selection-end-line="131" selection-end-column="10" />
+                <state relative-caret-position="683">
+                  <caret line="390" column="18" lean-forward="true" selection-start-line="390" selection-start-column="18" selection-end-line="390" selection-end-column="18" />
                   <folding>
                     <element signature="e#0#102#0" expanded="true" />
                   </folding>
@@ -52,13 +55,25 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/cube/Viewport.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="322">
-                  <caret line="126" column="11" lean-forward="true" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="11" />
+                <state relative-caret-position="446">
+                  <caret line="156" column="9" lean-forward="true" selection-start-line="156" selection-start-column="9" selection-end-line="156" selection-end-column="9" />
                   <folding>
                     <element signature="e#0#92#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/cube/cubeMovement.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="375">
+                  <caret line="151" column="24" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
+                  <folding>
+                    <element signature="e#0#152#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -71,7 +86,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/cube/mutation/MutationApi.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4928">
+                <state relative-caret-position="3971">
                   <caret line="224" column="57" selection-start-line="224" selection-start-column="57" selection-end-line="224" selection-end-column="57" />
                   <folding>
                     <element signature="e#0#59#0" expanded="true" />
@@ -83,8 +98,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/cube/mutation/DegreePositionChooser.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+                <state relative-caret-position="133">
+                  <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
@@ -99,13 +114,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/cube/cubeMovement.ts">
+            <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="419">
-                  <caret line="181" column="11" selection-start-line="181" selection-start-column="11" selection-end-line="181" selection-end-column="11" />
-                  <folding>
-                    <element signature="e#0#133#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="171">
+                  <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -126,17 +138,24 @@
       <find>get1DDegreeSeparation</find>
       <find>Math.abs</find>
       <find>getMinimumDistanceMatches</find>
-      <find>72</find>
       <find>pickLowestFromDimensionOrder</find>
       <find>| 20</find>
       <find>4</find>
       <find>get1DOffsetFinalPosition</find>
       <find>findMinimumDistance</find>
       <find>findDistancePositions</find>
+      <find>moveCoordinates</find>
+      <find>MOVE_INCREMENTS</find>
+      <find>5</find>
+      <find>72</find>
+      <find>71</find>
+      <find>Pxs</find>
+      <find>yi</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Papa\WebstormProjects\votecube-ui\libs\cube-logic\src\cube\mutation</dir>
       <dir>C:\Users\Papa\WebstormProjects\votecube-ui\libs\cube-logic\src</dir>
+      <dir>$PROJECT_DIR$/src</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -151,14 +170,14 @@
         <option value="$PROJECT_DIR$/src/cube/eventListener.ts" />
         <option value="$PROJECT_DIR$/src/utils/utils.ts" />
         <option value="$PROJECT_DIR$/src/cube/mutation/MutationApi.ts" />
-        <option value="$PROJECT_DIR$/src/cube/cubeMoveMatrix.ts" />
         <option value="$PROJECT_DIR$/src/cube/mutation/DegreePositionChooser.ts" />
         <option value="$PROJECT_DIR$/src/cube/mutation/PercentagePositionChooser.ts" />
         <option value="$PROJECT_DIR$/src/cube/mutation/types.ts" />
-        <option value="$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts" />
-        <option value="$PROJECT_DIR$/src/cube/Viewport.ts" />
         <option value="$PROJECT_DIR$/src/cube/IViewport.ts" />
+        <option value="$PROJECT_DIR$/src/cube/cubeMoveMatrix.ts" />
+        <option value="$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts" />
         <option value="$PROJECT_DIR$/src/cube/cubeMovement.ts" />
+        <option value="$PROJECT_DIR$/src/cube/Viewport.ts" />
       </list>
     </option>
   </component>
@@ -166,10 +185,10 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="y" value="1" />
-    <option name="width" value="1940" />
-    <option name="height" value="1100" />
+    <option name="x" value="1920" />
+    <option name="y" value="-2" />
+    <option name="width" value="1920" />
+    <option name="height" value="1082" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -177,6 +196,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -205,21 +225,20 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../rush.json" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.tslint" value="C:\Users\Papa\WebstormProjects\votecube-ui\libs\cube-logic\node_modules\tslint" />
+    <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
-    <property name="ts.external.directory.path" value="C:\Users\Papa\WebstormProjects\votecube-ui\libs\cube-logic\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -247,6 +266,7 @@
       <workItem from="1545364048440" duration="3674000" />
       <workItem from="1545367762371" duration="15342000" />
       <workItem from="1545452028309" duration="9622000" />
+      <workItem from="1545516744986" duration="6888000" />
     </task>
     <task id="LOCAL-00001" summary="debugging arrow based movement">
       <created>1545320530019</created>
@@ -280,7 +300,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58096000" />
+    <option name="totallyTimeSpent" value="64984000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -292,15 +312,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.19336143" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19293621" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info content_ui="combo" id="Hierarchy" order="3" weight="0.19704953" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32917964" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32843652" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -343,20 +363,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/cube/mutation/MutationApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="22" column="26" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/dac/votecube-ui-view/tslint.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/cube/mutation/MutationApi.js" />
+    <entry file="file://$USER_HOME$/dac/votecube-ui-view/tslint.json" />
     <entry file="file://$PROJECT_DIR$/../../rush.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -367,20 +375,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
           <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tslint.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -418,23 +412,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-211">
-          <caret line="131" column="10" selection-start-line="131" selection-start-column="10" selection-end-line="131" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cube/mutation/MutationApi.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4928">
+        <state relative-caret-position="3971">
           <caret line="224" column="57" selection-start-line="224" selection-start-column="57" selection-end-line="224" selection-end-column="57" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cube/mutation/DegreePositionChooser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tslint.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -445,36 +443,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cube/mutation/DegreePositionChooser.ts">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cube/Viewport.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="126" column="11" lean-forward="true" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#92#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="171">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cube/cubeMoveMatrix.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="365">
+          <caret line="46" column="23" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="683">
+          <caret line="390" column="18" lean-forward="true" selection-start-line="390" selection-start-column="18" selection-end-line="390" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#102#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cube/cubeMovement.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="181" column="11" selection-start-line="181" selection-start-column="11" selection-end-line="181" selection-end-column="11" />
+        <state relative-caret-position="375">
+          <caret line="151" column="24" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
           <folding>
-            <element signature="e#0#133#0" expanded="true" />
+            <element signature="e#0#152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cube/Viewport.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="156" column="9" lean-forward="true" selection-start-line="156" selection-start-column="9" selection-end-line="156" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#92#0" expanded="true" />
           </folding>
         </state>
       </provider>

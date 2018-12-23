@@ -7,13 +7,10 @@ import {
 import {
 	Bool,
 	Direction,
-	getModXAbsRemainder,
 	IPositionPercentages,
 	IValuesOutCallback,
 	Move,
 	moveCoordinates,
-	Pxs,
-	Pys
 } from './cubeMovement'
 
 export interface IViewport {
@@ -26,9 +23,9 @@ export interface IViewport {
 	// Recently Moved Dimension
 	rmd: Dimension[]
 	x: number
-	xi: number
+	// xi: number
 	y: number
-	yi: number
+	// yi: number
 	vd: IVisibleDirection,
 	zm: ZoomIndex
 
@@ -96,9 +93,9 @@ export const viewport: IViewport = {
 		z: 1
 	},
 	x: 0,
-	xi: 0,
+	// xi: 0,
 	y: 0,
-	yi: 0,
+	// yi: 0,
 	zm: MV_INC_IDX[MoveIncrement.FIFTEEN],
 	// zoom: ZoomLevel.FINE,
 	changeZoom(
@@ -132,24 +129,23 @@ export const viewport: IViewport = {
 		if (!moveX && !moveY) {
 			return
 		}
+		let matrixIndex
 		if (moveX) {
-			this.x = moveCoordinates(Pxs, this.zm, this.xi += xBy)[0]
+			// [this.x, matrixIndex] =
+			this.x = moveCoordinates(this.zm, this.x, xBy)
+			// if(matrixIndex != null) {
+			// 	this.xi = matrixIndex
+			// }
 		}
 		if (moveY) {
-			this.y = moveCoordinates(Pys, this.zm, this.yi += yBy)[0]
+			// [this.y, matrixIndex] =
+			this.y = moveCoordinates(this.zm, this.y, yBy)
+			// if(matrixIndex != null) {
+			// 	this.yi = matrixIndex
+			// }
 		}
-		// console.log('x: ' + this.x + '\t\ty: ' + this.y);
-		// console.log('xi: ' + this.xi + '\t\tyi: ' + this.yi);
-		let xiRemainder = getModXAbsRemainder(this.xi, this.increment)
-		let yiRemainder = getModXAbsRemainder(this.yi, this.increment)
-
-		// Have a position, now need to map it to the right frame of matrix
-
-		// let boundaryX = xiRemainder % 6 == 0
-		// let boundaryY = yiRemainder % 6 == 0
-		// if (boundaryX && boundaryY) {
-		//     console.log('axis-aligned full square');
-		// }
+		// let xiRemainder = getModXAbsRemainder(this.xi, this.increment)
+		// let yiRemainder = getModXAbsRemainder(this.yi, this.increment)
 
 		this.moveToDegree()
 	},
@@ -166,8 +162,8 @@ export const viewport: IViewport = {
 			return
 		}
 		this.increment = MoveIncrement.FIVE
-		this.xi        = 0
-		this.yi        = 0
+		// this.xi        = 0
+		// this.yi        = 0
 		// this.zoom      = ZoomLevel.FINE
 		this.move(0, 0, 0, 0)
 	}

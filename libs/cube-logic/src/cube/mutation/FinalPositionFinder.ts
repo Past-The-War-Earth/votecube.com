@@ -1,19 +1,21 @@
 import {
+	MatrixIndex,
 	NUM_DIVS,
 	NUM_VALS,
 	PositionValues,
 	STEP_DEGS,
 	VALUE_MATRICES
 } from '../cubeMoveMatrix'
+import {normMatrixIdx} from '../cubeMovement'
 import {
 	ValueArrayPosition,
 	IViewport
-} from '../Viewport'
+}                      from '../Viewport'
 import {
 	DistanceFromMatrixPosition,
 	IFinalPosition,
 	IMatrixPosition
-} from './types'
+}                      from './types'
 
 export interface INeighborDistance {
 	valueDists: DistanceFromMatrixPosition[],
@@ -383,13 +385,10 @@ export class FinalPositionFinder {
 	private base72Pos(
 		matrixPosition: number,
 		offset: number
-	) {
+	): MatrixIndex {
 		let base72Position = (matrixPosition + offset) % NUM_DIVS
-		if (base72Position < 0) {
-			base72Position = NUM_DIVS + base72Position
-		}
 
-		return base72Position
+		return normMatrixIdx(base72Position)
 	}
 
 }

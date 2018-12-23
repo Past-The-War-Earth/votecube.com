@@ -1,24 +1,13 @@
 import {
-	MOVE_INCREMENTS,
+	MatrixIndex,
 	MoveIncrement,
 	MV_INC_IDX,
 	NUM_DIVISIONS,
+	NUM_DIVS,
 	populateValueMatrices,
+	STEP_DEGS,
 	ZoomIndex,
 } from './cubeMoveMatrix'
-
-export const Pxs = [[], [], []]
-export const Pys = [[], [], []]
-
-for (let i = 0; i < NUM_DIVISIONS.length; i++) {
-	const divisions   = NUM_DIVISIONS[i]
-	const px          = Pxs[i]
-	const py          = Pys[i]
-	let moveIncrement = MOVE_INCREMENTS[i]
-	for (let j = 0; j < divisions; j++) {
-		px[j] = py[j] = j * moveIncrement
-	}
-}
 
 export enum Bool {
 	False = 0,
@@ -154,45 +143,64 @@ function setDisplayedSurfacePercentages(
 // setDisplayedSurfacePercentages(VALUE_MATRIX[0][0])
 
 export function moveCoordinates(
-	percentArrays: number[][],
 	zoomIndex: ZoomIndex,
 	currentDegree: number,
 	move: Move
-) {
+): number { // [number, MatrixIndex] {
 	if (!move) {
-		return [currentDegree, null, null, null, null]
-	}
-	let multiplier = 1
-	if (currentIndex < 0) {
-		multiplier   = -1
-		currentIndex = -currentIndex
+		// return [currentDegree, null]
+		return currentDegree
 	}
 
-	let zoomMultiplier = 1
+	let zoomMultiplier = 9
 	if (zoomIndex === 1) {
 		zoomMultiplier = 3
 	} else if (zoomIndex === 2) {
-		zoomMultiplier = 15
+		zoomMultiplier = 1
 	}
 
-	let simpleDegree = currentDegree % 360
+	let degreeChange      = STEP_DEGS * zoomMultiplier
+	let zoomedMatrixIndex = Math.floor(
+		currentDegree % 360 / degreeChange
+	)
 
-	let matrixIndex = Math.floor(simpleDegree / 5 / zoomMultiplier)
+	let currentDegreeRemainder = currentDegree % degreeChange
+	if (move > 0) {
+		zoomedMatrixIndex++
+	} else {
+		if (!currentDegreeRemainder) {
+			zoomedMatrixIndex--
+		}
+	}
 
-	let divisions = NUM_DIVISIONS[2]
-	let page      = Math.floor(currentDegree / 360)
-	let index     = currentIndex % divisions
+	let page = Math.floor(currentDegree / 360)
+	if (currentDegree < 0) {
+		page = -Math.floor(Math.abs(currentDegree) / 360)
+	}
 
+	// let divisions = NUM_DIVISIONS[2]
+	// let index     = currentIndex % divisions
 	// if (index === divisions) {
 	// 	page++
 	// 	index = 0
 	// }
 
-	let angle = percentArrays[zoomIndex][index]
+	let rotation = page * 360 + zoomedMatrixIndex * degreeChange
 
-	let rotation = (page * 360 + angle) * multiplier
+	return rotation
+	// let matrixIndex = normMatrixIdx(zoomedMatrixIndex / zoomMultiplier)
+	//
+	// return [rotation, matrixIndex]
+}
 
-	return [rotation, angle, index, page, multiplier]
+export function normMatrixIdx(
+	signedMatrixIndex: number
+): MatrixIndex {
+	if (signedMatrixIndex < 0) {
+		return NUM_DIVS + signedMatrixIndex as MatrixIndex
+	}
+
+	return signedMatrixIndex as MatrixIndex
 }
 
 /* Just for fun */
