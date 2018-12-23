@@ -240,7 +240,7 @@ export class MatrixValueChooser {
 			let thirdDimensionArray
 			let j: DistanceFromMatrixPosition = 0
 			let foundValue                    = false
-			for (; j < MAX_DIST; j++) {
+			for (; j <= MAX_DIST; j++) {
 				thirdDimensionArray = secondDimensionArray[j]
 				if (thirdDimensionArray && thirdDimensionArray.length) {
 					foundValue = true
@@ -252,7 +252,7 @@ export class MatrixValueChooser {
 			}
 			foundValue                        = false
 			let k: DistanceFromMatrixPosition = 0
-			for (; k < MAX_DIST; k++) {
+			for (; k <= MAX_DIST; k++) {
 				if (thirdDimensionArray[k]) {
 					foundValue = true
 					break

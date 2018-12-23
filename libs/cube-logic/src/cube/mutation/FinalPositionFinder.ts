@@ -6,11 +6,9 @@ import {
 	STEP_DEGS,
 	VALUE_MATRICES,
 	ValueArrayPosition
-} from '../cubeMoveMatrix'
+}                      from '../cubeMoveMatrix'
 import {normMatrixIdx} from '../cubeMovement'
-import {
-	IViewport
-}                      from '../Viewport'
+import {IViewport}     from '../Viewport'
 import {
 	DistanceFromMatrixPosition,
 	IFinalPosition,
@@ -46,8 +44,8 @@ export class FinalPositionFinder {
 		closestMatrixPosition: IMatrixPosition,
 		viewport: IViewport
 	): IFinalPosition {
-		let positionPercentages             = viewport.pp
-		let currentPosition: PositionValues = [
+		let positionPercentages         = viewport.pp
+		let newPosition: PositionValues = [
 			positionPercentages.x.plus,
 			positionPercentages.y.plus,
 			positionPercentages.z.plus,
@@ -55,8 +53,8 @@ export class FinalPositionFinder {
 			positionPercentages.z.minus,
 			positionPercentages.x.minus,
 		]
-		const matrixStepDegrees             = STEP_DEGS
-		if (this.matrixPositionsMatch(closestMatrixPosition.values, currentPosition)) {
+		const matrixStepDegrees         = STEP_DEGS
+		if (this.matrixPositionsMatch(closestMatrixPosition.values, newPosition)) {
 			return {
 				x: closestMatrixPosition.i * matrixStepDegrees,
 				y: closestMatrixPosition.j * matrixStepDegrees
@@ -69,22 +67,20 @@ export class FinalPositionFinder {
 				dist: 100
 			}
 		} as any
-		closestMatrixPosition = this.findMinimumDistance(
-			{}, currentPosition, closestMatrixPosition, minDistForPosition)
-		let minDist = minDistForPosition.minDist
+		closestMatrixPosition                       = this.findMinimumDistance(
+			{}, newPosition, closestMatrixPosition, minDistForPosition)
+		let minDist                                 = minDistForPosition.minDist
 		// If the difference is in one dimension
 		if (!minDist.i || !minDist.j) {
-			return this.get1DOffsetFinalPosition(
-				currentPosition, closestMatrixPosition, minDist)
+			return this.get1DOffsetFinalPosition(newPosition, closestMatrixPosition, minDist)
 		} else {
-			return this.get2DOffsetFinalPosition(
-				currentPosition, closestMatrixPosition, minDist)
+			return this.get2DOffsetFinalPosition(newPosition, closestMatrixPosition, minDist)
 		}
 	}
 
 	private findMinimumDistance(
 		processedMatches: { [key: string]: IDistancePositions },
-		currentPosition: PositionValues,
+		newPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
 		minDistForPosition: IMinDistForPosition
 	): IMatrixPosition {
@@ -92,23 +88,24 @@ export class FinalPositionFinder {
 		closestMatrixPosition.key      = closestMatrixPositionKey
 		minDistForPosition.exactMatches.set(closestMatrixPositionKey, closestMatrixPosition)
 		const distancePositions    = this.findDistancePositions(
-			currentPosition, closestMatrixPosition, minDistForPosition.exactMatches)
+			newPosition, closestMatrixPosition, minDistForPosition.exactMatches)
 		closestMatrixPosition.done = true
 
 		let newClosestMatrixPosition
 		let newMinDist      = distancePositions.minDist
 		let currentDist     = minDistForPosition.minDist
 		let currentDistance = currentDist.dist
-		if (newMinDist.dist < currentDistance
+		if (newMinDist && (
+			newMinDist.dist < currentDistance
 			|| (newMinDist.dist === currentDistance
-				&& newMinDist.moves < currentDist.moves)) {
+			&& newMinDist.moves < currentDist.moves))) {
 			minDistForPosition.minDist = newMinDist
 			newClosestMatrixPosition   = closestMatrixPosition
 		}
 		for (const [key, exactMatchPosition] of minDistForPosition.exactMatches) {
 			if (!exactMatchPosition.done) {
 				const evenCloserMatrixPosition = this.findMinimumDistance(
-					processedMatches, currentPosition, exactMatchPosition, minDistForPosition)
+					processedMatches, newPosition, exactMatchPosition, minDistForPosition)
 				if (evenCloserMatrixPosition) {
 					newClosestMatrixPosition = evenCloserMatrixPosition
 				}
@@ -136,11 +133,20 @@ export class FinalPositionFinder {
 		closestMatrixPosition: IMatrixPosition,
 		exactMatches: Map<string, IMatrixPosition>
 	): IDistancePositions {
+		let numValuesInArray         = NUM_VALS
+		let closestDimensionMismatch = false
+		for (let i = 0; i < numValuesInArray; i++) {
+			if (!!closestMatrixPosition.values[i] !== !!currentPosition[i]) {
+				closestDimensionMismatch = true
+				break
+			}
+		}
+
 		let minDist: IMinDistancePosition
 		let neighborDists: INeighborDistance[][] = [[], []]
 		neighborDists[-1]                        = []
 		for (let i = -1; i <= 1; i++) {
-			for (let j = -1; j <= 1; j++) {
+			position_loop: for (let j = -1; j <= 1; j++) {
 				if (i === 0 && j === 0) {
 					continue
 				}
@@ -161,11 +167,17 @@ export class FinalPositionFinder {
 				}
 				neighborDists[i][j]                         = neighborDistance
 
-				let exactMatch       = true
-				let numValuesInArray = NUM_VALS
+				let exactMatch               = true
+				let visibleDimensionMismatch = false
 				for (let k = 0; k < numValuesInArray; k++) {
-					if (closestMatrixPosition.values[k] !== values[k]) {
+					let currentValue = values[k]
+					if (closestMatrixPosition.values[k] !== currentValue) {
 						exactMatch = false
+					}
+					// exclude value that don't match visible dimensions
+					if (closestDimensionMismatch
+						&& !!currentValue !== !!currentPosition[k]) {
+						visibleDimensionMismatch = true
 					}
 				}
 				if (exactMatch) {
@@ -175,6 +187,9 @@ export class FinalPositionFinder {
 						key: neighborPositionKey,
 						values
 					})
+					continue
+				}
+				if (visibleDimensionMismatch) {
 					continue
 				}
 				for (let k = 0; k < numValuesInArray; k++) {
@@ -271,10 +286,13 @@ export class FinalPositionFinder {
 	}
 
 	private get2DOffsetFinalPosition(
-		currentPosition: PositionValues,
+		newPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
 		minDist: IMinDistancePosition
 	): IFinalPosition {
+		// 0 & 5 determine x movement
+		// 1,2,3,4 determine y movement
+		// need to take the distances from newPosition and apply them accordingly
 		let separations = this.get2DDegreeSeparations(closestMatrixPosition, minDist)
 		let stepDegrees = STEP_DEGS
 		switch (minDist.i) {
