@@ -71,11 +71,11 @@ export class FinalPositionFinder {
 			{}, newPosition, closestMatrixPosition, minDistForPosition)
 		let minDist                                 = minDistForPosition.minDist
 		// If the difference is in one dimension
-		if (!minDist.i || !minDist.j) {
-			return this.get1DOffsetFinalPosition(newPosition, closestMatrixPosition, minDist)
-		} else {
-			return this.get2DOffsetFinalPosition(newPosition, closestMatrixPosition, minDist)
-		}
+		// if (!minDist.i || !minDist.j) {
+		// 	return this.get1DOffsetFinalPosition(newPosition, closestMatrixPosition, minDist)
+		// } else {
+		return this.get2DOffsetFinalPosition(newPosition, closestMatrixPosition, minDist)
+		// }
 	}
 
 	private findMinimumDistance(
