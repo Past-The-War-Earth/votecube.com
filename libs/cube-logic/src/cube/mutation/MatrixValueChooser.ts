@@ -10,11 +10,11 @@ import {
 }                  from '../cubeMovement'
 import {IViewport} from '../Viewport'
 import {
-	DistanceFromMatrixPosition,
+	DistanceFromClosestMatrixPosition,
 	IMatrixPosition
 }                  from './types'
 
-const MAX_DIST = 10
+const MAX_DIST = 12
 
 export class MatrixValueChooser {
 
@@ -47,7 +47,7 @@ export class MatrixValueChooser {
 		for (let c = 0; c < 6; c++) {
 			let minDistMatchCombination = minimumDistanceMatches[c]
 			for (let a = 0; a <= MAX_DIST; a++) {
-				minDistMatchCombination[a] = [[], [], [], [], [], [], [], [], [], [], []]
+				minDistMatchCombination[a] = [[], [], [], [], [], [], [], [], [], [], [], [], []]
 			}
 		}
 
@@ -159,7 +159,7 @@ export class MatrixValueChooser {
 		positiveIndex: ValueArrayPosition,
 		negativeIndex: ValueArrayPosition,
 		positionsWithZeroes: boolean[]
-	): DistanceFromMatrixPosition | undefined {
+	): DistanceFromClosestMatrixPosition | undefined {
 		let positiveDistance = 0
 		if (!positionsWithZeroes[positiveIndex]) {
 			positiveDistance = Math.abs(positionPercentages[positiveIndex]
@@ -178,24 +178,24 @@ export class MatrixValueChooser {
 		}
 		return (positiveDistance > negativeDistance
 			? positiveDistance
-			: negativeDistance) as DistanceFromMatrixPosition
+			: negativeDistance) as DistanceFromClosestMatrixPosition
 	}
 
 	private pickLowestFromDimensionOrder(
 		minimumDistanceMatches: IMatrixPosition[][][]
 	): {
-		dist: DistanceFromMatrixPosition
+		dist: DistanceFromClosestMatrixPosition
 		mPos: IMatrixPosition
 	} {
 		let mPos: IMatrixPosition
-		let dist: DistanceFromMatrixPosition
-		let i: DistanceFromMatrixPosition | -1 = -1
+		let dist: DistanceFromClosestMatrixPosition
+		let i: DistanceFromClosestMatrixPosition | -1 = -1
 		while (!mPos) {
 			i++
-			const secondDimensionArray        = minimumDistanceMatches[i]
+			const secondDimensionArray               = minimumDistanceMatches[i]
 			let thirdDimensionArray
-			let j: DistanceFromMatrixPosition = 0
-			let foundValue                    = false
+			let j: DistanceFromClosestMatrixPosition = 0
+			let foundValue                           = false
 			for (; j <= MAX_DIST; j++) {
 				thirdDimensionArray = secondDimensionArray[j]
 				if (thirdDimensionArray && thirdDimensionArray.length) {
@@ -206,8 +206,8 @@ export class MatrixValueChooser {
 			if (!foundValue) {
 				continue
 			}
-			foundValue                        = false
-			let k: DistanceFromMatrixPosition = 0
+			foundValue                               = false
+			let k: DistanceFromClosestMatrixPosition = 0
 			for (; k <= MAX_DIST; k++) {
 				if (thirdDimensionArray[k]) {
 					foundValue = true
@@ -223,7 +223,7 @@ export class MatrixValueChooser {
 					: k)
 				: (j > k
 					? j
-					: k)) as DistanceFromMatrixPosition
+					: k)) as DistanceFromClosestMatrixPosition
 			mPos = minimumDistanceMatches[i][j][k]
 		}
 
