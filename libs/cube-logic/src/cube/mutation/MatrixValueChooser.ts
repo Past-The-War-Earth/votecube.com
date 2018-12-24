@@ -14,7 +14,7 @@ import {
 	IMatrixPosition
 }                  from './types'
 
-const MAX_DIST = 5
+const MAX_DIST = 10
 
 export class MatrixValueChooser {
 
@@ -39,54 +39,17 @@ export class MatrixValueChooser {
 	): IMatrixPosition[][][][] {
 		const zeroedPositions = this.getZeroedPositions(viewport)
 
-		let xYZMinimumDistanceMatches: IMatrixPosition[][][] = [
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []]
+		let minimumDistanceMatches: IMatrixPosition[][][][] = [
+			[], [], [], [], [], []
 		]
-		let xZYMinimumDistanceMatches: IMatrixPosition[][][] = [
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []]
-		]
-		let yXZMinimumDistanceMatches: IMatrixPosition[][][] = [
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []]
-		]
-		let yZXMinimumDistanceMatches: IMatrixPosition[][][] = [
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []]
-		]
-		let zXYMinimumDistanceMatches: IMatrixPosition[][][] = [
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []]
-		]
-		let zYXMinimumDistanceMatches: IMatrixPosition[][][] = [
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []],
-			[[], [], [], [], [], []]
-		]
+
+		// 5 5 90
+		for (let c = 0; c < 6; c++) {
+			let minDistMatchCombination = minimumDistanceMatches[c]
+			for (let a = 0; a <= MAX_DIST; a++) {
+				minDistMatchCombination[a] = [[], [], [], [], [], [], [], [], [], [], []]
+			}
+		}
 
 		// need to find the percentages that best match the specified ones
 		const valueMatrix = VALUE_MATRICES[2]
@@ -126,32 +89,32 @@ export class MatrixValueChooser {
 						continue
 					}
 
-					xYZMinimumDistanceMatches[xDistance][yDistance][zDistance] = {
+					minimumDistanceMatches[0][xDistance][yDistance][zDistance] = {
 						i,
 						j,
 						values
 					}
-					yXZMinimumDistanceMatches[yDistance][xDistance][zDistance] = {
+					minimumDistanceMatches[1][xDistance][zDistance][yDistance] = {
 						i,
 						j,
 						values
 					}
-					xZYMinimumDistanceMatches[xDistance][zDistance][yDistance] = {
+					minimumDistanceMatches[2][yDistance][xDistance][zDistance] = {
 						i,
 						j,
 						values
 					}
-					yZXMinimumDistanceMatches[yDistance][zDistance][xDistance] = {
+					minimumDistanceMatches[3][yDistance][zDistance][xDistance] = {
 						i,
 						j,
 						values
 					}
-					zXYMinimumDistanceMatches[zDistance][xDistance][yDistance] = {
+					minimumDistanceMatches[4][zDistance][xDistance][yDistance] = {
 						i,
 						j,
 						values
 					}
-					zYXMinimumDistanceMatches[zDistance][yDistance][xDistance] = {
+					minimumDistanceMatches[5][zDistance][yDistance][xDistance] = {
 						i,
 						j,
 						values
@@ -159,14 +122,7 @@ export class MatrixValueChooser {
 				}
 		}
 
-		return [
-			xYZMinimumDistanceMatches,
-			xZYMinimumDistanceMatches,
-			yXZMinimumDistanceMatches,
-			yZXMinimumDistanceMatches,
-			zXYMinimumDistanceMatches,
-			zYXMinimumDistanceMatches
-		]
+		return minimumDistanceMatches
 	}
 
 	private getZeroedPositions(

@@ -137,13 +137,16 @@ export class FinalPositionFinder {
 		closestMatrixPosition: IMatrixPosition,
 		exactMatches: Map<string, IMatrixPosition>
 	): IDistancePositions {
-		let numValuesInArray         = NUM_VALS
-		let closestDimensionMismatch = false
+		const numValuesInArray                   = NUM_VALS
+		let closestDimensionMismatch             = false
+		const closestValues                      = closestMatrixPosition.values
+		let directionDiffs: Array<Direction | 0> = []
 		for (let k = 0; k < numValuesInArray; k++) {
-			if (!!closestMatrixPosition.values[k] !== !!newPosition[k]) {
+			if (!!closestValues [k] !== !!newPosition[k]) {
 				closestDimensionMismatch = true
-				break
 			}
+			directionDiffs[k] = this.getPositionDiffDirection(
+				newPosition, closestValues, k as ValueArrayPosition)
 		}
 
 		let minDist: IMinDistancePosition
@@ -171,17 +174,30 @@ export class FinalPositionFinder {
 				}
 				neighborDists[i][j]                         = neighborDistance
 
-				let exactMatch               = true
-				let visibleDimensionMismatch = false
+				let exactMatch                                   = true
+				let visibleDimensionMismatch                     = false
+				let neighborDirectionDiffs: Array<Direction | 0> = [0, 0, 0, 0, 0, 0]
 				for (let k = 0; k < numValuesInArray; k++) {
 					let currentValue = values[k]
-					if (closestMatrixPosition.values[k] !== currentValue) {
+					if (closestValues[k] !== currentValue) {
 						exactMatch = false
 					}
+
+					let neighborDirectionDiff = this.getPositionDiffDirection(
+						newPosition, values, k as ValueArrayPosition)
 					// exclude value that don't match visible dimensions
 					if (closestDimensionMismatch
 						&& !!currentValue !== !!newPosition[k]) {
 						visibleDimensionMismatch = true
+					} else {
+						const directionDiff = directionDiffs[k]
+						if (!directionDiff) {
+							if (neighborDirectionDiff) {
+								visibleDimensionMismatch = true
+							}
+						} else if (directionDiff === neighborDirectionDiff) {
+							visibleDimensionMismatch = true
+						}
 					}
 				}
 				if (exactMatch) {
@@ -380,8 +396,8 @@ export class FinalPositionFinder {
 		let numberOfMatrixDivisions  = NUM_DIVS
 		// get vertical values
 		const nextVerticalCellValues = VALUE_MATRICES[2]
-			[(closestMatrixPosition.i + iOffset) % numberOfMatrixDivisions]
-			[(closestMatrixPosition.j + jOffset) % numberOfMatrixDivisions]
+			[this.base72Pos(closestMatrixPosition.i, iOffset)]
+			[this.base72Pos(closestMatrixPosition.j, jOffset)]
 		let distances                = []
 		for (let k = 0; k < NUM_VALS; k++) {
 			const currentDistance = Math.abs(
@@ -430,6 +446,22 @@ export class FinalPositionFinder {
 		let base72Position = (matrixPosition + offset) % NUM_DIVS
 
 		return normMatrixIdx(base72Position)
+	}
+
+	private getPositionDiffDirection(
+		from: PositionValues,
+		to: PositionValues,
+		index: ValueArrayPosition
+	): Direction | 0 {
+		let direction: Direction | 0 = 0
+		let positionDifference       = from[index] - to[index]
+		if (positionDifference > 0) {
+			direction = 1
+		} else if (positionDifference < 0) {
+			direction = -1
+		}
+
+		return direction
 	}
 
 }
