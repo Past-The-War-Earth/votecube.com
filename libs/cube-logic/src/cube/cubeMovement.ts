@@ -194,11 +194,14 @@ export function moveCoordinates(
 export function normMatrixIdx(
 	signedMatrixIndex: number
 ): MatrixIndex {
+	const numberOfMatrixDivisions = NUM_DIVS
+
+	let normalizedMatrixIndex = signedMatrixIndex
 	if (signedMatrixIndex < 0) {
-		return NUM_DIVS + signedMatrixIndex as MatrixIndex
+		normalizedMatrixIndex = numberOfMatrixDivisions + signedMatrixIndex as MatrixIndex
 	}
 
-	return signedMatrixIndex as MatrixIndex
+	return (normalizedMatrixIndex % numberOfMatrixDivisions) as MatrixIndex
 }
 
 export function getMatrixIdxFromDeg(

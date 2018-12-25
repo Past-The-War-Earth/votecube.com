@@ -72,16 +72,16 @@ export class FinalPositionFinder {
 			}
 		}
 
-		let minDistForPosition: IMatchForPosition = {
+		let matchForPosition: IMatchForPosition = {
 			exactMatches: new Map(),
-			minDist: {
+			match: {
 				alignScore: -1,
 				dist: 100
 			}
 		} as any
 		this.findMinimumDistance(
-			{}, newPosition, closestMatrixPosition, minDistForPosition)
-		let directionVectorMatch = minDistForPosition.match
+			{}, newPosition, closestMatrixPosition, matchForPosition)
+		let directionVectorMatch = matchForPosition.match
 		// If the difference is in one dimension
 		// if (!match.i || !match.j) {
 		// 	return this.get1DOffsetFinalPosition(newPosition, closestMatrixPosition, match)
@@ -385,9 +385,10 @@ export class FinalPositionFinder {
 		separationDirection: Direction,
 		separation: number
 	): number {
-		if (separationDirection === 1) {
+		if (separationDirection >= 0) {
 			closestMatrixPositionDegrees += separation
-		} else if (separationDirection === -1) {
+			// } else if (separationDirection === -1) {
+		} else {
 			closestMatrixPositionDegrees -= separation
 		}
 
