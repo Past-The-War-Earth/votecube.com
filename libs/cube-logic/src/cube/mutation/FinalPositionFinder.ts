@@ -27,24 +27,27 @@ export interface INeighborDistance {
 
 export interface IMatrixPositionMatch {
 	alignScore: PositionAlignmentScore,
-	dist: DistanceFromClosestMatrixPosition
 	dimDists: DistanceFromClosestMatrixPosition[]
+	dimShifts: NumberOfDimensionShifts
+	dist: DistanceFromClosestMatrixPosition
 	i: Direction
 	j: Direction
-	moves: 1 | 2
+	values: PositionValues
 }
 
-export interface IMinDistForPosition {
+export interface IMatchForPosition {
 	exactMatches: Map<string, IMatrixPosition>
-	minDist: IMatrixPositionMatch
+	match: IMatrixPositionMatch
 }
 
 export interface IDistancePositions {
-	minDist: IMatrixPositionMatch
+	match: IMatrixPositionMatch
 	neighborDists: INeighborDistance[][]
 }
 
-export type NumberOfDimensionShifts = 1 | 2
+export type MatrixPositionShift = -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5
+
+export type NumberOfDimensionShifts = 0 | 1 | 2
 
 export class FinalPositionFinder {
 
@@ -69,21 +72,21 @@ export class FinalPositionFinder {
 			}
 		}
 
-		let minDistForPosition: IMinDistForPosition = {
+		let minDistForPosition: IMatchForPosition = {
 			exactMatches: new Map(),
 			minDist: {
 				alignScore: -1,
 				dist: 100
 			}
 		} as any
-		closestMatrixPosition                       = this.findMinimumDistance(
+		this.findMinimumDistance(
 			{}, newPosition, closestMatrixPosition, minDistForPosition)
-		let minDist                                 = minDistForPosition.minDist
+		let directionVectorMatch = minDistForPosition.match
 		// If the difference is in one dimension
-		// if (!minDist.i || !minDist.j) {
-		// 	return this.get1DOffsetFinalPosition(newPosition, closestMatrixPosition, minDist)
+		// if (!match.i || !match.j) {
+		// 	return this.get1DOffsetFinalPosition(newPosition, closestMatrixPosition, match)
 		// } else {
-		return this.get2DOffsetFinalPosition(newPosition, closestMatrixPosition, minDist)
+		return this.get2DOffsetFinalPosition(newPosition, closestMatrixPosition, directionVectorMatch)
 		// }
 	}
 
@@ -91,38 +94,30 @@ export class FinalPositionFinder {
 		processedMatches: { [key: string]: IDistancePositions },
 		newPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
-		minDistForPosition: IMinDistForPosition
-	): IMatrixPosition {
+		matchForPosition: IMatchForPosition
+	): void {
 		const closestMatrixPositionKey = closestMatrixPosition.i + ':' + closestMatrixPosition.j
 		closestMatrixPosition.key      = closestMatrixPositionKey
-		minDistForPosition.exactMatches.set(closestMatrixPositionKey, closestMatrixPosition)
+		matchForPosition.exactMatches.set(closestMatrixPositionKey, closestMatrixPosition)
 		const distancePositions    = this.findDistancePositions(
-			newPosition, closestMatrixPosition, minDistForPosition.exactMatches)
+			newPosition, closestMatrixPosition, matchForPosition.exactMatches)
 		closestMatrixPosition.done = true
 
-		let newClosestMatrixPosition
-		let newMinDist            = distancePositions.minDist
-		let currentDist           = minDistForPosition.minDist
-		let currentDistance       = currentDist.dist
-		let currentAlignmentScore = currentDist.alignScore
-		if (newMinDist && (
-			newMinDist.dist < currentDistance
-			|| (newMinDist.dist === currentDistance
-			&& newMinDist.moves < currentDist.moves))) {
-			minDistForPosition.minDist = newMinDist
-			newClosestMatrixPosition   = closestMatrixPosition
+		let newMatch = distancePositions.match
+		if (this.positionIsABetterMatch(
+			matchForPosition.match,
+			newMatch.alignScore,
+			newMatch.dist,
+			newMatch.dimShifts
+		)) {
+			matchForPosition.match = newMatch
 		}
-		for (const [key, exactMatchPosition] of minDistForPosition.exactMatches) {
+		for (const [key, exactMatchPosition] of matchForPosition.exactMatches) {
 			if (!exactMatchPosition.done) {
-				const evenCloserMatrixPosition = this.findMinimumDistance(
-					processedMatches, newPosition, exactMatchPosition, minDistForPosition)
-				if (evenCloserMatrixPosition) {
-					newClosestMatrixPosition = evenCloserMatrixPosition
-				}
+				this.findMinimumDistance(
+					processedMatches, newPosition, exactMatchPosition, matchForPosition)
 			}
 		}
-
-		return newClosestMatrixPosition
 	}
 
 	private matrixPositionsMatch(
@@ -163,13 +158,19 @@ export class FinalPositionFinder {
 		neighborDists[-3]                        = []
 		neighborDists[-4]                        = []
 		neighborDists[-5]                        = []
-		for (let i = -5; i <= 5; i++) {
-			position_loop: for (let j = -5; j <= 5; j++) {
-				if (i === 0 && j === 0) {
+		for (
+			let verticalMatrixShift: MatrixPositionShift = -5;
+			verticalMatrixShift <= 5;
+			verticalMatrixShift++) {
+			position_loop: for (
+				let horizontalMatrixShift: MatrixPositionShift = -5;
+				horizontalMatrixShift <= 5;
+				horizontalMatrixShift++) {
+				if (verticalMatrixShift === 0 && horizontalMatrixShift === 0) {
 					continue
 				}
-				let neighborI = this.base72Pos(closestMatrixPosition.i, i)
-				let neighborJ = this.base72Pos(closestMatrixPosition.j, j)
+				let neighborI = this.base72Pos(closestMatrixPosition.i, verticalMatrixShift)
+				let neighborJ = this.base72Pos(closestMatrixPosition.j, horizontalMatrixShift)
 
 				let neighborPositionKey = neighborI + ':' + neighborJ
 				if (exactMatches.has(neighborPositionKey)) {
@@ -177,13 +178,13 @@ export class FinalPositionFinder {
 				}
 				const values = VALUE_MATRICES[2][neighborI][neighborJ]
 
-				let maxDistance: DistanceFromClosestMatrixPosition = 0
-				const neighborDistance: INeighborDistance          = {
+				let maxDistance: DistanceFromClosestMatrixPosition        = 0
+				const neighborDistance: INeighborDistance                 = {
 					dist: maxDistance,
 					maxDistIndex: null,
 					valueDists: []
 				}
-				neighborDists[i][j]                                = neighborDistance
+				neighborDists[verticalMatrixShift][horizontalMatrixShift] = neighborDistance
 
 				let exactMatch = true
 				// let visibleDimensionMismatch = false
@@ -240,56 +241,67 @@ export class FinalPositionFinder {
 						neighborDistance.maxDistIndex = k as ValueArrayPosition
 					}
 				}
-				let dimensionShifts = Math.abs(i) + Math.abs(j) as 1 | 2
-				if (!matrixPositionMatch
-					|| matrixPositionMatch.alignScore < alignScore
-					|| (matrixPositionMatch.alignScore === alignScore
-						&& (matrixPositionMatch.dist > maxDistance
-							|| (matrixPositionMatch.dist === maxDistance
-								&& dimensionShifts < matrixPositionMatch.moves)))) {
+				let numberOfDimensionShifts = this.getDimensionShift(
+					verticalMatrixShift as MatrixPositionShift,
+					horizontalMatrixShift as MatrixPositionShift)
+				if (this.positionIsABetterMatch(
+					matrixPositionMatch,
+					alignScore,
+					maxDistance,
+					numberOfDimensionShifts
+				)) {
 					matrixPositionMatch = {
 						alignScore,
 						dimDists,
+						dimShifts: numberOfDimensionShifts,
 						dist: maxDistance,
-						i: i as Direction,
-						j: j as Direction,
-						moves: dimensionShifts
+						i: verticalMatrixShift as Direction,
+						j: horizontalMatrixShift as Direction,
+						values
 					}
 				}
 			}
 		}
 
 		return {
-			minDist: matrixPositionMatch,
+			match: matrixPositionMatch,
 			neighborDists
 		}
 	}
 
 	private positionIsABetterMatch(
 		preivousMatrixPositionMatch: IMatrixPositionMatch,
-		alignScore: PositionAlignmentScore,
-		maxDistance,
-		moves
+		newAlignScore: PositionAlignmentScore,
+		newDistance: DistanceFromClosestMatrixPosition,
+		newNumberOfDimensionShifts: NumberOfDimensionShifts
 	): boolean {
 		return !preivousMatrixPositionMatch
-			|| preivousMatrixPositionMatch.alignScore < alignScore
-			|| (preivousMatrixPositionMatch.alignScore === alignScore
-				&& (preivousMatrixPositionMatch.dist > maxDistance
-					|| (preivousMatrixPositionMatch.dist === maxDistance
-						&& preivousMatrixPositionMatch.moves > moves)))
+			|| preivousMatrixPositionMatch.alignScore < newAlignScore
+			|| (preivousMatrixPositionMatch.alignScore === newAlignScore
+				&& (preivousMatrixPositionMatch.dist > newDistance
+					|| (preivousMatrixPositionMatch.dist === newDistance
+						&& preivousMatrixPositionMatch.dimShifts > newNumberOfDimensionShifts)))
 	}
 
-	private getDimensionShift()
+	private getDimensionShift(
+		verticalMatrixShift: MatrixPositionShift,
+		horizontalMatrixShift: MatrixPositionShift,
+	): NumberOfDimensionShifts {
+		let verticalDimensionShift   = Math.abs(verticalMatrixShift) ? 1 : 0
+		let horizontalDimensionShift = Math.abs(horizontalMatrixShift) ? 1 : 0
+
+		return verticalDimensionShift + horizontalDimensionShift as NumberOfDimensionShifts
+	}
 
 	/*
 		private get1DOffsetFinalPosition(
 			newPosition: PositionValues,
 			closestMatrixPosition: IMatrixPosition,
-			minDist: IMatrixPositionMatch
+			match: IMatrixPositionMatch
 		): IFinalPosition {
-			let separation  = this.get1DDegreeSeparation(closestMatrixPosition, minDist)
+			let separation  = this.get1DDegreeSeparation(closestMatrixPosition, match)
 			let stepDegrees = STEP_DEGS
-			switch (minDist.i) {
+			switch (match.i) {
 				case -1:
 					return {
 						x: closestMatrixPosition.i * stepDegrees - separation,
@@ -301,7 +313,7 @@ export class FinalPositionFinder {
 						y: closestMatrixPosition.j * stepDegrees
 					}
 				default:
-					switch (minDist.j) {
+					switch (match.j) {
 						case -1:
 							return {
 								x: closestMatrixPosition.i * stepDegrees,
@@ -318,11 +330,11 @@ export class FinalPositionFinder {
 
 		private get1DDegreeSeparation(
 			closestMatrixPosition: IMatrixPosition,
-			minDist: IMatrixPositionMatch
+			match: IMatrixPositionMatch
 		): number {
 			const nextClosestCellValues = VALUE_MATRICES[2]
-				[this.base72Pos(closestMatrixPosition.i, minDist.i)]
-				[this.base72Pos(closestMatrixPosition.j, minDist.j)]
+				[this.base72Pos(closestMatrixPosition.i, match.i)]
+				[this.base72Pos(closestMatrixPosition.j, match.j)]
 			const closestCellValues     = closestMatrixPosition.values
 			let maxDistance             = 0
 			for (let k = 0; k < NUM_VALS; k++) {
@@ -334,31 +346,31 @@ export class FinalPositionFinder {
 			}
 			let increment = maxDistance / STEP_DEGS
 
-			return Math.round((maxDistance - minDist.dist) / increment)
+			return Math.round((maxDistance - match.dist) / increment)
 		}
 	*/
 	private get2DOffsetFinalPosition(
 		newPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
-		minDist: IMatrixPositionMatch
+		directionVectorMatch: IMatrixPositionMatch
 	): IFinalPosition {
 		// 0 & 5 determine x movement
 		// 1,2,3,4 determine y movement
 		// need to take the distances from newPosition and apply them accordingly
-		const separations = this.get2DDegreeSeparations(closestMatrixPosition, minDist)
+		const separations = this.get2DDegreeSeparations(closestMatrixPosition, directionVectorMatch)
 		const stepDegrees = STEP_DEGS
 		// const closestMatrixIPositionDegrees = closestMatrixPosition.i * stepDegrees
 		// const closestMatrixJPositionDegrees = closestMatrixPosition.j * stepDegrees
 
 		let x = this.getFinalPositionOfDimension(
 			closestMatrixPosition.i * stepDegrees,
-			minDist.i,
+			directionVectorMatch.i,
 			separations.i
 		)
 
 		let y = this.getFinalPositionOfDimension(
 			closestMatrixPosition.j * stepDegrees,
-			minDist.j,
+			directionVectorMatch.j,
 			separations.j
 		)
 
@@ -384,13 +396,13 @@ export class FinalPositionFinder {
 
 	private get2DDegreeSeparations(
 		closestMatrixPosition: IMatrixPosition,
-		minDist: IMatrixPositionMatch
+		directionVectorMatch: IMatrixPositionMatch
 	): {
 		i: number,
 		j: number
 	} {
-		let cellSeparationDistances           = this.getDists(
-			closestMatrixPosition, minDist.i, minDist.j)
+		let cellSeparationDistances           = this.getDirectionalDists(
+			closestMatrixPosition, directionVectorMatch.values)
 		let [largestIDistIndex, largestIDist] = this.getLargestDistAndIdx(
 			[0, 5], cellSeparationDistances)
 		let [largestJDistIndex, largestJDist] = this.getLargestDistAndIdx(
@@ -399,36 +411,30 @@ export class FinalPositionFinder {
 		// get next cell values
 		let numberOfMatrixDivisions = NUM_DIVS
 		// const nextClosestCellValues = VALUE_MATRICES[2]
-		// 	[(closestMatrixPosition.i + minDist.i) % numberOfMatrixDivisions]
-		// 	[(closestMatrixPosition.j + minDist.j) % numberOfMatrixDivisions]
+		// 	[(closestMatrixPosition.i + match.i) % numberOfMatrixDivisions]
+		// 	[(closestMatrixPosition.j + match.j) % numberOfMatrixDivisions]
 		// const closestCellValues    = closestMatrixPosition.values
 
-		let iDistance = minDist.dimDists[largestIDistIndex]
+		let iDistance = directionVectorMatch.dimDists[largestIDistIndex]
 		let iRatio    = 1 - iDistance / largestIDist
-		let jDistance = minDist.dimDists[largestJDistIndex]
+		let jDistance = directionVectorMatch.dimDists[largestJDistIndex]
 		let jRatio    = 1 - jDistance / largestJDist
 
 		let matrixStepDegrees = STEP_DEGS
 		return {
-			i: Math.round(matrixStepDegrees * iRatio),
-			j: Math.round(matrixStepDegrees * jRatio)
+			i: Math.round((matrixStepDegrees * directionVectorMatch.i) * iRatio),
+			j: Math.round(Math.abs(matrixStepDegrees * directionVectorMatch.j) * jRatio)
 		}
 	}
 
-	private getDists(
+	private getDirectionalDists(
 		closestMatrixPosition: IMatrixPosition,
-		iOffset: number,
-		jOffset: number
+		directionVectorPositionValues: PositionValues
 	): number[] {
-		let numberOfMatrixDivisions  = NUM_DIVS
-		// get vertical values
-		const nextVerticalCellValues = VALUE_MATRICES[2]
-			[this.base72Pos(closestMatrixPosition.i, iOffset)]
-			[this.base72Pos(closestMatrixPosition.j, jOffset)]
-		let distances                = []
+		let distances = []
 		for (let k = 0; k < NUM_VALS; k++) {
 			const currentDistance = Math.abs(
-				nextVerticalCellValues[k]
+				directionVectorPositionValues[k]
 				- closestMatrixPosition.values[k]) as DistanceFromClosestMatrixPosition
 			distances.push(currentDistance)
 		}
