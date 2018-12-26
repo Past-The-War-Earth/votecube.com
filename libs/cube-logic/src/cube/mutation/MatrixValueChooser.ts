@@ -37,7 +37,7 @@ export class MatrixValueChooser {
 	private getMinimumDistanceMatches(
 		viewport: IViewport
 	): IMatrixPosition[][][][] {
-		const zeroedPositions = this.getZeroedPositions(viewport)
+		const positionsWithZeroes = this.getZeroedPositions(viewport)
 
 		let minimumDistanceMatches: IMatrixPosition[][][][] = [
 			[], [], [], [], [], []
@@ -54,10 +54,6 @@ export class MatrixValueChooser {
 		// need to find the percentages that best match the specified ones
 		const valueMatrix = VALUE_MATRICES[2]
 
-		let positionsWithZeroes: boolean[] = []
-		zeroedPositions.forEach(
-			position => positionsWithZeroes[position] = true)
-
 		const newPositionPercentages: IPositionPercentages = viewport.pp
 
 		for (let i = 0; i < valueMatrix.length; i++) {
@@ -65,9 +61,15 @@ export class MatrixValueChooser {
 			value_loop:
 				for (let j = 0; j < dimensionMatrix.length; j++) {
 					const values = dimensionMatrix[j]
-					for (let zeroedPosition of zeroedPositions) {
-						if (values[zeroedPosition]) {
-							continue value_loop
+					for (let k = 0; k < NUM_VALS; k++) {
+						if (positionsWithZeroes[k]) {
+							if (values[k]) {
+								continue value_loop
+							}
+						} else {
+							if (!values[k]) {
+								continue value_loop
+							}
 						}
 					}
 
@@ -127,27 +129,27 @@ export class MatrixValueChooser {
 
 	private getZeroedPositions(
 		viewport: IViewport
-	): ValueArrayPosition[] {
+	): boolean[] {
 		let positionPercentages = viewport.pp
 
-		const zeroedPositions: ValueArrayPosition[] = []
+		const zeroedPositions: boolean[] = []
 		if (!positionPercentages.x.plus) {
-			zeroedPositions.push(0)
+			zeroedPositions[0] = true
 		}
 		if (!positionPercentages.x.minus) {
-			zeroedPositions.push(5)
+			zeroedPositions[5] = true
 		}
 		if (!positionPercentages.y.plus) {
-			zeroedPositions.push(1)
+			zeroedPositions[1] = true
 		}
 		if (!positionPercentages.y.minus) {
-			zeroedPositions.push(3)
+			zeroedPositions[3] = true
 		}
 		if (!positionPercentages.z.plus) {
-			zeroedPositions.push(2)
+			zeroedPositions[2] = true
 		}
 		if (!positionPercentages.z.minus) {
-			zeroedPositions.push(4)
+			zeroedPositions[4] = true
 		}
 
 		return zeroedPositions
