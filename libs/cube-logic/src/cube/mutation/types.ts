@@ -12,14 +12,18 @@ export type PositionAlignmentScore =
 export type PercentChange = 1 | 5 | 20
 
 export interface IFinalPosition {
-	x: number,
+	x: number
 	y: number
 }
 
+export type NumberOfNonZeroPositions = 1 | 2 | 3
+
 export interface IMatrixPosition {
-	i: number,
-	j: number,
-	done?: boolean;
-	key?: string;
+	done?: boolean
+	i: number
+	j: number
+	key?: string
+	numNonZeroPos?: NumberOfNonZeroPositions
 	values: PositionValues
+	// zeroPos?: boolean[]
 }

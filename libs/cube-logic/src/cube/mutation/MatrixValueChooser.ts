@@ -21,23 +21,34 @@ export class MatrixValueChooser {
 	getClosestMatrixPosition(
 		viewport: IViewport
 	): IMatrixPosition {
-		let minimumDistanceMatches = this.getMinimumDistanceMatches(viewport)
+		const positionsWithZeroes  = this.getZeroedPositions(viewport)
+		let minimumDistanceMatches = this.getMinimumDistanceMatches(positionsWithZeroes, viewport)
 
-		let match = this.pickLowestFromDimensionOrder(minimumDistanceMatches[0])
-		for (let i = 1; i < NUM_VALS; i++) {
-			let nextMatch = this.pickLowestFromDimensionOrder(minimumDistanceMatches[i])
+		let match                          = this.pickLowestFromDimensionOrder(minimumDistanceMatches[0])
+		let numberOfValuesInMatrixPosition = NUM_VALS
+		for (let k = 1; k < numberOfValuesInMatrixPosition; k++) {
+			let nextMatch = this.pickLowestFromDimensionOrder(minimumDistanceMatches[k])
 			if (match.dist > nextMatch.dist) {
 				match = nextMatch
 			}
 		}
 
-		return match.mPos
+		let matrixPosition           = match.mPos
+		// matrixPosition.zeroPos = positionsWithZeroes
+		matrixPosition.numNonZeroPos = 0 as any
+		for (let k = 0; k < numberOfValuesInMatrixPosition; k++) {
+			if (!positionsWithZeroes[k]) {
+				matrixPosition.numNonZeroPos++
+			}
+		}
+
+		return matrixPosition
 	}
 
 	private getMinimumDistanceMatches(
+		positionsWithZeroes: boolean[],
 		viewport: IViewport
 	): IMatrixPosition[][][][] {
-		const positionsWithZeroes = this.getZeroedPositions(viewport)
 
 		let minimumDistanceMatches: IMatrixPosition[][][][] = [
 			[], [], [], [], [], []

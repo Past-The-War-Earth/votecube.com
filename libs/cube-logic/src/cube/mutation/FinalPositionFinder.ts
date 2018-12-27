@@ -107,6 +107,8 @@ export class FinalPositionFinder {
 		if (this.positionIsABetterMatch(
 			matchForPosition.match,
 			newMatch.alignScore,
+			newMatch.iShift,
+			newMatch.jShift,
 			newMatch.dist,
 			newMatch.dimShifts
 		)) {
@@ -158,6 +160,8 @@ export class FinalPositionFinder {
 		neighborDists[-3]                        = []
 		neighborDists[-4]                        = []
 		neighborDists[-5]                        = []
+		const numberOfNonZeroPositions           = closestMatrixPosition.numNonZeroPos
+
 		for (
 			let verticalMatrixShift: MatrixPositionShift = -5;
 			verticalMatrixShift <= 5;
@@ -227,7 +231,11 @@ export class FinalPositionFinder {
 				- numOutOfRangePositions as PositionAlignmentScore
 				if (
 					// visibleDimensionMismatch ||
-					alignScore < 0) {
+					alignScore < 0
+					|| (numberOfNonZeroPositions < 3
+					&& (numInRangePositions !== numberOfNonZeroPositions
+						|| numOutOfRangePositions))
+				) {
 					continue
 				}
 				let dimDists: DistanceFromClosestMatrixPosition[] = []
@@ -247,8 +255,8 @@ export class FinalPositionFinder {
 				if (this.positionIsABetterMatch(
 					matrixPositionMatch,
 					alignScore,
-					verticalMatrixShift,
-					horizontalMatrixShift,
+					verticalMatrixShift as MatrixPositionShift,
+					horizontalMatrixShift as MatrixPositionShift,
 					maxDistance,
 					numberOfDimensionShifts
 				)) {
@@ -280,12 +288,27 @@ export class FinalPositionFinder {
 		newNumberOfDimensionShifts: NumberOfDimensionShifts
 	): boolean {
 		return !preivousMatrixPositionMatch
-			|| preivousMatrixPositionMatch.alignScore < newAlignScore
-			|| (preivousMatrixPositionMatch.alignScore === newAlignScore
-		preivousMatrixPositionMatch
-				&& (preivousMatrixPositionMatch.dist > newDistance
-					|| (preivousMatrixPositionMatch.dist === newDistance
-						&& preivousMatrixPositionMatch.dimShifts > newNumberOfDimensionShifts)))
+			|| this.secondInPairIsGreater([
+				[preivousMatrixPositionMatch.alignScore, newAlignScore],
+				[Math.abs(verticalMatrixShift), Math.abs(preivousMatrixPositionMatch.iShift)],
+				[Math.abs(horizontalMatrixShift), Math.abs(preivousMatrixPositionMatch.jShift)],
+				[newDistance, preivousMatrixPositionMatch.dist],
+				[newNumberOfDimensionShifts, preivousMatrixPositionMatch.dimShifts]
+			])
+	}
+
+	private secondInPairIsGreater(
+		chain: any[][]
+	) {
+		for (let pair of chain) {
+			if (pair[0] > pair[1]) {
+				return false
+			}
+			if (pair[0] < pair[1]) {
+				return true
+			}
+		}
+		return false
 	}
 
 	private getDimensionShift(
@@ -423,9 +446,9 @@ export class FinalPositionFinder {
 		// const closestCellValues    = closestMatrixPosition.values
 
 		let iDistance = directionVectorMatch.dimDists[largestIDistIndex]
-		let iRatio    = 1 - iDistance / largestIDist
+		let iRatio    = largestIDist ? 1 - iDistance / largestIDist : 0
 		let jDistance = directionVectorMatch.dimDists[largestJDistIndex]
-		let jRatio    = 1 - jDistance / largestJDist
+		let jRatio    = largestJDist ? 1 - jDistance / largestJDist : 0
 
 		let matrixStepDegrees = STEP_DEGS
 		return {
