@@ -1,20 +1,35 @@
+import {secondInPairIsGreater} from '../../utils/utils'
 import {
 	NUM_VALS,
 	PositionValues,
 	VALUE_MATRICES,
 	ValueArrayPosition
-}                  from '../cubeMoveMatrix'
+}                              from '../cubeMoveMatrix'
 import {
 	IDimensionPercentages,
 	IPositionPercentages
-}                  from '../cubeMovement'
-import {IViewport} from '../Viewport'
+}                              from '../cubeMovement'
+import {IViewport}             from '../Viewport'
 import {
 	DistanceFromClosestMatrixPosition,
+	DistanceFromClosestMatrixPositionMedian,
+	DistanceFromClosestMatrixPositionSum,
 	IMatrixPosition
-}                  from './types'
+}                              from './types'
 
 const MAX_DIST = 12
+
+/*
+export interface IPositionWithDistance {
+	dist: IDistanceToPosition
+	position: IMatrixPosition
+}
+
+export interface IDistanceToPosition {
+	median: DistanceFromClosestMatrixPositionMedian
+	sum: DistanceFromClosestMatrixPositionSum
+}
+*/
 
 export class MatrixValueChooser {
 
@@ -22,21 +37,25 @@ export class MatrixValueChooser {
 		viewport: IViewport
 	): IMatrixPosition {
 		const positionsWithZeroes  = this.getZeroedPositions(viewport)
-		let minimumDistanceMatches = this.getMinimumDistanceMatches(positionsWithZeroes, viewport)
+		// let minimumDistanceMatches = this.getMinimumDistanceMatches(positionsWithZeroes, viewport)
+		let matrixPosition = this.getClosestPositionByDistanceAndMedian(positionsWithZeroes, viewport)
 
-		let match                          = this.pickLowestFromDimensionOrder(minimumDistanceMatches[0])
-		let numberOfValuesInMatrixPosition = NUM_VALS
-		for (let k = 1; k < numberOfValuesInMatrixPosition; k++) {
-			let nextMatch = this.pickLowestFromDimensionOrder(minimumDistanceMatches[k])
-			if (match.dist > nextMatch.dist) {
-				match = nextMatch
-			}
-		}
+		// let match                          = this.pickLowestFromDimensionOrder(minimumDistanceMatches[0])
+		// let numberOfValuesInMatrixPosition = NUM_VALS
+		// for (let k = 1; k < numberOfValuesInMatrixPosition; k++) {
+		// 	let nextMatch = this.pickLowestFromDimensionOrder(minimumDistanceMatches[k])
+		// 	if (secondInPairIsGreater([
+		// 		[nextMatch.dist.sum, match.dist.sum],
+		// 		[nextMatch.dist.median, match.dist.median]
+		// 	])) {
+		// 		match = nextMatch
+		// 	}
+		// }
 
-		let matrixPosition           = match.mPos
+		// let matrixPosition           = match.position
 		// matrixPosition.zeroPos = positionsWithZeroes
 		matrixPosition.numNonZeroPos = 0 as any
-		for (let k = 0; k < numberOfValuesInMatrixPosition; k++) {
+		for (let k = 0; k < NUM_VALS; k++) {
 			if (!positionsWithZeroes[k]) {
 				matrixPosition.numNonZeroPos++
 			}
@@ -45,10 +64,12 @@ export class MatrixValueChooser {
 		return matrixPosition
 	}
 
-	private getMinimumDistanceMatches(
+	// private getMinimumDistanceMatches(
+	private getClosestPositionByDistanceAndMedian(
 		positionsWithZeroes: boolean[],
 		viewport: IViewport
-	): IMatrixPosition[][][][] {
+	): IMatrixPosition {
+		// ): IMatrixPosition[][][][] {
 
 		let minimumDistanceMatches: IMatrixPosition[][][][] = [
 			[], [], [], [], [], []
@@ -62,10 +83,14 @@ export class MatrixValueChooser {
 			}
 		}
 
-		// need to find the percentages that best match the specified ones
+		// need to find the percentages that best endPoint the specified ones
 		const valueMatrix = VALUE_MATRICES[2]
 
 		const newPositionPercentages: IPositionPercentages = viewport.pp
+
+		let lowestMedian = 33;
+		let lowestSum = 100;
+		let position: IMatrixPosition
 
 		for (let i = 0; i < valueMatrix.length; i++) {
 			const dimensionMatrix = valueMatrix[i]
@@ -102,40 +127,55 @@ export class MatrixValueChooser {
 						continue
 					}
 
-					minimumDistanceMatches[0][xDistance][yDistance][zDistance] = {
-						i,
-						j,
-						values
+					let median = [xDistance, yDistance, zDistance].sort()[1]
+					let sum    = xDistance + yDistance + zDistance
+					if (secondInPairIsGreater([
+						[sum, lowestSum],
+						[median, lowestMedian]
+					])) {
+						lowestMedian = median as DistanceFromClosestMatrixPositionMedian
+						lowestSum    = sum as DistanceFromClosestMatrixPositionSum
+						position    = {
+							i,
+							j,
+							values
+						}
 					}
-					minimumDistanceMatches[1][xDistance][zDistance][yDistance] = {
-						i,
-						j,
-						values
-					}
-					minimumDistanceMatches[2][yDistance][xDistance][zDistance] = {
-						i,
-						j,
-						values
-					}
-					minimumDistanceMatches[3][yDistance][zDistance][xDistance] = {
-						i,
-						j,
-						values
-					}
-					minimumDistanceMatches[4][zDistance][xDistance][yDistance] = {
-						i,
-						j,
-						values
-					}
-					minimumDistanceMatches[5][zDistance][yDistance][xDistance] = {
-						i,
-						j,
-						values
-					}
+					/*					minimumDistanceMatches[0][xDistance][yDistance][zDistance] = {
+											i,
+											j,
+											values
+										}
+										minimumDistanceMatches[1][xDistance][zDistance][yDistance] = {
+											i,
+											j,
+											values
+										}
+										minimumDistanceMatches[2][yDistance][xDistance][zDistance] = {
+											i,
+											j,
+											values
+										}
+										minimumDistanceMatches[3][yDistance][zDistance][xDistance] = {
+											i,
+											j,
+											values
+										}
+										minimumDistanceMatches[4][zDistance][xDistance][yDistance] = {
+											i,
+											j,
+											values
+										}
+										minimumDistanceMatches[5][zDistance][yDistance][xDistance] = {
+											i,
+											j,
+											values
+										}*/
 				}
 		}
 
-		return minimumDistanceMatches
+		// return minimumDistanceMatches
+		return position
 	}
 
 	private getZeroedPositions(
@@ -194,55 +234,54 @@ export class MatrixValueChooser {
 			: negativeDistance) as DistanceFromClosestMatrixPosition
 	}
 
-	private pickLowestFromDimensionOrder(
-		minimumDistanceMatches: IMatrixPosition[][][]
-	): {
-		dist: DistanceFromClosestMatrixPosition
-		mPos: IMatrixPosition
-	} {
-		let mPos: IMatrixPosition
-		let dist: DistanceFromClosestMatrixPosition
-		let i: DistanceFromClosestMatrixPosition | -1 = -1
-		while (!mPos) {
-			i++
-			const secondDimensionArray               = minimumDistanceMatches[i]
-			let thirdDimensionArray
-			let j: DistanceFromClosestMatrixPosition = 0
-			let foundValue                           = false
-			for (; j <= MAX_DIST; j++) {
-				thirdDimensionArray = secondDimensionArray[j]
-				if (thirdDimensionArray && thirdDimensionArray.length) {
-					foundValue = true
-					break
+	/*
+		private pickLowestFromDimensionOrder(
+			minimumDistanceMatches: IMatrixPosition[][][]
+		): IPositionWithDistance {
+			let position: IMatrixPosition
+			let median: DistanceFromClosestMatrixPositionMedian = 12
+			let sum: DistanceFromClosestMatrixPositionSum       = 36
+			let i: DistanceFromClosestMatrixPosition | -1       = -1
+			while (!position) {
+				i++
+				const secondDimensionArray               = minimumDistanceMatches[i]
+				let thirdDimensionArray
+				let j: DistanceFromClosestMatrixPosition = 0
+				let foundValue                           = false
+				for (; j <= MAX_DIST; j++) {
+					thirdDimensionArray = secondDimensionArray[j]
+					if (thirdDimensionArray && thirdDimensionArray.length) {
+						foundValue = true
+						break
+					}
 				}
-			}
-			if (!foundValue) {
-				continue
-			}
-			foundValue                               = false
-			let k: DistanceFromClosestMatrixPosition = 0
-			for (; k <= MAX_DIST; k++) {
-				if (thirdDimensionArray[k]) {
-					foundValue = true
-					break
+				if (!foundValue) {
+					continue
 				}
+				foundValue                               = false
+				let k: DistanceFromClosestMatrixPosition = 0
+				for (; k <= MAX_DIST; k++) {
+					if (thirdDimensionArray[k]) {
+						foundValue = true
+						break
+					}
+				}
+				if (!foundValue) {
+					continue
+				}
+				median   = [i, j, k].sort()[1] as DistanceFromClosestMatrixPositionMedian
+				sum      = i + j + k as DistanceFromClosestMatrixPositionSum
+				position = minimumDistanceMatches[i][j][k]
 			}
-			if (!foundValue) {
-				continue
-			}
-			dist = (i > j
-				? (i > k
-					? i
-					: k)
-				: (j > k
-					? j
-					: k)) as DistanceFromClosestMatrixPosition
-			mPos = minimumDistanceMatches[i][j][k]
-		}
 
-		return {
-			dist,
-			mPos
+			return {
+				dist: {
+					median,
+					sum
+				},
+				position
+			}
 		}
-	}
+		*/
+
 }

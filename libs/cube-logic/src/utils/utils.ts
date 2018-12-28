@@ -198,3 +198,17 @@ export function iT(
 		return iT(t, tN2, aM)
 	}
 }
+
+export function secondInPairIsGreater(
+	chain: any[][]
+): boolean {
+	for (let pair of chain) {
+		if (pair[1] > pair[0]) {
+			return true
+		}
+		if (pair[1] < pair[0]) {
+			return false
+		}
+	}
+	return false
+}
