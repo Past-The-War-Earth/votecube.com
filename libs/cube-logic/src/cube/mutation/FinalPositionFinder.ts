@@ -1,4 +1,4 @@
-import {secondInPairIsGreater} from '../../utils/utils'
+import {secondIsGreaterShortcircuit} from '../../utils/utils'
 import {
 	MatrixIndex,
 	NUM_DIVS,
@@ -7,18 +7,18 @@ import {
 	STEP_DEGS,
 	VALUE_MATRICES,
 	ValueArrayPosition
-}                              from '../cubeMoveMatrix'
+}                                    from '../cubeMoveMatrix'
 import {
 	Direction,
 	normMatrixIdx
-}                              from '../cubeMovement'
-import {IViewport}             from '../Viewport'
+}                                    from '../cubeMovement'
+import {IViewport}                   from '../Viewport'
 import {
 	DistanceFromClosestMatrixPosition,
 	IFinalPosition,
 	IMatrixPosition,
 	PositionAlignmentScore
-}                              from './types'
+}                                    from './types'
 
 export interface INeighborDistance {
 	valueDists: DistanceFromClosestMatrixPosition[],
@@ -89,7 +89,9 @@ export class FinalPositionFinder {
 		// if (!endPoint.iShift || !endPoint.jShift) {
 		// 	return this.get1DOffsetFinalPosition(newPosition, closestMatrixPosition, endPoint)
 		// } else {
-		return this.get2DOffsetFinalPosition(newPosition, closestMatrixPosition, directionVectorMatch)
+		return this.get2DOffsetFinalPosition(
+			// newPosition,
+			closestMatrixPosition, directionVectorMatch)
 		// }
 	}
 
@@ -289,7 +291,7 @@ export class FinalPositionFinder {
 		newNumberOfDimensionShifts: NumberOfDimensionShifts
 	): boolean {
 		return !preivousMatrixPositionMatch
-			|| secondInPairIsGreater([
+			|| secondIsGreaterShortcircuit([
 				[preivousMatrixPositionMatch.alignScore, newAlignScore],
 				[newMatrixShiftScore, preivousMatrixPositionMatch.shiftScore],
 				[newDistance, preivousMatrixPositionMatch.dist],
@@ -369,7 +371,7 @@ export class FinalPositionFinder {
 		}
 	*/
 	private get2DOffsetFinalPosition(
-		newPosition: PositionValues,
+		// newPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
 		directionVectorMatch: IMatrixPositionMatch
 	): IFinalPosition {
@@ -381,21 +383,17 @@ export class FinalPositionFinder {
 		// const closestMatrixIPositionDegrees = closestMatrixPosition.iShift * stepDegrees
 		// const closestMatrixJPositionDegrees = closestMatrixPosition.jShift * stepDegrees
 
-		let x = this.getFinalPositionOfDimension(
-			closestMatrixPosition.i * stepDegrees,
-			directionVectorMatch.iShift,
-			separations.i
-		)
-
-		let y = this.getFinalPositionOfDimension(
-			closestMatrixPosition.j * stepDegrees,
-			directionVectorMatch.jShift,
-			separations.j
-		)
-
 		return {
-			x,
-			y
+			x: this.getFinalPositionOfDimension(
+				closestMatrixPosition.i * stepDegrees,
+				directionVectorMatch.iShift,
+				separations.i
+			),
+			y: this.getFinalPositionOfDimension(
+				closestMatrixPosition.j * stepDegrees,
+				directionVectorMatch.jShift,
+				separations.j
+			)
 		}
 	}
 
@@ -406,10 +404,14 @@ export class FinalPositionFinder {
 	): number {
 		// TODO: see if this should be > 0, with a special case for === 0
 		if (separationPositionShift >= 0) {
-			closestMatrixPositionDegrees += separation
+			closestMatrixPositionDegrees += separation > 0
+				? separation
+				: -separation
 			// } else if (separationDirection === -1) {
 		} else {
-			closestMatrixPositionDegrees -= separation
+			closestMatrixPositionDegrees -= separation > 0
+				? separation
+				: -separation
 		}
 
 		return closestMatrixPositionDegrees
@@ -441,11 +443,25 @@ export class FinalPositionFinder {
 		let jDistance = directionVectorMatch.dimDists[largestJDistIndex]
 		let jRatio    = largestJDist ? 1 - jDistance / largestJDist : 0
 
-		let matrixStepDegrees = STEP_DEGS
 		return {
-			i: Math.round((matrixStepDegrees * directionVectorMatch.iShift) * iRatio),
-			j: Math.round(Math.abs(matrixStepDegrees * directionVectorMatch.jShift) * jRatio)
+			i: this.getDegreeShift(directionVectorMatch.iShift, iRatio),
+			j: this.getDegreeShift(directionVectorMatch.jShift, jRatio)
 		}
+	}
+
+	private getDegreeShift(
+		matrixCellShift: MatrixPositionShift,
+		ratio: number
+	): DistanceFromClosestMatrixPosition {
+		let matrixStepDegrees = STEP_DEGS
+		let exactShift
+		if (matrixCellShift) {
+			exactShift = (matrixStepDegrees * matrixCellShift) * ratio
+		} else {
+			exactShift = matrixStepDegrees * ratio
+		}
+
+		return Math.round(exactShift) as DistanceFromClosestMatrixPosition
 	}
 
 	private getDirectionalDists(

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/FinalPositionFinder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/FinalPositionFinder.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/MatrixValueChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/mutation/MatrixValueChooser.ts" afterDir="false" />

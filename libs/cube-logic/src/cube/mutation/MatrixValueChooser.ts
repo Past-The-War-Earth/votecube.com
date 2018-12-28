@@ -1,21 +1,19 @@
-import {secondInPairIsGreater} from '../../utils/utils'
+import {secondIsGreaterShortcircuit} from '../../utils/utils'
 import {
 	NUM_VALS,
 	PositionValues,
 	VALUE_MATRICES,
 	ValueArrayPosition
-}                              from '../cubeMoveMatrix'
+}                                    from '../cubeMoveMatrix'
 import {
 	IDimensionPercentages,
 	IPositionPercentages
-}                              from '../cubeMovement'
-import {IViewport}             from '../Viewport'
+}                                    from '../cubeMovement'
+import {IViewport}                   from '../Viewport'
 import {
 	DistanceFromClosestMatrixPosition,
-	DistanceFromClosestMatrixPositionMedian,
-	DistanceFromClosestMatrixPositionSum,
 	IMatrixPosition
-}                              from './types'
+}                                    from './types'
 
 const MAX_DIST = 12
 
@@ -44,7 +42,7 @@ export class MatrixValueChooser {
 		// let numberOfValuesInMatrixPosition = NUM_VALS
 		// for (let k = 1; k < numberOfValuesInMatrixPosition; k++) {
 		// 	let nextMatch = this.pickLowestFromDimensionOrder(minimumDistanceMatches[k])
-		// 	if (secondInPairIsGreater([
+		// 	if (secondIsGreaterShortcircuit([
 		// 		[nextMatch.dist.sum, match.dist.sum],
 		// 		[nextMatch.dist.median, match.dist.median]
 		// 	])) {
@@ -71,23 +69,24 @@ export class MatrixValueChooser {
 	): IMatrixPosition {
 		// ): IMatrixPosition[][][][] {
 
+/*
 		let minimumDistanceMatches: IMatrixPosition[][][][] = [
 			[], [], [], [], [], []
 		]
 
-		// 5 5 90
 		for (let c = 0; c < 6; c++) {
 			let minDistMatchCombination = minimumDistanceMatches[c]
 			for (let a = 0; a <= MAX_DIST; a++) {
 				minDistMatchCombination[a] = [[], [], [], [], [], [], [], [], [], [], [], [], []]
 			}
-		}
+		}*/
 
 		// need to find the percentages that best endPoint the specified ones
 		const valueMatrix = VALUE_MATRICES[2]
 
 		const newPositionPercentages: IPositionPercentages = viewport.pp
 
+		let lowestLargest = 50;
 		let lowestMedian = 33;
 		let lowestSum = 100;
 		let position: IMatrixPosition
@@ -127,14 +126,18 @@ export class MatrixValueChooser {
 						continue
 					}
 
-					let median = [xDistance, yDistance, zDistance].sort()[1]
+					let sortedValues = [xDistance, yDistance, zDistance].sort()
+					let median = sortedValues[1]
+					let largest = sortedValues[2]
 					let sum    = xDistance + yDistance + zDistance
-					if (secondInPairIsGreater([
+					if (secondIsGreaterShortcircuit([
 						[sum, lowestSum],
-						[median, lowestMedian]
+						[median, lowestMedian],
+						[largest, lowestLargest]
 					])) {
-						lowestMedian = median as DistanceFromClosestMatrixPositionMedian
-						lowestSum    = sum as DistanceFromClosestMatrixPositionSum
+						lowestLargest = largest
+						lowestMedian = median
+						lowestSum    = sum
 						position    = {
 							i,
 							j,

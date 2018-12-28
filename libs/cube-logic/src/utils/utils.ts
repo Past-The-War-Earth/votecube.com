@@ -199,7 +199,7 @@ export function iT(
 	}
 }
 
-export function secondInPairIsGreater(
+export function secondIsGreaterShortcircuit(
 	chain: any[][]
 ): boolean {
 	for (let pair of chain) {
