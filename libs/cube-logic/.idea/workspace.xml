@@ -8,9 +8,6 @@
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/MatrixValueChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/MatrixValueChooser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cube/mutation/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cube/mutation/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/utils.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -74,8 +71,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="471">
-                  <caret line="462" selection-start-line="462" selection-end-line="462" />
+                <state relative-caret-position="493">
+                  <caret line="456" column="8" lean-forward="true" selection-start-line="456" selection-start-column="8" selection-end-line="456" selection-end-column="8" />
                   <folding>
                     <element signature="e#0#61#0" expanded="true" />
                   </folding>
@@ -119,7 +116,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>visibleDimensionMismatch</find>
       <find>| 72</find>
       <find>| 5</find>
       <find>| 12</find>
@@ -149,6 +145,7 @@
       <find>findEndPointPosition</find>
       <find>get2DDegreeSeparations</find>
       <find>-5</find>
+      <find>getDegreeShift</find>
     </findStrings>
     <replaceStrings>
       <replace>newPosition</replace>
@@ -279,7 +276,7 @@
       <workItem from="1545452028309" duration="9622000" />
       <workItem from="1545516744986" duration="6888000" />
       <workItem from="1545586305995" duration="10759000" />
-      <workItem from="1545880988985" duration="21943000" />
+      <workItem from="1545880988985" duration="23384000" />
     </task>
     <task id="LOCAL-00001" summary="debugging arrow based movement">
       <created>1545320530019</created>
@@ -358,11 +355,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545983215697</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="debugging arrow based movement">
+      <created>1546011525714</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1546011525714</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143046000" />
+    <option name="totallyTimeSpent" value="144487000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -561,8 +565,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cube/mutation/FinalPositionFinder.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="462" selection-start-line="462" selection-end-line="462" />
+        <state relative-caret-position="493">
+          <caret line="456" column="8" lean-forward="true" selection-start-line="456" selection-start-column="8" selection-end-line="456" selection-end-column="8" />
           <folding>
             <element signature="e#0#61#0" expanded="true" />
           </folding>

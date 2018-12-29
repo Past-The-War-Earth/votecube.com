@@ -455,11 +455,11 @@ export class FinalPositionFinder {
 	): DistanceFromClosestMatrixPosition {
 		let matrixStepDegrees = STEP_DEGS
 		let exactShift
-		if (matrixCellShift) {
+		// if (matrixCellShift) {
 			exactShift = (matrixStepDegrees * matrixCellShift) * ratio
-		} else {
-			exactShift = matrixStepDegrees * ratio
-		}
+		// } else {
+		// 	exactShift = matrixStepDegrees * ratio
+		// }
 
 		return Math.round(exactShift) as DistanceFromClosestMatrixPosition
 	}
