@@ -241,8 +241,6 @@
 </div>
 
 <script>
-    import {setViewImport} from '@votecube/cube-logic'
-
     export default {
         data() {
             return {
@@ -354,6 +352,9 @@
             }
         },
         oncreate() {
+            import('@votecube/cube-logic/lib/cube/eventListener').then((
+                eventListener
+            ) => {
             // this fires when the component has been
             // rendered to the DOM
             // console.log('in CubeVote oncreate');
@@ -361,11 +362,8 @@
                 setMutationApi,
                 callback
             ) => {
-                return setViewImport(callback)
-                    .then((mutationApi) => {
-                        setMutationApi(mutationApi)
-                    })
-            };
+                setMutationApi(eventListener.setViewPort(callback))
+            }
             this.setCubeViewPort((
                 mutationApi
                 ) => {
@@ -379,6 +377,9 @@
                     this.set({currentValue})
                 },
             )
+
+
+            })
 
         },
         onupdate({changed, current, previous}) {

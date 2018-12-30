@@ -1,3 +1,4 @@
+/*
 import {IValuesOutCallback} from './cube/cubeMovement'
 import {MutationApi}        from './cube/mutation/MutationApi'
 
@@ -8,6 +9,7 @@ export async function setViewImport(
 
 	return eventListener.setViewPort(cb)
 }
+*/
 
 export {IMutationApi} from './cube/mutation/MutationApi'
 export {ZoomIndex}    from './cube/cubeMoveMatrix'
