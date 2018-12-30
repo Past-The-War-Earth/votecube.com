@@ -22,6 +22,10 @@ export class DegreePositionChooser {
 			rotationMultiplier = -rotationMultiplier
 		}
 
+		// if (currentDegrees < 180 && newDegreeChange > 180) {
+		// 	newDegreeChange -= 360
+		// }
+
 		return rotationMultiplier * 360 + newDegreeChange
 	}
 

@@ -456,7 +456,7 @@ export class FinalPositionFinder {
 		let matrixStepDegrees = STEP_DEGS
 		let exactShift
 		// if (matrixCellShift) {
-			exactShift = (matrixStepDegrees * matrixCellShift) * ratio
+		exactShift            = (matrixStepDegrees * matrixCellShift) * ratio
 		// } else {
 		// 	exactShift = matrixStepDegrees * ratio
 		// }

@@ -9,7 +9,7 @@ export type DistanceFromClosestMatrixPosition =
 export type PositionAlignmentScore =
 	-3 | -2 | -1 | 0 | 1 | 2 | 3
 
-export type PercentChange = 1 | 5 | 20
+export type PercentChange = 5 | 20 | 33
 
 export interface IFinalPosition {
 	x: number

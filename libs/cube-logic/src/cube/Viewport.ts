@@ -74,15 +74,18 @@ export const viewport: IViewport = {
 	pp: {
 		x: {
 			minus: 0,
-			plus: 0
+			plus: 0,
+			valid: true
 		},
 		y: {
 			minus: 0,
-			plus: 100
+			plus: 100,
+			valid: true
 		},
 		z: {
 			minus: 0,
-			plus: 0
+			plus: 0,
+			valid: true
 		}
 	},
 	// Recently moved dimension
@@ -147,14 +150,17 @@ export const viewport: IViewport = {
 			x: {
 				minus: values[5],
 				plus: values[0],
+				valid: true
 			},
 			y: {
 				minus: values[3],
 				plus: values[1],
+				valid: true
 			},
 			z: {
 				minus: values[4],
 				plus: values[2],
+				valid: true
 			}
 		}
 

@@ -56,6 +56,7 @@ export interface IPositionPercentages {
 export interface IDimensionPercentages {
 	minus: PositionPercent
 	plus: PositionPercent
+	valid: boolean
 }
 
 export type IValuesOutCallback =

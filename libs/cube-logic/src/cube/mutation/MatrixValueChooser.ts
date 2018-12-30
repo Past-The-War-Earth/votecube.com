@@ -34,9 +34,9 @@ export class MatrixValueChooser {
 	getClosestMatrixPosition(
 		viewport: IViewport
 	): IMatrixPosition {
-		const positionsWithZeroes  = this.getZeroedPositions(viewport)
+		const positionsWithZeroes = this.getZeroedPositions(viewport)
 		// let minimumDistanceMatches = this.getMinimumDistanceMatches(positionsWithZeroes, viewport)
-		let matrixPosition = this.getClosestPositionByDistanceAndMedian(positionsWithZeroes, viewport)
+		let matrixPosition        = this.getClosestPositionByDistanceAndMedian(positionsWithZeroes, viewport)
 
 		// let match                          = this.pickLowestFromDimensionOrder(minimumDistanceMatches[0])
 		// let numberOfValuesInMatrixPosition = NUM_VALS
@@ -69,26 +69,27 @@ export class MatrixValueChooser {
 	): IMatrixPosition {
 		// ): IMatrixPosition[][][][] {
 
-/*
-		let minimumDistanceMatches: IMatrixPosition[][][][] = [
-			[], [], [], [], [], []
-		]
+		/*
+				let minimumDistanceMatches: IMatrixPosition[][][][] = [
+					[], [], [], [], [], []
+				]
 
-		for (let c = 0; c < 6; c++) {
-			let minDistMatchCombination = minimumDistanceMatches[c]
-			for (let a = 0; a <= MAX_DIST; a++) {
-				minDistMatchCombination[a] = [[], [], [], [], [], [], [], [], [], [], [], [], []]
-			}
-		}*/
+				for (let c = 0; c < 6; c++) {
+					let minDistMatchCombination = minimumDistanceMatches[c]
+					for (let a = 0; a <= MAX_DIST; a++) {
+						minDistMatchCombination[a] = [[], [], [], [], [], [], [], [], [], [], [], [], []]
+					}
+				}*/
 
 		// need to find the percentages that best endPoint the specified ones
 		const valueMatrix = VALUE_MATRICES[2]
 
 		const newPositionPercentages: IPositionPercentages = viewport.pp
 
-		let lowestLargest = 50;
-		let lowestMedian = 33;
-		let lowestSum = 100;
+		let lowestLargest       = 50
+		let lowestMedian        = 33
+		let lowestSum           = 100
+		let currentlyUpsideDown = 1
 		let position: IMatrixPosition
 
 		for (let i = 0; i < valueMatrix.length; i++) {
@@ -126,19 +127,22 @@ export class MatrixValueChooser {
 						continue
 					}
 
-					let sortedValues = [xDistance, yDistance, zDistance].sort()
-					let median = sortedValues[1]
-					let largest = sortedValues[2]
-					let sum    = xDistance + yDistance + zDistance
+					const sortedValues = [xDistance, yDistance, zDistance].sort()
+					const median       = sortedValues[1]
+					const largest      = sortedValues[2]
+					const sum          = xDistance + yDistance + zDistance
+					const upsideDown   = i > 18 && i < 54 ? 1 : 0
 					if (secondIsGreaterShortcircuit([
 						[sum, lowestSum],
 						[median, lowestMedian],
-						[largest, lowestLargest]
+						[largest, lowestLargest],
+						[upsideDown, currentlyUpsideDown]
 					])) {
-						lowestLargest = largest
-						lowestMedian = median
-						lowestSum    = sum
-						position    = {
+						lowestLargest       = largest
+						lowestMedian        = median
+						lowestSum           = sum
+						currentlyUpsideDown = upsideDown
+						position            = {
 							i,
 							j,
 							values

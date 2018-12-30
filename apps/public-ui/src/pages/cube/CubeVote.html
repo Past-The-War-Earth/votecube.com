@@ -13,32 +13,32 @@
                     class="surface"
             >
                 <!--0-->
-                0:Security: Trumps policies reduce military's over extension and let it focus on the
+                Security: Trumps policies reduce military's over extension and let it focus on the
                 real threats.
             </div>
             <div id="c2" class="surface">
                 <!--1-->
-                1:Economy: Trump's policies give profound confidence to companies and are good for
+                Economy: Trump's policies give profound confidence to companies and are good for
                 the economy.
             </div>
             <div class="surface" id="c3">
                 <!--2-->
-                2:Equality: Trump's policies are better for equality because they are fighting the
+                Equality: Trump's policies are better for equality because they are fighting the
                 dominance of globalism and are bringing the jobs back.
             </div>
             <div id="c4" class="surface">
                 <!--3-->
-                3:Economy: Trump's policies have no real effect on the economy, it's purely
+                Economy: Trump's policies have no real effect on the economy, it's purely
                 cyclical.
             </div>
             <div id="c5" class="surface">
                 <!--4-->
-                4:Equality: Trump's policies are tailored with the interests of the wealthy in mind
+                Equality: Trump's policies are tailored with the interests of the wealthy in mind
                 and hurt equality.
             </div>
             <div id="c6" class="surface">
                 <!--5-->
-                5:Security: Trump's policies reduce the trust in our alliances and hurt the
+                Security: Trump's policies reduce the trust in our alliances and hurt the
                 stability of the world.
             </div>
         </figure>
@@ -97,9 +97,11 @@
                 </td>
                 <td>
                     <input
+                            maxlength="3"
                             on:input="xManualMove(this.value)"
                             style="
                 border: 0px;
+                border-bottom: {xValueBottomBorder};
                 width: 100%;
                 text-align: center;
             "
@@ -147,9 +149,11 @@
                 </td>
                 <td>
                     <input
+                            maxlength="3"
                             on:input="zManualMove(this.value)"
                             style="
                     border: 0px;
+                    border-bottom: {zValueBottomBorder};
                     width: 100%;
                     text-align: center;
                 "
@@ -198,9 +202,11 @@
                 <td>
                             <!--on:keydown="yManualMove(event)"-->
                     <input
+                            maxlength="3"
                             on:input="yManualMove(this.value)"
                             style="
                     border: 0px;
+                    border-bottom: {yValueBottomBorder};
                     width: 100%;
                     text-align: center;
                 "
@@ -243,15 +249,18 @@
                 currentValue: {
                     x: {
                         minus: 0,
-                        plus: 0
+                        plus: 0,
+                        valid: true
                     },
                     y: {
                         minus: 0,
-                        plus: 100
+                        plus: 100,
+                        valid: true
                     },
                     z: {
                         minus: 0,
-                        plus: 0
+                        plus: 0,
+                        valid: true
                     },
                 },
                 currentZoom: 1,
@@ -260,6 +269,7 @@
         },
         computed: {
             xValue: ({currentValue}) => getNonZeroValue(currentValue.x),
+            xValueBottomBorder: ({currentValue}) => getInputBorder(currentValue.x),
             leftXCircleRadius: ({currentValue}) => getLeftRadius(currentValue.x),
             rightXCircleRadius: ({currentValue}) => getRightRadius(currentValue.x),
             leftXStrokeWidth: ({currentValue}) => getLeftStrokeWidth(currentValue.x),
@@ -269,6 +279,7 @@
             leftXFillColor: ({currentValue}) => getLeftFillColor(currentValue.x, 'FF0000'),
             rightXFillColor: ({currentValue}) => getRightFillColor(currentValue.x, 'FF0000'),
             yValue: ({currentValue}) => getNonZeroValue(currentValue.y),
+            yValueBottomBorder: ({currentValue}) => getInputBorder(currentValue.y),
             leftYCircleRadius: ({currentValue}) => getLeftRadius(currentValue.y),
             rightYCircleRadius: ({currentValue}) => getRightRadius(currentValue.y),
             leftYStrokeWidth: ({currentValue}) => getLeftStrokeWidth(currentValue.y),
@@ -278,6 +289,7 @@
             leftYFillColor: ({currentValue}) => getLeftFillColor(currentValue.y, 'FFFF00'),
             rightYFillColor: ({currentValue}) => getRightFillColor(currentValue.y, 'FFFF00'),
             zValue: ({currentValue}) => getNonZeroValue(currentValue.z),
+            zValueBottomBorder: ({currentValue}) => getInputBorder(currentValue.z),
             leftZCircleRadius: ({currentValue}) => getLeftRadius(currentValue.z),
             rightZCircleRadius: ({currentValue}) => getRightRadius(currentValue.z),
             leftZStrokeWidth: ({currentValue}) => getLeftStrokeWidth(currentValue.z),
@@ -331,18 +343,14 @@
                 this.get().mutationApi.moveZ(1)
             },
             //
-        // 5        37      58
             xManualMove(value) {
-                // handleManualMove()
-                this.get().mutationApi.moveToPercent('x', parseInt(value))
+                this.get().mutationApi.moveToValue('x', value)
             },
             yManualMove(value) {
-                // handleManualMove()
-                this.get().mutationApi.moveToPercent('y', parseInt(value))
+                this.get().mutationApi.moveToValue('y', value)
             },
             zManualMove(value) {
-                // handleManualMove()
-                this.get().mutationApi.moveToPercent('z', parseInt(value))
+                this.get().mutationApi.moveToValue('z', value)
             }
         },
         oncreate() {
@@ -396,6 +404,14 @@
         return dimension.plus
             ? dimension.plus
             : dimension.minus
+    }
+
+    function getInputBorder(
+        dimension
+    ) {
+        return dimension.valid
+        ? '0px'
+        : '3px solid red'
     }
 
     function getLeftRadius(
@@ -494,21 +510,6 @@
             : (dirB
                 ? color
                 : 'FFFFFF')
-    }
-
-    function handleManualMove(
-        event
-    ) {
-        var myElement = event.taget;
-        var startPosition = myElement.selectionStart;
-        var endPosition = myElement.selectionEnd;
-
-        // Check if you've selected text
-        if(startPosition == endPosition){
-            alert("The position of the cursor is (" + startPosition + "/" + myElement.value.length + ")");
-        }else{
-            alert("Selected text from ("+ startPosition +" to "+ endPosition + " of " + myElement.value.length + ")");
-        }
     }
 
 </script>
