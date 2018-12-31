@@ -4,7 +4,7 @@ import {
 	MV_INC_IDX,
 	NUM_DIVISIONS,
 	NUM_DIVS,
-	populateValueMatrices,
+	populateDegreeValMatrix,
 	STEP_DEGS,
 	ZoomIndex,
 } from './cubeMoveMatrix'
@@ -35,7 +35,7 @@ export type PositionPercent =
 	90 | 91 | 92 | 93 | 94 | 95 | 96 | 97 | 98 | 99 |
 	100
 
-populateValueMatrices()
+populateDegreeValMatrix()
 
 export interface IPosition {
 	x: number
@@ -54,9 +54,10 @@ export interface IPositionPercentages {
 }
 
 export interface IDimensionPercentages {
-	minus: PositionPercent
-	plus: PositionPercent
+	color: string
+	dir: Direction
 	valid: boolean
+	value: PositionPercent
 }
 
 export type IValuesOutCallback =
@@ -76,72 +77,9 @@ export function getModXAbsRemainder(
 	if (remainder < 0) {
 		remainder = divisions + remainder
 	}
-	// remainder = Math.round(remainder)
-	// if (remainder == 24) {
-	//     remainder = 0
-	// }
+
 	return remainder
 }
-
-/*
-function move(
-	xMove,
-	yMove
-) {
-	if (yMove == 24) {
-		return
-	}
-	setTimeout(function () {
-		if (xMove == 24) {
-			moveY(0, ++yMove)
-		} else {
-			moveX(++xMove, yMove)
-		}
-	}, moveSpeed)
-}
-
-function moveX(
-	x,
-	y
-) {
-	viewport.move(Bool.False, Move.None, Bool.True, Move.Up)
-	move(x, y)
-}
-
-function moveY(
-	x,
-	y
-) {
-	viewport.move(Bool.True, Move.Up)
-	move(x, y)
-}
-*/
-
-// setTimeout(function () {
-//     move(0, 0)
-// });
-
-/*
-viewport.duration = function () {
-	var d                       = touch ? 50 : 500
-	VP.style.transitionDuration = d + 'ms'
-	return d
-}()
-*/
-
-/*
-var DISPLAYED_SURFACE_PERCENTAGES = [gQ('#n0'), gQ('#n1'), gQ('#n2'), gQ('#n3'), gQ('#n4'), gQ('#n5')]
-
-function setDisplayedSurfacePercentages(
-	values: number[]
-) {
-	for (let i = 0; i < 6; i++) {
-		DISPLAYED_SURFACE_PERCENTAGES[i].innerText = values[i]
-	}
-}
-*/
-
-// setDisplayedSurfacePercentages(VALUE_MATRIX[0][0])
 
 export function moveCoordinates(
 	zoomIndex: ZoomIndex,
@@ -179,13 +117,6 @@ export function moveCoordinates(
 		page = -Math.floor(Math.abs(currentDegree) / 360)
 	}
 
-	// let divisions = NUM_DIVISIONS[2]
-	// let index     = currentIndex % divisions
-	// if (index === divisions) {
-	// 	page++
-	// 	index = 0
-	// }
-
 	let rotation    = page * 360 + zoomedMatrixIndex * degreeChange
 	let matrixIndex = normMatrixIdx(zoomedMatrixIndex * zoomMultiplier)
 
@@ -212,13 +143,3 @@ export function getMatrixIdxFromDeg(
 
 	return normMatrixIdx(signedMatrixIndex)
 }
-
-/* Just for fun */
-// if(!touch) {
-//     $('.cube > div').eq(2).html('<object width="360" height="360"><param name="movie"
-// value="http://www.youtube.com/v/MY5PkidV1cM?fs=1&amphl=en_GB&amprel=0"></param><param
-// name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
-// value="always"></param><embed
-// src="http://www.youtube.com/v/MY5PkidV1cM?fs=1&amphl=en_GB&amprel=0"
-// type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"
-// width="360" height="360"></embed></object>') }

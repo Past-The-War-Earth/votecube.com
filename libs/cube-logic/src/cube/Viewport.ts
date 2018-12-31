@@ -2,13 +2,16 @@ import {
 	MOVE_INCREMENTS,
 	MoveIncrement,
 	MV_INC_IDX,
-	VALUE_MATRICES,
+	PositionValues,
+	VALUE_MATRIX,
+	ValueArrayPosition,
 	ZoomIndex
 } from './cubeMoveMatrix'
 import {
 	Bool,
 	Direction,
 	getMatrixIdxFromDeg,
+	IDimensionPercentages,
 	IPositionPercentages,
 	IValuesOutCallback,
 	Move,
@@ -61,7 +64,6 @@ export interface IVisibleDirection {
 }
 
 export type Dimension = 'x' | 'y' | 'z'
-export type DimensionDirection = 'minus' | 'plus'
 
 export const viewport: IViewport = {
 	cb: null,
@@ -71,23 +73,7 @@ export const viewport: IViewport = {
 	},
 	el: null,
 	increment: MoveIncrement.FIVE,
-	pp: {
-		x: {
-			minus: 0,
-			plus: 0,
-			valid: true
-		},
-		y: {
-			minus: 0,
-			plus: 100,
-			valid: true
-		},
-		z: {
-			minus: 0,
-			plus: 0,
-			valid: true
-		}
-	},
+	pp: null,
 	// Recently moved dimension
 	rmd: [],
 	vd: {
@@ -96,28 +82,13 @@ export const viewport: IViewport = {
 		z: 1
 	},
 	x: 0,
-	// xi: 0,
 	y: 0,
-	// yi: 0,
 	zm: MV_INC_IDX[MoveIncrement.FIFTEEN],
-	// zoom: ZoomLevel.FINE,
 	changeZoom(
 		zoomIndex: ZoomIndex
 	): void {
-		// this.zoom = zoomLevel
 		this.increment = MOVE_INCREMENTS[zoomIndex]
-		// let moveIncrement: MoveIncrement
-		// switch (increment) {
-		// 	case ZoomLevel.BROAD:
-		// 		moveIncrement = MoveIncrement.FORTY_FIVE
-		// 		break
-		// 	case ZoomLevel.COARSE:
-		// 		moveIncrement = MoveIncrement.FIFTEEN
-		// 		break
-		// 	case ZoomLevel.FINE:
-		// 		moveIncrement = MoveIncrement.FIVE
-		// 		break
-		// }moveCoordinates
+
 		console.log('TODO: implement')
 	},
 	move(
@@ -144,28 +115,33 @@ export const viewport: IViewport = {
 			yi = getMatrixIdxFromDeg(this.y)
 		}
 
-		const values = VALUE_MATRICES[2][xi][yi]
+		const values = VALUE_MATRIX[xi][yi]
 
-		this.pp = {
-			x: {
-				minus: values[5],
-				plus: values[0],
-				valid: true
-			},
-			y: {
-				minus: values[3],
-				plus: values[1],
-				valid: true
-			},
-			z: {
-				minus: values[4],
-				plus: values[2],
-				valid: true
+		function getDimensionState(
+			positivePosition: ValueArrayPosition,
+			negativePosition: ValueArrayPosition,
+			positionValues: PositionValues,
+			color: string
+		): IDimensionPercentages {
+			let dir: Direction = 1
+			let value          = positionValues[positivePosition]
+			if (positionValues[negativePosition]) {
+				dir   = -1
+				value = positionValues[negativePosition]
+			}
+			return {
+				color,
+				dir,
+				valid: true,
+				value
 			}
 		}
 
-		// let xiRemainder = getModXAbsRemainder(this.xi, this.increment)
-		// let yiRemainder = getModXAbsRemainder(this.yi, this.increment)
+		this.pp = {
+			x: getDimensionState(0, 5, values, this.pp.x.color),
+			y: getDimensionState(1, 3, values, this.pp.y.color),
+			z: getDimensionState(2, 4, values, this.pp.z.color)
+		}
 
 		this.moveToDegree()
 	},
@@ -182,9 +158,6 @@ export const viewport: IViewport = {
 			return
 		}
 		this.increment = MoveIncrement.FIVE
-		// this.xi        = 0
-		// this.yi        = 0
-		// this.zoom      = ZoomLevel.FINE
 		this.move(0, 0, 0, 0)
 	}
 }

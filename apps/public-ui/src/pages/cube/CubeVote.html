@@ -76,6 +76,21 @@
                     Good
                 </td>
             </tr>
+            <LinearPositionPicker
+                bind:dimension="currentValue.x"
+                on:move="move('x', event)"
+                on:moveToValue="moveToValue('x', event)"
+            />
+            <LinearPositionPicker
+                bind:dimension="currentValue.y"
+                on:move="move('y', event)"
+                on:moveToValue="moveToValue('y', event)"
+            />
+            <LinearPositionPicker
+                bind:dimension="currentValue.z"
+                on:move="move('z', event)"
+                on:moveToValue="moveToValue('z', event)"
+            />
             <tr>
                 <td>
                     <svg
@@ -241,29 +256,11 @@
 </div>
 
 <script>
+    import LinearPositionPicker from '../../common/control/LinearPositionPicker.html'
+
     export default {
-        data() {
-            return {
-                currentValue: {
-                    x: {
-                        minus: 0,
-                        plus: 0,
-                        valid: true
-                    },
-                    y: {
-                        minus: 0,
-                        plus: 100,
-                        valid: true
-                    },
-                    z: {
-                        minus: 0,
-                        plus: 0,
-                        valid: true
-                    },
-                },
-                currentZoom: 1,
-                zoomFactor: 0.65,
-            }
+        components: {
+            LinearPositionPicker
         },
         computed: {
             xValue: ({currentValue}) => getNonZeroValue(currentValue.x),
@@ -297,6 +294,32 @@
             leftZFillColor: ({currentValue}) => getLeftFillColor(currentValue.z, '00FF00'),
             rightZFillColor: ({currentValue}) => getRightFillColor(currentValue.z, '00FF00')
         },
+        data() {
+            return {
+                currentValue: {
+                    x: {
+                        color: 'FF0000',
+                        dir: 1,
+                        valid: true,
+                        value: 0
+                    },
+                    y: {
+                        color: 'FFFF00',
+                        dir: 1,
+                        valid: true,
+                        value: 100
+                    },
+                    z: {
+                        color: '00FF00',
+                        dir: 1,
+                        valid: true,
+                        value: 0
+                    },
+                },
+                currentZoom: 1,
+                zoomFactor: 0.65,
+            }
+        },
         methods: {
             zoomChange(event) {
                 let currentZoom = parseInt(event.target.value);
@@ -316,31 +339,43 @@
                 this.set({currentZoom, zoomFactor});
                 this.get().mutationApi.changeZoom(currentZoom)
             },
+            move(
+                dimension,
+                direction
+            ) {
+                this.get().mutationApi.move(dimension, direction)
+            },
             moveXLeft() {
-                console.log('moveXLeft');
-                this.get().mutationApi.moveX(-1)
+                // console.log('moveXLeft');
+                this.get().mutationApi.move('x', -1)
             },
             moveXRight() {
-                console.log('moveXRight');
-                this.get().mutationApi.moveX(1)
+                // console.log('moveXRight');
+                this.get().mutationApi.move('x', 1)
             },
             moveYLeft() {
-                console.log('moveYLeft');
-                this.get().mutationApi.moveY(-1)
+                // console.log('moveYLeft');
+                this.get().mutationApi.move('y', -1)
             },
             moveYRight() {
-                console.log('moveYRight');
-                this.get().mutationApi.moveY(1)
+                // console.log('moveYRight');
+                this.get().mutationApi.move('y', 1)
             },
             moveZLeft() {
-                console.log('moveZLeft');
-                this.get().mutationApi.moveZ(-1)
+                // console.log('moveZLeft');
+                this.get().mutationApi.move('z', -1)
             },
             moveZRight() {
-                console.log('moveZRight');
-                this.get().mutationApi.moveZ(1)
+                // console.log('moveZRight');
+                this.get().mutationApi.move('z', 1)
             },
             //
+            moveToValue(
+                dimension,
+                value
+            ) {
+                this.get().mutationApi.moveToValue(dimension, value)
+            },
             xManualMove(value) {
                 this.get().mutationApi.moveToValue('x', value)
             },

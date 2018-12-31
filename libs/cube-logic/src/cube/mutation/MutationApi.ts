@@ -1,7 +1,6 @@
 import {ZoomIndex}                 from '../cubeMoveMatrix'
 import {
 	Direction,
-	IDimensionPercentages,
 	PositionPercent
 }                                  from '../cubeMovement'
 import {
@@ -26,15 +25,8 @@ export interface IMutationApi {
 		value: string
 	): void
 
-	moveX(
-		direction: Direction
-	): void
-
-	moveY(
-		direction: Direction
-	): void
-
-	moveZ(
+	move(
+		dimension: Dimension,
 		direction: Direction
 	): void
 
@@ -59,24 +51,6 @@ export class MutationApi
 		this.vp.zm = zoomIndex
 	}
 
-	moveX(
-		direction: Direction
-	): void {
-		this.move('x', direction)
-	}
-
-	moveY(
-		direction: Direction
-	): void {
-		this.move('y', direction)
-	}
-
-	moveZ(
-		direction: Direction
-	): void {
-		this.move('z', direction)
-	}
-
 	moveToValue(
 		dimension: Dimension,
 		value: any
@@ -89,27 +63,15 @@ export class MutationApi
 		this.moveToPercent(dimension, numericValue)
 	}
 
-	private move(
+	move(
 		dimension: Dimension,
 		direction: Direction
-		// dimensionPercentages: IDimensionPercentages
 	): void {
 		const dimensionPercentages = this.vp.pp[dimension]
-		if (!this.isChangeAllowed(direction, dimensionPercentages)) {
+		if (dimensionPercentages.value === 100) {
 			return
 		}
 		let percentChange = this.getPercentChange()
-		let nextStep
-		switch (direction) {
-			case 1:
-				nextStep = this.getNextStep(
-					dimensionPercentages.plus, dimensionPercentages.minus, direction)
-				break
-			case -1:
-				nextStep = this.getNextStep(
-					dimensionPercentages.minus, dimensionPercentages.plus, direction)
-				break
-		}
 
 		this.moveToPercent(dimension, null, percentChange, direction)
 	}
@@ -135,7 +97,7 @@ export class MutationApi
 				dimension, percentChange, direction, this.vp)
 		} else {
 			this.percentagePositionChooser.setPositionPercentages(
-				dimension, newPercent, this.getDirection(dimension, this.vp), this.vp)
+				dimension, newPercent, this.vp.pp[dimension].dir, this.vp)
 		}
 
 		const closestMatrixPosition = this.matrixValueChooser.getClosestMatrixPosition(this.vp)
@@ -143,32 +105,6 @@ export class MutationApi
 		const finalPosition = this.finalPositionFinder.findFinalPosition(closestMatrixPosition, this.vp)
 
 		this.degreePositionChooser.setFinalDegrees(finalPosition, this.vp)
-	}
-
-	private getNextStep(
-		minus: PositionPercent,
-		plus: PositionPercent,
-		direction: Direction
-	): number {
-		let percentChange = this.getPercentChange()
-		let percentToChange
-		switch (direction) {
-			case -1:
-				percentToChange = minus
-				break
-			case 1:
-				percentToChange = plus
-		}
-		return Math.floor(percentToChange / percentChange) + 1
-		// if (plus) {
-		// 	return [Math.floor(plus / percentChange) + 1, direction]
-		// } else if (minus) {
-		// 	if (minus <= percentChange) {
-		// 		return [0, direction]
-		// 	}
-		// } else {
-		// 	return [1, direction]
-		// }
 	}
 
 	private getPercentChange(): PercentChange {
@@ -180,29 +116,6 @@ export class MutationApi
 			case 2:
 				return 5
 		}
-	}
-
-	private isChangeAllowed(
-		direction: Direction,
-		dimensionPercentages: IDimensionPercentages
-	): boolean {
-		let currentValue = direction === 1
-			? dimensionPercentages.plus
-			: dimensionPercentages.minus
-
-		return currentValue !== 100
-	}
-
-	private getDirection(
-		dimension: Dimension,
-		aViewport: IViewport
-	): Direction {
-		let dimensionPercentages = aViewport.pp[dimension]
-		if (dimensionPercentages.minus) {
-			return -1
-		}
-
-		return 1
 	}
 
 }

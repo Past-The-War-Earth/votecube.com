@@ -1,0 +1,233 @@
+<tr>
+   <td>
+      <svg
+          height="50" 
+          on:click="fire('move', -1)"
+          width="50" 
+          xmlns="http://www.w3.org/2000/svg"
+      >
+         <g class="layer">
+            <circle 
+                cx="25"
+                cy="25"
+                fill="#{leftFillColor}"
+                r="{leftCircleRadius}"
+                stroke="#{leftHighlightColor}"
+                stroke-width="{leftStrokeWidth}"
+            />
+            <text 
+                fill="#{leftHighlightColor}"
+                font-family="monospace"
+                font-size="24"
+                stroke="#FFFFFF"
+                stroke-width="0"
+                text-anchor="middle"
+                transform="rotate(0 23.5 23.2) matrix(1.44 0 0 1.64 16.4 -1.8)"
+                x="4.9"
+                xml:space="preserve"
+                y="23.3"
+            >
+               &lt;
+            </text>
+         </g>
+      </svg>
+   </td>
+   <td>
+      <input
+          maxlength="3"
+          on:input="fire('moveToValue', value)"
+          style="
+            border: 0px;
+            border-bottom: {valueBottomBorder};
+            width: 100%;
+            text-align: center;
+          "
+          value="{xValue}"
+      >
+   </td>
+   <td>
+      <svg
+          on:click="fire('move', -1)"
+          height="50" 
+          width="50" 
+          xmlns="http://www.w3.org/2000/svg"
+      >
+         <g class="layer">
+            <circle 
+                cx="25"
+                cy="25"
+                fill="#{rightFillColor}"
+                r="{rightCircleRadius}"
+                stroke="#{rightHighlightColor}"
+                stroke-width="{rightStrokeWidth}"
+            />
+            <text
+                fill="#{rightHighlightColor}"
+                font-family="monospace"
+                font-size="24"
+                stroke="#FFFFFF"
+                stroke-width="0"
+                text-anchor="middle"
+                transform="rotate(0.32 27.4 23.28) matrix(1.44 0 0 1.64 16.6 -4.8)"
+                x="7.5"
+                xml:space="preserve"
+                y="25"
+            >
+               &gt;
+            </text>
+         </g>
+      </svg>
+   </td>
+</tr>
+
+<script>
+    export default {
+        data() {
+            return {
+                dimension: {
+                    minus: 0,
+                    plus: 0,
+                    valid: true
+                }
+            }
+        },
+        computed: {
+            value: ({dimension}) => getNonZeroValue(dimension),
+            valueBottomBorder: ({dimension}) => getInputBorder(dimension),
+            leftCircleRadius: ({dimension}) => getLeftRadius(dimension),
+            rightCircleRadius: ({dimension}) => getRightRadius(dimension),
+            leftStrokeWidth: ({dimension}) => getLeftStrokeWidth(dimension),
+            rightStrokeWidth: ({dimension}) => getRightStrokeWidth(dimension),
+            leftHighlightColor: ({dimension}) => getLeftHighlightColor(dimension, 'FF0000'),
+            rightHighlightColor: ({dimension}) => getRightHighlightColor(dimension, 'FF0000'),
+            leftFillColor: ({dimension}) => getLeftFillColor(dimension, 'FF0000'),
+            rightFillColor: ({dimension}) => getRightFillColor(dimension, 'FF0000'),
+        },
+        methods: {
+            moveLeft() {
+                this.fire('moveLeft', -1)
+            },
+            moveRight() {
+                this.fire('moveRight', -1)
+            },
+            manualMove(value) {
+                this.fire('moveToValue', value)
+            }
+        },
+    }
+
+    function getNonZeroValue(
+        dimension
+    ) {
+        return dimension.plus
+            ? dimension.plus
+            : dimension.minus
+    }
+
+    function getInputBorder(
+        dimension
+    ) {
+        return dimension.valid
+        ? '0px'
+        : '3px solid red'
+    }
+
+    function getLeftRadius(
+        dimension
+    ) {
+        return getRadius(dimension.plus, dimension.minus)
+    }
+
+    function getRightRadius(
+        dimension
+    ) {
+        return getRadius(dimension.minus, dimension.plus)
+    }
+
+    function getRadius(
+        dirA,
+        dirB
+    ) {
+        return dirA
+            ? 23
+            : (dirB
+                ? 24
+                : 23)
+    }
+
+    function getLeftStrokeWidth(
+        dimension
+    ) {
+        return getStrokeWidth(dimension.plus, dimension.minus)
+    }
+
+    function getRightStrokeWidth(
+        dimension
+    ) {
+        return getStrokeWidth(dimension.minus, dimension.plus)
+    }
+
+    function getStrokeWidth(
+        dirA,
+        dirB
+    ) {
+        return dirA
+            ? 3
+            : (dirB
+                ? 0
+                : 3)
+    }
+
+    function getLeftHighlightColor(
+        dimension,
+        color
+    ) {
+        return getHighlightColor(dimension.plus, dimension.minus, color)
+    }
+
+    function getRightHighlightColor(
+        dimension,
+        color
+    ) {
+        return getHighlightColor(dimension.minus, dimension.plus, color)
+    }
+
+    function getHighlightColor(
+        dirA,
+        dirB,
+        color
+    ) {
+        return dirA
+            ? color
+            : (dirB
+                ? 'FFFFFF'
+                : color)
+    }
+
+    function getLeftFillColor(
+        dimension,
+        color
+    ) {
+        return getFillColor(dimension.plus, dimension.minus, color)
+    }
+
+    function getRightFillColor(
+        dimension,
+        color
+    ) {
+        return getFillColor(dimension.minus, dimension.plus, color)
+    }
+
+    function getFillColor(
+        dirA,
+        dirB,
+        color
+    ) {
+        return dirA
+            ? 'FFFFFF'
+            : (dirB
+                ? color
+                : 'FFFFFF')
+    }
+
+</script>

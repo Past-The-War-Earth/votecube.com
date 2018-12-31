@@ -1,25 +1,3 @@
-// export const D = document; // new NodePtr('')
-
-/*
-export class NodePtr {
-	el: Node
-
-	constructor(
-		private id: string
-	) {
-	}
-
-	get val(): Node {
-		if (this.el) {
-			return this.el
-		}
-
-		return this.el = gQ(this.id)
-	}
-}
-D.el           = document
-*/
-
 export interface IGlobalEventListenerMap {
 	tM: Map<Node, IPerElementEventListenerMap>
 

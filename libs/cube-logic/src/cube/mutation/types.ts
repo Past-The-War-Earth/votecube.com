@@ -25,5 +25,4 @@ export interface IMatrixPosition {
 	key?: string
 	numNonZeroPos?: NumberOfNonZeroPositions
 	values: PositionValues
-	// zeroPos?: boolean[]
 }

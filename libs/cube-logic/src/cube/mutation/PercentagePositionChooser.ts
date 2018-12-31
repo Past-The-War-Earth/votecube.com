@@ -5,15 +5,9 @@ import {
 }                      from '../cubeMovement'
 import {
 	Dimension,
-	DimensionDirection,
 	IViewport
 }                      from '../Viewport'
 import {PercentChange} from './types'
-
-export interface IPositionsToChange {
-	inc: DimensionDirection
-	dec: DimensionDirection
-}
 
 export class PercentagePositionChooser {
 
@@ -23,11 +17,9 @@ export class PercentagePositionChooser {
 		direction: Direction,
 		viewport: IViewport
 	): void {
-		const positionsToChange = this.getPositionsToChange(direction)
-
-		let positionPercentages                               = viewport.pp
-		positionPercentages[dimension][positionsToChange.inc] = percent
-		positionPercentages[dimension][positionsToChange.dec] = 0
+		let positionPercentages              = viewport.pp
+		positionPercentages[dimension].value = percent
+		positionPercentages[dimension].dir   = direction
 
 		this.adjustDimensions(dimension, viewport)
 	}
@@ -53,42 +45,33 @@ export class PercentagePositionChooser {
 		direction: Direction,
 		viewport: IViewport
 	): void {
-		const positionsToChange = this.getPositionsToChange(direction)
+		const dimensionPercentages = viewport.pp[dimension]
 
-		const positionPercentages     = viewport.pp
-		const existingValueToIncrease = positionPercentages[dimension][positionsToChange.inc]
-		const existingValueToDecrease = positionPercentages[dimension][positionsToChange.dec]
-
-		// let decrease, increase
-		if (existingValueToIncrease === 0) {
+		if (dimensionPercentages.dir !== direction || !dimensionPercentages.value) {
+			let existingValueToDecrease = 0
+			if (dimensionPercentages.dir !== direction) {
+				existingValueToDecrease = dimensionPercentages.value
+			}
 			if (existingValueToDecrease > 0) {
 				const decreasedValue = existingValueToDecrease - percentChange as PositionPercent
 				if (decreasedValue >= 0) {
-					// decrease = percentChange
-					// increase = 0
-					positionPercentages[dimension][positionsToChange.dec] = decreasedValue
+					dimensionPercentages.value = decreasedValue
 				} else {
-					const decrease                                        = percentChange - existingValueToDecrease
-					const increase                                        = percentChange - decrease as PositionPercent
-					positionPercentages[dimension][positionsToChange.inc] = increase
-					positionPercentages[dimension][positionsToChange.dec] = 0
+					const decrease             = percentChange - existingValueToDecrease
+					const increase             = percentChange - decrease as PositionPercent
+					dimensionPercentages.value = increase
 				}
 			} else {
-				// decrease = 0
-				// increase = percentChange
-				positionPercentages[dimension][positionsToChange.inc] = percentChange
+				dimensionPercentages.value = percentChange
 			}
 		} else {
 			// No decrease is necessary, user is clicking on a button
 			// that has a value associated with it
-			// decrease = 0
-			const increasedValue = existingValueToIncrease + percentChange as PositionPercent
-			if (increasedValue <= 100) {
-				// increase = percentChange
-				positionPercentages[dimension][positionsToChange.inc] = increasedValue
+			const increasedValue = dimensionPercentages.value + percentChange as PositionPercent
+			if (increasedValue < 100) {
+				dimensionPercentages.value = increasedValue
 			} else {
-				// increase = 100 - existingValueToIncrease
-				positionPercentages[dimension][positionsToChange.inc] = 100
+				dimensionPercentages.value = 100
 			}
 		}
 	}
@@ -98,7 +81,7 @@ export class PercentagePositionChooser {
 		viewport: IViewport,
 	): void {
 		const positionPercentages      = viewport.pp
-		const newChangedDimensionValue = this.getDimensionValue(dimension, viewport)
+		const newChangedDimensionValue = viewport.pp[dimension].value
 		let i                          = -1
 		let dimensionToPreserve        = this.getDimensionToPreserve(dimension, viewport)
 		let dimensionToMove            = this.getDimensionToMove(dimension, dimensionToPreserve)
@@ -106,8 +89,8 @@ export class PercentagePositionChooser {
 		let otherDimensionValues, totalValue
 		do {
 			otherDimensionValues = [
-				this.getDimensionValue(dimensionToMove, viewport),
-				this.getDimensionValue(dimensionToPreserve, viewport)
+				viewport.pp[dimensionToMove].value,
+				viewport.pp[dimensionToPreserve].value
 			]
 
 			totalValue = newChangedDimensionValue + otherDimensionValues[0] + otherDimensionValues[1]
@@ -129,47 +112,30 @@ export class PercentagePositionChooser {
 		currentDimensionValue: number,
 		totalValue: number
 	): boolean {
+		const dimensionPercentages = positionPercentages[dimension]
 		if (totalValue > 100) {
 			const reduceBy = totalValue - 100
 			if (currentDimensionValue >= reduceBy) {
-				if (positionPercentages[dimension].minus) {
-					positionPercentages[dimension].minus -= reduceBy
-				} else {
-					positionPercentages[dimension].plus -= reduceBy
-				}
+				dimensionPercentages.value -= reduceBy
+
 				return false
 			}
-			positionPercentages[dimension].minus = 0
-			positionPercentages[dimension].plus  = 0
+			dimensionPercentages.value = 0
+
 			return true
 		}
 		// total value < 100
 		const increaseBy = 100 - totalValue
 
 		if (currentDimensionValue + increaseBy <= 100) {
-			if (positionPercentages[dimension].minus) {
-				positionPercentages[dimension].minus += increaseBy
-			} else {
-				positionPercentages[dimension].plus += increaseBy
-			}
+			dimensionPercentages.value += increaseBy
+
 			return false
 		}
 
-		if (positionPercentages[dimension].minus) {
-			positionPercentages[dimension].minus = 100
-		} else {
-			positionPercentages[dimension].plus = 100
-		}
+		dimensionPercentages.value = 100
+
 		return true
-	}
-
-	private getDimensionValue(
-		dimension: Dimension,
-		viewport: IViewport
-	) {
-		const positionPercentages = viewport.pp
-
-		return positionPercentages[dimension].minus + positionPercentages[dimension].plus
 	}
 
 	private getDimensionToPreserve(
@@ -219,23 +185,6 @@ export class PercentagePositionChooser {
 						return 'y'
 					case 'y':
 						return 'x'
-				}
-		}
-	}
-
-	private getPositionsToChange(
-		direction: Direction
-	): IPositionsToChange {
-		switch (direction) {
-			case 1:
-				return {
-					dec: 'minus',
-					inc: 'plus'
-				}
-			case -1:
-				return {
-					dec: 'plus',
-					inc: 'minus'
 				}
 		}
 	}

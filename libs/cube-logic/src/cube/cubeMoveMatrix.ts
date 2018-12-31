@@ -1,6 +1,6 @@
 import {PositionPercent} from './cubeMovement'
 
-export const VALUE_MATRICES: PositionValues[][][] = [[], [], []]
+export const VALUE_MATRIX: PositionValues[][] = []
 
 export enum MoveIncrement {
 	FORTY_FIVE = 45,
@@ -8,17 +8,9 @@ export enum MoveIncrement {
 	FIVE       = 5,
 }
 
-/*
-export enum ZoomLevel {
-	BROAD  = 45,
-	COARSE = 15,
-	FINE   = 5,
-}
-*/
+export type NumDivisions = 72
 
-export type NumDivisions = 8 | 24 | 72
-
-export const NUM_DIVISIONS: NumDivisions[] = [8, 24, 72]
+export const NUM_DIVISIONS: NumDivisions = 72
 
 export const MOVE_INCREMENTS = [
 	MoveIncrement.FORTY_FIVE,
@@ -84,40 +76,6 @@ const fiveDegreeValueTemplate: PositionValueTemplate[][] = [
 ]
 /* tslint:enable:max-line-length */
 
-//  4   0   1    4   0   1    4   0   1    4   0   1
-const fifteenDegreeValueTemplate: PositionValueTemplate[][] = [
-	[[0, 0, 100], [6, 0, 94], [28, 0, 72], [50, 0, 50]],
-	[[0, 6, 94], [5, 6, 89], [26, 6, 68], [47, 6, 47]],
-	[[0, 28, 72], [3, 28, 69], [20, 26, 54], [37, 26, 37]],
-	[[0, 50, 50], [0, 51, 49], [13, 49, 38], [26, 48, 26]],
-	[[0, 72, 28], [0, 73, 27], [5, 73, 22], [14, 72, 14]],
-	[[0, 94, 6], [0, 94, 6], [0, 96, 4], [0, 100, 0]],
-	[[0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0]]
-]
-
-const fifteenDegreeCombinations = [[100, 0, 0], [95, 5, 0], [90, 10, 0]]
-
-//  4   0   1    4   0   1
-const fortyFiveDegreeValueTemplate: PositionValueTemplate[][] = [
-	[[0, 0, 100], [50, 0, 50]],
-	[[0, 50, 50], [33, 33, 33]],
-	[[0, 100, 0], [0, 100, 0]]
-]
-
-const fortyFiveDegreeCombinations = [[100, 0, 0], [50, 50, 0], [33, 33, 33]]
-
-const matrixValueTemplates = [
-	fortyFiveDegreeValueTemplate,
-	fifteenDegreeValueTemplate,
-	fiveDegreeValueTemplate,
-]
-
-/*const uniqueCombinations = [
-	fiveDegreeCombinations,
-	fifteenDegreeCombinations,
-	fortyFiveDegreeCombinations
-]*/
-
 // same for every 4 MATRIX_TEMPLATE_DIRECTED POSITIONS
 let matrixMoveXY = [
 	// right side up
@@ -180,31 +138,21 @@ for (let i = 0; i < 16; i++) {
 	matrixTemplateDirectedPositions.push([template[0], upDown, template[2], Math.abs(template[3] - 12), template[4] + 12])
 }
 
-export function populateValueMatrices() {
-	populateValueMatrix(0, 3, 2)
-	populateValueMatrix(1, 7, 4)
-	populateValueMatrix(2, 19, 10)
+export function populateDegreeValMatrix() {
+	populateValueMatrix(19, 10, fiveDegreeValueTemplate, NUM_DIVISIONS, 9, VALUE_MATRIX)
 }
 
 export function populateValueMatrix(
-	matrixIndex: number,
 	endX: number,
-	endY: number
+	endY: number,
+	matrixValueTemplate: PositionValueTemplate[][],
+	numDivisions: NumDivisions,
+	indexStartMultiplier: 9,
+	valueMatrix: PositionValues[][]
 ) {
-	const numDivisions = NUM_DIVISIONS[matrixIndex]
-	const valueMatrix  = VALUE_MATRICES[matrixIndex]
-
 	for (let i = 0; i < numDivisions; i++) {
-		const xSubMatrix = []
-		valueMatrix.push(xSubMatrix)
-		// for (let j = 0; j < numDivisions; j++) {
-		//     xSubMatrix.push([])
-		// }
+		valueMatrix.push([] as any)
 	}
-
-	const matrixValueTemplate = matrixValueTemplates[matrixIndex]
-
-	const indexStartMultiplier = Math.pow(3, matrixIndex)
 
 	for (let i = 0; i < 32; i++) {
 		const subMatrixPositions = matrixTemplateDirectedPositions[i]
@@ -235,35 +183,4 @@ export function populateValueMatrix(
 			}
 		}
 	}
-
-	/*
-		let line = 'const matrix = [\n'
-		for (let i = 0; i < valueMatrix.length; i++) {
-			line += '['
-			for (let j = 0; j < 9; j++) {
-				// for (let j = 0; j < valueMatrix[i].length; j++) {
-				let values = valueMatrix[i][j]
-				if (!values) {
-					line += '[   ,   ,   ,   ,   ,   ],'
-					continue
-				}
-				line += '['
-				for (let k = 0; k < 6; k++) {
-					let numVal = '' + values[k]
-					switch (numVal.length) {
-						case 1:
-							numVal = '  ' + numVal
-							break
-						case 2:
-							numVal = ' ' + numVal
-							break
-					}
-					line += numVal + ','
-				}
-				line += '],'
-			}
-			line += '],\n'
-		}
-		console.log(line + '\n]')
-		*/
 }
