@@ -151,7 +151,9 @@ export const viewport: IViewport = {
 	moveToDegree(): void {
 		console.log('x: ' + this.x + '\t\ty: ' + this.y)
 		this.cb(this.pp)
-		this.el.style.transform = 'rotateX(' + this.x + 'deg) rotateY(' + this.y + 'deg)'
+		if (this.el) {
+			this.el.style.transform = 'rotateX(' + this.x + 'deg) rotateY(' + this.y + 'deg)'
+		}
 	},
 	reset(): void {
 		if (!this.el) {

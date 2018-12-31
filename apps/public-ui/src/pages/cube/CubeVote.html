@@ -12,49 +12,37 @@
                 class="surface"
                 id="s1"
             >
-                <!--0-->
-                Security: Trumps policies reduce military's over extension and let it focus on the
-                real threats.
+                {text[0]}
             </div>
             <div
                 class="surface"
                 id="s2"
             >
-                <!--1-->
-                Economy: Trump's policies give profound confidence to companies and are good for
-                the economy.
+                {text[1]}
             </div>
             <div
                 class="surface"
                 id="s3"
             >
-                <!--2-->
-                Equality: Trump's policies are better for equality because they are fighting the
-                dominance of globalism and are bringing the jobs back.
+                {text[2]}
             </div>
             <div
                 class="surface"
                 id="s4"
             >
-                <!--3-->
-                Economy: Trump's policies have no real effect on the economy, it's purely
-                cyclical.
+                {text[3]}
             </div>
             <div
                 class="surface"
                 id="s5"
             >
-                <!--4-->
-                Equality: Trump's policies are tailored with the interests of the wealthy in mind
-                and hurt equality.
+                {text[4]}
             </div>
             <div
                 class="surface"
                 id="s6"
             >
-                <!--5-->
-                Security: Trump's policies reduce the trust in our alliances and hurt the
-                stability of the world.
+                {text[5]}
             </div>
         </figure>
     </section>
@@ -134,27 +122,34 @@
                         value: 0
                     },
                 },
+                text: [
+                    "Security: Trumps policies reduce military's over extension and let it focus on the real threats.",
+                    "Economy: Trump's policies give profound confidence to companies and are good for the economy.",
+                    "Equality: Trump's policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.",
+                    "Economy: Trump's policies have no real effect on the economy, it's purely cyclical.",
+                    "Equality: Trump's policies are tailored with the interests of the wealthy in mind and hurt equality.",
+                    "Security: Trump's policies reduce the trust in our alliances and hurt the stability of the world."
+                ],
                 currentZoom: 1,
                 zoomFactor: 0.65,
             }
         },
         methods: {
             zoomChange(event) {
-                let currentZoom = parseInt(event.target.value);
-                console.log('zoomChange: ' + currentZoom);
-                let zoomFactor;
+                let currentZoom = parseInt(event.target.value)
+                let zoomFactor
                 switch (currentZoom) {
                     case 0:
-                        zoomFactor = 0.55;
+                        zoomFactor = 0.55
                         break;
                     case 1:
-                        zoomFactor = 0.65;
+                        zoomFactor = 0.65
                         break;
                     case 2:
-                        zoomFactor = 0.75;
+                        zoomFactor = 0.75
                         break
                 }
-                this.set({currentZoom, zoomFactor});
+                this.set({currentZoom, zoomFactor})
                 this.get().mutationApi.changeZoom(currentZoom)
             },
             move(
@@ -175,22 +170,23 @@
                 eventListener
             ) => {
             this.setCubeViewPort = (
+                data,
                 setMutationApi,
                 callback
             ) => {
                 setMutationApi(eventListener.setViewPort(
-                    this._state.currentValue, callback))
+                    true, this._state.currentValue, callback))
             }
-            this.setCubeViewPort((
-                mutationApi
+            this.setCubeViewPort(
+                this._state.currentValue,
+                (
+                    mutationApi
                 ) => {
-                    // console.log('setting mutationApi to: ' + mutationApi)
                     this.set({mutationApi})
                 },
                 (
                     currentValue
                 ) => {
-                    // console.log('currentValue: ' + currentValue)
                     this.set({currentValue})
                 },
             )
@@ -198,14 +194,15 @@
 
         },
         ondestroy() {
-            // this fires when the component is
-            // removed from the DOM
             console.log('in CubeVote ondestroy');
-            this.setCubeViewPort((
-                mutationApi
-            ) => {
-                this.set({mutationApi})
-            })
+            this.setCubeViewPort(
+                null,
+                (
+                    mutationApi
+                ) => {
+                    this.set({mutationApi})
+                }
+            )
         }
     }
 

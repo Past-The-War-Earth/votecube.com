@@ -1,10 +1,169 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div>
+<nav>
+        <ZoomPicker
+            currentZoom="{currentZoom}"
+            on:zoomChange="zoomChange(event)"
+        />
+        <table
+                style="
+                width: 100%;
+                font-size: 3em;
+                text-align: center;
+            ">
+            <tr>
+                <td>
+                    -
+                </td>
+                <td>
+                    %
+                </td>
+                <td>
+                    +
+                </td>
+            </tr>
+            <LinearPositionPicker
+                dimension="{currentValue.x}"
+                on:move="move('x', event)"
+                on:moveToValue="moveToValue('x', event)"
+            />
+            <tr>
+                <td colspan="3">
+                <section>
+                    {text[0]}
+                </section>
+                </td>
+            </tr>
+            <LinearPositionPicker
+                dimension="{currentValue.y}"
+                on:move="move('y', event)"
+                on:moveToValue="moveToValue('y', event)"
+            />
+            <tr>
+                <td colspan="3">
+                    1 or 3
+                </td>
+            </tr>
+            <LinearPositionPicker
+                dimension="{currentValue.z}"
+                on:move="move('z', event)"
+                on:moveToValue="moveToValue('z', event)"
+            />
+            <tr>
+                <td colspan="3">
+                    2 or 4
+                </td>
+            </tr>
+        </table>
+    </nav>
+</div>
 
-</body>
-</html>
+<style>
+section {
+    font-size: 0.5em;
+    margin-bottom: 20px;
+}
+</style>
+
+<script>
+    import LinearPositionPicker from '../../common/control/LinearPositionPicker.html'
+    import ZoomPicker from '../../common/control/ZoomPicker.html'
+
+    export default {
+        components: {
+            LinearPositionPicker,
+            ZoomPicker
+        },
+        data() {
+            return {
+                currentValue: {
+                    x: {
+                        color: 'FF0000',
+                        dir: 1,
+                        valid: true,
+                        value: 0
+                    },
+                    y: {
+                        color: 'FFFF00',
+                        dir: 1,
+                        valid: true,
+                        value: 100
+                    },
+                    z: {
+                        color: '00FF00',
+                        dir: 1,
+                        valid: true,
+                        value: 0
+                    },
+                },
+                text: [
+                    "Security: Trumps policies reduce military's over extension and let it focus on the real threats.",
+                    "Economy: Trump's policies give profound confidence to companies and are good for the economy.",
+                    "Equality: Trump's policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.",
+                    "Economy: Trump's policies have no real effect on the economy, it's purely cyclical.",
+                    "Equality: Trump's policies are tailored with the interests of the wealthy in mind and hurt equality.",
+                    "Security: Trump's policies reduce the trust in our alliances and hurt the stability of the world."
+                ],
+                currentZoom: 1
+            }
+        },
+        methods: {
+            zoomChange(event) {
+                let currentZoom = parseInt(event.target.value)
+                this.set({currentZoom})
+                this.get().mutationApi.changeZoom(currentZoom)
+            },
+            move(
+                dimension,
+                direction
+            ) {
+                this.get().mutationApi.move(dimension, direction)
+            },
+            moveToValue(
+                dimension,
+                value
+            ) {
+                this.get().mutationApi.moveToValue(dimension, value)
+            }
+        },
+        oncreate() {
+            import('@votecube/cube-logic/lib/cube/eventListener').then((
+                eventListener
+            ) => {
+            this.setCubeViewPort = (
+                data,
+                setMutationApi,
+                callback
+            ) => {
+                setMutationApi(eventListener.setViewPort(
+                    true, this._state.currentValue, callback))
+            }
+            this.setCubeViewPort(
+                this._state.currentValue,
+                (
+                    mutationApi
+                ) => {
+                    this.set({mutationApi})
+                },
+                (
+                    currentValue
+                ) => {
+                    this.set({currentValue})
+                },
+            )
+            })
+
+        },
+        ondestroy() {
+            console.log('in TextVote ondestroy');
+            this.setCubeViewPort(
+                null,
+                (
+                    mutationApi
+                ) => {
+                    this.set({mutationApi})
+                }
+            )
+        }
+    }
+
+</script>

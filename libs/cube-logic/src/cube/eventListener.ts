@@ -26,76 +26,87 @@ export interface IMoveViewportEvent {
 export const dLM = LM.ad(document)
 
 export function setViewPort(
+	forCube: boolean,
 	positionPercentages: IPositionPercentages,
 	cb?: IValuesOutCallback
 ): MutationApi {
 	viewport.reset()
 	viewport.cb = cb
-	viewport.el = cb ? gQ('#cube') : null
+	if (forCube) {
+		if (cb) {
+			viewport.el = gQ('#cube')
+			addEventCubeEvenHandlers()
+		} else {
+			viewport.el = null
+			dLM.rm('keydown')
+			('mousedown')
+			('touchstart')
+			('mouseup')
+			('touchend')
+		}
+	}
 
 	viewport.pp = positionPercentages
-
-	// if (cb) {
-	// 	cb(viewport.pp)
-	// }
 
 	return cb ? mutationApi : null
 }
 
-dLM.ad('keydown', function (ev) {
-	rmMmTm()
-	switch (ev.keyCode) {
-		case 37: // left
-			viewport.move(Bool.False, Move.None, Bool.True, Move.Down)
-			break
+function addEventCubeEvenHandlers(): void {
+	let moveSpeed = 256
+	dLM.ad('keydown', function (ev) {
+		rmMmTm()
+		switch (ev.keyCode) {
+			case 37: // left
+				viewport.move(Bool.False, Move.None, Bool.True, Move.Down)
+				break
 
-		case 38: // up
-			// prevent default
-			pD(ev)
-			viewport.move(Bool.True, Move.Up)
-			break
+			case 38: // up
+				// prevent default
+				pD(ev)
+				viewport.move(Bool.True, Move.Up)
+				break
 
-		case 39: // right
-			viewport.move(Bool.False, Move.None, Bool.True, Move.Up)
-			break
+			case 39: // right
+				viewport.move(Bool.False, Move.None, Bool.True, Move.Up)
+				break
 
-		case 40: // down
-			// prevent default
-			pD(ev)
-			viewport.move(Bool.True, Move.Down)
-			break
+			case 40: // down
+				// prevent default
+				pD(ev)
+				viewport.move(Bool.True, Move.Down)
+				break
 
-		case 27: // esc
-			viewport.reset()
-			break
-		case 109:
-			if (!viewport.el) {
-				return
-			}
-			if (moveSpeed > 128) {
-				moveSpeed /= 2
-			}
-			break
-		case 107:
-			if (!viewport.el) {
-				return
-			}
-			if (moveSpeed < 4096) {
-				moveSpeed *= 2
-			}
-			break
+			case 27: // esc
+				viewport.reset()
+				break
+			case 109:
+				if (!viewport.el) {
+					return
+				}
+				if (moveSpeed > 128) {
+					moveSpeed /= 2
+				}
+				break
+			case 107:
+				if (!viewport.el) {
+					return
+				}
+				if (moveSpeed < 4096) {
+					moveSpeed *= 2
+				}
+				break
 
-		default:
-			break
-	}
+			default:
+				break
+		}
 
-})
-('mousedown', oMdTs)
-('touchstart', oMdTs)
-('mouseup', rmMmTm)
-('touchend', rmMmTm)
+	})
+	('mousedown', oMdTs)
+	('touchstart', oMdTs)
+	('mouseup', rmMmTm)
+	('touchend', rmMmTm)
 
-let moveSpeed = 256
+}
 
 /**
  * On mousedown or touchstart

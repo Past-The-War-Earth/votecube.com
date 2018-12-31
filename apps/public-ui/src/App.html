@@ -41,16 +41,18 @@
             id="main"
             on:click="clickMain()"
     >
-        <CubeVote></CubeVote>
+        <TextVote></TextVote>
     </section>
 </article>
 
 <script>
     import CubeVote from './pages/cube/CubeVote.html'
+    import TextVote from './pages/cube/TextVote.html'
 
     export default {
         components: {
-            CubeVote
+            CubeVote,
+            TextVote
         },
         data() {
             return {
