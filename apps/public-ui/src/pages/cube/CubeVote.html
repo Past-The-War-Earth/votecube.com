@@ -9,34 +9,49 @@
                 id="cube"
         >
             <div
-                    id="c1"
-                    class="surface"
+                class="surface"
+                id="s1"
             >
                 <!--0-->
                 Security: Trumps policies reduce military's over extension and let it focus on the
                 real threats.
             </div>
-            <div id="c2" class="surface">
+            <div
+                class="surface"
+                id="s2"
+            >
                 <!--1-->
                 Economy: Trump's policies give profound confidence to companies and are good for
                 the economy.
             </div>
-            <div class="surface" id="c3">
+            <div
+                class="surface"
+                id="s3"
+            >
                 <!--2-->
                 Equality: Trump's policies are better for equality because they are fighting the
                 dominance of globalism and are bringing the jobs back.
             </div>
-            <div id="c4" class="surface">
+            <div
+                class="surface"
+                id="s4"
+            >
                 <!--3-->
                 Economy: Trump's policies have no real effect on the economy, it's purely
                 cyclical.
             </div>
-            <div id="c5" class="surface">
+            <div
+                class="surface"
+                id="s5"
+            >
                 <!--4-->
                 Equality: Trump's policies are tailored with the interests of the wealthy in mind
                 and hurt equality.
             </div>
-            <div id="c6" class="surface">
+            <div
+                class="surface"
+                id="s6"
+            >
                 <!--5-->
                 Security: Trump's policies reduce the trust in our alliances and hurt the
                 stability of the world.
@@ -48,17 +63,10 @@
       margin-top: -25px;
       "
     >
-        <div class="slidecontainer">
-            <input
-                    class="slider"
-                    id="zoomRange"
-                    min="0"
-                    max="2"
-                    on:change="zoomChange(event)"
-                    type="range"
-                    value="{currentZoom}"
-            >
-        </div>
+        <ZoomPicker
+            currentZoom="{currentZoom}"
+            on:zoomChange="zoomChange(event)"
+        />
         <table
                 style="
                 width: 100%;
@@ -67,232 +75,42 @@
             ">
             <tr>
                 <td>
-                    Bad
+                    -
                 </td>
                 <td>
                     %
                 </td>
                 <td>
-                    Good
+                    +
                 </td>
             </tr>
             <LinearPositionPicker
-                bind:dimension="currentValue.x"
+                dimension="{currentValue.x}"
                 on:move="move('x', event)"
                 on:moveToValue="moveToValue('x', event)"
             />
             <LinearPositionPicker
-                bind:dimension="currentValue.y"
+                dimension="{currentValue.y}"
                 on:move="move('y', event)"
                 on:moveToValue="moveToValue('y', event)"
             />
             <LinearPositionPicker
-                bind:dimension="currentValue.z"
+                dimension="{currentValue.z}"
                 on:move="move('z', event)"
                 on:moveToValue="moveToValue('z', event)"
             />
-            <tr>
-                <td>
-                    <svg
-                            width="50" height="50" xmlns="http://www.w3.org/2000/svg"
-                            on:click="moveXLeft()"
-                    >
-                        <g class="layer">
-                            <circle cx="25" cy="25" fill="#{leftXFillColor}"
-                                    r="{leftXCircleRadius}"
-                                    stroke="#{leftXHighlightColor}"
-                                    stroke-width="{leftXStrokeWidth}"/>
-                            <text fill="#{leftXHighlightColor}" font-family="monospace"
-                                  font-size="24"
-                                  stroke="#FFFFFF" stroke-width="0" text-anchor="middle"
-                                  transform="rotate(0 23.5 23.2) matrix(1.44 0 0 1.64 16.4 -1.8)"
-                                  x="4.9" xml:space="preserve" y="23.3">&lt;</text>
-                        </g>
-                    </svg>
-                </td>
-                <td>
-                    <input
-                            maxlength="3"
-                            on:input="xManualMove(this.value)"
-                            style="
-                border: 0px;
-                border-bottom: {xValueBottomBorder};
-                width: 100%;
-                text-align: center;
-            "
-                            value="{xValue}"
-                    >
-                </td>
-                <td>
-                    <svg
-                            width="50" height="50" xmlns="http://www.w3.org/2000/svg"
-                            on:click="moveXRight()"
-                    >
-                        <g class="layer">
-                            <circle cx="25" cy="25" fill="#{rightXFillColor}"
-                                    r="{rightXCircleRadius}"
-                                    stroke="#{rightXHighlightColor}"
-                                    stroke-width="{rightXStrokeWidth}"
-                                    />
-                            <text fill="#{rightXHighlightColor}" font-family="monospace"
-                                  font-size="24"
-                                  stroke="#FFFFFF" stroke-width="0" text-anchor="middle"
-                                  transform="rotate(0.32 27.4 23.28) matrix(1.44 0 0 1.64 16.6 -4.8)"
-                                  x="7.5" xml:space="preserve" y="25">&gt;</text>
-                        </g>
-                    </svg>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <svg
-                            width="50" height="50" xmlns="http://www.w3.org/2000/svg"
-                            on:click="moveZLeft()"
-                    >
-                        <g class="layer">
-                            <circle cx="25" cy="25" fill="#{leftZFillColor}"
-                                    r="{leftZCircleRadius}"
-                                    stroke="#{leftZHighlightColor}"
-                                    stroke-width="{leftZStrokeWidth}"/>
-                            <text fill="#{leftZHighlightColor}" font-family="monospace"
-                                  font-size="24"
-                                  stroke="#FFFFFF" stroke-width="0" text-anchor="middle"
-                                  transform="rotate(0 23.5 23.2) matrix(1.44 0 0 1.64 16.4 -1.8)"
-                                  x="4.9" xml:space="preserve" y="23.3">&lt;</text>
-                        </g>
-                    </svg>
-                </td>
-                <td>
-                    <input
-                            maxlength="3"
-                            on:input="zManualMove(this.value)"
-                            style="
-                    border: 0px;
-                    border-bottom: {zValueBottomBorder};
-                    width: 100%;
-                    text-align: center;
-                "
-                            value={zValue}
-                    >
-                </td>
-                <td>
-                    <svg
-                            width="50" height="50" xmlns="http://www.w3.org/2000/svg"
-                            on:click="moveZRight()"
-                    >
-                        <g class="layer">
-                            <circle cx="25" cy="25" fill="#{rightZFillColor}"
-                                    r="{rightZCircleRadius}"
-                                    stroke="#{rightZHighlightColor}"
-                                    stroke-width="{rightZStrokeWidth}"
-                                    />
-                            <text fill="#{rightZHighlightColor}" font-family="monospace"
-                                  font-size="24"
-                                  stroke="#FFFFFF" stroke-width="0" text-anchor="middle"
-                                  transform="rotate(0.32 27.4 23.28) matrix(1.44 0 0 1.64 16.6 -4.8)"
-                                  x="7.5" xml:space="preserve" y="25">&gt;</text>
-                        </g>
-                    </svg>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <svg
-                            width="50" height="50" xmlns="http://www.w3.org/2000/svg"
-                            on:click="moveYLeft()"
-                    >
-                        <g class="layer">
-                            <circle cx="25" cy="25" fill="#{leftYFillColor}"
-                                    r="{leftYCircleRadius}"
-                                    stroke="#{leftYHighlightColor}"
-                                    stroke-width="{leftYStrokeWidth}"/>
-                            <text fill="#{leftYHighlightColor}" font-family="monospace"
-                                  font-size="24"
-                                  stroke="#FFFFFF" stroke-width="0" text-anchor="middle"
-                                  transform="rotate(0 23.5 23.2) matrix(1.44 0 0 1.64 16.4 -1.8)"
-                                  x="4.9" xml:space="preserve" y="23.3">&lt;</text>
-                        </g>
-                    </svg>
-                </td>
-                <td>
-                            <!--on:keydown="yManualMove(event)"-->
-                    <input
-                            maxlength="3"
-                            on:input="yManualMove(this.value)"
-                            style="
-                    border: 0px;
-                    border-bottom: {yValueBottomBorder};
-                    width: 100%;
-                    text-align: center;
-                "
-                            value={yValue}
-                    >
-                </td>
-                <td
-                >
-                    <svg
-                            width="50"
-                            height="50"
-                            xmlns="http://www.w3.org/2000/svg"
-                            on:click="moveYRight()"
-                    >
-                        <g class="layer">
-                            <circle cx="25" cy="25" fill="#{rightYFillColor}"
-                                    r="{rightYCircleRadius}"
-                                    stroke="#{rightYHighlightColor}"
-                                    stroke-width="{rightYStrokeWidth}"
-                                    />
-                            <text fill="#{rightYHighlightColor}" font-family="monospace"
-                                  font-size="24"
-                                  stroke="#FFFFFF" stroke-width="0" text-anchor="middle"
-                                  transform="rotate(0.32 27.4 23.28) matrix(1.44 0 0 1.64 16.6 -4.8)"
-                                  x="7.5" xml:space="preserve" y="25">&gt;</text>
-                        </g>
-                    </svg>
-                </td>
-            </tr>
         </table>
     </nav>
 </div>
 
 <script>
     import LinearPositionPicker from '../../common/control/LinearPositionPicker.html'
+    import ZoomPicker from '../../common/control/ZoomPicker.html'
 
     export default {
         components: {
-            LinearPositionPicker
-        },
-        computed: {
-            xValue: ({currentValue}) => getNonZeroValue(currentValue.x),
-            xValueBottomBorder: ({currentValue}) => getInputBorder(currentValue.x),
-            leftXCircleRadius: ({currentValue}) => getLeftRadius(currentValue.x),
-            rightXCircleRadius: ({currentValue}) => getRightRadius(currentValue.x),
-            leftXStrokeWidth: ({currentValue}) => getLeftStrokeWidth(currentValue.x),
-            rightXStrokeWidth: ({currentValue}) => getRightStrokeWidth(currentValue.x),
-            leftXHighlightColor: ({currentValue}) => getLeftHighlightColor(currentValue.x, 'FF0000'),
-            rightXHighlightColor: ({currentValue}) => getRightHighlightColor(currentValue.x, 'FF0000'),
-            leftXFillColor: ({currentValue}) => getLeftFillColor(currentValue.x, 'FF0000'),
-            rightXFillColor: ({currentValue}) => getRightFillColor(currentValue.x, 'FF0000'),
-            yValue: ({currentValue}) => getNonZeroValue(currentValue.y),
-            yValueBottomBorder: ({currentValue}) => getInputBorder(currentValue.y),
-            leftYCircleRadius: ({currentValue}) => getLeftRadius(currentValue.y),
-            rightYCircleRadius: ({currentValue}) => getRightRadius(currentValue.y),
-            leftYStrokeWidth: ({currentValue}) => getLeftStrokeWidth(currentValue.y),
-            rightYStrokeWidth: ({currentValue}) => getRightStrokeWidth(currentValue.y),
-            leftYHighlightColor: ({currentValue}) => getLeftHighlightColor(currentValue.y, 'FFFF00'),
-            rightYHighlightColor: ({currentValue}) => getRightHighlightColor(currentValue.y, 'FFFF00'),
-            leftYFillColor: ({currentValue}) => getLeftFillColor(currentValue.y, 'FFFF00'),
-            rightYFillColor: ({currentValue}) => getRightFillColor(currentValue.y, 'FFFF00'),
-            zValue: ({currentValue}) => getNonZeroValue(currentValue.z),
-            zValueBottomBorder: ({currentValue}) => getInputBorder(currentValue.z),
-            leftZCircleRadius: ({currentValue}) => getLeftRadius(currentValue.z),
-            rightZCircleRadius: ({currentValue}) => getRightRadius(currentValue.z),
-            leftZStrokeWidth: ({currentValue}) => getLeftStrokeWidth(currentValue.z),
-            rightZStrokeWidth: ({currentValue}) => getRightStrokeWidth(currentValue.z),
-            leftZHighlightColor: ({currentValue}) => getLeftHighlightColor(currentValue.z, '00FF00'),
-            rightZHighlightColor: ({currentValue}) => getRightHighlightColor(currentValue.z, '00FF00'),
-            leftZFillColor: ({currentValue}) => getLeftFillColor(currentValue.z, '00FF00'),
-            rightZFillColor: ({currentValue}) => getRightFillColor(currentValue.z, '00FF00')
+            LinearPositionPicker,
+            ZoomPicker
         },
         data() {
             return {
@@ -345,59 +163,23 @@
             ) {
                 this.get().mutationApi.move(dimension, direction)
             },
-            moveXLeft() {
-                // console.log('moveXLeft');
-                this.get().mutationApi.move('x', -1)
-            },
-            moveXRight() {
-                // console.log('moveXRight');
-                this.get().mutationApi.move('x', 1)
-            },
-            moveYLeft() {
-                // console.log('moveYLeft');
-                this.get().mutationApi.move('y', -1)
-            },
-            moveYRight() {
-                // console.log('moveYRight');
-                this.get().mutationApi.move('y', 1)
-            },
-            moveZLeft() {
-                // console.log('moveZLeft');
-                this.get().mutationApi.move('z', -1)
-            },
-            moveZRight() {
-                // console.log('moveZRight');
-                this.get().mutationApi.move('z', 1)
-            },
-            //
             moveToValue(
                 dimension,
                 value
             ) {
                 this.get().mutationApi.moveToValue(dimension, value)
-            },
-            xManualMove(value) {
-                this.get().mutationApi.moveToValue('x', value)
-            },
-            yManualMove(value) {
-                this.get().mutationApi.moveToValue('y', value)
-            },
-            zManualMove(value) {
-                this.get().mutationApi.moveToValue('z', value)
             }
         },
         oncreate() {
             import('@votecube/cube-logic/lib/cube/eventListener').then((
                 eventListener
             ) => {
-            // this fires when the component has been
-            // rendered to the DOM
-            // console.log('in CubeVote oncreate');
             this.setCubeViewPort = (
                 setMutationApi,
                 callback
             ) => {
-                setMutationApi(eventListener.setViewPort(callback))
+                setMutationApi(eventListener.setViewPort(
+                    this._state.currentValue, callback))
             }
             this.setCubeViewPort((
                 mutationApi
@@ -412,15 +194,8 @@
                     this.set({currentValue})
                 },
             )
-
-
             })
 
-        },
-        onupdate({changed, current, previous}) {
-            // this fires after oncreate, and after every state change
-            // once the DOM is synchronised with the data
-            // console.log(`CubeVote DOM has been updated`);
         },
         ondestroy() {
             // this fires when the component is
@@ -432,120 +207,6 @@
                 this.set({mutationApi})
             })
         }
-    }
-
-    function getNonZeroValue(
-        dimension
-    ) {
-        return dimension.plus
-            ? dimension.plus
-            : dimension.minus
-    }
-
-    function getInputBorder(
-        dimension
-    ) {
-        return dimension.valid
-        ? '0px'
-        : '3px solid red'
-    }
-
-    function getLeftRadius(
-        dimension
-    ) {
-        return getRadius(dimension.plus, dimension.minus)
-    }
-
-    function getRightRadius(
-        dimension
-    ) {
-        return getRadius(dimension.minus, dimension.plus)
-    }
-
-    function getRadius(
-        dirA,
-        dirB
-    ) {
-        return dirA
-            ? 23
-            : (dirB
-                ? 24
-                : 23)
-    }
-
-    function getLeftStrokeWidth(
-        dimension
-    ) {
-        return getStrokeWidth(dimension.plus, dimension.minus)
-    }
-
-    function getRightStrokeWidth(
-        dimension
-    ) {
-        return getStrokeWidth(dimension.minus, dimension.plus)
-    }
-
-    function getStrokeWidth(
-        dirA,
-        dirB
-    ) {
-        return dirA
-            ? 3
-            : (dirB
-                ? 0
-                : 3)
-    }
-
-    function getLeftHighlightColor(
-        dimension,
-        color
-    ) {
-        return getHighlightColor(dimension.plus, dimension.minus, color)
-    }
-
-    function getRightHighlightColor(
-        dimension,
-        color
-    ) {
-        return getHighlightColor(dimension.minus, dimension.plus, color)
-    }
-
-    function getHighlightColor(
-        dirA,
-        dirB,
-        color
-    ) {
-        return dirA
-            ? color
-            : (dirB
-                ? 'FFFFFF'
-                : color)
-    }
-
-    function getLeftFillColor(
-        dimension,
-        color
-    ) {
-        return getFillColor(dimension.plus, dimension.minus, color)
-    }
-
-    function getRightFillColor(
-        dimension,
-        color
-    ) {
-        return getFillColor(dimension.minus, dimension.plus, color)
-    }
-
-    function getFillColor(
-        dirA,
-        dirB,
-        color
-    ) {
-        return dirA
-            ? 'FFFFFF'
-            : (dirB
-                ? color
-                : 'FFFFFF')
     }
 
 </script>

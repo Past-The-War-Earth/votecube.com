@@ -6,6 +6,7 @@ import {
 }                 from '../utils/utils'
 import {
 	Bool,
+	IPositionPercentages,
 	IValuesOutCallback,
 	mouse,
 	Move
@@ -25,15 +26,18 @@ export interface IMoveViewportEvent {
 export const dLM = LM.ad(document)
 
 export function setViewPort(
+	positionPercentages: IPositionPercentages,
 	cb?: IValuesOutCallback
 ): MutationApi {
 	viewport.reset()
 	viewport.cb = cb
 	viewport.el = cb ? gQ('#cube') : null
 
-	if (cb) {
-		cb(viewport.pp)
-	}
+	viewport.pp = positionPercentages
+
+	// if (cb) {
+	// 	cb(viewport.pp)
+	// }
 
 	return cb ? mutationApi : null
 }

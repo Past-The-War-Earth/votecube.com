@@ -3685,49 +3685,41 @@ Cube
     height: 360px;
     width: 360px;
     padding: 20px;
-    /*font-size: 10em;*/
     font-size: 1.8em;
     line-height: 2em;
     color: #000;
-    border: 0px solid white;
-    /*border: 4px solid #777;*/
-    border-radius: 0px;
-    border-radius: 3px;
+    border-radius: 10px;
+    border: 5px groove gray;
 }
 
-#c1  {
+#s1  {
     background: hsla(  0, 100%, 50%, 1);
     /*background: hsla(  0, 100%, 50%, 0.95);*/
     transform: rotateX(90deg) translateZ(200px);
 }
 
-#c2 {
+#s2 {
     background: hsla( 60, 100%, 50%, 1);
-    /*background: hsla( 60, 100%, 50%, 0.95);*/
     transform: translateZ(200px);
 }
 
-#c3 {
+#s3 {
     background: hsla(120, 100%, 50%, 1);
-    /*background: hsla(120, 100%, 50%, 0.95);*/
     transform: rotateY(90deg) translateZ(200px);
 }
 
-#c4 {
+#s4 {
     background: hsla( 60, 100%, 50%,1);
-    /*background: hsla( 60, 100%, 50%, 0.95);*/
     transform: rotateY(180deg) translateZ(200px);
 }
 
-#c5 {
+#s5 {
     background: hsla(120, 100%, 50%, 1);
-    /*background: hsla(120, 100%, 50%, 0.95);*/
     transform: rotateY(-90deg) translateZ(200px);
 }
 
-#c6 {
+#s6 {
     background: hsla(  0, 100%, 50%, 1);
-    /*background: hsla(  0, 100%, 50%, 0.95);*/
     transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
 }
 

@@ -134,13 +134,13 @@ export class MatrixValueChooser {
 	) {
 		if (dimensionPercentages.value) {
 			if (dimensionPercentages.dir === 1) {
-				zeroedPositions[5] = true
+				zeroedPositions[minusIndex] = true
 			} else {
-				zeroedPositions[0] = true
+				zeroedPositions[plusIndex] = true
 			}
 		} else {
-			zeroedPositions[0] = true
-			zeroedPositions[5] = true
+			zeroedPositions[plusIndex] = true
+			zeroedPositions[minusIndex] = true
 		}
 	}
 

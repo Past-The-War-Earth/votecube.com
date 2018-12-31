@@ -35,19 +35,19 @@
    <td>
       <input
           maxlength="3"
-          on:input="fire('moveToValue', value)"
+          on:input="fire('moveToValue', this.value)"
           style="
             border: 0px;
             border-bottom: {valueBottomBorder};
             width: 100%;
             text-align: center;
           "
-          value="{xValue}"
+          value="{dimension.value}"
       >
    </td>
    <td>
       <svg
-          on:click="fire('move', -1)"
+          on:click="fire('move', 1)"
           height="50" 
           width="50" 
           xmlns="http://www.w3.org/2000/svg"
@@ -82,46 +82,17 @@
 
 <script>
     export default {
-        data() {
-            return {
-                dimension: {
-                    minus: 0,
-                    plus: 0,
-                    valid: true
-                }
-            }
-        },
         computed: {
-            value: ({dimension}) => getNonZeroValue(dimension),
             valueBottomBorder: ({dimension}) => getInputBorder(dimension),
-            leftCircleRadius: ({dimension}) => getLeftRadius(dimension),
-            rightCircleRadius: ({dimension}) => getRightRadius(dimension),
-            leftStrokeWidth: ({dimension}) => getLeftStrokeWidth(dimension),
-            rightStrokeWidth: ({dimension}) => getRightStrokeWidth(dimension),
-            leftHighlightColor: ({dimension}) => getLeftHighlightColor(dimension, 'FF0000'),
-            rightHighlightColor: ({dimension}) => getRightHighlightColor(dimension, 'FF0000'),
-            leftFillColor: ({dimension}) => getLeftFillColor(dimension, 'FF0000'),
-            rightFillColor: ({dimension}) => getRightFillColor(dimension, 'FF0000'),
-        },
-        methods: {
-            moveLeft() {
-                this.fire('moveLeft', -1)
-            },
-            moveRight() {
-                this.fire('moveRight', -1)
-            },
-            manualMove(value) {
-                this.fire('moveToValue', value)
-            }
-        },
-    }
-
-    function getNonZeroValue(
-        dimension
-    ) {
-        return dimension.plus
-            ? dimension.plus
-            : dimension.minus
+            leftCircleRadius: ({dimension}) => getRadius(-1, dimension),
+            rightCircleRadius: ({dimension}) => getRadius(1, dimension),
+            leftStrokeWidth: ({dimension}) => getStrokeWidth(-1, dimension),
+            rightStrokeWidth: ({dimension}) => getStrokeWidth(1, dimension),
+            leftHighlightColor: ({dimension}) => getColor(1, dimension),
+            rightHighlightColor: ({dimension}) => getColor(-1, dimension),
+            leftFillColor: ({dimension}) => getColor(-1, dimension),
+            rightFillColor: ({dimension}) => getColor(1, dimension),
+        }
     }
 
     function getInputBorder(
@@ -132,102 +103,30 @@
         : '3px solid red'
     }
 
-    function getLeftRadius(
-        dimension
-    ) {
-        return getRadius(dimension.plus, dimension.minus)
-    }
-
-    function getRightRadius(
-        dimension
-    ) {
-        return getRadius(dimension.minus, dimension.plus)
-    }
-
     function getRadius(
-        dirA,
-        dirB
-    ) {
-        return dirA
-            ? 23
-            : (dirB
-                ? 24
-                : 23)
-    }
-
-    function getLeftStrokeWidth(
+        dir,
         dimension
     ) {
-        return getStrokeWidth(dimension.plus, dimension.minus)
-    }
-
-    function getRightStrokeWidth(
-        dimension
-    ) {
-        return getStrokeWidth(dimension.minus, dimension.plus)
+        return dir === dimension.dir
+        ? 24
+        : 23
     }
 
     function getStrokeWidth(
-        dirA,
-        dirB
+        dir,
+        dimension
     ) {
-        return dirA
-            ? 3
-            : (dirB
-                ? 0
-                : 3)
+        return dir === dimension.dir
+        ? 0
+        : 3
     }
 
-    function getLeftHighlightColor(
-        dimension,
-        color
+    function getColor(
+        dir,
+        dimension
     ) {
-        return getHighlightColor(dimension.plus, dimension.minus, color)
+        return dir === dimension.dir
+        ? dimension.color
+        : 'FFFFFF'
     }
-
-    function getRightHighlightColor(
-        dimension,
-        color
-    ) {
-        return getHighlightColor(dimension.minus, dimension.plus, color)
-    }
-
-    function getHighlightColor(
-        dirA,
-        dirB,
-        color
-    ) {
-        return dirA
-            ? color
-            : (dirB
-                ? 'FFFFFF'
-                : color)
-    }
-
-    function getLeftFillColor(
-        dimension,
-        color
-    ) {
-        return getFillColor(dimension.plus, dimension.minus, color)
-    }
-
-    function getRightFillColor(
-        dimension,
-        color
-    ) {
-        return getFillColor(dimension.minus, dimension.plus, color)
-    }
-
-    function getFillColor(
-        dirA,
-        dirB,
-        color
-    ) {
-        return dirA
-            ? 'FFFFFF'
-            : (dirB
-                ? color
-                : 'FFFFFF')
-    }
-
 </script>
