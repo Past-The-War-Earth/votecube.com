@@ -30,7 +30,7 @@ export class PercentagePositionChooser {
 		direction: Direction,
 		viewport: IViewport
 	) {
-		this.updateDimensionPercentages(
+		this.updateDimensionPercent(
 			dimension,
 			percentChange,
 			direction,
@@ -39,7 +39,7 @@ export class PercentagePositionChooser {
 		this.adjustDimensions(dimension, viewport)
 	}
 
-	private updateDimensionPercentages(
+	private updateDimensionPercent(
 		dimension: Dimension,
 		percentChange: PercentChange,
 		direction: Direction,
@@ -47,23 +47,20 @@ export class PercentagePositionChooser {
 	): void {
 		const dimensionPercentages = viewport.pp[dimension]
 
-		if (dimensionPercentages.dir !== direction || !dimensionPercentages.value) {
-			let existingValueToDecrease = 0
-			if (dimensionPercentages.dir !== direction) {
-				existingValueToDecrease = dimensionPercentages.value
-			}
-			if (existingValueToDecrease > 0) {
-				const decreasedValue = existingValueToDecrease - percentChange as PositionPercent
-				if (decreasedValue >= 0) {
-					dimensionPercentages.value = decreasedValue
-				} else {
-					const decrease             = percentChange - existingValueToDecrease
-					const increase             = percentChange - decrease as PositionPercent
-					dimensionPercentages.value = increase
-				}
+		if (dimensionPercentages.dir !== direction) {
+			const existingValueToDecrease = dimensionPercentages.value
+			const decreasedValue          = existingValueToDecrease - percentChange as PositionPercent
+			if (decreasedValue > 0) {
+				dimensionPercentages.value = decreasedValue
+			} else if (decreasedValue === 0) {
+				dimensionPercentages.value = 0
+				dimensionPercentages.dir   = 1
 			} else {
-				dimensionPercentages.value = percentChange
+				dimensionPercentages.value = -decreasedValue as PositionPercent
+				dimensionPercentages.dir   = direction
 			}
+		} else if (!dimensionPercentages.value) {
+			dimensionPercentages.value = percentChange
 		} else {
 			// No decrease is necessary, user is clicking on a button
 			// that has a value associated with it
