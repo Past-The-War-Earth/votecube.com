@@ -68,7 +68,8 @@ export class MutationApi
 		direction: Direction
 	): void {
 		const dimensionPositionData = this.vp.pd[dimension]
-		if (dimensionPositionData.value === 100) {
+		if (dimensionPositionData.value === 100
+			&& dimensionPositionData.dir === direction) {
 			return
 		}
 		let percentChange = this.getPercentChange()
