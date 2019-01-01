@@ -10,7 +10,7 @@ import {
 }                                    from '../cubeMoveMatrix'
 import {
 	Direction,
-	IDimensionPercentages,
+	IDimensionPositionData,
 	normMatrixIdx,
 	PositionPercent
 }                                    from '../cubeMovement'
@@ -60,11 +60,11 @@ export class FinalPositionFinder {
 		closestMatrixPosition: IMatrixPosition,
 		viewport: IViewport
 	): IFinalPosition {
-		let positionPercentages = viewport.pp
+		let positionData = viewport.pd
 
-		let [xPos, xNeg]                = this.getDirectionVals(positionPercentages.x)
-		let [yPos, yNeg]                = this.getDirectionVals(positionPercentages.y)
-		let [zPos, zNeg]                = this.getDirectionVals(positionPercentages.z)
+		let [xPos, xNeg]                = this.getDirectionVals(positionData.x)
+		let [yPos, yNeg]                = this.getDirectionVals(positionData.y)
+		let [zPos, zNeg]                = this.getDirectionVals(positionData.z)
 		let newPosition: PositionValues = [
 			xPos,
 			yPos,
@@ -97,11 +97,11 @@ export class FinalPositionFinder {
 	}
 
 	private getDirectionVals(
-		dimensionPercentages: IDimensionPercentages
+		dimensionPositionData: IDimensionPositionData
 	): [PositionPercent, PositionPercent] {
-		return dimensionPercentages.dir === 1
-			? [dimensionPercentages.value, 0]
-			: [0, dimensionPercentages.value]
+		return dimensionPositionData.dir === 1
+			? [dimensionPositionData.value, 0]
+			: [0, dimensionPositionData.value]
 	}
 
 	private findVectorEndPoint(

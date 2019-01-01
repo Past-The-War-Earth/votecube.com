@@ -29,7 +29,7 @@
             <tr>
                 <td colspan="3">
                 <section>
-                    {text[0]}
+                    {xText}
                 </section>
                 </td>
             </tr>
@@ -40,7 +40,9 @@
             />
             <tr>
                 <td colspan="3">
-                    1 or 3
+                <section>
+                    {yText}
+                </section>
                 </td>
             </tr>
             <LinearPositionPicker
@@ -50,7 +52,9 @@
             />
             <tr>
                 <td colspan="3">
-                    2 or 4
+                <section>
+                    {zText}
+                </section>
                 </td>
             </tr>
         </table>
@@ -72,6 +76,11 @@ section {
         components: {
             LinearPositionPicker,
             ZoomPicker
+        },
+        computed: {
+            xText: ({currentValue, text}) => currentValue.x.dir === 1 ? text[0] : text[5],
+            yText: ({currentValue, text}) => currentValue.y.dir === 1 ? text[1] : text[3],
+            zText: ({currentValue, text}) => currentValue.z.dir === 1 ? text[2] : text[4]
         },
         data() {
             return {
@@ -135,7 +144,7 @@ section {
                 callback
             ) => {
                 setMutationApi(eventListener.setViewPort(
-                    true, this._state.currentValue, callback))
+                    false, data, callback))
             }
             this.setCubeViewPort(
                 this._state.currentValue,
@@ -165,5 +174,4 @@ section {
             )
         }
     }
-
 </script>

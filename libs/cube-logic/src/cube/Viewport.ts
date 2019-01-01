@@ -11,8 +11,8 @@ import {
 	Bool,
 	Direction,
 	getMatrixIdxFromDeg,
-	IDimensionPercentages,
-	IPositionPercentages,
+	IDimensionPositionData,
+	IPositionData,
 	IValuesOutCallback,
 	Move,
 	moveCoordinates,
@@ -24,7 +24,7 @@ export interface IViewport {
 	cr: ICubeRotation,
 	el: Element | null
 	increment: MoveIncrement
-	pp: IPositionPercentages
+	pd: IPositionData
 	// Recently Moved Dimension
 	rmd: Dimension[]
 	x: number
@@ -73,7 +73,7 @@ export const viewport: IViewport = {
 	},
 	el: null,
 	increment: MoveIncrement.FIVE,
-	pp: null,
+	pd: null,
 	// Recently moved dimension
 	rmd: [],
 	vd: {
@@ -122,7 +122,7 @@ export const viewport: IViewport = {
 			negativePosition: ValueArrayPosition,
 			positionValues: PositionValues,
 			color: string
-		): IDimensionPercentages {
+		): IDimensionPositionData {
 			let dir: Direction = 1
 			let value          = positionValues[positivePosition]
 			if (positionValues[negativePosition]) {
@@ -137,10 +137,10 @@ export const viewport: IViewport = {
 			}
 		}
 
-		this.pp = {
-			x: getDimensionState(0, 5, values, this.pp.x.color),
-			y: getDimensionState(1, 3, values, this.pp.y.color),
-			z: getDimensionState(2, 4, values, this.pp.z.color)
+		this.pd = {
+			x: getDimensionState(0, 5, values, this.pd.x.color),
+			y: getDimensionState(1, 3, values, this.pd.y.color),
+			z: getDimensionState(2, 4, values, this.pd.z.color)
 		}
 
 		this.moveToDegree()
@@ -150,7 +150,7 @@ export const viewport: IViewport = {
 	 */
 	moveToDegree(): void {
 		console.log('x: ' + this.x + '\t\ty: ' + this.y)
-		this.cb(this.pp)
+		this.cb(this.pd)
 		if (this.el) {
 			this.el.style.transform = 'rotateX(' + this.x + 'deg) rotateY(' + this.y + 'deg)'
 		}

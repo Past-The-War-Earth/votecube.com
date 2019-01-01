@@ -47,13 +47,13 @@ export interface IMousePosition {
 	start: IPosition
 }
 
-export interface IPositionPercentages {
-	x: IDimensionPercentages
-	y: IDimensionPercentages
-	z: IDimensionPercentages
+export interface IPositionData {
+	x: IDimensionPositionData
+	y: IDimensionPositionData
+	z: IDimensionPositionData
 }
 
-export interface IDimensionPercentages {
+export interface IDimensionPositionData {
 	color: string
 	dir: Direction
 	valid: boolean
@@ -61,7 +61,7 @@ export interface IDimensionPercentages {
 }
 
 export type IValuesOutCallback =
-	(values: IPositionPercentages) => void
+	(values: IPositionData) => void
 
 export const mouse: IMousePosition = {
 	start: {x: undefined, y: undefined}

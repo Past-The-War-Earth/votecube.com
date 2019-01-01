@@ -6,8 +6,8 @@ import {
 	ValueArrayPosition
 }                                    from '../cubeMoveMatrix'
 import {
-	IDimensionPercentages,
-	IPositionPercentages
+	IDimensionPositionData,
+	IPositionData
 }                                    from '../cubeMovement'
 import {IViewport}                   from '../Viewport'
 import {
@@ -42,7 +42,7 @@ export class MatrixValueChooser {
 		// need to find the percentages that best endPoint the specified ones
 		const valueMatrix = VALUE_MATRIX
 
-		const newPositionPercentages: IPositionPercentages = viewport.pp
+		const newPositionData: IPositionData = viewport.pd
 
 		let lowestLargest       = 50
 		let lowestMedian        = 33
@@ -67,19 +67,19 @@ export class MatrixValueChooser {
 						}
 					}
 
-					const xDistance = this.getDimensionDistance(newPositionPercentages.x,
+					const xDistance = this.getDimensionDistance(newPositionData.x,
 						values, 0, 5, positionsWithZeroes)
 					if (xDistance === undefined) {
 						continue
 					}
 
-					const yDistance = this.getDimensionDistance(newPositionPercentages.y,
+					const yDistance = this.getDimensionDistance(newPositionData.y,
 						values, 1, 3, positionsWithZeroes)
 					if (yDistance === undefined) {
 						continue
 					}
 
-					const zDistance = this.getDimensionDistance(newPositionPercentages.z,
+					const zDistance = this.getDimensionDistance(newPositionData.z,
 						values, 2, 4, positionsWithZeroes)
 					if (zDistance === undefined) {
 						continue
@@ -115,25 +115,25 @@ export class MatrixValueChooser {
 	private getZeroedPositions(
 		viewport: IViewport
 	): boolean[] {
-		const positionPercentages = viewport.pp
+		const positionData = viewport.pd
 
 		const zeroedPositions: boolean[] = []
 
-		this.setDimZeroPositions(positionPercentages.x, 0, 5, zeroedPositions)
-		this.setDimZeroPositions(positionPercentages.y, 1, 3, zeroedPositions)
-		this.setDimZeroPositions(positionPercentages.z, 2, 4, zeroedPositions)
+		this.setDimZeroPositions(positionData.x, 0, 5, zeroedPositions)
+		this.setDimZeroPositions(positionData.y, 1, 3, zeroedPositions)
+		this.setDimZeroPositions(positionData.z, 2, 4, zeroedPositions)
 
 		return zeroedPositions
 	}
 
 	private setDimZeroPositions(
-		dimensionPercentages: IDimensionPercentages,
+		dimensionPositionData: IDimensionPositionData,
 		plusIndex: ValueArrayPosition,
 		minusIndex: ValueArrayPosition,
 		zeroedPositions: boolean[]
 	) {
-		if (dimensionPercentages.value) {
-			if (dimensionPercentages.dir === 1) {
+		if (dimensionPositionData.value) {
+			if (dimensionPositionData.dir === 1) {
 				zeroedPositions[minusIndex] = true
 			} else {
 				zeroedPositions[plusIndex] = true
@@ -145,8 +145,8 @@ export class MatrixValueChooser {
 	}
 
 	private getDimensionDistance(
-		newDimensionPercentages: IDimensionPercentages,
-		positionPercentages: PositionValues,
+		newDimensionPositionData: IDimensionPositionData,
+		positionData: PositionValues,
 		positiveIndex: ValueArrayPosition,
 		negativeIndex: ValueArrayPosition,
 		positionsWithZeroes: boolean[]
@@ -154,16 +154,16 @@ export class MatrixValueChooser {
 		let positiveDistance  = 0
 		const maximumDistance = MAX_DIST
 		if (!positionsWithZeroes[positiveIndex]) {
-			positiveDistance = Math.abs(positionPercentages[positiveIndex]
-				- newDimensionPercentages.value)
+			positiveDistance = Math.abs(positionData[positiveIndex]
+				- newDimensionPositionData.value)
 			if (positiveDistance > maximumDistance) {
 				return undefined
 			}
 		}
 		let negativeDistance = 0
 		if (!positionsWithZeroes[negativeIndex]) {
-			negativeDistance = Math.abs(positionPercentages[negativeIndex]
-				- newDimensionPercentages.value)
+			negativeDistance = Math.abs(positionData[negativeIndex]
+				- newDimensionPositionData.value)
 			if (negativeDistance > maximumDistance) {
 				return undefined
 			}

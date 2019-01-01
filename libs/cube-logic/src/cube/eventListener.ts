@@ -6,7 +6,7 @@ import {
 }                 from '../utils/utils'
 import {
 	Bool,
-	IPositionPercentages,
+	IPositionData,
 	IValuesOutCallback,
 	mouse,
 	Move
@@ -27,7 +27,7 @@ export const dLM = LM.ad(document)
 
 export function setViewPort(
 	forCube: boolean,
-	positionPercentages: IPositionPercentages,
+	positionData: IPositionData,
 	cb?: IValuesOutCallback
 ): MutationApi {
 	viewport.reset()
@@ -46,7 +46,7 @@ export function setViewPort(
 		}
 	}
 
-	viewport.pp = positionPercentages
+	viewport.pd = positionData
 
 	return cb ? mutationApi : null
 }

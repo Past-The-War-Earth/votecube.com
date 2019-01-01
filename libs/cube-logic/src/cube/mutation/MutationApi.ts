@@ -56,9 +56,9 @@ export class MutationApi
 		value: any
 	): void {
 		const numericValue          = parseInt(value) as PositionPercent
-		this.vp.pp[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100
-		if (!this.vp.pp[dimension].valid) {
-			this.vp.cb(this.vp.pp)
+		this.vp.pd[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100
+		if (!this.vp.pd[dimension].valid) {
+			this.vp.cb(this.vp.pd)
 		}
 		this.moveToPercent(dimension, numericValue)
 	}
@@ -67,8 +67,8 @@ export class MutationApi
 		dimension: Dimension,
 		direction: Direction
 	): void {
-		const dimensionPercentages = this.vp.pp[dimension]
-		if (dimensionPercentages.value === 100) {
+		const dimensionPositionData = this.vp.pd[dimension]
+		if (dimensionPositionData.value === 100) {
 			return
 		}
 		let percentChange = this.getPercentChange()
@@ -97,7 +97,7 @@ export class MutationApi
 				dimension, percentChange, direction, this.vp)
 		} else {
 			this.percentagePositionChooser.setPositionPercentages(
-				dimension, newPercent, this.vp.pp[dimension].dir, this.vp)
+				dimension, newPercent, this.vp.pd[dimension].dir, this.vp)
 		}
 
 		const closestMatrixPosition = this.matrixValueChooser.getClosestMatrixPosition(this.vp)

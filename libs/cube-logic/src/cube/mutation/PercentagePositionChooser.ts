@@ -1,6 +1,6 @@
 import {
 	Direction,
-	IPositionPercentages,
+	IPositionData,
 	PositionPercent
 }                      from '../cubeMovement'
 import {
@@ -17,9 +17,9 @@ export class PercentagePositionChooser {
 		direction: Direction,
 		viewport: IViewport
 	): void {
-		let positionPercentages              = viewport.pp
-		positionPercentages[dimension].value = percent
-		positionPercentages[dimension].dir   = direction
+		let positionData              = viewport.pd
+		positionData[dimension].value = percent
+		positionData[dimension].dir   = direction
 
 		this.adjustDimensions(dimension, viewport)
 	}
@@ -45,30 +45,30 @@ export class PercentagePositionChooser {
 		direction: Direction,
 		viewport: IViewport
 	): void {
-		const dimensionPercentages = viewport.pp[dimension]
+		const dimensionPositionData = viewport.pd[dimension]
 
-		if (dimensionPercentages.dir !== direction) {
-			const existingValueToDecrease = dimensionPercentages.value
+		if (dimensionPositionData.dir !== direction) {
+			const existingValueToDecrease = dimensionPositionData.value
 			const decreasedValue          = existingValueToDecrease - percentChange as PositionPercent
 			if (decreasedValue > 0) {
-				dimensionPercentages.value = decreasedValue
+				dimensionPositionData.value = decreasedValue
 			} else if (decreasedValue === 0) {
-				dimensionPercentages.value = 0
-				dimensionPercentages.dir   = 1
+				dimensionPositionData.value = 0
+				dimensionPositionData.dir   = 1
 			} else {
-				dimensionPercentages.value = -decreasedValue as PositionPercent
-				dimensionPercentages.dir   = direction
+				dimensionPositionData.value = -decreasedValue as PositionPercent
+				dimensionPositionData.dir   = direction
 			}
-		} else if (!dimensionPercentages.value) {
-			dimensionPercentages.value = percentChange
+		} else if (!dimensionPositionData.value) {
+			dimensionPositionData.value = percentChange
 		} else {
 			// No decrease is necessary, user is clicking on a button
 			// that has a value associated with it
-			const increasedValue = dimensionPercentages.value + percentChange as PositionPercent
+			const increasedValue = dimensionPositionData.value + percentChange as PositionPercent
 			if (increasedValue < 100) {
-				dimensionPercentages.value = increasedValue
+				dimensionPositionData.value = increasedValue
 			} else {
-				dimensionPercentages.value = 100
+				dimensionPositionData.value = 100
 			}
 		}
 	}
@@ -77,8 +77,8 @@ export class PercentagePositionChooser {
 		dimension: Dimension,
 		viewport: IViewport,
 	): void {
-		const positionPercentages      = viewport.pp
-		const newChangedDimensionValue = viewport.pp[dimension].value
+		const positionData      = viewport.pd
+		const newChangedDimensionValue = viewport.pd[dimension].value
 		let i                          = -1
 		let dimensionToPreserve        = this.getDimensionToPreserve(dimension, viewport)
 		let dimensionToMove            = this.getDimensionToMove(dimension, dimensionToPreserve)
@@ -86,8 +86,8 @@ export class PercentagePositionChooser {
 		let otherDimensionValues, totalValue
 		do {
 			otherDimensionValues = [
-				viewport.pp[dimensionToMove].value,
-				viewport.pp[dimensionToPreserve].value
+				viewport.pd[dimensionToMove].value,
+				viewport.pd[dimensionToPreserve].value
 			]
 
 			totalValue = newChangedDimensionValue + otherDimensionValues[0] + otherDimensionValues[1]
@@ -96,7 +96,7 @@ export class PercentagePositionChooser {
 			}
 			i++
 		} while (this.adjustDimension(
-			positionPercentages,
+			positionData,
 			otherDimensions[i],
 			otherDimensionValues[i],
 			totalValue))
@@ -104,20 +104,20 @@ export class PercentagePositionChooser {
 	}
 
 	private adjustDimension(
-		positionPercentages: IPositionPercentages,
+		positionData: IPositionData,
 		dimension: Dimension,
 		currentDimensionValue: number,
 		totalValue: number
 	): boolean {
-		const dimensionPercentages = positionPercentages[dimension]
+		const dimensionPositionData = positionData[dimension]
 		if (totalValue > 100) {
 			const reduceBy = totalValue - 100
 			if (currentDimensionValue >= reduceBy) {
-				dimensionPercentages.value -= reduceBy
+				dimensionPositionData.value -= reduceBy
 
 				return false
 			}
-			dimensionPercentages.value = 0
+			dimensionPositionData.value = 0
 
 			return true
 		}
@@ -125,12 +125,12 @@ export class PercentagePositionChooser {
 		const increaseBy = 100 - totalValue
 
 		if (currentDimensionValue + increaseBy <= 100) {
-			dimensionPercentages.value += increaseBy
+			dimensionPositionData.value += increaseBy
 
 			return false
 		}
 
-		dimensionPercentages.value = 100
+		dimensionPositionData.value = 100
 
 		return true
 	}
