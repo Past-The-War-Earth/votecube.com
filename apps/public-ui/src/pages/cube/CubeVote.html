@@ -12,37 +12,37 @@
                 class="surface"
                 id="s1"
             >
-                {text[0]}
+                {$text[0]}
             </div>
             <div
                 class="surface"
                 id="s2"
             >
-                {text[1]}
+                {$text[1]}
             </div>
             <div
                 class="surface"
                 id="s3"
             >
-                {text[2]}
+                {$text[2]}
             </div>
             <div
                 class="surface"
                 id="s4"
             >
-                {text[3]}
+                {$text[3]}
             </div>
             <div
                 class="surface"
                 id="s5"
             >
-                {text[4]}
+                {$text[4]}
             </div>
             <div
                 class="surface"
                 id="s6"
             >
-                {text[5]}
+                {$text[5]}
             </div>
         </figure>
     </section>
@@ -73,17 +73,17 @@
                 </td>
             </tr>
             <LinearPositionPicker
-                dimension="{currentValue.x}"
+                dimension="{$currentValue.x}"
                 on:move="move('x', event)"
                 on:moveToValue="moveToValue('x', event)"
             />
             <LinearPositionPicker
-                dimension="{currentValue.y}"
+                dimension="{$currentValue.y}"
                 on:move="move('y', event)"
                 on:moveToValue="moveToValue('y', event)"
             />
             <LinearPositionPicker
-                dimension="{currentValue.z}"
+                dimension="{$currentValue.z}"
                 on:move="move('z', event)"
                 on:moveToValue="moveToValue('z', event)"
             />
@@ -94,6 +94,7 @@
 <script>
     import LinearPositionPicker from '../../common/control/LinearPositionPicker.html'
     import ZoomPicker from '../../common/control/ZoomPicker.html'
+	import store from '../../store.js';
 
     export default {
         components: {
@@ -102,34 +103,6 @@
         },
         data() {
             return {
-                currentValue: {
-                    x: {
-                        color: 'FF0000',
-                        dir: 1,
-                        valid: true,
-                        value: 0
-                    },
-                    y: {
-                        color: 'FFFF00',
-                        dir: 1,
-                        valid: true,
-                        value: 100
-                    },
-                    z: {
-                        color: '00FF00',
-                        dir: 1,
-                        valid: true,
-                        value: 0
-                    },
-                },
-                text: [
-                    "Security: Trumps policies reduce military's over extension and let it focus on the real threats.",
-                    "Economy: Trump's policies give profound confidence to companies and are good for the economy.",
-                    "Equality: Trump's policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.",
-                    "Economy: Trump's policies have no real effect on the economy, it's purely cyclical.",
-                    "Equality: Trump's policies are tailored with the interests of the wealthy in mind and hurt equality.",
-                    "Security: Trump's policies reduce the trust in our alliances and hurt the stability of the world."
-                ],
                 currentZoom: 1,
                 zoomFactor: 0.65,
             }
@@ -178,7 +151,7 @@
                     true, data, callback))
             }
             this.setCubeViewPort(
-                this._state.currentValue,
+                this.store.get().currentValue,
                 (
                     mutationApi
                 ) => {
@@ -187,7 +160,7 @@
                 (
                     currentValue
                 ) => {
-                    this.set({currentValue})
+                    this.store.set({currentValue})
                 },
             )
             })
@@ -203,7 +176,8 @@
                     this.set({mutationApi})
                 }
             )
-        }
+        },
+        store: () => store
     }
 
 </script>

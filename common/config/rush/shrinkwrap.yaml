@@ -4,6 +4,7 @@ dependencies:
   cross-env: 5.2.0
   css-loader: 2.0.2
   mini-css-extract-plugin: 0.5.0
+  page: 1.11.3
   serve: 10.1.1
   style-loader: 0.23.1
   svelte: 2.16.0
@@ -2028,6 +2029,10 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-HxbkqiKwTRM2tmGIpmrzxgDDpm0=
+  /isarray/0.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8=
   /isarray/1.0.0:
     dev: false
     resolution:
@@ -2456,6 +2461,14 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==
+  /navaid/1.0.0:
+    dependencies:
+      regexparam: 0.0.1
+    dev: false
+    engines:
+      node: '>= 6'
+    resolution:
+      integrity: sha512-K+gfVdiO36xjlv0dDDscX2zN2x+lsxHGgfQqAvKJ11uMxCFVA9MgSVXbAqW1AIq0OXVtPRTUmEHCysSFOa83rA==
   /negotiator/0.6.1:
     dev: false
     engines:
@@ -2654,6 +2667,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-hMp0onDKIajHfIkdRk3P4CdCmErkYAxxDtP3Wx/4nZ3aGlau2VKh3mZpcuFkH27WQkL/3WBCPOktzA9ZOAnMQQ==
+  /page/1.11.3:
+    dependencies:
+      path-to-regexp: 1.2.1
+    dev: false
+    resolution:
+      integrity: sha512-DsVPU2MEXfR9IA+K1sGlEWy95gqklEk+PkvnDCURWiCI/g8j6WDzXDVMsEJsfvPuscnNW/oi8p2h9ge3piCrsg==
   /pako/1.0.7:
     dev: false
     resolution:
@@ -2726,6 +2745,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
+  /path-to-regexp/1.2.1:
+    dependencies:
+      isarray: 0.0.1
+    dev: false
+    resolution:
+      integrity: sha1-szcFwUAjTYc8hyHHuf2LVB7Tr/k=
   /path-to-regexp/2.2.1:
     dev: false
     resolution:
@@ -3025,6 +3050,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==
+  /regexparam/0.0.1:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-ZAWSvAXXL3WaoF9wVCo+PWzIaiQ81jk87OaFOJ2CQ0ld/seonv9kbCmWdEEA4fEY0SQNiSBV0zidWUAw77cryw==
   /regexpu-core/1.0.0:
     dependencies:
       regenerate: 1.4.0
@@ -4272,7 +4303,7 @@ packages:
     dev: false
     name: '@rush-temp/cube-logic'
     resolution:
-      integrity: sha512-ZrhroL50gECp9HvZ4NUAe379nFwWa/mVT5KwaXoe3T+UcDPZ6hNsK/mVIIs0M2fgMNij4VEiixJ0eXqz7ndC1g==
+      integrity: sha512-Qsu6FUT59+3VUnwrllHgitfea7pZz0lQKEMxFoGiY6aPlFVhPIQe+DWv76DcBTNaRMIXu0t6p3JijnKtxtAW8A==
       tarball: 'file:projects/cube-logic.tgz'
     version: 0.0.0
   'file:projects/public-ui.tgz':
@@ -4280,6 +4311,8 @@ packages:
       cross-env: 5.2.0
       css-loader: /css-loader/2.0.2/webpack@4.28.2
       mini-css-extract-plugin: /mini-css-extract-plugin/0.5.0/webpack@4.28.2
+      navaid: 1.0.0
+      page: 1.11.3
       serve: 10.1.1
       style-loader: 0.23.1
       svelte: 2.16.0
@@ -4290,7 +4323,7 @@ packages:
     dev: false
     name: '@rush-temp/public-ui'
     resolution:
-      integrity: sha512-xv+kb5B57G4S++1hE1A9GOhAY5henOV7hX8vSNAHDONRE7efiAj/+OSEXWSj4iHoAkWaQZ13rAVe30w9o/oFOw==
+      integrity: sha512-58AT+4WhY5Olt9cLdLNiPqYTswI6uYQN0AhJC6EVtedqKD4eJtcUpEasOk6lj+VDlQYXO/iKpaK4TlBgmmPbpQ==
       tarball: 'file:projects/public-ui.tgz'
     version: 0.0.0
 registry: 'https://registry.npmjs.org/'
@@ -4302,6 +4335,7 @@ specifiers:
   cross-env: ^5.2.0
   css-loader: ^2.0.2
   mini-css-extract-plugin: ^0.5.0
+  page: ^1.11.3
   serve: ^10.1.1
   style-loader: ^0.23.1
   svelte: ^2.16.0

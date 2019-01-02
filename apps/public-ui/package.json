@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@votecube/cube-logic": "0.0.1"
+    "@votecube/cube-logic": "0.0.1",
+    "page": "^1.11.3"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",

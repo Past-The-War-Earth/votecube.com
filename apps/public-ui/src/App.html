@@ -23,64 +23,126 @@
         id="layout"
 >
     <!-- Menu toggle -->
-    <!--
-            <TopBar @mainMenuActive={{isMenuActive}}></TopBar>
-    -->
-    <a
+    <TopBar
+        mainMenuActive={isMenuActive}
+        on:setViewType="setViewType(event)"
+        ></TopBar>
+    <nav
             class="menu-link {activeClass}"
-            href="#menu"
             id="menuLink"
             on:click="toggleMenu()"
     >
         <!--Hamburger icon -->
         <span></span>
-    </a>
-    <!--    <Menu @active={isMenuActive} @selected={{action toggleMenu}}></Menu>
+    </nav>
+    <!--
+        <Menu @active={isMenuActive} @selected={{action toggleMenu}}></Menu>
         -->
     <section
             id="main"
             on:click="clickMain()"
     >
-        <TextVote></TextVote>
+        <svelte:component this="{PageComp}"/>
+
     </section>
 </article>
 
 <script>
     import CubeVote from './pages/cube/CubeVote.html'
     import TextVote from './pages/cube/TextVote.html'
+    import TopBar from './shell/top/TopBar.html'
+    import VerticalBarVote from './pages/cube/VerticalBarVote.html'
+    import store from './store.js';
+
+
+    import page from 'page'
 
     export default {
         components: {
-            CubeVote,
-            TextVote
+            TopBar
+        },
+        computed: {
+            activeClass: ({$showMainMenu}) => $showMainMenu ? 'active' : ''
         },
         data() {
             return {
-                isMenuActive: false
+                PageComp: null
             }
-        },
-        computed: {
-            activeClass: ({isMenuActive}) => isMenuActive ? 'active' : ''
         },
         methods: {
             clickMain() {
                 // if (DOM_API.e(menuElementIdSelector)
                 //   .className
                 //   .indexOf('active') !== -1) {
-                if (this.get().isMenuActive) {
+                if (this.store.get().showMainMenu) {
                     this.toggleMenu()
                 }
             },
             toggleMenu() {
-                this.set({isMenuActive: !this.get().isMenuActive})
+                this.store.toggleMainMenu()
+            },
+            setPageComp(
+                PageComp
+            ) {
+                this.set({PageComp})
+            },
+            setViewType(
+                viewType
+            ) {
+                switch (viewType) {
+                  case 'chart': {
+                      page('/vote/chart')
+                      break;
+                  }
+                  case 'cube': {
+                      page('/vote/cube')
+                      break;
+                  }
+                  case 'text': {
+                      page('/vote/text')
+                      break;
+                  }
+                }
             }
+        },
+        oncreate() {
+            page(
+                '/', () => {
+                setPageComp('cube', CubeVote, this)
+            })
+            page(
+                '/vote/cube', () => {
+                setPageComp('cube', CubeVote, this)
+            })
+            page(
+                '/vote/chart', () => {
+                setPageComp('chart', VerticalBarVote, this)
+            })
+            page(
+                '/vote/text', () => {
+                setPageComp('text', TextVote, this)
+            })
+            page({
+                hashbang: true
+            })
         },
         onupdate({ changed, current, previous }) {
             // this fires after oncreate, and after every state change
             // once the DOM is synchronised with the data
             // console.log(`App DOM has been updated`);
-        }
+        },
+        store: () => store
     }
+
+    function setPageComp(
+        viewType,
+        PageComp,
+        appComp
+    ) {
+        appComp.store.set({viewType})
+        appComp.set({PageComp})
+    }
+
 </script>
 
 <style>

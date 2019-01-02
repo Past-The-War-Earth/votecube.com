@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<nav
+  class="custom-menu-toggle {closeMenuClass}"
+  id="toggle"
+  on:click="$toggleTopMenu()"
+>
+  <s class="bar"></s>
+  <s class="bar"></s>
+</nav>
 
-</body>
-</html>
+<script>
+	import store from '../../store.js';
+
+    export default {
+        computed: {
+            closeMenuClass: ({$showTopMenu}) => $showTopMenu ? 'x' : ''
+        },
+        store: () => store
+    }
+</script>

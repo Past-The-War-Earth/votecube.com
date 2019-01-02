@@ -32,10 +32,13 @@ export function setViewPort(
 ): MutationApi {
 	viewport.reset()
 	viewport.cb = cb
+	viewport.pd = positionData
+
 	if (forCube) {
 		if (cb) {
 			viewport.el = gQ('#cube')
 			addEventCubeEvenHandlers()
+			viewport.moveToDegree()
 		} else {
 			viewport.el = null
 			dLM.rm('keydown')
@@ -46,7 +49,6 @@ export function setViewPort(
 		}
 	}
 
-	viewport.pd = positionData
 
 	return cb ? mutationApi : null
 }

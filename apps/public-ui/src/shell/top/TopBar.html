@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="custom-menu-wrapper">
+  <TopBarHeader></TopBarHeader>
+  <TopMenu
+    on:setViewType
+  ></TopMenu>
+</div>
 
-</body>
-</html>
+<script>
+    import TopBarHeader from './TopBarHeader.html'
+    import TopMenu from './TopMenu.html'
+
+    export default {
+        components: {
+            TopBarHeader,
+            TopMenu
+        }
+    }
+</script>

@@ -1,5 +1,9 @@
 <div>
-<nav>
+<nav
+        style="
+      margin-top: 25px;
+      "
+    >
         <ZoomPicker
             currentZoom="{currentZoom}"
             on:zoomChange="zoomChange(event)"
@@ -22,7 +26,7 @@
                 </td>
             </tr>
             <LinearPositionPicker
-                dimension="{currentValue.x}"
+                dimension="{$currentValue.x}"
                 on:move="move('x', event)"
                 on:moveToValue="moveToValue('x', event)"
             />
@@ -34,7 +38,7 @@
                 </td>
             </tr>
             <LinearPositionPicker
-                dimension="{currentValue.y}"
+                dimension="{$currentValue.y}"
                 on:move="move('y', event)"
                 on:moveToValue="moveToValue('y', event)"
             />
@@ -46,7 +50,7 @@
                 </td>
             </tr>
             <LinearPositionPicker
-                dimension="{currentValue.z}"
+                dimension="{$currentValue.z}"
                 on:move="move('z', event)"
                 on:moveToValue="moveToValue('z', event)"
             />
@@ -71,6 +75,7 @@ section {
 <script>
     import LinearPositionPicker from '../../common/control/LinearPositionPicker.html'
     import ZoomPicker from '../../common/control/ZoomPicker.html'
+	import store from '../../store.js';
 
     export default {
         components: {
@@ -78,40 +83,12 @@ section {
             ZoomPicker
         },
         computed: {
-            xText: ({currentValue, text}) => currentValue.x.dir === 1 ? text[0] : text[5],
-            yText: ({currentValue, text}) => currentValue.y.dir === 1 ? text[1] : text[3],
-            zText: ({currentValue, text}) => currentValue.z.dir === 1 ? text[2] : text[4]
+            xText: ({$currentValue, $text}) => $currentValue.x.dir === 1 ? $text[0] : $text[5],
+            yText: ({$currentValue, $text}) => $currentValue.y.dir === 1 ? $text[1] : $text[3],
+            zText: ({$currentValue, $text}) => $currentValue.z.dir === 1 ? $text[2] : $text[4]
         },
         data() {
             return {
-                currentValue: {
-                    x: {
-                        color: 'FF0000',
-                        dir: 1,
-                        valid: true,
-                        value: 0
-                    },
-                    y: {
-                        color: 'FFFF00',
-                        dir: 1,
-                        valid: true,
-                        value: 100
-                    },
-                    z: {
-                        color: '00FF00',
-                        dir: 1,
-                        valid: true,
-                        value: 0
-                    },
-                },
-                text: [
-                    "Security: Trumps policies reduce military's over extension and let it focus on the real threats.",
-                    "Economy: Trump's policies give profound confidence to companies and are good for the economy.",
-                    "Equality: Trump's policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.",
-                    "Economy: Trump's policies have no real effect on the economy, it's purely cyclical.",
-                    "Equality: Trump's policies are tailored with the interests of the wealthy in mind and hurt equality.",
-                    "Security: Trump's policies reduce the trust in our alliances and hurt the stability of the world."
-                ],
                 currentZoom: 1
             }
         },
@@ -147,7 +124,7 @@ section {
                     false, data, callback))
             }
             this.setCubeViewPort(
-                this._state.currentValue,
+                this.store.get().currentValue,
                 (
                     mutationApi
                 ) => {
@@ -156,7 +133,7 @@ section {
                 (
                     currentValue
                 ) => {
-                    this.set({currentValue})
+                    this.store.set({currentValue})
                 },
             )
             })
@@ -172,6 +149,7 @@ section {
                     this.set({mutationApi})
                 }
             )
-        }
+        },
+        store: () => store
     }
 </script>
