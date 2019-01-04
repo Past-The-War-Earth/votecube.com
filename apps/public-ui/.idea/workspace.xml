@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resizer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/cube/CubeVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/CubeVote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/cube/TextVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/TextVote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/cube/VerticalBarVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/VerticalBarVote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shell/top/TopBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopBar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shell/top/TopBarHeader.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopBarHeader.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shell/top/TopMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopMenu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shell/top/TopMenuToggle.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopMenuToggle.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/eventListener.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/eventListener.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,20 +26,20 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/App.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-426">
-                  <caret line="110" column="51" selection-start-line="110" selection-start-column="51" selection-end-line="110" selection-end-column="51" />
+                <state relative-caret-position="-15">
+                  <caret line="116" column="51" selection-start-line="116" selection-start-column="51" selection-end-line="116" selection-end-column="51" />
                   <folding>
-                    <element signature="e#1457#1506#0#HTML" expanded="true" />
+                    <element signature="e#1520#1569#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenu.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="486">
-                  <caret line="117" column="23" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+                <state relative-caret-position="198">
+                  <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
                 </state>
               </provider>
             </entry>
@@ -58,6 +49,27 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="66">
                   <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="132">
+                  <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#2436#2517#0#HTML" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/resizer.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="792">
+                  <caret line="36" selection-start-line="36" selection-end-line="36" />
                 </state>
               </provider>
             </entry>
@@ -80,7 +92,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/store.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-154">
@@ -92,10 +104,10 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/App.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="410">
-                  <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+                <state relative-caret-position="2874">
+                  <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
                   <folding>
-                    <element signature="e#1414#1463#0#HTML" expanded="true" />
+                    <element signature="e#1520#1569#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -121,6 +133,19 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="413">
+                  <caret line="206" column="30" lean-forward="true" selection-start-line="206" selection-start-column="30" selection-end-line="206" selection-end-column="30" />
+                  <folding>
+                    <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="e#2436#2517#0#HTML" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-second>
     </splitter>
@@ -135,8 +160,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>1.1</find>
-      <find>setViewImport</find>
       <find>50,0,50</find>
       <find>100</find>
       <find>96</find>
@@ -163,8 +186,10 @@
       <find>data</find>
       <find>href</find>
       <find>id=&quot;toggle</find>
-      <find>toggleMenu</find>
+      <find>zoomFactor</find>
+      <find>slidecon</find>
       <find>showIcon</find>
+      <find>toggleMenu</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -188,19 +213,20 @@
         <option value="$PROJECT_DIR$/src/pages/cube/HorizontalBarVote.html" />
         <option value="$PROJECT_DIR$/src/common/control/1DPositionPicker.html" />
         <option value="$PROJECT_DIR$/src/common/control/ZoomPicker.html" />
-        <option value="$PROJECT_DIR$/public/global.css" />
         <option value="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/pages/cube/VerticalBarVote.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/TextVote.html" />
-        <option value="$PROJECT_DIR$/src/pages/cube/CubeVote.html" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/shell/top/TopBar.html" />
         <option value="$PROJECT_DIR$/src/shell/top/TopBarHeader.html" />
         <option value="$PROJECT_DIR$/src/store.js" />
-        <option value="$PROJECT_DIR$/src/App.html" />
         <option value="$PROJECT_DIR$/src/shell/top/TopMenuToggle.html" />
+        <option value="$PROJECT_DIR$/src/App.html" />
+        <option value="$PROJECT_DIR$/src/resizer.js" />
         <option value="$PROJECT_DIR$/src/shell/top/TopMenu.html" />
+        <option value="$PROJECT_DIR$/public/global.css" />
+        <option value="$PROJECT_DIR$/src/pages/cube/CubeVote.html" />
       </list>
     </option>
   </component>
@@ -334,7 +360,7 @@
       <workItem from="1545452029045" duration="1498000" />
       <workItem from="1545516762176" duration="3770000" />
       <workItem from="1545586306240" duration="2797000" />
-      <workItem from="1545881004825" duration="62183000" />
+      <workItem from="1545881004825" duration="73660000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -357,11 +383,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546218664017</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="finished adding text and chart views">
+      <created>1546398546506</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1546398546506</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98086000" />
+    <option name="totallyTimeSpent" value="109563000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -381,7 +414,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917964" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3125649" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3125649" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -404,7 +437,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="moved to svelte + webpack + rush" />
     <MESSAGE value="fixing bugs in re-positioning logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing bugs in re-positioning logic" />
+    <MESSAGE value="finished adding text and chart views" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished adding text and chart views" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/dac/votecube-ui-svelte/package.json" />
@@ -471,13 +505,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/global.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="3661" column="5" selection-start-line="3661" selection-end-line="3661" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/navaid/dist/navaid.mjs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -499,16 +526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="131" column="43" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="43" />
-          <folding>
-            <element signature="e#2204#2285#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -570,16 +587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-426">
-          <caret line="110" column="51" selection-start-line="110" selection-start-column="51" selection-end-line="110" selection-end-column="51" />
-          <folding>
-            <element signature="e#1457#1506#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenuToggle.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -587,10 +594,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="17576" column="17" selection-start-line="17576" selection-start-column="17" selection-end-line="17576" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="117" column="23" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+        <state relative-caret-position="198">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/global.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="3742" lean-forward="true" selection-start-line="3742" selection-end-line="3742" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2874">
+          <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+          <folding>
+            <element signature="e#1520#1569#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resizer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="206" column="30" lean-forward="true" selection-start-line="206" selection-start-column="30" selection-end-line="206" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#2436#2517#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

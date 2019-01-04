@@ -1,10 +1,20 @@
+<svelte:window on:resize="handleResize(event)"/>
 <div>
     <section
             id="viewport"
             style="
+  height: {vpHeight}px;
+  margin-left: -{marginLeft}px;
+  margin-top: -{marginTop}px;
   transform: scale({zoomFactor}, {zoomFactor});
 "
     >
+    <!--
+        transform: scale(0.45, 0.45);
+        height: 400px;
+        margin-top: -125px;
+        margin-left: -20px;
+        -->
         <figure
                 id="cube"
         >
@@ -61,6 +71,7 @@
                 font-size: 3em;
                 text-align: center;
             ">
+<!--
             <tr>
                 <td>
                     -
@@ -72,6 +83,7 @@
                     +
                 </td>
             </tr>
+            -->
             <LinearPositionPicker
                 dimension="{$currentValue.x}"
                 on:move="move('x', event)"
@@ -95,6 +107,7 @@
     import LinearPositionPicker from '../../common/control/LinearPositionPicker.html'
     import ZoomPicker from '../../common/control/ZoomPicker.html'
 	import store from '../../store.js';
+    import {scheduleToResize, startResizeInterval, stopResizeInterval} from '../../resizer.js'
 
     export default {
         components: {
@@ -104,26 +117,12 @@
         data() {
             return {
                 currentZoom: 1,
-                zoomFactor: 0.65,
+                zoomFactor: 0.65
             }
         },
         methods: {
-            zoomChange(event) {
-                let currentZoom = parseInt(event.target.value)
-                let zoomFactor
-                switch (currentZoom) {
-                    case 0:
-                        zoomFactor = 0.55
-                        break;
-                    case 1:
-                        zoomFactor = 0.65
-                        break;
-                    case 2:
-                        zoomFactor = 0.75
-                        break
-                }
-                this.set({currentZoom, zoomFactor})
-                this.get().mutationApi.changeZoom(currentZoom)
+            handleResize(event) {
+                scheduleToResize(this)
             },
             move(
                 dimension,
@@ -136,6 +135,24 @@
                 value
             ) {
                 this.get().mutationApi.moveToValue(dimension, value)
+            },
+            zoomChange(event) {
+                let currentZoom = parseInt(event.target.value)
+                let zoomBase = this.get().zoomBase
+                let zoomFactor
+                switch (currentZoom) {
+                    case 0:
+                        zoomFactor = zoomBase * 0.8
+                        break;
+                    case 1:
+                        zoomFactor = zoomBase * 0.9
+                        break;
+                    case 2:
+                        zoomFactor = zoomBase
+                        break
+                }
+                this.set({currentZoom, zoomFactor})
+                this.get().mutationApi.changeZoom(currentZoom)
             }
         },
         oncreate() {
@@ -165,9 +182,52 @@
             )
             })
 
+            this.resize = (
+                portalHeight,
+                windowWidth,
+                inPortrait
+            ) => {
+                console.log(`height: ${portalHeight}, width: ${windowWidth}, inPortrait: ${inPortrait}`);
+
+                const cubeAreaHeight = portalHeight * 0.55 + 95
+
+
+
+                // margin-left: 0px
+                // zoomFactor: .55
+
+                const cubeAreaLeastDimension = windowWidth < cubeAreaHeight
+                    ? windowWidth
+                    : cubeAreaHeight
+
+                // transform: scale(W, W)
+                const zoomBase = (Math.sqrt(cubeAreaLeastDimension) * 2.5) / 100
+                const zoomFactor = zoomBase * 0.9
+
+                // height: Xpx
+                const vpHeight = cubeAreaHeight
+
+                // margin-top: Ypx
+                let marginTop = 0
+                if(cubeAreaHeight < 500) {
+                    marginTop = (500 - cubeAreaHeight) / 1.1
+                }
+
+                // margin-left: Zpx
+                let marginLeft = 0
+                if(windowWidth < 400) {
+                    marginLeft = (400 - windowWidth) / 4
+                }
+
+                this.set({marginLeft, marginTop, vpHeight, zoomBase, zoomFactor})
+
+            }
+
+            startResizeInterval(this)
         },
         ondestroy() {
             console.log('in CubeVote ondestroy');
+            stopResizeInterval(this)
             this.setCubeViewPort(
                 null,
                 (
