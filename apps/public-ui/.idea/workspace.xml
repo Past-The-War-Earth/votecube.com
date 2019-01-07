@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/control/DimensionInfoIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/control/PercentPicker.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/control/VoteButton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/cube/CubeVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/CubeVote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/eventListener.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/eventListener.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,8 +33,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="249">
-                  <caret line="140" column="20" selection-start-line="140" selection-start-column="20" selection-end-line="140" selection-end-column="20" />
+                <state relative-caret-position="88">
+                  <caret line="169" column="9" lean-forward="true" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="9" />
                   <folding>
                     <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
@@ -70,8 +61,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/global.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="543" column="11" selection-start-line="543" selection-start-column="9" selection-end-line="543" selection-end-column="11" />
+                <state relative-caret-position="232">
+                  <caret line="3739" column="1" lean-forward="true" selection-start-line="3739" selection-start-column="1" selection-end-line="3739" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -94,11 +85,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="677">
-                  <caret line="339" column="47" selection-start-line="339" selection-start-column="38" selection-end-line="339" selection-end-column="47" />
+                <state relative-caret-position="215">
+                  <caret line="311" column="36" lean-forward="true" selection-start-line="311" selection-start-column="36" selection-end-line="311" selection-end-column="36" />
                   <folding>
                     <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
@@ -146,10 +137,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1298">
+                <state relative-caret-position="1892">
                   <caret line="86" column="21" lean-forward="true" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
                   <folding>
                     <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
@@ -172,7 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>moveLeft</find>
       <find>{currentValue}</find>
       <find>surface</find>
       <find>c1</find>
@@ -200,8 +190,9 @@
       <find>-webkit-appearance</find>
       <find>object</find>
       <find>viewport</find>
-      <find>-40</find>
       <find>toggleMenu</find>
+      <find>-40</find>
+      <find>40</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -376,7 +367,7 @@
       <workItem from="1545452029045" duration="1498000" />
       <workItem from="1545516762176" duration="3770000" />
       <workItem from="1545586306240" duration="2797000" />
-      <workItem from="1545881004825" duration="105156000" />
+      <workItem from="1545881004825" duration="106849000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -420,11 +411,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546617629501</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="percent controls overlay and cube positioning">
+      <created>1546837097315</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1546837097315</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141059000" />
+    <option name="totallyTimeSpent" value="142752000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -469,7 +467,8 @@
     <MESSAGE value="fixing bugs in re-positioning logic" />
     <MESSAGE value="finished adding text and chart views" />
     <MESSAGE value="adding portrait scaling" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding portrait scaling" />
+    <MESSAGE value="percent controls overlay and cube positioning" />
+    <option name="LAST_COMMIT_MESSAGE" value="percent controls overlay and cube positioning" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/dac/votecube-ui-svelte/package.json" />
@@ -655,7 +654,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1298">
+        <state relative-caret-position="1892">
           <caret line="86" column="21" lean-forward="true" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
@@ -670,13 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/global.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="543" column="11" selection-start-line="543" selection-start-column="9" selection-end-line="543" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
@@ -687,10 +679,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/global.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="3739" column="1" lean-forward="true" selection-start-line="3739" selection-start-column="1" selection-end-line="3739" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="140" column="20" selection-start-line="140" selection-start-column="20" selection-end-line="140" selection-end-column="20" />
+        <state relative-caret-position="215">
+          <caret line="311" column="36" lean-forward="true" selection-start-line="311" selection-start-column="36" selection-end-line="311" selection-end-column="36" />
           <folding>
             <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />

@@ -1,7 +1,5 @@
 <svelte:window on:resize="handleResize(event)"/>
-<div
-    id="cubevote"
->
+<div>
     <section
             id="viewport"
             style="
@@ -125,12 +123,7 @@
         width: calc(100% - 140px);
     }
 
-    #cubevote {
-        height: 100%;
-    }
-
     #viewport {
-        height: 100%;
         perspective: 1100px;
         perspective-origin: 50% 251px;
         transform: scale(0.75,0.75);
@@ -139,8 +132,8 @@
     #cube {
         position: relative;
         margin: auto;
-        height: 400px;
-        width: 400px;
+        height: 320px;
+        width: 320px;
         transition: transform 128ms linear;
         transform-style: preserve-3d;
         /*transform: rotateX(0deg) rotateY(-90deg);*/
@@ -159,11 +152,11 @@
 
     #cube > div {
         position: absolute;
-        height: 360px;
-        width: 360px;
-        padding: 20px;
-        font-size: 1.8em;
-        line-height: 2em;
+        height: 300px;
+        width: 300px;
+        padding: 10px;
+        font-size: 1.7em;
+        line-height: 1.7em;
         color: #000;
         border-radius: 10px;
         border: 5px groove gray;
@@ -171,27 +164,27 @@
 
     #s1  {
         /*background: hsla(  0, 100%, 50%, 0.95);*/
-        transform: rotateX(90deg) translateZ(200px);
+        transform: rotateX(90deg) translateZ(160px);
     }
 
     #s2 {
-        transform: translateZ(200px);
+        transform: translateZ(160px);
     }
 
     #s3 {
-        transform: rotateY(90deg) translateZ(200px);
+        transform: rotateY(90deg) translateZ(160px);
     }
 
     #s4 {
-        transform: rotateY(180deg) translateZ(200px);
+        transform: rotateY(180deg) translateZ(160px);
     }
 
     #s5 {
-        transform: rotateY(-90deg) translateZ(200px);
+        transform: rotateY(-90deg) translateZ(160px);
     }
 
     #s6 {
-        transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
+        transform: rotateX(-90deg) rotate(180deg) translateZ(160px);
     }
 </style>
 
@@ -319,8 +312,8 @@
                     : cubeAreaHeight
 
                 // transform: scale(W, W)
-                const zoomBase = (Math.sqrt(cubeAreaLeastDimension) * 2.5) / 100
-                const zoomFactor = zoomBase * 0.9
+                const zoomBase = (Math.sqrt(cubeAreaLeastDimension) * 3) / 100
+                const zoomFactor = zoomBase * 1
 
                 // height: Xpx
                 const vpHeight = cubeAreaHeight
