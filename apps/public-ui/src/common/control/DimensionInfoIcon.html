@@ -1,0 +1,49 @@
+<var
+    style="
+        background-color: #{dimension.color};
+        border-bottom-color: #{bottomBorderColor};
+        border-top-color: #{topBorderColor};
+        float: {float};
+        margin: {margin};
+    "
+>
+    {dimension.value}%
+</var>
+<style>
+    var {
+        border-bottom: 3px solid;
+        border-radius: 4px;
+        border-top: 3px solid;
+        display: block;
+        font-size: 1.2em;
+        font-style: normal;
+        height: 50px;
+        line-height: 46px;
+        text-align: center;
+        vertical-align: middle;
+        width: 50px;
+    }
+</style>
+
+<script>
+    export default {
+        computed: {
+            float: ({index}) => index == 0 ? 'right' : 'initial',
+            margin: ({index}) => index == 1 ? 'auto' : 'initial',
+            topBorderColor: ({dimension}) => borderColor(dimension, 1),
+            bottomBorderColor: ({dimension}) => borderColor(dimension, -1)
+        }
+    }
+
+    function borderColor(
+        dimension,
+        direction
+    ) {
+        if(dimension.dir === direction) {
+            return '000000'
+        }
+
+        return dimension.color
+    }
+
+</script>

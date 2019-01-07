@@ -1,11 +1,10 @@
 <svelte:window on:resize="handleResize(event)"/>
-<div>
+<div
+    id="cubevote"
+>
     <section
             id="viewport"
             style="
-  height: {vpHeight}px;
-  margin-left: -{marginLeft}px;
-  margin-top: -{marginTop}px;
   transform: scale({zoomFactor}, {zoomFactor});
 "
     >
@@ -21,120 +20,228 @@
             <div
                 class="surface"
                 id="s1"
+                style="
+            background-color: #{$currentValue.x.color};
+                "
             >
                 {$text[0]}
             </div>
             <div
                 class="surface"
                 id="s2"
+                style="
+            background-color: #{$currentValue.y.color};
+                "
             >
                 {$text[1]}
             </div>
             <div
                 class="surface"
                 id="s3"
+                style="
+            background-color: #{$currentValue.z.color};
+                "
             >
                 {$text[2]}
             </div>
             <div
                 class="surface"
                 id="s4"
+                style="
+            background-color: #{$currentValue.y.color};
+                "
             >
                 {$text[3]}
             </div>
             <div
                 class="surface"
                 id="s5"
+                style="
+            background-color: #{$currentValue.z.color};
+                "
             >
                 {$text[4]}
             </div>
             <div
                 class="surface"
                 id="s6"
+                style="
+            background-color: #{$currentValue.x.color};
+                "
             >
                 {$text[5]}
             </div>
         </figure>
     </section>
-    <nav
-            style="
-      margin-top: -25px;
-      "
+    {#if percentMode}
+    <PercentPicker
+        on:close="togglePercentPicker()"
+        on:move="move(event)"
+        on:moveToValue="moveToValue(event)"
+    ></PercentPicker>
+    {:else}
+    <a
+        class="app-button bottom-left"
+        on:click="togglePercentPicker()"
     >
-        <ZoomPicker
-            currentZoom="{currentZoom}"
-            on:zoomChange="zoomChange(event)"
-        />
-        <table
-                style="
-                width: 100%;
-                font-size: 3em;
-                text-align: center;
-            ">
-<!--
-            <tr>
-                <td>
-                    -
-                </td>
-                <td>
-                    %
-                </td>
-                <td>
-                    +
-                </td>
-            </tr>
-            -->
-            <LinearPositionPicker
+        %
+    </a>
+    <table>
+    <tr>
+        <td
+        >
+            <DimensionInfoIcon
+                index=0
                 dimension="{$currentValue.x}"
-                on:move="move('x', event)"
-                on:moveToValue="moveToValue('x', event)"
-            />
-            <LinearPositionPicker
+            ></DimensionInfoIcon>
+        </td>
+        <td
+        >
+            <DimensionInfoIcon
+                index=1
                 dimension="{$currentValue.y}"
-                on:move="move('y', event)"
-                on:moveToValue="moveToValue('y', event)"
-            />
-            <LinearPositionPicker
+            ></DimensionInfoIcon>
+        </td>
+        <td>
+            <DimensionInfoIcon
                 dimension="{$currentValue.z}"
-                on:move="move('z', event)"
-                on:moveToValue="moveToValue('z', event)"
-            />
-        </table>
-    </nav>
+            ></DimensionInfoIcon>
+        </td>
+    </tr>
+    </table>
+    <VoteButton
+        classes="bottom-right"
+    ></VoteButton>
+    {/if}
 </div>
 
+<style>
+    table {
+        bottom: 10px;
+        color: black;
+        margin-left: 70px;
+        margin-right: 70px;
+        position: fixed;
+        width: calc(100% - 140px);
+    }
+
+    #cubevote {
+        height: 100%;
+    }
+
+    #viewport {
+        height: 100%;
+        perspective: 1100px;
+        perspective-origin: 50% 251px;
+        transform: scale(0.75,0.75);
+    }
+
+    #cube {
+        position: relative;
+        margin: auto;
+        height: 400px;
+        width: 400px;
+        transition: transform 128ms linear;
+        transform-style: preserve-3d;
+        /*transform: rotateX(0deg) rotateY(-90deg);*/
+    }
+
+    #cube h2 {
+        color: #fff;
+        padding-top: 0;
+
+        margin-top: 0;
+    }
+
+    #cube a {
+        color: #fff;
+    }
+
+    #cube > div {
+        position: absolute;
+        height: 360px;
+        width: 360px;
+        padding: 20px;
+        font-size: 1.8em;
+        line-height: 2em;
+        color: #000;
+        border-radius: 10px;
+        border: 5px groove gray;
+    }
+
+    #s1  {
+        /*background: hsla(  0, 100%, 50%, 0.95);*/
+        transform: rotateX(90deg) translateZ(200px);
+    }
+
+    #s2 {
+        transform: translateZ(200px);
+    }
+
+    #s3 {
+        transform: rotateY(90deg) translateZ(200px);
+    }
+
+    #s4 {
+        transform: rotateY(180deg) translateZ(200px);
+    }
+
+    #s5 {
+        transform: rotateY(-90deg) translateZ(200px);
+    }
+
+    #s6 {
+        transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
+    }
+</style>
+
 <script>
-    import LinearPositionPicker from '../../common/control/LinearPositionPicker.html'
-    import ZoomPicker from '../../common/control/ZoomPicker.html'
+    import PercentPicker from '../../common/control/PercentPicker.html'
+    import VoteButton from '../../common/control/VoteButton.html'
+    import DimensionInfoIcon from '../../common/control/DimensionInfoIcon.html'
 	import store from '../../store.js';
     import {scheduleToResize, startResizeInterval, stopResizeInterval} from '../../resizer.js'
 
     export default {
         components: {
-            LinearPositionPicker,
-            ZoomPicker
+            DimensionInfoIcon,
+            PercentPicker,
+            VoteButton
         },
         data() {
             return {
+                percentMode: false,
                 currentZoom: 1,
                 zoomFactor: 0.65
             }
         },
         methods: {
+            getDimBorderColor(
+                dimensionPositionData,
+                direction
+            ) {
+                if(dimensionPositionData.dir === direction) {
+                    return '000000'
+                }
+                return dimensionPositionData.color
+            },
             handleResize(event) {
                 scheduleToResize(this)
             },
             move(
-                dimension,
-                direction
+                event
             ) {
-                this.get().mutationApi.move(dimension, direction)
+                this.get().mutationApi.move(event.dimension, event.direction)
             },
             moveToValue(
-                dimension,
-                value
+                event
             ) {
-                this.get().mutationApi.moveToValue(dimension, value)
+                this.get().mutationApi.moveToValue(event.dimension, event.value)
+            },
+            togglePercentPicker() {
+                const percentMode = !this.get().percentMode
+                this.setCubeAdjustment(!percentMode)
+                this.set({percentMode})
             },
             zoomChange(event) {
                 let currentZoom = parseInt(event.target.value)
@@ -167,6 +274,17 @@
                 setMutationApi(eventListener.setViewPort(
                     true, data, callback))
             }
+
+            this.setCubeAdjustment =(
+                enableCubeAdjustment
+            ) => {
+                if(enableCubeAdjustment) {
+                    eventListener.addCubeAdjustment()
+                } else {
+                    eventListener.clearCubeAdjustment()
+                }
+            }
+
             this.setCubeViewPort(
                 this.store.get().currentValue,
                 (

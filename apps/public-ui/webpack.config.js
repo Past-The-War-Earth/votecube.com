@@ -6,6 +6,7 @@ const prod = mode === 'production';
 
 module.exports = {
     devServer: {
+        host: '0.0.0.0',
         // https://github.com/webpack/webpack-dev-server/issues/1604
         disableHostCheck: true
     },

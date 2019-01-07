@@ -37,23 +37,18 @@ export function setViewPort(
 	if (forCube) {
 		if (cb) {
 			viewport.el = gQ('#cube')
-			addEventCubeEvenHandlers()
+			addCubeAdjustment()
 			viewport.moveToDegree()
 		} else {
 			viewport.el = null
-			dLM.rm('keydown')
-			('mousedown')
-			('touchstart')
-			('mouseup')
-			('touchend')
+			clearCubeAdjustment()
 		}
 	}
-
 
 	return cb ? mutationApi : null
 }
 
-function addEventCubeEvenHandlers(): void {
+export function addCubeAdjustment(): void {
 	let moveSpeed = 256
 	dLM.ad('keydown', function (ev) {
 		rmMmTm()
@@ -108,6 +103,14 @@ function addEventCubeEvenHandlers(): void {
 	('mouseup', rmMmTm)
 	('touchend', rmMmTm)
 
+}
+
+export function clearCubeAdjustment() {
+	dLM.rm('keydown')
+	('mousedown')
+	('touchstart')
+	('mouseup')
+	('touchend')
 }
 
 /**

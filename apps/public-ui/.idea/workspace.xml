@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/control/DimensionInfoIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/control/PercentPicker.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/control/VoteButton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/cube/CubeVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/CubeVote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/eventListener.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/src/cube/eventListener.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,8 +30,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/App.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-15">
-                  <caret line="116" column="51" selection-start-line="116" selection-start-column="51" selection-end-line="116" selection-end-column="51" />
+                <state relative-caret-position="382">
+                  <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
                   <folding>
                     <element signature="e#1520#1569#0#HTML" expanded="true" />
                   </folding>
@@ -29,41 +39,39 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenu.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenuToggle.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="66">
-                  <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
-                  <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+                <state relative-caret-position="249">
+                  <caret line="140" column="20" selection-start-line="140" selection-start-column="20" selection-end-line="140" selection-end-column="20" />
                   <folding>
-                    <element signature="e#2436#2517#0#HTML" expanded="true" />
+                    <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#3;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#4;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#5;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="e#1974#2041#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/resizer.js">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/common/control/VoteButton.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="22">
-                  <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+                <state relative-caret-position="330">
+                  <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/global.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="543" column="11" selection-start-line="543" selection-start-column="9" selection-end-line="543" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
@@ -87,21 +95,31 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/store.js">
+            <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-154">
-                  <caret line="5" column="53" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="53" />
+                <state relative-caret-position="677">
+                  <caret line="339" column="47" selection-start-line="339" selection-start-column="38" selection-end-line="339" selection-end-column="47" />
+                  <folding>
+                    <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#3;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#4;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#5;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="e#1974#2041#0#HTML" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/App.html">
+            <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2874">
-                  <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+                <state relative-caret-position="1210">
+                  <caret line="58" column="45" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
                   <folding>
-                    <element signature="e#1520#1569#0#HTML" expanded="true" />
+                    <element signature="e#1492#1554#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -110,31 +128,31 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/cube/VerticalBarVote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
+                <state relative-caret-position="4467">
                   <caret line="296" column="26" selection-start-line="295" selection-start-column="9" selection-end-line="296" selection-end-column="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/common/control/DimensionInfoIcon.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="22">
+                  <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
                   <folding>
-                    <element signature="n#style#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#td#0;n#tr#1;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#td#1;n#tr#1;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#td#2;n#tr#1;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#table#0;n#nav#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="e#3924#4005#0#HTML" expanded="true" />
+                    <element signature="n#style#0;n#var#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
+            <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="413">
-                  <caret line="206" column="30" lean-forward="true" selection-start-line="206" selection-start-column="30" selection-end-line="206" selection-end-column="30" />
+                <state relative-caret-position="1298">
+                  <caret line="86" column="21" lean-forward="true" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
                   <folding>
-                    <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="e#2436#2517#0#HTML" expanded="true" />
+                    <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -147,21 +165,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>50,0,50</find>
-      <find>100</find>
-      <find>96</find>
-      <find>setCubeViewPort</find>
-      <find>getLeftHighlightColor</find>
-      <find>X</find>
-      <find>minus</find>
-      <find>plus</find>
       <find>moveLeft</find>
       <find>{currentValue}</find>
       <find>surface</find>
@@ -172,7 +182,6 @@
       <find>manualMove</find>
       <find>setViewPort</find>
       <find>figure</find>
-      <find>#cube</find>
       <find>xPlusHeight</find>
       <find>&lt;section</find>
       <find>method</find>
@@ -180,9 +189,18 @@
       <find>data</find>
       <find>href</find>
       <find>id=&quot;toggle</find>
-      <find>zoomFactor</find>
       <find>slidecon</find>
+      <find>#if</find>
+      <find>zoomFactor</find>
+      <find>#cube</find>
+      <find>var</find>
+      <find>asdf</find>
+      <find>app-but</find>
       <find>showIcon</find>
+      <find>-webkit-appearance</find>
+      <find>object</find>
+      <find>viewport</find>
+      <find>-40</find>
       <find>toggleMenu</find>
     </findStrings>
     <replaceStrings>
@@ -200,14 +218,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../../.gitignore" />
-        <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/bundle.js" />
         <option value="$PROJECT_DIR$/public/1.1.js" />
         <option value="$PROJECT_DIR$/src/pages/cube/HorizontalBarVote.html" />
         <option value="$PROJECT_DIR$/src/common/control/1DPositionPicker.html" />
         <option value="$PROJECT_DIR$/src/common/control/ZoomPicker.html" />
-        <option value="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/pages/cube/VerticalBarVote.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/TextVote.html" />
@@ -216,10 +232,15 @@
         <option value="$PROJECT_DIR$/src/shell/top/TopBarHeader.html" />
         <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/src/shell/top/TopMenuToggle.html" />
-        <option value="$PROJECT_DIR$/src/App.html" />
         <option value="$PROJECT_DIR$/src/resizer.js" />
         <option value="$PROJECT_DIR$/src/shell/top/TopMenu.html" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/src/common/control/DimensionInfoIcon.html" />
+        <option value="$PROJECT_DIR$/src/common/control/VoteButton.html" />
+        <option value="$PROJECT_DIR$/src/common/control/PercentPicker.html" />
+        <option value="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" />
         <option value="$PROJECT_DIR$/public/global.css" />
+        <option value="$PROJECT_DIR$/src/App.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/CubeVote.html" />
       </list>
     </option>
@@ -228,9 +249,9 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1087" />
+    <option name="y" value="540" />
+    <option name="width" value="960" />
+    <option name="height" value="270" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
@@ -322,6 +343,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\public" />
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui" />
     </key>
   </component>
@@ -354,7 +376,7 @@
       <workItem from="1545452029045" duration="1498000" />
       <workItem from="1545516762176" duration="3770000" />
       <workItem from="1545586306240" duration="2797000" />
-      <workItem from="1545881004825" duration="73925000" />
+      <workItem from="1545881004825" duration="105156000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -391,16 +413,24 @@
       <option name="project" value="LOCAL" />
       <updated>1546617450812</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="adding portrait scaling">
+      <created>1546617629501</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1546617629501</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109828000" />
+    <option name="totallyTimeSpent" value="141059000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14541623" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14541623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -414,7 +444,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917964" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3125649" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.36033228" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -447,13 +477,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -523,20 +546,6 @@
     <entry file="file://$PROJECT_DIR$/src/shell/menu/Menu.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/cube/TextVote.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1171">
@@ -545,24 +554,6 @@
             <element signature="n#style#0;n#nav#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#nav#0;n#div#0;n#!!top" expanded="true" />
             <element signature="e#1787#1868#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/cube/VerticalBarVote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="296" column="26" selection-start-line="295" selection-start-column="9" selection-end-line="296" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#0;n#tr#1;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#1;n#tr#1;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#2;n#tr#1;n#table#0;n#figure#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#nav#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#3924#4005#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -602,24 +593,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/resizer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/global.orig.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1782" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="-1386">
           <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/cube/VerticalBarVote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4467">
+          <caret line="296" column="26" selection-start-line="295" selection-start-column="9" selection-end-line="296" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/DimensionInfoIcon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+          <folding>
+            <element signature="n#style#0;n#var#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="58" column="45" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
+          <folding>
+            <element signature="e#1492#1554#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1298">
+          <caret line="86" column="21" lean-forward="true" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/VoteButton.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/global.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="3742" lean-forward="true" selection-start-line="3742" selection-end-line="3742" />
+        <state relative-caret-position="180">
+          <caret line="543" column="11" selection-start-line="543" selection-start-column="9" selection-end-line="543" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="116" column="51" selection-start-line="116" selection-start-column="51" selection-end-line="116" selection-end-column="51" />
+        <state relative-caret-position="382">
+          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
           <folding>
             <element signature="e#1520#1569#0#HTML" expanded="true" />
           </folding>
@@ -628,18 +689,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/cube/CubeVote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        <state relative-caret-position="249">
+          <caret line="140" column="20" selection-start-line="140" selection-start-column="20" selection-end-line="140" selection-end-column="20" />
           <folding>
-            <element signature="e#2436#2517#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#figure#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#1974#2041#0#HTML" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resizer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
         </state>
       </provider>
     </entry>

@@ -36,10 +36,7 @@
           maxlength="3"
           on:input="fire('moveToValue', this.value)"
           style="
-            border: 0px;
             border-bottom: {valueBottomBorder};
-            width: 100%;
-            text-align: center;
           "
           value="{dimension.value}"
       >
@@ -77,6 +74,24 @@
       </svg>
    </td>
 </tr>
+
+<style>
+    input {
+        background: transparent;
+        border: 0px;
+        width: 100%;
+        text-align: center;
+    }
+    svg {
+        display: block;
+        margin: auto;
+    }
+    td {
+        font-size: 0.8em;
+        height: 70px;
+        width: 33%;
+    }
+</style>
 
 <script>
     export default {

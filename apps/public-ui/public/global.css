@@ -297,7 +297,6 @@ select {
  *    `input` and others.
  */
 
-button,
 html input[type="button"], /* 1 */
 input[type="reset"],
 input[type="submit"] {
@@ -3652,84 +3651,7 @@ pre .support.value  {
 /**
 Cube
  */
-#viewport {
-    padding-top: 50px;
-    perspective: 1100px;
-    perspective-origin: 50% 251px;
-    transform: scale(0.75,0.75);
-}
 
-#cube {
-    position: relative;
-    margin: 0 auto 100px;
-    height: 400px;
-    width: 400px;
-    transition: transform 128ms linear;
-    transform-style: preserve-3d;
-    /*transform: rotateX(0deg) rotateY(-90deg);*/
-}
-
-#cube h2 {
-    color: #fff;
-    padding-top: 0;
-
-    margin-top: 0;
-}
-
-#cube a {
-    color: #fff;
-}
-
-#cube > div {
-    position: absolute;
-    height: 360px;
-    width: 360px;
-    padding: 20px;
-    font-size: 1.8em;
-    line-height: 2em;
-    color: #000;
-    border-radius: 10px;
-    border: 5px groove gray;
-}
-
-#s1  {
-    background: hsla(  0, 100%, 50%, 1);
-    /*background: hsla(  0, 100%, 50%, 0.95);*/
-    transform: rotateX(90deg) translateZ(200px);
-}
-
-#s2 {
-    background: hsla( 60, 100%, 50%, 1);
-    transform: translateZ(200px);
-}
-
-#s3 {
-    background: hsla(120, 100%, 50%, 1);
-    transform: rotateY(90deg) translateZ(200px);
-}
-
-#s4 {
-    background: hsla( 60, 100%, 50%,1);
-    transform: rotateY(180deg) translateZ(200px);
-}
-
-#s5 {
-    background: hsla(120, 100%, 50%, 1);
-    transform: rotateY(-90deg) translateZ(200px);
-}
-
-#s6 {
-    background: hsla(  0, 100%, 50%, 1);
-    transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
-}
-
-object {
-    opacity: 0.5;
-}
-
-object:hover {
-    opacity: 1;
-}
 
 
 
@@ -3789,6 +3711,42 @@ object:hover {
 
 
 
-td {
-    width: 33%;
+
+
+
+.app-button {
+    background-color: #F0F0F0;
+    border: 3px solid black;
+    border-radius: 30px;
+    color: black;
+    font-size: 1.5em;
+    height: 50px;
+    line-height: 46px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+}
+
+.bottom-left {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+.bottom-right {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+var {
+    font-style: normal;
+}
+
+article,
+body,
+html {
+    height: 100%;
+    position: fixed;
+    width: 100%;
 }
