@@ -49,7 +49,7 @@ export function setViewPort(
 }
 
 export function addCubeAdjustment(): void {
-	let moveSpeed = 256
+	// let moveSpeed = 256
 	dLM.ad('keydown', function (ev) {
 		rmMmTm()
 		switch (ev.keyCode) {
@@ -76,22 +76,22 @@ export function addCubeAdjustment(): void {
 			case 27: // esc
 				viewport.reset()
 				break
-			case 109:
-				if (!viewport.el) {
-					return
-				}
-				if (moveSpeed > 128) {
-					moveSpeed /= 2
-				}
-				break
-			case 107:
-				if (!viewport.el) {
-					return
-				}
-				if (moveSpeed < 4096) {
-					moveSpeed *= 2
-				}
-				break
+			// case 109:
+			// 	if (!viewport.el) {
+			// 		return
+			// 	}
+			// 	if (moveSpeed > 128) {
+			// 		moveSpeed /= 2
+			// 	}
+			// 	break
+			// case 107:
+			// 	if (!viewport.el) {
+			// 		return
+			// 	}
+			// 	if (moveSpeed < 4096) {
+			// 		moveSpeed *= 2
+			// 	}
+			// 	break
 
 			default:
 				break
@@ -208,15 +208,17 @@ function moveViewport(
 	dx = vx[1]
 	dy = vy[1]
 
-	if (dx >= 4 && dx / 4 > dy) {
+	console.log(`dx: ${dx}, dy: ${dy}`)
+
+	if (dx >= 2 && dx / 2 > dy) {
 		// If general directionVector is in X
 		yBy   = vx[0]
 		moveY = 1
-	} else if (dy >= 4 && dy / 4 > dx) {
+	} else if (dy >= 2 && dy / 2 > dx) {
 		// If general directionVector is in Y
 		xBy   = -vy[0] as MovementDirection
 		moveX = 1
-	} else if (dx >= 4 && dy >= 4) {
+	} else if (dx >= 2 && dy >= 2) {
 		// Otherwise its in both x and y
 		xBy   = -vy[0] as MovementDirection
 		yBy   = vx[0]
@@ -224,7 +226,7 @@ function moveViewport(
 		moveY = 1
 	}
 
-	if (now - lastMove >= 128) {
+	if (now - lastMove >= 8) {
 		startCoords.x = lastCoords.x
 		startCoords.y = lastCoords.y
 		if (moveX || moveY) {
@@ -239,16 +241,18 @@ function moveViewport(
 
 export type MovementDirection = -1 | 0 | 1;
 export type ChangeInPixels = number;
-export type Range = -1 | 1;
-export type DirectionVector = [MovementDirection, ChangeInPixels, Range];
+// export type Range = -1 | 1;
+export type DirectionVector = [MovementDirection, ChangeInPixels
+	// , Range
+	];
 
 function directionVector(
 	fromPosition,
 	toPosition
 ): DirectionVector {
-	let movementDirection, changeInPixels, range
+	let movementDirection, changeInPixels // , range
 	if (toPosition >= 0 && fromPosition >= 0) {
-		range = 1
+		// range = 1
 		if (toPosition >= fromPosition) {
 			movementDirection = 1
 			changeInPixels    = toPosition - fromPosition
@@ -257,7 +261,7 @@ function directionVector(
 			changeInPixels    = fromPosition - toPosition
 		}
 	} else {
-		range = -1
+		// range = -1
 		if (toPosition < fromPosition) {
 			movementDirection = -1
 			changeInPixels    = toPosition - fromPosition
@@ -266,5 +270,9 @@ function directionVector(
 			changeInPixels    = fromPosition - toPosition
 		}
 	}
-	return [movementDirection, changeInPixels, range]
+	return [
+		movementDirection,
+		changeInPixels
+		// , range
+	]
 }

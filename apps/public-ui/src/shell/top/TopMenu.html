@@ -59,6 +59,7 @@
     </svg>
     </li>
     {/if}
+      <!--
     {#if showText}
     <li
         class="viewType"
@@ -67,6 +68,7 @@
         Ab
     </li>
     {/if}
+    -->
   </ul>
 </div>
 
@@ -108,9 +110,11 @@
             showChart({$viewType}) {
                 return $viewType !== 'chart'
             },
+/*
             showText({$viewType}) {
                 return $viewType !== 'text'
             }
+            */
         },
         methods: {
           setViewType(

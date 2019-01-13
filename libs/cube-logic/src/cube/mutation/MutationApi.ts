@@ -52,7 +52,7 @@ export class MutationApi
 	changeZoom(
 		zoomIndex: ZoomIndex
 	): void {
-		this.vp.zm = zoomIndex
+		// this.vp.zm = zoomIndex
 	}
 
 	move(
@@ -123,14 +123,14 @@ export class MutationApi
 	}
 
 	private getPercentChange(): PercentChange {
-		switch (this.vp.zm) {
-			case 0:
-				return 33
-			case 1:
-				return 20
-			case 2:
+		// switch (this.vp.zm) {
+		// 	case 0:
+		// 		return 33
+		// 	case 1:
+		// 		return 20
+		// 	case 2:
 				return 5
-		}
+		// }
 	}
 
 }

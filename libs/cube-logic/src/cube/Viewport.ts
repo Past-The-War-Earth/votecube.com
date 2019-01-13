@@ -31,8 +31,8 @@ export interface IViewport {
 	// xi: number
 	y: number
 	// yi: number
-	vd: IVisibleDirection,
-	zm: ZoomIndex
+	vd: IVisibleDirection
+	// zm: ZoomIndex
 
 	move(
 		moveX: Bool,
@@ -83,7 +83,7 @@ export const viewport: IViewport = {
 	},
 	x: 0,
 	y: 0,
-	zm: MV_INC_IDX[MoveIncrement.FIFTEEN],
+	// zm: MV_INC_IDX[MoveIncrement.FIFTEEN],
 	changeZoom(
 		zoomIndex: ZoomIndex
 	): void {
@@ -105,12 +105,16 @@ export const viewport: IViewport = {
 		}
 		let xi, yi
 		if (moveX) {
-			[this.x, xi] = moveCoordinates(this.zm, this.x, xBy)
+			[this.x, xi] = moveCoordinates(
+				// this.zm,
+				this.x, xBy)
 		} else {
 			xi = getMatrixIdxFromDeg(this.x)
 		}
 		if (moveY) {
-			[this.y, yi] = moveCoordinates(this.zm, this.y, yBy)
+			[this.y, yi] = moveCoordinates(
+				// this.zm,
+				this.y, yBy)
 		} else {
 			yi = getMatrixIdxFromDeg(this.y)
 		}

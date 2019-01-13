@@ -66,7 +66,7 @@ export type IValuesOutCallback =
 export const mouse: IMousePosition = {
 	start: {x: undefined, y: undefined}
 }
-
+/*
 export function getModXAbsRemainder(
 	num: number,
 	moveIncrement: MoveIncrement
@@ -80,9 +80,9 @@ export function getModXAbsRemainder(
 
 	return remainder
 }
-
+*/
 export function moveCoordinates(
-	zoomIndex: ZoomIndex,
+	// zoomIndex: ZoomIndex,
 	currentDegree: number,
 	move: Move
 ): [number, MatrixIndex] {
@@ -91,14 +91,15 @@ export function moveCoordinates(
 	// 	return [currentDegree, null]
 	// }
 
-	let zoomMultiplier = 9
-	if (zoomIndex === 1) {
-		zoomMultiplier = 3
-	} else if (zoomIndex === 2) {
-		zoomMultiplier = 1
-	}
+	// let zoomMultiplier = 9
+	// if (zoomIndex === 1) {
+	// 	zoomMultiplier = 3
+	// } else if (zoomIndex === 2) {
+	// 	zoomMultiplier = 1
+	// }
 
-	let degreeChange      = STEP_DEGS * zoomMultiplier
+	let degreeChange      = STEP_DEGS
+		// * zoomMultiplier
 	let zoomedMatrixIndex = Math.floor(
 		currentDegree % 360 / degreeChange
 	)
@@ -118,7 +119,9 @@ export function moveCoordinates(
 	}
 
 	let rotation    = page * 360 + zoomedMatrixIndex * degreeChange
-	let matrixIndex = normMatrixIdx(zoomedMatrixIndex * zoomMultiplier)
+	let matrixIndex = normMatrixIdx(zoomedMatrixIndex
+		// * zoomMultiplier
+	)
 
 	return [rotation, matrixIndex]
 }
