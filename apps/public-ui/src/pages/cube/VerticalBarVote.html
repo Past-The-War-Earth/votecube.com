@@ -282,7 +282,12 @@ transform: scale({zoomFactor}, {zoomFactor});
             zPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, 1, maxBarSize, maxValue),
             zText: ({$currentValue, $text}) => $currentValue.z.dir === 1 ? $text[2] : $text[4],
             maxValue: ({$currentValue}) => {
-                const posValues = []
+                const positiveValues = []
+                const negativeValues = []
+
+                addToVals($currentValue.x, positiveValues, negativeValues)
+                addToVals($currentValue.y, positiveValues, negativeValues)
+                addToVals($currentValue.z, positiveValues, negativeValues)
                 const x = $currentValue.x.value
                 const y = $currentValue.y.value
                 const z = $currentValue.z.value
@@ -382,6 +387,18 @@ transform: scale({zoomFactor}, {zoomFactor});
         return dimensionPositionData.dir === direction
             ? dimensionPositionData.value * maxBarSize / (maxValue * 1.2)
             : 0
+    }
+
+    function addToVals(
+        dimensionPositionData,
+        positiveValues,
+        negativeValues
+    ) {
+        if(dimensionPositionData.dir === 1) {
+            positiveValues.push(dimensionPositionData.value);
+        } else {
+            negativeValues.push(dimensionPositionData.value);
+        }
     }
 
 </script>
