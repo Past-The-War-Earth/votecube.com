@@ -40,5 +40,5 @@ function resize(
     }
     page.set({portalHeight, resized: false, verticalLayout, windowWidth})
 
-    viewCallback(portalHeight, windowWidth)
+    viewCallback(portalHeight, windowWidth, verticalLayout)
 }

@@ -4,6 +4,7 @@
     <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/VerticalBarVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/VerticalBarVote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/resizer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/resizer.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -222,7 +223,7 @@
       <workItem from="1545586305995" duration="10759000" />
       <workItem from="1545880988985" duration="77966000" />
       <workItem from="1547312493406" duration="1407000" />
-      <workItem from="1547411253553" duration="146000" />
+      <workItem from="1547411253553" duration="680000" />
     </task>
     <task id="LOCAL-00001" summary="debugging arrow based movement">
       <created>1545320530019</created>
@@ -368,7 +369,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201230000" />
+    <option name="totallyTimeSpent" value="201764000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">

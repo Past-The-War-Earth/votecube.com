@@ -10,7 +10,7 @@ transform: scale({zoomFactor}, {zoomFactor});
 "
 -->
     <table
-        class="chart-contents"
+            class="chart-contents"
     >
         <tr id="plus">
             <td>
@@ -232,17 +232,18 @@ transform: scale({zoomFactor}, {zoomFactor});
     #minus div {
         margin-top: 0px;
     }
-/*
-    .selectedPlus {
-        border: 1px dashed;
-        border-bottom: 1px solid;
-    }
 
-    .selectedMinus {
-        border: 1px dashed;
-        border-top: 0px;
-    }
-*/
+    /*
+        .selectedPlus {
+            border: 1px dashed;
+            border-bottom: 1px solid;
+        }
+
+        .selectedMinus {
+            border: 1px dashed;
+            border-top: 0px;
+        }
+    */
 </style>
 
 <script>
@@ -288,20 +289,12 @@ transform: scale({zoomFactor}, {zoomFactor});
                 addToVals($currentValue.x, positiveValues, negativeValues)
                 addToVals($currentValue.y, positiveValues, negativeValues)
                 addToVals($currentValue.z, positiveValues, negativeValues)
-                const x = $currentValue.x.value
-                const y = $currentValue.y.value
-                const z = $currentValue.z.value
-                if (x > y) {
-                    if (x > y) {
-                        return x
-                    }
-                    return z
-                } else {
-                    if (y > z) {
-                        return y
-                    }
-                    return z
-                }
+
+                const maxPositiveValue = getMaxVal(positiveValues)
+                const maxNegativeValue = getMaxVal(negativeValues)
+
+
+                return maxPositiveValue + maxNegativeValue
             },
             // fontSize: ({maxBarSize, maxValue, portalHeight, windowWidth}) => {
             //     return (maxBarSize / (maxValue * 1.2)) * portalHeight * 0.005 * windowWidth * 0.005;
@@ -365,9 +358,14 @@ transform: scale({zoomFactor}, {zoomFactor});
         oncreate() {
             setupCubeListener(this, (
                 portalHeight,
-                windowWidth
+                windowWidth,
+                verticalLayout
             ) => {
-                const maxBarSize = portalHeight / 2 - 20;
+                let maxBarSize = portalHeight - 60;
+
+                if (verticalLayout) {
+                    maxBarSize = portalHeight / 2 - 20;
+                }
 
                 this.set({maxBarSize});
             })
@@ -394,11 +392,25 @@ transform: scale({zoomFactor}, {zoomFactor});
         positiveValues,
         negativeValues
     ) {
-        if(dimensionPositionData.dir === 1) {
+        if (dimensionPositionData.dir === 1) {
             positiveValues.push(dimensionPositionData.value);
         } else {
             negativeValues.push(dimensionPositionData.value);
         }
+    }
+
+    function getMaxVal(
+        values
+    ) {
+        let maximumValue = 0
+
+        for (const value of values) {
+            if (value > maximumValue) {
+                maximumValue = value
+            }
+        }
+
+        return maximumValue
     }
 
 </script>
