@@ -1,178 +1,206 @@
 <svelte:window on:resize="handleResize(event)"/>
 <figure
-    id="chart"
-    class:leftFigure="!verticalLayout"
+        id="chart"
+        class:leftFigure="!verticalLayout"
+        class:topFigure="verticalLayout"
 >
-        <!--
-            style="
-  transform: scale({zoomFactor}, {zoomFactor});
+    <!--
+        style="
+transform: scale({zoomFactor}, {zoomFactor});
 "
-  -->
-    <table>
-    <tr id="plus">
-        <td>
-            <!--
-                class:selectedPlus="dimension === 'x'"
-                on:click="pick('x')"
-            -->
-        <div
-            style="
+-->
+    <table
+        class="chart-contents"
+    >
+        <tr id="plus">
+            <td>
+                <!--
+                    class:selectedPlus="dimension === 'x'"
+                    on:click="pick('x')"
+                -->
+                <div
+                        style="
         background-color: #{$currentValue.x.color};
         height: {xPlusHeight}px;
             "
-        >
-        </div>
-        </td>
-        <td>
-            <!--
-                class:selectedPlus="dimension === 'y'"
-                on:click="pick('y')"
-            -->
-            <div
-            style="
+                >
+                </div>
+            </td>
+            <td>
+                <!--
+                    class:selectedPlus="dimension === 'y'"
+                    on:click="pick('y')"
+                -->
+                <div
+                        style="
         background-color: #{$currentValue.y.color};
         height: {yPlusHeight}px;
             "
-            >
-            </div>
-        </td>
-        <td>
-            <!--
-                class:selectedPlus="dimension === 'z'"
-                on:click="pick('z')"
-            -->
-            <div
-            style="
+                >
+                </div>
+            </td>
+            <td>
+                <!--
+                    class:selectedPlus="dimension === 'z'"
+                    on:click="pick('z')"
+                -->
+                <div
+                        style="
         background-color: #{$currentValue.z.color};
         height: {zPlusHeight}px;
             "
-            >
-            </div>
-        </td>
+                >
+                </div>
+            </td>
         </tr>
         <tr id="minus">
             <td
             >
-            <!--
-                class:selectedMinus="dimension === 'x'"
-                on:click="pick('x')"
-            -->
-            <div
-            style="
+                <!--
+                    class:selectedMinus="dimension === 'x'"
+                    on:click="pick('x')"
+                -->
+                <div
+                        style="
         background-color: #{$currentValue.x.color};
         height: {xMinusHeight}px;
             "
-            >
-            </div>
+                >
+                </div>
             </td>
             <td
             >
-            <!--
-                class:selectedMinus="dimension === 'y'"
-                on:click="pick('y')"
-            -->
-            <div
-            style="
+                <!--
+                    class:selectedMinus="dimension === 'y'"
+                    on:click="pick('y')"
+                -->
+                <div
+                        style="
         background-color: #{$currentValue.y.color};
         height: {yMinusHeight}px;
             "
-            >
-            </div>
+                >
+                </div>
             </td>
             <td
             >
-            <!--
-                class:selectedMinus="dimension === 'z'"
-                on:click="pick('z')"
-            -->
-            <div
-            style="
+                <!--
+                    class:selectedMinus="dimension === 'z'"
+                    on:click="pick('z')"
+                -->
+                <div
+                        style="
         background-color: #{$currentValue.z.color};
         height: {zMinusHeight}px;
             "
-            >
-            </div>
+                >
+                </div>
             </td>
         </tr>
-        </table>
+    </table>
 </figure>
-<nav>
-    <table>
-        <colgroup>
-            <col class="dim-info-col">
-            <col>
-        </colgroup>
-        <tr>
-            <td>
-                <DimensionInfoIcon
+<table
+        class="info"
+        class:bottomInfo="verticalLayout"
+        class:rightInfo="!verticalLayout"
+>
+    <tr>
+        <td>
+            <DimensionInfoIcon
                     dimension="{$currentValue.x}"
                     index=0
                     on:toggle="toggleSurface('x')"
                     verticalLayout
-                ></DimensionInfoIcon>
-            </td>
-            <td
+            ></DimensionInfoIcon>
+        </td>
+        <td
                 style="
                     font-size: calc(2vw + 2vh);
                 "
-            >
-                {xText}
-            </td>
-        <tr>
-        </tr>
-            <td>
-                <DimensionInfoIcon
-                    index=1
-                    dimension="{$currentValue.y}"
-                    on:toggle="toggleSurface('y')"
-                    verticalLayout
-                ></DimensionInfoIcon>
-            </td>
-            <td
-                style="
+        >
+            {xText}
+        </td>
+    <tr>
+    </tr>
+    <td>
+        <DimensionInfoIcon
+                index=1
+                dimension="{$currentValue.y}"
+                on:toggle="toggleSurface('y')"
+                verticalLayout
+        ></DimensionInfoIcon>
+    </td>
+    <td
+            style="
                     font-size: calc(2vw + 2vh);
                 "
-            >
-                {yText}
-            </td>
-        <tr>
-            <td>
-                <DimensionInfoIcon
+    >
+        {yText}
+    </td>
+    <tr>
+        <td>
+            <DimensionInfoIcon
                     dimension="{$currentValue.z}"
                     on:toggle="toggleSurface('z')"
                     verticalLayout
-                ></DimensionInfoIcon>
-            </td>
-            <td
+            ></DimensionInfoIcon>
+        </td>
+        <td
                 style="
                     font-size: calc(2vw + 2vh);
                 "
-            >
-                {zText}
-            </td>
-        </tr>
-    </table>
-</nav>
+        >
+            {zText}
+        </td>
+    </tr>
+</table>
 
 <style>
 
+    /*
     dim-info-col {
         width: 60px;
     }
+    */
 
     figure {
         position: fixed;
-        top: 28px;
         width: 100%;
     }
 
+    .leftFigure {
+        left: 5px;
+        width: calc(40% - 10px)
+    }
+
+    .topFigure {
+        top: 28px;
+    }
+
+    .chart-contents {
+        width: 100%;
+    }
+
+    /*
     section {
         margin: 15px;
         font-size: 1.5em;
     }
+    */
 
-    table {
+    .info {
+        position: fixed;
+    }
+
+    .bottomInfo {
+        bottom: 5px;
         width: 100%;
+
+    }
+
+    .rightInfo {
+        right: 5px;
+        width: calc(60% - 10px);
     }
 
     td {
@@ -204,7 +232,7 @@
     #minus div {
         margin-top: 0px;
     }
-
+/*
     .selectedPlus {
         border: 1px dashed;
         border-bottom: 1px solid;
@@ -214,15 +242,7 @@
         border: 1px dashed;
         border-top: 0px;
     }
-
-    nav {
-        position: fixed;
-        bottom: 5px;
-
-    }
-
-
-
+*/
 </style>
 
 <script>
@@ -237,11 +257,11 @@
         },
         computed: {
             pickedText: ({$currentValue, dimension, $text}) => {
-                if(!dimension) {
+                if (!dimension) {
                     return ''
                 }
                 let plusIndex = 0, minusIndex = 5
-                if(dimension === 'y') {
+                if (dimension === 'y') {
                     plusIndex = 1
                     minusIndex = 3
                 } else if (dimension === 'z') {
@@ -262,16 +282,17 @@
             zPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, 1, maxBarSize, maxValue),
             zText: ({$currentValue, $text}) => $currentValue.z.dir === 1 ? $text[2] : $text[4],
             maxValue: ({$currentValue}) => {
+                const posValues = []
                 const x = $currentValue.x.value
                 const y = $currentValue.y.value
                 const z = $currentValue.z.value
-                if(x > y) {
-                    if(x > y) {
+                if (x > y) {
+                    if (x > y) {
                         return x
                     }
                     return z
                 } else {
-                    if(y > z) {
+                    if (y > z) {
                         return y
                     }
                     return z
@@ -359,8 +380,8 @@
         maxValue
     ) {
         return dimensionPositionData.dir === direction
-        ? dimensionPositionData.value * maxBarSize / (maxValue * 1.2)
-        : 0
+            ? dimensionPositionData.value * maxBarSize / (maxValue * 1.2)
+            : 0
     }
 
 </script>
