@@ -20,14 +20,18 @@ export interface IMutationApi {
 		zoomIndex: ZoomIndex
 	): void
 
+	move(
+		dimension: Dimension,
+		direction: Direction
+	): void
+
 	moveToValue(
 		dimension: Dimension,
 		value: string
 	): void
 
-	move(
-		dimension: Dimension,
-		direction: Direction
+	toggleSurface(
+		dimension: Dimension
 	): void
 
 }
@@ -51,18 +55,6 @@ export class MutationApi
 		this.vp.zm = zoomIndex
 	}
 
-	moveToValue(
-		dimension: Dimension,
-		value: any
-	): void {
-		const numericValue          = parseInt(value) as PositionPercent
-		this.vp.pd[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100
-		if (!this.vp.pd[dimension].valid) {
-			this.vp.cb(this.vp.pd)
-		}
-		this.moveToPercent(dimension, numericValue)
-	}
-
 	move(
 		dimension: Dimension,
 		direction: Direction
@@ -75,6 +67,28 @@ export class MutationApi
 		let percentChange = this.getPercentChange()
 
 		this.moveToPercent(dimension, null, percentChange, direction)
+	}
+
+	moveToValue(
+		dimension: Dimension,
+		value: any
+	): void {
+		const numericValue          = parseInt(value) as PositionPercent
+		this.vp.pd[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100
+		if (!this.vp.pd[dimension].valid) {
+			this.vp.cb(this.vp.pd)
+		}
+		this.moveToPercent(dimension, numericValue)
+	}
+
+	toggleSurface(
+		dimension: Dimension
+	): void {
+		const dimensionPositionData = this.vp.pd[dimension]
+		if (dimensionPositionData.value === 100) {
+			dimensionPositionData.dir = -dimensionPositionData.dir as Direction;
+		}
+		this.moveToPercent(dimension, 100, null, null)
 	}
 
 	private moveToPercent(

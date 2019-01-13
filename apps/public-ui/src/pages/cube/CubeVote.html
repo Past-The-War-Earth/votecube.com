@@ -5,6 +5,7 @@
             style="
   transform: scale({zoomFactor}, {zoomFactor});
 "
+            class:rightViewport="!verticalLayout"
     >
     <!--
         transform: scale(0.45, 0.45);
@@ -79,33 +80,64 @@
     ></PercentPicker>
     {:else}
     <a
-        class="app-button bottom-left"
+        class="app-button {verticalLayout ? 'bottom-left' : 'top-right'}"
         on:click="togglePercentPicker()"
     >
         %
     </a>
-    <table>
+    <table
+        class="{verticalLayout ? 'bottom-dimension-table' : 'right-dimension-table'}"
+    >
     <tr>
         <td
         >
             <DimensionInfoIcon
-                index=0
                 dimension="{$currentValue.x}"
+                index=0
+                on:toggle="toggleSurface('x')"
+                verticalLayout
             ></DimensionInfoIcon>
         </td>
+        {#if verticalLayout}
         <td
         >
             <DimensionInfoIcon
                 index=1
                 dimension="{$currentValue.y}"
+                on:toggle="toggleSurface('y')"
+                verticalLayout
             ></DimensionInfoIcon>
         </td>
         <td>
             <DimensionInfoIcon
                 dimension="{$currentValue.z}"
+                on:toggle="toggleSurface('z')"
+                verticalLayout
+            ></DimensionInfoIcon>
+        </td>
+        {/if}
+    </tr>
+    {#if !verticalLayout}
+    <tr>
+        <td>
+            <DimensionInfoIcon
+                index=1
+                dimension="{$currentValue.y}"
+                on:toggle="toggleSurface('y')"
+                verticalLayout
             ></DimensionInfoIcon>
         </td>
     </tr>
+    <tr>
+        <td>
+            <DimensionInfoIcon
+                dimension="{$currentValue.z}"
+                on:toggle="toggleSurface('z')"
+                verticalLayout
+            ></DimensionInfoIcon>
+        </td>
+    </tr>
+    {/if}
     </table>
     <VoteButton
         classes="bottom-right"
@@ -114,7 +146,7 @@
 </div>
 
 <style>
-    table {
+    .bottom-dimension-table {
         bottom: 10px;
         color: black;
         margin-left: 70px;
@@ -123,20 +155,38 @@
         width: calc(100% - 140px);
     }
 
+    .right-dimension-table {
+        height: calc(100% - 84px);
+        margin-top: 20px;
+        position: fixed;
+        right: 75px;
+        top: 44px;
+    }
+
+    .rightViewport {
+        right: 20%;
+    }
+
     #viewport {
-        perspective: 1100px;
-        perspective-origin: 50% 251px;
-        transform: scale(0.75,0.75);
+        height: 100%;
+        perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
+        /* 1500 increases range from 11% to 9%, 2500 increases to 6% */
+        perspective-origin: 50% 160px; /* 670px; */
+        position: fixed;
+        top: 0px;
+        /*transform: scale(0.75,0.75);*/
+        width: 100%;
     }
 
     #cube {
-        position: relative;
-        margin: auto;
         height: 320px;
-        width: 320px;
-        transition: transform 128ms linear;
-        transform-style: preserve-3d;
+        margin: auto;
+        position: relative;
         /*transform: rotateX(0deg) rotateY(-90deg);*/
+        transform-style: preserve-3d;
+        transition: transform 128ms linear;
+        /*top: 50%;*/
+        width: 320px;
     }
 
     #cube h2 {
@@ -152,6 +202,13 @@
 
     #cube > div {
         position: absolute;
+        /*
+        height: 360px;
+        width: 360px;
+        padding: 20px;
+        font-size: 1.8em;
+        line-height: 2em;
+        */
         height: 300px;
         width: 300px;
         padding: 10px;
@@ -164,27 +221,27 @@
 
     #s1  {
         /*background: hsla(  0, 100%, 50%, 0.95);*/
-        transform: rotateX(90deg) translateZ(160px);
+        transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
     }
 
     #s2 {
-        transform: translateZ(160px);
+        transform: translateZ(160px) /*translateZ(200px)*/;
     }
 
     #s3 {
-        transform: rotateY(90deg) translateZ(160px);
+        transform: rotateY(90deg) translateZ(160px) /*translateZ(200px)*/;
     }
 
     #s4 {
-        transform: rotateY(180deg) translateZ(160px);
+        transform: rotateY(180deg) translateZ(160px) /*translateZ(200px)*/;
     }
 
     #s5 {
-        transform: rotateY(-90deg) translateZ(160px);
+        transform: rotateY(-90deg) translateZ(160px) /*translateZ(200px)*/;
     }
 
     #s6 {
-        transform: rotateX(-90deg) rotate(180deg) translateZ(160px);
+        transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
     }
 </style>
 
@@ -193,7 +250,8 @@
     import VoteButton from '../../common/control/VoteButton.html'
     import DimensionInfoIcon from '../../common/control/DimensionInfoIcon.html'
 	import store from '../../store.js';
-    import {scheduleToResize, startResizeInterval, stopResizeInterval} from '../../resizer.js'
+    import {scheduleToResize} from '../../resizer.js'
+    import {setCubeAdjustment, setupCubeListener, shutDownCubeListener} from '../../cubeListener.js'
 
     export default {
         components: {
@@ -203,22 +261,16 @@
         },
         data() {
             return {
-                percentMode: false,
                 currentZoom: 1,
+                percentMode: false,
+                verticalLayout: true,
                 zoomFactor: 0.65
             }
         },
         methods: {
-            getDimBorderColor(
-                dimensionPositionData,
-                direction
+            handleResize(
+                event
             ) {
-                if(dimensionPositionData.dir === direction) {
-                    return '000000'
-                }
-                return dimensionPositionData.color
-            },
-            handleResize(event) {
                 scheduleToResize(this)
             },
             move(
@@ -233,120 +285,73 @@
             },
             togglePercentPicker() {
                 const percentMode = !this.get().percentMode
-                this.setCubeAdjustment(!percentMode)
+                setCubeAdjustment(this.get().cubeListener, !percentMode)
                 this.set({percentMode})
             },
-            zoomChange(event) {
-                let currentZoom = parseInt(event.target.value)
-                let zoomBase = this.get().zoomBase
-                let zoomFactor
-                switch (currentZoom) {
-                    case 0:
-                        zoomFactor = zoomBase * 0.8
-                        break;
-                    case 1:
-                        zoomFactor = zoomBase * 0.9
-                        break;
-                    case 2:
-                        zoomFactor = zoomBase
-                        break
-                }
-                this.set({currentZoom, zoomFactor})
-                this.get().mutationApi.changeZoom(currentZoom)
-            }
+            toggleSurface(
+                dimension
+            ) {
+                this.get().mutationApi.toggleSurface(dimension)
+            },
+            // zoomChange(event) {
+            //     let currentZoom = parseInt(event.target.value)
+            //     let zoomBase = this.get().zoomBase
+            //     let zoomFactor
+            //     switch (currentZoom) {
+            //         case 0:
+            //             zoomFactor = zoomBase * 0.8
+            //             break;
+            //         case 1:
+            //             zoomFactor = zoomBase * 0.9
+            //             break;
+            //         case 2:
+            //             zoomFactor = zoomBase
+            //             break
+            //     }
+            //     this.set({currentZoom, zoomFactor})
+            //     this.get().mutationApi.changeZoom(currentZoom)
+            // }
         },
         oncreate() {
-            import('@votecube/cube-logic/lib/cube/eventListener').then((
-                eventListener
-            ) => {
-            this.setCubeViewPort = (
-                data,
-                setMutationApi,
-                callback
-            ) => {
-                setMutationApi(eventListener.setViewPort(
-                    true, data, callback))
-            }
-
-            this.setCubeAdjustment =(
-                enableCubeAdjustment
-            ) => {
-                if(enableCubeAdjustment) {
-                    eventListener.addCubeAdjustment()
-                } else {
-                    eventListener.clearCubeAdjustment()
-                }
-            }
-
-            this.setCubeViewPort(
-                this.store.get().currentValue,
-                (
-                    mutationApi
-                ) => {
-                    this.set({mutationApi})
-                },
-                (
-                    currentValue
-                ) => {
-                    this.store.set({currentValue})
-                },
-            )
-            })
-
-            this.resize = (
+            setupCubeListener(this, (
                 portalHeight,
-                windowWidth,
-                inPortrait
+                windowWidth
             ) => {
-                console.log(`height: ${portalHeight}, width: ${windowWidth}, inPortrait: ${inPortrait}`);
+                    const figureHeight = portalHeight * 0.55 + 95
 
-                const cubeAreaHeight = portalHeight * 0.55 + 95
+                    // margin-left: 0px
+                    // zoomFactor: .55
 
+                    const cubeAreaLeastDimension = windowWidth < figureHeight
+                        ? windowWidth
+                        : figureHeight
 
+                    // transform: scale(W, W)
+                    // const zoomBase = (Math.sqrt(cubeAreaLeastDimension) * 3) / 100
+                    // const zoomFactor = zoomBase * 1
+                    const zoomFactor = (Math.sqrt(cubeAreaLeastDimension) * 3) / 100
 
-                // margin-left: 0px
-                // zoomFactor: .55
+                        // height: Xpx
+                    // const vpHeight = cubeAreaHeight
 
-                const cubeAreaLeastDimension = windowWidth < cubeAreaHeight
-                    ? windowWidth
-                    : cubeAreaHeight
+                    // margin-top: Ypx
+                    // let marginTop = 0
+                    // if(cubeAreaHeight < 500) {
+                    //     marginTop = (500 - cubeAreaHeight) / 1.1
+                    // }
 
-                // transform: scale(W, W)
-                const zoomBase = (Math.sqrt(cubeAreaLeastDimension) * 3) / 100
-                const zoomFactor = zoomBase * 1
+                    // margin-left: Zpx
+                    // let marginLeft = 0
+                    // if(windowWidth < 400) {
+                    //     marginLeft = (400 - windowWidth) / 4
+                    // }
 
-                // height: Xpx
-                const vpHeight = cubeAreaHeight
-
-                // margin-top: Ypx
-                let marginTop = 0
-                if(cubeAreaHeight < 500) {
-                    marginTop = (500 - cubeAreaHeight) / 1.1
-                }
-
-                // margin-left: Zpx
-                let marginLeft = 0
-                if(windowWidth < 400) {
-                    marginLeft = (400 - windowWidth) / 4
-                }
-
-                this.set({marginLeft, marginTop, vpHeight, zoomBase, zoomFactor})
-
-            }
-
-            startResizeInterval(this)
+                    // this.set({marginLeft, marginTop, verticalLayout, vpHeight, zoomBase, zoomFactor})
+                    this.set({zoomFactor})
+            });
         },
         ondestroy() {
-            console.log('in CubeVote ondestroy');
-            stopResizeInterval(this)
-            this.setCubeViewPort(
-                null,
-                (
-                    mutationApi
-                ) => {
-                    this.set({mutationApi})
-                }
-            )
+            shutDownCubeListener(this.get().cubeListener, this)
         },
         store: () => store
     }

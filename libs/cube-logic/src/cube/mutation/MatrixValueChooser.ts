@@ -22,6 +22,19 @@ export class MatrixValueChooser {
 	getClosestMatrixPosition(
 		viewport: IViewport
 	): IMatrixPosition {
+		const x = viewport.pd.x
+		if (x.value === 100
+			&& x.dir === -1) {
+
+			return {
+				// FIXME: errored out in this position
+				// i: 30,
+				// j: 36,
+				i: 20,
+				j: 36,
+				values: VALUE_MATRIX[20][36]
+			}
+		}
 		const positionsWithZeroes = this.getZeroedPositions(viewport)
 		let matrixPosition        = this.getClosestPositionByDistanceAndMedian(positionsWithZeroes, viewport)
 
@@ -139,7 +152,7 @@ export class MatrixValueChooser {
 				zeroedPositions[plusIndex] = true
 			}
 		} else {
-			zeroedPositions[plusIndex] = true
+			zeroedPositions[plusIndex]  = true
 			zeroedPositions[minusIndex] = true
 		}
 	}

@@ -6,6 +6,7 @@
         float: {float};
         margin: {margin};
     "
+    on:click="fire('toggle')"
 >
     {dimension.value}%
 </var>
@@ -28,8 +29,8 @@
 <script>
     export default {
         computed: {
-            float: ({index}) => index == 0 ? 'right' : 'initial',
-            margin: ({index}) => index == 1 ? 'auto' : 'initial',
+            float: ({index, verticalLayout}) => verticalLayout && index == 0 ? 'right' : 'initial',
+            margin: ({index, verticalLayout}) => verticalLayout && index == 1 ? 'auto' : 'initial',
             topBorderColor: ({dimension}) => borderColor(dimension, 1),
             bottomBorderColor: ({dimension}) => borderColor(dimension, -1)
         }

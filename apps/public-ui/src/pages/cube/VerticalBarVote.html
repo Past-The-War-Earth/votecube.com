@@ -1,31 +1,32 @@
-<div>
-    <section>
-        {pickedText}
-    </section>
-    <figure
-                id="chart"
+<svelte:window on:resize="handleResize(event)"/>
+<figure
+    id="chart"
+>
+        <!--
             style="
   transform: scale({zoomFactor}, {zoomFactor});
 "
-        >
-        <table>
-        <tr id="plus">
-            <td
+  -->
+    <table>
+    <tr id="plus">
+        <td>
+            <!--
                 class:selectedPlus="dimension === 'x'"
                 on:click="pick('x')"
-            >
-            <div
+            -->
+        <div
             style="
         background-color: #{$currentValue.x.color};
         height: {xPlusHeight}px;
             "
-            >
-            </div>
-            </td>
-            <td
+        >
+        </div>
+        </td>
+        <td>
+            <!--
                 class:selectedPlus="dimension === 'y'"
                 on:click="pick('y')"
-            >
+            -->
             <div
             style="
         background-color: #{$currentValue.y.color};
@@ -33,11 +34,12 @@
             "
             >
             </div>
-            </td>
-            <td
+        </td>
+        <td>
+            <!--
                 class:selectedPlus="dimension === 'z'"
                 on:click="pick('z')"
-            >
+            -->
             <div
             style="
         background-color: #{$currentValue.z.color};
@@ -45,13 +47,15 @@
             "
             >
             </div>
-            </td>
+        </td>
         </tr>
         <tr id="minus">
             <td
+            >
+            <!--
                 class:selectedMinus="dimension === 'x'"
                 on:click="pick('x')"
-            >
+            -->
             <div
             style="
         background-color: #{$currentValue.x.color};
@@ -61,9 +65,11 @@
             </div>
             </td>
             <td
+            >
+            <!--
                 class:selectedMinus="dimension === 'y'"
                 on:click="pick('y')"
-            >
+            -->
             <div
             style="
         background-color: #{$currentValue.y.color};
@@ -73,9 +79,11 @@
             </div>
             </td>
             <td
+            >
+            <!--
                 class:selectedMinus="dimension === 'z'"
                 on:click="pick('z')"
-            >
+            -->
             <div
             style="
         background-color: #{$currentValue.z.color};
@@ -86,49 +94,76 @@
             </td>
         </tr>
         </table>
-    </figure>
-    <nav>
-        <ZoomPicker
-            currentZoom="{currentZoom}"
-            on:zoomChange="zoomChange(event)"
-        />
-        <table
+</figure>
+<nav>
+    <table>
+        <colgroup>
+            <col class="dim-info-col">
+            <col>
+        </colgroup>
+        <tr>
+            <td>
+                <DimensionInfoIcon
+                    dimension="{$currentValue.x}"
+                    index=0
+                    on:toggle="toggleSurface('x')"
+                    verticalLayout
+                ></DimensionInfoIcon>
+            </td>
+            <td
                 style="
-                width: 100%;
-                font-size: 3em;
-                text-align: center;
-            ">
-            <tr>
-                <td>
-                    -
-                </td>
-                <td>
-                    %
-                </td>
-                <td>
-                    +
-                </td>
-            </tr>
-            <LinearPositionPicker
-                dimension="{$currentValue.x}"
-                on:move="move('x', event)"
-                on:moveToValue="moveToValue('x', event)"
-            />
-            <LinearPositionPicker
-                dimension="{$currentValue.y}"
-                on:move="move('y', event)"
-                on:moveToValue="moveToValue('y', event)"
-            />
-            <LinearPositionPicker
-                dimension="{$currentValue.z}"
-                on:move="move('z', event)"
-                on:moveToValue="moveToValue('z', event)"
-            />
-        </table>
-    </nav>
-</div>
+                    font-size: calc(2vw + 2vh);
+                "
+            >
+                {xText}
+            </td>
+        <tr>
+        </tr>
+            <td>
+                <DimensionInfoIcon
+                    index=1
+                    dimension="{$currentValue.y}"
+                    on:toggle="toggleSurface('y')"
+                    verticalLayout
+                ></DimensionInfoIcon>
+            </td>
+            <td
+                style="
+                    font-size: calc(2vw + 2vh);
+                "
+            >
+                {yText}
+            </td>
+        <tr>
+            <td>
+                <DimensionInfoIcon
+                    dimension="{$currentValue.z}"
+                    on:toggle="toggleSurface('z')"
+                    verticalLayout
+                ></DimensionInfoIcon>
+            </td>
+            <td
+                style="
+                    font-size: calc(2vw + 2vh);
+                "
+            >
+                {zText}
+            </td>
+        </tr>
+    </table>
+</nav>
 
 <style>
+
+    dim-info-col {
+        width: 60px;
+    }
+
+    figure {
+        position: fixed;
+        top: 28px;
+        width: 100%;
+    }
 
     section {
         margin: 15px;
@@ -139,6 +174,11 @@
         width: 100%;
     }
 
+    td {
+        padding: 5px;
+        vertical-align: middle;
+    }
+
     #plus td {
         border-bottom: 1px solid black;
         vertical-align: bottom;
@@ -146,6 +186,10 @@
 
     #minus td {
         vertical-align: top;
+    }
+
+    figure {
+        margin: 0.8em;
     }
 
     figure div {
@@ -171,20 +215,24 @@
     }
 
     nav {
-        margin-top: -10px;
+        position: fixed;
+        bottom: 5px;
+
     }
+
+
 
 </style>
 
 <script>
-    import LinearPositionPicker from '../../common/control/LinearPositionPicker.html'
-    import ZoomPicker from '../../common/control/ZoomPicker.html'
-	import store from '../../store.js';
+    import DimensionInfoIcon from '../../common/control/DimensionInfoIcon.html'
+    import {setupCubeListener, shutDownCubeListener} from '../../cubeListener.js'
+    import store from '../../store.js'
+    import {scheduleToResize} from '../../resizer.js'
 
     export default {
         components: {
-            LinearPositionPicker,
-            ZoomPicker
+            DimensionInfoIcon
         },
         computed: {
             pickedText: ({$currentValue, dimension, $text}) => {
@@ -203,105 +251,115 @@
                     ? $text[plusIndex]
                     : $text[minusIndex]
             },
-            xPlusHeight: ({$currentValue}) => barHeight($currentValue.x, 1),
-            xMinusHeight: ({$currentValue}) => barHeight($currentValue.x, -1),
-            yPlusHeight: ({$currentValue}) => barHeight($currentValue.y, 1),
-            yMinusHeight: ({$currentValue}) => barHeight($currentValue.y, -1),
-            zPlusHeight: ({$currentValue}) => barHeight($currentValue.z, 1),
-            zMinusHeight: ({$currentValue}) => barHeight($currentValue.z, -1)
+            xMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.x, -1, maxBarSize, maxValue),
+            xPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.x, 1, maxBarSize, maxValue),
+            xText: ({$currentValue, $text}) => $currentValue.x.dir === 1 ? $text[0] : $text[5],
+            yMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.y, -1, maxBarSize, maxValue),
+            yPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.y, 1, maxBarSize, maxValue),
+            yText: ({$currentValue, $text}) => $currentValue.y.dir === 1 ? $text[1] : $text[3],
+            zMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, -1, maxBarSize, maxValue),
+            zPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, 1, maxBarSize, maxValue),
+            zText: ({$currentValue, $text}) => $currentValue.z.dir === 1 ? $text[2] : $text[4],
+            maxValue: ({$currentValue}) => {
+                const x = $currentValue.x.value
+                const y = $currentValue.y.value
+                const z = $currentValue.z.value
+                if(x > y) {
+                    if(x > y) {
+                        return x
+                    }
+                    return z
+                } else {
+                    if(y > z) {
+                        return y
+                    }
+                    return z
+                }
+            },
+            // fontSize: ({maxBarSize, maxValue, portalHeight, windowWidth}) => {
+            //     return (maxBarSize / (maxValue * 1.2)) * portalHeight * 0.005 * windowWidth * 0.005;
+            // }
         },
         data() {
             return {
-                currentZoom: 1,
+                // currentZoom: 1,
                 dimension: null,
-                zoomFactor: 0.9,
+                // zoomFactor: 0.9,
             }
         },
         methods: {
-            zoomChange(event) {
-                let currentZoom = parseInt(event.target.value)
-                let zoomFactor
-                switch (currentZoom) {
-                    case 0:
-                        zoomFactor = 0.8
-                        break;
-                    case 1:
-                        zoomFactor = 0.9
-                        break;
-                    case 2:
-                        zoomFactor = 1
-                        break
-                }
-                this.set({currentZoom, zoomFactor})
-                this.get().mutationApi.changeZoom(currentZoom)
-            },
-            move(
-                dimension,
-                direction
+            handleResize(
+                event
             ) {
-                this.pick(dimension)
-                this.get().mutationApi.move(dimension, direction)
+                scheduleToResize(this)
             },
-            moveToValue(
-                dimension,
-                value
-            ) {
-                this.pick(dimension)
-                this.get().mutationApi.moveToValue(dimension, value)
-            },
-            pick(
+            // zoomChange(event) {
+            //     let currentZoom = parseInt(event.target.value)
+            //     let zoomFactor
+            //     switch (currentZoom) {
+            //         case 0:
+            //             zoomFactor = 0.8
+            //             break;
+            //         case 1:
+            //             zoomFactor = 0.9
+            //             break;
+            //         case 2:
+            //             zoomFactor = 1
+            //             break
+            //     }
+            //     this.set({currentZoom, zoomFactor})
+            //     this.get().mutationApi.changeZoom(currentZoom)
+            // },
+            // move(
+            //     dimension,
+            //     direction
+            // ) {
+            //     this.pick(dimension)
+            //     this.get().mutationApi.move(dimension, direction)
+            // },
+            // moveToValue(
+            //     dimension,
+            //     value
+            // ) {
+            //     this.pick(dimension)
+            //     this.get().mutationApi.moveToValue(dimension, value)
+            // },
+            toggleSurface(
                 dimension
             ) {
-                this.set({dimension})
-            }
+                this.get().mutationApi.toggleSurface(dimension)
+            },
+            // pick(
+            //     dimension
+            // ) {
+            //     this.set({dimension})
+            // }
         },
         oncreate() {
-            import('@votecube/cube-logic/lib/cube/eventListener').then((
-                eventListener
+            setupCubeListener(this, (
+                portalHeight,
+                windowWidth
             ) => {
-            this.setCubeViewPort = (
-                data,
-                setMutationApi,
-                callback
-            ) => {
-                setMutationApi(eventListener.setViewPort(
-                    false, data, callback))
-            }
-            this.setCubeViewPort(
-                this.store.get().currentValue,
-                (
-                    mutationApi
-                ) => {
-                    this.set({mutationApi})
-                },
-                (
-                    currentValue
-                ) => {
-                    this.store.set({currentValue})
-                },
-            )
-            })
+                const maxBarSize = portalHeight / 2 - 20;
 
+                this.set({maxBarSize});
+            })
         },
         ondestroy() {
-            console.log('in VerticalBarVote ondestroy');
-            this.setCubeViewPort(
-                null,
-                (
-                    mutationApi
-                ) => {
-                    this.set({mutationApi})
-                }
-            )
+            shutDownCubeListener(this.get().cubeListener, this)
         },
         store: () => store
     }
 
     function barHeight(
         dimensionPositionData,
-        direction
+        direction,
+        maxBarSize,
+        maxValue
     ) {
-        return dimensionPositionData.dir === direction ? dimensionPositionData.value * 2 : 0
+        return dimensionPositionData.dir === direction
+        ? dimensionPositionData.value * maxBarSize / (maxValue * 1.2)
+        : 0
     }
 
 </script>

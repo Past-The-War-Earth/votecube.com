@@ -87,6 +87,11 @@
             toggleMenu() {
                 this.store.toggleMainMenu()
             },
+            toggleSurface(
+                dimension
+            ) {
+                this.get().mutationApi.toggleSurface(dimension)
+            },
             setPageComp(
                 PageComp
             ) {

@@ -1,11 +1,12 @@
 export function startResizeInterval(
-    page
+    page,
+    viewCallback
 ) {
-    resize(page)
+    resize(page, viewCallback)
+
     const checkSizeIntervalId = setInterval(() => {
         if (page.get().resized) {
-            page.set({resized: false})
-            resize(page)
+            resize(page, viewCallback)
         }
     }, 1000)
 
@@ -27,11 +28,17 @@ export function scheduleToResize(
 }
 
 function resize(
-    page
+    page,
+    viewCallback
 ) {
     const windowWidth = window.innerWidth
-    const windowHeight = window.innerHeight
-    const portalHeight = windowHeight - 44
+    const portalHeight = window.innerHeight - 44
 
-    page.resize(portalHeight, windowWidth, portalHeight > windowWidth);
+    let verticalLayout = true
+    if(portalHeight < windowWidth) {
+        verticalLayout = false
+    }
+    page.set({portalHeight, resized: false, verticalLayout, windowWidth})
+
+    viewCallback(portalHeight, windowWidth)
 }
