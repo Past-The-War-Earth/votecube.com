@@ -1,44 +1,53 @@
-export function startResizeInterval(
-    page,
-    viewCallback
+var viewCallback
+
+export function setResizeCllBck(
+    resizeCallback
 ) {
-    resize(page, viewCallback)
+    viewCallback = resizeCallback
+}
+
+export function startResizeInterval(
+    store
+) {
+    resize(store)
 
     const checkSizeIntervalId = setInterval(() => {
-        if (page.get().resized) {
-            resize(page, viewCallback)
+        if (store.get().resized) {
+            resize(store)
         }
     }, 1000)
 
-    page.set({checkSizeIntervalId})
+    store.set({checkSizeIntervalId})
 }
 
+/*
 export function stopResizeInterval(
-    page
+    store
 ) {
-    clearInterval(page.get().checkSizeIntervalId)
-}
+    clearInterval(store.get().checkSizeIntervalId)
+}*/
 
 export function scheduleToResize(
-    page
+    store
 ) {
-    page.set({
+    store.set({
         resized: true
     })
 }
 
 function resize(
-    page,
-    viewCallback
+    store
 ) {
     const windowWidth = window.innerWidth
     const portalHeight = window.innerHeight - 44
 
     let verticalLayout = true
-    if(portalHeight < windowWidth) {
+    if (portalHeight < windowWidth) {
         verticalLayout = false
     }
-    page.set({portalHeight, resized: false, verticalLayout, windowWidth})
+    store.set({portalHeight, resized: false, verticalLayout, windowWidth})
 
-    viewCallback(portalHeight, windowWidth, verticalLayout)
+    if (viewCallback) {
+        viewCallback(portalHeight, windowWidth, verticalLayout)
+    }
 }

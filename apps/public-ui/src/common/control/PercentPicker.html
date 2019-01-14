@@ -67,36 +67,36 @@
 
 
 <script>
-    import LinearPositionPicker from './LinearPositionPicker.html'
-	import store from '../../store.js';
+import LinearPositionPicker from './LinearPositionPicker.html'
+import store from '../../store.js';
 
-    export default {
-        components: {
-            LinearPositionPicker
-        },
-        methods: {
-            move(
+export default {
+    components: {
+        LinearPositionPicker
+    },
+    methods: {
+        move(
+            dimension,
+            direction,
+            percentChange
+        ) {
+            this.fire('move', {
                 dimension,
                 direction,
                 percentChange
-            ) {
-                this.fire('move', {
-                    dimension,
-                    direction,
-                    percentChange
-                })
-            },
-            moveToValue(
-                dimension,
-                value
-            ) {
-                this.fire('moveToValue', {
-                    dimension,
-                    value,
-                    percentChange
-                })
-            },
+            })
         },
-        store: () => store
-    }
+        moveToValue(
+            dimension,
+            value
+        ) {
+            this.fire('moveToValue', {
+                dimension,
+                value,
+                percentChange
+            })
+        },
+    },
+    store: () => store
+}
 </script>

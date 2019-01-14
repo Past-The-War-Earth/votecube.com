@@ -249,116 +249,114 @@ transform: scale({zoomFactor}, {zoomFactor});
 </style>
 
 <script>
-    import DimensionInfoIcon from '../../common/control/DimensionInfoIcon.html'
-    import {setupCubeListener, shutDownCubeListener} from '../../cubeListener.js'
-    import store from '../../store.js'
-    import {scheduleToResize} from '../../resizer.js'
+import DimensionInfoIcon from '../../../common/control/DimensionInfoIcon.html'
+import {scheduleToResize, setResizeCllBck} from '../../../resizer.js'
+import store from '../../../store.js'
 
-    export default {
-        components: {
-            DimensionInfoIcon
-        },
-        computed: {
-            pickedText: ({$currentValue, dimension, $text}) => {
-                if (!dimension) {
-                    return ''
-                }
-                let plusIndex = 0, minusIndex = 5
-                if (dimension === 'y') {
-                    plusIndex = 1
-                    minusIndex = 3
-                } else if (dimension === 'z') {
-                    plusIndex = 2
-                    minusIndex = 4
-                }
-                return $currentValue[dimension].dir === 1
-                    ? $text[plusIndex]
-                    : $text[minusIndex]
-            },
-            xMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.x, -1, maxBarSize, maxValue),
-            xPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.x, 1, maxBarSize, maxValue),
-            xText: ({$currentValue, $text}) => $currentValue.x.dir === 1 ? $text[0] : $text[5],
-            yMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.y, -1, maxBarSize, maxValue),
-            yPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.y, 1, maxBarSize, maxValue),
-            yText: ({$currentValue, $text}) => $currentValue.y.dir === 1 ? $text[1] : $text[3],
-            zMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, -1, maxBarSize, maxValue),
-            zPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, 1, maxBarSize, maxValue),
-            zText: ({$currentValue, $text}) => $currentValue.z.dir === 1 ? $text[2] : $text[4],
-            maxValue: ({$currentValue}) => {
-                const positiveValues = []
-                const negativeValues = []
-
-                addToVals($currentValue.x, positiveValues, negativeValues)
-                addToVals($currentValue.y, positiveValues, negativeValues)
-                addToVals($currentValue.z, positiveValues, negativeValues)
-
-                const maxPositiveValue = getMaxVal(positiveValues)
-                const maxNegativeValue = getMaxVal(negativeValues)
-
-
-                return maxPositiveValue + maxNegativeValue
-            },
-            // fontSize: ({maxBarSize, maxValue, portalHeight, windowWidth}) => {
-            //     return (maxBarSize / (maxValue * 1.2)) * portalHeight * 0.005 * windowWidth * 0.005;
-            // }
-        },
-        data() {
-            return {
-                // currentZoom: 1,
-                dimension: null,
-                // zoomFactor: 0.9,
+export default {
+    components: {
+        DimensionInfoIcon
+    },
+    computed: {
+        pickedText: ({$currentValue, dimension, $text}) => {
+            if (!dimension) {
+                return ''
             }
+            let plusIndex = 0, minusIndex = 5
+            if (dimension === 'y') {
+                plusIndex = 1
+                minusIndex = 3
+            } else if (dimension === 'z') {
+                plusIndex = 2
+                minusIndex = 4
+            }
+            return $currentValue[dimension].dir === 1
+                ? $text[plusIndex]
+                : $text[minusIndex]
         },
-        methods: {
-            handleResize(
-                event
-            ) {
-                scheduleToResize(this)
-            },
-            // zoomChange(event) {
-            //     let currentZoom = parseInt(event.target.value)
-            //     let zoomFactor
-            //     switch (currentZoom) {
-            //         case 0:
-            //             zoomFactor = 0.8
-            //             break;
-            //         case 1:
-            //             zoomFactor = 0.9
-            //             break;
-            //         case 2:
-            //             zoomFactor = 1
-            //             break
-            //     }
-            //     this.set({currentZoom, zoomFactor})
-            //     this.get().mutationApi.changeZoom(currentZoom)
-            // },
-            // move(
-            //     dimension,
-            //     direction
-            // ) {
-            //     this.pick(dimension)
-            //     this.get().mutationApi.move(dimension, direction)
-            // },
-            // moveToValue(
-            //     dimension,
-            //     value
-            // ) {
-            //     this.pick(dimension)
-            //     this.get().mutationApi.moveToValue(dimension, value)
-            // },
-            toggleSurface(
-                dimension
-            ) {
-                this.get().mutationApi.toggleSurface(dimension)
-            },
-            // pick(
-            //     dimension
-            // ) {
-            //     this.set({dimension})
-            // }
+        xMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.x, -1, maxBarSize, maxValue),
+        xPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.x, 1, maxBarSize, maxValue),
+        xText: ({$currentValue, $text}) => $currentValue.x.dir === 1 ? $text[0] : $text[5],
+        yMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.y, -1, maxBarSize, maxValue),
+        yPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.y, 1, maxBarSize, maxValue),
+        yText: ({$currentValue, $text}) => $currentValue.y.dir === 1 ? $text[1] : $text[3],
+        zMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, -1, maxBarSize, maxValue),
+        zPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, 1, maxBarSize, maxValue),
+        zText: ({$currentValue, $text}) => $currentValue.z.dir === 1 ? $text[2] : $text[4],
+        maxValue: ({$currentValue}) => {
+            const positiveValues = []
+            const negativeValues = []
+
+            addToVals($currentValue.x, positiveValues, negativeValues)
+            addToVals($currentValue.y, positiveValues, negativeValues)
+            addToVals($currentValue.z, positiveValues, negativeValues)
+
+            const maxPositiveValue = getMaxVal(positiveValues)
+            const maxNegativeValue = getMaxVal(negativeValues)
+
+            return maxPositiveValue + maxNegativeValue
         },
-        oncreate() {
-            setupCubeListener(this, (
+        // fontSize: ({maxBarSize, maxValue, portalHeight, windowWidth}) => {
+        //     return (maxBarSize / (maxValue * 1.2)) * portalHeight * 0.005 * windowWidth * 0.005;
+        // }
+    },
+    data() {
+        return {
+            // currentZoom: 1,
+            dimension: null,
+            // zoomFactor: 0.9,
+        }
+    },
+    methods: {
+        handleResize(
+            event
+        ) {
+            scheduleToResize(this)
+        },
+        // zoomChange(event) {
+        //     let currentZoom = parseInt(event.target.value)
+        //     let zoomFactor
+        //     switch (currentZoom) {
+        //         case 0:
+        //             zoomFactor = 0.8
+        //             break;
+        //         case 1:
+        //             zoomFactor = 0.9
+        //             break;
+        //         case 2:
+        //             zoomFactor = 1
+        //             break
+        //     }
+        //     this.set({currentZoom, zoomFactor})
+        //     this.get().mutationApi.changeZoom(currentZoom)
+        // },
+        // move(
+        //     dimension,
+        //     direction
+        // ) {
+        //     this.pick(dimension)
+        //     this.get().mutationApi.move(dimension, direction)
+        // },
+        // moveToValue(
+        //     dimension,
+        //     value
+        // ) {
+        //     this.pick(dimension)
+        //     this.get().mutationApi.moveToValue(dimension, value)
+        // },
+        toggleSurface(
+            dimension
+        ) {
+            this.get().mutationApi.toggleSurface(dimension)
+        },
+        // pick(
+        //     dimension
+        // ) {
+        //     this.set({dimension})
+        // }
+    },
+    oncreate() {
+            setResizeCllBck((
                 portalHeight,
                 windowWidth,
                 verticalLayout
@@ -371,48 +369,48 @@ transform: scale({zoomFactor}, {zoomFactor});
 
                 this.set({maxBarSize});
             })
-        },
-        ondestroy() {
-            shutDownCubeListener(this.get().cubeListener, this)
-        },
-        store: () => store
-    }
+    },
+    ondestroy() {
+            setResizeCllBck(null)
+    },
+    store: () => store
+}
 
-    function barHeight(
-        dimensionPositionData,
-        direction,
-        maxBarSize,
-        maxValue
-    ) {
-        return dimensionPositionData.dir === direction
-            ? dimensionPositionData.value * maxBarSize / (maxValue * 1.2)
-            : 0
-    }
+function barHeight(
+    dimensionPositionData,
+    direction,
+    maxBarSize,
+    maxValue
+) {
+    return dimensionPositionData.dir === direction
+        ? dimensionPositionData.value * maxBarSize / (maxValue * 1.2)
+        : 0
+}
 
-    function addToVals(
-        dimensionPositionData,
-        positiveValues,
-        negativeValues
-    ) {
-        if (dimensionPositionData.dir === 1) {
-            positiveValues.push(dimensionPositionData.value);
-        } else {
-            negativeValues.push(dimensionPositionData.value);
+function addToVals(
+    dimensionPositionData,
+    positiveValues,
+    negativeValues
+) {
+    if (dimensionPositionData.dir === 1) {
+        positiveValues.push(dimensionPositionData.value);
+    } else {
+        negativeValues.push(dimensionPositionData.value);
+    }
+}
+
+function getMaxVal(
+    values
+) {
+    let maximumValue = 0
+
+    for (const value of values) {
+        if (value > maximumValue) {
+            maximumValue = value
         }
     }
 
-    function getMaxVal(
-        values
-    ) {
-        let maximumValue = 0
-
-        for (const value of values) {
-            if (value > maximumValue) {
-                maximumValue = value
-            }
-        }
-
-        return maximumValue
-    }
+    return maximumValue
+}
 
 </script>

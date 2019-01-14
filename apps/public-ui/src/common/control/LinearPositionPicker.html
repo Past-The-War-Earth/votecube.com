@@ -104,39 +104,39 @@
 </style>
 
 <script>
-    export default {
-        computed: {
-            valueBottomBorder: ({dimension}) => getInputBorder(dimension),
-            leftCircleRadius: ({dimension}) => getRadius(-1, dimension),
-            rightCircleRadius: ({dimension}) => getRadius(1, dimension),
-            leftStrokeWidth: ({dimension}) => getStrokeWidth(-1, dimension),
-            rightStrokeWidth: ({dimension}) => getStrokeWidth(1, dimension),
-            leftHighlightColor: ({dimension}) => getColor(1, dimension),
-            rightHighlightColor: ({dimension}) => getColor(-1, dimension),
-            leftFillColor: ({dimension}) => getColor(-1, dimension),
-            rightFillColor: ({dimension}) => getColor(1, dimension),
+export default {
+    computed: {
+        valueBottomBorder: ({dimension}) => getInputBorder(dimension),
+        leftCircleRadius: ({dimension}) => getRadius(-1, dimension),
+        rightCircleRadius: ({dimension}) => getRadius(1, dimension),
+        leftStrokeWidth: ({dimension}) => getStrokeWidth(-1, dimension),
+        rightStrokeWidth: ({dimension}) => getStrokeWidth(1, dimension),
+        leftHighlightColor: ({dimension}) => getColor(1, dimension),
+        rightHighlightColor: ({dimension}) => getColor(-1, dimension),
+        leftFillColor: ({dimension}) => getColor(-1, dimension),
+        rightFillColor: ({dimension}) => getColor(1, dimension),
+    },
+    methods: {
+        mouseDown(
+               direction
+        ) {
+            const percentChange = 1
+            this.set({lastNumIncs: 5, percentChange})
+
+            this.fire('move', {
+                direction,
+                percentChange
+            })
+
+            setIntrvl(this, 360, direction, 4, 3, 1)
         },
-        methods: {
-           mouseDown(
-               direction
-           ) {
-               const percentChange = 1
-               this.set({lastNumIncs: 5, percentChange})
-
-               this.fire('move', {
-                   direction,
-                   percentChange
-               })
-
-               setIntrvl(this, 360, direction, 4, 3, 1)
-           },
-           mouseUp(
-               direction
-           ) {
-               clearIntrvl(this)
-           },
-        }
+        mouseUp(
+            direction
+        ) {
+            clearIntrvl(this)
+        },
     }
+}
 
     function checkInterval(
         page
@@ -176,7 +176,7 @@
         numReIncs,
         percentChange,
     ) {
-        console.log(`interval: ${interval}, direction: ${direction}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
+        // console.log(`interval: ${interval}, direction: ${direction}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
 
         const incrementInterval = setInterval(() => {
             checkInterval(page)

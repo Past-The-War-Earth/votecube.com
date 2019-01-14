@@ -35,9 +35,10 @@
         <!--Hamburger icon -->
         <span></span>
     </nav>
-    <!--
-        <Menu @active={isMenuActive} @selected={{action toggleMenu}}></Menu>
-        -->
+    <Menu
+        active="{$showMainMenu}"
+        on:selected="toggleMenu()"
+    ></Menu>
     <section
             id="main"
             on:click="clickMain()"
@@ -54,17 +55,17 @@
 </style>
 
 <script>
-    import CubeVote from './pages/cube/CubeVote.html'
-    import TextVote from './pages/cube/TextVote.html'
-    import TopBar from './shell/top/TopBar.html'
-    import VerticalBarVote from './pages/cube/VerticalBarVote.html'
-    import store from './store.js';
-
-
     import page from 'page'
+    import {setupCubeListener} from './cubeListener.js'
+    import CubeVote from './pages/cube/vote/CubeVote.html'
+    import VerticalBarVote from './pages/cube/vote/VerticalBarVote.html'
+    import Menu from './shell/menu/Menu.html'
+    import TopBar from './shell/top/TopBar.html'
+    import store from './store.js';
 
     export default {
         components: {
+            Menu,
             TopBar
         },
         computed: {
@@ -129,13 +130,11 @@
                 '/vote/chart', () => {
                 setPageComp('chart', VerticalBarVote, this)
             })
-            page(
-                '/vote/text', () => {
-                setPageComp('text', TextVote, this)
-            })
             page({
                 hashbang: true
             })
+
+            startResizeInterval(this.store)
         },
         onupdate({ changed, current, previous }) {
             // this fires after oncreate, and after every state change

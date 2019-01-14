@@ -1,10 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<nav
+  class:active="active"
+  id="menu"
+>
+  <section
+    class="pure-menu"
+  >
+    <a
+      class="pure-menu-heading"
+      href="#"
+    >
+      VOTECUBE
+    </a>
 
-</body>
-</html>
+    <ul class="pure-menu-list">
+      {#each menuItems as menuItem, index}
+        <MenuItem
+            menuIndex="{index}"
+            selectedIndex="{selectedMenuIndex}"
+            on:select="selectMenu(event)"
+            text="{menuItem}"
+        ></MenuItem>
+      {/each}
+    </ul>
+  </section>
+</nav>
+
+<script>
+import MenuItem from './MenuItem.html'
+
+export default {
+    components: {
+        MenuItem
+    },
+    data() {
+        return {
+            menuItems: [
+                'Polls',
+                'Design',
+                'About'
+            ],
+            selectedMenuIndex: 0
+        }
+    },
+    methods: {
+        // clickMenuLink(event) {
+            // if (DOM_API.e(menuElementIdSelector)
+            //   .className
+            //   .indexOf('active') !== -1) {
+            //   this.toggleAll(event)
+            // }
+        // },
+        selectMenu(menuIndex) {
+            this.set({selectedMenuIndex: menuIndex})
+            this.fire('selected', menuIndex)
+        }
+    }
+}
+</script>
