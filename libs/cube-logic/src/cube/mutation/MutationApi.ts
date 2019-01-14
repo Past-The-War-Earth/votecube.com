@@ -22,7 +22,8 @@ export interface IMutationApi {
 
 	move(
 		dimension: Dimension,
-		direction: Direction
+		direction: Direction,
+		percentChange: PercentChange
 	): void
 
 	moveToValue(
@@ -57,14 +58,15 @@ export class MutationApi
 
 	move(
 		dimension: Dimension,
-		direction: Direction
+		direction: Direction,
+		percentChange: PercentChange
 	): void {
 		const dimensionPositionData = this.vp.pd[dimension]
 		if (dimensionPositionData.value === 100
 			&& dimensionPositionData.dir === direction) {
 			return
 		}
-		let percentChange = this.getPercentChange()
+		// let percentChange = this.getPercentChange()
 
 		this.moveToPercent(dimension, null, percentChange, direction)
 	}

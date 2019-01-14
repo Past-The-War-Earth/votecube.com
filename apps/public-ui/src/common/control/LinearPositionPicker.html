@@ -1,12 +1,15 @@
 <tr>
-   <td>
+   <td
+       on:touchstart="mouseDown(-1)"
+       on:touchend="mouseUp(-1)"
+   >
       <svg
           height="50"
-          on:click="fire('move', -1)"
-          on:mousedown="mouseDown(-1)"
-          on:mouseup="mouseUp(-1)"
           width="50"
       >
+      <!--
+          on:click="fire('move', -1, 1)"
+      -->
          <g class="layer">
             <circle 
                 cx="25"
@@ -43,14 +46,17 @@
           value="{dimension.value}"
       >
    </td>
-   <td>
+   <td
+          on:touchstart="mouseDown(1)"
+          on:touchend="mouseUp(1)"
+   >
       <svg
           width="50"
-          on:click="fire('move', 1)"
-          on:mousedown="mouseDown(-1)"
-          on:mouseup="mouseUp(-1)"
           height="50"
       >
+      <!--
+          on:click="fire('move', 1)"
+      -->
          <g class="layer">
             <circle 
                 cx="25"
@@ -114,11 +120,78 @@
            mouseDown(
                direction
            ) {
+               const percentChange = 1
+               this.set({lastNumIncs: 5, percentChange})
+
+               this.fire('move', {
+                   direction,
+                   percentChange
+               })
+
+               setIntrvl(this, 360, direction, 4, 3, 1)
            },
            mouseUp(
                direction
            ) {
+               clearIntrvl(this)
            },
+        }
+    }
+
+    function checkInterval(
+        page
+    ) {
+        let numIncs = page.get().numIncs - 1
+
+        let percentChange = page.get().percentChange
+        let direction = page.get().direction
+
+        page.fire('move', {
+            direction,
+            percentChange
+        });
+
+        if (!numIncs) {
+            clearIntrvl(page)
+            let numReIncs = page.get().numReIncs - 1
+            if(!numReIncs) {
+                return
+            }
+            let interval = page.get().interval / 2
+            let numIncs = page.get().lastNumIncs * 2
+            percentChange = percentChange * 3
+
+            page.set({lastNumIncs: numIncs})
+            setIntrvl(page, interval, direction, numIncs, numReIncs, percentChange)
+        } else {
+            page.set({numIncs})
+        }
+    }
+
+    function setIntrvl(
+        page,
+        interval,
+        direction,
+        numIncs,
+        numReIncs,
+        percentChange,
+    ) {
+        console.log(`interval: ${interval}, direction: ${direction}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
+
+        const incrementInterval = setInterval(() => {
+            checkInterval(page)
+        }, interval)
+
+        page.set({direction, incrementInterval, interval, numIncs, numReIncs, percentChange})
+    }
+
+    function clearIntrvl(
+        page
+    ) {
+        let incrementInterval = page.get().incrementInterval
+
+        if(incrementInterval) {
+            clearInterval(incrementInterval);
         }
     }
 

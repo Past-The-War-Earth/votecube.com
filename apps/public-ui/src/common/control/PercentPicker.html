@@ -9,17 +9,17 @@
     <table>
         <LinearPositionPicker
             dimension="{$currentValue.x}"
-            on:move="move('x', event)"
+            on:move="move('x', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('x', event)"
         />
         <LinearPositionPicker
             dimension="{$currentValue.y}"
-            on:move="move('y', event)"
+            on:move="move('y', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('y', event)"
         />
         <LinearPositionPicker
             dimension="{$currentValue.z}"
-            on:move="move('z', event)"
+            on:move="move('z', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('z', event)"
         />
     </table>
@@ -77,11 +77,13 @@
         methods: {
             move(
                 dimension,
-                direction
+                direction,
+                percentChange
             ) {
                 this.fire('move', {
                     dimension,
-                    direction
+                    direction,
+                    percentChange
                 })
             },
             moveToValue(
@@ -90,7 +92,8 @@
             ) {
                 this.fire('moveToValue', {
                     dimension,
-                    value
+                    value,
+                    percentChange
                 })
             },
         },

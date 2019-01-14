@@ -208,7 +208,7 @@ function moveViewport(
 	dx = vx[1]
 	dy = vy[1]
 
-	console.log(`dx: ${dx}, dy: ${dy}`)
+	// console.log(`dx: ${dx}, dy: ${dy}`)
 
 	if (dx >= 2 && dx / 2 > dy) {
 		// If general directionVector is in X

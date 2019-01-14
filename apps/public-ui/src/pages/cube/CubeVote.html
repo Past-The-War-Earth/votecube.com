@@ -278,7 +278,11 @@
             move(
                 event
             ) {
-                this.get().mutationApi.move(event.dimension, event.direction)
+                this.get().mutationApi.move(
+                    event.dimension,
+                    event.direction,
+                    event.percentChange
+                )
             },
             moveToValue(
                 event
