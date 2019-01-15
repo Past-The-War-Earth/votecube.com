@@ -1,40 +1,14 @@
 <tr>
-   <td
-       on:touchstart="mouseDown(-1)"
-       on:touchend="mouseUp(-1)"
-   >
-      <svg
-          height="50"
-          width="50"
-      >
-      <!--
-          on:click="fire('move', -1, 1)"
-      -->
-         <g class="layer">
-            <circle 
-                cx="25"
-                cy="25"
-                fill="#{leftFillColor}"
-                r="{leftCircleRadius}"
-                stroke="#{leftHighlightColor}"
-                stroke-width="{leftStrokeWidth}"
-            />
-            <text 
-                fill="#{leftHighlightColor}"
-                font-family="monospace"
-                font-size="24"
-                stroke="#FFFFFF"
-                stroke-width="0"
-                text-anchor="middle"
-                transform="rotate(0 23.5 23.2) matrix(1.44 0 0 1.64 16.4 -1.8)"
-                x="4.9"
-                xml:space="preserve"
-                y="23.3"
-            >
-               &lt;
-            </text>
-         </g>
-      </svg>
+    <td
+        on:touchstart="mouseDown(-1)"
+        on:touchend="mouseUp(-1)"
+    >
+        <LeftButton
+            circleRadius="{leftCircleRadius}"
+            fillColor="{leftFillColor}"
+            highlightColor="{leftHighlightColor}"
+            strokeWidth="{leftStrokeWidth}"
+        ></LeftButton>
    </td>
    <td>
       <input
@@ -50,38 +24,12 @@
           on:touchstart="mouseDown(1)"
           on:touchend="mouseUp(1)"
    >
-      <svg
-          width="50"
-          height="50"
-      >
-      <!--
-          on:click="fire('move', 1)"
-      -->
-         <g class="layer">
-            <circle 
-                cx="25"
-                cy="25"
-                fill="#{rightFillColor}"
-                r="{rightCircleRadius}"
-                stroke="#{rightHighlightColor}"
-                stroke-width="{rightStrokeWidth}"
-            />
-            <text
-                fill="#{rightHighlightColor}"
-                font-family="monospace"
-                font-size="24"
-                stroke="#FFFFFF"
-                stroke-width="0"
-                text-anchor="middle"
-                transform="rotate(0.32 27.4 23.28) matrix(1.44 0 0 1.64 16.6 -4.8)"
-                x="7.5"
-                xml:space="preserve"
-                y="25"
-            >
-               &gt;
-            </text>
-         </g>
-      </svg>
+        <RightButton
+            circleRadius="{rightCircleRadius}"
+            fillColor="{rightFillColor}"
+            highlightColor="{rightHighlightColor}"
+            strokeWidth="{rightStrokeWidth}"
+        ></RightButton>
    </td>
 </tr>
 
@@ -104,7 +52,14 @@
 </style>
 
 <script>
+import LeftButton from './button/LeftButton.html'
+import RightButton from './button/RightButton.html'
+
 export default {
+    components: {
+        LeftButton,
+        RightButton
+    },
     computed: {
         valueBottomBorder: ({dimension}) => getInputBorder(dimension),
         leftCircleRadius: ({dimension}) => getRadius(-1, dimension),

@@ -58,6 +58,7 @@
 <script>
 import page from 'page'
 import {scheduleToResize, startResizeInterval} from './resizer.js'
+import NamePlaceTimeSelector from './pages/cube/create/NamePlaceTimeSelector.html'
 import CubeVote from './pages/cube/vote/CubeVote.html'
 import VerticalBarVote from './pages/cube/vote/VerticalBarVote.html'
 import Menu from './shell/menu/Menu.html'
@@ -109,15 +110,15 @@ export default {
         ) {
             switch (viewType) {
                 case 'chart': {
-                    page('/vote/chart')
+                    page('/poll/vote/chart')
                     break;
                 }
                 case 'cube': {
-                    page('/vote/cube')
+                    page('/poll/vote/cube')
                     break;
                 }
-                case 'text': {
-                    page('/vote/text')
+                case 'namePlaceTime': {
+                    page('/poll/create/1')
                     break;
                 }
             }
@@ -129,12 +130,16 @@ export default {
             setPageComp('cube', CubeVote, this)
         })
         page(
-            '/vote/cube', () => {
+            '/poll/vote/cube', () => {
             setPageComp('cube', CubeVote, this)
         })
         page(
-            '/vote/chart', () => {
+            '/poll/vote/chart', () => {
             setPageComp('chart', VerticalBarVote, this)
+        })
+        page(
+            '/poll/create/1', () => {
+            setPageComp('namePlaceTime', NamePlaceTimeSelector, this)
         })
         page({
             hashbang: true
