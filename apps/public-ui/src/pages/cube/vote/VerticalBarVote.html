@@ -1,8 +1,7 @@
-<svelte:window on:resize="handleResize(event)"/>
 <figure
         id="chart"
-        class:leftFigure="!verticalLayout"
-        class:topFigure="verticalLayout"
+        class:leftFigure="!$verticalLayout"
+        class:topFigure="$verticalLayout"
 >
     <!--
         style="
@@ -101,8 +100,8 @@ transform: scale({zoomFactor}, {zoomFactor});
 </figure>
 <table
         class="info"
-        class:bottomInfo="verticalLayout"
-        class:rightInfo="!verticalLayout"
+        class:bottomInfo="$verticalLayout"
+        class:rightInfo="!$verticalLayout"
 >
     <tr>
         <td>
@@ -110,7 +109,6 @@ transform: scale({zoomFactor}, {zoomFactor});
                     dimension="{$currentValue.x}"
                     index=0
                     on:toggle="toggleSurface('x')"
-                    verticalLayout
             ></DimensionInfoIcon>
         </td>
         <td
@@ -127,7 +125,6 @@ transform: scale({zoomFactor}, {zoomFactor});
                 index=1
                 dimension="{$currentValue.y}"
                 on:toggle="toggleSurface('y')"
-                verticalLayout
         ></DimensionInfoIcon>
     </td>
     <td
@@ -142,7 +139,6 @@ transform: scale({zoomFactor}, {zoomFactor});
             <DimensionInfoIcon
                     dimension="{$currentValue.z}"
                     on:toggle="toggleSurface('z')"
-                    verticalLayout
             ></DimensionInfoIcon>
         </td>
         <td
@@ -250,6 +246,7 @@ transform: scale({zoomFactor}, {zoomFactor});
 
 <script>
 import DimensionInfoIcon from '../../../common/control/DimensionInfoIcon.html'
+import {setupCubeListener, shutDownCubeListener} from '../../../cubeListener.js'
 import {scheduleToResize, setResizeCllBck} from '../../../resizer.js'
 import store from '../../../store.js'
 
@@ -295,16 +292,11 @@ export default {
             const maxNegativeValue = getMaxVal(negativeValues)
 
             return maxPositiveValue + maxNegativeValue
-        },
-        // fontSize: ({maxBarSize, maxValue, portalHeight, windowWidth}) => {
-        //     return (maxBarSize / (maxValue * 1.2)) * portalHeight * 0.005 * windowWidth * 0.005;
-        // }
+        }
     },
     data() {
         return {
-            // currentZoom: 1,
-            dimension: null,
-            // zoomFactor: 0.9,
+            dimension: null
         }
     },
     methods: {
@@ -313,65 +305,31 @@ export default {
         ) {
             scheduleToResize(this)
         },
-        // zoomChange(event) {
-        //     let currentZoom = parseInt(event.target.value)
-        //     let zoomFactor
-        //     switch (currentZoom) {
-        //         case 0:
-        //             zoomFactor = 0.8
-        //             break;
-        //         case 1:
-        //             zoomFactor = 0.9
-        //             break;
-        //         case 2:
-        //             zoomFactor = 1
-        //             break
-        //     }
-        //     this.set({currentZoom, zoomFactor})
-        //     this.get().mutationApi.changeZoom(currentZoom)
-        // },
-        // move(
-        //     dimension,
-        //     direction
-        // ) {
-        //     this.pick(dimension)
-        //     this.get().mutationApi.move(dimension, direction)
-        // },
-        // moveToValue(
-        //     dimension,
-        //     value
-        // ) {
-        //     this.pick(dimension)
-        //     this.get().mutationApi.moveToValue(dimension, value)
-        // },
         toggleSurface(
             dimension
         ) {
             this.get().mutationApi.toggleSurface(dimension)
-        },
-        // pick(
-        //     dimension
-        // ) {
-        //     this.set({dimension})
-        // }
+        }
     },
     oncreate() {
-            setResizeCllBck((
-                portalHeight,
-                windowWidth,
-                verticalLayout
-            ) => {
-                let maxBarSize = portalHeight - 60;
+        setResizeCllBck((
+            portalHeight,
+            windowWidth,
+            verticalLayout
+        ) => {
+            let maxBarSize = portalHeight - 60;
 
-                if (verticalLayout) {
-                    maxBarSize = portalHeight / 2 - 20;
-                }
+            if (verticalLayout) {
+                maxBarSize = portalHeight / 2 - 20;
+            }
 
-                this.set({maxBarSize});
-            })
+            this.set({maxBarSize});
+        }, this.store)
+        setupCubeListener(this)
     },
     ondestroy() {
-            setResizeCllBck(null)
+        shutDownCubeListener(this.get().cubeListener, this)
+        setResizeCllBck(null)
     },
     store: () => store
 }

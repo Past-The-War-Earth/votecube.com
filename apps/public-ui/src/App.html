@@ -18,6 +18,7 @@
     </g>
 </svg>
 -->
+<svelte:window on:resize="handleResize(event)"/>
 <article
         class="{activeClass}"
         id="layout"
@@ -55,102 +56,102 @@
 </style>
 
 <script>
-    import page from 'page'
-    import {setupCubeListener} from './cubeListener.js'
-    import CubeVote from './pages/cube/vote/CubeVote.html'
-    import VerticalBarVote from './pages/cube/vote/VerticalBarVote.html'
-    import Menu from './shell/menu/Menu.html'
-    import TopBar from './shell/top/TopBar.html'
-    import store from './store.js';
+import page from 'page'
+import {scheduleToResize, startResizeInterval} from './resizer.js'
+import CubeVote from './pages/cube/vote/CubeVote.html'
+import VerticalBarVote from './pages/cube/vote/VerticalBarVote.html'
+import Menu from './shell/menu/Menu.html'
+import TopBar from './shell/top/TopBar.html'
+import store from './store.js';
 
-    export default {
-        components: {
-            Menu,
-            TopBar
-        },
-        computed: {
-            activeClass: ({$showMainMenu}) => $showMainMenu ? 'active' : ''
-        },
-        data() {
-            return {
-                PageComp: null
+export default {
+    components: {
+        Menu,
+        TopBar
+    },
+    computed: {
+        activeClass: ({$showMainMenu}) => $showMainMenu ? 'active' : ''
+    },
+    data() {
+        return {
+            PageComp: null
+        }
+    },
+    methods: {
+        clickMain() {
+            // if (DOM_API.e(menuElementIdSelector)
+            //   .className
+            //   .indexOf('active') !== -1) {
+            if (this.store.get().showMainMenu) {
+                this.toggleMenu()
             }
         },
-        methods: {
-            clickMain() {
-                // if (DOM_API.e(menuElementIdSelector)
-                //   .className
-                //   .indexOf('active') !== -1) {
-                if (this.store.get().showMainMenu) {
-                    this.toggleMenu()
+        handleResize(
+            event
+        ) {
+            scheduleToResize(this.store)
+        },
+        toggleMenu() {
+            this.store.toggleMainMenu()
+        },
+        toggleSurface(
+            dimension
+        ) {
+            this.get().mutationApi.toggleSurface(dimension)
+        },
+        setPageComp(
+            PageComp
+        ) {
+            this.set({PageComp})
+        },
+        setViewType(
+            viewType
+        ) {
+            switch (viewType) {
+                case 'chart': {
+                    page('/vote/chart')
+                    break;
                 }
-            },
-            toggleMenu() {
-                this.store.toggleMainMenu()
-            },
-            toggleSurface(
-                dimension
-            ) {
-                this.get().mutationApi.toggleSurface(dimension)
-            },
-            setPageComp(
-                PageComp
-            ) {
-                this.set({PageComp})
-            },
-            setViewType(
-                viewType
-            ) {
-                switch (viewType) {
-                  case 'chart': {
-                      page('/vote/chart')
-                      break;
-                  }
-                  case 'cube': {
-                      page('/vote/cube')
-                      break;
-                  }
-                  case 'text': {
-                      page('/vote/text')
-                      break;
-                  }
+                case 'cube': {
+                    page('/vote/cube')
+                    break;
+                }
+                case 'text': {
+                    page('/vote/text')
+                    break;
                 }
             }
-        },
-        oncreate() {
-            page(
-                '/', () => {
-                setPageComp('cube', CubeVote, this)
-            })
-            page(
-                '/vote/cube', () => {
-                setPageComp('cube', CubeVote, this)
-            })
-            page(
-                '/vote/chart', () => {
-                setPageComp('chart', VerticalBarVote, this)
-            })
-            page({
-                hashbang: true
-            })
+        }
+    },
+    oncreate() {
+        page(
+            '/', () => {
+            setPageComp('cube', CubeVote, this)
+        })
+        page(
+            '/vote/cube', () => {
+            setPageComp('cube', CubeVote, this)
+        })
+        page(
+            '/vote/chart', () => {
+            setPageComp('chart', VerticalBarVote, this)
+        })
+        page({
+            hashbang: true
+        })
 
-            startResizeInterval(this.store)
-        },
-        onupdate({ changed, current, previous }) {
-            // this fires after oncreate, and after every state change
-            // once the DOM is synchronised with the data
-            // console.log(`App DOM has been updated`);
-        },
-        store: () => store
-    }
+        startResizeInterval(this.store)
+    },
+    store: () => store
+}
 
-    function setPageComp(
-        viewType,
-        PageComp,
-        appComp
-    ) {
-        appComp.store.set({viewType})
-        appComp.set({PageComp})
-    }
+function setPageComp(
+    viewType,
+    PageComp,
+    appComp
+) {
+    appComp.store.set({viewType})
+    appComp.set({PageComp})
+}
 
 </script>

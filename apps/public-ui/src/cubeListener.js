@@ -24,15 +24,14 @@ export function setupCubeListener(
             },
         )
     })
-
-    startResizeInterval(page, viewCallback)
+    // startResizeInterval(page, viewCallback)
 }
 
 export function shutDownCubeListener(
     cubeListener,
     page
 ) {
-    stopResizeInterval(page)
+    // stopResizeInterval(page)
     setCubeViewPort(
         cubeListener,
         null,

@@ -30,8 +30,8 @@
 <script>
     export default {
         computed: {
-            float: ({index, verticalLayout}) => verticalLayout && index == 0 ? 'right' : 'initial',
-            margin: ({index, verticalLayout}) => verticalLayout && index == 1 ? 'auto' : 'initial',
+            float: ({index, $verticalLayout}) => $verticalLayout && index == 0 ? 'right' : 'initial',
+            margin: ({index, $verticalLayout}) => $verticalLayout && index == 1 ? 'auto' : 'initial',
             topBorderColor: ({dimension}) => borderColor(dimension, 1),
             bottomBorderColor: ({dimension}) => borderColor(dimension, -1)
         }

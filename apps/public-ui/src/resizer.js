@@ -1,9 +1,14 @@
 var viewCallback
 
 export function setResizeCllBck(
-    resizeCallback
+    resizeCallback,
+    store
 ) {
     viewCallback = resizeCallback
+
+    if (resizeCallback) {
+        resize(store)
+    }
 }
 
 export function startResizeInterval(
