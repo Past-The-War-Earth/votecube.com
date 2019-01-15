@@ -38,7 +38,7 @@
     </nav>
     <Menu
         active="{$showMainMenu}"
-        on:selected="toggleMenu()"
+        on:selected="selectMenu(event)"
     ></Menu>
     <section
             id="main"
@@ -57,8 +57,10 @@
 
 <script>
 import page from 'page'
+import {PAGE_CONF} from './pageConfig.js'
 import {scheduleToResize, startResizeInterval} from './resizer.js'
 import NamePlaceTimeSelector from './pages/cube/create/NamePlaceTimeSelector.html'
+import PlaceSelector from './pages/cube/create/PlaceSelector.html'
 import CubeVote from './pages/cube/vote/CubeVote.html'
 import VerticalBarVote from './pages/cube/vote/VerticalBarVote.html'
 import Menu from './shell/menu/Menu.html'
@@ -92,6 +94,17 @@ export default {
         ) {
             scheduleToResize(this.store)
         },
+        selectMenu(
+            menuItem
+        ) {
+            switch(menuItem.key) {
+                case 'createPoll': {
+                    navigateToPage(this, menuItem.key)
+                    break
+                }
+            }
+            this.store.toggleMainMenu()
+        },
         toggleMenu() {
             this.store.toggleMainMenu()
         },
@@ -108,38 +121,29 @@ export default {
         setViewType(
             viewType
         ) {
-            switch (viewType) {
-                case 'chart': {
-                    page('/poll/vote/chart')
-                    break;
-                }
-                case 'cube': {
-                    page('/poll/vote/cube')
-                    break;
-                }
-                case 'namePlaceTime': {
-                    page('/poll/create/1')
-                    break;
-                }
-            }
+            navigateToPage(this, viewType)
         }
     },
     oncreate() {
         page(
             '/', () => {
-            setPageComp('cube', CubeVote, this)
+            setPageComp(PAGE_CONF.cube, CubeVote, this)
         })
         page(
             '/poll/vote/cube', () => {
-            setPageComp('cube', CubeVote, this)
+            setPageComp(PAGE_CONF.cube, CubeVote, this)
         })
         page(
             '/poll/vote/chart', () => {
-            setPageComp('chart', VerticalBarVote, this)
+            setPageComp(PAGE_CONF.chart, VerticalBarVote, this)
         })
         page(
             '/poll/create/1', () => {
-            setPageComp('namePlaceTime', NamePlaceTimeSelector, this)
+            setPageComp(PAGE_CONF.createPoll1, NamePlaceTimeSelector, this)
+        })
+        page(
+            '/place/select', () => {
+            setPageComp(PAGE_CONF.selectPlace, PlaceSelector, this)
         })
         page({
             hashbang: true
@@ -150,12 +154,37 @@ export default {
     store: () => store
 }
 
+function navigateToPage(
+    appComp,
+    pageKey
+) {
+    let currentPage
+    switch (pageKey) {
+        case 'createPoll': {
+            currentPage = PAGE_CONF.createPoll1
+            page('/poll/create/1')
+            break
+        }
+        case 'chart': {
+            currentPage = PAGE_CONF.chart
+            page('/poll/vote/chart')
+            break
+        }
+        case 'cube': {
+            currentPage = PAGE_CONF.cube
+            page('/poll/vote/cube')
+            break
+        }
+    }
+    appComp.store.set({currentPage})
+}
+
 function setPageComp(
-    viewType,
+    currentPage,
     PageComp,
     appComp
 ) {
-    appComp.store.set({viewType})
+    appComp.store.set({currentPage})
     appComp.set({PageComp})
 }
 

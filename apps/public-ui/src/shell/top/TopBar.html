@@ -1,8 +1,13 @@
-<div class="custom-menu-wrapper">
+<div
+    class="custom-menu-wrapper"
+    style="margin-bottom: {wrapperMarginBottom}em"
+>
   <TopBarHeader></TopBarHeader>
+{#if showTopMenu}
   <TopMenu
     on:setViewType
   ></TopMenu>
+{/if}
 </div>
 
 <script>
@@ -13,6 +18,12 @@
         components: {
             TopBarHeader,
             TopMenu
+        },
+        computed: {
+            showTopMenu: ({$currentPage}) => $currentPage && $currentPage.rightMenu,
+            wrapperMarginBottom: ({$currentPage}) => $currentPage && $currentPage.rightMenu
+            ? 2.5
+            : 0.5
         }
     }
 </script>

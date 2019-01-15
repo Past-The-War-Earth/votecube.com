@@ -71,13 +71,13 @@
             </div>
         </figure>
     </section>
-    {#if percentMode}
+{#if percentMode}
     <PercentPicker
         on:close="togglePercentPicker()"
         on:move="move(event)"
         on:moveToValue="moveToValue(event)"
     ></PercentPicker>
-    {:else}
+{:else}
     <a
         class="app-button {$verticalLayout ? 'bottom-left' : 'top-right'}"
         on:click="togglePercentPicker()"
@@ -96,7 +96,7 @@
                 on:toggle="toggleSurface('x')"
             ></DimensionInfoButton>
         </td>
-        {#if $verticalLayout}
+    {#if $verticalLayout}
         <td
         >
             <DimensionInfoButton
@@ -111,7 +111,7 @@
                 on:toggle="toggleSurface('z')"
             ></DimensionInfoButton>
         </td>
-        {/if}
+    {/if}
     </tr>
     {#if !$verticalLayout}
     <tr>
@@ -136,7 +136,7 @@
     <VoteButton
         classes="bottom-right"
     ></VoteButton>
-    {/if}
+{/if}
 </div>
 
 <style>

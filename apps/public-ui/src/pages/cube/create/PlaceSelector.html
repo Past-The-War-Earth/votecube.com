@@ -1,0 +1,62 @@
+<form class="pure-form pure-form-aligned" _lpchecked="1">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="country">Country</label>
+            <select id="country">
+                <option>
+                    Canada
+                </option>
+                <option>
+                    USA
+                </option>
+            </select>
+        </div>
+        <div class="pure-control-group">
+            <label for="division">State</label>
+            <select id="division">
+                <option>
+                    California
+                </option>
+                <option>
+                    Colorado
+                </option>
+            </select>
+        </div>
+        <div class="pure-control-group">
+            <label for="region">County</label>
+            <select id="region">
+                <option>
+                    Broomfield
+                </option>
+                <option>
+                    Denver
+                </option>
+            </select>
+        </div>
+        <div class="pure-control-group">
+            <label for="town">City/Town</label>
+            <select id="town">
+                <option>
+                    Broomfield
+                </option>
+                <option>
+                    Denver
+                </option>
+            </select>
+        </div>
+
+        <div class="pure-controls">
+            <RightButton></RightButton>
+        </div>
+    </fieldset>
+</form>
+
+<script>
+import RightButton from '../../../common/control/button/RightButton.html'
+
+export default {
+    components: {
+        RightButton
+    }
+}
+</script>

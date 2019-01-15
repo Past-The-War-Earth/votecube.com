@@ -94,17 +94,12 @@
                     ? ''
                     : 'custom-menu-tucked'
             },
-            showCube({$viewType}) {
-                return $viewType !== 'cube'
+            showCube({$currentPage}) {
+                return $currentPage.key === 'chart'
             },
-            showChart({$viewType}) {
-                return $viewType !== 'chart'
+            showChart({$currentPage}) {
+                return $currentPage.key === 'cube'
             },
-/*
-            showText({$viewType}) {
-                return $viewType !== 'text'
-            }
-            */
         },
         methods: {
           setViewType(

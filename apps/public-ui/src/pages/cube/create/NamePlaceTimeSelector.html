@@ -1,3 +1,82 @@
-<textarea>
-test
-</textarea>
+<form class="pure-form pure-form-stacked">
+    <fieldset>
+        <legend>Create Poll</legend>
+
+        <label for="name">Name</label>
+        <textarea
+            id="name"
+            placeholder="Name"
+        ></textarea>
+        <span class="pure-form-message">Name is Required</span>
+        <span class="pure-form-message">Name must be at least 3 characters long</span>
+
+        <a class="pure-button">
+            <svg width="29" height="42">
+                <g>
+                    <path
+                        fill="#000000"
+                        d="m27.06604,22.95091c-4.38756,4.44436 -11.17485,5.34945 -16.54847,2.20697c-5.37362,-3.14268 -7.99349,-9.54936 -6.3875,-15.62044c1.606,-6.07104 7.03728,-10.29256 13.24212,-10.29256l9.69385,23.70604l0,0l0,-0.00001z"
+                        transform="rotate(112.13800048828125 15.363859176635742,13.131735801696776) "
+                        stroke="#000000"
+                    />
+                    <polygon
+                        transform="rotate(89.83454132080078 14.739601135253904,31.103363037109375) "
+                        points="25.361064910888672,31.10337410122156 4.118138313293457,44.361249543726444 4.118138313293457,17.84548530727625 25.361064910888672,31.10337410122156 "
+                        fill="#000000"
+                    />
+                    <circle
+                        r="8.90175"
+                        cy="15.20625"
+                        cx="14.8"
+                        fill="#ffffff"
+                    />
+             </g>
+            </svg>
+
+            Select Location
+        </a>
+        <br>
+        <br>
+        <a class="pure-button">
+            <svg width="42" height="42">
+                <g>
+                    <circle fill="#ffffff" stroke-width="4" stroke="#000000" cx="21" cy="21" r="19"/>
+                    <line stroke="#000000" y2="24" x2="20" y1="6" x1="20" stroke-width="4"/>
+                    <line stroke="#000000" transform="rotate(90 28,22.000000000000004) " y2="28" x2="28" y1="16" x1="28" stroke-width="4"/>
+                   <!--
+                    <line stroke="#000000" y2="23" x2="21" y1="6" x1="21" stroke-width="4"/>
+                    <line stroke="#000000" transform="rotate(90 28,21.000000000000004) " y2="27" x2="28" y1="15" x1="28" stroke-width="4"/>
+                    -->
+                </g>
+            </svg>
+            From Date
+            <br>
+            To Date
+        </a>
+
+        <div class="pure-controls">
+            <RightButton
+                circleRadius="23"
+                fillColor="ffffff"
+                highlightColor="000000"
+                strokeWidth="3"
+            ></RightButton>
+        </div>
+    </fieldset>
+</form>
+
+<style>
+    legend {
+        display: none;
+    }
+</style>
+
+<script>
+import RightButton from '../../../common/control/button/RightButton.html'
+
+export default {
+    components: {
+        RightButton
+    }
+}
+</script>

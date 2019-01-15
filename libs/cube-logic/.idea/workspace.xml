@@ -2,19 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/CreateButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/LeftButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/RightButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/PositionSelector.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pageConfig.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/PlaceSelector.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/DimensionInfoIcon.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/DimensionInfoButton.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/LinearPositionPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/LinearPositionPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/VoteButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/VoteButton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/CreateButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/CreateButton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/vote/CubeVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/vote/CubeVote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/vote/VerticalBarVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/vote/VerticalBarVote.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/menu/Menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/menu/Menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/menu/MenuItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/menu/MenuItem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopBar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopMenu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>

@@ -2,19 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/control/button/CreateButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/control/button/LeftButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/control/button/RightButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/cube/create/PositionSelector.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pageConfig.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/cube/create/PlaceSelector.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/control/DimensionInfoIcon.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/button/DimensionInfoButton.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/control/VoteButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/button/VoteButton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/control/button/CreateButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/button/CreateButton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/cube/vote/CubeVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/vote/CubeVote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/cube/vote/VerticalBarVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/vote/VerticalBarVote.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shell/menu/Menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/menu/Menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shell/menu/MenuItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/menu/MenuItem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shell/top/TopBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopBar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shell/top/TopMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopMenu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -28,122 +26,71 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/shell/menu/Menu.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="490">
-                  <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/cube/create/PositionSelector.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="88">
-                  <caret line="4" column="14" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="14" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/App.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="431">
-                  <caret line="140" column="27" selection-start-line="140" selection-start-column="27" selection-end-line="140" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#1553#1576#0#HTML" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/cube/vote/VerticalBarVote.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="246">
-                  <caret line="252" column="16" lean-forward="true" selection-start-line="252" selection-start-column="16" selection-end-line="252" selection-end-column="16" />
-                  <folding>
-                    <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#td#1;n#table#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#td#1;n#tr#2;n#table#0;n#!!top" expanded="true" />
-                    <element signature="e#5077#5166#0#HTML" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/common/control/button/DimensionInfoButton.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
-                  <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/common/control/button/VoteButton.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="110">
-                  <caret line="5" column="45" selection-end-line="18" selection-end-column="8" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="22">
-                  <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenu.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-852">
-                  <caret line="61" selection-start-line="61" selection-end-line="61" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/App.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="120" column="31" selection-start-line="120" selection-start-column="31" selection-end-line="120" selection-end-column="31" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="355">
+              <caret line="151" selection-start-line="151" selection-end-line="151" />
+              <folding>
+                <element signature="e#1558#1581#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pageConfig.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/cube/create/PlaceSelector.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="51" column="7" lean-forward="true" selection-start-line="51" selection-start-column="7" selection-end-line="61" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/shell/top/TopBar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#211#257#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>h2</find>
-      <find>getModXAbsRemainder</find>
-      <find>section {</find>
-      <find>zm</find>
-      <find>1.9</find>
       <find>moveToValue</find>
       <find>move(</find>
       <find>resize</find>
@@ -169,6 +116,11 @@
       <find>DimensionInfo</find>
       <find>Icon</find>
       <find>DimensionInfoIcon</find>
+      <find>toggleMenu</find>
+      <find>viewType</find>
+      <find>custom-menu-wrapper</find>
+      <find>custom-menu-wra</find>
+      <find>navigateToPage</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -199,7 +151,6 @@
         <option value="$PROJECT_DIR$/src/common/control/ZoomPicker.html" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/shell/top/TopBar.html" />
         <option value="$PROJECT_DIR$/src/shell/top/TopBarHeader.html" />
         <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/src/shell/top/TopMenuToggle.html" />
@@ -211,7 +162,6 @@
         <option value="$PROJECT_DIR$/src/common/control/PercentPicker.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/VerticalBarVote.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/CubeVote.html" />
-        <option value="$PROJECT_DIR$/src/shell/menu/MenuItem.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/create/DimensionSelector.html" />
         <option value="$PROJECT_DIR$/src/cubeListener.js" />
         <option value="$PROJECT_DIR$/src/resizer.js" />
@@ -219,15 +169,19 @@
         <option value="$PROJECT_DIR$/src/common/control/LeftButton.html" />
         <option value="$PROJECT_DIR$/src/common/control/button/RightButton.html" />
         <option value="$PROJECT_DIR$/src/common/control/button/LeftButton.html" />
-        <option value="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/vote/VerticalBarVote.html" />
-        <option value="$PROJECT_DIR$/src/common/control/button/CreateButton.html" />
-        <option value="$PROJECT_DIR$/src/pages/cube/vote/CubeVote.html" />
-        <option value="$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html" />
-        <option value="$PROJECT_DIR$/src/shell/top/TopMenu.html" />
-        <option value="$PROJECT_DIR$/src/shell/menu/Menu.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/create/PositionSelector.html" />
+        <option value="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" />
+        <option value="$PROJECT_DIR$/src/pages/cube/vote/CubeVote.html" />
+        <option value="$PROJECT_DIR$/src/shell/menu/Menu.html" />
+        <option value="$PROJECT_DIR$/src/shell/menu/MenuItem.html" />
+        <option value="$PROJECT_DIR$/src/common/control/button/CreateButton.html" />
+        <option value="$PROJECT_DIR$/src/pages/cube/create/PlaceSelector.html" />
+        <option value="$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html" />
+        <option value="$PROJECT_DIR$/src/pageConfig.js" />
+        <option value="$PROJECT_DIR$/src/shell/top/TopMenu.html" />
         <option value="$PROJECT_DIR$/src/App.html" />
+        <option value="$PROJECT_DIR$/src/shell/top/TopBar.html" />
       </list>
     </option>
   </component>
@@ -388,7 +342,7 @@
       <workItem from="1545586306240" duration="2797000" />
       <workItem from="1545881004825" duration="143857000" />
       <workItem from="1547312494148" duration="6224000" />
-      <workItem from="1547525659293" duration="6369000" />
+      <workItem from="1547525659293" duration="14680000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -495,17 +449,24 @@
       <option name="project" value="LOCAL" />
       <updated>1547526263529</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="refactoring &amp; improving/adding new art">
+      <created>1547556937235</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1547556937235</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217769000" />
+    <option name="totallyTimeSpent" value="226080000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14699684" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14699684" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -519,7 +480,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917964" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32398754" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32398754" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -551,7 +512,8 @@
     <MESSAGE value="percent changes" />
     <MESSAGE value="added menu components, refactoring resizing, adding cube dimension selector" />
     <MESSAGE value="refactoring resizing" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring resizing" />
+    <MESSAGE value="refactoring &amp; improving/adding new art" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring &amp; improving/adding new art" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/dac/votecube-ui-svelte/package.json" />
@@ -644,13 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/cube/vote/TextVote.html" />
     <entry file="file://$PROJECT_DIR$/src/pages/cube/create/DimensionSelector.html">
       <provider selected="true" editor-type-id="text-editor" />
@@ -669,13 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shell/menu/MenuItem.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cubeListener.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -687,6 +635,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/button/LeftButton.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="12" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shell/top/TopBarHeader.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/button/VoteButton.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="45" selection-end-line="18" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/button/DimensionInfoButton.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -703,51 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/button/DimensionInfoButton.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/button/LeftButton.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" selection-start-line="5" selection-end-line="12" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/button/CreateButton.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/cube/vote/CubeVote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="246" selection-start-line="246" selection-end-line="246" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="62" column="15" lean-forward="true" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
-          <folding>
-            <element signature="e#2320#2369#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/button/VoteButton.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="45" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/cube/create/PositionSelector.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -755,45 +686,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html">
+    <entry file="file://$PROJECT_DIR$/src/pages/cube/vote/CubeVote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        <state relative-caret-position="487">
+          <caret line="138" selection-start-line="138" selection-end-line="138" />
+          <folding>
+            <element signature="e#5713#5802#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shell/menu/Menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+        <state relative-caret-position="396">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shell/top/TopBarHeader.html">
+    <entry file="file://$PROJECT_DIR$/src/common/control/button/CreateButton.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        <state relative-caret-position="242">
+          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shell/top/TopBar.html">
+    <entry file="file://$PROJECT_DIR$/src/shell/menu/MenuItem.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-852">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="2134">
+          <caret line="97" column="39" selection-start-line="97" selection-start-column="39" selection-end-line="97" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1968">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="30" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/cube/create/PlaceSelector.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="51" column="7" lean-forward="true" selection-start-line="51" selection-start-column="7" selection-end-line="61" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pageConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="120" column="31" selection-start-line="120" selection-start-column="31" selection-end-line="120" selection-end-column="31" />
+        <state relative-caret-position="355">
+          <caret line="151" selection-start-line="151" selection-end-line="151" />
+          <folding>
+            <element signature="e#1558#1581#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shell/top/TopBar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#211#257#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

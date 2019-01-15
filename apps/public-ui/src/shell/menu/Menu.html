@@ -15,10 +15,10 @@
     <ul class="pure-menu-list">
       {#each menuItems as menuItem, index}
         <MenuItem
-            menuIndex="{index}"
-            selectedIndex="{selectedMenuIndex}"
+            index="{index}"
+            menuItem="{menuItem}"
             on:select="selectMenu(event)"
-            text="{menuItem}"
+            selectedIndex="{selectedMenuIndex}"
         ></MenuItem>
       {/each}
     </ul>
@@ -34,10 +34,19 @@ export default {
     },
     data() {
         return {
-            menuItems: [
-                'Polls',
-                'Create Poll',
-                'About'
+            menuItems: [{
+                    index: 0,
+                    key: 'polls',
+                    name: 'Polls'
+                }, {
+                    index: 1,
+                    key: 'createPoll',
+                    name: 'Create Poll',
+                }, {
+                    index: 2,
+                    key: 'about',
+                    name: 'About'
+                }
             ],
             selectedMenuIndex: 0
         }
@@ -50,9 +59,9 @@ export default {
             //   this.toggleAll(event)
             // }
         // },
-        selectMenu(menuIndex) {
-            this.set({selectedMenuIndex: menuIndex})
-            this.fire('selected', menuIndex)
+        selectMenu(menuItem) {
+            this.set({selectedMenuIndex: menuItem.index})
+            this.fire('selected', menuItem)
         }
     }
 }

@@ -3,10 +3,9 @@
   on:click="click()"
 >
   <a
-    href="#"
     class="pure-menu-link"
   >
-    {text}
+    {menuItem.name}
   </a>
 </li>
 
@@ -19,7 +18,7 @@ export default {
     },
     methods: {
         click() {
-            this.fire('select', this.get().menuIndex)
+            this.fire('select', this.get().menuItem)
         }
     }
 }
