@@ -1,5 +1,6 @@
 dependencies:
   '@rush-temp/cube-logic': 'file:projects/cube-logic.tgz'
+  '@rush-temp/forms': 'file:projects/forms.tgz'
   '@rush-temp/public-ui': 'file:projects/public-ui.tgz'
   cross-env: 5.2.0
   css-loader: 2.0.2
@@ -641,6 +642,16 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-ObN6h1v2fTJSmUXoS3nMQ92LbDK9be4TV+6G+omQlGJFdcUX5heKi1LZ1YnRMIgwTLEj3E24bT6tYni50rlCfQ==
+  /chalk/2.4.2:
+    dependencies:
+      ansi-styles: 3.2.1
+      escape-string-regexp: 1.0.5
+      supports-color: 5.5.0
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
   /chokidar/2.0.4:
     dependencies:
       anymatch: 2.0.0
@@ -2067,6 +2078,14 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-PIt2cnwmPfL4hKNwqeiuz4bKfnzHTBv6HyVgjahA6mPLwPDzjDWrplJBMjHUFxku/N3FlmrbyPclad+I+4mJ3A==
+  /js-yaml/3.12.1:
+    dependencies:
+      argparse: 1.0.10
+      esprima: 4.0.1
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-um46hB9wNOKlwkHgiuyEVAybXBjwFUV0Z/RaHJblRd9DXltue9FTYvzCr9ErQrK9Adz5MU4gHWVaNUfdmrC8qA==
   /jsesc/0.5.0:
     dev: false
     hasBin: true
@@ -3794,6 +3813,30 @@ packages:
       typescript: '>=2.1.0 || >=2.1.0-dev || >=2.2.0-dev || >=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev'
     resolution:
       integrity: sha512-CKEcH1MHUBhoV43SA/Jmy1l24HJJgI0eyLbBNSRyFlsQvb9v6Zdq+Nz2vEOH00nC5SUx4SneJ59PZUS/ARcokQ==
+  /tslint/5.12.1/typescript@3.2.2:
+    dependencies:
+      babel-code-frame: 6.26.0
+      builtin-modules: 1.1.1
+      chalk: 2.4.2
+      commander: 2.19.0
+      diff: 3.5.0
+      glob: 7.1.3
+      js-yaml: 3.12.1
+      minimatch: 3.0.4
+      resolve: 1.9.0
+      semver: 5.6.0
+      tslib: 1.9.3
+      tsutils: /tsutils/2.29.0/typescript@3.2.2
+      typescript: 3.2.2
+    dev: false
+    engines:
+      node: '>=4.8.0'
+    hasBin: true
+    id: registry.npmjs.org/tslint/5.12.1
+    peerDependencies:
+      typescript: '>=2.1.0 || >=2.1.0-dev || >=2.2.0-dev || >=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev'
+    resolution:
+      integrity: sha512-sfodBHOucFg6egff8d1BvuofoOQ/nOeYNfbp7LDlKBcLNrL3lmS5zoiDGyOMdT7YsEXAwWpTdAHwOGOc8eRZAw==
   /tsutils/2.29.0:
     dependencies:
       tslib: 1.9.3
@@ -4306,6 +4349,16 @@ packages:
       integrity: sha512-Qsu6FUT59+3VUnwrllHgitfea7pZz0lQKEMxFoGiY6aPlFVhPIQe+DWv76DcBTNaRMIXu0t6p3JijnKtxtAW8A==
       tarball: 'file:projects/cube-logic.tgz'
     version: 0.0.0
+  'file:projects/forms.tgz':
+    dependencies:
+      tslint: /tslint/5.12.1/typescript@3.2.2
+      typescript: 3.2.2
+    dev: false
+    name: '@rush-temp/forms'
+    resolution:
+      integrity: sha512-h8h7Njo9y67Aamwc+DNRXLV9TDgCX6+hq56Wm9LWpsrANyzLi79+ygFgIPzNCu5imT0KnBO3os01qMDbe32FhQ==
+      tarball: 'file:projects/forms.tgz'
+    version: 0.0.0
   'file:projects/public-ui.tgz':
     dependencies:
       cross-env: 5.2.0
@@ -4331,6 +4384,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   '@rush-temp/cube-logic': 'file:./projects/cube-logic.tgz'
+  '@rush-temp/forms': 'file:./projects/forms.tgz'
   '@rush-temp/public-ui': 'file:./projects/public-ui.tgz'
   cross-env: ^5.2.0
   css-loader: ^2.0.2

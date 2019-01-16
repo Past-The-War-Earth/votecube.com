@@ -2,15 +2,25 @@
     <fieldset>
         <legend>Create Poll</legend>
 
-        <label for="name">Name</label>
-        <textarea
+        <label for="name">Poll Name</label>
+        <input
+            bind:value="poll.name"
+            class:missingField="name"
             id="name"
-            placeholder="Name"
-        ></textarea>
-        <span class="pure-form-message">Name is Required</span>
-        <span class="pure-form-message">Name must be at least 3 characters long</span>
+            maxlength="40"
+            placeholder="Poll Name"
+            type="text"
+        >
+        <span class="pure-form-message">Poll Name is Required</span>
+        <span class="pure-form-message">Poll Name must be at least 3 characters long</span>
 
-        <a class="pure-button">
+        <a
+            class="pure-button"
+            class:missingField="name"
+            >
+            <table>
+                <tr>
+                <td>
             <svg width="29" height="42">
                 <g>
                     <path
@@ -32,12 +42,21 @@
                     />
              </g>
             </svg>
-
-            Select Location
+                </td>
+                <td>
+                Denver, Arapahoe County, Colorado, United States of America
+                <!--
+                Select Location
+                -->
+                </td>
+                </tr>
+            </table>
         </a>
-        <br>
-        <br>
-        <a class="pure-button">
+        <span class="pure-form-message">Poll Location is Required</span>
+        <a
+            class="pure-button"
+            class:missingField="name"
+            >
             <svg width="42" height="42">
                 <g>
                     <circle fill="#ffffff" stroke-width="4" stroke="#000000" cx="21" cy="21" r="19"/>
@@ -53,22 +72,54 @@
             <br>
             To Date
         </a>
+        <span class="pure-form-message">Poll Time Frame is Required</span>
 
-        <div class="pure-controls">
+        <nav class="pure-controls">
             <RightButton
                 circleRadius="23"
                 fillColor="ffffff"
                 highlightColor="000000"
                 strokeWidth="3"
             ></RightButton>
-        </div>
+        </nav>
     </fieldset>
 </form>
 
 <style>
-    legend {
-        display: none;
+
+    a {
+        margin: 5px 0;
+        white-space: normal;
+        width: 100%;
     }
+
+    input {
+        width: 100%;
+    }
+
+    label, legend {
+            display: none;
+    }
+
+    nav {
+        bottom: 10px;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+    }
+
+    span {
+        color: red;
+    }
+
+    svg {
+        float: left;
+    }
+
+    td {
+        padding: 5px;
+    }
+
 </style>
 
 <script>
@@ -77,6 +128,33 @@ import RightButton from '../../../common/control/button/RightButton.html'
 export default {
     components: {
         RightButton
+    },
+    computed: {
+        name: ({test}) => true
+    },
+    data() {
+        return {
+            poll: {
+                name: ''
+            },
+            form: {
+                ctrl: {
+                    name: {
+                        valid: true,
+                        errors: {}
+                    }
+                }
+            }
+        }
+    },
+    methods: {
+        createPoll() {
+            const poll = this.get().poll
+            const form = this.get().form
+            if(!poll.name) {
+                return;
+            }
+        }
     }
 }
 </script>

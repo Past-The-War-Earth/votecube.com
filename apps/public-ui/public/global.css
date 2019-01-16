@@ -3714,10 +3714,21 @@ var {
     font-style: normal;
 }
 
+/**
+Remove scrolling on IOS devices
+ */
 article,
 body,
 html {
     height: 100%;
     position: fixed;
     width: 100%;
+}
+
+/**
+Form field styling
+ */
+.missingField {
+    border: 1px solid red !important;
+    border-left: 5px solid red !important;
 }
