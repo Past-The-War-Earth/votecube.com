@@ -2,10 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/content.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../forms/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../forms/.idea/webResources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../forms/src/Data.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../forms/src/Field.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../forms/src/FieldArray.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../forms/src/FieldBase.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../forms/src/FieldGroup.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/.idea/forms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/.idea/forms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/index.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -455,6 +466,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16069546" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

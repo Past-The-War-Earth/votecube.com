@@ -1,0 +1,38 @@
+<label for="name">field.data.label</label>
+<input
+    bind:value="field.value"
+    class:missingField="name"
+    id="name"
+    maxlength="{field.maxLength}"
+    on:change="onChange(event)"
+    on:input="onInput(event)"
+    placeholder="{field.data.placeHolder}"
+    type="text"
+>
+{#each field.errors as error}
+    <span class="pure-form-message">error.message</span>
+{/each}
+
+<style>
+    span {
+        color: red;
+    }
+</style>
+
+<script>
+// 'field' is an input property
+// import {Field} from '@votecube/forms'
+
+export default {
+    methods: {
+        onChange(event) {
+            console.log('on:change')
+        },
+        onInput(event) {
+            console.log('on:input')
+        }
+    }
+   // oncreate() {
+   // }
+}
+</script>
