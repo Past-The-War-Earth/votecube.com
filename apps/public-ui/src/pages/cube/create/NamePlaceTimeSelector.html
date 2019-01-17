@@ -2,6 +2,9 @@
     <fieldset>
         <legend>Create Poll</legend>
 
+        <Text
+            field="form.name"
+        ></Text>
         <label for="name">Poll Name</label>
         <input
             bind:value="poll.name"
@@ -124,6 +127,7 @@
 
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
+import {setupForms} from '../../../forms'
 
 export default {
     components: {
@@ -136,14 +140,6 @@ export default {
         return {
             poll: {
                 name: ''
-            },
-            form: {
-                ctrl: {
-                    name: {
-                        valid: true,
-                        errors: {}
-                    }
-                }
             }
         }
     },
@@ -155,6 +151,19 @@ export default {
                 return;
             }
         }
+    },
+    oncreate() {
+        setupForms((
+            formConstants,
+            Field,
+            FieldGroup
+        ) => {
+            const name = new Field()
+            const form = new FieldGroup({
+                name
+            }, this)
+            this.set({form})
+        })
     }
 }
 </script>
