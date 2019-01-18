@@ -2,23 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/forms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/Field.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/FieldArray.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/FieldBase.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/FieldGroup.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/validator/Validator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/validator/minLength.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/validator/required.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/content.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/content.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/Field.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/FieldArray.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/FieldBase.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/FieldGroup.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/Data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/Data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/Field.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/FieldArray.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/FieldArray.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/FieldBase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/FieldGroup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/FieldGroup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/validator/minLength.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/validator/minLength.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />

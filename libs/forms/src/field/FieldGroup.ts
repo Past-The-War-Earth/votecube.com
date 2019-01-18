@@ -1,7 +1,8 @@
+import {IValidator} from '..'
 import {
 	FieldBase,
 	IFieldBase
-} from './FieldBase'
+}                   from './FieldBase'
 
 export interface IFieldMap {
 	[key: string]: IFieldBase
@@ -18,9 +19,10 @@ export class FieldGroup
 
 	constructor(
 		public fields: IFieldMap = {},
+		validators: IValidator[],
 		nameOrComponentObject: string | object
 	) {
-		super(nameOrComponentObject)
+		super(validators, nameOrComponentObject)
 
 		for (const fieldName in this.fields) {
 			fields[fieldName].name = fieldName

@@ -7,8 +7,8 @@ export function minLength(
 	return (
 		field: IFieldBase,
 	) => {
-		if (!field.inputValue
-			|| field.inputValue.length < minimumLength) {
+		if (!field.value
+			|| field.value.length < minimumLength) {
 			return {
 				key: 'minLength'
 			}

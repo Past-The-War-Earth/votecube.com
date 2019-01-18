@@ -13,7 +13,7 @@ export interface IFieldBase {
 	data: IData
 	errors: IFieldError[]
 	group: IFieldGroup
-	inputValue: string
+	// inputValue: string
 	name: string
 	pristine: boolean
 	touched: boolean
@@ -37,7 +37,7 @@ export class FieldBase
 	value: any
 
 	constructor(
-		public validators?: IValidator[],
+		public validators: IValidator[] = [],
 		nameOrComponentObject?: string | object
 	) {
 		if (nameOrComponentObject) {

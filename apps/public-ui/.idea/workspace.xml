@@ -2,23 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/forms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/src/field/Field.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldArray.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldBase.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldGroup.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/src/validator/Validator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/src/validator/minLength.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/src/validator/required.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/field/Text.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/Text.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/content.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/Field.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/FieldArray.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/FieldBase.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/FieldGroup.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/Data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/Data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/Field.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/FieldArray.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldArray.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldBase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/FieldGroup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldGroup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/validator/minLength.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/validator/minLength.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,11 +59,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/common/field/Text.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-198">
-                  <caret column="34" selection-start-column="34" selection-end-column="34" />
+                <state relative-caret-position="704">
+                  <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
                 </state>
               </provider>
             </entry>
@@ -97,7 +90,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/forms.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="110">
@@ -110,11 +103,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="199">
-                  <caret line="155" column="20" lean-forward="true" selection-start-line="155" selection-start-column="20" selection-end-line="155" selection-end-column="20" />
+                <state relative-caret-position="456">
+                  <caret line="162" column="20" lean-forward="true" selection-start-line="162" selection-start-column="20" selection-end-line="162" selection-end-column="20" />
                   <folding>
                     <element signature="e#3876#3949#0#HTML" expanded="true" />
                   </folding>
@@ -125,8 +118,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/cube/vote/VerticalBarVote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="248" selection-start-line="248" selection-end-line="249" />
+                <state relative-caret-position="-1413">
+                  <caret line="250" lean-forward="true" selection-start-line="250" selection-end-line="251" />
                 </state>
               </provider>
             </entry>
@@ -140,11 +133,14 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/content.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="22">
-                  <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+                <state relative-caret-position="242">
+                  <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -265,11 +261,11 @@
         <option value="$PROJECT_DIR$/src/shell/top/TopBar.html" />
         <option value="$PROJECT_DIR$/public/global.css" />
         <option value="$PROJECT_DIR$/src/common/field/IconButton.html" />
-        <option value="$PROJECT_DIR$/src/common/field/Text.html" />
-        <option value="$PROJECT_DIR$/src/content.js" />
         <option value="$PROJECT_DIR$/src/pages/cube/vote/CubeVote.html" />
         <option value="$PROJECT_DIR$/src/forms.js" />
         <option value="$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html" />
+        <option value="$PROJECT_DIR$/src/content.js" />
+        <option value="$PROJECT_DIR$/src/common/field/Text.html" />
       </list>
     </option>
   </component>
@@ -389,7 +385,7 @@
       <workItem from="1545586306240" duration="2797000" />
       <workItem from="1545881004825" duration="143857000" />
       <workItem from="1547312494148" duration="6224000" />
-      <workItem from="1547525659293" duration="28904000" />
+      <workItem from="1547525659293" duration="30992000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -521,7 +517,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240304000" />
+    <option name="totallyTimeSpent" value="242392000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -795,13 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/Text.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198">
-          <caret column="34" selection-start-column="34" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="533">
@@ -816,20 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-778">
           <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/content.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/cube/vote/VerticalBarVote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="248" selection-start-line="248" selection-end-line="249" />
         </state>
       </provider>
     </entry>
@@ -859,11 +834,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/cube/create/NamePlaceTimeSelector.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="155" column="20" lean-forward="true" selection-start-line="155" selection-start-column="20" selection-end-line="155" selection-end-column="20" />
+        <state relative-caret-position="110">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
           <folding>
             <element signature="e#3876#3949#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/cube/vote/VerticalBarVote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1413">
+          <caret line="250" lean-forward="true" selection-start-line="250" selection-end-line="251" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/Text.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
         </state>
       </provider>
     </entry>

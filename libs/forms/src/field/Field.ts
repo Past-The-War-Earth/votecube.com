@@ -1,17 +1,24 @@
-import {FieldBase} from './FieldBase'
+import {IValidator} from '..'
+import {FieldBase}  from './FieldBase'
 
 export enum LabelRule {
-	DYNAMIC,
-	FIXED,
-	NONE
+	BOTH,
+	IN,
+	NONE,
+	OVER
 }
 
 export interface IFieldRules {
 	label?: LabelRule
 }
 
+export interface IFieldText {
+	label: string;
+}
+
 export interface IField {
 	rules: IFieldRules
+	text: IFieldText
 }
 
 export class Field
@@ -19,14 +26,14 @@ export class Field
 	implements IField {
 
 	rules: IFieldRules = {
-		label: LabelRule.DYNAMIC
+		label: LabelRule.BOTH
 	}
 
 	constructor(
-		validators = [],
+		validators: IValidator[],
 		nameOrComponentObject?: string | object
 	) {
-		super()
+		super(validators, nameOrComponentObject)
 	}
 
 	label(

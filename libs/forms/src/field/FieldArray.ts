@@ -1,7 +1,8 @@
+import {IValidator} from '..'
 import {
 	FieldBase,
 	IFieldBase
-} from './FieldBase'
+}                   from './FieldBase'
 
 export interface IFieldArray
 	extends IFieldBase {
@@ -14,9 +15,10 @@ export class FieldArray
 
 	constructor(
 		public fields: FieldBase[] = [],
-		nameOrComponentObject: string | object
+		validators?: IValidator[],
+		nameOrComponentObject?: string | object
 	) {
-		super(nameOrComponentObject)
+		super(validators, nameOrComponentObject)
 	}
 
 }

@@ -1,4 +1,4 @@
-<label for="name">field.data.label</label>
+<label for="name">{label}</label>
 <input
     bind:value="field.value"
     class:missingField="name"
@@ -6,7 +6,7 @@
     maxlength="{field.maxLength}"
     on:change="onChange(event)"
     on:input="onInput(event)"
-    placeholder="{field.data.placeHolder}"
+    placeholder="{placeHolder}"
     type="text"
 >
 {#each field.errors as error}
@@ -22,8 +22,34 @@
 <script>
 // 'field' is an input property
 // import {Field} from '@votecube/forms'
+import store from '../../../store.js'
 
 export default {
+    computed: {
+        label: ({field, $frmConst}) => {
+            const LabelRule = $frmConst.rules.label;
+            switch(field.rules.label) {
+                case LabelRule.BOTH:
+                    return field.value ? field.text.label : ''
+                case LabelRule.IN:
+                case LabelRule.NONE:
+                    return ''
+                case LabelRule.OVER:
+                    return field.text.label
+            }
+        },
+        placeholder: ({field, $frmConst}) => {
+            const LabelRule = $frmConst.rules.label;
+            switch(field.rules.label) {
+                case LabelRule.BOTH:
+                case LabelRule.IN:
+                    return field.text.label
+                case LabelRule.NONE:
+                case LabelRule.OVER:
+                    return ''
+            }
+        }
+    },
     methods: {
         onChange(event) {
             console.log('on:change')
@@ -31,7 +57,8 @@ export default {
         onInput(event) {
             console.log('on:input')
         }
-    }
+    },
+    store: () => store
    // oncreate() {
    // }
 }
