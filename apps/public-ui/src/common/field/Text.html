@@ -1,19 +1,34 @@
+{#if $forms}
 <label for="name">{label}</label>
 <input
     bind:value="field.value"
-    class:missingField="name"
-    id="name"
-    maxlength="{field.maxLength}"
-    on:change="onChange(event)"
+    class:invalid="touched && errors.length"
+    class:requiredInvalid="field.validatorMap.required && errors.length"
+    class:requiredValid="field.validatorMap.required && !errors.length"
+    id="{id}"
+    use:maxlength="field.maxLength"
+    on:blur="onBlur(event)"
     on:input="onInput(event)"
-    placeholder="{placeHolder}"
+    placeholder="{placeholder}"
     type="text"
 >
-{#each field.errors as error}
-    <span class="pure-form-message">error.message</span>
-{/each}
+    {#if touched}
+        {#each errors as error}
+    <span class="pure-form-message">{error.message}</span>
+        {/each}
+    {/if}
+    {#if !touched || !errors.length}
+    <span class="pure-form-message">&nbsp;</span>
+    {/if}
+{/if}
 
 <style>
+    input {
+        width: 100%;
+    }
+    label {
+        height: 18px;
+    }
     span {
         color: red;
     }
@@ -22,12 +37,20 @@
 <script>
 // 'field' is an input property
 // import {Field} from '@votecube/forms'
-import store from '../../../store.js'
+import store from '../../store.js'
 
 export default {
+    actions: {
+        maxlength(node, maxLength) {
+            if(maxLength) {
+                node.maxLength = maxLength;
+            }
+        }
+    },
     computed: {
-        label: ({field, $frmConst}) => {
-            const LabelRule = $frmConst.rules.label;
+        errors: ({delta, field}) => field.errors,
+        label: ({delta, field, $forms}) => {
+            const LabelRule = $forms.CONSTS.rules.label;
             switch(field.rules.label) {
                 case LabelRule.BOTH:
                     return field.value ? field.text.label : ''
@@ -38,8 +61,8 @@ export default {
                     return field.text.label
             }
         },
-        placeholder: ({field, $frmConst}) => {
-            const LabelRule = $frmConst.rules.label;
+        placeholder: ({delta, field, $forms}) => {
+            const LabelRule = $forms.CONSTS.rules.label;
             switch(field.rules.label) {
                 case LabelRule.BOTH:
                 case LabelRule.IN:
@@ -48,18 +71,21 @@ export default {
                 case LabelRule.OVER:
                     return ''
             }
-        }
+        },
+        touched: ({delta, field}) => field.touched
     },
+    immutable: true,
     methods: {
-        onChange(event) {
-            console.log('on:change')
+        onBlur(event) {
+            this.get().field.onBlur()
         },
         onInput(event) {
-            console.log('on:input')
+            this.get().field.onInput()
         }
     },
+    oncreate() {
+        this.get().field.page = this
+    },
     store: () => store
-   // oncreate() {
-   // }
 }
 </script>

@@ -5,10 +5,12 @@ import {
 import {IValidator} from './Validator'
 
 export function required(): IValidator {
+	requiredValidator.type = 'required'
+
 	return requiredValidator
 }
 
-export function requiredValidator(
+const requiredValidator: IValidator = function (
 	field: IFieldBase
 ): IFieldError[] | IFieldError | null {
 	if (!field.value
@@ -18,4 +20,4 @@ export function requiredValidator(
 			key: 'required'
 		}
 	}
-}
+} as any

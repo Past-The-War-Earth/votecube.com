@@ -1,4 +1,4 @@
-import {IValidator} from '..'
+import {IValidator} from '../validator/Validator'
 import {
 	FieldBase,
 	IFieldBase
@@ -19,6 +19,12 @@ export class FieldArray
 		nameOrComponentObject?: string | object
 	) {
 		super(validators, nameOrComponentObject)
+
+		fields.forEach(
+			field => {
+				field.text  = this.text
+				field.array = this
+			})
 	}
 
 }

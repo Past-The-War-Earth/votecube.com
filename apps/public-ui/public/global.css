@@ -3728,7 +3728,14 @@ html {
 /**
 Form field styling
  */
-.missingField {
-    border: 1px solid red !important;
-    border-left: 5px solid red !important;
+.invalid {
+    border: 1px solid darkred !important;
+}
+
+.requiredInvalid {
+    border-left: 8px solid darkred !important;
+}
+
+.requiredValid {
+    border-left: 8px solid green !important;
 }

@@ -1,9 +1,11 @@
 export function setupForms(
-    viewCallback
+    viewCallback,
+    page
 ) {
     import('@votecube/forms').then((
         forms
     ) => {
-        viewCallback(forms.CONSTS, forms.Field, forms.FieldGroup, forms.FieldArray)
+        page.store.set({forms})
+        viewCallback(forms.CONSTS, forms.Validators, forms.Field, forms.FieldGroup, forms.FieldArray)
     })
 }

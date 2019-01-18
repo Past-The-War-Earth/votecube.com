@@ -4,14 +4,20 @@ import {IValidator} from './Validator'
 export function minLength(
 	minimumLength: number
 ): IValidator {
-	return (
+	const validator = (
 		field: IFieldBase,
 	) => {
-		if (!field.value
-			|| field.value.length < minimumLength) {
+		this.name = 'minLength'
+
+		if (field.value
+			&& field.value.length < minimumLength) {
 			return {
 				key: 'minLength'
 			}
 		}
 	}
+
+	validator.type = 'minLength'
+
+	return validator
 }

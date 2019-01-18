@@ -1,21 +1,11 @@
+{#if form}
 <form class="pure-form pure-form-stacked">
     <fieldset>
         <legend>Create Poll</legend>
 
         <Text
-            field="form.name"
+            field="{form.fields.name}"
         ></Text>
-        <label for="name">Poll Name</label>
-        <input
-            bind:value="poll.name"
-            class:missingField="name"
-            id="name"
-            maxlength="40"
-            placeholder="Poll Name"
-            type="text"
-        >
-        <span class="pure-form-message">Poll Name is Required</span>
-        <span class="pure-form-message">Poll Name must be at least 3 characters long</span>
 
         <a
             class="pure-button"
@@ -87,6 +77,7 @@
         </nav>
     </fieldset>
 </form>
+{/if}
 
 <style>
 
@@ -127,11 +118,15 @@
 
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
+import Text from '../../../common/field/Text.html'
 import {setupForms} from '../../../forms'
+import store from '../../../store'
+import {TEXT} from '../../../text'
 
 export default {
     components: {
-        RightButton
+        RightButton,
+        Text
     },
     computed: {
         name: ({test}) => true
@@ -155,15 +150,20 @@ export default {
     oncreate() {
         setupForms((
             formConstants,
+            Validators,
             Field,
             FieldGroup
         ) => {
-            const name = new Field()
+            const name = new Field('', [
+                Validators.minLength(3),
+                Validators.required()
+            ], 40)
             const form = new FieldGroup({
                 name
-            }, this)
+            }, [], this, TEXT.Cube.Create)
             this.set({form})
-        })
-    }
+        }, this)
+    },
+    store: () => store
 }
 </script>

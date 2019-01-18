@@ -1,39 +1,50 @@
-import {IData}       from '../Data'
 import {IValidator}  from '../validator/Validator'
 import {IFieldArray} from './FieldArray'
 import {IFieldGroup} from './FieldGroup'
 
 export interface IFieldError {
 	key: string;
+	message?: string;
 
 	[otherKey: string]: any;
 }
 
+export interface IPage {
+	set(object: any): void;
+}
+
 export interface IFieldBase {
-	data: IData
 	errors: IFieldError[]
 	group: IFieldGroup
 	// inputValue: string
 	name: string
+	page: IPage;
 	pristine: boolean
+	text
 	touched: boolean
 	valid: boolean
 	validators?: IValidator[]
+	validatorMap?: { [validatorName: string]: IValidator }
 	value: any
+
+	validate(): void;
 }
 
-export class FieldBase
+export abstract class FieldBase
 	implements IFieldBase {
 
 	array: IFieldArray
-	data: IData
+	dirty                 = false
 	errors: IFieldError[] = []
-	inputValue: string
 	group: IFieldGroup
+	lastValue: any
 	name: string
+	page: IPage
 	pristine              = true
+	text
 	touched               = false
 	valid                 = true
+	validatorMap
 	value: any
 
 	constructor(
@@ -42,6 +53,11 @@ export class FieldBase
 	) {
 		if (nameOrComponentObject) {
 			this.setName(nameOrComponentObject)
+		}
+
+		this.validatorMap = {}
+		for (const validator of validators) {
+			this.validatorMap[validator.type] = validator
 		}
 	}
 
@@ -54,5 +70,7 @@ export class FieldBase
 			this.name = nameOrComponentObject.constructor.name
 		}
 	}
+
+	abstract validate(): void;
 
 }
