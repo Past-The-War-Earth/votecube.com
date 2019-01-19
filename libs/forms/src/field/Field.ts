@@ -42,6 +42,7 @@ export class Field
 	implements IField {
 
 	constraints: IFieldConstraints = {}
+	multiOptions: IFieldOption[]   = []
 	options: IFieldOption[]        = []
 	rules: IFieldRules             = {
 		label: LabelRule.BOTH
@@ -62,6 +63,7 @@ export class Field
 			if (constraintsOrOptions instanceof Array) {
 				this.options      = constraintsOrOptions
 				this.selectionMap = {}
+				this.setMultiOptions()
 			} else {
 				this.constraints = constraintsOrOptions
 			}
@@ -80,11 +82,6 @@ export class Field
 		}
 	}
 
-	get multiOptions() {
-		return this.options.filter(
-			option => !this.selectionMap[option.key])
-	}
-
 	get placeholder() {
 		switch (this.rules.label) {
 			case LabelRule.BOTH:
@@ -101,6 +98,13 @@ export class Field
 	) {
 		for (const option of this.options) {
 			option.text = textMap[option.key]
+		}
+	}
+
+	detect() {
+		const delta = addChange()
+		for (const page of this.pages) {
+			page.set({delta})
 		}
 	}
 
@@ -125,21 +129,25 @@ export class Field
 
 		this.validate()
 
-		const delta = addChange()
-		for (const page of this.pages) {
-			page.set({delta})
-		}
+		this.detect()
 	}
 
 	select(
 		option: IFieldOption
 	) {
 		if (this.value instanceof Array) {
-			this.value.push(option)
+			this.selectionMap[option.key] = option
+			this.value                    = [...this.value, option]
+			this.setMultiOptions()
 		} else {
 			this.value = option
 		}
 		this.onBlur()
+	}
+
+	setMultiOptions() {
+		this.multiOptions = this.options.filter(
+			option => !this.selectionMap[option.key])
 	}
 
 	validate(): void {
@@ -169,8 +177,10 @@ export class Field
 		optionToUnselect: IFieldOption
 	) {
 		if (this.value instanceof Array) {
+			delete this.selectionMap[optionToUnselect.key]
 			this.value = this.value.filter(
 				option => option !== optionToUnselect)
+			this.setMultiOptions()
 		} else {
 			this.value = null
 		}

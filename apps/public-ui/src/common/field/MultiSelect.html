@@ -1,34 +1,54 @@
+<svelte:document
+    on:click="onDocumentClick(event)"
+    on:keydown="onDocumentKeydown(event)"
+></svelte:document>
 {#if $forms}
-<div>
+<div
+    class="multi-select"
+>
     <label
         class="field-label"
         use:for="{id}"
     >{label}</label>
     <section
         class="selections"
+        on:click="showOptions(this, event)"
     >
     {#each selections as selection}
         <section
             class="selection"
         >
+            <div
+                class="selection-contents"
+            >
             {selection.text}
+            </div>
             <span
-                on:click="unselect(option)"
-            >x</span>
+                class="unselect"
+                on:click="unselect(selection, event)"
+            >
+                <s class="bar"></s>
+                <s class="bar"></s>
+            </span>
         </section>
     {/each}
     <input
     type="text"
-    on:input="set({filter: this.value})"
+    bind:value="filter"
     >
     </section>
-    <ul>
-    {#each options as option}
+    {#if showOptions}
+    <ul
+        style="top: {dropdownPxFromTop}px;"
+    >
+        {#each options as option}
         <li
+            class="option"
             on:click="select(option)"
         >{option.text}</li>
-    {/each}
+        {/each}
     </ul>
+    {/if}
     {#if touched}
         {#each errors as error}
     <span class="pure-form-message error">{error.message}</span>
@@ -38,12 +58,46 @@
 {/if}
 
 <style>
-    div {
-        position: relative;
+
+    input[type="text"] {
+        border: 0;
+        box-shadow: none;
+        display: inline-block;
+        padding-left: 5px;
+        width: 50px;
     }
+
     li {
         list-style: none;
         padding: 5px;
+    }
+
+    ul {
+        background-color: white;
+        border: 1px solid gray;
+        max-height: 300px;
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .multi-select {
+        position: relative;
+    }
+
+    .selection {
+        background-color: #ccc;
+        border: 1px solid #000;
+        border-radius: 4px;
+        color: black;
+        display: inline-block;
+        margin: 5px 0 5px 5px;
+        padding-left: 8px;
+    }
+
+    .selection-contents {
+        float: left;
+        padding-top: 8px;
     }
 
     .selections {
@@ -55,12 +109,36 @@
         width: 100%;
     }
 
-    ul {
-        float: left;
-        position: absolute;
-        bottom: 0px;
-        z-index: 100;
+    .selection-selected {
+
     }
+
+    .unselect {
+        display: inline-block;
+        height: 26px;
+        margin-top: 4px;
+        position: relative;
+        width: 26px;
+    }
+
+    .unselect .bar {
+        background-color: white;
+        display: block;
+        height: 2px;
+        width: 20px;
+        position: absolute;
+        right: 4px;
+        top: 12px;
+    }
+
+    .unselect .bar:first-child {
+        transform: rotate(-45deg);
+    }
+
+    .unselect .bar:last-child {
+        transform: rotate(45deg);
+    }
+
 </style>
 
 <script>
@@ -83,25 +161,67 @@ export default {
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
         selections: ({delta, field}) => field.value,
-        options: ({delta, field, filter}) => field.multiOptions
-        .filter(option => filter
-        ? option.text.toLowerCase().indexOf(filter) > -1
-        : true),
+        options: ({delta, field, filter}) => filter
+        ? field.multiOptions
+            .filter(option =>
+                option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
+        : field.multiOptions,
         touched: ({delta, field}) => field.touched
+    },
+    data() {
+        return {
+            filter: ''
+        }
     },
     immutable: true,
     methods: {
         onBlur(event) {
             this.get().field.onBlur()
         },
+        onDocumentClick(event) {
+            this.set({showOptions: false})
+        },
+        onDocumentKeydown(event) {
+            if(!this.get().showOptions) {
+                return;
+            }
+            switch(event.key) {
+                case 'ArrowDown':
+                case 'ArrowUp':
+                case 'Escape':
+                    console.log(event);
+                    break;
+                case 'Enter':
+                    console.log(event);
+                    event.preventDefault()
+            }
+        },
         onInput(event) {
             this.get().field.onInput()
         },
         select(option) {
             this.get().field.select(option)
+            this.set({showOptions: false})
+            this.set({filter: ''})
         },
-        unselect(option) {
+        showOptions(element, event) {
+            if(!this.get().showOptions) {
+                if(this.get().field.multiOptions.length) {
+                    this.set({
+                        showOptions: true,
+                        dropdownPxFromTop: element.offsetHeight
+                    })
+                    event.stopPropagation()
+                }
+
+                // dropdownPxFromTop
+            }
+            element.lastElementChild.focus()
+        },
+        unselect(option, event) {
             this.get().field.unselect(option)
+            event.stopPropagation()
+            this.set({filter: ''})
         }
     },
     oncreate() {

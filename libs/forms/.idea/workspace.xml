@@ -2,45 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87bf05c7-ab0c-4baa-b157-74a6b0779ece" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/public/data/locations.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text/en-us/locations.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text/en-us/ui.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/ajax.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Select.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/LocationIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/TimeIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/locations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/text/locations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/text/setText.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/text/ui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationDates.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Position.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/cubeListener.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/cubeLogic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/forms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pageConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/DimensionSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Dimension.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/PlaceSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Location.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/PositionSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Dates.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/vote/CubeVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Cube.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/vote/VerticalBarVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Chart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopMenu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/text.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/Field.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/FieldArray.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldArray.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldBase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/FieldGroup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldGroup.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validator/required.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validator/required.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -67,8 +33,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/field/Field.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="304">
-                  <caret line="59" selection-start-line="59" selection-end-line="59" />
+                <state relative-caret-position="349">
+                  <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
                   <folding>
                     <element signature="e#0#42#0" expanded="true" />
                   </folding>
@@ -277,7 +243,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547652570107</updated>
-      <workItem from="1547652571480" duration="31411000" />
+      <workItem from="1547652571480" duration="33482000" />
     </task>
     <task id="LOCAL-00001" summary="NamePlaceTimeSelector form layout and start of forms logic">
       <created>1547652705203</created>
@@ -304,7 +270,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31411000" />
+    <option name="totallyTimeSpent" value="33482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
@@ -437,8 +403,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/field/Field.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="349">
+          <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>

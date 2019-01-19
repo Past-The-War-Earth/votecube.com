@@ -2,45 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/public/data/locations.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text/en-us/locations.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text/en-us/ui.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/ajax.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Select.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/LocationIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/TimeIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/locations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/text/locations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/text/setText.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/text/ui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationDates.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Position.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/cubeListener.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/cubeLogic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/forms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pageConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/DimensionSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Dimension.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/NamePlaceTimeSelector.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/PlaceSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Location.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/create/PositionSelector.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Dates.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/vote/CubeVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Cube.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/cube/vote/VerticalBarVote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Chart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopMenu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/text.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../forms/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/Field.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/field/FieldArray.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/FieldArray.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/FieldBase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/field/FieldGroup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/FieldGroup.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/validator/required.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/validator/required.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
