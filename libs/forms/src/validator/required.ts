@@ -13,9 +13,12 @@ export function required(): IValidator {
 const requiredValidator: IValidator = function (
 	field: IFieldBase
 ): IFieldError[] | IFieldError | null {
-	if (!field.value
-		&& field.value !== false
-		&& field.value !== 0) {
+	const value = field.value
+	if ((!value
+		&& value !== false
+		&& value !== 0)
+		|| (value instanceof Array
+			&& !value.length)) {
 		return {
 			key: 'required'
 		}

@@ -1,0 +1,113 @@
+{#if $forms}
+<div>
+    <label
+        class="field-label"
+        use:for="{id}"
+    >{label}</label>
+    <section
+        class="selections"
+    >
+    {#each selections as selection}
+        <section
+            class="selection"
+        >
+            {selection.text}
+            <span
+                on:click="unselect(option)"
+            >x</span>
+        </section>
+    {/each}
+    <input
+    type="text"
+    on:input="set({filter: this.value})"
+    >
+    </section>
+    <ul>
+    {#each options as option}
+        <li
+            on:click="select(option)"
+        >{option.text}</li>
+    {/each}
+    </ul>
+    {#if touched}
+        {#each errors as error}
+    <span class="pure-form-message error">{error.message}</span>
+        {/each}
+    {/if}
+</div>
+{/if}
+
+<style>
+    div {
+        position: relative;
+    }
+    li {
+        list-style: none;
+        padding: 5px;
+    }
+
+    .selections {
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 3px #ddd;
+        min-height: 2.25em;
+        width: 100%;
+    }
+
+    ul {
+        float: left;
+        position: absolute;
+        bottom: 0px;
+        z-index: 100;
+    }
+</style>
+
+<script>
+import store from '../../store.js'
+
+export default {
+    actions: {
+        for(node, id) {
+            if(id) {
+                node.id = id;
+            }
+        },
+        id(node, id) {
+            if(id) {
+                node.id = id;
+            }
+        }
+    },
+    computed: {
+        errors: ({delta, field}) => field.errors,
+        label: ({delta, field}) => field.label,
+        selections: ({delta, field}) => field.value,
+        options: ({delta, field, filter}) => field.multiOptions
+        .filter(option => filter
+        ? option.text.toLowerCase().indexOf(filter) > -1
+        : true),
+        touched: ({delta, field}) => field.touched
+    },
+    immutable: true,
+    methods: {
+        onBlur(event) {
+            this.get().field.onBlur()
+        },
+        onInput(event) {
+            this.get().field.onInput()
+        },
+        select(option) {
+            this.get().field.select(option)
+        },
+        unselect(option) {
+            this.get().field.unselect(option)
+        }
+    },
+    oncreate() {
+        const field = this.get().field
+        this.get().field.pages.push(this)
+    },
+    store: () => store
+}
+</script>

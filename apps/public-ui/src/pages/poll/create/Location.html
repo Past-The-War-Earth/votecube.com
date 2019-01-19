@@ -1,15 +1,10 @@
+{#if form}
 <form class="pure-form pure-form-aligned" _lpchecked="1">
     <fieldset>
         <div class="pure-control-group">
-            <label for="country">Country</label>
-            <select id="country">
-                <option>
-                    Canada
-                </option>
-                <option>
-                    USA
-                </option>
-            </select>
+            <MultiSelect
+                field="{form.fields.continents}"
+            ></MultiSelect>
         </div>
         <div class="pure-control-group">
             <label for="division">State</label>
@@ -50,13 +45,40 @@
         </div>
     </fieldset>
 </form>
+{/if}
 
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
+import MultiSelect from '../../../common/field/MultiSelect.html'
+import {loadForms} from '../../../libs/forms'
+import {loadLocations} from '../../../libs/locations'
+import {loadLocations as loadLocText} from '../../../libs/text/locations'
+import store from '../../../store'
 
 export default {
     components: {
+        MultiSelect,
         RightButton
-    }
+    },
+    oncreate() {
+        Promise.all([
+            loadForms(this),
+            loadLocations(),
+            loadLocText(this.store, 'en-us')
+        ]).then(([
+            {Field, FieldGroup, Validators},
+            locations,
+                    _
+        ]) => {
+            const form = new FieldGroup({
+                continents: new Field([], [
+                    Validators.required()
+                ], locations.continents),
+            }, [], this, this.store.get().text.UI.Poll.Create)
+            form.optionText = this.store.get().text.LOCATIONS
+            this.set({form})
+        })
+    },
+    store: () => store
 }
 </script>

@@ -1,24 +1,24 @@
 {#if $forms}
-<label for="name">{label}</label>
+<label
+    class="field-label"
+    use:for="{id}"
+>{label}</label>
 <input
     bind:value="field.value"
     class:invalid="touched && errors.length"
     class:requiredInvalid="field.validatorMap.required && errors.length"
     class:requiredValid="field.validatorMap.required && !errors.length"
-    id="{id}"
-    use:maxlength="field.maxLength"
     on:blur="onBlur(event)"
     on:input="onInput(event)"
     placeholder="{placeholder}"
     type="text"
+    use:id="{id}"
+    use:maxlength="field.maxLength"
 >
     {#if touched}
         {#each errors as error}
-    <span class="pure-form-message">{error.message}</span>
+<span class="pure-form-message error">{error.message}</span>
         {/each}
-    {/if}
-    {#if !touched || !errors.length}
-    <span class="pure-form-message">&nbsp;</span>
     {/if}
 {/if}
 
@@ -26,21 +26,23 @@
     input {
         width: 100%;
     }
-    label {
-        height: 18px;
-    }
-    span {
-        color: red;
-    }
 </style>
 
 <script>
-// 'field' is an input property
-// import {Field} from '@votecube/forms'
 import store from '../../store.js'
 
 export default {
     actions: {
+        for(node, id) {
+            if(id) {
+                node.id = id;
+            }
+        },
+        id(node, id) {
+            if(id) {
+                node.id = id;
+            }
+        },
         maxlength(node, maxLength) {
             if(maxLength) {
                 node.maxLength = maxLength;
@@ -49,29 +51,8 @@ export default {
     },
     computed: {
         errors: ({delta, field}) => field.errors,
-        label: ({delta, field, $forms}) => {
-            const LabelRule = $forms.CONSTS.rules.label;
-            switch(field.rules.label) {
-                case LabelRule.BOTH:
-                    return field.value ? field.text.label : ''
-                case LabelRule.IN:
-                case LabelRule.NONE:
-                    return ''
-                case LabelRule.OVER:
-                    return field.text.label
-            }
-        },
-        placeholder: ({delta, field, $forms}) => {
-            const LabelRule = $forms.CONSTS.rules.label;
-            switch(field.rules.label) {
-                case LabelRule.BOTH:
-                case LabelRule.IN:
-                    return field.text.label
-                case LabelRule.NONE:
-                case LabelRule.OVER:
-                    return ''
-            }
-        },
+        label: ({delta, field}) => field.label,
+        placeholder: ({delta, field}) => field.placeholder,
         touched: ({delta, field}) => field.touched
     },
     immutable: true,
@@ -84,7 +65,7 @@ export default {
         }
     },
     oncreate() {
-        this.get().field.page = this
+        this.get().field.pages.push(this)
     },
     store: () => store
 }

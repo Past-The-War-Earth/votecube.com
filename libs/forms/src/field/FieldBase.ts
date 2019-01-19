@@ -18,7 +18,8 @@ export interface IFieldBase {
 	group: IFieldGroup
 	// inputValue: string
 	name: string
-	page: IPage;
+	optionText
+	pages: IPage[]
 	pristine: boolean
 	text
 	touched: boolean
@@ -39,7 +40,8 @@ export abstract class FieldBase
 	group: IFieldGroup
 	lastValue: any
 	name: string
-	page: IPage
+	optionText
+	pages: IPage[]        = []
 	pristine              = true
 	text
 	touched               = false

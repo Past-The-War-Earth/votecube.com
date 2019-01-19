@@ -1,0 +1,35 @@
+{
+  "UI": {
+    "Poll": {
+      "Create": {
+        "NameLocationDates": {
+          "name": {
+            "label": "Poll Name",
+            "errors": {
+              "minLength": "Poll Name must be at least 3 characters long",
+              "required": "Poll Name is required"
+            }
+          },
+          "location": {
+            "errors": {
+              "required": "Poll Location is required"
+            }
+          },
+          "timeframe": {
+            "errors": {
+              "required": "Poll Time Frame is Required"
+            }
+          }
+        },
+        "Location": {
+          "continents": {
+            "label": "Continent",
+            "errors": {
+              "required": "Continent is required"
+            }
+          }
+        }
+      }
+    }
+  }
+}

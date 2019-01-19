@@ -1,23 +1,17 @@
 {#if $forms}
-<a
-    class="pure-button"
-    class:invalid="touched && errors.length"
-    class:requiredInvalid="field.validatorMap.required && errors.length"
-    class:requiredValid="field.validatorMap.required && !errors.length"
-    on:click="fire('selectLocation')"
+<label
+    class="field-label"
+    for="country"
+    use:for="{id}"
+>Country</label>
+<select
+    id="country"
     use:id="{id}"
 >
-    <table>
-        <tr>
-        <td>
-            <slot name="icon"></slot>
-        </td>
-        <td>
-            <slot name="text"></slot>
-        </td>
-        </tr>
-    </table>
-</a>
+    <option>
+        Canada
+    </option>
+</select>
     {#if touched}
         {#each errors as error}
 <span class="pure-form-message error">{error.message}</span>
@@ -26,21 +20,9 @@
 {/if}
 
 <style>
-
-    a {
-        margin: 5px 0;
-        white-space: normal;
+    select {
         width: 100%;
     }
-
-    svg {
-        float: left;
-    }
-
-    td {
-        padding: 5px;
-    }
-
 </style>
 
 <script>
@@ -48,24 +30,36 @@ import store from '../../store.js'
 
 export default {
     actions: {
+        for(node, id) {
+            if(id) {
+                node.id = id;
+            }
+        },
         id(node, id) {
             if(id) {
                 node.id = id;
+            }
+        },
+        maxlength(node, maxLength) {
+            if(maxLength) {
+                node.maxLength = maxLength;
             }
         }
     },
     computed: {
         errors: ({delta, field}) => field.errors,
+        label: ({delta, field}) => field.label,
+        placeholder: ({delta, field}) => field.placeholder,
         touched: ({delta, field}) => field.touched
     },
-    data() {
-        return {
-            iconWidth: 42
-        }
-    },
+    immutable: true,
     methods: {
         onBlur(event) {
             this.get().field.onBlur()
+        },
+        onInput(event) {
+            console.log('onInput');
+            this.get().field.onInput()
         }
     },
     oncreate() {

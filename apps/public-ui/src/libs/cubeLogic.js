@@ -1,6 +1,6 @@
-import {startResizeInterval, stopResizeInterval} from './resizer.js'
+import {startResizeInterval, stopResizeInterval} from '../resizer.js'
 
-export function setupCubeListener(
+export function loadCubeLogic(
     page,
     viewCallback
 ) {

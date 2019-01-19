@@ -28,7 +28,7 @@
     {#if showCube}
     <li
         class="viewType"
-        on:click="setViewType('cube')"
+        on:click="setViewType(routes.cube)"
     >
     <svg width="24" height="28">
      <g>
@@ -48,7 +48,7 @@
     {#if showChart}
     <li
         class="viewType"
-        on:click="setViewType('chart')"
+        on:click="setViewType(routes.chart)"
     >
     <svg width="24" height="28">
      <g>
@@ -85,7 +85,8 @@
 </style>
 
 <script>
-	import store from '../../store.js';
+	import store from '../../store.js'
+	import * as routes from '../../routes'
 
     export default {
         computed: {
@@ -95,11 +96,19 @@
                     : 'custom-menu-tucked'
             },
             showCube({$currentPage}) {
-                return $currentPage.key === 'chart'
+                return $currentPage.key === routes.CHART
             },
             showChart({$currentPage}) {
-                return $currentPage.key === 'cube'
+                return $currentPage.key === routes.CUBE
             },
+        },
+        data() {
+            return {
+                routes: {
+                    cube: routes.CUBE,
+                    chart: routes.CHART
+                }
+            }
         },
         methods: {
           setViewType(

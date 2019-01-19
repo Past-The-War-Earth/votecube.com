@@ -1,23 +1,3 @@
-<!--
-<svg
-        width="50" height="50" xmlns="http://www.w3.org/2000/svg"
-        on:click="test()"
->
-    &lt;!&ndash; Created with SVG-edit - https://github.com/SVG-Edit/svgedit&ndash;&gt;
-    <g class="layer">
-        <title>Layer 1</title>
-        <circle cx="25.04944" cy="24.95393" fill="#FF0000" id="svg_4"
-                r="24.08726"
-                stroke="#FF0000" stroke-width="3"
-                transform="rotate(179.928 25.0494 24.9539)"/>
-        <text fill="#FFFFFF" font-family="monospace" font-size="24"
-              id="svg_5"
-              stroke="#FFFFFF" stroke-width="0" text-anchor="middle"
-              transform="rotate(0.321025 27.4393 23.2802) matrix(1.44163 0 0 1.64003 16.5919 -4.80528)"
-              x="7.53445" xml:space="preserve" y="25.169">&gt;</text>
-    </g>
-</svg>
--->
 <svelte:window on:resize="handleResize(event)"/>
 <article
         class="{activeClass}"
@@ -56,16 +36,28 @@
 </style>
 
 <script>
-import page from 'page'
-import {PAGE_CONF} from './pageConfig.js'
+
 import {scheduleToResize, startResizeInterval} from './resizer.js'
-import NamePlaceTimeSelector from './pages/cube/create/NamePlaceTimeSelector.html'
-import PlaceSelector from './pages/cube/create/PlaceSelector.html'
-import CubeVote from './pages/cube/vote/CubeVote.html'
-import VerticalBarVote from './pages/cube/vote/VerticalBarVote.html'
 import Menu from './shell/menu/Menu.html'
 import TopBar from './shell/top/TopBar.html'
 import store from './store.js';
+import {navigateToPage, setupRoutes} from './routes.js'
+import * as routes from './routes'
+import {loadUi} from './libs/text/ui'
+
+import DatesSelector from './pages/poll/create/Dates.html'
+import LocationSelector from './pages/poll/create/Location.html'
+import NameLocationDatesSelector from './pages/poll/create/NameLocationDates.html'
+import CubeVote from './pages/poll/vote/Cube.html'
+import VerticalBarVote from './pages/poll/vote/Chart.html'
+
+const pageMap = {
+    [routes.CHART]: VerticalBarVote,
+    [routes.CREATE_POLL_NAME_LOG_DATE]: NameLocationDatesSelector,
+    [routes.CUBE]: CubeVote,
+    [routes.SELECT_POLL_DATES]: DatesSelector,
+    [routes.SELECT_POLL_LOCATION]: LocationSelector,
+};
 
 export default {
     components: {
@@ -98,8 +90,8 @@ export default {
             menuItem
         ) {
             switch(menuItem.key) {
-                case 'createPoll': {
-                    navigateToPage(this, menuItem.key)
+                case routes.CREATE_POLL_NAME_LOG_DATE: {
+                    navigateToPage(menuItem.key)
                     break
                 }
             }
@@ -121,71 +113,17 @@ export default {
         setViewType(
             viewType
         ) {
-            navigateToPage(this, viewType)
+            navigateToPage(viewType)
         }
     },
     oncreate() {
-        page(
-            '/', () => {
-            setPageComp(PAGE_CONF.cube, CubeVote, this)
-        })
-        page(
-            '/poll/vote/cube', () => {
-            setPageComp(PAGE_CONF.cube, CubeVote, this)
-        })
-        page(
-            '/poll/vote/chart', () => {
-            setPageComp(PAGE_CONF.chart, VerticalBarVote, this)
-        })
-        page(
-            '/poll/create/1', () => {
-            setPageComp(PAGE_CONF.createPoll1, NamePlaceTimeSelector, this)
-        })
-        page(
-            '/place/select', () => {
-            setPageComp(PAGE_CONF.selectPlace, PlaceSelector, this)
-        })
-        page({
-            hashbang: true
-        })
+        loadUi(this.store, 'en-us')
+
+        setupRoutes(this, pageMap)
 
         startResizeInterval(this.store)
     },
     store: () => store
-}
-
-function navigateToPage(
-    appComp,
-    pageKey
-) {
-    let currentPage
-    switch (pageKey) {
-        case 'createPoll': {
-            currentPage = PAGE_CONF.createPoll1
-            page('/poll/create/1')
-            break
-        }
-        case 'chart': {
-            currentPage = PAGE_CONF.chart
-            page('/poll/vote/chart')
-            break
-        }
-        case 'cube': {
-            currentPage = PAGE_CONF.cube
-            page('/poll/vote/cube')
-            break
-        }
-    }
-    appComp.store.set({currentPage})
-}
-
-function setPageComp(
-    currentPage,
-    PageComp,
-    appComp
-) {
-    appComp.store.set({currentPage})
-    appComp.set({PageComp})
 }
 
 </script>

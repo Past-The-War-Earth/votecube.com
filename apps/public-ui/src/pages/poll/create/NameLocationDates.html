@@ -1,0 +1,120 @@
+{#if form}
+<form class="pure-form pure-form-stacked">
+    <fieldset>
+        <legend>Create Poll</legend>
+        <Text
+            field="{form.fields.name}"
+        ></Text>
+        <IconBlock
+            field="{form.fields.location}"
+            on:selectLocation="selectLocation()"
+        >
+            <div slot="icon">
+                <LocationIcon
+                    width="42"
+                ></LocationIcon>
+            </div>
+            <div slot="text">
+            Poll Location
+            </div>
+        </IconBlock>
+        <IconBlock
+            field="{form.fields.timeframe}"
+        >
+            <div slot="icon">
+                <TimeIcon></TimeIcon>
+            </div>
+            <div slot="text">
+            Poll Timeframe
+            </div>
+        </IconBlock>
+
+        <nav class="pure-controls">
+            <RightButton
+                circleRadius="23"
+                fillColor="ffffff"
+                highlightColor="000000"
+                strokeWidth="3"
+            ></RightButton>
+        </nav>
+    </fieldset>
+</form>
+{/if}
+
+<style>
+
+    legend {
+            display: none;
+    }
+
+    nav {
+        bottom: 10px;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+    }
+
+</style>
+
+<script>
+import RightButton from '../../../common/control/button/RightButton.html'
+import Text from '../../../common/field/Text.html'
+import IconBlock from '../../../common/field/IconBlock.html'
+import LocationIcon from '../../../common/icon/LocationIcon.html'
+import TimeIcon from '../../../common/icon/TimeIcon.html'
+import {loadForms} from '../../../libs/forms'
+import * as routes from '../../../routes'
+import store from '../../../store'
+
+export default {
+    components: {
+        IconBlock,
+        LocationIcon,
+        RightButton,
+        Text,
+        TimeIcon
+    },
+    computed: {
+        name: ({test}) => true
+    },
+    data() {
+        return {
+            poll: {
+                name: ''
+            }
+        }
+    },
+    methods: {
+        createPoll() {
+            const poll = this.get().poll
+            const form = this.get().form
+            if(!poll.name) {
+                return;
+            }
+        },
+        selectLocation() {
+            routes.navigateToPage(routes.SELECT_POLL_LOCATION)
+        }
+    },
+    oncreate() {
+        loadForms(this).then((
+            {Field, FieldGroup, Validators}
+        ) => {
+            const form = new FieldGroup({
+                location: new Field('', [
+                    Validators.required()
+                ]),
+                name: new Field('', [
+                    Validators.minLength(3),
+                    Validators.required()
+                ], { maxLength: 40}),
+                timeframe: new Field('', [
+                    Validators.required()
+                ])
+            }, [], this, this.store.get().text.UI.Poll.Create)
+            this.set({form})
+        })
+    },
+    store: () => store
+}
+</script>

@@ -12,6 +12,17 @@ export enum LabelRule {
 	OVER
 }
 
+export interface IFieldConstraints {
+	maxLength?: '' | number
+}
+
+export interface IFieldOption {
+	key: string
+	text?: string
+
+	[optionalKey: string]: any
+}
+
 export interface IFieldRules {
 	label?: LabelRule
 }
@@ -30,22 +41,70 @@ export class Field
 	extends FieldBase
 	implements IField {
 
-	rules: IFieldRules = {
+	constraints: IFieldConstraints = {}
+	options: IFieldOption[]        = []
+	rules: IFieldRules             = {
 		label: LabelRule.BOTH
 	}
+	selectionMap: { [optionKey: string]: IFieldOption }
 	text: IFieldText
 
 	constructor(
-		value                         = '',
-		validators: IValidator[]      = [],
-		public maxLength: '' | number = ''
+		value                    = '',
+		validators: IValidator[] = [],
+		constraintsOrOptions?: IFieldConstraints | IFieldOption[]
 	) {
 		super(validators)
 		this.value     = value
 		this.lastValue = value
+
+		if (constraintsOrOptions) {
+			if (constraintsOrOptions instanceof Array) {
+				this.options      = constraintsOrOptions
+				this.selectionMap = {}
+			} else {
+				this.constraints = constraintsOrOptions
+			}
+		}
 	}
 
-	label(
+	get label() {
+		switch (this.rules.label) {
+			case LabelRule.BOTH:
+				return this.value ? this.text.label : ''
+			case LabelRule.IN:
+			case LabelRule.NONE:
+				return ''
+			case LabelRule.OVER:
+				return this.text.label
+		}
+	}
+
+	get multiOptions() {
+		return this.options.filter(
+			option => !this.selectionMap[option.key])
+	}
+
+	get placeholder() {
+		switch (this.rules.label) {
+			case LabelRule.BOTH:
+			case LabelRule.IN:
+				return this.text.label
+			case LabelRule.NONE:
+			case LabelRule.OVER:
+				return ''
+		}
+	}
+
+	set optionText(
+		textMap
+	) {
+		for (const option of this.options) {
+			option.text = textMap[option.key]
+		}
+	}
+
+	labelRule(
 		labelRule: LabelRule = LabelRule.BOTH
 	) {
 		this.rules.label = labelRule
@@ -66,7 +125,21 @@ export class Field
 
 		this.validate()
 
-		this.page.set({delta: addChange()})
+		const delta = addChange()
+		for (const page of this.pages) {
+			page.set({delta})
+		}
+	}
+
+	select(
+		option: IFieldOption
+	) {
+		if (this.value instanceof Array) {
+			this.value.push(option)
+		} else {
+			this.value = option
+		}
+		this.onBlur()
 	}
 
 	validate(): void {
@@ -90,5 +163,17 @@ export class Field
 			})
 
 		this.valid = !this.errors.length
+	}
+
+	unselect(
+		optionToUnselect: IFieldOption
+	) {
+		if (this.value instanceof Array) {
+			this.value = this.value.filter(
+				option => option !== optionToUnselect)
+		} else {
+			this.value = null
+		}
+		this.onBlur()
 	}
 }

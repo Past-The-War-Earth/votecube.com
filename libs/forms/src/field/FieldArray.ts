@@ -25,6 +25,18 @@ export class FieldArray
 				field.text  = this.text
 				field.array = this
 			})
+
+		this.validate()
+	}
+
+	validate(): void {
+		this.valid = true
+		for (const field of this.fields) {
+			field.validate()
+			if (!field.valid) {
+				this.valid = false
+			}
+		}
 	}
 
 }
