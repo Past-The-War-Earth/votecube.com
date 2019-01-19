@@ -28,6 +28,8 @@
 <script>
 import MenuItem from './MenuItem.html'
 
+import * as routes from '../../routes'
+
 export default {
     components: {
         MenuItem
@@ -36,11 +38,11 @@ export default {
         return {
             menuItems: [{
                     index: 0,
-                    key: 'polls',
+                    key: routes.CUBE,
                     name: 'Polls'
                 }, {
                     index: 1,
-                    key: 'createPoll',
+                    key: routes.CREATE_POLL_NAME_LOG_DATE,
                     name: 'Create Poll',
                 }, {
                     index: 2,

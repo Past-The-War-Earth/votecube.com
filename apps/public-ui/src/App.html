@@ -33,6 +33,10 @@
     #main {
         height: 100%;
     }
+
+    article {
+        overflow: auto;
+    }
 </style>
 
 <script>
@@ -90,7 +94,8 @@ export default {
             menuItem
         ) {
             switch(menuItem.key) {
-                case routes.CREATE_POLL_NAME_LOG_DATE: {
+                case routes.CREATE_POLL_NAME_LOG_DATE:
+                case routes.CUBE: {
                     navigateToPage(menuItem.key)
                     break
                 }

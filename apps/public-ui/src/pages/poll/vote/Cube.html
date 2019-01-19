@@ -245,7 +245,7 @@
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
 import PercentPicker from '../../../common/control/PercentPicker.html'
 import VoteButton from '../../../common/control/button/VoteButton.html'
-import {setCubeAdjustment, setupCubeListener, shutDownCubeListener} from '../../../libs/cubeLogic.js'
+import {setCubeAdjustment, loadCubeLogic, shutDownCubeListener} from '../../../libs/cubeLogic.js'
 import {setResizeCllBck} from '../../../resizer.js'
 import store from '../../../store.js';
 
@@ -304,7 +304,7 @@ export default {
 
             this.set({zoomFactor})
         }, this.store)
-        setupCubeListener(this)
+        loadCubeLogic(this)
     },
     ondestroy() {
         shutDownCubeListener(this.get().cubeListener, this)

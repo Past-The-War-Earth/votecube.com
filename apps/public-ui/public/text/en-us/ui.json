@@ -23,10 +23,19 @@
         },
         "Location": {
           "continents": {
-            "label": "Continent",
+            "label": "Continent(s)",
             "errors": {
               "required": "Continent is required"
             }
+          },
+          "countries": {
+            "label": "Country(ies)"
+          },
+          "states": {
+            "label": "State(s)"
+          },
+          "cities": {
+            "label": "City(ies)"
           }
         }
       }
