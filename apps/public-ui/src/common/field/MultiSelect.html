@@ -36,9 +36,10 @@
         </section>
     {/each}
     <input
-    type="text"
     bind:value="filter"
     on:input="set({showOptions: true})"
+    type="text"
+    use:id="{id}"
     >
     </section>
     {#if showOptions && options.length}
@@ -135,10 +136,6 @@
         width: 100%;
     }
 
-    .selection-selected {
-
-    }
-
     .unselect {
         display: inline-block;
         height: 26px;
@@ -203,7 +200,7 @@ export default {
     },
     immutable: true,
     methods: {
-        onBlur(event) {
+        onBlur() {
             this.get().field.onBlur()
         },
         onDocumentClick(event) {
@@ -239,9 +236,6 @@ export default {
                     break;
             }
             this.set({activeOptionIndex, filter, showOptions})
-        },
-        onInput(event) {
-            this.get().field.onInput()
         },
         select(option) {
             this.get().field.select(option)

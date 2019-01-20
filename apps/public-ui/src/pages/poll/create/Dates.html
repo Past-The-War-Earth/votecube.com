@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{#if form}
+<form class="pure-form pure-form-aligned">
+    <fieldset>
+        <div class="pure-control-group">
+            <DatePicker
+                field="{form.fields.startDate}"
+            ></DatePicker>
+        </div>
+        <div class="pure-controls">
+            <RightButton
+                circleRadius="23"
+                fillColor="ffffff"
+                highlightColor="000000"
+                strokeWidth="3"
+            ></RightButton>
+        </div>
+    </fieldset>
+</form>
+{/if}
 
-</body>
-</html>
+<script>
+import RightButton from '../../../common/control/button/RightButton.html'
+import DatePicker from '../../../common/field/DatePicker.html'
+import {loadForms} from '../../../libs/forms'
+import store from '../../../store'
+
+export default {
+    components: {
+        DatePicker,
+        RightButton
+    },
+    oncreate() {
+        Promise.all([
+            loadForms(this)
+        ]).then(([
+            {DateField, FieldGroup, Validators}
+        ]) => {
+            const text = this.store.get().text
+            const form = new FieldGroup({
+                startDate: new DateField(null, [
+                    Validators.required(),
+                    Validators.minTomorrow()
+                ], {minDate: DateField.utcNow}),
+            }, [], this, text.UI.Poll.Create)
+            this.set({form})
+        })
+    },
+    store: () => store
+}
+</script>

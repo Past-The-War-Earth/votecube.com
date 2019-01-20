@@ -3,7 +3,10 @@ import {
 	IErrorsText,
 	IValidator
 }                  from '../validator/Validator'
-import {FieldBase} from './FieldBase'
+import {
+	FieldBase,
+	IFieldBase
+}                  from './FieldBase'
 
 export enum LabelRule {
 	BOTH,
@@ -16,61 +19,62 @@ export interface IFieldConstraints {
 	maxLength?: '' | number
 }
 
-export interface IFieldOption {
-	key: string
-	text?: string
-
-	[optionalKey: string]: any
-}
-
 export interface IFieldRules {
 	label?: LabelRule
 }
 
 export interface IFieldText {
-	label: string;
-	errors?: IErrorsText;
+	errors?: IErrorsText
+	label: string
 }
 
-export interface IField {
+export interface IValidate {
+	validate(): void
+}
+
+export interface IDetect {
+	detect(): void
+}
+
+export interface IField
+	extends IFieldBase,
+	        IValidate,
+	        IDetect {
+	constraints: IFieldConstraints
+	label: string
+	placeholder: string
 	rules: IFieldRules
 	text: IFieldText
+
+	labelRule(
+		labelRule: LabelRule
+	): void
+
+	onBlur(): void
+
+	onInput(): void
+
 }
 
 export class Field
 	extends FieldBase
 	implements IField {
 
-	constraints: IFieldConstraints = {}
-	multiOptions: IFieldOption[]   = []
-	options: IFieldOption[]        = []
-	rules: IFieldRules             = {
+	rules: IFieldRules = {
 		label: LabelRule.BOTH
 	}
-	selectionMap: { [optionKey: string]: IFieldOption }
 	text: IFieldText
 
 	constructor(
-		value                    = '',
-		validators: IValidator[] = [],
-		constraintsOrOptions?: IFieldConstraints | IFieldOption[]
+		public value: any                     = '',
+		validators: IValidator[]              = [],
+		public constraints: IFieldConstraints = {}
 	) {
 		super(validators)
-		this.value     = value
 		this.lastValue = value
-
-		if (constraintsOrOptions) {
-			if (constraintsOrOptions instanceof Array) {
-				this.options      = constraintsOrOptions
-				this.selectionMap = {}
-				this.setMultiOptions()
-			} else {
-				this.constraints = constraintsOrOptions
-			}
-		}
 	}
 
-	get label() {
+	get label(): string {
 		switch (this.rules.label) {
 			case LabelRule.BOTH:
 				return this.value ? this.text.label : ''
@@ -82,7 +86,7 @@ export class Field
 		}
 	}
 
-	get placeholder() {
+	get placeholder(): string {
 		switch (this.rules.label) {
 			case LabelRule.BOTH:
 			case LabelRule.IN:
@@ -93,15 +97,7 @@ export class Field
 		}
 	}
 
-	set optionText(
-		textMap
-	) {
-		for (const option of this.options) {
-			option.text = textMap[option.key]
-		}
-	}
-
-	detect() {
+	detect(): void {
 		const delta = addChange()
 		for (const page of this.pages) {
 			page.set({delta})
@@ -110,7 +106,7 @@ export class Field
 
 	labelRule(
 		labelRule: LabelRule = LabelRule.BOTH
-	) {
+	): void {
 		this.rules.label = labelRule
 	}
 
@@ -132,28 +128,10 @@ export class Field
 		this.detect()
 	}
 
-	select(
-		option: IFieldOption
-	) {
-		if (this.value instanceof Array) {
-			this.selectionMap[option.key] = option
-			this.value                    = [...this.value, option]
-			this.setMultiOptions()
-		} else {
-			this.value = option
-		}
-		this.onBlur()
-	}
-
-	setMultiOptions() {
-		this.multiOptions = this.options.filter(
-			option => !this.selectionMap[option.key])
-	}
-
 	validate(): void {
 		this.errors = []
 
-		this.validators.forEach(
+		this.validators.some(
 			validator => {
 				let error = validator(this)
 				if (error) {
@@ -167,23 +145,12 @@ export class Field
 						error.message = this.text.errors[error.key]
 						this.errors.push(error)
 					}
+
+					return true
 				}
 			})
 
 		this.valid = !this.errors.length
 	}
 
-	unselect(
-		optionToUnselect: IFieldOption
-	) {
-		if (this.value instanceof Array) {
-			delete this.selectionMap[optionToUnselect.key]
-			this.value = this.value.filter(
-				option => option !== optionToUnselect)
-			this.setMultiOptions()
-		} else {
-			this.value = null
-		}
-		this.onBlur()
-	}
 }

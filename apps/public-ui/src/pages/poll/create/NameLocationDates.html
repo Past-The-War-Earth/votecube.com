@@ -7,7 +7,7 @@
         ></Text>
         <IconBlock
             field="{form.fields.location}"
-            on:selectLocation="selectLocation()"
+            on:select="selectLocation()"
         >
             <div slot="icon">
                 <LocationIcon
@@ -20,6 +20,7 @@
         </IconBlock>
         <IconBlock
             field="{form.fields.timeframe}"
+            on:select="selectDates()"
         >
             <div slot="icon">
                 <TimeIcon></TimeIcon>
@@ -91,6 +92,9 @@ export default {
             if(!poll.name) {
                 return;
             }
+        },
+        selectDates() {
+            routes.navigateToPage(routes.SELECT_POLL_DATES)
         },
         selectLocation() {
             routes.navigateToPage(routes.SELECT_POLL_LOCATION)

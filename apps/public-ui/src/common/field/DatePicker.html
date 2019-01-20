@@ -1,0 +1,261 @@
+<svelte:document
+    on:click="onDocumentClick(event)"
+></svelte:document>
+{#if $forms && $text}
+<div
+    class="date-picker"
+>
+    <label
+        class="field-label"
+        use:for="{id}"
+    >{label}</label>
+    <section
+        class:invalid="touched && errors.length"
+        class:requiredInvalid="field.validatorMap.required && errors.length"
+        class:requiredValid="field.validatorMap.required && !errors.length"
+    >
+    <!-- FIXME: add support for other date formats -->
+    <input
+        bind:value="field.digits.month"
+        class="month"
+        on:blur="checkFocus()"
+        on:focus="setFocus()"
+        placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.month}"
+        type="text"
+        use:id="{id}"
+    >
+    <span
+        class="separator"
+    >
+        {$text.UI.Common.Field.Datepicker.dateInput.separator}
+    </span>
+    <input
+        bind:value="field.digits.date"
+        class="date"
+        on:blur="checkFocus()"
+        on:focus="setFocus()"
+        placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.date}"
+        type="text"
+        use:id="{id}"
+    >
+    <span
+        class="separator"
+    >
+        {$text.UI.Common.Field.Datepicker.dateInput.separator}
+    </span>
+    <input
+        bind:value="field.digits.year"
+        class="year"
+        on:blur="checkFocus()"
+        on:focus="setFocus()"
+        placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.year}"
+        type="text"
+        use:id="{id}"
+    >
+    <i
+        type="calendar"
+        on:click="showCalendar(this, event)"
+    >cal</i>
+    </section>
+    {#if showCalendar}
+    <div
+        class="popup"
+        on:click="onPopupClick(event)"
+    >
+        <table
+            class="header"
+        >
+            <tr>
+                <td>{popupTitle}</td>
+                <td
+                    class="month-picker"
+                    on:click="toPrevMonth()"
+                >&lt;</td>
+                <td
+                    class="month-picker"
+                    on:click="toNextMonth()"
+                >&gt;</td>
+            </tr>
+        </table>
+        <table>
+            <tr class="header-field">
+        {#each $text.UI.Common.Field.Datepicker.weekDayOrder as weekDayIndex}
+                <td>{$text.UI.Common.Field.Datepicker.shortWeekDay[weekDayIndex]}</td>
+        {/each}
+            </tr>
+        {#each weeks as week, weekIndex}
+            <tr class="week{weekIndex}">
+            {#each week as date, dayIndex}
+                <td
+                    class="day{dayIndex}"
+                    flags="{field.cellFlags(date, weekIndex)}"
+                    on:click="selectDate(date, this)"
+                >{date}</td>
+            {/each}
+            </tr>
+        {/each}
+        </table>
+    </div>
+    {/if}
+    {#if touched}
+        {#each errors as error}
+    <span class="pure-form-message error">{error.message}</span>
+        {/each}
+    {/if}
+</div>
+{/if}
+
+<style>
+
+    input[type="text"] {
+        border: 0;
+        box-shadow: none;
+        color: #222;
+        display: inline-block;
+        /*font-weight: 600;*/
+        margin: 0;
+        padding-left: 5px;
+        vertical-align: super;
+    }
+
+    li {
+        border-bottom: 1px solid #f8f8f8;
+        font-weight: 600;
+        list-style: none;
+        padding: 10px;
+    }
+
+    li:hover {
+        background-color: #eee;
+    }
+
+    table {
+        min-width: 320px;
+    }
+
+    ul {
+        background-color: white;
+        border: 1px solid #222;
+        box-shadow: 0 3px 3px #ddd inset;
+        max-height: 300px;
+        padding: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .activeOption {
+        background-color: #eee;
+    }
+
+    .date {
+        width: 40px;
+    }
+
+    .date-picker {
+        position: relative;
+    }
+
+    .header {
+        height: 30px;
+    }
+
+    .month {
+        width: 40px;
+    }
+
+    .month-picker {
+        width: 30px;
+    }
+
+    .year {
+        width: 80px;
+    }
+
+</style>
+
+<script>
+import store from '../../store.js'
+
+export default {
+    actions: {
+        for(node, id) {
+            if(id) {
+                node.id = id;
+            }
+        },
+        id(node, id) {
+            if(id) {
+                node.id = id;
+            }
+        }
+    },
+    computed: {
+        errors: ({delta, field}) => field.errors,
+        label: ({delta, field}) => field.label,
+        popupTitle: ({delta, field, $text}) => {
+            return `${$text.UI.Common.Field.Datepicker.month[field.month]} ${field.year}`
+        },
+        touched: ({delta, field}) => field.touched,
+        weeks: ({delta, field}) => field.popup.weeks
+    },
+    data() {
+        return {
+            focused: false
+        }
+    },
+    immutable: true,
+    methods: {
+        checkFocus() {
+            this.set({focused:false})
+            setTimeout(() => {
+                const {focused, field} = this.get()
+                if(!focused) {
+                    field.onBlur()
+                }
+            })
+        },
+        onDocumentClick(event) {
+            this.set({showCalendar: false})
+        },
+        onPopupClick(event) {
+            event.stopPropagation()
+        },
+        selectDate(date, element) {
+            if(element.getAttribute('flags').indexOf('Rtrue') < 0) {
+                return
+            }
+            this.get().field.setDateOfMonth(date)
+            this.set({showCalendar: false})
+        },
+        setFocus() {
+            this.set({focused:true})
+        },
+        showCalendar(element, event) {
+            if(!this.get().showCalendar) {
+                this.set({
+                    showCalendar: true,
+                    dropdownPxFromTop: element.offsetHeight
+                })
+                event.stopPropagation()
+            }
+        },
+        toNextMonth() {
+            this.get().field.toNextMonth()
+        },
+        toPrevMonth() {
+            this.get().field.toPrevMonth()
+        },
+        unselect(option, event) {
+            this.get().field.unselect(option)
+            event.stopPropagation()
+            this.set({filter: ''})
+        }
+    },
+    oncreate() {
+        const field = this.get().field
+        this.get().field.pages.push(this)
+    },
+    store: () => store
+}
+</script>
