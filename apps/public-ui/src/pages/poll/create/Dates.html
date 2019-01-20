@@ -37,10 +37,10 @@ export default {
         ]) => {
             const text = this.store.get().text
             const form = new FieldGroup({
-                startDate: new DateField(null, [
+                startDate: new DateField([
                     Validators.required(),
                     Validators.minTomorrow()
-                ], {minDate: DateField.utcNow}),
+                ]),
             }, [], this, text.UI.Poll.Create)
             this.set({form})
         })

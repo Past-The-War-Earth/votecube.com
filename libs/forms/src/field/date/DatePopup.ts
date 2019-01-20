@@ -48,17 +48,21 @@ export class DatePopup
 		date: DateOfMonth,
 		month: Month,
 		year: number
-	): void {
+	): boolean {
+		if (month === this.month
+			&& year === this.year) {
+			return
+		}
 		super.setState(null, month, year)
-		this.setWeeks(this.impl.month)
+		this.setWeeks(this.month)
 	}
 
 	toNextMonth(): void {
-		this.setWeeks(this.impl.month + 1 as Month)
+		this.setWeeks(this.month + 1 as Month)
 	}
 
 	toPrevMonth(): void {
-		this.setWeeks(this.impl.month - 1 as Month)
+		this.setWeeks(this.month - 1 as Month)
 	}
 
 	private setWeeks(
@@ -74,7 +78,7 @@ export class DatePopup
 			this.impl.month = month
 		}
 
-		const previousMonthBorderDate = new Date(this.impl.year, this.impl.month)
+		const previousMonthBorderDate = new Date(this.year, this.month)
 		previousMonthBorderDate.setDate(1)
 		const firstOfMonthDayOfWeek = previousMonthBorderDate.getDay()
 
@@ -91,12 +95,12 @@ export class DatePopup
 		let dayOfMonth             = 1
 		let dayOfWeek              = firstOfMonthDayOfWeek
 		let inNextMonth            = false
-		const lastOfDisplayedMonth = new Date(this.impl.year, this.impl.month)
+		const lastOfDisplayedMonth = new Date(this.year, this.month)
 		for (let weekOfMonth = 0; weekOfMonth < 6; weekOfMonth++) {
 			for (; dayOfWeek < 7; dayOfWeek++, dayOfMonth++) {
 				lastOfDisplayedMonth.setDate(dayOfMonth)
 				if (!inNextMonth
-					&& this.impl.month !== lastOfDisplayedMonth.getMonth()) {
+					&& this.month !== lastOfDisplayedMonth.getMonth()) {
 					inNextMonth = true
 					dayOfMonth  = 1
 				}

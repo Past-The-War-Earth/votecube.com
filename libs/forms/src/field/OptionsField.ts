@@ -38,12 +38,11 @@ export class OptionsField
 	selectionMap: { [optionKey: string]: IFieldOption } = {}
 
 	constructor(
-		value,
 		validators: IValidator[],
 		public options: IFieldOption[] = [],
 		constraints?: IFieldConstraints
 	) {
-		super(value, validators)
+		super(validators, constraints)
 
 		this.setMultiOptions()
 	}

@@ -105,14 +105,14 @@ export default {
             {Field, FieldGroup, Validators}
         ) => {
             const form = new FieldGroup({
-                location: new Field('', [
+                location: new Field([
                     Validators.required()
                 ]),
-                name: new Field('', [
+                name: new Field([
                     Validators.minLength(3),
                     Validators.required()
                 ], { maxLength: 40}),
-                timeframe: new Field('', [
+                timeframe: new Field([
                     Validators.required()
                 ])
             }, [], this, this.store.get().text.UI.Poll.Create)

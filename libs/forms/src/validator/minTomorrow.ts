@@ -2,11 +2,12 @@ import {
 	DateField,
 	IDateField
 }                   from '..'
+import {utcNow}     from '../field/date/types'
 import {minDate}    from './minDate'
 import {IValidator} from './Validator'
 
 export function minTomorrow(): IValidator<IDateField> {
-	const tomorrow = DateField.utcNow
+	const tomorrow = utcNow()
 	tomorrow.setUTCDate(tomorrow.getUTCDate() + 1)
 
 	return minDate(tomorrow)

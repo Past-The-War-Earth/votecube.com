@@ -11,7 +11,7 @@ export function minDate(
 	const validator = (
 		field: IDateField,
 	) => {
-		if (!field.digits.valid
+		if (!field.datePeriods.valid
 			|| field.value === null) {
 			return null
 		}

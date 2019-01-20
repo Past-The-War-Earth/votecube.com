@@ -8,9 +8,9 @@ import {
 	IFieldConstraints
 } from '../Field'
 import {
-	DateDigits,
-	IDateDigits
-} from './DateDigits'
+	DateFragments,
+	IDateFragments
+} from './DateFragments'
 import {
 	DatePopup,
 	IDatePopup
@@ -21,13 +21,14 @@ import {
 } from './DateSelection'
 import {
 	DateOfMonth,
-	Month
+	Month,
+	utcNow
 } from './types'
 
 export interface IDateField
 	extends IField {
 
-	digits: IDateDigits
+	fragments: IDateFragments
 	popup: IDatePopup
 	selection: IDateSelection
 	value: Date
@@ -38,6 +39,8 @@ export interface IDateField
 	): string
 
 	clear(): void
+
+	reset(): void
 
 	setToDate(
 		date: Date
@@ -51,13 +54,14 @@ export interface IDateField
 }
 
 export interface IMutableDateState {
+
 	setState(
 		date: DateOfMonth,
 		month: Month,
 		year: number,
-		value?: Date,
-		validate?: boolean
+		popupOnly?: boolean
 	): void;
+
 }
 
 export interface IDateFieldInternal
@@ -65,40 +69,26 @@ export interface IDateFieldInternal
 	        IMutableDateState {
 }
 
-export interface IDateFieldConstraints
-	extends IFieldConstraints {
-	minDate: Date;
-}
-
 export class DateField
 	extends Field
 	implements IDateFieldInternal {
 
-	digits    = new DateDigits(this)
-	popup     = new DatePopup(this)
-	selection = new DateSelection()
+	fragments = new DateFragments(this)
+	popup       = new DatePopup(this)
+	selection   = new DateSelection()
 
 	private rangeValidators: IValidator[]
 
 	constructor(
-		value: number,
 		validators: IValidator[],
-		constraints?: IDateFieldConstraints
+		constraints?: IFieldConstraints
 	) {
-		super(value, validators)
+		super(validators, constraints)
 
 		this.rangeValidators = filterToRangeValidators(validators)
+		this.value           = null
 
-		if (value) {
-			this.setValue(value)
-		} else {
-			this.setToNow()
-		}
-	}
-
-	static get utcNow(): Date {
-		const nowLocal = new Date()
-		return new Date(Date.UTC(nowLocal.getFullYear(), nowLocal.getMonth(), nowLocal.getDate()))
+		this.reset()
 	}
 
 	cellFlags(
@@ -110,8 +100,21 @@ export class DateField
 		return `R${inRange} M${inMonth}`
 	}
 
+	setDateOfMonth(
+		dateOfMonth: DateOfMonth,
+		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
+	): void {
+		const [year, month] = this.getPopupYearAndMonth(dateOfMonth, weekIndex)
+
+		this.setState(dateOfMonth, month, year)
+	}
+
 	clear(): void {
-		this.setState(null, null, null, null)
+		this.setState(null, null, null)
+	}
+
+	reset(): void {
+		this.setState(null, null, null, true)
 	}
 
 	setToDate(
@@ -120,18 +123,11 @@ export class DateField
 		this.setState(
 			date.getUTCDate() as DateOfMonth,
 			date.getUTCMonth() as Month,
-			date.getUTCFullYear(),
-			date)
-	}
-
-	setDateOfMonth(
-		date: DateOfMonth
-	): void {
-		this.setState(date, this.popup.month, this.popup.year, null, true)
+			date.getUTCFullYear())
 	}
 
 	setToNow(): void {
-		this.setToDate(DateField.utcNow)
+		this.setToDate(utcNow())
 	}
 
 	setValue(
@@ -146,26 +142,36 @@ export class DateField
 		date: DateOfMonth,
 		month: Month,
 		year: number,
-		value?: Date,
-		validate?: boolean
+		popupOnly?: boolean
 	) {
-		this.digits.setState(date, month, year)
-		this.popup.setState(null, month, year)
+		let popupMonth = month
+		let popupYear  = year
+		if (!year) {
+			const now  = new Date()
+			popupMonth = now.getMonth() as Month
+			popupYear  = now.getFullYear()
+		}
+		this.popup.setState(null, popupMonth, popupYear)
+
+		if (popupOnly) {
+			return
+		}
+
+		this.fragments.setState(date, month, year)
 		this.selection.setState(date, month, year)
 
-		if (!value) {
-			value = new Date(Date.UTC(year, month, date))
+		if (year) {
+			this.value = new Date(Date.UTC(year, month, date))
+		} else {
+			this.value = null
 		}
-		this.value = value
 
-		if (validate) {
-			this.validate()
-			this.detect()
-		}
+		this.validate()
+		this.detect()
 	}
 
 	validate(): void {
-		if (this.digits.valid) {
+		if (this.fragments.valid) {
 			super.validate()
 		} else {
 			let key     = 'format'
@@ -207,7 +213,7 @@ export class DateField
 
 		// FIXME: verify correctness after range validator is implemented
 		const fakeField: any = {
-			digits: {
+			fragments: {
 				valid: true
 			},
 			selection: {

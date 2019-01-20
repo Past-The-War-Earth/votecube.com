@@ -64,14 +64,14 @@ export class Field
 		label: LabelRule.BOTH
 	}
 	text: IFieldText
+	value: any         = ''
 
 	constructor(
-		public value: any                     = '',
 		validators: IValidator[]              = [],
 		public constraints: IFieldConstraints = {}
 	) {
 		super(validators)
-		this.lastValue = value
+		this.lastValue = this.value
 	}
 
 	get label(): string {
@@ -98,10 +98,12 @@ export class Field
 	}
 
 	detect(): void {
-		const delta = addChange()
-		for (const page of this.pages) {
-			page.set({delta})
-		}
+		setTimeout(() => {
+			const delta = addChange()
+			for (const page of this.pages) {
+				page.set({delta})
+			}
+		})
 	}
 
 	labelRule(

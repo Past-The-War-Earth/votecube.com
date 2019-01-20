@@ -2,27 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0b9b290-5cae-45b3-ac2d-df2b503ee35c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/DatePicker.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/OptionsField.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/date/DateDigits.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/date/DateField.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/date/DatePopup.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/date/DateSelection.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/field/date/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/validator/minDate.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../forms/src/validator/minTomorrow.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../forms/src/field/date/DateFragments.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/text/en-us/ui.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text/en-us/ui.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/DatePicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/DatePicker.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Dates.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Dates.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Location.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Location.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationDates.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationDates.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../forms/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/Field.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/OptionsField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/OptionsField.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/date/DateDigits.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/date/DateField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/date/DateField.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/date/DatePopup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/date/DatePopup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/date/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/date/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../forms/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/src/validator/Validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/validator/Validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/validator/minDate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/validator/minDate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/validator/minTomorrow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/validator/minTomorrow.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />

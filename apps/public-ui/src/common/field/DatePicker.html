@@ -8,54 +8,71 @@
     <label
         class="field-label"
         use:for="{id}"
-    >{label}</label>
+    >
+        {label}
+    </label>
     <section
         class:invalid="touched && errors.length"
         class:requiredInvalid="field.validatorMap.required && errors.length"
         class:requiredValid="field.validatorMap.required && !errors.length"
     >
-    <!-- FIXME: add support for other date formats -->
-    <input
-        bind:value="field.digits.month"
-        class="month"
-        on:blur="checkFocus()"
-        on:focus="setFocus()"
-        placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.month}"
-        type="text"
-        use:id="{id}"
-    >
-    <span
-        class="separator"
-    >
-        {$text.UI.Common.Field.Datepicker.dateInput.separator}
-    </span>
-    <input
-        bind:value="field.digits.date"
-        class="date"
-        on:blur="checkFocus()"
-        on:focus="setFocus()"
-        placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.date}"
-        type="text"
-        use:id="{id}"
-    >
-    <span
-        class="separator"
-    >
-        {$text.UI.Common.Field.Datepicker.dateInput.separator}
-    </span>
-    <input
-        bind:value="field.digits.year"
-        class="year"
-        on:blur="checkFocus()"
-        on:focus="setFocus()"
-        placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.year}"
-        type="text"
-        use:id="{id}"
-    >
-    <i
-        type="calendar"
-        on:click="showCalendar(this, event)"
-    >cal</i>
+        <!-- FIXME: add support for other date formats -->
+        <input
+            value="{month}"
+            class="month"
+            maxlength="2"
+            on:blur="checkFocus()"
+            on:focus="setFocus()"
+            on:input="setFragment('month', this)"
+            on:keydown="onFragmentKeydown('month', event)"
+            placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.month}"
+            type="text"
+            use:id="{id}"
+        >
+        <span
+            class="separator"
+        >
+            {$text.UI.Common.Field.Datepicker.dateInput.separator}
+        </span>
+        <input
+            value="{date}"
+            class="date"
+            maxlength="2"
+            on:blur="checkFocus()"
+            on:focus="setFocus()"
+            on:input="setFragment('date', this)"
+            on:keydown="onFragmentKeydown('date', event)"
+            placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.date}"
+            type="text"
+            use:id="{id}"
+        >
+        <span
+            class="separator"
+        >
+            {$text.UI.Common.Field.Datepicker.dateInput.separator}
+        </span>
+        <input
+            value="{year}"
+            class="year"
+            maxlength="4"
+            on:blur="checkFocus()"
+            on:focus="setFocus()"
+            on:input="setFragment('year', this)"
+            on:keydown="onFragmentKeydown('year', event)"
+            placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.year}"
+            type="text"
+            use:id="{id}"
+        >
+        <i
+            type="calendar"
+            on:click="showCalendar(this, event)"
+        >cal</i>
+        <i
+            on:click="clear()"
+        >x</i>
+        <i
+            on:click="help()"
+        >?</i>
     </section>
     {#if showCalendar}
     <div
@@ -66,21 +83,29 @@
             class="header"
         >
             <tr>
-                <td>{popupTitle}</td>
+                <td>
+                    {popupTitle}
+                </td>
                 <td
                     class="month-picker"
                     on:click="toPrevMonth()"
-                >&lt;</td>
+                >
+                    &lt;
+                </td>
                 <td
                     class="month-picker"
                     on:click="toNextMonth()"
-                >&gt;</td>
+                >
+                    &gt;
+                </td>
             </tr>
         </table>
         <table>
             <tr class="header-field">
         {#each $text.UI.Common.Field.Datepicker.weekDayOrder as weekDayIndex}
-                <td>{$text.UI.Common.Field.Datepicker.shortWeekDay[weekDayIndex]}</td>
+                <td>
+                    {$text.UI.Common.Field.Datepicker.shortWeekDay[weekDayIndex]}
+                </td>
         {/each}
             </tr>
         {#each weeks as week, weekIndex}
@@ -89,8 +114,10 @@
                 <td
                     class="day{dayIndex}"
                     flags="{field.cellFlags(date, weekIndex)}"
-                    on:click="selectDate(date, this)"
-                >{date}</td>
+                    on:click="selectDate(date, weekIndex, this)"
+                >
+                    {date}
+                </td>
             {/each}
             </tr>
         {/each}
@@ -99,7 +126,9 @@
     {/if}
     {#if touched}
         {#each errors as error}
-    <span class="pure-form-message error">{error.message}</span>
+    <span class="pure-form-message error">
+        {error.message}
+    </span>
         {/each}
     {/if}
 </div>
@@ -191,13 +220,16 @@ export default {
         }
     },
     computed: {
+        date: ({delta, field}) => field.fragments.date,
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
+        month: ({delta, field}) => field.fragments.month,
         popupTitle: ({delta, field, $text}) => {
-            return `${$text.UI.Common.Field.Datepicker.month[field.month]} ${field.year}`
+            return `${$text.UI.Common.Field.Datepicker.month[field.popup.month]} ${field.popup.year}`
         },
         touched: ({delta, field}) => field.touched,
-        weeks: ({delta, field}) => field.popup.weeks
+        weeks: ({delta, field}) => field.popup.weeks,
+        year: ({delta, field}) => field.fragments.year
     },
     data() {
         return {
@@ -215,21 +247,37 @@ export default {
                 }
             })
         },
+        clear() {
+            this.get().field.clear()
+        },
         onDocumentClick(event) {
+            this.get().field.reset()
             this.set({showCalendar: false})
+        },
+        onFragmentKeydown(
+            fragmentType,
+            event
+        ) {
+            this.get().field.fragments.onKeydown(fragmentType, event)
         },
         onPopupClick(event) {
             event.stopPropagation()
         },
-        selectDate(date, element) {
+        selectDate(date, weekIndex, element) {
             if(element.getAttribute('flags').indexOf('Rtrue') < 0) {
                 return
             }
-            this.get().field.setDateOfMonth(date)
+            this.get().field.setDateOfMonth(date, weekIndex)
             this.set({showCalendar: false})
         },
         setFocus() {
             this.set({focused:true})
+        },
+        setFragment(
+            fragmentType,
+            element
+        ) {
+            this.get().field.fragments.setFragment(fragmentType, element)
         },
         showCalendar(element, event) {
             if(!this.get().showCalendar) {
@@ -241,10 +289,10 @@ export default {
             }
         },
         toNextMonth() {
-            this.get().field.toNextMonth()
+            this.get().field.popup.toNextMonth()
         },
         toPrevMonth() {
-            this.get().field.toPrevMonth()
+            this.get().field.popup.toPrevMonth()
         },
         unselect(option, event) {
             this.get().field.unselect(option)
@@ -258,4 +306,5 @@ export default {
     },
     store: () => store
 }
+
 </script>
