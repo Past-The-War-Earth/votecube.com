@@ -3748,3 +3748,7 @@ Form field styling
 .field-label {
     height: 18px;
 }
+
+i {
+    display: inline-block;
+}

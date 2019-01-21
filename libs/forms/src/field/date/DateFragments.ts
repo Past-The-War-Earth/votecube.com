@@ -34,14 +34,14 @@ export interface IDateFragments
 	extends IDateFragmentsData {
 	valid: boolean
 
-	onKeydown(
-		fragmentType: FragmentType,
-		event: KeyboardEvent
-	): void
-
 	onInput(
 		fragmentType: FragmentType,
 		element: HTMLInputElement
+	): void
+
+	onKeydown(
+		fragmentType: FragmentType,
+		event: KeyboardEvent
 	): void
 
 }
@@ -65,16 +65,16 @@ export interface IDateFragmentsActivity {
 */
 
 export interface IInputFragmentValidity<N> {
-	inRange: boolean
 	isPositiveInteger: boolean
+	inRange: boolean
 	number: N
 }
 
 export interface IDateFragmentsValidity {
 	date: IInputFragmentValidity<DateOfMonth>
+	fragmentToFocus: FragmentType
 	isValid: boolean
 	month: IInputFragmentValidity<Month>
-	fragmentToFocus: FragmentType
 	year: IInputFragmentValidity<number>
 }
 
@@ -124,6 +124,31 @@ export class DateFragments
 		return this.impl.year
 	}
 
+	// DateField and DatePicker are coupled, so this is here
+	onInput(
+		fragmentType: FragmentType,
+		element: HTMLInputElement
+	): void {
+		// this.impl.last.inputOrKeydown = LastInputOrKeydownEvent.ON_KEYDOWN
+		let currentValue = element.value
+
+		const fragmentTypeToFocus = this.setFragmentValue(
+			currentValue, fragmentType)
+
+		let newValue = this[fragmentType]
+
+		if (currentValue !== newValue) {
+			// value binding does not work in this case, set manually
+			element.value = newValue
+		}
+
+		if (fragmentTypeToFocus === fragmentType) {
+			return
+		}
+
+		this.focusFragment(fragmentTypeToFocus, element)
+	}
+
 	onKeydown(
 		fragmentType: FragmentType,
 		event: KeyboardEvent
@@ -161,31 +186,6 @@ export class DateFragments
 		this.focusFragment(previousFragmentType, element)
 	}
 
-	// DateField and DatePicker are coupled, so this is here
-	onInput(
-		fragmentType: FragmentType,
-		element: HTMLInputElement
-	): void {
-		// this.impl.last.inputOrKeydown = LastInputOrKeydownEvent.ON_KEYDOWN
-		let currentValue = element.value
-
-		const fragmentTypeToFocus = this.setFragmentValue(
-			currentValue, fragmentType)
-
-		let newValue = this[fragmentType]
-
-		if (currentValue !== newValue) {
-			// value binding does not work in this case, set manually
-			element.value = newValue
-		}
-
-		if (fragmentTypeToFocus === fragmentType) {
-			return
-		}
-
-		this.focusFragment(fragmentTypeToFocus, element)
-	}
-
 	setState(
 		date: DateOfMonth,
 		month: Month,
@@ -197,32 +197,6 @@ export class DateFragments
 			month: month === null ? '' : month + 1 as any,
 			validity: this.getAssumedValidity(date, month, year),
 			year: year === null ? '' : year as any
-		}
-	}
-
-	private focusFragment(
-		fragmentTypeToFocus: FragmentType,
-		siblingFragmentElement: HTMLInputElement
-	) {
-		(siblingFragmentElement.parentElement.getElementsByClassName(fragmentTypeToFocus)
-			[0] as any).focus()
-	}
-
-	private getPreviousFragmentType(
-		fragmentType
-	): FragmentType | undefined {
-		// FIXME: add support for non MM/DD/YYYY formats
-		switch (fragmentType) {
-			case FragmentType.DATE:
-				return FragmentType.MONTH
-			case FragmentType.YEAR:
-				return FragmentType.DATE
-		}
-	}
-
-	private backSpaceToDate() {
-		if (!this.impl.date) {
-
 		}
 	}
 
@@ -273,36 +247,12 @@ export class DateFragments
 		return validity
 	}
 
-	private getAssumedValidity(
-		date: DateOfMonth = null,
-		month: Month      = null,
-		year: number      = null
-	): IDateFragmentsValidity {
-		return {
-			date: this.getAssumedFragmentValidity(date),
-			fragmentToFocus: null,
-			isValid: true,
-			month: this.getAssumedFragmentValidity(month),
-			year: this.getAssumedFragmentValidity(year)
-		}
-	}
-
-	private getAssumedFragmentValidity<N>(
-		fragment: N
-	): IInputFragmentValidity<N> {
-		if (fragment === null) {
-			return {
-				inRange: false,
-				isPositiveInteger: false,
-				number: null
-			}
-		}
-
-		return {
-			inRange: true,
-			isPositiveInteger: true,
-			number: fragment
-		}
+	private focusFragment(
+		fragmentTypeToFocus: FragmentType,
+		siblingFragmentElement: HTMLInputElement
+	) {
+		(siblingFragmentElement.parentElement.getElementsByClassName(fragmentTypeToFocus)
+			[0] as any).focus()
 	}
 
 	/*
@@ -323,6 +273,38 @@ export class DateFragments
 	}
 */
 
+	private getAssumedFragmentValidity<N>(
+		fragment: N
+	): IInputFragmentValidity<N> {
+		if (fragment === null) {
+			return {
+				inRange: false,
+				isPositiveInteger: false,
+				number: null
+			}
+		}
+
+		return {
+			inRange: true,
+			isPositiveInteger: true,
+			number: fragment
+		}
+	}
+
+	private getAssumedValidity(
+		date: DateOfMonth = null,
+		month: Month      = null,
+		year: number      = null
+	): IDateFragmentsValidity {
+		return {
+			date: this.getAssumedFragmentValidity(date),
+			fragmentToFocus: null,
+			isValid: true,
+			month: this.getAssumedFragmentValidity(month),
+			year: this.getAssumedFragmentValidity(year)
+		}
+	}
+
 	private getInputFragmentValidity<N>(
 		fragmentString: string
 	): IInputFragmentValidity<N> {
@@ -330,6 +312,18 @@ export class DateFragments
 			inRange: false,
 			isPositiveInteger: isPositiveInteger(fragmentString),
 			number: null
+		}
+	}
+
+	private getPreviousFragmentType(
+		fragmentType
+	): FragmentType | undefined {
+		// FIXME: add support for non MM/DD/YYYY formats
+		switch (fragmentType) {
+			case FragmentType.DATE:
+				return FragmentType.MONTH
+			case FragmentType.YEAR:
+				return FragmentType.DATE
 		}
 	}
 

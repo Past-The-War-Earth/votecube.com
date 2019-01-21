@@ -70,16 +70,9 @@
         <i
             on:click="clear()"
         >x</i>
-        <i
-            on:click="help()"
-        >
-    <svg width="33" height="33">
-         <g>
-            <line stroke="#aaa" stroke-width="7" x1="15" y1="13" x2="15" y2="29">
-            </line>
-            <circle fill="#aaa" cx="15" cy="7" r="4"></circle></g>
-        </svg>
-         </i>
+        <InfoIcon
+            on:select="help()"
+        ></InfoIcon>
     </section>
     {#if showCalendar}
     <div
@@ -212,6 +205,7 @@
 
 <script>
 import store from '../../store.js'
+import InfoIcon from '../icon/InfoIcon.html'
 
 export default {
     actions: {
@@ -225,6 +219,9 @@ export default {
                 node.id = id;
             }
         }
+    },
+    components: {
+        InfoIcon
     },
     computed: {
         date: ({delta, field}) => field.fragments.date,
