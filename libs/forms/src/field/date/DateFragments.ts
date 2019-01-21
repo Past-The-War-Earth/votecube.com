@@ -15,6 +15,15 @@ export enum FragmentType {
 	YEAR  = 'year'
 }
 
+/*
+TODO: implement additional keydown tracking when needed
+
+export enum LastInputOrKeydownEvent {
+	ON_INPUT,
+	ON_KEYDOWN
+}
+*/
+
 export interface IDateFragmentsData {
 	date: string
 	month: string
@@ -30,23 +39,30 @@ export interface IDateFragments
 		event: KeyboardEvent
 	): void
 
-	setFragment(
+	onInput(
 		fragmentType: FragmentType,
 		element: HTMLInputElement
 	): void
 
 }
 
+/*
 export interface IInputFragmentActivity {
-	stringValue: string
 	key: string
+	selection: {
+		end: number
+		start: number
+	}
+	stringValue: string
 }
 
 export interface IDateFragmentsActivity {
 	date: IInputFragmentActivity
+	inputOrKeydown: LastInputOrKeydownEvent
 	month: IInputFragmentActivity
 	year: IInputFragmentActivity
 }
+*/
 
 export interface IInputFragmentValidity<N> {
 	inRange: boolean
@@ -72,24 +88,16 @@ export class DateFragments
 	implements IDateFragmentsInternal {
 
 	impl: IDateFragmentsData & {
-		last: IDateFragmentsActivity,
+		// last: IDateFragmentsActivity,
 		validity: IDateFragmentsValidity
 	} = {
 		date: '',
-		last: {
-			date: {
-				key: null,
-				stringValue: null
-			},
-			month: {
-				key: null,
-				stringValue: null
-			},
-			year: {
-				key: null,
-				stringValue: null
-			}
-		},
+		// last: {
+		// 	date: this.getActivity(),
+		// 	inputOrKeydown: null,
+		// 	month: this.getActivity(),
+		// 	year: this.getActivity()
+		// },
 		month: '',
 		validity: this.getAssumedValidity(),
 		year: ''
@@ -120,21 +128,45 @@ export class DateFragments
 		fragmentType: FragmentType,
 		event: KeyboardEvent
 	): void {
-		const last = this.impl.last[fragmentType]
-		last.key   = null
-		last.stringValue = (event.target as HTMLInputElement).value
-		// if (event.code !== 'Backspace') {
-		// 	// TODO: add support other other keys, if needed
-		// 	return
-		// }
+		let element = event.target as HTMLInputElement
+
+		// this.impl.last[fragmentType] = this.getActivity(
+		// 	inputOrKeydown.code, element.selectionEnd, element.selectionStart, element.value)
+		// this.impl.last.inputOrKeydown = LastInputOrKeydownEvent.ON_INPUT
+		// console.log("onKeydown")
+		// console.log(this.impl.last[fragmentType])
+		if (event.code !== 'Backspace'
+			|| element.selectionEnd !== 0
+			|| element.selectionStart !== 0) {
+			// TODO: add support other other cases, if needed
+			return
+		}
+
+		// NOTE: Backspace in input with no selection and cursor at beginning
+		// (this case) does not cause input event
+
+		let previousFragmentType = this.getPreviousFragmentType(fragmentType)
+		if (!previousFragmentType) {
+			return
+		}
+
+		let previousValue: string | number = this[previousFragmentType]
+
+		// TODO: possible TS bug? (remove as any)
+		if (previousValue || previousValue === 0 as any) {
+			previousValue = ('' + previousValue).substr(0, previousValue.length - 1)
+		}
+
+		this.setFragmentValue(previousValue, previousFragmentType, true)
+		this.focusFragment(previousFragmentType, element)
 	}
 
-	// TODO: move back to component if component lazy loading is introduced
-	// since this breaks component encapsulation (a bit, though two are coupled)
-	setFragment(
+	// DateField and DatePicker are coupled, so this is here
+	onInput(
 		fragmentType: FragmentType,
 		element: HTMLInputElement
 	): void {
+		// this.impl.last.inputOrKeydown = LastInputOrKeydownEvent.ON_KEYDOWN
 		let currentValue = element.value
 
 		const fragmentTypeToFocus = this.setFragmentValue(
@@ -150,8 +182,8 @@ export class DateFragments
 		if (fragmentTypeToFocus === fragmentType) {
 			return
 		}
-		(element.parentElement.getElementsByClassName(fragmentTypeToFocus)
-			[0] as any).focus()
+
+		this.focusFragment(fragmentTypeToFocus, element)
 	}
 
 	setState(
@@ -161,10 +193,36 @@ export class DateFragments
 	): void {
 		this.impl = {
 			date: date === null ? '' : date as any,
-			last: this.impl.last,
+			// last: this.impl.last,
 			month: month === null ? '' : month + 1 as any,
 			validity: this.getAssumedValidity(date, month, year),
 			year: year === null ? '' : year as any
+		}
+	}
+
+	private focusFragment(
+		fragmentTypeToFocus: FragmentType,
+		siblingFragmentElement: HTMLInputElement
+	) {
+		(siblingFragmentElement.parentElement.getElementsByClassName(fragmentTypeToFocus)
+			[0] as any).focus()
+	}
+
+	private getPreviousFragmentType(
+		fragmentType
+	): FragmentType | undefined {
+		// FIXME: add support for non MM/DD/YYYY formats
+		switch (fragmentType) {
+			case FragmentType.DATE:
+				return FragmentType.MONTH
+			case FragmentType.YEAR:
+				return FragmentType.DATE
+		}
+	}
+
+	private backSpaceToDate() {
+		if (!this.impl.date) {
+
 		}
 	}
 
@@ -247,6 +305,24 @@ export class DateFragments
 		}
 	}
 
+	/*
+	private getActivity(
+		key         = null,
+		end         = null,
+		start       = null,
+		stringValue = null
+	): IInputFragmentActivity {
+		return {
+			key,
+			selection: {
+				end,
+				start
+			},
+			stringValue
+		}
+	}
+*/
+
 	private getInputFragmentValidity<N>(
 		fragmentString: string
 	): IInputFragmentValidity<N> {
@@ -317,46 +393,72 @@ export class DateFragments
 	}
 
 	private setDate(
-		dateString: string
+		dateString: string,
+		onBackspace: boolean
 	): FragmentType {
 		this.impl.date = dateString
 		return this.validateAndSetState(dateString, undefined, undefined, (
 			validity: IDateFragmentsValidity
 		) => {
+			if (onBackspace) {
+				// FIXME: add support for non MM/DD/YYYY formats
+				validity.fragmentToFocus = FragmentType.DATE
+				return validity
+			}
+
 			return this.adjustDateOrMonthInputAndRefocus(validity, dateString, FragmentType.DATE, FragmentType.YEAR, 3)
 		})
 	}
 
 	private setFragmentValue(
 		value: string,
-		fragmentType: FragmentType
+		fragmentType: FragmentType,
+		onBackspace = false
 	): FragmentType {
 		switch (fragmentType) {
 			case FragmentType.DATE:
-				return this.setDate(value)
+				return this.setDate(value, onBackspace)
 			case FragmentType.MONTH:
-				return this.setMonth(value)
+				return this.setMonth(value, onBackspace)
 			case FragmentType.YEAR:
-				return this.setYear(value)
+				return this.setYear(value, onBackspace)
 		}
 	}
 
 	private setMonth(
-		monthString: string
+		monthString: string,
+		onBackspace: boolean
 	): FragmentType {
 		this.impl.month = monthString
 		return this.validateAndSetState(undefined, monthString, undefined, (
 			validity: IDateFragmentsValidity
 		) => {
-			return this.adjustDateOrMonthInputAndRefocus(validity, monthString, FragmentType.MONTH, FragmentType.DATE, 0)
+			if (onBackspace) {
+				// FIXME: add support for non MM/DD/YYYY formats
+				validity.fragmentToFocus = FragmentType.MONTH
+				return validity
+			}
+			return this.adjustDateOrMonthInputAndRefocus(
+				validity, monthString, FragmentType.MONTH,
+				FragmentType.DATE, 0)
 		})
 	}
 
 	private setYear(
-		yearString: string
+		yearString: string,
+		onBackspace: boolean
 	): FragmentType {
 		this.impl.year = yearString
-		this.validateAndSetState(undefined, undefined, yearString)
+		this.validateAndSetState(undefined, undefined, yearString, (
+			validity: IDateFragmentsValidity
+		) => {
+			if (onBackspace) {
+				// FIXME: add support for non MM/DD/YYYY formats
+				return validity
+			}
+
+			return validity
+		})
 
 		return FragmentType.YEAR
 	}
@@ -371,9 +473,7 @@ export class DateFragments
 	): FragmentType {
 		let validity = this.getValidity(dateString, monthString, yearString)
 
-		if (spillOverCallback) {
-			validity = spillOverCallback(validity)
-		}
+		validity = spillOverCallback(validity)
 
 		this.impl.validity = validity
 
@@ -383,6 +483,7 @@ export class DateFragments
 				validity.month.number,
 				validity.year.number)
 		} else {
+			// fieldState.setState validates & detects, do so here as well
 			this.fieldState.validate()
 			this.fieldState.detect()
 		}

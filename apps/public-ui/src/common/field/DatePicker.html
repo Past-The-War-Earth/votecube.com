@@ -23,7 +23,7 @@
             maxlength="2"
             on:blur="checkFocus()"
             on:focus="setFocus()"
-            on:input="setFragment('month', this)"
+            on:input="onFragmentInput('month', this)"
             on:keydown="onFragmentKeydown('month', event)"
             placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.month}"
             type="text"
@@ -40,7 +40,7 @@
             maxlength="2"
             on:blur="checkFocus()"
             on:focus="setFocus()"
-            on:input="setFragment('date', this)"
+            on:input="onFragmentInput('date', this)"
             on:keydown="onFragmentKeydown('date', event)"
             placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.date}"
             type="text"
@@ -57,7 +57,7 @@
             maxlength="4"
             on:blur="checkFocus()"
             on:focus="setFocus()"
-            on:input="setFragment('year', this)"
+            on:input="onFragmentInput('year', this)"
             on:keydown="onFragmentKeydown('year', event)"
             placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.year}"
             type="text"
@@ -72,7 +72,14 @@
         >x</i>
         <i
             on:click="help()"
-        >?</i>
+        >
+    <svg width="33" height="33">
+         <g>
+            <line stroke="#aaa" stroke-width="7" x1="15" y1="13" x2="15" y2="29">
+            </line>
+            <circle fill="#aaa" cx="15" cy="7" r="4"></circle></g>
+        </svg>
+         </i>
     </section>
     {#if showCalendar}
     <div
@@ -273,11 +280,11 @@ export default {
         setFocus() {
             this.set({focused:true})
         },
-        setFragment(
+        onFragmentInput(
             fragmentType,
             element
         ) {
-            this.get().field.fragments.setFragment(fragmentType, element)
+            this.get().field.fragments.onInput(fragmentType, element)
         },
         showCalendar(element, event) {
             if(!this.get().showCalendar) {

@@ -3741,7 +3741,8 @@ Form field styling
 }
 
 .error {
-    color: #d00;
+    color: darkred;
+    padding-left: 5px;
 }
 
 .field-label {
