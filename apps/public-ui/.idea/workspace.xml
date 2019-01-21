@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="adding multi-select functionality and styling">
-      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
+    <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/common/icon/CalendarIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/icon/ClearIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/shell/TextToast.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/field/DatePicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/DatePicker.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/icon/InfoIcon.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/icon/InfoIcon.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/date/DateFragments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/date/DateFragments.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,16 +24,43 @@
     <splitter split-orientation="horizontal" split-proportion="0.5009265">
       <split-first>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/common/field/DatePicker.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3851">
-                  <caret line="224" column="6" selection-start-line="224" selection-start-column="6" selection-end-line="224" selection-end-column="6" />
+                <state relative-caret-position="293">
+                  <caret line="66" column="62" selection-start-line="66" selection-start-column="62" selection-end-line="66" selection-end-column="62" />
                   <folding>
                     <element signature="e#2644#2648#0#HTML" expanded="true" />
                     <element signature="e#2815#2819#0#HTML" expanded="true" />
-                    <element signature="e#4911#4945#0#HTML" expanded="true" />
+                    <element signature="e#4934#4968#0#HTML" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/common/icon/ClearIcon.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="682">
+                  <caret line="31" selection-start-line="31" selection-end-line="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/common/icon/CalendarIcon.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="22">
+                  <caret line="1" column="51" selection-start-line="1" selection-start-column="51" selection-end-line="1" selection-end-column="51" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/common/shell/TextToast.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="374">
+                  <caret line="17" selection-start-line="17" selection-end-line="17" />
                 </state>
               </provider>
             </entry>
@@ -52,11 +81,12 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/common/field/DatePicker.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-18">
-                  <caret line="278" column="10" selection-start-line="278" selection-start-column="10" selection-end-line="278" selection-end-column="10" />
+                <state relative-caret-position="279">
+                  <caret line="292" column="46" selection-start-line="292" selection-start-column="46" selection-end-line="292" selection-end-column="46" />
                   <folding>
                     <element signature="e#2644#2648#0#HTML" expanded="true" />
                     <element signature="e#2815#2819#0#HTML" expanded="true" />
+                    <element signature="e#4934#4968#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -74,8 +104,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/common/icon/InfoIcon.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="424">
-                  <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+                <state relative-caret-position="418">
+                  <caret line="28" selection-start-line="28" selection-end-line="28" />
                 </state>
               </provider>
             </entry>
@@ -95,8 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cubeLis</find>
-      <find>'</find>
       <find>field.</find>
       <find>selections</find>
       <find>selection</find>
@@ -107,7 +135,6 @@
       <find>onBlur</find>
       <find>popupTitle</find>
       <find>weeks</find>
-      <find>showCalendar</find>
       <find>onInput</find>
       <find>setDateOfMonth</find>
       <find>selectLocation</find>
@@ -125,6 +152,9 @@
       <find>period</find>
       <find>datePeriod</find>
       <find>=.onInput(</find>
+      <find>000000</find>
+      <find>on:select</find>
+      <find>showCalendar</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -141,8 +171,9 @@
       <replace>DimensionInfoButton</replace>
       <replace>text</replace>
       <replace>periods</replace>
-      <replace>.onInput</replace>
       <replace>=&quot;onFragmentInput(</replace>
+      <replace>aaa</replace>
+      <replace>.onInput</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -155,9 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/cube/vote/VerticalBarVote.html" />
-        <option value="$PROJECT_DIR$/src/pages/cube/create/PositionSelector.html" />
-        <option value="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" />
         <option value="$PROJECT_DIR$/src/shell/menu/MenuItem.html" />
         <option value="$PROJECT_DIR$/src/common/control/button/CreateButton.html" />
         <option value="$PROJECT_DIR$/src/pages/cube/create/PlaceSelector.html" />
@@ -203,8 +231,11 @@
         <option value="$PROJECT_DIR$/src/common/field/MultiSelect.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/create/NameLocationDates.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/create/Dates.html" />
-        <option value="$PROJECT_DIR$/src/common/field/DatePicker.html" />
         <option value="$PROJECT_DIR$/public/global.css" />
+        <option value="$PROJECT_DIR$/src/common/icon/ClearIcon.html" />
+        <option value="$PROJECT_DIR$/src/common/field/DatePicker.html" />
+        <option value="$PROJECT_DIR$/src/common/icon/CalendarIcon.html" />
+        <option value="$PROJECT_DIR$/src/common/shell/Toast.html" />
         <option value="$PROJECT_DIR$/src/common/icon/InfoIcon.html" />
       </list>
     </option>
@@ -256,6 +287,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
               <item name="icon" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="shell" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -349,7 +387,7 @@
       <workItem from="1545586306240" duration="2797000" />
       <workItem from="1545881004825" duration="143857000" />
       <workItem from="1547312494148" duration="6224000" />
-      <workItem from="1547525659293" duration="137321000" />
+      <workItem from="1547525659293" duration="141401000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -505,17 +543,24 @@
       <option name="project" value="LOCAL" />
       <updated>1547911962947</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="styling date picker">
+      <created>1548048340783</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1548048340783</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="348721000" />
+    <option name="totallyTimeSpent" value="352801000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14699684" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14699684" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -529,7 +574,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917964" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32398754" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32398754" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -564,34 +609,10 @@
     <MESSAGE value="refactoring &amp; improving/adding new art" />
     <MESSAGE value="field and content framework start &amp; component stubs" />
     <MESSAGE value="adding multi-select functionality and styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding multi-select functionality and styling" />
+    <MESSAGE value="styling date picker" />
+    <option name="LAST_COMMIT_MESSAGE" value="styling date picker" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1968">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="30" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shell/top/TopBar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#211#257#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@votecube/forms/src/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/icon/TimeIcon.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -909,17 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/DatePicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="278" column="10" selection-start-line="278" selection-start-column="10" selection-end-line="278" selection-end-column="10" />
-          <folding>
-            <element signature="e#2644#2648#0#HTML" expanded="true" />
-            <element signature="e#2815#2819#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/global.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
@@ -927,10 +937,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/icon/ClearIcon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/DatePicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="292" column="46" selection-start-line="292" selection-start-column="46" selection-end-line="292" selection-end-column="46" />
+          <folding>
+            <element signature="e#2644#2648#0#HTML" expanded="true" />
+            <element signature="e#2815#2819#0#HTML" expanded="true" />
+            <element signature="e#4934#4968#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/icon/CalendarIcon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="51" selection-start-line="1" selection-start-column="51" selection-end-line="1" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/shell/TextToast.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/icon/InfoIcon.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+        <state relative-caret-position="418">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>

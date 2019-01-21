@@ -63,13 +63,12 @@
             type="text"
             use:id="{id}"
         >
-        <i
-            type="calendar"
-            on:click="showCalendar(this, event)"
-        >cal</i>
-        <i
-            on:click="clear()"
-        >x</i>
+        <CalendarIcon
+            on:select="showCalendar(event.element, event.event)"
+        ></CalendarIcon>
+        <ClearIcon
+            on:select="clear()"
+        ></ClearIcon>
         <InfoIcon
             on:select="help()"
         ></InfoIcon>
@@ -205,6 +204,8 @@
 
 <script>
 import store from '../../store.js'
+import CalendarIcon from '../icon/CalendarIcon.html'
+import ClearIcon from '../icon/ClearIcon.html'
 import InfoIcon from '../icon/InfoIcon.html'
 
 export default {
@@ -221,6 +222,8 @@ export default {
         }
     },
     components: {
+        CalendarIcon,
+        ClearIcon,
         InfoIcon
     },
     computed: {
@@ -287,7 +290,7 @@ export default {
             if(!this.get().showCalendar) {
                 this.set({
                     showCalendar: true,
-                    dropdownPxFromTop: element.offsetHeight
+                    dropdownPxFromTop: element.parentElement.offsetHeight
                 })
                 event.stopPropagation()
             }
