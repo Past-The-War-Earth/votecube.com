@@ -1,0 +1,158 @@
+/**
+ * votecube customizations
+ */
+
+.custom-menu-top {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.pure-menu-horizontal.pure-menu-scrollable.custom-menu-bottom {
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.custom-menu-toggle {
+    top: 0px;
+}
+
+.custom-menu-screen {
+    height: 2.6em;
+}
+
+#menu {
+    line-height: 1.6;
+}
+
+
+/**
+Cube
+ */
+
+
+.slidecontainer {
+    height: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 70%;
+    height: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    background: #333333;
+    cursor: pointer;
+    border-radius: 18px;
+}
+
+.slider::-moz-range-thumb {
+    width: 35px;
+    height: 35px;
+    background: #333333;
+    cursor: pointer;
+    border-radius: 18px;
+}
+
+
+.app-button {
+    background-color: #F0F0F0;
+    border: 3px solid black;
+    border-radius: 30px;
+    color: black;
+    font-size: 1.5em;
+    height: 50px;
+    line-height: 46px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+}
+
+.bottom-left {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+.bottom-right {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.top-right {
+    position: fixed;
+    right: 10px;
+    top: 55px;
+}
+
+var {
+    font-style: normal;
+}
+
+/**
+Remove scrolling on IOS devices
+ */
+article,
+body,
+html {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+}
+
+/**
+Form field styling
+ */
+.invalid {
+    border: 1px solid darkred !important;
+}
+
+.requiredInvalid {
+    border-left: 5px solid darkred !important;
+}
+
+.requiredValid {
+    border-left: 5px solid green !important;
+}
+
+.error {
+    color: darkred;
+    padding-left: 5px;
+}
+
+.field-label {
+    height: 18px;
+}
+
+i {
+    display: inline-block;
+}
+
+.field {
+    border-bottom: 1px solid #aaa;
+}
+
+.fieldAid {
+    float: right;
+}
+
+.popup {
+    border-radius: 4px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}

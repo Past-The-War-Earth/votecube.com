@@ -52,20 +52,20 @@ export default {
             loadLocations(),
             loadLocText(this.store, 'en-us')
         ]).then(([
-            {FieldGroup, OptionField, Validators},
+            {FieldGroup, OptionsField, Validators},
             locations,
                     _
         ]) => {
             const text = this.store.get().text
             const form = new FieldGroup({
-                continents: new OptionField([], [
+                continents: new OptionsField([], [
                     Validators.required()
                 ], locations.continents),
-                countries: new OptionField([], [
+                countries: new OptionsField([], [
                 ], locations.countries),
-                states: new OptionField([], [
+                states: new OptionsField([], [
                 ], locations.states),
-                cities: new OptionField([], [
+                cities: new OptionsField([], [
                 ], locations.cities),
             }, [], this, text.UI.Poll.Create)
             form.optionText = text.LOCATIONS

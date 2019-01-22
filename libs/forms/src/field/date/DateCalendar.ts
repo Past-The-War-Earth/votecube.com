@@ -9,7 +9,7 @@ import {
 	Month
 }                           from './types'
 
-export interface IDatePopup
+export interface IDateCalendar
 	extends IDateSelection {
 
 	weeks: DateOfMonth[][]
@@ -19,15 +19,15 @@ export interface IDatePopup
 	toPrevMonth(): void
 }
 
-export interface IDatePopupInternal
-	extends IDatePopup,
+export interface IDateCalendarInternal
+	extends IDateCalendar,
 	        IDateSelectionInternal {
 	// year: number
 }
 
-export class DatePopup
+export class DateCalendar
 	extends DateSelection
-	implements IDatePopupInternal {
+	implements IDateCalendarInternal {
 
 	weeks: DateOfMonth[][]
 

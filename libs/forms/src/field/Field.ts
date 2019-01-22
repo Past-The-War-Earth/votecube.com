@@ -15,12 +15,9 @@ export enum LabelRule {
 	OVER
 }
 
-export interface IFieldConstraints {
-	maxLength?: '' | number
-}
-
 export interface IFieldRules {
 	label?: LabelRule
+	maxLength?: '' | number
 }
 
 export interface IFieldText {
@@ -40,7 +37,6 @@ export interface IField
 	extends IFieldBase,
 	        IValidate,
 	        IDetect {
-	constraints: IFieldConstraints
 	label: string
 	placeholder: string
 	rules: IFieldRules
@@ -67,10 +63,14 @@ export class Field
 	value: any         = ''
 
 	constructor(
-		validators: IValidator[]              = [],
-		public constraints: IFieldConstraints = {}
+		validators: IValidator[] = [],
+		rules: IFieldRules
 	) {
 		super(validators)
+		this.rules     = {
+			...this.rules,
+			...rules
+		}
 		this.lastValue = this.value
 	}
 

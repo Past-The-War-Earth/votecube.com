@@ -2,7 +2,7 @@ import {IValidator} from '../validator/Validator'
 import {
 	Field,
 	IField,
-	IFieldConstraints
+	IFieldRules
 }                   from './Field'
 
 export interface IFieldOption {
@@ -40,9 +40,9 @@ export class OptionsField
 	constructor(
 		validators: IValidator[],
 		public options: IFieldOption[] = [],
-		constraints?: IFieldConstraints
+		rules?: IFieldRules
 	) {
-		super(validators, constraints)
+		super(validators, rules)
 
 		this.setMultiOptions()
 	}

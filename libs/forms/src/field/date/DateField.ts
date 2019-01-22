@@ -5,16 +5,17 @@ import {
 import {
 	Field,
 	IField,
-	IFieldConstraints
+	IFieldRules,
+	LabelRule
 } from '../Field'
+import {
+	DateCalendar,
+	IDateCalendar
+} from './DateCalendar'
 import {
 	DateFragments,
 	IDateFragments
 } from './DateFragments'
-import {
-	DatePopup,
-	IDatePopup
-} from './DatePopup'
 import {
 	DateSelection,
 	IDateSelection
@@ -29,7 +30,7 @@ export interface IDateField
 	extends IField {
 
 	fragments: IDateFragments
-	popup: IDatePopup
+	calendar: IDateCalendar
 	selection: IDateSelection
 	value: Date
 
@@ -40,7 +41,19 @@ export interface IDateField
 
 	clear(): void
 
+	isSelected(
+		dateOfMonth: DateOfMonth,
+		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
+	): boolean
+
+	isToday(
+		dateOfMonth: DateOfMonth,
+		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
+	): boolean
+
 	reset(): void
+
+	setCalendarToSelection(): void
 
 	setToDate(
 		date: Date
@@ -59,7 +72,7 @@ export interface IMutableDateState {
 		date: DateOfMonth,
 		month: Month,
 		year: number,
-		popupOnly?: boolean
+		calendarOnly?: boolean
 	): void;
 
 }
@@ -74,16 +87,19 @@ export class DateField
 	implements IDateFieldInternal {
 
 	fragments = new DateFragments(this)
-	popup       = new DatePopup(this)
-	selection   = new DateSelection()
+	calendar  = new DateCalendar(this)
+	selection = new DateSelection()
+	today     = new Date()
 
 	private rangeValidators: IValidator[]
 
 	constructor(
 		validators: IValidator[],
-		constraints?: IFieldConstraints
+		rules?: IFieldRules
 	) {
-		super(validators, constraints)
+		super(validators, rules)
+
+		this.rules.label = LabelRule.OVER
 
 		this.rangeValidators = filterToRangeValidators(validators)
 		this.value           = null
@@ -100,17 +116,46 @@ export class DateField
 		return `R${inRange} M${inMonth}`
 	}
 
+	setCalendarToSelection(): void {
+		if (!this.selection.date) {
+			return
+		}
+		this.calendar.setState(null, this.selection.month, this.selection.year)
+	}
+
 	setDateOfMonth(
 		dateOfMonth: DateOfMonth,
 		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
 	): void {
-		const [year, month] = this.getPopupYearAndMonth(dateOfMonth, weekIndex)
+		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
 
 		this.setState(dateOfMonth, month, year)
 	}
 
 	clear(): void {
 		this.setState(null, null, null)
+	}
+
+	isToday(
+		dateOfMonth: DateOfMonth,
+		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
+	): boolean {
+		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
+
+		return year === this.today.getFullYear()
+			&& month === this.today.getMonth()
+			&& dateOfMonth === this.today.getDate()
+	}
+
+	isSelected(
+		dateOfMonth: DateOfMonth,
+		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
+	): boolean {
+		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
+
+		return year === this.selection.year
+			&& month === this.selection.month
+			&& dateOfMonth === this.selection.date
 	}
 
 	reset(): void {
@@ -142,18 +187,18 @@ export class DateField
 		date: DateOfMonth,
 		month: Month,
 		year: number,
-		popupOnly?: boolean
+		calendarOnly?: boolean
 	) {
-		let popupMonth = month
-		let popupYear  = year
+		let calendarMonth = month
+		let calendarYear  = year
 		if (!year) {
-			const now  = new Date()
-			popupMonth = now.getMonth() as Month
-			popupYear  = now.getFullYear()
+			const now     = new Date()
+			calendarMonth = now.getMonth() as Month
+			calendarYear  = now.getFullYear()
 		}
-		this.popup.setState(null, popupMonth, popupYear)
+		this.calendar.setState(null, calendarMonth, calendarYear)
 
-		if (popupOnly) {
+		if (calendarOnly) {
 			return
 		}
 
@@ -182,12 +227,12 @@ export class DateField
 		}
 	}
 
-	private getPopupYearAndMonth(
+	private getCalendarYearAndMonth(
 		dateOfMonth: DateOfMonth,
 		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
 	): [number, Month] {
-		let year  = this.popup.year
-		let month = this.popup.month
+		let year  = this.calendar.year
+		let month = this.calendar.month
 		if (!weekIndex && dateOfMonth > 7) {
 			month--
 			if (month < 0) {
@@ -209,7 +254,7 @@ export class DateField
 		dateOfMonth: DateOfMonth,
 		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
 	): [boolean, boolean] {
-		const [year, month] = this.getPopupYearAndMonth(dateOfMonth, weekIndex)
+		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
 
 		// FIXME: verify correctness after range validator is implemented
 		const fakeField: any = {
@@ -224,7 +269,7 @@ export class DateField
 			value: 0
 		}
 
-		const inMonth = year === this.popup.year && month === this.popup.month
+		const inMonth = year === this.calendar.year && month === this.calendar.month
 
 		const invalid = this.rangeValidators.some(
 			validator => !!validator(fakeField))

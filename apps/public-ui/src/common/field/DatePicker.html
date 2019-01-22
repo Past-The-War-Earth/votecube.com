@@ -12,6 +12,7 @@
         {label}
     </label>
     <section
+        class="field"
         class:invalid="touched && errors.length"
         class:requiredInvalid="field.validatorMap.required && errors.length"
         class:requiredValid="field.validatorMap.required && !errors.length"
@@ -63,55 +64,70 @@
             type="text"
             use:id="{id}"
         >
-        <CalendarIcon
-            on:select="showCalendar(event.element, event.event)"
-        ></CalendarIcon>
-        <ClearIcon
-            on:select="clear()"
-        ></ClearIcon>
         <InfoIcon
             on:select="help()"
         ></InfoIcon>
+        <ClearIcon
+            on:select="clear()"
+        ></ClearIcon>
+        <CalendarIcon
+            on:select="showCalendar(event.element, event.event)"
+        ></CalendarIcon>
     </section>
     {#if showCalendar}
     <div
         class="popup"
-        on:click="onPopupClick(event)"
+        on:click="onCalendarClick(event)"
     >
         <table
             class="header"
         >
             <tr>
-                <td>
-                    {popupTitle}
+                <td
+                    style="
+                        font-weight: bold;
+                        width: calc(100% - 60px);
+                    "
+                >
+                    {calendarTitle}
                 </td>
                 <td
-                    class="month-picker"
+                    class="monthMove"
                     on:click="toPrevMonth()"
                 >
-                    &lt;
+                    <ArrowLeftIcon></ArrowLeftIcon>
                 </td>
                 <td
-                    class="month-picker"
+                    class="monthMove"
                     on:click="toNextMonth()"
                 >
-                    &gt;
+                    <ArrowRightIcon></ArrowRightIcon>
                 </td>
             </tr>
         </table>
         <table>
-            <tr class="header-field">
+            <tr
+                class="header-field"
+                style="border-bottom: 1px solid #aaa; color: #aaa;"
+            >
         {#each $text.UI.Common.Field.Datepicker.weekDayOrder as weekDayIndex}
                 <td>
                     {$text.UI.Common.Field.Datepicker.shortWeekDay[weekDayIndex]}
                 </td>
         {/each}
             </tr>
+            <tr>
+                <td
+                    colspan="7"
+                ></td>
+            </tr>
         {#each weeks as week, weekIndex}
             <tr class="week{weekIndex}">
             {#each week as date, dayIndex}
                 <td
-                    class="day{dayIndex}"
+                    class="calDate day{dayIndex}"
+                    class:selectedDate="field.isSelected(date, weekIndex)"
+                    class:today="field.isToday(date, weekIndex)"
                     flags="{field.cellFlags(date, weekIndex)}"
                     on:click="selectDate(date, weekIndex, this)"
                 >
@@ -120,6 +136,11 @@
             {/each}
             </tr>
         {/each}
+            <tr>
+                <td
+                    colspan="7"
+                ></td>
+            </tr>
         </table>
     </div>
     {/if}
@@ -142,8 +163,8 @@
         display: inline-block;
         /*font-weight: 600;*/
         margin: 0;
-        padding-left: 5px;
-        vertical-align: super;
+        padding: 8px 0 6px;
+        vertical-align: text-bottom;
     }
 
     li {
@@ -158,7 +179,25 @@
     }
 
     table {
-        min-width: 320px;
+        width: 300px;
+    }
+
+    td {
+        height: 35px;
+        margin: auto;
+        text-align: center;
+        width: 14.28%;
+    }
+    td[colspan="7"] {
+        height: 3px;
+    }
+
+    td[flags~="Mtrue"] {
+        font-weight: bold;
+    }
+
+    td[flags~="Rfalse"] {
+        color: #ddd;
     }
 
     ul {
@@ -177,23 +216,50 @@
     }
 
     .date {
-        width: 40px;
+        width: 18px;
     }
 
     .date-picker {
         position: relative;
     }
 
+    .field {
+        padding-left: 5px;
+    }
+
     .header {
         height: 30px;
+        border: 0;
+    }
+
+    .header td {
+        padding-top: 10px;
     }
 
     .month {
-        width: 40px;
+        width: 18px;
     }
 
-    .month-picker {
-        width: 30px;
+
+    .popup {
+        width: 300px;
+        margin: 0 5px 5px 5px;
+    }
+
+    .selectedDate {
+        background-color: black;
+        border-radius: 4px;
+        color: white;
+    }
+
+    .separator {
+        display: inline-block;
+        margin-bottom: 6px;
+        vertical-align: text-bottom;
+    }
+
+    .today {
+        border: 1px solid black;
     }
 
     .year {
@@ -204,6 +270,8 @@
 
 <script>
 import store from '../../store.js'
+import ArrowLeftIcon from '../icon/ArrowLeftIcon.html'
+import ArrowRightIcon from '../icon/ArrowRightIcon.html'
 import CalendarIcon from '../icon/CalendarIcon.html'
 import ClearIcon from '../icon/ClearIcon.html'
 import InfoIcon from '../icon/InfoIcon.html'
@@ -222,6 +290,8 @@ export default {
         }
     },
     components: {
+        ArrowLeftIcon,
+        ArrowRightIcon,
         CalendarIcon,
         ClearIcon,
         InfoIcon
@@ -231,11 +301,11 @@ export default {
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
         month: ({delta, field}) => field.fragments.month,
-        popupTitle: ({delta, field, $text}) => {
-            return `${$text.UI.Common.Field.Datepicker.month[field.popup.month]} ${field.popup.year}`
+        calendarTitle: ({delta, field, $text}) => {
+            return `${$text.UI.Common.Field.Datepicker.month[field.calendar.month]} ${field.calendar.year}`
         },
         touched: ({delta, field}) => field.touched,
-        weeks: ({delta, field}) => field.popup.weeks,
+        weeks: ({delta, field}) => field.calendar.weeks,
         year: ({delta, field}) => field.fragments.year
     },
     data() {
@@ -248,8 +318,8 @@ export default {
         checkFocus() {
             this.set({focused:false})
             setTimeout(() => {
-                const {focused, field} = this.get()
-                if(!focused) {
+                const {field, focused} = this.get()
+                if(field && !focused) {
                     field.onBlur()
                 }
             })
@@ -267,7 +337,7 @@ export default {
         ) {
             this.get().field.fragments.onKeydown(fragmentType, event)
         },
-        onPopupClick(event) {
+        onCalendarClick(event) {
             event.stopPropagation()
         },
         selectDate(date, weekIndex, element) {
@@ -287,19 +357,21 @@ export default {
             this.get().field.fragments.onInput(fragmentType, element)
         },
         showCalendar(element, event) {
-            if(!this.get().showCalendar) {
+            const {field, showCalendar} = this.get()
+            if(!showCalendar) {
                 this.set({
                     showCalendar: true,
                     dropdownPxFromTop: element.parentElement.offsetHeight
                 })
+                field.setCalendarToSelection();
                 event.stopPropagation()
             }
         },
         toNextMonth() {
-            this.get().field.popup.toNextMonth()
+            this.get().field.calendar.toNextMonth()
         },
         toPrevMonth() {
-            this.get().field.popup.toPrevMonth()
+            this.get().field.calendar.toPrevMonth()
         },
         unselect(option, event) {
             this.get().field.unselect(option)
