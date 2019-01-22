@@ -64,7 +64,7 @@ export class Field
 
 	constructor(
 		validators: IValidator[] = [],
-		rules: IFieldRules
+		rules?: IFieldRules
 	) {
 		super(validators)
 		this.rules     = {

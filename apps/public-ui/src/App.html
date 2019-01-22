@@ -28,6 +28,15 @@
 
     </section>
 </article>
+<!--
+{#if showTextToast}
+<aside>
+    <pre>
+        {testToastText}
+    </pre>
+</aside>
+{/if}
+-->
 
 <style>
     #main {
@@ -69,11 +78,27 @@ export default {
         TopBar
     },
     computed: {
-        activeClass: ({$showMainMenu}) => $showMainMenu ? 'active' : ''
+        activeClass: ({$showMainMenu}) => $showMainMenu ? 'active' : '',
+        // showTextToast: ({$toast, testToastShown}) => {
+        //     if(!$toast.text.seconds
+        //     || testToastShown) {
+        //         return false
+        //     }
+        //     testToastShown = $toast.text.index
+        //     setTimeout(() => {
+        //         $toast = this.store.get().toast
+        //         if($toast.text.index === testToastShown) {
+        //             $toast.text.index = 0
+        //         }
+        //         this.store.set({$showTextToastForSeconds: 0})
+        //         this.set({testToastShown: false})
+        //     }, $showTextToastForSeconds * 1000)
+        // }
     },
     data() {
         return {
-            PageComp: null
+            PageComp: null,
+            testToastShown: false
         }
     },
     methods: {

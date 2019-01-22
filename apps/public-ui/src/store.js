@@ -11,6 +11,10 @@ class VCStore extends Store {
         const showTopMenu = !this.get().showTopMenu
         this.set({showTopMenu})
     }
+
+    // setTextToast(
+    //     text
+    // )
 }
 
 export default new VCStore({

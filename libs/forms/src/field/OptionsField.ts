@@ -43,6 +43,7 @@ export class OptionsField
 		rules?: IFieldRules
 	) {
 		super(validators, rules)
+		this.value = []
 
 		this.setMultiOptions()
 	}

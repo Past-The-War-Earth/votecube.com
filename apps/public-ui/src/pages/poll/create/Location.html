@@ -58,14 +58,14 @@ export default {
         ]) => {
             const text = this.store.get().text
             const form = new FieldGroup({
-                continents: new OptionsField([], [
+                continents: new OptionsField([
                     Validators.required()
                 ], locations.continents),
-                countries: new OptionsField([], [
+                countries: new OptionsField([
                 ], locations.countries),
-                states: new OptionsField([], [
+                states: new OptionsField([
                 ], locations.states),
-                cities: new OptionsField([], [
+                cities: new OptionsField([
                 ], locations.cities),
             }, [], this, text.UI.Poll.Create)
             form.optionText = text.LOCATIONS
