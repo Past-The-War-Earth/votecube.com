@@ -121,6 +121,8 @@ Form field styling
  */
 .invalid {
     border: 1px solid darkred !important;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
 }
 
 .requiredInvalid {
@@ -146,13 +148,18 @@ i {
 
 .field {
     border-bottom: 1px solid #aaa;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
 }
 
 .fieldAid {
     float: right;
 }
 
-.popup {
-    border-radius: 4px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+.dropdown {
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 5px 5px 1px #777;
+    position: absolute;
+    z-index: 100;
 }

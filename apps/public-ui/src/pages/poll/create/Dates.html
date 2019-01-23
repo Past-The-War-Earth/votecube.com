@@ -22,6 +22,7 @@
 import RightButton from '../../../common/control/button/RightButton.html'
 import DatePicker from '../../../common/field/DatePicker.html'
 import {loadForms} from '../../../libs/forms'
+import {loadUi} from '../../../libs/text/ui'
 import store from '../../../store'
 
 export default {
@@ -31,12 +32,14 @@ export default {
     },
     oncreate() {
         Promise.all([
-            loadForms(this)
+            loadForms(this),
+            loadUi(this.store, 'en-us')
         ]).then(([
-            {DateField, FieldGroup, Validators}
+            {DateField, FieldGroup, Validators},
+            _
         ]) => {
             const text = this.store.get().text
-            const form = new FieldGroup({
+            const form = new FieldGroup('Dates', {
                 startDate: new DateField([
                     Validators.required(),
                     Validators.minTomorrow()

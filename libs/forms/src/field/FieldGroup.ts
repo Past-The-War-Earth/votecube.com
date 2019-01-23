@@ -26,6 +26,31 @@ export class FieldGroup
 
 	text: IFieldGroupText
 
+	constructor(
+		name,
+		public fields: IFieldMap = {},
+		validators: IValidator[],
+		nameOrComponentObject: string | IPage,
+		text: any
+	) {
+		super(validators, nameOrComponentObject)
+		this.name = name
+		this.text = text[this.name]
+
+		for (const fieldName in fields) {
+			const field = fields[fieldName]
+			field.name  = fieldName
+			field.text  = this.text[fieldName]
+			field.group = this
+
+			if (typeof nameOrComponentObject !== 'string') {
+				field.pages.push(nameOrComponentObject)
+			}
+		}
+
+		this.validate()
+	}
+
 	get value(): any {
 		const value = {}
 
@@ -44,29 +69,6 @@ export class FieldGroup
 			const field      = this.fields[fieldName]
 			field.optionText = textMap[fieldName]
 		}
-	}
-
-	constructor(
-		public fields: IFieldMap = {},
-		validators: IValidator[],
-		nameOrComponentObject: string | IPage,
-		text: any
-	) {
-		super(validators, nameOrComponentObject)
-		this.text = text[this.name]
-
-		for (const fieldName in fields) {
-			const field = fields[fieldName]
-			field.name  = fieldName
-			field.text  = this.text[fieldName]
-			field.group = this
-
-			if (typeof nameOrComponentObject !== 'string') {
-				field.pages.push(nameOrComponentObject)
-			}
-		}
-
-		this.validate()
 	}
 
 	validate(): void {

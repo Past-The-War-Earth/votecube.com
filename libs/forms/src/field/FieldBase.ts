@@ -53,23 +53,9 @@ export abstract class FieldBase
 		public validators: IValidator[] = [],
 		nameOrComponentObject?: string | object
 	) {
-		if (nameOrComponentObject) {
-			this.setName(nameOrComponentObject)
-		}
-
 		this.validatorMap = {}
 		for (const validator of validators) {
 			this.validatorMap[validator.type] = validator
-		}
-	}
-
-	setName(
-		nameOrComponentObject: string | object
-	) {
-		if (typeof nameOrComponentObject === 'string') {
-			this.name = nameOrComponentObject
-		} else {
-			this.name = nameOrComponentObject.constructor.name
 		}
 	}
 

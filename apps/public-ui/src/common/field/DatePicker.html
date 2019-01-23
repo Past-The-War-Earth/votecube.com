@@ -76,7 +76,7 @@
     </section>
     {#if showCalendar}
     <div
-        class="popup"
+        class="dropdown"
         on:click="onCalendarClick(event)"
     >
         <table
@@ -159,6 +159,7 @@
         /*font-weight: 600;*/
         margin: 0;
         padding: 8px 0 6px;
+        text-align: center;
         vertical-align: text-bottom;
     }
 
@@ -236,7 +237,10 @@
     }
 
 
-    .popup {
+    .dropdown {
+        border: 1px solid #ccc;
+        border-right: none;
+        border-top: none;
         margin: 0 5px 5px 5px;
         padding: 3px;
         width: 300px;
@@ -244,7 +248,7 @@
 
     .selectedDate {
         background-color: black;
-        border-radius: 4px;
+        border-radius: 3px;
         color: white;
     }
 
@@ -255,11 +259,13 @@
     }
 
     .today {
-        border: 1px solid black;
+        border: 1px solid #ccc;
+        border-radius: 3px;
     }
 
-    .year {
-        width: 80px;
+    input.year {
+        text-align: left;
+        width: 42px;
     }
 
 </style>

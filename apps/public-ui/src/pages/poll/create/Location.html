@@ -39,6 +39,7 @@ import MultiSelect from '../../../common/field/MultiSelect.html'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadLocations as loadLocText} from '../../../libs/text/locations'
+import {loadUi} from '../../../libs/text/ui'
 import store from '../../../store'
 
 export default {
@@ -50,14 +51,16 @@ export default {
         Promise.all([
             loadForms(this),
             loadLocations(),
+            loadUi(this.store, 'en-us'),
             loadLocText(this.store, 'en-us')
         ]).then(([
             {FieldGroup, OptionsField, Validators},
             locations,
-                    _
+                    _,
+                    _2
         ]) => {
             const text = this.store.get().text
-            const form = new FieldGroup({
+            const form = new FieldGroup('Location', {
                 continents: new OptionsField([
                     Validators.required()
                 ], locations.continents),
