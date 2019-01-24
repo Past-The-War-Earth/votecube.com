@@ -4,7 +4,6 @@
 ></svelte:document>
 {#if $forms}
 <div
-    ref:multiSelect
     class="multiSelect"
 >
     <label
@@ -12,35 +11,69 @@
         use:for="{id}"
     >{label}</label>
     <section
-        class="dropdownAnchor field selections"
+        class="dropdownAnchor field fieldBox"
         class:invalid="touched && errors.length"
         class:requiredInvalid="field.validatorMap.required && errors.length"
         class:requiredValid="field.validatorMap.required && !errors.length"
         on:click="showOptions(this, event)"
+        ref:field
     >
+        <div
+            class="selections"
+            style="
+                width: {selectionWidth}
+            "
+            >
+            <div
+                class="selectionSizer"
+                ref:selectionSizer
+            >
+
     {#each selections as selection}
-        <section
-            class="selection"
+                <section
+                    class="selection"
+                >
+                    <div
+                        class="selection-contents"
+                    >
+                    {selection.text}
+                    </div>
+                    <span
+                        class="unselect"
+                        on:click="unselect(selection, event)"
+                    >
+                        <s class="bar"></s>
+                        <s class="bar"></s>
+                    </span>
+                </section>
+    {/each}
+                <input
+                    bind:value="filter"
+                    type="text"
+                    ref:filter
+                    use:id="{id}"
+                >
+            </div>
+        </div>
+        <div
+            class="icons"
+            style="
+                width: {aidWidth}
+            "
         >
             <div
-                class="selection-contents"
+                class="multiRowIconsCenter"
             >
-            {selection.text}
+                <InfoIcon
+                    on:select="help()"
+                    multiLine="y"
+                ></InfoIcon>
+                <ClearIcon
+                    on:select="clear()"
+                    multiLine="y"
+                ></ClearIcon>
             </div>
-            <span
-                class="unselect"
-                on:click="unselect(selection, event)"
-            >
-                <s class="bar"></s>
-                <s class="bar"></s>
-            </span>
-        </section>
-    {/each}
-        <input
-            bind:value="filter"
-            type="text"
-            use:id="{id}"
-        >
+        </div>
     </section>
     {#if showOptions && options.length}
     <ul
@@ -100,8 +133,27 @@
         width: 100%;
     }
 
-    .activeOption {
-        background-color: #eee;
+    .fieldBox {
+        background-color: white;
+        min-height: 2.25em;
+        padding-bottom: 5px;
+        position: relative;
+        width: 100%;
+    }
+
+    .icons {
+        display: inline-block;
+        height: 100%;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+
+    .multiRowIconsCenter {
+        padding-top: 5px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .multiSelect {
@@ -113,7 +165,7 @@
         /*border: 1px solid #777;*/
         background-color: #ccc;
         border: 1px solid #222;
-        border-radius: 4px;
+        border-radius: 3px;
         color: #333;
         /*color: #fff;*/
         display: inline-block;
@@ -128,10 +180,11 @@
     }
 
     .selections {
-        background-color: white;
-        min-height: 2.25em;
-        padding-bottom: 5px;
-        width: 100%;
+        display: inline-block;
+    }
+
+    .selectionSizer {
+        display: inline-block;
     }
 
     .unselect {
@@ -165,7 +218,9 @@
 
 <script>
 import store from '../../store'
-import {addHeightWatch, removeHeightWatch} from '../../watch'
+import {removeWatch, watchMultilineField} from '../../watch'
+import InfoIcon from '../icon/InfoIcon.html'
+import ClearIcon from '../icon/ClearIcon.html'
 
 export default {
     actions: {
@@ -180,15 +235,25 @@ export default {
             }
         }
     },
+    components: {
+        ClearIcon,
+        InfoIcon
+    },
     computed: {
+        aidWidth: ({sizeDiff}) => sizeDiff < 34
+            ? '33px'
+            : 'auto',
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
-        selections: ({delta, field}) => field.value,
         options: ({delta, field, filter}) => filter
         ? field.multiOptions
             .filter(option =>
                 option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
         : field.multiOptions,
+        selections: ({delta, field}) => field.value,
+        selectionWidth: ({sizeDiff}) => sizeDiff < 34
+            ? 'calc(100% - 33px)'
+            : 'calc(100% - 70px)',
         touched: ({delta, field}) => field.touched
     },
     data() {
@@ -199,8 +264,15 @@ export default {
     },
     immutable: true,
     methods: {
+        clear() {
+            this.get().field.clear()
+            this.refs.filter.value = ''
+        },
+        help() {
+            const text = this.get().field.text
+            this.store.setTextToast( text.info, text.infoSeconds)
+        },
         hideOptions() {
-            removeHeightWatch(this)
             this.set({showOptions: false})
         },
         onBlur() {
@@ -255,13 +327,10 @@ export default {
                         showOptions: true,
                         dropdownTopPx: element.offsetHeight + 6
                     })
-                    addHeightWatch(this, this.refs.multiSelect)
                     event.stopPropagation()
                 }
-
-                // dropdownPxFromTop
             }
-            element.lastElementChild.focus()
+            this.refs.filter.focus()
         },
         unselect(option, event) {
             this.get().field.unselect(option)
@@ -272,9 +341,10 @@ export default {
     oncreate() {
         const field = this.get().field
         this.get().field.pages.push(this)
+        watchMultilineField(this, this.refs.field, this.refs.selectionSizer)
     },
     ondestroy() {
-        removeHeightWatch(this)
+        removeWatch(this)
     },
     store: () => store
 }

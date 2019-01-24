@@ -22,6 +22,7 @@ export interface IFieldRules {
 
 export interface IFieldText {
 	errors?: IErrorsText
+	info: string
 	label: string
 }
 

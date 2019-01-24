@@ -12,9 +12,22 @@ class VCStore extends Store {
         this.set({showTopMenu})
     }
 
-    // setTextToast(
-    //     text
-    // )
+    setTextToast(
+        text,
+        seconds = 3
+    ) {
+        const textToast = {
+            seconds,
+            text,
+            time: new Date().getTime()
+
+        }
+        this.set({
+            textToast
+        })
+        this.fire('setTextToast', {textToast})
+
+    }
 }
 
 export default new VCStore({
@@ -48,4 +61,6 @@ export default new VCStore({
         "Equality: Trump's policies are tailored with the interests of the wealthy in mind and hurt equality.",
         "Security: Trump's policies reduce the trust in our alliances and hurt the stability of the world."
     ],
+    textToast: {
+    }
 });

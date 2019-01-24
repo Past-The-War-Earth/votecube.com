@@ -64,12 +64,12 @@
             type="text"
             use:id="{id}"
         >
-        <InfoIcon
-            on:select="help()"
-        ></InfoIcon>
         <ClearIcon
             on:select="clear()"
         ></ClearIcon>
+        <InfoIcon
+            on:select="help()"
+        ></InfoIcon>
         <CalendarIcon
             on:select="showCalendar(event.element, event.event)"
         ></CalendarIcon>
@@ -328,6 +328,10 @@ export default {
         },
         clear() {
             this.get().field.clear()
+        },
+        help() {
+            const text = this.get().field.text
+            this.store.setTextToast( text.info, text.infoSeconds)
         },
         onDocumentClick(event) {
             this.get().field.reset()

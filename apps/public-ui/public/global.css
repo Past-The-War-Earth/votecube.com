@@ -228,17 +228,17 @@ hr {
  * Contain overflow in all browsers.
  */
 
-pre {
+/*pre {
     overflow: auto;
-}
+}*/
 
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
 
+/*pre,*/
 code,
 kbd,
-pre,
 samp {
     font-family: monospace, monospace;
     font-size: 1em;
@@ -2752,8 +2752,8 @@ dd {
     margin: 0 0 10px 0;
 }
 
-aside {
-    background: #1f8dd6; /* same color as selected state on site menu */
+/*aside {
+    background: #1f8dd6; !* same color as selected state on site menu *!
     margin: 1em 0;
     padding: 0.3em 1em;
     border-radius: 3px;
@@ -2762,7 +2762,7 @@ aside {
 
 aside a, aside a:visited {
     color: rgb(169, 226, 255);
-}
+}*/
 
 
 /* --------------------------
@@ -2886,7 +2886,7 @@ aside a, aside a:visited {
  * --------------------------
 */
 
-pre,
+/*pre,*/
 code {
     font-family: Consolas, Courier, monospace;
     color: #333;
@@ -3406,7 +3406,7 @@ a.pure-button-primary {
  *
  * @author tilomitra
  */
-
+/*
 pre .comment {
     color: #999;
 }
@@ -3446,14 +3446,15 @@ pre .hex-color {
 pre .attribute,
 pre .variable,
 pre .support {
-    color: #757575; /* skinbuilder block-page-text-normal with #1f8dd6 as primary */
+    color: #757575; !* skinbuilder block-page-text-normal with #1f8dd6 as primary *!
 }
 
 pre .string,
 pre .support.value {
     font-weight: normal;
-    color: #3b8bba; /* skinbuilder block-mine-text-low with #1f8dd6 as primary */
+    color: #3b8bba; !* skinbuilder block-mine-text-low with #1f8dd6 as primary *!
 }
+*/
 
 
 .custom-menu-wrapper {

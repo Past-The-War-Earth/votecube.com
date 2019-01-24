@@ -1,35 +1,52 @@
-const heightWatches = []
+export const WatchType = {
+    MULTILINE_FIELD: 1
+}
+
+const watches = []
 
 setInterval(() => {
-    for(const heightWatch of heightWatches) {
-        const currentComponent = heightWatch.component
-        const currentElement = heightWatch.element
-        const lastDropdownTopPx = heightWatch.height
-
-        const dropdownTopPx = currentElement.offsetHeight + 6
-        if(lastDropdownTopPx != dropdownTopPx) {
-            currentComponent.set({ dropdownTopPx })
-        }
+    for (const watch of watches) {
+        watch.callback(watch)
     }
 }, 100)
 
-export function addHeightWatch(
+export function removeWatch(
     component,
-    parentElement
+    watchType
 ) {
-    heightWatches.push({
+    for (let index = watches.length - 1; index >= 0; index--) {
+        const watch = watches[index]
+        if (watch.component === component
+            && (!watchType || watch.type === watchType)) {
+            watches.splice(index, 1)
+        }
+    }
+}
+
+export function watchMultilineField(
+    component,
+    field,
+    selectionSizer
+) {
+    watches.push({
+        callback: (
+            watch
+        ) => {
+            const dropdownTopPx = watch.field.offsetHeight + 6
+            const sizeDiff = watch.field.clientWidth - watch.selectionSizer.clientWidth
+            if (watch.dropdownTopPx !== dropdownTopPx
+                || watch.sizeDiff !== sizeDiff ) {
+                // alert('dropdownTopPx: ' + dropdownTopPx)
+                setTimeout(() => {
+                    watch.dropdownTopPx = dropdownTopPx
+                    watch.component.set({dropdownTopPx, sizeDiff})
+                }, 16)
+            }
+        },
         component,
-        element: parentElement.getElementsByClassName('dropdownAnchor')[0]
+        field,
+        selectionSizer,
+        type: WatchType.MULTILINE_FIELD
     })
 }
 
-export function removeHeightWatch(
-    component
-) {
-    heightWatches.some((heightWatch, index) => {
-        if(heightWatch.component === component) {
-            heightWatches.splice(index, 1)
-            return true
-        }
-    })
-}

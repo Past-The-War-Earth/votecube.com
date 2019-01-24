@@ -4,6 +4,7 @@
       "Create": {
         "NameLocationDates": {
           "name": {
+            "info": "Select the name for this poll",
             "label": "Poll Name",
             "errors": {
               "minLength": "Poll Name must be at least 3 characters long",
@@ -11,11 +12,13 @@
             }
           },
           "location": {
+            "info": "Select the location of the poll (Continent, Country, State, City)",
             "errors": {
               "required": "Poll Location is required"
             }
           },
           "timeframe": {
+            "info": "Select the Start and End dates for the poll",
             "errors": {
               "required": "Poll Time Frame is Required"
             }
@@ -23,23 +26,28 @@
         },
         "Location": {
           "continents": {
+            "info": "Select one or more continents to which this poll will apply",
             "label": "Continent(s)",
             "errors": {
               "required": "Continent is required"
             }
           },
           "countries": {
+            "info": "Select one or more countries to which this poll will apply",
             "label": "Country(ies)"
           },
           "states": {
+            "info": "Select one or more states to which this poll will apply",
             "label": "State(s)"
           },
           "cities": {
+            "info": "Select one or more cities to which this poll will apply",
             "label": "City(ies)"
           }
         },
         "Dates": {
           "startDate": {
+            "info": "Select the date when this poll starts",
             "label": "Start Date",
             "errors": {
               "required": "Start Date is required",
@@ -48,6 +56,7 @@
             }
           },
           "endDate": {
+            "info": "Select the last date when this poll open",
             "label": "End Date",
             "errors": {
               "required": "End Date is required",

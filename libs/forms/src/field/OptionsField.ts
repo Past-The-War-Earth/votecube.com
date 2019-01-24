@@ -19,6 +19,8 @@ export interface IOptionsField
 	optionText: { [optionKey: string]: string }
 	selectionMap: { [optionKey: string]: IFieldOption }
 
+	clear(): void
+
 	select(
 		option: IFieldOption
 	)
@@ -54,6 +56,17 @@ export class OptionsField
 		for (const option of this.options) {
 			option.text = textMap[option.key]
 		}
+	}
+
+	clear(): void {
+		if (this.value instanceof Array) {
+			this.selectionMap = {}
+			this.value        = []
+			this.setMultiOptions()
+		} else {
+			this.value = null
+		}
+		this.onBlur()
 	}
 
 	select(

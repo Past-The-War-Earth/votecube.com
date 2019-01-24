@@ -1,6 +1,6 @@
 <i
-    class="fieldAid"
-    on:click="fire('select', element)"
+    class:fieldAid="!multiLine"
+    on:click="click(element, event)"
 >
     <svg
         width="28"
@@ -42,3 +42,18 @@
         border-radius: 3px;
     }
 </style>
+<script>
+export default {
+    data() {
+        return {
+            multiLine: false
+        }
+    },
+    methods: {
+        click(element, event) {
+            this.fire('select', {element})
+            event.stopPropagation()
+        }
+    }
+}
+</script>
