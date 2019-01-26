@@ -104,7 +104,7 @@ export class OptionsField
 	}
 
 	hidePopup(): void {
-		this.pages[0].set({showOptions: false})
+		this.components[0].set({showOptions: false})
 	}
 
 	select(

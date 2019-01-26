@@ -2,9 +2,9 @@ import {IValidator} from '../validator/Validator'
 import {IFieldText} from './Field'
 import {
 	FieldBase,
+	IComponent,
 	IFieldBase,
-	IFieldError,
-	IPage
+	IFieldError
 }                   from './FieldBase'
 
 export interface IFieldMap {
@@ -39,7 +39,6 @@ export class FieldGroup
 		name,
 		public fields: IFieldMap = {},
 		validators: IValidator[],
-		page: IPage,
 		text: any
 	) {
 		super(validators)
@@ -51,9 +50,7 @@ export class FieldGroup
 			field.name  = fieldName
 			field.text  = this.text[fieldName]
 			field.group = this
-			field.pages.push(page)
 		}
-		this.pages.push(page)
 		this.validate()
 	}
 
@@ -77,6 +74,16 @@ export class FieldGroup
 		}
 	}
 
+	addComponent(
+		component: IComponent
+	): void {
+		for (const fieldName in this.fields) {
+			const field = this.fields[fieldName]
+			field.addComponent(component)
+		}
+		super.addComponent(component)
+	}
+
 	hideOtherPopups(
 		fieldWithOpenPopup: FieldBase
 	): void {
@@ -88,11 +95,22 @@ export class FieldGroup
 		}
 	}
 
+	removeComponent(
+		component: IComponent
+	): void {
+		for (const fieldName in this.fields) {
+			this.fields[fieldName].removeComponent(component)
+		}
+		super.removeComponent(component)
+	}
+
 	validate(
+		fromParentGroup?: boolean,
 		relatedField?: IFieldBase
 	): void {
 		try {
-			if (relatedField && !relatedField.valid) {
+			if (relatedField
+				&& relatedField.valid === false) {
 				this.valid = false
 				return
 			}
@@ -103,7 +121,7 @@ export class FieldGroup
 				if (!relatedField ||
 					(relatedField !== field
 						&& field.valid == null)) {
-					field.validate(this)
+					field.validate(true)
 				}
 				if (!field.valid) {
 					this.valid = false
@@ -113,7 +131,10 @@ export class FieldGroup
 				}
 			}
 		} finally {
-			for (const page of this.pages) {
+			if (this.group) {
+				this.group.validate(false, this)
+			}
+			for (const page of this.components) {
 				page.set({isValid: this.valid})
 			}
 		}

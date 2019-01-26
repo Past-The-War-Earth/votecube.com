@@ -124,7 +124,7 @@ export class DateField
 	}
 
 	hidePopup(): void {
-		this.pages[0].set({showCalendar: false})
+		this.components[0].set({showCalendar: false})
 	}
 
 	showPopup(): void {
@@ -228,17 +228,17 @@ export class DateField
 	}
 
 	validate(
-		parentGroup?: IFieldBase
+		fromParentGroup?: boolean
 	): void {
 		if (this.fragments.valid) {
-			super.validate(parentGroup)
+			super.validate(fromParentGroup)
 		} else {
 			let key     = 'format'
 			this.errors = [{
 				key,
 				message: this.text.errors[key]
 			}]
-			this.updateValidity(parentGroup)
+			this.updateValidity(fromParentGroup)
 		}
 	}
 

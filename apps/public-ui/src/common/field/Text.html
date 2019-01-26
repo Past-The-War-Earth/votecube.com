@@ -66,7 +66,10 @@ export default {
         }
     },
     oncreate() {
-        this.get().field.pages.push(this)
+        this.get().field.setAsField(this)
+    },
+    ondestroy() {
+        this.get().field.removeComponent(this)
     },
     store: () => store
 }

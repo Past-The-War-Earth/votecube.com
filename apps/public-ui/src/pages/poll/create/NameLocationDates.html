@@ -19,7 +19,7 @@
             </div>
         </IconBlock>
         <IconBlock
-            field="{form.fields.timeframe}"
+            field="{form.fields.dates}"
             on:select="selectDates()"
         >
             <div slot="icon">
@@ -32,10 +32,8 @@
 
         <nav class="pure-controls">
             <RightButton
-                circleRadius="23"
-                fillColor="ffffff"
-                highlightColor="000000"
-                strokeWidth="3"
+                classes="submitButton"
+                highlightColor="{submitHighlight}"
             ></RightButton>
         </nav>
     </fieldset>
@@ -48,13 +46,6 @@
             display: none;
     }
 
-    nav {
-        bottom: 10px;
-        position: absolute;
-        text-align: center;
-        width: calc(100% - 10px);
-    }
-
 </style>
 
 <script>
@@ -63,7 +54,9 @@ import Text from '../../../common/field/Text.html'
 import IconBlock from '../../../common/field/IconBlock.html'
 import LocationIcon from '../../../common/icon/LocationIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
+import {clearForm, ensureForm, getForm, setForm} from '../../../forms'
 import {loadForms} from '../../../libs/forms'
+import {loadLocations} from '../../../libs/locations'
 import {loadUi} from '../../../libs/text/ui'
 import * as routes from '../../../routes'
 import store from '../../../store'
@@ -77,7 +70,10 @@ export default {
         TimeIcon
     },
     computed: {
-        name: ({test}) => true
+        name: ({test}) => true,
+        submitHighlight: ({isValid}) => isValid
+        ? '0b0'
+        : 'b00'
     },
     data() {
         return {
@@ -104,52 +100,77 @@ export default {
     oncreate() {
         Promise.all([
             loadForms(this),
+            loadLocations(),
             loadUi(this.store, 'en-us')
         ]).then(([
-            {Field, FieldGroup, Validators},
+            {DateField, Field, FieldGroup, OptionsField, Validators},
+            locations,
             _
         ]) => {
-            const text = this.store.get().text
-            const startDate = new DateField([
-                Validators.required(),
-                Validators.minTomorrow()
-            ])
-            const dates = new FieldGroup('Dates', {
-                startDate,
-                endDate: new DateField([
-                    Validators.required(),
-                    Validators.minTomorrow(),
-                    Validators.greaterThanOrEquals(startDate)
-                ]),
-            }, [], this, text.UI.Poll.Create)
+            let form = getForm('NameLocationDates')
 
-            const continents = new OptionsField([
-                    Validators.required()
-                ], locations.continents)
-            const countries = new OptionsField([
-                ], locations.countries)
-            const states = new OptionsField([
-                ], locations.states)
-            const cities = new OptionsField([
-                ], locations.cities)
-            const location = new FieldGroup('Location', {
-                continents,
-                countries,
-                states,
-                cities,
-            }, [], this, text.UI.Poll.Create)
+            if(!form) {
+                form = createForm(
+                    locations,
+                    this.store.get().text.UI.Poll.Create,
+                    DateField,
+                    Field,
+                    FieldGroup,
+                    OptionsField,
+                    Validators)
+                setForm('NameLocationDates', form)
+            }
 
-            const form = new FieldGroup('NameLocationDates', {
-                location,
-                name: new Field([
-                    Validators.minLength(3),
-                    Validators.required()
-                ], { maxLength: 40}),
-                dates
-            }, [], this, this.store.get().text.UI.Poll.Create)
-            this.set({form})
+            ensureForm(form, this)
         })
     },
+    ondestroy() {
+        clearForm(this)
+    },
     store: () => store
+}
+
+function createForm(
+    locations,
+    text,
+    DateField,
+    Field,
+    FieldGroup,
+    OptionsField,
+    Validators
+) {
+    const startDate = new DateField([
+        Validators.required(),
+        Validators.minTomorrow()
+    ])
+    const dates = new FieldGroup('Dates', {
+        startDate,
+        endDate: new DateField([
+                Validators.required(),
+                Validators.minTomorrow(),
+                Validators.greaterThanOrEquals(startDate)
+            ]),
+    }, [], text)
+
+    const location = new FieldGroup('Location', {
+        continents: new OptionsField([
+                Validators.required()
+            ], locations.continents),
+        countries: new OptionsField([
+            ], locations.countries),
+        states: new OptionsField([
+            ], locations.states),
+        cities: new OptionsField([
+            ], locations.cities),
+    }, [], text)
+
+    return new FieldGroup('NameLocationDates', {
+        location,
+        name: new Field([
+            Validators.minLength(3),
+            Validators.required()
+        ], { maxLength: 40}),
+        dates
+    }, [], text)
 }
 </script>

@@ -25,6 +25,7 @@
             <RightButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
+                on:select="submit()"
             ></RightButton>
         </div>
     </fieldset>
@@ -34,11 +35,10 @@
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
 import MultiSelect from '../../../common/field/MultiSelect.html'
-import {getForm} from '../../../forms'
-import {loadForms} from '../../../libs/forms'
+import {clearForm, ensureChildForm, navigateOnValid} from '../../../forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadLocations as loadLocText} from '../../../libs/text/locations'
-import {loadUi} from '../../../libs/text/ui'
+import {CREATE_POLL_NAME_LOG_DATE} from '../../../routes'
 import store from '../../../store'
 
 export default {
@@ -52,56 +52,50 @@ export default {
         : 'b00'
     },
     immutable: true,
+    methods: {
+        submit() {
+            navigateOnValid(this, CREATE_POLL_NAME_LOG_DATE)
+        }
+    },
     oncreate() {
+        const form = ensureChildForm(
+            'NameLocationDates', 'location',
+            this, CREATE_POLL_NAME_LOG_DATE)
+        if(!form) {
+            return
+        }
         Promise.all([
-            loadForms(this),
             loadLocations(),
-            loadUi(this.store, 'en-us'),
             loadLocText(this.store, 'en-us')
         ]).then(([
-            {FieldGroup, OptionsField, Validators},
             locations,
-                    _,
-                    _2
+            _
         ]) => {
-            const text = this.store.get().text
-            const continents = new OptionsField([
-                    Validators.required()
-                ], locations.continents)
-            const countries = new OptionsField([
-                ], locations.countries)
-            const states = new OptionsField([
-                ], locations.states)
-            const cities = new OptionsField([
-                ], locations.cities)
-            const form = new FieldGroup('Location', {
-                continents,
-                countries,
-                states,
-                cities,
-            }, [], this, text.UI.Poll.Create)
-
             if(!form.optionText) {
+                const {text} = this.store.get()
                 form.optionText = text.LOCATIONS
 
-                continents.onChange((
+                form.fields.continents.onChange((
                 selectedContinents
                 ) => {
-                    selectSubLocation(selectedContinents, locations.countries, countries)
+                    selectSubLocation(selectedContinents, locations.countries, form.fields.countries)
                 })
-                countries.onChange((
+                form.fields.countries.onChange((
                     selectedCountries
                 ) => {
-                    selectSubLocation(selectedCountries, locations.states, states)
+                    selectSubLocation(selectedCountries, locations.states, form.fields.states)
                 })
-                states.onChange((
+                form.fields.states.onChange((
                     selectedStates
                 ) => {
-                    selectSubLocation(selectedStates, locations.cities, cities)
+                    selectSubLocation(selectedStates, locations.cities, form.fields.cities)
                 })
             }
-            this.set({form: getForm().location})
+            this.set({form})
         })
+    },
+    ondestroy() {
+        clearForm(this)
     },
     store: () => store
 }

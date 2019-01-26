@@ -335,12 +335,13 @@ export default {
     },
     oncreate() {
         const field = this.get().field
-        this.get().field.pages.unshift(this)
+        this.get().field.setAsField(this)
         watchMultilineField(this, this.refs.field
         // , this.refs.selectionSizer
         )
     },
     ondestroy() {
+        this.get().field.removeComponent(this)
         removeWatch(this)
     },
     store: () => store

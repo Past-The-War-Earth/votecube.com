@@ -1,5 +1,4 @@
 import {IValidator}  from '../validator/Validator'
-import {IFieldArray} from './FieldArray'
 import {IFieldGroup} from './FieldGroup'
 
 export interface IFieldError {
@@ -9,7 +8,7 @@ export interface IFieldError {
 	[otherKey: string]: any;
 }
 
-export interface IPage {
+export interface IComponent {
 	set(object: any): void;
 }
 
@@ -19,7 +18,7 @@ export interface IFieldBase {
 	// inputValue: string
 	name: string
 	optionText
-	pages: IPage[]
+	components: IComponent[]
 	pristine: boolean
 	text
 	touched: boolean
@@ -27,6 +26,14 @@ export interface IFieldBase {
 	validators?: IValidator[]
 	validatorMap?: { [validatorName: string]: IValidator }
 	value: any
+
+	addComponent(
+		component: IComponent
+	): void
+
+	removeComponent(
+		component: IComponent
+	): void
 
 	focus(): void;
 
@@ -38,7 +45,12 @@ export interface IFieldBase {
 		) => void
 	): void
 
+	setAsField(
+		component: IComponent
+	): void
+
 	validate(
+		fromParentGroup?: boolean,
 		relatedField?: IFieldBase
 	): void;
 }
@@ -46,20 +58,20 @@ export interface IFieldBase {
 export abstract class FieldBase
 	implements IFieldBase {
 
-	array: IFieldArray
-	dirty                 = false
-	errors: IFieldError[] = []
+	// array: IFieldArray
+	dirty                    = false
+	errors: IFieldError[]    = []
 	group: IFieldGroup
 	lastValue: any
 	name: string
 	optionText
-	pages: IPage[]        = []
-	pristine              = true
+	components: IComponent[] = []
+	pristine                 = true
 	text
-	touched               = false
-	valid                 = null
+	touched                  = false
+	valid                    = null
 	validatorMap
-	valueChangeCallbacks  = []
+	valueChangeCallbacks     = []
 
 	private theValue: any
 
@@ -85,12 +97,18 @@ export abstract class FieldBase
 		}
 	}
 
-	hidePopup(): void {
-		// nothing to do for fields with no popups
+	addComponent(
+		component: IComponent
+	): void {
+		this.components.push(component)
 	}
 
 	focus(): void {
 		this.group.hideOtherPopups(this)
+	}
+
+	hidePopup(): void {
+		// nothing to do for fields with no popups
 	}
 
 	onChange(
@@ -101,7 +119,26 @@ export abstract class FieldBase
 		this.valueChangeCallbacks.push(callback)
 	}
 
+	removeComponent(
+		component: IComponent
+	): void {
+		for (let index = this.components.length - 1; index >= 0; index--) {
+			let currentComponent = this.components[index]
+			if (component === currentComponent) {
+				this.components.splice(index, 1)
+				break
+			}
+		}
+	}
+
+	setAsField(
+		component: IComponent
+	): void {
+		this.components.unshift(component)
+	}
+
 	abstract validate(
+		fromParentGroup?: boolean,
 		relatedField?: IFieldBase
 	): void;
 

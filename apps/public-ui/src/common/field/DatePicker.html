@@ -386,8 +386,10 @@ export default {
         }
     },
     oncreate() {
-        const field = this.get().field
-        this.get().field.pages.unshift(this)
+        this.get().field.setAsField(this)
+    },
+    ondestroy() {
+        this.get().field.removeComponent(this)
     },
     store: () => store
 }

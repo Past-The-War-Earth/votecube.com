@@ -1,12 +1,13 @@
-import {addChange} from '../changeTracker'
+import {addChange}   from '../changeTracker'
 import {
 	IErrorsText,
 	IValidator
-}                  from '../validator/Validator'
+}                    from '../validator/Validator'
 import {
 	FieldBase,
 	IFieldBase
-}                  from './FieldBase'
+}                    from './FieldBase'
+import {IFieldGroup} from './FieldGroup'
 
 export enum LabelRule {
 	BOTH,
@@ -28,6 +29,7 @@ export interface IFieldText {
 
 export interface IValidate {
 	validate(
+		fromParentGroup?: boolean,
 		relatedField?: IFieldBase
 	): void
 }
@@ -108,7 +110,7 @@ export class Field
 	detect(): void {
 		setTimeout(() => {
 			const delta = addChange()
-			for (const page of this.pages) {
+			for (const page of this.components) {
 				page.set({delta})
 			}
 		})
@@ -139,7 +141,7 @@ export class Field
 	}
 
 	validate(
-		parentGroup?: IFieldBase
+		fromParentGroup?: boolean
 	): void {
 		this.errors = []
 
@@ -161,19 +163,19 @@ export class Field
 					return true
 				}
 			})
-		this.updateValidity(parentGroup)
+		this.updateValidity(fromParentGroup)
 	}
 
 	protected updateValidity(
-		parentGroup?: IFieldBase
+		fromParentGroup: boolean
 	) {
 		const lastIsValid = this.valid
 
 		this.valid = !this.errors.length
 
 		if (lastIsValid !== this.valid) {
-			if (!parentGroup) {
-				this.group.validate(this)
+			if (!fromParentGroup) {
+				this.group.validate(false, this)
 			}
 		}
 	}
