@@ -1,15 +1,17 @@
 {#if $forms}
 <a
-    class="pure-button"
-    class:invalid="touched && errors.length"
-    class:requiredInvalid="field.validatorMap.required && errors.length"
-    class:requiredValid="field.validatorMap.required && !errors.length"
-    on:click="fire('select')"
+    class="field"
+    class:invalid="touched && error"
+    class:requiredInvalid="fieldGroup.isRequired && error"
+    class:requiredValid="fieldGroup.isRequired && !error"
+    on:click="select()"
     use:id="{id}"
 >
     <table>
         <tr>
-        <td>
+        <td
+            class="iconCell"
+        >
             <slot name="icon"></slot>
         </td>
         <td>
@@ -18,17 +20,24 @@
         </tr>
     </table>
 </a>
-    {#if touched}
-        {#each errors as error}
+    {#if touched && error}
 <span class="pure-form-message error">{error.message}</span>
-        {/each}
     {/if}
 {/if}
 
 <style>
 
     a {
+        border: 1px solid #aaa;
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        color: #555;
+        cursor: pointer;
+        display: block;
         margin: 5px 0;
+        padding: 0.5em 1em;
+        text-align: center;
+        vertical-align: middle;
         white-space: normal;
         width: 100%;
     }
@@ -39,6 +48,10 @@
 
     td {
         padding: 5px;
+    }
+
+    .iconCell {
+        width: 56px;
     }
 
 </style>
@@ -55,24 +68,28 @@ export default {
         }
     },
     computed: {
-        errors: ({delta, field}) => field.errors,
-        touched: ({delta, field}) => field.touched
+        error: ({delta, fieldGroup}) => fieldGroup.error,
+        label: ({delta, fieldGroup}) => fieldGroup.label,
+        touched: ({delta, fieldGroup}) => fieldGroup.touched
     },
     data() {
         return {
-            iconWidth: 42
         }
     },
     methods: {
         onBlur(event) {
-            this.get().field.onBlur()
+            this.get().fieldGroup.onBlur()
+        },
+        select() {
+            this.get().fieldGroup.touch()
+            this.fire('select')
         }
     },
     oncreate() {
-        this.get().field.setAsField(this)
+        this.get().fieldGroup.setAsField(this)
     },
     ondestroy() {
-        this.get().field.removeComponent(this)
+        this.get().fieldGroup.removeComponent(this)
     },
     store: () => store
 }

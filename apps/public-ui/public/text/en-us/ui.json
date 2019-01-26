@@ -7,21 +7,16 @@
             "info": "Select the name for this poll",
             "label": "Poll Name",
             "errors": {
-              "minLength": "Poll Name must be at least 3 characters long",
               "required": "Poll Name is required"
             }
           },
           "location": {
             "info": "Select the location of the poll (Continent, Country, State, City)",
-            "errors": {
-              "required": "Poll Location is required"
-            }
+            "error": "Correct location information is required"
           },
           "timeframe": {
             "info": "Select the Start and End dates for the poll",
-            "errors": {
-              "required": "Poll Time Frame is Required"
-            }
+            "error": "Correct time-frame information is required"
           }
         },
         "Location": {
@@ -45,7 +40,7 @@
             "label": "City(ies)"
           }
         },
-        "Dates": {
+        "Timeframe": {
           "startDate": {
             "info": "Select the date when this poll starts",
             "label": "Start Date",

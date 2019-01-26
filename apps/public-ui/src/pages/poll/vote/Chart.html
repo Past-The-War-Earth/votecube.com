@@ -326,10 +326,12 @@ export default {
             this.set({maxBarSize});
         }, this.store)
         loadCubeLogic(this)
+        this.store.set({noOverflow: true})
     },
     ondestroy() {
         shutDownCubeListener(this.get().cubeListener, this)
         setResizeCllBck(null)
+        this.store.set({noOverflow: false})
     },
     store: () => store
 }

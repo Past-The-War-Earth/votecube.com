@@ -16,24 +16,38 @@ export interface IFieldValidityMap {
 }
 
 export interface IFieldGroupText {
-	[key: string]: IFieldGroupText | IFieldText
+	[key: string]: IFieldGroupText | IFieldGroupingText | IFieldText | string
+}
+
+export interface IFieldGroupingText {
+	error: string
+	info: string
+	label: string
 }
 
 export interface IFieldGroup
 	extends IFieldBase {
+
+	error: IFieldError;
 	fields: IFieldMap
+	isRequired: boolean
 	text: IFieldGroupText
 
 	hideOtherPopups(
 		fieldWithOpenPopup: FieldBase
 	): void
+
 }
 
 export class FieldGroup
 	extends FieldBase
 	implements IFieldGroup {
 
+	error: IFieldError = null
+
 	text: IFieldGroupText
+
+	private hasRequiredChild = false
 
 	constructor(
 		name,
@@ -50,8 +64,16 @@ export class FieldGroup
 			field.name  = fieldName
 			field.text  = this.text[fieldName]
 			field.group = this
+			if (field.isRequired) {
+				this.hasRequiredChild = true
+			}
 		}
 		this.validate()
+	}
+
+	get isRequired(): boolean {
+		return this.validatorMap.required
+			|| this.hasRequiredChild
 	}
 
 	get value(): any {
@@ -131,6 +153,13 @@ export class FieldGroup
 				}
 			}
 		} finally {
+			this.error = this.valid
+				? null
+				: {
+					key: 'grouping',
+					message: this.text.error as string
+				}
+
 			if (this.group) {
 				this.group.validate(false, this)
 			}

@@ -13,12 +13,14 @@ export interface IComponent {
 }
 
 export interface IFieldBase {
+
+	components: IComponent[]
 	errors: IFieldError[]
 	group: IFieldGroup
 	// inputValue: string
+	isRequired: boolean
 	name: string
 	optionText
-	components: IComponent[]
 	pristine: boolean
 	text
 	touched: boolean
@@ -49,10 +51,13 @@ export interface IFieldBase {
 		component: IComponent
 	): void
 
+	touch(): void
+
 	validate(
 		fromParentGroup?: boolean,
 		relatedField?: IFieldBase
-	): void;
+	): void
+
 }
 
 export abstract class FieldBase
@@ -68,11 +73,11 @@ export abstract class FieldBase
 	components: IComponent[] = []
 	pristine                 = true
 	text
-	touched                  = false
 	valid                    = null
 	validatorMap
 	valueChangeCallbacks     = []
 
+	private theTouched = false
 	private theValue: any
 
 	constructor(
@@ -82,6 +87,14 @@ export abstract class FieldBase
 		for (const validator of validators) {
 			this.validatorMap[validator.type] = validator
 		}
+	}
+
+	get isRequired(): boolean {
+		return this.validatorMap.required
+	}
+
+	get touched(): boolean {
+		return this.theTouched
 	}
 
 	get value() {
@@ -135,6 +148,13 @@ export abstract class FieldBase
 		component: IComponent
 	): void {
 		this.components.unshift(component)
+	}
+
+	touch(): void {
+		this.theTouched = true
+		if (this.group) {
+			this.group.touch()
+		}
 	}
 
 	abstract validate(

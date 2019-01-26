@@ -6,7 +6,29 @@
             field="{form.fields.name}"
         ></Text>
         <IconBlock
-            field="{form.fields.location}"
+            fieldGroup="{form.fields.location}"
+        >
+            <div slot="icon">
+                <ThemeIcon
+                ></ThemeIcon>
+            </div>
+            <div slot="text">
+            Theme
+            </div>
+        </IconBlock>
+        <IconBlock
+            fieldGroup="{form.fields.location}"
+        >
+            <div slot="icon">
+                <LabelIcon
+                ></LabelIcon>
+            </div>
+            <div slot="text">
+            Label(s)
+            </div>
+        </IconBlock>
+        <IconBlock
+            fieldGroup="{form.fields.location}"
             on:select="selectLocation()"
         >
             <div slot="icon">
@@ -19,7 +41,7 @@
             </div>
         </IconBlock>
         <IconBlock
-            field="{form.fields.dates}"
+            fieldGroup="{form.fields.timeframe}"
             on:select="selectDates()"
         >
             <div slot="icon">
@@ -27,6 +49,17 @@
             </div>
             <div slot="text">
             Poll Timeframe
+            </div>
+        </IconBlock>
+        <IconBlock
+            fieldGroup="{form.fields.timeframe}"
+            on:select="selectDates()"
+        >
+            <div slot="icon">
+                <DimensionsIcon></DimensionsIcon>
+            </div>
+            <div slot="text">
+            Dimensions
             </div>
         </IconBlock>
 
@@ -52,7 +85,10 @@
 import RightButton from '../../../common/control/button/RightButton.html'
 import Text from '../../../common/field/Text.html'
 import IconBlock from '../../../common/field/IconBlock.html'
+import DimensionsIcon from '../../../common/icon/DimensionsIcon.html'
+import LabelIcon from '../../../common/icon/LabelIcon.html'
 import LocationIcon from '../../../common/icon/LocationIcon.html'
+import ThemeIcon from '../../../common/icon/ThemeIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
 import {clearForm, ensureForm, getForm, setForm} from '../../../forms'
 import {loadForms} from '../../../libs/forms'
@@ -63,10 +99,13 @@ import store from '../../../store'
 
 export default {
     components: {
+        DimensionsIcon,
         IconBlock,
+        LabelIcon,
         LocationIcon,
         RightButton,
         Text,
+        ThemeIcon,
         TimeIcon
     },
     computed: {
@@ -143,7 +182,7 @@ function createForm(
         Validators.required(),
         Validators.minTomorrow()
     ])
-    const dates = new FieldGroup('Dates', {
+    const timeframe = new FieldGroup('Timeframe', {
         startDate,
         endDate: new DateField([
                 Validators.required(),
@@ -170,7 +209,7 @@ function createForm(
             Validators.minLength(3),
             Validators.required()
         ], { maxLength: 40}),
-        dates
+        timeframe
     }, [], text)
 }
 </script>

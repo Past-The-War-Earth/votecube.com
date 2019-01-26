@@ -123,7 +123,7 @@ export class Field
 	}
 
 	onBlur(): void {
-		this.touched = true
+		this.touch()
 		this.onInput()
 	}
 
