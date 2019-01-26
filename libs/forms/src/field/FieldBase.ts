@@ -28,7 +28,19 @@ export interface IFieldBase {
 	validatorMap?: { [validatorName: string]: IValidator }
 	value: any
 
-	validate(): void;
+	focus(): void;
+
+	hidePopup(): void;
+
+	onChange(
+		callback: (
+			value: any
+		) => void
+	): void
+
+	validate(
+		relatedField?: IFieldBase
+	): void;
 }
 
 export abstract class FieldBase
@@ -45,13 +57,14 @@ export abstract class FieldBase
 	pristine              = true
 	text
 	touched               = false
-	valid                 = true
+	valid                 = null
 	validatorMap
-	value: any
+	valueChangeCallbacks  = []
+
+	private theValue: any
 
 	constructor(
-		public validators: IValidator[] = [],
-		nameOrComponentObject?: string | object
+		public validators: IValidator[] = []
 	) {
 		this.validatorMap = {}
 		for (const validator of validators) {
@@ -59,6 +72,37 @@ export abstract class FieldBase
 		}
 	}
 
-	abstract validate(): void;
+	get value() {
+		return this.theValue
+	}
+
+	set value(
+		newValue
+	) {
+		this.theValue = newValue
+		for (const callback of this.valueChangeCallbacks) {
+			callback(newValue)
+		}
+	}
+
+	hidePopup(): void {
+		// nothing to do for fields with no popups
+	}
+
+	focus(): void {
+		this.group.hideOtherPopups(this)
+	}
+
+	onChange(
+		callback: (
+			value: any
+		) => void
+	): void {
+		this.valueChangeCallbacks.push(callback)
+	}
+
+	abstract validate(
+		relatedField?: IFieldBase
+	): void;
 
 }

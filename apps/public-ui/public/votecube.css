@@ -120,21 +120,28 @@ html {
 Form field styling
  */
 .field.invalid {
-    border: 1px solid darkred !important;
+    border: 1px solid #b00 !important;
     border-bottom-right-radius: 2px;
     border-top-right-radius: 2px;
 }
 
 .field.requiredInvalid {
-    border-left: 5px solid darkred !important;
+    border-left: 5px solid #b00 !important;
 }
 
 .field.requiredValid {
-    border-left: 5px solid green !important;
+    border-left: 5px solid #0b0 !important;
+}
+
+input.field {
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 0px;
+    vertical-align: middle;
 }
 
 .error {
-    color: darkred;
+    color: #b00;
     padding-left: 5px;
 }
 
@@ -148,7 +155,7 @@ i {
 
 .field {
     border-left: 5px solid #aaa !important;
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid #aaa !important;
     border-bottom-left-radius: 3px;
     border-top-left-radius: 3px;
 }
@@ -163,4 +170,9 @@ i {
     box-shadow: 5px 5px 1px #777;
     position: absolute;
     z-index: 100;
+}
+
+.submitButton {
+    margin: auto;
+    display: block;
 }

@@ -25,27 +25,29 @@ export function removeWatch(
 
 export function watchMultilineField(
     component,
-    field,
-    selectionSizer
+    field
+    //, selectionSizer
 ) {
     watches.push({
         callback: (
             watch
         ) => {
             const dropdownTopPx = watch.field.offsetHeight + 6
-            const sizeDiff = watch.field.clientWidth - watch.selectionSizer.clientWidth
+            // const sizeDiff = watch.field.clientWidth - watch.selectionSizer.clientWidth
             if (watch.dropdownTopPx !== dropdownTopPx
-                || watch.sizeDiff !== sizeDiff ) {
+                // || watch.sizeDiff !== sizeDiff
+            ) {
                 // alert('dropdownTopPx: ' + dropdownTopPx)
-                setTimeout(() => {
+                // setTimeout(() => {
                     watch.dropdownTopPx = dropdownTopPx
-                    watch.component.set({dropdownTopPx, sizeDiff})
-                }, 16)
+                    watch.component.set({dropdownTopPx})
+                    // watch.component.set({dropdownTopPx, sizeDiff})
+                // }, 16)
             }
         },
         component,
         field,
-        selectionSizer,
+        // selectionSizer,
         type: WatchType.MULTILINE_FIELD
     })
 }

@@ -20,15 +20,13 @@
     >
         <div
             class="selections"
-            style="
-                width: {selectionWidth}
-            "
-            >
+        >
+        <!--
             <div
                 class="selectionSizer"
                 ref:selectionSizer
             >
-
+-->
     {#each selections as selection}
                 <section
                     class="selection"
@@ -53,25 +51,24 @@
                     ref:filter
                     use:id="{id}"
                 >
+                <!--
             </div>
+            -->
         </div>
         <div
             class="icons"
-            style="
-                width: {aidWidth}
-            "
         >
             <div
                 class="multiRowIconsCenter"
             >
-                <InfoIcon
-                    on:select="help()"
-                    multiLine="y"
-                ></InfoIcon>
                 <ClearIcon
                     on:select="clear()"
                     multiLine="y"
                 ></ClearIcon>
+                <InfoIcon
+                    on:select="help()"
+                    multiLine="y"
+                ></InfoIcon>
             </div>
         </div>
     </section>
@@ -108,6 +105,7 @@
         display: inline-block;
         font-weight: 600;
         margin: 0;
+        margin-top: 8px;
         padding-left: 5px;
         vertical-align: text-bottom;
         width: 50px;
@@ -181,11 +179,12 @@
 
     .selections {
         display: inline-block;
+        width: calc(100% - 70px);
     }
-
+/*
     .selectionSizer {
         display: inline-block;
-    }
+    }*/
 
     .unselect {
         display: inline-block;
@@ -240,9 +239,6 @@ export default {
         InfoIcon
     },
     computed: {
-        aidWidth: ({sizeDiff}) => sizeDiff < 34
-            ? '33px'
-            : 'auto',
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
         options: ({delta, field, filter}) => filter
@@ -251,9 +247,6 @@ export default {
                 option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
         : field.multiOptions,
         selections: ({delta, field}) => field.value,
-        selectionWidth: ({sizeDiff}) => sizeDiff < 34
-            ? 'calc(100% - 33px)'
-            : 'calc(100% - 70px)',
         touched: ({delta, field}) => field.touched
     },
     data() {
@@ -322,7 +315,9 @@ export default {
         },
         showOptions(element, event) {
             if(!this.get().showOptions) {
-                if(this.get().field.multiOptions.length) {
+                const {field} = this.get()
+                if(field.multiOptions.length) {
+                    field.focus()
                     this.set({
                         showOptions: true,
                         dropdownTopPx: element.offsetHeight + 6
@@ -340,8 +335,10 @@ export default {
     },
     oncreate() {
         const field = this.get().field
-        this.get().field.pages.push(this)
-        watchMultilineField(this, this.refs.field, this.refs.selectionSizer)
+        this.get().field.pages.unshift(this)
+        watchMultilineField(this, this.refs.field
+        // , this.refs.selectionSizer
+        )
     },
     ondestroy() {
         removeWatch(this)

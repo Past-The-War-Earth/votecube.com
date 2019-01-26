@@ -64,15 +64,15 @@
             type="text"
             use:id="{id}"
         >
-        <ClearIcon
-            on:select="clear()"
-        ></ClearIcon>
         <InfoIcon
             on:select="help()"
         ></InfoIcon>
         <CalendarIcon
             on:select="showCalendar(event.element, event.event)"
         ></CalendarIcon>
+        <ClearIcon
+            on:select="clear()"
+        ></ClearIcon>
     </section>
     {#if showCalendar}
     <div
@@ -369,7 +369,7 @@ export default {
                     showCalendar: true,
                     dropdownPxFromTop: element.parentElement.offsetHeight
                 })
-                field.setCalendarToSelection();
+                field.showPopup();
                 event.stopPropagation()
             }
         },
@@ -387,7 +387,7 @@ export default {
     },
     oncreate() {
         const field = this.get().field
-        this.get().field.pages.push(this)
+        this.get().field.pages.unshift(this)
     },
     store: () => store
 }

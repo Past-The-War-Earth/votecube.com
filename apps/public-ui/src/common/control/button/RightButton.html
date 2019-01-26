@@ -1,6 +1,7 @@
 <svg
-    width="50"
+    class="{classes}"
     height="50"
+    width="50"
 >
     <g class="layer">
         <circle
@@ -29,3 +30,16 @@
         />
     </g>
 </svg>
+<script>
+export default {
+    data() {
+        return {
+            classes: '',
+            circleRadius: 23,
+            fillColor: 'fff',
+            highlightColor: '000',
+            strokeWidth: 3
+        }
+    }
+}
+</script>

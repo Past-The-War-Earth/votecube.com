@@ -1,30 +1,31 @@
 import {
 	filterToRangeValidators,
 	IValidator
-} from '../../validator/Validator'
+}                   from '../../validator/Validator'
 import {
 	Field,
 	IField,
 	IFieldRules,
 	LabelRule
-} from '../Field'
+}                   from '../Field'
+import {IFieldBase} from '../FieldBase'
 import {
 	DateCalendar,
 	IDateCalendar
-} from './DateCalendar'
+}                   from './DateCalendar'
 import {
 	DateFragments,
 	IDateFragments
-} from './DateFragments'
+}                   from './DateFragments'
 import {
 	DateSelection,
 	IDateSelection
-} from './DateSelection'
+}                   from './DateSelection'
 import {
 	DateOfMonth,
 	Month,
 	utcNow
-} from './types'
+}                   from './types'
 
 export interface IDateField
 	extends IField {
@@ -53,7 +54,7 @@ export interface IDateField
 
 	reset(): void
 
-	setCalendarToSelection(): void
+	showPopup(): void
 
 	setToDate(
 		date: Date
@@ -107,6 +108,12 @@ export class DateField
 		this.reset()
 	}
 
+	get numValue(): number {
+		return this.value
+			? this.value.getTime()
+			: null
+	}
+
 	cellFlags(
 		dateOfMonth: DateOfMonth,
 		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
@@ -116,7 +123,12 @@ export class DateField
 		return `R${inRange} M${inMonth}`
 	}
 
-	setCalendarToSelection(): void {
+	hidePopup(): void {
+		this.pages[0].set({showCalendar: false})
+	}
+
+	showPopup(): void {
+		this.group.hideOtherPopups(this)
 		if (!this.selection.date) {
 			return
 		}
@@ -215,15 +227,18 @@ export class DateField
 		this.detect()
 	}
 
-	validate(): void {
+	validate(
+		parentGroup?: IFieldBase
+	): void {
 		if (this.fragments.valid) {
-			super.validate()
+			super.validate(parentGroup)
 		} else {
 			let key     = 'format'
 			this.errors = [{
 				key,
 				message: this.text.errors[key]
 			}]
+			this.updateValidity(parentGroup)
 		}
 	}
 
@@ -257,16 +272,19 @@ export class DateField
 		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
 
 		// FIXME: verify correctness after range validator is implemented
+		const value          = new Date(Date.UTC(year, month, dateOfMonth))
+		const numValue       = value.getTime()
 		const fakeField: any = {
 			fragments: {
 				valid: true
 			},
+			numValue,
 			selection: {
 				date: dateOfMonth,
 				month,
 				year
 			},
-			value: 0
+			value
 		}
 
 		const inMonth = year === this.calendar.year && month === this.calendar.month

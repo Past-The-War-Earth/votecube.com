@@ -109,17 +109,43 @@ export default {
             {Field, FieldGroup, Validators},
             _
         ]) => {
-            const form = new FieldGroup('NameLocationDates', {
-                location: new Field([
-                    Validators.required()
+            const text = this.store.get().text
+            const startDate = new DateField([
+                Validators.required(),
+                Validators.minTomorrow()
+            ])
+            const dates = new FieldGroup('Dates', {
+                startDate,
+                endDate: new DateField([
+                    Validators.required(),
+                    Validators.minTomorrow(),
+                    Validators.greaterThanOrEquals(startDate)
                 ]),
+            }, [], this, text.UI.Poll.Create)
+
+            const continents = new OptionsField([
+                    Validators.required()
+                ], locations.continents)
+            const countries = new OptionsField([
+                ], locations.countries)
+            const states = new OptionsField([
+                ], locations.states)
+            const cities = new OptionsField([
+                ], locations.cities)
+            const location = new FieldGroup('Location', {
+                continents,
+                countries,
+                states,
+                cities,
+            }, [], this, text.UI.Poll.Create)
+
+            const form = new FieldGroup('NameLocationDates', {
+                location,
                 name: new Field([
                     Validators.minLength(3),
                     Validators.required()
                 ], { maxLength: 40}),
-                timeframe: new Field([
-                    Validators.required()
-                ])
+                dates
             }, [], this, this.store.get().text.UI.Poll.Create)
             this.set({form})
         })

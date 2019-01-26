@@ -41,13 +41,47 @@ export class OptionsField
 
 	constructor(
 		validators: IValidator[],
-		public options: IFieldOption[] = [],
+		private theOptions: IFieldOption[] = [],
 		rules?: IFieldRules
 	) {
 		super(validators, rules)
 		this.value = []
 
 		this.setMultiOptions()
+	}
+
+	get options(): IFieldOption[] {
+		return this.theOptions
+	}
+
+	set options(
+		newOptions: IFieldOption[]
+	) {
+		this.theOptions = newOptions
+		this.setMultiOptions()
+
+		let optionsMap = {}
+		for (let newOption of newOptions) {
+			optionsMap[newOption.key] = newOption
+		}
+
+		let newValue        = []
+		let newSelectionMap = {}
+		let valueChanged    = false
+		for (const selection of this.value) {
+			if (!optionsMap[selection.key]) {
+				valueChanged = true
+			} else {
+				newSelectionMap[selection.key] = selection
+				newValue.push(selection)
+			}
+		}
+		if (valueChanged) {
+			this.selectionMap = newSelectionMap
+			this.value        = newValue
+			this.validate()
+		}
+		this.detect()
 	}
 
 	set optionText(
@@ -67,6 +101,10 @@ export class OptionsField
 			this.value = null
 		}
 		this.onBlur()
+	}
+
+	hidePopup(): void {
+		this.pages[0].set({showOptions: false})
 	}
 
 	select(

@@ -27,7 +27,9 @@ export interface IFieldText {
 }
 
 export interface IValidate {
-	validate(): void
+	validate(
+		relatedField?: IFieldBase
+	): void
 }
 
 export interface IDetect {
@@ -39,6 +41,7 @@ export interface IField
 	        IValidate,
 	        IDetect {
 	label: string
+	numValue: number
 	placeholder: string
 	rules: IFieldRules
 	text: IFieldText
@@ -87,6 +90,10 @@ export class Field
 		}
 	}
 
+	get numValue(): number {
+		return parseInt(this.value)
+	}
+
 	get placeholder(): string {
 		switch (this.rules.label) {
 			case LabelRule.BOTH:
@@ -131,7 +138,9 @@ export class Field
 		this.detect()
 	}
 
-	validate(): void {
+	validate(
+		parentGroup?: IFieldBase
+	): void {
 		this.errors = []
 
 		this.validators.some(
@@ -152,8 +161,21 @@ export class Field
 					return true
 				}
 			})
+		this.updateValidity(parentGroup)
+	}
+
+	protected updateValidity(
+		parentGroup?: IFieldBase
+	) {
+		const lastIsValid = this.valid
 
 		this.valid = !this.errors.length
+
+		if (lastIsValid !== this.valid) {
+			if (!parentGroup) {
+				this.group.validate(this)
+			}
+		}
 	}
 
 }

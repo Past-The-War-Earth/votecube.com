@@ -3,11 +3,16 @@ import {IFieldText} from './Field'
 import {
 	FieldBase,
 	IFieldBase,
+	IFieldError,
 	IPage
 }                   from './FieldBase'
 
 export interface IFieldMap {
 	[key: string]: IFieldBase
+}
+
+export interface IFieldValidityMap {
+	[key: string]: IFieldError[]
 }
 
 export interface IFieldGroupText {
@@ -18,6 +23,10 @@ export interface IFieldGroup
 	extends IFieldBase {
 	fields: IFieldMap
 	text: IFieldGroupText
+
+	hideOtherPopups(
+		fieldWithOpenPopup: FieldBase
+	): void
 }
 
 export class FieldGroup
@@ -30,10 +39,10 @@ export class FieldGroup
 		name,
 		public fields: IFieldMap = {},
 		validators: IValidator[],
-		nameOrComponentObject: string | IPage,
+		page: IPage,
 		text: any
 	) {
-		super(validators, nameOrComponentObject)
+		super(validators)
 		this.name = name
 		this.text = text[this.name]
 
@@ -42,12 +51,9 @@ export class FieldGroup
 			field.name  = fieldName
 			field.text  = this.text[fieldName]
 			field.group = this
-
-			if (typeof nameOrComponentObject !== 'string') {
-				field.pages.push(nameOrComponentObject)
-			}
+			field.pages.push(page)
 		}
-
+		this.pages.push(page)
 		this.validate()
 	}
 
@@ -71,13 +77,44 @@ export class FieldGroup
 		}
 	}
 
-	validate(): void {
-		this.valid = true
+	hideOtherPopups(
+		fieldWithOpenPopup: FieldBase
+	): void {
 		for (const fieldName in this.fields) {
 			const field = this.fields[fieldName]
-			field.validate()
-			if (!field.valid) {
+			if (field !== fieldWithOpenPopup) {
+				field.hidePopup()
+			}
+		}
+	}
+
+	validate(
+		relatedField?: IFieldBase
+	): void {
+		try {
+			if (relatedField && !relatedField.valid) {
 				this.valid = false
+				return
+			}
+
+			this.valid = true
+			for (const fieldName in this.fields) {
+				const field = this.fields[fieldName]
+				if (!relatedField ||
+					(relatedField !== field
+						&& field.valid == null)) {
+					field.validate(this)
+				}
+				if (!field.valid) {
+					this.valid = false
+				}
+				if (relatedField && !this.valid) {
+					return
+				}
+			}
+		} finally {
+			for (const page of this.pages) {
+				page.set({isValid: this.valid})
 			}
 		}
 	}

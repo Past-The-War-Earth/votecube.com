@@ -6,12 +6,15 @@
                 field="{form.fields.startDate}"
             ></DatePicker>
         </div>
+        <div class="pure-control-group">
+            <DatePicker
+                field="{form.fields.endDate}"
+            ></DatePicker>
+        </div>
         <div class="pure-controls">
             <RightButton
-                circleRadius="23"
-                fillColor="ffffff"
-                highlightColor="000000"
-                strokeWidth="3"
+                classes="submitButton"
+                highlightColor="{submitHighlight}"
             ></RightButton>
         </div>
     </fieldset>
@@ -30,6 +33,12 @@ export default {
         DatePicker,
         RightButton
     },
+    computed: {
+        submitHighlight: ({isValid}) => isValid
+        ? '0b0'
+        : 'b00'
+    },
+    immutable: true,
     oncreate() {
         Promise.all([
             loadForms(this),
@@ -39,10 +48,16 @@ export default {
             _
         ]) => {
             const text = this.store.get().text
-            const form = new FieldGroup('Dates', {
-                startDate: new DateField([
+            const startDate = new DateField([
                     Validators.required(),
                     Validators.minTomorrow()
+                ])
+            const form = new FieldGroup('Dates', {
+                startDate,
+                endDate: new DateField([
+                    Validators.required(),
+                    Validators.minTomorrow(),
+                    Validators.greaterThanOrEquals(startDate)
                 ]),
             }, [], this, text.UI.Poll.Create)
             this.set({form})

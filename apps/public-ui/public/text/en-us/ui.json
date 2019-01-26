@@ -62,7 +62,7 @@
               "required": "End Date is required",
               "format": "End Date is invalid",
               "min": "End Date must be greater than today",
-              "range": "End Date must be on or after Start Date"
+              "greaterThanOrEquals": "End Date must be on or after Start Date"
             }
           }
         }

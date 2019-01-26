@@ -23,10 +23,8 @@
         </div>
         <div class="pure-controls">
             <RightButton
-                circleRadius="23"
-                fillColor="ffffff"
-                highlightColor="000000"
-                strokeWidth="3"
+                classes="submitButton"
+                highlightColor="{submitHighlight}"
             ></RightButton>
         </div>
     </fieldset>
@@ -36,6 +34,7 @@
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
 import MultiSelect from '../../../common/field/MultiSelect.html'
+import {getForm} from '../../../forms'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadLocations as loadLocText} from '../../../libs/text/locations'
@@ -47,6 +46,12 @@ export default {
         MultiSelect,
         RightButton
     },
+    computed: {
+        submitHighlight: ({isValid}) => isValid
+        ? '0b0'
+        : 'b00'
+    },
+    immutable: true,
     oncreate() {
         Promise.all([
             loadForms(this),
@@ -60,21 +65,63 @@ export default {
                     _2
         ]) => {
             const text = this.store.get().text
-            const form = new FieldGroup('Location', {
-                continents: new OptionsField([
+            const continents = new OptionsField([
                     Validators.required()
-                ], locations.continents),
-                countries: new OptionsField([
-                ], locations.countries),
-                states: new OptionsField([
-                ], locations.states),
-                cities: new OptionsField([
-                ], locations.cities),
+                ], locations.continents)
+            const countries = new OptionsField([
+                ], locations.countries)
+            const states = new OptionsField([
+                ], locations.states)
+            const cities = new OptionsField([
+                ], locations.cities)
+            const form = new FieldGroup('Location', {
+                continents,
+                countries,
+                states,
+                cities,
             }, [], this, text.UI.Poll.Create)
-            form.optionText = text.LOCATIONS
-            this.set({form})
+
+            if(!form.optionText) {
+                form.optionText = text.LOCATIONS
+
+                continents.onChange((
+                selectedContinents
+                ) => {
+                    selectSubLocation(selectedContinents, locations.countries, countries)
+                })
+                countries.onChange((
+                    selectedCountries
+                ) => {
+                    selectSubLocation(selectedCountries, locations.states, states)
+                })
+                states.onChange((
+                    selectedStates
+                ) => {
+                    selectSubLocation(selectedStates, locations.cities, cities)
+                })
+            }
+            this.set({form: getForm().location})
         })
     },
     store: () => store
 }
+
+function selectSubLocation(
+    selectedParentLocations,
+    childLocations,
+    childLocationField
+) {
+    const matchingChildLocations = []
+    for(const parentLocation of selectedParentLocations) {
+        for(const country of childLocations) {
+            if(country.parent == parentLocation.key) {
+                matchingChildLocations.push(country)
+            }
+        }
+        // continent.key
+    }
+    childLocationField.options = matchingChildLocations
+
+}
+
 </script>

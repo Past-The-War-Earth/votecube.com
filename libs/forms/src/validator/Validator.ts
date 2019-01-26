@@ -1,11 +1,12 @@
 import {
 	IFieldBase,
 	IFieldError
-}                    from '../field/FieldBase'
-import {minDate}     from './minDate'
-import {minLength}   from './minLength'
-import {minTomorrow} from './minTomorrow'
-import {required}    from './required'
+}                            from '../field/FieldBase'
+import {greaterThanOrEquals} from './greaterThanOrEquals'
+import {minDate}             from './minDate'
+import {minLength}           from './minLength'
+import {minTomorrow}         from './minTomorrow'
+import {required}            from './required'
 
 export interface IValidator<F extends IFieldBase = IFieldBase> {
 	type: string
@@ -19,6 +20,7 @@ export interface IValidators {
 }
 
 export const Validators = {
+	greaterThanOrEquals,
 	minDate,
 	minLength,
 	minTomorrow,
@@ -30,7 +32,7 @@ export function filterToRangeValidators(
 ): IValidator[] {
 	return validators.filter(
 		validator =>
-			['min', 'max', 'range'].indexOf(validator.type) > -1)
+			['min', 'max', 'greaterThanOrEquals'].indexOf(validator.type) > -1)
 }
 
 export function isPositiveInteger(
