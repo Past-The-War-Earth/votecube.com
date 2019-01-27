@@ -2,14 +2,13 @@
 <form class="pure-form">
     <fieldset>
         <div class="pure-control-group">
-            <DatePicker
-                field="{form.fields.startDate}"
-            ></DatePicker>
+            Dimension 1
         </div>
         <div class="pure-control-group">
-            <DatePicker
-                field="{form.fields.endDate}"
-            ></DatePicker>
+            Dimension 2
+        </div>
+        <div class="pure-control-group">
+            Dimension 3
         </div>
         <div class="pure-controls">
             <RightButton
@@ -22,16 +21,16 @@
 </form>
 {/if}
 
+
+
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
-import DatePicker from '../../../common/field/DatePicker.html'
 import {clearForm, ensureChildForm, navigateOnValid} from '../../../forms'
 import {CREATE_POLL_NAME_LOG_DATE} from '../../../routes'
 import store from '../../../store'
 
 export default {
     components: {
-        DatePicker,
         RightButton
     },
     computed: {
@@ -46,13 +45,19 @@ export default {
         }
     },
     oncreate() {
-        ensureChildForm(
-            'NameLocationDates', 'timeframe',
+        const form = ensureChildForm(
+            'NameLocationsTimeframe', 'dimensions',
             this, CREATE_POLL_NAME_LOG_DATE)
+        if(!form) {
+            return
+        }
+
+        this.set({form})
     },
     ondestroy() {
         clearForm(this)
     },
     store: () => store
 }
+
 </script>

@@ -1,0 +1,58 @@
+{#if form}
+<form class="pure-form">
+    <fieldset>
+        <div class="pure-control-group">
+            <DatePicker
+                field="{form.fields.startDate}"
+            ></DatePicker>
+        </div>
+        <div class="pure-control-group">
+            <DatePicker
+                field="{form.fields.endDate}"
+            ></DatePicker>
+        </div>
+        <div class="pure-controls">
+            <RightButton
+                classes="submitButton"
+                highlightColor="{submitHighlight}"
+                on:select="submit()"
+            ></RightButton>
+        </div>
+    </fieldset>
+</form>
+{/if}
+
+<script>
+import RightButton from '../../../common/control/button/RightButton.html'
+import DatePicker from '../../../common/field/DatePicker.html'
+import {clearForm, ensureChildForm, navigateOnValid} from '../../../forms'
+import {CREATE_POLL_NAME_LOG_DATE} from '../../../routes'
+import store from '../../../store'
+
+export default {
+    components: {
+        DatePicker,
+        RightButton
+    },
+    computed: {
+        submitHighlight: ({isValid}) => isValid
+        ? '0b0'
+        : 'b00'
+    },
+    immutable: true,
+    methods: {
+        submit() {
+            navigateOnValid(this, CREATE_POLL_NAME_LOG_DATE)
+        }
+    },
+    oncreate() {
+        ensureChildForm(
+            'NameLocationsTimeframe', 'timeframe',
+            this, CREATE_POLL_NAME_LOG_DATE)
+    },
+    ondestroy() {
+        clearForm(this)
+    },
+    store: () => store
+}
+</script>

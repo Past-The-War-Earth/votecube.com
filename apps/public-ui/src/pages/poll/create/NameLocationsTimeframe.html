@@ -6,7 +6,7 @@
             field="{form.fields.name}"
         ></Text>
         <IconBlock
-            fieldGroup="{form.fields.location}"
+            fieldGroup="{form.fields.locations}"
         >
             <div slot="icon">
                 <ThemeIcon
@@ -17,7 +17,7 @@
             </div>
         </IconBlock>
         <IconBlock
-            fieldGroup="{form.fields.location}"
+            fieldGroup="{form.fields.locations}"
         >
             <div slot="icon">
                 <LabelIcon
@@ -28,8 +28,8 @@
             </div>
         </IconBlock>
         <IconBlock
-            fieldGroup="{form.fields.location}"
-            on:select="selectLocation()"
+            fieldGroup="{form.fields.locations}"
+            on:select="selectLocations()"
         >
             <div slot="icon">
                 <LocationIcon
@@ -37,23 +37,76 @@
                 ></LocationIcon>
             </div>
             <div slot="text">
-            Poll Location
+            {#if locations.touched}
+                {#if continents.length}
+                    {#if countries.length}
+                        {#if states.length}
+                            {#if cities.length}
+                Cities:
+                <br>
+                {getArrayValueTexts(cities)}
+                <br>
+                <br>
+                            {/if}
+                States:
+                <br>
+                {getArrayValueTexts(states)}
+                <br>
+                <br>
+                        {/if}
+                Countries:
+                <br>
+                {getArrayValueTexts(countries)}
+                <br>
+                <br>
+
+                    {/if}
+                Continents:
+                <br>
+                {getArrayValueTexts(continents)}
+                {:else}
+                Select Location
+                {/if}
+            {:else}
+                Select Location
+            {/if}
             </div>
         </IconBlock>
         <IconBlock
             fieldGroup="{form.fields.timeframe}"
-            on:select="selectDates()"
+            on:select="selectTimeframe()"
         >
             <div slot="icon">
                 <TimeIcon></TimeIcon>
             </div>
             <div slot="text">
-            Poll Timeframe
+            {#if timeframe.touched}
+                <table>
+                    <tr>
+                        <td>
+                            Start Date:
+                        </td>
+                        <td>
+                            {getDate(timeframe.fields.startDate.value)}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            End Date:
+                        </td>
+                        <td>
+                            {getDate(timeframe.fields.endDate.value)}
+                        </td>
+                    </tr>
+                </table>
+            {:else}
+                Select Time-frame
+            {/if}
             </div>
         </IconBlock>
         <IconBlock
-            fieldGroup="{form.fields.timeframe}"
-            on:select="selectDates()"
+            fieldGroup="{form.fields.dimensions}"
+            on:select="selectDimensions()"
         >
             <div slot="icon">
                 <DimensionsIcon></DimensionsIcon>
@@ -76,7 +129,7 @@
 <style>
 
     legend {
-            display: none;
+        display: none;
     }
 
 </style>
@@ -94,6 +147,7 @@ import {clearForm, ensureForm, getForm, setForm} from '../../../forms'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadUi} from '../../../libs/text/ui'
+import {getArrayValueTexts, getDate} from '../../../helpers'
 import * as routes from '../../../routes'
 import store from '../../../store'
 
@@ -109,10 +163,16 @@ export default {
         TimeIcon
     },
     computed: {
+        cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
+        continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
+        countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
+        locations: ({form}) => form ? form.fields.locations : null,
         name: ({test}) => true,
+        states: ({form}) => form ? form.fields.locations.fields.states.value : [],
         submitHighlight: ({isValid}) => isValid
         ? '0b0'
-        : 'b00'
+        : 'b00',
+        timeframe: ({form}) => form ? form.fields.timeframe : null
     },
     data() {
         return {
@@ -121,19 +181,25 @@ export default {
             }
         }
     },
+	helpers: {
+		getArrayValueTexts,
+		getDate
+	},
     methods: {
         createPoll() {
             const poll = this.get().poll
-            const form = this.get().form
             if(!poll.name) {
-                return;
+                return
             }
         },
-        selectDates() {
-            routes.navigateToPage(routes.SELECT_POLL_DATES)
+        selectDimensions() {
+            routes.navigateToPage(routes.SELECT_POLL_DIMENSIONS)
         },
-        selectLocation() {
-            routes.navigateToPage(routes.SELECT_POLL_LOCATION)
+        selectLocations() {
+            routes.navigateToPage(routes.SELECT_POLL_LOCATIONS)
+        },
+        selectTimeframe() {
+            routes.navigateToPage(routes.SELECT_POLL_TIMEFRAME)
         }
     },
     oncreate() {
@@ -146,7 +212,7 @@ export default {
             locations,
             _
         ]) => {
-            let form = getForm('NameLocationDates')
+            let form = getForm('NameLocationsTimeframe')
 
             if(!form) {
                 form = createForm(
@@ -157,7 +223,7 @@ export default {
                     FieldGroup,
                     OptionsField,
                     Validators)
-                setForm('NameLocationDates', form)
+                setForm('NameLocationsTimeframe', form)
             }
 
             ensureForm(form, this)
@@ -170,7 +236,7 @@ export default {
 }
 
 function createForm(
-    locations,
+    locationsData,
     text,
     DateField,
     Field,
@@ -191,20 +257,32 @@ function createForm(
             ]),
     }, [], text)
 
-    const location = new FieldGroup('Location', {
+    const locations = new FieldGroup('Locations', {
         continents: new OptionsField([
                 Validators.required()
-            ], locations.continents),
+            ], locationsData.continents),
         countries: new OptionsField([
-            ], locations.countries),
+            ], locationsData.countries),
         states: new OptionsField([
-            ], locations.states),
+            ], locationsData.states),
         cities: new OptionsField([
-            ], locations.cities),
+            ], locationsData.cities),
     }, [], text)
 
-    return new FieldGroup('NameLocationDates', {
-        location,
+    const dimensions = new FieldGroup('Dimensions', {
+        first: new Field([
+            Validators.required
+        ]),
+        second: new Field([
+            Validators.required
+        ]),
+        third: new Field([
+        ])
+    }, [], text)
+
+    return new FieldGroup('NameLocationsTimeframe', {
+        dimensions,
+        locations,
         name: new Field([
             Validators.minLength(3),
             Validators.required()

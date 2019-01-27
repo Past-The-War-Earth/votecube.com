@@ -5,10 +5,11 @@ export var PAGE_CONF = {}
 let appComp
 
 export var CHART = '/Poll/Vote/Chart'
-export var CREATE_POLL_NAME_LOG_DATE = '/Poll/Create/NameLocationDates'
+export var CREATE_POLL_NAME_LOG_DATE = '/Poll/Create/NameLocationsTimeframe'
 export var CUBE = '/Poll/Vote/Cube'
-export var SELECT_POLL_DATES = '/Poll/Create/Dates'
-export var SELECT_POLL_LOCATION = '/Poll/Create/Location'
+export var SELECT_POLL_DIMENSIONS = '/Poll/Create/Dimensions'
+export var SELECT_POLL_LOCATIONS = '/Poll/Create/Locations'
+export var SELECT_POLL_TIMEFRAME = '/Poll/Create/Timeframe'
 
 configPage(
     CHART,
@@ -26,13 +27,18 @@ configPage(
     true
 )
 configPage(
-    SELECT_POLL_DATES,
-    'Select Poll Date(s)',
+    SELECT_POLL_DIMENSIONS,
+    'Select Poll Dimensions',
     false
 )
 configPage(
-    SELECT_POLL_LOCATION,
-    'Select Poll Location',
+    SELECT_POLL_LOCATIONS,
+    'Select Poll Location(s)',
+    false
+)
+configPage(
+    SELECT_POLL_TIMEFRAME,
+    'Select Poll Time-frame',
     false
 )
 

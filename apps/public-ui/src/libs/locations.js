@@ -1,5 +1,14 @@
 import {get} from '../common/ajax'
 
+var locations
+
 export function loadLocations() {
-    return get(`./data/locations.json`).then(text => JSON.parse(text))
+    if(locations) {
+        return new Promise((resolve) => resolve(locations))
+    }
+    return get(`./data/locations.json`).then(text => {
+        locations = JSON.parse(text)
+
+        return locations
+    })
 }

@@ -2,7 +2,7 @@
   "UI": {
     "Poll": {
       "Create": {
-        "NameLocationDates": {
+        "NameLocationsTimeframe": {
           "name": {
             "info": "Select the name for this poll",
             "label": "Poll Name",
@@ -10,8 +10,12 @@
               "required": "Poll Name is required"
             }
           },
-          "location": {
-            "info": "Select the location of the poll (Continent, Country, State, City)",
+          "dimensions": {
+            "info": "Select the dimensions of the poll",
+            "error": "At least two poll dimensions are required"
+          },
+          "locations": {
+            "info": "Select the location(s) of the poll (Continent(s), Country(ies), State(s), City(ies))",
             "error": "Correct location information is required"
           },
           "timeframe": {
@@ -19,7 +23,24 @@
             "error": "Correct time-frame information is required"
           }
         },
-        "Location": {
+        "Dimensions": {
+          "first": {
+            "label": "Select 1st dimension",
+            "errors": {
+              "required": "First dimension is required"
+            }
+          },
+          "second": {
+            "label": "Select 2nd dimension",
+            "errors": {
+              "required": "Second dimension is required"
+            }
+          },
+          "third": {
+            "label": "Select 3rd dimension"
+          }
+        },
+        "Locations": {
           "continents": {
             "info": "Select one or more continents to which this poll will apply",
             "label": "Continent(s)",

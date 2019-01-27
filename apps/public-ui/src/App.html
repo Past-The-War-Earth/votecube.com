@@ -78,18 +78,20 @@ import {navigateToPage, setupRoutes} from './routes.js'
 import * as routes from './routes'
 import {loadUi} from './libs/text/ui'
 
-import DatesSelector from './pages/poll/create/Dates.html'
-import LocationSelector from './pages/poll/create/Location.html'
-import NameLocationDatesSelector from './pages/poll/create/NameLocationDates.html'
+import DimensionsSelector from './pages/poll/create/Dimensions.html'
+import LocationSelector from './pages/poll/create/Locations.html'
+import TimeframeSelector from './pages/poll/create/Timeframe.html'
+import NameLocationsTimeframeSelector from './pages/poll/create/NameLocationsTimeframe.html'
 import CubeVote from './pages/poll/vote/Cube.html'
 import VerticalBarVote from './pages/poll/vote/Chart.html'
 
 const pageMap = {
     [routes.CHART]: VerticalBarVote,
-    [routes.CREATE_POLL_NAME_LOG_DATE]: NameLocationDatesSelector,
+    [routes.CREATE_POLL_NAME_LOG_DATE]: NameLocationsTimeframeSelector,
     [routes.CUBE]: CubeVote,
-    [routes.SELECT_POLL_DATES]: DatesSelector,
-    [routes.SELECT_POLL_LOCATION]: LocationSelector,
+    [routes.SELECT_POLL_DIMENSIONS]: DimensionsSelector,
+    [routes.SELECT_POLL_LOCATIONS]: LocationSelector,
+    [routes.SELECT_POLL_TIMEFRAME]: TimeframeSelector,
 };
 
 export default {

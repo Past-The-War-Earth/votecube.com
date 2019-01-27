@@ -84,7 +84,9 @@
             class="option"
             class:activeOption="index === activeOptionIndex"
             on:click="select(option)"
-        >{option.text}</li>
+        >
+            {option.text}
+        </li>
         {/each}
     </ul>
     {/if}
