@@ -1,3 +1,7 @@
+import {
+	addChange,
+	getChange
+}                    from '../changeTracker'
 import {IValidator}  from '../validator/Validator'
 import {IFieldGroup} from './FieldGroup'
 
@@ -51,7 +55,10 @@ export interface IFieldBase {
 		component: IComponent
 	): void
 
-	touch(): void
+	touch(
+		fromChild?: boolean,
+		formParent?: boolean
+	): void
 
 	validate(
 		fromParentGroup?: boolean,
@@ -116,6 +123,21 @@ export abstract class FieldBase
 		this.components.push(component)
 	}
 
+	detect(
+		reuseChange?: number
+	): void {
+		setTimeout(() => {
+			const delta = reuseChange
+				? reuseChange
+				: reuseChange === 0
+					? getChange()
+					: addChange()
+			for (const page of this.components) {
+				page.set({delta})
+			}
+		})
+	}
+
 	focus(): void {
 		this.group.hideOtherPopups(this)
 	}
@@ -150,10 +172,17 @@ export abstract class FieldBase
 		this.components.unshift(component)
 	}
 
-	touch(): void {
+	touch(
+		fromChild?: boolean,
+		formParent?: boolean
+	): void {
 		this.theTouched = true
-		if (this.group) {
-			this.group.touch()
+		if (!formParent) {
+			if (this.group) {
+				this.group.touch(true)
+			}
+		} else {
+			this.detect(0)
 		}
 	}
 

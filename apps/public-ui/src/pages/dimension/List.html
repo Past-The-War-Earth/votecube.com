@@ -1,0 +1,21 @@
+<VirtualList items={things} component={ListItem} />
+<script>
+  import VirtualList from '@sveltejs/svelte-virtual-list';
+  import ListItem from './ListItem.html';
+
+  export default {
+    components: { VirtualList },
+
+    data() {
+      return {
+        things: [
+          { name: 'one', number: 1 },
+          { name: 'two', number: 2 },
+          { name: 'three', number: 3 },
+          { name: 'six thousand and ninety-two', number: 6092 }
+        ],
+        ListItem
+      };
+    }
+  };
+</script>

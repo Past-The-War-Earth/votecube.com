@@ -4,6 +4,7 @@ export var PAGE_CONF = {}
 
 let appComp
 
+export var DIMENSION_LIST = '/Dimension/List'
 export var CHART = '/Poll/Vote/Chart'
 export var CREATE_POLL_NAME_LOG_DATE = '/Poll/Create/NameLocationsTimeframe'
 export var CUBE = '/Poll/Vote/Cube'
@@ -11,6 +12,11 @@ export var SELECT_POLL_DIMENSIONS = '/Poll/Create/Dimensions'
 export var SELECT_POLL_LOCATIONS = '/Poll/Create/Locations'
 export var SELECT_POLL_TIMEFRAME = '/Poll/Create/Timeframe'
 
+configPage(
+    DIMENSION_LIST,
+    'Trump\'s Policies',
+    true
+)
 configPage(
     CHART,
     'Trump\'s Policies',

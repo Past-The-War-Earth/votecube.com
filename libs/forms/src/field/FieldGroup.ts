@@ -1,3 +1,7 @@
+import {
+	addChange,
+	getChange
+}                   from '../changeTracker'
 import {IValidator} from '../validator/Validator'
 import {IFieldText} from './Field'
 import {
@@ -124,6 +128,31 @@ export class FieldGroup
 			this.fields[fieldName].removeComponent(component)
 		}
 		super.removeComponent(component)
+	}
+
+	touch(
+		fromChild?: boolean,
+		fromParent?: boolean
+	): void {
+		let change
+		if (!fromChild) {
+			if (!fromParent) {
+				change = addChange()
+			} else {
+				change = getChange()
+			}
+		}
+
+		if (!fromChild) {
+			for (const fieldName in this.fields) {
+				this.fields[fieldName].touch(false, true)
+			}
+		}
+		super.touch(fromChild, fromParent)
+
+		if (!fromChild && !fromParent) {
+			this.detect(change)
+		}
 	}
 
 	validate(

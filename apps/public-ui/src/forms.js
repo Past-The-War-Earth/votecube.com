@@ -56,6 +56,8 @@ export function navigateOnValid(
 ) {
     const {form} = page.get()
 
+    form.touch()
+
     if(!form.valid) {
         return
     }

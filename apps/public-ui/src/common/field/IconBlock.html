@@ -81,7 +81,7 @@ export default {
             this.get().fieldGroup.onBlur()
         },
         select() {
-            this.get().fieldGroup.touch()
+            this.get().fieldGroup.touch(true)
             this.fire('select')
         }
     },

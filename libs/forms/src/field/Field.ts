@@ -107,15 +107,6 @@ export class Field
 		}
 	}
 
-	detect(): void {
-		setTimeout(() => {
-			const delta = addChange()
-			for (const page of this.components) {
-				page.set({delta})
-			}
-		})
-	}
-
 	labelRule(
 		labelRule: LabelRule = LabelRule.BOTH
 	): void {

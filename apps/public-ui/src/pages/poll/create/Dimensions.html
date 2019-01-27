@@ -1,15 +1,39 @@
 {#if form}
 <form class="pure-form">
     <fieldset>
-        <div class="pure-control-group">
-            Dimension 1
-        </div>
-        <div class="pure-control-group">
-            Dimension 2
-        </div>
-        <div class="pure-control-group">
-            Dimension 3
-        </div>
+        <IconBlock
+            fieldGroup="{form.fields.first}"
+        >
+            <div slot="icon">
+                <DimensionIcon
+                ></DimensionIcon>
+            </div>
+            <div slot="text">
+            Select 1st Dimension
+            </div>
+        </IconBlock>
+        <IconBlock
+            fieldGroup="{form.fields.second}"
+        >
+            <div slot="icon">
+                <DimensionIcon
+                ></DimensionIcon>
+            </div>
+            <div slot="text">
+            Select 2nd Dimension
+            </div>
+        </IconBlock>
+        <IconBlock
+            fieldGroup="{form.fields.third}"
+        >
+            <div slot="icon">
+                <DimensionIcon
+                ></DimensionIcon>
+            </div>
+            <div slot="text">
+            Select 3rd Dimension
+            </div>
+        </IconBlock>
         <div class="pure-controls">
             <RightButton
                 classes="submitButton"
@@ -25,12 +49,16 @@
 
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
+import IconBlock from '../../../common/field/IconBlock.html'
+import DimensionIcon from '../../../common/icon/DimensionIcon.html'
 import {clearForm, ensureChildForm, navigateOnValid} from '../../../forms'
 import {CREATE_POLL_NAME_LOG_DATE} from '../../../routes'
 import store from '../../../store'
 
 export default {
     components: {
+        DimensionIcon,
+        IconBlock,
         RightButton
     },
     computed: {
