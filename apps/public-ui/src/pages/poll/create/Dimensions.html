@@ -3,6 +3,7 @@
     <fieldset>
         <IconBlock
             fieldGroup="{form.fields.first}"
+            on:select="selectDimension(0)"
         >
             <div slot="icon">
                 <DimensionIcon
@@ -52,7 +53,7 @@ import RightButton from '../../../common/control/button/RightButton.html'
 import IconBlock from '../../../common/field/IconBlock.html'
 import DimensionIcon from '../../../common/icon/DimensionIcon.html'
 import {clearForm, ensureChildForm, navigateOnValid} from '../../../forms'
-import {CREATE_POLL_NAME_LOG_DATE} from '../../../routes'
+import * as routes from '../../../routes'
 import store from '../../../store'
 
 export default {
@@ -68,19 +69,19 @@ export default {
     },
     immutable: true,
     methods: {
+        selectDimension(
+            index
+        ) {
+            routes.navigateToPage(routes.DIMENSION_LIST)
+        },
         submit() {
-            navigateOnValid(this, CREATE_POLL_NAME_LOG_DATE)
+            navigateOnValid(this, routes.CREATE_POLL_NAME_LOG_DATE)
         }
     },
     oncreate() {
         const form = ensureChildForm(
             'NameLocationsTimeframe', 'dimensions',
-            this, CREATE_POLL_NAME_LOG_DATE)
-        if(!form) {
-            return
-        }
-
-        this.set({form})
+            this, routes.CREATE_POLL_NAME_LOG_DATE)
     },
     ondestroy() {
         clearForm(this)

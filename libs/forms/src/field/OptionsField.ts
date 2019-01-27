@@ -6,7 +6,7 @@ import {
 }                   from './Field'
 
 export interface IFieldOption {
-	key: string
+	id: string
 	text?: string
 
 	[optionalKey: string]: any
@@ -14,7 +14,7 @@ export interface IFieldOption {
 
 export interface IOptionsField
 	extends IField {
-	multiOptions: IFieldOption[]
+	filteredOptions: IFieldOption[]
 	options: IFieldOption[]
 	optionText: { [optionKey: string]: string }
 	selectionMap: { [optionKey: string]: IFieldOption }
@@ -25,29 +25,32 @@ export interface IOptionsField
 		option: IFieldOption
 	)
 
-	setMultiOptions()
-
 	unselect(
-		optionToUnselect: IFieldOption
+		optionToUnselect?: IFieldOption
 	)
+}
+
+export interface IOptionFieldRules
+	extends IFieldRules {
+	multi?: boolean
 }
 
 export class OptionsField
 	extends Field
 	implements IOptionsField {
 
-	multiOptions: IFieldOption[]                        = []
+	filteredOptions: IFieldOption[]                     = []
 	selectionMap: { [optionKey: string]: IFieldOption } = {}
 
 	constructor(
 		validators: IValidator[],
 		private theOptions: IFieldOption[] = [],
-		rules?: IFieldRules
+		rules?: IOptionFieldRules
 	) {
 		super(validators, rules)
-		this.value = []
+		this.value = rules && rules.multi ? [] : null
 
-		this.setMultiOptions()
+		this.filterOptions()
 	}
 
 	get options(): IFieldOption[] {
@@ -58,21 +61,21 @@ export class OptionsField
 		newOptions: IFieldOption[]
 	) {
 		this.theOptions = newOptions
-		this.setMultiOptions()
+		this.filterOptions()
 
 		let optionsMap = {}
 		for (let newOption of newOptions) {
-			optionsMap[newOption.key] = newOption
+			optionsMap[newOption.id] = newOption
 		}
 
 		let newValue        = []
 		let newSelectionMap = {}
 		let valueChanged    = false
 		for (const selection of this.value) {
-			if (!optionsMap[selection.key]) {
+			if (!optionsMap[selection.id]) {
 				valueChanged = true
 			} else {
-				newSelectionMap[selection.key] = selection
+				newSelectionMap[selection.id] = selection
 				newValue.push(selection)
 			}
 		}
@@ -88,7 +91,7 @@ export class OptionsField
 		textMap
 	) {
 		for (const option of this.options) {
-			option.text = textMap[option.key]
+			option.text = textMap[option.id]
 		}
 	}
 
@@ -96,7 +99,7 @@ export class OptionsField
 		if (this.value instanceof Array) {
 			this.selectionMap = {}
 			this.value        = []
-			this.setMultiOptions()
+			this.filterOptions()
 		} else {
 			this.value = null
 		}
@@ -111,32 +114,32 @@ export class OptionsField
 		option: IFieldOption
 	) {
 		if (this.value instanceof Array) {
-			this.selectionMap[option.key] = option
-			this.value                    = [...this.value, option]
-			this.setMultiOptions()
+			this.selectionMap[option.id] = option
+			this.value                   = [...this.value, option]
+			this.filterOptions()
 		} else {
 			this.value = option
 		}
 		this.onBlur()
 	}
 
-	setMultiOptions() {
-		this.multiOptions = this.options.filter(
-			option => !this.selectionMap[option.key])
-	}
-
 	unselect(
-		optionToUnselect: IFieldOption
+		optionToUnselect?: IFieldOption
 	) {
 		if (this.value instanceof Array) {
-			delete this.selectionMap[optionToUnselect.key]
+			delete this.selectionMap[optionToUnselect.id]
 			this.value = this.value.filter(
 				option => option !== optionToUnselect)
-			this.setMultiOptions()
+			this.filterOptions()
 		} else {
 			this.value = null
 		}
 		this.onBlur()
+	}
+
+	private filterOptions() {
+		this.filteredOptions = this.options.filter(
+			option => !this.selectionMap[option.id])
 	}
 
 }

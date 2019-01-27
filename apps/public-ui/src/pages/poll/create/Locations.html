@@ -35,7 +35,7 @@
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
 import MultiSelect from '../../../common/field/MultiSelect.html'
-import {clearForm, ensureChildForm, navigateOnValid} from '../../../forms'
+import {clearForm, ensureChildForm, ensureForm, navigateOnValid} from '../../../forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadLocations as loadLocText} from '../../../libs/text/locations'
 import {CREATE_POLL_NAME_LOG_DATE} from '../../../routes'
@@ -91,7 +91,7 @@ export default {
                     selectSubLocation(selectedStates, locations.cities, form.fields.cities)
                 })
             }
-            this.set({form})
+            ensureForm(form, this)
         })
     },
     ondestroy() {
@@ -108,7 +108,7 @@ function selectSubLocation(
     const matchingChildLocations = []
     for(const parentLocation of selectedParentLocations) {
         for(const country of childLocations) {
-            if(country.parent == parentLocation.key) {
+            if(country.parentId == parentLocation.id) {
                 matchingChildLocations.push(country)
             }
         }

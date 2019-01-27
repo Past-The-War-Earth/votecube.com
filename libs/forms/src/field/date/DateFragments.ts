@@ -48,7 +48,7 @@ export interface IDateFragments
 
 /*
 export interface IInputFragmentActivity {
-	key: string
+	id: string
 	selection: {
 		end: number
 		start: number
@@ -257,13 +257,13 @@ export class DateFragments
 
 	/*
 	private getActivity(
-		key         = null,
+		id         = null,
 		end         = null,
 		start       = null,
 		stringValue = null
 	): IInputFragmentActivity {
 		return {
-			key,
+			id,
 			selection: {
 				end,
 				start

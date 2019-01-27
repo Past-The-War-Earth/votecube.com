@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/common/field/AutoComplete.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/locations.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/data/locations.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/text/en-us/ui.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/text/en-us/ui.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/field/MultiSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/MultiSelect.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dimension/List.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/List.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/poll/create/Dimensions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/create/Dimensions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/poll/create/Locations.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/create/Locations.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/Field.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/OptionsField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/OptionsField.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/date/DateFragments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/date/DateFragments.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,29 +33,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="49">
-                  <caret line="241" column="4" selection-start-line="241" selection-start-column="4" selection-end-line="241" selection-end-column="4" />
-                  <folding>
-                    <element signature="e#3591#3664#0#HTML" expanded="true" />
-                  </folding>
+                <state relative-caret-position="-1367">
+                  <caret line="146" selection-start-line="146" selection-end-line="149" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/text/en-us/ui.json">
+            <entry file="file://$PROJECT_DIR$/src/common/field/AutoComplete.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-                  <folding>
-                    <element signature="n#!!block;n#name#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
-                    <element signature="n#!!block;n#dimensions#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
-                    <element signature="n#!!block;n#labels#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
-                    <element signature="n#!!block;n#locations#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
-                    <element signature="n#!!block;n#timeframe#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
-                    <element signature="n#!!block;n#theme#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
-                    <element signature="n#!!block;n#Common#0;n#!!block;n#UI#0;n#!!top" />
-                  </folding>
+                <state relative-caret-position="137">
+                  <caret line="187" column="74" selection-start-line="187" selection-start-column="74" selection-end-line="187" selection-end-column="74" />
                 </state>
               </provider>
             </entry>
@@ -56,41 +52,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/poll/create/Timeframe.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/poll/create/Dimensions.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-66">
-                  <caret line="60" column="18" lean-forward="true" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#564#637#0#HTML" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/forms.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="329">
-                  <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/common/field/IconBlock.html">
+            <entry file="file://$PROJECT_DIR$/src/pages/dimension/List.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1540">
-                  <caret line="70" column="50" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="50" />
+                <state relative-caret-position="190">
+                  <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -111,22 +77,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pages</find>
-      <find>setFor</find>
-      <find>setFo</find>
-      <find>{field</find>
-      <find>text.</find>
-      <find>&lt;RightButt</find>
-      <find>&quot;s&quot;</find>
-      <find>.pure-form-aligned .pure-controls</find>
-      <find>.pure-form-aligned .pure-control-group label</find>
-      <find>navigateOnValid</find>
-      <find>controls</find>
-      <find>setForm</find>
-      <find>000000</find>
-      <find>id=&quot;svg_[0-9]&quot;</find>
       <find>class:</find>
-      <find>touched</find>
       <find>loadForms</find>
       <find>{#</find>
       <find>options</find>
@@ -140,7 +91,22 @@
       <find>id=&quot;svg_[0-9]&quot;</find>
       <find>selectLocation</find>
       <find>Dates</find>
+      <find>hideOptions</find>
+      <find>touched</find>
+      <find>type</find>
+      <find>&quot;key&quot;</find>
+      <find>parent</find>
+      <find>&quot;parent&quot;</find>
+      <find>key</find>
+      <find>onBlur</find>
+      <find>onDocumentClick</find>
+      <find>setMultiOptions</find>
+      <find>setM</find>
+      <find>setMu</find>
+      <find>unselect</find>
       <find>touch</find>
+      <find>multi</find>
+      <find>selectLocations</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -166,6 +132,9 @@
       <replace>000</replace>
       <replace>&quot;parent&quot;</replace>
       <replace>selectLocations</replace>
+      <replace>&quot;id&quot;</replace>
+      <replace>&quot;parentId&quot;</replace>
+      <replace>filtered</replace>
       <replace>Timeframe</replace>
     </replaceStrings>
     <dirStrings>
@@ -179,7 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/common/shell/Toast.html" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/common/control/button/LeftButton.html" />
         <option value="$PROJECT_DIR$/src/common/icon/ArrowRightIcon.html" />
@@ -196,7 +164,6 @@
         <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/public/votecube.css" />
         <option value="$PROJECT_DIR$/src/watch.js" />
-        <option value="$PROJECT_DIR$/public/data/locations.json" />
         <option value="$PROJECT_DIR$/src/common/field/DatePicker.html" />
         <option value="$PROJECT_DIR$/src/common/field/Select.html" />
         <option value="$PROJECT_DIR$/src/common/field/Text.html" />
@@ -213,23 +180,25 @@
         <option value="$PROJECT_DIR$/src/pages/poll/vote/Cube.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/vote/Chart.html" />
         <option value="$PROJECT_DIR$/src/helpers.js" />
-        <option value="$PROJECT_DIR$/src/common/field/MultiSelect.html" />
         <option value="$PROJECT_DIR$/src/libs/locations.js" />
         <option value="$PROJECT_DIR$/src/pages/poll/create/NameLocationDates.html" />
-        <option value="$PROJECT_DIR$/src/pages/poll/create/Locations.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/create/Dimension.html" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/pages/dimension/ListItem.html" />
-        <option value="$PROJECT_DIR$/src/pages/dimension/List.html" />
         <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/App.html" />
         <option value="$PROJECT_DIR$/src/common/icon/DimensionIcon.html" />
-        <option value="$PROJECT_DIR$/src/pages/poll/create/Dimensions.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/create/Timeframe.html" />
-        <option value="$PROJECT_DIR$/src/forms.js" />
         <option value="$PROJECT_DIR$/src/common/field/IconBlock.html" />
-        <option value="$PROJECT_DIR$/public/text/en-us/ui.json" />
+        <option value="$PROJECT_DIR$/src/forms.js" />
+        <option value="$PROJECT_DIR$/public/data/locations.json" />
+        <option value="$PROJECT_DIR$/src/common/field/MultiSelect.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html" />
+        <option value="$PROJECT_DIR$/src/pages/poll/create/Locations.html" />
+        <option value="$PROJECT_DIR$/public/text/en-us/ui.json" />
+        <option value="$PROJECT_DIR$/src/pages/poll/create/Dimensions.html" />
+        <option value="$PROJECT_DIR$/src/pages/dimension/List.html" />
+        <option value="$PROJECT_DIR$/src/common/field/AutoComplete.html" />
       </list>
     </option>
   </component>
@@ -266,6 +235,12 @@
               <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="public-ui" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="text" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -279,33 +254,6 @@
               <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="public-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="control" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="field" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="icon" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -326,6 +274,22 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="poll" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="poll" type="462c0819:PsiDirectoryNode" />
+              <item name="create" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="poll" type="462c0819:PsiDirectoryNode" />
+              <item name="vote" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -387,7 +351,7 @@
       <workItem from="1545586306240" duration="2797000" />
       <workItem from="1545881004825" duration="143857000" />
       <workItem from="1547312494148" duration="6224000" />
-      <workItem from="1547525659293" duration="243519000" />
+      <workItem from="1547525659293" duration="251327000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -627,11 +591,18 @@
       <option name="project" value="LOCAL" />
       <updated>1548567326539</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="added theme and locations from groups and fixed IconBlock required error highlighting">
+      <created>1548569766114</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1548569766114</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="454919000" />
+    <option name="totallyTimeSpent" value="462727000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -693,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="moved to svelte + webpack + rush" />
     <MESSAGE value="fixing bugs in re-positioning logic" />
     <MESSAGE value="finished adding text and chart views" />
     <MESSAGE value="adding portrait scaling" />
@@ -718,30 +688,10 @@
     <MESSAGE value="added parent form page required and touched integration" />
     <MESSAGE value="added top create page display and started, fixed location bugs and started on dimensions entry" />
     <MESSAGE value="added dimension list stub and icon, implemented form touch on submit button press" />
-    <option name="LAST_COMMIT_MESSAGE" value="added dimension list stub and icon, implemented form touch on submit button press" />
+    <MESSAGE value="added theme and locations from groups and fixed IconBlock required error highlighting" />
+    <option name="LAST_COMMIT_MESSAGE" value="added theme and locations from groups and fixed IconBlock required error highlighting" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/common/icon/ArrowLeftIcon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/text/en-us/locations.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/LinearPositionPicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/1.1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -810,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/locations.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="112" column="13" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/watch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -876,13 +819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/Select.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/icon/DimensionsIcon.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -935,13 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/DatePicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/libs/locations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -949,27 +878,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/MultiSelect.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="246" column="21" selection-start-line="246" selection-start-column="21" selection-end-line="246" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/helpers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="18" column="34" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/create/Locations.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="61" column="35" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="35" />
-          <folding>
-            <element signature="e#945#1018#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -997,23 +909,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/dimension/List.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#67#123#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
@@ -1031,23 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/create/Dimensions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="60" column="18" lean-forward="true" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
-          <folding>
-            <element signature="e#564#637#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/create/Timeframe.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/icon/InfoIcon.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
@@ -1055,43 +933,138 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms.js">
+    <entry file="file://$PROJECT_DIR$/src/common/field/IconBlock.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="1540">
+          <caret line="70" column="50" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html">
+    <entry file="file://$PROJECT_DIR$/src/common/field/Select.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="241" column="4" selection-start-line="241" selection-start-column="4" selection-end-line="241" selection-end-column="4" />
+        <state relative-caret-position="308">
+          <caret line="44" column="43" lean-forward="true" selection-end-line="72" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/text/en-us/locations.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/locations.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="95" column="13" lean-forward="true" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/DatePicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7448">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/MultiSelect.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="268" column="26" selection-start-line="268" selection-start-column="26" selection-end-line="268" selection-end-column="26" />
           <folding>
-            <element signature="e#3591#3664#0#HTML" expanded="true" />
+            <element signature="e#4790#4844#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/create/Locations.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="755">
+          <caret line="92" column="13" lean-forward="true" selection-start-line="92" selection-start-column="13" selection-end-line="93" selection-end-column="34" />
+          <folding>
+            <element signature="e#945#1018#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/create/Timeframe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/libs/forms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/text/en-us/ui.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        <state relative-caret-position="242">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
           <folding>
+            <element signature="n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
             <element signature="n#!!block;n#name#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
             <element signature="n#!!block;n#dimensions#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
             <element signature="n#!!block;n#labels#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
             <element signature="n#!!block;n#locations#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
             <element signature="n#!!block;n#timeframe#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
             <element signature="n#!!block;n#theme#0;n#!!block;n#NameLocationsTimeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
+            <element signature="n#!!block;n#Labels#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
+            <element signature="n#!!block;n#Locations#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
+            <element signature="n#!!block;n#Theme#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
+            <element signature="n#!!block;n#Timeframe#0;n#!!block;n#Create#0;n#!!block;n#Poll#0;n#!!block;n#UI#0;n#!!top" />
             <element signature="n#!!block;n#Common#0;n#!!block;n#UI#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/IconBlock.html">
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/create/Dimensions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1540">
-          <caret line="70" column="50" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="50" />
+        <state relative-caret-position="159">
+          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+          <folding>
+            <element signature="e#1198#1271#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1367">
+          <caret line="146" selection-start-line="146" selection-end-line="149" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/dimension/List.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/AutoComplete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="187" column="74" selection-start-line="187" selection-start-column="74" selection-end-line="187" selection-end-column="74" />
         </state>
       </provider>
     </entry>

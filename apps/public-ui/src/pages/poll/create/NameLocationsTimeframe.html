@@ -262,13 +262,21 @@ function createForm(
     const locations = new FieldGroup('Locations', {
         continents: new OptionsField([
                 Validators.required()
-            ], locationsData.continents),
+            ], locationsData.continents, {
+                multi: true
+            }),
         countries: new OptionsField([
-            ], locationsData.countries),
+            ], locationsData.countries, {
+                multi: true
+            }),
         states: new OptionsField([
-            ], locationsData.states),
+            ], locationsData.states, {
+                multi: true
+            }),
         cities: new OptionsField([
-            ], locationsData.cities),
+            ], locationsData.cities, {
+                multi: true
+            }),
     }, [], text)
 
     const startDate = new DateField([

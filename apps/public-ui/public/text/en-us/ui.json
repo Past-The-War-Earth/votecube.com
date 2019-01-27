@@ -1,5 +1,18 @@
 {
   "UI": {
+    "Dimension": {
+      "List": {
+        "theme": {
+          "label": "Select the theme",
+          "errors": {
+            "required": "Theme is required"
+          }
+        },
+        "labels": {
+          "label": "Select labels"
+        }
+      }
+    },
     "Poll": {
       "Create": {
         "NameLocationsTimeframe": {

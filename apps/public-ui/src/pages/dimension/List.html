@@ -1,11 +1,37 @@
+{#if form}
+<form class="pure-form">
+    <fieldset>
+        <div class="pure-control-group">
+            <AutoComplete
+                field="{form.fields.theme}"
+            ></AutoComplete>
+        </div>
+        <div class="pure-control-group">
+            <MultiSelect
+                field="{form.fields.labels}"
+            ></MultiSelect>
+        </div>
+    </fieldset>
+</form>
+{/if}
 <VirtualList items={things} component={ListItem} />
 <script>
   import VirtualList from '@sveltejs/svelte-virtual-list';
+  import AutoComplete from '../../common/field/AutoComplete.html'
+  import MultiSelect from '../../common/field/MultiSelect.html'
+  import {clearForm, ensureForm, navigateOnValid} from '../../forms'
+  import {loadForms} from '../../libs/forms'
+  import {loadUi} from '../../libs/text/ui'
+    import {SELECT_POLL_DIMENSIONS} from '../../routes'
+  import store from '../../store'
   import ListItem from './ListItem.html';
 
   export default {
-    components: { VirtualList },
-
+    components: {
+        AutoComplete,
+        MultiSelect,
+        VirtualList
+    },
     data() {
       return {
         things: [
@@ -16,6 +42,62 @@
         ],
         ListItem
       };
-    }
+    },
+    methods: {
+        submit() {
+            navigateOnValid(this, SELECT_POLL_DIMENSIONS)
+        }
+    },
+    oncreate() {
+        Promise.all([
+            loadForms(this),
+            loadUi(this.store, 'en-us')
+        ]).then(([
+            {FieldGroup, OptionsField, Validators},
+            _
+        ]) => {
+            const filter = new FieldGroup('List', {
+            theme: new OptionsField([
+                // Validators.required()
+            ], [{
+                id: 1,
+                text: 'Politics'
+            },{
+                id: 2,
+                text: 'Culture'
+            },{
+                id: 3,
+                text: 'Technology'
+            },{
+                id: 4,
+                text: 'Space'
+            },{
+                id: 5,
+                text: 'Security'
+            }]),
+            labels: new OptionsField([], [{
+                id: 1,
+                text: 'Trump',
+                theme: {
+                    id: 1
+                }
+            },{
+                id: 2,
+                text: 'Integration',
+                theme: {
+                    id: 1
+                }
+            }], {
+                multi: true
+            })
+            }, [], this.store.get().text.UI.Dimension)
+
+            ensureForm(filter, this)
+        })
+    },
+    ondestroy() {
+        clearForm(this)
+    },
+    store: () => store
   };
 </script>

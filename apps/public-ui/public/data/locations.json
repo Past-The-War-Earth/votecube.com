@@ -1,128 +1,128 @@
 {
   "continents": [
     {
-      "key": "Africa"
+      "id": "Africa"
     },
     {
-      "key": "Asia"
+      "id": "Asia"
     },
     {
-      "key": "AustraliaNOceania"
+      "id": "AustraliaNOceania"
     },
     {
-      "key": "Europe"
+      "id": "Europe"
     },
     {
-      "key": "NorthAmerica"
+      "id": "NorthAmerica"
     },
     {
-      "key": "SouthAmerica"
+      "id": "SouthAmerica"
     }
   ],
   "countries": [
     {
-      "parent": "SouthAmerica",
-      "key": "Argentina"
+      "parentId": "SouthAmerica",
+      "id": "Argentina"
     },
     {
-      "parent": "AustraliaNOceania",
-      "key": "Australia"
+      "parentId": "AustraliaNOceania",
+      "id": "Australia"
     },
     {
-      "parent": "SouthAmerica",
-      "key": "Brazil"
+      "parentId": "SouthAmerica",
+      "id": "Brazil"
     },
     {
-      "parent": "NorthAmerica",
-      "key": "Canada"
+      "parentId": "NorthAmerica",
+      "id": "Canada"
     },
     {
-      "parent": "Asia",
-      "key": "China"
+      "parentId": "Asia",
+      "id": "China"
     },
     {
-      "parent": "SouthAmerica",
-      "key": "Columbia"
+      "parentId": "SouthAmerica",
+      "id": "Columbia"
     },
     {
-      "parent": "Africa",
-      "key": "Egypt"
+      "parentId": "Africa",
+      "id": "Egypt"
     },
     {
-      "parent": "Europe",
-      "key": "EU"
+      "parentId": "Europe",
+      "id": "EU"
     },
     {
-      "parent": "Europe",
-      "key": "GreatBritain"
+      "parentId": "Europe",
+      "id": "GreatBritain"
     },
     {
-      "parent": "Asia",
-      "key": "India"
+      "parentId": "Asia",
+      "id": "India"
     },
     {
-      "parent": "Asia",
-      "key": "Indonesia"
+      "parentId": "Asia",
+      "id": "Indonesia"
     },
     {
-      "parent": "NorthAmerica",
-      "key": "Mexico"
+      "parentId": "NorthAmerica",
+      "id": "Mexico"
     },
     {
-      "parent": "AustraliaNOceania",
-      "key": "NewZealand"
+      "parentId": "AustraliaNOceania",
+      "id": "NewZealand"
     },
     {
-      "parent": "Africa",
-      "key": "Nigeria"
+      "parentId": "Africa",
+      "id": "Nigeria"
     },
     {
-      "parent": "AustraliaNOceania",
-      "key": "PapuaNewGuinea"
+      "parentId": "AustraliaNOceania",
+      "id": "PapuaNewGuinea"
     },
     {
-      "parent": "Europe",
-      "key": "RussianFederation"
+      "parentId": "Europe",
+      "id": "RussianFederation"
     },
     {
-      "parent": "Africa",
-      "key": "SouthAfrica"
+      "parentId": "Africa",
+      "id": "SouthAfrica"
     },
     {
-      "parent": "NorthAmerica",
-      "key": "USA"
+      "parentId": "NorthAmerica",
+      "id": "USA"
     }
   ],
   "states": [
     {
-      "parent": "USA",
-      "key": "California"
+      "parentId": "USA",
+      "id": "California"
     },
     {
-      "parent": "USA",
-      "key": "NewYork"
+      "parentId": "USA",
+      "id": "NewYork"
     },
     {
-      "parent": "USA",
-      "key": "Texas"
+      "parentId": "USA",
+      "id": "Texas"
     }
   ],
   "cities": [
     {
-      "key": "Dallas",
-      "parent": "Texas"
+      "id": "Dallas",
+      "parentId": "Texas"
     },
     {
-      "key": "LosAngeles",
-      "parent": "California"
+      "id": "LosAngeles",
+      "parentId": "California"
     },
     {
-      "key": "NewYork",
-      "parent": "NewYork"
+      "id": "NewYork",
+      "parentId": "NewYork"
     },
     {
-      "key": "SanFrancisco",
-      "parent": "California"
+      "id": "SanFrancisco",
+      "parentId": "California"
     }
   ]
 }

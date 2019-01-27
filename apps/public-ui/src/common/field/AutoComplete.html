@@ -4,7 +4,7 @@
 ></svelte:document>
 {#if $forms}
 <div
-    class="multiSelect"
+    class="autoComplete"
 >
     <label
         class="field-label"
@@ -19,55 +19,29 @@
         ref:field
     >
         <div
-            class="selections"
+            class="selection"
         >
-        <!--
-            <div
-                class="selectionSizer"
-                ref:selectionSizer
+            <input
+                bind:value="filter"
+                on:input="checkValue(options)"
+                ref:filter
+                type="text"
+                use:id="{id}"
             >
--->
-    {#each selections as selection}
-                <section
-                    class="selection"
-                >
-                    <div
-                        class="selection-contents"
-                    >
-                    {selection.text}
-                    </div>
-                    <span
-                        class="unselect"
-                        on:click="unselect(selection, event)"
-                    >
-                        <s class="bar"></s>
-                        <s class="bar"></s>
-                    </span>
-                </section>
-    {/each}
-                <input
-                    bind:value="filter"
-                    ref:filter
-                    type="text"
-                    use:id="{id}"
-                >
-                <!--
-            </div>
-            -->
         </div>
         <div
             class="icons"
         >
             <div
-                class="multiRowIconsCenter"
+                class="filteredRowIconsCenter"
             >
                 <ClearIcon
                     on:select="clear()"
-                    multiLine="y"
+                    filteredLine="y"
                 ></ClearIcon>
                 <InfoIcon
                     on:select="help()"
-                    multiLine="y"
+                    filteredLine="y"
                 ></InfoIcon>
             </div>
         </div>
@@ -110,7 +84,7 @@
         margin-top: 8px;
         padding-left: 5px;
         vertical-align: text-bottom;
-        width: 50px;
+        width: 100%;
     }
 
     li {
@@ -149,78 +123,27 @@
         top: 0px;
     }
 
-    .multiRowIconsCenter {
+    .filteredRowIconsCenter {
         padding-top: 5px;
         position: relative;
         top: 50%;
         transform: translateY(-50%);
     }
 
-    .multiSelect {
+    .autoComplete {
         position: relative;
     }
 
     .selection {
-        /*background-color: #808080;*/
-        /*border: 1px solid #777;*/
-        background-color: #ccc;
-        border: 1px solid #222;
-        border-radius: 3px;
-        color: #333;
-        /*color: #fff;*/
-        display: inline-block;
-        font-weight: 600;
-        margin: 6px 0 0 6px;
-        padding-left: 8px;
-    }
-
-    .selection-contents {
-        float: left;
-        padding: 8px 2px 0 0;
-    }
-
-    .selections {
         display: inline-block;
         width: calc(100% - 70px);
-    }
-/*
-    .selectionSizer {
-        display: inline-block;
-    }*/
-
-    .unselect {
-        display: inline-block;
-        height: 26px;
-        margin-top: 4px;
-        position: relative;
-        width: 30px;
-    }
-
-    .unselect .bar {
-        /*background-color: #fff;*/
-        background-color: #222;
-        display: block;
-        height: 3px;
-        width: 16px;
-        position: absolute;
-        right: 8px;
-        top: 12px;
-    }
-
-    .unselect .bar:first-child {
-        transform: rotate(-45deg);
-    }
-
-    .unselect .bar:last-child {
-        transform: rotate(45deg);
     }
 
 </style>
 
 <script>
-import {OPTIONS} from '../../forms'
+import {ACTIONS, COMPUTED, OPTIONS} from '../../forms'
 import store from '../../store'
-import {removeWatch, watchMultilineField} from '../../watch'
 import InfoIcon from '../icon/InfoIcon.html'
 import ClearIcon from '../icon/ClearIcon.html'
 
@@ -249,7 +172,6 @@ export default {
                 .filter(option =>
                     option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
             : field.filteredOptions,
-        selections: ({delta, field}) => field.value,
         touched: ({delta, field}) => field.touched
     },
     data() {
@@ -260,6 +182,21 @@ export default {
     },
     immutable: true,
     methods: {
+        checkValue(options) {
+            const {field, filter} = this.get()
+            if(field.value
+                && field.value.text.toLowerCase() !== filter.toLowerCase()) {
+                field.unselect()
+                return
+            }
+            if(options.length !== 1) {
+                return
+            }
+            const theOption = options[0]
+            if(filter.toLowerCase() === theOption.text.toLowerCase()) {
+                this.get().field.select(theOption)
+            }
+        },
         clear() {
             this.get().field.clear()
             this.refs.filter.value = ''
@@ -280,26 +217,16 @@ export default {
         select(option) {
             this.get().field.select(option)
             this.hideOptions()
-            this.set({filter: ''})
         },
         showOptions(element, event) {
             OPTIONS.showFiltered(this, element)
-        },
-        unselect(option, event) {
-            this.get().field.unselect(option)
-            event.stopPropagation()
-            this.set({filter: ''})
         }
     },
     oncreate() {
         this.get().field.setAsField(this)
-        watchMultilineField(this, this.refs.field
-        // , this.refs.selectionSizer
-        )
     },
     ondestroy() {
         this.get().field.removeComponent(this)
-        removeWatch(this)
     },
     store: () => store
 }

@@ -64,3 +64,54 @@ export function navigateOnValid(
 
     navigateToPage(navigateToRouteOnValid)
 }
+
+export var OPTIONS = {
+    handleKeydown: (page) => {
+        let {activeOptionIndex, filter, options, showOptions} = page.get()
+        if(!showOptions) {
+            return
+        }
+        showOptions = true
+        switch(event.key) {
+            case 'ArrowDown':
+                if(activeOptionIndex + 1 < options.length) {
+                    activeOptionIndex++
+                }
+                break;
+            case 'ArrowUp':
+                if(activeOptionIndex) {
+                    activeOptionIndex--
+                }
+                break;
+            case 'Escape':
+                activeOptionIndex = 0
+                showOptions = false
+                break;
+            case 'Enter':
+                page.get().field.select(options[activeOptionIndex])
+                activeOptionIndex = 0
+                filter = ''
+                showOptions = false
+                event.preventDefault()
+                break;
+        }
+        if(!showOptions) {
+            page.hideOptions()
+        }
+        page.set({activeOptionIndex, filter})
+    },
+    showFiltered: (page, element) => {
+        if(!page.get().showOptions) {
+            const {field} = page.get()
+            if(field.filteredOptions.length) {
+                field.focus()
+                page.set({
+                    showOptions: true,
+                    dropdownTopPx: element.offsetHeight + 6
+                })
+                event.stopPropagation()
+            }
+        }
+        page.refs.filter.focus()
+    }
+}
