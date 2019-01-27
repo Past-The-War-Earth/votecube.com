@@ -1,13 +1,12 @@
-import {addChange}   from '../changeTracker'
 import {
 	IErrorsText,
 	IValidator
-}                    from '../validator/Validator'
+} from '../validator/Validator'
 import {
 	FieldBase,
-	IFieldBase
-}                    from './FieldBase'
-import {IFieldGroup} from './FieldGroup'
+	IFieldBase,
+	IFieldError
+} from './FieldBase'
 
 export enum LabelRule {
 	BOTH,
@@ -78,6 +77,12 @@ export class Field
 			...rules
 		}
 		this.lastValue = this.value
+	}
+
+	get error(): IFieldError | null {
+		return this.errors.length
+			? this.errors[0]
+			: null
 	}
 
 	get label(): string {

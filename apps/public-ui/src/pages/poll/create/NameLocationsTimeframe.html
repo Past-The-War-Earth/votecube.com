@@ -6,7 +6,7 @@
             field="{form.fields.name}"
         ></Text>
         <IconBlock
-            fieldGroup="{form.fields.locations}"
+            fieldGroup="{form.fields.theme}"
         >
             <div slot="icon">
                 <ThemeIcon
@@ -17,7 +17,7 @@
             </div>
         </IconBlock>
         <IconBlock
-            fieldGroup="{form.fields.locations}"
+            fieldGroup="{form.fields.labels}"
         >
             <div slot="icon">
                 <LabelIcon
@@ -244,17 +244,19 @@ function createForm(
     OptionsField,
     Validators
 ) {
-    const startDate = new DateField([
-        Validators.required(),
-        Validators.minTomorrow()
-    ])
-    const timeframe = new FieldGroup('Timeframe', {
-        startDate,
-        endDate: new DateField([
-                Validators.required(),
-                Validators.minTomorrow(),
-                Validators.greaterThanOrEquals(startDate)
-            ]),
+    const dimensions = new FieldGroup('Dimensions', {
+        first: new Field([
+            Validators.required()
+        ]),
+        second: new Field([
+            Validators.required()
+        ]),
+        third: new Field([
+        ])
+    }, [], text)
+
+    const labels = new FieldGroup('Labels', {
+        labels: new OptionsField([], [])
     }, [], text)
 
     const locations = new FieldGroup('Locations', {
@@ -269,24 +271,35 @@ function createForm(
             ], locationsData.cities),
     }, [], text)
 
-    const dimensions = new FieldGroup('Dimensions', {
-        first: new Field([
-            Validators.required
-        ]),
-        second: new Field([
-            Validators.required
-        ]),
-        third: new Field([
-        ])
+    const startDate = new DateField([
+        Validators.required(),
+        Validators.minTomorrow()
+    ])
+
+    const theme = new FieldGroup('Theme', {
+        theme: new OptionsField([
+            // Validators.required()
+        ], [])
+    }, [], text)
+
+    const timeframe = new FieldGroup('Timeframe', {
+        startDate,
+        endDate: new DateField([
+                Validators.required(),
+                Validators.minTomorrow(),
+                Validators.greaterThanOrEquals(startDate)
+            ]),
     }, [], text)
 
     return new FieldGroup('NameLocationsTimeframe', {
         dimensions,
+        labels,
         locations,
         name: new Field([
             Validators.minLength(3),
             Validators.required()
         ], { maxLength: 40}),
+        theme,
         timeframe
     }, [], text)
 }

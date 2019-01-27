@@ -14,6 +14,9 @@
             "info": "Select the dimensions of the poll",
             "error": "At least two poll dimensions are required"
           },
+          "labels": {
+            "info": "Select labels for this poll"
+          },
           "locations": {
             "info": "Select the location(s) of the poll (Continent(s), Country(ies), State(s), City(ies))",
             "error": "Correct location information is required"
@@ -21,6 +24,10 @@
           "timeframe": {
             "info": "Select the Start and End dates for the poll",
             "error": "Correct time-frame information is required"
+          },
+          "theme": {
+            "info": "Select the defining theme of this poll",
+            "error": "Poll theme is required"
           }
         },
         "Dimensions": {
@@ -38,6 +45,12 @@
           },
           "third": {
             "label": "Select 3rd dimension"
+          }
+        },
+        "Labels": {
+          "labels": {
+            "info": "Select matching label(s) for this poll",
+            "label": "Label(s)"
           }
         },
         "Locations": {
@@ -59,6 +72,15 @@
           "cities": {
             "info": "Select one or more cities to which this poll will apply",
             "label": "City(ies)"
+          }
+        },
+        "Theme": {
+          "theme": {
+            "info": "Select the defining theme of this poll",
+            "label": "Theme",
+            "errors": {
+              "required": "Poll theme is required"
+            }
           }
         },
         "Timeframe": {
