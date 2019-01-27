@@ -55,6 +55,7 @@ export interface IPositionData {
 
 export interface IDimensionPositionData {
 	dir: Direction
+	index?: 0 | 1 | 2
 	valid: boolean
 	value: PositionPercent
 }

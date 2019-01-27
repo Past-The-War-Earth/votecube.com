@@ -84,6 +84,7 @@ import LocationSelector from './pages/poll/create/Locations.html'
 import TimeframeSelector from './pages/poll/create/Timeframe.html'
 import NameLocationsTimeframeSelector from './pages/poll/create/NameLocationsTimeframe.html'
 import CubeVote from './pages/poll/vote/Cube.html'
+import CubeTopMenu from './pages/poll/vote/Common.top.menu.html'
 import VerticalBarVote from './pages/poll/vote/Chart.html'
 
 const pageMap = {
@@ -95,6 +96,11 @@ const pageMap = {
     [routes.SELECT_POLL_LOCATIONS]: LocationSelector,
     [routes.SELECT_POLL_TIMEFRAME]: TimeframeSelector,
 };
+
+const topMenuMap = {
+    [routes.CHART]: CubeTopMenu,
+    [routes.CUBE]: CubeTopMenu,
+}
 
 export default {
     components: {
@@ -150,15 +156,15 @@ export default {
             this.set({PageComp})
         },
         setViewType(
-            viewType
+            view
         ) {
-            navigateToPage(viewType)
+            navigateToPage(view.type, view.params)
         }
     },
     oncreate() {
         loadUi(this.store, 'en-us')
 
-        setupRoutes(this, pageMap)
+        setupRoutes(this, pageMap, topMenuMap)
 
         startResizeInterval(this.store)
 

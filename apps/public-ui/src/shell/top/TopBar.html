@@ -11,19 +11,20 @@
 </div>
 
 <script>
-    import TopBarHeader from './TopBarHeader.html'
-    import TopMenu from './TopMenu.html'
+import * as routes from '../../routes'
+import TopBarHeader from './TopBarHeader.html'
+import TopMenu from './TopMenu.html'
 
-    export default {
-        components: {
-            TopBarHeader,
-            TopMenu
-        },
-        computed: {
-            showTopMenu: ({$currentPage}) => $currentPage && $currentPage.rightMenu,
-            wrapperMarginBottom: ({$currentPage}) => $currentPage && $currentPage.rightMenu
-            ? 2.5
-            : 0.5
-        }
+export default {
+    components: {
+        TopBarHeader,
+        TopMenu
+    },
+    computed: {
+        showTopMenu: ({$currentPage}) => !!routes.getTopMenuComponent(),
+        wrapperMarginBottom: ({$currentPage}) => $currentPage && $currentPage.rightMenu
+        ? 2.5
+        : 0.5
     }
+}
 </script>

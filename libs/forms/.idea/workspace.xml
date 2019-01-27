@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87bf05c7-ab0c-4baa-b157-74a6b0779ece" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Common.top.menu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/LinearPositionPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/LinearPositionPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/PercentPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/PercentPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/DimensionInfoButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/DimensionInfoButton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/cube.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/cube.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/libs/cubeLogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/cubeLogic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Chart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Cube.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopBar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopMenu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cube-logic/src/cube/Viewport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/src/cube/Viewport.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cube-logic/src/cube/cubeMovement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/src/cube/cubeMovement.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cube-logic/src/cube/eventListener.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/src/cube/eventListener.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/date/DateFragments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/date/DateFragments.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -73,8 +72,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/field/date/DateFragments.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="78">
-                  <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+                <state relative-caret-position="188">
+                  <caret line="132" column="37" lean-forward="true" selection-start-line="132" selection-start-column="37" selection-end-line="132" selection-end-column="37" />
                   <folding>
                     <element signature="e#0#39#0" expanded="true" />
                   </folding>
@@ -270,7 +269,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547652570107</updated>
-      <workItem from="1547652571480" duration="151959000" />
+      <workItem from="1547652571480" duration="152794000" />
     </task>
     <task id="LOCAL-00001" summary="NamePlaceTimeSelector form layout and start of forms logic">
       <created>1547652705203</created>
@@ -318,14 +317,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151959000" />
+    <option name="totallyTimeSpent" value="152794000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.1391258" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1391258" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
@@ -571,8 +570,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/field/date/DateFragments.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+        <state relative-caret-position="188">
+          <caret line="132" column="37" lean-forward="true" selection-start-line="132" selection-start-column="37" selection-end-line="132" selection-end-column="37" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

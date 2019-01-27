@@ -6,6 +6,7 @@ import {
 }                 from '../utils/utils'
 import {
 	Bool,
+	IDimensionPositionData,
 	IPositionData,
 	IValuesOutCallback,
 	mouse,
@@ -46,16 +47,43 @@ export function setViewPort(
 }
 
 export function setPositionDataAndMove(
-	positionData: IPositionData
+	dimensionPositionData: IDimensionPositionData[]
 ) {
-	setPositionData(positionData)
-	viewport.moveToDegree()
+	if (setPositionData(dimensionPositionData)) {
+		viewport.moveToDegree()
+	}
 }
 
 export function setPositionData(
-	positionData: IPositionData
-) {
+	dimensionPositionData: IDimensionPositionData[]
+): boolean {
+	if (!dimensionPositionData) {
+		viewport.pd = null
+		return false
+	}
+
+	const positionData: IPositionData = {
+		x: null,
+		y: null,
+		z: null
+	}
+	dimensionPositionData.forEach(
+		displayValue => {
+			switch (displayValue.index) {
+				case 0:
+					positionData.x = displayValue
+					break
+				case 1:
+					positionData.y = displayValue
+					break
+				case 2:
+					positionData.z = displayValue
+					break
+			}
+		})
 	viewport.pd = positionData
+
+	return true
 }
 
 export function addCubeAdjustment(): void {

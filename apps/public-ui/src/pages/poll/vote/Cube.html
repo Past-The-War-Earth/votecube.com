@@ -190,19 +190,6 @@
         width: 320px;
     }
 
-    /*
-    #cube h2 {
-        color: #fff;
-        padding-top: 0;
-
-        margin-top: 0;
-    }
-
-    #cube a {
-        color: #fff;
-    }
-    */
-
     #cube > div {
         position: absolute;
         /*
@@ -323,8 +310,8 @@ export default {
 
             this.set({zoomFactor})
         }, this.store)
-        const pollId = this.store.get().routeParams.pollId
 
+        const pollId = this.store.get().routeParams.pollId
         Promise.all([
             loadCubeLogic(this),
             pollDao.findByIdWithDetails(pollId)
@@ -334,21 +321,7 @@ export default {
         ]) => {
             this.set({poll})
             // TODO: add support for vote values
-            const positionData = {}
-            poll.displayValues.forEach(displayValue => {
-                switch(displayValue.index) {
-                    case 0:
-                        positionData.x = displayValue
-                       break
-                    case 1:
-                        positionData.y = displayValue
-                       break
-                    case 2:
-                        positionData.z = displayValue
-                       break
-                }
-            });
-            setPositionDataAndMove(positionData)
+            setPositionDataAndMove(poll.displayValues)
         })
 
         this.store.set({noOverflow: true})

@@ -2,7 +2,7 @@ import page from 'page'
 
 export var PAGE_CONF = {}
 
-let appComp
+let appComp, pageComp, topMenuComp
 
 export var DIMENSION_LIST = '/Dimension/List'
 export var CHART = '/Poll/:pollId/Vote/Chart'
@@ -48,23 +48,39 @@ configPage(
     false
 )
 
+export function getPageComponent() {
+    return pageComp
+}
+
+export function getTopMenuComponent() {
+    return topMenuComp
+}
+
 
 export function navigateToPage(
-    pageKey
+    pageKey,
+    paramMap
 ) {
     let currentPage = PAGE_CONF[pageKey]
-    page(currentPage.url)
+    let url = '' + currentPage.url
+    if (paramMap) {
+        for (const paramKey in paramMap) {
+            url = url.replace(':' + paramKey, paramMap[paramKey])
+        }
+    }
+    page(url)
     appComp.store.set({currentPage})
 }
 
 export function setupRoutes(
     applicationComponent,
-    pageMap
+    pageMap,
+    topMenuMap
 ) {
     appComp = applicationComponent
-    setupPage(PAGE_CONF[CREATE_POLL_NAME_LOC_DATE], pageMap[CREATE_POLL_NAME_LOC_DATE], applicationComponent, '/')
+    setupPage(PAGE_CONF[CREATE_POLL_NAME_LOC_DATE], pageMap[CREATE_POLL_NAME_LOC_DATE], null, applicationComponent, '/')
     for (const pageKey in PAGE_CONF) {
-        setupPage(PAGE_CONF[pageKey], pageMap[pageKey], applicationComponent)
+        setupPage(PAGE_CONF[pageKey], pageMap[pageKey], topMenuMap[pageKey], applicationComponent)
     }
     page({
         hashbang: true
@@ -88,12 +104,13 @@ function configPage(
 function setupPage(
     pageConfig,
     PageComp,
+    TopMenuComp,
     appComp,
     url = pageConfig.url
 ) {
     page(
         url, (context) => {
-            setPageComp(pageConfig, context.params, PageComp, appComp)
+            setPageComp(pageConfig, context.params, PageComp, TopMenuComp, appComp)
         })
 }
 
@@ -101,8 +118,11 @@ function setPageComp(
     currentPage,
     routeParams,
     PageComp,
+    TopMenuComp,
     appComp
 ) {
+    pageComp = PageComp
+    topMenuComp = TopMenuComp
     appComp.store.set({currentPage, routeParams})
     appComp.set({PageComp})
 }

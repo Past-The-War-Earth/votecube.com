@@ -3,49 +3,32 @@
         class:leftFigure="!$verticalLayout"
         class:topFigure="$verticalLayout"
 >
-    <!--
-        style="
-transform: scale({zoomFactor}, {zoomFactor});
-"
--->
     <table
             class="chart-contents"
     >
         <tr id="plus">
             <td>
-                <!--
-                    class:selectedPlus="dimension === 'x'"
-                    on:click="pick('x')"
-                -->
                 <div
                         style="
-        background-color: #{$currentValue.x.color};
+        background-color: #{getColor(poll, 0)};
         height: {xPlusHeight}px;
             "
                 >
                 </div>
             </td>
             <td>
-                <!--
-                    class:selectedPlus="dimension === 'y'"
-                    on:click="pick('y')"
-                -->
                 <div
                         style="
-        background-color: #{$currentValue.y.color};
+        background-color: #{getColor(poll, 1)};
         height: {yPlusHeight}px;
             "
                 >
                 </div>
             </td>
             <td>
-                <!--
-                    class:selectedPlus="dimension === 'z'"
-                    on:click="pick('z')"
-                -->
                 <div
                         style="
-        background-color: #{$currentValue.z.color};
+        background-color: #{getColor(poll, 2)};
         height: {zPlusHeight}px;
             "
                 >
@@ -55,13 +38,9 @@ transform: scale({zoomFactor}, {zoomFactor});
         <tr id="minus">
             <td
             >
-                <!--
-                    class:selectedMinus="dimension === 'x'"
-                    on:click="pick('x')"
-                -->
                 <div
                         style="
-        background-color: #{$currentValue.x.color};
+        background-color: #{getColor(poll, 0)};
         height: {xMinusHeight}px;
             "
                 >
@@ -69,13 +48,9 @@ transform: scale({zoomFactor}, {zoomFactor});
             </td>
             <td
             >
-                <!--
-                    class:selectedMinus="dimension === 'y'"
-                    on:click="pick('y')"
-                -->
                 <div
                         style="
-        background-color: #{$currentValue.y.color};
+        background-color: #{getColor(poll, 1)};
         height: {yMinusHeight}px;
             "
                 >
@@ -83,13 +58,9 @@ transform: scale({zoomFactor}, {zoomFactor});
             </td>
             <td
             >
-                <!--
-                    class:selectedMinus="dimension === 'z'"
-                    on:click="pick('z')"
-                -->
                 <div
                         style="
-        background-color: #{$currentValue.z.color};
+        background-color: #{getColor(poll, 2)};
         height: {zMinusHeight}px;
             "
                 >
@@ -106,45 +77,46 @@ transform: scale({zoomFactor}, {zoomFactor});
     <tr>
         <td>
             <DimensionInfoButton
-                    dimension="{$currentValue.x}"
-                    index=0
-                    on:toggle="toggleSurface('x')"
+                delta="{toggleDelta}"
+                dimension="{getDimension(poll, 0)}"
+                displayValue="{getDisplayValue(poll, 0)}"
+                index=0
+                on:toggle="toggleSurface('x')"
             ></DimensionInfoButton>
         </td>
         <td
-                style="
-                    font-size: calc(1.8vw + 1.8vh);
-                "
+            class="directionText"
         >
             {xText}
         </td>
     <tr>
     </tr>
-    <td>
-        <DimensionInfoButton
-                index=1
-                dimension="{$currentValue.y}"
-                on:toggle="toggleSurface('y')"
-        ></DimensionInfoButton>
-    </td>
-    <td
-            style="
-                    font-size: calc(1.8vw + 1.8vh);
-                "
-    >
-        {yText}
-    </td>
-    <tr>
         <td>
             <DimensionInfoButton
-                    dimension="{$currentValue.z}"
-                    on:toggle="toggleSurface('z')"
+                delta="{toggleDelta}"
+                dimension="{getDimension(poll, 1)}"
+                displayValue="{getDisplayValue(poll, 1)}"
+                index=1
+                on:toggle="toggleSurface('y')"
             ></DimensionInfoButton>
         </td>
         <td
-                style="
-                    font-size: calc(1.8vw + 1.8vh);
-                "
+            class="directionText"
+        >
+            {yText}
+        </td>
+    <tr>
+        <td>
+            <DimensionInfoButton
+                delta="{toggleDelta}"
+                dimension="{getDimension(poll, 2)}"
+                displayValue="{getDisplayValue(poll, 2)}"
+                index=2
+                on:toggle="toggleSurface('z')"
+            ></DimensionInfoButton>
+        </td>
+        <td
+            class="directionText"
         >
             {zText}
         </td>
@@ -153,15 +125,13 @@ transform: scale({zoomFactor}, {zoomFactor});
 
 <style>
 
-    /*
-    dim-info-col {
-        width: 60px;
-    }
-    */
-
     figure {
         position: fixed;
         width: 100%;
+    }
+
+    .directionText {
+        font-size: calc(1.8vw + 1.8vh);
     }
 
     .leftFigure {
@@ -177,13 +147,6 @@ transform: scale({zoomFactor}, {zoomFactor});
     .chart-contents {
         width: 100%;
     }
-
-    /*
-    section {
-        margin: 15px;
-        font-size: 1.5em;
-    }
-    */
 
     .info {
         position: fixed;
@@ -231,62 +194,41 @@ transform: scale({zoomFactor}, {zoomFactor});
         margin-top: 0px;
     }
 
-    /*
-        .selectedPlus {
-            border: 1px dashed;
-            border-bottom: 1px solid;
-        }
-
-        .selectedMinus {
-            border: 1px dashed;
-            border-top: 0px;
-        }
-    */
 </style>
 
 <script>
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
-import {loadCubeLogic, shutDownCubeListener} from '../../../libs/cubeLogic.js'
-import {scheduleToResize, setResizeCllBck} from '../../../resizer.js'
-import store from '../../../store.js'
+import {getColor, getDimension, getDisplayValue, getSideText} from '../../../cube';
+import {loadCubeLogic, shutDownCubeListener} from '../../../libs/cubeLogic'
+import {pollDao} from '../../../dao/poll';
+import {scheduleToResize, setResizeCllBck} from '../../../resizer'
+import store from '../../../store'
 
 export default {
     components: {
         DimensionInfoButton
     },
     computed: {
-        pickedText: ({$currentValue, dimension, $text}) => {
-            if (!dimension) {
-                return ''
+        xMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 0, -1, maxBarSize, maxValue),
+        xPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 0, 1, maxBarSize, maxValue),
+        xText: ({poll, toggleDelta}) => directionText(poll, 0),
+        yMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 1, -1, maxBarSize, maxValue),
+        yPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 1, 1, maxBarSize, maxValue),
+        yText: ({poll, toggleDelta}) => directionText(poll, 1),
+        zMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 2, -1, maxBarSize, maxValue),
+        zPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 2, 1, maxBarSize, maxValue),
+        zText: ({poll, toggleDelta}) => directionText(poll, 2),
+        maxValue: ({poll, toggleDelta}) => {
+            if(!poll) {
+                return 0
             }
-            let plusIndex = 0, minusIndex = 5
-            if (dimension === 'y') {
-                plusIndex = 1
-                minusIndex = 3
-            } else if (dimension === 'z') {
-                plusIndex = 2
-                minusIndex = 4
-            }
-            return $currentValue[dimension].dir === 1
-                ? $text[plusIndex]
-                : $text[minusIndex]
-        },
-        xMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.x, -1, maxBarSize, maxValue),
-        xPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.x, 1, maxBarSize, maxValue),
-        xText: ({$currentValue, $text}) => $currentValue.x.dir === 1 ? $text[0] : $text[5],
-        yMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.y, -1, maxBarSize, maxValue),
-        yPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.y, 1, maxBarSize, maxValue),
-        yText: ({$currentValue, $text}) => $currentValue.y.dir === 1 ? $text[1] : $text[3],
-        zMinusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, -1, maxBarSize, maxValue),
-        zPlusHeight: ({$currentValue, maxBarSize, maxValue}) => barHeight($currentValue.z, 1, maxBarSize, maxValue),
-        zText: ({$currentValue, $text}) => $currentValue.z.dir === 1 ? $text[2] : $text[4],
-        maxValue: ({$currentValue}) => {
+
             const positiveValues = []
             const negativeValues = []
 
-            addToVals($currentValue.x, positiveValues, negativeValues)
-            addToVals($currentValue.y, positiveValues, negativeValues)
-            addToVals($currentValue.z, positiveValues, negativeValues)
+            addToVals(poll, 0, positiveValues, negativeValues)
+            addToVals(poll, 1, positiveValues, negativeValues)
+            addToVals(poll, 2, positiveValues, negativeValues)
 
             const maxPositiveValue = getMaxVal(positiveValues)
             const maxNegativeValue = getMaxVal(negativeValues)
@@ -296,9 +238,15 @@ export default {
     },
     data() {
         return {
-            dimension: null
+            dimension: null,
+            toggleDelta: 0
         }
     },
+	helpers: {
+		getColor,
+		getDimension,
+		getDisplayValue
+	},
     methods: {
         handleResize(
             event
@@ -309,6 +257,7 @@ export default {
             dimension
         ) {
             this.get().mutationApi.toggleSurface(dimension)
+            this.set({toggleDelta: this.get().toggleDelta + 1})
         }
     },
     oncreate() {
@@ -326,6 +275,19 @@ export default {
             this.set({maxBarSize});
         }, this.store)
         loadCubeLogic(this)
+
+        const pollId = this.store.get().routeParams.pollId
+        Promise.all([
+            loadCubeLogic(this),
+            pollDao.findByIdWithDetails(pollId)
+        ]).then(([
+            setPositionDataAndMove,
+            poll
+        ]) => {
+            this.set({poll})
+            // TODO: add support for vote values
+            setPositionDataAndMove(poll.displayValues)
+        })
         this.store.set({noOverflow: true})
     },
     ondestroy() {
@@ -337,25 +299,40 @@ export default {
 }
 
 function barHeight(
-    dimensionPositionData,
+    poll,
+    pollDimensionIndex,
     direction,
     maxBarSize,
     maxValue
 ) {
-    return dimensionPositionData.dir === direction
-        ? dimensionPositionData.value * maxBarSize / (maxValue * 1.2)
+    const displayValue = getDisplayValue(poll, pollDimensionIndex)
+    return displayValue
+    && displayValue.dir === direction
+        ? displayValue.value * maxBarSize / (maxValue * 1.2)
         : 0
 }
 
+function directionText(
+    poll,
+    pollDimensionIndex
+) {
+    const displayValue = getDisplayValue(poll, pollDimensionIndex)
+    return displayValue
+        ? getSideText(poll, pollDimensionIndex, displayValue.dir)
+        : ''
+}
+
 function addToVals(
-    dimensionPositionData,
+    poll,
+    pollDimensionIndex,
     positiveValues,
     negativeValues
 ) {
-    if (dimensionPositionData.dir === 1) {
-        positiveValues.push(dimensionPositionData.value);
+    const displayValue = getDisplayValue(poll, pollDimensionIndex)
+    if (displayValue.dir === 1) {
+        positiveValues.push(displayValue.value);
     } else {
-        negativeValues.push(dimensionPositionData.value);
+        negativeValues.push(displayValue.value);
     }
 }
 
