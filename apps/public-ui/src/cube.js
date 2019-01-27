@@ -62,7 +62,7 @@ export function getDisplayValue(
 export function getSideText(
     poll,
     pollDimensionIndex,
-    positive
+    dir
 ) {
     if (!poll) {
         return ``
@@ -72,28 +72,10 @@ export function getSideText(
 
     const direction = dimension.dimensionDirections.filter(
         dimensionDirection =>
-        dimensionDirection.positive === positive
+        dimensionDirection.dir === dir
     )[0].direction
 
     return `${dimension.description.shortValue}: ${direction.description.markdownValue}`
-}
-
-export function toggleDisplayValue(
-    poll,
-    dimensionIndex,
-) {
-    poll.displayValues.forEach(displayValue => {
-        if(displayValue.index === dimensionIndex) {
-            if(displayValue.value === 100) {
-                displayValue.positive = !displayValue.positive
-            } else {
-                displayValue.value = 100
-                displayValue.positive = true
-            }
-        } else {
-            displayValue.value = 0
-        }
-    })
 }
 
 function ensure2Digits(

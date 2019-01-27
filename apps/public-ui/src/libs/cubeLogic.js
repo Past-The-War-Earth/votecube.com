@@ -11,7 +11,6 @@ export function loadCubeLogic(
 
         setCubeViewPort(
             cubeListener,
-            page.store.get().currentValue,
             (
                 mutationApi
             ) => {
@@ -23,6 +22,8 @@ export function loadCubeLogic(
                 page.store.set({currentValue})
             },
         )
+
+        return cubeListener.setPositionDataAndMove
     })
     // startResizeInterval(page, viewCallback)
 }
@@ -34,13 +35,13 @@ export function shutDownCubeListener(
     // stopResizeInterval(page)
     setCubeViewPort(
         cubeListener,
-        null,
         (
             mutationApi
         ) => {
             page.set({mutationApi})
         }
     )
+    cubeListener.setPositionData(null)
 }
 
 export function setCubeAdjustment(
@@ -56,9 +57,8 @@ export function setCubeAdjustment(
 
 function setCubeViewPort (
     cubeListener,
-    data,
     setMutationApi,
     callback
 ) {
-    setMutationApi(cubeListener.setViewPort(true, data, callback))
+    setMutationApi(cubeListener.setViewPort(true, callback))
 }

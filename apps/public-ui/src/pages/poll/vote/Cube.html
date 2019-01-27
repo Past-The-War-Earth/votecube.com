@@ -16,7 +16,7 @@
             background-color: #{getColor(poll, 0)};
                 "
             >
-                {getSideText(poll, 0, true)}
+                {getSideText(poll, 0, 1)}
             </div>
             <div
                 class="surface"
@@ -25,7 +25,7 @@
             background-color: #{getColor(poll, 1)};
                 "
             >
-                {getSideText(poll, 1, true)}
+                {getSideText(poll, 1, 1)}
             </div>
             <div
                 class="surface"
@@ -34,7 +34,7 @@
             background-color: #{getColor(poll, 2)};
                 "
             >
-                {getSideText(poll, 2, true)}
+                {getSideText(poll, 2, 1)}
             </div>
             <div
                 class="surface"
@@ -43,7 +43,7 @@
             background-color: #{getColor(poll, 1)};
                 "
             >
-                {getSideText(poll, 1, false)}
+                {getSideText(poll, 1, -1)}
             </div>
             <div
                 class="surface"
@@ -52,7 +52,7 @@
             background-color: #{getColor(poll, 2)};
                 "
             >
-                {getSideText(poll, 2, false)}
+                {getSideText(poll, 2, -1)}
             </div>
             <div
                 class="surface"
@@ -61,7 +61,7 @@
             background-color: #{getColor(poll, 0)};
                 "
             >
-                {getSideText(poll, 0, false)}
+                {getSideText(poll, 0, -1)}
             </div>
         </figure>
     </section>
@@ -70,6 +70,7 @@
         on:close="togglePercentPicker()"
         on:move="move(event)"
         on:moveToValue="moveToValue(event)"
+        poll="{poll}"
     ></PercentPicker>
 {:else}
     <a
@@ -251,7 +252,7 @@
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
 import PercentPicker from '../../../common/control/PercentPicker.html'
 import VoteButton from '../../../common/control/button/VoteButton.html'
-import {getColor, getDimension, getDisplayValue, getSideText, toggleDisplayValue} from '../../../cube';
+import {getColor, getDimension, getDisplayValue, getSideText} from '../../../cube';
 import {pollDao} from '../../../dao/poll';
 import {loadCubeLogic, setCubeAdjustment, shutDownCubeListener} from '../../../libs/cubeLogic'
 import {setResizeCllBck} from '../../../resizer'
@@ -304,7 +305,6 @@ export default {
             dimensionKey
         ) {
             this.get().mutationApi.toggleSurface(dimensionKey)
-            toggleDisplayValue(poll, dimensionIndex)
             this.set({toggleDelta: this.get().toggleDelta + 1})
         },
     },
@@ -329,10 +329,26 @@ export default {
             loadCubeLogic(this),
             pollDao.findByIdWithDetails(pollId)
         ]).then(([
-            _,
+            setPositionDataAndMove,
             poll
         ]) => {
             this.set({poll})
+            // TODO: add support for vote values
+            const positionData = {}
+            poll.displayValues.forEach(displayValue => {
+                switch(displayValue.index) {
+                    case 0:
+                        positionData.x = displayValue
+                       break
+                    case 1:
+                        positionData.y = displayValue
+                       break
+                    case 2:
+                        positionData.z = displayValue
+                       break
+                }
+            });
+            setPositionDataAndMove(positionData)
         })
 
         this.store.set({noOverflow: true})

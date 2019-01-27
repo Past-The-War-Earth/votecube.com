@@ -14,10 +14,11 @@
       <input
           maxlength="3"
           on:input="fire('moveToValue', this.value)"
+          ref:input
           style="
             border-bottom: {valueBottomBorder};
           "
-          value="{dimension.value}"
+          value="{value.value}"
       >
    </td>
    <td
@@ -52,6 +53,7 @@
 </style>
 
 <script>
+import {getDimensionColor} from '../../cube';
 import LeftButton from './button/LeftButton.html'
 import RightButton from './button/RightButton.html'
 
@@ -61,15 +63,15 @@ export default {
         RightButton
     },
     computed: {
-        valueBottomBorder: ({dimension}) => getInputBorder(dimension),
-        leftCircleRadius: ({dimension}) => getRadius(-1, dimension),
-        rightCircleRadius: ({dimension}) => getRadius(1, dimension),
-        leftStrokeWidth: ({dimension}) => getStrokeWidth(-1, dimension),
-        rightStrokeWidth: ({dimension}) => getStrokeWidth(1, dimension),
-        leftHighlightColor: ({dimension}) => getColor(1, dimension),
-        rightHighlightColor: ({dimension}) => getColor(-1, dimension),
-        leftFillColor: ({dimension}) => getColor(-1, dimension),
-        rightFillColor: ({dimension}) => getColor(1, dimension),
+        valueBottomBorder: ({value}) => getInputBorder(value),
+        leftCircleRadius: ({value}) => getRadius(-1, value),
+        rightCircleRadius: ({value}) => getRadius(1, value),
+        leftStrokeWidth: ({value}) => getStrokeWidth(-1, value),
+        rightStrokeWidth: ({value}) => getStrokeWidth(1, value),
+        leftHighlightColor: ({dimension, value}) => getColor(1, value, dimension),
+        rightHighlightColor: ({dimension, value}) => getColor(-1, value, dimension),
+        leftFillColor: ({dimension, value}) => getColor(-1, value, dimension),
+        rightFillColor: ({dimension, value}) => getColor(1, value, dimension),
     },
     methods: {
         mouseDown(
@@ -84,104 +86,107 @@ export default {
             })
 
             setIntrvl(this, 360, direction, 4, 3, 1)
+            this.fire('update')
         },
         mouseUp(
             direction
         ) {
             clearIntrvl(this)
         },
+    },
+    oncreate() {
+        this.on('refresh', () => {
+            updateValue(this)
+        })
     }
 }
 
-    function checkInterval(
-        page
-    ) {
-        let numIncs = page.get().numIncs - 1
-
-        let percentChange = page.get().percentChange
-        let direction = page.get().direction
-
-        page.fire('move', {
-            direction,
-            percentChange
-        });
-
-        if (!numIncs) {
-            clearIntrvl(page)
-            let numReIncs = page.get().numReIncs - 1
-            if(!numReIncs) {
-                return
-            }
-            let interval = page.get().interval / 2
-            let numIncs = page.get().lastNumIncs * 2
-            percentChange = percentChange * 3
-
-            page.set({lastNumIncs: numIncs})
-            setIntrvl(page, interval, direction, numIncs, numReIncs, percentChange)
-        } else {
-            page.set({numIncs})
-        }
-    }
-
-    function setIntrvl(
-        page,
-        interval,
+function checkInterval(
+    page
+) {
+    let numIncs = page.get().numIncs - 1
+    let percentChange = page.get().percentChange
+    let direction = page.get().direction
+    page.fire('move', {
         direction,
-        numIncs,
-        numReIncs,
-        percentChange,
-    ) {
-        // console.log(`interval: ${interval}, direction: ${direction}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
-
-        const incrementInterval = setInterval(() => {
-            checkInterval(page)
-        }, interval)
-
-        page.set({direction, incrementInterval, interval, numIncs, numReIncs, percentChange})
-    }
-
-    function clearIntrvl(
-        page
-    ) {
-        let incrementInterval = page.get().incrementInterval
-
-        if(incrementInterval) {
-            clearInterval(incrementInterval);
+        percentChange
+    });
+    if (!numIncs) {
+        clearIntrvl(page)
+        let numReIncs = page.get().numReIncs - 1
+        if(!numReIncs) {
+            return
         }
+        let interval = page.get().interval / 2
+        let numIncs = page.get().lastNumIncs * 2
+        percentChange = percentChange * 3
+        page.set({lastNumIncs: numIncs})
+        setIntrvl(page, interval, direction, numIncs, numReIncs, percentChange)
+    } else {
+        page.set({numIncs})
     }
+}
+function setIntrvl(
+    page,
+    interval,
+    direction,
+    numIncs,
+    numReIncs,
+    percentChange,
+) {
+    // console.log(`interval: ${interval}, direction: ${direction}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
+    const incrementInterval = setInterval(() => {
+        checkInterval(page)
+        page.fire('update')
+    }, interval)
+    page.set({direction, incrementInterval, interval, numIncs, numReIncs, percentChange})
+}
+function clearIntrvl(
+    page
+) {
+    let incrementInterval = page.get().incrementInterval
+    if(incrementInterval) {
+        clearInterval(incrementInterval);
+    }
+}
+function getInputBorder(
+    value
+) {
+    return value.valid
+    ? '0px'
+    : '3px solid red'
+}
 
-    function getInputBorder(
-        dimension
-    ) {
-        return dimension.valid
-        ? '0px'
-        : '3px solid red'
-    }
-
-    function getRadius(
-        dir,
-        dimension
-    ) {
-        return dir === dimension.dir
-        ? 24
-        : 23
-    }
-
-    function getStrokeWidth(
-        dir,
-        dimension
-    ) {
-        return dir === dimension.dir
-        ? 0
-        : 3
-    }
-
-    function getColor(
-        dir,
-        dimension
-    ) {
-        return dir === dimension.dir
-        ? dimension.color
-        : 'FFFFFF'
-    }
+function getRadius(
+    dir,
+    value
+) {
+    return dir === value.dir
+    ? 24
+    : 23
+}
+function getStrokeWidth(
+    dir,
+    value
+) {
+    return dir === value.dir
+    ? 0
+    : 3
+}
+function getColor(
+    dir,
+    value,
+    dimension
+) {
+    return dir === value.dir
+    ? getDimensionColor(dimension)
+    : 'FFFFFF'
+}
+function updateValue(
+    page
+) {
+    setTimeout(() => {
+        page.refs.input.value = page.get().value.value
+    }, 16)
+}
 </script>

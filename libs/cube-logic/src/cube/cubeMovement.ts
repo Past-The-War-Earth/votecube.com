@@ -54,7 +54,6 @@ export interface IPositionData {
 }
 
 export interface IDimensionPositionData {
-	color: string
 	dir: Direction
 	valid: boolean
 	value: PositionPercent

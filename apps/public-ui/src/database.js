@@ -29,7 +29,7 @@ export const DB = {
                 }
             },
             id: 1,
-            positive: true
+            dir: 1
         }, {
             direction: {
                 id: 2,
@@ -39,7 +39,7 @@ export const DB = {
                 }
             },
             id: 2,
-            positive: false
+            dir: -1
         }],
         id: 1
     }, {
@@ -61,7 +61,7 @@ export const DB = {
                 }
             },
             id: 3,
-            positive: true
+            dir: 1
         }, {
             direction: {
                 id: 4,
@@ -71,7 +71,7 @@ export const DB = {
                 }
             },
             id: 4,
-            positive: false
+            dir: -1
         }],
         id: 2
     }, {
@@ -93,7 +93,7 @@ export const DB = {
                 }
             },
             id: 5,
-            positive: true,
+            dir: 1,
         },{
             direction: {
                 id: 6,
@@ -103,7 +103,7 @@ export const DB = {
                 }
             },
             id: 6,
-            positive: false
+            dir: -1
         }],
         id: 3
     }],
@@ -115,15 +115,15 @@ export const DB = {
         displayValues: [{
             index: 0,
             value: 0,
-            positive: true
+            dir: 1
         },{
             index: 1,
             value: 100,
-            positive: true
+            dir: 1
         },{
             index: 2,
             value: 0,
-            positive: true
+            dir: 1
         }],
         id: 1,
         pollDimensions: [{

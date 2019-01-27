@@ -124,7 +124,8 @@ export class DateFragments
 		return this.impl.year
 	}
 
-	// DateField and DatePicker are coupled, so this is here
+	// DateField and DatePicker.html
+	// are coupled, so this is here
 	onInput(
 		fragmentType: FragmentType,
 		element: HTMLInputElement

@@ -27,18 +27,15 @@ export const dLM = LM.ad(document)
 
 export function setViewPort(
 	forCube: boolean,
-	positionData: IPositionData,
 	cb?: IValuesOutCallback
 ): MutationApi {
 	viewport.reset()
 	viewport.cb = cb
-	viewport.pd = positionData
 
 	if (forCube) {
 		if (cb) {
 			viewport.el = gQ('#cube')
 			addCubeAdjustment()
-			viewport.moveToDegree()
 		} else {
 			viewport.el = null
 			clearCubeAdjustment()
@@ -46,6 +43,19 @@ export function setViewPort(
 	}
 
 	return cb ? mutationApi : null
+}
+
+export function setPositionDataAndMove(
+	positionData: IPositionData
+) {
+	setPositionData(positionData)
+	viewport.moveToDegree()
+}
+
+export function setPositionData(
+	positionData: IPositionData
+) {
+	viewport.pd = positionData
 }
 
 export function addCubeAdjustment(): void {

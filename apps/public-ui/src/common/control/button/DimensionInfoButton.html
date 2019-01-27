@@ -32,10 +32,10 @@ import {getDimensionColor} from '../../../cube'
 
 export default {
     computed: {
-        bottomBorderColor: ({delta, dimension, displayValue}) => borderColor(dimension, displayValue, false),
+        bottomBorderColor: ({delta, dimension, displayValue}) => borderColor(dimension, displayValue, -1),
         float: ({index, $verticalLayout}) => $verticalLayout && index == 0 ? 'right' : 'initial',
         margin: ({index, $verticalLayout}) => $verticalLayout && index == 1 ? 'auto' : 'initial',
-        topBorderColor: ({delta, dimension, displayValue}) => borderColor(dimension, displayValue, true),
+        topBorderColor: ({delta, dimension, displayValue}) => borderColor(dimension, displayValue, 1),
         percentValue: ({delta, displayValue}) => displayValue ? displayValue.value : ''
     },
     helpers: {
@@ -46,10 +46,10 @@ export default {
 function borderColor(
     dimension,
     displayValue,
-    positive
+    dir
 ) {
     if(!displayValue
-    || displayValue.positive === positive) {
+    || displayValue.dir === dir) {
         return '000'
     }
 

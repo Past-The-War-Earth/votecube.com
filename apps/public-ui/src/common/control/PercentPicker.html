@@ -7,20 +7,30 @@
     <div></div>
     <section>
     <table>
+        <!-- TODO: add support for voting value -->
         <LinearPositionPicker
-            dimension="{$currentValue.x}"
+            dimension="{getDimension(poll, 0)}"
+            value="{getDisplayValue(poll, 0)}"
             on:move="move('x', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('x', event)"
+            on:update="update()"
+            ref:xPicker
         />
         <LinearPositionPicker
-            dimension="{$currentValue.y}"
+            dimension="{getDimension(poll, 1)}"
+            value="{getDisplayValue(poll, 1)}"
             on:move="move('y', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('y', event)"
+            on:update="update()"
+            ref:yPicker
         />
         <LinearPositionPicker
-            dimension="{$currentValue.z}"
+            dimension="{getDimension(poll, 2)}"
+            value="{getDisplayValue(poll, 2)}"
             on:move="move('z', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('z', event)"
+            on:update="update()"
+            ref:zPicker
         />
     </table>
     </section>
@@ -68,12 +78,17 @@
 
 <script>
 import LinearPositionPicker from './LinearPositionPicker.html'
+import {getDimension, getDisplayValue} from '../../cube';
 import store from '../../store.js';
 
 export default {
     components: {
         LinearPositionPicker
     },
+	helpers: {
+		getDimension,
+		getDisplayValue
+	},
     methods: {
         move(
             dimension,
@@ -92,11 +107,23 @@ export default {
         ) {
             this.fire('moveToValue', {
                 dimension,
-                value,
-                percentChange
+                value
             })
+            refresh(this)
         },
+        update() {
+            refresh(this)
+        }
     },
     store: () => store
 }
+
+function refresh(
+    page
+) {
+    page.refs.xPicker.fire('refresh')
+    page.refs.yPicker.fire('refresh')
+    page.refs.zPicker.fire('refresh')
+}
+
 </script>

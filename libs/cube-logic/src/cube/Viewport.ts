@@ -124,8 +124,7 @@ export const viewport: IViewport = {
 		function getDimensionState(
 			positivePosition: ValueArrayPosition,
 			negativePosition: ValueArrayPosition,
-			positionValues: PositionValues,
-			color: string
+			positionValues: PositionValues
 		): IDimensionPositionData {
 			let dir: Direction = 1
 			let value          = positionValues[positivePosition]
@@ -134,7 +133,6 @@ export const viewport: IViewport = {
 				value = positionValues[negativePosition]
 			}
 			return {
-				color,
 				dir,
 				valid: true,
 				value
@@ -142,9 +140,9 @@ export const viewport: IViewport = {
 		}
 
 		this.pd = {
-			x: getDimensionState(0, 5, values, this.pd.x.color),
-			y: getDimensionState(1, 3, values, this.pd.y.color),
-			z: getDimensionState(2, 4, values, this.pd.z.color)
+			x: getDimensionState(0, 5, values),
+			y: getDimensionState(1, 3, values),
+			z: getDimensionState(2, 4, values)
 		}
 
 		this.moveToDegree()
