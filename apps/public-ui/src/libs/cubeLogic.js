@@ -4,7 +4,7 @@ export function loadCubeLogic(
     page,
     viewCallback
 ) {
-    import('@votecube/cube-logic/lib/cube/eventListener').then((
+    return import('@votecube/cube-logic/lib/cube/eventListener').then((
         cubeListener
     ) => {
         page.set({cubeListener})

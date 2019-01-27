@@ -26,7 +26,7 @@
 import RightButton from '../../../common/control/button/RightButton.html'
 import DatePicker from '../../../common/field/DatePicker.html'
 import {clearForm, ensureChildForm, navigateOnValid} from '../../../forms'
-import {CREATE_POLL_NAME_LOG_DATE} from '../../../routes'
+import {CREATE_POLL_NAME_LOC_DATE} from '../../../routes'
 import store from '../../../store'
 
 export default {
@@ -42,13 +42,13 @@ export default {
     immutable: true,
     methods: {
         submit() {
-            navigateOnValid(this, CREATE_POLL_NAME_LOG_DATE)
+            navigateOnValid(this, CREATE_POLL_NAME_LOC_DATE)
         }
     },
     oncreate() {
         ensureChildForm(
             'NameLocationsTimeframe', 'timeframe',
-            this, CREATE_POLL_NAME_LOG_DATE)
+            this, CREATE_POLL_NAME_LOC_DATE)
     },
     ondestroy() {
         clearForm(this)

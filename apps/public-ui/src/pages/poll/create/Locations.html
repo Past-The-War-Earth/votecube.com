@@ -38,7 +38,7 @@ import MultiSelect from '../../../common/field/MultiSelect.html'
 import {clearForm, ensureChildForm, ensureForm, navigateOnValid} from '../../../forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadLocations as loadLocText} from '../../../libs/text/locations'
-import {CREATE_POLL_NAME_LOG_DATE} from '../../../routes'
+import {CREATE_POLL_NAME_LOC_DATE} from '../../../routes'
 import store from '../../../store'
 
 export default {
@@ -54,13 +54,13 @@ export default {
     immutable: true,
     methods: {
         submit() {
-            navigateOnValid(this, CREATE_POLL_NAME_LOG_DATE)
+            navigateOnValid(this, CREATE_POLL_NAME_LOC_DATE)
         }
     },
     oncreate() {
         const form = ensureChildForm(
             'NameLocationsTimeframe', 'locations',
-            this, CREATE_POLL_NAME_LOG_DATE)
+            this, CREATE_POLL_NAME_LOC_DATE)
         if(!form) {
             return
         }

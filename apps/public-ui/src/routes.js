@@ -5,9 +5,9 @@ export var PAGE_CONF = {}
 let appComp
 
 export var DIMENSION_LIST = '/Dimension/List'
-export var CHART = '/Poll/Vote/Chart'
-export var CREATE_POLL_NAME_LOG_DATE = '/Poll/Create/NameLocationsTimeframe'
-export var CUBE = '/Poll/Vote/Cube'
+export var CHART = '/Poll/:pollId/Vote/Chart'
+export var CREATE_POLL_NAME_LOC_DATE = '/Poll/Create/NameLocationsTimeframe'
+export var CUBE = '/Poll/:pollId/Vote/Cube'
 export var SELECT_POLL_DIMENSIONS = '/Poll/Create/Dimensions'
 export var SELECT_POLL_LOCATIONS = '/Poll/Create/Locations'
 export var SELECT_POLL_TIMEFRAME = '/Poll/Create/Timeframe'
@@ -23,7 +23,7 @@ configPage(
     true
 )
 configPage(
-    CREATE_POLL_NAME_LOG_DATE,
+    CREATE_POLL_NAME_LOC_DATE,
     'Create Poll',
     false
 )
@@ -62,7 +62,7 @@ export function setupRoutes(
     pageMap
 ) {
     appComp = applicationComponent
-    setupPage(PAGE_CONF[CUBE], pageMap[CUBE], applicationComponent, '/')
+    setupPage(PAGE_CONF[CREATE_POLL_NAME_LOC_DATE], pageMap[CREATE_POLL_NAME_LOC_DATE], applicationComponent, '/')
     for (const pageKey in PAGE_CONF) {
         setupPage(PAGE_CONF[pageKey], pageMap[pageKey], applicationComponent)
     }
@@ -92,16 +92,17 @@ function setupPage(
     url = pageConfig.url
 ) {
     page(
-        url, () => {
-            setPageComp(pageConfig, PageComp, appComp)
+        url, (context) => {
+            setPageComp(pageConfig, context.params, PageComp, appComp)
         })
 }
 
 function setPageComp(
     currentPage,
+    routeParams,
     PageComp,
     appComp
 ) {
-    appComp.store.set({currentPage})
+    appComp.store.set({currentPage, routeParams})
     appComp.set({PageComp})
 }

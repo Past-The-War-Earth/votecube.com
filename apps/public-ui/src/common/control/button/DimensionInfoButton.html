@@ -1,6 +1,6 @@
 <var
     style="
-        background-color: #{dimension.color};
+        background-color: #{getDimensionColor(dimension)};
         border-bottom-color: #{bottomBorderColor};
         border-top-color: #{topBorderColor};
         float: {float};
@@ -8,7 +8,7 @@
     "
     on:click="fire('toggle')"
 >
-    {dimension.value}%
+    {percentValue}%
 </var>
 <style>
     var {
@@ -28,24 +28,32 @@
 </style>
 
 <script>
-    export default {
-        computed: {
-            float: ({index, $verticalLayout}) => $verticalLayout && index == 0 ? 'right' : 'initial',
-            margin: ({index, $verticalLayout}) => $verticalLayout && index == 1 ? 'auto' : 'initial',
-            topBorderColor: ({dimension}) => borderColor(dimension, 1),
-            bottomBorderColor: ({dimension}) => borderColor(dimension, -1)
-        }
+import {getDimensionColor} from '../../../cube'
+
+export default {
+    computed: {
+        bottomBorderColor: ({delta, dimension, displayValue}) => borderColor(dimension, displayValue, false),
+        float: ({index, $verticalLayout}) => $verticalLayout && index == 0 ? 'right' : 'initial',
+        margin: ({index, $verticalLayout}) => $verticalLayout && index == 1 ? 'auto' : 'initial',
+        topBorderColor: ({delta, dimension, displayValue}) => borderColor(dimension, displayValue, true),
+        percentValue: ({delta, displayValue}) => displayValue ? displayValue.value : ''
+    },
+    helpers: {
+        getDimensionColor
+    }
+}
+
+function borderColor(
+    dimension,
+    displayValue,
+    positive
+) {
+    if(!displayValue
+    || displayValue.positive === positive) {
+        return '000'
     }
 
-    function borderColor(
-        dimension,
-        direction
-    ) {
-        if(dimension.dir === direction) {
-            return '000000'
-        }
-
-        return dimension.color
-    }
+    return getDimensionColor(dimension)
+}
 
 </script>

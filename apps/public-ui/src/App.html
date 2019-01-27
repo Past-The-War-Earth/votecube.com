@@ -89,7 +89,7 @@ import VerticalBarVote from './pages/poll/vote/Chart.html'
 const pageMap = {
     [routes.DIMENSION_LIST]: DimensionList,
     [routes.CHART]: VerticalBarVote,
-    [routes.CREATE_POLL_NAME_LOG_DATE]: NameLocationsTimeframeSelector,
+    [routes.CREATE_POLL_NAME_LOC_DATE]: NameLocationsTimeframeSelector,
     [routes.CUBE]: CubeVote,
     [routes.SELECT_POLL_DIMENSIONS]: DimensionsSelector,
     [routes.SELECT_POLL_LOCATIONS]: LocationSelector,
@@ -128,7 +128,7 @@ export default {
             menuItem
         ) {
             switch(menuItem.key) {
-                case routes.CREATE_POLL_NAME_LOG_DATE:
+                case routes.CREATE_POLL_NAME_LOC_DATE:
                 case routes.CUBE: {
                     navigateToPage(menuItem.key)
                     break

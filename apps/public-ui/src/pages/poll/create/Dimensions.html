@@ -75,13 +75,13 @@ export default {
             routes.navigateToPage(routes.DIMENSION_LIST)
         },
         submit() {
-            navigateOnValid(this, routes.CREATE_POLL_NAME_LOG_DATE)
+            navigateOnValid(this, routes.CREATE_POLL_NAME_LOC_DATE)
         }
     },
     oncreate() {
         const form = ensureChildForm(
             'NameLocationsTimeframe', 'dimensions',
-            this, routes.CREATE_POLL_NAME_LOG_DATE)
+            this, routes.CREATE_POLL_NAME_LOC_DATE)
     },
     ondestroy() {
         clearForm(this)
