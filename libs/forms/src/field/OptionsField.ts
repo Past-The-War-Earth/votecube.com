@@ -2,7 +2,8 @@ import {IValidator} from '../validator/Validator'
 import {
 	Field,
 	IField,
-	IFieldRules
+	IFieldRules,
+	LabelRule
 }                   from './Field'
 
 export interface IFieldOption {
@@ -47,7 +48,10 @@ export class OptionsField
 		private theOptions: IFieldOption[] = [],
 		rules?: IOptionFieldRules
 	) {
-		super(validators, rules)
+		super(validators, {
+			...rules,
+			label: LabelRule.OVER
+		})
 		this.value = rules && rules.multi ? [] : null
 
 		this.filterOptions()

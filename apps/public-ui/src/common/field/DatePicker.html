@@ -19,7 +19,7 @@
     >
         <!-- FIXME: add support for other date formats -->
         <input
-            value="{month}"
+            autocomplete="off"
             class="month"
             maxlength="2"
             on:blur="checkFocus()"
@@ -29,6 +29,7 @@
             placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.month}"
             type="text"
             use:id="{id}"
+            value="{month}"
         >
         <span
             class="separator"
@@ -36,7 +37,7 @@
             {$text.UI.Common.Field.Datepicker.dateInput.separator}
         </span>
         <input
-            value="{date}"
+            autocomplete="off"
             class="date"
             maxlength="2"
             on:blur="checkFocus()"
@@ -46,6 +47,7 @@
             placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.date}"
             type="text"
             use:id="{id}"
+            value="{date}"
         >
         <span
             class="separator"
@@ -53,7 +55,7 @@
             {$text.UI.Common.Field.Datepicker.dateInput.separator}
         </span>
         <input
-            value="{year}"
+            autocomplete="off"
             class="year"
             maxlength="4"
             on:blur="checkFocus()"
@@ -63,6 +65,7 @@
             placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.year}"
             type="text"
             use:id="{id}"
+            value="{year}"
         >
         <InfoIcon
             on:select="help()"

@@ -22,6 +22,7 @@
             class="selection"
         >
             <input
+                autocomplete="off"
                 bind:value="filter"
                 on:input="checkValue(options)"
                 ref:filter
@@ -32,16 +33,14 @@
         <div
             class="icons"
         >
-            <div
-                class="filteredRowIconsCenter"
-            >
+            <div>
                 <ClearIcon
                     on:select="clear()"
-                    filteredLine="y"
+                    multiLine="y"
                 ></ClearIcon>
                 <InfoIcon
                     on:select="help()"
-                    filteredLine="y"
+                    multiLine="y"
                 ></InfoIcon>
             </div>
         </div>
@@ -107,6 +106,14 @@
         width: 100%;
     }
 
+    .autoComplete {
+        position: relative;
+    }
+
+    .activeOption {
+        background-color: #eee;
+    }
+
     .fieldBox {
         background-color: white;
         min-height: 2.25em;
@@ -129,10 +136,13 @@
         top: 50%;
         transform: translateY(-50%);
     }
-
-    .autoComplete {
+/*
+    .multiRowIconsCenter {
+        padding-top: 5px;
         position: relative;
-    }
+        top: 50%;
+        transform: translateY(-50%);
+    }*/
 
     .selection {
         display: inline-block;
@@ -184,6 +194,7 @@ export default {
     methods: {
         checkValue(options) {
             const {field, filter} = this.get()
+            OPTIONS.showFiltered(this, this.refs.field)
             if(field.value
                 && field.value.text.toLowerCase() !== filter.toLowerCase()) {
                 field.unselect()
@@ -216,10 +227,13 @@ export default {
         },
         select(option) {
             this.get().field.select(option)
+            this.refs.filter.value = option.text
             this.hideOptions()
         },
         showOptions(element, event) {
-            OPTIONS.showFiltered(this, element)
+            OPTIONS.showFiltered(this, element
+            // , true
+            )
         }
     },
     oncreate() {

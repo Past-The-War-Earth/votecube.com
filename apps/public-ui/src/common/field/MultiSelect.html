@@ -46,6 +46,7 @@
                 </section>
     {/each}
                 <input
+                    autocomplete="off"
                     bind:value="filter"
                     ref:filter
                     type="text"
@@ -131,6 +132,10 @@
         max-height: 300px;
         padding: 0;
         width: 100%;
+    }
+
+    .activeOption {
+        background-color: #eee;
     }
 
     .fieldBox {
@@ -275,7 +280,7 @@ export default {
             this.hideOptions()
         },
         onDocumentKeydown(event) {
-            OPTIONS.handleKeydown(this)
+            OPTIONS.handleKeydown(this, true)
         },
         select(option) {
             this.get().field.select(option)
@@ -283,7 +288,9 @@ export default {
             this.set({filter: ''})
         },
         showOptions(element, event) {
-            OPTIONS.showFiltered(this, element)
+            OPTIONS.showFiltered(this, element
+            // , true
+            )
         },
         unselect(option, event) {
             this.get().field.unselect(option)
