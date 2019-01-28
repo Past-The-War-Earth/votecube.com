@@ -1,24 +1,39 @@
-<section>
+<tr>
+    <td
+        class="icon"
+        >
     <figure
         style="
-            background-color: #{getColor(color)};
+            background-color: #{getColor(dimension.color)};
         "
     >
     </figure>
-    <div>
-        {description.markdownValue}
-    </div>
-</section>
+    <td
+        class="description"
+    >
+        {dimension.description.markdownValue}
+    </td>
+</tr>
 <style>
-    div {
-        display: inline-block;
+    td {
+        border: 1px solid #f8f8f8;
+        height: 62px;
+    }
+    .description {
+        border-left: none;
+        width: calc(100% - 60px)
+    }
+
+    .icon {
+        border-right: none;
+        width: 62px;
     }
 
     figure {
-        border-radius: 4px;
-        display: inline-block;
-        height: 50px;
-        width: 50px;
+        border-radius: 3px;
+        margin: auto;
+        height: 42px;
+        width: 42px;
     }
 </style>
 <script>

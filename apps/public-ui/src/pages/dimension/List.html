@@ -13,10 +13,25 @@
         </div>
     </fieldset>
 </form>
-<VirtualList items={[1, 2, 3]} component={ListItem} />
+<table>
+    {#each dimensions as dimension}
+    <ListItem
+        dimension="{dimension}"
+    ></ListItem>
+    {/each}
+</table>
+<!--
+<VirtualList items={dimensions} component={ListItem} />
+-->
 {/if}
+
+<style>
+    table {
+        width: 100%;
+    }
+</style>
 <script>
-import VirtualList from '@sveltejs/svelte-virtual-list';
+// import VirtualList from '@sveltejs/svelte-virtual-list';
 import AutoComplete from '../../common/field/AutoComplete.html'
 import MultiSelect from '../../common/field/MultiSelect.html'
 import {dimensionDao} from '../../dao/dimension'
@@ -30,14 +45,15 @@ import ListItem from './ListItem.html';
 export default {
     components: {
         AutoComplete,
+        ListItem,
         MultiSelect,
-        VirtualList
+        // VirtualList
     },
-    data() {
-      return {
-        ListItem
-      }
-    },
+    // data() {
+    //   return {
+    //     ListItem
+    //   }
+    // },
     methods: {
         submit() {
             navigateOnValid(this, SELECT_POLL_DIMENSIONS)
