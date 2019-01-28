@@ -13,20 +13,21 @@
         </div>
     </fieldset>
 </form>
+<VirtualList items={[1, 2, 3]} component={ListItem} />
 {/if}
-<VirtualList items={things} component={ListItem} />
 <script>
-  import VirtualList from '@sveltejs/svelte-virtual-list';
-  import AutoComplete from '../../common/field/AutoComplete.html'
-  import MultiSelect from '../../common/field/MultiSelect.html'
-  import {clearForm, ensureForm, navigateOnValid} from '../../forms'
-  import {loadForms} from '../../libs/forms'
-  import {loadUi} from '../../libs/text/ui'
-    import {SELECT_POLL_DIMENSIONS} from '../../routes'
-  import store from '../../store'
-  import ListItem from './ListItem.html';
+import VirtualList from '@sveltejs/svelte-virtual-list';
+import AutoComplete from '../../common/field/AutoComplete.html'
+import MultiSelect from '../../common/field/MultiSelect.html'
+import {dimensionDao} from '../../dao/dimension'
+import {clearForm, ensureForm, navigateOnValid} from '../../forms'
+import {loadForms} from '../../libs/forms'
+import {loadUi} from '../../libs/text/ui'
+import {SELECT_POLL_DIMENSIONS} from '../../routes'
+import store from '../../store'
+import ListItem from './ListItem.html';
 
-  export default {
+export default {
     components: {
         AutoComplete,
         MultiSelect,
@@ -34,14 +35,8 @@
     },
     data() {
       return {
-        things: [
-          { id: 1, name: 'one' },
-          { id: 2, name: 'one' },
-          { id: 3, name: 'one' },
-          { id: 4, name: 'one' }
-        ],
         ListItem
-      };
+      }
     },
     methods: {
         submit() {
@@ -51,10 +46,12 @@
     oncreate() {
         Promise.all([
             loadForms(this),
-            loadUi(this.store, 'en-us')
+            loadUi(this.store, 'en-us'),
+            dimensionDao.getAll()
         ]).then(([
             {FieldGroup, OptionsField, Validators},
-            _
+            _,
+            dimensions
         ]) => {
             const filter = new FieldGroup('List', {
             theme: new OptionsField([
@@ -92,6 +89,7 @@
             })
             }, [], this.store.get().text.UI.Dimension)
 
+            this.set({dimensions})
             ensureForm(filter, this)
         })
     },
@@ -99,5 +97,5 @@
         clearForm(this)
     },
     store: () => store
-  };
+}
 </script>

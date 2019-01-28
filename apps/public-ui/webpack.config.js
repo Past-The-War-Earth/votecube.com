@@ -14,7 +14,8 @@ module.exports = {
         bundle: ['./src/main.js']
     },
     resolve: {
-        extensions: ['.js', '.html']
+        extensions: ['.js', '.html'],
+        mainFields: ['svelte', 'browser', 'module', 'main']
     },
     output: {
         path: __dirname + '/public',
@@ -24,8 +25,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.html$/,
-                exclude: /node_modules/,
+                test: /\.(html|svelte)$/,
                 use: {
                     loader: 'svelte-loader',
                     options: {

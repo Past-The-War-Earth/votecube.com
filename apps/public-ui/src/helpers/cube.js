@@ -1,3 +1,5 @@
+import {getDimensionColor} from "./dimension";
+
 export function getDimension(
     poll,
     pollDimensionIndex
@@ -23,26 +25,6 @@ export function getColor(
     const dimension = getDimension(poll, pollDimensionIndex)
 
     return getDimensionColor(dimension)
-}
-
-export function getDimensionColor(
-    dimension
-) {
-    if (!dimension) {
-        return `fff`
-    }
-
-    const rgb = dimension.color.rgbHexValue
-
-    const red = rgb >> 16
-
-    const green = (rgb >> 8) % 256
-
-    const blue = rgb % 256
-
-    const color = `${ensure2Digits(red.toString(16))}${ensure2Digits(green.toString(16))}${ensure2Digits(blue.toString(16))}`
-
-    return color
 }
 
 export function getDisplayValue(
@@ -76,10 +58,4 @@ export function getSideText(
     )[0].direction
 
     return `${dimension.description.shortValue}: ${direction.description.markdownValue}`
-}
-
-function ensure2Digits(
-    colorString
-) {
-    return colorString.length === 1 ? '0' + colorString : colorString
 }

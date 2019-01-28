@@ -1,3 +1,34 @@
-<div>
-Hello!
-</div>
+<section>
+    <figure
+        style="
+            background-color: #{getColor(color)};
+        "
+    >
+    </figure>
+    <div>
+        {description.markdownValue}
+    </div>
+</section>
+<style>
+    div {
+        display: inline-block;
+    }
+
+    figure {
+        border-radius: 4px;
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+    }
+</style>
+<script>
+import {getColor} from '../../helpers/general';
+
+export default {
+    helpers: {
+        getColor
+    },
+    immutable: true
+}
+
+</script>
