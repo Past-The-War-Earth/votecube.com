@@ -1,0 +1,64 @@
+{#if form}
+<form class="pure-form">
+    <fieldset>
+        <div class="pure-control-group">
+            <ColorPicker
+                field="{form.fields.name}"
+            ></ColorPicker>
+        </div>
+
+        <nav class="pure-controls">
+            <RightButton
+                classes="submitButton"
+                highlightColor="{submitHighlight}"
+            ></RightButton>
+        </nav>
+    </fieldset>
+</form>
+{/if}
+<script>
+import RightButton from '../../common/control/button/RightButton.html'
+import ColorPicker from '../../common/field/ColorPicker.html'
+import store from '../../store'
+
+export default {
+    components: {
+        ColorPicker,
+        RightButton
+    },
+    oncreate() {
+        Promise.all([
+            loadForms(this),
+            loadUi(this.store, 'en-us'),
+        ]).then(([
+            {FieldGroup, MatchingField, Validators},
+            _,
+            dimensions
+        ]) => {
+            const name = new MatchingField([
+                Validators.required(),
+                Validators.minLength(5)
+            ])
+            const create = new FieldGroup('Create', {
+                name
+            }, [], this.store.get().text.UI.Dimension)
+
+            name.onChange((
+                value
+            ) => {
+                if(name.valid) {
+                   name.matches = ['a', 'b', 'c']
+                } else {
+                    name.matches = null
+                }
+            })
+
+            ensureForm(create, this)
+        })
+    },
+    ondestroy() {
+        clearForm(this)
+    },
+    store: () => store
+}
+</script>

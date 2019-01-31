@@ -1,6 +1,15 @@
 {
   "UI": {
     "Dimension": {
+      "Create": {
+        "name": {
+          "label": "Dimension Name",
+          "errors": {
+            "required": "Dimension Name is required",
+            "minLength": "Dimension Name must be at least 5 characters long"
+          }
+        }
+      },
       "List": {
         "theme": {
           "label": "Select the theme",

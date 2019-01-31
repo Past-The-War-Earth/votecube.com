@@ -78,7 +78,9 @@ import {navigateToPage, setupRoutes} from './routes.js'
 import * as routes from './routes'
 import {loadUi} from './libs/text/ui'
 
+import DimensionCreate from './pages/dimension/Create.html'
 import DimensionList from './pages/dimension/List.html'
+import PickDimensionColor from './pages/dimension/PickColor.html'
 import DimensionsSelector from './pages/poll/create/Dimensions.html'
 import LocationSelector from './pages/poll/create/Locations.html'
 import TimeframeSelector from './pages/poll/create/Timeframe.html'
@@ -88,7 +90,9 @@ import CubeTopMenu from './pages/poll/vote/Common.top.menu.html'
 import VerticalBarVote from './pages/poll/vote/Chart.html'
 
 const pageMap = {
+    [routes.CREATE_DIMENSION]: DimensionCreate,
     [routes.DIMENSION_LIST]: DimensionList,
+    [routes.PICK_DIMENSION_COLOR]: PickDimensionColor,
     [routes.CHART]: VerticalBarVote,
     [routes.CREATE_POLL_NAME_LOC_DATE]: NameLocationsTimeframeSelector,
     [routes.CUBE]: CubeVote,

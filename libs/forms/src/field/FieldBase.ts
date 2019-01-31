@@ -112,9 +112,11 @@ export abstract class FieldBase
 		newValue
 	) {
 		this.theValue = newValue
-		for (const callback of this.valueChangeCallbacks) {
-			callback(newValue)
-		}
+		setTimeout(() => {
+			for (const callback of this.valueChangeCallbacks) {
+				callback(newValue)
+			}
+		})
 	}
 
 	addComponent(

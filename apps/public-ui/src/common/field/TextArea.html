@@ -7,7 +7,7 @@
     {#if matches}
     <a>{matches.length} matches</a>
     {/if}
-    <input
+    <textarea
         bind:value="field.value"
         class="field"
         class:invalid="touched && errors.length"

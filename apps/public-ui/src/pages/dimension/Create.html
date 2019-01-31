@@ -1,0 +1,122 @@
+{#if form}
+<form class="pure-form">
+    <fieldset>
+        <div class="pure-control-group">
+            <Text
+                field="{form.fields.name}"
+            ></Text>
+        </div>
+
+        <IconBlock
+            fieldGroup="{form.fields.color}"
+            on:select="selectColor()"
+        >
+            <div slot="icon">
+                <ColorIcon></ColorIcon>
+            </div>
+            <div slot="text">
+                Select Color
+            </div>
+        </IconBlock>
+
+        <IconBlock
+            fieldGroup="{form.fields.color}"
+            on:select="selectColor()"
+        >
+            <div slot="icon">
+                <DirectionIcon></DirectionIcon>
+            </div>
+            <div slot="text">
+                Select Top Direction
+            </div>
+        </IconBlock>
+
+        <IconBlock
+            fieldGroup="{form.fields.color}"
+            on:select="selectColor()"
+        >
+            <div slot="icon">
+                <DirectionIcon
+                    inverse="Y"
+                ></DirectionIcon>
+            </div>
+            <div slot="text">
+                Select Bottom Direction
+            </div>
+        </IconBlock>
+
+        <nav class="pure-controls">
+            <RightButton
+                classes="submitButton"
+                highlightColor="{submitHighlight}"
+            ></RightButton>
+        </nav>
+    </fieldset>
+</form>
+{/if}
+
+<style>
+</style>
+
+<script>
+import RightButton from '../../common/control/button/RightButton.html'
+import IconBlock from '../../common/field/IconBlock.html'
+import Text from '../../common/field/Text.html'
+import ColorIcon from '../../common/icon/ColorIcon.html'
+import DirectionIcon from '../../common/icon/DirectionIcon.html'
+import {clearForm, ensureForm, navigateOnValid} from '../../forms'
+import {loadForms} from '../../libs/forms'
+import {loadUi} from '../../libs/text/ui'
+import * as routes from '../../routes'
+import store from '../../store'
+
+export default {
+    components: {
+        ColorIcon,
+        DirectionIcon,
+        IconBlock,
+        RightButton,
+        Text
+    },
+    methods: {
+        selectColor() {
+            routes.navigateToPage(routes.PICK_DIMENSION_COLOR)
+        }
+    },
+    oncreate() {
+        Promise.all([
+            loadForms(this),
+            loadUi(this.store, 'en-us'),
+        ]).then(([
+            {Field, FieldGroup, MatchingField, Validators},
+            _,
+            dimensions
+        ]) => {
+            const name = new MatchingField([
+                Validators.required(),
+                Validators.minLength(5)
+            ])
+            const create = new FieldGroup('Create', {
+                color: new Field([]),
+                name
+            }, [], this.store.get().text.UI.Dimension)
+
+            name.onChange((
+                value
+            ) => {
+                if(name.valid) {
+                   name.matches = ['a', 'b', 'c']
+                } else {
+                    name.matches = null
+                }
+            })
+
+            ensureForm(create, this)
+        })
+    },
+    ondestroy() {
+        clearForm(this)
+    },
+    store: () => store
+}
+</script>

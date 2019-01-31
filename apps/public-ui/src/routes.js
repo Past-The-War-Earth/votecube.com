@@ -4,7 +4,9 @@ export var PAGE_CONF = {}
 
 let appComp, pageComp, topMenuComp
 
+export var CREATE_DIMENSION = '/Dimension/Create'
 export var DIMENSION_LIST = '/Dimension/List'
+export var PICK_DIMENSION_COLOR = '/Dimension/PickColor'
 export var CHART = '/Poll/:pollId/Vote/Chart'
 export var CREATE_POLL_NAME_LOC_DATE = '/Poll/Create/NameLocationsTimeframe'
 export var CUBE = '/Poll/:pollId/Vote/Cube'
@@ -12,6 +14,16 @@ export var SELECT_POLL_DIMENSIONS = '/Poll/Create/Dimensions'
 export var SELECT_POLL_LOCATIONS = '/Poll/Create/Locations'
 export var SELECT_POLL_TIMEFRAME = '/Poll/Create/Timeframe'
 
+configPage(
+    CREATE_DIMENSION,
+    'Create Dimension',
+    false
+)
+configPage(
+    PICK_DIMENSION_COLOR,
+    'Pick Dimension Color',
+    false
+)
 configPage(
     DIMENSION_LIST,
     'Trump\'s Policies',
@@ -47,7 +59,6 @@ configPage(
     'Select Poll Time-frame',
     false
 )
-
 export function getPageComponent() {
     return pageComp
 }
