@@ -2,9 +2,9 @@
 <form class="pure-form">
     <fieldset>
         <div class="pure-control-group">
-            <Text
+            <TextArea
                 field="{form.fields.name}"
-            ></Text>
+            ></TextArea>
         </div>
 
         <nav class="pure-controls">
@@ -23,7 +23,7 @@
 <script>
 import RightButton from '../../common/control/button/RightButton.html'
 import IconBlock from '../../common/field/IconBlock.html'
-import Text from '../../common/field/Text.html'
+import TextArea from '../../common/field/TextArea.html'
 import ColorIcon from '../../common/icon/ColorIcon.html'
 import DirectionIcon from '../../common/icon/DirectionIcon.html'
 import {clearForm, ensureForm, navigateOnValid} from '../../forms'
@@ -38,7 +38,7 @@ export default {
         DirectionIcon,
         IconBlock,
         RightButton,
-        Text
+        TextArea
     },
     methods: {
         selectColor() {

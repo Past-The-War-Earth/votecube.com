@@ -2,26 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/field/ColorPicker.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/field/TextArea.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/icon/ColorIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/icon/DirectionIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/dimension/Create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/direction/Create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/direction/List.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/src/field/MatchingField.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/text_en-us_ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/text_en-us_ui.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/field/Text.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/Text.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/create/Dimensions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/create/Dimensions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/field/ColorPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/ColorPicker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dimension/Create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/Create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/direction/Create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/direction/Create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldBase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/index.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,24 +23,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.50404483">
       <split-first>
         <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/text_en-us_ui.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="176">
-                  <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#286#3707#0" />
-                    <element signature="e#3723#4692#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/common/field/ColorPicker.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="902">
-                  <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+                <state relative-caret-position="440">
+                  <caret line="20" column="12" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="12" />
                   <folding>
                     <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="true" />
                   </folding>
@@ -61,14 +35,23 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="308">
-                  <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+                <state relative-caret-position="770">
+                  <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
                   <folding>
                     <element signature="e#437#507#0#HTML" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/text_en-us_ui.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="572">
+                  <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
                 </state>
               </provider>
             </entry>
@@ -86,41 +69,14 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pages/dimension/Create.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="7" column="14" lean-forward="true" selection-end-line="121" selection-end-column="9" />
+                <state relative-caret-position="581">
+                  <caret line="84" column="6" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="6" />
                   <folding>
                     <element signature="e#179#226#0#HTML" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/common/icon/DirectionIcon.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="88">
-                  <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/common/icon/ColorIcon.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/routes.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="393">
-                  <caret line="22" column="24" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -133,36 +89,6 @@
                   <folding>
                     <element signature="e#1220#1286#0#HTML" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/global.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="386">
-                  <caret line="387" column="23" selection-start-line="387" selection-start-column="23" selection-end-line="387" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/direction/Create.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="176">
-                  <caret line="8" selection-start-line="8" selection-end-line="8" />
-                  <folding>
-                    <element signature="e#1429#1499#0#HTML" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/common/field/TextArea.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -192,8 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$text</find>
-      <find>toggleTopMenu</find>
       <find>showTopMenu</find>
       <find>slot</find>
       <find>positive</find>
@@ -220,8 +144,10 @@
       <find>on</find>
       <find>range</find>
       <find>tran</find>
-      <find>fieldset</find>
       <find>length</find>
+      <find>submitHighlight</find>
+      <find>submitHighligh</find>
+      <find>fieldset</find>
     </findStrings>
     <replaceStrings>
       <replace>cubeListener</replace>
@@ -310,18 +236,18 @@
         <option value="$PROJECT_DIR$/src/libs/locations.js" />
         <option value="$PROJECT_DIR$/src/pages/poll/create/Dimensions.html" />
         <option value="$PROJECT_DIR$/src/common/field/Text.html" />
-        <option value="$PROJECT_DIR$/public/text_en-us_ui.js" />
-        <option value="$PROJECT_DIR$/src/common/field/ColorPicker.html" />
         <option value="$PROJECT_DIR$/src/common/icon/ColorIcon.html" />
         <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/App.html" />
-        <option value="$PROJECT_DIR$/src/pages/dimension/PickColor.html" />
-        <option value="$PROJECT_DIR$/src/pages/dimension/Create.html" />
         <option value="$PROJECT_DIR$/src/common/icon/DirectionIcon.html" />
         <option value="$PROJECT_DIR$/public/global.css" />
         <option value="$PROJECT_DIR$/src/pages/direction/List.html" />
-        <option value="$PROJECT_DIR$/src/pages/direction/Create.html" />
         <option value="$PROJECT_DIR$/src/common/field/TextArea.html" />
+        <option value="$PROJECT_DIR$/src/pages/direction/Create.html" />
+        <option value="$PROJECT_DIR$/public/text_en-us_ui.js" />
+        <option value="$PROJECT_DIR$/src/pages/dimension/Create.html" />
+        <option value="$PROJECT_DIR$/src/pages/dimension/PickColor.html" />
+        <option value="$PROJECT_DIR$/src/common/field/ColorPicker.html" />
       </list>
     </option>
   </component>
@@ -364,26 +290,6 @@
               <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="public-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="field" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="icon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -399,42 +305,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="direction" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="poll" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="poll" type="462c0819:PsiDirectoryNode" />
-              <item name="create" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="poll" type="462c0819:PsiDirectoryNode" />
-              <item name="vote" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="shell" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="shell" type="462c0819:PsiDirectoryNode" />
-              <item name="top" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -498,7 +368,7 @@
       <workItem from="1545586306240" duration="2797000" />
       <workItem from="1545881004825" duration="143857000" />
       <workItem from="1547312494148" duration="6224000" />
-      <workItem from="1547525659293" duration="301243000" />
+      <workItem from="1547525659293" duration="308533000" />
     </task>
     <task id="LOCAL-00001" summary="moved to svelte + webpack + rush">
       <created>1545024237648</created>
@@ -794,11 +664,18 @@
       <option name="project" value="LOCAL" />
       <updated>1548644549833</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Adding additional cube dimension and direction controls and pages.">
+      <created>1548950864371</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1548950864371</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="512643000" />
+    <option name="totallyTimeSpent" value="519933000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
@@ -861,7 +738,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="percent changes" />
     <MESSAGE value="added menu components, refactoring resizing, adding cube dimension selector" />
     <MESSAGE value="refactoring resizing" />
     <MESSAGE value="refactoring &amp; improving/adding new art" />
@@ -886,7 +762,8 @@
     <MESSAGE value="Refactored top menu to be configurable based on route. Integrated Char cube view with static db." />
     <MESSAGE value="Continued working on Dimension list.  Various refactorings." />
     <MESSAGE value="First Dimension List prototype and prod build additions." />
-    <option name="LAST_COMMIT_MESSAGE" value="First Dimension List prototype and prod build additions." />
+    <MESSAGE value="Adding additional cube dimension and direction controls and pages." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding additional cube dimension and direction controls and pages." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/public/data/locations.json">
@@ -1024,16 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/vote/Cube.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-455">
-          <caret line="262" column="14" lean-forward="true" selection-start-line="262" selection-start-column="14" selection-end-line="262" selection-end-column="14" />
-          <folding>
-            <element signature="e#6102#6191#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1192,24 +1059,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/text_en-us_ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding>
-            <element signature="e#286#3707#0" />
-            <element signature="e#3723#4692#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -1234,37 +1083,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/ColorPicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2526">
           <caret line="149" column="68" lean-forward="true" selection-start-line="149" selection-start-column="68" selection-end-line="149" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/icon/DirectionIcon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          <folding>
-            <element signature="e#437#507#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1275,6 +1097,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/TextArea.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="8" lean-forward="true" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/text_en-us_ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/direction/Create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="42" column="14" lean-forward="true" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+          <folding>
+            <element signature="e#1429#1499#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/vote/Cube.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="206" column="20" lean-forward="true" selection-start-line="206" selection-start-column="20" selection-end-line="208" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/direction/List.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1282,30 +1142,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/icon/DirectionIcon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/dimension/Create.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="14" lean-forward="true" selection-end-line="121" selection-end-column="9" />
+        <state relative-caret-position="581">
+          <caret line="84" column="6" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="6" />
           <folding>
             <element signature="e#179#226#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/direction/Create.html">
+    <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="770">
+          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
           <folding>
-            <element signature="e#1429#1499#0#HTML" expanded="true" />
+            <element signature="e#437#507#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/TextArea.html">
+    <entry file="file://$PROJECT_DIR$/src/common/field/ColorPicker.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="440">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

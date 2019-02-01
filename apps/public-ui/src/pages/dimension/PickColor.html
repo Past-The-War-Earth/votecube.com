@@ -19,6 +19,9 @@
 <script>
 import RightButton from '../../common/control/button/RightButton.html'
 import ColorPicker from '../../common/field/ColorPicker.html'
+import {clearForm, ensureForm, navigateOnValid} from '../../forms'
+import {loadForms} from '../../libs/forms'
+import {loadUi} from '../../libs/text/ui'
 import store from '../../store'
 
 export default {
@@ -26,34 +29,28 @@ export default {
         ColorPicker,
         RightButton
     },
+    computed: {
+        submitHighlight: ({isValid}) => isValid
+        ? '0b0'
+        : 'b00'
+    },
     oncreate() {
         Promise.all([
             loadForms(this),
             loadUi(this.store, 'en-us'),
         ]).then(([
-            {FieldGroup, MatchingField, Validators},
+            {Field, FieldGroup, Validators},
             _,
             dimensions
         ]) => {
-            const name = new MatchingField([
+            const picker = new Field([
                 Validators.required(),
-                Validators.minLength(5)
             ])
-            const create = new FieldGroup('Create', {
-                name
+            const pickColor = new FieldGroup('PickColor', {
+                picker
             }, [], this.store.get().text.UI.Dimension)
 
-            name.onChange((
-                value
-            ) => {
-                if(name.valid) {
-                   name.matches = ['a', 'b', 'c']
-                } else {
-                    name.matches = null
-                }
-            })
-
-            ensureForm(create, this)
+            ensureForm(pickColor, this)
         })
     },
     ondestroy() {

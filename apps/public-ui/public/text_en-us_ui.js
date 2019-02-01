@@ -20,6 +20,13 @@
         "labels": {
           "label": "Select labels"
         }
+      },
+      "PickColor": {
+        "picker": {
+          "errors": {
+            "required": "Dimension Color is required"
+          }
+        }
       }
     },
     "Poll": {

@@ -1,58 +1,110 @@
 <div>
-    Color:
-    <span
+    <figure
         style="background-color: rgb({red}, {green}, {blue})"
-    ></span>
+    ></figure>
 </div>
-<div>
+<section>
 <input
     class="redSlider"
-    min="30"
+    min="0"
     max="255"
     type="range"
     value="0"
 >
-</div>
-<div>
+</section>
+<section>
 <input
     class="greenSlider"
-    min="30"
+    min="0"
     max="255"
     type="range"
     value="0"
 >
-</div>
-<div>
+</section>
+<section>
 <input
     class="blueSlider"
-    min="30"
+    min="0"
     max="255"
     type="range"
     value="0"
 >
-</div>
+</section>
 
 <style>
+
     input {
-        width: 100%;
+        -webkit-appearance: none;  /* Override default CSS styles */
+        appearance: none;
+        background: #aaa;
+        height: 5px; /* Specified height */
+        outline: none; /* Remove outline */
+        width: 100%; /* Full-width */
     }
 
-    span {
-        display: inline-block;
-        height: 40px;
-        width: 40px;
+    input::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        border: 3px groove gray;
+        border-radius: 3px;
+        cursor: pointer; /* Cursor on hover */
+        height: 45px; /* Slider handle height */
+        width: 45px; /* Set a specific slider handle width */
     }
 
-    .redSlider {
-        background: red;
+    input::-moz-range-thumb {
+        cursor: pointer; /* Cursor on hover */
+        border: 3px groove gray;
+        border-radius: 3px;
+        height: 45px; /* Slider handle height */
+        width: 45px; /* Set a specific slider handle width */
     }
 
-    .greenSlider {
-        background: green;
+    section {
+        margin: 35px 0;
     }
 
-    .blueSlider {
-        background: blue;
+    figure {
+        background-color: #2f2;
+        border: 4px groove gray;
+        border-radius: 6px;
+        height: 90px;
+        margin: auto;
+        width: 90px;
+    }
+
+    .redSlider::-webkit-slider-thumb {
+        background: #f22;
+    }
+
+    .redSlider::-moz-range-thumb {
+        background: #f22;
+    }
+
+    .greenSlider::-webkit-slider-thumb {
+        background: #2f2;
+    }
+
+    .greenSlider::-moz-range-thumb {
+        background: #2f2;
+    }
+
+    .blueSlider::-webkit-slider-thumb {
+        background: #22f;
+    }
+
+    .blueSlider::-moz-range-thumb {
+        background: #22f;
     }
 
 </style>
+
+<script>
+export default {
+    computed: {
+        blueValue: () => 128,
+        greenValue: () => 128,
+        redValue: () => 128,
+    }
+}
+</script>

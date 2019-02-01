@@ -78,6 +78,11 @@ export default {
         RightButton,
         Text
     },
+    computed: {
+        submitHighlight: ({isValid}) => isValid
+        ? '0b0'
+        : 'b00'
+    },
     methods: {
         selectColor() {
             routes.navigateToPage(routes.PICK_DIMENSION_COLOR)
