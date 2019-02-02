@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87bf05c7-ab0c-4baa-b157-74a6b0779ece" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/public/data_colors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text_en-us_colors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/colors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/libs/text/colors.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/text_en-us_ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text_en-us_ui.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/ColorPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/ColorPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/TextArea.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/TextArea.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/forms.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/Create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/Create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/PickColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/PickColor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/direction/Create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/direction/Create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Dimensions.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Dimensions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Locations.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Locations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationsTimeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationsTimeframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/FieldGroup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldGroup.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />

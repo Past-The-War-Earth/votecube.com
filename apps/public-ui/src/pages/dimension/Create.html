@@ -14,13 +14,21 @@
             <div slot="icon">
                 <ColorIcon></ColorIcon>
             </div>
-            <div slot="text">
-                Select Color
+            <div
+                class:selected="color.valid"
+                slot="text"
+                style="
+                    background-color: {selectedColor};
+                "
+                >
+    {#if !color.valid}
+        Select Color
+    {/if}
             </div>
         </IconBlock>
 
         <IconBlock
-            fieldGroup="{form.fields.color}"
+            fieldGroup="{form.fields.topDirection}"
             on:select="selectDirection('top')"
         >
             <div slot="icon">
@@ -36,7 +44,7 @@
         </IconBlock>
 
         <IconBlock
-            fieldGroup="{form.fields.color}"
+            fieldGroup="{form.fields.bottomDirection}"
             on:select="selectDirection('bottom')"
         >
             <div slot="icon">
@@ -64,6 +72,12 @@
 {/if}
 
 <style>
+    .selected {
+        border: 3px groove gray;
+        border-radius: 3px;
+        height: 45px;
+        width: 45px;
+    }
 </style>
 
 <script>
@@ -88,6 +102,17 @@ export default {
         bottomDirection: ({form}) => form
             ? form.fields.bottomDirection
             : null,
+        color: ({form}) => form
+            ? form.fields.color
+            : null,
+        selectedColor: ({color}) => {
+            if(!color || !color.valid) {
+                return 'initial'
+            }
+            const value = color.value.picker
+
+            return `rgb(${value.red}, ${value.green}, ${value.blue})`
+        },
         submitHighlight: ({isValid}) => isValid
         ? '0b0'
         : 'b00',
