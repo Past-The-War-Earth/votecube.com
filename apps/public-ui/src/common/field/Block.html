@@ -7,21 +7,10 @@
     on:click="select()"
     use:id="{id}"
 >
-    <table>
-        <tr>
-        <td
-            class="iconCell"
-        >
-            <slot name="icon"></slot>
-        </td>
-        <td>
-            <slot name="text"></slot>
-        </td>
-        </tr>
-    </table>
+    <slot name="content"></slot>
 </a>
     {#if touched && error}
-<span class="pure-form-message error">{customError || error.message}</span>
+<span class="pure-form-message error">{error.message}</span>
     {/if}
 {/if}
 
@@ -41,15 +30,6 @@
         white-space: normal;
         width: 100%;
     }
-
-    td {
-        padding: 5px;
-    }
-
-    .iconCell {
-        width: 56px;
-    }
-
 </style>
 
 <script>

@@ -22,6 +22,8 @@
         }
       },
       "PickColor": {
+        "error": "Dimension Color is required",
+        "label": "Select Color",
         "picker": {
           "errors": {
             "required": "Dimension Color is required"
@@ -31,6 +33,8 @@
     },
     "Direction": {
       "BottomDirection": {
+        "error": "Bottom Direction is required",
+        "label": "Select Bottom Direction",
         "name": {
           "label": "Bottom Direction",
           "errors": {
@@ -40,6 +44,8 @@
         }
       },
       "TopDirection": {
+        "error": "Top Direction is required",
+        "label": "Select Top Direction",
         "name": {
           "label": "Top Direction",
           "errors": {
@@ -82,18 +88,15 @@
         "Dimensions": {
           "first": {
             "label": "Select 1st dimension",
-            "errors": {
-              "required": "First dimension is required"
-            }
+            "error": "First dimension is required"
           },
           "second": {
             "label": "Select 2nd dimension",
-            "errors": {
-              "required": "Second dimension is required"
-            }
+            "error": "Second dimension is required"
           },
           "third": {
-            "label": "Select 3rd dimension"
+            "label": "Select 3rd dimension",
+            "error": "Third dimension must be fully omitted or fully specified"
           }
         },
         "Labels": {

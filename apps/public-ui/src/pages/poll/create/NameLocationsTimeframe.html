@@ -37,39 +37,39 @@
                 ></LocationIcon>
             </div>
             <div slot="text">
-            {#if locations.touched}
-                {#if continents.length}
-                    {#if countries.length}
-                        {#if states.length}
-                            {#if cities.length}
+    {#if locations && locations.touched}
+        {#if continents.length}
+            {#if countries.length}
+                {#if states.length}
+                    {#if cities.length}
                 Cities:
                 <br>
                 {getArrayValueTexts(cities)}
                 <br>
                 <br>
-                            {/if}
+                    {/if}
                 States:
                 <br>
                 {getArrayValueTexts(states)}
                 <br>
                 <br>
-                        {/if}
+                {/if}
                 Countries:
                 <br>
                 {getArrayValueTexts(countries)}
                 <br>
                 <br>
 
-                    {/if}
+            {/if}
                 Continents:
                 <br>
                 {getArrayValueTexts(continents)}
-                {:else}
+        {:else}
                 Select Location
-                {/if}
-            {:else}
+        {/if}
+    {:else}
                 Select Location
-            {/if}
+    {/if}
             </div>
         </IconBlock>
         <IconBlock
@@ -80,7 +80,7 @@
                 <TimeIcon></TimeIcon>
             </div>
             <div slot="text">
-            {#if timeframe.touched}
+    {#if timeframe && timeframe.touched}
                 <table>
                     <tr>
                         <td>
@@ -99,11 +99,19 @@
                         </td>
                     </tr>
                 </table>
-            {:else}
+    {:else}
                 Select Time-frame
-            {/if}
+    {/if}
             </div>
         </IconBlock>
+    {#if form.fields.dimensions.valid}
+        {#each filledDimensions as dimension}
+        <SelectionBlock
+                    dimension="{dimension}"
+                    on:select="selectDimensions()"
+        ></SelectionBlock>
+        {/each}
+    {:else}
         <IconBlock
             fieldGroup="{form.fields.dimensions}"
             on:select="selectDimensions()"
@@ -115,7 +123,7 @@
             Dimensions
             </div>
         </IconBlock>
-
+    {/if}
         <nav class="pure-controls">
             <RightButton
                 classes="submitButton"
@@ -143,6 +151,7 @@ import LabelIcon from '../../../common/icon/LabelIcon.html'
 import LocationIcon from '../../../common/icon/LocationIcon.html'
 import ThemeIcon from '../../../common/icon/ThemeIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
+import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
 import * as forms from '../../../forms'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
@@ -158,6 +167,7 @@ export default {
         LabelIcon,
         LocationIcon,
         RightButton,
+        SelectionBlock,
         Text,
         ThemeIcon,
         TimeIcon
@@ -166,6 +176,20 @@ export default {
         cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
         continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
         countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
+        filledDimensions: ({form}) => {
+            if(!form) {
+                return null
+            }
+            const dimensions = [];
+            const fields = form.fields.dimensions.fields
+            for(const fieldName in fields) {
+                const field = fields[fieldName]
+                if(field.valid && field.hasChildValues) {
+                    dimensions.push(field)
+                }
+            }
+            return dimensions
+        },
         locations: ({form}) => form ? form.fields.locations : null,
         name: ({test}) => true,
         states: ({form}) => form ? form.fields.locations.fields.states.value : [],
@@ -254,23 +278,26 @@ function createForm(
             Field,
             FieldGroup,
             MatchingField,
-            Validators
+            Validators,
+            [Validators.required()]
         ),
         second: createDimensionForm(
             uiText,
             Field,
             FieldGroup,
             MatchingField,
-            Validators
+            Validators,
+            [Validators.required()]
         ),
         third: createDimensionForm(
             uiText,
             Field,
             FieldGroup,
             MatchingField,
-            Validators
+            Validators,
+            []
         )
-    }, [], text)
+    }, [Validators.required()], text)
 
     const labels = new FieldGroup('Labels', {
         labels: new OptionsField([], [])
@@ -294,7 +321,7 @@ function createForm(
             ], locationsData.cities, {
                 multi: true
             }),
-    }, [], text)
+    }, [Validators.required()], text)
 
     const startDate = new DateField([
         Validators.required(),
@@ -305,7 +332,9 @@ function createForm(
         theme: new OptionsField([
             // Validators.required()
         ], [])
-    }, [], text)
+    }, [
+        // Validators.required()
+        ], text)
 
     const timeframe = new FieldGroup('Timeframe', {
         startDate,
@@ -314,7 +343,7 @@ function createForm(
                 Validators.minTomorrow(),
                 Validators.greaterThanOrEquals(startDate)
             ]),
-    }, [], text)
+    }, [Validators.required()], text)
 
     return new FieldGroup('NameLocationsTimeframe', {
         dimensions,
@@ -326,7 +355,7 @@ function createForm(
         ], { maxLength: 40}),
         theme,
         timeframe
-    }, [], text)
+    }, [Validators.required()], text)
 }
 
 function createDimensionForm(
@@ -334,7 +363,8 @@ function createDimensionForm(
     Field,
     FieldGroup,
     MatchingField,
-    Validators
+    Validators,
+    formValidators
 ) {
     const name = new MatchingField([
         Validators.required(),
@@ -356,10 +386,10 @@ function createDimensionForm(
     })
     const topDirection = new FieldGroup('TopDirection', {
         name: topDirectionName
-    }, [], uiText.Direction)
+    }, [Validators.required()], uiText.Direction)
     const bottomDirection = new FieldGroup('BottomDirection', {
         name: bottomDirectionName
-    }, [], uiText.Direction)
+    }, [Validators.required()], uiText.Direction)
 
     // FIXME: move to appropriate place once matching is implemented
     name.onChange((
@@ -396,13 +426,13 @@ function createDimensionForm(
         picker: new Field([
             Validators.required()
         ])
-    }, [], uiText.Dimension)
+    }, [Validators.required()], uiText.Dimension)
 
     return new FieldGroup('Create', {
         bottomDirection,
         color,
         name,
         topDirection
-    }, [], uiText.Dimension)
+    }, formValidators, uiText.Dimension)
 }
 </script>

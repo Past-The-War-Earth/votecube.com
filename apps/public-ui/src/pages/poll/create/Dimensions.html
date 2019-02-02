@@ -1,42 +1,21 @@
 {#if form}
 <form class="pure-form">
     <fieldset>
-        <IconBlock
-            fieldGroup="{form.fields.first}"
-            on:select="selectDimension('first')"
-        >
-            <div slot="icon">
-                <DimensionIcon
-                ></DimensionIcon>
-            </div>
-            <div slot="text">
-            Select 1st Dimension
-            </div>
-        </IconBlock>
-        <IconBlock
-            fieldGroup="{form.fields.second}"
-            on:select="selectDimension('second')"
-        >
-            <div slot="icon">
-                <DimensionIcon
-                ></DimensionIcon>
-            </div>
-            <div slot="text">
-            Select 2nd Dimension
-            </div>
-        </IconBlock>
-        <IconBlock
-            fieldGroup="{form.fields.third}"
-            on:select="selectDimension('third')"
-        >
-            <div slot="icon">
-                <DimensionIcon
-                ></DimensionIcon>
-            </div>
-            <div slot="text">
-            Select 3rd Dimension
-            </div>
-        </IconBlock>
+        <SelectionBlock
+            dimension="{first}"
+            text="{form.text.first}"
+            on:select="selectDimension(first)"
+        ></SelectionBlock>
+        <SelectionBlock
+            dimension="{second}"
+            text="{form.text.second}"
+            on:select="selectDimension(second)"
+        ></SelectionBlock>
+        <SelectionBlock
+            dimension="{third}"
+            text="{form.text.third}"
+            on:select="selectDimension(third)"
+        ></SelectionBlock>
         <div class="pure-controls">
             <RightButton
                 classes="submitButton"
@@ -47,37 +26,38 @@
     </fieldset>
 </form>
 {/if}
-
-
-
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
-import IconBlock from '../../../common/field/IconBlock.html'
-import DimensionIcon from '../../../common/icon/DimensionIcon.html'
+import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
 import * as forms from '../../../forms'
 import * as routes from '../../../routes'
 import store from '../../../store'
 
 export default {
     components: {
-        DimensionIcon,
-        IconBlock,
-        RightButton
+        RightButton,
+        SelectionBlock
     },
     computed: {
+        first: ({form}) => form
+        ? form.fields.first
+        : null,
+        second: ({form}) => form
+        ? form.fields.second
+        : null,
         submitHighlight: ({isValid}) => isValid
         ? '0b0'
-        : 'b00'
+        : 'b00',
+        third: ({form}) => form
+        ? form.fields.third
+        : null
     },
     immutable: true,
     methods: {
         selectDimension(
-            dimensionName
+            dimensionForm
         ) {
-            const dimensionForm = this.get().form.fields[dimensionName]
-
             forms.setForm(forms.CREATE_DIMENSION, dimensionForm)
-
             routes.navigateToPage(routes.CREATE_DIMENSION)
         },
         submit() {

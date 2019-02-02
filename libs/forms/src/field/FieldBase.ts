@@ -21,6 +21,7 @@ export interface IFieldBase {
 	components: IComponent[]
 	errors: IFieldError[]
 	group: IFieldGroup
+	hasValue: boolean
 	// inputValue: string
 	isRequired: boolean
 	name: string
@@ -94,6 +95,11 @@ export abstract class FieldBase
 		for (const validator of validators) {
 			this.validatorMap[validator.type] = validator
 		}
+	}
+
+	get hasValue(): boolean {
+		return this.theValue != null
+			&& this.theValue !== ''
 	}
 
 	get isRequired(): boolean {

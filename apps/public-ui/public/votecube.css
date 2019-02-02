@@ -176,3 +176,30 @@ i {
     margin: auto;
     display: block;
 }
+
+.colorSelection {
+    border: 3px groove gray;
+    border-radius: 3px;
+    height: 45px;
+    width: 45px;
+}
+
+/*
+.centering {
+    position: relative;
+}
+*/
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.centeredUpsideDown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+}

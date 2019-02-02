@@ -15,14 +15,14 @@
                 <ColorIcon></ColorIcon>
             </div>
             <div
-                class:selected="color.valid"
+                class:colorSelection="color.valid"
                 slot="text"
                 style="
                     background-color: {selectedColor};
                 "
-                >
+              >
     {#if !color.valid}
-        Select Color
+                {color.text.label}
     {/if}
             </div>
         </IconBlock>
@@ -38,7 +38,7 @@
     {#if topDirection.valid}
                 {topDirection.fields.name.value}
     {:else}
-                Select Top Direction
+                {topDirection.text.label}
     {/if}
             </div>
         </IconBlock>
@@ -56,7 +56,7 @@
     {#if bottomDirection.valid}
                 {bottomDirection.fields.name.value}
     {:else}
-                Select Bottom Direction
+                {bottomDirection.text.label}
     {/if}
             </div>
         </IconBlock>
@@ -65,20 +65,12 @@
             <RightButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
+                on:select="select()"
             ></RightButton>
         </nav>
     </fieldset>
 </form>
 {/if}
-
-<style>
-    .selected {
-        border: 3px groove gray;
-        border-radius: 3px;
-        height: 45px;
-        width: 45px;
-    }
-</style>
 
 <script>
 import RightButton from '../../common/control/button/RightButton.html'
@@ -121,6 +113,9 @@ export default {
             : null
     },
     methods: {
+        select() {
+            forms.navigateOnValid(this, routes.SELECT_POLL_DIMENSIONS)
+        },
         selectColor() {
             routes.navigateToPage(routes.PICK_DIMENSION_COLOR, )
         },

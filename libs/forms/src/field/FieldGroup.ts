@@ -52,6 +52,7 @@ export class FieldGroup
 	text: IFieldGroupText
 
 	private hasRequiredChild = false
+	private hasChildValues   = false
 
 	constructor(
 		name,
@@ -77,9 +78,16 @@ export class FieldGroup
 		this.validate()
 	}
 
+	get hasValue(): boolean {
+		return this.hasChildValues
+	}
+
 	get isRequired(): boolean {
 		return this.validatorMap.required
-			|| this.hasRequiredChild
+			// Group must have a required validator to be required and is otherwise optional
+			// having child required fields only takes effect if any of the values
+			// in the group are populated
+			|| (this.hasChildValues && this.hasRequiredChild)
 	}
 
 	get value(): any {
@@ -157,46 +165,50 @@ export class FieldGroup
 		}
 	}
 
+	/**
+	 * If a Group is optional:
+	 *    If it has values, check all validators
+	 *    It it does not have any values, and only required validators on it's
+	 *    child fields are erroring, then it is valid
+	 *
+	 * Group must have a required validator to be required and is otherwise optional
+	 * @param fromParentGroup
+	 * @param relatedField
+	 */
+
 	validate(
 		fromParentGroup?: boolean,
 		relatedField?: IFieldBase
 	): void {
-		try {
-			if (relatedField
-				&& relatedField.valid === false) {
+		this.hasChildValues = false
+		this.valid          = true
+		for (const fieldName in this.fields) {
+			const field = this.fields[fieldName]
+			if (!relatedField ||
+				(relatedField !== field
+					&& field.valid == null)) {
+				field.validate(true)
+			}
+			this.hasChildValues = this.hasChildValues || field.hasValue
+			if (!field.valid) {
 				this.valid = false
-				return
+			}
+		}
+
+		this.valid = this.valid || (!this.hasChildValues && !this.validatorMap.required)
+
+		this.error = this.valid
+			? null
+			: {
+				key: 'grouping',
+				message: this.text.error as string
 			}
 
-			this.valid = true
-			for (const fieldName in this.fields) {
-				const field = this.fields[fieldName]
-				if (!relatedField ||
-					(relatedField !== field
-						&& field.valid == null)) {
-					field.validate(true)
-				}
-				if (!field.valid) {
-					this.valid = false
-				}
-				if (relatedField && !this.valid) {
-					return
-				}
-			}
-		} finally {
-			this.error = this.valid
-				? null
-				: {
-					key: 'grouping',
-					message: this.text.error as string
-				}
-
-			if (this.group) {
-				this.group.validate(false, this)
-			}
-			for (const page of this.components) {
-				page.set({isValid: this.valid})
-			}
+		if (this.group) {
+			this.group.validate(false, this)
+		}
+		for (const page of this.components) {
+			page.set({isValid: this.valid})
 		}
 	}
 

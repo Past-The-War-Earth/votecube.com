@@ -129,9 +129,10 @@ export class Field
 		if (this.value !== this.lastValue) {
 			this.dirty = true
 		}
-		this.lastValue = this.value
 
 		this.validate()
+
+		this.lastValue = this.value
 
 		this.detect()
 	}
@@ -169,7 +170,8 @@ export class Field
 
 		this.valid = !this.errors.length
 
-		if (lastIsValid !== this.valid) {
+		if (lastIsValid !== this.valid
+			|| this.lastValue !== this.value) {
 			if (!fromParentGroup) {
 				this.group.validate(false, this)
 			}
