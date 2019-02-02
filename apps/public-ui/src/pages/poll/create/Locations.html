@@ -35,10 +35,10 @@
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
 import MultiSelect from '../../../common/field/MultiSelect.html'
-import {clearForm, ensureChildForm, ensureForm, navigateOnValid} from '../../../forms'
+import * as forms from '../../../forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadLocations as loadLocText} from '../../../libs/text/locations'
-import {CREATE_POLL_NAME_LOC_DATE} from '../../../routes'
+import * as routes from '../../../routes'
 import store from '../../../store'
 
 export default {
@@ -54,13 +54,13 @@ export default {
     immutable: true,
     methods: {
         submit() {
-            navigateOnValid(this, CREATE_POLL_NAME_LOC_DATE)
+            forms.navigateOnValid(this, routes.CREATE_POLL_NAME_LOC_DATE)
         }
     },
     oncreate() {
-        const form = ensureChildForm(
-            'NameLocationsTimeframe', 'locations',
-            this, CREATE_POLL_NAME_LOC_DATE)
+        const form = forms.ensureChildForm(
+            forms.CREATE_POLL_TOP, 'locations',
+            this, routes.CREATE_POLL_NAME_LOC_DATE)
         if(!form) {
             return
         }
@@ -91,11 +91,11 @@ export default {
                     selectSubLocation(selectedStates, locations.cities, form.fields.cities)
                 })
             }
-            ensureForm(form, this)
+            forms.ensureForm(form, this)
         })
     },
     ondestroy() {
-        clearForm(this)
+        forms.clearForm(this)
     },
     store: () => store
 }

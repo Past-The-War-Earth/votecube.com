@@ -3,7 +3,7 @@
     <fieldset>
         <div class="pure-control-group">
             <ColorPicker
-                field="{form.fields.name}"
+                field="{form.fields.picker}"
             ></ColorPicker>
         </div>
 
@@ -11,6 +11,7 @@
             <RightButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
+                on:select="select()"
             ></RightButton>
         </nav>
     </fieldset>
@@ -19,9 +20,8 @@
 <script>
 import RightButton from '../../common/control/button/RightButton.html'
 import ColorPicker from '../../common/field/ColorPicker.html'
-import {clearForm, ensureForm, navigateOnValid} from '../../forms'
-import {loadForms} from '../../libs/forms'
-import {loadUi} from '../../libs/text/ui'
+import * as forms from '../../forms'
+import * as routes from '../../routes'
 import store from '../../store'
 
 export default {
@@ -34,27 +34,19 @@ export default {
         ? '0b0'
         : 'b00'
     },
+    methods: {
+        select() {
+            forms.navigateOnValid(this, routes.CREATE_DIMENSION)
+        }
+    },
     oncreate() {
-        Promise.all([
-            loadForms(this),
-            loadUi(this.store, 'en-us'),
-        ]).then(([
-            {Field, FieldGroup, Validators},
-            _,
-            dimensions
-        ]) => {
-            const picker = new Field([
-                Validators.required(),
-            ])
-            const pickColor = new FieldGroup('PickColor', {
-                picker
-            }, [], this.store.get().text.UI.Dimension)
-
-            ensureForm(pickColor, this)
-        })
+        forms.ensureChildForm(
+            forms.CREATE_DIMENSION, 'color',
+            this, routes.CREATE_POLL_NAME_LOC_DATE
+        )
     },
     ondestroy() {
-        clearForm(this)
+        forms.clearForm(this)
     },
     store: () => store
 }

@@ -1,35 +1,63 @@
+{#if $forms && colors}
 <div>
-    <figure
-        style="background-color: rgb({red}, {green}, {blue})"
-    ></figure>
+    <table>
+    <tr>
+        <td>
+            <select
+                on:input="selectColor(this.selectedIndex)"
+                ref:select
+            >
+    {#each colors as color, index}
+                <option
+                    value="{index}"
+                >
+                    {color.name}
+                </option>
+    {/each}
+            </select>
+        </td>
+        <td>
+            <figure
+                style="background-color: rgb({color.red}, {color.green}, {color.blue})"
+            ></figure>
+        </td>
+    </tr>
+    </table>
 </div>
 <section>
 <input
     class="redSlider"
-    min="0"
     max="255"
+    min="0"
+    on:input="syncInput()"
+    ref:redSlider
     type="range"
-    value="0"
+    value="{color.red}"
 >
 </section>
 <section>
 <input
     class="greenSlider"
-    min="0"
     max="255"
+    min="0"
+    on:input="syncInput()"
+    ref:greenSlider
     type="range"
-    value="0"
+    value="{color.green}"
 >
 </section>
 <section>
 <input
     class="blueSlider"
-    min="0"
     max="255"
+    min="0"
+    on:input="syncInput()"
+    ref:blueSlider
     type="range"
-    value="0"
+    value="{color.blue}"
 >
 </section>
+{/if}
 
 <style>
 
@@ -64,13 +92,21 @@
         margin: 35px 0;
     }
 
+    select {
+        display: block;
+        margin: auto;
+    }
+
     figure {
-        background-color: #2f2;
         border: 4px groove gray;
         border-radius: 6px;
         height: 90px;
         margin: auto;
         width: 90px;
+    }
+
+    table {
+        width: 100%;
     }
 
     .redSlider::-webkit-slider-thumb {
@@ -100,11 +136,64 @@
 </style>
 
 <script>
+import store from '../../store.js'
+import {getColorKey, getColors} from '../../libs/colors'
+
 export default {
-    computed: {
-        blueValue: () => 128,
-        greenValue: () => 128,
-        redValue: () => 128,
+    methods: {
+        selectColor(
+            colorIndex
+        ) {
+            const {colors} = this.get()
+            const color = copyColor(colors[colorIndex])
+            this.get().field.value = color
+
+            this.set({color})
+        },
+        syncInput() {
+            const {color, colorMap} = this.get()
+            color.red = this.refs.redSlider.value
+            color.green = this.refs.greenSlider.value
+            color.blue = this.refs.blueSlider.value
+            const colorKey = getColorKey(color)
+            const matchedColor = colorMap[colorKey]
+
+            if(matchedColor) {
+                this.refs.select.selectedIndex = matchedColor.index
+            }
+
+            this.set({color})
+        }
+    },
+    oncreate() {
+        getColors().then(({
+            colors,
+            colorMap
+        }) => {
+            let color = copyColor(colors[132])
+            this.set({colors, colorMap, color})
+            setTimeout(() => {
+                this.refs.select.selectedIndex = 132
+            })
+
+            this.get().field.setAsField(this)
+            this.get().field.value = color
+            this.get().field.validate()
+        })
+    },
+    ondestroy() {
+        this.get().field.removeComponent(this)
+    },
+    store: () => store
+}
+
+function copyColor(
+    color
+) {
+    return {
+        name: color.name,
+        ...color
     }
 }
+
 </script>

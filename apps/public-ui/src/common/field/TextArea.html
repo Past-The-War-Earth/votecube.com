@@ -3,7 +3,9 @@
     <label
         class="field-label"
         use:for="{id}"
-    >{label}</label>
+    >
+        {label}
+    </label>
     {#if matches}
     <a>{matches.length} matches</a>
     {/if}
@@ -19,7 +21,7 @@
         type="text"
         use:id="{id}"
         use:maxlength="field.rules.maxLength"
-    >
+    />
     {#if touched}
         {#each errors as error}
     <span class="pure-form-message error">{error.message}</span>
@@ -41,7 +43,7 @@
             position: relative;
     }
 
-    input {
+    textarea {
         width: 100%;
     }
 

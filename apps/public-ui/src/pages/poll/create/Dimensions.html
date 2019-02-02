@@ -3,7 +3,7 @@
     <fieldset>
         <IconBlock
             fieldGroup="{form.fields.first}"
-            on:select="selectDimension(0)"
+            on:select="selectDimension('first')"
         >
             <div slot="icon">
                 <DimensionIcon
@@ -15,6 +15,7 @@
         </IconBlock>
         <IconBlock
             fieldGroup="{form.fields.second}"
+            on:select="selectDimension('second')"
         >
             <div slot="icon">
                 <DimensionIcon
@@ -26,6 +27,7 @@
         </IconBlock>
         <IconBlock
             fieldGroup="{form.fields.third}"
+            on:select="selectDimension('third')"
         >
             <div slot="icon">
                 <DimensionIcon
@@ -52,7 +54,7 @@
 import RightButton from '../../../common/control/button/RightButton.html'
 import IconBlock from '../../../common/field/IconBlock.html'
 import DimensionIcon from '../../../common/icon/DimensionIcon.html'
-import {clearForm, ensureChildForm, navigateOnValid} from '../../../forms'
+import * as forms from '../../../forms'
 import * as routes from '../../../routes'
 import store from '../../../store'
 
@@ -70,21 +72,25 @@ export default {
     immutable: true,
     methods: {
         selectDimension(
-            index
+            dimensionName
         ) {
+            const dimensionForm = this.get().form.fields[dimensionName]
+
+            forms.setForm(forms.CREATE_DIMENSION, dimensionForm)
+
             routes.navigateToPage(routes.CREATE_DIMENSION)
         },
         submit() {
-            navigateOnValid(this, routes.CREATE_POLL_NAME_LOC_DATE)
+            forms.navigateOnValid(this, routes.CREATE_POLL_NAME_LOC_DATE)
         }
     },
     oncreate() {
-        const form = ensureChildForm(
-            'NameLocationsTimeframe', 'dimensions',
+        forms.ensureChildForm(
+            forms.CREATE_POLL_TOP, 'dimensions',
             this, routes.CREATE_POLL_NAME_LOC_DATE)
     },
     ondestroy() {
-        clearForm(this)
+        forms.clearForm(this)
     },
     store: () => store
 }

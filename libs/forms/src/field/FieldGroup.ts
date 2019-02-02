@@ -65,8 +65,10 @@ export class FieldGroup
 
 		for (const fieldName in fields) {
 			const field = fields[fieldName]
-			field.name  = fieldName
-			field.text  = this.text[fieldName]
+			if (!(field instanceof FieldGroup)) {
+				field.name = fieldName
+				field.text = this.text[fieldName]
+			}
 			field.group = this
 			if (field.isRequired) {
 				this.hasRequiredChild = true

@@ -11,6 +11,7 @@
             <RightButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
+                on:select="select()"
             ></RightButton>
         </nav>
     </fieldset>
@@ -22,62 +23,36 @@
 
 <script>
 import RightButton from '../../common/control/button/RightButton.html'
-import IconBlock from '../../common/field/IconBlock.html'
 import TextArea from '../../common/field/TextArea.html'
-import ColorIcon from '../../common/icon/ColorIcon.html'
-import DirectionIcon from '../../common/icon/DirectionIcon.html'
-import {clearForm, ensureForm, navigateOnValid} from '../../forms'
-import {loadForms} from '../../libs/forms'
-import {loadUi} from '../../libs/text/ui'
+import * as forms from '../../forms'
 import * as routes from '../../routes'
 import store from '../../store'
 
 export default {
     components: {
-        ColorIcon,
-        DirectionIcon,
-        IconBlock,
         RightButton,
         TextArea
+    },
+    computed: {
+        submitHighlight: ({isValid}) => isValid
+        ? '0b0'
+        : 'b00'
     },
     methods: {
         selectColor() {
             routes.navigateToPage(routes.PICK_DIMENSION_COLOR)
+        },
+        select() {
+            forms.navigateOnValid(this, routes.CREATE_DIMENSION)
         }
     },
     oncreate() {
-        Promise.all([
-            loadForms(this),
-            loadUi(this.store, 'en-us'),
-        ]).then(([
-            {Field, FieldGroup, MatchingField, Validators},
-            _,
-            dimensions
-        ]) => {
-            const name = new MatchingField([
-                Validators.required(),
-                Validators.minLength(5)
-            ])
-            const create = new FieldGroup('Create', {
-                color: new Field([]),
-                name
-            }, [], this.store.get().text.UI.Dimension)
-
-            name.onChange((
-                value
-            ) => {
-                if(name.valid) {
-                   name.matches = ['a', 'b', 'c']
-                } else {
-                    name.matches = null
-                }
-            })
-
-            ensureForm(create, this)
-        })
+        forms.ensureTopForm(
+            forms.CREATE_DIRECTION,
+            this, routes.CREATE_POLL_NAME_LOC_DATE)
     },
     ondestroy() {
-        clearForm(this)
+        forms.clearForm(this)
     },
     store: () => store
 }

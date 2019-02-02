@@ -1,4 +1,8 @@
-import {navigateToPage} from './routes'
+import * as routes from './routes'
+
+export const CREATE_POLL_TOP = routes.CREATE_POLL_NAME_LOC_DATE
+export const CREATE_DIMENSION = routes.CREATE_DIMENSION
+export const CREATE_DIRECTION = routes.CREATE_DIRECTION
 
 let forms = {}
 
@@ -23,14 +27,34 @@ export function ensureChildForm(
 ) {
     const parentForm = getForm(parentFormName)
     if (!parentForm) {
-        navigateToPage(navigateToRouteOnNotFound)
-
+        routes.navigateToPage(navigateToRouteOnNotFound)
         return null
     }
-    const form = parentForm.fields[childFormName]
+
+    let form = parentForm
+    // TODO: see if nested child form resolution is needed
+    // childFormName.split('.').forEach(childNameFragment => {
+        form = form.fields[childFormName]
+    // })
+
     ensureForm(form, page)
 
     return form
+}
+
+export function ensureTopForm(
+    topFormName,
+    page,
+    navigateToRouteOnNotFound
+) {
+    const topForm = getForm(topFormName)
+    if (!topForm) {
+        routes.navigateToPage(navigateToRouteOnNotFound)
+        return null
+    }
+    ensureForm(topForm, page)
+
+    return topForm
 }
 
 export function ensureForm(
@@ -50,6 +74,20 @@ export function clearForm(
     }
 }
 
+function getTopForm(
+    topFormName,
+    navigateToRouteOnNotFound
+) {
+    const topForm = getForm(topFormName)
+    if (!topForm) {
+        routes.navigateToPage(navigateToRouteOnNotFound)
+
+        return null
+    }
+
+    return topForm
+}
+
 export function navigateOnValid(
     page,
     navigateToRouteOnValid
@@ -62,7 +100,7 @@ export function navigateOnValid(
         return
     }
 
-    navigateToPage(navigateToRouteOnValid)
+    routes.navigateToPage(navigateToRouteOnValid)
 }
 
 export var OPTIONS = {

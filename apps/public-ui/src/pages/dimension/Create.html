@@ -21,19 +21,23 @@
 
         <IconBlock
             fieldGroup="{form.fields.color}"
-            on:select="selectColor()"
+            on:select="selectDirection('top')"
         >
             <div slot="icon">
                 <DirectionIcon></DirectionIcon>
             </div>
             <div slot="text">
+    {#if topDirection.valid}
+                {topDirection.fields.name.value}
+    {:else}
                 Select Top Direction
+    {/if}
             </div>
         </IconBlock>
 
         <IconBlock
             fieldGroup="{form.fields.color}"
-            on:select="selectColor()"
+            on:select="selectDirection('bottom')"
         >
             <div slot="icon">
                 <DirectionIcon
@@ -41,7 +45,11 @@
                 ></DirectionIcon>
             </div>
             <div slot="text">
+    {#if bottomDirection.valid}
+                {bottomDirection.fields.name.value}
+    {:else}
                 Select Bottom Direction
+    {/if}
             </div>
         </IconBlock>
 
@@ -64,9 +72,7 @@ import IconBlock from '../../common/field/IconBlock.html'
 import Text from '../../common/field/Text.html'
 import ColorIcon from '../../common/icon/ColorIcon.html'
 import DirectionIcon from '../../common/icon/DirectionIcon.html'
-import {clearForm, ensureForm, navigateOnValid} from '../../forms'
-import {loadForms} from '../../libs/forms'
-import {loadUi} from '../../libs/text/ui'
+import * as forms from '../../forms'
 import * as routes from '../../routes'
 import store from '../../store'
 
@@ -79,48 +85,37 @@ export default {
         Text
     },
     computed: {
+        bottomDirection: ({form}) => form
+            ? form.fields.bottomDirection
+            : null,
         submitHighlight: ({isValid}) => isValid
         ? '0b0'
-        : 'b00'
+        : 'b00',
+        topDirection: ({form}) => form
+            ? form.fields.topDirection
+            : null
     },
     methods: {
         selectColor() {
-            routes.navigateToPage(routes.PICK_DIMENSION_COLOR)
+            routes.navigateToPage(routes.PICK_DIMENSION_COLOR, )
+        },
+        selectDirection(
+            directionPrefix
+        ) {
+            const dimensionForm = this.get().form
+            forms.setForm(forms.CREATE_DIRECTION, dimensionForm.fields[directionPrefix + 'Direction'])
+            routes.navigateToPage(routes.CREATE_DIRECTION, {
+                directionPrefix
+            })
         }
     },
     oncreate() {
-        Promise.all([
-            loadForms(this),
-            loadUi(this.store, 'en-us'),
-        ]).then(([
-            {Field, FieldGroup, MatchingField, Validators},
-            _,
-            dimensions
-        ]) => {
-            const name = new MatchingField([
-                Validators.required(),
-                Validators.minLength(5)
-            ])
-            const create = new FieldGroup('Create', {
-                color: new Field([]),
-                name
-            }, [], this.store.get().text.UI.Dimension)
-
-            name.onChange((
-                value
-            ) => {
-                if(name.valid) {
-                   name.matches = ['a', 'b', 'c']
-                } else {
-                    name.matches = null
-                }
-            })
-
-            ensureForm(create, this)
-        })
+        forms.ensureTopForm(
+            forms.CREATE_DIMENSION,
+            this, routes.CREATE_POLL_NAME_LOC_DATE)
     },
     ondestroy() {
-        clearForm(this)
+        forms.clearForm(this)
     },
     store: () => store
 }

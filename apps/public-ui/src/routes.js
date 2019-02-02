@@ -4,6 +4,7 @@ export var PAGE_CONF = {}
 
 let appComp, pageComp, topMenuComp
 
+export var CREATE_DIRECTION = '/Direction/Create'
 export var CREATE_DIMENSION = '/Dimension/Create'
 export var DIMENSION_LIST = '/Dimension/List'
 export var PICK_DIMENSION_COLOR = '/Dimension/PickColor'
@@ -14,6 +15,11 @@ export var SELECT_POLL_DIMENSIONS = '/Poll/Create/Dimensions'
 export var SELECT_POLL_LOCATIONS = '/Poll/Create/Locations'
 export var SELECT_POLL_TIMEFRAME = '/Poll/Create/Timeframe'
 
+configPage(
+    CREATE_DIRECTION,
+    'Create Direction',
+    false
+)
 configPage(
     CREATE_DIMENSION,
     'Create Dimension',

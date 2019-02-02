@@ -143,7 +143,7 @@ import LabelIcon from '../../../common/icon/LabelIcon.html'
 import LocationIcon from '../../../common/icon/LocationIcon.html'
 import ThemeIcon from '../../../common/icon/ThemeIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
-import {clearForm, ensureForm, getForm, setForm} from '../../../forms'
+import * as forms from '../../../forms'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadUi} from '../../../libs/text/ui'
@@ -208,51 +208,68 @@ export default {
             loadLocations(),
             loadUi(this.store, 'en-us')
         ]).then(([
-            {DateField, Field, FieldGroup, OptionsField, Validators},
+            {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
             locations,
             _
         ]) => {
-            let form = getForm('NameLocationsTimeframe')
+            let form = forms.getForm(forms.CREATE_POLL_TOP)
 
             if(!form) {
                 form = createForm(
                     locations,
-                    this.store.get().text.UI.Poll.Create,
+                    this.store.get().text.UI,
                     DateField,
                     Field,
                     FieldGroup,
+                    MatchingField,
                     OptionsField,
                     Validators)
-                setForm('NameLocationsTimeframe', form)
+                forms.setForm(forms.CREATE_POLL_TOP, form)
             }
 
-            ensureForm(form, this)
+           forms.ensureForm(form, this)
         })
     },
     ondestroy() {
-        clearForm(this)
+        forms.clearForm(this)
     },
     store: () => store
 }
 
 function createForm(
     locationsData,
-    text,
+    uiText,
     DateField,
     Field,
     FieldGroup,
+    MatchingField,
     OptionsField,
     Validators
 ) {
+    const text = uiText.Poll.Create;
+
     const dimensions = new FieldGroup('Dimensions', {
-        first: new Field([
-            Validators.required()
-        ]),
-        second: new Field([
-            Validators.required()
-        ]),
-        third: new Field([
-        ])
+        first: createDimensionForm(
+            uiText,
+            Field,
+            FieldGroup,
+            MatchingField,
+            Validators
+        ),
+        second: createDimensionForm(
+            uiText,
+            Field,
+            FieldGroup,
+            MatchingField,
+            Validators
+        ),
+        third: createDimensionForm(
+            uiText,
+            Field,
+            FieldGroup,
+            MatchingField,
+            Validators
+        )
     }, [], text)
 
     const labels = new FieldGroup('Labels', {
@@ -310,5 +327,82 @@ function createForm(
         theme,
         timeframe
     }, [], text)
+}
+
+function createDimensionForm(
+    uiText,
+    Field,
+    FieldGroup,
+    MatchingField,
+    Validators
+) {
+    const name = new MatchingField([
+        Validators.required(),
+        Validators.minLength(5)
+    ], {
+        maxLength: 20
+    })
+    const topDirectionName = new MatchingField([
+        Validators.required(),
+        Validators.minLength(5)
+    ], {
+        maxLength: 120
+    })
+    const bottomDirectionName = new MatchingField([
+        Validators.required(),
+        Validators.minLength(5)
+    ], {
+        maxLength: 120
+    })
+    const topDirection = new FieldGroup('TopDirection', {
+        name: topDirectionName
+    }, [], uiText.Direction)
+    const bottomDirection = new FieldGroup('BottomDirection', {
+        name: bottomDirectionName
+    }, [], uiText.Direction)
+
+    // FIXME: move to appropriate place once matching is implemented
+    name.onChange((
+        value
+    ) => {
+        if(name.valid) {
+           name.matches = ['a', 'b', 'c']
+        } else {
+            name.matches = null
+        }
+    })
+    // FIXME: move to appropriate place once matching is implemented
+    bottomDirectionName.onChange((
+        value
+    ) => {
+        if(bottomDirectionName.valid) {
+            bottomDirectionName.matches = ['a', 'b', 'c']
+        } else {
+            bottomDirectionName.matches = null
+        }
+    })
+    // FIXME: move to appropriate place once matching is implemented
+    topDirectionName.onChange((
+        value
+    ) => {
+        if(topDirectionName.valid) {
+            topDirectionName.matches = ['a', 'b', 'c']
+        } else {
+            topDirectionName.matches = null
+        }
+    })
+
+    const color = new FieldGroup('PickColor', {
+        picker: new Field([
+            Validators.required()
+        ])
+    }, [], uiText.Dimension)
+
+    return new FieldGroup('Create', {
+        bottomDirection,
+        color,
+        name,
+        topDirection
+    }, [], uiText.Dimension)
 }
 </script>

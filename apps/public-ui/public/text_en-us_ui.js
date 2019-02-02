@@ -29,6 +29,26 @@
         }
       }
     },
+    "Direction": {
+      "BottomDirection": {
+        "name": {
+          "label": "Bottom Direction",
+          "errors": {
+            "required": "Bottom Direction is required",
+            "minLength": "Direction Name must be at least 5 characters long"
+          }
+        }
+      },
+      "TopDirection": {
+        "name": {
+          "label": "Top Direction",
+          "errors": {
+            "required": "Top Direction is required",
+            "minLength": "Direction Name must be at least 5 characters long"
+          }
+        }
+      }
+    },
     "Poll": {
       "Create": {
         "NameLocationsTimeframe": {
