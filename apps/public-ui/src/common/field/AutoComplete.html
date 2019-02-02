@@ -225,7 +225,12 @@ export default {
         }
     },
     oncreate() {
-        this.get().field.setAsField(this)
+        const {field} = this.get()
+        field.setAsField(this)
+        const value = field.value
+        if (value) {
+            this.set({filter: value.text})
+        }
     },
     ondestroy() {
         this.get().field.removeComponent(this)

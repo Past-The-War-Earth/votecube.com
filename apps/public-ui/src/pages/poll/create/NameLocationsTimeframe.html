@@ -5,28 +5,16 @@
         <Text
             field="{form.fields.name}"
         ></Text>
-        <IconBlock
-            fieldGroup="{form.fields.theme}"
-        >
-            <div slot="icon">
-                <ThemeIcon
-                ></ThemeIcon>
-            </div>
-            <div slot="text">
-            Theme
-            </div>
-        </IconBlock>
-        <IconBlock
-            fieldGroup="{form.fields.labels}"
-        >
-            <div slot="icon">
-                <LabelIcon
-                ></LabelIcon>
-            </div>
-            <div slot="text">
-            Label(s)
-            </div>
-        </IconBlock>
+        <div class="pure-control-group">
+            <AutoComplete
+                field="{form.fields.theme}"
+            ></AutoComplete>
+        </div>
+        <div class="pure-control-group">
+            <MultiSelect
+                field="{form.fields.labels}"
+            ></MultiSelect>
+        </div>
         <IconBlock
             fieldGroup="{form.fields.locations}"
             on:select="selectLocations()"
@@ -104,26 +92,21 @@
     {/if}
             </div>
         </IconBlock>
-    {#if form.fields.dimensions.valid}
-        {#each filledDimensions as dimension}
         <SelectionBlock
-                    dimension="{dimension}"
-                    on:select="selectDimensions()"
+            dimension="{form.fields.dimensions.fields.first}"
+            text="{form.fields.dimensions.text.first}"
+            on:select="selectDimension(form.fields.dimensions.fields.first)"
         ></SelectionBlock>
-        {/each}
-    {:else}
-        <IconBlock
-            fieldGroup="{form.fields.dimensions}"
-            on:select="selectDimensions()"
-        >
-            <div slot="icon">
-                <DimensionsIcon></DimensionsIcon>
-            </div>
-            <div slot="text">
-            Dimensions
-            </div>
-        </IconBlock>
-    {/if}
+        <SelectionBlock
+            dimension="{form.fields.dimensions.fields.second}"
+            text="{form.fields.dimensions.text.second}"
+            on:select="selectDimension(form.fields.dimensions.fields.second)"
+        ></SelectionBlock>
+        <SelectionBlock
+            dimension="{form.fields.dimensions.fields.third}"
+            text="{form.fields.dimensions.text.third}"
+            on:select="selectDimension(form.fields.dimensions.fields.third)"
+        ></SelectionBlock>
         <nav class="pure-controls">
             <RightButton
                 classes="submitButton"
@@ -144,8 +127,10 @@
 
 <script>
 import RightButton from '../../../common/control/button/RightButton.html'
-import Text from '../../../common/field/Text.html'
+import AutoComplete from '../../../common/field/AutoComplete.html'
 import IconBlock from '../../../common/field/IconBlock.html'
+import MultiSelect from '../../../common/field/MultiSelect.html'
+import Text from '../../../common/field/Text.html'
 import DimensionsIcon from '../../../common/icon/DimensionsIcon.html'
 import LabelIcon from '../../../common/icon/LabelIcon.html'
 import LocationIcon from '../../../common/icon/LocationIcon.html'
@@ -162,10 +147,12 @@ import store from '../../../store'
 
 export default {
     components: {
+        AutoComplete,
         DimensionsIcon,
         IconBlock,
         LabelIcon,
         LocationIcon,
+        MultiSelect,
         RightButton,
         SelectionBlock,
         Text,
@@ -176,20 +163,6 @@ export default {
         cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
         continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
         countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
-        filledDimensions: ({form}) => {
-            if(!form) {
-                return null
-            }
-            const dimensions = [];
-            const fields = form.fields.dimensions.fields
-            for(const fieldName in fields) {
-                const field = fields[fieldName]
-                if(field.valid && field.hasChildValues) {
-                    dimensions.push(field)
-                }
-            }
-            return dimensions
-        },
         locations: ({form}) => form ? form.fields.locations : null,
         name: ({test}) => true,
         states: ({form}) => form ? form.fields.locations.fields.states.value : [],
@@ -216,8 +189,11 @@ export default {
                 return
             }
         },
-        selectDimensions() {
-            routes.navigateToPage(routes.SELECT_POLL_DIMENSIONS)
+        selectDimension(
+            dimensionForm
+        ) {
+            forms.setForm(forms.CREATE_DIMENSION, dimensionForm)
+            routes.navigateToPage(routes.CREATE_DIMENSION)
         },
         selectLocations() {
             routes.navigateToPage(routes.SELECT_POLL_LOCATIONS)
@@ -299,9 +275,21 @@ function createForm(
         )
     }, [Validators.required()], text)
 
-    const labels = new FieldGroup('Labels', {
-        labels: new OptionsField([], [])
-    }, [], text)
+    const labels = new OptionsField([], [{
+        id: 1,
+        text: 'Trump',
+        theme: {
+            id: 1
+        }
+    },{
+        id: 2,
+        text: 'Integration',
+        theme: {
+            id: 1
+        }
+    }], {
+        multi: true
+    })
 
     const locations = new FieldGroup('Locations', {
         continents: new OptionsField([
@@ -328,13 +316,24 @@ function createForm(
         Validators.minTomorrow()
     ])
 
-    const theme = new FieldGroup('Theme', {
-        theme: new OptionsField([
-            // Validators.required()
-        ], [])
-    }, [
-        // Validators.required()
-        ], text)
+    const theme = new OptionsField([
+            Validators.required()
+        ], [{
+            id: 1,
+            text: 'Politics'
+        },{
+            id: 2,
+            text: 'Culture'
+        },{
+            id: 3,
+            text: 'Technology'
+        },{
+            id: 4,
+            text: 'Space'
+        },{
+            id: 5,
+            text: 'Security'
+        }])
 
     const timeframe = new FieldGroup('Timeframe', {
         startDate,

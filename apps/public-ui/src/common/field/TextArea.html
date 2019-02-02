@@ -1,5 +1,7 @@
 {#if $forms}
-<div>
+<div
+    class="textArea"
+>
     <label
         class="field-label"
         use:for="{id}"
@@ -9,24 +11,57 @@
     {#if matches}
     <a>{matches.length} matches</a>
     {/if}
-    <textarea
-        bind:value="field.value"
-        class="field"
+    <section
+        class="field fieldBox"
         class:invalid="touched && errors.length"
         class:requiredInvalid="field.validatorMap.required && errors.length"
         class:requiredValid="field.validatorMap.required && !errors.length"
-        on:blur="onBlur(event)"
-        on:input="onInput(event)"
-        placeholder="{placeholder}"
-        type="text"
-        use:id="{id}"
-        use:maxlength="field.rules.maxLength"
-    />
+    >
+        <div
+            class="text"
+        >
+            <textarea
+                on:blur="onBlur(event)"
+                on:input="onInput(event)"
+                placeholder="{placeholder}"
+                type="text"
+                use:id="{id}"
+                use:maxlength="field.rules.maxLength"
+                rows="5"
+                value="{field.value}"
+            />
+        </div>
+        <div
+            class="icons"
+        >
+            <div
+                class="multiRowIconsCenter"
+            >
+                <ClearIcon
+                    on:select="clear()"
+                    multiLine="y"
+                ></ClearIcon>
+                <InfoIcon
+                    on:select="help()"
+                    multiLine="y"
+                ></InfoIcon>
+            </div>
+        </div>
+    </section>
+    <table>
+        <tr>
+        <td>
     {#if touched}
         {#each errors as error}
-    <span class="pure-form-message error">{error.message}</span>
+            <span class="pure-form-message error">{error.message}</span>
         {/each}
     {/if}
+        </td>
+        <td>
+            {charCount}
+        </td>
+        </tr>
+    </table>
 </div>
 {/if}
 
@@ -39,17 +74,64 @@
         top: 0px;
     }
 
-    div {
+    section {
             position: relative;
     }
 
-    textarea {
+    table {
         width: 100%;
+    }
+
+    td:first-child {
+        width: calc(100% - 80px);
+    }
+
+    td:nth-child(2) {
+        padding: 5px;
+        width: 80px;
+    }
+
+    textarea {
+        border: 0;
+        box-shadow: none;
+        display: inline-block;
+        margin: 0;
+        margin-top: 8px;
+        padding-left: 5px;
+        vertical-align: text-bottom;
+        width: 100%;
+    }
+
+    .fieldBox {
+        background-color: white;
+        min-height: 2.25em;
+        padding-bottom: 5px;
+        position: relative;
+        width: 100%;
+    }
+
+    .icons {
+        display: inline-block;
+        height: 100%;
+        position: absolute;
+        right: 1px;
+        top: 0px;
+    }
+
+    .text {
+        display: inline-block;
+        width: calc(100% - 70px);
+    }
+
+    .textArea {
+        position: relative;
     }
 
 </style>
 
 <script>
+import InfoIcon from '../icon/InfoIcon.html'
+import ClearIcon from '../icon/ClearIcon.html'
 import store from '../../store.js'
 
 export default {
@@ -70,7 +152,14 @@ export default {
             }
         }
     },
+    components: {
+        ClearIcon,
+        InfoIcon
+    },
     computed: {
+        charCount: ({delta, field}) => field.rules.maxLength
+        ?   `${field.value ? field.value.length : 0} / ${field.rules.maxLength}`
+        : '',
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
         matches: ({delta, field}) => field.matches,
@@ -79,11 +168,20 @@ export default {
     },
     immutable: true,
     methods: {
+        clear() {
+            this.get().field.clear()
+        },
+        help() {
+            const text = this.get().field.text
+            this.store.setTextToast( text.info, text.infoSeconds)
+        },
         onBlur(event) {
             this.get().field.onBlur()
         },
         onInput(event) {
-            this.get().field.onInput()
+            const {field} = this.get()
+            field.value = event.target.value
+            field.onInput()
         }
     },
     oncreate() {

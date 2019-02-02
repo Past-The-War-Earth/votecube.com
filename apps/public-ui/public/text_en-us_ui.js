@@ -62,7 +62,8 @@
             "info": "Select the name for this poll",
             "label": "Poll Name",
             "errors": {
-              "required": "Poll Name is required"
+              "required": "Poll Name is required",
+              "minLength": "Poll Name must be at least 3 characters long"
             }
           },
           "dimensions": {
@@ -70,7 +71,8 @@
             "error": "At least two poll dimensions are required"
           },
           "labels": {
-            "info": "Select labels for this poll"
+            "info": "Select matching label(s) for this poll",
+            "label": "Label(s)"
           },
           "locations": {
             "info": "Select the location(s) of the poll (Continent(s), Country(ies), State(s), City(ies))",
@@ -82,7 +84,10 @@
           },
           "theme": {
             "info": "Select the defining theme of this poll",
-            "error": "Poll theme is required"
+            "label": "Theme",
+            "errors": {
+              "required": "Poll theme is required"
+            }
           }
         },
         "Dimensions": {
@@ -124,15 +129,6 @@
           "cities": {
             "info": "Select one or more cities to which this poll will apply",
             "label": "City(ies)"
-          }
-        },
-        "Theme": {
-          "theme": {
-            "info": "Select the defining theme of this poll",
-            "label": "Theme",
-            "errors": {
-              "required": "Poll theme is required"
-            }
           }
         },
         "Timeframe": {

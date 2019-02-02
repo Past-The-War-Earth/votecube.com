@@ -1,5 +1,7 @@
 {#if $forms}
-<div>
+<div
+    class="textField"
+>
     <label
         class="field-label"
         use:for="{id}"
@@ -7,19 +9,38 @@
     {#if matches}
     <a>{matches.length} matches</a>
     {/if}
-    <input
-        bind:value="field.value"
-        class="field"
+    <section
+        class="field fieldBox"
         class:invalid="touched && errors.length"
         class:requiredInvalid="field.validatorMap.required && errors.length"
         class:requiredValid="field.validatorMap.required && !errors.length"
-        on:blur="onBlur(event)"
-        on:input="onInput(event)"
-        placeholder="{placeholder}"
-        type="text"
-        use:id="{id}"
-        use:maxlength="field.rules.maxLength"
     >
+        <div
+            class="text"
+        >
+            <input
+                on:blur="onBlur(event)"
+                on:input="onInput(event)"
+                placeholder="{placeholder}"
+                type="text"
+                use:id="{id}"
+                use:maxlength="field.rules.maxLength"
+                value="{value}"
+            >
+        </div>
+        <div
+            class="icons"
+        >
+            <div>
+                <InfoIcon
+                    on:select="help()"
+                ></InfoIcon>
+                <ClearIcon
+                    on:select="clear()"
+                ></ClearIcon>
+            </div>
+        </div>
+    </section>
     {#if touched}
         {#each errors as error}
     <span class="pure-form-message error">{error.message}</span>
@@ -37,17 +58,51 @@
         top: 0px;
     }
 
-    div {
+    section {
             position: relative;
     }
 
-    input {
+    input[type="text"] {
+        border: 0;
+        box-shadow: none;
+        display: inline-block;
+        margin: 0;
+        margin-top: 8px;
+        padding-left: 5px;
+        vertical-align: text-bottom;
         width: 100%;
+    }
+
+    .fieldBox {
+        background-color: white;
+        min-height: 2.25em;
+        padding-bottom: 5px;
+        position: relative;
+        width: 100%;
+    }
+
+    .icons {
+        display: inline-block;
+        height: 100%;
+        position: absolute;
+        right: 1px;
+        top: 0px;
+    }
+
+    .textField {
+        position: relative;
+    }
+
+    .text {
+        display: inline-block;
+        width: calc(100% - 70px);
     }
 
 </style>
 
 <script>
+import InfoIcon from '../icon/InfoIcon.html'
+import ClearIcon from '../icon/ClearIcon.html'
 import store from '../../store.js'
 
 export default {
@@ -68,20 +123,34 @@ export default {
             }
         }
     },
+    components: {
+        ClearIcon,
+        InfoIcon
+    },
     computed: {
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
         matches: ({delta, field}) => field.matches,
         placeholder: ({delta, field}) => field.placeholder,
-        touched: ({delta, field}) => field.touched
+        touched: ({delta, field}) => field.touched,
+        value: ({delta, field}) => field.value
     },
     immutable: true,
     methods: {
+        clear() {
+            this.get().field.clear()
+        },
+        help() {
+            const text = this.get().field.text
+            this.store.setTextToast( text.info, text.infoSeconds)
+        },
         onBlur(event) {
             this.get().field.onBlur()
         },
         onInput(event) {
-            this.get().field.onInput()
+            const {field} = this.get()
+            field.value = event.target.value
+            field.onInput()
         }
     },
     oncreate() {

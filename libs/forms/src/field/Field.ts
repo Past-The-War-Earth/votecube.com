@@ -47,6 +47,8 @@ export interface IField
 	rules: IFieldRules
 	text: IFieldText
 
+	clear(): void
+
 	labelRule(
 		labelRule: LabelRule
 	): void
@@ -110,6 +112,12 @@ export class Field
 			case LabelRule.OVER:
 				return ''
 		}
+	}
+
+	clear(): void {
+		this.value = ''
+		this.validate()
+		this.detect()
 	}
 
 	labelRule(
