@@ -102,7 +102,7 @@ export const DB = {
         id: 1,
         pollsDimensionsDirections: [{
             axis: 'x',
-            dimensionDirections: {
+            dimensionDirection: {
                 id: 1,
             },
             dir: -1,
@@ -110,7 +110,7 @@ export const DB = {
             value: 0
         }, {
             axis: 'x',
-            dimensionDirections: {
+            dimensionDirection: {
                 id: 1,
             },
             dir: 1,
@@ -118,7 +118,7 @@ export const DB = {
             value: 0
         }, {
             axis: 'y',
-            dimensionDirections: {
+            dimensionDirection: {
                 id: 1,
             },
             dir: -1,
@@ -126,7 +126,7 @@ export const DB = {
             value: 0
         }, {
             axis: 'y',
-            dimensionDirections: {
+            dimensionDirection: {
                 id: 1,
             },
             dir: 1,
@@ -135,7 +135,7 @@ export const DB = {
 
         }, {
             axis: 'z',
-            dimensionDirections: {
+            dimensionDirection: {
                 id: 1,
             },
             dir: -1,
@@ -143,28 +143,12 @@ export const DB = {
             value: 0
         }, {
             axis: 'z',
-            dimensionDirections: {
+            dimensionDirection: {
                 id: 1,
             },
             dir: 1,
             id: 6,
             value: 0
-        }],
-        pollDimensions: [{
-            dimension: {
-                id: 1,
-            },
-            index: 0
-        },{
-            dimension: {
-                id: 2,
-            },
-            index: 1
-        },{
-            dimension: {
-                id: 3,
-            },
-            index: 2
         }]
     }]
 }

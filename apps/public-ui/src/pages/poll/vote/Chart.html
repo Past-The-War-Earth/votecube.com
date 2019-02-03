@@ -10,7 +10,7 @@
             <td>
                 <div
                         style="
-        background-color: #{getColor(poll, 0)};
+        background-color: #{getColor(poll, 'x')};
         height: {xPlusHeight}px;
             "
                 >
@@ -19,7 +19,7 @@
             <td>
                 <div
                         style="
-        background-color: #{getColor(poll, 1)};
+        background-color: #{getColor(poll, 'y')};
         height: {yPlusHeight}px;
             "
                 >
@@ -28,7 +28,7 @@
             <td>
                 <div
                         style="
-        background-color: #{getColor(poll, 2)};
+        background-color: #{getColor(poll, 'z')};
         height: {zPlusHeight}px;
             "
                 >
@@ -40,7 +40,7 @@
             >
                 <div
                         style="
-        background-color: #{getColor(poll, 0)};
+        background-color: #{getColor(poll, 'x')};
         height: {xMinusHeight}px;
             "
                 >
@@ -50,7 +50,7 @@
             >
                 <div
                         style="
-        background-color: #{getColor(poll, 1)};
+        background-color: #{getColor(poll, 'y')};
         height: {yMinusHeight}px;
             "
                 >
@@ -60,7 +60,7 @@
             >
                 <div
                         style="
-        background-color: #{getColor(poll, 2)};
+        background-color: #{getColor(poll, 'z')};
         height: {zMinusHeight}px;
             "
                 >
@@ -209,15 +209,15 @@ export default {
         DimensionInfoButton
     },
     computed: {
-        xMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 0, -1, maxBarSize, maxValue),
-        xPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 0, 1, maxBarSize, maxValue),
-        xText: ({poll, toggleDelta}) => directionText(poll, 0),
-        yMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 1, -1, maxBarSize, maxValue),
-        yPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 1, 1, maxBarSize, maxValue),
-        yText: ({poll, toggleDelta}) => directionText(poll, 1),
-        zMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 2, -1, maxBarSize, maxValue),
-        zPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 2, 1, maxBarSize, maxValue),
-        zText: ({poll, toggleDelta}) => directionText(poll, 2),
+        xMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'x', -1, maxBarSize, maxValue),
+        xPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'x', 1, maxBarSize, maxValue),
+        xText: ({poll, toggleDelta}) => directionText(poll, 'x'),
+        yMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'y', -1, maxBarSize, maxValue),
+        yPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'y', 1, maxBarSize, maxValue),
+        yText: ({poll, toggleDelta}) => directionText(poll, 'y'),
+        zMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'z', -1, maxBarSize, maxValue),
+        zPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'z', 1, maxBarSize, maxValue),
+        zText: ({poll, toggleDelta}) => directionText(poll, 'z'),
         maxValue: ({poll, toggleDelta}) => {
             if(!poll) {
                 return 0
@@ -300,12 +300,12 @@ export default {
 
 function barHeight(
     poll,
-    pollDimensionIndex,
+    axis,
     direction,
     maxBarSize,
     maxValue
 ) {
-    const pollDimDir = getPollDimDir(poll, pollDimensionIndex)
+    const pollDimDir = getPollDimDir(poll, axis)
     return pollDimDir
     && pollDimDir.dir === direction
         ? pollDimDir.value * maxBarSize / (maxValue * 1.2)
@@ -314,9 +314,9 @@ function barHeight(
 
 function directionText(
     poll,
-    pollDimensionIndex
+    axis
 ) {
-    const pollDimDir = getPollDimDir(poll, pollDimensionIndex)
+    const pollDimDir = getPollDimDir(poll, axis)
     return pollDimDir
         ? getSideText(poll, pollDimensionIndex, pollDimDir.dir)
         : ''

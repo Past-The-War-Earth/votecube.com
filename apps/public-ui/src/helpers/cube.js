@@ -1,61 +1,88 @@
 import {getDimensionColor} from "./dimension";
 
-export function getDimension(
+export function getPollDimensionDirections(
     poll,
-    pollDimensionIndex
+    axis
 ) {
     if (!poll) {
         return null
     }
 
-    return poll.pollDimensions.filter(
-        pollDimension =>
-            pollDimension.index === pollDimensionIndex
-    )[0].dimension
+    return poll.pollsDimensionsDirections.filter(
+        pollsDimensionDirection =>
+            pollsDimensionDirection.axis === axis
+    ).map((pollDimensionDirection) => {
+        return pollDimensionDirection.dimensionDirection
+    })
+}
+
+export function getDimensionDirections(
+    poll,
+    axis
+) {
+    if (!poll) {
+        return null
+    }
+
+    return getPollDimensionDirections(poll, axis).map((pollDimensionDirection) => {
+        return pollDimensionDirection.dimensionDirection
+    })
+}
+
+
+export function getDimension(
+    poll,
+    axis
+) {
+    if (!poll) {
+        return null
+    }
+
+    return getDimensionDirections(poll, axis)[0].dimension
 }
 
 export function getColor(
     poll,
-    pollDimensionIndex
+    axis
 ) {
     if (!poll) {
         return `fff`
     }
 
-    const dimension = getDimension(poll, pollDimensionIndex)
+    const dimension = getDimension(poll, axis)
 
     return getDimensionColor(dimension)
 }
 
 export function getPollDimDir(
     poll,
-    pollDimensionIndex
+    axis
 ) {
     if (!poll) {
         return null
     }
 
-    return poll.pollDimDirs.filter(
+    return poll.pollsDimensionsDirections.filter(
         pollDimDir =>
-            pollDimDir.index === pollDimensionIndex
+            pollDimDir.axis === axis
     )[0]
 }
 
 export function getSideText(
     poll,
-    pollDimensionIndex,
+    axis,
     dir
 ) {
     if (!poll) {
         return ``
     }
 
-    const dimension = getDimension(poll, pollDimensionIndex)
+    const pollDimensionDirections = getPollDimensionDirections(poll, axis)
 
-    const direction = dimension.dimensionDirections.filter(
-        dimensionDirection =>
-        dimensionDirection.dir === dir
-    )[0].direction
+    const dimensionDirection = pollDimensionDirections.filter(
+        pollDimensionDirection =>
+            pollDimensionDirection.dir === dir
+    )[0].dimensionDirection
 
-    return `${dimension.name}: ${direction.name}`
+    return `${dimensionDirection.dimension.name}: ${dimensionDirection.direction.name}`
 }
