@@ -9,10 +9,12 @@ export const voteDao = {
     ) {
         return new Promise((resolve) => {
             let vote = voteMap[pollId]
-            if(vote) {
+            if (vote) {
                 resolve(vote)
                 return
             }
+
+            const poll = pollDao.findByIdWithDetails(pollId)
 
             vote = {
                 poll,
@@ -30,7 +32,7 @@ export const voteDao = {
                 }
             }
 
-            pollDao.findByIdWithDetails(pollId)
+            voteMap[pollId] = vote
 
             resolve(vote)
         })

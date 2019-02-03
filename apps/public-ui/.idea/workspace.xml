@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dao/vote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/poll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/cube.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/cube.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/vote/Chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/vote/Chart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/vote/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/vote/Cube.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/vote.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -89,8 +81,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/dao/vote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
-                  <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+                <state relative-caret-position="748">
+                  <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
                 </state>
               </provider>
             </entry>
@@ -427,14 +419,7 @@
       <workItem from="1547312494148" duration="6224000" />
       <workItem from="1547525659293" duration="370067000" />
       <workItem from="1549166888309" duration="3147000" />
-      <workItem from="1549172761461" duration="14761000" />
-    </task>
-    <task id="LOCAL-00002" summary="fixing bugs in re-positioning logic">
-      <created>1545407453257</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1545407453257</updated>
+      <workItem from="1549172761461" duration="14870000" />
     </task>
     <task id="LOCAL-00003" summary="fixing bugs in re-positioning logic">
       <created>1546218664017</created>
@@ -772,11 +757,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549180697747</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="continued refactoring data model to new standard">
+      <created>1549232537940</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1549232537940</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="599375000" />
+    <option name="totallyTimeSpent" value="599484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
@@ -818,7 +810,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="finished styling datepicker &amp; fixing forms regressions &amp; adjusting styling" />
     <MESSAGE value="fixing forms regressions &amp; adjusting styling" />
     <MESSAGE value="unifying styling approach to fit the cube theme (everything should remind of cube)" />
     <MESSAGE value="fixed MultiSelect styling, added the info toast and wired it in to DatePicker and MultiSelect" />
@@ -843,7 +834,8 @@
     <MESSAGE value="Finished dimension-external wiring" />
     <MESSAGE value="fixed bugs" />
     <MESSAGE value="started refactoring data model to new standard" />
-    <option name="LAST_COMMIT_MESSAGE" value="started refactoring data model to new standard" />
+    <MESSAGE value="continued refactoring data model to new standard" />
+    <option name="LAST_COMMIT_MESSAGE" value="continued refactoring data model to new standard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1238,8 +1230,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/vote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="748">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
         </state>
       </provider>
     </entry>
