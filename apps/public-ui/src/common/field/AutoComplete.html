@@ -26,6 +26,7 @@
             <input
                 autocomplete="off"
                 bind:value="filter"
+                on:blur="blur()"
                 on:input="checkValue(options)"
                 ref:filter
                 type="text"
@@ -129,7 +130,7 @@
         height: 100%;
         position: absolute;
         right: 0px;
-        top: 0px;
+        top: 1px;
     }
 
     .selection {
@@ -180,6 +181,11 @@ export default {
     },
     immutable: true,
     methods: {
+        blur() {
+            const {field} = this.get()
+            field.touch()
+            field.detect()
+        },
         checkValue(options) {
             const {field, filter} = this.get()
             OPTIONS.showFiltered(this, this.refs.field)

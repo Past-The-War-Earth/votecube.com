@@ -86,7 +86,7 @@
             "info": "Select the defining theme of this poll",
             "label": "Theme",
             "errors": {
-              "required": "Poll theme is required"
+              "required": "Poll Theme is required"
             }
           }
         },
@@ -111,6 +111,10 @@
           }
         },
         "Locations": {
+          "cities": {
+            "info": "Select one or more cities to which this poll will apply",
+            "label": "City(ies)"
+          },
           "continents": {
             "info": "Select one or more continents to which this poll will apply",
             "label": "Continent(s)",
@@ -122,13 +126,10 @@
             "info": "Select one or more countries to which this poll will apply",
             "label": "Country(ies)"
           },
+          "error": "Poll Location is required",
           "states": {
             "info": "Select one or more states to which this poll will apply",
             "label": "State(s)"
-          },
-          "cities": {
-            "info": "Select one or more cities to which this poll will apply",
-            "label": "City(ies)"
           }
         },
         "Timeframe": {
@@ -150,7 +151,8 @@
               "min": "End Date must be greater than today",
               "greaterThanOrEquals": "End Date must be on or after Start Date"
             }
-          }
+          },
+          "error": "Poll Timeframe is required"
         }
       }
     },

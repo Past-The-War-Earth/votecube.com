@@ -210,3 +210,10 @@ i {
     top: 50%;
     transform: translateY(-50%);
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
