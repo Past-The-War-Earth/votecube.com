@@ -6,7 +6,7 @@ import {
 }                 from '../utils/utils'
 import {
 	Bool,
-	IDimensionPositionData,
+	IPollDimensionDirection,
 	IPositionData,
 	IValuesOutCallback,
 	mouse,
@@ -47,7 +47,7 @@ export function setViewPort(
 }
 
 export function setPositionDataAndMove(
-	dimensionPositionData: IDimensionPositionData[]
+	dimensionPositionData: IPollDimensionDirection[]
 ) {
 	if (setPositionData(dimensionPositionData)) {
 		viewport.moveToDegree()
@@ -55,7 +55,7 @@ export function setPositionDataAndMove(
 }
 
 export function setPositionData(
-	dimensionPositionData: IDimensionPositionData[]
+	dimensionPositionData: IPollDimensionDirection[]
 ): boolean {
 	if (!dimensionPositionData) {
 		viewport.pd = null
@@ -68,18 +68,8 @@ export function setPositionData(
 		z: null
 	}
 	dimensionPositionData.forEach(
-		displayValue => {
-			switch (displayValue.index) {
-				case 0:
-					positionData.x = displayValue
-					break
-				case 1:
-					positionData.y = displayValue
-					break
-				case 2:
-					positionData.z = displayValue
-					break
-			}
+		pollDimensionDirection => {
+			positionData[pollDimensionDirection.axis] = pollDimensionDirection
 		})
 	viewport.pd = positionData
 

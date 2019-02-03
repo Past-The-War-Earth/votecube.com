@@ -1,7 +1,7 @@
 export {IMutationApi} from './cube/mutation/MutationApi'
 export {ZoomIndex}    from './cube/cubeMoveMatrix'
 export {
-	IDimensionPositionData,
+	IPollDimensionDirection,
 	IPositionData,
 	Direction,
 	PositionPercent

@@ -79,7 +79,7 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 0)}"
-                displayValue="{getDisplayValue(poll, 0)}"
+                pollDimDir="{getPollDimDir(poll, 0)}"
                 index=0
                 on:toggle="toggleSurface('x')"
             ></DimensionInfoButton>
@@ -95,7 +95,7 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 1)}"
-                displayValue="{getDisplayValue(poll, 1)}"
+                pollDimDir="{getPollDimDir(poll, 1)}"
                 index=1
                 on:toggle="toggleSurface('y')"
             ></DimensionInfoButton>
@@ -110,7 +110,7 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 2)}"
-                displayValue="{getDisplayValue(poll, 2)}"
+                pollDimDir="{getPollDimDir(poll, 2)}"
                 index=2
                 on:toggle="toggleSurface('z')"
             ></DimensionInfoButton>
@@ -198,7 +198,7 @@
 
 <script>
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
-import {getColor, getDimension, getDisplayValue, getSideText} from '../../../helpers/cube';
+import {getColor, getDimension, getPollDimDir, getSideText} from '../../../helpers/cube';
 import {loadCubeLogic, shutDownCubeListener} from '../../../libs/cubeLogic'
 import {pollDao} from '../../../dao/poll';
 import {scheduleToResize, setResizeCllBck} from '../../../resizer'
@@ -245,7 +245,7 @@ export default {
 	helpers: {
 		getColor,
 		getDimension,
-		getDisplayValue
+		getDisplayValue:getPollDimDir
 	},
     methods: {
         handleResize(
@@ -286,7 +286,7 @@ export default {
         ]) => {
             this.set({poll})
             // TODO: add support for vote values
-            setPositionDataAndMove(poll.displayValues)
+            setPositionDataAndMove(poll.pollsDimensionsDirections)
         })
         this.store.set({noOverflow: true})
     },
@@ -305,10 +305,10 @@ function barHeight(
     maxBarSize,
     maxValue
 ) {
-    const displayValue = getDisplayValue(poll, pollDimensionIndex)
-    return displayValue
-    && displayValue.dir === direction
-        ? displayValue.value * maxBarSize / (maxValue * 1.2)
+    const pollDimDir = getPollDimDir(poll, pollDimensionIndex)
+    return pollDimDir
+    && pollDimDir.dir === direction
+        ? pollDimDir.value * maxBarSize / (maxValue * 1.2)
         : 0
 }
 
@@ -316,9 +316,9 @@ function directionText(
     poll,
     pollDimensionIndex
 ) {
-    const displayValue = getDisplayValue(poll, pollDimensionIndex)
-    return displayValue
-        ? getSideText(poll, pollDimensionIndex, displayValue.dir)
+    const pollDimDir = getPollDimDir(poll, pollDimensionIndex)
+    return pollDimDir
+        ? getSideText(poll, pollDimensionIndex, pollDimDir.dir)
         : ''
 }
 
@@ -328,11 +328,11 @@ function addToVals(
     positiveValues,
     negativeValues
 ) {
-    const displayValue = getDisplayValue(poll, pollDimensionIndex)
-    if (displayValue.dir === 1) {
-        positiveValues.push(displayValue.value);
+    const pollDimDir = getPollDimDir(poll, pollDimensionIndex)
+    if (pollDimDir.dir === 1) {
+        positiveValues.push(pollDimDir.value);
     } else {
-        negativeValues.push(displayValue.value);
+        negativeValues.push(pollDimDir.value);
     }
 }
 

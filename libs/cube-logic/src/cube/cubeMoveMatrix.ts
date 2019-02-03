@@ -91,7 +91,7 @@ let matrixMoveXY = [
 // (in x & y directions specified by the move matrix)
 let matrixTemplateDirectedPositions = [
 	// right side up
-	// left top right, x-index start, y-index start
+	// left top right, x-axis start, y-axis start
 	[4, 0, 1, 8, 8],
 	[3, 0, 4, 8, 2],
 	[2, 0, 3, 8, 4],

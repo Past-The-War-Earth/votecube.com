@@ -11,7 +11,7 @@ import {
 	Bool,
 	Direction,
 	getMatrixIdxFromDeg,
-	IDimensionPositionData,
+	IPollDimensionDirection,
 	IPositionData,
 	IValuesOutCallback,
 	Move,
@@ -125,7 +125,7 @@ export const viewport: IViewport = {
 			positivePosition: ValueArrayPosition,
 			negativePosition: ValueArrayPosition,
 			positionValues: PositionValues
-		): IDimensionPositionData {
+		): IPollDimensionDirection {
 			let dir: Direction = 1
 			let value          = positionValues[positivePosition]
 			if (positionValues[negativePosition]) {

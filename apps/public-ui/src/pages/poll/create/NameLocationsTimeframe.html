@@ -69,7 +69,9 @@
             </div>
             <div slot="text">
     {#if timeframe && timeframe.touched}
-                <table>
+                <table
+                    class="timeframe"
+                >
                     <tr>
                         <td>
                             Start Date:
@@ -111,6 +113,7 @@
             <RightButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
+                on:select="submit()"
             ></RightButton>
         </nav>
     </fieldset>
@@ -121,6 +124,18 @@
 
     legend {
         display: none;
+    }
+
+    .timeframe td {
+        padding: 5px;
+    }
+
+    .timeframe td:first-child {
+        text-align: right;
+    }
+
+    .timeframe td:nth-child(2) {
+        text-align: left;
     }
 
 </style>
@@ -200,6 +215,9 @@ export default {
         },
         selectTimeframe() {
             routes.navigateToPage(routes.SELECT_POLL_TIMEFRAME)
+        },
+        submit() {
+            forms.navigateOnValid(this, routes.CREATE_POLL_NAME_LOC_DATE)
         }
     },
     oncreate() {

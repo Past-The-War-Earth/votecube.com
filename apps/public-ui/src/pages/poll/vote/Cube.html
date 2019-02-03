@@ -88,7 +88,7 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 0)}"
-                displayValue="{getDisplayValue(poll, 0)}"
+                pollDimDir="{getPollDimDir(poll, 0)}"
                 index=0
                 on:toggle="toggleSurface(poll, 0, 'x')"
             ></DimensionInfoButton>
@@ -99,7 +99,7 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 1)}"
-                displayValue="{getDisplayValue(poll, 1)}"
+                pollDimDir="{getPollDimDir(poll, 1)}"
                 index=1
                 on:toggle="toggleSurface(poll, 1, 'y')"
             ></DimensionInfoButton>
@@ -108,7 +108,7 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 2)}"
-                displayValue="{getDisplayValue(poll, 2)}"
+                pollDimDir="{getPollDimDir(poll, 2)}"
                 index=2
                 on:toggle="toggleSurface(poll, 2, 'z')"
             ></DimensionInfoButton>
@@ -121,7 +121,7 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 1)}"
-                displayValue="{getDisplayValue(poll, 1)}"
+                pollDimDir="{getPollDimDir(poll, 1)}"
                 index=1
                 on:toggle="toggleSurface(poll, 1, 'y')"
             ></DimensionInfoButton>
@@ -132,7 +132,7 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 2)}"
-                displayValue="{getDisplayValue(poll, 2)}"
+                pollDimDir="{getPollDimDir(poll, 2)}"
                 index=2
                 on:toggle="toggleSurface(poll, 2, 'z')"
             ></DimensionInfoButton>
@@ -239,7 +239,7 @@
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
 import PercentPicker from '../../../common/control/PercentPicker.html'
 import VoteButton from '../../../common/control/button/VoteButton.html'
-import {getColor, getDimension, getDisplayValue, getSideText} from '../../../helpers/cube';
+import {getColor, getDimension, getPollDimDir, getSideText} from '../../../helpers/cube';
 import {pollDao} from '../../../dao/poll';
 import {loadCubeLogic, setCubeAdjustment, shutDownCubeListener} from '../../../libs/cubeLogic'
 import {setResizeCllBck} from '../../../resizer'
@@ -263,7 +263,7 @@ export default {
 	helpers: {
 		getColor,
 		getDimension,
-		getDisplayValue,
+		getDisplayValue:getPollDimDir,
 		getSideText
 	},
     methods: {
@@ -321,7 +321,7 @@ export default {
         ]) => {
             this.set({poll})
             // TODO: add support for vote values
-            setPositionDataAndMove(poll.displayValues)
+            setPositionDataAndMove(poll.pollsDimensionsDirections)
         })
 
         this.store.set({noOverflow: true})

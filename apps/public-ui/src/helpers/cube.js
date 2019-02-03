@@ -27,7 +27,7 @@ export function getColor(
     return getDimensionColor(dimension)
 }
 
-export function getDisplayValue(
+export function getPollDimDir(
     poll,
     pollDimensionIndex
 ) {
@@ -35,9 +35,9 @@ export function getDisplayValue(
         return null
     }
 
-    return poll.displayValues.filter(
-        displayValue =>
-            displayValue.index === pollDimensionIndex
+    return poll.pollDimDirs.filter(
+        pollDimDir =>
+            pollDimDir.index === pollDimensionIndex
     )[0]
 }
 
@@ -57,5 +57,5 @@ export function getSideText(
         dimensionDirection.dir === dir
     )[0].direction
 
-    return `${dimension.description.shortValue}: ${direction.description.markdownValue}`
+    return `${dimension.name}: ${direction.name}`
 }

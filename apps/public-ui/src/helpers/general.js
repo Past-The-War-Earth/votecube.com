@@ -33,7 +33,7 @@ export function getColor(
         return `fff`
     }
 
-    const rgb = color.rgbHexValue
+    const rgb = color.id
 
     const red = rgb >> 16
 

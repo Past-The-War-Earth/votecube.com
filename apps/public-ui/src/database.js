@@ -10,122 +10,146 @@ export const SEQUENCES = {
 }
 
 export const DB = {
-    dimensions: [{
-        color: {
+    dimensionDirections: [{
+        dimension: {
             id: 1,
-            rgbHexValue: 255 * 256 * 256
         },
-        description: {
-            id: 1,
-            markdownValue: 'Trumps policy\'s effects on US Security',
-            shortValue: 'Security'
+        direction: {
+            id: 1
         },
-        dimensionDirections: [{
-            direction: {
-                id: 1,
-                description: {
-                    id: 1,
-                    markdownValue: 'Trumps policies reduce military\'s over extension and let it focus on the real threats.'
-                }
-            },
-            id: 1,
-            dir: 1
-        }, {
-            direction: {
-                id: 2,
-                description: {
-                    id: 2,
-                    markdownValue: 'Trump\'s policies reduce the trust in our alliances and hurt the stability of the world.'
-                }
-            },
-            id: 2,
-            dir: -1
-        }],
         id: 1
     }, {
-        color: {
-            id: 2,
-            rgbHexValue: 255 * 256 * 256 + 255 * 256
+        dimension: {
+            id: 1,
         },
-        description: {
-            id: 2,
-            markdownValue: 'Trumps policy\'s effects on US Economy',
-            shortValue: 'Economy'
+        direction: {
+            id: 2
         },
-        dimensionDirections: [{
-            direction: {
-                id: 3,
-                description: {
-                    id: 3,
-                    markdownValue: 'Trump\'s policies give profound confidence to companies and are good for the economy.'
-                }
-            },
-            id: 3,
-            dir: 1
-        }, {
-            direction: {
-                id: 4,
-                description: {
-                    id: 4,
-                    markdownValue: 'Trump\'s policies have no real effect on the economy, it\'s purely cyclical.'
-                }
-            },
-            id: 4,
-            dir: -1
-        }],
         id: 2
     }, {
-        color: {
-            id: 3,
-            rgbHexValue: 255 * 256
+        dimension: {
+            id: 2,
         },
-        description: {
-            id: 3,
-            markdownValue: 'Trumps policy\'s effects on Equality in US',
-            shortValue: 'Equality'
+        direction: {
+            id: 3
         },
-        dimensionDirections: [{
-            direction: {
-                id: 5,
-                description: {
-                    id: 5,
-                    markdownValue: 'Trump\'s policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.'
-                }
-            },
-            id: 5,
-            dir: 1,
-        },{
-            direction: {
-                id: 6,
-                description: {
-                    id: 6,
-                    markdownValue: 'Trump\'s policies are tailored with the interests of the wealthy in mind and hurt equality.'
-                }
-            },
-            id: 6,
-            dir: -1
-        }],
         id: 3
+    }, {
+        dimension: {
+            id: 2,
+        },
+        direction: {
+            id: 4
+        },
+        id: 4
+    }, {
+        dimension: {
+            id: 3,
+        },
+        direction: {
+            id: 5
+        },
+        id: 5
+    }, {
+        dimension: {
+            id: 3,
+        },
+        direction: {
+            id: 6
+        },
+        id: 6
+    }],
+    dimensions: [{
+        color: {
+            id: 255 * 256 * 256
+        },
+        id: 1,
+        name: 'Security'
+    }, {
+        color: {
+            id: 255 * 256 * 256 + 255 * 256
+        },
+        id: 2,
+        name: 'Economy'
+    }, {
+        color: {
+            id: 255 * 256
+        },
+        id: 3,
+        name: 'Equality',
+    }],
+    directions: [{
+        id: 1,
+        name: 'Trumps policies reduce military\'s over extension and let it focus on the real threats.'
+    }, {
+        id: 2,
+        name: 'Trump\'s policies reduce the trust in our alliances and hurt the stability of the world.'
+    }, {
+        id: 3,
+        name: 'Trump\'s policies give profound confidence to companies and are good for the economy.'
+    }, {
+        id: 4,
+        name: 'Trump\'s policies have no real effect on the economy, it\'s purely cyclical.'
+    }, {
+        id: 5,
+        name: 'Trump\'s policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.'
+    }, {
+        id: 6,
+        name: 'Trump\'s policies are tailored with the interests of the wealthy in mind and hurt equality.'
     }],
     polls: [{
-        description: {
-            id: 1,
-            markdownValue: 'Trump\'s policies'
-        },
-        displayValues: [{
-            index: 0,
-            value: 0,
-            dir: 1
-        },{
-            index: 1,
-            value: 100,
-            dir: 1
-        },{
-            index: 2,
-            value: 0,
-            dir: 1
-        }],
+        name: 'Trump\'s policies',
         id: 1,
+        pollsDimensionsDirections: [{
+            axis: 'x',
+            dimensionDirections: {
+                id: 1,
+            },
+            dir: -1,
+            id: 1,
+            value: 0
+        }, {
+            axis: 'x',
+            dimensionDirections: {
+                id: 1,
+            },
+            dir: 1,
+            id: 2,
+            value: 0
+        }, {
+            axis: 'y',
+            dimensionDirections: {
+                id: 1,
+            },
+            dir: -1,
+            id: 3,
+            value: 0
+        }, {
+            axis: 'y',
+            dimensionDirections: {
+                id: 1,
+            },
+            dir: 1,
+            id: 4,
+            value: 100
+
+        }, {
+            axis: 'z',
+            dimensionDirections: {
+                id: 1,
+            },
+            dir: -1,
+            id: 5,
+            value: 0
+        }, {
+            axis: 'z',
+            dimensionDirections: {
+                id: 1,
+            },
+            dir: 1,
+            id: 6,
+            value: 0
+        }],
         pollDimensions: [{
             dimension: {
                 id: 1,

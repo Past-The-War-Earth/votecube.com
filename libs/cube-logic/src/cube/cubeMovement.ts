@@ -7,7 +7,8 @@ import {
 	populateDegreeValMatrix,
 	STEP_DEGS,
 	ZoomIndex,
-} from './cubeMoveMatrix'
+}                  from './cubeMoveMatrix'
+import {Dimension} from './Viewport'
 
 export enum Bool {
 	False = 0,
@@ -48,14 +49,14 @@ export interface IMousePosition {
 }
 
 export interface IPositionData {
-	x: IDimensionPositionData
-	y: IDimensionPositionData
-	z: IDimensionPositionData
+	x: IPollDimensionDirection
+	y: IPollDimensionDirection
+	z: IPollDimensionDirection
 }
 
-export interface IDimensionPositionData {
+export interface IPollDimensionDirection {
+	axis?: Dimension
 	dir: Direction
-	index?: 0 | 1 | 2
 	valid: boolean
 	value: PositionPercent
 }
@@ -71,8 +72,8 @@ export function getModXAbsRemainder(
 	num: number,
 	moveIncrement: MoveIncrement
 ): number {
-	const index     = MV_INC_IDX[moveIncrement]
-	const divisions = NUM_DIVISIONS[index]
+	const axis     = MV_INC_IDX[moveIncrement]
+	const divisions = NUM_DIVISIONS[axis]
 	let remainder   = num % divisions
 	if (remainder < 0) {
 		remainder = divisions + remainder

@@ -10,7 +10,7 @@ import {
 }                                    from '../cubeMoveMatrix'
 import {
 	Direction,
-	IDimensionPositionData,
+	IPollDimensionDirection,
 	normMatrixIdx,
 	PositionPercent
 }                                    from '../cubeMovement'
@@ -97,7 +97,7 @@ export class FinalPositionFinder {
 	}
 
 	private getDirectionVals(
-		dimensionPositionData: IDimensionPositionData
+		dimensionPositionData: IPollDimensionDirection
 	): [PositionPercent, PositionPercent] {
 		return dimensionPositionData.dir === 1
 			? [dimensionPositionData.value, 0]

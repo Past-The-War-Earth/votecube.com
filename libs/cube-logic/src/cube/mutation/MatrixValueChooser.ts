@@ -6,7 +6,7 @@ import {
 	ValueArrayPosition
 }                                    from '../cubeMoveMatrix'
 import {
-	IDimensionPositionData,
+	IPollDimensionDirection,
 	IPositionData
 }                                    from '../cubeMovement'
 import {IViewport}                   from '../Viewport'
@@ -140,7 +140,7 @@ export class MatrixValueChooser {
 	}
 
 	private setDimZeroPositions(
-		dimensionPositionData: IDimensionPositionData,
+		dimensionPositionData: IPollDimensionDirection,
 		plusIndex: ValueArrayPosition,
 		minusIndex: ValueArrayPosition,
 		zeroedPositions: boolean[]
@@ -158,7 +158,7 @@ export class MatrixValueChooser {
 	}
 
 	private getDimensionDistance(
-		newDimensionPositionData: IDimensionPositionData,
+		newDimensionPositionData: IPollDimensionDirection,
 		positionData: PositionValues,
 		positiveIndex: ValueArrayPosition,
 		negativeIndex: ValueArrayPosition,
