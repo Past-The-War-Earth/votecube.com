@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/control/button/BuildButton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -61,8 +55,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/common/control/button/BuildButton.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="440">
-                  <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+                <state relative-caret-position="308">
+                  <caret line="14" column="84" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
                 </state>
               </provider>
             </entry>
@@ -424,14 +418,7 @@
       <workItem from="1547312494148" duration="6224000" />
       <workItem from="1547525659293" duration="370067000" />
       <workItem from="1549166888309" duration="3147000" />
-      <workItem from="1549172761461" duration="32291000" />
-    </task>
-    <task id="LOCAL-00007" summary="percent controls overlay and cube positioning">
-      <created>1546837097315</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1546837097315</updated>
+      <workItem from="1549172761461" duration="32848000" />
     </task>
     <task id="LOCAL-00008" summary="cube positioning">
       <created>1546839624503</created>
@@ -769,11 +756,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549263683641</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="added the build button">
+      <created>1549269541732</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1549269541732</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="616905000" />
+    <option name="totallyTimeSpent" value="617462000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
@@ -837,7 +831,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed MultiSelect styling, added the info toast and wired it in to DatePicker and MultiSelect" />
     <MESSAGE value="fixing control bugs and adding form integration" />
     <MESSAGE value="finished cross-page form integration" />
     <MESSAGE value="adjusted form layout" />
@@ -862,7 +855,8 @@
     <MESSAGE value="continued refactoring data model to new standard" />
     <MESSAGE value="finished refactoring data model to new standard" />
     <MESSAGE value="fixed chart state bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed chart state bug" />
+    <MESSAGE value="added the build button" />
+    <option name="LAST_COMMIT_MESSAGE" value="added the build button" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/libs/colors.js">
@@ -1236,8 +1230,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/control/button/BuildButton.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        <state relative-caret-position="308">
+          <caret line="14" column="84" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
         </state>
       </provider>
     </entry>
