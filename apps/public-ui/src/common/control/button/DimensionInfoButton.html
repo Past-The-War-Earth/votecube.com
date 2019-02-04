@@ -32,11 +32,11 @@ import {getDimensionColor} from '../../../helpers/dimension'
 
 export default {
     computed: {
-        bottomBorderColor: ({delta, dimension, pollDimDir}) => borderColor(dimension, pollDimDir, -1),
+        bottomBorderColor: ({delta, dimension, voteDim}) => borderColor(dimension, voteDim, -1),
         float: ({index, $verticalLayout}) => $verticalLayout && index == 0 ? 'right' : 'initial',
         margin: ({index, $verticalLayout}) => $verticalLayout && index == 1 ? 'auto' : 'initial',
-        topBorderColor: ({delta, dimension, pollDimDir}) => borderColor(dimension, pollDimDir, 1),
-        percentValue: ({delta, pollDimDir}) => pollDimDir ? pollDimDir.value : ''
+        topBorderColor: ({delta, dimension, voteDim}) => borderColor(dimension, voteDim, 1),
+        percentValue: ({delta, voteDim}) => voteDim ? voteDim.value : ''
     },
     helpers: {
         getDimensionColor
@@ -45,11 +45,11 @@ export default {
 
 function borderColor(
     dimension,
-    pollDimDir,
+    voteDim,
     dir
 ) {
-    if(!pollDimDir
-    || pollDimDir.dir === dir) {
+    if(!voteDim
+    || voteDim.dir === dir) {
         return '000'
     }
 

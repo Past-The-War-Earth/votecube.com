@@ -11,8 +11,8 @@ import {
 	Bool,
 	Direction,
 	getMatrixIdxFromDeg,
-	IPollDimensionDirection,
-	IPositionData,
+	IUiVoteDimension,
+	IUiVote,
 	IValuesOutCallback,
 	Move,
 	moveCoordinates,
@@ -24,7 +24,7 @@ export interface IViewport {
 	cr: ICubeRotation,
 	el: Element | null
 	increment: MoveIncrement
-	pd: IPositionData
+	pd: IUiVote
 	// Recently Moved Dimension
 	rmd: Dimension[]
 	x: number
@@ -125,7 +125,7 @@ export const viewport: IViewport = {
 			positivePosition: ValueArrayPosition,
 			negativePosition: ValueArrayPosition,
 			positionValues: PositionValues
-		): IPollDimensionDirection {
+		): IUiVoteDimension {
 			let dir: Direction = 1
 			let value          = positionValues[positivePosition]
 			if (positionValues[negativePosition]) {

@@ -9,24 +9,24 @@
     <table>
         <!-- TODO: add support for voting value -->
         <LinearPositionPicker
-            dimension="{getDimension(poll, 0)}"
-            value="{getPollDimDir(poll, 0)}"
+            dimension="{getDimension(poll, 'x')}"
+            value="{vote.x}"
             on:move="move('x', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('x', event)"
             on:update="update()"
             ref:xPicker
         />
         <LinearPositionPicker
-            dimension="{getDimension(poll, 1)}"
-            value="{getPollDimDir(poll, 1)}"
+            dimension="{getDimension(poll, 'y')}"
+            value="{vote.y}"
             on:move="move('y', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('y', event)"
             on:update="update()"
             ref:yPicker
         />
         <LinearPositionPicker
-            dimension="{getDimension(poll, 2)}"
-            value="{getPollDimDir(poll, 2)}"
+            dimension="{getDimension(poll, 'z')}"
+            value="{vote.z}"
             on:move="move('z', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('z', event)"
             on:update="update()"
@@ -78,7 +78,7 @@
 
 <script>
 import LinearPositionPicker from './LinearPositionPicker.html'
-import {getDimension, getPollDimDir} from '../../helpers/cube';
+import {getDimension} from '../../helpers/cube';
 import store from '../../store.js';
 
 export default {
@@ -86,8 +86,7 @@ export default {
         LinearPositionPicker
     },
 	helpers: {
-		getDimension,
-		getDisplayValue:getPollDimDir
+		getDimension
 	},
     methods: {
         move(

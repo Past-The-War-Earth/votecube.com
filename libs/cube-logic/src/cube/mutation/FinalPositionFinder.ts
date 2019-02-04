@@ -10,7 +10,7 @@ import {
 }                                    from '../cubeMoveMatrix'
 import {
 	Direction,
-	IPollDimensionDirection,
+	IUiVoteDimension,
 	normMatrixIdx,
 	PositionPercent
 }                                    from '../cubeMovement'
@@ -97,11 +97,11 @@ export class FinalPositionFinder {
 	}
 
 	private getDirectionVals(
-		dimensionPositionData: IPollDimensionDirection
+		voteDimension: IUiVoteDimension
 	): [PositionPercent, PositionPercent] {
-		return dimensionPositionData.dir === 1
-			? [dimensionPositionData.value, 0]
-			: [0, dimensionPositionData.value]
+		return voteDimension.dir === 1
+			? [voteDimension.value, 0]
+			: [0, voteDimension.value]
 	}
 
 	private findVectorEndPoint(

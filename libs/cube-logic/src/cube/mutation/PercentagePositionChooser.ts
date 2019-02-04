@@ -1,6 +1,6 @@
 import {
 	Direction,
-	IPositionData,
+	IUiVote,
 	PositionPercent
 }                      from '../cubeMovement'
 import {
@@ -104,7 +104,7 @@ export class PercentagePositionChooser {
 	}
 
 	private adjustDimension(
-		positionData: IPositionData,
+		positionData: IUiVote,
 		dimension: Dimension,
 		currentDimensionValue: number,
 		totalValue: number

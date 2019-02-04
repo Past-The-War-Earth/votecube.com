@@ -48,13 +48,13 @@ export interface IMousePosition {
 	start: IPosition
 }
 
-export interface IPositionData {
-	x: IPollDimensionDirection
-	y: IPollDimensionDirection
-	z: IPollDimensionDirection
+export interface IUiVote {
+	x: IUiVoteDimension
+	y: IUiVoteDimension
+	z: IUiVoteDimension
 }
 
-export interface IPollDimensionDirection {
+export interface IUiVoteDimension {
 	axis?: Dimension
 	dir: Direction
 	valid: boolean
@@ -62,7 +62,7 @@ export interface IPollDimensionDirection {
 }
 
 export type IValuesOutCallback =
-	(values: IPositionData) => void
+	(values: IUiVote) => void
 
 export const mouse: IMousePosition = {
 	start: {x: undefined, y: undefined}

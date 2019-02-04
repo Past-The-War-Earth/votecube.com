@@ -1,3 +1,4 @@
+{#if vote}
 <figure
         id="chart"
         class:leftFigure="!$verticalLayout"
@@ -79,9 +80,9 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 0)}"
-                pollDimDir="{getPollDimDir(poll, 0)}"
                 index=0
                 on:toggle="toggleSurface('x')"
+                vote="{vote}"
             ></DimensionInfoButton>
         </td>
         <td
@@ -95,9 +96,9 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 1)}"
-                pollDimDir="{getPollDimDir(poll, 1)}"
                 index=1
                 on:toggle="toggleSurface('y')"
+                vote="{vote}"
             ></DimensionInfoButton>
         </td>
         <td
@@ -110,9 +111,9 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 2)}"
-                pollDimDir="{getPollDimDir(poll, 2)}"
                 index=2
                 on:toggle="toggleSurface('z')"
+                vote="{vote}"
             ></DimensionInfoButton>
         </td>
         <td
@@ -122,6 +123,7 @@
         </td>
     </tr>
 </table>
+{/if}
 
 <style>
 
@@ -198,9 +200,9 @@
 
 <script>
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
-import {getColor, getDimension, getPollDimDir, getSideText} from '../../../helpers/cube';
+import {getColor, getDimension, getSideText} from '../../../helpers/cube';
 import {loadCubeLogic, shutDownCubeListener} from '../../../libs/cubeLogic'
-import {pollDao} from '../../../dao/poll';
+import {voteDao} from '../../../dao/vote';
 import {scheduleToResize, setResizeCllBck} from '../../../resizer'
 import store from '../../../store'
 
@@ -209,16 +211,16 @@ export default {
         DimensionInfoButton
     },
     computed: {
-        xMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'x', -1, maxBarSize, maxValue),
-        xPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'x', 1, maxBarSize, maxValue),
-        xText: ({poll, toggleDelta}) => directionText(poll, 'x'),
-        yMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'y', -1, maxBarSize, maxValue),
-        yPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'y', 1, maxBarSize, maxValue),
-        yText: ({poll, toggleDelta}) => directionText(poll, 'y'),
-        zMinusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'z', -1, maxBarSize, maxValue),
-        zPlusHeight: ({maxBarSize, maxValue, poll, toggleDelta}) => barHeight(poll, 'z', 1, maxBarSize, maxValue),
-        zText: ({poll, toggleDelta}) => directionText(poll, 'z'),
-        maxValue: ({poll, toggleDelta}) => {
+        xMinusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.x, -1, maxBarSize, maxValue),
+        xPlusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.x, 1, maxBarSize, maxValue),
+        xText: ({poll, toggleDelta, vote}) => directionText(poll, vote.x),
+        yMinusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.y, -1, maxBarSize, maxValue),
+        yPlusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.y, 1, maxBarSize, maxValue),
+        yText: ({poll, toggleDelta, vote}) => directionText(poll, vote.y),
+        zMinusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.z, -1, maxBarSize, maxValue),
+        zPlusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.z, 1, maxBarSize, maxValue),
+        zText: ({poll, toggleDelta, vote}) => directionText(poll, vote.z),
+        maxValue: ({poll, toggleDelta, vote}) => {
             if(!poll) {
                 return 0
             }
@@ -226,9 +228,9 @@ export default {
             const positiveValues = []
             const negativeValues = []
 
-            addToVals(poll, 0, positiveValues, negativeValues)
-            addToVals(poll, 1, positiveValues, negativeValues)
-            addToVals(poll, 2, positiveValues, negativeValues)
+            addToVals(poll, vote.x, positiveValues, negativeValues)
+            addToVals(poll, vote.y, positiveValues, negativeValues)
+            addToVals(poll, vote.z, positiveValues, negativeValues)
 
             const maxPositiveValue = getMaxVal(positiveValues)
             const maxNegativeValue = getMaxVal(negativeValues)
@@ -244,8 +246,7 @@ export default {
     },
 	helpers: {
 		getColor,
-		getDimension,
-		getDisplayValue:getPollDimDir
+		getDimension
 	},
     methods: {
         handleResize(
@@ -279,14 +280,14 @@ export default {
         const pollId = this.store.get().routeParams.pollId
         Promise.all([
             loadCubeLogic(this),
-            pollDao.findByIdWithDetails(pollId)
+            voteDao.findMyVoteForPoll(pollId)
         ]).then(([
             setPositionDataAndMove,
-            poll
+            vote
         ]) => {
-            this.set({poll})
-            // TODO: add support for vote values
-            setPositionDataAndMove(poll.pollsDimensionsDirections)
+            const poll = vote.poll
+            this.set({poll, vote})
+            setPositionDataAndMove(vote)
         })
         this.store.set({noOverflow: true})
     },
@@ -299,40 +300,36 @@ export default {
 }
 
 function barHeight(
-    poll,
-    axis,
+    voteDimension,
     direction,
     maxBarSize,
     maxValue
 ) {
-    const pollDimDir = getPollDimDir(poll, axis)
-    return pollDimDir
-    && pollDimDir.dir === direction
-        ? pollDimDir.value * maxBarSize / (maxValue * 1.2)
+    return voteDimension
+    && voteDimension.dir === direction
+        ? voteDimension.value * maxBarSize / (maxValue * 1.2)
         : 0
 }
 
 function directionText(
     poll,
-    axis
+    voteDimension
 ) {
-    const pollDimDir = getPollDimDir(poll, axis)
-    return pollDimDir
-        ? getSideText(poll, pollDimensionIndex, pollDimDir.dir)
+    return poll
+        ? getSideText(poll, voteDimension.axis, voteDimension.dir)
         : ''
 }
 
 function addToVals(
     poll,
-    pollDimensionIndex,
+    voteDimension,
     positiveValues,
     negativeValues
 ) {
-    const pollDimDir = getPollDimDir(poll, pollDimensionIndex)
-    if (pollDimDir.dir === 1) {
-        positiveValues.push(pollDimDir.value);
+    if (voteDimension.dir === 1) {
+        positiveValues.push(voteDimension.value);
     } else {
-        negativeValues.push(pollDimDir.value);
+        negativeValues.push(voteDimension.value);
     }
 }
 

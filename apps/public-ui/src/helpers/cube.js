@@ -54,20 +54,6 @@ export function getColor(
     return getDimensionColor(dimension)
 }
 
-export function getPollDimDir(
-    poll,
-    axis
-) {
-    if (!poll) {
-        return null
-    }
-
-    return poll.pollsDimensionsDirections.filter(
-        pollDimDir =>
-            pollDimDir.axis === axis
-    )[0]
-}
-
 export function getSideText(
     poll,
     axis,

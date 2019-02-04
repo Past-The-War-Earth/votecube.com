@@ -6,8 +6,8 @@ import {
 }                 from '../utils/utils'
 import {
 	Bool,
-	IPollDimensionDirection,
-	IPositionData,
+	IUiVoteDimension,
+	IUiVote,
 	IValuesOutCallback,
 	mouse,
 	Move
@@ -47,33 +47,19 @@ export function setViewPort(
 }
 
 export function setPositionDataAndMove(
-	dimensionPositionData: IPollDimensionDirection[]
+	uiVote: IUiVote
 ) {
-	if (setPositionData(dimensionPositionData)) {
+	if (setPositionData(uiVote)) {
 		viewport.moveToDegree()
 	}
 }
 
 export function setPositionData(
-	dimensionPositionData: IPollDimensionDirection[]
+	positionData: IUiVote
 ): boolean {
-	if (!dimensionPositionData) {
-		viewport.pd = null
-		return false
-	}
-
-	const positionData: IPositionData = {
-		x: null,
-		y: null,
-		z: null
-	}
-	dimensionPositionData.forEach(
-		pollDimensionDirection => {
-			positionData[pollDimensionDirection.axis] = pollDimensionDirection
-		})
 	viewport.pd = positionData
 
-	return true
+	return !!!positionData
 }
 
 export function addCubeAdjustment(): void {

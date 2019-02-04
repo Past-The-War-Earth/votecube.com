@@ -1,3 +1,4 @@
+{#if vote}
 <div>
     <section
             id="viewport"
@@ -65,14 +66,15 @@
             </div>
         </figure>
     </section>
-{#if percentMode}
+    {#if percentMode}
     <PercentPicker
         on:close="togglePercentPicker()"
         on:move="move(event)"
         on:moveToValue="moveToValue(event)"
         poll="{poll}"
+        vote="{vote}"
     ></PercentPicker>
-{:else}
+    {:else}
     <a
         class="app-button {$verticalLayout ? 'bottom-left' : 'top-right'}"
         on:click="togglePercentPicker()"
@@ -88,42 +90,42 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 0)}"
-                pollDimDir="{getPollDimDir(poll, 0)}"
                 index=0
                 on:toggle="toggleSurface(poll, 0, 'x')"
+                voteDim="{vote.x}"
             ></DimensionInfoButton>
         </td>
-    {#if $verticalLayout}
+        {#if $verticalLayout}
         <td
         >
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 1)}"
-                pollDimDir="{getPollDimDir(poll, 1)}"
                 index=1
                 on:toggle="toggleSurface(poll, 1, 'y')"
+                voteDim="{vote.y}"
             ></DimensionInfoButton>
         </td>
         <td>
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 2)}"
-                pollDimDir="{getPollDimDir(poll, 2)}"
                 index=2
                 on:toggle="toggleSurface(poll, 2, 'z')"
+                voteDim="{vote.z}"
             ></DimensionInfoButton>
         </td>
-    {/if}
+        {/if}
     </tr>
-    {#if !$verticalLayout}
+        {#if !$verticalLayout}
     <tr>
         <td>
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 1)}"
-                pollDimDir="{getPollDimDir(poll, 1)}"
                 index=1
                 on:toggle="toggleSurface(poll, 1, 'y')"
+                voteDim="{vote.y}"
             ></DimensionInfoButton>
         </td>
     </tr>
@@ -132,19 +134,20 @@
             <DimensionInfoButton
                 delta="{toggleDelta}"
                 dimension="{getDimension(poll, 2)}"
-                pollDimDir="{getPollDimDir(poll, 2)}"
                 index=2
                 on:toggle="toggleSurface(poll, 2, 'z')"
+                voteDim="{vote.z}"
             ></DimensionInfoButton>
         </td>
     </tr>
-    {/if}
+        {/if}
     </table>
     <VoteButton
         classes="bottom-right"
     ></VoteButton>
-{/if}
+    {/if}
 </div>
+{/if}
 
 <style>
     .bottom-dimension-table {
@@ -239,8 +242,8 @@
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
 import PercentPicker from '../../../common/control/PercentPicker.html'
 import VoteButton from '../../../common/control/button/VoteButton.html'
-import {getColor, getDimension, getPollDimDir, getSideText} from '../../../helpers/cube';
-import {pollDao} from '../../../dao/poll';
+import {getColor, getDimension, getSideText} from '../../../helpers/cube';
+import {voteDao} from '../../../dao/vote';
 import {loadCubeLogic, setCubeAdjustment, shutDownCubeListener} from '../../../libs/cubeLogic'
 import {setResizeCllBck} from '../../../resizer'
 import store from '../../../store';
@@ -263,7 +266,6 @@ export default {
 	helpers: {
 		getColor,
 		getDimension,
-		getDisplayValue:getPollDimDir,
 		getSideText
 	},
     methods: {
@@ -314,14 +316,14 @@ export default {
         const pollId = this.store.get().routeParams.pollId
         Promise.all([
             loadCubeLogic(this),
-            pollDao.findByIdWithDetails(pollId)
+            voteDao.findMyVoteForPoll(pollId)
         ]).then(([
             setPositionDataAndMove,
-            poll
+            vote
         ]) => {
-            this.set({poll})
-            // TODO: add support for vote values
-            setPositionDataAndMove(poll.pollsDimensionsDirections)
+            const poll = vote.poll
+            this.set({poll, vote})
+            setPositionDataAndMove(vote)
         })
 
         this.store.set({noOverflow: true})

@@ -6,8 +6,8 @@ import {
 	ValueArrayPosition
 }                                    from '../cubeMoveMatrix'
 import {
-	IPollDimensionDirection,
-	IPositionData
+	IUiVoteDimension,
+	IUiVote
 }                                    from '../cubeMovement'
 import {IViewport}                   from '../Viewport'
 import {
@@ -55,7 +55,7 @@ export class MatrixValueChooser {
 		// need to find the percentages that best endPoint the specified ones
 		const valueMatrix = VALUE_MATRIX
 
-		const newPositionData: IPositionData = viewport.pd
+		const newPositionData: IUiVote = viewport.pd
 
 		let lowestLargest       = 50
 		let lowestMedian        = 33
@@ -140,13 +140,13 @@ export class MatrixValueChooser {
 	}
 
 	private setDimZeroPositions(
-		dimensionPositionData: IPollDimensionDirection,
+		voteDimension: IUiVoteDimension,
 		plusIndex: ValueArrayPosition,
 		minusIndex: ValueArrayPosition,
 		zeroedPositions: boolean[]
 	) {
-		if (dimensionPositionData.value) {
-			if (dimensionPositionData.dir === 1) {
+		if (voteDimension.value) {
+			if (voteDimension.dir === 1) {
 				zeroedPositions[minusIndex] = true
 			} else {
 				zeroedPositions[plusIndex] = true
@@ -158,7 +158,7 @@ export class MatrixValueChooser {
 	}
 
 	private getDimensionDistance(
-		newDimensionPositionData: IPollDimensionDirection,
+		newVoteDimension: IUiVoteDimension,
 		positionData: PositionValues,
 		positiveIndex: ValueArrayPosition,
 		negativeIndex: ValueArrayPosition,
@@ -168,7 +168,7 @@ export class MatrixValueChooser {
 		const maximumDistance = MAX_DIST
 		if (!positionsWithZeroes[positiveIndex]) {
 			positiveDistance = Math.abs(positionData[positiveIndex]
-				- newDimensionPositionData.value)
+				- newVoteDimension.value)
 			if (positiveDistance > maximumDistance) {
 				return undefined
 			}
@@ -176,7 +176,7 @@ export class MatrixValueChooser {
 		let negativeDistance = 0
 		if (!positionsWithZeroes[negativeIndex]) {
 			negativeDistance = Math.abs(positionData[negativeIndex]
-				- newDimensionPositionData.value)
+				- newVoteDimension.value)
 			if (negativeDistance > maximumDistance) {
 				return undefined
 			}

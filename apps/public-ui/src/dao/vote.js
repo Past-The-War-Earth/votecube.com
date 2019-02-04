@@ -19,14 +19,17 @@ export const voteDao = {
             vote = {
                 poll,
                 x: {
+                    axis: 'x',
                     dir: 1,
                     value: 0
                 },
                 y: {
+                    axis: 'y',
                     dir: 1,
                     value: 100
                 },
                 z: {
+                    axis: 'z',
                     dir: 1,
                     value: 0
                 }
