@@ -110,11 +110,11 @@
             on:select="selectDimension(form.fields.dimensions.fields.third)"
         ></SelectionBlock>
         <nav class="pure-controls">
-            <RightButton
+            <BuildButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
                 on:select="submit()"
-            ></RightButton>
+            ></BuildButton>
         </nav>
     </fieldset>
 </form>
@@ -141,7 +141,7 @@
 </style>
 
 <script>
-import RightButton from '../../../common/control/button/RightButton.html'
+import BuildButton from '../../../common/control/button/BuildButton.html'
 import AutoComplete from '../../../common/field/AutoComplete.html'
 import IconBlock from '../../../common/field/IconBlock.html'
 import MultiSelect from '../../../common/field/MultiSelect.html'
@@ -160,10 +160,10 @@ import store from '../../../store'
 export default {
     components: {
         AutoComplete,
+        BuildButton,
         IconBlock,
         LocationIcon,
         MultiSelect,
-        RightButton,
         SelectionBlock,
         Text,
         TimeIcon
