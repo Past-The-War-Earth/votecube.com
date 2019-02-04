@@ -27,11 +27,11 @@ export const pollDao = {
                 })[0]
 
                 currentDimensionDirection.dimension = DB.dimensions.filter((dimension) =>
-                    dimension.id === dimensionDirection.dimension.id
+                    dimension.id === currentDimensionDirection.dimension.id
                 )[0]
 
                 currentDimensionDirection.direction = DB.directions.filter((direction) =>
-                    direction.id === dimensionDirection.direction.id
+                    direction.id === currentDimensionDirection.direction.id
                 )[0]
             }
 

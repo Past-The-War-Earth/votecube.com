@@ -33,10 +33,10 @@ import {getDimensionColor} from '../../../helpers/dimension'
 export default {
     computed: {
         bottomBorderColor: ({delta, dimension, voteDim}) => borderColor(dimension, voteDim, -1),
-        float: ({index, $verticalLayout}) => $verticalLayout && index == 0 ? 'right' : 'initial',
-        margin: ({index, $verticalLayout}) => $verticalLayout && index == 1 ? 'auto' : 'initial',
+        float: ({axis, $verticalLayout}) => $verticalLayout && axis == 'x' ? 'right' : 'initial',
+        margin: ({axis, $verticalLayout}) => $verticalLayout && axis == 'y' ? 'auto' : 'initial',
         topBorderColor: ({delta, dimension, voteDim}) => borderColor(dimension, voteDim, 1),
-        percentValue: ({delta, voteDim}) => voteDim ? voteDim.value : ''
+        percentValue: ({delta, voteDim}) => voteDim.value
     },
     helpers: {
         getDimensionColor

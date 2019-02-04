@@ -1,7 +1,6 @@
 import {
 	MOVE_INCREMENTS,
 	MoveIncrement,
-	MV_INC_IDX,
 	PositionValues,
 	VALUE_MATRIX,
 	ValueArrayPosition,
@@ -11,8 +10,8 @@ import {
 	Bool,
 	Direction,
 	getMatrixIdxFromDeg,
-	IUiVoteDimension,
 	IUiVote,
+	IUiVoteDimension,
 	IValuesOutCallback,
 	Move,
 	moveCoordinates,
@@ -32,6 +31,7 @@ export interface IViewport {
 	y: number
 	// yi: number
 	vd: IVisibleDirection
+
 	// zm: ZoomIndex
 
 	move(
@@ -124,26 +124,23 @@ export const viewport: IViewport = {
 		function getDimensionState(
 			positivePosition: ValueArrayPosition,
 			negativePosition: ValueArrayPosition,
-			positionValues: PositionValues
-		): IUiVoteDimension {
+			positionValues: PositionValues,
+			voteDimension: IUiVoteDimension
+		): void {
 			let dir: Direction = 1
 			let value          = positionValues[positivePosition]
 			if (positionValues[negativePosition]) {
 				dir   = -1
 				value = positionValues[negativePosition]
 			}
-			return {
-				dir,
-				valid: true,
-				value
-			}
+			voteDimension.dir = dir
+			voteDimension.valid = true
+			voteDimension.value = value
 		}
 
-		this.pd = {
-			x: getDimensionState(0, 5, values),
-			y: getDimensionState(1, 3, values),
-			z: getDimensionState(2, 4, values)
-		}
+		getDimensionState(0, 5, values, this.pd.x)
+		getDimensionState(1, 3, values, this.pd.y)
+		getDimensionState(2, 4, values, this.pd.z)
 
 		this.moveToDegree()
 	},

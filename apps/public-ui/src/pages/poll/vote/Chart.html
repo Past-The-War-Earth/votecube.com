@@ -78,11 +78,11 @@
     <tr>
         <td>
             <DimensionInfoButton
-                delta="{toggleDelta}"
-                dimension="{getDimension(poll, 0)}"
-                index=0
+                delta="{delta}"
+                dimension="{getDimension(poll, 'x')}"
+                axis='x'
                 on:toggle="toggleSurface('x')"
-                vote="{vote}"
+                voteDim="{vote.x}"
             ></DimensionInfoButton>
         </td>
         <td
@@ -94,11 +94,11 @@
     </tr>
         <td>
             <DimensionInfoButton
-                delta="{toggleDelta}"
-                dimension="{getDimension(poll, 1)}"
-                index=1
+                delta="{delta}"
+                dimension="{getDimension(poll, 'y')}"
+                axis='y'
                 on:toggle="toggleSurface('y')"
-                vote="{vote}"
+                voteDim="{vote.y}"
             ></DimensionInfoButton>
         </td>
         <td
@@ -109,11 +109,11 @@
     <tr>
         <td>
             <DimensionInfoButton
-                delta="{toggleDelta}"
-                dimension="{getDimension(poll, 2)}"
-                index=2
+                delta="{delta}"
+                dimension="{getDimension(poll, 'z')}"
+                axis='z'
                 on:toggle="toggleSurface('z')"
-                vote="{vote}"
+                voteDim="{vote.z}"
             ></DimensionInfoButton>
         </td>
         <td
@@ -211,20 +211,16 @@ export default {
         DimensionInfoButton
     },
     computed: {
-        xMinusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.x, -1, maxBarSize, maxValue),
-        xPlusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.x, 1, maxBarSize, maxValue),
-        xText: ({poll, toggleDelta, vote}) => directionText(poll, vote.x),
-        yMinusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.y, -1, maxBarSize, maxValue),
-        yPlusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.y, 1, maxBarSize, maxValue),
-        yText: ({poll, toggleDelta, vote}) => directionText(poll, vote.y),
-        zMinusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.z, -1, maxBarSize, maxValue),
-        zPlusHeight: ({maxBarSize, maxValue, toggleDelta, vote}) => barHeight(vote.z, 1, maxBarSize, maxValue),
-        zText: ({poll, toggleDelta, vote}) => directionText(poll, vote.z),
-        maxValue: ({poll, toggleDelta, vote}) => {
-            if(!poll) {
-                return 0
-            }
-
+        xMinusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.x, -1, maxBarSize, maxValue),
+        xPlusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.x, 1, maxBarSize, maxValue),
+        xText: ({poll, delta, vote}) => directionText(poll, vote.x),
+        yMinusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.y, -1, maxBarSize, maxValue),
+        yPlusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.y, 1, maxBarSize, maxValue),
+        yText: ({poll, delta, vote}) => directionText(poll, vote.y),
+        zMinusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.z, -1, maxBarSize, maxValue),
+        zPlusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.z, 1, maxBarSize, maxValue),
+        zText: ({poll, delta, vote}) => directionText(poll, vote.z),
+        maxValue: ({poll, delta, vote}) => {
             const positiveValues = []
             const negativeValues = []
 
@@ -241,7 +237,7 @@ export default {
     data() {
         return {
             dimension: null,
-            toggleDelta: 0
+            delta: 0
         }
     },
 	helpers: {
@@ -258,7 +254,7 @@ export default {
             dimension
         ) {
             this.get().mutationApi.toggleSurface(dimension)
-            this.set({toggleDelta: this.get().toggleDelta + 1})
+            this.set({delta: this.get().delta + 1})
         }
     },
     oncreate() {
@@ -275,11 +271,12 @@ export default {
 
             this.set({maxBarSize});
         }, this.store)
-        loadCubeLogic(this)
 
         const pollId = this.store.get().routeParams.pollId
         Promise.all([
-            loadCubeLogic(this),
+            loadCubeLogic(this, (vote) => {
+                this.set({delta: this.get().delta + 1})
+            }),
             voteDao.findMyVoteForPoll(pollId)
         ]).then(([
             setPositionDataAndMove,
@@ -315,9 +312,7 @@ function directionText(
     poll,
     voteDimension
 ) {
-    return poll
-        ? getSideText(poll, voteDimension.axis, voteDimension.dir)
-        : ''
+    return getSideText(poll, voteDimension.axis, voteDimension.dir)
 }
 
 function addToVals(

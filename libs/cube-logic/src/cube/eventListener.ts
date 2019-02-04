@@ -6,7 +6,6 @@ import {
 }                 from '../utils/utils'
 import {
 	Bool,
-	IUiVoteDimension,
 	IUiVote,
 	IValuesOutCallback,
 	mouse,
@@ -59,7 +58,7 @@ export function setPositionData(
 ): boolean {
 	viewport.pd = positionData
 
-	return !!!positionData
+	return !!positionData
 }
 
 export function addCubeAdjustment(): void {

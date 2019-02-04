@@ -105,50 +105,44 @@ export const DB = {
             dimensionDirection: {
                 id: 1,
             },
-            dir: -1,
-            id: 1,
-            value: 0
+            dir: 1,
+            id: 1
         }, {
             axis: 'x',
             dimensionDirection: {
-                id: 1,
-            },
-            dir: 1,
-            id: 2,
-            value: 0
-        }, {
-            axis: 'y',
-            dimensionDirection: {
-                id: 1,
+                id: 2,
             },
             dir: -1,
-            id: 3,
-            value: 0
+            id: 2
         }, {
             axis: 'y',
             dimensionDirection: {
-                id: 1,
+                id: 3,
             },
             dir: 1,
-            id: 4,
-            value: 100
+            id: 3
+        }, {
+            axis: 'y',
+            dimensionDirection: {
+                id: 4,
+            },
+            dir: -1,
+            id: 4
 
         }, {
             axis: 'z',
             dimensionDirection: {
-                id: 1,
+                id: 5,
             },
-            dir: -1,
-            id: 5,
-            value: 0
+            dir: 1,
+            id: 5
         }, {
             axis: 'z',
             dimensionDirection: {
-                id: 1,
+                id: 6,
             },
-            dir: 1,
-            id: 6,
-            value: 0
+            dir: -1,
+            id: 6
         }]
     }]
 }

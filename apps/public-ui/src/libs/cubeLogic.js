@@ -16,11 +16,7 @@ export function loadCubeLogic(
             ) => {
                 page.set({mutationApi})
             },
-            (
-                currentValue
-            ) => {
-                page.store.set({currentValue})
-            },
+            viewCallback,
         )
 
         return cubeListener.setPositionDataAndMove
