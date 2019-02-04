@@ -12,7 +12,7 @@
                 <div
                         style="
         background-color: #{getColor(poll, 'x')};
-        height: {xPlusHeight}px;
+        height: {xPlusHeight(maxBarSize, maxValue, delta, vote)}px;
             "
                 >
                 </div>
@@ -21,7 +21,7 @@
                 <div
                         style="
         background-color: #{getColor(poll, 'y')};
-        height: {yPlusHeight}px;
+        height: {yPlusHeight(maxBarSize, maxValue, delta, vote)}px;
             "
                 >
                 </div>
@@ -30,7 +30,7 @@
                 <div
                         style="
         background-color: #{getColor(poll, 'z')};
-        height: {zPlusHeight}px;
+        height: {zPlusHeight(maxBarSize, maxValue, delta, vote)}px;
             "
                 >
                 </div>
@@ -42,7 +42,7 @@
                 <div
                         style="
         background-color: #{getColor(poll, 'x')};
-        height: {xMinusHeight}px;
+        height: {xMinusHeight(maxBarSize, maxValue, delta, vote)}px;
             "
                 >
                 </div>
@@ -52,7 +52,7 @@
                 <div
                         style="
         background-color: #{getColor(poll, 'y')};
-        height: {yMinusHeight}px;
+        height: {yMinusHeight(maxBarSize, maxValue, delta, vote)}px;
             "
                 >
                 </div>
@@ -62,7 +62,7 @@
                 <div
                         style="
         background-color: #{getColor(poll, 'z')};
-        height: {zMinusHeight}px;
+        height: {zMinusHeight(maxBarSize, maxValue, delta, vote)}px;
             "
                 >
                 </div>
@@ -88,7 +88,7 @@
         <td
             class="directionText"
         >
-            {xText}
+            {xText(poll, delta, vote)}
         </td>
     <tr>
     </tr>
@@ -104,7 +104,7 @@
         <td
             class="directionText"
         >
-            {yText}
+            {yText(poll, delta, vote)}
         </td>
     <tr>
         <td>
@@ -119,7 +119,7 @@
         <td
             class="directionText"
         >
-            {zText}
+            {zText(poll, delta, vote)}
         </td>
     </tr>
 </table>
@@ -211,16 +211,11 @@ export default {
         DimensionInfoButton
     },
     computed: {
-        xMinusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.x, -1, maxBarSize, maxValue),
-        xPlusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.x, 1, maxBarSize, maxValue),
-        xText: ({poll, delta, vote}) => directionText(poll, vote.x),
-        yMinusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.y, -1, maxBarSize, maxValue),
-        yPlusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.y, 1, maxBarSize, maxValue),
-        yText: ({poll, delta, vote}) => directionText(poll, vote.y),
-        zMinusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.z, -1, maxBarSize, maxValue),
-        zPlusHeight: ({maxBarSize, maxValue, delta, vote}) => barHeight(vote.z, 1, maxBarSize, maxValue),
-        zText: ({poll, delta, vote}) => directionText(poll, vote.z),
         maxValue: ({poll, delta, vote}) => {
+            if(!vote) {
+                return 0
+            }
+
             const positiveValues = []
             const negativeValues = []
 
@@ -242,7 +237,16 @@ export default {
     },
 	helpers: {
 		getColor,
-		getDimension
+		getDimension,
+		xMinusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.x, -1, maxBarSize, maxValue),
+        xPlusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.x, 1, maxBarSize, maxValue),
+        xText: (poll, delta, vote) => directionText(poll, vote.x),
+        yMinusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.y, -1, maxBarSize, maxValue),
+        yPlusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.y, 1, maxBarSize, maxValue),
+        yText: (poll, delta, vote) => directionText(poll, vote.y),
+        zMinusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.z, -1, maxBarSize, maxValue),
+        zPlusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.z, 1, maxBarSize, maxValue),
+        zText: (poll, delta, vote) => directionText(poll, vote.z)
 	},
     methods: {
         handleResize(
