@@ -313,7 +313,8 @@ export default {
             this.set({zoomFactor})
         }, this.store)
 
-        const pollId = this.store.get().routeParams.pollId
+        const {mode, pollId} = this.store.get().routeParams;
+
         Promise.all([
             loadCubeLogic(this, (vote) => {
                 this.set({delta: this.get().delta + 1})

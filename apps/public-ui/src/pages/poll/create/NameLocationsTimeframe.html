@@ -110,11 +110,11 @@
             on:select="selectDimension(form.fields.dimensions.fields.third)"
         ></SelectionBlock>
         <nav class="pure-controls">
-            <BuildButton
+            <PreviewButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
                 on:select="submit()"
-            ></BuildButton>
+            ></PreviewButton>
         </nav>
     </fieldset>
 </form>
@@ -141,7 +141,7 @@
 </style>
 
 <script>
-import BuildButton from '../../../common/control/button/BuildButton.html'
+import PreviewButton from '../../../common/control/button/PreviewButton.html'
 import AutoComplete from '../../../common/field/AutoComplete.html'
 import IconBlock from '../../../common/field/IconBlock.html'
 import MultiSelect from '../../../common/field/MultiSelect.html'
@@ -149,7 +149,8 @@ import Text from '../../../common/field/Text.html'
 import LocationIcon from '../../../common/icon/LocationIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
 import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
-import * as forms from '../../../forms'
+import * as forms from '../../../form/forms'
+import {createPollForm} from '../../../form/poll'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadUi} from '../../../libs/text/ui'
@@ -160,10 +161,10 @@ import store from '../../../store'
 export default {
     components: {
         AutoComplete,
-        BuildButton,
         IconBlock,
         LocationIcon,
         MultiSelect,
+        PreviewButton,
         SelectionBlock,
         Text,
         TimeIcon
@@ -211,6 +212,7 @@ export default {
             routes.navigateToPage(routes.SELECT_POLL_TIMEFRAME)
         },
         submit() {
+            forms.log(this)
             forms.navigateOnValid(this, routes.CREATE_POLL_NAME_LOC_DATE)
         }
     },
@@ -227,7 +229,7 @@ export default {
             let form = forms.getForm(forms.CREATE_POLL_TOP)
 
             if(!form) {
-                form = createForm(
+                form = createPollForm(
                     locations,
                     this.store.get().text.UI,
                     DateField,
@@ -248,202 +250,5 @@ export default {
     store: () => store
 }
 
-function createForm(
-    locationsData,
-    uiText,
-    DateField,
-    Field,
-    FieldGroup,
-    MatchingField,
-    OptionsField,
-    Validators
-) {
-    const text = uiText.Poll.Create;
 
-    const dimensions = new FieldGroup('Dimensions', {
-        first: createDimensionForm(
-            uiText,
-            Field,
-            FieldGroup,
-            MatchingField,
-            Validators,
-            [Validators.required()]
-        ),
-        second: createDimensionForm(
-            uiText,
-            Field,
-            FieldGroup,
-            MatchingField,
-            Validators,
-            [Validators.required()]
-        ),
-        third: createDimensionForm(
-            uiText,
-            Field,
-            FieldGroup,
-            MatchingField,
-            Validators,
-            []
-        )
-    }, [Validators.required()], text)
-
-    const labels = new OptionsField([], [{
-        id: 1,
-        text: 'Trump',
-        theme: {
-            id: 1
-        }
-    },{
-        id: 2,
-        text: 'Integration',
-        theme: {
-            id: 1
-        }
-    }], {
-        multi: true
-    })
-
-    const locations = new FieldGroup('Locations', {
-        continents: new OptionsField([
-                Validators.required()
-            ], locationsData.continents, {
-                multi: true
-            }),
-        countries: new OptionsField([
-            ], locationsData.countries, {
-                multi: true
-            }),
-        states: new OptionsField([
-            ], locationsData.states, {
-                multi: true
-            }),
-        cities: new OptionsField([
-            ], locationsData.cities, {
-                multi: true
-            }),
-    }, [Validators.required()], text)
-
-    const startDate = new DateField([
-        Validators.required(),
-        Validators.minTomorrow()
-    ])
-
-    const theme = new OptionsField([
-            Validators.required()
-        ], [{
-            id: 1,
-            text: 'Politics'
-        },{
-            id: 2,
-            text: 'Culture'
-        },{
-            id: 3,
-            text: 'Technology'
-        },{
-            id: 4,
-            text: 'Space'
-        },{
-            id: 5,
-            text: 'Security'
-        }])
-
-    const timeframe = new FieldGroup('Timeframe', {
-        startDate,
-        endDate: new DateField([
-                Validators.required(),
-                Validators.minTomorrow(),
-                Validators.greaterThanOrEquals(startDate)
-            ]),
-    }, [Validators.required()], text)
-
-    return new FieldGroup('NameLocationsTimeframe', {
-        dimensions,
-        labels,
-        locations,
-        name: new Field([
-            Validators.minLength(3),
-            Validators.required()
-        ], { maxLength: 40}),
-        theme,
-        timeframe
-    }, [Validators.required()], text)
-}
-
-function createDimensionForm(
-    uiText,
-    Field,
-    FieldGroup,
-    MatchingField,
-    Validators,
-    formValidators
-) {
-    const name = new MatchingField([
-        Validators.required(),
-        Validators.minLength(5)
-    ], {
-        maxLength: 20
-    })
-    const topDirectionName = new MatchingField([
-        Validators.required(),
-        Validators.minLength(5)
-    ], {
-        maxLength: 120
-    })
-    const bottomDirectionName = new MatchingField([
-        Validators.required(),
-        Validators.minLength(5)
-    ], {
-        maxLength: 120
-    })
-    const topDirection = new FieldGroup('TopDirection', {
-        name: topDirectionName
-    }, [Validators.required()], uiText.Direction)
-    const bottomDirection = new FieldGroup('BottomDirection', {
-        name: bottomDirectionName
-    }, [Validators.required()], uiText.Direction)
-
-    // FIXME: move to appropriate place once matching is implemented
-    name.onChange((
-        value
-    ) => {
-        if(name.valid) {
-           name.matches = ['a', 'b', 'c']
-        } else {
-            name.matches = null
-        }
-    })
-    // FIXME: move to appropriate place once matching is implemented
-    bottomDirectionName.onChange((
-        value
-    ) => {
-        if(bottomDirectionName.valid) {
-            bottomDirectionName.matches = ['a', 'b', 'c']
-        } else {
-            bottomDirectionName.matches = null
-        }
-    })
-    // FIXME: move to appropriate place once matching is implemented
-    topDirectionName.onChange((
-        value
-    ) => {
-        if(topDirectionName.valid) {
-            topDirectionName.matches = ['a', 'b', 'c']
-        } else {
-            topDirectionName.matches = null
-        }
-    })
-
-    const color = new FieldGroup('PickColor', {
-        picker: new Field([
-            Validators.required()
-        ])
-    }, [Validators.required()], uiText.Dimension)
-
-    return new FieldGroup('Create', {
-        bottomDirection,
-        color,
-        name,
-        topDirection
-    }, formValidators, uiText.Dimension)
-}
 </script>

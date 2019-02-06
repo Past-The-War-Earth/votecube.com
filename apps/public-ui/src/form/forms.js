@@ -1,4 +1,4 @@
-import * as routes from './routes'
+import * as routes from '../routes'
 
 export const CREATE_POLL_TOP = routes.CREATE_POLL_NAME_LOC_DATE
 export const CREATE_DIMENSION = routes.CREATE_DIMENSION
@@ -90,7 +90,8 @@ function getTopForm(
 
 export function navigateOnValid(
     page,
-    navigateToRouteOnValid
+    navigateToRouteOnValid,
+    paramMap
 ) {
     const {form} = page.get()
 
@@ -100,7 +101,15 @@ export function navigateOnValid(
         return
     }
 
-    routes.navigateToPage(navigateToRouteOnValid)
+    routes.navigateToPage(navigateToRouteOnValid, paramMap)
+}
+
+export function log(
+    page
+) {
+    const {form} = page.get()
+
+    console.log(form.value)
 }
 
 export var OPTIONS = {

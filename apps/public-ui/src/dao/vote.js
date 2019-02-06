@@ -15,30 +15,35 @@ export const voteDao = {
             }
 
             return pollDao.findByIdWithDetails(pollId).then(poll => {
-                vote = {
-                    poll,
-                    x: {
-                        axis: 'x',
-                        dir: 1,
-                        value: 0
-                    },
-                    y: {
-                        axis: 'y',
-                        dir: 1,
-                        value: 100
-                    },
-                    z: {
-                        axis: 'z',
-                        dir: 1,
-                        value: 0
-                    }
-                }
+                vote = this.getDummyVote(poll)
 
                 voteMap[pollId] = vote
 
                 resolve(vote)
             })
         })
+    },
+    getDummyVote(
+        poll
+    ) {
+        return {
+            poll,
+            x: {
+                axis: 'x',
+                dir: 1,
+                value: 0
+            },
+            y: {
+                axis: 'y',
+                dir: 1,
+                value: 100
+            },
+            z: {
+                axis: 'z',
+                dir: 1,
+                value: 0
+            }
+        }
     }
 
 }
