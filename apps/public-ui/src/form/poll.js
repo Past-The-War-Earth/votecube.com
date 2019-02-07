@@ -200,13 +200,35 @@ function createDimensionForm(
 export function formToDto(
     formValue
 ) {
-
     const dimensions = formValue.dimensions
 
     const firstDimension = dimensionToDto(dimensions.first)
     const secondDimension = dimensionToDto(dimensions.second)
     const thirdDimension = dimensionToDto(dimensions.third)
 
+    const formThemeValue = formValue.theme
+
+    const pollDimensionDirections = []
+
+    return {
+        endDate: formValue.endDate,
+        locations: formValue.continents,
+        name: formValue.name,
+        startDate: formValue.startDate,
+        theme: {
+            id: formThemeValue.id,
+            name: formThemeValue.text
+        },
+        pollsLabels: formValue.labels.map(label => ({
+            label: {
+                id: label.id,
+                name: label.text
+            },
+            poll: {
+            }
+        })),
+        pollDimensionDirections
+    }
 }
 
 export function dimensionToDto(
