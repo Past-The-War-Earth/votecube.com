@@ -150,7 +150,8 @@ import LocationIcon from '../../../common/icon/LocationIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
 import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
 import * as forms from '../../../form/forms'
-import {createPollForm} from '../../../form/poll'
+import * as pollForm from '../../../form/poll'
+import {pollDao} from '../../../dao/poll'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadUi} from '../../../libs/text/ui'
@@ -212,8 +213,18 @@ export default {
             routes.navigateToPage(routes.SELECT_POLL_TIMEFRAME)
         },
         submit() {
-            forms.log(this)
-            forms.navigateOnValid(this, routes.CREATE_POLL_NAME_LOC_DATE)
+            const {form} = this.get()
+            form.touch()
+
+            if (!form.valid) {
+                return
+            }
+
+            pollDao.addNew(pollForm.formToDto(form.value))
+
+            forms.navigateOnValid(this, routes.CUBE, {
+                pollId: 0
+            })
         }
     },
     oncreate() {
@@ -229,7 +240,7 @@ export default {
             let form = forms.getForm(forms.CREATE_POLL_TOP)
 
             if(!form) {
-                form = createPollForm(
+                form = pollForm.createPollForm(
                     locations,
                     this.store.get().text.UI,
                     DateField,

@@ -39,6 +39,12 @@ export const pollDao = {
 
             resolve(poll)
         })
+    },
+
+    addNew(
+        poll
+    ) {
+        pollMap[0] = poll
     }
 
 }

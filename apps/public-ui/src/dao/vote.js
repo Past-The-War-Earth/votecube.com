@@ -23,7 +23,7 @@ export const voteDao = {
             })
         })
     },
-    getDummyVote(
+    getDummy(
         poll
     ) {
         return {
@@ -45,5 +45,4 @@ export const voteDao = {
             }
         }
     }
-
 }

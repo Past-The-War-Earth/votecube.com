@@ -6,7 +6,8 @@ export const SEQUENCES = {
     directionDescriptions: 6,
     colors: 3,
     polls: 1,
-    pollDescriptions: 1
+    pollDescriptions: 1,
+    pollsDimensionsDirections: 3
 }
 
 export const DB = {

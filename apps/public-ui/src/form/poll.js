@@ -201,14 +201,7 @@ export function formToDto(
     formValue
 ) {
     const dimensions = formValue.dimensions
-
-    const firstDimension = dimensionToDto(dimensions.first)
-    const secondDimension = dimensionToDto(dimensions.second)
-    const thirdDimension = dimensionToDto(dimensions.third)
-
     const formThemeValue = formValue.theme
-
-    const pollDimensionDirections = []
 
     return {
         endDate: formValue.endDate,
@@ -227,12 +220,60 @@ export function formToDto(
             poll: {
             }
         })),
-        pollDimensionDirections
+        pollDimensionDirections: [
+            ...get2PollDimDirs('x', dimensions.first),
+            ...get2PollDimDirs('y', dimensions.second),
+            ...get2PollDimDirs('z', dimensions.third)
+        ]
     }
 }
 
-export function dimensionToDto(
+function get2PollDimDirs(
+    axis,
     dimensionFormValue
 ) {
+    const dimension = getDimDto(dimensionFormValue)
 
+    let topDir = dimensionFormValue.topDirection
+    let bottomDir = dimensionFormValue.bottomDirection
+
+    return [
+        getPollDimDirDto(axis, dimension, 1, topDir.name),
+        getPollDimDirDto(axis, dimension, -1, bottomDir.name)
+    ]
+}
+
+function getPollDimDirDto(
+    axis,
+    dimension,
+    dir,
+    name
+) {
+    return {
+        axis,
+        dimensionDirection: {
+            dimension,
+            direction: {
+                name
+            }
+        },
+        dir,
+    }
+
+}
+
+function getDimDto(
+    formDimension
+) {
+    let picker = formDimension.color.picker
+
+    return {
+        color: {
+            id: picker.red * 256 * 256 + picker.green * 256 + picker.blue,
+            red: picker.red,
+            green: picker.green,
+            blue: picker.blue
+        },
+        name: formDimension.name
+    }
 }
