@@ -83,19 +83,19 @@ Cube
     width: 50px;
 }
 
-.bottom-left {
+.bottomLeft {
     position: fixed;
     bottom: 10px;
     left: 10px;
 }
 
-.bottom-right {
+.bottomRight {
     position: fixed;
     bottom: 10px;
     right: 10px;
 }
 
-.top-right {
+.topRight {
     position: fixed;
     right: 10px;
     top: 55px;
@@ -103,6 +103,40 @@ Cube
 
 var {
     font-style: normal;
+}
+
+.moveDown {
+    bottom: 5px;
+    position: absolute;
+    right: 133px;
+    transform: rotate(90deg);
+}
+
+.moveLeft {
+    left: 5px;
+    position: absolute;
+    top: 133px;
+    transform: rotate(180deg);
+}
+
+.moveRight {
+    right: 5px;
+    position: absolute;
+    top: 133px;
+}
+
+.moveUp {
+    right: 133px;
+    position: absolute;
+    top: 5px;
+    transform: rotate(270deg);
+}
+
+.switchDirection {
+    right: 133px;
+    position: absolute;
+    top: 133px;
+    transform: rotate(-45deg);
 }
 
 /**

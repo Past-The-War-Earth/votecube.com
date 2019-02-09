@@ -67,7 +67,6 @@ export class Field
 		label: LabelRule.BOTH
 	}
 	text: IFieldText
-	value: any         = ''
 
 	constructor(
 		validators: IValidator[] = [],
@@ -79,6 +78,7 @@ export class Field
 			...rules
 		}
 		this.lastValue = this.value
+		this.theValue = ''
 	}
 
 	get error(): IFieldError | null {

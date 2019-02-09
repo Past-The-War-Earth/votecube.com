@@ -9,27 +9,30 @@
     <table>
         <!-- TODO: add support for voting value -->
         <LinearPositionPicker
-            dimension="{getDimension(poll, 'x')}"
-            value="{vote.x}"
+            axis="x"
             on:move="move('x', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('x', event)"
             on:update="update()"
+            poll="{poll}"
+            value="{vote.x}"
             ref:xPicker
         />
         <LinearPositionPicker
-            dimension="{getDimension(poll, 'y')}"
-            value="{vote.y}"
+            axis="y"
             on:move="move('y', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('y', event)"
             on:update="update()"
+            poll="{poll}"
+            value="{vote.y}"
             ref:yPicker
         />
         <LinearPositionPicker
-            dimension="{getDimension(poll, 'z')}"
-            value="{vote.z}"
+            axis="z"
             on:move="move('z', event.direction, event.percentChange)"
             on:moveToValue="moveToValue('z', event)"
             on:update="update()"
+            poll="{poll}"
+            value="{vote.z}"
             ref:zPicker
         />
     </table>
@@ -78,16 +81,12 @@
 
 <script>
 import LinearPositionPicker from './LinearPositionPicker.html'
-import {getDimension} from '../../helpers/cube';
 import store from '../../store.js';
 
 export default {
     components: {
         LinearPositionPicker
     },
-	helpers: {
-		getDimension
-	},
     methods: {
         move(
             dimension,

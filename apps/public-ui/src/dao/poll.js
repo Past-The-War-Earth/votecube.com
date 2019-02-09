@@ -10,7 +10,9 @@ export const pollDao = {
         return new Promise((resolve) => {
             let poll = pollMap[pollId];
 
-            if (poll) {
+            if (poll
+                || pollId == 0
+            ) {
                 resolve(poll)
                 return
             }
@@ -41,7 +43,7 @@ export const pollDao = {
         })
     },
 
-    addNew(
+    addTemp(
         poll
     ) {
         pollMap[0] = poll

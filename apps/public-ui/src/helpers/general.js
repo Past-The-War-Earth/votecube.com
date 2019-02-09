@@ -35,13 +35,21 @@ export function getColor(
 
     const rgb = color.id
 
-    const red = rgb >> 16
-
-    const green = (rgb >> 8) % 256
-
-    const blue = rgb % 256
+    const {blue, green, red} = getRGB(color)
 
     return `${ensure2Digits(red.toString(16))}${ensure2Digits(green.toString(16))}${ensure2Digits(blue.toString(16))}`
+}
+
+export function getRGB(
+    color
+) {
+    const rgb = color.id
+
+    return {
+        red: rgb >> 16,
+        green: (rgb >> 8) % 256,
+        blue: rgb % 256
+    }
 }
 
 function ensure2Digits(

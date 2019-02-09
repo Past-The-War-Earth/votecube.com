@@ -1,4 +1,4 @@
-import {getDimensionColor} from "./dimension";
+import {getColor as getGeneralColor} from "./general";
 
 export function getPollDimensionDirections(
     poll,
@@ -10,6 +10,7 @@ export function getPollDimensionDirections(
     )
 }
 
+/*
 export function getDimensionDirections(
     poll,
     axis
@@ -17,26 +18,26 @@ export function getDimensionDirections(
     return getPollDimensionDirections(poll, axis).map((pollDimensionDirection) => {
         return pollDimensionDirection.dimensionDirection
     })
-}
+}*/
 
-
+/*
 export function getDimension(
     poll,
     axis
 ) {
     return getDimensionDirections(poll, axis)[0].dimension
-}
+}*/
 
 export function getColor(
+    delta,
     poll,
     axis
 ) {
-    const dimension = getDimension(poll, axis)
-
-    return getDimensionColor(dimension)
+    return getGeneralColor(getPollDimensionDirections(poll, axis)[0].color)
 }
 
 export function getSideText(
+    delta,
     poll,
     axis,
     dir

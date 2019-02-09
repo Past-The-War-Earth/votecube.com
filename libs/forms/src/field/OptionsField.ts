@@ -52,7 +52,7 @@ export class OptionsField
 			...rules,
 			label: LabelRule.OVER
 		})
-		this.value = rules && rules.multi ? [] : null
+		this.theValue = rules && rules.multi ? [] : null
 
 		this.filterOptions()
 	}
@@ -99,6 +99,25 @@ export class OptionsField
 		}
 	}
 
+	get value() {
+		return this.theValue
+	}
+
+	set value(
+		value
+	) {
+		if (this.theValue instanceof Array) {
+			this.theValue = []
+			if (!value) {
+				return
+			}
+			value.forEach(
+				aValue => this.doSelect(aValue))
+		} else {
+			this.doSelect(value)
+		}
+	}
+
 	clear(): void {
 		if (this.value instanceof Array) {
 			this.selectionMap = {}
@@ -117,28 +136,34 @@ export class OptionsField
 	select(
 		option: IFieldOption
 	) {
-		if (this.value instanceof Array) {
-			this.selectionMap[option.id] = option
-			this.value                   = [...this.value, option]
-			this.filterOptions()
-		} else {
-			this.value = option
-		}
+		this.doSelect(option)
 		this.onBlur()
 	}
 
 	unselect(
 		optionToUnselect?: IFieldOption
 	) {
-		if (this.value instanceof Array) {
+		if (this.theValue instanceof Array) {
 			delete this.selectionMap[optionToUnselect.id]
-			this.value = this.value.filter(
+			this.theValue = this.theValue.filter(
 				option => option !== optionToUnselect)
 			this.filterOptions()
 		} else {
-			this.value = null
+			this.theValue = null
 		}
 		this.onBlur()
+	}
+
+	private doSelect(
+		option: IFieldOption
+	) {
+		if (this.theValue instanceof Array) {
+			this.selectionMap[option.id] = option
+			this.theValue                = [...this.theValue, option]
+			this.filterOptions()
+		} else {
+			this.theValue = option
+		}
 	}
 
 	private filterOptions() {

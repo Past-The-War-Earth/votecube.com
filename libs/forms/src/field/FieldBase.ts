@@ -85,8 +85,9 @@ export abstract class FieldBase
 	validatorMap
 	valueChangeCallbacks     = []
 
+	protected theValue: any
+
 	private theTouched = false
-	private theValue: any
 
 	constructor(
 		public validators: IValidator[] = []

@@ -149,9 +149,12 @@ import Text from '../../../common/field/Text.html'
 import LocationIcon from '../../../common/icon/LocationIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
 import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
-import * as forms from '../../../form/forms'
-import * as pollForm from '../../../form/poll'
 import {pollDao} from '../../../dao/poll'
+import {voteDao} from '../../../dao/vote'
+import * as forms from '../../../form/forms'
+import * as pollFormCreator from '../../../form/poll/creator'
+import * as pollFormFromConverter from '../../../form/poll/fromConverter'
+import * as pollFormToConverter from '../../../form/poll/toConverter'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
 import {loadUi} from '../../../libs/text/ui'
@@ -220,7 +223,9 @@ export default {
                 return
             }
 
-            pollDao.addNew(pollForm.formToDto(form.value))
+            const poll = pollFormFromConverter.formToDto(form.value)
+            pollDao.addTemp(poll)
+            voteDao.addTempForPoll(poll)
 
             forms.navigateOnValid(this, routes.CUBE, {
                 pollId: 0
@@ -231,16 +236,18 @@ export default {
         Promise.all([
             loadForms(this),
             loadLocations(),
-            loadUi(this.store, 'en-us')
+            loadUi(this.store, 'en-us'),
+            pollDao.findByIdWithDetails(0)
         ]).then(([
             {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
             locations,
-            _
+            _,
+            poll
         ]) => {
             let form = forms.getForm(forms.CREATE_POLL_TOP)
 
             if(!form) {
-                form = pollForm.createPollForm(
+                form = pollFormCreator.createPollForm(
                     locations,
                     this.store.get().text.UI,
                     DateField,
@@ -250,6 +257,10 @@ export default {
                     OptionsField,
                     Validators)
                 forms.setForm(forms.CREATE_POLL_TOP, form)
+            }
+
+            if(poll) {
+                form.value = pollFormToConverter.dtoToForm(poll)
             }
 
            forms.ensureForm(form, this)

@@ -1,6 +1,6 @@
 <var
     style="
-        background-color: #{getDimensionColor(dimension)};
+        background-color: #{getColor(delta, poll, axis)};
         border-bottom-color: #{bottomBorderColor};
         border-top-color: #{topBorderColor};
         float: {float};
@@ -28,23 +28,25 @@
 </style>
 
 <script>
-import {getDimensionColor} from '../../../helpers/dimension'
+import {getColor} from '../../../helpers/cube'
 
 export default {
     computed: {
-        bottomBorderColor: ({delta, dimension, voteDim}) => borderColor(dimension, voteDim, -1),
+        bottomBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, -1),
         float: ({axis, $verticalLayout}) => $verticalLayout && axis == 'x' ? 'right' : 'initial',
         margin: ({axis, $verticalLayout}) => $verticalLayout && axis == 'y' ? 'auto' : 'initial',
-        topBorderColor: ({delta, dimension, voteDim}) => borderColor(dimension, voteDim, 1),
+        topBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, 1),
         percentValue: ({delta, voteDim}) => voteDim.value
     },
     helpers: {
-        getDimensionColor
+        getColor
     }
 }
 
 function borderColor(
-    dimension,
+    delta,
+    poll,
+    axis,
     voteDim,
     dir
 ) {
@@ -53,7 +55,7 @@ function borderColor(
         return '000'
     }
 
-    return getDimensionColor(dimension)
+    return getColor(delta, poll, axis)
 }
 
 </script>

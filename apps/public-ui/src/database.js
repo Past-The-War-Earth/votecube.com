@@ -61,48 +61,71 @@ export const DB = {
         id: 6
     }],
     dimensions: [{
-        color: {
-            id: 255 * 256 * 256
-        },
         id: 1,
         name: 'Security'
     }, {
-        color: {
-            id: 255 * 256 * 256 + 255 * 256
-        },
         id: 2,
         name: 'Economy'
     }, {
-        color: {
-            id: 255 * 256
-        },
         id: 3,
         name: 'Equality',
     }],
     directions: [{
         id: 1,
-        name: 'Trumps policies reduce military\'s over extension and let it focus on the real threats.'
+        // name: 'Trumps policies reduce military\'s over extension and let it focus on the real threats.'
+        name: ' . . . . . X+'
     }, {
         id: 2,
-        name: 'Trump\'s policies reduce the trust in our alliances and hurt the stability of the world.'
+        name: ' . . . . . X-'
+        // name: 'Trump\'s policies reduce the trust in our alliances and hurt the stability of the world.'
     }, {
         id: 3,
-        name: 'Trump\'s policies give profound confidence to companies and are good for the economy.'
+        name: ' . . . . . Y+'
+        // name: 'Trump\'s policies give profound confidence to companies and are good for the economy.'
     }, {
         id: 4,
-        name: 'Trump\'s policies have no real effect on the economy, it\'s purely cyclical.'
+        name: ' . . . . . Y-'
+        // name: 'Trump\'s policies have no real effect on the economy, it\'s purely cyclical.'
     }, {
         id: 5,
-        name: 'Trump\'s policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.'
+        name: ' . . . . . Z+'
+        // name: 'Trump\'s policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.'
     }, {
         id: 6,
-        name: 'Trump\'s policies are tailored with the interests of the wealthy in mind and hurt equality.'
+        name: ' . . . . . Z-'
+        // name: 'Trump\'s policies are tailored with the interests of the wealthy in mind and hurt equality.'
     }],
     polls: [{
-        name: 'Trump\'s policies',
+        endDate: new Date(),
         id: 1,
+        locations: {
+            continents: [
+                {
+                    "id": "Africa"
+                },
+                {
+                    "id": "Asia"
+                },
+                {
+                    "id": "AustraliaNOceania"
+                },
+                {
+                    "id": "Europe"
+                },
+                {
+                    "id": "NorthAmerica"
+                },
+                {
+                    "id": "SouthAmerica"
+                }
+            ]
+        },
+        name: 'Trump\'s policies',
         pollsDimensionsDirections: [{
             axis: 'x',
+            color: {
+                id: 255 * 256 * 256
+            },
             dimensionDirection: {
                 id: 1,
             },
@@ -110,6 +133,9 @@ export const DB = {
             id: 1
         }, {
             axis: 'x',
+            color: {
+                id: 255 * 256 * 256
+            },
             dimensionDirection: {
                 id: 2,
             },
@@ -117,6 +143,9 @@ export const DB = {
             id: 2
         }, {
             axis: 'y',
+            color: {
+                id: 255 * 256 * 256 + 255 * 256
+            },
             dimensionDirection: {
                 id: 3,
             },
@@ -124,6 +153,9 @@ export const DB = {
             id: 3
         }, {
             axis: 'y',
+            color: {
+                id: 255 * 256 * 256 + 255 * 256
+            },
             dimensionDirection: {
                 id: 4,
             },
@@ -132,6 +164,9 @@ export const DB = {
 
         }, {
             axis: 'z',
+            color: {
+                id: 255 * 256
+            },
             dimensionDirection: {
                 id: 5,
             },
@@ -139,11 +174,20 @@ export const DB = {
             id: 5
         }, {
             axis: 'z',
+            color: {
+                id: 255 * 256
+            },
             dimensionDirection: {
                 id: 6,
             },
             dir: -1,
             id: 6
-        }]
+        }],
+        pollLabels: [],
+        startDate: new Date(),
+        theme: {
+            id: 1,
+            name: 'Politics'
+        }
     }]
 }

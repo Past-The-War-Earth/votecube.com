@@ -101,6 +101,15 @@ export class FieldGroup
 		return value
 	}
 
+	set value(
+		value: any
+	) {
+		for (const fieldName in this.fields) {
+			const field = this.fields[fieldName]
+			field.value = value[fieldName]
+		}
+	}
+
 	set optionText(
 		textMap
 	) {

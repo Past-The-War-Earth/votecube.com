@@ -52,7 +52,7 @@
 </style>
 
 <script>
-import {getDimensionColor} from '../../helpers/dimension';
+import {getColor} from '../../helpers/cube';
 import LeftButton from './button/LeftButton.html'
 import RightButton from './button/RightButton.html'
 
@@ -67,10 +67,10 @@ export default {
         rightCircleRadius: ({value}) => getRadius(1, value),
         leftStrokeWidth: ({value}) => getStrokeWidth(-1, value),
         rightStrokeWidth: ({value}) => getStrokeWidth(1, value),
-        leftHighlightColor: ({dimension, value}) => getColor(1, value, dimension),
-        rightHighlightColor: ({dimension, value}) => getColor(-1, value, dimension),
-        leftFillColor: ({dimension, value}) => getColor(-1, value, dimension),
-        rightFillColor: ({dimension, value}) => getColor(1, value, dimension),
+        leftHighlightColor: ({axis, poll, value}) => getTheColor(1, value, poll, axis),
+        rightHighlightColor: ({axis, poll, value}) => getTheColor(-1, value, poll, axis),
+        leftFillColor: ({axis, poll, value}) => getTheColor(-1, value, poll, axis),
+        rightFillColor: ({axis, poll, value}) => getTheColor(1, value, poll, axis),
     },
     methods: {
         mouseDown(
@@ -172,14 +172,15 @@ function getStrokeWidth(
     ? 0
     : 3
 }
-function getColor(
+function getTheColor(
     dir,
     value,
-    dimension
+    poll,
+    axis
 ) {
     return dir === value.dir
-    ? getDimensionColor(dimension)
-    : 'FFFFFF'
+    ? getColor(0, poll, axis)
+    : 'fff'
 }
 function updateValue(
     page

@@ -1,0 +1,32 @@
+<RightButton
+    classes="moveRight"
+    on:select="fire('moveRight')"
+></RightButton>
+<RightButton
+    classes="moveDown"
+    on:select="fire('moveDown')"
+></RightButton>
+<RightButton
+    classes="moveLeft"
+    on:select="fire('moveLeft')"
+></RightButton>
+<RightButton
+    classes="moveUp"
+    on:select="fire('moveUp')"
+></RightButton>
+<SwitchDirectionButton
+    classes="switchDirection"
+    on:select="fire('switchDir')"
+></SwitchDirectionButton>
+
+<script>
+import RightButton from '../../../common/control/button/RightButton.html'
+import SwitchDirectionButton from '../../../common/control/button/SwitchDirectionButton.html'
+
+export default {
+    components: {
+        RightButton,
+        SwitchDirectionButton,
+    }
+}
+</script>
