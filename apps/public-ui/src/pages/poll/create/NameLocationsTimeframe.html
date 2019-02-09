@@ -157,6 +157,7 @@ import * as pollFormFromConverter from '../../../form/poll/fromConverter'
 import * as pollFormToConverter from '../../../form/poll/toConverter'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
+import {loadLocations as loadLocText} from '../../../libs/text/locations'
 import {loadUi} from '../../../libs/text/ui'
 import {getArrayValueTexts, getDate} from '../../../helpers/general'
 import * as routes from '../../../routes'
@@ -237,19 +238,23 @@ export default {
             loadForms(this),
             loadLocations(),
             loadUi(this.store, 'en-us'),
-            pollDao.findByIdWithDetails(0)
+            pollDao.findByIdWithDetails(0),
+            loadLocText(this.store, 'en-us')
         ]).then(([
             {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
             locations,
             _,
-            poll
+            poll,
+            _2
         ]) => {
             let form = forms.getForm(forms.CREATE_POLL_TOP)
+
+            const {text} = this.store.get()
 
             if(!form) {
                 form = pollFormCreator.createPollForm(
                     locations,
-                    this.store.get().text.UI,
+                    text.UI,
                     DateField,
                     Field,
                     FieldGroup,
@@ -261,6 +266,8 @@ export default {
 
             if(poll) {
                 form.value = pollFormToConverter.dtoToForm(poll)
+                form.fields.locations.optionText = text.LOCATIONS
+                form.touch()
             }
 
            forms.ensureForm(form, this)

@@ -41,11 +41,13 @@ export class OptionsField
 	implements IOptionsField {
 
 	filteredOptions: IFieldOption[]                     = []
+	optionsMap: { [optionKey: string]: IFieldOption }   = {}
 	selectionMap: { [optionKey: string]: IFieldOption } = {}
+	theOptions: IFieldOption[]
 
 	constructor(
 		validators: IValidator[],
-		private theOptions: IFieldOption[] = [],
+		options: IFieldOption[] = [],
 		rules?: IOptionFieldRules
 	) {
 		super(validators, {
@@ -54,7 +56,7 @@ export class OptionsField
 		})
 		this.theValue = rules && rules.multi ? [] : null
 
-		this.filterOptions()
+		this.setOptions(options)
 	}
 
 	get options(): IFieldOption[] {
@@ -64,19 +66,13 @@ export class OptionsField
 	set options(
 		newOptions: IFieldOption[]
 	) {
-		this.theOptions = newOptions
-		this.filterOptions()
-
-		let optionsMap = {}
-		for (let newOption of newOptions) {
-			optionsMap[newOption.id] = newOption
-		}
+		this.setOptions(newOptions)
 
 		let newValue        = []
 		let newSelectionMap = {}
 		let valueChanged    = false
 		for (const selection of this.value) {
-			if (!optionsMap[selection.id]) {
+			if (!this.optionsMap[selection.id]) {
 				valueChanged = true
 			} else {
 				newSelectionMap[selection.id] = selection
@@ -112,9 +108,9 @@ export class OptionsField
 				return
 			}
 			value.forEach(
-				aValue => this.doSelect(aValue))
+				aValue => this.selectValue(aValue))
 		} else {
-			this.doSelect(value)
+			this.selectValue(value)
 		}
 	}
 
@@ -169,6 +165,27 @@ export class OptionsField
 	private filterOptions() {
 		this.filteredOptions = this.options.filter(
 			option => !this.selectionMap[option.id])
+	}
+
+	private selectValue(
+		value
+	) {
+		const matchingOption = this.optionsMap[value.id]
+		if (matchingOption) {
+			this.doSelect(matchingOption)
+		}
+	}
+
+	private setOptions(
+		newOptions: IFieldOption[]
+	): void {
+		this.theOptions = newOptions
+		this.filterOptions()
+
+		this.optionsMap = {}
+		for (let newOption of newOptions) {
+			this.optionsMap[newOption.id] = newOption
+		}
 	}
 
 }

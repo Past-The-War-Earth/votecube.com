@@ -97,7 +97,7 @@ export const DB = {
     }],
     polls: [{
         endDate: new Date(),
-        id: 1,
+        id: 0,
         locations: {
             continents: [
                 {
@@ -183,7 +183,7 @@ export const DB = {
             dir: -1,
             id: 6
         }],
-        pollLabels: [],
+        pollsLabels: [],
         startDate: new Date(),
         theme: {
             id: 1,

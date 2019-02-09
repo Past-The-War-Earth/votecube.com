@@ -15,7 +15,7 @@ export function dtoToForm(
             second: getDimForm(getPollDimDirDtos(poll, 'z')),
             third: getDimForm(getPollDimDirDtos(poll, 'x'))
         },
-        labels: poll.pollLabels.map(pollLabel => ({
+        labels: poll.pollsLabels.map(pollLabel => ({
             id: pollLabel.label.id,
             text: pollLabel.label.name
         })),

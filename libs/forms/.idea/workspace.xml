@@ -2,34 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87bf05c7-ab0c-4baa-b157-74a6b0779ece" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/DirectionPositionButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/SwitchDirectionButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/components/poll/create/DirectionPositioner.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/creator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/fromConverter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/toConverter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/LinearPositionPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/LinearPositionPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/PercentPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/PercentPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/DimensionInfoButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/DimensionInfoButton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/LeftButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/LeftButton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/DimensionsIcon.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/DimensionsIcon.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/dao/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/dao/poll.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/dao/vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/dao/vote.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/helpers/cube.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/helpers/cube.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/helpers/dimension.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/helpers/general.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/helpers/general.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/toConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/toConverter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationsTimeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationsTimeframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Chart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/vote/Cube.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/Field.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldBase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/FieldGroup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldGroup.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/field/OptionsField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/OptionsField.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -48,8 +28,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="295">
-                  <caret line="101" column="11" selection-start-line="101" selection-start-column="2" selection-end-line="101" selection-end-column="11" />
+                <state relative-caret-position="208">
+                  <caret line="122" column="23" lean-forward="true" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#49#0" expanded="true" />
                   </folding>
@@ -61,11 +41,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/field/FieldGroup.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="75">
-                  <caret line="81" column="6" selection-start-line="81" selection-start-column="6" selection-end-line="81" selection-end-column="6" />
+                <state relative-caret-position="176">
+                  <caret line="108" column="23" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#75#0" expanded="true" />
                   </folding>
@@ -73,11 +53,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="308">
-                  <caret line="101" selection-start-line="101" selection-end-line="101" />
+                <state relative-caret-position="176">
+                  <caret line="96" selection-start-line="96" selection-end-line="96" />
                   <folding>
                     <element signature="e#0#49#0" expanded="true" />
                   </folding>
@@ -122,13 +102,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.set(</find>
       <find>.valid =</find>
       <find>errors</find>
       <find>isValid</find>
       <find>touc</find>
       <find>hasRequiredChild</find>
-      <find>optionText</find>
       <find>touched</find>
       <find>multiOptions</find>
       <find>key</find>
@@ -152,6 +130,8 @@
       <find>currentValue</find>
       <find>value</find>
       <find>set value</find>
+      <find>optionText</find>
+      <find>get value</find>
     </findStrings>
     <replaceStrings>
       <replace>periodType</replace>
@@ -300,7 +280,7 @@
       <updated>1547652570107</updated>
       <workItem from="1547652571480" duration="173467000" />
       <workItem from="1549166888309" duration="1199000" />
-      <workItem from="1549172769238" duration="9069000" />
+      <workItem from="1549172769238" duration="11138000" />
     </task>
     <task id="LOCAL-00001" summary="NamePlaceTimeSelector form layout and start of forms logic">
       <created>1547652705203</created>
@@ -348,13 +328,33 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183735000" />
+    <option name="totallyTimeSpent" value="185804000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13909379" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.13909379" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TypeScript" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32917964" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.20415778" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.13909379" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -372,26 +372,6 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info active="true" anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.20415778" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1391258" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TypeScript" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="0.32917964" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="4" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32917964" />
-      <window_info anchor="bottom" id="Run" order="7" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.20415778" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,22 +561,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
+    <entry file="file://$PROJECT_DIR$/src/field/FieldGroup.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="176">
+          <caret line="108" column="23" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
           <folding>
-            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#0#75#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/field/FieldGroup.ts">
+    <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="81" column="6" selection-start-line="81" selection-start-column="6" selection-end-line="81" selection-end-column="6" />
+        <state relative-caret-position="208">
+          <caret line="122" column="23" lean-forward="true" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
           <folding>
-            <element signature="e#0#75#0" expanded="true" />
+            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
