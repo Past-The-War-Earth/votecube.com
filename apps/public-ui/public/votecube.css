@@ -2,6 +2,12 @@
  * votecube customizations
  */
 
+input,
+select,
+textarea {
+    color: #222;
+}
+
 .custom-menu-top {
     padding-bottom: 5px;
     padding-top: 5px;

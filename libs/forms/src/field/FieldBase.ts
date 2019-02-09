@@ -119,11 +119,7 @@ export abstract class FieldBase
 		newValue
 	) {
 		this.theValue = newValue
-		setTimeout(() => {
-			for (const callback of this.valueChangeCallbacks) {
-				callback(newValue)
-			}
-		})
+		this.onValueChanged()
 	}
 
 	addComponent(
@@ -199,5 +195,13 @@ export abstract class FieldBase
 		fromParentGroup?: boolean,
 		relatedField?: IFieldBase
 	): void;
+
+	protected onValueChanged() {
+		setTimeout(() => {
+			for (const callback of this.valueChangeCallbacks) {
+				callback(this.theValue)
+			}
+		})
+	}
 
 }

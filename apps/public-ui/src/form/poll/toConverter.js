@@ -9,9 +9,22 @@ export function dtoToForm(
         text: themeDto.name
     }
 
+    const pollsContinents = poll.pollsContinents
+        ? poll.pollsContinents
+        : []
+    const pollsCountries = poll.pollsCountries
+        ? poll.pollsCountries
+        : []
+    const pollsStates = poll.pollsStates
+        ? poll.pollsStates
+        : []
+    const pollsTowns = poll.pollsTowns
+        ? poll.pollsTowns
+        : []
+
     return {
         dimensions: {
-        first: getDimForm(getPollDimDirDtos(poll, 'y')),
+            first: getDimForm(getPollDimDirDtos(poll, 'y')),
             second: getDimForm(getPollDimDirDtos(poll, 'z')),
             third: getDimForm(getPollDimDirDtos(poll, 'x'))
         },
@@ -19,7 +32,16 @@ export function dtoToForm(
             id: pollLabel.label.id,
             text: pollLabel.label.name
         })),
-        locations: poll.locations,
+        locations: {
+            continents: pollsContinents.map(pollContinent =>
+                pollContinent.continent),
+            countries: pollsCountries.map(pollCountry =>
+                pollCountry.country),
+            states: pollsStates.map(pollState =>
+                pollState.state),
+            cities: pollsTowns.map(pollTown =>
+                pollTown.town)
+        },
         name: poll.name,
         theme,
         timeframe: {
@@ -60,6 +82,7 @@ function getDimForm(
                 name: ''
             }
         },
+        name: pollDimensionDirections[0].dimensionDirection.dimension.name,
         topDirection
     }
 }

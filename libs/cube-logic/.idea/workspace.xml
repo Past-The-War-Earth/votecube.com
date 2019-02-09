@@ -7,10 +7,16 @@
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/dao/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/dao/poll.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/dao/vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/dao/vote.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/forms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/fromConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/fromConverter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/toConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/toConverter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Locations.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/Locations.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationsTimeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/create/NameLocationsTimeframe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/FieldBase.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../forms/src/field/OptionsField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/OptionsField.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/src/field/date/DateField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/src/field/date/DateField.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -261,7 +267,7 @@
       <workItem from="1547411253553" duration="5609000" />
       <workItem from="1547525658754" duration="10924000" />
       <workItem from="1549166886898" duration="630000" />
-      <workItem from="1549172770688" duration="8062000" />
+      <workItem from="1549172770688" duration="8156000" />
     </task>
     <task id="LOCAL-00001" summary="debugging arrow based movement">
       <created>1545320530019</created>
@@ -407,7 +413,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229556000" />
+    <option name="totallyTimeSpent" value="229650000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">

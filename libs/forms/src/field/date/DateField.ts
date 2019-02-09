@@ -1,31 +1,30 @@
 import {
 	filterToRangeValidators,
 	IValidator
-}                   from '../../validator/Validator'
+} from '../../validator/Validator'
 import {
 	Field,
 	IField,
 	IFieldRules,
 	LabelRule
-}                   from '../Field'
-import {IFieldBase} from '../FieldBase'
+} from '../Field'
 import {
 	DateCalendar,
 	IDateCalendar
-}                   from './DateCalendar'
+} from './DateCalendar'
 import {
 	DateFragments,
 	IDateFragments
-}                   from './DateFragments'
+} from './DateFragments'
 import {
 	DateSelection,
 	IDateSelection
-}                   from './DateSelection'
+} from './DateSelection'
 import {
 	DateOfMonth,
 	Month,
 	utcNow
-}                   from './types'
+} from './types'
 
 export interface IDateField
 	extends IField {
@@ -103,7 +102,7 @@ export class DateField
 		this.rules.label = LabelRule.OVER
 
 		this.rangeValidators = filterToRangeValidators(validators)
-		this.value           = null
+		this.theValue           = null
 
 		this.reset()
 	}
@@ -112,6 +111,20 @@ export class DateField
 		return this.value
 			? this.value.getTime()
 			: null
+	}
+
+	get value() {
+		return this.theValue
+	}
+
+	set value(
+		value: Date
+	) {
+		if (value) {
+			this.setToDate(value)
+		} else {
+			this.clear()
+		}
 	}
 
 	cellFlags(
@@ -218,10 +231,11 @@ export class DateField
 		this.selection.setState(date, month, year)
 
 		if (year) {
-			this.value = new Date(Date.UTC(year, month, date))
+			this.theValue = new Date(Date.UTC(year, month, date))
 		} else {
-			this.value = null
+			this.theValue = null
 		}
+		this.onValueChanged()
 
 		this.validate()
 		this.detect()

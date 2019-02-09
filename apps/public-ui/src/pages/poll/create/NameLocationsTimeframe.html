@@ -228,6 +228,9 @@ export default {
             pollDao.addTemp(poll)
             voteDao.addTempForPoll(poll)
 
+            forms.uncacheForm(forms.CREATE_POLL_TOP)
+            forms.uncacheForm(forms.CREATE_DIMENSION)
+
             forms.navigateOnValid(this, routes.CUBE, {
                 pollId: 0
             })
@@ -262,12 +265,12 @@ export default {
                     OptionsField,
                     Validators)
                 forms.setForm(forms.CREATE_POLL_TOP, form)
-            }
-
-            if(poll) {
-                form.value = pollFormToConverter.dtoToForm(poll)
-                form.fields.locations.optionText = text.LOCATIONS
-                form.touch()
+                if(poll) {
+                    form.value = pollFormToConverter.dtoToForm(poll)
+                    form.fields.locations.optionText = text.LOCATIONS
+                    form.validate()
+                    form.touch()
+                }
             }
 
            forms.ensureForm(form, this)

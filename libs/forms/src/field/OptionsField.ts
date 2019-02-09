@@ -147,6 +147,7 @@ export class OptionsField
 		} else {
 			this.theValue = null
 		}
+		this.onValueChanged()
 		this.onBlur()
 	}
 
@@ -160,6 +161,7 @@ export class OptionsField
 		} else {
 			this.theValue = option
 		}
+		this.onValueChanged()
 	}
 
 	private filterOptions() {

@@ -71,6 +71,18 @@ export default {
             locations,
             _
         ]) => {
+            const selectedContinents = form.fields.continents.value
+            if(selectedContinents.length) {
+                selectSubLocation(selectedContinents, locations.countries, form.fields.countries)
+                const selectedCountries = form.fields.countries.value
+                if(selectedCountries.length) {
+                    selectSubLocation(selectedCountries, locations.states, form.fields.states)
+                    const selectedStates = form.fields.states.value
+                    if(selectedStates.length) {
+                        selectSubLocation(selectedStates, locations.cities, form.fields.cities)
+                    }
+                }
+            }
             if(!form.optionText) {
                 const {text} = this.store.get()
                 form.optionText = text.LOCATIONS

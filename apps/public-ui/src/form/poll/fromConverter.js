@@ -3,19 +3,24 @@ export function formToDto(
 ) {
     const dimensions = formValue.dimensions
     const formThemeValue = formValue.theme
+    const locations = formValue.locations
 
     return {
-        endDate: formValue.endDate,
+        endDate: formValue.timeframe.endDate,
         id: formValue.id ? formValue.id : 0,
-        locations: {
-            continents: formValue.continents,
-        },
         name: formValue.name,
-        startDate: formValue.startDate,
-        theme: {
-            id: formThemeValue.id,
-            name: formThemeValue.text
-        },
+        startDate: formValue.timeframe.startDate,
+        pollsContinents: locations.continents.map((continent) => ({
+            continent
+        })),
+        pollsCountries: locations.countries.map((country) => ({
+            country
+        })),
+        pollsDimensionsDirections: [
+            ...get2PollDimDirs('y', dimensions.first),
+            ...get2PollDimDirs('z', dimensions.second),
+            ...get2PollDimDirs('x', dimensions.third)
+        ],
         pollsLabels: formValue.labels.map(label => ({
             label: {
                 id: label.id,
@@ -24,11 +29,16 @@ export function formToDto(
             poll: {
             }
         })),
-        pollsDimensionsDirections: [
-            ...get2PollDimDirs('y', dimensions.first),
-            ...get2PollDimDirs('z', dimensions.second),
-            ...get2PollDimDirs('x', dimensions.third)
-        ]
+        pollsStates: locations.states.map((state) => ({
+            state
+        })),
+        pollsTowns: locations.cities.map((town) => ({
+            town
+        })),
+        theme: {
+            id: formThemeValue.id,
+            name: formThemeValue.text
+        }
     }
 }
 

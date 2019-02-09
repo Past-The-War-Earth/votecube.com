@@ -65,6 +65,12 @@ export function ensureForm(
     page.set({form, isValid: form.valid})
 }
 
+export function uncacheForm(
+    formName
+) {
+    delete forms[formName]
+}
+
 export function clearForm(
     page
 ) {

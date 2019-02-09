@@ -72,51 +72,36 @@ export const DB = {
     }],
     directions: [{
         id: 1,
-        // name: 'Trumps policies reduce military\'s over extension and let it focus on the real threats.'
-        name: ' . . . . . X+'
+        // name: ' . . . . . X+'
+        name: 'Trumps policies reduce military\'s over extension and let it focus on the real threats.'
     }, {
         id: 2,
-        name: ' . . . . . X-'
-        // name: 'Trump\'s policies reduce the trust in our alliances and hurt the stability of the world.'
+        // name: ' . . . . . X-'
+        name: 'Trump\'s policies reduce the trust in our alliances and hurt the stability of the world.'
     }, {
         id: 3,
-        name: ' . . . . . Y+'
-        // name: 'Trump\'s policies give profound confidence to companies and are good for the economy.'
+        // name: ' . . . . . Y+'
+        name: 'Trump\'s policies give profound confidence to companies and are good for the economy.'
     }, {
         id: 4,
-        name: ' . . . . . Y-'
-        // name: 'Trump\'s policies have no real effect on the economy, it\'s purely cyclical.'
+        // name: ' . . . . . Y-'
+        name: 'Trump\'s policies have no real effect on the economy, it\'s purely cyclical.'
     }, {
         id: 5,
-        name: ' . . . . . Z+'
-        // name: 'Trump\'s policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.'
+        // name: ' . . . . . Z+'
+        name: 'Trump\'s policies are better for equality because they are fighting the dominance of globalism and are bringing the jobs back.'
     }, {
         id: 6,
-        name: ' . . . . . Z-'
-        // name: 'Trump\'s policies are tailored with the interests of the wealthy in mind and hurt equality.'
+        // name: ' . . . . . Z-'
+        name: 'Trump\'s policies are tailored with the interests of the wealthy in mind and hurt equality.'
     }],
     polls: [{
-        endDate: new Date(),
-        id: 0,
+        endDate: new Date(new Date().getTime() + 3600000 * 75),
+        id: 1,
         locations: {
             continents: [
                 {
-                    "id": "Africa"
-                },
-                {
-                    "id": "Asia"
-                },
-                {
-                    "id": "AustraliaNOceania"
-                },
-                {
-                    "id": "Europe"
-                },
-                {
                     "id": "NorthAmerica"
-                },
-                {
-                    "id": "SouthAmerica"
                 }
             ]
         },
@@ -184,7 +169,7 @@ export const DB = {
             id: 6
         }],
         pollsLabels: [],
-        startDate: new Date(),
+        startDate: new Date(new Date().getTime() + 3600000 * 25),
         theme: {
             id: 1,
             name: 'Politics'
