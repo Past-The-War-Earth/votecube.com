@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/control/button/CancelButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/icon/FilterIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/shell/Popover.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/poll/list/List.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/poll/list/List.top.menu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/poll/list/ListItem.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/text_en-us_ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/text_en-us_ui.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/votecube.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/control/button/BuildButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/button/BuildButton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/control/button/CreateButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/button/CreateButton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/poll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/forms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/poll/creator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/poll/creator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dimension/Create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/Info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/direction/Create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/direction/Info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/create/Dimensions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/create/Locations.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/Locations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/create/NameLocationsTimeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/MainInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/create/Timeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/Timeframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/vote/Common.top.menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/vote/Common.top.menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/vote/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/vote/Cube.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shell/menu/Menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/menu/Menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shell/top/TopBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopBar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -77,7 +47,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/poll/list/ListItem.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="330">
@@ -87,6 +57,15 @@
                     <element signature="n#style#0;n#div#1;n#figure#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#2;n#figure#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/shell/menu/Menu.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="561">
+                  <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -322,7 +301,6 @@
         <option value="$PROJECT_DIR$/src/database.js" />
         <option value="$PROJECT_DIR$/src/common/icon/FilterIcon.html" />
         <option value="$PROJECT_DIR$/src/App.html" />
-        <option value="$PROJECT_DIR$/src/shell/menu/Menu.html" />
         <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/pages/poll/list/List.top.menu.html" />
         <option value="$PROJECT_DIR$/public/global.css" />
@@ -330,6 +308,7 @@
         <option value="$PROJECT_DIR$/src/pages/poll/list/List.html" />
         <option value="$PROJECT_DIR$/src/dao/poll.js" />
         <option value="$PROJECT_DIR$/src/pages/poll/list/ListItem.html" />
+        <option value="$PROJECT_DIR$/src/shell/menu/Menu.html" />
       </list>
     </option>
   </component>
@@ -520,14 +499,7 @@
       <workItem from="1547312494148" duration="6224000" />
       <workItem from="1547525659293" duration="370067000" />
       <workItem from="1549166888309" duration="3147000" />
-      <workItem from="1549172761461" duration="114696000" />
-    </task>
-    <task id="LOCAL-00016" summary="refactoring &amp; improving/adding new art">
-      <created>1547556937235</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1547556937235</updated>
+      <workItem from="1549172761461" duration="114910000" />
     </task>
     <task id="LOCAL-00017" summary="refactoring &amp; improving/adding new art">
       <created>1547566466449</created>
@@ -865,11 +837,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549734461178</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Added build confirmation/wait dialog, created the listing page and finished demo-saving code.  General cleanup and renaming.">
+      <created>1549767992110</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1549767992111</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="699310000" />
+    <option name="totallyTimeSpent" value="699524000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
@@ -933,7 +912,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed support for single-selection OptionField (and refactored), initial AutoComplete implementation, added Dimension List filter" />
     <MESSAGE value="fixed AutoComplete selection and label, disabled form fill for AutoComplete, MultiSelect and DatePicker" />
     <MESSAGE value="Added static database file, poll dao (with query by id) and integrated Poll Cube view with the data in it.  General refactoring." />
     <MESSAGE value="Integrated PercentPicker with static db, fixed related bugs" />
@@ -958,7 +936,8 @@
     <MESSAGE value="implemented dimension and direction swap and related logic.  hammered out dto to form for poll and started debugging" />
     <MESSAGE value="fixed Locations dto to form mapping" />
     <MESSAGE value="fixed poll DTO to Form mapping and location logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed poll DTO to Form mapping and location logic" />
+    <MESSAGE value="Added build confirmation/wait dialog, created the listing page and finished demo-saving code.  General cleanup and renaming." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added build confirmation/wait dialog, created the listing page and finished demo-saving code.  General cleanup and renaming." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/libs/cubeLogic.js">
@@ -1250,13 +1229,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shell/menu/Menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="40" column="33" lean-forward="true" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/icon/FilterIcon.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1346,6 +1318,13 @@
             <element signature="n#style#0;n#div#1;n#figure#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#figure#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shell/menu/Menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
         </state>
       </provider>
     </entry>
