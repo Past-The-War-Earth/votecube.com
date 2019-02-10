@@ -53,6 +53,7 @@ export class FieldGroup
 
 	private hasRequiredChild = false
 	private hasChildValues   = false
+	private theIsOriginal    = true
 
 	constructor(
 		name,
@@ -104,10 +105,7 @@ export class FieldGroup
 	set value(
 		value: any
 	) {
-		for (const fieldName in this.fields) {
-			const field = this.fields[fieldName]
-			field.value = value[fieldName]
-		}
+		this.setValue(value)
 	}
 
 	set optionText(
@@ -129,6 +127,14 @@ export class FieldGroup
 		super.addComponent(component)
 	}
 
+	clearComponents(
+	): void {
+		for (const fieldName in this.fields) {
+			this.fields[fieldName].clearComponents()
+		}
+		super.clearComponents()
+	}
+
 	hideOtherPopups(
 		fieldWithOpenPopup: FieldBase
 	): void {
@@ -140,6 +146,10 @@ export class FieldGroup
 		}
 	}
 
+	isOriginal(): boolean {
+		return this.theIsOriginal
+	}
+
 	removeComponent(
 		component: IComponent
 	): void {
@@ -147,6 +157,16 @@ export class FieldGroup
 			this.fields[fieldName].removeComponent(component)
 		}
 		super.removeComponent(component)
+	}
+
+	setValue(
+		value: any,
+		resetOriginal = false
+	) {
+		for (const fieldName in this.fields) {
+			const field = this.fields[fieldName]
+			field.setValue(value[fieldName], resetOriginal)
+		}
 	}
 
 	touch(
@@ -191,6 +211,8 @@ export class FieldGroup
 	): void {
 		this.hasChildValues = false
 		this.valid          = true
+		this.theIsOriginal  = true
+
 		for (const fieldName in this.fields) {
 			const field = this.fields[fieldName]
 			if (!relatedField ||
@@ -201,6 +223,10 @@ export class FieldGroup
 			this.hasChildValues = this.hasChildValues || field.hasValue
 			if (!field.valid) {
 				this.valid = false
+			}
+
+			if (!field.isOriginal()) {
+				this.theIsOriginal = false
 			}
 		}
 
@@ -217,7 +243,7 @@ export class FieldGroup
 			this.group.validate(false, this)
 		}
 		for (const page of this.components) {
-			page.set({isValid: this.valid})
+			page.set({isValid: this.valid, isOriginal: this.theIsOriginal})
 		}
 	}
 

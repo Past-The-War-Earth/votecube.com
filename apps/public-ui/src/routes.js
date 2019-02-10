@@ -4,16 +4,21 @@ export var PAGE_CONF = {}
 
 let appComp, pageComp, topMenuComp
 
-export var DIMENSION_INFO_MAIN = '/dimension/info/Main'
-export var DIMENSION_SEARCH_LIST = '/dimension/List'
-export var DIMENSION_PICK_COLOR = '/dimension/PickColor'
-export var DIRECTION_INFO_MAIN = '/direction/info/Main'
-export var POLL_SEARCH_LIST = '/poll/search/List'
-export var POLL_INFO_MAIN = '/poll/info/Main/:mode/:pollId'
-export var POLL_INFO_CHART = '/poll/info/Chart/:mode/:pollId'
-export var POLL_INFO_CUBE = '/poll/info/Cube/:mode/:pollId'
-export var POLL_LOCATIONS = '/poll/Locations'
-export var POLL_TIMEFRAME = '/poll/Timeframe'
+export const DIMENSION_INFO_MAIN = '/dimension/info/Main/:mode/:pollId'
+export const DIMENSION_SEARCH_LIST = '/dimension/List'
+export const DIMENSION_PICK_COLOR = '/dimension/PickColor/:mode/:pollId'
+export const DIRECTION_INFO_MAIN = '/direction/info/Main/:mode/:pollId'
+export const POLL_SEARCH_LIST = '/poll/search/List'
+export const POLL_INFO_MAIN = '/poll/info/Main/:mode/:pollId'
+export const POLL_INFO_CHART = '/poll/info/Chart/:mode/:pollId'
+export const POLL_INFO_CUBE = '/poll/info/Cube/:mode/:pollId'
+export const POLL_LOCATIONS = '/poll/Locations/:mode/:pollId'
+export const POLL_TIMEFRAME = '/poll/Timeframe/:mode/:pollId'
+
+export const DEFAULT_ROUTE_PARAMS = {
+    mode: 'build',
+    pollId: 0
+}
 
 configPage(
     DIRECTION_INFO_MAIN,
@@ -76,7 +81,7 @@ export function getTopMenuComponent() {
 
 export function navigateToPage(
     pageKey,
-    paramMap
+    paramMap = DEFAULT_ROUTE_PARAMS
 ) {
     let currentPage = PAGE_CONF[pageKey]
     let url = '' + currentPage.url

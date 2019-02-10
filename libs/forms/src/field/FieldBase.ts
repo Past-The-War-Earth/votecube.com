@@ -38,13 +38,19 @@ export interface IFieldBase {
 		component: IComponent
 	): void
 
-	removeComponent(
-		component: IComponent
+	clearComponents(
 	): void
 
-	focus(): void;
+	focus(): void
 
-	hidePopup(): void;
+	hidePopup(): void
+
+	isSame(
+		val1: any,
+		val2: any
+	): boolean
+
+	isOriginal(): boolean
 
 	onChange(
 		callback: (
@@ -52,8 +58,21 @@ export interface IFieldBase {
 		) => void
 	): void
 
+	removeComponent(
+		component: IComponent
+	): void
+
+	removeComponent(
+		component: IComponent
+	): void
+
 	setAsField(
 		component: IComponent
+	): void
+
+	setValue(
+		newValue: any,
+		resetOriginal: boolean
 	): void
 
 	touch(
@@ -86,6 +105,7 @@ export abstract class FieldBase
 	valueChangeCallbacks     = []
 
 	protected theValue: any
+	protected originalValue: any
 
 	private theTouched = false
 
@@ -118,14 +138,18 @@ export abstract class FieldBase
 	set value(
 		newValue
 	) {
-		this.theValue = newValue
-		this.onValueChanged()
+		this.setValue(newValue)
 	}
 
 	addComponent(
 		component: IComponent
 	): void {
 		this.components.push(component)
+	}
+
+	clearComponents(
+	): void {
+		this.components = []
 	}
 
 	detect(
@@ -149,6 +173,36 @@ export abstract class FieldBase
 
 	hidePopup(): void {
 		// nothing to do for fields with no popups
+	}
+
+	isSame(
+		val1: any,
+		val2: any
+	): boolean {
+		if (val1 instanceof Object) {
+			if (!(val2 instanceof Object)) {
+				return false
+			}
+
+			for (const property in val1) {
+				if (val1[property] !== val2[property]) {
+					return false
+				}
+			}
+			for (const property in val2) {
+				if (val1[property] !== val2[property]) {
+					return false
+				}
+			}
+
+			return true
+		} else {
+			return val2 === val1
+		}
+	}
+
+	isOriginal(): boolean {
+		return this.isSame(this.theValue, this.originalValue)
 	}
 
 	onChange(
@@ -175,6 +229,17 @@ export abstract class FieldBase
 		component: IComponent
 	): void {
 		this.components.unshift(component)
+	}
+
+	setValue(
+		newValue: any,
+		resetOriginal = false
+	): void {
+		this.theValue = newValue
+		if (resetOriginal) {
+			this.originalValue = newValue
+		}
+		this.onValueChanged()
 	}
 
 	touch(

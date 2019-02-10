@@ -15,10 +15,12 @@ export const voteDao = {
         pollId
     ) {
         return new Promise((resolve) => {
+            if(!pollId) {
+                resolve(null)
+            }
+
             let vote = voteMap[pollId]
-            if (vote
-                // || pollId == 0
-            ) {
+            if (vote) {
                 resolve(vote)
                 return
             }

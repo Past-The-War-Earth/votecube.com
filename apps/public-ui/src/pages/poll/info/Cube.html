@@ -145,7 +145,7 @@
         {#if previewMode}
     <LeftButton
         classes="{modifyActionButtonPosition}"
-        on:select="toPollForm()"
+        on:select="toPollForm($routeParams)"
     ></LeftButton>
         {:else}
     <a
@@ -239,7 +239,7 @@
     ></VoteButton>
         {/if}
     {/if}
-    {#if confirming}
+    {#if confirm}
         {#if saving}
     <ActionPopover
         on:cancel="doNotBuild()"
@@ -438,17 +438,17 @@ export default {
         build() {
             this.set({saving: 'Saving ...'})
             pollDao.save(this.get().poll).then(() => {
-                this.set({confirming: false})
+                this.set({confirm: false})
                 routes.navigateToPage(routes.POLL_SEARCH_LIST)
             }).catch((error) => {
                 this.set({error, saving: 'Error'})
             });
         },
         checkBuild() {
-            this.set({confirming: true, error: '', saving: false})
+            this.set({confirm: true, error: '', saving: false})
         },
         doNotBuild() {
-            this.set({confirming: false})
+            this.set({confirm: false})
         },
         move(
             event
@@ -536,8 +536,10 @@ export default {
             this.get().mutationApi.toggleSurface(dimensionKey)
             this.set({delta: this.get().delta + 1})
         },
-        toPollForm() {
-            routes.navigateToPage(routes.POLL_INFO_MAIN)
+        toPollForm(
+            $routeParams
+        ) {
+            routes.navigateToPage(routes.POLL_INFO_MAIN, $routeParams)
         }
     },
     oncreate() {

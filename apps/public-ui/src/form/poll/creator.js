@@ -8,7 +8,7 @@ export function createPollForm(
     OptionsField,
     Validators
 ) {
-    const text = uiText.Poll;
+    const text = uiText.Poll
 
     const dimensions = new FieldGroup('Dimensions', {
         first: createDimensionForm(

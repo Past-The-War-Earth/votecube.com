@@ -1,9 +1,10 @@
 {#if editable}
 <li
   class="pure-menu-item viewType"
+  on:click="confirmAlter()"
 >
-  <CopyIcon
-  ></CopyIcon>
+  <AlterIcon
+  ></AlterIcon>
 </li>
 {/if}
 <li class="pure-menu-item">
@@ -51,7 +52,24 @@
 </svg>
 </li>
 {/if}
-
+{#if confirm}
+<ActionPopover
+    on:cancel="doNotAlter()"
+    width="90%"
+>
+    <div slot="header">
+        Please Confirm
+    </div>
+    <div slot="content">
+        Alter this poll?
+    </div>
+    <div slot="actions">
+        <AlterButton
+            on:select="alter($routeParams)"
+        ></AlterButton>
+    </div>
+</ActionPopover>
+{/if}
 <style>
     .viewType {
         color: white;
@@ -69,13 +87,17 @@
 </style>
 
 <script>
-import CopyIcon from '../../../common/icon/CopyIcon.html'
+import AlterButton from '../../../common/control/button/AlterButton.html'
+import AlterIcon from '../../../common/icon/AlterIcon.html'
+import ActionPopover from '../../../common/shell/ActionPopover.html'
 import store from '../../../store.js'
 import * as routes from '../../../routes'
 
 export default {
     components: {
-        CopyIcon
+        ActionPopover,
+        AlterButton,
+        AlterIcon
     },
     computed: {
         editable: ({$routeParams}) => $routeParams.mode === 'vote',
@@ -96,14 +118,27 @@ export default {
         }
     },
     methods: {
-      setViewType(
-          type
-          ) {
-          this.fire('setViewType', {
-              type,
-              params: this.store.get().routeParams
-          })
-      }
+        alter($routeParams) {
+            this.set({confirm: false})
+            routes.navigateToPage(routes.POLL_INFO_MAIN, {
+                ...$routeParams,
+                mode: 'alter'
+            })
+        },
+        confirmAlter() {
+            this.set({confirm: true})
+        },
+        doNotAlter() {
+            this.set({confirm: false})
+        },
+        setViewType(
+            type
+            ) {
+            this.fire('setViewType', {
+                type,
+                params: this.store.get().routeParams
+            })
+        }
     },
     store: () => store
 }

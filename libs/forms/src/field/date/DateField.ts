@@ -61,9 +61,6 @@ export interface IDateField
 
 	setToNow(): void
 
-	setValue(
-		newValue: number
-	): void
 }
 
 export interface IMutableDateState {
@@ -102,7 +99,7 @@ export class DateField
 		this.rules.label = LabelRule.OVER
 
 		this.rangeValidators = filterToRangeValidators(validators)
-		this.theValue           = null
+		this.theValue        = null
 
 		this.reset()
 	}
@@ -120,11 +117,7 @@ export class DateField
 	set value(
 		value: Date
 	) {
-		if (value) {
-			this.setToDate(value)
-		} else {
-			this.clear()
-		}
+		this.setValue(value)
 	}
 
 	cellFlags(
@@ -136,40 +129,28 @@ export class DateField
 		return `R${inRange} M${inMonth}`
 	}
 
-	hidePopup(): void {
-		this.components[0].set({showCalendar: false})
-	}
-
-	showPopup(): void {
-		this.group.hideOtherPopups(this)
-		if (!this.selection.date) {
-			return
-		}
-		this.calendar.setState(null, this.selection.month, this.selection.year)
-	}
-
-	setDateOfMonth(
-		dateOfMonth: DateOfMonth,
-		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
-	): void {
-		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
-
-		this.setState(dateOfMonth, month, year)
-	}
-
 	clear(): void {
 		this.setState(null, null, null)
 	}
 
-	isToday(
-		dateOfMonth: DateOfMonth,
-		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
-	): boolean {
-		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
+	hidePopup(): void {
+		this.components[0].set({showCalendar: false})
+	}
 
-		return year === this.today.getFullYear()
-			&& month === this.today.getMonth()
-			&& dateOfMonth === this.today.getDate()
+	isOriginal(): boolean {
+		if (!this.originalValue) {
+			if (this.theValue) {
+				return false
+			}
+		} else if (!this.theValue) {
+			if (this.originalValue) {
+				return false
+			}
+		} else {
+			return this.originalValue.getTime() === this.theValue.getTime()
+		}
+
+		return true
 	}
 
 	isSelected(
@@ -183,8 +164,28 @@ export class DateField
 			&& dateOfMonth === this.selection.date
 	}
 
+	isToday(
+		dateOfMonth: DateOfMonth,
+		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
+	): boolean {
+		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
+
+		return year === this.today.getFullYear()
+			&& month === this.today.getMonth()
+			&& dateOfMonth === this.today.getDate()
+	}
+
 	reset(): void {
 		this.setState(null, null, null, true)
+	}
+
+	setDateOfMonth(
+		dateOfMonth: DateOfMonth,
+		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
+	): void {
+		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
+
+		this.setState(dateOfMonth, month, year)
 	}
 
 	setToDate(
@@ -201,11 +202,18 @@ export class DateField
 	}
 
 	setValue(
-		newValue: number
+		value: Date,
+		resetOriginal = false
 	): void {
-		let date = new Date(newValue)
+		if (value) {
+			this.setToDate(value)
+		} else {
+			this.clear()
+		}
 
-		this.setToDate(date)
+		if (resetOriginal) {
+			this.originalValue = new Date(this.theValue.getTime())
+		}
 	}
 
 	setState(
@@ -239,6 +247,14 @@ export class DateField
 
 		this.validate()
 		this.detect()
+	}
+
+	showPopup(): void {
+		this.group.hideOtherPopups(this)
+		if (!this.selection.date) {
+			return
+		}
+		this.calendar.setState(null, this.selection.month, this.selection.year)
 	}
 
 	validate(

@@ -4,6 +4,8 @@ export const CREATE_POLL_TOP = routes.POLL_INFO_MAIN
 export const CREATE_DIMENSION = routes.DIMENSION_INFO_MAIN
 export const CREATE_DIRECTION = routes.DIRECTION_INFO_MAIN
 
+
+
 let forms = {}
 
 export function setForm(
@@ -23,11 +25,12 @@ export function ensureChildForm(
     parentFormName,
     childFormName,
     page,
-    navigateToRouteOnNotFound
+    navigateToRouteOnNotFound,
+    navigateParamsOnNotFound = routes.DEFAULT_ROUTE_PARAMS
 ) {
     const parentForm = getForm(parentFormName)
     if (!parentForm) {
-        routes.navigateToPage(navigateToRouteOnNotFound)
+        routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
         return null
     }
 
@@ -45,11 +48,12 @@ export function ensureChildForm(
 export function ensureTopForm(
     topFormName,
     page,
-    navigateToRouteOnNotFound
+    navigateToRouteOnNotFound,
+    navigateParamsOnNotFound = routes.DEFAULT_ROUTE_PARAMS
 ) {
     const topForm = getForm(topFormName)
     if (!topForm) {
-        routes.navigateToPage(navigateToRouteOnNotFound)
+        routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
         return null
     }
     ensureForm(topForm, page)
@@ -62,7 +66,7 @@ export function ensureForm(
     page
 ) {
     form.addComponent(page)
-    page.set({form, isValid: form.valid})
+    page.set({form, isValid: form.valid, isOriginal: form.isOriginal()})
 }
 
 export function uncacheForm(
@@ -76,17 +80,18 @@ export function clearForm(
 ) {
     const {form} = page.get()
     if (form) {
-        form.removeComponent(page)
+        form.clearComponents()
     }
 }
 
 function getTopForm(
     topFormName,
-    navigateToRouteOnNotFound
+    navigateToRouteOnNotFound,
+    navigateParamsOnNotFound = routes.DEFAULT_ROUTE_PARAMS
 ) {
     const topForm = getForm(topFormName)
     if (!topForm) {
-        routes.navigateToPage(navigateToRouteOnNotFound)
+        routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
 
         return null
     }

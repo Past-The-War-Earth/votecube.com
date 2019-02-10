@@ -17,7 +17,7 @@
         </div>
         <IconBlock
             fieldGroup="{form.fields.locations}"
-            on:select="selectLocations()"
+            on:select="selectLocations($routeParams)"
         >
             <div slot="icon">
                 <LocationIcon
@@ -62,7 +62,7 @@
         </IconBlock>
         <IconBlock
             fieldGroup="{form.fields.timeframe}"
-            on:select="selectTimeframe()"
+            on:select="selectTimeframe($routeParams)"
         >
             <div slot="icon">
                 <TimeIcon></TimeIcon>
@@ -97,23 +97,23 @@
         <SelectionBlock
             dimension="{form.fields.dimensions.fields.first}"
             text="{form.fields.dimensions.text.first}"
-            on:select="selectDimension(form.fields.dimensions.fields.first)"
+            on:select="selectDimension(form.fields.dimensions.fields.first, $routeParams)"
         ></SelectionBlock>
         <SelectionBlock
             dimension="{form.fields.dimensions.fields.second}"
             text="{form.fields.dimensions.text.second}"
-            on:select="selectDimension(form.fields.dimensions.fields.second)"
+            on:select="selectDimension(form.fields.dimensions.fields.second, $routeParams)"
         ></SelectionBlock>
         <SelectionBlock
             dimension="{form.fields.dimensions.fields.third}"
             text="{form.fields.dimensions.text.third}"
-            on:select="selectDimension(form.fields.dimensions.fields.third)"
+            on:select="selectDimension(form.fields.dimensions.fields.third, $routeParams)"
         ></SelectionBlock>
         <nav class="pure-controls">
             <PreviewButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
-                on:select="submit()"
+                on:select="submit($routeParams)"
             ></PreviewButton>
         </nav>
     </fieldset>
@@ -181,9 +181,21 @@ export default {
         locations: ({form}) => form ? form.fields.locations : null,
         name: ({test}) => true,
         states: ({form}) => form ? form.fields.locations.fields.states.value : [],
-        submitHighlight: ({isValid}) => isValid
-        ? '0b0'
-        : 'b00',
+        submitHighlight: ({$routeParams, isOriginal, isValid, form}) => {
+            if (!isValid) {
+                return 'b00'
+            }
+            if ($routeParams.mode === 'alter') {
+                if(isOriginal) {
+                    return 'b00'
+                }
+                if (form && form.fields.dimensions.isOriginal()) {
+                    return 'b00'
+                }
+            }
+
+            return '0b0'
+        },
         timeframe: ({form}) => form ? form.fields.timeframe : null
     },
     data() {
@@ -205,18 +217,25 @@ export default {
             }
         },
         selectDimension(
-            dimensionForm
+            dimensionForm,
+            $routeParams
         ) {
             forms.setForm(forms.CREATE_DIMENSION, dimensionForm)
-            routes.navigateToPage(routes.DIMENSION_INFO_MAIN)
+            routes.navigateToPage(routes.DIMENSION_INFO_MAIN, $routeParams)
         },
-        selectLocations() {
-            routes.navigateToPage(routes.POLL_LOCATIONS)
+        selectLocations(
+            $routeParams
+        ) {
+            routes.navigateToPage(routes.POLL_LOCATIONS, $routeParams)
         },
-        selectTimeframe() {
-            routes.navigateToPage(routes.POLL_TIMEFRAME)
+        selectTimeframe(
+            $routeParams
+        ) {
+            routes.navigateToPage(routes.POLL_TIMEFRAME, $routeParams)
         },
-        submit() {
+        submit(
+            $routeParams
+        ) {
             const {form} = this.get()
             form.touch()
 
@@ -231,18 +250,19 @@ export default {
             forms.uncacheForm(forms.CREATE_POLL_TOP)
             forms.uncacheForm(forms.CREATE_DIMENSION)
 
-            forms.navigateOnValid(this, routes.POLL_INFO_CUBE, {
-                mode: 'build',
-                pollId: 0
-            })
+            forms.navigateOnValid(this, routes.POLL_INFO_CUBE, $routeParams)
         }
     },
     oncreate() {
+        const {pollId} = this.store.get().routeParams
+
+        let tempPoll = pollDao.getTempPoll()
+
         Promise.all([
             loadForms(this),
             loadLocations(),
             loadUi(this.store, 'en-us'),
-            pollDao.findByIdWithDetails(0),
+            pollDao.findByIdWithDetails(pollId),
             loadLocText(this.store, 'en-us')
         ]).then(([
             {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
@@ -266,11 +286,17 @@ export default {
                     OptionsField,
                     Validators)
                 forms.setForm(forms.CREATE_POLL_TOP, form)
-                if(poll) {
-                    form.value = pollFormToConverter.dtoToForm(poll)
+                if(tempPoll || poll) {
+                    if(poll) {
+                        form.setValue(pollFormToConverter.dtoToForm(poll), true)
+                    }
+                    if(tempPoll) {
+                        form.setValue(pollFormToConverter.dtoToForm(tempPoll))
+                    }
                     form.fields.locations.optionText = text.LOCATIONS
                     form.validate()
                     form.touch()
+                    console.log('Is original: ' + form.isOriginal())
                 }
             }
 

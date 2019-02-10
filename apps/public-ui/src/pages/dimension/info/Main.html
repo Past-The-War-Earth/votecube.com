@@ -9,7 +9,7 @@
 
         <IconBlock
             fieldGroup="{form.fields.color}"
-            on:select="selectColor()"
+            on:select="selectColor($routeParams)"
         >
             <div slot="icon">
                 <ColorIcon></ColorIcon>
@@ -29,7 +29,7 @@
 
         <IconBlock
             fieldGroup="{form.fields.topDirection}"
-            on:select="selectDirection('top')"
+            on:select="selectDirection('top', $routeParams)"
         >
             <div slot="icon">
                 <DirectionIcon></DirectionIcon>
@@ -45,7 +45,7 @@
 
         <IconBlock
             fieldGroup="{form.fields.bottomDirection}"
-            on:select="selectDirection('bottom')"
+            on:select="selectDirection('bottom', $routeParams)"
         >
             <div slot="icon">
                 <DirectionIcon
@@ -65,7 +65,7 @@
             <RightButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
-                on:select="select()"
+                on:select="select($routeParams)"
             ></RightButton>
         </nav>
     </fieldset>
@@ -113,20 +113,19 @@ export default {
             : null
     },
     methods: {
-        select() {
-            forms.navigateOnValid(this, routes.POLL_INFO_MAIN)
+        select($routeParams) {
+            forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
         },
-        selectColor() {
-            routes.navigateToPage(routes.DIMENSION_PICK_COLOR)
+        selectColor($routeParams) {
+            routes.navigateToPage(routes.DIMENSION_PICK_COLOR, $routeParams)
         },
         selectDirection(
-            directionPrefix
+            directionPrefix,
+            $routeParams
         ) {
             const dimensionForm = this.get().form
             forms.setForm(forms.CREATE_DIRECTION, dimensionForm.fields[directionPrefix + 'Direction'])
-            routes.navigateToPage(routes.DIRECTION_INFO_MAIN, {
-                directionPrefix
-            })
+            routes.navigateToPage(routes.DIRECTION_INFO_MAIN, $routeParams)
         }
     },
     oncreate() {

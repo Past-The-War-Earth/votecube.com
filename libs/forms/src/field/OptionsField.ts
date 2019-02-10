@@ -40,9 +40,10 @@ export class OptionsField
 	extends Field
 	implements IOptionsField {
 
-	filteredOptions: IFieldOption[]                     = []
-	optionsMap: { [optionKey: string]: IFieldOption }   = {}
-	selectionMap: { [optionKey: string]: IFieldOption } = {}
+	filteredOptions: IFieldOption[]                             = []
+	optionsMap: { [optionKey: string]: IFieldOption }           = {}
+	originalSelectionMap: { [optionKey: string]: IFieldOption } = {}
+	selectionMap: { [optionKey: string]: IFieldOption }         = {}
 	theOptions: IFieldOption[]
 
 	constructor(
@@ -54,7 +55,8 @@ export class OptionsField
 			...rules,
 			label: LabelRule.OVER
 		})
-		this.theValue = rules && rules.multi ? [] : null
+		this.theValue      = rules && rules.multi ? [] : null
+		this.originalValue = rules && rules.multi ? [] : null
 
 		this.setOptions(options)
 	}
@@ -102,20 +104,11 @@ export class OptionsField
 	set value(
 		value
 	) {
-		if (this.theValue instanceof Array) {
-			this.theValue = []
-			if (!value) {
-				return
-			}
-			value.forEach(
-				aValue => this.selectValue(aValue))
-		} else {
-			this.selectValue(value)
-		}
+		this.setValue(value)
 	}
 
 	clear(): void {
-		if (this.value instanceof Array) {
+		if (this.theValue instanceof Array) {
 			this.selectionMap = {}
 			this.value        = []
 			this.filterOptions()
@@ -129,11 +122,70 @@ export class OptionsField
 		this.components[0].set({showOptions: false})
 	}
 
+	isOriginal(): boolean {
+		if (this.theValue instanceof Array) {
+			for (const aValue of this.originalValue) {
+				if (!this.selectionMap[aValue.id]) {
+					return false
+				}
+			}
+			for (const aValue of this.theValue) {
+				if (!this.originalSelectionMap[aValue.id]) {
+					return false
+				}
+			}
+			return true
+		} else {
+			if (!this.originalValue) {
+				if (this.theValue) {
+					return false
+				}
+			} else if (!this.theValue) {
+				if (this.originalValue) {
+					return false
+				}
+			} else {
+				return this.originalValue.id === this.theValue.id
+			}
+			return true
+		}
+	}
+
 	select(
 		option: IFieldOption
 	) {
 		this.doSelect(option)
 		this.onBlur()
+	}
+
+	setValue(
+		value,
+		resetOriginal = false
+	) {
+		if (this.theValue instanceof Array) {
+			this.theValue = []
+			if (!value) {
+				return
+			}
+			value.forEach(
+				aValue => this.selectValue(aValue))
+		} else {
+			this.selectValue(value)
+		}
+		if (resetOriginal) {
+			if (this.theValue instanceof Array) {
+				this.originalValue        = [
+					...value
+				]
+				this.originalSelectionMap = {}
+				value.forEach(
+					aValue => {
+						this.originalSelectionMap[aValue.id] = aValue
+					})
+			} else {
+				this.originalValue = value
+			}
+		}
 	}
 
 	unselect(

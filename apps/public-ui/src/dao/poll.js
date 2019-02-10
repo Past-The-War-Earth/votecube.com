@@ -50,11 +50,12 @@ export const pollDao = {
         pollId
     ) {
         return new Promise((resolve) => {
+            if(!pollId) {
+                resolve(null)
+            }
             let poll = pollMap[pollId];
 
-            if (poll
-                // || pollId == 0
-            ) {
+            if (poll) {
                 resolve(poll)
                 return
             }
@@ -65,6 +66,9 @@ export const pollDao = {
         })
     },
 
+    getTempPoll() {
+        return pollMap[0]
+    },
     save(
         poll
     ) {

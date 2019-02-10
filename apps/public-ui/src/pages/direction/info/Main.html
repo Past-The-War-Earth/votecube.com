@@ -11,7 +11,7 @@
             <RightButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
-                on:select="select()"
+                on:select="select($routeParams)"
             ></RightButton>
         </nav>
     </fieldset>
@@ -39,11 +39,10 @@ export default {
         : 'b00'
     },
     methods: {
-        selectColor() {
-            routes.navigateToPage(routes.DIMENSION_PICK_COLOR)
-        },
-        select() {
-            forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN)
+        select(
+            $routeParams
+        ) {
+            forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
         }
     },
     oncreate() {

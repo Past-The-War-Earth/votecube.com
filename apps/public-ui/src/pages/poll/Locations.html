@@ -25,7 +25,7 @@
             <RightButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
-                on:select="submit()"
+                on:select="submit($routeParams)"
             ></RightButton>
         </div>
     </fieldset>
@@ -53,8 +53,10 @@ export default {
     },
     immutable: true,
     methods: {
-        submit() {
-            forms.navigateOnValid(this, routes.POLL_INFO_MAIN)
+        submit(
+            $routeParams
+        ) {
+            forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
         }
     },
     oncreate() {
