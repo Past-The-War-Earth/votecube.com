@@ -1,9 +1,11 @@
+{#if editable}
 <li
   class="pure-menu-item viewType"
 >
   <CopyIcon
   ></CopyIcon>
 </li>
+{/if}
 <li class="pure-menu-item">
   <nav
       class="pure-menu-link"
@@ -76,6 +78,7 @@ export default {
         CopyIcon
     },
     computed: {
+        editable: ({$routeParams}) => $routeParams.mode === 'vote',
         showCube({$currentPage}) {
             return $currentPage.key === routes.POLL_INFO_CHART
         },

@@ -97,7 +97,7 @@ export const DB = {
     }],
     polls: [{
         endDate: new Date(new Date().getTime() + 3600000 * 75),
-        id: 1,
+        id: 0,
         name: 'Trump\'s policies',
         pollsContinents: [{
             continent: {

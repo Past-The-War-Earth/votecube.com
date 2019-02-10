@@ -1,0 +1,64 @@
+<Popover
+    width="90%"
+>
+    <div slot="content">
+        <header>
+            <slot name="header"></slot>
+        </header>
+        <p>
+            <slot name="content"></slot>
+        </p>
+    {#if !viewOnly}
+        <footer
+            class:infoOnly="infoOnly"
+        >
+            <CancelButton
+                on:select="fire('cancel')"
+            ></CancelButton>
+            <div>
+                <slot name="actions"></slot>
+            </div>
+        </footer>
+    {/if}
+    </div>
+</Popover>
+<style>
+    div[slot="content"] {
+        color: #222;
+    }
+    footer {
+        margin: 0 20%;
+    }
+    footer div {
+        float: right;
+    }
+    header {
+        font-size: 1.3em;
+        font-weight: bold;
+        text-align: center;
+        margin: 15px 0;
+        width: 100%;
+    }
+    p {
+        text-align: center;
+    }
+    .infoOnly {
+        text-align: center;
+    }
+</style>
+<script>
+import Popover from './Popover.html'
+import CancelButton from '../control/button/CancelButton.html'
+
+export default {
+    components: {
+        CancelButton,
+        Popover
+    },
+    data() {
+        return {
+            viewOnly: false
+        }
+    }
+}
+</script>

@@ -240,65 +240,42 @@
         {/if}
     {/if}
     {#if confirming}
-    <Popover
+        {#if saving}
+    <ActionPopover
+        on:cancel="doNotBuild()"
+        viewOnly="!error"
+        infoOnly="error"
         width="90%"
     >
-        <div slot="content">
-        {#if saving}
-            <header>
-                {saving}
-            </header>
-            {#if error}
-            <p>
-                {error}
-            </p>
-            <footer
-                style="text-align: center;"
-            >
-                <CancelButton
-                    on:select="doNotBuild()"
-                ></CancelButton>
-            </footer>
-            {/if}
-        {:else}
-            <header>
-                Please Confirm
-            </header>
-            <p>
-                Create the "{poll.name}" poll?
-            </p>
-            <footer>
-                <CancelButton
-                    on:select="doNotBuild()"
-                ></CancelButton>
-                <BuildButton
-                    classes="floatRight"
-                    on:select="build()"
-                ></BuildButton>
-            </footer>
-        {/if}
+        <div slot="header">
+            {saving}
         </div>
-    </Popover>
+        <div slot="content">
+            {error}
+        </div>
+    </ActionPopover>
+        {:else}
+    <ActionPopover
+        on:cancel="doNotBuild()"
+        width="90%"
+    >
+        <div slot="header">
+            Please Confirm
+        </div>
+        <div slot="content">
+            Create the "{poll.name}" poll?
+        </div>
+        <div slot="actions">
+            <BuildButton
+                on:select="build()"
+            ></BuildButton>
+        </div>
+    </ActionPopover>
+        {/if}
     {/if}
 {/if}
 </article>
 <style>
-    div[slot="content"] {
-        color: #222;
-    }
-    footer {
-        margin: 0 20%;
-    }
-    header {
-        font-size: 1.3em;
-        font-weight: bold;
-        text-align: center;
-        margin: 15px 0;
-        width: 100%;
-    }
-    p {
-        text-align: center;
-    }
     .bottom-dimension-table {
         bottom: 10px;
         color: black;
@@ -406,14 +383,13 @@
 
 <script>
 import BuildButton from '../../../common/control/button/BuildButton.html'
-import CancelButton from '../../../common/control/button/CancelButton.html'
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
 import DirectionPositionButton from '../../../common/control/button/DirectionPositionButton.html'
 import LeftButton from '../../../common/control/button/LeftButton.html'
 import PercentPicker from '../../../common/control/PercentPicker.html'
 import DirectionPositioner from '../../../components/poll/create/DirectionPositioner.html'
 import VoteButton from '../../../common/control/button/VoteButton.html'
-import Popover from '../../../common/shell/Popover.html'
+import ActionPopover from '../../../common/shell/ActionPopover.html'
 import {pollDao} from '../../../dao/poll';
 import {voteDao} from '../../../dao/vote';
 import {getColor, getSideText} from '../../../helpers/cube';
@@ -424,21 +400,20 @@ import store from '../../../store';
 
 export default {
     components: {
+        ActionPopover,
         BuildButton,
-        CancelButton,
         DimensionInfoButton,
         DirectionPositionButton,
         DirectionPositioner,
         LeftButton,
         PercentPicker,
-        Popover,
         VoteButton
     },
     computed: {
         dirPosButtonColor: ({positionMode}) => positionMode
             ? '0b0'
             : '000',
-        previewMode: ({mode}) => mode === 'build',
+        previewMode: ({mode}) => mode === 'build' || mode === 'alter',
         modifyActionButtonPosition: ({$verticalLayout}) => $verticalLayout
             ? 'bottomLeft'
             : 'bottomRight',
@@ -470,7 +445,7 @@ export default {
             });
         },
         checkBuild() {
-            this.set({confirming: true, error: null, saving: false})
+            this.set({confirming: true, error: '', saving: false})
         },
         doNotBuild() {
             this.set({confirming: false})

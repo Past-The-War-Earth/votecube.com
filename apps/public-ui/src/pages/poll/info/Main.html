@@ -232,6 +232,7 @@ export default {
             forms.uncacheForm(forms.CREATE_DIMENSION)
 
             forms.navigateOnValid(this, routes.POLL_INFO_CUBE, {
+                mode: 'build',
                 pollId: 0
             })
         }

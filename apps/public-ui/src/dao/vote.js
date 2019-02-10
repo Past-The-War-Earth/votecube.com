@@ -17,7 +17,7 @@ export const voteDao = {
         return new Promise((resolve) => {
             let vote = voteMap[pollId]
             if (vote
-                || pollId == 0
+                // || pollId == 0
             ) {
                 resolve(vote)
                 return

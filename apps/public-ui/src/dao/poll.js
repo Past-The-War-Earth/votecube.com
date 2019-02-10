@@ -53,7 +53,7 @@ export const pollDao = {
             let poll = pollMap[pollId];
 
             if (poll
-                || pollId == 0
+                // || pollId == 0
             ) {
                 resolve(poll)
                 return
