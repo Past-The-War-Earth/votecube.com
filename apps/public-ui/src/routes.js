@@ -4,24 +4,24 @@ export var PAGE_CONF = {}
 
 let appComp, pageComp, topMenuComp
 
-export var DIMENSION_INFO = '/Dimension/Create'
-export var DIMENSION_LIST = '/Dimension/List'
-export var DIMENSION_PICK_COLOR = '/Dimension/PickColor'
-export var DIRECTION_INFO = '/Direction/Create'
-export var POLL_LIST = '/Poll/List'
-export var POLL_MAIN_INFO = '/Poll/MainInfo'
-export var POLL_VOTE_CHART = '/Poll/:pollId/Vote/Chart'
-export var POLL_VOTE_CUBE = '/Poll/:pollId/Vote/Cube'
-export var POLL_LOCATIONS = '/Poll/Locations'
-export var POLL_TIMEFRAME = '/Poll/Timeframe'
+export var DIMENSION_INFO_MAIN = '/dimension/info/Main'
+export var DIMENSION_SEARCH_LIST = '/dimension/List'
+export var DIMENSION_PICK_COLOR = '/dimension/PickColor'
+export var DIRECTION_INFO_MAIN = '/direction/info/Main'
+export var POLL_SEARCH_LIST = '/poll/search/List'
+export var POLL_INFO_MAIN = '/poll/info/Main/:mode/:pollId'
+export var POLL_INFO_CHART = '/poll/info/Chart/:mode/:pollId'
+export var POLL_INFO_CUBE = '/poll/info/Cube/:mode/:pollId'
+export var POLL_LOCATIONS = '/poll/Locations'
+export var POLL_TIMEFRAME = '/poll/Timeframe'
 
 configPage(
-    DIRECTION_INFO,
+    DIRECTION_INFO_MAIN,
     'Direction Info',
     false
 )
 configPage(
-    DIMENSION_INFO,
+    DIMENSION_INFO_MAIN,
     'Dimension Info',
     false
 )
@@ -31,27 +31,27 @@ configPage(
     false
 )
 configPage(
-    DIMENSION_LIST,
+    DIMENSION_SEARCH_LIST,
     'Trump\'s Policies',
     true
 )
 configPage(
-    POLL_VOTE_CHART,
+    POLL_INFO_CHART,
     'Trump\'s Policies',
     true
 )
 configPage(
-    POLL_LIST,
+    POLL_SEARCH_LIST,
     'Poll List',
     true
 )
 configPage(
-    POLL_MAIN_INFO,
+    POLL_INFO_MAIN,
     'Poll Info',
     false
 )
 configPage(
-    POLL_VOTE_CUBE,
+    POLL_INFO_CUBE,
     'Trump\'s Policies',
     true
 )
@@ -95,7 +95,7 @@ export function setupRoutes(
     topMenuMap
 ) {
     appComp = applicationComponent
-    setupPage(PAGE_CONF[POLL_LIST], pageMap[POLL_LIST], topMenuMap[POLL_LIST], applicationComponent, '/')
+    setupPage(PAGE_CONF[POLL_SEARCH_LIST], pageMap[POLL_SEARCH_LIST], topMenuMap[POLL_SEARCH_LIST], applicationComponent, '/')
     for (const pageKey in PAGE_CONF) {
         setupPage(PAGE_CONF[pageKey], pageMap[pageKey], topMenuMap[pageKey], applicationComponent)
     }

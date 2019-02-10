@@ -38,11 +38,15 @@ export default {
         return {
             menuItems: [{
                     index: 0,
-                    key: routes.POLL_LIST,
+                    key: routes.POLL_SEARCH_LIST,
                     name: 'Polls'
                 }, {
                     index: 1,
-                    key: routes.POLL_MAIN_INFO,
+                    key: routes.POLL_INFO_MAIN,
+                    params: {
+                        mode: 'build',
+                        pollId: 0
+                    },
                     name: 'Create Poll',
                 }
             ],

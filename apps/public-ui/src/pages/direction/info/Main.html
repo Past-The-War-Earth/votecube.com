@@ -22,11 +22,11 @@
 </style>
 
 <script>
-import RightButton from '../../common/control/button/RightButton.html'
-import TextArea from '../../common/field/TextArea.html'
-import * as forms from '../../form/forms'
-import * as routes from '../../routes'
-import store from '../../store'
+import RightButton from '../../../common/control/button/RightButton.html'
+import TextArea from '../../../common/field/TextArea.html'
+import * as forms from '../../../form/forms'
+import * as routes from '../../../routes'
+import store from '../../../store'
 
 export default {
     components: {
@@ -43,13 +43,13 @@ export default {
             routes.navigateToPage(routes.DIMENSION_PICK_COLOR)
         },
         select() {
-            forms.navigateOnValid(this, routes.DIMENSION_INFO)
+            forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN)
         }
     },
     oncreate() {
         forms.ensureTopForm(
             forms.CREATE_DIRECTION,
-            this, routes.POLL_MAIN_INFO)
+            this, routes.POLL_INFO_MAIN)
     },
     ondestroy() {
         forms.clearForm(this)

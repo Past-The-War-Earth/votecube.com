@@ -34,18 +34,18 @@ export default {
     },
     computed: {
         showCube({$currentPage}) {
-            return $currentPage.key === routes.POLL_VOTE_CHART
+            return $currentPage.key === routes.POLL_INFO_CHART
         },
 
         showChart({$currentPage}) {
-            return $currentPage.key === routes.POLL_VOTE_CUBE
+            return $currentPage.key === routes.POLL_INFO_CUBE
         },
     },
     data() {
         return {
             routes: {
-                cube: routes.POLL_VOTE_CUBE,
-                chart: routes.POLL_VOTE_CHART
+                cube: routes.POLL_INFO_CUBE,
+                chart: routes.POLL_INFO_CHART
             }
         }
     },

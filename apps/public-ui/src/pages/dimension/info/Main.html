@@ -73,14 +73,14 @@
 {/if}
 
 <script>
-import RightButton from '../../common/control/button/RightButton.html'
-import IconBlock from '../../common/field/IconBlock.html'
-import Text from '../../common/field/Text.html'
-import ColorIcon from '../../common/icon/ColorIcon.html'
-import DirectionIcon from '../../common/icon/DirectionIcon.html'
-import * as forms from '../../form/forms'
-import * as routes from '../../routes'
-import store from '../../store'
+import RightButton from '../../../common/control/button/RightButton.html'
+import IconBlock from '../../../common/field/IconBlock.html'
+import Text from '../../../common/field/Text.html'
+import ColorIcon from '../../../common/icon/ColorIcon.html'
+import DirectionIcon from '../../../common/icon/DirectionIcon.html'
+import * as forms from '../../../form/forms'
+import * as routes from '../../../routes'
+import store from '../../../store'
 
 export default {
     components: {
@@ -114,7 +114,7 @@ export default {
     },
     methods: {
         select() {
-            forms.navigateOnValid(this, routes.POLL_MAIN_INFO)
+            forms.navigateOnValid(this, routes.POLL_INFO_MAIN)
         },
         selectColor() {
             routes.navigateToPage(routes.DIMENSION_PICK_COLOR)
@@ -124,7 +124,7 @@ export default {
         ) {
             const dimensionForm = this.get().form
             forms.setForm(forms.CREATE_DIRECTION, dimensionForm.fields[directionPrefix + 'Direction'])
-            routes.navigateToPage(routes.DIRECTION_INFO, {
+            routes.navigateToPage(routes.DIRECTION_INFO_MAIN, {
                 directionPrefix
             })
         }
@@ -132,7 +132,7 @@ export default {
     oncreate() {
         forms.ensureTopForm(
             forms.CREATE_DIMENSION,
-            this, routes.POLL_MAIN_INFO)
+            this, routes.POLL_INFO_MAIN)
     },
     ondestroy() {
         forms.clearForm(this)

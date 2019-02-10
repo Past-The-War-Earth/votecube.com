@@ -438,7 +438,7 @@ export default {
         dirPosButtonColor: ({positionMode}) => positionMode
             ? '0b0'
             : '000',
-        previewMode: ({poll}) => poll && poll.id == 0 ? true : false,
+        previewMode: ({mode}) => mode === 'build',
         modifyActionButtonPosition: ({$verticalLayout}) => $verticalLayout
             ? 'bottomLeft'
             : 'bottomRight',
@@ -464,7 +464,7 @@ export default {
             this.set({saving: 'Saving ...'})
             pollDao.save(this.get().poll).then(() => {
                 this.set({confirming: false})
-                routes.navigateToPage(routes.POLL_LIST)
+                routes.navigateToPage(routes.POLL_SEARCH_LIST)
             }).catch((error) => {
                 this.set({error, saving: 'Error'})
             });
@@ -562,7 +562,7 @@ export default {
             this.set({delta: this.get().delta + 1})
         },
         toPollForm() {
-            routes.navigateToPage(routes.POLL_MAIN_INFO)
+            routes.navigateToPage(routes.POLL_INFO_MAIN)
         }
     },
     oncreate() {
@@ -594,12 +594,12 @@ export default {
         ]) => {
             if(!vote) {
                 if(pollId == 0) {
-                    routes.navigateToPage(routes.POLL_MAIN_INFO)
+                    routes.navigateToPage(routes.POLL_INFO_MAIN)
                 }
                 return
             }
             const poll = vote.poll
-            this.set({poll, vote})
+            this.set({mode, poll, vote})
             setPositionDataAndMove(vote)
         })
 

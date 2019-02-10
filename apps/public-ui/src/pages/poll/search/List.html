@@ -50,8 +50,9 @@ export default {
         goTo(
             pollId
         ) {
-            routes.navigateToPage(routes.POLL_VOTE_CUBE, {
-                pollId
+            routes.navigateToPage(routes.POLL_INFO_CUBE, {
+                pollId,
+                mode: 'vote'
             })
         }
     },

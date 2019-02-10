@@ -1,9 +1,8 @@
 <li
-  class="pure-menu-item"
+  class="pure-menu-item viewType"
 >
-  <nav
-    class="pure-menu-link"
-  >Extend</nav>
+  <CopyIcon
+  ></CopyIcon>
 </li>
 <li class="pure-menu-item">
   <nav
@@ -68,24 +67,28 @@
 </style>
 
 <script>
+import CopyIcon from '../../../common/icon/CopyIcon.html'
 import store from '../../../store.js'
 import * as routes from '../../../routes'
 
 export default {
+    components: {
+        CopyIcon
+    },
     computed: {
         showCube({$currentPage}) {
-            return $currentPage.key === routes.POLL_VOTE_CHART
+            return $currentPage.key === routes.POLL_INFO_CHART
         },
 
         showChart({$currentPage}) {
-            return $currentPage.key === routes.POLL_VOTE_CUBE
+            return $currentPage.key === routes.POLL_INFO_CUBE
         },
     },
     data() {
         return {
             routes: {
-                cube: routes.POLL_VOTE_CUBE,
-                chart: routes.POLL_VOTE_CHART
+                cube: routes.POLL_INFO_CUBE,
+                chart: routes.POLL_INFO_CHART
             }
         }
     },

@@ -36,13 +36,13 @@ export default {
     },
     methods: {
         select() {
-            forms.navigateOnValid(this, routes.DIMENSION_INFO)
+            forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN)
         }
     },
     oncreate() {
         forms.ensureChildForm(
             forms.CREATE_DIMENSION, 'color',
-            this, routes.POLL_MAIN_INFO
+            this, routes.POLL_INFO_MAIN
         )
     },
     ondestroy() {

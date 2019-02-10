@@ -54,13 +54,13 @@ export default {
     immutable: true,
     methods: {
         submit() {
-            forms.navigateOnValid(this, routes.POLL_MAIN_INFO)
+            forms.navigateOnValid(this, routes.POLL_INFO_MAIN)
         }
     },
     oncreate() {
         const form = forms.ensureChildForm(
             forms.CREATE_POLL_TOP, 'locations',
-            this, routes.POLL_MAIN_INFO)
+            this, routes.POLL_INFO_MAIN)
         if(!form) {
             return
         }

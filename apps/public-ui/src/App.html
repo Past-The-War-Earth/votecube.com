@@ -77,36 +77,36 @@ import {navigateToPage, setupRoutes} from './routes.js'
 import * as routes from './routes'
 import {loadUi} from './libs/text/ui'
 
-import DirectionInfo from './pages/direction/Info.html'
-import DimensionInfo from './pages/dimension/Info.html'
-import DimensionList from './pages/dimension/List.html'
-import PickDimensionColor from './pages/dimension/PickColor.html'
-import LocationSelector from './pages/poll/Locations.html'
-import TimeframeSelector from './pages/poll/Timeframe.html'
-import MainInfoSelector from './pages/poll/MainInfo.html'
-import CubeVote from './pages/poll/vote/Cube.html'
-import CubeTopMenu from './pages/poll/vote/Common.top.menu.html'
-import PollList from './pages/poll/list/List.html'
-import PollListTopMenu from './pages/poll/list/List.top.menu.html'
-import VerticalBarVote from './pages/poll/vote/Chart.html'
+import DirectionInfoMain from './pages/direction/info/Main.html'
+import DimensionInfoMain from './pages/dimension/info/Main.html'
+import DimensionSearchList from './pages/dimension/search/List.html'
+import DimensionPickColor from './pages/dimension/PickColor.html'
+import PollLocations from './pages/poll/Locations.html'
+import PollTimeframe from './pages/poll/Timeframe.html'
+import PollInfoMain from './pages/poll/info/Main.html'
+import PollInfoCube from './pages/poll/info/Cube.html'
+import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
+import PollSearchList from './pages/poll/search/List.html'
+import PollSearchListTopMenu from './pages/poll/search/List.top.menu.html'
+import PollInfoChart from './pages/poll/info/Chart.html'
 
 const pageMap = {
-    [routes.DIRECTION_INFO]: DirectionInfo,
-    [routes.DIMENSION_INFO]: DimensionInfo,
-    [routes.DIMENSION_LIST]: DimensionList,
-    [routes.DIMENSION_PICK_COLOR]: PickDimensionColor,
-    [routes.POLL_VOTE_CHART]: VerticalBarVote,
-    [routes.POLL_LIST]: PollList,
-    [routes.POLL_MAIN_INFO]: MainInfoSelector,
-    [routes.POLL_VOTE_CUBE]: CubeVote,
-    [routes.POLL_LOCATIONS]: LocationSelector,
-    [routes.POLL_TIMEFRAME]: TimeframeSelector,
+    [routes.DIRECTION_INFO_MAIN]: DirectionInfoMain,
+    [routes.DIMENSION_INFO_MAIN]: DimensionInfoMain,
+    [routes.DIMENSION_SEARCH_LIST]: DimensionSearchList,
+    [routes.DIMENSION_PICK_COLOR]: DimensionPickColor,
+    [routes.POLL_INFO_CHART]: PollInfoChart,
+    [routes.POLL_SEARCH_LIST]: PollSearchList,
+    [routes.POLL_INFO_MAIN]: PollInfoMain,
+    [routes.POLL_INFO_CUBE]: PollInfoCube,
+    [routes.POLL_LOCATIONS]: PollLocations,
+    [routes.POLL_TIMEFRAME]: PollTimeframe,
 };
 
 const topMenuMap = {
-    [routes.POLL_VOTE_CHART]: CubeTopMenu,
-    [routes.POLL_VOTE_CUBE]: CubeTopMenu,
-    [routes.POLL_LIST]: PollListTopMenu
+    [routes.POLL_INFO_CHART]: PollInfoCommonTopMenu,
+    [routes.POLL_INFO_CUBE]: PollInfoCommonTopMenu,
+    [routes.POLL_SEARCH_LIST]: PollSearchListTopMenu
 }
 
 export default {
@@ -140,14 +140,7 @@ export default {
         selectMenu(
             menuItem
         ) {
-            switch(menuItem.key) {
-                case routes.POLL_LIST:
-                case routes.POLL_MAIN_INFO:
-                case routes.POLL_VOTE_CUBE: {
-                    navigateToPage(menuItem.key)
-                    break
-                }
-            }
+            navigateToPage(menuItem.key, menuItem.params)
             this.store.toggleMainMenu()
         },
         toggleMenu() {
