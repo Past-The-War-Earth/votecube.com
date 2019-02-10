@@ -141,27 +141,27 @@
 </style>
 
 <script>
-import PreviewButton from '../../../common/control/button/PreviewButton.html'
-import AutoComplete from '../../../common/field/AutoComplete.html'
-import IconBlock from '../../../common/field/IconBlock.html'
-import MultiSelect from '../../../common/field/MultiSelect.html'
-import Text from '../../../common/field/Text.html'
-import LocationIcon from '../../../common/icon/LocationIcon.html'
-import TimeIcon from '../../../common/icon/TimeIcon.html'
-import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
-import {pollDao} from '../../../dao/poll'
-import {voteDao} from '../../../dao/vote'
-import * as forms from '../../../form/forms'
-import * as pollFormCreator from '../../../form/poll/creator'
-import * as pollFormFromConverter from '../../../form/poll/fromConverter'
-import * as pollFormToConverter from '../../../form/poll/toConverter'
-import {loadForms} from '../../../libs/forms'
-import {loadLocations} from '../../../libs/locations'
-import {loadLocations as loadLocText} from '../../../libs/text/locations'
-import {loadUi} from '../../../libs/text/ui'
-import {getArrayValueTexts, getDate} from '../../../helpers/general'
-import * as routes from '../../../routes'
-import store from '../../../store'
+import PreviewButton from '../../common/control/button/PreviewButton.html'
+import AutoComplete from '../../common/field/AutoComplete.html'
+import IconBlock from '../../common/field/IconBlock.html'
+import MultiSelect from '../../common/field/MultiSelect.html'
+import Text from '../../common/field/Text.html'
+import LocationIcon from '../../common/icon/LocationIcon.html'
+import TimeIcon from '../../common/icon/TimeIcon.html'
+import SelectionBlock from '../../components/dimension/SelectionBlock.html'
+import {pollDao} from '../../dao/poll'
+import {voteDao} from '../../dao/vote'
+import * as forms from '../../form/forms'
+import * as pollFormCreator from '../../form/poll/creator'
+import * as pollFormFromConverter from '../../form/poll/fromConverter'
+import * as pollFormToConverter from '../../form/poll/toConverter'
+import {loadForms} from '../../libs/forms'
+import {loadLocations} from '../../libs/locations'
+import {loadLocations as loadLocText} from '../../libs/text/locations'
+import {loadUi} from '../../libs/text/ui'
+import {getArrayValueTexts, getDate} from '../../helpers/general'
+import * as routes from '../../routes'
+import store from '../../store'
 
 export default {
     components: {
@@ -208,13 +208,13 @@ export default {
             dimensionForm
         ) {
             forms.setForm(forms.CREATE_DIMENSION, dimensionForm)
-            routes.navigateToPage(routes.CREATE_DIMENSION)
+            routes.navigateToPage(routes.DIMENSION_INFO)
         },
         selectLocations() {
-            routes.navigateToPage(routes.SELECT_POLL_LOCATIONS)
+            routes.navigateToPage(routes.POLL_LOCATIONS)
         },
         selectTimeframe() {
-            routes.navigateToPage(routes.SELECT_POLL_TIMEFRAME)
+            routes.navigateToPage(routes.POLL_TIMEFRAME)
         },
         submit() {
             const {form} = this.get()
@@ -231,7 +231,7 @@ export default {
             forms.uncacheForm(forms.CREATE_POLL_TOP)
             forms.uncacheForm(forms.CREATE_DIMENSION)
 
-            forms.navigateOnValid(this, routes.CUBE, {
+            forms.navigateOnValid(this, routes.POLL_VOTE_CUBE, {
                 pollId: 0
             })
         }

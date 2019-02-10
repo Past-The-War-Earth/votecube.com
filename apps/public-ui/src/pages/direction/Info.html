@@ -40,16 +40,16 @@ export default {
     },
     methods: {
         selectColor() {
-            routes.navigateToPage(routes.PICK_DIMENSION_COLOR)
+            routes.navigateToPage(routes.DIMENSION_PICK_COLOR)
         },
         select() {
-            forms.navigateOnValid(this, routes.CREATE_DIMENSION)
+            forms.navigateOnValid(this, routes.DIMENSION_INFO)
         }
     },
     oncreate() {
         forms.ensureTopForm(
             forms.CREATE_DIRECTION,
-            this, routes.CREATE_POLL_NAME_LOC_DATE)
+            this, routes.POLL_MAIN_INFO)
     },
     ondestroy() {
         forms.clearForm(this)

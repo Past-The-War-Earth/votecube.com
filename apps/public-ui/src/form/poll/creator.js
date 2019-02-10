@@ -8,7 +8,7 @@ export function createPollForm(
     OptionsField,
     Validators
 ) {
-    const text = uiText.Poll.Create;
+    const text = uiText.Poll;
 
     const dimensions = new FieldGroup('Dimensions', {
         first: createDimensionForm(
@@ -106,7 +106,7 @@ export function createPollForm(
         ]),
     }, [Validators.required()], text)
 
-    return new FieldGroup('NameLocationsTimeframe', {
+    return new FieldGroup('MainInfo', {
         dimensions,
         labels,
         locations,
@@ -189,7 +189,7 @@ function createDimensionForm(
         ])
     }, [Validators.required()], uiText.Dimension)
 
-    return new FieldGroup('Create', {
+    return new FieldGroup('Info', {
         bottomDirection,
         color,
         name,

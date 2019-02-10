@@ -200,6 +200,7 @@ i {
     border-top-left-radius: 3px;
 }
 
+.floatRight,
 .fieldAid {
     float: right;
 }

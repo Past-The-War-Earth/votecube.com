@@ -1,0 +1,99 @@
+<tr
+    on:click="fire('select', {event})"
+>
+    <td
+        class="icon"
+        >
+        <figure>
+                <div
+                    class="surface s1"
+                    style="
+        background-color: #{getColor(0, poll, 'x')};
+                        "
+                ></div>
+                <div
+                    class="surface s2"
+                    style="
+        background-color: #{getColor(0, poll, 'z')};
+                        "
+                ></div>
+                <div
+                    class="surface s5"
+                    style="
+        background-color: #{getColor(0, poll, 'y')};
+                        "
+                ></div>
+        </figure>
+    <td
+        class="description"
+    >
+        <div>
+        {poll.name}
+        </div>
+    </td>
+</tr>
+<style>
+    div {
+        max-height: 72px;
+        overflow: hidden;
+    }
+    figure {
+        margin: auto;
+        position: relative;
+        transform: rotateX(-45deg) rotateY(45deg);
+        transform-style: preserve-3d;
+    }
+    td {
+        border-top: 1px solid #ddd;
+    }
+    .description {
+        border-left: none;
+        padding: 9px;
+        width: calc(100% - 60px);
+    }
+
+    .icon {
+        height: 90px;
+        perspective: 700px;
+        perspective-origin: 50% 160px;
+        width: 90px;
+    }
+
+    figure {
+        border-radius: 3px;
+        margin: auto;
+        height: 42px;
+        width: 42px;
+    }
+
+    .s1  {
+        transform: rotateX(90deg) translateZ(24px)
+    }
+
+    .s2 {
+        transform: translateZ(24px)
+    }
+
+    .s5 {
+        transform: rotateY(90deg) translateZ(-24px)
+    }
+
+    .surface {
+        position: absolute;
+        height: 45px;
+        width: 45px;
+        border-radius: 4px;
+        border: 3px groove gray;
+    }
+</style>
+<script>
+import {getColor} from '../../../helpers/cube';
+
+export default {
+    helpers: {
+        getColor
+    },
+    immutable: true
+}
+
+</script>

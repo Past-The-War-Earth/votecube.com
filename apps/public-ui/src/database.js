@@ -98,14 +98,12 @@ export const DB = {
     polls: [{
         endDate: new Date(new Date().getTime() + 3600000 * 75),
         id: 1,
-        locations: {
-            continents: [
-                {
-                    "id": "NorthAmerica"
-                }
-            ]
-        },
         name: 'Trump\'s policies',
+        pollsContinents: [{
+            continent: {
+                "id": "NorthAmerica"
+            }
+        }],
         pollsDimensionsDirections: [{
             axis: 'x',
             color: {

@@ -33,13 +33,13 @@
 {/if}
 
 <script>
-import RightButton from '../../../common/control/button/RightButton.html'
-import MultiSelect from '../../../common/field/MultiSelect.html'
-import * as forms from '../../../form/forms'
-import {loadLocations} from '../../../libs/locations'
-import {loadLocations as loadLocText} from '../../../libs/text/locations'
-import * as routes from '../../../routes'
-import store from '../../../store'
+import RightButton from '../../common/control/button/RightButton.html'
+import MultiSelect from '../../common/field/MultiSelect.html'
+import * as forms from '../../form/forms'
+import {loadLocations} from '../../libs/locations'
+import {loadLocations as loadLocText} from '../../libs/text/locations'
+import * as routes from '../../routes'
+import store from '../../store'
 
 export default {
     components: {
@@ -54,13 +54,13 @@ export default {
     immutable: true,
     methods: {
         submit() {
-            forms.navigateOnValid(this, routes.CREATE_POLL_NAME_LOC_DATE)
+            forms.navigateOnValid(this, routes.POLL_MAIN_INFO)
         }
     },
     oncreate() {
         const form = forms.ensureChildForm(
             forms.CREATE_POLL_TOP, 'locations',
-            this, routes.CREATE_POLL_NAME_LOC_DATE)
+            this, routes.POLL_MAIN_INFO)
         if(!form) {
             return
         }

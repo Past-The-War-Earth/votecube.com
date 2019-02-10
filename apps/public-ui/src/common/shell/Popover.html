@@ -1,0 +1,50 @@
+<aside>
+    <div>
+        <section
+            style="
+                height: {height};
+                width: {width};
+            "
+        >
+            <slot name="content">
+            </slot>
+        </section>
+    </div>
+</aside>
+<style>
+    aside {
+        background-color: rgba(32, 32, 32, 0.7);
+        height: 100%;
+        left: 0px;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        z-index: 1000;
+    }
+    div {
+        /*position: relative;*/
+        width: 100%;
+        height: 100%;
+    }
+    section {
+        background-color: #fff;
+        border: 1px solid black;
+        border-radius: 5px;
+        left: 50%;
+        margin: 0;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<script>
+export default {
+    data: () => {
+        return {
+            height: 'initial',
+            width: 'initial'
+        }
+    }
+}
+</script>

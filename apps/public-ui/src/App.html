@@ -77,34 +77,36 @@ import {navigateToPage, setupRoutes} from './routes.js'
 import * as routes from './routes'
 import {loadUi} from './libs/text/ui'
 
-import DirectionCreate from './pages/direction/Create.html'
-import DimensionCreate from './pages/dimension/Create.html'
+import DirectionInfo from './pages/direction/Info.html'
+import DimensionInfo from './pages/dimension/Info.html'
 import DimensionList from './pages/dimension/List.html'
 import PickDimensionColor from './pages/dimension/PickColor.html'
-import DimensionsSelector from './pages/poll/create/Dimensions.html'
-import LocationSelector from './pages/poll/create/Locations.html'
-import TimeframeSelector from './pages/poll/create/Timeframe.html'
-import NameLocationsTimeframeSelector from './pages/poll/create/NameLocationsTimeframe.html'
+import LocationSelector from './pages/poll/Locations.html'
+import TimeframeSelector from './pages/poll/Timeframe.html'
+import MainInfoSelector from './pages/poll/MainInfo.html'
 import CubeVote from './pages/poll/vote/Cube.html'
 import CubeTopMenu from './pages/poll/vote/Common.top.menu.html'
+import PollList from './pages/poll/list/List.html'
+import PollListTopMenu from './pages/poll/list/List.top.menu.html'
 import VerticalBarVote from './pages/poll/vote/Chart.html'
 
 const pageMap = {
-    [routes.CREATE_DIRECTION]: DirectionCreate,
-    [routes.CREATE_DIMENSION]: DimensionCreate,
+    [routes.DIRECTION_INFO]: DirectionInfo,
+    [routes.DIMENSION_INFO]: DimensionInfo,
     [routes.DIMENSION_LIST]: DimensionList,
-    [routes.PICK_DIMENSION_COLOR]: PickDimensionColor,
-    [routes.CHART]: VerticalBarVote,
-    [routes.CREATE_POLL_NAME_LOC_DATE]: NameLocationsTimeframeSelector,
-    [routes.CUBE]: CubeVote,
-    [routes.SELECT_POLL_DIMENSIONS]: DimensionsSelector,
-    [routes.SELECT_POLL_LOCATIONS]: LocationSelector,
-    [routes.SELECT_POLL_TIMEFRAME]: TimeframeSelector,
+    [routes.DIMENSION_PICK_COLOR]: PickDimensionColor,
+    [routes.POLL_VOTE_CHART]: VerticalBarVote,
+    [routes.POLL_LIST]: PollList,
+    [routes.POLL_MAIN_INFO]: MainInfoSelector,
+    [routes.POLL_VOTE_CUBE]: CubeVote,
+    [routes.POLL_LOCATIONS]: LocationSelector,
+    [routes.POLL_TIMEFRAME]: TimeframeSelector,
 };
 
 const topMenuMap = {
-    [routes.CHART]: CubeTopMenu,
-    [routes.CUBE]: CubeTopMenu,
+    [routes.POLL_VOTE_CHART]: CubeTopMenu,
+    [routes.POLL_VOTE_CUBE]: CubeTopMenu,
+    [routes.POLL_LIST]: PollListTopMenu
 }
 
 export default {
@@ -139,8 +141,9 @@ export default {
             menuItem
         ) {
             switch(menuItem.key) {
-                case routes.CREATE_POLL_NAME_LOC_DATE:
-                case routes.CUBE: {
+                case routes.POLL_LIST:
+                case routes.POLL_MAIN_INFO:
+                case routes.POLL_VOTE_CUBE: {
                     navigateToPage(menuItem.key)
                     break
                 }

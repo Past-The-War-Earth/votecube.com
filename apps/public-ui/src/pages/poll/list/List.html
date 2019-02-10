@@ -1,0 +1,81 @@
+{#if form}
+<form class="pure-form">
+    <fieldset>
+        <Text
+            field="{form.fields.search}"
+        ></Text>
+    </fieldset>
+</form>
+<table>
+    {#each polls as poll}
+    <ListItem
+        poll="{poll}"
+        on:select="goTo(poll.id)"
+    ></ListItem>
+    {/each}
+</table>
+<!--
+<VirtualList items={dimensions} component={ListItem} />
+-->
+{/if}
+
+<style>
+    table {
+        width: 100%;
+    }
+</style>
+<script>
+// import VirtualList from '@sveltejs/svelte-virtual-list';
+import Text from '../../../common/field/Text.html'
+import {pollDao} from '../../../dao/poll'
+import * as forms from '../../../form/forms'
+import {loadForms} from '../../../libs/forms'
+import {loadUi} from '../../../libs/text/ui'
+import * as routes from '../../../routes'
+import store from '../../../store'
+import ListItem from './ListItem.html';
+
+export default {
+    components: {
+        ListItem,
+        Text,
+        // VirtualList
+    },
+    // data() {
+    //   return {
+    //     ListItem
+    //   }
+    // },
+    methods: {
+        goTo(
+            pollId
+        ) {
+            routes.navigateToPage(routes.POLL_VOTE_CUBE, {
+                pollId
+            })
+        }
+    },
+    oncreate() {
+        Promise.all([
+            loadForms(this),
+            loadUi(this.store, 'en-us'),
+            pollDao.getAll()
+        ]).then(([
+            {Field, FieldGroup},
+            _,
+            polls
+        ]) => {
+            const filter = new FieldGroup('List', {
+                search: new Field([])
+            }, [], this.store.get().text.UI.Poll)
+
+            this.set({polls})
+            forms.ensureForm(filter, this)
+        })
+    },
+    ondestroy() {
+        forms.clearForm(this)
+    },
+    store: () => store
+}
+</script>

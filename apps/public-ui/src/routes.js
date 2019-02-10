@@ -4,29 +4,29 @@ export var PAGE_CONF = {}
 
 let appComp, pageComp, topMenuComp
 
-export var CREATE_DIRECTION = '/Direction/Create'
-export var CREATE_DIMENSION = '/Dimension/Create'
+export var DIMENSION_INFO = '/Dimension/Create'
 export var DIMENSION_LIST = '/Dimension/List'
-export var PICK_DIMENSION_COLOR = '/Dimension/PickColor'
-export var CHART = '/Poll/:pollId/Vote/Chart'
-export var CREATE_POLL_NAME_LOC_DATE = '/Poll/Create/NameLocationsTimeframe'
-export var CUBE = '/Poll/:pollId/Vote/Cube'
-export var SELECT_POLL_DIMENSIONS = '/Poll/Create/Dimensions'
-export var SELECT_POLL_LOCATIONS = '/Poll/Create/Locations'
-export var SELECT_POLL_TIMEFRAME = '/Poll/Create/Timeframe'
+export var DIMENSION_PICK_COLOR = '/Dimension/PickColor'
+export var DIRECTION_INFO = '/Direction/Create'
+export var POLL_LIST = '/Poll/List'
+export var POLL_MAIN_INFO = '/Poll/MainInfo'
+export var POLL_VOTE_CHART = '/Poll/:pollId/Vote/Chart'
+export var POLL_VOTE_CUBE = '/Poll/:pollId/Vote/Cube'
+export var POLL_LOCATIONS = '/Poll/Locations'
+export var POLL_TIMEFRAME = '/Poll/Timeframe'
 
 configPage(
-    CREATE_DIRECTION,
-    'Create Direction',
+    DIRECTION_INFO,
+    'Direction Info',
     false
 )
 configPage(
-    CREATE_DIMENSION,
-    'Create Dimension',
+    DIMENSION_INFO,
+    'Dimension Info',
     false
 )
 configPage(
-    PICK_DIMENSION_COLOR,
+    DIMENSION_PICK_COLOR,
     'Pick Dimension Color',
     false
 )
@@ -36,33 +36,33 @@ configPage(
     true
 )
 configPage(
-    CHART,
+    POLL_VOTE_CHART,
     'Trump\'s Policies',
     true
 )
 configPage(
-    CREATE_POLL_NAME_LOC_DATE,
-    'Create Poll',
+    POLL_LIST,
+    'Poll List',
+    true
+)
+configPage(
+    POLL_MAIN_INFO,
+    'Poll Info',
     false
 )
 configPage(
-    CUBE,
+    POLL_VOTE_CUBE,
     'Trump\'s Policies',
     true
 )
 configPage(
-    SELECT_POLL_DIMENSIONS,
-    'Select Poll Dimensions',
-    false
-)
-configPage(
-    SELECT_POLL_LOCATIONS,
+    POLL_LOCATIONS,
     'Select Poll Location(s)',
     false
 )
 configPage(
-    SELECT_POLL_TIMEFRAME,
-    'Select Poll Time-frame',
+    POLL_TIMEFRAME,
+    'Poll Time-frame',
     false
 )
 export function getPageComponent() {
@@ -95,7 +95,7 @@ export function setupRoutes(
     topMenuMap
 ) {
     appComp = applicationComponent
-    setupPage(PAGE_CONF[CREATE_POLL_NAME_LOC_DATE], pageMap[CREATE_POLL_NAME_LOC_DATE], null, applicationComponent, '/')
+    setupPage(PAGE_CONF[POLL_LIST], pageMap[POLL_LIST], topMenuMap[POLL_LIST], applicationComponent, '/')
     for (const pageKey in PAGE_CONF) {
         setupPage(PAGE_CONF[pageKey], pageMap[pageKey], topMenuMap[pageKey], applicationComponent)
     }

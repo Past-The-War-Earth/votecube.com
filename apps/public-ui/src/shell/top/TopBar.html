@@ -22,9 +22,9 @@ export default {
     },
     computed: {
         showTopMenu: ({$currentPage}) => !!routes.getTopMenuComponent(),
-        wrapperMarginBottom: ({$currentPage}) => $currentPage && $currentPage.rightMenu
+        wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
         ? 2.5
-        : 0.5
+        : 0
     }
 }
 </script>

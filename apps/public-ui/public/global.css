@@ -383,9 +383,7 @@ input[type="search"]::-webkit-search-decoration {
  */
 
 fieldset {
-    border: 1px solid #c0c0c0;
-    margin: 0 2px;
-    padding: 0.35em 1.1em 0.75em 0.625em;
+    padding: 0.4em;
 }
 
 /**
@@ -3466,7 +3464,7 @@ pre .support.value {
 
 .custom-menu-wrapper {
     background-color: #808080;
-    margin-bottom: 2.5em;
+    /*margin-bottom: 2.5em;*/
     white-space: nowrap;
     position: relative;
 }

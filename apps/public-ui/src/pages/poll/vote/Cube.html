@@ -228,14 +228,77 @@
     </tr>
         {/if}
     </table>
+        {#if previewMode}
+    <BuildButton
+        classes="{submitButtonPosition}"
+        on:select="checkBuild()"
+    ></BuildButton>
+        {:else}
     <VoteButton
         classes="{submitButtonPosition}"
     ></VoteButton>
+        {/if}
+    {/if}
+    {#if confirming}
+    <Popover
+        width="90%"
+    >
+        <div slot="content">
+        {#if saving}
+            <header>
+                {saving}
+            </header>
+            {#if error}
+            <p>
+                {error}
+            </p>
+            <footer
+                style="text-align: center;"
+            >
+                <CancelButton
+                    on:select="doNotBuild()"
+                ></CancelButton>
+            </footer>
+            {/if}
+        {:else}
+            <header>
+                Please Confirm
+            </header>
+            <p>
+                Create the "{poll.name}" poll?
+            </p>
+            <footer>
+                <CancelButton
+                    on:select="doNotBuild()"
+                ></CancelButton>
+                <BuildButton
+                    classes="floatRight"
+                    on:select="build()"
+                ></BuildButton>
+            </footer>
+        {/if}
+        </div>
+    </Popover>
     {/if}
 {/if}
 </article>
-
 <style>
+    div[slot="content"] {
+        color: #222;
+    }
+    footer {
+        margin: 0 20%;
+    }
+    header {
+        font-size: 1.3em;
+        font-weight: bold;
+        text-align: center;
+        margin: 15px 0;
+        width: 100%;
+    }
+    p {
+        text-align: center;
+    }
     .bottom-dimension-table {
         bottom: 10px;
         color: black;
@@ -342,14 +405,18 @@
 </style>
 
 <script>
+import BuildButton from '../../../common/control/button/BuildButton.html'
+import CancelButton from '../../../common/control/button/CancelButton.html'
 import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
 import DirectionPositionButton from '../../../common/control/button/DirectionPositionButton.html'
 import LeftButton from '../../../common/control/button/LeftButton.html'
 import PercentPicker from '../../../common/control/PercentPicker.html'
 import DirectionPositioner from '../../../components/poll/create/DirectionPositioner.html'
 import VoteButton from '../../../common/control/button/VoteButton.html'
-import {getColor, getSideText} from '../../../helpers/cube';
+import Popover from '../../../common/shell/Popover.html'
+import {pollDao} from '../../../dao/poll';
 import {voteDao} from '../../../dao/vote';
+import {getColor, getSideText} from '../../../helpers/cube';
 import {loadCubeLogic, setCubeAdjustment, shutDownCubeListener} from '../../../libs/cubeLogic'
 import {setResizeCllBck} from '../../../resizer'
 import * as routes from '../../../routes'
@@ -357,11 +424,14 @@ import store from '../../../store';
 
 export default {
     components: {
+        BuildButton,
+        CancelButton,
         DimensionInfoButton,
         DirectionPositionButton,
         DirectionPositioner,
         LeftButton,
         PercentPicker,
+        Popover,
         VoteButton
     },
     computed: {
@@ -390,6 +460,21 @@ export default {
 		getSideText
 	},
     methods: {
+        build() {
+            this.set({saving: 'Saving ...'})
+            pollDao.save(this.get().poll).then(() => {
+                this.set({confirming: false})
+                routes.navigateToPage(routes.POLL_LIST)
+            }).catch((error) => {
+                this.set({error, saving: 'Error'})
+            });
+        },
+        checkBuild() {
+            this.set({confirming: true, error: null, saving: false})
+        },
+        doNotBuild() {
+            this.set({confirming: false})
+        },
         move(
             event
         ) {
@@ -477,7 +562,7 @@ export default {
             this.set({delta: this.get().delta + 1})
         },
         toPollForm() {
-            routes.navigateToPage(routes.CREATE_POLL_NAME_LOC_DATE)
+            routes.navigateToPage(routes.POLL_MAIN_INFO)
         }
     },
     oncreate() {
@@ -509,7 +594,7 @@ export default {
         ]) => {
             if(!vote) {
                 if(pollId == 0) {
-                    routes.navigateToPage(routes.CREATE_POLL_NAME_LOC_DATE)
+                    routes.navigateToPage(routes.POLL_MAIN_INFO)
                 }
                 return
             }
