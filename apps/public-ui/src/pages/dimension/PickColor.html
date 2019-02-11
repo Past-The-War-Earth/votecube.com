@@ -21,6 +21,7 @@
 import RightButton from '../../common/control/button/RightButton.html'
 import ColorPicker from '../../common/field/ColorPicker.html'
 import * as forms from '../../form/forms'
+import * as formCache from '../../form/cache'
 import * as routes from '../../routes'
 import store from '../../store'
 
@@ -36,16 +37,19 @@ export default {
     },
     methods: {
         select($routeParams) {
+            this.set({keepPollId: $routeParams.pollId})
             forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
         }
     },
     oncreate() {
+        formCache.getPollRouteParams(this)
         forms.ensureChildForm(
             forms.CREATE_DIMENSION, 'color',
             this, routes.POLL_INFO_MAIN
         )
     },
     ondestroy() {
+        formCache.savePollForm(this)
         forms.clearForm(this)
     },
     store: () => store

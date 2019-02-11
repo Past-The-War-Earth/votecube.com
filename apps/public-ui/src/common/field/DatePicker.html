@@ -14,8 +14,9 @@
     <section
         class="field"
         class:invalid="touched && errors.length"
-        class:requiredInvalid="field.validatorMap.required && errors.length"
-        class:requiredValid="field.validatorMap.required && !errors.length"
+        class:modified="modified"
+        class:requiredInvalid="requiredInvalid"
+        class:requiredValid="requiredValid"
     >
         <!-- FIXME: add support for other date formats -->
         <input
@@ -73,9 +74,15 @@
         <CalendarIcon
             on:select="showCalendar(event.element, event.event)"
         ></CalendarIcon>
+    {#if trackOriginal}
+        <UndoIcon
+            on:select="revert()"
+        ></UndoIcon>
+    {:else}
         <ClearIcon
             on:select="clear()"
         ></ClearIcon>
+    {/if}
     </section>
     {#if showCalendar}
     <div
@@ -254,6 +261,7 @@ import ArrowRightIcon from '../icon/ArrowRightIcon.html'
 import CalendarIcon from '../icon/CalendarIcon.html'
 import ClearIcon from '../icon/ClearIcon.html'
 import InfoIcon from '../icon/InfoIcon.html'
+import UndoIcon from '../icon/UndoIcon.html'
 
 export default {
     actions: {
@@ -273,17 +281,25 @@ export default {
         ArrowRightIcon,
         CalendarIcon,
         ClearIcon,
-        InfoIcon
+        InfoIcon,
+        UndoIcon
     },
     computed: {
         date: ({delta, field}) => field.fragments.date,
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
+        modified: ({delta, errors, field}) =>
+            !errors.length && field.rules.trackOriginal && !field.theIsOriginal,
         month: ({delta, field}) => field.fragments.month,
         calendarTitle: ({delta, field, $text}) => {
             return `${$text.UI.Common.Field.Datepicker.month[field.calendar.month]} ${field.calendar.year}`
         },
+        requiredInvalid: ({delta, errors, field}) =>
+            field.validatorMap.required && errors.length,
+        requiredValid: ({delta, errors, field, modified}) =>
+            !modified && field.validatorMap.required && !errors.length,
         touched: ({delta, field}) => field.touched,
+        trackOriginal: ({delta, field}) => field.rules.trackOriginal,
         weeks: ({delta, field}) => field.calendar.weeks,
         year: ({delta, field}) => field.fragments.year
     },
@@ -338,6 +354,9 @@ export default {
             element
         ) {
             this.get().field.fragments.onInput(fragmentType, element)
+        },
+        revert() {
+            this.get().field.revert()
         },
         showCalendar(element, event) {
             const {field, showCalendar} = this.get()

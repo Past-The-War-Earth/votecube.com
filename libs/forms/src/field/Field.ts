@@ -17,7 +17,8 @@ export enum LabelRule {
 
 export interface IFieldRules {
 	label?: LabelRule
-	maxLength?: '' | number
+	maxLength?: '' | number,
+	trackOriginal: boolean
 }
 
 export interface IFieldText {
@@ -29,7 +30,8 @@ export interface IFieldText {
 export interface IValidate {
 	validate(
 		fromParentGroup?: boolean,
-		relatedField?: IFieldBase
+		relatedField?: IFieldBase,
+		originalCheckOnly?: boolean
 	): void
 }
 
@@ -64,7 +66,8 @@ export class Field
 	implements IField {
 
 	rules: IFieldRules = {
-		label: LabelRule.BOTH
+		label: LabelRule.BOTH,
+		trackOriginal: false
 	}
 	text: IFieldText
 
@@ -78,7 +81,7 @@ export class Field
 			...rules
 		}
 		this.lastValue = this.value
-		this.theValue = ''
+		this.theValue  = ''
 	}
 
 	get error(): IFieldError | null {
@@ -120,6 +123,16 @@ export class Field
 		this.detect()
 	}
 
+	isOriginal(): boolean {
+		if (!this.rules.trackOriginal) {
+			return true
+		}
+
+		this.theIsOriginal = this.getOriginal()
+
+		return this.theIsOriginal
+	}
+
 	labelRule(
 		labelRule: LabelRule = LabelRule.BOTH
 	): void {
@@ -143,6 +156,18 @@ export class Field
 		this.lastValue = this.value
 
 		this.detect()
+	}
+
+	revert(): void {
+		this.value = this.originalValue
+		this.validate()
+		this.detect()
+	}
+
+	setTrackOriginal(
+		trackOriginal: boolean
+	): void {
+		this.rules.trackOriginal = trackOriginal
 	}
 
 	validate(
@@ -178,12 +203,15 @@ export class Field
 
 		this.valid = !this.errors.length
 
-		if (lastIsValid !== this.valid
-			|| this.lastValue !== this.value) {
-			if (!fromParentGroup) {
-				this.group.validate(false, this)
-			}
+		const originalCheckOnly = lastIsValid === this.valid
+			&& this.lastValue === this.value
+		if (!fromParentGroup) {
+			this.group.validate(false, this, originalCheckOnly)
 		}
+	}
+
+	protected getOriginal(): boolean {
+		return this.isSame(this.theValue, this.originalValue)
 	}
 
 }

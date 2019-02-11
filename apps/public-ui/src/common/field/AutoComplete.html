@@ -15,8 +15,9 @@
     <section
         class="dropdownAnchor field fieldBox"
         class:invalid="touched && errors.length"
-        class:requiredInvalid="field.validatorMap.required && errors.length"
-        class:requiredValid="field.validatorMap.required && !errors.length"
+        class:modified="modified"
+        class:requiredInvalid="requiredInvalid"
+        class:requiredValid="requiredValid"
         on:click="showOptions(this, event)"
         ref:field
     >
@@ -37,13 +38,19 @@
             class="icons"
         >
             <div>
-                <ClearIcon
-                    on:select="clear()"
+    {#if trackOriginal}
+                <UndoIcon
                     multiLine="y"
+                    on:select="revert()"
+                ></UndoIcon>
+    {:else}
+                <ClearIcon
+                    multiLine="y"
+                    on:select="clear()"
                 ></ClearIcon>
+    {/if}
                 <InfoIcon
                     on:select="help()"
-                    multiLine="y"
                 ></InfoIcon>
             </div>
         </div>
@@ -143,8 +150,9 @@
 <script>
 import {ACTIONS, COMPUTED, OPTIONS} from '../../form/forms'
 import store from '../../store'
-import InfoIcon from '../icon/InfoIcon.html'
 import ClearIcon from '../icon/ClearIcon.html'
+import InfoIcon from '../icon/InfoIcon.html'
+import UndoIcon from '../icon/UndoIcon.html'
 
 export default {
     actions: {
@@ -161,17 +169,25 @@ export default {
     },
     components: {
         ClearIcon,
-        InfoIcon
+        InfoIcon,
+        UndoIcon
     },
     computed: {
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
+        modified: ({delta, errors, field}) =>
+            !errors.length && field.rules.trackOriginal && !field.theIsOriginal,
         options: ({delta, field, filter}) => filter
             ? field.filteredOptions
                 .filter(option =>
                     option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
             : field.filteredOptions,
-        touched: ({delta, field}) => field.touched
+        requiredInvalid: ({delta, errors, field}) =>
+            field.validatorMap.required && errors.length,
+        requiredValid: ({delta, errors, field, modified}) =>
+            !modified && field.validatorMap.required && !errors.length,
+        touched: ({delta, field}) => field.touched,
+        trackOriginal: ({delta, field}) => field.rules.trackOriginal
     },
     data() {
         return {
@@ -218,6 +234,16 @@ export default {
         },
         onDocumentKeydown(event) {
             OPTIONS.handleKeydown(this)
+        },
+        revert() {
+            const {field} = this.get()
+            field.revert()
+            const value = field.theValue
+            if(value) {
+                this.refs.filter.value = value.text
+            } else {
+                this.refs.filter.value = ''
+            }
         },
         select(option) {
             this.get().field.select(option)

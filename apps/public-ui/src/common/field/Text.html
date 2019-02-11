@@ -12,8 +12,9 @@
     <section
         class="field fieldBox"
         class:invalid="touched && errors.length"
-        class:requiredInvalid="field.validatorMap.required && errors.length"
-        class:requiredValid="field.validatorMap.required && !errors.length"
+        class:modified="modified"
+        class:requiredInvalid="requiredInvalid"
+        class:requiredValid="requiredValid"
     >
         <div
             class="text"
@@ -35,9 +36,15 @@
                 <InfoIcon
                     on:select="help()"
                 ></InfoIcon>
+    {#if trackOriginal}
+                <UndoIcon
+                    on:select="revert()"
+                ></UndoIcon>
+    {:else}
                 <ClearIcon
                     on:select="clear()"
                 ></ClearIcon>
+    {/if}
             </div>
         </div>
     </section>
@@ -101,8 +108,9 @@
 </style>
 
 <script>
-import InfoIcon from '../icon/InfoIcon.html'
 import ClearIcon from '../icon/ClearIcon.html'
+import InfoIcon from '../icon/InfoIcon.html'
+import UndoIcon from '../icon/UndoIcon.html'
 import store from '../../store.js'
 
 export default {
@@ -125,14 +133,22 @@ export default {
     },
     components: {
         ClearIcon,
-        InfoIcon
+        InfoIcon,
+        UndoIcon
     },
     computed: {
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
         matches: ({delta, field}) => field.matches,
+        modified: ({delta, errors, field}) =>
+            !errors.length && field.rules.trackOriginal && !field.theIsOriginal,
         placeholder: ({delta, field}) => field.placeholder,
+        requiredInvalid: ({delta, errors, field}) =>
+            field.validatorMap.required && errors.length,
+        requiredValid: ({delta, errors, field, modified}) =>
+            !modified && field.validatorMap.required && !errors.length,
         touched: ({delta, field}) => field.touched,
+        trackOriginal: ({delta, field}) => field.rules.trackOriginal,
         value: ({delta, field}) => field.value
     },
     immutable: true,
@@ -151,6 +167,9 @@ export default {
             const {field} = this.get()
             field.value = event.target.value
             field.onInput()
+        },
+        revert() {
+            this.get().field.revert()
         }
     },
     oncreate() {

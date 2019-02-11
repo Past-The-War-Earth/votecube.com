@@ -5,18 +5,21 @@ const voteMap = {}
 export const voteDao = {
 
     addTempForPoll(
-        poll
+        poll,
+        pollId = poll.id
     ) {
         const tempVote = this.getDummy(poll)
 
-        voteMap[0] = tempVote
+        voteMap[pollId] = tempVote
     },
     findMyVoteForPoll(
         pollId
     ) {
+        pollId = parseInt(pollId)
         return new Promise((resolve) => {
             if(!pollId) {
                 resolve(null)
+                return
             }
 
             let vote = voteMap[pollId]

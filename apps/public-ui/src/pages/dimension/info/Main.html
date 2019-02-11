@@ -79,6 +79,7 @@ import Text from '../../../common/field/Text.html'
 import ColorIcon from '../../../common/icon/ColorIcon.html'
 import DirectionIcon from '../../../common/icon/DirectionIcon.html'
 import * as forms from '../../../form/forms'
+import * as formCache from '../../../form/cache'
 import * as routes from '../../../routes'
 import store from '../../../store'
 
@@ -114,26 +115,31 @@ export default {
     },
     methods: {
         select($routeParams) {
+            this.set({keepPollId: $routeParams.pollId})
             forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
         },
         selectColor($routeParams) {
+            this.set({keepPollId: $routeParams.pollId})
             routes.navigateToPage(routes.DIMENSION_PICK_COLOR, $routeParams)
         },
         selectDirection(
             directionPrefix,
             $routeParams
         ) {
+            this.set({keepPollId: $routeParams.pollId})
             const dimensionForm = this.get().form
             forms.setForm(forms.CREATE_DIRECTION, dimensionForm.fields[directionPrefix + 'Direction'])
             routes.navigateToPage(routes.DIRECTION_INFO_MAIN, $routeParams)
         }
     },
     oncreate() {
+        formCache.getPollRouteParams(this)
         forms.ensureTopForm(
             forms.CREATE_DIMENSION,
             this, routes.POLL_INFO_MAIN)
     },
     ondestroy() {
+        formCache.savePollForm(this)
         forms.clearForm(this)
     },
     store: () => store

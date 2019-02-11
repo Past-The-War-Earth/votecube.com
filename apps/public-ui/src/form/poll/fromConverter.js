@@ -36,8 +36,8 @@ export function formToDto(
             town
         })),
         theme: {
-            id: formThemeValue.id,
-            name: formThemeValue.text
+            id: formThemeValue ? formThemeValue.id : null,
+            name: formThemeValue ? formThemeValue.text : ''
         }
     }
 }

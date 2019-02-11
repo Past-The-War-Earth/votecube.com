@@ -150,10 +150,9 @@ import LocationIcon from '../../../common/icon/LocationIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
 import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
 import {pollDao} from '../../../dao/poll'
-import {voteDao} from '../../../dao/vote'
 import * as forms from '../../../form/forms'
+import * as formCache from '../../../form/cache'
 import * as pollFormCreator from '../../../form/poll/creator'
-import * as pollFormFromConverter from '../../../form/poll/fromConverter'
 import * as pollFormToConverter from '../../../form/poll/toConverter'
 import {loadForms} from '../../../libs/forms'
 import {loadLocations} from '../../../libs/locations'
@@ -179,22 +178,41 @@ export default {
         continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
         countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
         locations: ({form}) => form ? form.fields.locations : null,
+        dimensionsModified: ({$routeParams, isOriginal, form}) => {
+            if(!form
+            || $routeParams.mode !== 'alter'
+            || isOriginal) {
+                return false
+            }
+            return !form.fields.dimensions.isOriginal()
+        },
+        locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
+            if(!form
+            || $routeParams.mode !== 'alter'
+            || isOriginal) {
+                return false
+            }
+            return !form.fields.locations.isOriginal()
+                || !form.fields.timeframe.isOriginal()
+        },
         name: ({test}) => true,
         states: ({form}) => form ? form.fields.locations.fields.states.value : [],
-        submitHighlight: ({$routeParams, isOriginal, isValid, form}) => {
+        submitHighlight: ({
+            $routeParams,
+            dimensionsModified,
+            locationOrTimeframeModified,
+            isValid
+        }) => {
             if (!isValid) {
                 return 'b00'
             }
-            if ($routeParams.mode === 'alter') {
-                if(isOriginal) {
-                    return 'b00'
-                }
-                if (form && form.fields.dimensions.isOriginal()) {
-                    return 'b00'
-                }
+            if ($routeParams.mode !== 'alter') {
+                '0b0'
             }
 
-            return '0b0'
+            return dimensionsModified || locationOrTimeframeModified
+                ? '0b0'
+                : 'b00'
         },
         timeframe: ({form}) => form ? form.fields.timeframe : null
     },
@@ -220,17 +238,20 @@ export default {
             dimensionForm,
             $routeParams
         ) {
+            this.set({keepPollId: $routeParams.pollId})
             forms.setForm(forms.CREATE_DIMENSION, dimensionForm)
             routes.navigateToPage(routes.DIMENSION_INFO_MAIN, $routeParams)
         },
         selectLocations(
             $routeParams
         ) {
+            this.set({keepPollId: $routeParams.pollId})
             routes.navigateToPage(routes.POLL_LOCATIONS, $routeParams)
         },
         selectTimeframe(
             $routeParams
         ) {
+            this.set({keepPollId: $routeParams.pollId})
             routes.navigateToPage(routes.POLL_TIMEFRAME, $routeParams)
         },
         submit(
@@ -243,20 +264,13 @@ export default {
                 return
             }
 
-            const poll = pollFormFromConverter.formToDto(form.value)
-            pollDao.addTemp(poll)
-            voteDao.addTempForPoll(poll)
-
-            forms.uncacheForm(forms.CREATE_POLL_TOP)
-            forms.uncacheForm(forms.CREATE_DIMENSION)
-
             forms.navigateOnValid(this, routes.POLL_INFO_CUBE, $routeParams)
         }
     },
     oncreate() {
-        const {pollId} = this.store.get().routeParams
+        const {mode, pollId} = formCache.getPollRouteParams(this)
 
-        let tempPoll = pollDao.getTempPoll()
+        let tempPoll = pollDao.getTempPoll(pollId)
 
         Promise.all([
             loadForms(this),
@@ -285,6 +299,7 @@ export default {
                     MatchingField,
                     OptionsField,
                     Validators)
+                form.setTrackOriginal(mode === 'alter')
                 forms.setForm(forms.CREATE_POLL_TOP, form)
                 if(tempPoll || poll) {
                     if(poll) {
@@ -296,7 +311,6 @@ export default {
                     form.fields.locations.optionText = text.LOCATIONS
                     form.validate()
                     form.touch()
-                    console.log('Is original: ' + form.isOriginal())
                 }
             }
 
@@ -304,6 +318,7 @@ export default {
         })
     },
     ondestroy() {
+        formCache.savePollForm(this)
         forms.clearForm(this)
     },
     store: () => store

@@ -36,6 +36,7 @@
 import RightButton from '../../common/control/button/RightButton.html'
 import MultiSelect from '../../common/field/MultiSelect.html'
 import * as forms from '../../form/forms'
+import * as formCache from '../../form/cache'
 import {loadLocations} from '../../libs/locations'
 import {loadLocations as loadLocText} from '../../libs/text/locations'
 import * as routes from '../../routes'
@@ -56,10 +57,12 @@ export default {
         submit(
             $routeParams
         ) {
+            this.set({keepPollId: $routeParams.pollId})
             forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
         }
     },
     oncreate() {
+        formCache.getPollRouteParams(this)
         const form = forms.ensureChildForm(
             forms.CREATE_POLL_TOP, 'locations',
             this, routes.POLL_INFO_MAIN)
@@ -109,6 +112,7 @@ export default {
         })
     },
     ondestroy() {
+        formCache.savePollForm(this)
         forms.clearForm(this)
     },
     store: () => store

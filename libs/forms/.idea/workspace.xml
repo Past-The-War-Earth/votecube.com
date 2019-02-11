@@ -2,26 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87bf05c7-ab0c-4baa-b157-74a6b0779ece" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/AlterButton.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/UndoIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/cache.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/CopyIcon.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/AlterIcon.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/AutoComplete.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/AutoComplete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Block.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Block.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/DatePicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/DatePicker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/IconBlock.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/MultiSelect.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/Text.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/ClearIcon.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/icon/ClearIcon.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/dao/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/dao/poll.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/dao/vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/dao/vote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/forms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/creator.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/creator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/fromConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/fromConverter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/PickColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/PickColor.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/info/Main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/direction/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/direction/info/Main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/Locations.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/Locations.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/Timeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/Timeframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Common.top.menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Common.top.menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Cube.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/menu/Menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/menu/Menu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/Field.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldBase.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/field/FieldGroup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldGroup.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/field/OptionsField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/OptionsField.ts" afterDir="false" />
@@ -40,11 +44,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/field/date/DateField.ts">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="190">
-                  <caret line="139" column="25" lean-forward="true" selection-start-line="139" selection-start-column="25" selection-end-line="150" selection-end-column="5" />
+                  <caret line="272" column="6" selection-start-line="272" selection-start-column="6" selection-end-line="272" selection-end-column="6" />
                   <folding>
                     <element signature="e#0#81#0" expanded="true" />
                   </folding>
@@ -52,13 +56,25 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/validator/Validator.ts">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/field/FieldGroup.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="352">
-                  <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+                <state relative-caret-position="690">
+                  <caret line="172" column="44" selection-start-line="172" selection-start-column="44" selection-end-line="172" selection-end-column="44" />
                   <folding>
-                    <element signature="e#0#89#0" expanded="true" />
+                    <element signature="e#0#75#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="271">
+                  <caret line="247" column="15" selection-start-line="247" selection-start-column="15" selection-end-line="247" selection-end-column="15" />
+                  <folding>
+                    <element signature="e#0#49#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -69,34 +85,19 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/field/FieldGroup.ts">
+            <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="227" column="20" lean-forward="true" selection-start-line="227" selection-start-column="20" selection-end-line="227" selection-end-column="20" />
-                  <folding>
-                    <element signature="e#0#75#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="190">
+                  <caret line="86" column="15" selection-start-line="86" selection-start-column="11" selection-end-line="86" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-140">
-                  <caret line="124" column="12" selection-start-line="124" selection-start-column="2" selection-end-line="124" selection-end-column="12" />
-                  <folding>
-                    <element signature="e#0#49#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/field/Field.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="153" column="20" selection-start-line="153" selection-start-column="20" selection-end-line="153" selection-end-column="20" />
+                <state relative-caret-position="361">
+                  <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
                   <folding>
                     <element signature="e#0#66#0" expanded="true" />
                   </folding>
@@ -107,8 +108,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/field/FieldBase.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="149" column="2" selection-start-line="149" selection-start-column="2" selection-end-line="149" selection-end-column="2" />
+                <state relative-caret-position="234">
+                  <caret line="89" column="29" lean-forward="true" selection-start-line="89" selection-start-column="29" selection-end-line="90" selection-end-column="31" />
                   <folding>
                     <element signature="e#0#76#0" expanded="true" />
                   </folding>
@@ -129,17 +130,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>v</find>
-      <find>valid</find>
-      <find>lastValue</find>
-      <find>clear</find>
-      <find>las</find>
-      <find>touch</find>
       <find>displayValue</find>
       <find>currentValue</find>
       <find>value</find>
       <find>UTC</find>
-      <find>validate</find>
       <find>get value</find>
       <find>this.value =</find>
       <find>optionText</find>
@@ -157,8 +151,15 @@
       <find>.set(</find>
       <find>removeComponent</find>
       <find>isSame</find>
-      <find>isOriginal</find>
       <find>clearComponents</find>
+      <find>isOr</find>
+      <find>reset</find>
+      <find>isOriginal</find>
+      <find>getOriginal</find>
+      <find>clear</find>
+      <find>onInput</find>
+      <find>validate</find>
+      <find>selectValue</find>
     </findStrings>
     <replaceStrings>
       <replace>periodType</replace>
@@ -206,10 +207,10 @@
         <option value="$PROJECT_DIR$/src/field/date/DateFragments.ts" />
         <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/src/field/MatchingField.ts" />
-        <option value="$PROJECT_DIR$/src/field/Field.ts" />
         <option value="$PROJECT_DIR$/src/field/date/DateField.ts" />
-        <option value="$PROJECT_DIR$/src/field/OptionsField.ts" />
         <option value="$PROJECT_DIR$/src/field/FieldBase.ts" />
+        <option value="$PROJECT_DIR$/src/field/Field.ts" />
+        <option value="$PROJECT_DIR$/src/field/OptionsField.ts" />
         <option value="$PROJECT_DIR$/src/field/FieldGroup.ts" />
       </list>
     </option>
@@ -307,7 +308,7 @@
       <updated>1547652570107</updated>
       <workItem from="1547652571480" duration="173467000" />
       <workItem from="1549166888309" duration="1199000" />
-      <workItem from="1549172769238" duration="22860000" />
+      <workItem from="1549172769238" duration="29219000" />
     </task>
     <task id="LOCAL-00001" summary="NamePlaceTimeSelector form layout and start of forms logic">
       <created>1547652705203</created>
@@ -355,13 +356,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197526000" />
+    <option name="totallyTimeSpent" value="203885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13859275" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.13859275" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -374,32 +375,12 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32917964" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32917964" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.20415778" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13859275" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32917964" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32917964" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.20415778" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -496,16 +477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/field/date/DateCalendar.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/field/FieldArray.ts" />
     <entry file="file://$PROJECT_DIR$/src/changeTracker.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -558,12 +529,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/field/Field.ts">
+    <entry file="file://$PROJECT_DIR$/src/field/date/DateCalendar.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="153" column="20" selection-start-line="153" selection-start-column="20" selection-end-line="153" selection-end-column="20" />
+        <state relative-caret-position="190">
+          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
           <folding>
-            <element signature="e#0#66#0" expanded="true" />
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/field/FieldBase.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="89" column="29" lean-forward="true" selection-start-line="89" selection-start-column="29" selection-end-line="90" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#76#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -571,39 +552,39 @@
     <entry file="file://$PROJECT_DIR$/src/field/date/DateField.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="139" column="25" lean-forward="true" selection-start-line="139" selection-start-column="25" selection-end-line="150" selection-end-column="5" />
+          <caret line="272" column="6" selection-start-line="272" selection-start-column="6" selection-end-line="272" selection-end-column="6" />
           <folding>
             <element signature="e#0#81#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/field/FieldBase.ts">
+    <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="149" column="2" selection-start-line="149" selection-start-column="2" selection-end-line="149" selection-end-column="2" />
+        <state relative-caret-position="271">
+          <caret line="247" column="15" selection-start-line="247" selection-start-column="15" selection-end-line="247" selection-end-column="15" />
           <folding>
-            <element signature="e#0#76#0" expanded="true" />
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/field/Field.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/field/FieldGroup.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="227" column="20" lean-forward="true" selection-start-line="227" selection-start-column="20" selection-end-line="227" selection-end-column="20" />
+        <state relative-caret-position="690">
+          <caret line="172" column="44" selection-start-line="172" selection-start-column="44" selection-end-line="172" selection-end-column="44" />
           <folding>
             <element signature="e#0#75#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/field/OptionsField.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="124" column="12" selection-start-line="124" selection-start-column="2" selection-end-line="124" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>

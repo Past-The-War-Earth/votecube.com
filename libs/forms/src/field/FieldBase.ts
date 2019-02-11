@@ -38,8 +38,7 @@ export interface IFieldBase {
 		component: IComponent
 	): void
 
-	clearComponents(
-	): void
+	clearComponents(): void
 
 	focus(): void
 
@@ -66,8 +65,14 @@ export interface IFieldBase {
 		component: IComponent
 	): void
 
+	revert(): void
+
 	setAsField(
 		component: IComponent
+	): void
+
+	setTrackOriginal(
+		trackOriginal: boolean
 	): void
 
 	setValue(
@@ -82,7 +87,8 @@ export interface IFieldBase {
 
 	validate(
 		fromParentGroup?: boolean,
-		relatedField?: IFieldBase
+		relatedField?: IFieldBase,
+		originalCheckOnly?: boolean
 	): void
 
 }
@@ -100,6 +106,7 @@ export abstract class FieldBase
 	components: IComponent[] = []
 	pristine                 = true
 	text
+	theIsOriginal            = true
 	valid                    = null
 	validatorMap
 	valueChangeCallbacks     = []
@@ -147,8 +154,7 @@ export abstract class FieldBase
 		this.components.push(component)
 	}
 
-	clearComponents(
-	): void {
+	clearComponents(): void {
 		this.components = []
 	}
 
@@ -201,9 +207,7 @@ export abstract class FieldBase
 		}
 	}
 
-	isOriginal(): boolean {
-		return this.isSame(this.theValue, this.originalValue)
-	}
+	abstract isOriginal(): boolean;
 
 	onChange(
 		callback: (
@@ -225,11 +229,19 @@ export abstract class FieldBase
 		}
 	}
 
+	revert(): void {
+		this.theValue = this.theIsOriginal
+	}
+
 	setAsField(
 		component: IComponent
 	): void {
 		this.components.unshift(component)
 	}
+
+	abstract setTrackOriginal(
+		trackOriginal: boolean
+	): void
 
 	setValue(
 		newValue: any,

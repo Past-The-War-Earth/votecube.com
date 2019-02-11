@@ -3,7 +3,10 @@ import {
 	getChange
 }                   from '../changeTracker'
 import {IValidator} from '../validator/Validator'
-import {IFieldText} from './Field'
+import {
+	IFieldRules,
+	IFieldText
+}                   from './Field'
 import {
 	FieldBase,
 	IComponent,
@@ -49,11 +52,14 @@ export class FieldGroup
 
 	error: IFieldError = null
 
+	rules: IFieldRules = {
+		trackOriginal: false
+	}
+
 	text: IFieldGroupText
 
 	private hasRequiredChild = false
 	private hasChildValues   = false
-	private theIsOriginal    = true
 
 	constructor(
 		name,
@@ -127,8 +133,7 @@ export class FieldGroup
 		super.addComponent(component)
 	}
 
-	clearComponents(
-	): void {
+	clearComponents(): void {
 		for (const fieldName in this.fields) {
 			this.fields[fieldName].clearComponents()
 		}
@@ -157,6 +162,15 @@ export class FieldGroup
 			this.fields[fieldName].removeComponent(component)
 		}
 		super.removeComponent(component)
+	}
+
+	setTrackOriginal(
+		trackOriginal: boolean
+	): void {
+		for (const fieldName in this.fields) {
+			this.fields[fieldName].setTrackOriginal(trackOriginal)
+		}
+		this.rules.trackOriginal = trackOriginal
 	}
 
 	setValue(
@@ -207,7 +221,8 @@ export class FieldGroup
 
 	validate(
 		fromParentGroup?: boolean,
-		relatedField?: IFieldBase
+		relatedField?: IFieldBase,
+		originalCheckOnly: boolean = false
 	): void {
 		this.hasChildValues = false
 		this.valid          = true
@@ -215,9 +230,10 @@ export class FieldGroup
 
 		for (const fieldName in this.fields) {
 			const field = this.fields[fieldName]
-			if (!relatedField ||
-				(relatedField !== field
-					&& field.valid == null)) {
+			if (!originalCheckOnly
+				&& (!relatedField ||
+					(relatedField !== field
+						&& field.valid == null))) {
 				field.validate(true)
 			}
 			this.hasChildValues = this.hasChildValues || field.hasValue

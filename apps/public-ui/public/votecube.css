@@ -165,6 +165,10 @@ Form field styling
     border-top-right-radius: 2px;
 }
 
+.field.modified {
+    border-left: 5px solid #66f !important;
+}
+
 .field.requiredInvalid {
     border-left: 5px solid #b00 !important;
 }

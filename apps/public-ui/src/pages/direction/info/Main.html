@@ -25,6 +25,7 @@
 import RightButton from '../../../common/control/button/RightButton.html'
 import TextArea from '../../../common/field/TextArea.html'
 import * as forms from '../../../form/forms'
+import * as formCache from '../../../form/cache'
 import * as routes from '../../../routes'
 import store from '../../../store'
 
@@ -42,15 +43,18 @@ export default {
         select(
             $routeParams
         ) {
+            this.set({keepPollId: $routeParams.pollId})
             forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
         }
     },
     oncreate() {
+        formCache.getPollRouteParams(this)
         forms.ensureTopForm(
             forms.CREATE_DIRECTION,
             this, routes.POLL_INFO_MAIN)
     },
     ondestroy() {
+        formCache.savePollForm(this)
         forms.clearForm(this)
     },
     store: () => store

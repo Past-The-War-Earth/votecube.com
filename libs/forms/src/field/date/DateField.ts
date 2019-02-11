@@ -138,19 +138,13 @@ export class DateField
 	}
 
 	isOriginal(): boolean {
-		if (!this.originalValue) {
-			if (this.theValue) {
-				return false
-			}
-		} else if (!this.theValue) {
-			if (this.originalValue) {
-				return false
-			}
-		} else {
-			return this.originalValue.getTime() === this.theValue.getTime()
+		if (!this.rules.trackOriginal) {
+			return true
 		}
 
-		return true
+		this.theIsOriginal = this.getOriginal()
+
+		return this.theIsOriginal
 	}
 
 	isSelected(
@@ -177,6 +171,14 @@ export class DateField
 
 	reset(): void {
 		this.setState(null, null, null, true)
+	}
+
+	revert(): void {
+		if (!this.originalValue) {
+			this.clear()
+		} else {
+			this.setToDate(this.originalValue)
+		}
 	}
 
 	setDateOfMonth(
@@ -270,6 +272,22 @@ export class DateField
 			}]
 			this.updateValidity(fromParentGroup)
 		}
+	}
+
+	protected getOriginal(): boolean {
+		if (!this.originalValue) {
+			if (this.theValue) {
+				return false
+			}
+		} else if (!this.theValue) {
+			if (this.originalValue) {
+				return false
+			}
+		} else {
+			return this.originalValue.getTime() === this.theValue.getTime()
+		}
+
+		return true
 	}
 
 	private getCalendarYearAndMonth(

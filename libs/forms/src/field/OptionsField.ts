@@ -123,31 +123,23 @@ export class OptionsField
 	}
 
 	isOriginal(): boolean {
-		if (this.theValue instanceof Array) {
-			for (const aValue of this.originalValue) {
-				if (!this.selectionMap[aValue.id]) {
-					return false
-				}
-			}
-			for (const aValue of this.theValue) {
-				if (!this.originalSelectionMap[aValue.id]) {
-					return false
-				}
-			}
+		if (!this.rules.trackOriginal) {
 			return true
+		}
+
+		this.theIsOriginal = this.getOriginal()
+
+		return this.theIsOriginal
+	}
+
+	revert(): void {
+		if (!this.originalValue
+			|| (this.originalValue instanceof Array
+				&& !this.originalValue.length)) {
+			this.clear()
 		} else {
-			if (!this.originalValue) {
-				if (this.theValue) {
-					return false
-				}
-			} else if (!this.theValue) {
-				if (this.originalValue) {
-					return false
-				}
-			} else {
-				return this.originalValue.id === this.theValue.id
-			}
-			return true
+			this.setValue(this.originalValue)
+			this.onBlur()
 		}
 	}
 
@@ -203,6 +195,35 @@ export class OptionsField
 		this.onBlur()
 	}
 
+	protected getOriginal(): boolean {
+		if (this.theValue instanceof Array) {
+			for (const aValue of this.originalValue) {
+				if (!this.selectionMap[aValue.id]) {
+					return false
+				}
+			}
+			for (const aValue of this.theValue) {
+				if (!this.originalSelectionMap[aValue.id]) {
+					return false
+				}
+			}
+			return true
+		} else {
+			if (!this.originalValue) {
+				if (this.theValue) {
+					return false
+				}
+			} else if (!this.theValue) {
+				if (this.originalValue) {
+					return false
+				}
+			} else {
+				return this.originalValue.id === this.theValue.id
+			}
+			return true
+		}
+	}
+
 	private doSelect(
 		option: IFieldOption
 	) {
@@ -224,7 +245,10 @@ export class OptionsField
 	private selectValue(
 		value
 	) {
-		const matchingOption = this.optionsMap[value.id]
+		let matchingOption
+		if (value) {
+			matchingOption = this.optionsMap[value.id]
+		}
 		if (matchingOption) {
 			this.doSelect(matchingOption)
 		}

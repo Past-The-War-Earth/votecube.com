@@ -1,13 +1,15 @@
 import {DB, SEQUENCES} from "../database";
 
 const pollMap = {}
+const tempPollMap = {}
 
 export const pollDao = {
 
     addTemp(
-        poll
+        poll,
+        pollId = poll.id
     ) {
-        pollMap[0] = poll
+        tempPollMap[pollId] = poll
     },
 
     cachePoll(poll) {
@@ -49,9 +51,11 @@ export const pollDao = {
     findByIdWithDetails(
         pollId
     ) {
+        pollId = parseInt(pollId)
         return new Promise((resolve) => {
             if(!pollId) {
                 resolve(null)
+                return
             }
             let poll = pollMap[pollId];
 
@@ -66,8 +70,10 @@ export const pollDao = {
         })
     },
 
-    getTempPoll() {
-        return pollMap[0]
+    getTempPoll(
+        pollId
+    ) {
+        return tempPollMap[pollId]
     },
     save(
         poll
@@ -86,7 +92,7 @@ export const pollDao = {
 
             pollMap[poll.id] = poll
             DB.polls.push(poll)
-            delete pollMap[0]
+            delete tempPollMap[0]
 
             resolve(poll)
         })
