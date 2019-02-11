@@ -230,7 +230,15 @@ export abstract class FieldBase
 	}
 
 	revert(): void {
-		this.theValue = this.theIsOriginal
+		let originalValue = this.originalValue
+		if (originalValue instanceof Object) {
+			this.theValue = {}
+			for (const property in originalValue) {
+				this.theValue[property] = originalValue[property]
+			}
+		} else {
+			this.theValue = this.originalValue
+		}
 	}
 
 	setAsField(
@@ -249,7 +257,14 @@ export abstract class FieldBase
 	): void {
 		this.theValue = newValue
 		if (resetOriginal) {
-			this.originalValue = newValue
+			if (newValue instanceof Object) {
+				this.originalValue = {}
+				for (const property in newValue) {
+					this.originalValue[property] = newValue[property]
+				}
+			} else {
+				this.originalValue = newValue
+			}
 		}
 		this.onValueChanged()
 	}

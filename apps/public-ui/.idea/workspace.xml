@@ -2,34 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/icon/UndoIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/form/cache.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../libs/forms/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/votecube.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/field/AutoComplete.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/AutoComplete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/field/Block.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/Block.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/field/DatePicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/DatePicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/field/IconBlock.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/IconBlock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/field/MultiSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/MultiSelect.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/field/Text.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/Text.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/icon/ClearIcon.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/icon/ClearIcon.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/poll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/vote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/poll/fromConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/poll/fromConverter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dimension/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/info/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/direction/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/direction/info/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/Locations.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/Locations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/Timeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/Timeframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/info/Main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/field/ColorPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/field/ColorPicker.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/Field.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldBase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/FieldGroup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/FieldGroup.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/OptionsField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/OptionsField.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/forms/src/field/date/DateField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/forms/src/field/date/DateField.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,19 +34,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/common/field/Block.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="318">
-                  <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/common/field/Text.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="264">
-                  <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+                <state relative-caret-position="220">
+                  <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
                   <folding>
                     <element signature="e#2137#2183#0#HTML" expanded="true" />
                   </folding>
@@ -78,40 +46,14 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/form/cache.js">
+            <entry file="file://$PROJECT_DIR$/src/common/field/ColorPicker.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="264">
-                  <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+                <state relative-caret-position="221">
+                  <caret line="208" column="35" lean-forward="true" selection-start-line="208" selection-start-column="35" selection-end-line="208" selection-end-column="35" />
                   <folding>
-                    <element signature="e#0#32#0" expanded="true" />
+                    <element signature="n#style#0;n#figure#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="e#2884#2918#0#HTML" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/form/poll/fromConverter.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="517">
-                  <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/dao/poll.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/dao/vote.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
-                  <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -120,11 +62,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Main.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="975">
-                  <caret line="320" column="18" selection-start-line="320" selection-start-column="18" selection-end-line="320" selection-end-column="18" />
+                <state relative-caret-position="213">
+                  <caret line="304" column="30" lean-forward="true" selection-start-line="304" selection-start-column="30" selection-end-line="304" selection-end-column="30" />
                   <folding>
                     <element signature="e#4037#4114#0#HTML" expanded="true" />
                   </folding>
@@ -133,25 +75,22 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/common/field/AutoComplete.html">
+            <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-440">
-                  <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-                  <folding>
-                    <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="e#3047#3106#0#HTML" expanded="true" />
-                  </folding>
+                <state relative-caret-position="344">
+                  <caret line="51" column="18" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/common/field/DatePicker.html">
+            <entry file="file://$PROJECT_DIR$/src/common/field/AutoComplete.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="814">
-                  <caret line="284" column="16" selection-start-line="284" selection-start-column="16" selection-end-line="284" selection-end-column="16" />
+                <state relative-caret-position="273">
+                  <caret line="236" column="10" lean-forward="true" selection-start-line="236" selection-start-column="10" selection-end-line="246" selection-end-column="10" />
                   <folding>
-                    <element signature="e#6125#6159#0#HTML" expanded="true" />
+                    <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="e#3047#3106#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -162,6 +101,15 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="293">
                   <caret line="124" column="29" selection-start-line="124" selection-start-column="29" selection-end-line="124" selection-end-column="29" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/common/field/ColorPicker.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="452">
+                  <caret line="231" selection-start-line="231" selection-end-line="231" />
                 </state>
               </provider>
             </entry>
@@ -182,7 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ensureTopForm</find>
       <find>directionPrefix</find>
       <find>confirming</find>
       <find>selectDimension</find>
@@ -206,12 +153,13 @@
       <find>getTempPoll</find>
       <find>addTemp</find>
       <find>locationOrTimeframeModified</find>
-      <find>trackOriginal</find>
       <find>keep:</find>
       <find>keep</find>
-      <find>filter</find>
-      <find>routeParams</find>
       <find>alter</find>
+      <find>trackOriginal</find>
+      <find>routeParams</find>
+      <find>.</find>
+      <find>filter</find>
     </findStrings>
     <replaceStrings>
       <replace>DimensionInfoButton</replace>
@@ -261,7 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/poll/create/Locations.html" />
         <option value="$PROJECT_DIR$/src/pages/dimension/Create.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/MainInfo.html" />
         <option value="$PROJECT_DIR$/src/common/control/button/CreateButton.html" />
@@ -312,6 +259,7 @@
         <option value="$PROJECT_DIR$/src/pages/poll/Locations.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/Timeframe.html" />
         <option value="$PROJECT_DIR$/src/form/cache.js" />
+        <option value="$PROJECT_DIR$/src/common/field/ColorPicker.html" />
       </list>
     </option>
   </component>
@@ -549,14 +497,7 @@
       <workItem from="1547312494148" duration="6224000" />
       <workItem from="1547525659293" duration="370067000" />
       <workItem from="1549166888309" duration="3147000" />
-      <workItem from="1549172761461" duration="145884000" />
-    </task>
-    <task id="LOCAL-00021" summary="adding multi-select functionality and styling">
-      <created>1547881285395</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1547881285395</updated>
+      <workItem from="1549172761461" duration="148491000" />
     </task>
     <task id="LOCAL-00022" summary="adding multi-select functionality and styling">
       <created>1547911962947</created>
@@ -894,11 +835,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549839162482</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="started adding poll change detecting display and added temporary persistence for to-be created/modified polls">
+      <created>1549852235537</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1549852235537</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="730498000" />
+    <option name="totallyTimeSpent" value="733105000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
@@ -909,7 +857,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3281412" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3281412" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -918,7 +866,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917964" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3032191" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3032191" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -964,7 +912,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Continued working on Dimension list.  Various refactorings." />
     <MESSAGE value="First Dimension List prototype and prod build additions." />
     <MESSAGE value="Adding additional cube dimension and direction controls and pages." />
     <MESSAGE value="Started adding color picker." />
@@ -989,16 +936,10 @@
     <MESSAGE value="refactoring prep work for 'alter' mode" />
     <MESSAGE value="Centralized popover styling." />
     <MESSAGE value="groundwork for supporting poll modification" />
-    <option name="LAST_COMMIT_MESSAGE" value="groundwork for supporting poll modification" />
+    <MESSAGE value="started adding poll change detecting display and added temporary persistence for to-be created/modified polls" />
+    <option name="LAST_COMMIT_MESSAGE" value="started adding poll change detecting display and added temporary persistence for to-be created/modified polls" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/shell/top/TopBarHeader.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/shell/top/TopMenuToggle.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1285,16 +1226,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/Text.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-          <folding>
-            <element signature="e#2137#2183#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/form/poll/fromConverter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="517">
@@ -1313,13 +1244,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="51" column="18" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1347,17 +1271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/field/AutoComplete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-440">
-          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-          <folding>
-            <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#3047#3106#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/poll/Timeframe.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
@@ -1372,16 +1285,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="321" selection-start-line="321" selection-end-line="321" />
-          <folding>
-            <element signature="e#4037#4114#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/form/cache.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1389,6 +1292,51 @@
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="51" column="18" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/Text.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding>
+            <element signature="e#2137#2183#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="304" column="30" lean-forward="true" selection-start-line="304" selection-start-column="30" selection-end-line="304" selection-end-column="30" />
+          <folding>
+            <element signature="e#4037#4114#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/AutoComplete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="236" column="10" lean-forward="true" selection-start-line="236" selection-start-column="10" selection-end-line="246" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#3047#3106#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/field/ColorPicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="231" selection-start-line="231" selection-end-line="231" />
         </state>
       </provider>
     </entry>

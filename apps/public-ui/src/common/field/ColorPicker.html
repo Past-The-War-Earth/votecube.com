@@ -15,6 +15,12 @@
                 </option>
     {/each}
             </select>
+    {#if trackOriginal}
+                <UndoIcon
+                    multiLine="y"
+                    on:select="revert()"
+                ></UndoIcon>
+    {/if}
         </td>
         <td>
             <figure
@@ -138,31 +144,51 @@
 <script>
 import store from '../../store.js'
 import {getColorKey, getColors} from '../../libs/colors'
+import UndoIcon from '../icon/UndoIcon.html'
 
 export default {
+    components: {
+        UndoIcon
+    },
+    computed: {
+        errors: ({delta, field}) => field.errors,
+        modified: ({delta, errors, field}) =>
+            !errors.length && field.rules.trackOriginal && !field.theIsOriginal,
+        requiredInvalid: ({delta, errors, field}) =>
+            field.validatorMap.required && errors.length,
+        requiredValid: ({delta, errors, field, modified}) =>
+            !modified && field.validatorMap.required && !errors.length,
+        trackOriginal: ({delta, field}) => field.rules.trackOriginal
+    },
     methods: {
+        revert() {
+            const {colorMap, field} = this.get()
+            field.revert()
+
+            const color = field.value
+            matchColor(color, colorMap, this.refs.select)
+            this.set({color})
+        },
         selectColor(
             colorIndex
         ) {
             const {colors} = this.get()
             const color = copyColor(colors[colorIndex])
-            this.get().field.value = color
-
+            const {field} = this.get()
+            field.value = color
+            field.validate()
             this.set({color})
         },
         syncInput() {
-            const {color, colorMap} = this.get()
+            const {color, colorMap, field} = this.get()
             color.red = this.refs.redSlider.value
             color.green = this.refs.greenSlider.value
             color.blue = this.refs.blueSlider.value
-            const colorKey = getColorKey(color)
-            const matchedColor = colorMap[colorKey]
 
-            if(matchedColor) {
-                this.refs.select.selectedIndex = matchedColor.index
-            }
+            matchColor(color, colorMap, this.refs.select)
 
             this.set({color})
+            field.validate()
         }
     },
     oncreate() {
@@ -170,21 +196,43 @@ export default {
             colors,
             colorMap
         }) => {
-            let color = copyColor(colors[132])
-            this.set({colors, colorMap, color})
-            setTimeout(() => {
-                this.refs.select.selectedIndex = 132
-            })
+            const {field} = this.get()
 
-            this.get().field.setAsField(this)
-            this.get().field.value = color
-            this.get().field.validate()
+            const color = field.value
+            ? field.value
+            : copyColor(colors[132])
+            this.set({colors, colorMap, color})
+
+            field.setAsField(this)
+
+            if(!field.value) {
+                field.value = color
+            }
+            field.validate()
+
+            matchColor(color, colorMap, this.refs.select)
         })
     },
     ondestroy() {
         this.get().field.removeComponent(this)
     },
     store: () => store
+}
+
+function matchColor(
+    color,
+    colorMap,
+    select
+) {
+    const colorKey = getColorKey(color)
+    const matchedColor = colorMap[colorKey]
+    let selectedIndex = 132
+    if(matchedColor) {
+        selectedIndex = matchedColor.index
+    }
+    setTimeout(() => {
+        select.selectedIndex = selectedIndex
+    })
 }
 
 function copyColor(

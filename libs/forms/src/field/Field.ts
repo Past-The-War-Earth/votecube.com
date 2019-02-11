@@ -159,7 +159,7 @@ export class Field
 	}
 
 	revert(): void {
-		this.value = this.originalValue
+		super.revert()
 		this.validate()
 		this.detect()
 	}
