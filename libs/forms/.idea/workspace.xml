@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="87bf05c7-ab0c-4baa-b157-74a6b0779ece" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/ColorPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/ColorPicker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/text_en-us_ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text_en-us_ui.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/TextArea.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/field/TextArea.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/shell/ActionPopover.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/shell/ActionPopover.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/Field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/Field.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/field/FieldBase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/field/FieldBase.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -75,6 +77,9 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="207">
                   <caret line="162" selection-start-line="162" selection-end-line="162" />
+                  <folding>
+                    <element signature="e#0#66#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -282,7 +287,7 @@
       <updated>1547652570107</updated>
       <workItem from="1547652571480" duration="173467000" />
       <workItem from="1549166888309" duration="1199000" />
-      <workItem from="1549172769238" duration="30214000" />
+      <workItem from="1549172769238" duration="30303000" />
     </task>
     <task id="LOCAL-00001" summary="NamePlaceTimeSelector form layout and start of forms logic">
       <created>1547652705203</created>
@@ -330,7 +335,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204880000" />
+    <option name="totallyTimeSpent" value="204969000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -554,6 +559,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="162" selection-start-line="162" selection-end-line="162" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

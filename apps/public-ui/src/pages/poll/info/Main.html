@@ -113,11 +113,25 @@
             <PreviewButton
                 classes="submitButton"
                 highlightColor="{submitHighlight}"
-                on:select="submit($routeParams)"
+                on:select="submit($routeParams, dimensionsModified, locationOrTimeframeModified)"
             ></PreviewButton>
         </nav>
     </fieldset>
 </form>
+    {#if invalidAlter}
+<ActionPopover
+    on:cancel="ack()"
+    infoOnly="Y"
+    width="90%"
+>
+    <div slot="header">
+        Error
+    </div>
+    <div slot="content">
+        Please modify either Location or Start/End dates or Dimensions to alter the poll.
+    </div>
+</ActionPopover>
+    {/if}
 {/if}
 
 <style>
@@ -148,6 +162,7 @@ import MultiSelect from '../../../common/field/MultiSelect.html'
 import Text from '../../../common/field/Text.html'
 import LocationIcon from '../../../common/icon/LocationIcon.html'
 import TimeIcon from '../../../common/icon/TimeIcon.html'
+import ActionPopover from '../../../common/shell/ActionPopover.html'
 import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
 import {pollDao} from '../../../dao/poll'
 import * as forms from '../../../form/forms'
@@ -164,6 +179,7 @@ import store from '../../../store'
 
 export default {
     components: {
+        ActionPopover,
         AutoComplete,
         IconBlock,
         LocationIcon,
@@ -228,6 +244,9 @@ export default {
 		getDate
 	},
     methods: {
+        ack() {
+            this.set({invalidAlter: false})
+        },
         createPoll() {
             const poll = this.get().poll
             if(!poll.name) {
@@ -255,12 +274,19 @@ export default {
             routes.navigateToPage(routes.POLL_TIMEFRAME, $routeParams)
         },
         submit(
-            $routeParams
+            $routeParams,
+            dimensionsModified,
+            locationOrTimeframeModified
         ) {
             const {form} = this.get()
             form.touch()
 
             if (!form.valid) {
+                return
+            }
+
+            if(!dimensionsModified && !locationOrTimeframeModified) {
+                this.set({invalidAlter: true})
                 return
             }
 

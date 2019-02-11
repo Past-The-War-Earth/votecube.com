@@ -14,8 +14,9 @@
     <section
         class="field fieldBox"
         class:invalid="touched && errors.length"
-        class:requiredInvalid="field.validatorMap.required && errors.length"
-        class:requiredValid="field.validatorMap.required && !errors.length"
+        class:modified="modified"
+        class:requiredInvalid="requiredInvalid"
+        class:requiredValid="requiredValid"
     >
         <div
             class="text"
@@ -28,7 +29,7 @@
                 use:id="{id}"
                 use:maxlength="field.rules.maxLength"
                 rows="5"
-                value="{field.value}"
+                value="{value}"
             />
         </div>
         <div
@@ -37,10 +38,17 @@
             <div
                 class="multiRowIconsCenter"
             >
+    {#if trackOriginal}
+                <UndoIcon
+                    on:select="revert()"
+                    multiLine="y"
+                ></UndoIcon>
+    {:else}
                 <ClearIcon
                     on:select="clear()"
                     multiLine="y"
                 ></ClearIcon>
+    {/if}
                 <InfoIcon
                     on:select="help()"
                     multiLine="y"
@@ -132,6 +140,7 @@
 <script>
 import InfoIcon from '../icon/InfoIcon.html'
 import ClearIcon from '../icon/ClearIcon.html'
+import UndoIcon from '../icon/UndoIcon.html'
 import store from '../../store.js'
 
 export default {
@@ -154,7 +163,8 @@ export default {
     },
     components: {
         ClearIcon,
-        InfoIcon
+        InfoIcon,
+        UndoIcon
     },
     computed: {
         charCount: ({delta, field}) => field.rules.maxLength
@@ -163,8 +173,16 @@ export default {
         errors: ({delta, field}) => field.errors,
         label: ({delta, field}) => field.label,
         matches: ({delta, field}) => field.matches,
+        modified: ({delta, errors, field}) =>
+            !errors.length && field.rules.trackOriginal && !field.theIsOriginal,
         placeholder: ({delta, field}) => field.placeholder,
-        touched: ({delta, field}) => field.touched
+        requiredInvalid: ({delta, errors, field}) =>
+            field.validatorMap.required && errors.length,
+        requiredValid: ({delta, errors, field, modified}) =>
+            !modified && field.validatorMap.required && !errors.length,
+        touched: ({delta, field}) => field.touched,
+        trackOriginal: ({delta, field}) => field.rules.trackOriginal,
+        value: ({delta, field}) => field.value
     },
     immutable: true,
     methods: {
@@ -182,6 +200,9 @@ export default {
             const {field} = this.get()
             field.value = event.target.value
             field.onInput()
+        },
+        revert() {
+            this.get().field.revert()
         }
     },
     oncreate() {

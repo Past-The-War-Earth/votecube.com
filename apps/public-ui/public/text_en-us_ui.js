@@ -3,6 +3,7 @@
     "Dimension": {
       "Info": {
         "name": {
+          "info": "A short name that is common to both directions.  It is prefixed to the descriptions on both opposite sides of a cube for this dimension.",
           "label": "Dimension Name",
           "errors": {
             "required": "Dimension Name is required",
@@ -36,6 +37,7 @@
         "error": "Bottom Direction is required",
         "label": "Select Bottom Direction",
         "name": {
+          "info": "The negative position on a facet/dimension of the vote cube.  This is the CON/negative side.",
           "label": "Bottom Direction",
           "errors": {
             "required": "Bottom Direction is required",
@@ -47,6 +49,7 @@
         "error": "Top Direction is required",
         "label": "Select Top Direction",
         "name": {
+          "info": "The positive position on a facet/dimension of the vote cube.  This is the PRO/positive side.",
           "label": "Top Direction",
           "errors": {
             "required": "Top Direction is required",
