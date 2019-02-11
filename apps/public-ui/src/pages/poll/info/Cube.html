@@ -236,13 +236,14 @@
         {:else}
     <VoteButton
         classes="{submitButtonPosition}"
+        on:select="confirmVote()"
     ></VoteButton>
         {/if}
     {/if}
     {#if confirm}
         {#if saving}
     <ActionPopover
-        on:cancel="doNotBuild()"
+        on:cancel="closeConfirm()"
         viewOnly="!error"
         infoOnly="error"
         width="90%"
@@ -254,9 +255,26 @@
             {error}
         </div>
     </ActionPopover>
+        {:elseif voting}
+    <ActionPopover
+        on:cancel="closeConfirm()"
+        width="90%"
+    >
+        <div slot="header">
+            Please Confirm
+        </div>
+        <div slot="content">
+            Vote on the "{poll.name}" poll?
+        </div>
+        <div slot="actions">
+            <VoteButton
+                on:select="vote()"
+            ></VoteButton>
+        </div>
+    </ActionPopover>
         {:else}
     <ActionPopover
-        on:cancel="doNotBuild()"
+        on:cancel="closeConfirm()"
         width="90%"
     >
         <div slot="header">
@@ -445,10 +463,13 @@ export default {
             });
         },
         checkBuild() {
-            this.set({confirm: true, error: '', saving: false})
+            this.set({confirm: true, error: '', saving: false, voting: false})
         },
-        doNotBuild() {
+        closeConfirm() {
             this.set({confirm: false})
+        },
+        confirmVote() {
+            this.set({confirm: true, error: '', saving: false, voting: true})
         },
         move(
             event
@@ -540,6 +561,10 @@ export default {
             $routeParams
         ) {
             routes.navigateToPage(routes.POLL_INFO_MAIN, $routeParams)
+        },
+        vote() {
+            // this.set({confirm: false})
+            routes.navigateToPage(routes.POLL_SEARCH_LIST)
         }
     },
     oncreate() {
@@ -578,9 +603,15 @@ export default {
             const poll = vote.poll
             this.set({mode, poll, vote})
             setPositionDataAndMove(vote)
+
+            this.store.set({
+                pageTitle: poll.name
+            })
         })
 
-        this.store.set({noOverflow: true})
+        this.store.set({
+            noOverflow: true
+        })
     },
     ondestroy() {
         shutDownCubeListener(this.get().cubeListener, this)

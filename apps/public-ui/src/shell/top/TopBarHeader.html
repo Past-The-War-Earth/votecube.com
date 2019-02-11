@@ -2,17 +2,19 @@
   <nav
     class="pure-menu-heading custom-menu-brand"
   >
-    Trump's Policies
+    {$pageTitle}
   </nav>
   <TopMenuToggle></TopMenuToggle>
 </div>
 
 <script>
-    import TopMenuToggle from './TopMenuToggle.html'
+import store from '../../store.js'
+import TopMenuToggle from './TopMenuToggle.html'
 
-    export default {
-        components: {
-            TopMenuToggle
-        }
-    }
+export default {
+    components: {
+        TopMenuToggle
+    },
+    store: () => store
+}
 </script>

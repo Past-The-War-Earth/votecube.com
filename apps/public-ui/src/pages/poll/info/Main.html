@@ -342,6 +342,9 @@ export default {
 
            forms.ensureForm(form, this)
         })
+        this.store.set({
+            pageTitle: 'Poll Info'
+        })
     },
     ondestroy() {
         formCache.savePollForm(this)

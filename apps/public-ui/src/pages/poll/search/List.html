@@ -73,6 +73,9 @@ export default {
             this.set({polls})
             forms.ensureForm(filter, this)
         })
+        this.store.set({
+            pageTitle: 'Polls'
+        })
     },
     ondestroy() {
         forms.clearForm(this)

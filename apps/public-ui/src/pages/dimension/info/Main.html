@@ -137,6 +137,9 @@ export default {
         forms.ensureTopForm(
             forms.CREATE_DIMENSION,
             this, routes.POLL_INFO_MAIN)
+        this.store.set({
+            pageTitle: 'Dimension Info'
+        })
     },
     ondestroy() {
         formCache.savePollForm(this)

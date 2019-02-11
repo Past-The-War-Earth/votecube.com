@@ -54,6 +54,9 @@ export default {
         forms.ensureChildForm(
             forms.CREATE_POLL_TOP, 'timeframe',
             this, routes.POLL_INFO_MAIN)
+        this.store.set({
+            pageTitle: 'Poll Time Frame'
+        })
     },
     ondestroy() {
         formCache.savePollForm(this)

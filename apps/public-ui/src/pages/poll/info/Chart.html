@@ -292,6 +292,10 @@ export default {
             const poll = vote.poll
             this.set({poll, vote})
             setPositionDataAndMove(vote)
+
+            this.store.set({
+                pageTitle: poll.name
+            })
         })
         this.store.set({noOverflow: true})
     },

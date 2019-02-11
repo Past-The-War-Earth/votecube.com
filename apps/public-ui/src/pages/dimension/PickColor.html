@@ -47,6 +47,9 @@ export default {
             forms.CREATE_DIMENSION, 'color',
             this, routes.POLL_INFO_MAIN
         )
+        this.store.set({
+            pageTitle: 'Select Dimension Color'
+        })
     },
     ondestroy() {
         formCache.savePollForm(this)

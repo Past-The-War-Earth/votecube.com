@@ -22,52 +22,42 @@ export const DEFAULT_ROUTE_PARAMS = {
 
 configPage(
     DIRECTION_INFO_MAIN,
-    'Direction Info',
     false
 )
 configPage(
     DIMENSION_INFO_MAIN,
-    'Dimension Info',
     false
 )
 configPage(
     DIMENSION_PICK_COLOR,
-    'Pick Dimension Color',
     false
 )
 configPage(
     DIMENSION_SEARCH_LIST,
-    'Trump\'s Policies',
     true
 )
 configPage(
     POLL_INFO_CHART,
-    'Trump\'s Policies',
     true
 )
 configPage(
     POLL_SEARCH_LIST,
-    'Poll List',
     true
 )
 configPage(
     POLL_INFO_MAIN,
-    'Poll Info',
     false
 )
 configPage(
     POLL_INFO_CUBE,
-    'Trump\'s Policies',
     true
 )
 configPage(
     POLL_LOCATIONS,
-    'Select Poll Location(s)',
     false
 )
 configPage(
     POLL_TIMEFRAME,
-    'Poll Time-frame',
     false
 )
 export function getPageComponent() {
@@ -111,13 +101,11 @@ export function setupRoutes(
 
 function configPage(
     key,
-    name,
     rightMenu,
     url = key
 ) {
     PAGE_CONF[key] = {
         key,
-        name,
         rightMenu,
         url
     }

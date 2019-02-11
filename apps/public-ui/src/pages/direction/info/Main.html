@@ -52,6 +52,9 @@ export default {
         forms.ensureTopForm(
             forms.CREATE_DIRECTION,
             this, routes.POLL_INFO_MAIN)
+        this.store.set({
+            pageTitle: 'Direction Info'
+        })
     },
     ondestroy() {
         formCache.savePollForm(this)
