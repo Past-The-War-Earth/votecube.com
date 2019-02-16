@@ -37,7 +37,7 @@
                     on:switchDir="switchDir('x', 1)"
                 ></DirectionPositioner>
     {/if}
-                {getSideText(delta, poll, 'x', 1)}
+                {getSideText(delta, mode, poll, 'x', 1)}
             </div>
             <div
                 class="surface"
@@ -55,7 +55,7 @@
                     on:switchDir="switchDir('y', 1)"
                 ></DirectionPositioner>
     {/if}
-                {getSideText(delta, poll, 'y', 1)}
+                {getSideText(delta, mode, poll, 'y', 1)}
             </div>
             <div
                 class="surface"
@@ -73,7 +73,7 @@
                     on:switchDir="switchDir('z', 1)"
                 ></DirectionPositioner>
     {/if}
-                {getSideText(delta, poll, 'z', 1)}
+                {getSideText(delta, mode, poll, 'z', 1)}
             </div>
             <div
                 class="surface"
@@ -91,7 +91,7 @@
                     on:switchDir="switchDir('y', -1)"
                 ></DirectionPositioner>
     {/if}
-                {getSideText(delta, poll, 'y', -1)}
+                {getSideText(delta, mode, poll, 'y', -1)}
             </div>
             <div
                 class="surface"
@@ -109,7 +109,7 @@
                     on:switchDir="switchDir('z', -1)"
                 ></DirectionPositioner>
     {/if}
-                {getSideText(delta, poll, 'z', -1)}
+                {getSideText(delta, mode, poll, 'z', -1)}
             </div>
             <div
                 class="surface"
@@ -127,7 +127,7 @@
                     on:switchDir="switchDir('x', -1)"
                 ></DirectionPositioner>
     {/if}
-                {getSideText(delta, poll, 'x', -1)}
+                {getSideText(delta, mode, poll, 'x', -1)}
             </div>
 {/if}
         </figure>
@@ -163,8 +163,9 @@
         <td
         >
             <DimensionInfoButton
-                delta="{delta}"
                 axis='x'
+                delta="{delta}"
+                mode="page"
                 on:toggle="toggleSurface('x')"
                 poll="{poll}"
                 voteDim="{vote.x}"
@@ -173,8 +174,9 @@
         <td
         >
             <DimensionInfoButton
-                delta="{delta}"
                 axis='y'
+                delta="{delta}"
+                mode="page"
                 on:toggle="toggleSurface('y')"
                 poll="{poll}"
                 voteDim="{vote.y}"
@@ -182,8 +184,9 @@
         </td>
         <td>
             <DimensionInfoButton
-                delta="{delta}"
                 axis='z'
+                delta="{delta}"
+                mode="page"
                 on:toggle="toggleSurface('z')"
                 poll="{poll}"
                 voteDim="{vote.z}"
@@ -195,8 +198,9 @@
     <tr>
         <td>
             <DimensionInfoButton
-                delta="{delta}"
                 axis='z'
+                delta="{delta}"
+                mode="page"
                 on:toggle="toggleSurface('z')"
                 poll="{poll}"
                 voteDim="{vote.z}"
@@ -206,8 +210,9 @@
     <tr>
         <td>
             <DimensionInfoButton
-                delta="{delta}"
                 axis='y'
+                delta="{delta}"
+                mode="page"
                 on:toggle="toggleSurface('y')"
                 poll="{poll}"
                 voteDim="{vote.y}"
@@ -218,8 +223,9 @@
         <td
         >
             <DimensionInfoButton
-                delta="{delta}"
                 axis='x'
+                delta="{delta}"
+                mode="page"
                 on:toggle="toggleSurface('x')"
                 poll="{poll}"
                 voteDim="{vote.x}"
@@ -257,14 +263,25 @@
     </ActionPopover>
         {:elseif voting}
     <ActionPopover
+        contentClass="smallPadding"
         on:cancel="closeConfirm()"
         width="90%"
     >
         <div slot="header">
-            Please Confirm
+            Confirm Vote
         </div>
         <div slot="content">
-            Vote on the "{poll.name}" poll?
+            <div>
+                {poll.name}
+            </div>
+            <VoteComponentGraph
+                bind:delta
+                bind:poll
+                verticalLayout="Y"
+                bind:vote
+                maxBarSize="60"
+                mode="confirm"
+            ></VoteComponentGraph>
         </div>
         <div slot="actions">
             <VoteButton
@@ -304,9 +321,9 @@
     }
 
     .horizontalDimensionPosition {
-            position: fixed;
-            bottom: 10px;
-            left: 8px;
+        bottom: 10px;
+        left: 8px;
+        position: fixed;
     }
 
     .leftViewport {
@@ -322,9 +339,9 @@
     }
 
     .verticalDimensionPosition {
-            position: fixed;
-            top: 55px;
-            left: 8px;
+        left: 8px;
+        position: fixed;
+        top: 55px;
     }
 
     .surface {
@@ -406,6 +423,7 @@ import DirectionPositionButton from '../../../common/control/button/DirectionPos
 import LeftButton from '../../../common/control/button/LeftButton.html'
 import PercentPicker from '../../../common/control/PercentPicker.html'
 import DirectionPositioner from '../../../components/poll/create/DirectionPositioner.html'
+import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
 import VoteButton from '../../../common/control/button/VoteButton.html'
 import ActionPopover from '../../../common/shell/ActionPopover.html'
 import {pollDao} from '../../../dao/poll';
@@ -425,7 +443,8 @@ export default {
         DirectionPositioner,
         LeftButton,
         PercentPicker,
-        VoteButton
+        VoteButton,
+        VoteComponentGraph
     },
     computed: {
         dirPosButtonColor: ({positionMode}) => positionMode

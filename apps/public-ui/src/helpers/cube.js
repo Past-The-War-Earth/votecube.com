@@ -18,7 +18,8 @@ export function getDimensionDirections(
     return getPollDimensionDirections(poll, axis).map((pollDimensionDirection) => {
         return pollDimensionDirection.dimensionDirection
     })
-}*/
+}
+*/
 
 /*
 export function getDimension(
@@ -26,7 +27,8 @@ export function getDimension(
     axis
 ) {
     return getDimensionDirections(poll, axis)[0].dimension
-}*/
+}
+*/
 
 export function getColor(
     delta,
@@ -38,6 +40,7 @@ export function getColor(
 
 export function getSideText(
     delta,
+    mode,
     poll,
     axis,
     dir
@@ -48,6 +51,10 @@ export function getSideText(
         pollDimensionDirection =>
             pollDimensionDirection.dir === dir
     )[0].dimensionDirection
+
+    if(mode == 'confirm') {
+        return dimensionDirection.dimension.name;
+    }
 
     return `${dimensionDirection.dimension.name}: ${dimensionDirection.direction.name}`
 }

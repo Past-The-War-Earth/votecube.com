@@ -1,4 +1,7 @@
 <var
+    on:click="fire('toggle')"
+    class:pageInfo="isPage"
+    class:confirmInfo="!isPage"
     style="
         background-color: #{getColor(delta, poll, axis)};
         border-bottom-color: #{bottomBorderColor};
@@ -6,7 +9,6 @@
         float: {float};
         margin: {margin};
     "
-    on:click="fire('toggle')"
 >
     {percentValue}%
 </var>
@@ -17,14 +19,24 @@
         border-top: 4px solid;
         color: black;
         display: block;
-        font-size: 1.2em;
         font-style: normal;
+        text-align: center;
+    }
+
+    .pageInfo {
+        font-size: 1.2em;
         height: 50px;
         line-height: 46px;
-        text-align: center;
-        vertical-align: middle;
         width: 50px;
     }
+
+    .confirmInfo {
+        font-size: 1em;
+        height: 42px;
+        line-height: 38px;
+        width: 42px;
+    }
+
 </style>
 
 <script>
@@ -33,8 +45,9 @@ import {getColor} from '../../../helpers/cube'
 export default {
     computed: {
         bottomBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, -1),
-        float: ({axis, $verticalLayout}) => $verticalLayout && axis == 'x' ? 'right' : 'initial',
-        margin: ({axis, $verticalLayout}) => $verticalLayout && axis == 'y' ? 'auto' : 'initial',
+        float: ({axis, position, $verticalLayout}) => $verticalLayout && axis == 'x' && position != 'left' ? 'right' : 'initial',
+        isPage: ({mode}) => mode == 'page',
+        margin: ({axis, position, $verticalLayout}) => $verticalLayout && axis == 'y' && position != 'left' ? 'auto' : 'initial',
         topBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, 1),
         percentValue: ({delta, voteDim}) => voteDim.value
     },

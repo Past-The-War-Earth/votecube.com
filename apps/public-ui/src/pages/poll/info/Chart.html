@@ -1,237 +1,27 @@
 {#if vote}
-<figure
-        id="chart"
-        class:leftFigure="!$verticalLayout"
-        class:topFigure="$verticalLayout"
->
-    <table
-            class="chart-contents"
-    >
-        <tr id="plus">
-            <td>
-                <div
-                        style="
-        background-color: #{getColor(delta, poll, 'x')};
-        height: {xPlusHeight(maxBarSize, maxValue, delta, vote)}px;
-            "
-                >
-                </div>
-            </td>
-            <td>
-                <div
-                        style="
-        background-color: #{getColor(delta, poll, 'y')};
-        height: {yPlusHeight(maxBarSize, maxValue, delta, vote)}px;
-            "
-                >
-                </div>
-            </td>
-            <td>
-                <div
-                        style="
-        background-color: #{getColor(delta, poll, 'z')};
-        height: {zPlusHeight(maxBarSize, maxValue, delta, vote)}px;
-            "
-                >
-                </div>
-            </td>
-        </tr>
-        <tr id="minus">
-            <td
-            >
-                <div
-                        style="
-        background-color: #{getColor(delta, poll, 'x')};
-        height: {xMinusHeight(maxBarSize, maxValue, delta, vote)}px;
-            "
-                >
-                </div>
-            </td>
-            <td
-            >
-                <div
-                        style="
-        background-color: #{getColor(delta, poll, 'y')};
-        height: {yMinusHeight(maxBarSize, maxValue, delta, vote)}px;
-            "
-                >
-                </div>
-            </td>
-            <td
-            >
-                <div
-                        style="
-        background-color: #{getColor(delta, poll, 'z')};
-        height: {zMinusHeight(maxBarSize, maxValue, delta, vote)}px;
-            "
-                >
-                </div>
-            </td>
-        </tr>
-    </table>
-</figure>
-<table
-        class="info"
-        class:bottomInfo="$verticalLayout"
-        class:rightInfo="!$verticalLayout"
->
-    <tr>
-        <td>
-            <DimensionInfoButton
-                delta="{delta}"
-                axis='x'
-                on:toggle="toggleSurface('x')"
-                poll="{poll}"
-                voteDim="{vote.x}"
-            ></DimensionInfoButton>
-        </td>
-        <td
-            class="directionText"
-        >
-            {xText(poll, delta, vote)}
-        </td>
-    <tr>
-    </tr>
-        <td>
-            <DimensionInfoButton
-                delta="{delta}"
-                axis='y'
-                on:toggle="toggleSurface('y')"
-                poll="{poll}"
-                voteDim="{vote.y}"
-            ></DimensionInfoButton>
-        </td>
-        <td
-            class="directionText"
-        >
-            {yText(poll, delta, vote)}
-        </td>
-    <tr>
-        <td>
-            <DimensionInfoButton
-                delta="{delta}"
-                axis='z'
-                on:toggle="toggleSurface('z')"
-                poll="{poll}"
-                voteDim="{vote.z}"
-            ></DimensionInfoButton>
-        </td>
-        <td
-            class="directionText"
-        >
-            {zText(poll, delta, vote)}
-        </td>
-    </tr>
-</table>
+<VoteComponentGraph
+    bind:delta
+    bind:maxBarSize
+    bind:poll
+    bind:verticalLayout="$verticalLayout"
+    bind:vote
+    mode="page"
+    on:toggleX="toggleSurface('x')"
+    on:toggleY="toggleSurface('y')"
+    on:toggleZ="toggleSurface('z')"
+></VoteComponentGraph>
 {/if}
 
-<style>
-
-    figure {
-        position: fixed;
-        width: 100%;
-    }
-
-    .directionText {
-        font-size: calc(1.8vw + 1.8vh);
-    }
-
-    .leftFigure {
-        left: 5px;
-        top: 45px;
-        width: calc(40% - 10px)
-    }
-
-    .topFigure {
-        top: 28px;
-    }
-
-    .chart-contents {
-        width: 100%;
-    }
-
-    .info {
-        position: fixed;
-    }
-
-    .info td:first-child {
-        width: 60px;
-    }
-
-    .bottomInfo {
-        bottom: 5px;
-        width: 100%;
-
-    }
-
-    .rightInfo {
-        right: 5px;
-        top: 45px;
-        width: calc(60% - 10px);
-    }
-
-    td {
-        padding: 5px;
-        vertical-align: middle;
-    }
-
-    #plus td {
-        border-bottom: 1px solid black;
-        vertical-align: bottom;
-    }
-
-    #minus td {
-        vertical-align: top;
-    }
-
-    figure {
-        margin: 0.8em;
-    }
-
-    figure div {
-        margin: 10px;
-    }
-
-    #plus div {
-        margin-bottom: 0px;
-    }
-
-    #minus div {
-        margin-top: 0px;
-    }
-
-</style>
-
 <script>
-import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
-import {getColor, getSideText} from '../../../helpers/cube';
+import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
 import {loadCubeLogic, shutDownCubeListener} from '../../../libs/cubeLogic'
 import {voteDao} from '../../../dao/vote';
-import {scheduleToResize, setResizeCllBck} from '../../../resizer'
+import {setResizeCllBck} from '../../../resizer'
 import store from '../../../store'
 
 export default {
     components: {
-        DimensionInfoButton
-    },
-    computed: {
-        maxValue: ({poll, delta, vote}) => {
-            if(!vote) {
-                return 0
-            }
-
-            const positiveValues = []
-            const negativeValues = []
-
-            addToVals(poll, vote.x, positiveValues, negativeValues)
-            addToVals(poll, vote.y, positiveValues, negativeValues)
-            addToVals(poll, vote.z, positiveValues, negativeValues)
-
-            const maxPositiveValue = getMaxVal(positiveValues)
-            const maxNegativeValue = getMaxVal(negativeValues)
-
-            return maxPositiveValue + maxNegativeValue
-        }
+        VoteComponentGraph
     },
     data() {
         return {
@@ -239,24 +29,7 @@ export default {
             delta: 0
         }
     },
-	helpers: {
-		getColor,
-		xMinusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.x, -1, maxBarSize, maxValue),
-        xPlusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.x, 1, maxBarSize, maxValue),
-        xText: (poll, delta, vote) => directionText(delta, poll, vote.x),
-        yMinusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.y, -1, maxBarSize, maxValue),
-        yPlusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.y, 1, maxBarSize, maxValue),
-        yText: (poll, delta, vote) => directionText(delta, poll, vote.y),
-        zMinusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.z, -1, maxBarSize, maxValue),
-        zPlusHeight: (maxBarSize, maxValue, delta, vote) => barHeight(vote.z, 1, maxBarSize, maxValue),
-        zText: (poll, delta, vote) => directionText(delta, poll, vote.z)
-	},
     methods: {
-        handleResize(
-            event
-        ) {
-            scheduleToResize(this)
-        },
         toggleSurface(
             dimension
         ) {
@@ -305,53 +78,6 @@ export default {
         this.store.set({noOverflow: false})
     },
     store: () => store
-}
-
-function barHeight(
-    voteDimension,
-    direction,
-    maxBarSize,
-    maxValue
-) {
-    return voteDimension
-    && voteDimension.dir === direction
-        ? voteDimension.value * maxBarSize / (maxValue * 1.2)
-        : 0
-}
-
-function directionText(
-    delta,
-    poll,
-    voteDimension
-) {
-    return getSideText(delta, poll, voteDimension.axis, voteDimension.dir)
-}
-
-function addToVals(
-    poll,
-    voteDimension,
-    positiveValues,
-    negativeValues
-) {
-    if (voteDimension.dir === 1) {
-        positiveValues.push(voteDimension.value);
-    } else {
-        negativeValues.push(voteDimension.value);
-    }
-}
-
-function getMaxVal(
-    values
-) {
-    let maximumValue = 0
-
-    for (const value of values) {
-        if (value > maximumValue) {
-            maximumValue = value
-        }
-    }
-
-    return maximumValue
 }
 
 </script>

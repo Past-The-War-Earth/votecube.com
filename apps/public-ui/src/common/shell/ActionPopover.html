@@ -5,7 +5,9 @@
         <header>
             <slot name="header"></slot>
         </header>
-        <p>
+        <p
+            class="{contentClass}"
+            >
             <slot name="content"></slot>
         </p>
     {#if !viewOnly}
