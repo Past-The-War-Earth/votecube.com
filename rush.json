@@ -14,13 +14,28 @@
     },
     // "libs" folder (alphabetical order)
     {
+      "packageName": "@votecube/ajax",
+      "projectFolder": "libs/ajax",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@votecube/cube-logic",
       "projectFolder": "libs/cube-logic",
       "shouldPublish": true
     },
     {
+      "packageName": "@votecube/di",
+      "projectFolder": "libs/di",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@votecube/forms",
       "projectFolder": "libs/forms",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@votecube/model",
+      "projectFolder": "libs/model",
       "shouldPublish": true
     }
   ]

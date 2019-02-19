@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5834a8df-8ac4-4e9e-a2c6-9a90af2a2f82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../ajax/.idea/ajax.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/.idea/webResources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/core/Cursor.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/core/In.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/core/Out.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/core/deserializer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/core/serializer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/Dimension.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/DimensionDirection.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/Direction.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/core/Mode.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/core/ModelSerializer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/core/Type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/Continent.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/Country.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/County.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollContinent.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollCountry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollCounty.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollState.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollTown.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/State.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/Town.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/poll/Label.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/poll/Poll.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/poll/PollDimDir.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/model/poll/PollLabel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/tokens.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/src/tslint.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ajax/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/di.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webResources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Container.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Token.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tslint.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/.idea/webResources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/Color.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/Dimension.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/DimensionDirection.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/Direction.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/Theme.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/User.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/core/Model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/core/TemporalModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/Continent.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/Country.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/County.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/PollContinent.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/PollCountry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/PollCounty.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/PollState.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/PollTown.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/State.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/location/Town.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/poll/Label.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/poll/Poll.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/poll/PollDimensionDirection.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/poll/PollLabel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/src/tslint.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../model/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../rush.json" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Container.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="59" column="6" lean-forward="true" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Token.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="C:\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/Token.ts" />
+        <option value="$PROJECT_DIR$/src/index.ts" />
+        <option value="$PROJECT_DIR$/src/Container.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="di" type="b2602c69:ProjectViewProjectNode" />
+              <item name="di" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="di" type="b2602c69:ProjectViewProjectNode" />
+              <item name="di" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="di" type="b2602c69:ProjectViewProjectNode" />
+              <item name="di" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="C:\Users\Papa\WebstormProjects\votecube-ui\libs\di\node_modules\tslint" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="ts.external.directory.path" value="C:\Users\Papa\WebstormProjects\votecube-ui\libs\di\node_modules\typescript\lib" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17217484" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="TypeScript" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32917964" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/tslint.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Token.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Container.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="59" column="6" lean-forward="true" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
