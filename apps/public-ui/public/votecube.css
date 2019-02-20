@@ -89,6 +89,16 @@ Cube
     width: 50px;
 }
 
+@media (min-width: 58em) {
+    .bottomLeft {
+        left: 170px !important;
+    }
+
+    .topLeft {
+        left: 170px !important;
+    }
+}
+
 .bottomLeft {
     position: fixed;
     bottom: 10px;
@@ -99,6 +109,12 @@ Cube
     position: fixed;
     bottom: 10px;
     right: 10px;
+}
+
+.topLeft {
+    position: fixed;
+    left: 10px;
+    top: 55px;
 }
 
 .topRight {

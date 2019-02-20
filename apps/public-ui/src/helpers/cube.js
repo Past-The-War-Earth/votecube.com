@@ -52,9 +52,12 @@ export function getSideText(
             pollDimensionDirection.dir === dir
     )[0].dimensionDirection
 
-    if(mode == 'confirm') {
-        return dimensionDirection.dimension.name;
+    switch (mode) {
+        case 'confirm':
+            return dimensionDirection.dimension.name;
+        case 'cube':
+            return dimensionDirection.direction.name;
+        default:
+            return `${dimensionDirection.dimension.name}: ${dimensionDirection.direction.name}`
     }
-
-    return `${dimensionDirection.dimension.name}: ${dimensionDirection.direction.name}`
 }

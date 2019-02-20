@@ -1258,18 +1258,16 @@ since IE8 won't execute CSS that contains a CSS3 selector.
         margin-bottom: 0;
     }
 
-/*
-    .pure-form-aligned .pure-control-group label {
-        margin-bottom: 0.3em;
-        text-align: left;
-        display: block;
-        width: 100%;
-    }*/
-
+    /*
+        .pure-form-aligned .pure-control-group label {
+            margin-bottom: 0.3em;
+            text-align: left;
+            display: block;
+            width: 100%;
+        }*/
     /*.pure-form-aligned .pure-controls {*/
-        /*margin: 1.5em 0 0 0;*/
+    /*margin: 1.5em 0 0 0;*/
     /*}*/
-
     /* NOTE: pure-help-inline is deprecated. Use .pure-form-message-inline instead. */
     .pure-form .pure-help-inline,
     .pure-form-message-inline,
@@ -3325,6 +3323,10 @@ a.pure-button-primary {
         position: relative;
         left: 160px;
     }
+
+    #layout.active.noOverflow {
+        left: 0px; /* negate usual left col width "#menu" */
+    }
 }
 
 @media (min-width: 58em) {
@@ -3332,6 +3334,11 @@ a.pure-button-primary {
     #layout {
         padding-left: 160px; /* left col width "#menu" */
         left: 0;
+    }
+
+    #layout.cube {
+        left: 0px;
+        padding-left: 0px; /* negate usual left col width "#menu" */
     }
 
     #menu {

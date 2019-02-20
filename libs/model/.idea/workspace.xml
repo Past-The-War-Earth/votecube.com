@@ -5,94 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4114b0ed-7a9f-487d-83e8-3dee45b73663" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../ajax/.idea/ajax.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/.idea/webResources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/core/Cursor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/core/In.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/core/Out.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/core/deserializer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/core/serializer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/Dimension.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/DimensionDirection.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/Direction.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/core/Mode.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/core/ModelSerializer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/core/Type.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/Continent.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/Country.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/County.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollContinent.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollCountry.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollCounty.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollState.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollTown.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/State.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/location/Town.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/poll/Label.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/poll/Poll.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/poll/PollDimDir.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/model/poll/PollLabel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/tokens.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/src/tslint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ajax/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/di.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/webResources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/src/Container.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/src/Token.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/src/tslint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../di/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webResources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Color.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dimension.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DimensionDirection.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Direction.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Theme.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/Model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/TemporalModel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/Continent.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/Country.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/County.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/PollContinent.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/PollCountry.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/PollCounty.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/PollState.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/PollTown.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/State.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/location/Town.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/poll/Label.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/poll/Poll.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/poll/PollDimensionDirection.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/poll/PollLabel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tslint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../forms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../forms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../rush.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/DimensionInfoButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/button/DimensionInfoButton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/helpers/cube.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/helpers/cube.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Cube.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ajax/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../di/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../di/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,8 +29,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/index.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+                <state relative-caret-position="177">
+                  <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -249,153 +171,6 @@
             <path>
               <item name="model" type="b2602c69:ProjectViewProjectNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="Continent.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="Country.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="County.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="PollContinent.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="PollCountry.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="PollCounty.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="PollState.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="PollTown.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="State.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="location" type="462c0819:PsiDirectoryNode" />
-              <item name="Town.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="Color.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="Dimension.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="DimensionDirection.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="Direction.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="index.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="Label.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="Poll.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="PollDimensionDirection.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="PollLabel.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="Theme.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="model" type="b2602c69:ProjectViewProjectNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="User.js" type="620a8d5e:NestingTreeNode" />
             </path>
             <path>
               <item name="model" type="b2602c69:ProjectViewProjectNode" />
@@ -682,8 +457,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        <state relative-caret-position="177">
+          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
         </state>
       </provider>
     </entry>
