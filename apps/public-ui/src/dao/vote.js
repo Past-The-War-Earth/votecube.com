@@ -17,7 +17,7 @@ export const voteDao = {
     ) {
         pollId = parseInt(pollId)
         return new Promise((resolve) => {
-            if(!pollId) {
+            if(!pollId && pollId !== 0) {
                 resolve(null)
                 return
             }

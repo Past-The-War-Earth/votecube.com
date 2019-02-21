@@ -79,6 +79,7 @@ export class MutationApi
 		this.vp.pd[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100
 		if (!this.vp.pd[dimension].valid) {
 			this.vp.cb(this.vp.pd)
+			return
 		}
 		this.moveToPercent(dimension, numericValue)
 	}

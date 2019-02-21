@@ -1,37 +1,43 @@
 <tr>
     <td
-        on:touchstart="mouseDown(-1)"
-        on:touchend="mouseUp(-1)"
+            on:mousedown="mouseDown(-1, event)"
+            on:mouseup="mouseUp(-1, event)"
+            on:touchstart="mouseDown(-1, event)"
+            on:touchend="mouseUp(-1, event)"
     >
         <LeftButton
-            circleRadius="{leftCircleRadius}"
-            fillColor="{leftFillColor}"
-            highlightColor="{leftHighlightColor}"
-            strokeWidth="{leftStrokeWidth}"
+                circleRadius="{leftCircleRadius}"
+                fillColor="{leftFillColor}"
+                highlightColor="{leftHighlightColor}"
+                strokeWidth="{leftStrokeWidth}"
         ></LeftButton>
-   </td>
-   <td>
-      <input
-          maxlength="3"
-          on:input="fire('moveToValue', this.value)"
-          ref:input
-          style="
+    </td>
+    <td>
+        <input
+                maxlength="3"
+                on:input="moveToValue(this.value)"
+                ref:input
+                value="{value.value}"
+        >
+        <!--
+                style="
             border-bottom: {valueBottomBorder};
           "
-          value="{value.value}"
-      >
-   </td>
-   <td
-          on:touchstart="mouseDown(1)"
-          on:touchend="mouseUp(1)"
-   >
+          -->
+    </td>
+    <td
+            on:mousedown="mouseDown(1, event)"
+            on:mouseup="mouseUp(1, event)"
+            on:touchstart="mouseDown(1, event)"
+            on:touchend="mouseUp(1, event)"
+    >
         <RightButton
-            circleRadius="{rightCircleRadius}"
-            fillColor="{rightFillColor}"
-            highlightColor="{rightHighlightColor}"
-            strokeWidth="{rightStrokeWidth}"
+                circleRadius="{rightCircleRadius}"
+                fillColor="{rightFillColor}"
+                highlightColor="{rightHighlightColor}"
+                strokeWidth="{rightStrokeWidth}"
         ></RightButton>
-   </td>
+    </td>
 </tr>
 
 <style>
@@ -52,141 +58,160 @@
 </style>
 
 <script>
-import {getColor} from '../../helpers/cube';
-import LeftButton from './button/LeftButton.html'
-import RightButton from './button/RightButton.html'
+    import {getColor} from '../../helpers/cube';
+    import LeftButton from './button/LeftButton.html'
+    import RightButton from './button/RightButton.html'
 
-export default {
-    components: {
-        LeftButton,
-        RightButton
-    },
-    computed: {
-        valueBottomBorder: ({value}) => getInputBorder(value),
-        leftCircleRadius: ({value}) => getRadius(-1, value),
-        rightCircleRadius: ({value}) => getRadius(1, value),
-        leftStrokeWidth: ({value}) => getStrokeWidth(-1, value),
-        rightStrokeWidth: ({value}) => getStrokeWidth(1, value),
-        leftHighlightColor: ({axis, poll, value}) => getTheColor(1, value, poll, axis),
-        rightHighlightColor: ({axis, poll, value}) => getTheColor(-1, value, poll, axis),
-        leftFillColor: ({axis, poll, value}) => getTheColor(-1, value, poll, axis),
-        rightFillColor: ({axis, poll, value}) => getTheColor(1, value, poll, axis),
-    },
-    methods: {
-        mouseDown(
-               direction
-        ) {
-            const percentChange = 1
-            this.set({lastNumIncs: 5, percentChange})
-
-            this.fire('move', {
+    export default {
+        components: {
+            LeftButton,
+            RightButton
+        },
+        computed: {
+            // valueBottomBorder: ({moveToValueDelta, value}) => getInputBorder(value),
+            leftCircleRadius: ({moveDelta, value}) => getRadius(-1, value),
+            rightCircleRadius: ({moveDelta, value}) => getRadius(1, value),
+            leftStrokeWidth: ({moveDelta, value}) => getStrokeWidth(-1, value),
+            rightStrokeWidth: ({moveDelta, value}) => getStrokeWidth(1, value),
+            leftHighlightColor: ({axis, moveDelta, poll, value}) => getTheColor(1, value, poll, axis),
+            rightHighlightColor: ({axis, moveDelta, poll, value}) => getTheColor(-1, value, poll, axis),
+            leftFillColor: ({axis, moveDelta, poll, value}) => getTheColor(-1, value, poll, axis),
+            rightFillColor: ({axis, moveDelta, poll, value}) => getTheColor(1, value, poll, axis),
+        },
+        methods: {
+            mouseDown(
                 direction,
-                percentChange
+                event
+            ) {
+                event.preventDefault()
+
+                const percentChange = 1
+                this.set({lastNumIncs: 5, percentChange})
+
+                this.fire('move', {
+                    direction,
+                    percentChange
+                })
+
+                setIntrvl(this, 360, direction, 4, 3, 1)
+                this.fire('update')
+            },
+            mouseUp(
+                direction,
+                event
+            ) {
+                event.preventDefault()
+
+                clearIntrvl(this)
+            },
+            moveToValue(
+                value
+            ) {
+                this.fire('moveToValue', value)
+                // this.set({moveToValueDelta: this.get().moveToValueDelta + 1})
+            }
+        },
+        oncreate() {
+            this.on('refresh', () => {
+                updateValue(this)
             })
-
-            setIntrvl(this, 360, direction, 4, 3, 1)
-            this.fire('update')
-        },
-        mouseUp(
-            direction
-        ) {
-            clearIntrvl(this)
-        },
-    },
-    oncreate() {
-        this.on('refresh', () => {
-            updateValue(this)
-        })
-    }
-}
-
-function checkInterval(
-    page
-) {
-    let numIncs = page.get().numIncs - 1
-    let percentChange = page.get().percentChange
-    let direction = page.get().direction
-    page.fire('move', {
-        direction,
-        percentChange
-    });
-    if (!numIncs) {
-        clearIntrvl(page)
-        let numReIncs = page.get().numReIncs - 1
-        if(!numReIncs) {
-            return
         }
-        let interval = page.get().interval / 2
-        let numIncs = page.get().lastNumIncs * 2
-        percentChange = percentChange * 3
-        page.set({lastNumIncs: numIncs})
-        setIntrvl(page, interval, direction, numIncs, numReIncs, percentChange)
-    } else {
-        page.set({numIncs})
     }
-}
-function setIntrvl(
-    page,
-    interval,
-    direction,
-    numIncs,
-    numReIncs,
-    percentChange,
-) {
-    // console.log(`interval: ${interval}, direction: ${direction}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
-    const incrementInterval = setInterval(() => {
-        checkInterval(page)
-        page.fire('update')
-    }, interval)
-    page.set({direction, incrementInterval, interval, numIncs, numReIncs, percentChange})
-}
-function clearIntrvl(
-    page
-) {
-    let incrementInterval = page.get().incrementInterval
-    if(incrementInterval) {
-        clearInterval(incrementInterval);
-    }
-}
-function getInputBorder(
-    value
-) {
-    return value.valid
-    ? '0px'
-    : '3px solid red'
-}
 
-function getRadius(
-    dir,
-    value
-) {
-    return dir === value.dir
-    ? 24
-    : 23
-}
-function getStrokeWidth(
-    dir,
-    value
-) {
-    return dir === value.dir
-    ? 0
-    : 3
-}
-function getTheColor(
-    dir,
-    value,
-    poll,
-    axis
-) {
-    return dir === value.dir
-    ? getColor(0, poll, axis)
-    : 'fff'
-}
-function updateValue(
-    page
-) {
-    setTimeout(() => {
-        page.refs.input.value = page.get().value.value
-    }, 16)
-}
+    function checkInterval(
+        page
+    ) {
+        let numIncs = page.get().numIncs - 1
+        let percentChange = page.get().percentChange
+        let direction = page.get().direction
+        page.fire('move', {
+            direction,
+            percentChange
+        });
+        if (!numIncs) {
+            clearIntrvl(page)
+            let numReIncs = page.get().numReIncs - 1
+            if (!numReIncs) {
+                return
+            }
+            let interval = page.get().interval / 2
+            let numIncs = page.get().lastNumIncs * 2
+            percentChange = percentChange * 3
+            page.set({lastNumIncs: numIncs})
+            setIntrvl(page, interval, direction, numIncs, numReIncs, percentChange)
+        } else {
+            page.set({numIncs})
+        }
+    }
+
+    function setIntrvl(
+        page,
+        interval,
+        direction,
+        numIncs,
+        numReIncs,
+        percentChange,
+    ) {
+        // console.log(`interval: ${interval}, direction: ${direction}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
+        const incrementInterval = setInterval(() => {
+            checkInterval(page)
+            page.fire('update')
+        }, interval)
+        page.set({direction, incrementInterval, interval, numIncs, numReIncs, percentChange})
+    }
+
+    function clearIntrvl(
+        page
+    ) {
+        let incrementInterval = page.get().incrementInterval
+        if (incrementInterval) {
+            clearInterval(incrementInterval);
+        }
+    }
+
+    /*    function getInputBorder(
+            value
+        ) {
+            return value.valid === undefined
+            || value.valid
+                ? '0px'
+                : '3px solid red'
+        }*/
+
+    function getRadius(
+        dir,
+        value
+    ) {
+        return dir === value.dir
+            ? 24
+            : 23
+    }
+
+    function getStrokeWidth(
+        dir,
+        value
+    ) {
+        return dir === value.dir
+            ? 0
+            : 3
+    }
+
+    function getTheColor(
+        dir,
+        value,
+        poll,
+        axis
+    ) {
+        return dir === value.dir
+            ? getColor(0, poll, axis)
+            : 'fff'
+    }
+
+    function updateValue(
+        page
+    ) {
+        setTimeout(() => {
+            page.refs.input.value = page.get().value.value
+        }, 16)
+    }
 </script>
