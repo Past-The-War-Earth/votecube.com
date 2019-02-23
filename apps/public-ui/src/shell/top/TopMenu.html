@@ -54,20 +54,18 @@
 			TopMenuComp({$currentPage}) {
 				return routes.getTopMenuComponent()
 			},
-			showTopMenu({$showTopMenu, $topMenuInLine, TopMenuComp}) {
-				return ($showTopMenu || $topMenuInLine) && TopMenuComp
+			showTopMenu({$showTopMenu, $isDesktop, TopMenuComp}) {
+				return ($showTopMenu || $isDesktop) && TopMenuComp
 			},
-			showTopMenuScreen({$showTopMenu, $topMenuInLine, TopMenuComp}) {
-				return !$topMenuInLine && $showTopMenu && TopMenuComp
+			showTopMenuScreen({$isDesktop}) {
+				return !$isDesktop
 			}
 		},
 		methods: {
 			setViewType(
 				view
 			) {
-				this.store.set({
-					showTopMenu: false
-				})
+				this.store.toggleTopMenu(false)
 				this.fire('setViewType', view)
 			}
 		},

@@ -1,34 +1,32 @@
 {#if form}
-<form class="pure-form">
-	<fieldset>
-		<div class="pure-control-group">
-			<MultiSelect
-							field="{form.fields.continents}"
-			></MultiSelect>
-		</div>
-		<div class="pure-control-group">
-			<MultiSelect
-							field="{form.fields.countries}"
-			></MultiSelect>
-		</div>
-		<div class="pure-control-group">
-			<MultiSelect
-							field="{form.fields.states}"
-			></MultiSelect>
-		</div>
-		<div class="pure-control-group">
-			<MultiSelect
-							field="{form.fields.cities}"
-			></MultiSelect>
-		</div>
-		<div class="pure-controls">
-			<RightButton
-							classes="submitButton"
-							highlightColor="{submitHighlight}"
-							on:select="submit($routeParams)"
-			></RightButton>
-		</div>
-	</fieldset>
+<form>
+	<div class="pure-control-group">
+		<MultiSelect
+						field="{form.fields.continents}"
+		></MultiSelect>
+	</div>
+	<div class="pure-control-group">
+		<MultiSelect
+						field="{form.fields.countries}"
+		></MultiSelect>
+	</div>
+	<div class="pure-control-group">
+		<MultiSelect
+						field="{form.fields.states}"
+		></MultiSelect>
+	</div>
+	<div class="pure-control-group">
+		<MultiSelect
+						field="{form.fields.cities}"
+		></MultiSelect>
+	</div>
+	<div class="pure-controls">
+		<RightButton
+						classes="submitButton"
+						highlightColor="{submitHighlight}"
+						on:select="submit($routeParams)"
+		></RightButton>
+	</div>
 </form>
 {/if}
 

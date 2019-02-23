@@ -8,9 +8,10 @@ class VCStore
 		this.set({showMainMenu})
 	}
 
-	toggleTopMenu() {
-		const showTopMenu = !this.get().showTopMenu
-		this.set({showTopMenu})
+	toggleTopMenu(
+		topMenuShown = !this.get().topMenuShown
+	) {
+		this.set({topMenuShown})
 	}
 
 	setTextToast(
@@ -31,8 +32,16 @@ class VCStore
 	}
 }
 
-export default new VCStore({
+var vcStore = new VCStore({
 	showMainMenu: false,
-	showTopMenu: false,
-	textToast: {}
-});
+	textToast: {},
+	topMenuShown: false
+})
+
+vcStore.compute(
+	'showTopMenu',
+	['showMainMenu', 'topMenuShown'],
+	(showMainMenu, topMenuShown) => !showMainMenu && topMenuShown
+);
+
+export default vcStore

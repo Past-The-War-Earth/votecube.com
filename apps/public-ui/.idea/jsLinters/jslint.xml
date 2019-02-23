@@ -9,5 +9,6 @@
     <option maxlen="98" />
     <option multivar="true" />
     <option single="true" />
+    <option white="true" />
   </component>
 </project>

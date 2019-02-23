@@ -1,74 +1,72 @@
 {#if form}
-<form class="pure-form">
-	<fieldset>
-		<div class="pure-control-group">
-			<Text
-							field="{form.fields.name}"
-			></Text>
-		</div>
+<form>
+	<div class="pure-control-group">
+		<Text
+						field="{form.fields.name}"
+		></Text>
+	</div>
 
-		<IconBlock
-						fieldGroup="{form.fields.color}"
-						on:select="selectColor($routeParams)"
-		>
-			<div slot="icon">
-				<ColorIcon></ColorIcon>
-			</div>
-			<div
-							class:colorSelection="color.valid"
-							slot="text"
-							style="
+	<IconBlock
+					fieldGroup="{form.fields.color}"
+					on:select="selectColor($routeParams)"
+	>
+		<div slot="icon">
+			<ColorIcon></ColorIcon>
+		</div>
+		<div
+						class:colorSelection="color.valid"
+						slot="text"
+						style="
                     background-color: {selectedColor};
                 "
-			>
-				{#if !color.valid}
-				{color.text.label}
-				{/if}
-			</div>
-		</IconBlock>
-
-		<IconBlock
-						fieldGroup="{form.fields.topDirection}"
-						on:select="selectDirection('top', $routeParams)"
 		>
-			<div slot="icon">
-				<DirectionIcon></DirectionIcon>
-			</div>
-			<div slot="text">
-				{#if topDirection.valid}
-				{topDirection.fields.name.value}
-				{:else}
-				{topDirection.text.label}
-				{/if}
-			</div>
-		</IconBlock>
+			{#if !color.valid}
+			{color.text.label}
+			{/if}
+		</div>
+	</IconBlock>
 
-		<IconBlock
-						fieldGroup="{form.fields.bottomDirection}"
-						on:select="selectDirection('bottom', $routeParams)"
-		>
-			<div slot="icon">
-				<DirectionIcon
-								inverse="Y"
-				></DirectionIcon>
-			</div>
-			<div slot="text">
-				{#if bottomDirection.valid}
-				{bottomDirection.fields.name.value}
-				{:else}
-				{bottomDirection.text.label}
-				{/if}
-			</div>
-		</IconBlock>
+	<IconBlock
+					fieldGroup="{form.fields.topDirection}"
+					on:select="selectDirection('top', $routeParams)"
+	>
+		<div slot="icon">
+			<DirectionIcon></DirectionIcon>
+		</div>
+		<div slot="text">
+			{#if topDirection.valid}
+			{topDirection.fields.name.value}
+			{:else}
+			{topDirection.text.label}
+			{/if}
+		</div>
+	</IconBlock>
 
-		<nav class="pure-controls">
-			<RightButton
-							classes="submitButton"
-							highlightColor="{submitHighlight}"
-							on:select="select($routeParams)"
-			></RightButton>
-		</nav>
-	</fieldset>
+	<IconBlock
+					fieldGroup="{form.fields.bottomDirection}"
+					on:select="selectDirection('bottom', $routeParams)"
+	>
+		<div slot="icon">
+			<DirectionIcon
+							inverse="Y"
+			></DirectionIcon>
+		</div>
+		<div slot="text">
+			{#if bottomDirection.valid}
+			{bottomDirection.fields.name.value}
+			{:else}
+			{bottomDirection.text.label}
+			{/if}
+		</div>
+	</IconBlock>
+
+	<nav class="pure-controls">
+		<RightButton
+						classes="submitButton"
+						highlightColor="{submitHighlight}"
+						on:select="select($routeParams)"
+		></RightButton>
+	</nav>
 </form>
 {/if}
 

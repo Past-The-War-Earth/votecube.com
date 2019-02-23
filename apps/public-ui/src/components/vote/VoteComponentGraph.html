@@ -1,6 +1,6 @@
 <figure
 				id="chart"
-				class:desktopFigure="$leftMenuFixed"
+				class:desktopFigure="$isDesktop"
 				class:leftFigure="horizontalPage"
 				class:topFigure="verticalPage"
 				class:confirmFigure="!isPage"
@@ -74,6 +74,7 @@
 </figure>
 <table
 				class="info"
+				class:desktopInfo="$isDesktop"
 				class:bottomInfo="verticalPage"
 				class:confirmTable="!isPage"
 				class:pageTable="isPage"
@@ -142,6 +143,10 @@
 		bottom: 5px;
 		position: fixed;
 		width: 100%;
+	}
+
+	.bottomInfo.desktopInfo {
+		width: calc(100% - 160px);
 	}
 
 	.chart-contents {

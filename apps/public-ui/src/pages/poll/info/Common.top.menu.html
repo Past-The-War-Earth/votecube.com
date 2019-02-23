@@ -55,7 +55,7 @@
 </li>
 {/if}
 
-{#if confirm}
+{#if $confirm}
 <ActionPopover
 				on:cancel="doNotAlter()"
 				width="90%"
@@ -122,17 +122,17 @@
 		},
 		methods: {
 			alter($routeParams) {
-				this.set({confirm: false})
+				this.store.set({confirm: false})
 				routes.navigateToPage(routes.POLL_INFO_MAIN, {
 					...$routeParams,
 					mode: 'alter'
 				})
 			},
 			confirmAlter(event) {
-				this.set({confirm: true})
+				this.store.set({confirm: true})
 			},
 			doNotAlter() {
-				this.set({confirm: false})
+				this.store.set({confirm: false})
 			},
 			setViewType(
 				type

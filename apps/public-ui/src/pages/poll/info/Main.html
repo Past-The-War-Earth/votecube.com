@@ -1,122 +1,120 @@
 {#if form}
-<form class="pure-form">
-	<fieldset>
-		<legend>Create Poll</legend>
-		<Text
-						field="{form.fields.name}"
-		></Text>
-		<div class="pure-control-group">
-			<AutoComplete
-							field="{form.fields.theme}"
-			></AutoComplete>
+<form>
+	<legend>Create Poll</legend>
+	<Text
+					field="{form.fields.name}"
+	></Text>
+	<div class="pure-control-group">
+		<AutoComplete
+						field="{form.fields.theme}"
+		></AutoComplete>
+	</div>
+	<div class="pure-control-group">
+		<MultiSelect
+						field="{form.fields.labels}"
+		></MultiSelect>
+	</div>
+	<IconBlock
+					fieldGroup="{form.fields.locations}"
+					on:select="selectLocations($routeParams)"
+	>
+		<div slot="icon">
+			<LocationIcon
+							width="42"
+			></LocationIcon>
 		</div>
-		<div class="pure-control-group">
-			<MultiSelect
-							field="{form.fields.labels}"
-			></MultiSelect>
-		</div>
-		<IconBlock
-						fieldGroup="{form.fields.locations}"
-						on:select="selectLocations($routeParams)"
-		>
-			<div slot="icon">
-				<LocationIcon
-								width="42"
-				></LocationIcon>
-			</div>
-			<div slot="text">
-				{#if locations && locations.touched}
-				{#if continents.length}
-				{#if countries.length}
-				{#if states.length}
-				{#if cities.length}
-				Cities:
-				<br>
-				{getArrayValueTexts(cities)}
-				<br>
-				<br>
-				{/if}
-				States:
-				<br>
-				{getArrayValueTexts(states)}
-				<br>
-				<br>
-				{/if}
-				Countries:
-				<br>
-				{getArrayValueTexts(countries)}
-				<br>
-				<br>
+		<div slot="text">
+			{#if locations && locations.touched}
+			{#if continents.length}
+			{#if countries.length}
+			{#if states.length}
+			{#if cities.length}
+			Cities:
+			<br>
+			{getArrayValueTexts(cities)}
+			<br>
+			<br>
+			{/if}
+			States:
+			<br>
+			{getArrayValueTexts(states)}
+			<br>
+			<br>
+			{/if}
+			Countries:
+			<br>
+			{getArrayValueTexts(countries)}
+			<br>
+			<br>
 
-				{/if}
-				Continents:
-				<br>
-				{getArrayValueTexts(continents)}
-				{:else}
-				Select Location
-				{/if}
-				{:else}
-				Select Location
-				{/if}
-			</div>
-		</IconBlock>
-		<IconBlock
-						fieldGroup="{form.fields.timeframe}"
-						on:select="selectTimeframe($routeParams)"
-		>
-			<div slot="icon">
-				<TimeIcon></TimeIcon>
-			</div>
-			<div slot="text">
-				{#if timeframe && timeframe.touched}
-				<table
-								class="timeframe"
-				>
-					<tr>
-						<td>
-							Start Date:
-						</td>
-						<td>
-							{getDate(timeframe.fields.startDate.value)}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							End Date:
-						</td>
-						<td>
-							{getDate(timeframe.fields.endDate.value)}
-						</td>
-					</tr>
-				</table>
-				{:else}
-				Select Time-frame
-				{/if}
-			</div>
-		</IconBlock>
-		<SelectionBlock
-						dimension="{form.fields.dimensions.fields.first}"
-						text="{form.fields.dimensions.text.first}"
-						on:select="selectDimension(form.fields.dimensions.fields.first, $routeParams)"
-		></SelectionBlock>
-		<SelectionBlock
-						dimension="{form.fields.dimensions.fields.second}"
-						text="{form.fields.dimensions.text.second}"
-						on:select="selectDimension(form.fields.dimensions.fields.second, $routeParams)"
-		></SelectionBlock>
-		<SelectionBlock
-						dimension="{form.fields.dimensions.fields.third}"
-						text="{form.fields.dimensions.text.third}"
-						on:select="selectDimension(form.fields.dimensions.fields.third, $routeParams)"
-		></SelectionBlock>
-		<nav class="pure-controls">
-			<PreviewButton
-							classes="submitButton"
-							highlightColor="{submitHighlight}"
-							on:select="submit($routeParams, dimensionsModified, locationOrTimeframeModified)"
-			></PreviewButton>
-		</nav>
-	</fieldset>
+			{/if}
+			Continents:
+			<br>
+			{getArrayValueTexts(continents)}
+			{:else}
+			Select Location
+			{/if}
+			{:else}
+			Select Location
+			{/if}
+		</div>
+	</IconBlock>
+	<IconBlock
+					fieldGroup="{form.fields.timeframe}"
+					on:select="selectTimeframe($routeParams)"
+	>
+		<div slot="icon">
+			<TimeIcon></TimeIcon>
+		</div>
+		<div slot="text">
+			{#if timeframe && timeframe.touched}
+			<table
+							class="timeframe"
+			>
+				<tr>
+					<td>
+						Start Date:
+					</td>
+					<td>
+						{getDate(timeframe.fields.startDate.value)}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						End Date:
+					</td>
+					<td>
+						{getDate(timeframe.fields.endDate.value)}
+					</td>
+				</tr>
+			</table>
+			{:else}
+			Select Time-frame
+			{/if}
+		</div>
+	</IconBlock>
+	<SelectionBlock
+					dimension="{form.fields.dimensions.fields.first}"
+					text="{form.fields.dimensions.text.first}"
+					on:select="selectDimension(form.fields.dimensions.fields.first, $routeParams)"
+	></SelectionBlock>
+	<SelectionBlock
+					dimension="{form.fields.dimensions.fields.second}"
+					text="{form.fields.dimensions.text.second}"
+					on:select="selectDimension(form.fields.dimensions.fields.second, $routeParams)"
+	></SelectionBlock>
+	<SelectionBlock
+					dimension="{form.fields.dimensions.fields.third}"
+					text="{form.fields.dimensions.text.third}"
+					on:select="selectDimension(form.fields.dimensions.fields.third, $routeParams)"
+	></SelectionBlock>
+	<nav class="pure-controls">
+		<PreviewButton
+						classes="submitButton"
+						highlightColor="{submitHighlight}"
+						on:select="submit($routeParams, dimensionsModified, locationOrTimeframeModified)"
+		></PreviewButton>
+	</nav>
 </form>
 {#if invalidAlter}
 <ActionPopover

@@ -10,6 +10,13 @@
 					mainMenuActive={isMenuActive}
 					on:setViewType="setViewType(event)"
 	></TopBar>
+
+	{#if showLogo}
+	<div>
+		VOTECUBE
+	</div>
+	{/if}
+
 	<nav
 					class="menu-link {activeClass}"
 					id="menuLink"
@@ -36,6 +43,19 @@
 {/if}
 
 <style>
+	div {
+		color: white;
+		background: #191818;
+		height: 44px;
+		line-height: 44px;
+		position: fixed;
+		text-align: center;
+		top: 0px;
+		vertical-align: middle;
+		width: 160px;
+		z-index: 1200;
+	}
+
 	article {
 		overflow: auto;
 	}
@@ -114,11 +134,12 @@
 		},
 		computed: {
 			activeClass: ({$showMainMenu}) => $showMainMenu ? 'active' : '',
+			showLogo: ({$isDesktop, $showMainMenu}) => $isDesktop || $showMainMenu
 		},
 		data() {
 			return {
 				PageComp: null,
-				showTextToast: true
+				showTextToast: false
 			}
 		},
 		methods: {
@@ -142,6 +163,9 @@
 				this.store.toggleMainMenu()
 			},
 			toggleMenu() {
+				if (this.store.get().confirm) {
+					return
+				}
 				this.store.toggleMainMenu()
 			},
 			toggleSurface(

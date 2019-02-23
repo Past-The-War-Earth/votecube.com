@@ -89,7 +89,7 @@ Cube
 	width: 50px;
 }
 
-@media (min-width: 58em) {
+@media (min-width: 62em) {
 	.bottomLeft {
 		left: 170px !important;
 	}

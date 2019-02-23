@@ -1,24 +1,22 @@
 {#if form}
-<form class="pure-form">
-	<fieldset>
-		<div class="pure-control-group">
-			<DatePicker
-							field="{form.fields.startDate}"
-			></DatePicker>
-		</div>
-		<div class="pure-control-group">
-			<DatePicker
-							field="{form.fields.endDate}"
-			></DatePicker>
-		</div>
-		<div class="pure-controls">
-			<RightButton
-							classes="submitButton"
-							highlightColor="{submitHighlight}"
-							on:select="submit($routeParams)"
-			></RightButton>
-		</div>
-	</fieldset>
+<form>
+	<div class="pure-control-group">
+		<DatePicker
+						field="{form.fields.startDate}"
+		></DatePicker>
+	</div>
+	<div class="pure-control-group">
+		<DatePicker
+						field="{form.fields.endDate}"
+		></DatePicker>
+	</div>
+	<div class="pure-controls">
+		<RightButton
+						classes="submitButton"
+						highlightColor="{submitHighlight}"
+						on:select="submit($routeParams)"
+		></RightButton>
+	</div>
 </form>
 {/if}
 

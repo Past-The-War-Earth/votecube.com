@@ -1,16 +1,18 @@
 <tr>
-	<td
-					on:mousedown="mouseDown(-1, event)"
-					on:mouseup="mouseUp(-1, event)"
-					on:touchstart="mouseDown(-1, event)"
-					on:touchend="mouseUp(-1, event)"
-	>
-		<LeftButton
-						circleRadius="{leftCircleRadius}"
-						fillColor="{leftFillColor}"
-						highlightColor="{leftHighlightColor}"
-						strokeWidth="{leftStrokeWidth}"
-		></LeftButton>
+	<td>
+		<div
+						on:mousedown="mouseDown(-1, event)"
+						on:mouseup="mouseUp(-1, event)"
+						on:touchstart="mouseDown(-1, event)"
+						on:touchend="mouseUp(-1, event)"
+		>
+			<LeftButton
+							circleRadius="{leftCircleRadius}"
+							fillColor="{leftFillColor}"
+							highlightColor="{leftHighlightColor}"
+							strokeWidth="{leftStrokeWidth}"
+			></LeftButton>
+		</div>
 	</td>
 	<td>
 		<input
@@ -26,21 +28,28 @@
 			-->
 	</td>
 	<td
-					on:mousedown="mouseDown(1, event)"
-					on:mouseup="mouseUp(1, event)"
-					on:touchstart="mouseDown(1, event)"
-					on:touchend="mouseUp(1, event)"
 	>
-		<RightButton
-						circleRadius="{rightCircleRadius}"
-						fillColor="{rightFillColor}"
-						highlightColor="{rightHighlightColor}"
-						strokeWidth="{rightStrokeWidth}"
-		></RightButton>
+		<div
+						on:mousedown="mouseDown(1, event)"
+						on:mouseup="mouseUp(1, event)"
+						on:touchstart="mouseDown(1, event)"
+						on:touchend="mouseUp(1, event)"
+		>
+			<RightButton
+							circleRadius="{rightCircleRadius}"
+							fillColor="{rightFillColor}"
+							highlightColor="{rightHighlightColor}"
+							strokeWidth="{rightStrokeWidth}"
+			></RightButton>
+		</div>
 	</td>
 </tr>
 
 <style>
+
+	div {
+		display: inline-block;
+	}
 
 	input {
 		background: transparent;

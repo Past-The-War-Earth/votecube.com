@@ -28,11 +28,10 @@
 		},
 		computed: {
 			mainMenuOffset: ({
-				                 $leftMenuFixed,
-				                 $noOverflow,
-				                 $showMainMenu
+				                 $cube,
+				                 $isDesktop,
 			                 }) => {
-				return $noOverflow && ($leftMenuFixed || $showMainMenu)
+				return $cube && $isDesktop
 			},
 			wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
 				? 2.5

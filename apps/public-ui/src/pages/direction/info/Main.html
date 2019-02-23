@@ -1,20 +1,18 @@
 {#if form}
-<form class="pure-form">
-	<fieldset>
-		<div class="pure-control-group">
+<form>
+	<div class="pure-control-group">
             <TextArea
 				            field="{form.fields.name}"
             ></TextArea>
-		</div>
+	</div>
 
-		<nav class="pure-controls">
-			<RightButton
-							classes="submitButton"
-							highlightColor="{submitHighlight}"
-							on:select="select($routeParams)"
-			></RightButton>
-		</nav>
-	</fieldset>
+	<nav class="pure-controls">
+		<RightButton
+						classes="submitButton"
+						highlightColor="{submitHighlight}"
+						on:select="select($routeParams)"
+		></RightButton>
+	</nav>
 </form>
 {/if}
 

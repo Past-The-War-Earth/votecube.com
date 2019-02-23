@@ -51,14 +51,16 @@ function resize(
 		verticalLayout = false
 	}
 
-	let leftMenuFixed = windowWidth >= store.get().emInPx * 58
-	let topMenuInLine = windowWidth >= store.get().emInPx * 62
+	const isDesktop = windowWidth >= store.get().emInPx * 62
+	// let leftMenuFixed = windowWidth >= store.get().emInPx * 58
+	// let topMenuInLine = windowWidth >= store.get().emInPx * 62
 
 	store.set({
-		leftMenuFixed,
+		// leftMenuFixed,
+		isDesktop,
 		portalHeight,
 		resized: false,
-		topMenuInLine,
+		// topMenuInLine,
 		verticalLayout,
 		windowWidth
 	})

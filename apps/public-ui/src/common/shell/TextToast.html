@@ -1,4 +1,6 @@
-<aside>
+<aside
+				class:mainMenuOffset="mainMenuOffset"
+>
 	<div>
 		{text}
 	</div>
@@ -9,6 +11,12 @@
 		padding: 5px;
 		position: fixed;
 		width: 100%;
+		z-index: 1050;
+	}
+
+	.mainMenuOffset {
+		left: 160px;
+		width: calc(100% - 160px);
 	}
 
 	div {
@@ -21,7 +29,17 @@
 </style>
 <script>
 	export default {
-		oncreate() {
+		computed: {
+			mainMenuOffset: ({
+				                 $isDesktop,
+				                 $showMainMenu
+			                 }) => {
+				return $isDesktop || $showMainMenu
+			},
+			wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
+				? 2.5
+				: 0
+		}, oncreate() {
 
 		}
 	}
