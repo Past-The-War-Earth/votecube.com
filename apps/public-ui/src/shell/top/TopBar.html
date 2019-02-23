@@ -1,6 +1,6 @@
 <div
         class="custom-menu-wrapper"
-        class:desktopTopNav="$leftMenuFixed"
+        class:mainMenuOffset="mainMenuOffset"
         style="margin-bottom: {wrapperMarginBottom}em"
 >
     <TopBarHeader></TopBarHeader>
@@ -10,10 +10,10 @@
 </div>
 <style>
     div {
-        z-index: 4;
+        z-index: 1100;
     }
 
-    .desktopTopNav {
+    .mainMenuOffset {
         margin-left: 160px;
     }
 </style>
@@ -27,6 +27,13 @@
             TopMenu
         },
         computed: {
+            mainMenuOffset: ({
+                                 $leftMenuFixed,
+                                 $noOverflow,
+                                 $showMainMenu
+                             }) => {
+                return $noOverflow && ($leftMenuFixed || $showMainMenu)
+            },
             wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
                 ? 2.5
                 : 0

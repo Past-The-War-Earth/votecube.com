@@ -20,7 +20,7 @@ export function startResizeInterval(
         if (store.get().resized) {
             resize(store)
         }
-    }, 1000)
+    }, 500)
 
     store.set({checkSizeIntervalId})
 }
