@@ -5,36 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/jslint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLinters/jslint.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/votecube.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/control/PercentPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/PercentPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/shell/Popover.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/shell/Popover.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/shell/TextToast.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/shell/TextToast.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/PickColor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dimension/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/info/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dimension/search/List.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dimension/search/List.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/direction/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/direction/info/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/Locations.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/Locations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/Timeframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/Timeframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/poll/info/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/info/Cube.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/info/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/search/List.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/search/List.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/search/List.top.menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/search/List.top.menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resizer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/resizer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shell/menu/Menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/menu/Menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shell/top/TopBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopBar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shell/top/TopMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopMenu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/ajax/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/di/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/di/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/model/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/model/.idea/workspace.xml" afterDir="false" />
@@ -69,10 +42,10 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/App.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="404">
-                  <caret line="167" column="9" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
+                <state relative-caret-position="1408">
+                  <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
                   <folding>
-                    <element signature="e#1196#1259#0#HTML" expanded="true" />
+                    <element signature="e#1220#1283#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -90,8 +63,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Cube.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="843">
-                  <caret line="247" column="43" selection-start-line="247" selection-start-column="43" selection-end-line="247" selection-end-column="43" />
+                <state relative-caret-position="405">
+                  <caret line="485" column="55" selection-start-line="485" selection-start-column="55" selection-end-line="485" selection-end-column="55" />
                   <folding>
                     <element signature="e#7388#7469#0#HTML" expanded="true" />
                   </folding>
@@ -100,10 +73,28 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/libs/cubeLogic.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="429">
+                  <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/pages/poll/search/List.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="22">
+                  <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/votecube.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="229">
-                  <caret line="88" column="14" lean-forward="true" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
+                <state relative-caret-position="295">
+                  <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -112,22 +103,13 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/App.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="359">
-                  <caret line="136" column="62" selection-start-line="136" selection-start-column="62" selection-end-line="136" selection-end-column="62" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="79">
-                  <caret line="45" selection-start-line="45" selection-end-line="45" />
+                  <caret line="137" column="62" selection-start-line="137" selection-start-column="62" selection-end-line="137" selection-end-column="62" />
                   <folding>
-                    <element signature="e#1731#1781#0#HTML" expanded="true" />
+                    <element signature="e#1220#1283#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -136,8 +118,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/global.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="191">
-                  <caret line="1021" column="7" selection-start-line="1021" selection-start-column="7" selection-end-line="1021" selection-end-column="7" />
+                <state relative-caret-position="295">
+                  <caret line="402" column="16" selection-start-line="402" selection-start-column="2" selection-end-line="402" selection-end-column="16" />
                 </state>
               </provider>
             </entry>
@@ -146,7 +128,7 @@
             <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Cube.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="310">
-                  <caret line="457" column="20" lean-forward="true" selection-start-line="457" selection-start-column="20" selection-end-line="457" selection-end-column="20" />
+                  <caret line="457" column="20" selection-start-line="457" selection-start-column="20" selection-end-line="457" selection-end-column="20" />
                   <folding>
                     <element signature="n#style#0;n#section#0;n#main#0;n#article#0;n#!!top" expanded="true" />
                   </folding>
@@ -154,10 +136,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="833">
+                <state relative-caret-position="345">
                   <caret line="130" column="18" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="18" />
                   <folding>
                     <element signature="e#2081#2156#0#HTML" expanded="true" />
@@ -182,10 +164,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>aside</find>
-      <find>&lt;TextToast</find>
-      <find>sizer</find>
-      <find>showTextToast</find>
       <find>1100</find>
       <find>$cube</find>
       <find>pure-</find>
@@ -208,10 +186,14 @@
       <find>offToRight</find>
       <find>160</find>
       <find>58</find>
-      <find>confirm</find>
       <find>editable</find>
+      <find>confirm</find>
       <find>confirmAlter</find>
+      <find>overflow</find>
+      <find>overflow: auto</find>
       <find>selectMenu</find>
+      <find>PercentPicker</find>
+      <find>percentMode</find>
     </findStrings>
     <replaceStrings>
       <replace>DimensionInfoButton</replace>
@@ -311,8 +293,8 @@
         <option value="$PROJECT_DIR$/public/global.css" />
         <option value="$PROJECT_DIR$/public/votecube.css" />
         <option value="$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html" />
-        <option value="$PROJECT_DIR$/src/App.html" />
         <option value="$PROJECT_DIR$/src/common/control/PercentPicker.html" />
+        <option value="$PROJECT_DIR$/src/App.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/info/Cube.html" />
       </list>
     </option>
@@ -880,7 +862,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="continued refactoring data model to new standard" />
     <MESSAGE value="finished refactoring data model to new standard" />
     <MESSAGE value="fixed chart state bug" />
     <MESSAGE value="added the build button" />
@@ -905,12 +886,10 @@
     <MESSAGE value="Fixed inability to alter poll on IOS.&#10;&#10;Fixed numerous layout issues on very small and very large screens." />
     <MESSAGE value="Additional layout fixes." />
     <MESSAGE value="formatted files" />
-    <option name="LAST_COMMIT_MESSAGE" value="formatted files" />
+    <MESSAGE value="layout adjustments" />
+    <option name="LAST_COMMIT_MESSAGE" value="layout adjustments" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/dimension/search/ListItem.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/direction/search/List.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1185,53 +1164,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/search/List.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
-          <folding>
-            <element signature="e#388#445#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/global.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="1021" column="7" selection-start-line="1021" selection-start-column="7" selection-end-line="1021" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/votecube.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="88" column="14" lean-forward="true" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="167" column="9" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
-          <folding>
-            <element signature="e#1196#1259#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#1731#1781#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
+        <state relative-caret-position="345">
           <caret line="130" column="18" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="18" />
           <folding>
             <element signature="e#2081#2156#0#HTML" expanded="true" />
@@ -1239,10 +1174,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/global.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="402" column="16" selection-start-line="402" selection-start-column="2" selection-end-line="402" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/search/List.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/votecube.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#1731#1781#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1408">
+          <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+          <folding>
+            <element signature="e#1220#1283#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/libs/cubeLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Cube.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="843">
-          <caret line="247" column="43" selection-start-line="247" selection-start-column="43" selection-end-line="247" selection-end-column="43" />
+        <state relative-caret-position="405">
+          <caret line="485" column="55" selection-start-line="485" selection-start-column="55" selection-end-line="485" selection-end-column="55" />
           <folding>
             <element signature="e#7388#7469#0#HTML" expanded="true" />
           </folding>

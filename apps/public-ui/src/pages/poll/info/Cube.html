@@ -483,9 +483,11 @@
 				this.set({confirm: true, error: '', saving: false, voting: false})
 			},
 			closeConfirm() {
+				setCubeAdjustment(this.get().cubeListener, true)
 				this.set({confirm: false})
 			},
 			confirmVote() {
+				setCubeAdjustment(this.get().cubeListener, false)
 				this.set({confirm: true, error: '', saving: false, voting: true})
 			},
 			move(
