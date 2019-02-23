@@ -1,195 +1,181 @@
 <svelte:window on:resize="handleResize(event)"/>
 <article
-        class="{activeClass}"
-        class:noOverflow="$noOverflow"
-        class:cube="$cube"
-        id="layout"
+				class="{activeClass}"
+				class:noOverflow="$noOverflow"
+				class:cube="$cube"
+				id="layout"
 >
-    <!-- Menu toggle -->
-    <TopBar
-            mainMenuActive={isMenuActive}
-            on:setViewType="setViewType(event)"
-    ></TopBar>
-    <nav
-            class="menu-link {activeClass}"
-            id="menuLink"
-            on:click="toggleMenu()"
-    >
-        <!--Hamburger icon -->
-        <span></span>
-    </nav>
-    <Menu
-            active="{$showMainMenu}"
-            on:selected="selectMenu(event)"
-    ></Menu>
-    <section
-            id="main"
-            on:click="clickMain()"
-    >
-        <svelte:component this="{PageComp}"/>
-    </section>
+	<!-- Menu toggle -->
+	<TopBar
+					mainMenuActive={isMenuActive}
+					on:setViewType="setViewType(event)"
+	></TopBar>
+	<nav
+					class="menu-link {activeClass}"
+					id="menuLink"
+					on:click="toggleMenu()"
+	>
+		<!--Hamburger icon -->
+		<span></span>
+	</nav>
+	<Menu
+					active="{$showMainMenu}"
+					on:selected="selectMenu(event)"
+	></Menu>
+	<section
+					id="main"
+					on:click="clickMain()"
+	>
+		<svelte:component this="{PageComp}"/>
+	</section>
 </article>
 {#if showTextToast}
-<aside>
-    <div>
-        {$textToast.text}
-    </div>
-</aside>
+<TextToast
+				text="{$textToast.text}"
+></TextToast>
 {/if}
 
 <style>
+	article {
+		overflow: auto;
+	}
 
-    article {
-        overflow: auto;
-    }
+	article.noOverflow {
+		overflow: initial;
+	}
 
-    article.noOverflow {
-        overflow: initial;
-    }
+	nav {
+		z-index: 1100;
+	}
 
-    aside {
-        bottom: 5px;
-        padding: 5px;
-        position: fixed;
-        width: 100%;
-    }
-
-    div {
-        background-color: #111;
-        border-radius: 3px;
-        color: #eee;
-        padding: 10px;
-        width: 100%;
-    }
-
-    nav {
-        z-index: 1100;
-    }
-
-    #sizer {
-        height: 0;
-        width: 0;
-        outline: none;
-        border: none;
-        padding: none;
-        margin: none;
-    }
-
+	#sizer {
+		height: 0;
+		width: 0;
+		outline: none;
+		border: none;
+		padding: none;
+		margin: none;
+	}
 </style>
 
 <script>
+	import {loadUi}            from './libs/text/ui'
+	import DimensionInfoMain   from './pages/dimension/info/Main.html'
+	import DimensionPickColor  from './pages/dimension/PickColor.html'
+	import DimensionSearchList from './pages/dimension/search/List.html'
 
-    import {scheduleToResize, startResizeInterval} from './resizer.js'
-    import Menu from './shell/menu/Menu.html'
-    import TopBar from './shell/top/TopBar.html'
-    import store from './store.js';
-    import {navigateToPage, setupRoutes} from './routes.js'
-    import * as routes from './routes'
-    import {loadUi} from './libs/text/ui'
+	import DirectionInfoMain     from './pages/direction/info/Main.html'
+	import PollInfoChart         from './pages/poll/info/Chart.html'
+	import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
+	import PollInfoCube          from './pages/poll/info/Cube.html'
+	import PollInfoMain          from './pages/poll/info/Main.html'
+	import PollLocations         from './pages/poll/Locations.html'
+	import PollSearchList        from './pages/poll/search/List.html'
+	import PollSearchListTopMenu from './pages/poll/search/List.top.menu.html'
+	import PollTimeframe         from './pages/poll/Timeframe.html'
+	import {
+		scheduleToResize,
+		startResizeInterval
+	}                            from './resizer.js'
+	import * as routes           from './routes'
+	import {
+		navigateToPage,
+		setupRoutes
+	}                            from './routes.js'
+	import Menu                  from './shell/menu/Menu.html'
+	import TopBar                from './shell/top/TopBar.html'
+	import store                 from './store.js';
 
-    import DirectionInfoMain from './pages/direction/info/Main.html'
-    import DimensionInfoMain from './pages/dimension/info/Main.html'
-    import DimensionSearchList from './pages/dimension/search/List.html'
-    import DimensionPickColor from './pages/dimension/PickColor.html'
-    import PollLocations from './pages/poll/Locations.html'
-    import PollTimeframe from './pages/poll/Timeframe.html'
-    import PollInfoMain from './pages/poll/info/Main.html'
-    import PollInfoCube from './pages/poll/info/Cube.html'
-    import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
-    import PollSearchList from './pages/poll/search/List.html'
-    import PollSearchListTopMenu from './pages/poll/search/List.top.menu.html'
-    import PollInfoChart from './pages/poll/info/Chart.html'
+	const pageMap = {
+		[routes.DIRECTION_INFO_MAIN]: DirectionInfoMain,
+		[routes.DIMENSION_INFO_MAIN]: DimensionInfoMain,
+		[routes.DIMENSION_SEARCH_LIST]: DimensionSearchList,
+		[routes.DIMENSION_PICK_COLOR]: DimensionPickColor,
+		[routes.POLL_INFO_CHART]: PollInfoChart,
+		[routes.POLL_SEARCH_LIST]: PollSearchList,
+		[routes.POLL_INFO_MAIN]: PollInfoMain,
+		[routes.POLL_INFO_CUBE]: PollInfoCube,
+		[routes.POLL_LOCATIONS]: PollLocations,
+		[routes.POLL_TIMEFRAME]: PollTimeframe,
+	};
 
-    const pageMap = {
-        [routes.DIRECTION_INFO_MAIN]: DirectionInfoMain,
-        [routes.DIMENSION_INFO_MAIN]: DimensionInfoMain,
-        [routes.DIMENSION_SEARCH_LIST]: DimensionSearchList,
-        [routes.DIMENSION_PICK_COLOR]: DimensionPickColor,
-        [routes.POLL_INFO_CHART]: PollInfoChart,
-        [routes.POLL_SEARCH_LIST]: PollSearchList,
-        [routes.POLL_INFO_MAIN]: PollInfoMain,
-        [routes.POLL_INFO_CUBE]: PollInfoCube,
-        [routes.POLL_LOCATIONS]: PollLocations,
-        [routes.POLL_TIMEFRAME]: PollTimeframe,
-    };
+	const topMenuMap = {
+		[routes.POLL_INFO_CHART]: PollInfoCommonTopMenu,
+		[routes.POLL_INFO_CUBE]: PollInfoCommonTopMenu,
+		[routes.POLL_SEARCH_LIST]: PollSearchListTopMenu
+	}
 
-    const topMenuMap = {
-        [routes.POLL_INFO_CHART]: PollInfoCommonTopMenu,
-        [routes.POLL_INFO_CUBE]: PollInfoCommonTopMenu,
-        [routes.POLL_SEARCH_LIST]: PollSearchListTopMenu
-    }
+	export default {
+		components: {
+			Menu,
+			TopBar
+		},
+		computed: {
+			activeClass: ({$showMainMenu}) => $showMainMenu ? 'active' : '',
+		},
+		data() {
+			return {
+				PageComp: null,
+				showTextToast: true
+			}
+		},
+		methods: {
+			clickMain() {
+				// if (DOM_API.e(menuElementIdSelector)
+				//   .className
+				//   .indexOf('active') !== -1) {
+				if (this.store.get().showMainMenu) {
+					this.toggleMenu()
+				}
+			},
+			handleResize(
+				event
+			) {
+				scheduleToResize(this.store)
+			},
+			selectMenu(
+				menuItem
+			) {
+				navigateToPage(menuItem.key, menuItem.params)
+				this.store.toggleMainMenu()
+			},
+			toggleMenu() {
+				this.store.toggleMainMenu()
+			},
+			toggleSurface(
+				dimension
+			) {
+				this.get().mutationApi.toggleSurface(dimension)
+			},
+			setPageComp(
+				PageComp
+			) {
+				this.set({PageComp})
+			},
+			setViewType(
+				view
+			) {
+				navigateToPage(view.type, view.params)
+			}
+		},
+		oncreate() {
+			loadUi(this.store, 'en-us')
 
-    export default {
-        components: {
-            Menu,
-            TopBar
-        },
-        computed: {
-            activeClass: ({$showMainMenu}) => $showMainMenu ? 'active' : '',
-        },
-        data() {
-            return {
-                PageComp: null,
-                showTextToast: false
-            }
-        },
-        methods: {
-            clickMain() {
-                // if (DOM_API.e(menuElementIdSelector)
-                //   .className
-                //   .indexOf('active') !== -1) {
-                if (this.store.get().showMainMenu) {
-                    this.toggleMenu()
-                }
-            },
-            handleResize(
-                event
-            ) {
-                scheduleToResize(this.store)
-            },
-            selectMenu(
-                menuItem
-            ) {
-                navigateToPage(menuItem.key, menuItem.params)
-                this.store.toggleMainMenu()
-            },
-            toggleMenu() {
-                this.store.toggleMainMenu()
-            },
-            toggleSurface(
-                dimension
-            ) {
-                this.get().mutationApi.toggleSurface(dimension)
-            },
-            setPageComp(
-                PageComp
-            ) {
-                this.set({PageComp})
-            },
-            setViewType(
-                view
-            ) {
-                navigateToPage(view.type, view.params)
-            }
-        },
-        oncreate() {
-            loadUi(this.store, 'en-us')
+			setupRoutes(this, pageMap, topMenuMap)
 
-            setupRoutes(this, pageMap, topMenuMap)
+			startResizeInterval(this.store)
 
-            startResizeInterval(this.store)
-
-            this.store.on('setTextToast', ({textToast}) => {
-                this.set({lastTextToast: textToast, showTextToast: true})
-                setTimeout(() => {
-                    let now = new Date().getTime()
-                    let {lastTextToast} = this.get()
-                    if (now - lastTextToast.seconds * 1000 >= lastTextToast.time) {
-                        this.set({showTextToast: false})
-                    }
-                }, textToast.seconds * 1000)
-            })
-        },
-        store: () => store
-    }
+			this.store.on('setTextToast', ({textToast}) => {
+				this.set({lastTextToast: textToast, showTextToast: true})
+				setTimeout(() => {
+					let now             = new Date().getTime()
+					let {lastTextToast} = this.get()
+					if (now - lastTextToast.seconds * 1000 >= lastTextToast.time) {
+						this.set({showTextToast: false})
+					}
+				}, textToast.seconds * 1000)
+			})
+		},
+		store: () => store
+	}
 </script>

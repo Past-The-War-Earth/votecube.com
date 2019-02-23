@@ -1,25 +1,25 @@
 <li
-  class="pure-menu-item {selectedClass}"
-  on:click="click()"
+				class="pure-menu-item {selectedClass}"
+				on:click="click()"
 >
-  <a
-    class="pure-menu-link"
-  >
-    {menuItem.name}
-  </a>
+	<a
+					class="pure-menu-link"
+	>
+		{menuItem.name}
+	</a>
 </li>
 
 <script>
-export default {
-    computed: {
-        selectedClass: ({menuIndex, selectedIndex}) =>
-        menuIndex === selectedIndex
-        ? 'pure-menu-selected' : ''
-    },
-    methods: {
-        click() {
-            this.fire('select', this.get().menuItem)
-        }
-    }
-}
+	export default {
+		computed: {
+			selectedClass: ({menuIndex, selectedIndex}) =>
+				menuIndex === selectedIndex
+					? 'pure-menu-selected' : ''
+		},
+		methods: {
+			click() {
+				this.fire('select', this.get().menuItem)
+			}
+		}
+	}
 </script>

@@ -1,20 +1,20 @@
 <div class="pure-menu custom-menu custom-menu-top">
-  <nav
-    class="pure-menu-heading custom-menu-brand"
-  >
-    {$pageTitle}
-  </nav>
-  <TopMenuToggle></TopMenuToggle>
+	<nav
+					class="pure-menu-heading custom-menu-brand"
+	>
+		{$pageTitle}
+	</nav>
+	<TopMenuToggle></TopMenuToggle>
 </div>
 
 <script>
-import store from '../../store.js'
-import TopMenuToggle from './TopMenuToggle.html'
+	import store         from '../../store.js'
+	import TopMenuToggle from './TopMenuToggle.html'
 
-export default {
-    components: {
-        TopMenuToggle
-    },
-    store: () => store
-}
+	export default {
+		components: {
+			TopMenuToggle
+		},
+		store: () => store
+	}
 </script>

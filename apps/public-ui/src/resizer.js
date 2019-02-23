@@ -1,28 +1,28 @@
 var viewCallback
 
 export function setResizeCllBck(
-    resizeCallback,
-    store
+	resizeCallback,
+	store
 ) {
-    viewCallback = resizeCallback
+	viewCallback = resizeCallback
 
-    if (resizeCallback) {
-        resize(store)
-    }
+	if (resizeCallback) {
+		resize(store)
+	}
 }
 
 export function startResizeInterval(
-    store
+	store
 ) {
-    resize(store)
+	resize(store)
 
-    const checkSizeIntervalId = setInterval(() => {
-        if (store.get().resized) {
-            resize(store)
-        }
-    }, 500)
+	const checkSizeIntervalId = setInterval(() => {
+		if (store.get().resized) {
+			resize(store)
+		}
+	}, 500)
 
-    store.set({checkSizeIntervalId})
+	store.set({checkSizeIntervalId})
 }
 
 /*
@@ -33,37 +33,37 @@ export function stopResizeInterval(
 }*/
 
 export function scheduleToResize(
-    store
+	store
 ) {
-    store.set({
-        resized: true
-    })
+	store.set({
+		resized: true
+	})
 }
 
 function resize(
-    store
+	store
 ) {
-    const windowWidth = window.innerWidth
-    const portalHeight = window.innerHeight
+	const windowWidth  = window.innerWidth
+	const portalHeight = window.innerHeight
 
-    let verticalLayout = true
-    if (portalHeight < windowWidth && portalHeight < 400) {
-        verticalLayout = false
-    }
+	let verticalLayout = true
+	if (portalHeight < windowWidth && portalHeight < 400) {
+		verticalLayout = false
+	}
 
-    let leftMenuFixed = windowWidth >= store.get().emInPx * 58
-    let topMenuInLine = windowWidth >= store.get().emInPx * 62
+	let leftMenuFixed = windowWidth >= store.get().emInPx * 58
+	let topMenuInLine = windowWidth >= store.get().emInPx * 62
 
-    store.set({
-        leftMenuFixed,
-        portalHeight,
-        resized: false,
-        topMenuInLine,
-        verticalLayout,
-        windowWidth
-    })
+	store.set({
+		leftMenuFixed,
+		portalHeight,
+		resized: false,
+		topMenuInLine,
+		verticalLayout,
+		windowWidth
+	})
 
-    if (viewCallback) {
-        viewCallback(portalHeight, windowWidth, verticalLayout)
-    }
+	if (viewCallback) {
+		viewCallback(portalHeight, windowWidth, verticalLayout)
+	}
 }

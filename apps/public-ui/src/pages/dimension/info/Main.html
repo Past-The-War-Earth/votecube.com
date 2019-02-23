@@ -1,150 +1,150 @@
 {#if form}
 <form class="pure-form">
-    <fieldset>
-        <div class="pure-control-group">
-            <Text
-                field="{form.fields.name}"
-            ></Text>
-        </div>
+	<fieldset>
+		<div class="pure-control-group">
+			<Text
+							field="{form.fields.name}"
+			></Text>
+		</div>
 
-        <IconBlock
-            fieldGroup="{form.fields.color}"
-            on:select="selectColor($routeParams)"
-        >
-            <div slot="icon">
-                <ColorIcon></ColorIcon>
-            </div>
-            <div
-                class:colorSelection="color.valid"
-                slot="text"
-                style="
+		<IconBlock
+						fieldGroup="{form.fields.color}"
+						on:select="selectColor($routeParams)"
+		>
+			<div slot="icon">
+				<ColorIcon></ColorIcon>
+			</div>
+			<div
+							class:colorSelection="color.valid"
+							slot="text"
+							style="
                     background-color: {selectedColor};
                 "
-              >
-    {#if !color.valid}
-                {color.text.label}
-    {/if}
-            </div>
-        </IconBlock>
+			>
+				{#if !color.valid}
+				{color.text.label}
+				{/if}
+			</div>
+		</IconBlock>
 
-        <IconBlock
-            fieldGroup="{form.fields.topDirection}"
-            on:select="selectDirection('top', $routeParams)"
-        >
-            <div slot="icon">
-                <DirectionIcon></DirectionIcon>
-            </div>
-            <div slot="text">
-    {#if topDirection.valid}
-                {topDirection.fields.name.value}
-    {:else}
-                {topDirection.text.label}
-    {/if}
-            </div>
-        </IconBlock>
+		<IconBlock
+						fieldGroup="{form.fields.topDirection}"
+						on:select="selectDirection('top', $routeParams)"
+		>
+			<div slot="icon">
+				<DirectionIcon></DirectionIcon>
+			</div>
+			<div slot="text">
+				{#if topDirection.valid}
+				{topDirection.fields.name.value}
+				{:else}
+				{topDirection.text.label}
+				{/if}
+			</div>
+		</IconBlock>
 
-        <IconBlock
-            fieldGroup="{form.fields.bottomDirection}"
-            on:select="selectDirection('bottom', $routeParams)"
-        >
-            <div slot="icon">
-                <DirectionIcon
-                    inverse="Y"
-                ></DirectionIcon>
-            </div>
-            <div slot="text">
-    {#if bottomDirection.valid}
-                {bottomDirection.fields.name.value}
-    {:else}
-                {bottomDirection.text.label}
-    {/if}
-            </div>
-        </IconBlock>
+		<IconBlock
+						fieldGroup="{form.fields.bottomDirection}"
+						on:select="selectDirection('bottom', $routeParams)"
+		>
+			<div slot="icon">
+				<DirectionIcon
+								inverse="Y"
+				></DirectionIcon>
+			</div>
+			<div slot="text">
+				{#if bottomDirection.valid}
+				{bottomDirection.fields.name.value}
+				{:else}
+				{bottomDirection.text.label}
+				{/if}
+			</div>
+		</IconBlock>
 
-        <nav class="pure-controls">
-            <RightButton
-                classes="submitButton"
-                highlightColor="{submitHighlight}"
-                on:select="select($routeParams)"
-            ></RightButton>
-        </nav>
-    </fieldset>
+		<nav class="pure-controls">
+			<RightButton
+							classes="submitButton"
+							highlightColor="{submitHighlight}"
+							on:select="select($routeParams)"
+			></RightButton>
+		</nav>
+	</fieldset>
 </form>
 {/if}
 
 <script>
-import RightButton from '../../../common/control/button/RightButton.html'
-import IconBlock from '../../../common/field/IconBlock.html'
-import Text from '../../../common/field/Text.html'
-import ColorIcon from '../../../common/icon/ColorIcon.html'
-import DirectionIcon from '../../../common/icon/DirectionIcon.html'
-import * as forms from '../../../form/forms'
-import * as formCache from '../../../form/cache'
-import * as routes from '../../../routes'
-import store from '../../../store'
+	import RightButton    from '../../../common/control/button/RightButton.html'
+	import IconBlock      from '../../../common/field/IconBlock.html'
+	import Text           from '../../../common/field/Text.html'
+	import ColorIcon      from '../../../common/icon/ColorIcon.html'
+	import DirectionIcon  from '../../../common/icon/DirectionIcon.html'
+	import * as formCache from '../../../form/cache'
+	import * as forms     from '../../../form/forms'
+	import * as routes    from '../../../routes'
+	import store          from '../../../store'
 
-export default {
-    components: {
-        ColorIcon,
-        DirectionIcon,
-        IconBlock,
-        RightButton,
-        Text
-    },
-    computed: {
-        bottomDirection: ({form}) => form
-            ? form.fields.bottomDirection
-            : null,
-        color: ({form}) => form
-            ? form.fields.color
-            : null,
-        selectedColor: ({color}) => {
-            if(!color || !color.valid) {
-                return 'initial'
-            }
-            const value = color.value.picker
+	export default {
+		components: {
+			ColorIcon,
+			DirectionIcon,
+			IconBlock,
+			RightButton,
+			Text
+		},
+		computed: {
+			bottomDirection: ({form}) => form
+				? form.fields.bottomDirection
+				: null,
+			color: ({form}) => form
+				? form.fields.color
+				: null,
+			selectedColor: ({color}) => {
+				if (!color || !color.valid) {
+					return 'initial'
+				}
+				const value = color.value.picker
 
-            return `rgb(${value.red}, ${value.green}, ${value.blue})`
-        },
-        submitHighlight: ({isValid}) => isValid
-        ? '0b0'
-        : 'b00',
-        topDirection: ({form}) => form
-            ? form.fields.topDirection
-            : null
-    },
-    methods: {
-        select($routeParams) {
-            this.set({keepPollId: $routeParams.pollId})
-            forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
-        },
-        selectColor($routeParams) {
-            this.set({keepPollId: $routeParams.pollId})
-            routes.navigateToPage(routes.DIMENSION_PICK_COLOR, $routeParams)
-        },
-        selectDirection(
-            directionPrefix,
-            $routeParams
-        ) {
-            this.set({keepPollId: $routeParams.pollId})
-            const dimensionForm = this.get().form
-            forms.setForm(forms.CREATE_DIRECTION, dimensionForm.fields[directionPrefix + 'Direction'])
-            routes.navigateToPage(routes.DIRECTION_INFO_MAIN, $routeParams)
-        }
-    },
-    oncreate() {
-        formCache.getPollRouteParams(this)
-        forms.ensureTopForm(
-            forms.CREATE_DIMENSION,
-            this, routes.POLL_INFO_MAIN)
-        this.store.set({
-            pageTitle: 'Dimension Info'
-        })
-    },
-    ondestroy() {
-        formCache.savePollForm(this)
-        forms.clearForm(this)
-    },
-    store: () => store
-}
+				return `rgb(${value.red}, ${value.green}, ${value.blue})`
+			},
+			submitHighlight: ({isValid}) => isValid
+				? '0b0'
+				: 'b00',
+			topDirection: ({form}) => form
+				? form.fields.topDirection
+				: null
+		},
+		methods: {
+			select($routeParams) {
+				this.set({keepPollId: $routeParams.pollId})
+				forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
+			},
+			selectColor($routeParams) {
+				this.set({keepPollId: $routeParams.pollId})
+				routes.navigateToPage(routes.DIMENSION_PICK_COLOR, $routeParams)
+			},
+			selectDirection(
+				directionPrefix,
+				$routeParams
+			) {
+				this.set({keepPollId: $routeParams.pollId})
+				const dimensionForm = this.get().form
+				forms.setForm(forms.CREATE_DIRECTION, dimensionForm.fields[directionPrefix + 'Direction'])
+				routes.navigateToPage(routes.DIRECTION_INFO_MAIN, $routeParams)
+			}
+		},
+		oncreate() {
+			formCache.getPollRouteParams(this)
+			forms.ensureTopForm(
+				forms.CREATE_DIMENSION,
+				this, routes.POLL_INFO_MAIN)
+			this.store.set({
+				pageTitle: 'Dimension Info'
+			})
+		},
+		ondestroy() {
+			formCache.savePollForm(this)
+			forms.clearForm(this)
+		},
+		store: () => store
+	}
 </script>

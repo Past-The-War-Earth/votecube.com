@@ -1,360 +1,363 @@
 {#if form}
 <form class="pure-form">
-    <fieldset>
-        <legend>Create Poll</legend>
-        <Text
-                field="{form.fields.name}"
-        ></Text>
-        <div class="pure-control-group">
-            <AutoComplete
-                    field="{form.fields.theme}"
-            ></AutoComplete>
-        </div>
-        <div class="pure-control-group">
-            <MultiSelect
-                    field="{form.fields.labels}"
-            ></MultiSelect>
-        </div>
-        <IconBlock
-                fieldGroup="{form.fields.locations}"
-                on:select="selectLocations($routeParams)"
-        >
-            <div slot="icon">
-                <LocationIcon
-                        width="42"
-                ></LocationIcon>
-            </div>
-            <div slot="text">
-                {#if locations && locations.touched}
-                {#if continents.length}
-                {#if countries.length}
-                {#if states.length}
-                {#if cities.length}
-                Cities:
-                <br>
-                {getArrayValueTexts(cities)}
-                <br>
-                <br>
-                {/if}
-                States:
-                <br>
-                {getArrayValueTexts(states)}
-                <br>
-                <br>
-                {/if}
-                Countries:
-                <br>
-                {getArrayValueTexts(countries)}
-                <br>
-                <br>
+	<fieldset>
+		<legend>Create Poll</legend>
+		<Text
+						field="{form.fields.name}"
+		></Text>
+		<div class="pure-control-group">
+			<AutoComplete
+							field="{form.fields.theme}"
+			></AutoComplete>
+		</div>
+		<div class="pure-control-group">
+			<MultiSelect
+							field="{form.fields.labels}"
+			></MultiSelect>
+		</div>
+		<IconBlock
+						fieldGroup="{form.fields.locations}"
+						on:select="selectLocations($routeParams)"
+		>
+			<div slot="icon">
+				<LocationIcon
+								width="42"
+				></LocationIcon>
+			</div>
+			<div slot="text">
+				{#if locations && locations.touched}
+				{#if continents.length}
+				{#if countries.length}
+				{#if states.length}
+				{#if cities.length}
+				Cities:
+				<br>
+				{getArrayValueTexts(cities)}
+				<br>
+				<br>
+				{/if}
+				States:
+				<br>
+				{getArrayValueTexts(states)}
+				<br>
+				<br>
+				{/if}
+				Countries:
+				<br>
+				{getArrayValueTexts(countries)}
+				<br>
+				<br>
 
-                {/if}
-                Continents:
-                <br>
-                {getArrayValueTexts(continents)}
-                {:else}
-                Select Location
-                {/if}
-                {:else}
-                Select Location
-                {/if}
-            </div>
-        </IconBlock>
-        <IconBlock
-                fieldGroup="{form.fields.timeframe}"
-                on:select="selectTimeframe($routeParams)"
-        >
-            <div slot="icon">
-                <TimeIcon></TimeIcon>
-            </div>
-            <div slot="text">
-                {#if timeframe && timeframe.touched}
-                <table
-                        class="timeframe"
-                >
-                    <tr>
-                        <td>
-                            Start Date:
-                        </td>
-                        <td>
-                            {getDate(timeframe.fields.startDate.value)}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            End Date:
-                        </td>
-                        <td>
-                            {getDate(timeframe.fields.endDate.value)}
-                        </td>
-                    </tr>
-                </table>
-                {:else}
-                Select Time-frame
-                {/if}
-            </div>
-        </IconBlock>
-        <SelectionBlock
-                dimension="{form.fields.dimensions.fields.first}"
-                text="{form.fields.dimensions.text.first}"
-                on:select="selectDimension(form.fields.dimensions.fields.first, $routeParams)"
-        ></SelectionBlock>
-        <SelectionBlock
-                dimension="{form.fields.dimensions.fields.second}"
-                text="{form.fields.dimensions.text.second}"
-                on:select="selectDimension(form.fields.dimensions.fields.second, $routeParams)"
-        ></SelectionBlock>
-        <SelectionBlock
-                dimension="{form.fields.dimensions.fields.third}"
-                text="{form.fields.dimensions.text.third}"
-                on:select="selectDimension(form.fields.dimensions.fields.third, $routeParams)"
-        ></SelectionBlock>
-        <nav class="pure-controls">
-            <PreviewButton
-                    classes="submitButton"
-                    highlightColor="{submitHighlight}"
-                    on:select="submit($routeParams, dimensionsModified, locationOrTimeframeModified)"
-            ></PreviewButton>
-        </nav>
-    </fieldset>
+				{/if}
+				Continents:
+				<br>
+				{getArrayValueTexts(continents)}
+				{:else}
+				Select Location
+				{/if}
+				{:else}
+				Select Location
+				{/if}
+			</div>
+		</IconBlock>
+		<IconBlock
+						fieldGroup="{form.fields.timeframe}"
+						on:select="selectTimeframe($routeParams)"
+		>
+			<div slot="icon">
+				<TimeIcon></TimeIcon>
+			</div>
+			<div slot="text">
+				{#if timeframe && timeframe.touched}
+				<table
+								class="timeframe"
+				>
+					<tr>
+						<td>
+							Start Date:
+						</td>
+						<td>
+							{getDate(timeframe.fields.startDate.value)}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							End Date:
+						</td>
+						<td>
+							{getDate(timeframe.fields.endDate.value)}
+						</td>
+					</tr>
+				</table>
+				{:else}
+				Select Time-frame
+				{/if}
+			</div>
+		</IconBlock>
+		<SelectionBlock
+						dimension="{form.fields.dimensions.fields.first}"
+						text="{form.fields.dimensions.text.first}"
+						on:select="selectDimension(form.fields.dimensions.fields.first, $routeParams)"
+		></SelectionBlock>
+		<SelectionBlock
+						dimension="{form.fields.dimensions.fields.second}"
+						text="{form.fields.dimensions.text.second}"
+						on:select="selectDimension(form.fields.dimensions.fields.second, $routeParams)"
+		></SelectionBlock>
+		<SelectionBlock
+						dimension="{form.fields.dimensions.fields.third}"
+						text="{form.fields.dimensions.text.third}"
+						on:select="selectDimension(form.fields.dimensions.fields.third, $routeParams)"
+		></SelectionBlock>
+		<nav class="pure-controls">
+			<PreviewButton
+							classes="submitButton"
+							highlightColor="{submitHighlight}"
+							on:select="submit($routeParams, dimensionsModified, locationOrTimeframeModified)"
+			></PreviewButton>
+		</nav>
+	</fieldset>
 </form>
 {#if invalidAlter}
 <ActionPopover
-        on:cancel="ack()"
-        infoOnly="Y"
-        width="90%"
+				on:cancel="ack()"
+				infoOnly="Y"
+				width="90%"
 >
-    <div slot="header">
-        Error
-    </div>
-    <div slot="content">
-        Please modify either Location or Start/End dates or Dimensions to alter the poll.
-    </div>
+	<div slot="header">
+		Error
+	</div>
+	<div slot="content">
+		Please modify either Location or Start/End dates or Dimensions to alter the poll.
+	</div>
 </ActionPopover>
 {/if}
 {/if}
 
 <style>
 
-    legend {
-        display: none;
-    }
+	legend {
+		display: none;
+	}
 
-    .timeframe td {
-        padding: 5px;
-    }
+	.timeframe td {
+		padding: 5px;
+	}
 
-    .timeframe td:first-child {
-        text-align: right;
-    }
+	.timeframe td:first-child {
+		text-align: right;
+	}
 
-    .timeframe td:nth-child(2) {
-        text-align: left;
-    }
+	.timeframe td:nth-child(2) {
+		text-align: left;
+	}
 
 </style>
 
 <script>
-    import PreviewButton from '../../../common/control/button/PreviewButton.html'
-    import AutoComplete from '../../../common/field/AutoComplete.html'
-    import IconBlock from '../../../common/field/IconBlock.html'
-    import MultiSelect from '../../../common/field/MultiSelect.html'
-    import Text from '../../../common/field/Text.html'
-    import LocationIcon from '../../../common/icon/LocationIcon.html'
-    import TimeIcon from '../../../common/icon/TimeIcon.html'
-    import ActionPopover from '../../../common/shell/ActionPopover.html'
-    import SelectionBlock from '../../../components/dimension/SelectionBlock.html'
-    import {pollDao} from '../../../dao/poll'
-    import * as forms from '../../../form/forms'
-    import * as formCache from '../../../form/cache'
-    import * as pollFormCreator from '../../../form/poll/creator'
-    import * as pollFormToConverter from '../../../form/poll/toConverter'
-    import {loadForms} from '../../../libs/forms'
-    import {loadLocations} from '../../../libs/locations'
-    import {loadLocations as loadLocText} from '../../../libs/text/locations'
-    import {loadUi} from '../../../libs/text/ui'
-    import {getArrayValueTexts, getDate} from '../../../helpers/general'
-    import * as routes from '../../../routes'
-    import store from '../../../store'
+	import PreviewButton                  from '../../../common/control/button/PreviewButton.html'
+	import AutoComplete                   from '../../../common/field/AutoComplete.html'
+	import IconBlock                      from '../../../common/field/IconBlock.html'
+	import MultiSelect                    from '../../../common/field/MultiSelect.html'
+	import Text                           from '../../../common/field/Text.html'
+	import LocationIcon                   from '../../../common/icon/LocationIcon.html'
+	import TimeIcon                       from '../../../common/icon/TimeIcon.html'
+	import ActionPopover                  from '../../../common/shell/ActionPopover.html'
+	import SelectionBlock                 from '../../../components/dimension/SelectionBlock.html'
+	import {pollDao}                      from '../../../dao/poll'
+	import * as formCache                 from '../../../form/cache'
+	import * as forms                     from '../../../form/forms'
+	import * as pollFormCreator           from '../../../form/poll/creator'
+	import * as pollFormToConverter       from '../../../form/poll/toConverter'
+	import {
+		getArrayValueTexts,
+		getDate
+	}                                     from '../../../helpers/general'
+	import {loadForms}                    from '../../../libs/forms'
+	import {loadLocations}                from '../../../libs/locations'
+	import {loadLocations as loadLocText} from '../../../libs/text/locations'
+	import {loadUi}                       from '../../../libs/text/ui'
+	import * as routes                    from '../../../routes'
+	import store                          from '../../../store'
 
-    export default {
-        components: {
-            ActionPopover,
-            AutoComplete,
-            IconBlock,
-            LocationIcon,
-            MultiSelect,
-            PreviewButton,
-            SelectionBlock,
-            Text,
-            TimeIcon
-        },
-        computed: {
-            cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
-            continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
-            countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
-            locations: ({form}) => form ? form.fields.locations : null,
-            dimensionsModified: ({$routeParams, isOriginal, form}) => {
-                if (!form
-                    || $routeParams.mode !== 'alter'
-                    || isOriginal) {
-                    return false
-                }
-                return !form.fields.dimensions.isOriginal()
-            },
-            locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
-                if (!form
-                    || $routeParams.mode !== 'alter'
-                    || isOriginal) {
-                    return false
-                }
-                return !form.fields.locations.isOriginal()
-                    || !form.fields.timeframe.isOriginal()
-            },
-            name: ({test}) => true,
-            states: ({form}) => form ? form.fields.locations.fields.states.value : [],
-            submitHighlight: ({
-                                  $routeParams,
-                                  dimensionsModified,
-                                  locationOrTimeframeModified,
-                                  isValid
-                              }) => {
-                if (!isValid) {
-                    return 'b00'
-                }
-                if ($routeParams.mode !== 'alter') {
-                    return '0b0'
-                }
+	export default {
+		components: {
+			ActionPopover,
+			AutoComplete,
+			IconBlock,
+			LocationIcon,
+			MultiSelect,
+			PreviewButton,
+			SelectionBlock,
+			Text,
+			TimeIcon
+		},
+		computed: {
+			cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
+			continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
+			countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
+			locations: ({form}) => form ? form.fields.locations : null,
+			dimensionsModified: ({$routeParams, isOriginal, form}) => {
+				if (!form
+					|| $routeParams.mode !== 'alter'
+					|| isOriginal) {
+					return false
+				}
+				return !form.fields.dimensions.isOriginal()
+			},
+			locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
+				if (!form
+					|| $routeParams.mode !== 'alter'
+					|| isOriginal) {
+					return false
+				}
+				return !form.fields.locations.isOriginal()
+					|| !form.fields.timeframe.isOriginal()
+			},
+			name: ({test}) => true,
+			states: ({form}) => form ? form.fields.locations.fields.states.value : [],
+			submitHighlight: ({
+				                  $routeParams,
+				                  dimensionsModified,
+				                  locationOrTimeframeModified,
+				                  isValid
+			                  }) => {
+				if (!isValid) {
+					return 'b00'
+				}
+				if ($routeParams.mode !== 'alter') {
+					return '0b0'
+				}
 
-                return dimensionsModified || locationOrTimeframeModified
-                    ? '0b0'
-                    : 'b00'
-            },
-            timeframe: ({form}) => form ? form.fields.timeframe : null
-        },
-        data() {
-            return {
-                poll: {
-                    name: ''
-                }
-            }
-        },
-        helpers: {
-            getArrayValueTexts,
-            getDate
-        },
-        methods: {
-            ack() {
-                this.set({invalidAlter: false})
-            },
-            createPoll() {
-                const poll = this.get().poll
-                if (!poll.name) {
-                    return
-                }
-            },
-            selectDimension(
-                dimensionForm,
-                $routeParams
-            ) {
-                this.set({keepPollId: $routeParams.pollId})
-                forms.setForm(forms.CREATE_DIMENSION, dimensionForm)
-                routes.navigateToPage(routes.DIMENSION_INFO_MAIN, $routeParams)
-            },
-            selectLocations(
-                $routeParams
-            ) {
-                this.set({keepPollId: $routeParams.pollId})
-                routes.navigateToPage(routes.POLL_LOCATIONS, $routeParams)
-            },
-            selectTimeframe(
-                $routeParams
-            ) {
-                this.set({keepPollId: $routeParams.pollId})
-                routes.navigateToPage(routes.POLL_TIMEFRAME, $routeParams)
-            },
-            submit(
-                $routeParams,
-                dimensionsModified,
-                locationOrTimeframeModified
-            ) {
-                const {form, routeParams} = this.get()
-                form.touch()
+				return dimensionsModified || locationOrTimeframeModified
+					? '0b0'
+					: 'b00'
+			},
+			timeframe: ({form}) => form ? form.fields.timeframe : null
+		},
+		data() {
+			return {
+				poll: {
+					name: ''
+				}
+			}
+		},
+		helpers: {
+			getArrayValueTexts,
+			getDate
+		},
+		methods: {
+			ack() {
+				this.set({invalidAlter: false})
+			},
+			createPoll() {
+				const poll = this.get().poll
+				if (!poll.name) {
+					return
+				}
+			},
+			selectDimension(
+				dimensionForm,
+				$routeParams
+			) {
+				this.set({keepPollId: $routeParams.pollId})
+				forms.setForm(forms.CREATE_DIMENSION, dimensionForm)
+				routes.navigateToPage(routes.DIMENSION_INFO_MAIN, $routeParams)
+			},
+			selectLocations(
+				$routeParams
+			) {
+				this.set({keepPollId: $routeParams.pollId})
+				routes.navigateToPage(routes.POLL_LOCATIONS, $routeParams)
+			},
+			selectTimeframe(
+				$routeParams
+			) {
+				this.set({keepPollId: $routeParams.pollId})
+				routes.navigateToPage(routes.POLL_TIMEFRAME, $routeParams)
+			},
+			submit(
+				$routeParams,
+				dimensionsModified,
+				locationOrTimeframeModified
+			) {
+				const {form, routeParams} = this.get()
+				form.touch()
 
-                if (!form.valid) {
-                    return
-                }
+				if (!form.valid) {
+					return
+				}
 
-                if (
-                    routeParams.mode !== 'build'
-                    && !dimensionsModified
-                    && !locationOrTimeframeModified) {
-                    this.set({invalidAlter: true})
-                    return
-                }
+				if (
+					routeParams.mode !== 'build'
+					&& !dimensionsModified
+					&& !locationOrTimeframeModified) {
+					this.set({invalidAlter: true})
+					return
+				}
 
-                forms.navigateOnValid(this, routes.POLL_INFO_CUBE, $routeParams)
-            }
-        },
-        oncreate() {
-            const {mode, pollId} = formCache.getPollRouteParams(this)
+				forms.navigateOnValid(this, routes.POLL_INFO_CUBE, $routeParams)
+			}
+		},
+		oncreate() {
+			const {mode, pollId} = formCache.getPollRouteParams(this)
 
-            let tempPoll = pollDao.getTempPoll(pollId)
+			let tempPoll = pollDao.getTempPoll(pollId)
 
-            Promise.all([
-                loadForms(this),
-                loadLocations(),
-                loadUi(this.store, 'en-us'),
-                pollDao.findByIdWithDetails(pollId),
-                loadLocText(this.store, 'en-us')
-            ]).then(([
-                         {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
-                         locations,
-                         _,
-                         poll,
-                         _2
-                     ]) => {
-                let form = forms.getForm(forms.CREATE_POLL_TOP)
+			Promise.all([
+				loadForms(this),
+				loadLocations(),
+				loadUi(this.store, 'en-us'),
+				pollDao.findByIdWithDetails(pollId),
+				loadLocText(this.store, 'en-us')
+			]).then(([
+				         {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
+				         locations,
+				         _,
+				         poll,
+				         _2
+			         ]) => {
+				let form = forms.getForm(forms.CREATE_POLL_TOP)
 
-                const {text} = this.store.get()
+				const {text} = this.store.get()
 
-                if (!form) {
-                    form = pollFormCreator.createPollForm(
-                        locations,
-                        text.UI,
-                        DateField,
-                        Field,
-                        FieldGroup,
-                        MatchingField,
-                        OptionsField,
-                        Validators)
-                    form.setTrackOriginal(mode === 'alter')
-                    forms.setForm(forms.CREATE_POLL_TOP, form)
-                    if (tempPoll || poll) {
-                        if (poll) {
-                            form.setValue(pollFormToConverter.dtoToForm(poll), true)
-                        }
-                        if (tempPoll) {
-                            form.setValue(pollFormToConverter.dtoToForm(tempPoll))
-                        }
-                        form.fields.locations.optionText = text.LOCATIONS
-                        form.validate()
-                        form.touch()
-                    }
-                }
+				if (!form) {
+					form = pollFormCreator.createPollForm(
+						locations,
+						text.UI,
+						DateField,
+						Field,
+						FieldGroup,
+						MatchingField,
+						OptionsField,
+						Validators)
+					form.setTrackOriginal(mode === 'alter')
+					forms.setForm(forms.CREATE_POLL_TOP, form)
+					if (tempPoll || poll) {
+						if (poll) {
+							form.setValue(pollFormToConverter.dtoToForm(poll), true)
+						}
+						if (tempPoll) {
+							form.setValue(pollFormToConverter.dtoToForm(tempPoll))
+						}
+						form.fields.locations.optionText = text.LOCATIONS
+						form.validate()
+						form.touch()
+					}
+				}
 
-                forms.ensureForm(form, this)
-            })
-            this.store.set({
-                pageTitle: 'Poll Info'
-            })
-        },
-        ondestroy() {
-            formCache.savePollForm(this)
-            forms.clearForm(this)
-        },
-        store: () => store
-    }
+				forms.ensureForm(form, this)
+			})
+			this.store.set({
+				pageTitle: 'Poll Info'
+			})
+		},
+		ondestroy() {
+			formCache.savePollForm(this)
+			forms.clearForm(this)
+		},
+		store: () => store
+	}
 
 
 </script>

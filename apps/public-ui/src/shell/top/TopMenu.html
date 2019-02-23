@@ -1,76 +1,76 @@
 <div
-        class="{tuckedClass} pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu custom-menu-bottom"
-        id="tuckedMenu"
+				class="{tuckedClass} pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu custom-menu-bottom"
+				id="tuckedMenu"
 >
-    {#if showTopMenuScreen}
-    <div
-            class="custom-menu-screen"
-            class:customMenuScreen="showTopMenu"
-    ></div>
-    {/if}
-    {#if showTopMenu}
-    <ul
-            class="pure-menu-list"
-    >
-        <svelte:component
-                on:setViewType="setViewType(event)"
-                this="{TopMenuComp}"
-        />
-    </ul>
-    {/if}
+	{#if showTopMenuScreen}
+	<div
+					class="custom-menu-screen"
+					class:customMenuScreen="showTopMenu"
+	></div>
+	{/if}
+	{#if showTopMenu}
+	<ul
+					class="pure-menu-list"
+	>
+		<svelte:component
+						on:setViewType="setViewType(event)"
+						this="{TopMenuComp}"
+		/>
+	</ul>
+	{/if}
 </div>
 
 <style>
-    div.pure-menu {
-        overflow: initial;
-    }
+	div.pure-menu {
+		overflow: initial;
+	}
 
-    ul {
-        float: left;
-        padding-right: 5px;
-        width: 100%;
-    }
+	ul {
+		float: left;
+		padding-right: 5px;
+		width: 100%;
+	}
 
-    .customMenuScreen {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+	.customMenuScreen {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
 
-    #tuckedMenu {
-        float: right;
-    }
+	#tuckedMenu {
+		float: right;
+	}
 </style>
 
 <script>
-    import store from '../../store.js'
-    import * as routes from '../../routes'
+	import * as routes from '../../routes'
+	import store       from '../../store.js'
 
-    export default {
-        computed: {
-            tuckedClass({$showMainMenu, $showTopMenu}) {
-                return !$showMainMenu && $showTopMenu
-                    ? ''
-                    : 'custom-menu-tucked'
-            },
-            TopMenuComp({$currentPage}) {
-                return routes.getTopMenuComponent()
-            },
-            showTopMenu({$showTopMenu, $topMenuInLine, TopMenuComp}) {
-                return ($showTopMenu || $topMenuInLine) && TopMenuComp
-            },
-            showTopMenuScreen({$showTopMenu, $topMenuInLine, TopMenuComp}) {
-                return !$topMenuInLine && $showTopMenu && TopMenuComp
-            }
-        },
-        methods: {
-            setViewType(
-                view
-            ) {
-                this.store.set({
-                    showTopMenu: false
-                })
-                this.fire('setViewType', view)
-            }
-        },
-        store: () => store
-    }
+	export default {
+		computed: {
+			tuckedClass({$showMainMenu, $showTopMenu}) {
+				return !$showMainMenu && $showTopMenu
+					? ''
+					: 'custom-menu-tucked'
+			},
+			TopMenuComp({$currentPage}) {
+				return routes.getTopMenuComponent()
+			},
+			showTopMenu({$showTopMenu, $topMenuInLine, TopMenuComp}) {
+				return ($showTopMenu || $topMenuInLine) && TopMenuComp
+			},
+			showTopMenuScreen({$showTopMenu, $topMenuInLine, TopMenuComp}) {
+				return !$topMenuInLine && $showTopMenu && TopMenuComp
+			}
+		},
+		methods: {
+			setViewType(
+				view
+			) {
+				this.store.set({
+					showTopMenu: false
+				})
+				this.fire('setViewType', view)
+			}
+		},
+		store: () => store
+	}
 </script>

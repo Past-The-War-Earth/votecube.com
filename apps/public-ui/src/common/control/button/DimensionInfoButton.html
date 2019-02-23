@@ -1,8 +1,8 @@
 <var
-    on:click="fire('toggle')"
-    class:pageInfo="isPage"
-    class:confirmInfo="!isPage"
-    style="
+				on:click="fire('toggle')"
+				class:pageInfo="isPage"
+				class:confirmInfo="!isPage"
+				style="
         background-color: #{getColor(delta, poll, axis)};
         border-bottom-color: #{bottomBorderColor};
         border-top-color: #{topBorderColor};
@@ -10,65 +10,65 @@
         margin: {margin};
     "
 >
-    {percentValue}%
+	{percentValue}%
 </var>
 <style>
-    var {
-        border-bottom: 5px solid;
-        border-radius: 3px;
-        border-top: 5px solid;
-        color: black;
-        display: block;
-        font-style: normal;
-        text-align: center;
-    }
+	var {
+		border-bottom: 5px solid;
+		border-radius: 3px;
+		border-top: 5px solid;
+		color: black;
+		display: block;
+		font-style: normal;
+		text-align: center;
+	}
 
-    .pageInfo {
-        font-size: 1.2em;
-        height: 50px;
-        line-height: 46px;
-        width: 50px;
-    }
+	.pageInfo {
+		font-size: 1.2em;
+		height: 50px;
+		line-height: 46px;
+		width: 50px;
+	}
 
-    .confirmInfo {
-        font-size: 1em;
-        height: 42px;
-        line-height: 38px;
-        width: 42px;
-    }
+	.confirmInfo {
+		font-size: 1em;
+		height: 42px;
+		line-height: 38px;
+		width: 42px;
+	}
 
 </style>
 
 <script>
-import {getColor} from '../../../helpers/cube'
+	import {getColor} from '../../../helpers/cube'
 
-export default {
-    computed: {
-        bottomBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, -1),
-        float: ({axis, position, $verticalLayout}) => $verticalLayout && axis == 'x' && position != 'left' ? 'right' : 'initial',
-        isPage: ({mode}) => mode == 'page',
-        margin: ({axis, position, $verticalLayout}) => $verticalLayout && axis == 'y' && position != 'left' ? 'auto' : 'initial',
-        topBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, 1),
-        percentValue: ({delta, voteDim}) => voteDim.value
-    },
-    helpers: {
-        getColor
-    }
-}
+	export default {
+		computed: {
+			bottomBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, -1),
+			float: ({axis, position, $verticalLayout}) => $verticalLayout && axis == 'x' && position != 'left' ? 'right' : 'initial',
+			isPage: ({mode}) => mode == 'page',
+			margin: ({axis, position, $verticalLayout}) => $verticalLayout && axis == 'y' && position != 'left' ? 'auto' : 'initial',
+			topBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, 1),
+			percentValue: ({delta, voteDim}) => voteDim.value
+		},
+		helpers: {
+			getColor
+		}
+	}
 
-function borderColor(
-    delta,
-    poll,
-    axis,
-    voteDim,
-    dir
-) {
-    if(!voteDim
-    || voteDim.dir === dir) {
-        return '000'
-    }
+	function borderColor(
+		delta,
+		poll,
+		axis,
+		voteDim,
+		dir
+	) {
+		if (!voteDim
+			|| voteDim.dir === dir) {
+			return '000'
+		}
 
-    return getColor(delta, poll, axis)
-}
+		return getColor(delta, poll, axis)
+	}
 
 </script>

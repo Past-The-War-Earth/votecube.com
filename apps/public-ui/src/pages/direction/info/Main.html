@@ -1,20 +1,20 @@
 {#if form}
 <form class="pure-form">
-    <fieldset>
-        <div class="pure-control-group">
+	<fieldset>
+		<div class="pure-control-group">
             <TextArea
-                field="{form.fields.name}"
+				            field="{form.fields.name}"
             ></TextArea>
-        </div>
+		</div>
 
-        <nav class="pure-controls">
-            <RightButton
-                classes="submitButton"
-                highlightColor="{submitHighlight}"
-                on:select="select($routeParams)"
-            ></RightButton>
-        </nav>
-    </fieldset>
+		<nav class="pure-controls">
+			<RightButton
+							classes="submitButton"
+							highlightColor="{submitHighlight}"
+							on:select="select($routeParams)"
+			></RightButton>
+		</nav>
+	</fieldset>
 </form>
 {/if}
 
@@ -22,44 +22,44 @@
 </style>
 
 <script>
-import RightButton from '../../../common/control/button/RightButton.html'
-import TextArea from '../../../common/field/TextArea.html'
-import * as forms from '../../../form/forms'
-import * as formCache from '../../../form/cache'
-import * as routes from '../../../routes'
-import store from '../../../store'
+	import RightButton    from '../../../common/control/button/RightButton.html'
+	import TextArea       from '../../../common/field/TextArea.html'
+	import * as formCache from '../../../form/cache'
+	import * as forms     from '../../../form/forms'
+	import * as routes    from '../../../routes'
+	import store          from '../../../store'
 
-export default {
-    components: {
-        RightButton,
-        TextArea
-    },
-    computed: {
-        submitHighlight: ({isValid}) => isValid
-        ? '0b0'
-        : 'b00'
-    },
-    methods: {
-        select(
-            $routeParams
-        ) {
-            this.set({keepPollId: $routeParams.pollId})
-            forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
-        }
-    },
-    oncreate() {
-        formCache.getPollRouteParams(this)
-        forms.ensureTopForm(
-            forms.CREATE_DIRECTION,
-            this, routes.POLL_INFO_MAIN)
-        this.store.set({
-            pageTitle: 'Direction Info'
-        })
-    },
-    ondestroy() {
-        formCache.savePollForm(this)
-        forms.clearForm(this)
-    },
-    store: () => store
-}
+	export default {
+		components: {
+			RightButton,
+			TextArea
+		},
+		computed: {
+			submitHighlight: ({isValid}) => isValid
+				? '0b0'
+				: 'b00'
+		},
+		methods: {
+			select(
+				$routeParams
+			) {
+				this.set({keepPollId: $routeParams.pollId})
+				forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
+			}
+		},
+		oncreate() {
+			formCache.getPollRouteParams(this)
+			forms.ensureTopForm(
+				forms.CREATE_DIRECTION,
+				this, routes.POLL_INFO_MAIN)
+			this.store.set({
+				pageTitle: 'Direction Info'
+			})
+		},
+		ondestroy() {
+			formCache.savePollForm(this)
+			forms.clearForm(this)
+		},
+		store: () => store
+	}
 </script>

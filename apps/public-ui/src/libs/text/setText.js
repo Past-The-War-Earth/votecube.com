@@ -1,12 +1,12 @@
 export function setText(
-    store,
-    textString
+	store,
+	textString
 ) {
-    const text = JSON.parse(textString)
-    store.set({
-        text: {
-            ...store.get().text,
-            ...text
-        }
-    })
+	const text = JSON.parse(textString)
+	store.set({
+		text: {
+			...store.get().text,
+			...text
+		}
+	})
 }

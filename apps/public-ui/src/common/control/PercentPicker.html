@@ -1,145 +1,145 @@
 <aside>
-    <nav
-            on:click="fire('close')"
-    >
-        x
-    </nav>
-    <div></div>
-    <section>
-        <table>
-            <!-- TODO: add support for voting value -->
-            <LinearPositionPicker
-                    axis="x"
-                    moveDelta="{moveDelta}"
-                    on:move="move('x', event.direction, event.percentChange)"
-                    on:moveToValue="moveToValue('x', event)"
-                    on:update="update()"
-                    poll="{poll}"
-                    value="{vote.x}"
-                    ref:xPicker
-            />
-            <LinearPositionPicker
-                    axis="y"
-                    moveDelta="{moveDelta}"
-                    on:move="move('y', event.direction, event.percentChange)"
-                    on:moveToValue="moveToValue('y', event)"
-                    on:update="update()"
-                    poll="{poll}"
-                    value="{vote.y}"
-                    ref:yPicker
-            />
-            <LinearPositionPicker
-                    axis="z"
-                    moveDelta="{moveDelta}"
-                    on:move="move('z', event.direction, event.percentChange)"
-                    on:moveToValue="moveToValue('z', event)"
-                    on:update="update()"
-                    poll="{poll}"
-                    value="{vote.z}"
-                    ref:zPicker
-            />
-        </table>
-    </section>
+	<nav
+					on:click="fire('close')"
+	>
+		x
+	</nav>
+	<div></div>
+	<section>
+		<table>
+			<!-- TODO: add support for voting value -->
+			<LinearPositionPicker
+							axis="x"
+							moveDelta="{moveDelta}"
+							on:move="move('x', event.direction, event.percentChange)"
+							on:moveToValue="moveToValue('x', event)"
+							on:update="update()"
+							poll="{poll}"
+							value="{vote.x}"
+							ref:xPicker
+			/>
+			<LinearPositionPicker
+							axis="y"
+							moveDelta="{moveDelta}"
+							on:move="move('y', event.direction, event.percentChange)"
+							on:moveToValue="moveToValue('y', event)"
+							on:update="update()"
+							poll="{poll}"
+							value="{vote.y}"
+							ref:yPicker
+			/>
+			<LinearPositionPicker
+							axis="z"
+							moveDelta="{moveDelta}"
+							on:move="move('z', event.direction, event.percentChange)"
+							on:moveToValue="moveToValue('z', event)"
+							on:update="update()"
+							poll="{poll}"
+							value="{vote.z}"
+							ref:zPicker
+			/>
+		</table>
+	</section>
 </aside>
 
 <style>
-    @media (min-width: 58em) {
-        aside {
-            margin-left: 160px !important;
-        }
-    }
+	@media (min-width: 58em) {
+		aside {
+			margin-left: 160px !important;
+		}
+	}
 
-    aside {
-        background: transparent;
-        bottom: 0px;
-        color: black;
-        margin: 0px;
-        padding: 3px;
-        position: fixed;
-    }
+	aside {
+		background: transparent;
+		bottom: 0px;
+		color: black;
+		margin: 0px;
+		padding: 3px;
+		position: fixed;
+	}
 
-    div {
-        border-top: 2px dashed black;
-        margin-left: 50px;
-        position: relative;
-        top: 0px;
-        width: calc(100% - 53px);
-    }
+	div {
+		border-top: 2px dashed black;
+		margin-left: 50px;
+		position: relative;
+		top: 0px;
+		width: calc(100% - 53px);
+	}
 
-    nav {
-        background: hsla(0, 100%, 100%, 0.8);
-        border: 2px dashed black;
-        border-bottom: 0px;
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-        color: black;
-        font-size: 2em;
-        height: 45px;
-        text-align: center;
-        vertical-align: middle;
-        width: 50px;
-    }
+	nav {
+		background: hsla(0, 100%, 100%, 0.8);
+		border: 2px dashed black;
+		border-bottom: 0px;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		color: black;
+		font-size: 2em;
+		height: 45px;
+		text-align: center;
+		vertical-align: middle;
+		width: 50px;
+	}
 
-    section {
-        background: hsla(0, 100%, 100%, 0.8);
-        border: 2px dashed black;
-        border-top: 0px;
-        font-size: 3em;
-        text-align: center;
-        width: 100%;
-    }
+	section {
+		background: hsla(0, 100%, 100%, 0.8);
+		border: 2px dashed black;
+		border-top: 0px;
+		font-size: 3em;
+		text-align: center;
+		width: 100%;
+	}
 </style>
 
 
 <script>
-    import LinearPositionPicker from './LinearPositionPicker.html'
-    import store from '../../store.js';
+	import store                from '../../store.js';
+	import LinearPositionPicker from './LinearPositionPicker.html'
 
-    export default {
-        components: {
-            LinearPositionPicker
-        },
-        data: () => {
-            return {
-                moveDelta: 0
-            }
-        },
-        methods: {
-            move(
-                dimension,
-                direction,
-                percentChange
-            ) {
-                this.fire('move', {
-                    dimension,
-                    direction,
-                    percentChange
-                })
-                this.set({moveDelta: this.get().moveDelta + 1})
-            },
-            moveToValue(
-                dimension,
-                value
-            ) {
-                this.fire('moveToValue', {
-                    dimension,
-                    value
-                })
-                refresh(this)
-            },
-            update() {
-                refresh(this)
-            }
-        },
-        store: () => store
-    }
+	export default {
+		components: {
+			LinearPositionPicker
+		},
+		data: () => {
+			return {
+				moveDelta: 0
+			}
+		},
+		methods: {
+			move(
+				dimension,
+				direction,
+				percentChange
+			) {
+				this.fire('move', {
+					dimension,
+					direction,
+					percentChange
+				})
+				this.set({moveDelta: this.get().moveDelta + 1})
+			},
+			moveToValue(
+				dimension,
+				value
+			) {
+				this.fire('moveToValue', {
+					dimension,
+					value
+				})
+				refresh(this)
+			},
+			update() {
+				refresh(this)
+			}
+		},
+		store: () => store
+	}
 
-    function refresh(
-        page
-    ) {
-        page.refs.xPicker.fire('refresh')
-        page.refs.yPicker.fire('refresh')
-        page.refs.zPicker.fire('refresh')
-    }
+	function refresh(
+		page
+	) {
+		page.refs.xPicker.fire('refresh')
+		page.refs.yPicker.fire('refresh')
+		page.refs.zPicker.fire('refresh')
+	}
 
 </script>

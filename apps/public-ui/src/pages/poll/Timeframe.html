@@ -1,67 +1,67 @@
 {#if form}
 <form class="pure-form">
-    <fieldset>
-        <div class="pure-control-group">
-            <DatePicker
-                field="{form.fields.startDate}"
-            ></DatePicker>
-        </div>
-        <div class="pure-control-group">
-            <DatePicker
-                field="{form.fields.endDate}"
-            ></DatePicker>
-        </div>
-        <div class="pure-controls">
-            <RightButton
-                classes="submitButton"
-                highlightColor="{submitHighlight}"
-                on:select="submit($routeParams)"
-            ></RightButton>
-        </div>
-    </fieldset>
+	<fieldset>
+		<div class="pure-control-group">
+			<DatePicker
+							field="{form.fields.startDate}"
+			></DatePicker>
+		</div>
+		<div class="pure-control-group">
+			<DatePicker
+							field="{form.fields.endDate}"
+			></DatePicker>
+		</div>
+		<div class="pure-controls">
+			<RightButton
+							classes="submitButton"
+							highlightColor="{submitHighlight}"
+							on:select="submit($routeParams)"
+			></RightButton>
+		</div>
+	</fieldset>
 </form>
 {/if}
 
 <script>
-import RightButton from '../../common/control/button/RightButton.html'
-import DatePicker from '../../common/field/DatePicker.html'
-import * as forms from '../../form/forms'
-import * as formCache from '../../form/cache'
-import * as routes from '../../routes'
-import store from '../../store'
+	import RightButton    from '../../common/control/button/RightButton.html'
+	import DatePicker     from '../../common/field/DatePicker.html'
+	import * as formCache from '../../form/cache'
+	import * as forms     from '../../form/forms'
+	import * as routes    from '../../routes'
+	import store          from '../../store'
 
-export default {
-    components: {
-        DatePicker,
-        RightButton
-    },
-    computed: {
-        submitHighlight: ({isValid}) => isValid
-        ? '0b0'
-        : 'b00'
-    },
-    immutable: true,
-    methods: {
-        submit(
-            $routeParams
-        ) {
-            this.set({keepPollId: $routeParams.pollId})
-            forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
-        }
-    },
-    oncreate() {
-        formCache.getPollRouteParams(this)
-        forms.ensureChildForm(
-            forms.CREATE_POLL_TOP, 'timeframe',
-            this, routes.POLL_INFO_MAIN)
-        this.store.set({
-            pageTitle: 'Poll Time Frame'
-        })
-    },
-    ondestroy() {
-        formCache.savePollForm(this)
-        forms.clearForm(this)
-    },
-    store: () => store
-}
+	export default {
+		components: {
+			DatePicker,
+			RightButton
+		},
+		computed: {
+			submitHighlight: ({isValid}) => isValid
+				? '0b0'
+				: 'b00'
+		},
+		immutable: true,
+		methods: {
+			submit(
+				$routeParams
+			) {
+				this.set({keepPollId: $routeParams.pollId})
+				forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
+			}
+		},
+		oncreate() {
+			formCache.getPollRouteParams(this)
+			forms.ensureChildForm(
+				forms.CREATE_POLL_TOP, 'timeframe',
+				this, routes.POLL_INFO_MAIN)
+			this.store.set({
+				pageTitle: 'Poll Time Frame'
+			})
+		},
+		ondestroy() {
+			formCache.savePollForm(this)
+			forms.clearForm(this)
+		},
+		store: () => store
+	}
 </script>

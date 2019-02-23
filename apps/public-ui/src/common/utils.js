@@ -1,5 +1,5 @@
 export function toPromise(
-    data
+	data
 ) {
-    return new Promise((resolve) => resolve(data))
+	return new Promise((resolve) => resolve(data))
 }

@@ -1,42 +1,42 @@
 <div
-        class="custom-menu-wrapper"
-        class:mainMenuOffset="mainMenuOffset"
-        style="margin-bottom: {wrapperMarginBottom}em"
+				class="custom-menu-wrapper"
+				class:mainMenuOffset="mainMenuOffset"
+				style="margin-bottom: {wrapperMarginBottom}em"
 >
-    <TopBarHeader></TopBarHeader>
-    <TopMenu
-            on:setViewType
-    ></TopMenu>
+	<TopBarHeader></TopBarHeader>
+	<TopMenu
+					on:setViewType
+	></TopMenu>
 </div>
 <style>
-    div {
-        z-index: 1100;
-    }
+	div {
+		z-index: 1100;
+	}
 
-    .mainMenuOffset {
-        margin-left: 160px;
-    }
+	.mainMenuOffset {
+		margin-left: 160px;
+	}
 </style>
 <script>
-    import TopBarHeader from './TopBarHeader.html'
-    import TopMenu from './TopMenu.html'
+	import TopBarHeader from './TopBarHeader.html'
+	import TopMenu      from './TopMenu.html'
 
-    export default {
-        components: {
-            TopBarHeader,
-            TopMenu
-        },
-        computed: {
-            mainMenuOffset: ({
-                                 $leftMenuFixed,
-                                 $noOverflow,
-                                 $showMainMenu
-                             }) => {
-                return $noOverflow && ($leftMenuFixed || $showMainMenu)
-            },
-            wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
-                ? 2.5
-                : 0
-        }
-    }
+	export default {
+		components: {
+			TopBarHeader,
+			TopMenu
+		},
+		computed: {
+			mainMenuOffset: ({
+				                 $leftMenuFixed,
+				                 $noOverflow,
+				                 $showMainMenu
+			                 }) => {
+				return $noOverflow && ($leftMenuFixed || $showMainMenu)
+			},
+			wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
+				? 2.5
+				: 0
+		}
+	}
 </script>

@@ -1,60 +1,60 @@
 {#if form}
 <form class="pure-form">
-    <fieldset>
-        <div class="pure-control-group">
-            <ColorPicker
-                field="{form.fields.picker}"
-            ></ColorPicker>
-        </div>
+	<fieldset>
+		<div class="pure-control-group">
+			<ColorPicker
+							field="{form.fields.picker}"
+			></ColorPicker>
+		</div>
 
-        <nav class="pure-controls">
-            <RightButton
-                classes="submitButton"
-                highlightColor="{submitHighlight}"
-                on:select="select($routeParams)"
-            ></RightButton>
-        </nav>
-    </fieldset>
+		<nav class="pure-controls">
+			<RightButton
+							classes="submitButton"
+							highlightColor="{submitHighlight}"
+							on:select="select($routeParams)"
+			></RightButton>
+		</nav>
+	</fieldset>
 </form>
 {/if}
 <script>
-import RightButton from '../../common/control/button/RightButton.html'
-import ColorPicker from '../../common/field/ColorPicker.html'
-import * as forms from '../../form/forms'
-import * as formCache from '../../form/cache'
-import * as routes from '../../routes'
-import store from '../../store'
+	import RightButton    from '../../common/control/button/RightButton.html'
+	import ColorPicker    from '../../common/field/ColorPicker.html'
+	import * as formCache from '../../form/cache'
+	import * as forms     from '../../form/forms'
+	import * as routes    from '../../routes'
+	import store          from '../../store'
 
-export default {
-    components: {
-        ColorPicker,
-        RightButton
-    },
-    computed: {
-        submitHighlight: ({isValid}) => isValid
-        ? '0b0'
-        : 'b00'
-    },
-    methods: {
-        select($routeParams) {
-            this.set({keepPollId: $routeParams.pollId})
-            forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
-        }
-    },
-    oncreate() {
-        formCache.getPollRouteParams(this)
-        forms.ensureChildForm(
-            forms.CREATE_DIMENSION, 'color',
-            this, routes.POLL_INFO_MAIN
-        )
-        this.store.set({
-            pageTitle: 'Select Dimension Color'
-        })
-    },
-    ondestroy() {
-        formCache.savePollForm(this)
-        forms.clearForm(this)
-    },
-    store: () => store
-}
+	export default {
+		components: {
+			ColorPicker,
+			RightButton
+		},
+		computed: {
+			submitHighlight: ({isValid}) => isValid
+				? '0b0'
+				: 'b00'
+		},
+		methods: {
+			select($routeParams) {
+				this.set({keepPollId: $routeParams.pollId})
+				forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
+			}
+		},
+		oncreate() {
+			formCache.getPollRouteParams(this)
+			forms.ensureChildForm(
+				forms.CREATE_DIMENSION, 'color',
+				this, routes.POLL_INFO_MAIN
+			)
+			this.store.set({
+				pageTitle: 'Select Dimension Color'
+			})
+		},
+		ondestroy() {
+			formCache.savePollForm(this)
+			forms.clearForm(this)
+		},
+		store: () => store
+	}
 </script>

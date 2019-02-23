@@ -1,49 +1,50 @@
 <tr>
-    <td
-        class="icon"
-        >
-    <figure
-        style="
+	<td
+					class="icon"
+	>
+		<figure
+						style="
             background-color: #{getColor(dimension.color)};
         "
-    >
-    </figure>
-    <td
-        class="description"
-    >
-        {dimension.name}
-    </td>
+		>
+		</figure>
+	<td
+					class="description"
+	>
+		{dimension.name}
+	</td>
 </tr>
 <style>
-    td {
-        border: 1px solid #f8f8f8;
-        height: 62px;
-    }
-    .description {
-        border-left: none;
-        width: calc(100% - 60px)
-    }
+	td {
+		border: 1px solid #f8f8f8;
+		height: 62px;
+	}
 
-    .icon {
-        border-right: none;
-        width: 62px;
-    }
+	.description {
+		border-left: none;
+		width: calc(100% - 60px)
+	}
 
-    figure {
-        border-radius: 3px;
-        margin: auto;
-        height: 42px;
-        width: 42px;
-    }
+	.icon {
+		border-right: none;
+		width: 62px;
+	}
+
+	figure {
+		border-radius: 3px;
+		margin: auto;
+		height: 42px;
+		width: 42px;
+	}
 </style>
 <script>
-import {getColor} from '../../../helpers/general';
+	import {getColor} from '../../../helpers/general';
 
-export default {
-    helpers: {
-        getColor
-    },
-    immutable: true
-}
+	export default {
+		helpers: {
+			getColor
+		},
+		immutable: true
+	}
 
 </script>

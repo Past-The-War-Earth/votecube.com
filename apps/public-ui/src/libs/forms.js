@@ -1,11 +1,11 @@
 export function loadForms(
-    page
+	page
 ) {
-    return import('@votecube/forms').then((
-        forms
-    ) => {
-        page.store.set({forms})
+	return import('@votecube/forms').then((
+		forms
+	) => {
+		page.store.set({forms})
 
-        return forms
-    })
+		return forms
+	})
 }

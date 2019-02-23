@@ -1,83 +1,86 @@
 {#if vote}
 <VoteComponentGraph
-    bind:delta
-    bind:maxBarSize
-    bind:poll
-    bind:verticalLayout="$verticalLayout"
-    bind:vote
-    mode="page"
-    on:toggleX="toggleSurface('x')"
-    on:toggleY="toggleSurface('y')"
-    on:toggleZ="toggleSurface('z')"
+				bind:delta
+				bind:maxBarSize
+				bind:poll
+				bind:verticalLayout="$verticalLayout"
+				bind:vote
+				mode="page"
+				on:toggleX="toggleSurface('x')"
+				on:toggleY="toggleSurface('y')"
+				on:toggleZ="toggleSurface('z')"
 ></VoteComponentGraph>
 {/if}
 
 <script>
-import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
-import {loadCubeLogic, shutDownCubeListener} from '../../../libs/cubeLogic'
-import {voteDao} from '../../../dao/vote';
-import {setResizeCllBck} from '../../../resizer'
-import store from '../../../store'
+	import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
+	import {voteDao}          from '../../../dao/vote';
+	import {
+		loadCubeLogic,
+		shutDownCubeListener
+	}                         from '../../../libs/cubeLogic'
+	import {setResizeCllBck}  from '../../../resizer'
+	import store              from '../../../store'
 
-export default {
-    components: {
-        VoteComponentGraph
-    },
-    data() {
-        return {
-            dimension: null,
-            delta: 0
-        }
-    },
-    methods: {
-        toggleSurface(
-            dimension
-        ) {
-            this.get().mutationApi.toggleSurface(dimension)
-            this.set({delta: this.get().delta + 1})
-        }
-    },
-    oncreate() {
-        setResizeCllBck((
-            portalHeight,
-            windowWidth,
-            verticalLayout
-        ) => {
-            let maxBarSize = portalHeight - 60;
+	export default {
+		components: {
+			VoteComponentGraph
+		},
+		data() {
+			return {
+				dimension: null,
+				delta: 0
+			}
+		},
+		methods: {
+			toggleSurface(
+				dimension
+			) {
+				this.get().mutationApi.toggleSurface(dimension)
+				this.set({delta: this.get().delta + 1})
+			}
+		},
+		oncreate() {
+			setResizeCllBck((
+				portalHeight,
+				windowWidth,
+				verticalLayout
+			) => {
+				let maxBarSize = portalHeight - 60;
 
-            if (verticalLayout) {
-                maxBarSize = portalHeight / 2 - 20;
-            }
+				if (verticalLayout) {
+					maxBarSize = portalHeight / 2 - 20;
+				}
 
-            this.set({maxBarSize});
-        }, this.store)
+				this.set({maxBarSize});
+			}, this.store)
 
-        const pollId = this.store.get().routeParams.pollId
-        Promise.all([
-            loadCubeLogic(this, (vote) => {
-                this.set({delta: this.get().delta + 1})
-            }),
-            voteDao.findMyVoteForPoll(pollId)
-        ]).then(([
-            setPositionDataAndMove,
-            vote
-        ]) => {
-            const poll = vote.poll
-            this.set({poll, vote})
-            setPositionDataAndMove(vote)
+			const pollId = this.store.get().routeParams.pollId
+			Promise.all([
+				loadCubeLogic(this, (vote) => {
+					this.set({delta: this.get().delta + 1})
+				}),
+				voteDao.findMyVoteForPoll(pollId)
+			]).then(([
+				         setPositionDataAndMove,
+				         vote
+			         ]) => {
+				const poll = vote.poll
+				this.set({poll, vote})
+				setPositionDataAndMove(vote)
 
-            this.store.set({
-                pageTitle: poll.name
-            })
-        })
-        this.store.set({noOverflow: true})
-    },
-    ondestroy() {
-        shutDownCubeListener(this.get().cubeListener, this)
-        setResizeCllBck(null)
-        this.store.set({noOverflow: false})
-    },
-    store: () => store
-}
+				this.store.set({
+					pageTitle: poll.name
+				})
+			})
+			this.store.set({noOverflow: true})
+		},
+		ondestroy() {
+			shutDownCubeListener(this.get().cubeListener, this)
+			setResizeCllBck(null)
+			this.store.set({noOverflow: false})
+		},
+		store: () => store
+	}
 
 </script>

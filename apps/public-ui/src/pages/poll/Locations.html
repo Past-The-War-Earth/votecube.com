@@ -1,142 +1,142 @@
 {#if form}
 <form class="pure-form">
-    <fieldset>
-        <div class="pure-control-group">
-            <MultiSelect
-                field="{form.fields.continents}"
-            ></MultiSelect>
-        </div>
-        <div class="pure-control-group">
-            <MultiSelect
-                field="{form.fields.countries}"
-            ></MultiSelect>
-        </div>
-        <div class="pure-control-group">
-            <MultiSelect
-                field="{form.fields.states}"
-            ></MultiSelect>
-        </div>
-        <div class="pure-control-group">
-            <MultiSelect
-                field="{form.fields.cities}"
-            ></MultiSelect>
-        </div>
-        <div class="pure-controls">
-            <RightButton
-                classes="submitButton"
-                highlightColor="{submitHighlight}"
-                on:select="submit($routeParams)"
-            ></RightButton>
-        </div>
-    </fieldset>
+	<fieldset>
+		<div class="pure-control-group">
+			<MultiSelect
+							field="{form.fields.continents}"
+			></MultiSelect>
+		</div>
+		<div class="pure-control-group">
+			<MultiSelect
+							field="{form.fields.countries}"
+			></MultiSelect>
+		</div>
+		<div class="pure-control-group">
+			<MultiSelect
+							field="{form.fields.states}"
+			></MultiSelect>
+		</div>
+		<div class="pure-control-group">
+			<MultiSelect
+							field="{form.fields.cities}"
+			></MultiSelect>
+		</div>
+		<div class="pure-controls">
+			<RightButton
+							classes="submitButton"
+							highlightColor="{submitHighlight}"
+							on:select="submit($routeParams)"
+			></RightButton>
+		</div>
+	</fieldset>
 </form>
 {/if}
 
 <script>
-import RightButton from '../../common/control/button/RightButton.html'
-import MultiSelect from '../../common/field/MultiSelect.html'
-import * as forms from '../../form/forms'
-import * as formCache from '../../form/cache'
-import {loadLocations} from '../../libs/locations'
-import {loadLocations as loadLocText} from '../../libs/text/locations'
-import * as routes from '../../routes'
-import store from '../../store'
+	import RightButton                    from '../../common/control/button/RightButton.html'
+	import MultiSelect                    from '../../common/field/MultiSelect.html'
+	import * as formCache                 from '../../form/cache'
+	import * as forms                     from '../../form/forms'
+	import {loadLocations}                from '../../libs/locations'
+	import {loadLocations as loadLocText} from '../../libs/text/locations'
+	import * as routes                    from '../../routes'
+	import store                          from '../../store'
 
-export default {
-    components: {
-        MultiSelect,
-        RightButton
-    },
-    computed: {
-        submitHighlight: ({isValid}) => isValid
-        ? '0b0'
-        : 'b00'
-    },
-    immutable: true,
-    methods: {
-        submit(
-            $routeParams
-        ) {
-            this.set({keepPollId: $routeParams.pollId})
-            forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
-        }
-    },
-    oncreate() {
-        formCache.getPollRouteParams(this)
-        const form = forms.ensureChildForm(
-            forms.CREATE_POLL_TOP, 'locations',
-            this, routes.POLL_INFO_MAIN)
-        if(!form) {
-            return
-        }
-        Promise.all([
-            loadLocations(),
-            loadLocText(this.store, 'en-us')
-        ]).then(([
-            locations,
-            _
-        ]) => {
-            const selectedContinents = form.fields.continents.value
-            if(selectedContinents.length) {
-                selectSubLocation(selectedContinents, locations.countries, form.fields.countries)
-                const selectedCountries = form.fields.countries.value
-                if(selectedCountries.length) {
-                    selectSubLocation(selectedCountries, locations.states, form.fields.states)
-                    const selectedStates = form.fields.states.value
-                    if(selectedStates.length) {
-                        selectSubLocation(selectedStates, locations.cities, form.fields.cities)
-                    }
-                }
-            }
-            if(!form.optionText) {
-                const {text} = this.store.get()
-                form.optionText = text.LOCATIONS
+	export default {
+		components: {
+			MultiSelect,
+			RightButton
+		},
+		computed: {
+			submitHighlight: ({isValid}) => isValid
+				? '0b0'
+				: 'b00'
+		},
+		immutable: true,
+		methods: {
+			submit(
+				$routeParams
+			) {
+				this.set({keepPollId: $routeParams.pollId})
+				forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
+			}
+		},
+		oncreate() {
+			formCache.getPollRouteParams(this)
+			const form = forms.ensureChildForm(
+				forms.CREATE_POLL_TOP, 'locations',
+				this, routes.POLL_INFO_MAIN)
+			if (!form) {
+				return
+			}
+			Promise.all([
+				loadLocations(),
+				loadLocText(this.store, 'en-us')
+			]).then(([
+				         locations,
+				         _
+			         ]) => {
+				const selectedContinents = form.fields.continents.value
+				if (selectedContinents.length) {
+					selectSubLocation(selectedContinents, locations.countries, form.fields.countries)
+					const selectedCountries = form.fields.countries.value
+					if (selectedCountries.length) {
+						selectSubLocation(selectedCountries, locations.states, form.fields.states)
+						const selectedStates = form.fields.states.value
+						if (selectedStates.length) {
+							selectSubLocation(selectedStates, locations.cities, form.fields.cities)
+						}
+					}
+				}
+				if (!form.optionText) {
+					const {text}    = this.store.get()
+					form.optionText = text.LOCATIONS
 
-                form.fields.continents.onChange((
-                selectedContinents
-                ) => {
-                    selectSubLocation(selectedContinents, locations.countries, form.fields.countries)
-                })
-                form.fields.countries.onChange((
-                    selectedCountries
-                ) => {
-                    selectSubLocation(selectedCountries, locations.states, form.fields.states)
-                })
-                form.fields.states.onChange((
-                    selectedStates
-                ) => {
-                    selectSubLocation(selectedStates, locations.cities, form.fields.cities)
-                })
-            }
-            forms.ensureForm(form, this)
-        })
-        this.store.set({
-            pageTitle: 'Poll Location(s)'
-        })
-    },
-    ondestroy() {
-        formCache.savePollForm(this)
-        forms.clearForm(this)
-    },
-    store: () => store
-}
+					form.fields.continents.onChange((
+						selectedContinents
+					) => {
+						selectSubLocation(selectedContinents, locations.countries, form.fields.countries)
+					})
+					form.fields.countries.onChange((
+						selectedCountries
+					) => {
+						selectSubLocation(selectedCountries, locations.states, form.fields.states)
+					})
+					form.fields.states.onChange((
+						selectedStates
+					) => {
+						selectSubLocation(selectedStates, locations.cities, form.fields.cities)
+					})
+				}
+				forms.ensureForm(form, this)
+			})
+			this.store.set({
+				pageTitle: 'Poll Location(s)'
+			})
+		},
+		ondestroy() {
+			formCache.savePollForm(this)
+			forms.clearForm(this)
+		},
+		store: () => store
+	}
 
-function selectSubLocation(
-    selectedParentLocations,
-    childLocations,
-    childLocationField
-) {
-    const matchingChildLocations = []
-    for(const parentLocation of selectedParentLocations) {
-        for(const country of childLocations) {
-            if(country.parentId == parentLocation.id) {
-                matchingChildLocations.push(country)
-            }
-        }
-        // continent.key
-    }
-    childLocationField.options = matchingChildLocations
+	function selectSubLocation(
+		selectedParentLocations,
+		childLocations,
+		childLocationField
+	) {
+		const matchingChildLocations = []
+		for (const parentLocation of selectedParentLocations) {
+			for (const country of childLocations) {
+				if (country.parentId == parentLocation.id) {
+					matchingChildLocations.push(country)
+				}
+			}
+			// continent.key
+		}
+		childLocationField.options = matchingChildLocations
 
-}
+	}
 
 </script>

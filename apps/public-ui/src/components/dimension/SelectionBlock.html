@@ -1,121 +1,121 @@
 {#if dimension.valid && dimension.hasChildValues}
 <Block
-    fieldGroup="{dimension}"
-    on:select="fire('select')"
+				fieldGroup="{dimension}"
+				on:select="fire('select')"
 >
-    <div slot="content">
-    <table>
-        <tr>
-        <td>
-            <div>
-            <figure
-                class="colorSelection centered"
-                style="
+	<div slot="content">
+		<table>
+			<tr>
+				<td>
+					<div>
+						<figure
+										class="colorSelection centered"
+										style="
                     background-color: {selectedColor}
                 "
-            >
-            </figure>
-            </div>
-        </td>
-        <td>
-            {dimension.fields.name.value}
-        </td>
-        </tr>
-        <tr>
-        <td>
-            <div>
-            <DirectionIcon
-                classes="centered"
-            ></DirectionIcon>
-            </div>
-        </td>
-        <td>
-            {dimension.fields.topDirection.fields.name.value}
-        </td>
-        </tr>
-        <tr>
-        <td>
-            <div>
-            <DirectionIcon
-                classes="centeredUpsideDown"
-            ></DirectionIcon>
-            </div>
-        </td>
-        <td>
-            {dimension.fields.bottomDirection.fields.name.value}
-        </td>
-        </tr>
-    </table>
-    </div>
+						>
+						</figure>
+					</div>
+				</td>
+				<td>
+					{dimension.fields.name.value}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<DirectionIcon
+										classes="centered"
+						></DirectionIcon>
+					</div>
+				</td>
+				<td>
+					{dimension.fields.topDirection.fields.name.value}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<DirectionIcon
+										classes="centeredUpsideDown"
+						></DirectionIcon>
+					</div>
+				</td>
+				<td>
+					{dimension.fields.bottomDirection.fields.name.value}
+				</td>
+			</tr>
+		</table>
+	</div>
 </Block>
 {:else}
 <IconBlock
-    customError="{text.error}"
-    fieldGroup="{dimension}"
-    on:select="fire('select')"
+				customError="{text.error}"
+				fieldGroup="{dimension}"
+				on:select="fire('select')"
 >
-    <div slot="icon">
-        <DimensionIcon
-        ></DimensionIcon>
-    </div>
-    <div slot="text">
-        {text.label}
-    </div>
+	<div slot="icon">
+		<DimensionIcon
+		></DimensionIcon>
+	</div>
+	<div slot="text">
+		{text.label}
+	</div>
 </IconBlock>
 {/if}
 
 <style>
 
-    td > div {
-        position: relative;
-        min-height: 55px;
-    }
+	td > div {
+		position: relative;
+		min-height: 55px;
+	}
 
-    td:first-child {
-        width: 55px;
-    }
+	td:first-child {
+		width: 55px;
+	}
 
-    td:nth-child(2) {
-        padding-left: 5px;
-        width: calc(100% - 56px);
-    }
+	td:nth-child(2) {
+		padding-left: 5px;
+		width: calc(100% - 56px);
+	}
 
 </style>
 
 <script>
-import Block from '../../common/field/Block.html'
-import IconBlock from '../../common/field/IconBlock.html'
-import DimensionIcon from '../../common/icon/DimensionIcon.html'
-import DirectionIcon from '../../common/icon/DirectionIcon.html'
+	import Block         from '../../common/field/Block.html'
+	import IconBlock     from '../../common/field/IconBlock.html'
+	import DimensionIcon from '../../common/icon/DimensionIcon.html'
+	import DirectionIcon from '../../common/icon/DirectionIcon.html'
 
-export default {
-    components: {
-        Block,
-        DimensionIcon,
-        DirectionIcon,
-        IconBlock
-    },
-    computed: {
-        bottomDirection: ({dimension}) => dimension
-            ? dimension.fields.bottomDirection
-            : null,
-        color: ({dimension}) => dimension
-            ? dimension.fields.color
-            : null,
-        selectedColor: ({color}) => {
-            if(!color || !color.valid) {
-                return 'initial'
-            }
-            const value = color.value.picker
+	export default {
+		components: {
+			Block,
+			DimensionIcon,
+			DirectionIcon,
+			IconBlock
+		},
+		computed: {
+			bottomDirection: ({dimension}) => dimension
+				? dimension.fields.bottomDirection
+				: null,
+			color: ({dimension}) => dimension
+				? dimension.fields.color
+				: null,
+			selectedColor: ({color}) => {
+				if (!color || !color.valid) {
+					return 'initial'
+				}
+				const value = color.value.picker
 
-            return `rgb(${value.red}, ${value.green}, ${value.blue})`
-        },
-        submitHighlight: ({isValid}) => isValid
-        ? '0b0'
-        : 'b00',
-        topDirection: ({dimension}) => dimension
-            ? dimension.fields.topDirection
-            : null
-    },
-}
+				return `rgb(${value.red}, ${value.green}, ${value.blue})`
+			},
+			submitHighlight: ({isValid}) => isValid
+				? '0b0'
+				: 'b00',
+			topDirection: ({dimension}) => dimension
+				? dimension.fields.topDirection
+				: null
+		},
+	}
 </script>

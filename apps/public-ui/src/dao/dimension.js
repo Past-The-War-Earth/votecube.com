@@ -1,11 +1,11 @@
 import {DB} from "../database";
 
 export const dimensionDao = {
-    getAll() {
-        return new Promise((resolve) => {
-            const dimensions = DB.dimensions
+	getAll() {
+		return new Promise((resolve) => {
+			const dimensions = DB.dimensions
 
-            resolve(dimensions)
-        })
-    }
+			resolve(dimensions)
+		})
+	}
 }

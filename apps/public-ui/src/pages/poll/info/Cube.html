@@ -1,761 +1,769 @@
 <article>
-    {#if previewMode}
-    <a
-            class:bottomLeft="!$verticalLayout"
-            class:topLeft="$verticalLayout"
-            on:click="togglePositionMode()"
-    >
-        <DirectionPositionButton
-                color="{dirPosButtonColor}"
-        ></DirectionPositionButton>
-    </a>
-    {/if}
-    <main
-        class:offToRight="!$verticalLayout"
-    >
-        <section
-                id="viewport"
-                style="
+	{#if previewMode}
+	<a
+					class:bottomLeft="!$verticalLayout"
+					class:topLeft="$verticalLayout"
+					on:click="togglePositionMode()"
+	>
+		<DirectionPositionButton
+						color="{dirPosButtonColor}"
+		></DirectionPositionButton>
+	</a>
+	{/if}
+	<main
+					class:offToRight="!$verticalLayout"
+	>
+		<section
+						id="viewport"
+						style="
   transform: scale({zoomFactor}, {zoomFactor});
 "
-                class:leftViewport="!$verticalLayout"
-        >
-            <figure
-                    id="cube"
-            >
-                {#if poll}
-                {#each positions as position, i}
-                <div
-                        class="surface"
-                        id="s{i}"
-                        style="
+						class:leftViewport="!$verticalLayout"
+		>
+			<figure
+							id="cube"
+			>
+				{#if poll}
+				{#each positions as position, i}
+				<div
+								class="surface"
+								id="s{i}"
+								style="
             background-color: #{getColor(delta, poll, position.axis)};
                 "
-                >
-                    {#if position.dir == 1}
-                    <header>
-                        {getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-                    </header>
-                    {/if}
-                    {#if positionMode}
-                    <DirectionPositioner
-                            on:moveRight="moveRight(position.axis, position.dir)"
-                            on:moveDown="moveDown(position.axis, position.dir)"
-                            on:moveLeft="moveLeft(position.axis, position.dir)"
-                            on:moveUp="moveUp(position.axis, position.dir)"
-                            on:switchDir="switchDir(position.axis, position.dir)"
-                    ></DirectionPositioner>
-                    {/if}
-                    <p>
-                        {getSideText(delta, 'cube', poll, position.axis, position.dir)}
-                    </p>
-                    {#if position.dir == -1}
-                    <footer>
-                        {getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-                    </footer>
-                    {/if}
-                </div>
-                {/each}
-                {/if}
-            </figure>
-        </section>
-    </main>
-    {#if vote}
-    {#if percentMode}
-    <PercentPicker
-            on:close="togglePercentPicker()"
-            on:move="move(event)"
-            on:moveToValue="moveToValue(event)"
-            poll="{poll}"
-            vote="{vote}"
-    ></PercentPicker>
-    {:else}
-    {#if previewMode}
-    <LeftButton
-            classes="{modifyActionButtonPosition}"
-            on:select="toPollForm($routeParams)"
-    ></LeftButton>
-    {:else}
-    <a
-            class="app-button {modifyActionButtonPosition}"
-            on:click="togglePercentPicker()"
-    >
-        %
-    </a>
-    {/if}
-    <table
-            class="{$verticalLayout ? 'bottom-dimension-table' : 'right-dimension-table'}"
-    >
-        <tr>
-            {#if $verticalLayout}
-            <td
-            >
-                <DimensionInfoButton
-                        axis='x'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('x')"
-                        poll="{poll}"
-                        voteDim="{vote.x}"
-                ></DimensionInfoButton>
-            </td>
-            <td
-            >
-                <DimensionInfoButton
-                        axis='y'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('y')"
-                        poll="{poll}"
-                        voteDim="{vote.y}"
-                ></DimensionInfoButton>
-            </td>
-            <td>
-                <DimensionInfoButton
-                        axis='z'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('z')"
-                        poll="{poll}"
-                        voteDim="{vote.z}"
-                ></DimensionInfoButton>
-            </td>
-            {/if}
-        </tr>
-        {#if !$verticalLayout}
-        <tr>
-            <td>
-                <DimensionInfoButton
-                        axis='z'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('z')"
-                        poll="{poll}"
-                        voteDim="{vote.z}"
-                ></DimensionInfoButton>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <DimensionInfoButton
-                        axis='y'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('y')"
-                        poll="{poll}"
-                        voteDim="{vote.y}"
-                ></DimensionInfoButton>
-            </td>
-        </tr>
-        <tr>
-            <td
-            >
-                <DimensionInfoButton
-                        axis='x'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('x')"
-                        poll="{poll}"
-                        voteDim="{vote.x}"
-                ></DimensionInfoButton>
-            </td>
-        </tr>
-        {/if}
-    </table>
-    {#if previewMode}
-    <BuildButton
-            classes="{submitButtonPosition}"
-            on:select="checkBuild()"
-    ></BuildButton>
-    {:else}
-    <VoteButton
-            classes="{submitButtonPosition}"
-            on:select="confirmVote()"
-    ></VoteButton>
-    {/if}
-    {/if}
-    {#if confirm}
-    {#if saving}
-    <ActionPopover
-            on:cancel="closeConfirm()"
-            viewOnly="!error"
-            infoOnly="error"
-            width="90%"
-    >
-        <div slot="header">
-            {saving}
-        </div>
-        <div slot="content">
-            {error}
-        </div>
-    </ActionPopover>
-    {:elseif voting}
-    <ActionPopover
-            contentClass="smallPadding"
-            on:cancel="closeConfirm()"
-            width="90%"
-    >
-        <div slot="header">
-            Confirm Vote
-        </div>
-        <div slot="content">
-            <div>
-                {poll.name}
-            </div>
-            <VoteComponentGraph
-                    bind:delta
-                    bind:poll
-                    verticalLayout="Y"
-                    bind:vote
-                    maxBarSize="60"
-                    mode="confirm"
-            ></VoteComponentGraph>
-        </div>
-        <div slot="actions">
-            <VoteButton
-                    on:select="vote()"
-            ></VoteButton>
-        </div>
-    </ActionPopover>
-    {:else}
-    <ActionPopover
-            on:cancel="closeConfirm()"
-            width="90%"
-    >
-        <div slot="header">
-            Please Confirm
-        </div>
-        <div slot="content">
-            Create the "{poll.name}" poll?
-        </div>
-        <div slot="actions">
-            <BuildButton
-                    on:select="build()"
-            ></BuildButton>
-        </div>
-    </ActionPopover>
-    {/if}
-    {/if}
-    {/if}
+				>
+					{#if position.dir == 1}
+					<header>
+						{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
+					</header>
+					{/if}
+					{#if positionMode}
+					<DirectionPositioner
+									on:moveRight="moveRight(position.axis, position.dir)"
+									on:moveDown="moveDown(position.axis, position.dir)"
+									on:moveLeft="moveLeft(position.axis, position.dir)"
+									on:moveUp="moveUp(position.axis, position.dir)"
+									on:switchDir="switchDir(position.axis, position.dir)"
+					></DirectionPositioner>
+					{/if}
+					<p>
+						{getSideText(delta, 'cube', poll, position.axis, position.dir)}
+					</p>
+					{#if position.dir == -1}
+					<footer>
+						{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
+					</footer>
+					{/if}
+				</div>
+				{/each}
+				{/if}
+			</figure>
+		</section>
+	</main>
+	{#if vote}
+	{#if percentMode}
+	<PercentPicker
+					on:close="togglePercentPicker()"
+					on:move="move(event)"
+					on:moveToValue="moveToValue(event)"
+					poll="{poll}"
+					vote="{vote}"
+	></PercentPicker>
+	{:else}
+	{#if previewMode}
+	<LeftButton
+					classes="{modifyActionButtonPosition}"
+					on:select="toPollForm($routeParams)"
+	></LeftButton>
+	{:else}
+	<a
+					class="app-button {modifyActionButtonPosition}"
+					on:click="togglePercentPicker()"
+	>
+		%
+	</a>
+	{/if}
+	<table
+					class="{$verticalLayout ? 'bottom-dimension-table' : 'right-dimension-table'}"
+	>
+		<tr>
+			{#if $verticalLayout}
+			<td
+			>
+				<DimensionInfoButton
+								axis='x'
+								delta="{delta}"
+								mode="page"
+								on:toggle="toggleSurface('x')"
+								poll="{poll}"
+								voteDim="{vote.x}"
+				></DimensionInfoButton>
+			</td>
+			<td
+			>
+				<DimensionInfoButton
+								axis='y'
+								delta="{delta}"
+								mode="page"
+								on:toggle="toggleSurface('y')"
+								poll="{poll}"
+								voteDim="{vote.y}"
+				></DimensionInfoButton>
+			</td>
+			<td>
+				<DimensionInfoButton
+								axis='z'
+								delta="{delta}"
+								mode="page"
+								on:toggle="toggleSurface('z')"
+								poll="{poll}"
+								voteDim="{vote.z}"
+				></DimensionInfoButton>
+			</td>
+			{/if}
+		</tr>
+		{#if !$verticalLayout}
+		<tr>
+			<td>
+				<DimensionInfoButton
+								axis='z'
+								delta="{delta}"
+								mode="page"
+								on:toggle="toggleSurface('z')"
+								poll="{poll}"
+								voteDim="{vote.z}"
+				></DimensionInfoButton>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<DimensionInfoButton
+								axis='y'
+								delta="{delta}"
+								mode="page"
+								on:toggle="toggleSurface('y')"
+								poll="{poll}"
+								voteDim="{vote.y}"
+				></DimensionInfoButton>
+			</td>
+		</tr>
+		<tr>
+			<td
+			>
+				<DimensionInfoButton
+								axis='x'
+								delta="{delta}"
+								mode="page"
+								on:toggle="toggleSurface('x')"
+								poll="{poll}"
+								voteDim="{vote.x}"
+				></DimensionInfoButton>
+			</td>
+		</tr>
+		{/if}
+	</table>
+	{#if previewMode}
+	<BuildButton
+					classes="{submitButtonPosition}"
+					on:select="checkBuild()"
+	></BuildButton>
+	{:else}
+	<VoteButton
+					classes="{submitButtonPosition}"
+					on:select="confirmVote()"
+	></VoteButton>
+	{/if}
+	{/if}
+	{#if confirm}
+	{#if saving}
+	<ActionPopover
+					on:cancel="closeConfirm()"
+					viewOnly="!error"
+					infoOnly="error"
+					width="90%"
+	>
+		<div slot="header">
+			{saving}
+		</div>
+		<div slot="content">
+			{error}
+		</div>
+	</ActionPopover>
+	{:elseif voting}
+	<ActionPopover
+					contentClass="smallPadding"
+					on:cancel="closeConfirm()"
+					width="90%"
+	>
+		<div slot="header">
+			Confirm Vote
+		</div>
+		<div slot="content">
+			<div>
+				{poll.name}
+			</div>
+			<VoteComponentGraph
+							bind:delta
+							bind:poll
+							verticalLayout="Y"
+							bind:vote
+							maxBarSize="60"
+							mode="confirm"
+			></VoteComponentGraph>
+		</div>
+		<div slot="actions">
+			<VoteButton
+							on:select="vote()"
+			></VoteButton>
+		</div>
+	</ActionPopover>
+	{:else}
+	<ActionPopover
+					on:cancel="closeConfirm()"
+					width="90%"
+	>
+		<div slot="header">
+			Please Confirm
+		</div>
+		<div slot="content">
+			Create the "{poll.name}" poll?
+		</div>
+		<div slot="actions">
+			<BuildButton
+							on:select="build()"
+			></BuildButton>
+		</div>
+	</ActionPopover>
+	{/if}
+	{/if}
+	{/if}
 </article>
 <style>
-    article {
-        position: absolute;
-    }
+	article {
+		position: absolute;
+	}
 
-    footer,
-    header {
-        color: #fff;
-        background-color: #000;
-        font-size: 0.9em;
-        font-weight: 500;
-        line-height: 1em;
-        overflow: hidden;
-        text-align: center;
-        text-overflow: ellipsis;
-        width: 100%;
-        white-space: nowrap;
-    }
+	footer,
+	header {
+		color: #fff;
+		background-color: #000;
+		font-size: 0.9em;
+		font-weight: 500;
+		line-height: 1em;
+		overflow: hidden;
+		text-align: center;
+		text-overflow: ellipsis;
+		width: 100%;
+		white-space: nowrap;
+	}
 
-    footer {
-        bottom: 0px;
-        position: absolute;
-    }
+	footer {
+		bottom: 0px;
+		position: absolute;
+	}
 
-    main {
-        position: absolute;
-        top: 33%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-    }
+	main {
+		position: absolute;
+		top: 33%;
+		left: 50%;
+		margin-right: -50%;
+		transform: translate(-50%, -50%);
+	}
 
-    p {
-        margin-block-start: 0em;
-        margin-block-end: 0em;
-        padding: 0 10px;
-    }
+	p {
+		margin-block-start: 0em;
+		margin-block-end: 0em;
+		padding: 0 10px;
+	}
 
-    table {
-        z-index: 2;
-    }
+	table {
+		z-index: 2;
+	}
 
-    .bottom-dimension-table {
-        bottom: 10px;
-        color: black;
-        margin-left: 70px;
-        margin-right: 70px;
-        position: fixed;
-        width: calc(100% - 140px);
-    }
+	.bottom-dimension-table {
+		bottom: 10px;
+		color: black;
+		margin-left: 70px;
+		margin-right: 70px;
+		position: fixed;
+		width: calc(100% - 140px);
+	}
 
-    .leftViewport {
-        right: 20%;
-    }
+	.leftViewport {
+		right: 20%;
+	}
 
-    .offToRight {
-        left: 33%;
-    }
+	.offToRight {
+		left: 33%;
+	}
 
-    .right-dimension-table {
-        height: calc(100% - 84px);
-        margin-top: 20px;
-        position: fixed;
-        right: 75px;
-        top: 44px;
-    }
+	.right-dimension-table {
+		height: calc(100% - 84px);
+		margin-top: 20px;
+		position: fixed;
+		right: 75px;
+		top: 44px;
+	}
 
-    .surface {
-        position: relative;
-    }
+	.surface {
+		position: relative;
+	}
 
-    #viewport {
-        height: 100%;
-        perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
-        /* 1500 increases range from 11% to 9%, 2500 increases to 6% */
-        perspective-origin: 50% 160px; /* 670px; */
-        /*transform: scale(0.75,0.75);*/
-        width: 100%;
-    }
+	#viewport {
+		height: 100%;
+		perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
+		/* 1500 increases range from 11% to 9%, 2500 increases to 6% */
+		perspective-origin: 50% 160px; /* 670px; */
+		/*transform: scale(0.75,0.75);*/
+		width: 100%;
+	}
 
-    #cube {
-        height: 320px;
-        margin: auto;
-        position: relative;
-        /*transform: rotateX(0deg) rotateY(-90deg);*/
-        transform-style: preserve-3d;
-        transition: transform 128ms linear;
-        /*top: 50%;*/
-        width: 320px;
-    }
+	#cube {
+		height: 320px;
+		margin: auto;
+		position: relative;
+		/*transform: rotateX(0deg) rotateY(-90deg);*/
+		transform-style: preserve-3d;
+		transition: transform 128ms linear;
+		/*top: 50%;*/
+		width: 320px;
+	}
 
-    #cube > div {
-        /*border: 5px groove gray;*/
-        border: 5px solid gray;
-        border-radius: 10px;
-        color: #000;
-        font-size: 1.7em;
-        /*height: 320px;*/
-        height: 311px;
-        line-height: 1.7em;
-        position: absolute;
-        /*width: 320px;*/
-        width: 311px;
-        /*
-        height: 360px;
-        width: 360px;
-        padding: 20px;
-        font-size: 1.8em;
-        line-height: 2em;
-        */
-    }
+	#cube > div {
+		/*border: 5px groove gray;*/
+		border: 5px solid gray;
+		border-radius: 10px;
+		color: #000;
+		font-size: 1.7em;
+		/*height: 320px;*/
+		height: 311px;
+		line-height: 1.7em;
+		position: absolute;
+		/*width: 320px;*/
+		width: 311px;
+		/*
+		height: 360px;
+		width: 360px;
+		padding: 20px;
+		font-size: 1.8em;
+		line-height: 2em;
+		*/
+	}
 
-    #s0 {
-        /*background: hsla(  0, 100%, 50%, 0.95);*/
-        transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s0 {
+		/*background: hsla(  0, 100%, 50%, 0.95);*/
+		transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s1 {
-        transform: translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s1 {
+		transform: translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s2 {
-        transform: rotateY(90deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s2 {
+		transform: rotateY(90deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s3 {
-        transform: rotateY(180deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s3 {
+		transform: rotateY(180deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s4 {
-        transform: rotateY(-90deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s4 {
+		transform: rotateY(-90deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s5 {
-        transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s5 {
+		transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
 </style>
 
 <script>
-    import BuildButton from '../../../common/control/button/BuildButton.html'
-    import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
-    import DirectionPositionButton from '../../../common/control/button/DirectionPositionButton.html'
-    import LeftButton from '../../../common/control/button/LeftButton.html'
-    import PercentPicker from '../../../common/control/PercentPicker.html'
-    import DirectionPositioner from '../../../components/poll/create/DirectionPositioner.html'
-    import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
-    import VoteButton from '../../../common/control/button/VoteButton.html'
-    import ActionPopover from '../../../common/shell/ActionPopover.html'
-    import {pollDao} from '../../../dao/poll';
-    import {voteDao} from '../../../dao/vote';
-    import {getColor, getSideText} from '../../../helpers/cube';
-    import {loadCubeLogic, setCubeAdjustment, shutDownCubeListener} from '../../../libs/cubeLogic'
-    import {setResizeCllBck} from '../../../resizer'
-    import * as routes from '../../../routes'
-    import store from '../../../store';
+	import BuildButton         from '../../../common/control/button/BuildButton.html'
+	import DimensionInfoButton from '../../../common/control/button/DimensionInfoButton.html'
+	import DirectionPositionButton
+	                           from '../../../common/control/button/DirectionPositionButton.html'
+	import LeftButton          from '../../../common/control/button/LeftButton.html'
+	import VoteButton          from '../../../common/control/button/VoteButton.html'
+	import PercentPicker       from '../../../common/control/PercentPicker.html'
+	import ActionPopover       from '../../../common/shell/ActionPopover.html'
+	import DirectionPositioner from '../../../components/poll/create/DirectionPositioner.html'
+	import VoteComponentGraph  from '../../../components/vote/VoteComponentGraph.html'
+	import {pollDao}           from '../../../dao/poll';
+	import {voteDao}           from '../../../dao/vote';
+	import {
+		getColor,
+		getSideText
+	}                          from '../../../helpers/cube';
+	import {
+		loadCubeLogic,
+		setCubeAdjustment,
+		shutDownCubeListener
+	}                          from '../../../libs/cubeLogic'
+	import {setResizeCllBck}   from '../../../resizer'
+	import * as routes         from '../../../routes'
+	import store               from '../../../store';
 
-    export default {
-        components: {
-            ActionPopover,
-            BuildButton,
-            DimensionInfoButton,
-            DirectionPositionButton,
-            DirectionPositioner,
-            LeftButton,
-            PercentPicker,
-            VoteButton,
-            VoteComponentGraph
-        },
-        computed: {
-            dirPosButtonColor: ({positionMode}) => positionMode
-                ? '0b0'
-                : '000',
-            previewMode: ({mode}) => mode === 'build' || mode === 'alter',
-            modifyActionButtonPosition: ({$verticalLayout}) => $verticalLayout
-                ? 'bottomLeft'
-                : 'bottomRight',
-            submitButtonPosition: ({$verticalLayout}) => $verticalLayout
-                ? 'bottomRight'
-                : 'topRight'
-        },
-        data() {
-            return {
-                positions: [{
-                    axis: 'x',
-                    dir: 1
-                }, {
-                    axis: 'y',
-                    dir: 1
-                }, {
-                    axis: 'z',
-                    dir: 1
-                }, {
-                    axis: 'y',
-                    dir: -1
-                }, {
-                    axis: 'z',
-                    dir: -1
-                }, {
-                    axis: 'x',
-                    dir: -1
-                }],
-                currentZoom: 1,
-                percentMode: false,
-                delta: 0,
-                verticalLayout: true,
-                zoomFactor: 0.65
-            }
-        },
-        helpers: {
-            getColor,
-            getSideText
-        },
-        methods: {
-            build() {
-                this.set({saving: 'Saving ...'})
-                pollDao.save(this.get().poll).then(() => {
-                    this.set({confirm: false})
-                    routes.navigateToPage(routes.POLL_SEARCH_LIST)
-                }).catch((error) => {
-                    this.set({error, saving: 'Error'})
-                });
-            },
-            checkBuild() {
-                this.set({confirm: true, error: '', saving: false, voting: false})
-            },
-            closeConfirm() {
-                this.set({confirm: false})
-            },
-            confirmVote() {
-                this.set({confirm: true, error: '', saving: false, voting: true})
-            },
-            move(
-                event
-            ) {
-                this.get().mutationApi.move(
-                    event.dimension,
-                    event.direction,
-                    event.percentChange
-                )
-            },
-            moveDown(
-                axis,
-                dir
-            ) {
-                move(this, axis, dir, [
-                    ['y', 1], // x+
-                    ['y', 1], // x-
-                    ['x', -1], // y+
-                    ['x', -1], // y-
-                    ['x', -1], // z+
-                    ['x', -1] // z-
-                ])
-            },
-            moveLeft(
-                axis,
-                dir
-            ) {
-                move(this, axis, dir, [
-                    ['z', -1], // x+
-                    ['z', 1], // x-
-                    ['z', -1], // y+
-                    ['z', 1], // y-
-                    ['y', 1], // z+
-                    ['y', -1] // z-
-                ])
-            },
-            moveRight(
-                axis,
-                dir
-            ) {
-                move(this, axis, dir, [
-                    ['z', 1], // x+
-                    ['z', -1], // x-
-                    ['z', 1], // y+
-                    ['z', -1], // y-
-                    ['y', -1], // z+
-                    ['y', 1] // z-
-                ])
-            },
-            moveToValue(
-                event
-            ) {
-                this.get().mutationApi.moveToValue(event.dimension, event.value)
-            },
-            moveUp(
-                axis,
-                dir
-            ) {
-                move(this, axis, dir, [
-                    ['y', -1], // x+
-                    ['y', -1], // x-
-                    ['x', 1], // y+
-                    ['x', 1], // y-
-                    ['x', 1], // z+
-                    ['x', 1] // z-
-                ])
-            },
-            switchDir(
-                axis,
-                dir
-            ) {
-                switchPoles(this, axis, dir)
-            },
-            togglePercentPicker() {
-                const percentMode = !this.get().percentMode
-                setCubeAdjustment(this.get().cubeListener, !percentMode)
-                this.set({percentMode})
-            },
-            togglePositionMode() {
-                this.set({positionMode: !this.get().positionMode})
-            },
-            toggleSurface(
-                dimensionKey
-            ) {
-                this.get().mutationApi.toggleSurface(dimensionKey)
-                this.set({delta: this.get().delta + 1})
-            },
-            toPollForm(
-                $routeParams
-            ) {
-                routes.navigateToPage(routes.POLL_INFO_MAIN, $routeParams)
-            },
-            vote() {
-                // this.set({confirm: false})
-                routes.navigateToPage(routes.POLL_SEARCH_LIST)
-            }
-        },
-        oncreate() {
-            setResizeCllBck((
-                portalHeight,
-                windowWidth
-            ) => {
-                const figureHeight = portalHeight * 0.55 + 95
+	export default {
+		components: {
+			ActionPopover,
+			BuildButton,
+			DimensionInfoButton,
+			DirectionPositionButton,
+			DirectionPositioner,
+			LeftButton,
+			PercentPicker,
+			VoteButton,
+			VoteComponentGraph
+		},
+		computed: {
+			dirPosButtonColor: ({positionMode}) => positionMode
+				? '0b0'
+				: '000',
+			previewMode: ({mode}) => mode === 'build' || mode === 'alter',
+			modifyActionButtonPosition: ({$verticalLayout}) => $verticalLayout
+				? 'bottomLeft'
+				: 'bottomRight',
+			submitButtonPosition: ({$verticalLayout}) => $verticalLayout
+				? 'bottomRight'
+				: 'topRight'
+		},
+		data() {
+			return {
+				positions: [{
+					axis: 'x',
+					dir: 1
+				}, {
+					axis: 'y',
+					dir: 1
+				}, {
+					axis: 'z',
+					dir: 1
+				}, {
+					axis: 'y',
+					dir: -1
+				}, {
+					axis: 'z',
+					dir: -1
+				}, {
+					axis: 'x',
+					dir: -1
+				}],
+				currentZoom: 1,
+				percentMode: false,
+				delta: 0,
+				verticalLayout: true,
+				zoomFactor: 0.65
+			}
+		},
+		helpers: {
+			getColor,
+			getSideText
+		},
+		methods: {
+			build() {
+				this.set({saving: 'Saving ...'})
+				pollDao.save(this.get().poll).then(() => {
+					this.set({confirm: false})
+					routes.navigateToPage(routes.POLL_SEARCH_LIST)
+				}).catch((error) => {
+					this.set({error, saving: 'Error'})
+				});
+			},
+			checkBuild() {
+				this.set({confirm: true, error: '', saving: false, voting: false})
+			},
+			closeConfirm() {
+				this.set({confirm: false})
+			},
+			confirmVote() {
+				this.set({confirm: true, error: '', saving: false, voting: true})
+			},
+			move(
+				event
+			) {
+				this.get().mutationApi.move(
+					event.dimension,
+					event.direction,
+					event.percentChange
+				)
+			},
+			moveDown(
+				axis,
+				dir
+			) {
+				move(this, axis, dir, [
+					['y', 1], // x+
+					['y', 1], // x-
+					['x', -1], // y+
+					['x', -1], // y-
+					['x', -1], // z+
+					['x', -1] // z-
+				])
+			},
+			moveLeft(
+				axis,
+				dir
+			) {
+				move(this, axis, dir, [
+					['z', -1], // x+
+					['z', 1], // x-
+					['z', -1], // y+
+					['z', 1], // y-
+					['y', 1], // z+
+					['y', -1] // z-
+				])
+			},
+			moveRight(
+				axis,
+				dir
+			) {
+				move(this, axis, dir, [
+					['z', 1], // x+
+					['z', -1], // x-
+					['z', 1], // y+
+					['z', -1], // y-
+					['y', -1], // z+
+					['y', 1] // z-
+				])
+			},
+			moveToValue(
+				event
+			) {
+				this.get().mutationApi.moveToValue(event.dimension, event.value)
+			},
+			moveUp(
+				axis,
+				dir
+			) {
+				move(this, axis, dir, [
+					['y', -1], // x+
+					['y', -1], // x-
+					['x', 1], // y+
+					['x', 1], // y-
+					['x', 1], // z+
+					['x', 1] // z-
+				])
+			},
+			switchDir(
+				axis,
+				dir
+			) {
+				switchPoles(this, axis, dir)
+			},
+			togglePercentPicker() {
+				const percentMode = !this.get().percentMode
+				setCubeAdjustment(this.get().cubeListener, !percentMode)
+				this.set({percentMode})
+			},
+			togglePositionMode() {
+				this.set({positionMode: !this.get().positionMode})
+			},
+			toggleSurface(
+				dimensionKey
+			) {
+				this.get().mutationApi.toggleSurface(dimensionKey)
+				this.set({delta: this.get().delta + 1})
+			},
+			toPollForm(
+				$routeParams
+			) {
+				routes.navigateToPage(routes.POLL_INFO_MAIN, $routeParams)
+			},
+			vote() {
+				// this.set({confirm: false})
+				routes.navigateToPage(routes.POLL_SEARCH_LIST)
+			}
+		},
+		oncreate() {
+			setResizeCllBck((
+				portalHeight,
+				windowWidth
+			) => {
+				const figureHeight = portalHeight * 0.55 + 95
 
-                const cubeAreaLeastDimension = windowWidth < figureHeight
-                    ? windowWidth
-                    : figureHeight
+				const cubeAreaLeastDimension = windowWidth < figureHeight
+					? windowWidth
+					: figureHeight
 
-                const zoomFactor = (Math.sqrt(cubeAreaLeastDimension) * 3) / 100
+				const zoomFactor = (Math.sqrt(cubeAreaLeastDimension) * 3) / 100
 
-                this.set({zoomFactor})
-            }, this.store)
+				this.set({zoomFactor})
+			}, this.store)
 
-            const {mode, pollId} = this.store.get().routeParams;
+			const {mode, pollId} = this.store.get().routeParams;
 
-            Promise.all([
-                loadCubeLogic(this, (vote) => {
-                    this.set({delta: this.get().delta + 1})
-                }),
-                voteDao.findMyVoteForPoll(pollId)
-            ]).then(([
-                         setPositionDataAndMove,
-                         vote
-                     ]) => {
-                if (!vote) {
-                    if (pollId == 0) {
-                        routes.navigateToPage(routes.POLL_INFO_MAIN)
-                    }
-                    return
-                }
-                const poll = vote.poll
-                this.set({mode, poll, vote})
-                setPositionDataAndMove(vote)
+			Promise.all([
+				loadCubeLogic(this, (vote) => {
+					this.set({delta: this.get().delta + 1})
+				}),
+				voteDao.findMyVoteForPoll(pollId)
+			]).then(([
+				         setPositionDataAndMove,
+				         vote
+			         ]) => {
+				if (!vote) {
+					if (pollId == 0) {
+						routes.navigateToPage(routes.POLL_INFO_MAIN)
+					}
+					return
+				}
+				const poll = vote.poll
+				this.set({mode, poll, vote})
+				setPositionDataAndMove(vote)
 
-                this.store.set({
-                    pageTitle: poll.name
-                })
-            })
+				this.store.set({
+					pageTitle: poll.name
+				})
+			})
 
-            this.store.set({
-                cube: true,
-                noOverflow: true
-            })
-        },
-        ondestroy() {
-            shutDownCubeListener(this.get().cubeListener, this)
-            setResizeCllBck(null)
-            this.store.set({
-                cube: false,
-                noOverflow: false
-            })
-        },
-        store: () => store
-    }
+			this.store.set({
+				cube: true,
+				noOverflow: true
+			})
+		},
+		ondestroy() {
+			shutDownCubeListener(this.get().cubeListener, this)
+			setResizeCllBck(null)
+			this.store.set({
+				cube: false,
+				noOverflow: false
+			})
+		},
+		store: () => store
+	}
 
-    function move(
-        page,
-        axis,
-        dir,
-        switchToDefinitions
-    ) {
-        const {delta, poll} = page.get()
-        let switchPositions = getSwitchArray(axis, dir, switchToDefinitions);
-        repositionAll(poll, switchPositions)
+	function move(
+		page,
+		axis,
+		dir,
+		switchToDefinitions
+	) {
+		const {delta, poll} = page.get()
+		let switchPositions = getSwitchArray(axis, dir, switchToDefinitions);
+		repositionAll(poll, switchPositions)
 
-        page.set({delta: delta + 1})
-    }
+		page.set({delta: delta + 1})
+	}
 
-    function switchPoles(
-        page,
-        axis,
-        dir
-    ) {
-        const {delta, poll} = page.get()
-        let switchPositions = [{
-            axis,
-            dir
-        },
-            {
-                axis,
-                dir: dir === 1 ? -1 : 1
-            }]
+	function switchPoles(
+		page,
+		axis,
+		dir
+	) {
+		const {delta, poll} = page.get()
+		let switchPositions = [{
+			axis,
+			dir
+		},
+			{
+				axis,
+				dir: dir === 1 ? -1 : 1
+			}]
 
-        const switchPollDimDirs = getSwitchPollDimDirs(poll, switchPositions)
-        reposition(switchPollDimDirs, 0, 1)
+		const switchPollDimDirs = getSwitchPollDimDirs(poll, switchPositions)
+		reposition(switchPollDimDirs, 0, 1)
 
-        page.set({delta: delta + 1})
-    }
+		page.set({delta: delta + 1})
+	}
 
-    function getSwitchArray(
-        axis,
-        dir,
-        switchToDefinitions
-    ) {
-        switch (axis) {
-            case 'x':
-                if (dir == 1) {
-                    // X+ -> Z+
-                    return getSwitchPositions('x', 1, switchToDefinitions[0])
-                } else {
-                    // X- -> Z-
-                    return getSwitchPositions('x', -1, switchToDefinitions[1])
-                }
-            case 'y':
-                if (dir == 1) {
-                    // Y+ -> Z+
-                    return getSwitchPositions('y', 1, switchToDefinitions[2])
-                } else {
-                    // Y- -> Z-
-                    return getSwitchPositions('y', -1, switchToDefinitions[3])
-                }
-            case 'z':
-                if (dir == 1) {
-                    // Z+ -> Y-
-                    return getSwitchPositions('z', 1, switchToDefinitions[4])
-                } else {
-                    // Z- -> Y+
-                    return getSwitchPositions('z', -1, switchToDefinitions[5])
-                }
-        }
-    }
+	function getSwitchArray(
+		axis,
+		dir,
+		switchToDefinitions
+	) {
+		switch (axis) {
+			case 'x':
+				if (dir == 1) {
+					// X+ -> Z+
+					return getSwitchPositions('x', 1, switchToDefinitions[0])
+				} else {
+					// X- -> Z-
+					return getSwitchPositions('x', -1, switchToDefinitions[1])
+				}
+			case 'y':
+				if (dir == 1) {
+					// Y+ -> Z+
+					return getSwitchPositions('y', 1, switchToDefinitions[2])
+				} else {
+					// Y- -> Z-
+					return getSwitchPositions('y', -1, switchToDefinitions[3])
+				}
+			case 'z':
+				if (dir == 1) {
+					// Z+ -> Y-
+					return getSwitchPositions('z', 1, switchToDefinitions[4])
+				} else {
+					// Z- -> Y+
+					return getSwitchPositions('z', -1, switchToDefinitions[5])
+				}
+		}
+	}
 
-    function getSwitchPositions(
-        axis,
-        dir,
-        to
-    ) {
-        const [toAxis, toDir] = to
-        const oppositeDir = dir == 1 ? -1 : 1
-        const toOppositeDir = toDir == 1 ? -1 : 1
-        return [{
-            axis,
-            dir
-        },
-            {
-                axis: toAxis,
-                dir: toDir
-            },
-            {
-                axis,
-                dir: oppositeDir
-            },
-            {
-                axis: toAxis,
-                dir: toOppositeDir
-            }]
-    }
+	function getSwitchPositions(
+		axis,
+		dir,
+		to
+	) {
+		const [toAxis, toDir] = to
+		const oppositeDir     = dir == 1 ? -1 : 1
+		const toOppositeDir   = toDir == 1 ? -1 : 1
+		return [{
+			axis,
+			dir
+		},
+			{
+				axis: toAxis,
+				dir: toDir
+			},
+			{
+				axis,
+				dir: oppositeDir
+			},
+			{
+				axis: toAxis,
+				dir: toOppositeDir
+			}]
+	}
 
-    function repositionAll(
-        poll,
-        switchPositions
-    ) {
-        const switchPollDimDirs = getSwitchPollDimDirs(poll, switchPositions)
-        reposition(switchPollDimDirs, 0, 1)
-        reposition(switchPollDimDirs, 2, 3)
-    }
+	function repositionAll(
+		poll,
+		switchPositions
+	) {
+		const switchPollDimDirs = getSwitchPollDimDirs(poll, switchPositions)
+		reposition(switchPollDimDirs, 0, 1)
+		reposition(switchPollDimDirs, 2, 3)
+	}
 
-    function getSwitchPollDimDirs(
-        poll,
-        switchPositions
-    ) {
-        const switchPollDimDirs = []
-        switchPositions.forEach((
-            switchPosition
-        ) => {
-            switchPollDimDirs.push(poll.pollsDimensionsDirections.filter(
-                pollDimensionDirection =>
-                    switchPosition.axis === pollDimensionDirection.axis
-                    && switchPosition.dir === pollDimensionDirection.dir)[0])
-        })
+	function getSwitchPollDimDirs(
+		poll,
+		switchPositions
+	) {
+		const switchPollDimDirs = []
+		switchPositions.forEach((
+			switchPosition
+		) => {
+			switchPollDimDirs.push(poll.pollsDimensionsDirections.filter(
+				pollDimensionDirection =>
+					switchPosition.axis === pollDimensionDirection.axis
+					&& switchPosition.dir === pollDimensionDirection.dir)[0])
+		})
 
-        return switchPollDimDirs
-    }
+		return switchPollDimDirs
+	}
 
-    function reposition(
-        switchPollDimDirs,
-        fromIndex,
-        toIndex
-    ) {
-        const fromDimDir = switchPollDimDirs[fromIndex].dimensionDirection
-        const fromColor = switchPollDimDirs[fromIndex].color
-        const toDimDir = switchPollDimDirs[toIndex].dimensionDirection
-        const toColor = switchPollDimDirs[toIndex].color
-        switchPollDimDirs[fromIndex].dimensionDirection = toDimDir
-        switchPollDimDirs[fromIndex].color = toColor
-        switchPollDimDirs[toIndex].dimensionDirection = fromDimDir
-        switchPollDimDirs[toIndex].color = fromColor
-    }
+	function reposition(
+		switchPollDimDirs,
+		fromIndex,
+		toIndex
+	) {
+		const fromDimDir                                = switchPollDimDirs[fromIndex].dimensionDirection
+		const fromColor                                 = switchPollDimDirs[fromIndex].color
+		const toDimDir                                  = switchPollDimDirs[toIndex].dimensionDirection
+		const toColor                                   = switchPollDimDirs[toIndex].color
+		switchPollDimDirs[fromIndex].dimensionDirection = toDimDir
+		switchPollDimDirs[fromIndex].color              = toColor
+		switchPollDimDirs[toIndex].dimensionDirection   = fromDimDir
+		switchPollDimDirs[toIndex].color                = fromColor
+	}
 
 </script>

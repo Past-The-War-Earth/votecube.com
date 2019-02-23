@@ -1,65 +1,65 @@
 <slot name="icon"></slot>
 <li
-    class="viewType"
-    on:click="setViewType(routes.chart)"
+				class="viewType"
+				on:click="setViewType(routes.chart)"
 >
-<FilterIcon
-></FilterIcon>
+	<FilterIcon
+	></FilterIcon>
 </li>
 
 <style>
-    .viewType {
-        color: white;
-        float: right;
-        font-size: 1.25em;
-        height: 32px;
-        line-height: 28px;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-top: 4px;
-        text-align: center;
-        vertical-align: middle;
-        width: 34px;
-    }
+	.viewType {
+		color: white;
+		float: right;
+		font-size: 1.25em;
+		height: 32px;
+		line-height: 28px;
+		padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 4px;
+		text-align: center;
+		vertical-align: middle;
+		width: 34px;
+	}
 </style>
 
 <script>
-import FilterIcon from '../../../common/icon/FilterIcon.html'
-import store from '../../../store.js'
-import * as routes from '../../../routes'
+	import FilterIcon  from '../../../common/icon/FilterIcon.html'
+	import * as routes from '../../../routes'
+	import store       from '../../../store.js'
 
-export default {
-    components: {
-        FilterIcon
-    },
-    computed: {
-        showCube({$currentPage}) {
-            return $currentPage.key === routes.POLL_INFO_CHART
-        },
+	export default {
+		components: {
+			FilterIcon
+		},
+		computed: {
+			showCube({$currentPage}) {
+				return $currentPage.key === routes.POLL_INFO_CHART
+			},
 
-        showChart({$currentPage}) {
-            return $currentPage.key === routes.POLL_INFO_CUBE
-        },
-    },
-    data() {
-        return {
-            routes: {
-                cube: routes.POLL_INFO_CUBE,
-                chart: routes.POLL_INFO_CHART
-            }
-        }
-    },
-    methods: {
-      setViewType(
-          type
-          ) {
-          this.fire('setViewType', {
-              type,
-              params: this.store.get().routeParams
-          })
-      }
-    },
-    store: () => store
-}
+			showChart({$currentPage}) {
+				return $currentPage.key === routes.POLL_INFO_CUBE
+			},
+		},
+		data() {
+			return {
+				routes: {
+					cube: routes.POLL_INFO_CUBE,
+					chart: routes.POLL_INFO_CHART
+				}
+			}
+		},
+		methods: {
+			setViewType(
+				type
+			) {
+				this.fire('setViewType', {
+					type,
+					params: this.store.get().routeParams
+				})
+			}
+		},
+		store: () => store
+	}
 
 </script>
