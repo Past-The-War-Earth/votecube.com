@@ -5,29 +5,29 @@
 input,
 select,
 textarea {
-    color: #222;
+	color: #222;
 }
 
 .custom-menu-top {
-    padding-bottom: 5px;
-    padding-top: 5px;
+	padding-bottom: 5px;
+	padding-top: 5px;
 }
 
 .pure-menu-horizontal.pure-menu-scrollable.custom-menu-bottom {
-    padding-bottom: 3px;
-    padding-top: 3px;
+	padding-bottom: 3px;
+	padding-top: 3px;
 }
 
 .custom-menu-toggle {
-    top: 0px;
+	top: 0px;
 }
 
 .custom-menu-screen {
-    height: 2.6em;
+	height: 2.6em;
 }
 
 #menu {
-    line-height: 1.6;
+	line-height: 1.6;
 }
 
 
@@ -37,132 +37,132 @@ Cube
 
 
 .slidecontainer {
-    height: 40px;
-    text-align: center;
-    width: 100%;
+	height: 40px;
+	text-align: center;
+	width: 100%;
 }
 
 .slider {
-    -webkit-appearance: none;
-    width: 70%;
-    height: 5px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+	-webkit-appearance: none;
+	width: 70%;
+	height: 5px;
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
 }
 
 .slider:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 35px;
-    height: 35px;
-    background: #333333;
-    cursor: pointer;
-    border-radius: 18px;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 35px;
+	height: 35px;
+	background: #333333;
+	cursor: pointer;
+	border-radius: 18px;
 }
 
 .slider::-moz-range-thumb {
-    width: 35px;
-    height: 35px;
-    background: #333333;
-    cursor: pointer;
-    border-radius: 18px;
+	width: 35px;
+	height: 35px;
+	background: #333333;
+	cursor: pointer;
+	border-radius: 18px;
 }
 
 
 .app-button {
-    background-color: #F0F0F0;
-    border: 3px solid black;
-    border-radius: 30px;
-    color: black;
-    font-size: 1.5em;
-    height: 50px;
-    line-height: 46px;
-    text-align: center;
-    vertical-align: middle;
-    width: 50px;
+	background-color: #F0F0F0;
+	border: 3px solid black;
+	border-radius: 30px;
+	color: black;
+	font-size: 1.5em;
+	height: 50px;
+	line-height: 46px;
+	text-align: center;
+	vertical-align: middle;
+	width: 50px;
 }
 
 @media (min-width: 58em) {
-    .bottomLeft {
-        left: 170px !important;
-    }
+	.bottomLeft {
+		left: 170px !important;
+	}
 
-    .topLeft {
-        left: 170px !important;
-    }
+	.topLeft {
+		left: 170px !important;
+	}
 }
 
 .bottomLeft {
-    bottom: 10px;
-    left: 10px;
-    position: fixed;
-    z-index: 3;
+	bottom: 10px;
+	left: 10px;
+	position: fixed;
+	z-index: 3;
 }
 
 .bottomRight {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 3;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	z-index: 3;
 }
 
 .topLeft {
-    position: fixed;
-    left: 10px;
-    top: 55px;
-    z-index: 3;
+	position: fixed;
+	left: 10px;
+	top: 55px;
+	z-index: 3;
 }
 
 .topRight {
-    position: fixed;
-    right: 10px;
-    top: 55px;
-    z-index: 3;
+	position: fixed;
+	right: 10px;
+	top: 55px;
+	z-index: 3;
 }
 
 var {
-    font-style: normal;
+	font-style: normal;
 }
 
 .moveDown {
-    bottom: 10px;
-    position: absolute;
-    right: 133px;
-    transform: rotate(90deg);
+	bottom: 10px;
+	position: absolute;
+	right: 133px;
+	transform: rotate(90deg);
 }
 
 .moveLeft {
-    left: 10px;
-    position: absolute;
-    top: 133px;
-    transform: rotate(180deg);
+	left: 10px;
+	position: absolute;
+	top: 133px;
+	transform: rotate(180deg);
 }
 
 .moveRight {
-    right: 10px;
-    position: absolute;
-    top: 133px;
+	right: 10px;
+	position: absolute;
+	top: 133px;
 }
 
 .moveUp {
-    right: 133px;
-    position: absolute;
-    top: 10px;
-    transform: rotate(270deg);
+	right: 133px;
+	position: absolute;
+	top: 10px;
+	transform: rotate(270deg);
 }
 
 .switchDirection {
-    right: 133px;
-    position: absolute;
-    top: 133px;
-    transform: rotate(-45deg);
+	right: 133px;
+	position: absolute;
+	top: 133px;
+	transform: rotate(-45deg);
 }
 
 /**
@@ -171,84 +171,84 @@ Remove scrolling on IOS devices
 article,
 body,
 html {
-    height: 100%;
-    position: fixed;
-    width: 100%;
+	height: 100%;
+	position: fixed;
+	width: 100%;
 }
 
 /**
 Form field styling
  */
 .field.invalid {
-    border: 1px solid #b00 !important;
-    border-bottom-right-radius: 2px;
-    border-top-right-radius: 2px;
+	border: 1px solid #b00 !important;
+	border-bottom-right-radius: 2px;
+	border-top-right-radius: 2px;
 }
 
 .field.modified {
-    border: 1px solid #66f !important;
-    border-bottom-right-radius: 2px;
-    border-left: 5px solid #66f !important;
-    border-top-right-radius: 2px;
+	border: 1px solid #66f !important;
+	border-bottom-right-radius: 2px;
+	border-left: 5px solid #66f !important;
+	border-top-right-radius: 2px;
 }
 
 .field.requiredInvalid {
-    border-left: 5px solid #b00 !important;
+	border-left: 5px solid #b00 !important;
 }
 
 .field.requiredValid {
-    border-left: 5px solid #0b0 !important;
+	border-left: 5px solid #0b0 !important;
 }
 
 input.field {
-    padding: 0.5em 0.6em;
-    display: inline-block;
-    border: 0px;
-    vertical-align: middle;
+	padding: 0.5em 0.6em;
+	display: inline-block;
+	border: 0px;
+	vertical-align: middle;
 }
 
 .error {
-    color: #b00;
-    padding-left: 5px;
+	color: #b00;
+	padding-left: 5px;
 }
 
 .field-label {
-    height: 18px;
+	height: 18px;
 }
 
 i {
-    display: inline-block;
+	display: inline-block;
 }
 
 .field {
-    border-left: 5px solid #aaa !important;
-    border-bottom: 1px solid #aaa !important;
-    border-bottom-left-radius: 3px;
-    border-top-left-radius: 3px;
+	border-left: 5px solid #aaa !important;
+	border-bottom: 1px solid #aaa !important;
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 .fieldAid {
-    float: right;
+	float: right;
 }
 
 .dropdown {
-    background-color: white;
-    border-radius: 3px;
-    box-shadow: 5px 5px 1px #777;
-    position: absolute;
-    z-index: 100;
+	background-color: white;
+	border-radius: 3px;
+	box-shadow: 5px 5px 1px #777;
+	position: absolute;
+	z-index: 100;
 }
 
 .submitButton {
-    margin: auto;
-    display: block;
+	margin: auto;
+	display: block;
 }
 
 .colorSelection {
-    border: 3px groove gray;
-    border-radius: 3px;
-    height: 45px;
-    width: 45px;
+	border: 3px groove gray;
+	border-radius: 3px;
+	height: 45px;
+	width: 45px;
 }
 
 /*
@@ -258,34 +258,34 @@ i {
 */
 
 .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .centeredUpsideDown {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(180deg);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(180deg);
 }
 
 .multiRowIconsCenter {
-    padding-top: 5px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+	padding-top: 5px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .smallPadding {
-    margin-block-end: 0.2em;
-    margin-block-start: 0.2em;
+	margin-block-end: 0.2em;
+	margin-block-start: 0.2em;
 }
 
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+	outline: none;
 }
