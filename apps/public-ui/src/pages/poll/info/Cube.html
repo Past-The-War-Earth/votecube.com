@@ -10,7 +10,9 @@
         ></DirectionPositionButton>
     </a>
     {/if}
-    <main>
+    <main
+        class:offToRight="!$verticalLayout"
+    >
         <section
                 id="viewport"
                 style="
@@ -274,6 +276,10 @@
         padding: 0 10px;
     }
 
+    table {
+        z-index: 2;
+    }
+
     .bottom-dimension-table {
         bottom: 10px;
         color: black;
@@ -285,6 +291,10 @@
 
     .leftViewport {
         right: 20%;
+    }
+
+    .offToRight {
+        left: 33%;
     }
 
     .right-dimension-table {

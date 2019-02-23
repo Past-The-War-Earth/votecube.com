@@ -1,42 +1,46 @@
 <nav
-  class:active="active"
-  id="menu"
+        class:active="active"
+        id="menu"
 >
-  <section
-    class="pure-menu"
-  >
-    <a
-      class="pure-menu-heading"
-      href="#"
+    <section
+            class="pure-menu"
     >
-      VOTECUBE
-    </a>
+        <a
+                class="pure-menu-heading"
+                href="#"
+        >
+            VOTECUBE
+        </a>
 
-    <ul class="pure-menu-list">
-      {#each menuItems as menuItem, index}
-        <MenuItem
-            index="{index}"
-            menuItem="{menuItem}"
-            on:select="selectMenu(event)"
-            selectedIndex="{selectedMenuIndex}"
-        ></MenuItem>
-      {/each}
-    </ul>
-  </section>
+        <ul class="pure-menu-list">
+            {#each menuItems as menuItem, index}
+            <MenuItem
+                    index="{index}"
+                    menuItem="{menuItem}"
+                    on:select="selectMenu(event)"
+                    selectedIndex="{selectedMenuIndex}"
+            ></MenuItem>
+            {/each}
+        </ul>
+    </section>
+    <div
+            id="sizer"
+    ></div>
+
 </nav>
 
 <script>
-import MenuItem from './MenuItem.html'
+    import MenuItem from './MenuItem.html'
+    import * as routes from '../../routes'
+    import store from '../../store.js';
 
-import * as routes from '../../routes'
-
-export default {
-    components: {
-        MenuItem
-    },
-    data() {
-        return {
-            menuItems: [{
+    export default {
+        components: {
+            MenuItem
+        },
+        data() {
+            return {
+                menuItems: [{
                     index: 0,
                     key: routes.POLL_SEARCH_LIST,
                     name: 'Polls'
@@ -46,22 +50,32 @@ export default {
                     params: routes.DEFAULT_ROUTE_PARAMS,
                     name: 'Create Poll',
                 }
-            ],
-            selectedMenuIndex: 0
-        }
-    },
-    methods: {
-        // clickMenuLink(event) {
+                ],
+                selectedMenuIndex: 0
+            }
+        },
+        methods: {
+            // clickMenuLink(event) {
             // if (DOM_API.e(menuElementIdSelector)
             //   .className
             //   .indexOf('active') !== -1) {
             //   this.toggleAll(event)
             // }
-        // },
-        selectMenu(menuItem) {
-            this.set({selectedMenuIndex: menuItem.index})
-            this.fire('selected', menuItem)
-        }
+            // },
+            selectMenu(menuItem) {
+                this.set({selectedMenuIndex: menuItem.index})
+                this.fire('selected', menuItem)
+            }
+        },
+        oncreate() {
+            this.store.set({emInPx: getEmInPx()})
+        },
+        store: () => store
     }
-}
+
+    function getEmInPx() {
+        var div = document.getElementById('sizer');
+        div.style.height = '1em';
+        return div.offsetHeight;
+    }
 </script>

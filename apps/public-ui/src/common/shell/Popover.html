@@ -1,7 +1,7 @@
 <aside>
     <div>
         <section
-            style="
+                style="
                 height: {height};
                 width: {width};
             "
@@ -14,6 +14,7 @@
 <style>
     aside {
         background-color: rgba(32, 32, 32, 0.7);
+        float: left;
         height: 100%;
         left: 0px;
         position: fixed;
@@ -21,11 +22,13 @@
         width: 100%;
         z-index: 1000;
     }
+
     div {
         /*position: relative;*/
         width: 100%;
         height: 100%;
     }
+
     section {
         background-color: #fff;
         border: 1px solid black;
@@ -39,12 +42,12 @@
     }
 </style>
 <script>
-export default {
-    data: () => {
-        return {
-            height: 'initial',
-            width: 'initial'
+    export default {
+        data: () => {
+            return {
+                height: 'initial',
+                width: 'initial'
+            }
         }
     }
-}
 </script>

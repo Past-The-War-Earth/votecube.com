@@ -44,13 +44,24 @@ function resize(
     store
 ) {
     const windowWidth = window.innerWidth
-    const portalHeight = window.innerHeight - 44
+    const portalHeight = window.innerHeight
 
     let verticalLayout = true
-    if (portalHeight < windowWidth) {
+    if (portalHeight < windowWidth && portalHeight < 400) {
         verticalLayout = false
     }
-    store.set({portalHeight, resized: false, verticalLayout, windowWidth})
+
+    let leftMenuFixed = windowWidth >= store.get().emInPx * 58
+    let topMenuInLine = windowWidth >= store.get().emInPx * 62
+
+    store.set({
+        leftMenuFixed,
+        portalHeight,
+        resized: false,
+        topMenuInLine,
+        verticalLayout,
+        windowWidth
+    })
 
     if (viewCallback) {
         viewCallback(portalHeight, windowWidth, verticalLayout)

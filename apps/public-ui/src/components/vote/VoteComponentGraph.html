@@ -1,5 +1,6 @@
 <figure
         id="chart"
+        class:desktopFigure="$leftMenuFixed"
         class:leftFigure="horizontalPage"
         class:topFigure="verticalPage"
         class:confirmFigure="!isPage"
@@ -81,24 +82,24 @@
     <tr>
         <td>
             <DimensionInfoButton
-                axis='x'
-                bind:mode
-                delta="{delta}"
-                on:toggle="fire('toggleX')"
-                poll="{poll}"
-                position="left"
-                voteDim="{vote.x}"
+                    axis='x'
+                    bind:mode
+                    delta="{delta}"
+                    on:toggle="fire('toggleX')"
+                    poll="{poll}"
+                    position="left"
+                    voteDim="{vote.x}"
             ></DimensionInfoButton>
         </td>
         <td
-            class="directionText"
+                class="directionText"
         >
             {xText(delta, mode, poll, vote)}
         </td>
     <tr>
     </tr>
-        <td>
-            <DimensionInfoButton
+    <td>
+        <DimensionInfoButton
                 axis='y'
                 bind:mode
                 delta="{delta}"
@@ -107,28 +108,28 @@
                 poll="{poll}"
                 position="left"
                 voteDim="{vote.y}"
-            ></DimensionInfoButton>
-        </td>
-        <td
+        ></DimensionInfoButton>
+    </td>
+    <td
             class="directionText"
-        >
-            {yText(delta, mode, poll, vote)}
-        </td>
+    >
+        {yText(delta, mode, poll, vote)}
+    </td>
     <tr>
         <td>
             <DimensionInfoButton
-                axis='z'
-                bind:mode
-                delta="{delta}"
-                float="left"
-                on:toggle="fire('toggleZ')"
-                poll="{poll}"
-                position="left"
-                voteDim="{vote.z}"
+                    axis='z'
+                    bind:mode
+                    delta="{delta}"
+                    float="left"
+                    on:toggle="fire('toggleZ')"
+                    poll="{poll}"
+                    position="left"
+                    voteDim="{vote.z}"
             ></DimensionInfoButton>
         </td>
         <td
-            class="directionText"
+                class="directionText"
         >
             {zText(delta, mode, poll, vote)}
         </td>
@@ -186,6 +187,10 @@
         width: 100%;
     }
 
+    .desktopFigure.topFigure {
+        width: calc(100% - 160px);
+    }
+
     .confirmFigure td,
     .confirmTable td {
         padding: 2px;
@@ -226,132 +231,132 @@
 </style>
 
 <script>
-import DimensionInfoButton from '../../common/control/button/DimensionInfoButton.html'
-import {getColor, getSideText} from '../../helpers/cube';
+    import DimensionInfoButton from '../../common/control/button/DimensionInfoButton.html'
+    import {getColor, getSideText} from '../../helpers/cube';
 
-export default {
-    components: {
-        DimensionInfoButton
-    },
-    computed: {
-        horizontalPage: ({
-            mode,
-            verticalLayout
-        }) => {
-            return mode == 'page' && !verticalLayout
+    export default {
+        components: {
+            DimensionInfoButton
         },
-        maxValue: ({poll, delta, vote}) => {
-            if(!vote) {
-                return 0
+        computed: {
+            horizontalPage: ({
+                                 mode,
+                                 verticalLayout
+                             }) => {
+                return mode == 'page' && !verticalLayout
+            },
+            maxValue: ({poll, delta, vote}) => {
+                if (!vote) {
+                    return 0
+                }
+
+                const positiveValues = []
+                const negativeValues = []
+
+                addToVals(poll, vote.x, positiveValues, negativeValues)
+                addToVals(poll, vote.y, positiveValues, negativeValues)
+                addToVals(poll, vote.z, positiveValues, negativeValues)
+
+                const maxPositiveValue = getMaxVal(positiveValues)
+                const maxNegativeValue = getMaxVal(negativeValues)
+
+                return maxPositiveValue + maxNegativeValue
+            },
+            isPage: ({mode}) => mode == 'page',
+            verticalPage: ({
+                               mode,
+                               verticalLayout
+                           }) => {
+                return mode == 'page' && verticalLayout
             }
-
-            const positiveValues = []
-            const negativeValues = []
-
-            addToVals(poll, vote.x, positiveValues, negativeValues)
-            addToVals(poll, vote.y, positiveValues, negativeValues)
-            addToVals(poll, vote.z, positiveValues, negativeValues)
-
-            const maxPositiveValue = getMaxVal(positiveValues)
-            const maxNegativeValue = getMaxVal(negativeValues)
-
-            return maxPositiveValue + maxNegativeValue
         },
-        isPage: ({mode}) => mode == 'page',
-        verticalPage: ({
-            mode,
-            verticalLayout
-        }) => {
-            return mode == 'page' && verticalLayout
-        }
-    },
-	helpers: {
-		getColor,
-		xMinusHeight: (delta, maxBarSize, maxValue, vote) =>
-		    vote ?
-		    barHeight(vote.x, -1, maxBarSize, maxValue)
-		    : 0,
-        xPlusHeight: (delta, maxBarSize, maxValue, vote) =>
-            vote ?
-            barHeight(vote.x, 1, maxBarSize, maxValue)
-            : 0,
-        xText: (delta, mode, poll, vote) =>
-            vote ?
-            directionText(delta, mode, poll, vote.x)
-            : '',
-        yMinusHeight: (delta, maxBarSize, maxValue, vote) =>
-            vote ?
-            barHeight(vote.y, -1, maxBarSize, maxValue)
-            : 0,
-        yPlusHeight: (delta, maxBarSize, maxValue, vote) =>
-            vote ?
-            barHeight(vote.y, 1, maxBarSize, maxValue)
-            : 0,
-        yText: (delta, mode, poll, vote) =>
-            vote ?
-            directionText(delta, mode, poll, vote.y)
-            : '',
-        zMinusHeight: (delta, maxBarSize, maxValue, vote) =>
-            vote ?
-            barHeight(vote.z, -1, maxBarSize, maxValue)
-            : 0,
-        zPlusHeight: (delta, maxBarSize, maxValue, vote) =>
-            vote ?
-            barHeight(vote.z, 1, maxBarSize, maxValue)
-            : 0,
-        zText: (delta,  mode, poll, vote) =>
-            vote ?
-            directionText(delta, mode, poll, vote.z)
-            : ''
-	}
-}
-
-function barHeight(
-    voteDimension,
-    direction,
-    maxBarSize,
-    maxValue
-) {
-    return voteDimension
-    && voteDimension.dir === direction
-        ? voteDimension.value * maxBarSize / (maxValue * 1.2)
-        : 0
-}
-
-function directionText(
-    delta,
-    mode,
-    poll,
-    voteDimension
-) {
-    return getSideText(delta, mode, poll, voteDimension.axis, voteDimension.dir)
-}
-
-function addToVals(
-    poll,
-    voteDimension,
-    positiveValues,
-    negativeValues
-) {
-    if (voteDimension.dir === 1) {
-        positiveValues.push(voteDimension.value);
-    } else {
-        negativeValues.push(voteDimension.value);
-    }
-}
-
-function getMaxVal(
-    values
-) {
-    let maximumValue = 0
-
-    for (const value of values) {
-        if (value > maximumValue) {
-            maximumValue = value
+        helpers: {
+            getColor,
+            xMinusHeight: (delta, maxBarSize, maxValue, vote) =>
+                vote ?
+                    barHeight(vote.x, -1, maxBarSize, maxValue)
+                    : 0,
+            xPlusHeight: (delta, maxBarSize, maxValue, vote) =>
+                vote ?
+                    barHeight(vote.x, 1, maxBarSize, maxValue)
+                    : 0,
+            xText: (delta, mode, poll, vote) =>
+                vote ?
+                    directionText(delta, mode, poll, vote.x)
+                    : '',
+            yMinusHeight: (delta, maxBarSize, maxValue, vote) =>
+                vote ?
+                    barHeight(vote.y, -1, maxBarSize, maxValue)
+                    : 0,
+            yPlusHeight: (delta, maxBarSize, maxValue, vote) =>
+                vote ?
+                    barHeight(vote.y, 1, maxBarSize, maxValue)
+                    : 0,
+            yText: (delta, mode, poll, vote) =>
+                vote ?
+                    directionText(delta, mode, poll, vote.y)
+                    : '',
+            zMinusHeight: (delta, maxBarSize, maxValue, vote) =>
+                vote ?
+                    barHeight(vote.z, -1, maxBarSize, maxValue)
+                    : 0,
+            zPlusHeight: (delta, maxBarSize, maxValue, vote) =>
+                vote ?
+                    barHeight(vote.z, 1, maxBarSize, maxValue)
+                    : 0,
+            zText: (delta, mode, poll, vote) =>
+                vote ?
+                    directionText(delta, mode, poll, vote.z)
+                    : ''
         }
     }
 
-    return maximumValue
-}
+    function barHeight(
+        voteDimension,
+        direction,
+        maxBarSize,
+        maxValue
+    ) {
+        return voteDimension
+        && voteDimension.dir === direction
+            ? voteDimension.value * maxBarSize / (maxValue * 1.2)
+            : 0
+    }
+
+    function directionText(
+        delta,
+        mode,
+        poll,
+        voteDimension
+    ) {
+        return getSideText(delta, mode, poll, voteDimension.axis, voteDimension.dir)
+    }
+
+    function addToVals(
+        poll,
+        voteDimension,
+        positiveValues,
+        negativeValues
+    ) {
+        if (voteDimension.dir === 1) {
+            positiveValues.push(voteDimension.value);
+        } else {
+            negativeValues.push(voteDimension.value);
+        }
+    }
+
+    function getMaxVal(
+        values
+    ) {
+        let maximumValue = 0
+
+        for (const value of values) {
+            if (value > maximumValue) {
+                maximumValue = value
+            }
+        }
+
+        return maximumValue
+    }
 
 </script>

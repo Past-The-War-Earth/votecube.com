@@ -3472,8 +3472,9 @@ pre .support.value {
 .custom-menu-wrapper {
     background-color: #808080;
     /*margin-bottom: 2.5em;*/
-    white-space: nowrap;
     position: relative;
+    white-space: nowrap;
+    z-index: 2;
 }
 
 .custom-menu {
@@ -3552,7 +3553,6 @@ pre .support.value {
 }
 
 .custom-menu-screen {
-    background-color: rgba(0, 0, 0, 0.5);
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -ms-transition: all 0.5s;

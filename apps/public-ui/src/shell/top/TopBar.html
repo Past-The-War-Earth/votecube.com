@@ -1,30 +1,35 @@
 <div
-    class="custom-menu-wrapper"
-    style="margin-bottom: {wrapperMarginBottom}em"
+        class="custom-menu-wrapper"
+        class:desktopTopNav="$leftMenuFixed"
+        style="margin-bottom: {wrapperMarginBottom}em"
 >
-  <TopBarHeader></TopBarHeader>
-{#if showTopMenu}
-  <TopMenu
-    on:setViewType
-  ></TopMenu>
-{/if}
+    <TopBarHeader></TopBarHeader>
+    <TopMenu
+            on:setViewType
+    ></TopMenu>
 </div>
-
-<script>
-import * as routes from '../../routes'
-import TopBarHeader from './TopBarHeader.html'
-import TopMenu from './TopMenu.html'
-
-export default {
-    components: {
-        TopBarHeader,
-        TopMenu
-    },
-    computed: {
-        showTopMenu: ({$currentPage}) => !!routes.getTopMenuComponent(),
-        wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
-        ? 2.5
-        : 0
+<style>
+    div {
+        z-index: 4;
     }
-}
+
+    .desktopTopNav {
+        margin-left: 160px;
+    }
+</style>
+<script>
+    import TopBarHeader from './TopBarHeader.html'
+    import TopMenu from './TopMenu.html'
+
+    export default {
+        components: {
+            TopBarHeader,
+            TopMenu
+        },
+        computed: {
+            wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
+                ? 2.5
+                : 0
+        }
+    }
 </script>

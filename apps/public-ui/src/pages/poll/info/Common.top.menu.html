@@ -1,61 +1,64 @@
-{#if editable}
-<li
-  class="pure-menu-item viewType"
-  on:click="confirmAlter()"
->
-  <AlterIcon
-  ></AlterIcon>
-</li>
-{/if}
 <li class="pure-menu-item">
-  <nav
-      class="pure-menu-link"
-  >Rankings</nav>
+    <nav
+            class="pure-menu-link"
+    >Rankings
+    </nav>
 </li>
 <li class="pure-menu-item">
-  <nav
-      class="pure-menu-link"
-  >Stats</nav>
+    <nav
+            class="pure-menu-link"
+    >Stats
+    </nav>
 </li>
 <slot name="icon"></slot>
+{#if editable}
+<li
+        class="viewType"
+        on:click="confirmAlter(event)"
+>
+    <AlterIcon
+    ></AlterIcon>
+</li>
+{/if}
 {#if showCube}
 <li
-    class="viewType"
-    on:click="setViewType(routes.cube)"
+        class="viewType"
+        on:click="setViewType(routes.cube)"
 >
-<svg width="24" height="28">
- <g>
-  <line stroke-width="2" x1="12" y1="14" x2="12" y2="29" stroke="#fff"/>
-  <line stroke-width="2" x1="12" y1="15" x2="24" y2="7" stroke="#fff"/>
-  <line stroke-width="2" x1="12" y1="15" x2="0" y2="7" stroke="#fff"/>
-  <line stroke-width="2" x1="11" y1="29" x2="25" y2="18" stroke="#fff"/>
-  <line stroke-width="2" x1="13" y1="29" x2="-1" y2="18" stroke="#fff"/>
-  <line stroke-width="2" x1="0" y1="7" x2="13" y2="0" stroke="#fff"/>
-  <line stroke-width="2" x1="24" y1="7" x2="11" y2="0" stroke="#fff"/>
-  <line stroke-width="2" x1="1" y1="20" x2="1" y2="8" stroke="#fff"/>
-  <line stroke-width="2" x1="23" y1="20" x2="23" y2="8" stroke="#fff"/>
- </g>
-</svg>
+    <svg width="24" height="28">
+        <g>
+            <line stroke-width="2" x1="12" y1="14" x2="12" y2="29" stroke="#fff"/>
+            <line stroke-width="2" x1="12" y1="15" x2="24" y2="7" stroke="#fff"/>
+            <line stroke-width="2" x1="12" y1="15" x2="0" y2="7" stroke="#fff"/>
+            <line stroke-width="2" x1="11" y1="29" x2="25" y2="18" stroke="#fff"/>
+            <line stroke-width="2" x1="13" y1="29" x2="-1" y2="18" stroke="#fff"/>
+            <line stroke-width="2" x1="0" y1="7" x2="13" y2="0" stroke="#fff"/>
+            <line stroke-width="2" x1="24" y1="7" x2="11" y2="0" stroke="#fff"/>
+            <line stroke-width="2" x1="1" y1="20" x2="1" y2="8" stroke="#fff"/>
+            <line stroke-width="2" x1="23" y1="20" x2="23" y2="8" stroke="#fff"/>
+        </g>
+    </svg>
 </li>
 {/if}
 {#if showChart}
 <li
-    class="viewType"
-    on:click="setViewType(routes.chart)"
+        class="viewType"
+        on:click="setViewType(routes.chart)"
 >
-<svg width="24" height="28">
- <g>
-  <rect height="12" width="6" y="15" x="1" stroke-width="2" stroke="#fff" fill="none"/>
-  <rect height="19" width="6" y="8" x="9" stroke-width="2" stroke="#fff" fill="none"/>
-  <rect height="26" width="6" y="1" x="17" stroke-width="2" stroke="#fff" fill="none"/>
- </g>
-</svg>
+    <svg width="24" height="28">
+        <g>
+            <rect height="12" width="6" y="15" x="1" stroke-width="2" stroke="#fff" fill="none"/>
+            <rect height="19" width="6" y="8" x="9" stroke-width="2" stroke="#fff" fill="none"/>
+            <rect height="26" width="6" y="1" x="17" stroke-width="2" stroke="#fff" fill="none"/>
+        </g>
+    </svg>
 </li>
 {/if}
+
 {#if confirm}
 <ActionPopover
-    on:cancel="doNotAlter()"
-    width="90%"
+        on:cancel="doNotAlter()"
+        width="90%"
 >
     <div slot="header">
         Please Confirm
@@ -65,7 +68,7 @@
     </div>
     <div slot="actions">
         <AlterButton
-            on:select="alter($routeParams)"
+                on:select="alter($routeParams)"
         ></AlterButton>
     </div>
 </ActionPopover>
@@ -87,60 +90,60 @@
 </style>
 
 <script>
-import AlterButton from '../../../common/control/button/AlterButton.html'
-import AlterIcon from '../../../common/icon/AlterIcon.html'
-import ActionPopover from '../../../common/shell/ActionPopover.html'
-import store from '../../../store.js'
-import * as routes from '../../../routes'
+    import AlterButton from '../../../common/control/button/AlterButton.html'
+    import AlterIcon from '../../../common/icon/AlterIcon.html'
+    import ActionPopover from '../../../common/shell/ActionPopover.html'
+    import store from '../../../store.js'
+    import * as routes from '../../../routes'
 
-export default {
-    components: {
-        ActionPopover,
-        AlterButton,
-        AlterIcon
-    },
-    computed: {
-        editable: ({$routeParams}) => $routeParams.mode === 'vote',
-        showCube({$currentPage}) {
-            return $currentPage.key === routes.POLL_INFO_CHART
+    export default {
+        components: {
+            ActionPopover,
+            AlterButton,
+            AlterIcon
         },
+        computed: {
+            editable: ({$routeParams}) => $routeParams.mode === 'vote',
+            showCube({$currentPage}) {
+                return $currentPage.key === routes.POLL_INFO_CHART
+            },
 
-        showChart({$currentPage}) {
-            return $currentPage.key === routes.POLL_INFO_CUBE
+            showChart({$currentPage}) {
+                return $currentPage.key === routes.POLL_INFO_CUBE
+            },
         },
-    },
-    data() {
-        return {
-            routes: {
-                cube: routes.POLL_INFO_CUBE,
-                chart: routes.POLL_INFO_CHART
+        data() {
+            return {
+                routes: {
+                    cube: routes.POLL_INFO_CUBE,
+                    chart: routes.POLL_INFO_CHART
+                }
             }
-        }
-    },
-    methods: {
-        alter($routeParams) {
-            this.set({confirm: false})
-            routes.navigateToPage(routes.POLL_INFO_MAIN, {
-                ...$routeParams,
-                mode: 'alter'
-            })
         },
-        confirmAlter() {
-            this.set({confirm: true})
-        },
-        doNotAlter() {
-            this.set({confirm: false})
-        },
-        setViewType(
-            type
+        methods: {
+            alter($routeParams) {
+                this.set({confirm: false})
+                routes.navigateToPage(routes.POLL_INFO_MAIN, {
+                    ...$routeParams,
+                    mode: 'alter'
+                })
+            },
+            confirmAlter(event) {
+                this.set({confirm: true})
+            },
+            doNotAlter() {
+                this.set({confirm: false})
+            },
+            setViewType(
+                type
             ) {
-            this.fire('setViewType', {
-                type,
-                params: this.store.get().routeParams
-            })
-        }
-    },
-    store: () => store
-}
+                this.fire('setViewType', {
+                    type,
+                    params: this.store.get().routeParams
+                })
+            }
+        },
+        store: () => store
+    }
 
 </script>
