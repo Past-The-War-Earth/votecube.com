@@ -3,7 +3,7 @@
 		<section
 						style="
                 height: {height};
-                width: {width};
+                width: {theWidth};
             "
 		>
 			<slot name="content">
@@ -12,6 +12,7 @@
 	</div>
 </aside>
 <style>
+
 	aside {
 		background-color: rgba(32, 32, 32, 0.7);
 		height: 100%;
@@ -42,6 +43,19 @@
 </style>
 <script>
 	export default {
+		computed: {
+			theWidth: ({
+				           $isDesktop,
+				           desktopWidth,
+				           width
+			           }) => {
+				if ($isDesktop) {
+					return desktopWidth ? desktopWidth : '45%'
+				} else {
+					return width ? width : '90%'
+				}
+			}
+		},
 		data: () => {
 			return {
 				height: 'initial',

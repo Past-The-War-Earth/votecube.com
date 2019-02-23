@@ -1,6 +1,5 @@
 <figure
 				id="chart"
-				class:desktopFigure="$isDesktop"
 				class:leftFigure="horizontalPage"
 				class:topFigure="verticalPage"
 				class:confirmFigure="!isPage"
@@ -74,7 +73,6 @@
 </figure>
 <table
 				class="info"
-				class:desktopInfo="$isDesktop"
 				class:bottomInfo="verticalPage"
 				class:confirmTable="!isPage"
 				class:pageTable="isPage"
@@ -138,15 +136,36 @@
 </table>
 
 <style>
+	@media (min-width: 62em) {
+		.topFigure {
+			width: 60% !important;
+		}
+
+		.bottomInfo {
+			width: 60% !important;
+		}
+
+		.directionText {
+			font-size: calc(1.6vw + 1.6vh) !important;
+		}
+
+		.confirmTable .directionText {
+			font-size: calc(0.8vw + 0.8vh) !important;
+		}
+	}
+
+	figure.confirmFigure div {
+		margin: 3px;
+	}
+
+	figure.pageFigure div {
+		margin: 10px;
+	}
 
 	.bottomInfo {
 		bottom: 5px;
 		position: fixed;
 		width: 100%;
-	}
-
-	.bottomInfo.desktopInfo {
-		width: calc(100% - 160px);
 	}
 
 	.chart-contents {
@@ -155,6 +174,16 @@
 
 	.confirmFigure {
 		margin: 0 20%;
+	}
+
+	.confirmFigure td,
+	.confirmTable td {
+		padding: 2px;
+		vertical-align: middle;
+	}
+
+	.confirmTable .directionText {
+		font-size: calc(1.2vw + 1.2vh);
 	}
 
 	.directionText {
@@ -179,6 +208,12 @@
 		margin: 0.8em;
 	}
 
+	.pageFigure td,
+	.pageTable td {
+		padding: 5px;
+		vertical-align: middle;
+	}
+
 	.rightInfo {
 		position: fixed;
 		right: 5px;
@@ -192,22 +227,6 @@
 		width: 100%;
 	}
 
-	.desktopFigure.topFigure {
-		width: calc(100% - 160px);
-	}
-
-	.confirmFigure td,
-	.confirmTable td {
-		padding: 2px;
-		vertical-align: middle;
-	}
-
-	.pageFigure td,
-	.pageTable td {
-		padding: 5px;
-		vertical-align: middle;
-	}
-
 	#plus td {
 		border-bottom: 1px solid black;
 		vertical-align: bottom;
@@ -215,14 +234,6 @@
 
 	#minus td {
 		vertical-align: top;
-	}
-
-	figure.confirmFigure div {
-		margin: 3px;
-	}
-
-	figure.pageFigure div {
-		margin: 10px;
 	}
 
 	#plus div {

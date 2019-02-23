@@ -180,7 +180,6 @@
 					on:cancel="closeConfirm()"
 					viewOnly="!error"
 					infoOnly="error"
-					width="90%"
 	>
 		<div slot="header">
 			{saving}
@@ -193,7 +192,6 @@
 	<ActionPopover
 					contentClass="smallPadding"
 					on:cancel="closeConfirm()"
-					width="90%"
 	>
 		<div slot="header">
 			Confirm Vote
@@ -220,7 +218,6 @@
 	{:else}
 	<ActionPopover
 					on:cancel="closeConfirm()"
-					width="90%"
 	>
 		<div slot="header">
 			Please Confirm
@@ -241,11 +238,11 @@
 <style>
 	@media (min-width: 62em) {
 		article {
-			width: calc(100% - 160px);
+			width: 60%;
 		}
 
 		.bottom-dimension-table {
-			width: calc(100% - 300px) !important;
+			width: 54% !important;
 		}
 	}
 
