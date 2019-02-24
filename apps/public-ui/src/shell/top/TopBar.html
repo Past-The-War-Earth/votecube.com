@@ -1,6 +1,5 @@
 <div
 				class="custom-menu-wrapper"
-				class:mainMenuOffset="mainMenuOffset"
 				style="margin-bottom: {wrapperMarginBottom}em"
 >
 	<TopBarHeader></TopBarHeader>
@@ -11,10 +10,6 @@
 <style>
 	div {
 		z-index: 1100;
-	}
-
-	.mainMenuOffset {
-		margin-left: 160px;
 	}
 </style>
 <script>
@@ -27,12 +22,6 @@
 			TopMenu
 		},
 		computed: {
-			mainMenuOffset: ({
-				                 $cube,
-				                 $isDesktop,
-			                 }) => {
-				return $cube && $isDesktop
-			},
 			wrapperMarginBottom: ({$showTopMenu}) => $showTopMenu
 				? 2.5
 				: 0

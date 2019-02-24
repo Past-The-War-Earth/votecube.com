@@ -4,15 +4,18 @@
     <bookmark url="file://$USER_HOME$/dac/template/test.js" description="&#10;const charCache = new Array(128);  // Preallocate..." line="54" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="layout adjustments">
+    <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="layout adjustments for desktop">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/text_en-us_ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/text_en-us_ui.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/votecube.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/control/PercentPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/control/PercentPicker.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/shell/ActionPopover.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/shell/ActionPopover.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/shell/Popover.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/shell/Popover.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/shell/TextToast.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/shell/TextToast.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/poll/info/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/info/Cube.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/info/Main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shell/top/TopBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/shell/top/TopBar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/ajax/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/di/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/di/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/model/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/model/.idea/workspace.xml" afterDir="false" />
@@ -47,29 +50,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.49578503">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/App.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1408">
-                  <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Chart.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="226">
-                  <caret line="76" column="26" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="26" />
+                <state relative-caret-position="-468">
+                  <caret line="149" column="28" selection-start-line="149" selection-start-column="28" selection-end-line="149" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
@@ -79,23 +64,22 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Cube.html">
+            <entry file="file://$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
-                  <caret line="215" column="10" lean-forward="true" selection-start-line="215" selection-start-column="10" selection-end-line="218" selection-end-column="16" />
-                  <folding>
-                    <element signature="n#style#0;n#section#0;n#main#0;n#article#0;n#!!top" expanded="true" />
-                    <element signature="e#7327#7408#0#HTML" expanded="true" />
-                  </folding>
+                <state relative-caret-position="3278">
+                  <caret line="167" column="16" selection-start-line="167" selection-start-column="16" selection-end-line="167" selection-end-column="16" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html">
+            <entry file="file://$PROJECT_DIR$/src/common/shell/Popover.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="339">
-                  <caret line="185" column="31" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
+                <state relative-caret-position="714">
+                  <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+                  <folding>
+                    <element signature="n#style#0;n#section#0;n#div#0;n#aside#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -116,11 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>legend</find>
-      <find>fieldset</find>
-      <find>pure-controls</find>
-      <find>label</find>
-      <find>custom-menu-bottom</find>
       <find>leftMenuFixed</find>
       <find>topMenuInLine</find>
       <find>showTopMenu</find>
@@ -142,10 +121,15 @@
       <find>isDesk</find>
       <find>&lt;ActionPopover</find>
       <find>main {</find>
-      <find>selectMenu</find>
       <find>width</find>
       <find>activeClass</find>
       <find>directionText</find>
+      <find>21%</find>
+      <find>20%</find>
+      <find>bottom-dimension</find>
+      <find>mainMenuOffset</find>
+      <find>selectMenu</find>
+      <find>dimension is required</find>
     </findStrings>
     <replaceStrings>
       <replace>DimensionInfoButton</replace>
@@ -197,7 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/helpers/general.js" />
         <option value="$PROJECT_DIR$/src/libs/text/colors.js" />
         <option value="$PROJECT_DIR$/src/libs/text/locations.js" />
         <option value="$PROJECT_DIR$/src/libs/text/setText.js" />
@@ -231,23 +214,24 @@
         <option value="$PROJECT_DIR$/src/pages/poll/Timeframe.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/search/List.html" />
         <option value="$PROJECT_DIR$/src/common/control/LinearPositionPicker.html" />
-        <option value="$PROJECT_DIR$/src/common/shell/TextToast.html" />
-        <option value="$PROJECT_DIR$/src/shell/top/TopBar.html" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.eslintrc.json" />
         <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/src/shell/top/TopMenu.html" />
         <option value="$PROJECT_DIR$/src/shell/menu/Menu.html" />
         <option value="$PROJECT_DIR$/public/global.css" />
-        <option value="$PROJECT_DIR$/src/common/control/PercentPicker.html" />
-        <option value="$PROJECT_DIR$/src/App.html" />
+        <option value="$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html" />
+        <option value="$PROJECT_DIR$/src/pages/poll/info/Main.html" />
         <option value="$PROJECT_DIR$/public/votecube.css" />
         <option value="$PROJECT_DIR$/src/common/shell/ActionPopover.html" />
-        <option value="$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html" />
         <option value="$PROJECT_DIR$/src/pages/poll/info/Cube.html" />
-        <option value="$PROJECT_DIR$/src/pages/poll/info/Main.html" />
-        <option value="$PROJECT_DIR$/src/common/shell/Popover.html" />
+        <option value="$PROJECT_DIR$/src/common/control/PercentPicker.html" />
+        <option value="$PROJECT_DIR$/src/shell/top/TopBar.html" />
+        <option value="$PROJECT_DIR$/src/common/shell/TextToast.html" />
+        <option value="$PROJECT_DIR$/src/App.html" />
         <option value="$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html" />
+        <option value="$PROJECT_DIR$/public/text_en-us_ui.js" />
+        <option value="$PROJECT_DIR$/src/common/shell/Popover.html" />
       </list>
     </option>
   </component>
@@ -285,6 +269,11 @@
             <path>
               <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="public-ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -745,8 +734,8 @@
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49925485" visible="true" weight="0.16257995" />
-      <window_info id="Favorites" order="1" sideWeight="0.5007452" side_tool="true" visible="true" weight="0.16257995" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49925485" visible="true" weight="0.16257995" />
+      <window_info id="Favorites" order="1" sideWeight="0.5007452" side_tool="true" weight="0.16257995" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -759,7 +748,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.58359295" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3032191" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3032191" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
@@ -809,7 +798,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="finished refactoring data model to new standard" />
     <MESSAGE value="fixed chart state bug" />
     <MESSAGE value="added the build button" />
     <MESSAGE value="build icon adjustments" />
@@ -834,18 +822,10 @@
     <MESSAGE value="Additional layout fixes." />
     <MESSAGE value="formatted files" />
     <MESSAGE value="layout adjustments" />
-    <option name="LAST_COMMIT_MESSAGE" value="layout adjustments" />
+    <MESSAGE value="layout adjustments for desktop" />
+    <option name="LAST_COMMIT_MESSAGE" value="layout adjustments for desktop" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/example/async.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#449#490#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/poll/search/ListItem.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1057,30 +1037,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shell/top/TopBar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/shell/TextToast.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#1731#1781#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/libs/cubeLogic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -1088,31 +1044,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1408">
-          <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/poll/search/List.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/global.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="402" column="17" lean-forward="true" selection-start-line="402" selection-start-column="17" selection-end-line="402" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/votecube.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="97" column="26" lean-forward="true" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1130,23 +1065,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/shell/ActionPopover.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/shell/Popover.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding>
-            <element signature="n#style#0;n#section#0;n#div#0;n#aside#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/control/button/BuildButton.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -1154,13 +1072,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/global.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="631" column="19" selection-start-line="631" selection-start-column="19" selection-end-line="631" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/votecube.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="92" column="15" selection-start-line="92" selection-start-column="15" selection-end-line="92" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Cube.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="215" column="10" lean-forward="true" selection-start-line="215" selection-start-column="10" selection-end-line="218" selection-end-column="16" />
+        <state relative-caret-position="162">
+          <caret line="241" column="5" selection-start-line="241" selection-start-column="5" selection-end-line="241" selection-end-column="5" />
           <folding>
             <element signature="n#style#0;n#section#0;n#main#0;n#article#0;n#!!top" expanded="true" />
-            <element signature="e#7327#7408#0#HTML" expanded="true" />
+            <element signature="e#7321#7402#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1172,10 +1104,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/control/PercentPicker.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#1792#1842#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shell/top/TopBar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/shell/ActionPopover.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/shell/TextToast.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="149" column="28" selection-start-line="149" selection-start-column="28" selection-end-line="149" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="185" column="31" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
+        <state relative-caret-position="3278">
+          <caret line="167" column="16" selection-start-line="167" selection-start-column="16" selection-end-line="167" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/text_en-us_ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="116" column="36" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/shell/Popover.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#div#0;n#aside#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

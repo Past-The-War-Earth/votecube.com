@@ -91,19 +91,19 @@ Cube
 
 @media (min-width: 62em) {
 	.bottomLeft {
-		left: 21% !important;
+		left: 24% !important;
 	}
 
 	.bottomRight {
-		right: 21% !important;
+		right: 24% !important;
 	}
 
 	.topLeft {
-		left: 21% !important;
+		left: 24% !important;
 	}
 
 	.topRight {
-		right: 21% !important;
+		right: 24% !important;
 	}
 }
 

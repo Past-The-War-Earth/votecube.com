@@ -101,20 +101,20 @@
       "Dimensions": {
         "first": {
           "label": "Select 1st dimension",
-          "error": "First dimension is required"
+          "error": "First Dimension is required"
         },
         "second": {
           "label": "Select 2nd dimension",
-          "error": "Second dimension is required"
+          "error": "Second Dimension is required"
         },
         "third": {
           "label": "Select 3rd dimension",
-          "error": "Third dimension must be fully omitted or fully specified"
+          "error": "Third Dimension must be fully omitted or fully specified"
         }
       },
       "Labels": {
         "labels": {
-          "info": "Select matching label(s) for this poll",
+          "info": "Select matching Label(s) for this poll",
           "label": "Label(s)"
         }
       },
