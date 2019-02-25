@@ -3,11 +3,11 @@
     "Dimension": {
       "Info": {
         "name": {
-          "info": "A short name that is common to both directions.  It is prefixed to the descriptions on both opposite sides of a cube for this dimension.",
-          "label": "Dimension Name",
+          "info": "A short name that is common to both Positions.  It is prefixed to the descriptions on both opposite sides of a cube for this Factor.",
+          "label": "Factor Name",
           "errors": {
-            "required": "Dimension Name is required",
-            "minLength": "Dimension Name must be at least 5 characters long"
+            "required": "Factor Name is required",
+            "minLength": "Factor Name must be at least 5 characters long"
           }
         }
       },
@@ -19,41 +19,41 @@
           }
         },
         "labels": {
-          "label": "Select labels"
+          "label": "Select Tags"
         }
       },
       "PickColor": {
-        "error": "Dimension Color is required",
+        "error": "Factor Color is required",
         "label": "Select Color",
         "picker": {
           "errors": {
-            "required": "Dimension Color is required"
+            "required": "Factor Color is required"
           }
         }
       }
     },
     "Direction": {
       "BottomDirection": {
-        "error": "Bottom Direction is required",
-        "label": "Select Bottom Direction",
+        "error": "Down Position is required",
+        "label": "Select Down Position",
         "name": {
-          "info": "The negative position on a facet/dimension of the vote cube.  This is the CON/negative side.",
-          "label": "Bottom Direction",
+          "info": "The Down Position on a Factor of the vote cube.  This is the CON/Down side.",
+          "label": "Down Position",
           "errors": {
-            "required": "Bottom Direction is required",
-            "minLength": "Direction Name must be at least 5 characters long"
+            "required": "Down Position is required",
+            "minLength": "Position Name must be at least 5 characters long"
           }
         }
       },
       "TopDirection": {
-        "error": "Top Direction is required",
-        "label": "Select Top Direction",
+        "error": "Up Position is required",
+        "label": "Select Up Position",
         "name": {
-          "info": "The positive position on a facet/dimension of the vote cube.  This is the PRO/positive side.",
-          "label": "Top Direction",
+          "info": "The Up Position on a Factor of the vote cube.  This is the PRO/Up side.",
+          "label": "Up Position",
           "errors": {
-            "required": "Top Direction is required",
-            "minLength": "Direction Name must be at least 5 characters long"
+            "required": "Up Position is required",
+            "minLength": "Position Name must be at least 5 characters long"
           }
         }
       }
@@ -61,26 +61,26 @@
     "Poll": {
       "List": {
         "search": {
-          "info": "Search all polls or use the filter in the top-right menu",
-          "label": "Search Polls"
+          "info": "Search for Polls or use the filter in the top-right menu",
+          "label": "Find Polls"
         }
       },
       "MainInfo": {
         "name": {
           "info": "Select the name for this poll",
-          "label": "Poll Name",
+          "label": "Poll Issue",
           "errors": {
-            "required": "Poll Name is required",
-            "minLength": "Poll Name must be at least 3 characters long"
+            "required": "Poll Issue is required",
+            "minLength": "Poll Issue must be at least 3 characters long"
           }
         },
         "dimensions": {
-          "info": "Select the dimensions of the poll",
-          "error": "At least two poll dimensions are required"
+          "info": "Select the Factors of the poll",
+          "error": "At least two poll Factors are required"
         },
         "labels": {
-          "info": "Select matching label(s) for this poll",
-          "label": "Label(s)"
+          "info": "Select matching Tag(s) for this poll",
+          "label": "Tag(s)"
         },
         "locations": {
           "info": "Select the location(s) of the poll (Continent(s), Country(ies), State(s), City(ies))",
@@ -100,43 +100,43 @@
       },
       "Dimensions": {
         "first": {
-          "label": "Select 1st dimension",
-          "error": "First Dimension is required"
+          "label": "Select 1st Factor",
+          "error": "First Factor is required"
         },
         "second": {
-          "label": "Select 2nd dimension",
-          "error": "Second Dimension is required"
+          "label": "Select 2nd Factor",
+          "error": "Second Factor is required"
         },
         "third": {
-          "label": "Select 3rd dimension",
-          "error": "Third Dimension must be fully omitted or fully specified"
+          "label": "Select 3rd Factor",
+          "error": "Third Factor must be fully omitted or fully specified"
         }
       },
       "Labels": {
         "labels": {
-          "info": "Select matching Label(s) for this poll",
-          "label": "Label(s)"
+          "info": "Select matching Tag(s) for this poll",
+          "label": "Tag(s)"
         }
       },
       "Locations": {
         "cities": {
-          "info": "Select one or more cities to which this poll will apply",
+          "info": "Select one or more Cities to which this poll will apply",
           "label": "City(ies)"
         },
         "continents": {
-          "info": "Select one or more continents to which this poll will apply",
+          "info": "Select one or more Continents to which this poll will apply",
           "label": "Continent(s)",
           "errors": {
             "required": "Continent is required"
           }
         },
         "countries": {
-          "info": "Select one or more countries to which this poll will apply",
+          "info": "Select one or more Countries to which this poll will apply",
           "label": "Country(ies)"
         },
-        "error": "Poll Location is required",
+        "error": "Poll Geography is required",
         "states": {
-          "info": "Select one or more states to which this poll will apply",
+          "info": "Select one or more States to which this poll will apply",
           "label": "State(s)"
         }
       },
@@ -160,7 +160,7 @@
             "greaterThanOrEquals": "End Date must be on or after Start Date"
           }
         },
-        "error": "Poll Timeframe is required"
+        "error": "Poll Time Frame is required"
       }
     },
     "Common": {

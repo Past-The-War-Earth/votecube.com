@@ -24,10 +24,10 @@ export class PollDimDirSerializer
 		model: IPollDimensionDirection,
 		out: Out
 	): void {
-		out.str(model.axis)
+		out.byte(this.getAxisByte(model.axis))
 		out.num(model.color.id)
 		this.dimDirZ.serializeRecord(model.dimensionDirection, out)
-		out.num(model.dir)
+		out.byte(model.dir === 1 ? 1 : 0)
 	}
 
 	deserialize(
@@ -35,6 +35,19 @@ export class PollDimDirSerializer
 		bin: In
 	): IPollDimensionDirection {
 		return undefined
+	}
+
+	getAxisByte(
+		axis
+	) {
+		switch (axis) {
+			case 'x':
+				return 0
+			case 'y':
+				return 1
+			case 'z':
+				return 2
+		}
 	}
 
 }

@@ -5,20 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf179607-f05c-47be-9134-d4c4900c17e3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../apps/public-ui/src/dao/label.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/text_en-us_ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/text_en-us_ui.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/public/votecube.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/App.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/PercentPicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/control/PercentPicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/shell/ActionPopover.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/shell/ActionPopover.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/shell/Popover.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/shell/Popover.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/common/shell/TextToast.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/common/shell/TextToast.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/components/vote/VoteComponentGraph.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/components/vote/VoteComponentGraph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Cube.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Cube.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/shell/top/TopBar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/creator.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/form/poll/creator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/PickColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/PickColor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/dimension/info/Main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/direction/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/direction/info/Main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Common.top.menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Common.top.menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/src/pages/poll/info/Main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../di/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../di/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../model/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../model/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/poll/PollDimDir.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/poll/PollDimDir.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +32,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/model/poll/Poll.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="593">
-                  <caret line="62" column="10" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="10" />
+                <state relative-caret-position="656">
+                  <caret line="67" column="31" lean-forward="true" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
                   <folding>
                     <element signature="e#0#52#0" expanded="true" />
                   </folding>
@@ -43,33 +42,36 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/core/Out.ts">
+            <entry file="file://$PROJECT_DIR$/src/model/core/ModelSerializer.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="377">
-                  <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+                <state relative-caret-position="297">
+                  <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
                   <folding>
-                    <element signature="e#0#67#0" expanded="true" />
+                    <element signature="e#0#38#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/core/serializer.ts">
+            <entry file="file://$PROJECT_DIR$/src/model/poll/PollDimDir.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="308">
-                  <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+                <state relative-caret-position="128">
+                  <caret line="26" selection-start-line="26" selection-end-line="26" />
+                  <folding>
+                    <element signature="e#0#76#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/model/core/ModelSerializer.ts">
+            <entry file="file://$PROJECT_DIR$/src/core/Out.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="792">
-                  <caret line="39" column="2" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="2" />
+                <state relative-caret-position="429">
+                  <caret line="58" column="2" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
                   <folding>
-                    <element signature="e#0#38#0" expanded="true" />
+                    <element signature="e#0#67#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -82,8 +84,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/tokens.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="7" column="29" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="29" />
+                <state relative-caret-position="110">
+                  <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
                 </state>
               </provider>
             </entry>
@@ -163,10 +165,10 @@
         <option value="$PROJECT_DIR$/src/model/location/Town.ts" />
         <option value="$PROJECT_DIR$/src/model/poll/Label.ts" />
         <option value="$PROJECT_DIR$/src/model/poll/PollLabel.ts" />
-        <option value="$PROJECT_DIR$/src/model/poll/PollDimDir.ts" />
         <option value="$PROJECT_DIR$/src/model/Dimension.ts" />
         <option value="$PROJECT_DIR$/src/model/DimensionDirection.ts" />
         <option value="$PROJECT_DIR$/src/model/Direction.ts" />
+        <option value="$PROJECT_DIR$/src/model/poll/PollDimDir.ts" />
       </list>
     </option>
   </component>
@@ -392,13 +394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/core/Mode.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/core/Type.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -477,46 +472,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/location/PollCountry.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/location/PollContinent.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/poll/Label.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
           <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/poll/PollDimDir.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/poll/PollLabel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -545,47 +506,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/core/ModelSerializer.ts">
+    <entry file="file://$PROJECT_DIR$/src/model/location/PollContinent.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="39" column="2" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="2" />
+        <state relative-caret-position="44">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/location/PollCountry.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/serializer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/poll/PollLabel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tokens.ts">
+    <entry file="file://$PROJECT_DIR$/src/model/core/Mode.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="29" />
+        <state relative-caret-position="44">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/poll/Poll.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="62" column="10" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="10" />
+        <state relative-caret-position="656">
+          <caret line="67" column="31" lean-forward="true" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/core/ModelSerializer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/Out.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+        <state relative-caret-position="429">
+          <caret line="58" column="2" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
           <folding>
             <element signature="e#0#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/serializer.ts">
+    <entry file="file://$PROJECT_DIR$/src/tokens.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        <state relative-caret-position="110">
+          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/poll/PollDimDir.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#0#76#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

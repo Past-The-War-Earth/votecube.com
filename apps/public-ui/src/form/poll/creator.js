@@ -1,4 +1,5 @@
 export function createPollForm(
+	labelData,
 	locationsData,
 	uiText,
 	DateField,
@@ -37,19 +38,7 @@ export function createPollForm(
 		)
 	}, [Validators.required()], text)
 
-	const labels = new OptionsField([], [{
-		id: 1,
-		text: 'Trump',
-		theme: {
-			id: 1
-		}
-	}, {
-		id: 2,
-		text: 'Integration',
-		theme: {
-			id: 1
-		}
-	}], {
+	const labels = new OptionsField([], labelData, {
 		multi: true
 	})
 

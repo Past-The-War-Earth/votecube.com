@@ -1,10 +1,11 @@
 export const SEQUENCES = {
-	dimensions: 3,
+	colors: 3,
 	dimensionDescriptions: 3,
 	dimensionDirections: 6,
+	dimensions: 3,
 	directions: 6,
 	directionDescriptions: 6,
-	colors: 3,
+	labels: 2,
 	polls: 1,
 	pollDescriptions: 1,
 	pollsDimensionsDirections: 3
@@ -94,6 +95,13 @@ export const DB = {
 		id: 6,
 		// name: ' . . . . . Z-'
 		name: 'Trump\'s policies are tailored with the interests of the wealthy in mind and hurt equality.'
+	}],
+	labels: [{
+		id: 1,
+		text: 'Integration'
+	}, {
+		id: 2,
+		text: 'Trump'
 	}],
 	polls: [{
 		endDate: new Date(new Date().getTime() + 3600000 * 75),

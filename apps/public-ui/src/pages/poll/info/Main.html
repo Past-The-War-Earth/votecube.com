@@ -29,18 +29,21 @@
 			{#if countries.length}
 			{#if states.length}
 			{#if cities.length}
+			<!-- TODO: cleanup -->
 			Cities:
 			<br>
 			{getArrayValueTexts(cities)}
 			<br>
 			<br>
 			{/if}
+			<!-- TODO: cleanup -->
 			States:
 			<br>
 			{getArrayValueTexts(states)}
 			<br>
 			<br>
 			{/if}
+			<!-- TODO: cleanup -->
 			Countries:
 			<br>
 			{getArrayValueTexts(countries)}
@@ -48,14 +51,17 @@
 			<br>
 
 			{/if}
+			<!-- TODO: cleanup -->
 			Continents:
 			<br>
 			{getArrayValueTexts(continents)}
 			{:else}
-			Select Location
+			<!-- TODO: cleanup -->
+			Select Geography
 			{/if}
 			{:else}
-			Select Location
+			<!-- TODO: cleanup -->
+			Select Geography
 			{/if}
 		</div>
 	</IconBlock>
@@ -155,22 +161,23 @@
 	import PreviewButton                  from '../../../common/control/button/PreviewButton.html'
 	import AutoComplete                   from '../../../common/field/AutoComplete.html'
 	import IconBlock                      from '../../../common/field/IconBlock.html'
-	import MultiSelect                    from '../../../common/field/MultiSelect.html'
-	import Text                           from '../../../common/field/Text.html'
-	import LocationIcon                   from '../../../common/icon/LocationIcon.html'
-	import TimeIcon                       from '../../../common/icon/TimeIcon.html'
-	import ActionPopover                  from '../../../common/shell/ActionPopover.html'
-	import SelectionBlock                 from '../../../components/dimension/SelectionBlock.html'
-	import {pollDao}                      from '../../../dao/poll'
-	import * as formCache                 from '../../../form/cache'
-	import * as forms                     from '../../../form/forms'
-	import * as pollFormCreator           from '../../../form/poll/creator'
-	import * as pollFormToConverter       from '../../../form/poll/toConverter'
+	import MultiSelect              from '../../../common/field/MultiSelect.html'
+	import Text                     from '../../../common/field/Text.html'
+	import LocationIcon             from '../../../common/icon/LocationIcon.html'
+	import TimeIcon                 from '../../../common/icon/TimeIcon.html'
+	import ActionPopover            from '../../../common/shell/ActionPopover.html'
+	import SelectionBlock           from '../../../components/dimension/SelectionBlock.html'
+	import {labelDao}               from "../../../dao/label";
+	import {pollDao}                from '../../../dao/poll'
+	import * as formCache           from '../../../form/cache'
+	import * as forms               from '../../../form/forms'
+	import * as pollFormCreator     from '../../../form/poll/creator'
+	import * as pollFormToConverter from '../../../form/poll/toConverter'
 	import {
 		getArrayValueTexts,
 		getDate
-	}                                     from '../../../helpers/general'
-	import {loadForms}                    from '../../../libs/forms'
+	}                               from '../../../helpers/general'
+	import {loadForms}              from '../../../libs/forms'
 	import {loadLocations}                from '../../../libs/locations'
 	import {loadLocations as loadLocText} from '../../../libs/text/locations'
 	import {loadUi}                       from '../../../libs/text/ui'
@@ -303,12 +310,14 @@
 
 			Promise.all([
 				loadForms(this),
+				labelDao.getAll(),
 				loadLocations(),
 				loadUi(this.store, 'en-us'),
 				pollDao.findByIdWithDetails(pollId),
 				loadLocText(this.store, 'en-us')
 			]).then(([
 				         {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
+				         labels,
 				         locations,
 				         _,
 				         poll,
@@ -320,6 +329,7 @@
 
 				if (!form) {
 					form = pollFormCreator.createPollForm(
+						labels,
 						locations,
 						text.UI,
 						DateField,
