@@ -3,11 +3,14 @@ import {IDimensionDirection}                                            from '@v
 import {In}                                                             from '../core/In'
 import {Out}                                                            from '../core/Out'
 import {AJAX_Z_DIMENSION, AJAX_Z_DIMENSION_DIRECTION, AJAX_Z_DIRECTION} from '../tokens'
-import {DimensionSerializer}                                            from './Dimension'
-import {DirectionSerializer}                                            from './Direction'
 import {Mode}                                                           from './core/Mode'
 import {ModelSerializer}                                                from './core/ModelSerializer'
+import {DimensionSerializer}                                            from './Dimension'
+import {DirectionSerializer}                                            from './Direction'
 
+/**
+ * Please try to keep properties serialized in UI-model alphabetic order. :)
+ */
 export class DimensionDirectionSerializer
 	extends ModelSerializer<IDimensionDirection> {
 

@@ -7,6 +7,9 @@ import {Mode}                                            from '../core/Mode'
 import {ModelSerializer}                                 from '../core/ModelSerializer'
 import {DimensionDirectionSerializer}                    from '../DimensionDirection'
 
+/**
+ * Please try to keep properties serialized in UI-model alphabetic order. :)
+ */
 export class PollDimDirSerializer
 	extends ModelSerializer<IPollDimensionDirection> {
 

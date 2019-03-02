@@ -7,6 +7,9 @@ export const MODE_CREATE    = 0x00
 export const MODE_REFERENCE = 0x01
 export const MODE_RECORD    = 0x02
 
+/**
+ * Please try to keep properties serialized in UI-model alphabetic order. :)
+ */
 export interface IModelSerializer<M extends IModel> {
 
 	serialize(

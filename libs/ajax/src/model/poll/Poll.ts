@@ -22,6 +22,9 @@ import {PollTownSerializer}      from '../location/PollTown'
 import {PollDimDirSerializer}    from './PollDimDir'
 import {PollLabelSerializer}     from './PollLabel'
 
+/**
+ * Please try to keep properties serialized in UI-model alphabetic order. :)
+ */
 export class PollSerializer
 	extends ModelSerializer<IPoll> {
 

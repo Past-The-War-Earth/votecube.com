@@ -6,6 +6,9 @@ import {AJAX_Z_TOWN}     from '../../tokens'
 import {Mode}            from '../core/Mode'
 import {ModelSerializer} from '../core/ModelSerializer'
 
+/**
+ * Please try to keep properties serialized in UI-model alphabetic order. :)
+ */
 export class TownSerializer
 	extends ModelSerializer<ITown> {
 
