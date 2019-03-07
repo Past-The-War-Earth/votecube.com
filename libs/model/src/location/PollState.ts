@@ -1,7 +1,8 @@
+import {Id}     from '../core/Model'
 import {IPoll}  from '../poll/Poll'
 import {IState} from './State'
 
-export type PollStateId = number
+export type PollStateId = Id
 
 export interface IPollState {
 

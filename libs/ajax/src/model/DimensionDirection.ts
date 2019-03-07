@@ -1,10 +1,10 @@
 import {DI}                                                             from '@votecube/di'
-import {IDimensionDirection}                                            from '@votecube/model'
+import {EntityType, IDimensionDirection}                                from '@votecube/model'
 import {In}                                                             from '../core/In'
 import {Out}                                                            from '../core/Out'
 import {AJAX_Z_DIMENSION, AJAX_Z_DIMENSION_DIRECTION, AJAX_Z_DIRECTION} from '../tokens'
 import {Mode}                                                           from './core/Mode'
-import {ModelSerializer}                                                from './core/ModelSerializer'
+import {ITempRecordId, ModelSerializer}                                 from './core/ModelSerializer'
 import {DimensionSerializer}                                            from './Dimension'
 import {DirectionSerializer}                                            from './Direction'
 
@@ -18,7 +18,7 @@ export class DimensionDirectionSerializer
 	directionZ: DirectionSerializer
 
 	constructor() {
-		super()
+		super(EntityType.DIM_DIR)
 		DI.get(
 			di => {
 				[this.dimensionZ, this.directionZ] = di
@@ -27,10 +27,11 @@ export class DimensionDirectionSerializer
 
 	serializeRecord(
 		model: IDimensionDirection,
-		out: Out
+		out: Out,
+		tempRecordIds: ITempRecordId[]
 	): void {
-		this.dimensionZ.serialize(model.dimension, out)
-		this.directionZ.serialize(model.direction, out)
+		this.dimensionZ.serialize(model.dimension, out, tempRecordIds)
+		this.directionZ.serialize(model.direction, out, tempRecordIds)
 	}
 
 	deserialize(

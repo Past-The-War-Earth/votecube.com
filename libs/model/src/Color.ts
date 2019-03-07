@@ -1,4 +1,6 @@
-export type ColorId = number
+import {Id} from './core/Model'
+
+export type ColorId = Id
 
 export interface IColor {
 

@@ -1,7 +1,8 @@
+import {Id}             from '../core/Model'
 import {ITemporalModel} from '../core/TemporalModel'
 import {IUser}          from '../User'
 
-export type LabelId = number
+export type LabelId = Id
 
 export interface ILabel
 	extends ITemporalModel {

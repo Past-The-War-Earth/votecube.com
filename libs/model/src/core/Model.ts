@@ -1,5 +1,7 @@
+export type Id = number;
+
 export interface IModel {
 
-	id: number
+	id: Id
 
 }

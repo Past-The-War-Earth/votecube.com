@@ -1,10 +1,10 @@
 import {DI}                                              from '@votecube/di'
-import {IPollDimensionDirection}                         from '@votecube/model'
+import {EntityType, IPollDimensionDirection}             from '@votecube/model'
 import {In}                                              from '../../core/In'
 import {Out}                                             from '../../core/Out'
 import {AJAX_Z_DIMENSION_DIRECTION, AJAX_Z_POLL_DIM_DIR} from '../../tokens'
 import {Mode}                                            from '../core/Mode'
-import {ModelSerializer}                                 from '../core/ModelSerializer'
+import {ITempRecordId, ModelSerializer}                  from '../core/ModelSerializer'
 import {DimensionDirectionSerializer}                    from '../DimensionDirection'
 
 /**
@@ -16,7 +16,7 @@ export class PollDimDirSerializer
 	dimDirZ: DimensionDirectionSerializer
 
 	constructor() {
-		super()
+		super(EntityType.PLL_DIM_DIR)
 		DI.get(
 			di => {
 				[this.dimDirZ] = di
@@ -25,11 +25,12 @@ export class PollDimDirSerializer
 
 	serializeRecord(
 		model: IPollDimensionDirection,
-		out: Out
+		out: Out,
+		tempRecordIds: ITempRecordId[]
 	): void {
 		out.byte(this.getAxisByte(model.axis))
 		out.num(model.color.id)
-		this.dimDirZ.serializeRecord(model.dimensionDirection, out)
+		this.dimDirZ.serializeRecord(model.dimensionDirection, out, tempRecordIds)
 		out.byte(model.dir === 1 ? 1 : 0)
 	}
 

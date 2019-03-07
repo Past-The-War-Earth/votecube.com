@@ -5,26 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="additional layout adjustments for desktop and text fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/ajax/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/Dimension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/Dimension.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/DimensionDirection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/DimensionDirection.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/Direction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/Direction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/core/ModelSerializer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/core/ModelSerializer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Continent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Continent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Country.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Country.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/County.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/County.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollContinent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollContinent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollCountry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollCountry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollCounty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollCounty.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollState.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollTown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollTown.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/State.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Town.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Town.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/Label.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/Label.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/Poll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/Poll.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/PollDimDir.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/PollDimDir.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/PollLabel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/PollLabel.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -59,7 +40,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/App.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="22">
+                <state relative-caret-position="2706">
                   <caret line="149" column="28" selection-start-line="149" selection-start-column="28" selection-end-line="149" selection-end-column="28" />
                 </state>
               </provider>
@@ -68,11 +49,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Main.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="176">
+                <state relative-caret-position="638">
                   <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#3052#3146#0#HTML" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -80,7 +58,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/form/poll/creator.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
+                <state relative-caret-position="286">
                   <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
                 </state>
               </provider>
@@ -102,7 +80,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="145">
+                <state relative-caret-position="2706">
                   <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
                 </state>
               </provider>
@@ -111,7 +89,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/common/shell/Popover.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="466">
+                <state relative-caret-position="1320">
                   <caret line="63" column="3" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
                 </state>
               </provider>
@@ -129,7 +107,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="263">
+                <state relative-caret-position="1364">
                   <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="14" />
                 </state>
               </provider>
@@ -138,7 +116,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="568">
+                <state relative-caret-position="946">
                   <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
                 </state>
               </provider>
@@ -147,7 +125,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pages/dimension/info/Main.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
+                <state relative-caret-position="2816">
                   <caret line="138" column="26" selection-start-line="138" selection-start-column="26" selection-end-line="138" selection-end-column="26" />
                 </state>
               </provider>
@@ -352,35 +330,6 @@
               <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="public-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="poll" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="poll" type="462c0819:PsiDirectoryNode" />
-              <item name="info" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="public-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="public-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="poll" type="462c0819:PsiDirectoryNode" />
-              <item name="search" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -821,9 +770,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49925485" visible="true" weight="0.1641791" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49925485" visible="true" weight="0.16577825" />
       <window_info id="Favorites" order="1" sideWeight="0.5007452" side_tool="true" weight="0.16257995" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -837,7 +785,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.58359295" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3032191" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3032191" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
@@ -1144,13 +1092,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/shell/Popover.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="63" column="3" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/poll.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1161,24 +1102,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="149" column="28" selection-start-line="149" selection-start-column="28" selection-end-line="149" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/libs/locations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/label.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1189,62 +1116,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/form/poll/creator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/dimension/info/Main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="138" column="26" selection-start-line="138" selection-start-column="26" selection-end-line="138" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/text_en-us_ui.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="125" column="18" selection-start-line="125" selection-start-column="9" selection-end-line="125" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="99" column="10" selection-start-line="99" selection-start-column="10" selection-end-line="99" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-          <folding>
-            <element signature="e#3052#3146#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1255,10 +1130,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2706">
+          <caret line="149" column="28" selection-start-line="149" selection-start-column="28" selection-end-line="149" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/form/poll/creator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/direction/info/Main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="524">
           <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/vote/VoteComponentGraph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2706">
+          <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/shell/Popover.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="63" column="3" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/poll/info/Common.top.menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1364">
+          <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/dimension/PickColor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="946">
+          <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/dimension/info/Main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2816">
+          <caret line="138" column="26" selection-start-line="138" selection-start-column="26" selection-end-line="138" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/label.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="99" column="10" selection-start-line="99" selection-start-column="10" selection-end-line="99" selection-end-column="10" />
         </state>
       </provider>
     </entry>

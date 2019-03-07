@@ -1,8 +1,9 @@
+import {Id}     from '../core/Model'
+import {IUser}  from '../User'
 import {ILabel} from './Label'
 import {IPoll}  from './Poll'
-import {IUser}  from '../User'
 
-export type PollLabelId = number
+export type PollLabelId = Id
 
 export interface IPollLabel {
 

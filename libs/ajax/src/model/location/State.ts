@@ -1,10 +1,10 @@
-import {DI}              from '@votecube/di'
-import {IState}          from '@votecube/model'
-import {In}              from '../../core/In'
-import {Out}             from '../../core/Out'
-import {AJAX_Z_STATE}    from '../../tokens'
-import {Mode}            from '../core/Mode'
-import {ModelSerializer} from '../core/ModelSerializer'
+import {DI}                             from '@votecube/di'
+import {EntityType, IState}             from '@votecube/model'
+import {In}                             from '../../core/In'
+import {Out}                            from '../../core/Out'
+import {AJAX_Z_STATE}                   from '../../tokens'
+import {Mode}                           from '../core/Mode'
+import {ITempRecordId, ModelSerializer} from '../core/ModelSerializer'
 
 /**
  * Please try to keep properties serialized in UI-model alphabetic order. :)
@@ -12,9 +12,14 @@ import {ModelSerializer} from '../core/ModelSerializer'
 export class StateSerializer
 	extends ModelSerializer<IState> {
 
+	constructor() {
+		super(EntityType.STT);
+	}
+
 	serializeRecord(
 		model: IState,
-		out: Out
+		out: Out,
+		tempRecordIds: ITempRecordId[]
 	): void {
 	}
 

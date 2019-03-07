@@ -1,4 +1,6 @@
-export type ContinentId = number
+import {Id} from '../core/Model'
+
+export type ContinentId = Id
 
 export interface IContinent {
 

@@ -1,7 +1,8 @@
 import {IColor}         from './Color'
+import {Id}             from './core/Model'
 import {ITemporalModel} from './core/TemporalModel'
 
-export type DimensionId = number
+export type DimensionId = Id
 
 export interface IDimension
 	extends ITemporalModel {

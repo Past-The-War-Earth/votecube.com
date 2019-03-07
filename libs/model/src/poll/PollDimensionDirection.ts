@@ -1,7 +1,8 @@
 import {IColor}              from '../Color'
+import {Id}                  from '../core/Model'
 import {IDimensionDirection} from '../DimensionDirection'
 
-export type PollDimensionDirectionId = number
+export type PollDimensionDirectionId = Id
 
 export interface IPollDimensionDirection {
 

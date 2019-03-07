@@ -1,10 +1,10 @@
 import {DI}                              from '@votecube/di'
-import {IPollLabel}                      from '@votecube/model'
+import {EntityType, IPollLabel}          from '@votecube/model'
 import {In}                              from '../../core/In'
 import {Out}                             from '../../core/Out'
 import {AJAX_Z_LABEL, AJAX_Z_POLL_LABEL} from '../../tokens'
 import {Mode}                            from '../core/Mode'
-import {ModelSerializer}                 from '../core/ModelSerializer'
+import {ITempRecordId, ModelSerializer}  from '../core/ModelSerializer'
 import {LabelSerializer}                 from './Label'
 
 /**
@@ -16,7 +16,7 @@ export class PollLabelSerializer
 	labelZ: LabelSerializer
 
 	constructor() {
-		super()
+		super(EntityType.PLL_LBL)
 		DI.get(
 			di => {
 				[this.labelZ] = di
@@ -25,9 +25,10 @@ export class PollLabelSerializer
 
 	serializeRecord(
 		model: IPollLabel,
-		out: Out
+		out: Out,
+		tempRecordIds: ITempRecordId[]
 	): void {
-		this.labelZ.serialize(model.label, out)
+		this.labelZ.serialize(model.label, out, tempRecordIds)
 	}
 
 	deserialize(

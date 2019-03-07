@@ -1,6 +1,7 @@
+import {Id}       from '../core/Model'
 import {ICountry} from './Country'
 
-export type StateId = number
+export type StateId = Id
 
 export interface IState {
 

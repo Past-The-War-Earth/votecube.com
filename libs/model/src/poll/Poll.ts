@@ -1,3 +1,4 @@
+import {Id}                      from '../core/Model'
 import {ITemporalModel}          from '../core/TemporalModel'
 import {IPollContinent}          from '../location/PollContinent'
 import {IPollCountry}            from '../location/PollCountry'
@@ -8,7 +9,7 @@ import {ITheme}                  from '../Theme'
 import {IPollDimensionDirection} from './PollDimensionDirection'
 import {IPollLabel}              from './PollLabel'
 
-export type PollId = number
+export type PollId = Id
 export type PollName = string
 
 export interface IPoll

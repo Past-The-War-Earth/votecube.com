@@ -1,6 +1,7 @@
+import {Id}     from '../core/Model'
 import {IState} from './State'
 
-export type CountyId = number
+export type CountyId = Id
 
 export interface ICounty {
 

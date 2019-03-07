@@ -1,4 +1,6 @@
-export type ThemeId = number
+import {Id} from './core/Model'
+
+export type ThemeId = Id
 
 export interface ITheme {
 

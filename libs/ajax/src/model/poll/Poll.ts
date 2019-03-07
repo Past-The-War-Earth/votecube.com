@@ -1,7 +1,7 @@
-import {DI}                      from '@votecube/di'
-import {IPoll}                   from '@votecube/model'
-import {In}                      from '../../core/In'
-import {Out}                     from '../../core/Out'
+import {DI}                             from '@votecube/di'
+import {EntityType, IPoll}              from '@votecube/model'
+import {In}                             from '../../core/In'
+import {Out}                            from '../../core/Out'
 import {
 	AJAX_Z_POLL,
 	AJAX_Z_POLL_CONTINENT,
@@ -11,16 +11,16 @@ import {
 	AJAX_Z_POLL_LABEL,
 	AJAX_Z_POLL_STATE,
 	AJAX_Z_POLL_TOWN
-}                                from '../../tokens'
-import {Mode}                    from '../core/Mode'
-import {ModelSerializer}         from '../core/ModelSerializer'
-import {PollContinentSerializer} from '../location/PollContinent'
-import {PollCountrySerializer}   from '../location/PollCountry'
-import {PollCountySerializer}    from '../location/PollCounty'
-import {PollStateSerializer}     from '../location/PollState'
-import {PollTownSerializer}      from '../location/PollTown'
-import {PollDimDirSerializer}    from './PollDimDir'
-import {PollLabelSerializer}     from './PollLabel'
+}                                       from '../../tokens'
+import {Mode}                           from '../core/Mode'
+import {ITempRecordId, ModelSerializer} from '../core/ModelSerializer'
+import {PollContinentSerializer}        from '../location/PollContinent'
+import {PollCountrySerializer}          from '../location/PollCountry'
+import {PollCountySerializer}           from '../location/PollCounty'
+import {PollStateSerializer}            from '../location/PollState'
+import {PollTownSerializer}             from '../location/PollTown'
+import {PollDimDirSerializer}           from './PollDimDir'
+import {PollLabelSerializer}            from './PollLabel'
 
 /**
  * Please try to keep properties serialized in UI-model alphabetic order. :)
@@ -37,7 +37,7 @@ export class PollSerializer
 	pollTownZ: PollTownSerializer
 
 	constructor() {
-		super()
+		super(EntityType.PLL)
 		DI.get(
 			di => {
 				[
@@ -61,17 +61,18 @@ export class PollSerializer
 
 	serializeRecord(
 		model: IPoll,
-		out: Out
+		out: Out,
+		tempRecordIds: ITempRecordId[]
 	): void {
 		out.date(model.endDate)
 		out.str(model.name)
-		this.pollContinentZ.serializeArray(model.pollsContinents, out)
-		this.pollCountryZ.serializeArray(model.pollsCountries, out)
-		this.pollCountyZ.serializeArray(model.pollsCounties, out)
-		this.pollDimDirZ.serializeArray(model.pollsDimensionsDirections, out)
-		this.pollLabelZ.serializeArray(model.pollsLabels, out)
-		this.pollStateZ.serializeArray(model.pollsStates, out)
-		this.pollTownZ.serializeArray(model.pollsTowns, out)
+		this.pollContinentZ.serializeArray(model.pollsContinents, out, tempRecordIds)
+		this.pollCountryZ.serializeArray(model.pollsCountries, out, tempRecordIds)
+		this.pollCountyZ.serializeArray(model.pollsCounties, out, tempRecordIds)
+		this.pollDimDirZ.serializeArray(model.pollsDimensionsDirections, out, tempRecordIds)
+		this.pollLabelZ.serializeArray(model.pollsLabels, out, tempRecordIds)
+		this.pollStateZ.serializeArray(model.pollsStates, out, tempRecordIds)
+		this.pollTownZ.serializeArray(model.pollsTowns, out, tempRecordIds)
 		out.date(model.startDate)
 		out.num(model.theme.id)
 	}
