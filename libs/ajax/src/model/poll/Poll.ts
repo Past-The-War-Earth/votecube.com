@@ -68,7 +68,7 @@ export class PollSerializer
 		out.str(model.name)
 		this.pollContinentZ.serializeArray(model.pollsContinents, out, tempRecordIds)
 		this.pollCountryZ.serializeArray(model.pollsCountries, out, tempRecordIds)
-		this.pollCountyZ.serializeArray(model.pollsCounties, out, tempRecordIds)
+		// this.pollCountyZ.serializeArray(model.pollsCounties, out, tempRecordIds)
 		this.pollDimDirZ.serializeArray(model.pollsDimensionsDirections, out, tempRecordIds)
 		this.pollLabelZ.serializeArray(model.pollsLabels, out, tempRecordIds)
 		this.pollStateZ.serializeArray(model.pollsStates, out, tempRecordIds)

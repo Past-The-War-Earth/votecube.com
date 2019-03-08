@@ -5,50 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4114b0ed-7a9f-487d-83e8-3dee45b73663" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apps/public-ui/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ajax/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/Dimension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/Dimension.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/DimensionDirection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/DimensionDirection.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/Direction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/Direction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/core/Mode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/core/Mode.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/core/ModelSerializer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/core/ModelSerializer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/Continent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/Continent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/Country.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/Country.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/County.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/County.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/PollContinent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollContinent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/PollCountry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollCountry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/PollCounty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollCounty.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/PollState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollState.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/PollTown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/PollTown.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/State.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/location/Town.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/location/Town.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/poll/Label.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/poll/Label.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ajax/src/model/poll/Poll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/poll/Poll.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/poll/PollDimDir.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/poll/PollDimDir.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ajax/src/model/poll/PollLabel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/model/poll/PollLabel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Color.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Color.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dimension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dimension.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DimensionDirection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/DimensionDirection.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Direction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Direction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Theme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/Model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/Continent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/Continent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/Country.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/Country.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/County.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/County.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/PollContinent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/PollContinent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/PollCountry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/PollCountry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/PollCounty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/PollCounty.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/PollState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/PollState.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/PollTown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/PollTown.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/State.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location/Town.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/location/Town.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/poll/Label.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poll/Label.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/poll/Poll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poll/Poll.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/poll/PollDimensionDirection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poll/PollDimensionDirection.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/poll/PollLabel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poll/PollLabel.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
