@@ -47,11 +47,15 @@ function addBigArray(
 	cursor: ICursor
 ): void {
 	const bigArrayLengthBytes = naturalNumToBytes(bigArray.length)
-	bytes[cursor.pos++]       = naturalNumToBytes(bigArrayLengthBytes.length)[0]
-	bytes.set(bigArrayLengthBytes, cursor.pos)
-	cursor.pos += bigArrayLengthBytes.length
-	bytes.set(bigArray, cursor.pos)
-	cursor.pos += bigArray.length
+	if (bigArrayLengthBytes.length) {
+		bytes[cursor.pos++] = naturalNumToBytes(bigArrayLengthBytes.length)[0]
+		bytes.set(bigArrayLengthBytes, cursor.pos)
+		cursor.pos += bigArrayLengthBytes.length
+		bytes.set(bigArray, cursor.pos)
+		cursor.pos += bigArray.length
+	} else {
+		bytes[cursor.pos++] = 0
+	}
 }
 
 function addArray(
@@ -59,9 +63,14 @@ function addArray(
 	array: number[],
 	cursor: ICursor
 ): void {
-	bytes[cursor.pos++] = naturalNumToBytes(array.length)[0]
-	bytes.set(array, cursor.pos)
-	cursor.pos += array.length
+	let arrayLengthBytes = naturalNumToBytes(array.length)
+	if (arrayLengthBytes.length) {
+		bytes[cursor.pos++] = arrayLengthBytes[0]
+		bytes.set(array, cursor.pos)
+		cursor.pos += array.length
+	} else {
+		bytes[cursor.pos++] = 0
+	}
 }
 
 function naturalNumToBytes(
@@ -74,7 +83,6 @@ function naturalNumToBytes(
 		const byte = naturalNumber & 0xff
 		byteArray.push(byte)
 		naturalNumber = (naturalNumber - byte) / 256
-
 	}
 
 	return byteArray
