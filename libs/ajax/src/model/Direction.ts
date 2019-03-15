@@ -21,8 +21,8 @@ export class DirectionSerializer
 		out: Out,
 		tempRecordIds: ITempRecordId[]
 	): void {
-		out.nil() // emoji
-		out.nil() // design pattern
+		// out.nil() // emoji
+		// out.nil() // design pattern
 		out.str(model.name)
 		this.serialize(model.parent, out, tempRecordIds)
 	}

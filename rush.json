@@ -24,6 +24,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@votecube/db",
+      "projectFolder": "libs/db",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@votecube/di",
       "projectFolder": "libs/di",
       "shouldPublish": true

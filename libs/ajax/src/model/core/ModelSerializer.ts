@@ -45,7 +45,6 @@ export interface IModelSerializer<M extends IModel> {
 export abstract class ModelSerializer<M extends IModel>
 	implements IModelSerializer<M> {
 
-	tempMap: Map<number, M> = new Map()
 	lastTempId: Id          = 0
 
 	constructor(

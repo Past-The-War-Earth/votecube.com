@@ -10,9 +10,9 @@ export class Out {
 	cursor: ICursor
 
 	constructor(
-		size = 512000
+		byteLength = 128000
 	) {
-		this.byteArray = new ArrayBuffer(512000)
+		this.byteArray = new ArrayBuffer(byteLength)
 		this.byteView  = new Uint8Array(this.byteArray)
 		this.cursor    = {
 			pos: 0
@@ -53,7 +53,7 @@ export class Out {
 	}
 
 	nil(): void {
-		this.byte(Mode.REFERENCE)
+		this.byte(Mode.NULL)
 	}
 
 	num(

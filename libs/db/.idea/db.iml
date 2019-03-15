@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../ajax" />
+    <content url="file://$MODULE_DIR$/../cube-logic">
+      <excludeFolder url="file://$MODULE_DIR$/../cube-logic/lib" />
+    </content>
+    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$/../forms">
+      <excludeFolder url="file://$MODULE_DIR$/../forms/lib" />
+    </content>
+    <content url="file://$MODULE_DIR$/../model">
+      <excludeFolder url="file://$MODULE_DIR$/../model/lib" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

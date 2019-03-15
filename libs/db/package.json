@@ -1,8 +1,13 @@
 {
   "main": "lib/index.js",
-  "name": "@votecube/model",
+  "name": "@votecube/db",
   "typings": "lib/index",
   "version": "0.0.1",
+  "dependencies": {
+    "@votecube/ajax": "0.0.1",
+    "@votecube/di": "0.0.1",
+    "@votecube/model": "0.0.1"
+  },
   "devDependencies": {
     "tslint": "^5.14.0",
     "typescript": "^3.2.2"

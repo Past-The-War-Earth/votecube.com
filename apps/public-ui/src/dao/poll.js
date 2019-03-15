@@ -78,6 +78,7 @@ export const pollDao = {
 	) {
 		return tempPollMap[pollId]
 	},
+
 	save(
 		poll
 	) {
