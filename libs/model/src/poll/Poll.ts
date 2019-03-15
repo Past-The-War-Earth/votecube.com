@@ -12,6 +12,19 @@ import {IPollLabel}          from './PollLabel'
 export type PollId = Id
 export type PollName = string
 
+export const POLLS = 'POLLS'
+
+export const POLL_COLS = [
+	['createdAt', 'ca'],
+	['endDate', 'ed'],
+	['id', '/pid'],
+	['name', 'n'],
+	['startDate', 'sd'],
+	['theme', '+tidT'],
+	['user', '+uaiUA'],
+	['parentPoll', '+ppiP']
+]
+
 export interface IPoll
 	extends ITemporalModel {
 

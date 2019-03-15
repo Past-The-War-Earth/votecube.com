@@ -4,6 +4,8 @@ import {ICountry} from './Country'
 
 export type PollCountryId = Id
 
+export const POLL_COUNTRIES = 'POLL_COUNTRIES'
+
 export interface IPollCountry {
 
 	country: ICountry

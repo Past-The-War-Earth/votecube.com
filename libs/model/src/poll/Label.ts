@@ -4,6 +4,8 @@ import {IUser}          from '../User'
 
 export type LabelId = Id
 
+export const LABELS = 'LABELS'
+
 export interface ILabel
 	extends ITemporalModel {
 

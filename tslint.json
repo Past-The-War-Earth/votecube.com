@@ -1,10 +1,12 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "arrow-parens": false,
     "indent": [
       "error",
       "tab"
     ],
+    "import-spacing": false,
     "max-line-length": {
       "options": [
         98

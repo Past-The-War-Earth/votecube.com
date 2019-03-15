@@ -1,11 +1,16 @@
-import {Id}             from './core/Model'
-import {ITemporalModel} from './core/TemporalModel'
+import {
+	Id,
+	IModel
+} from './core/Model'
 
 export type UserId = Id
 
-export interface IUser
-	extends ITemporalModel {
+export const USER_ACCOUNTS = 'USER_ACCOUNTS'
 
+export interface IUser
+	extends IModel {
+
+	createdAt: Date
 	id: UserId
 
 }

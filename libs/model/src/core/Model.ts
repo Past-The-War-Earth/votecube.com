@@ -1,7 +1,14 @@
 export type Id = number;
 
+export type ActorRecordId = number;
+export type RepositoryActorId = number;
+export type RepositoryId = number;
+
 export interface IModel {
 
-	id: Id
+	actorRecordId?: ActorRecordId
+	id?: Id
+	repositoryActorId?: RepositoryActorId
+	repositoryId?: RepositoryId
 
 }

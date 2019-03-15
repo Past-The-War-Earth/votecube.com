@@ -4,6 +4,8 @@ import {IFactorPosition} from '../FactorPosition'
 
 export type PollFactorPositionId = Id
 
+export const POLL_FACTOR_POSITIONS = 'POLL_FACTOR_POSITIONS'
+
 export interface IPollFactorPosition {
 
 	axis: 'x' | 'y' | 'z'

@@ -4,6 +4,8 @@ import {IState} from './State'
 
 export type PollStateId = Id
 
+export const POLL_STATES = 'POLL_STATES'
+
 export interface IPollState {
 
 	id: PollStateId

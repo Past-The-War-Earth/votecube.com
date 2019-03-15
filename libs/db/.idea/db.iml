@@ -10,7 +10,9 @@
     <content url="file://$MODULE_DIR$/../cube-logic">
       <excludeFolder url="file://$MODULE_DIR$/../cube-logic/lib" />
     </content>
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/lib" />
+    </content>
     <content url="file://$MODULE_DIR$/../di">
       <excludeFolder url="file://$MODULE_DIR$/../di/lib" />
     </content>

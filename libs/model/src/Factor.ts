@@ -4,6 +4,8 @@ import {ITemporalModel} from './core/TemporalModel'
 
 export type FactorId = Id
 
+export const FACTORS = 'FACTORS'
+
 export interface IFactor
 	extends ITemporalModel {
 
