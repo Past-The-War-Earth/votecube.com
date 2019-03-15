@@ -52,7 +52,7 @@ export class OptionsField
 		rules?: IOptionFieldRules
 	) {
 		super(validators, {
-			...rules,
+			...rules as any,
 			label: LabelRule.OVER
 		})
 		this.theValue      = rules && rules.multi ? [] : null

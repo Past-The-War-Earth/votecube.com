@@ -2,6 +2,20 @@
 <project version="4">
   <component name="WebResourcesPaths">
     <contentEntries>
+      <entry url="file://$PROJECT_DIR$/../../apps/public-ui">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/../../apps/public-ui/src" />
+          </resourceRoots>
+        </entryData>
+      </entry>
+      <entry url="file://$PROJECT_DIR$/../ajax">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/../ajax/src" />
+          </resourceRoots>
+        </entryData>
+      </entry>
       <entry url="file://$PROJECT_DIR$/../cube-logic">
         <entryData>
           <resourceRoots>
@@ -13,6 +27,13 @@
         <entryData>
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/src" />
+          </resourceRoots>
+        </entryData>
+      </entry>
+      <entry url="file://$PROJECT_DIR$/../di">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/../di/src" />
           </resourceRoots>
         </entryData>
       </entry>

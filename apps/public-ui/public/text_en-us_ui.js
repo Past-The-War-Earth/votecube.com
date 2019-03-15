@@ -1,6 +1,6 @@
 {
   "UI": {
-    "Dimension": {
+    "Factor": {
       "Info": {
         "name": {
           "info": "A short name that is common to both Positions.  It is prefixed to the descriptions on both opposite sides of a cube for this Factor.",
@@ -32,8 +32,8 @@
         }
       }
     },
-    "Direction": {
-      "BottomDirection": {
+    "Position": {
+      "BottomPosition": {
         "error": "Down Position is required",
         "label": "Select Down Position",
         "name": {
@@ -45,7 +45,7 @@
           }
         }
       },
-      "TopDirection": {
+      "TopPosition": {
         "error": "Up Position is required",
         "label": "Select Up Position",
         "name": {
@@ -74,7 +74,7 @@
             "minLength": "Poll Issue must be at least 3 characters long"
           }
         },
-        "dimensions": {
+        "factors": {
           "info": "Select the Factors of the poll",
           "error": "At least two poll Factors are required"
         },
@@ -98,7 +98,7 @@
           }
         }
       },
-      "Dimensions": {
+      "Factors": {
         "first": {
           "label": "Select 1st Factor",
           "error": "First Factor is required"

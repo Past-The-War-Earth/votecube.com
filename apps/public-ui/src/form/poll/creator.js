@@ -11,8 +11,8 @@ export function createPollForm(
 ) {
 	const text = uiText.Poll
 
-	const dimensions = new FieldGroup('Dimensions', {
-		first: createDimensionForm(
+	const factors = new FieldGroup('Factors', {
+		first: createFactorForm(
 			uiText,
 			Field,
 			FieldGroup,
@@ -20,7 +20,7 @@ export function createPollForm(
 			Validators,
 			[Validators.required()]
 		),
-		second: createDimensionForm(
+		second: createFactorForm(
 			uiText,
 			Field,
 			FieldGroup,
@@ -28,7 +28,7 @@ export function createPollForm(
 			Validators,
 			[Validators.required()]
 		),
-		third: createDimensionForm(
+		third: createFactorForm(
 			uiText,
 			Field,
 			FieldGroup,
@@ -93,7 +93,7 @@ export function createPollForm(
 	}, [Validators.required()], text)
 
 	return new FieldGroup('MainInfo', {
-		dimensions,
+		factors,
 		labels,
 		locations,
 		name: new Field([
@@ -105,7 +105,7 @@ export function createPollForm(
 	}, [Validators.required()], text)
 }
 
-function createDimensionForm(
+function createFactorForm(
 	uiText,
 	Field,
 	FieldGroup,
@@ -119,24 +119,24 @@ function createDimensionForm(
 	], {
 		maxLength: 20
 	})
-	const topDirectionName    = new MatchingField([
+	const topPositionName    = new MatchingField([
 		Validators.required(),
 		Validators.minLength(5)
 	], {
 		maxLength: 120
 	})
-	const bottomDirectionName = new MatchingField([
+	const bottomPositionName = new MatchingField([
 		Validators.required(),
 		Validators.minLength(5)
 	], {
 		maxLength: 120
 	})
-	const topDirection        = new FieldGroup('TopDirection', {
-		name: topDirectionName
-	}, [Validators.required()], uiText.Direction)
-	const bottomDirection     = new FieldGroup('BottomDirection', {
-		name: bottomDirectionName
-	}, [Validators.required()], uiText.Direction)
+	const topPosition        = new FieldGroup('TopPosition', {
+		name: topPositionName
+	}, [Validators.required()], uiText.Position)
+	const bottomPosition     = new FieldGroup('BottomPosition', {
+		name: bottomPositionName
+	}, [Validators.required()], uiText.Position)
 
 	// FIXME: move to appropriate place once matching is implemented
 	name.onChange((
@@ -149,23 +149,23 @@ function createDimensionForm(
 		}
 	})
 	// FIXME: move to appropriate place once matching is implemented
-	bottomDirectionName.onChange((
+	bottomPositionName.onChange((
 		value
 	) => {
-		if (bottomDirectionName.valid) {
-			bottomDirectionName.matches = ['a', 'b', 'c']
+		if (bottomPositionName.valid) {
+			bottomPositionName.matches = ['a', 'b', 'c']
 		} else {
-			bottomDirectionName.matches = null
+			bottomPositionName.matches = null
 		}
 	})
 	// FIXME: move to appropriate place once matching is implemented
-	topDirectionName.onChange((
+	topPositionName.onChange((
 		value
 	) => {
-		if (topDirectionName.valid) {
-			topDirectionName.matches = ['a', 'b', 'c']
+		if (topPositionName.valid) {
+			topPositionName.matches = ['a', 'b', 'c']
 		} else {
-			topDirectionName.matches = null
+			topPositionName.matches = null
 		}
 	})
 
@@ -173,12 +173,12 @@ function createDimensionForm(
 		picker: new Field([
 			Validators.required()
 		])
-	}, [Validators.required()], uiText.Dimension)
+	}, [Validators.required()], uiText.Factor)
 
 	return new FieldGroup('Info', {
-		bottomDirection,
+		bottomPosition,
 		color,
 		name,
-		topDirection
-	}, formValidators, uiText.Dimension)
+		topPosition
+	}, formValidators, uiText.Factor)
 }

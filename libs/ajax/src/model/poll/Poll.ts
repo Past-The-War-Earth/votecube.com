@@ -19,7 +19,7 @@ import {PollCountrySerializer}          from '../location/PollCountry'
 import {PollCountySerializer}           from '../location/PollCounty'
 import {PollStateSerializer}            from '../location/PollState'
 import {PollTownSerializer}             from '../location/PollTown'
-import {PollDimDirSerializer}           from './PollDimDir'
+import {PollFactorPositionSerializer}           from './PollFactorPosition'
 import {PollLabelSerializer}            from './PollLabel'
 
 /**
@@ -31,7 +31,7 @@ export class PollSerializer
 	pollContinentZ: PollContinentSerializer
 	pollCountryZ: PollCountrySerializer
 	pollCountyZ: PollCountySerializer
-	pollDimDirZ: PollDimDirSerializer
+	pollFactorPositionZ: PollFactorPositionSerializer
 	pollLabelZ: PollLabelSerializer
 	pollStateZ: PollStateSerializer
 	pollTownZ: PollTownSerializer
@@ -44,7 +44,7 @@ export class PollSerializer
 					this.pollContinentZ,
 					this.pollCountryZ,
 					this.pollCountyZ,
-					this.pollDimDirZ,
+					this.pollFactorPositionZ,
 					this.pollLabelZ,
 					this.pollStateZ,
 					this.pollTownZ
@@ -71,7 +71,7 @@ export class PollSerializer
 		this.pollStateZ.serializeArray(model.pollsStates, out, tempRecordIds)
 		// this.pollCountyZ.serializeArray(model.pollsCounties, out, tempRecordIds)
 		this.pollTownZ.serializeArray(model.pollsTowns, out, tempRecordIds)
-		this.pollDimDirZ.serializeArray(model.pollsDimensionsDirections, out, tempRecordIds)
+		this.pollFactorPositionZ.serializeArray(model.pollsFactorPositions, out, tempRecordIds)
 		this.pollLabelZ.serializeArray(model.pollsLabels, out, tempRecordIds)
 		out.date(model.startDate)
 		out.num(model.theme.id)

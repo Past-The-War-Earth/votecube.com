@@ -31,7 +31,7 @@ export function savePollForm(
 	pollDao.addTemp(poll, pollId)
 	voteDao.addTempForPoll(poll, pollId)
 
-	forms.uncacheForm(forms.CREATE_DIRECTION)
+	forms.uncacheForm(forms.CREATE_POSITION)
 	forms.uncacheForm(forms.CREATE_POLL_TOP)
-	forms.uncacheForm(forms.CREATE_DIMENSION)
+	forms.uncacheForm(forms.CREATE_FACTOR)
 }

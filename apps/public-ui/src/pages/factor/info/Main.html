@@ -27,35 +27,35 @@
 	</IconBlock>
 
 	<IconBlock
-					fieldGroup="{form.fields.topDirection}"
-					on:select="selectDirection('top', $routeParams)"
+					fieldGroup="{form.fields.topPosition}"
+					on:select="selectPosition('top', $routeParams)"
 	>
 		<div slot="icon">
-			<DirectionIcon></DirectionIcon>
+			<PositionIcon></PositionIcon>
 		</div>
 		<div slot="text">
-			{#if topDirection.valid}
-			{topDirection.fields.name.value}
+			{#if topPosition.valid}
+			{topPosition.fields.name.value}
 			{:else}
-			{topDirection.text.label}
+			{topPosition.text.label}
 			{/if}
 		</div>
 	</IconBlock>
 
 	<IconBlock
-					fieldGroup="{form.fields.bottomDirection}"
-					on:select="selectDirection('bottom', $routeParams)"
+					fieldGroup="{form.fields.bottomPosition}"
+					on:select="selectPosition('bottom', $routeParams)"
 	>
 		<div slot="icon">
-			<DirectionIcon
+			<PositionIcon
 							inverse="Y"
-			></DirectionIcon>
+			></PositionIcon>
 		</div>
 		<div slot="text">
-			{#if bottomDirection.valid}
-			{bottomDirection.fields.name.value}
+			{#if bottomPosition.valid}
+			{bottomPosition.fields.name.value}
 			{:else}
-			{bottomDirection.text.label}
+			{bottomPosition.text.label}
 			{/if}
 		</div>
 	</IconBlock>
@@ -75,7 +75,7 @@
 	import IconBlock      from '../../../common/field/IconBlock.html'
 	import Text           from '../../../common/field/Text.html'
 	import ColorIcon      from '../../../common/icon/ColorIcon.html'
-	import DirectionIcon  from '../../../common/icon/DirectionIcon.html'
+	import PositionIcon  from '../../../common/icon/PositionIcon.html'
 	import * as formCache from '../../../form/cache'
 	import * as forms     from '../../../form/forms'
 	import * as routes    from '../../../routes'
@@ -84,14 +84,14 @@
 	export default {
 		components: {
 			ColorIcon,
-			DirectionIcon,
+			PositionIcon,
 			IconBlock,
 			RightButton,
 			Text
 		},
 		computed: {
-			bottomDirection: ({form}) => form
-				? form.fields.bottomDirection
+			bottomPosition: ({form}) => form
+				? form.fields.bottomPosition
 				: null,
 			color: ({form}) => form
 				? form.fields.color
@@ -107,8 +107,8 @@
 			submitHighlight: ({isValid}) => isValid
 				? '0b0'
 				: 'b00',
-			topDirection: ({form}) => form
-				? form.fields.topDirection
+			topPosition: ({form}) => form
+				? form.fields.topPosition
 				: null
 		},
 		methods: {
@@ -118,22 +118,22 @@
 			},
 			selectColor($routeParams) {
 				this.set({keepPollId: $routeParams.pollId})
-				routes.navigateToPage(routes.DIMENSION_PICK_COLOR, $routeParams)
+				routes.navigateToPage(routes.FACTOR_PICK_COLOR, $routeParams)
 			},
-			selectDirection(
-				directionPrefix,
+			selectPosition(
+				positionPrefix,
 				$routeParams
 			) {
 				this.set({keepPollId: $routeParams.pollId})
-				const dimensionForm = this.get().form
-				forms.setForm(forms.CREATE_DIRECTION, dimensionForm.fields[directionPrefix + 'Direction'])
-				routes.navigateToPage(routes.DIRECTION_INFO_MAIN, $routeParams)
+				const factorForm = this.get().form
+				forms.setForm(forms.CREATE_POSITION, factorForm.fields[positionPrefix + 'Position'])
+				routes.navigateToPage(routes.POSITION_INFO_MAIN, $routeParams)
 			}
 		},
 		oncreate() {
 			formCache.getPollRouteParams(this)
 			forms.ensureTopForm(
-				forms.CREATE_DIMENSION,
+				forms.CREATE_FACTOR,
 				this, routes.POLL_INFO_MAIN)
 			this.store.set({
 				pageTitle: 'Factor Info'

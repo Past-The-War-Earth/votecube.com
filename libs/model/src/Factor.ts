@@ -2,15 +2,15 @@ import {IColor}         from './Color'
 import {Id}             from './core/Model'
 import {ITemporalModel} from './core/TemporalModel'
 
-export type DimensionId = Id
+export type FactorId = Id
 
-export interface IDimension
+export interface IFactor
 	extends ITemporalModel {
 
 	color: IColor
 	description: string
-	id: DimensionId
+	id: FactorId
 	name: string
-	parent: IDimension
+	parent: IFactor
 
 }

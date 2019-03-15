@@ -1,5 +1,5 @@
 import {DI}                             from '@votecube/di'
-import {EntityType, IDirection}         from '@votecube/model'
+import {EntityType, IPosition}         from '@votecube/model'
 import {In}                             from '../core/In'
 import {Out}                            from '../core/Out'
 import {AJAX_Z_DIRECTION}               from '../tokens'
@@ -9,15 +9,15 @@ import {ITempRecordId, ModelSerializer} from './core/ModelSerializer'
 /**
  * Please try to keep properties serialized in UI-model alphabetic order. :)
  */
-export class DirectionSerializer
-	extends ModelSerializer<IDirection> {
+export class PositionSerializer
+	extends ModelSerializer<IPosition> {
 
 	constructor() {
 		super(EntityType.DIR);
 	}
 
 	serializeRecord(
-		model: IDirection,
+		model: IPosition,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
 	): void {
@@ -30,10 +30,10 @@ export class DirectionSerializer
 	deserialize(
 		mode: Mode,
 		bin: In
-	): IDirection {
+	): IPosition {
 		return undefined
 	}
 
 }
 
-DI.set(AJAX_Z_DIRECTION, DirectionSerializer)
+DI.set(AJAX_Z_DIRECTION, PositionSerializer)

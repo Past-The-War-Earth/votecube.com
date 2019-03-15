@@ -4,10 +4,10 @@ export var PAGE_CONF = {}
 
 let appComp, pageComp, topMenuComp
 
-export const DIMENSION_INFO_MAIN   = '/dimension/info/Main/:mode/:pollId'
-export const DIMENSION_SEARCH_LIST = '/dimension/List'
-export const DIMENSION_PICK_COLOR  = '/dimension/PickColor/:mode/:pollId'
-export const DIRECTION_INFO_MAIN   = '/direction/info/Main/:mode/:pollId'
+export const FACTOR_INFO_MAIN   = '/factor/info/Main/:mode/:pollId'
+export const FACTOR_SEARCH_LIST = '/factor/List'
+export const FACTOR_PICK_COLOR  = '/factor/PickColor/:mode/:pollId'
+export const POSITION_INFO_MAIN   = '/position/info/Main/:mode/:pollId'
 export const POLL_SEARCH_LIST      = '/poll/search/List'
 export const POLL_INFO_MAIN        = '/poll/info/Main/:mode/:pollId'
 export const POLL_INFO_CHART       = '/poll/info/Chart/:mode/:pollId'
@@ -21,19 +21,19 @@ export const DEFAULT_ROUTE_PARAMS = {
 }
 
 configPage(
-	DIRECTION_INFO_MAIN,
+	POSITION_INFO_MAIN,
 	false
 )
 configPage(
-	DIMENSION_INFO_MAIN,
+	FACTOR_INFO_MAIN,
 	false
 )
 configPage(
-	DIMENSION_PICK_COLOR,
+	FACTOR_PICK_COLOR,
 	false
 )
 configPage(
-	DIMENSION_SEARCH_LIST,
+	FACTOR_SEARCH_LIST,
 	true
 )
 configPage(

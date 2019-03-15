@@ -89,7 +89,7 @@
 		},
 		methods: {
 			mouseDown(
-				direction,
+				position,
 				event
 			) {
 				event.preventDefault()
@@ -98,15 +98,15 @@
 				this.set({lastNumIncs: 5, percentChange})
 
 				this.fire('move', {
-					direction,
+					position,
 					percentChange
 				})
 
-				setIntrvl(this, 360, direction, 4, 3, 1)
+				setIntrvl(this, 360, position, 4, 3, 1)
 				this.fire('update')
 			},
 			mouseUp(
-				direction,
+				position,
 				event
 			) {
 				event.preventDefault()
@@ -132,9 +132,9 @@
 	) {
 		let numIncs       = page.get().numIncs - 1
 		let percentChange = page.get().percentChange
-		let direction     = page.get().direction
+		let position     = page.get().position
 		page.fire('move', {
-			direction,
+			position,
 			percentChange
 		});
 		if (!numIncs) {
@@ -147,7 +147,7 @@
 			let numIncs   = page.get().lastNumIncs * 2
 			percentChange = percentChange * 3
 			page.set({lastNumIncs: numIncs})
-			setIntrvl(page, interval, direction, numIncs, numReIncs, percentChange)
+			setIntrvl(page, interval, position, numIncs, numReIncs, percentChange)
 		} else {
 			page.set({numIncs})
 		}
@@ -156,17 +156,17 @@
 	function setIntrvl(
 		page,
 		interval,
-		direction,
+		position,
 		numIncs,
 		numReIncs,
 		percentChange,
 	) {
-		// console.log(`interval: ${interval}, direction: ${direction}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
+		// console.log(`interval: ${interval}, position: ${position}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
 		const incrementInterval = setInterval(() => {
 			checkInterval(page)
 			page.fire('update')
 		}, interval)
-		page.set({direction, incrementInterval, interval, numIncs, numReIncs, percentChange})
+		page.set({position, incrementInterval, interval, numIncs, numReIncs, percentChange})
 	}
 
 	function clearIntrvl(

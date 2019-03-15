@@ -80,7 +80,7 @@
 >
 	<tr>
 		<td>
-			<DimensionInfoButton
+			<FactorInfoButton
 							axis='x'
 							bind:mode
 							delta="{delta}"
@@ -88,17 +88,17 @@
 							poll="{poll}"
 							position="left"
 							voteDim="{vote.x}"
-			></DimensionInfoButton>
+			></FactorInfoButton>
 		</td>
 		<td
-						class="directionText"
+						class="positionText"
 		>
 			{xText(delta, mode, poll, vote)}
 		</td>
 	<tr>
 	</tr>
 	<td>
-		<DimensionInfoButton
+		<FactorInfoButton
 						axis='y'
 						bind:mode
 						delta="{delta}"
@@ -107,16 +107,16 @@
 						poll="{poll}"
 						position="left"
 						voteDim="{vote.y}"
-		></DimensionInfoButton>
+		></FactorInfoButton>
 	</td>
 	<td
-					class="directionText"
+					class="positionText"
 	>
 		{yText(delta, mode, poll, vote)}
 	</td>
 	<tr>
 		<td>
-			<DimensionInfoButton
+			<FactorInfoButton
 							axis='z'
 							bind:mode
 							delta="{delta}"
@@ -125,10 +125,10 @@
 							poll="{poll}"
 							position="left"
 							voteDim="{vote.z}"
-			></DimensionInfoButton>
+			></FactorInfoButton>
 		</td>
 		<td
-						class="directionText"
+						class="positionText"
 		>
 			{zText(delta, mode, poll, vote)}
 		</td>
@@ -145,11 +145,11 @@
 			width: 54% !important;
 		}
 
-		.directionText {
+		.positionText {
 			font-size: calc(1.3vw + 1.3vh) !important;
 		}
 
-		.confirmTable .directionText {
+		.confirmTable .positionText {
 			font-size: calc(0.8vw + 0.8vh) !important;
 		}
 	}
@@ -183,11 +183,11 @@
 		vertical-align: middle;
 	}
 
-	.confirmTable .directionText {
+	.confirmTable .positionText {
 		font-size: calc(1.2vw + 1.2vh);
 	}
 
-	.directionText {
+	.positionText {
 		font-size: calc(1.8vw + 1.8vh);
 	}
 
@@ -248,7 +248,7 @@
 </style>
 
 <script>
-	import DimensionInfoButton from '../../common/control/button/DimensionInfoButton.html'
+	import FactorInfoButton from '../../common/control/button/FactorInfoButton.html'
 	import {
 		getColor,
 		getSideText
@@ -256,7 +256,7 @@
 
 	export default {
 		components: {
-			DimensionInfoButton
+			FactorInfoButton
 		},
 		computed: {
 			horizontalPage: ({
@@ -302,7 +302,7 @@
 					: 0,
 			xText: (delta, mode, poll, vote) =>
 				vote ?
-					directionText(delta, mode, poll, vote.x)
+					positionText(delta, mode, poll, vote.x)
 					: '',
 			yMinusHeight: (delta, maxBarSize, maxValue, vote) =>
 				vote ?
@@ -314,7 +314,7 @@
 					: 0,
 			yText: (delta, mode, poll, vote) =>
 				vote ?
-					directionText(delta, mode, poll, vote.y)
+					positionText(delta, mode, poll, vote.y)
 					: '',
 			zMinusHeight: (delta, maxBarSize, maxValue, vote) =>
 				vote ?
@@ -326,42 +326,42 @@
 					: 0,
 			zText: (delta, mode, poll, vote) =>
 				vote ?
-					directionText(delta, mode, poll, vote.z)
+					positionText(delta, mode, poll, vote.z)
 					: ''
 		}
 	}
 
 	function barHeight(
-		voteDimension,
-		direction,
+		voteFactor,
+		position,
 		maxBarSize,
 		maxValue
 	) {
-		return voteDimension
-		&& voteDimension.dir === direction
-			? voteDimension.value * maxBarSize / (maxValue * 1.2)
+		return voteFactor
+		&& voteFactor.dir === position
+			? voteFactor.value * maxBarSize / (maxValue * 1.2)
 			: 0
 	}
 
-	function directionText(
+	function positionText(
 		delta,
 		mode,
 		poll,
-		voteDimension
+		voteFactor
 	) {
-		return getSideText(delta, mode, poll, voteDimension.axis, voteDimension.dir)
+		return getSideText(delta, mode, poll, voteFactor.axis, voteFactor.dir)
 	}
 
 	function addToVals(
 		poll,
-		voteDimension,
+		voteFactor,
 		positiveValues,
 		negativeValues
 	) {
-		if (voteDimension.dir === 1) {
-			positiveValues.push(voteDimension.value);
+		if (voteFactor.dir === 1) {
+			positiveValues.push(voteFactor.value);
 		} else {
-			negativeValues.push(voteDimension.value);
+			negativeValues.push(voteFactor.value);
 		}
 	}
 

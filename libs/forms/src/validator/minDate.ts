@@ -8,7 +8,7 @@ export function minDate(
 	const minMonth       = date.getUTCMonth()
 	const minYear        = date.getUTCFullYear()
 
-	const validator = (
+	const validator: IValidator = ((
 		field: IDateField,
 	) => {
 		if (!field.fragments.valid
@@ -28,7 +28,7 @@ export function minDate(
 			}
 		}
 
-	}
+	}) as IValidator
 
 	validator.type = 'min'
 

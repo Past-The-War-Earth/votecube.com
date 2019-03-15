@@ -28,15 +28,15 @@
 		},
 		data() {
 			return {
-				dimension: null,
+				factor: null,
 				delta: 0
 			}
 		},
 		methods: {
 			toggleSurface(
-				dimension
+				factor
 			) {
-				this.get().mutationApi.toggleSurface(dimension)
+				this.get().mutationApi.toggleSurface(factor)
 				this.set({delta: this.get().delta + 1})
 			}
 		},

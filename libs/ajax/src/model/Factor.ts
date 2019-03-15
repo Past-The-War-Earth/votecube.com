@@ -1,5 +1,5 @@
 import {DI}                             from '@votecube/di'
-import {EntityType, IDimension}         from '@votecube/model'
+import {EntityType, IFactor}         from '@votecube/model'
 import {In}                             from '../core/In'
 import {Out}                            from '../core/Out'
 import {AJAX_Z_DIMENSION}               from '../tokens'
@@ -9,15 +9,15 @@ import {ITempRecordId, ModelSerializer} from './core/ModelSerializer'
 /**
  * Please try to keep properties serialized in UI-model alphabetic order. :)
  */
-export class DimensionSerializer
-	extends ModelSerializer<IDimension> {
+export class FactorSerializer
+	extends ModelSerializer<IFactor> {
 
 	constructor() {
 		super(EntityType.DIM);
 	}
 
 	serializeRecord(
-		model: IDimension,
+		model: IFactor,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
 	): void {
@@ -30,10 +30,10 @@ export class DimensionSerializer
 	deserialize(
 		mode: Mode,
 		bin: In
-	): IDimension {
+	): IFactor {
 		return undefined
 	}
 
 }
 
-DI.set(AJAX_Z_DIMENSION, DimensionSerializer)
+DI.set(AJAX_Z_DIMENSION, FactorSerializer)

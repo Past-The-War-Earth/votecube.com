@@ -23,10 +23,10 @@ export function dtoToForm(
 		: []
 
 	return {
-		dimensions: {
-			first: getDimForm(getPollDimDirDtos(poll, 'y')),
-			second: getDimForm(getPollDimDirDtos(poll, 'z')),
-			third: getDimForm(getPollDimDirDtos(poll, 'x'))
+		factors: {
+			first: getDimForm(getPollFactorPositionDtos(poll, 'y')),
+			second: getDimForm(getPollFactorPositionDtos(poll, 'z')),
+			third: getDimForm(getPollFactorPositionDtos(poll, 'x'))
 		},
 		labels: poll.pollsLabels.map(pollLabel => ({
 			id: pollLabel.label.id,
@@ -51,38 +51,38 @@ export function dtoToForm(
 	}
 }
 
-function getPollDimDirDtos(
+function getPollFactorPositionDtos(
 	poll,
 	axis
 ) {
-	return poll.pollsDimensionsDirections.filter(pollDimensionDirection =>
-		axis === pollDimensionDirection.axis
+	return poll.pollsFactorsPositions.filter(pollFactorPosition =>
+		axis === pollFactorPosition.axis
 	)
 }
 
 function getDimForm(
-	pollDimensionDirections
+	pollFactorPositions
 ) {
-	const color = pollDimensionDirections[0].color
-	let bottomDirection, topDirection
+	const color = pollFactorPositions[0].color
+	let bottomPosition, topPosition
 
-	pollDimensionDirections.forEach(pollDimensionDirection => {
-		const direction = pollDimensionDirection.dimensionDirection.direction
-		if (pollDimensionDirection.dir === 1) {
-			topDirection = direction
+	pollFactorPositions.forEach(pollFactorPosition => {
+		const position = pollFactorPosition.factorPosition.position
+		if (pollFactorPosition.dir === 1) {
+			topPosition = position
 		} else {
-			bottomDirection = direction
+			bottomPosition = position
 		}
 	})
 	return {
-		bottomDirection,
+		bottomPosition,
 		color: {
 			picker: {
-				...getRGB(pollDimensionDirections[0].color),
+				...getRGB(pollFactorPositions[0].color),
 				name: ''
 			}
 		},
-		name: pollDimensionDirections[0].dimensionDirection.dimension.name,
-		topDirection
+		name: pollFactorPositions[0].factorPosition.factor.name,
+		topPosition
 	}
 }

@@ -11,7 +11,7 @@
 			<LinearPositionPicker
 							axis="x"
 							moveDelta="{moveDelta}"
-							on:move="move('x', event.direction, event.percentChange)"
+							on:move="move('x', event.position, event.percentChange)"
 							on:moveToValue="moveToValue('x', event)"
 							on:update="update()"
 							poll="{poll}"
@@ -21,7 +21,7 @@
 			<LinearPositionPicker
 							axis="y"
 							moveDelta="{moveDelta}"
-							on:move="move('y', event.direction, event.percentChange)"
+							on:move="move('y', event.position, event.percentChange)"
 							on:moveToValue="moveToValue('y', event)"
 							on:update="update()"
 							poll="{poll}"
@@ -31,7 +31,7 @@
 			<LinearPositionPicker
 							axis="z"
 							moveDelta="{moveDelta}"
-							on:move="move('z', event.direction, event.percentChange)"
+							on:move="move('z', event.position, event.percentChange)"
 							on:moveToValue="moveToValue('z', event)"
 							on:update="update()"
 							poll="{poll}"
@@ -106,23 +106,23 @@
 		},
 		methods: {
 			move(
-				dimension,
-				direction,
+				factor,
+				position,
 				percentChange
 			) {
 				this.fire('move', {
-					dimension,
-					direction,
+					factor,
+					position,
 					percentChange
 				})
 				this.set({moveDelta: this.get().moveDelta + 1})
 			},
 			moveToValue(
-				dimension,
+				factor,
 				value
 			) {
 				this.fire('moveToValue', {
-					dimension,
+					factor,
 					value
 				})
 				refresh(this)

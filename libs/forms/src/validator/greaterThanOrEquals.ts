@@ -4,7 +4,7 @@ import {IValidator} from './Validator'
 export function greaterThanOrEquals(
 	relatedField: IField // UTC only
 ): IValidator<IField> {
-	const validator = (
+	const validator: IValidator = ((
 		field: IField,
 	) => {
 		const relatedNumValue = relatedField.numValue
@@ -16,7 +16,7 @@ export function greaterThanOrEquals(
 		return {
 			key: 'greaterThanOrEquals'
 		}
-	}
+	}) as IValidator
 
 	validator.type = 'greaterThanOrEquals'
 

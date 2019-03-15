@@ -42,13 +42,13 @@
 				$routeParams
 			) {
 				this.set({keepPollId: $routeParams.pollId})
-				forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
+				forms.navigateOnValid(this, routes.FACTOR_INFO_MAIN, $routeParams)
 			}
 		},
 		oncreate() {
 			formCache.getPollRouteParams(this)
 			forms.ensureTopForm(
-				forms.CREATE_DIRECTION,
+				forms.CREATE_POSITION,
 				this, routes.POLL_INFO_MAIN)
 			this.store.set({
 				pageTitle: 'Position Info'

@@ -1,13 +1,13 @@
-import {Id}                      from '../core/Model'
-import {ITemporalModel}          from '../core/TemporalModel'
-import {IPollContinent}          from '../location/PollContinent'
-import {IPollCountry}            from '../location/PollCountry'
-import {IPollCounty}             from '../location/PollCounty'
-import {IPollState}              from '../location/PollState'
-import {IPollTown}               from '../location/PollTown'
-import {ITheme}                  from '../Theme'
-import {IPollDimensionDirection} from './PollDimensionDirection'
-import {IPollLabel}              from './PollLabel'
+import {Id}                  from '../core/Model'
+import {ITemporalModel}      from '../core/TemporalModel'
+import {IPollContinent}      from '../location/PollContinent'
+import {IPollCountry}        from '../location/PollCountry'
+import {IPollCounty}         from '../location/PollCounty'
+import {IPollState}          from '../location/PollState'
+import {IPollTown}           from '../location/PollTown'
+import {ITheme}              from '../Theme'
+import {IPollFactorPosition} from './PollFactorPosition'
+import {IPollLabel}          from './PollLabel'
 
 export type PollId = Id
 export type PollName = string
@@ -21,7 +21,7 @@ export interface IPoll
 	pollsContinents: IPollContinent[]
 	pollsCounties: IPollCounty[]
 	pollsCountries: IPollCountry[]
-	pollsDimensionsDirections: IPollDimensionDirection[]
+	pollsFactorPositions: IPollFactorPosition[]
 	pollsLabels: IPollLabel[];
 	pollsStates: IPollState[]
 	pollsTowns: IPollTown[]

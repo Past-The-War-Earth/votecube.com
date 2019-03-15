@@ -1,67 +1,67 @@
 export const SEQUENCES = {
 	colors: 3,
-	dimensionDescriptions: 3,
-	dimensionDirections: 6,
-	dimensions: 3,
-	directions: 6,
-	directionDescriptions: 6,
+	factorDescriptions: 3,
+	factorPositions: 6,
+	factors: 3,
+	positions: 6,
+	positionDescriptions: 6,
 	labels: 2,
 	polls: 1,
 	pollDescriptions: 1,
-	pollsDimensionsDirections: 3
+	pollsFactorsPositions: 3
 }
 
 export const DB = {
-	dimensionDirections: [{
-		dimension: {
+	factorPositions: [{
+		factor: {
 			id: 1,
 		},
-		direction: {
+		position: {
 			id: 1
 		},
 		id: 1
 	}, {
-		dimension: {
+		factor: {
 			id: 1,
 		},
-		direction: {
+		position: {
 			id: 2
 		},
 		id: 2
 	}, {
-		dimension: {
+		factor: {
 			id: 2,
 		},
-		direction: {
+		position: {
 			id: 3
 		},
 		id: 3
 	}, {
-		dimension: {
+		factor: {
 			id: 2,
 		},
-		direction: {
+		position: {
 			id: 4
 		},
 		id: 4
 	}, {
-		dimension: {
+		factor: {
 			id: 3,
 		},
-		direction: {
+		position: {
 			id: 5
 		},
 		id: 5
 	}, {
-		dimension: {
+		factor: {
 			id: 3,
 		},
-		direction: {
+		position: {
 			id: 6
 		},
 		id: 6
 	}],
-	dimensions: [{
+	factors: [{
 		id: 1,
 		name: 'Security'
 	}, {
@@ -71,7 +71,7 @@ export const DB = {
 		id: 3,
 		name: 'Equality',
 	}],
-	directions: [{
+	positions: [{
 		id: 1,
 		// name: ' . . . . . X+'
 		name: 'Trumps policies reduce military\'s over extension and let it focus on the real threats.'
@@ -112,12 +112,12 @@ export const DB = {
 				"id": "NorthAmerica"
 			}
 		}],
-		pollsDimensionsDirections: [{
+		pollsFactorsPositions: [{
 			axis: 'x',
 			color: {
 				id: 255 * 256 * 256
 			},
-			dimensionDirection: {
+			factorPosition: {
 				id: 1,
 			},
 			dir: 1,
@@ -127,7 +127,7 @@ export const DB = {
 			color: {
 				id: 255 * 256 * 256
 			},
-			dimensionDirection: {
+			factorPosition: {
 				id: 2,
 			},
 			dir: -1,
@@ -137,7 +137,7 @@ export const DB = {
 			color: {
 				id: 255 * 256 * 256 + 255 * 256
 			},
-			dimensionDirection: {
+			factorPosition: {
 				id: 3,
 			},
 			dir: 1,
@@ -147,7 +147,7 @@ export const DB = {
 			color: {
 				id: 255 * 256 * 256 + 255 * 256
 			},
-			dimensionDirection: {
+			factorPosition: {
 				id: 4,
 			},
 			dir: -1,
@@ -158,7 +158,7 @@ export const DB = {
 			color: {
 				id: 255 * 256
 			},
-			dimensionDirection: {
+			factorPosition: {
 				id: 5,
 			},
 			dir: 1,
@@ -168,7 +168,7 @@ export const DB = {
 			color: {
 				id: 255 * 256
 			},
-			dimensionDirection: {
+			factorPosition: {
 				id: 6,
 			},
 			dir: -1,

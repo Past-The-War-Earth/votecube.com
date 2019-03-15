@@ -89,11 +89,11 @@
 <script>
 	import TextToast           from './common/shell/TextToast.html'
 	import {loadUi}            from './libs/text/ui'
-	import DimensionInfoMain   from './pages/dimension/info/Main.html'
-	import DimensionPickColor  from './pages/dimension/PickColor.html'
-	import DimensionSearchList from './pages/dimension/search/List.html'
+	import FactorInfoMain   from './pages/factor/info/Main.html'
+	import FactorPickColor  from './pages/factor/PickColor.html'
+	import FactorSearchList from './pages/factor/search/List.html'
 
-	import DirectionInfoMain     from './pages/direction/info/Main.html'
+	import PositionInfoMain     from './pages/position/info/Main.html'
 	import PollInfoChart         from './pages/poll/info/Chart.html'
 	import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
 	import PollInfoCube          from './pages/poll/info/Cube.html'
@@ -116,10 +116,10 @@
 	import store                 from './store.js';
 
 	const pageMap = {
-		[routes.DIRECTION_INFO_MAIN]: DirectionInfoMain,
-		[routes.DIMENSION_INFO_MAIN]: DimensionInfoMain,
-		[routes.DIMENSION_SEARCH_LIST]: DimensionSearchList,
-		[routes.DIMENSION_PICK_COLOR]: DimensionPickColor,
+		[routes.POSITION_INFO_MAIN]: PositionInfoMain,
+		[routes.FACTOR_INFO_MAIN]: FactorInfoMain,
+		[routes.FACTOR_SEARCH_LIST]: FactorSearchList,
+		[routes.FACTOR_PICK_COLOR]: FactorPickColor,
 		[routes.POLL_INFO_CHART]: PollInfoChart,
 		[routes.POLL_SEARCH_LIST]: PollSearchList,
 		[routes.POLL_INFO_MAIN]: PollInfoMain,
@@ -177,9 +177,9 @@
 				this.store.toggleMainMenu()
 			},
 			toggleSurface(
-				dimension
+				factor
 			) {
-				this.get().mutationApi.toggleSurface(dimension)
+				this.get().mutationApi.toggleSurface(factor)
 			},
 			setPageComp(
 				PageComp

@@ -1,13 +1,13 @@
 import {Id}             from './core/Model'
 import {ITemporalModel} from './core/TemporalModel'
 
-export type DirectionId = Id
+export type PositionId = Id
 
-export interface IDirection
+export interface IPosition
 	extends ITemporalModel {
 
-	id: DirectionId
+	id: PositionId
 	name: string
-	parent: IDirection
+	parent: IPosition
 
 }

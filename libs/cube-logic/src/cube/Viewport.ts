@@ -74,7 +74,7 @@ export const viewport: IViewport = {
 	el: null,
 	increment: MoveIncrement.FIVE,
 	pd: null,
-	// Recently moved dimension
+	// Recently moved factor
 	rmd: [],
 	vd: {
 		x: 1,

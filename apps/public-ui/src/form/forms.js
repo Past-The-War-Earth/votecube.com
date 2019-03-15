@@ -1,8 +1,8 @@
 import * as routes from '../routes'
 
 export const CREATE_POLL_TOP  = routes.POLL_INFO_MAIN
-export const CREATE_DIMENSION = routes.DIMENSION_INFO_MAIN
-export const CREATE_DIRECTION = routes.DIRECTION_INFO_MAIN
+export const CREATE_FACTOR = routes.FACTOR_INFO_MAIN
+export const CREATE_POSITION = routes.POSITION_INFO_MAIN
 
 
 let forms = {}

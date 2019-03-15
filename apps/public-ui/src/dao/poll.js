@@ -16,21 +16,21 @@ export const pollDao = {
 	},
 
 	cachePoll(poll) {
-		for (const pollDimensionDirection of poll.pollsDimensionsDirections) {
-			let currentDimensionDirection
-			pollDimensionDirection.dimensionDirection = DB.dimensionDirections.filter((dimensionDirection) => {
-				if (dimensionDirection.id === pollDimensionDirection.dimensionDirection.id) {
-					currentDimensionDirection = dimensionDirection
+		for (const pollFactorPosition of poll.pollsFactorsPositions) {
+			let currentFactorPosition
+			pollFactorPosition.factorPosition = DB.factorPositions.filter((factorPosition) => {
+				if (factorPosition.id === pollFactorPosition.factorPosition.id) {
+					currentFactorPosition = factorPosition
 					return true
 				}
 			})[0]
 
-			currentDimensionDirection.dimension = DB.dimensions.filter((dimension) =>
-				dimension.id === currentDimensionDirection.dimension.id
+			currentFactorPosition.factor = DB.factors.filter((factor) =>
+				factor.id === currentFactorPosition.factor.id
 			)[0]
 
-			currentDimensionDirection.direction = DB.directions.filter((direction) =>
-				direction.id === currentDimensionDirection.direction.id
+			currentFactorPosition.position = DB.positions.filter((position) =>
+				position.id === currentFactorPosition.position.id
 			)[0]
 		}
 
@@ -84,14 +84,14 @@ export const pollDao = {
 	) {
 		return new Promise((resolve) => {
 			poll.id = ++SEQUENCES.polls
-			poll.pollsDimensionsDirections.forEach((
-				pollDimensionDirection
+			poll.pollsFactorsPositions.forEach((
+				pollFactorPosition
 			) => {
-				pollDimensionDirection.id       = ++SEQUENCES.pollsDimensionsDirections
-				const dimensionDirection        = pollDimensionDirection.dimensionDirection;
-				dimensionDirection.id           = ++SEQUENCES.dimensionDirections
-				dimensionDirection.dimension.id = ++SEQUENCES.dimensions
-				dimensionDirection.direction.id = ++SEQUENCES.directions
+				pollFactorPosition.id       = ++SEQUENCES.pollsFactorsPositions
+				const factorPosition        = pollFactorPosition.factorPosition;
+				factorPosition.id           = ++SEQUENCES.factorPositions
+				factorPosition.factor.id = ++SEQUENCES.factors
+				factorPosition.position.id = ++SEQUENCES.positions
 			})
 
 			pollMap[poll.id] = poll

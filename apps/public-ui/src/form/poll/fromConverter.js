@@ -1,7 +1,7 @@
 export function formToDto(
 	formValue
 ) {
-	const dimensions     = formValue.dimensions
+	const factors     = formValue.factors
 	const formThemeValue = formValue.theme
 	const locations      = formValue.locations
 
@@ -16,10 +16,10 @@ export function formToDto(
 		pollsCountries: locations.countries.map((country) => ({
 			country
 		})),
-		pollsDimensionsDirections: [
-			...get2PollDimDirs('y', dimensions.first),
-			...get2PollDimDirs('z', dimensions.second),
-			...get2PollDimDirs('x', dimensions.third)
+		pollsFactorsPositions: [
+			...get2PollFactorPositions('y', factors.first),
+			...get2PollFactorPositions('z', factors.second),
+			...get2PollFactorPositions('x', factors.third)
 		],
 		pollsLabels: formValue.labels.map(label => ({
 			label: {
@@ -41,24 +41,24 @@ export function formToDto(
 	}
 }
 
-function get2PollDimDirs(
+function get2PollFactorPositions(
 	axis,
-	dimensionFormValue
+	factorFormValue
 ) {
-	const {color, dimension} = getDimDto(dimensionFormValue)
+	const {color, factor} = getDimDto(factorFormValue)
 
-	let topDir    = dimensionFormValue.topDirection
-	let bottomDir = dimensionFormValue.bottomDirection
+	let topDir    = factorFormValue.topPosition
+	let bottomDir = factorFormValue.bottomPosition
 
 	return [
-		getPollDimDirDto(axis, dimension, 1, topDir.name, color),
-		getPollDimDirDto(axis, dimension, -1, bottomDir.name, color)
+		getPollFactorPositionDto(axis, factor, 1, topDir.name, color),
+		getPollFactorPositionDto(axis, factor, -1, bottomDir.name, color)
 	]
 }
 
-function getPollDimDirDto(
+function getPollFactorPositionDto(
 	axis,
-	dimension,
+	factor,
 	dir,
 	name,
 	color
@@ -66,9 +66,9 @@ function getPollDimDirDto(
 	return {
 		axis,
 		color,
-		dimensionDirection: {
-			dimension,
-			direction: {
+		factorPosition: {
+			factor,
+			position: {
 				name
 			}
 		},
@@ -78,9 +78,9 @@ function getPollDimDirDto(
 }
 
 function getDimDto(
-	formDimension
+	formFactor
 ) {
-	let picker = formDimension.color.picker
+	let picker = formFactor.color.picker
 
 	const red   = parseInt(picker.red)
 	const green = parseInt(picker.green)
@@ -93,8 +93,8 @@ function getDimDto(
 			green,
 			blue
 		},
-		dimension: {
-			name: formDimension.name
+		factor: {
+			name: formFactor.name
 		}
 	}
 }

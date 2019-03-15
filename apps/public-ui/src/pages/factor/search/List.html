@@ -1,38 +1,38 @@
 {#if form}
 <form>
-	<div class="pure-control-group">
-		<AutoComplete
-						field="{form.fields.theme}"
-		></AutoComplete>
-	</div>
-	<div class="pure-control-group">
-		<MultiSelect
-						field="{form.fields.labels}"
-		></MultiSelect>
-	</div>
+    <div class="pure-control-group">
+        <AutoComplete
+                field="{form.fields.theme}"
+        ></AutoComplete>
+    </div>
+    <div class="pure-control-group">
+        <MultiSelect
+                field="{form.fields.labels}"
+        ></MultiSelect>
+    </div>
 </form>
 <table>
-	{#each dimensions as dimension}
-	<ListItem
-					dimension="{dimension}"
-	></ListItem>
-	{/each}
+    {#each factors as factor}
+    <ListItem
+            factor="{factor}"
+    ></ListItem>
+    {/each}
 </table>
 <!--
-<VirtualList items={dimensions} component={ListItem} />
+<VirtualList items={factors} component={ListItem} />
 -->
 {/if}
 
 <style>
-	table {
-		width: 100%;
-	}
+    table {
+        width: 100%;
+    }
 </style>
 <script>
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import AutoComplete             from '../../../common/field/AutoComplete.html'
 	import MultiSelect              from '../../../common/field/MultiSelect.html'
-	import {dimensionDao}           from '../../../dao/dimension'
+	import {factorDao}              from '../../../dao/factor'
 	import {
 		clearForm,
 		ensureForm,
@@ -40,9 +40,9 @@
 	}                               from '../../../form/forms'
 	import {loadForms}              from '../../../libs/forms'
 	import {loadUi}                 from '../../../libs/text/ui'
-	import {SELECT_POLL_DIMENSIONS} from '../../../routes'
+	import {FACTOR_SEARCH_LIST} from '../../../routes'
 	import store                    from '../../../store'
-	import ListItem                 from './ListItem.html';
+	import ListItem                 from './ListItem.html'
 
 	export default {
 		components: {
@@ -58,18 +58,18 @@
 		// },
 		methods: {
 			submit() {
-				navigateOnValid(this, SELECT_POLL_DIMENSIONS)
+				navigateOnValid(this, FACTOR_SEARCH_LIST)
 			}
 		},
 		oncreate() {
 			Promise.all([
 				loadForms(this),
 				loadUi(this.store, 'en-us'),
-				dimensionDao.getAll()
+				factorDao.getAll()
 			]).then(([
 				         {FieldGroup, OptionsField, Validators},
 				         _,
-				         dimensions
+				         factors
 			         ]) => {
 				const filter = new FieldGroup('List', {
 					theme: new OptionsField([
@@ -105,9 +105,9 @@
 					}], {
 						multi: true
 					})
-				}, [], this.store.get().text.UI.Dimension)
+				}, [], this.store.get().text.UI.Factor)
 
-				this.set({dimensions})
+				this.set({factors})
 				ensureForm(filter, this)
 			})
 		},

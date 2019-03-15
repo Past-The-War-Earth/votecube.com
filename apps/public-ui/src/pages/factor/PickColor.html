@@ -36,13 +36,13 @@
 		methods: {
 			select($routeParams) {
 				this.set({keepPollId: $routeParams.pollId})
-				forms.navigateOnValid(this, routes.DIMENSION_INFO_MAIN, $routeParams)
+				forms.navigateOnValid(this, routes.FACTOR_INFO_MAIN, $routeParams)
 			}
 		},
 		oncreate() {
 			formCache.getPollRouteParams(this)
 			forms.ensureChildForm(
-				forms.CREATE_DIMENSION, 'color',
+				forms.CREATE_FACTOR, 'color',
 				this, routes.POLL_INFO_MAIN
 			)
 			this.store.set({

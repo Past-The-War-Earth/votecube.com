@@ -4,7 +4,7 @@ import {IValidator} from './Validator'
 export function minLength(
 	minimumLength: number
 ): IValidator {
-	const validator = (
+	const validator: IValidator = ((
 		field: IFieldBase,
 	) => {
 		this.name = 'minLength'
@@ -15,7 +15,7 @@ export function minLength(
 				key: 'minLength'
 			}
 		}
-	}
+	}) as IValidator
 
 	validator.type = 'minLength'
 

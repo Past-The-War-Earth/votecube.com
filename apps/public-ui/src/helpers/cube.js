@@ -1,32 +1,32 @@
 import {getColor as getGeneralColor} from "./general";
 
-export function getPollDimensionDirections(
+export function getPollFactorPositions(
 	poll,
 	axis
 ) {
-	return poll.pollsDimensionsDirections.filter(
-		pollsDimensionDirection =>
-			pollsDimensionDirection.axis === axis
+	return poll.pollsFactorsPositions.filter(
+		pollsFactorPosition =>
+			pollsFactorPosition.axis === axis
 	)
 }
 
 /*
-export function getDimensionDirections(
+export function getFactorPositions(
     poll,
     axis
 ) {
-    return getPollDimensionDirections(poll, axis).map((pollDimensionDirection) => {
-        return pollDimensionDirection.dimensionDirection
+    return getPollFactorPositions(poll, axis).map((pollFactorPosition) => {
+        return pollFactorPosition.factorPosition
     })
 }
 */
 
 /*
-export function getDimension(
+export function getFactor(
     poll,
     axis
 ) {
-    return getDimensionDirections(poll, axis)[0].dimension
+    return getFactorPositions(poll, axis)[0].factor
 }
 */
 
@@ -35,7 +35,7 @@ export function getColor(
 	poll,
 	axis
 ) {
-	return getGeneralColor(getPollDimensionDirections(poll, axis)[0].color)
+	return getGeneralColor(getPollFactorPositions(poll, axis)[0].color)
 }
 
 export function getSideText(
@@ -45,19 +45,19 @@ export function getSideText(
 	axis,
 	dir
 ) {
-	const pollDimensionDirections = getPollDimensionDirections(poll, axis)
+	const pollFactorPositions = getPollFactorPositions(poll, axis)
 
-	const dimensionDirection = pollDimensionDirections.filter(
-		pollDimensionDirection =>
-			pollDimensionDirection.dir === dir
-	)[0].dimensionDirection
+	const factorPosition = pollFactorPositions.filter(
+		pollFactorPosition =>
+			pollFactorPosition.dir === dir
+	)[0].factorPosition
 
 	switch (mode) {
 		case 'confirm':
-			return dimensionDirection.dimension.name;
+			return factorPosition.factor.name;
 		case 'cube':
-			return dimensionDirection.direction.name;
+			return factorPosition.position.name;
 		default:
-			return `${dimensionDirection.dimension.name}: ${dimensionDirection.direction.name}`
+			return `${factorPosition.factor.name}: ${factorPosition.position.name}`
 	}
 }

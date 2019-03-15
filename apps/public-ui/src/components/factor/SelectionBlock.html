@@ -1,6 +1,6 @@
-{#if dimension.valid && dimension.hasChildValues}
+{#if factor.valid && factor.hasChildValues}
 <Block
-				fieldGroup="{dimension}"
+				fieldGroup="{factor}"
 				on:select="fire('select')"
 >
 	<div slot="content">
@@ -18,31 +18,31 @@
 					</div>
 				</td>
 				<td>
-					{dimension.fields.name.value}
+					{factor.fields.name.value}
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div>
-						<DirectionIcon
+						<PositionIcon
 										classes="centered"
-						></DirectionIcon>
+						></PositionIcon>
 					</div>
 				</td>
 				<td>
-					{dimension.fields.topDirection.fields.name.value}
+					{factor.fields.topPosition.fields.name.value}
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div>
-						<DirectionIcon
+						<PositionIcon
 										classes="centeredUpsideDown"
-						></DirectionIcon>
+						></PositionIcon>
 					</div>
 				</td>
 				<td>
-					{dimension.fields.bottomDirection.fields.name.value}
+					{factor.fields.bottomPosition.fields.name.value}
 				</td>
 			</tr>
 		</table>
@@ -51,12 +51,12 @@
 {:else}
 <IconBlock
 				customError="{text.error}"
-				fieldGroup="{dimension}"
+				fieldGroup="{factor}"
 				on:select="fire('select')"
 >
 	<div slot="icon">
-		<DimensionIcon
-		></DimensionIcon>
+		<FactorIcon
+		></FactorIcon>
 	</div>
 	<div slot="text">
 		{text.label}
@@ -85,22 +85,22 @@
 <script>
 	import Block         from '../../common/field/Block.html'
 	import IconBlock     from '../../common/field/IconBlock.html'
-	import DimensionIcon from '../../common/icon/DimensionIcon.html'
-	import DirectionIcon from '../../common/icon/DirectionIcon.html'
+	import FactorIcon from '../../common/icon/FactorIcon.html'
+	import PositionIcon from '../../common/icon/PositionIcon.html'
 
 	export default {
 		components: {
 			Block,
-			DimensionIcon,
-			DirectionIcon,
+			FactorIcon,
+			PositionIcon,
 			IconBlock
 		},
 		computed: {
-			bottomDirection: ({dimension}) => dimension
-				? dimension.fields.bottomDirection
+			bottomPosition: ({factor}) => factor
+				? factor.fields.bottomPosition
 				: null,
-			color: ({dimension}) => dimension
-				? dimension.fields.color
+			color: ({factor}) => factor
+				? factor.fields.color
 				: null,
 			selectedColor: ({color}) => {
 				if (!color || !color.valid) {
@@ -113,8 +113,8 @@
 			submitHighlight: ({isValid}) => isValid
 				? '0b0'
 				: 'b00',
-			topDirection: ({dimension}) => dimension
-				? dimension.fields.topDirection
+			topPosition: ({factor}) => factor
+				? factor.fields.topPosition
 				: null
 		},
 	}
