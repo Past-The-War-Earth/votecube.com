@@ -1,13 +1,14 @@
 {
   "main": "lib/index.js",
-  "name": "@votecube/ajax",
+  "name": "@votecube/public-db",
   "typings": "lib/index",
   "version": "0.0.1",
   "dependencies": {
-    "@airport/di": "0.0.1",
+    "@airport/holding-pattern": "0.0.1",
     "@votecube/model": "0.0.1"
   },
   "devDependencies": {
+    "@airport/runway": "0.0.1",
     "tslint": "^5.14.0",
     "typescript": "^3.2.2"
   }

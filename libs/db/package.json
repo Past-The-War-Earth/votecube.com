@@ -4,8 +4,8 @@
   "typings": "lib/index",
   "version": "0.0.1",
   "dependencies": {
+    "@airport/di": "0.0.1",
     "@votecube/ajax": "0.0.1",
-    "@votecube/di": "0.0.1",
     "@votecube/model": "0.0.1"
   },
   "devDependencies": {

@@ -13,15 +13,13 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/lib" />
     </content>
-    <content url="file://$MODULE_DIR$/../di">
-      <excludeFolder url="file://$MODULE_DIR$/../di/lib" />
-    </content>
     <content url="file://$MODULE_DIR$/../forms">
       <excludeFolder url="file://$MODULE_DIR$/../forms/lib" />
     </content>
     <content url="file://$MODULE_DIR$/../model">
       <excludeFolder url="file://$MODULE_DIR$/../model/lib" />
     </content>
+    <content url="file://$MODULE_DIR$/../../schemas/public-db" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

@@ -1,4 +1,4 @@
-import {TOKE} from '@votecube/di'
+import {TOKE} from '@airport/di'
 
 export const DATABASE   = TOKE.n
 export const INDEXED_DB = TOKE.n
