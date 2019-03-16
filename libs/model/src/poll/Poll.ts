@@ -17,12 +17,12 @@ export const POLLS = 'POLLS'
 export const POLL_COLS = [
 	['createdAt', 'ca'],
 	['endDate', 'ed'],
-	['id', '/pid'],
+	['id', 'pid', 1],
 	['name', 'n'],
 	['startDate', 'sd'],
-	['theme', '+tidT'],
-	['user', '+uaiUA'],
-	['parentPoll', '+ppiP']
+	['theme', 'tid', 'T'],
+	['user', 'uai', 'UA'],
+	['parentPoll', 1, 'ppi', 'P']
 ]
 
 export interface IPoll
