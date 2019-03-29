@@ -9,6 +9,7 @@ import {
 	Table
 }                       from '@airport/air-control'
 import {ChildRepoRow}   from '@airport/holding-pattern'
+import {CascadeType}    from '../../../../../../airport/apis/ground-control/lib'
 import {FactorPosition} from '../FactorPosition'
 import {Poll}           from './Poll'
 
@@ -37,7 +38,7 @@ export class PollFactorPosition
 	@DbNumber()
 	dir: PollFactorPosition_Dir
 
-	@ManyToOne()
+	@ManyToOne({cascade: CascadeType.PERSIST})
 	@JoinColumn({name: 'FACTOR_POSITION_ID', nullable: false})
 	factorPosition: FactorPosition
 

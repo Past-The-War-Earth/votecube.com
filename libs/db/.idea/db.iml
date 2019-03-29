@@ -19,7 +19,9 @@
     <content url="file://$MODULE_DIR$/../model">
       <excludeFolder url="file://$MODULE_DIR$/../model/lib" />
     </content>
-    <content url="file://$MODULE_DIR$/../../schemas/public-db" />
+    <content url="file://$MODULE_DIR$/../../schemas/public-db">
+      <excludeFolder url="file://$MODULE_DIR$/../../schemas/public-db/lib" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

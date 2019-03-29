@@ -7,8 +7,9 @@ import {
 	Table
 }                         from '@airport/air-control'
 import {ImmutableRepoRow} from '@airport/holding-pattern'
+import {CascadeType}      from '../../../../../airport/apis/ground-control/lib'
 import {Factor}           from './Factor'
-import {Position}           from './Position'
+import {Position}         from './Position'
 
 export type FactorPosition_Id = number
 
@@ -21,11 +22,11 @@ export class FactorPosition
 	@Column({name: 'FACTOR_POSITION_ID'})
 	id: FactorPosition_Id
 
-	@ManyToOne()
+	@ManyToOne({cascade: CascadeType.PERSIST})
 	@JoinColumn({name: 'FACTOR_ID'})
 	factor: Factor
 
-	@ManyToOne()
+	@ManyToOne({cascade: CascadeType.PERSIST})
 	@JoinColumn({name: 'POSITION_ID'})
 	position: Position
 
