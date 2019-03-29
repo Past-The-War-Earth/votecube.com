@@ -1,45 +1,72 @@
 import {
+	Column,
 	Entity,
 	GeneratedValue,
-	Id,
+	JoinColumn,
+	ManyToOne,
+	OneToMany,
 	Table
-}                                 from '@airport/air-control'
-import {EntityIsRepositoryEntity} from '@airport/ground-control'
-import {
-	IPoll,
-	PollId
-}                                 from '@votecube/model'
+}                           from '@airport/air-control'
+import {CascadeType}        from '@airport/ground-control'
+import {ImmutableRepoRow}   from '@airport/holding-pattern'
+import {PollContinent}      from '../location/PollContinent'
+import {PollCountry}        from '../location/PollCountry'
+import {PollState}          from '../location/PollState'
+import {PollTown}           from '../location/PollTown'
+import {Theme}              from '../Theme'
+import {PollFactorPosition} from './PollFactorPosition'
+import {PollLabel}          from './PollLabel'
+
+export type Poll_Id = number
+export type Poll_EndDate = Date
+export type Poll_Name = number
+export type Poll_StartDate = Date
 
 @Entity()
-@Table()
+@Table({name: 'POLLS'})
 export class Poll
-	extends AbstractRepositoryEntity
-	implements IPoll {
+	extends ImmutableRepoRow {
 
-	@Id()
 	@GeneratedValue()
-	id: PollId
+	@Column({name: 'POLL_ID'})
+	id: Poll_Id
+
+	@Column({name: 'END_DATE', nullable: false})
+	endDate: Poll_EndDate
+
+	@Column({name: 'START_DATE', nullable: false})
+	startDate: Poll_StartDate
+
+	@Column({name: 'POLL_DESCRIPTION', nullable: false})
+	name: Poll_Name
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_DESCRIPTION_ID', referencedColumnName: 'ID'})
-	description: PollDescription
-
-	@ManyToOne()
-	@JoinColumn({name: 'CREATOR_VOTE_ID', referencedColumnName: 'ID'})
-	creatorVote: Vote[]
-
-	@ManyToOne()
-	@JoinColumn({name: 'PARENT_POLL_ID', referencedColumnName: 'ID'})
+	@JoinColumn({name: 'PARENT_POLL_ID', referencedColumnName: 'POLL_ID'})
 	parentPoll: Poll
 
 	@ManyToOne()
-	@JoinColumn({name: 'LOCATION_ID', referencedColumnName: 'ID'})
-	location: Location
+	@JoinColumn({name: 'THEME_ID', nullable: false})
+	theme: Theme
 
 	@OneToMany({mappedBy: 'parentPoll'})
 	childPolls: Poll[]
 
-	@OneToMany({mappedBy: 'poll'})
-	groupings: PollGrouping
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	pollContinents: PollContinent[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	pollCountries: PollCountry[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	pollLabels: PollLabel[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	pollFactorPositions: PollFactorPosition[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	pollStates: PollState[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	pollTowns: PollTown[]
 
 }

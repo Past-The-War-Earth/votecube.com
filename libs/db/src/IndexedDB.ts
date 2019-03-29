@@ -1,4 +1,4 @@
-import {DI}         from '@votecube/di'
+import {DI}         from '@airport/di'
 import {
 	CONTINENTS,
 	COUNTRIES,

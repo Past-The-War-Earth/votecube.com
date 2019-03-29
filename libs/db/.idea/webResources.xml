@@ -51,6 +51,13 @@
           </resourceRoots>
         </entryData>
       </entry>
+      <entry url="file://$PROJECT_DIR$/../../schemas/public-db">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/../../schemas/public-db/src" />
+          </resourceRoots>
+        </entryData>
+      </entry>
     </contentEntries>
   </component>
 </project>
