@@ -36,15 +36,24 @@
       true,
       "single"
     ],
+    "radix": false,
     "semicolon": false,
     "space-before-function-paren": false,
     "trailing-comma": false
   },
   "jsRules": {
+    "import-spacing": false,
+    "indent": [
+      "error",
+      "tab"
+    ],
     "max-line-length": {
       "options": [
         98
       ]
-    }
+    },
+    "quotemark": false,
+    "semicolon": false,
+    "trailing-comma": false
   }
 }
