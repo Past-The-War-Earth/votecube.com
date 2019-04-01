@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IImmutableRepoRow,
+	ImmutableRepoRowEId,
+	ImmutableRepoRowEUpdateColumns,
+	ImmutableRepoRowEUpdateProperties,
+	ImmutableRepoRowESelect,
+	QImmutableRepoRowQId,
+	QImmutableRepoRowQRelation,
+	QImmutableRepoRow,
+} from '@airport/holding-pattern';
+import {
 	IFactor,
 	FactorEId,
 	FactorEOptionalId,
@@ -49,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IFactorPosition {
+export interface IFactorPosition extends IImmutableRepoRow {
 	
 	// Id Properties
 
@@ -76,7 +86,7 @@ export interface IFactorPosition {
  * SELECT - All fields and relations (optional).
  */
 export interface FactorPositionESelect
-    extends IEntitySelectProperties, FactorPositionEOptionalId {
+    extends ImmutableRepoRowESelect, FactorPositionEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -92,7 +102,7 @@ export interface FactorPositionESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface FactorPositionEId
-    extends IEntityIdProperties {
+    extends ImmutableRepoRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -113,7 +123,7 @@ export interface FactorPositionEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface FactorPositionEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ImmutableRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -127,11 +137,17 @@ export interface FactorPositionEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface FactorPositionEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ImmutableRepoRowEUpdateColumns {
 	// Non-Id Columns
+	IS_DRAFT?: boolean | IQBooleanField;
+	CREATED_AT?: Date | IQDateField;
 	FACTOR_POSITION_ID?: number | IQNumberField;
-	FACTOR_ID?: number | IQNumberField;
-	POSITION_ID?: number | IQNumberField;
+	FACTORS_RID?: number | IQNumberField;
+	FACTORS_AID?: number | IQNumberField;
+	FACTORS_ARID?: number | IQNumberField;
+	POSITIONS_RID?: number | IQNumberField;
+	POSITIONS_AID?: number | IQNumberField;
+	POSITIONS_ARID?: number | IQNumberField;
 
 }
 
@@ -159,7 +175,7 @@ extends FactorPositionEId, FactorPositionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorPosition extends QEntity
+export interface QFactorPosition extends QImmutableRepoRow
 {
 	// Id Fields
 
@@ -176,7 +192,7 @@ export interface QFactorPosition extends QEntity
 
 
 // Entity Id Interface
-export interface QFactorPositionQId
+export interface QFactorPositionQId extends QImmutableRepoRowQId
 {
 	
 	// Id Fields
@@ -188,6 +204,6 @@ export interface QFactorPositionQId
 
 // Entity Relation Interface
 export interface QFactorPositionQRelation
-	extends QRelation<QFactorPosition>, QFactorPositionQId {
+	extends QImmutableRepoRowQRelation<QFactorPosition>, QFactorPositionQId {
 }
 

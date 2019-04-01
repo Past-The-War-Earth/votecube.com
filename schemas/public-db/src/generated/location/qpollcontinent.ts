@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IChildRepoRow,
+	ChildRepoRowEId,
+	ChildRepoRowEUpdateColumns,
+	ChildRepoRowEUpdateProperties,
+	ChildRepoRowESelect,
+	QChildRepoRowQId,
+	QChildRepoRowQRelation,
+	QChildRepoRow,
+} from '@airport/holding-pattern';
+import {
 	IContinent,
 	ContinentEId,
 	ContinentEOptionalId,
@@ -49,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollContinent {
+export interface IPollContinent extends IChildRepoRow {
 	
 	// Id Properties
 
@@ -76,7 +86,7 @@ export interface IPollContinent {
  * SELECT - All fields and relations (optional).
  */
 export interface PollContinentESelect
-    extends IEntitySelectProperties, PollContinentEOptionalId {
+    extends ChildRepoRowESelect, PollContinentEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -92,7 +102,7 @@ export interface PollContinentESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollContinentEId
-    extends IEntityIdProperties {
+    extends ChildRepoRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -113,7 +123,7 @@ export interface PollContinentEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollContinentEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ChildRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -127,11 +137,14 @@ export interface PollContinentEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface PollContinentEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ChildRepoRowEUpdateColumns {
 	// Non-Id Columns
+	IS_DRAFT?: boolean | IQBooleanField;
 	POLL_CONTINENT_ID?: number | IQNumberField;
 	CONTINENT_ID?: number | IQNumberField;
-	POLL_ID?: number | IQNumberField;
+	POLLS_RID?: number | IQNumberField;
+	POLLS_AID?: number | IQNumberField;
+	POLLS_ARID?: number | IQNumberField;
 
 }
 
@@ -159,7 +172,7 @@ extends PollContinentEId, PollContinentEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollContinent extends QEntity
+export interface QPollContinent extends QChildRepoRow
 {
 	// Id Fields
 
@@ -176,7 +189,7 @@ export interface QPollContinent extends QEntity
 
 
 // Entity Id Interface
-export interface QPollContinentQId
+export interface QPollContinentQId extends QChildRepoRowQId
 {
 	
 	// Id Fields
@@ -188,6 +201,6 @@ export interface QPollContinentQId
 
 // Entity Relation Interface
 export interface QPollContinentQRelation
-	extends QRelation<QPollContinent>, QPollContinentQId {
+	extends QChildRepoRowQRelation<QPollContinent>, QPollContinentQId {
 }
 

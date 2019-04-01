@@ -1,12 +1,12 @@
 import {
 	Column,
 	Entity,
-	GeneratedValue,
 	JoinColumn,
 	ManyToOne,
 	OneToMany,
-	Table
-} from '@airport/air-control'
+	Table,
+	TraditionalServerSeq
+}                     from '@airport/air-control'
 import {ReferenceRow} from '@airport/holding-pattern'
 import {Continent}    from './Continent'
 import {State}        from './State'
@@ -21,7 +21,8 @@ export type Country_Name = string
 export class Country
 	extends ReferenceRow {
 
-	@GeneratedValue()
+	// @GeneratedValue()
+	@TraditionalServerSeq()
 	@Column({name: 'COUNTRY_ID'})
 	id: Country_Id
 

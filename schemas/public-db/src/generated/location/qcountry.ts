@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IReferenceRow,
+	ReferenceRowEId,
+	ReferenceRowEUpdateColumns,
+	ReferenceRowEUpdateProperties,
+	ReferenceRowESelect,
+	QReferenceRowQId,
+	QReferenceRowQRelation,
+	QReferenceRow,
+} from '@airport/holding-pattern';
+import {
 	IContinent,
 	ContinentEId,
 	ContinentEOptionalId,
@@ -49,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ICountry {
+export interface ICountry extends IReferenceRow {
 	
 	// Id Properties
 
@@ -77,7 +87,7 @@ export interface ICountry {
  * SELECT - All fields and relations (optional).
  */
 export interface CountryESelect
-    extends IEntitySelectProperties, CountryEOptionalId {
+    extends ReferenceRowESelect, CountryEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -94,7 +104,7 @@ export interface CountryESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface CountryEId
-    extends IEntityIdProperties {
+    extends ReferenceRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -115,7 +125,7 @@ export interface CountryEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface CountryEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -129,7 +139,7 @@ export interface CountryEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface CountryEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
 	COUNTRY_ID?: number | IQNumberField;
 	COUNTRY_NAME?: string | IQStringField;
@@ -161,7 +171,7 @@ extends CountryEId, CountryEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QCountry extends QEntity
+export interface QCountry extends QReferenceRow
 {
 	// Id Fields
 
@@ -179,7 +189,7 @@ export interface QCountry extends QEntity
 
 
 // Entity Id Interface
-export interface QCountryQId
+export interface QCountryQId extends QReferenceRowQId
 {
 	
 	// Id Fields
@@ -191,6 +201,6 @@ export interface QCountryQId
 
 // Entity Relation Interface
 export interface QCountryQRelation
-	extends QRelation<QCountry>, QCountryQId {
+	extends QReferenceRowQRelation<QCountry>, QCountryQId {
 }
 

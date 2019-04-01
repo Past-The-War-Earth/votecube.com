@@ -1,11 +1,12 @@
 import {
 	Column,
+	DbString,
 	Entity,
-	GeneratedValue,
 	JoinColumn,
 	ManyToOne,
 	OneToMany,
-	Table
+	Table,
+	TraditionalServerSeq
 }                           from '@airport/air-control'
 import {CascadeType}        from '@airport/ground-control'
 import {ImmutableRepoRow}   from '@airport/holding-pattern'
@@ -21,13 +22,15 @@ export type Poll_Id = number
 export type Poll_EndDate = Date
 export type Poll_Name = number
 export type Poll_StartDate = Date
+export type Poll_Type = 'cube'
 
 @Entity()
 @Table({name: 'POLLS'})
 export class Poll
 	extends ImmutableRepoRow {
 
-	@GeneratedValue()
+	// @GeneratedValue()
+	@TraditionalServerSeq()
 	@Column({name: 'POLL_ID'})
 	id: Poll_Id
 
@@ -41,12 +44,16 @@ export class Poll
 	name: Poll_Name
 
 	@ManyToOne()
-	@JoinColumn({name: 'PARENT_POLL_ID', referencedColumnName: 'POLL_ID'})
-	parentPoll: Poll
+		// @JoinColumn({name: 'PARENT_POLL_ID', referencedColumnName: 'POLL_ID'})
+		parentPoll: Poll
 
 	@ManyToOne()
 	@JoinColumn({name: 'THEME_ID', nullable: false})
 	theme: Theme
+
+	@Column({name: 'TYPE', nullable: false})
+	@DbString()
+	type: Poll_Type
 
 	@OneToMany({mappedBy: 'parentPoll'})
 	childPolls: Poll[]

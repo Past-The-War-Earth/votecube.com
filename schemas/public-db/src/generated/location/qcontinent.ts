@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IReferenceRow,
+	ReferenceRowEId,
+	ReferenceRowEUpdateColumns,
+	ReferenceRowEUpdateProperties,
+	ReferenceRowESelect,
+	QReferenceRowQId,
+	QReferenceRowQRelation,
+	QReferenceRow,
+} from '@airport/holding-pattern';
+import {
 	ICountry,
 	CountryEId,
 	CountryEOptionalId,
@@ -39,7 +49,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IContinent {
+export interface IContinent extends IReferenceRow {
 	
 	// Id Properties
 
@@ -66,7 +76,7 @@ export interface IContinent {
  * SELECT - All fields and relations (optional).
  */
 export interface ContinentESelect
-    extends IEntitySelectProperties, ContinentEOptionalId {
+    extends ReferenceRowESelect, ContinentEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -82,7 +92,7 @@ export interface ContinentESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface ContinentEId
-    extends IEntityIdProperties {
+    extends ReferenceRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -103,7 +113,7 @@ export interface ContinentEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface ContinentEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -116,7 +126,7 @@ export interface ContinentEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface ContinentEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
 	CONTINENT_ID?: number | IQNumberField;
 	CONTINENT_NAME?: string | IQStringField;
@@ -147,7 +157,7 @@ extends ContinentEId, ContinentEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QContinent extends QEntity
+export interface QContinent extends QReferenceRow
 {
 	// Id Fields
 
@@ -164,7 +174,7 @@ export interface QContinent extends QEntity
 
 
 // Entity Id Interface
-export interface QContinentQId
+export interface QContinentQId extends QReferenceRowQId
 {
 	
 	// Id Fields
@@ -176,6 +186,6 @@ export interface QContinentQId
 
 // Entity Relation Interface
 export interface QContinentQRelation
-	extends QRelation<QContinent>, QContinentQId {
+	extends QReferenceRowQRelation<QContinent>, QContinentQId {
 }
 

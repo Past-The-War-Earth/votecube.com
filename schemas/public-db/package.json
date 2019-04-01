@@ -3,13 +3,6 @@
     "domain": "public",
     "ddlDir": "src/ddl",
     "generatedDir": "src/generated",
-    "node_modulesLinks": {
-      "pathToProject": "schemas/public-db",
-      "pathsToReferencedSchemas": {
-        "@airport/holding-pattern": "schemas/holding-pattern",
-        "@airport/travel-document-checkpoint": "schemas/travel-document-checkpoint"
-      }
-    },
     "tablePrefix": "VC"
   },
   "main": "lib/index.js",
@@ -22,7 +15,8 @@
     "@airport/di": "0.0.1",
     "@airport/ground-control": "0.0.1",
     "@airport/holding-pattern": "0.0.1",
-    "@airport/travel-document-checkpoint": "0.0.1"
+    "@airport/travel-document-checkpoint": "0.0.1",
+    "@votecube/cube-logic": "0.0.1"
   },
   "devDependencies": {
     "@airport/runway": "0.0.1",

@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IChildRepoRow,
+	ChildRepoRowEId,
+	ChildRepoRowEUpdateColumns,
+	ChildRepoRowEUpdateProperties,
+	ChildRepoRowESelect,
+	QChildRepoRowQId,
+	QChildRepoRowQRelation,
+	QChildRepoRow,
+} from '@airport/holding-pattern';
+import {
 	ICountry,
 	CountryEId,
 	CountryEOptionalId,
@@ -49,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollCountry {
+export interface IPollCountry extends IChildRepoRow {
 	
 	// Id Properties
 
@@ -76,7 +86,7 @@ export interface IPollCountry {
  * SELECT - All fields and relations (optional).
  */
 export interface PollCountryESelect
-    extends IEntitySelectProperties, PollCountryEOptionalId {
+    extends ChildRepoRowESelect, PollCountryEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -92,7 +102,7 @@ export interface PollCountryESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollCountryEId
-    extends IEntityIdProperties {
+    extends ChildRepoRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -113,7 +123,7 @@ export interface PollCountryEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollCountryEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ChildRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -127,11 +137,14 @@ export interface PollCountryEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface PollCountryEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ChildRepoRowEUpdateColumns {
 	// Non-Id Columns
+	IS_DRAFT?: boolean | IQBooleanField;
 	POLL_COUNTRY_ID?: number | IQNumberField;
 	COUNTRY_ID?: number | IQNumberField;
-	POLL_ID?: number | IQNumberField;
+	POLLS_RID?: number | IQNumberField;
+	POLLS_AID?: number | IQNumberField;
+	POLLS_ARID?: number | IQNumberField;
 
 }
 
@@ -159,7 +172,7 @@ extends PollCountryEId, PollCountryEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollCountry extends QEntity
+export interface QPollCountry extends QChildRepoRow
 {
 	// Id Fields
 
@@ -176,7 +189,7 @@ export interface QPollCountry extends QEntity
 
 
 // Entity Id Interface
-export interface QPollCountryQId
+export interface QPollCountryQId extends QChildRepoRowQId
 {
 	
 	// Id Fields
@@ -188,6 +201,6 @@ export interface QPollCountryQId
 
 // Entity Relation Interface
 export interface QPollCountryQRelation
-	extends QRelation<QPollCountry>, QPollCountryQId {
+	extends QChildRepoRowQRelation<QPollCountry>, QPollCountryQId {
 }
 

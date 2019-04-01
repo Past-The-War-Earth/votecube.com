@@ -4,16 +4,19 @@ import {
 	DbString,
 	Entity,
 	GeneratedValue,
+	Id,
 	JoinColumn,
 	ManyToOne,
-	Table
-}                       from '@airport/air-control'
+	Table,
+	TraditionalServerSeq
+} from '@airport/air-control'
+import {CascadeType}    from '@airport/ground-control'
 import {ChildRepoRow}   from '@airport/holding-pattern'
-import {CascadeType}    from '../../../../../../airport/apis/ground-control/lib'
+import {Dimension}      from '@votecube/cube-logic'
 import {FactorPosition} from '../FactorPosition'
 import {Poll}           from './Poll'
 
-export type PollFactorPosition_Axis = 'x' | 'y' | 'z'
+export type PollFactorPosition_Axis = Dimension
 export type PollFactorPosition_ColorId = number
 export type PollFactorPosition_Dir = -1 | 1
 export type PollFactorPosition_Id = number
@@ -23,7 +26,9 @@ export type PollFactorPosition_Id = number
 export class PollFactorPosition
 	extends ChildRepoRow {
 
-	@GeneratedValue()
+	// @Id()
+	// @GeneratedValue()
+	@TraditionalServerSeq()
 	@Column({name: 'POLL_FACTOR_POSITION_ID'})
 	id: PollFactorPosition_Id
 
@@ -39,11 +44,11 @@ export class PollFactorPosition
 	dir: PollFactorPosition_Dir
 
 	@ManyToOne({cascade: CascadeType.PERSIST})
-	@JoinColumn({name: 'FACTOR_POSITION_ID', nullable: false})
+	// @JoinColumn({name: 'FACTOR_POSITION_ID', nullable: false})
 	factorPosition: FactorPosition
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_ID', nullable: false})
+	// @JoinColumn({name: 'POLL_ID', nullable: false})
 	poll: Poll
 
 }

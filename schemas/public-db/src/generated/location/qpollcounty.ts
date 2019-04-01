@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IChildRepoRow,
+	ChildRepoRowEId,
+	ChildRepoRowEUpdateColumns,
+	ChildRepoRowEUpdateProperties,
+	ChildRepoRowESelect,
+	QChildRepoRowQId,
+	QChildRepoRowQRelation,
+	QChildRepoRow,
+} from '@airport/holding-pattern';
+import {
 	ICounty,
 	CountyEId,
 	CountyEOptionalId,
@@ -49,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollCounty {
+export interface IPollCounty extends IChildRepoRow {
 	
 	// Id Properties
 
@@ -76,7 +86,7 @@ export interface IPollCounty {
  * SELECT - All fields and relations (optional).
  */
 export interface PollCountyESelect
-    extends IEntitySelectProperties, PollCountyEOptionalId {
+    extends ChildRepoRowESelect, PollCountyEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -92,7 +102,7 @@ export interface PollCountyESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollCountyEId
-    extends IEntityIdProperties {
+    extends ChildRepoRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -113,7 +123,7 @@ export interface PollCountyEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollCountyEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ChildRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -127,11 +137,14 @@ export interface PollCountyEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface PollCountyEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ChildRepoRowEUpdateColumns {
 	// Non-Id Columns
+	IS_DRAFT?: boolean | IQBooleanField;
 	POLL_COUNTY_ID?: number | IQNumberField;
 	COUNTY_ID?: number | IQNumberField;
-	POLL_ID?: number | IQNumberField;
+	POLLS_RID?: number | IQNumberField;
+	POLLS_AID?: number | IQNumberField;
+	POLLS_ARID?: number | IQNumberField;
 
 }
 
@@ -159,7 +172,7 @@ extends PollCountyEId, PollCountyEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollCounty extends QEntity
+export interface QPollCounty extends QChildRepoRow
 {
 	// Id Fields
 
@@ -176,7 +189,7 @@ export interface QPollCounty extends QEntity
 
 
 // Entity Id Interface
-export interface QPollCountyQId
+export interface QPollCountyQId extends QChildRepoRowQId
 {
 	
 	// Id Fields
@@ -188,6 +201,6 @@ export interface QPollCountyQId
 
 // Entity Relation Interface
 export interface QPollCountyQRelation
-	extends QRelation<QPollCounty>, QPollCountyQId {
+	extends QChildRepoRowQRelation<QPollCounty>, QPollCountyQId {
 }
 

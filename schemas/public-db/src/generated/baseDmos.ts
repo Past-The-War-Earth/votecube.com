@@ -181,6 +181,26 @@ import {
 	TownEId,
 	QTown
 } from './location/qtown';
+import {
+	IVote,
+	VoteESelect,
+	VoteECreateColumns,
+	VoteECreateProperties,
+	VoteEUpdateColumns,
+	VoteEUpdateProperties,
+	VoteEId,
+	QVote
+} from './vote/qvote';
+import {
+	IVoteFactor,
+	VoteFactorESelect,
+	VoteFactorECreateColumns,
+	VoteFactorECreateProperties,
+	VoteFactorEUpdateColumns,
+	VoteFactorEUpdateProperties,
+	VoteFactorEId,
+	QVoteFactor
+} from './vote/qvotefactor';
 
 
 export interface IBaseContinentDmo
@@ -413,5 +433,31 @@ export class BaseTownDmo
 	implements IBaseTownDmo {
 	constructor() {
 		super(Q.db.currentVersion.entityMapByName['Town']);
+	}
+}
+
+
+export interface IBaseVoteDmo
+  extends IDmo<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateProperties, VoteEId, QVote> {
+}
+
+export class BaseVoteDmo
+  extends Dmo<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateProperties, VoteEId, QVote>
+	implements IBaseVoteDmo {
+	constructor() {
+		super(Q.db.currentVersion.entityMapByName['Vote']);
+	}
+}
+
+
+export interface IBaseVoteFactorDmo
+  extends IDmo<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateProperties, VoteFactorEId, QVoteFactor> {
+}
+
+export class BaseVoteFactorDmo
+  extends Dmo<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateProperties, VoteFactorEId, QVoteFactor>
+	implements IBaseVoteFactorDmo {
+	constructor() {
+		super(Q.db.currentVersion.entityMapByName['VoteFactor']);
 	}
 }

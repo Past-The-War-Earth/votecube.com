@@ -20,6 +20,16 @@ import {
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
+import {
+	IImmutableRepoRow,
+	ImmutableRepoRowEId,
+	ImmutableRepoRowEUpdateColumns,
+	ImmutableRepoRowEUpdateProperties,
+	ImmutableRepoRowESelect,
+	QImmutableRepoRowQId,
+	QImmutableRepoRowQRelation,
+	QImmutableRepoRow,
+} from '@airport/holding-pattern';
 
 
 declare function require(moduleName: string): any;
@@ -29,7 +39,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ILabel {
+export interface ILabel extends IImmutableRepoRow {
 	
 	// Id Properties
 
@@ -55,7 +65,7 @@ export interface ILabel {
  * SELECT - All fields and relations (optional).
  */
 export interface LabelESelect
-    extends IEntitySelectProperties, LabelEOptionalId {
+    extends ImmutableRepoRowESelect, LabelEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -70,7 +80,7 @@ export interface LabelESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface LabelEId
-    extends IEntityIdProperties {
+    extends ImmutableRepoRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -91,7 +101,7 @@ export interface LabelEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface LabelEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ImmutableRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -104,8 +114,10 @@ export interface LabelEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface LabelEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ImmutableRepoRowEUpdateColumns {
 	// Non-Id Columns
+	IS_DRAFT?: boolean | IQBooleanField;
+	CREATED_AT?: Date | IQDateField;
 	LABEL_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
 
@@ -135,7 +147,7 @@ extends LabelEId, LabelEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QLabel extends QEntity
+export interface QLabel extends QImmutableRepoRow
 {
 	// Id Fields
 
@@ -151,7 +163,7 @@ export interface QLabel extends QEntity
 
 
 // Entity Id Interface
-export interface QLabelQId
+export interface QLabelQId extends QImmutableRepoRowQId
 {
 	
 	// Id Fields
@@ -163,6 +175,6 @@ export interface QLabelQId
 
 // Entity Relation Interface
 export interface QLabelQRelation
-	extends QRelation<QLabel>, QLabelQId {
+	extends QImmutableRepoRowQRelation<QLabel>, QLabelQId {
 }
 

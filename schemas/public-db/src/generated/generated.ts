@@ -1,3 +1,4 @@
+export * from './mappedSuperclass'
 export * from './schema';
 export * from './qSchema';
 export * from './baseDaos';
@@ -20,3 +21,5 @@ export * from './qfactor';
 export * from './qfactorposition';
 export * from './qposition';
 export * from './qtheme';
+export * from './vote/qvote';
+export * from './vote/qvotefactor';

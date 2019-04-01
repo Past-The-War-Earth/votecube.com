@@ -4,8 +4,9 @@ import {
 	GeneratedValue,
 	JoinColumn,
 	ManyToOne,
-	Table
-}                         from '@airport/air-control'
+	Table,
+	TraditionalServerSeq
+} from '@airport/air-control'
 import {ImmutableRepoRow} from '@airport/holding-pattern'
 
 export type Factor_Color = number
@@ -17,7 +18,8 @@ export type Factor_Name = string
 export class Factor
 	extends ImmutableRepoRow {
 
-	@GeneratedValue()
+	// @GeneratedValue()
+	@TraditionalServerSeq()
 	@Column({name: 'FACTOR_ID'})
 	id: Factor_Id
 
@@ -28,7 +30,7 @@ export class Factor
 	name: Factor_Name
 
 	@ManyToOne()
-	@JoinColumn({name: 'PARENT_FACTOR_ID', referencedColumnName: 'FACTOR_ID'})
+	// @JoinColumn({name: 'PARENT_FACTOR_ID', referencedColumnName: 'FACTOR_ID'})
 	parent: Factor
 
 }

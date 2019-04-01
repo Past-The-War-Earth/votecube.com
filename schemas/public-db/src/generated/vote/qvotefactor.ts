@@ -31,25 +31,25 @@ import {
 	QChildRepoRow,
 } from '@airport/holding-pattern';
 import {
-	IPoll,
-	PollEId,
-	PollEOptionalId,
-	PollEUpdateProperties,
-	PollESelect,
-	QPoll,
-	QPollQId,
-	QPollQRelation,
-} from '../poll/qpoll';
+	IVote,
+	VoteEId,
+	VoteEOptionalId,
+	VoteEUpdateProperties,
+	VoteESelect,
+	QVote,
+	QVoteQId,
+	QVoteQRelation,
+} from './qvote';
 import {
-	ITown,
-	TownEId,
-	TownEOptionalId,
-	TownEUpdateProperties,
-	TownESelect,
-	QTown,
-	QTownQId,
-	QTownQRelation,
-} from './qtown';
+	IPollFactorPosition,
+	PollFactorPositionEId,
+	PollFactorPositionEOptionalId,
+	PollFactorPositionEUpdateProperties,
+	PollFactorPositionESelect,
+	QPollFactorPosition,
+	QPollFactorPositionQId,
+	QPollFactorPositionQRelation,
+} from '../poll/qpollfactorposition';
 
 
 declare function require(moduleName: string): any;
@@ -59,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollTown extends IChildRepoRow {
+export interface IVoteFactor extends IChildRepoRow {
 	
 	// Id Properties
 
@@ -67,10 +67,12 @@ export interface IPollTown extends IChildRepoRow {
 
 	// Non-Id Properties
 	id?: number;
+	share?: string;
+	type?: string;
 
 	// Non-Id Relations
-	poll?: IPoll;
-	town?: ITown;
+	vote?: IVote;
+	pollFactorPos?: IPollFactorPosition;
 
 	// Transient Properties
 
@@ -85,23 +87,25 @@ export interface IPollTown extends IChildRepoRow {
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface PollTownESelect
-    extends ChildRepoRowESelect, PollTownEOptionalId {
+export interface VoteFactorESelect
+    extends ChildRepoRowESelect, VoteFactorEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	share?: string | IQStringField;
+	type?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	poll?: PollESelect;
-	town?: TownESelect;
+	vote?: VoteESelect;
+	pollFactorPos?: PollFactorPositionESelect;
 
 }
 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface PollTownEId
+export interface VoteFactorEId
     extends ChildRepoRowEId {
 	// Id Properties
 
@@ -112,7 +116,7 @@ export interface PollTownEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface PollTownEOptionalId {
+export interface VoteFactorEOptionalId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -122,44 +126,50 @@ export interface PollTownEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface PollTownEUpdateProperties
+export interface VoteFactorEUpdateProperties
 	extends ChildRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	share?: string | IQStringField;
+	type?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	poll?: PollEOptionalId;
-	town?: TownEOptionalId;
+	vote?: VoteEOptionalId;
+	pollFactorPos?: PollFactorPositionEOptionalId;
 
 }
 
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface PollTownEUpdateColumns
+export interface VoteFactorEUpdateColumns
 	extends ChildRepoRowEUpdateColumns {
 	// Non-Id Columns
 	IS_DRAFT?: boolean | IQBooleanField;
-	POLL_STATE_ID?: number | IQNumberField;
-	POLLS_RID?: number | IQNumberField;
-	POLLS_AID?: number | IQNumberField;
-	POLLS_ARID?: number | IQNumberField;
-	TOWN_ID?: number | IQNumberField;
+	VOTE_FACTOR_ID?: number | IQNumberField;
+	SHARE?: string | IQStringField;
+	TYPE?: string | IQStringField;
+	VOTES_RID?: number | IQNumberField;
+	VOTES_AID?: number | IQNumberField;
+	VOTES_ARID?: number | IQNumberField;
+	POLL_FACTOR_POSITIONS_RID?: number | IQNumberField;
+	POLL_FACTOR_POSITIONS_AID?: number | IQNumberField;
+	POLL_FACTOR_POSITIONS_ARID?: number | IQNumberField;
 
 }
 
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface PollTownECreateProperties
-extends Partial<PollTownEId>, PollTownEUpdateProperties {
+export interface VoteFactorECreateProperties
+extends Partial<VoteFactorEId>, VoteFactorEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface PollTownECreateColumns
-extends PollTownEId, PollTownEUpdateColumns {
+export interface VoteFactorECreateColumns
+extends VoteFactorEId, VoteFactorEUpdateColumns {
 }
 
 
@@ -172,7 +182,7 @@ extends PollTownEId, PollTownEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollTown extends QChildRepoRow
+export interface QVoteFactor extends QChildRepoRow
 {
 	// Id Fields
 
@@ -180,16 +190,18 @@ export interface QPollTown extends QChildRepoRow
 
 	// Non-Id Fields
 	id: IQNumberField;
+	share: IQStringField;
+	type: IQStringField;
 
 	// Non-Id Relations
-	poll: QPollQRelation;
-	town: QTownQRelation;
+	vote: QVoteQRelation;
+	pollFactorPos: QPollFactorPositionQRelation;
 
 }
 
 
 // Entity Id Interface
-export interface QPollTownQId extends QChildRepoRowQId
+export interface QVoteFactorQId extends QChildRepoRowQId
 {
 	
 	// Id Fields
@@ -200,7 +212,7 @@ export interface QPollTownQId extends QChildRepoRowQId
 }
 
 // Entity Relation Interface
-export interface QPollTownQRelation
-	extends QChildRepoRowQRelation<QPollTown>, QPollTownQId {
+export interface QVoteFactorQRelation
+	extends QChildRepoRowQRelation<QVoteFactor>, QVoteFactorQId {
 }
 

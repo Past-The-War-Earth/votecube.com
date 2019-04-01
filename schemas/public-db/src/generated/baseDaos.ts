@@ -184,6 +184,26 @@ import {
 	TownEId,
 	QTown
 } from './location/qtown';
+import {
+	IVote,
+	VoteESelect,
+	VoteECreateColumns,
+	VoteECreateProperties,
+	VoteEUpdateColumns,
+	VoteEUpdateProperties,
+	VoteEId,
+	QVote
+} from './vote/qvote';
+import {
+	IVoteFactor,
+	VoteFactorESelect,
+	VoteFactorECreateColumns,
+	VoteFactorECreateProperties,
+	VoteFactorEUpdateColumns,
+	VoteFactorEUpdateProperties,
+	VoteFactorEId,
+	QVoteFactor
+} from './vote/qvotefactor';
 
 
 export interface IBaseContinentDao
@@ -416,5 +436,31 @@ export class BaseTownDao
 	implements IBaseTownDao {
 	constructor() {
 		super(Q.db.currentVersion.entityMapByName['Town'], Q)
+	}
+}
+
+
+export interface IBaseVoteDao
+  extends IDao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, QVote> {
+}
+
+export class BaseVoteDao
+  extends Dao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, QVote>
+	implements IBaseVoteDao {
+	constructor() {
+		super(Q.db.currentVersion.entityMapByName['Vote'], Q)
+	}
+}
+
+
+export interface IBaseVoteFactorDao
+  extends IDao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, QVoteFactor> {
+}
+
+export class BaseVoteFactorDao
+  extends Dao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, QVoteFactor>
+	implements IBaseVoteFactorDao {
+	constructor() {
+		super(Q.db.currentVersion.entityMapByName['VoteFactor'], Q)
 	}
 }

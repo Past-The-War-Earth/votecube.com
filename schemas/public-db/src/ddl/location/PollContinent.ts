@@ -1,10 +1,10 @@
 import {
 	Column,
 	Entity,
-	GeneratedValue,
 	JoinColumn,
 	ManyToOne,
-	Table
+	Table,
+	TraditionalServerSeq
 }                     from '@airport/air-control'
 import {ChildRepoRow} from '@airport/holding-pattern'
 import {Poll}         from '../poll/Poll'
@@ -17,7 +17,8 @@ export type PollContinent_Id = number
 export class PollContinent
 	extends ChildRepoRow {
 
-	@GeneratedValue()
+	// @GeneratedValue()
+	@TraditionalServerSeq()
 	@Column({name: 'POLL_CONTINENT_ID'})
 	id: PollContinent_Id
 
@@ -26,7 +27,7 @@ export class PollContinent
 	continent: Continent
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_ID', nullable: false})
-	poll: Poll
+		// @JoinColumn({name: 'POLL_ID', nullable: false})
+		poll: Poll
 
 }

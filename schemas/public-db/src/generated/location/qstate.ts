@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IReferenceRow,
+	ReferenceRowEId,
+	ReferenceRowEUpdateColumns,
+	ReferenceRowEUpdateProperties,
+	ReferenceRowESelect,
+	QReferenceRowQId,
+	QReferenceRowQRelation,
+	QReferenceRow,
+} from '@airport/holding-pattern';
+import {
 	ICountry,
 	CountryEId,
 	CountryEOptionalId,
@@ -49,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IState {
+export interface IState extends IReferenceRow {
 	
 	// Id Properties
 
@@ -77,7 +87,7 @@ export interface IState {
  * SELECT - All fields and relations (optional).
  */
 export interface StateESelect
-    extends IEntitySelectProperties, StateEOptionalId {
+    extends ReferenceRowESelect, StateEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -94,7 +104,7 @@ export interface StateESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface StateEId
-    extends IEntityIdProperties {
+    extends ReferenceRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -115,7 +125,7 @@ export interface StateEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface StateEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -129,7 +139,7 @@ export interface StateEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface StateEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
 	STATE_ID?: number | IQNumberField;
 	STATE_NAME?: string | IQStringField;
@@ -161,7 +171,7 @@ extends StateEId, StateEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QState extends QEntity
+export interface QState extends QReferenceRow
 {
 	// Id Fields
 
@@ -179,7 +189,7 @@ export interface QState extends QEntity
 
 
 // Entity Id Interface
-export interface QStateQId
+export interface QStateQId extends QReferenceRowQId
 {
 	
 	// Id Fields
@@ -191,6 +201,6 @@ export interface QStateQId
 
 // Entity Relation Interface
 export interface QStateQRelation
-	extends QRelation<QState>, QStateQId {
+	extends QReferenceRowQRelation<QState>, QStateQId {
 }
 

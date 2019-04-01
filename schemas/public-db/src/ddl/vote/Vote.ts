@@ -4,28 +4,29 @@ import {
 	GeneratedValue,
 	JoinColumn,
 	ManyToOne,
+	OneToMany,
 	Table,
 	TraditionalServerSeq
 } from '@airport/air-control'
 import {ImmutableRepoRow} from '@airport/holding-pattern'
-import {Label}           from './Label'
-import {Poll}            from './Poll'
+import {CascadeType}      from '@airport/ground-control'
+import {Poll}             from '../poll/Poll'
+import {VoteFactor}       from './VoteFactor'
 
-export type PollLabel_Id = number
+export type Vote_Id = number
 
 @Entity()
-@Table({name: 'POLL_LABELS'})
-export class PollLabel
+@Table({name: 'VOTES'})
+export class Vote
 	extends ImmutableRepoRow {
 
 	// @GeneratedValue()
 	@TraditionalServerSeq()
-	@Column({name: 'POLL_LABEL_ID'})
-	id: PollLabel_Id
+	@Column({name: 'VOTE_ID'})
+	id: Vote_Id
 
-	@ManyToOne()
-	// @JoinColumn({name: 'LABEL_ID', nullable: false})
-	label: Label
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
+	factors: VoteFactor[]
 
 	@ManyToOne()
 	// @JoinColumn({name: 'POLL_ID', nullable: false})

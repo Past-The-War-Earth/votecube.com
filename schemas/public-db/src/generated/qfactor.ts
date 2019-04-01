@@ -20,6 +20,16 @@ import {
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
+import {
+	IImmutableRepoRow,
+	ImmutableRepoRowEId,
+	ImmutableRepoRowEUpdateColumns,
+	ImmutableRepoRowEUpdateProperties,
+	ImmutableRepoRowESelect,
+	QImmutableRepoRowQId,
+	QImmutableRepoRowQRelation,
+	QImmutableRepoRow,
+} from '@airport/holding-pattern';
 
 
 declare function require(moduleName: string): any;
@@ -29,7 +39,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IFactor {
+export interface IFactor extends IImmutableRepoRow {
 	
 	// Id Properties
 
@@ -57,7 +67,7 @@ export interface IFactor {
  * SELECT - All fields and relations (optional).
  */
 export interface FactorESelect
-    extends IEntitySelectProperties, FactorEOptionalId {
+    extends ImmutableRepoRowESelect, FactorEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	color?: number | IQNumberField;
@@ -74,7 +84,7 @@ export interface FactorESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface FactorEId
-    extends IEntityIdProperties {
+    extends ImmutableRepoRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -95,7 +105,7 @@ export interface FactorEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface FactorEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ImmutableRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	color?: number | IQNumberField;
@@ -110,12 +120,16 @@ export interface FactorEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface FactorEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ImmutableRepoRowEUpdateColumns {
 	// Non-Id Columns
+	IS_DRAFT?: boolean | IQBooleanField;
+	CREATED_AT?: Date | IQDateField;
 	FACTOR_ID?: number | IQNumberField;
 	COLOR_ID?: number | IQNumberField;
 	FACTOR_NAME?: string | IQStringField;
-	PARENT_FACTOR_ID?: number | IQNumberField;
+	FACTORS_RID?: number | IQNumberField;
+	FACTORS_AID?: number | IQNumberField;
+	FACTORS_ARID?: number | IQNumberField;
 
 }
 
@@ -143,7 +157,7 @@ extends FactorEId, FactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactor extends QEntity
+export interface QFactor extends QImmutableRepoRow
 {
 	// Id Fields
 
@@ -161,7 +175,7 @@ export interface QFactor extends QEntity
 
 
 // Entity Id Interface
-export interface QFactorQId
+export interface QFactorQId extends QImmutableRepoRowQId
 {
 	
 	// Id Fields
@@ -173,6 +187,6 @@ export interface QFactorQId
 
 // Entity Relation Interface
 export interface QFactorQRelation
-	extends QRelation<QFactor>, QFactorQId {
+	extends QImmutableRepoRowQRelation<QFactor>, QFactorQId {
 }
 

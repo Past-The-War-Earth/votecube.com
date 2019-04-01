@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IImmutableRepoRow,
+	ImmutableRepoRowEId,
+	ImmutableRepoRowEUpdateColumns,
+	ImmutableRepoRowEUpdateProperties,
+	ImmutableRepoRowESelect,
+	QImmutableRepoRowQId,
+	QImmutableRepoRowQRelation,
+	QImmutableRepoRow,
+} from '@airport/holding-pattern';
+import {
 	ILabel,
 	LabelEId,
 	LabelEOptionalId,
@@ -49,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollLabel {
+export interface IPollLabel extends IImmutableRepoRow {
 	
 	// Id Properties
 
@@ -76,7 +86,7 @@ export interface IPollLabel {
  * SELECT - All fields and relations (optional).
  */
 export interface PollLabelESelect
-    extends IEntitySelectProperties, PollLabelEOptionalId {
+    extends ImmutableRepoRowESelect, PollLabelEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -92,7 +102,7 @@ export interface PollLabelESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollLabelEId
-    extends IEntityIdProperties {
+    extends ImmutableRepoRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -113,7 +123,7 @@ export interface PollLabelEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollLabelEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ImmutableRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 
@@ -127,11 +137,17 @@ export interface PollLabelEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface PollLabelEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ImmutableRepoRowEUpdateColumns {
 	// Non-Id Columns
+	IS_DRAFT?: boolean | IQBooleanField;
+	CREATED_AT?: Date | IQDateField;
 	POLL_LABEL_ID?: number | IQNumberField;
-	LABEL_ID?: number | IQNumberField;
-	POLL_ID?: number | IQNumberField;
+	LABELS_RID?: number | IQNumberField;
+	LABELS_AID?: number | IQNumberField;
+	LABELS_ARID?: number | IQNumberField;
+	POLLS_RID?: number | IQNumberField;
+	POLLS_AID?: number | IQNumberField;
+	POLLS_ARID?: number | IQNumberField;
 
 }
 
@@ -159,7 +175,7 @@ extends PollLabelEId, PollLabelEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollLabel extends QEntity
+export interface QPollLabel extends QImmutableRepoRow
 {
 	// Id Fields
 
@@ -176,7 +192,7 @@ export interface QPollLabel extends QEntity
 
 
 // Entity Id Interface
-export interface QPollLabelQId
+export interface QPollLabelQId extends QImmutableRepoRowQId
 {
 	
 	// Id Fields
@@ -188,6 +204,6 @@ export interface QPollLabelQId
 
 // Entity Relation Interface
 export interface QPollLabelQRelation
-	extends QRelation<QPollLabel>, QPollLabelQId {
+	extends QImmutableRepoRowQRelation<QPollLabel>, QPollLabelQId {
 }
 

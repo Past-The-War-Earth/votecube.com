@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IReferenceRow,
+	ReferenceRowEId,
+	ReferenceRowEUpdateColumns,
+	ReferenceRowEUpdateProperties,
+	ReferenceRowESelect,
+	QReferenceRowQId,
+	QReferenceRowQRelation,
+	QReferenceRow,
+} from '@airport/holding-pattern';
+import {
 	IState,
 	StateEId,
 	StateEOptionalId,
@@ -49,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ICounty {
+export interface ICounty extends IReferenceRow {
 	
 	// Id Properties
 
@@ -77,7 +87,7 @@ export interface ICounty {
  * SELECT - All fields and relations (optional).
  */
 export interface CountyESelect
-    extends IEntitySelectProperties, CountyEOptionalId {
+    extends ReferenceRowESelect, CountyEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -94,7 +104,7 @@ export interface CountyESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface CountyEId
-    extends IEntityIdProperties {
+    extends ReferenceRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -115,7 +125,7 @@ export interface CountyEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface CountyEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	name?: string | IQStringField;
@@ -129,7 +139,7 @@ export interface CountyEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface CountyEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
 	COUNTY_ID?: number | IQNumberField;
 	COUNTY_NAME?: string | IQStringField;
@@ -161,7 +171,7 @@ extends CountyEId, CountyEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QCounty extends QEntity
+export interface QCounty extends QReferenceRow
 {
 	// Id Fields
 
@@ -179,7 +189,7 @@ export interface QCounty extends QEntity
 
 
 // Entity Id Interface
-export interface QCountyQId
+export interface QCountyQId extends QReferenceRowQId
 {
 	
 	// Id Fields
@@ -191,6 +201,6 @@ export interface QCountyQId
 
 // Entity Relation Interface
 export interface QCountyQRelation
-	extends QRelation<QCounty>, QCountyQId {
+	extends QReferenceRowQRelation<QCounty>, QCountyQId {
 }
 

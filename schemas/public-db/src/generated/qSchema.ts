@@ -36,6 +36,10 @@ import { Theme } from '../ddl/theme';
 import { QTheme } from './qtheme';
 import { Town } from '../ddl/location/town';
 import { QTown } from './location/qtown';
+import { Vote } from '../ddl/vote/vote';
+import { QVote } from './vote/qvote';
+import { VoteFactor } from '../ddl/vote/votefactor';
+import { QVoteFactor } from './vote/qvotefactor';
 
 import {
 	IBaseContinentDmo,
@@ -55,7 +59,9 @@ import {
 	IBasePositionDmo,
 	IBaseStateDmo,
 	IBaseThemeDmo,
-	IBaseTownDmo
+	IBaseTownDmo,
+	IBaseVoteDmo,
+	IBaseVoteFactorDmo
 } from './baseDmos';
 
 import {
@@ -76,7 +82,9 @@ import {
 	IBasePositionDao,
 	IBaseStateDao,
 	IBaseThemeDao,
-	IBaseTownDao
+	IBaseTownDao,
+	IBaseVoteDao,
+	IBaseVoteFactorDao
 } from './baseDaos';
 
 export interface LocalQSchema extends AirportQSchema {
@@ -102,6 +110,8 @@ export interface LocalQSchema extends AirportQSchema {
 		State: IBaseStateDmo;
 		Theme: IBaseThemeDmo;
 		Town: IBaseTownDmo;
+		Vote: IBaseVoteDmo;
+		VoteFactor: IBaseVoteFactorDmo;
 	}
 
 	dao: {
@@ -123,6 +133,8 @@ export interface LocalQSchema extends AirportQSchema {
 		State: IBaseStateDao;
 		Theme: IBaseThemeDao;
 		Town: IBaseTownDao;
+		Vote: IBaseVoteDao;
+		VoteFactor: IBaseVoteFactorDao;
 	}
 	
 	Continent: QContinent;
@@ -143,6 +155,8 @@ export interface LocalQSchema extends AirportQSchema {
 	State: QState;
 	Theme: QTheme;
 	Town: QTown;
+	Vote: QVote;
+	VoteFactor: QVoteFactor;
 
 }
 
@@ -164,7 +178,9 @@ const __constructors__ = {
 	Position: Position,
 	State: State,
 	Theme: Theme,
-	Town: Town
+	Town: Town,
+	Vote: Vote,
+	VoteFactor: VoteFactor
 };
 
 export const Q_SCHEMA: LocalQSchema = <any>{

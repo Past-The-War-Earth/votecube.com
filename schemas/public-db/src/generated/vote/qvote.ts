@@ -30,6 +30,26 @@ import {
 	QImmutableRepoRowQRelation,
 	QImmutableRepoRow,
 } from '@airport/holding-pattern';
+import {
+	IVoteFactor,
+	VoteFactorEId,
+	VoteFactorEOptionalId,
+	VoteFactorEUpdateProperties,
+	VoteFactorESelect,
+	QVoteFactor,
+	QVoteFactorQId,
+	QVoteFactorQRelation,
+} from './qvotefactor';
+import {
+	IPoll,
+	PollEId,
+	PollEOptionalId,
+	PollEUpdateProperties,
+	PollESelect,
+	QPoll,
+	QPollQId,
+	QPollQRelation,
+} from '../poll/qpoll';
 
 
 declare function require(moduleName: string): any;
@@ -39,7 +59,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPosition extends IImmutableRepoRow {
+export interface IVote extends IImmutableRepoRow {
 	
 	// Id Properties
 
@@ -47,10 +67,10 @@ export interface IPosition extends IImmutableRepoRow {
 
 	// Non-Id Properties
 	id?: number;
-	name?: string;
 
 	// Non-Id Relations
-	parent?: IPosition;
+	factors?: IVoteFactor[];
+	poll?: IPoll;
 
 	// Transient Properties
 
@@ -65,23 +85,23 @@ export interface IPosition extends IImmutableRepoRow {
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface PositionESelect
-    extends ImmutableRepoRowESelect, PositionEOptionalId {
+export interface VoteESelect
+    extends ImmutableRepoRowESelect, VoteEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
-	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	parent?: PositionESelect;
+	factors?: VoteFactorESelect;
+	poll?: PollESelect;
 
 }
 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface PositionEId
+export interface VoteEId
     extends ImmutableRepoRowEId {
 	// Id Properties
 
@@ -92,7 +112,7 @@ export interface PositionEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface PositionEOptionalId {
+export interface VoteEOptionalId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -102,45 +122,43 @@ export interface PositionEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface PositionEUpdateProperties
+export interface VoteEUpdateProperties
 	extends ImmutableRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
-	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	parent?: PositionEOptionalId;
+	poll?: PollEOptionalId;
 
 }
 
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface PositionEUpdateColumns
+export interface VoteEUpdateColumns
 	extends ImmutableRepoRowEUpdateColumns {
 	// Non-Id Columns
 	IS_DRAFT?: boolean | IQBooleanField;
 	CREATED_AT?: Date | IQDateField;
-	POSITION_ID?: number | IQNumberField;
-	POSITION_DESCRIPTION?: string | IQStringField;
-	POSITIONS_RID?: number | IQNumberField;
-	POSITIONS_AID?: number | IQNumberField;
-	POSITIONS_ARID?: number | IQNumberField;
+	VOTE_ID?: number | IQNumberField;
+	POLLS_RID?: number | IQNumberField;
+	POLLS_AID?: number | IQNumberField;
+	POLLS_ARID?: number | IQNumberField;
 
 }
 
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface PositionECreateProperties
-extends Partial<PositionEId>, PositionEUpdateProperties {
+export interface VoteECreateProperties
+extends Partial<VoteEId>, VoteEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface PositionECreateColumns
-extends PositionEId, PositionEUpdateColumns {
+export interface VoteECreateColumns
+extends VoteEId, VoteEUpdateColumns {
 }
 
 
@@ -153,7 +171,7 @@ extends PositionEId, PositionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPosition extends QImmutableRepoRow
+export interface QVote extends QImmutableRepoRow
 {
 	// Id Fields
 
@@ -161,16 +179,16 @@ export interface QPosition extends QImmutableRepoRow
 
 	// Non-Id Fields
 	id: IQNumberField;
-	name: IQStringField;
 
 	// Non-Id Relations
-	parent: QPositionQRelation;
+	factors: IQOneToManyRelation<QVoteFactor>;
+	poll: QPollQRelation;
 
 }
 
 
 // Entity Id Interface
-export interface QPositionQId extends QImmutableRepoRowQId
+export interface QVoteQId extends QImmutableRepoRowQId
 {
 	
 	// Id Fields
@@ -181,7 +199,7 @@ export interface QPositionQId extends QImmutableRepoRowQId
 }
 
 // Entity Relation Interface
-export interface QPositionQRelation
-	extends QImmutableRepoRowQRelation<QPosition>, QPositionQId {
+export interface QVoteQRelation
+	extends QImmutableRepoRowQRelation<QVote>, QVoteQId {
 }
 

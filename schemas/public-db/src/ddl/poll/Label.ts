@@ -2,8 +2,9 @@ import {
 	Column,
 	Entity,
 	GeneratedValue,
-	Table
-}                         from '@airport/air-control'
+	Table,
+	TraditionalServerSeq
+} from '@airport/air-control'
 import {ImmutableRepoRow} from '@airport/holding-pattern'
 
 export type Label_Id = number
@@ -14,7 +15,8 @@ export type Label_Name = string
 export class Label
 	extends ImmutableRepoRow {
 
-	@GeneratedValue()
+	// @GeneratedValue()
+	@TraditionalServerSeq()
 	@Column({name: 'LABEL_ID'})
 	id: Label_Id
 

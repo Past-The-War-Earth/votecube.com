@@ -21,6 +21,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	IImmutableRepoRow,
+	ImmutableRepoRowEId,
+	ImmutableRepoRowEUpdateColumns,
+	ImmutableRepoRowEUpdateProperties,
+	ImmutableRepoRowESelect,
+	QImmutableRepoRowQId,
+	QImmutableRepoRowQRelation,
+	QImmutableRepoRow,
+} from '@airport/holding-pattern';
+import {
 	ITheme,
 	ThemeEId,
 	ThemeEOptionalId,
@@ -99,7 +109,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPoll {
+export interface IPoll extends IImmutableRepoRow {
 	
 	// Id Properties
 
@@ -110,6 +120,7 @@ export interface IPoll {
 	endDate?: Date;
 	startDate?: Date;
 	name?: number;
+	type?: string;
 
 	// Non-Id Relations
 	parentPoll?: IPoll;
@@ -136,12 +147,13 @@ export interface IPoll {
  * SELECT - All fields and relations (optional).
  */
 export interface PollESelect
-    extends IEntitySelectProperties, PollEOptionalId {
+    extends ImmutableRepoRowESelect, PollEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	endDate?: Date | IQDateField;
 	startDate?: Date | IQDateField;
 	name?: number | IQNumberField;
+	type?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -162,7 +174,7 @@ export interface PollESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollEId
-    extends IEntityIdProperties {
+    extends ImmutableRepoRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -183,12 +195,13 @@ export interface PollEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends ImmutableRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	endDate?: Date | IQDateField;
 	startDate?: Date | IQDateField;
 	name?: number | IQNumberField;
+	type?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	parentPoll?: PollEOptionalId;
@@ -200,13 +213,18 @@ export interface PollEUpdateProperties
  * UPDATE - non-id columns (optional).
  */
 export interface PollEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends ImmutableRepoRowEUpdateColumns {
 	// Non-Id Columns
+	IS_DRAFT?: boolean | IQBooleanField;
+	CREATED_AT?: Date | IQDateField;
 	POLL_ID?: number | IQNumberField;
 	END_DATE?: Date | IQDateField;
 	START_DATE?: Date | IQDateField;
 	POLL_DESCRIPTION?: number | IQNumberField;
-	PARENT_POLL_ID?: number | IQNumberField;
+	TYPE?: string | IQStringField;
+	POLLS_RID?: number | IQNumberField;
+	POLLS_AID?: number | IQNumberField;
+	POLLS_ARID?: number | IQNumberField;
 	THEME_ID?: number | IQNumberField;
 
 }
@@ -235,7 +253,7 @@ extends PollEId, PollEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPoll extends QEntity
+export interface QPoll extends QImmutableRepoRow
 {
 	// Id Fields
 
@@ -246,6 +264,7 @@ export interface QPoll extends QEntity
 	endDate: IQDateField;
 	startDate: IQDateField;
 	name: IQNumberField;
+	type: IQStringField;
 
 	// Non-Id Relations
 	parentPoll: QPollQRelation;
@@ -262,7 +281,7 @@ export interface QPoll extends QEntity
 
 
 // Entity Id Interface
-export interface QPollQId
+export interface QPollQId extends QImmutableRepoRowQId
 {
 	
 	// Id Fields
@@ -274,6 +293,6 @@ export interface QPollQId
 
 // Entity Relation Interface
 export interface QPollQRelation
-	extends QRelation<QPoll>, QPollQId {
+	extends QImmutableRepoRowQRelation<QPoll>, QPollQId {
 }
 
