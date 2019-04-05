@@ -6,10 +6,14 @@ import {
 	ManyToOne,
 	Table,
 	TraditionalServerSeq
-} from '@airport/air-control'
-import {ImmutableRepoRow} from '@airport/holding-pattern'
-import {Label}           from './Label'
-import {Poll}            from './Poll'
+}                               from '@airport/air-control'
+import {ImmutableRepoRow}       from '@airport/holding-pattern'
+import {Label}                  from './Label'
+import {
+	Poll,
+	Poll_Id
+}                               from './Poll'
+import {PollFactorPosition_Dir} from './PollFactorPosition'
 
 export type PollLabel_Id = number
 
@@ -22,6 +26,9 @@ export class PollLabel
 	@TraditionalServerSeq()
 	@Column({name: 'POLL_LABEL_ID'})
 	id: PollLabel_Id
+
+	@Column({name: 'POLL_ID'})
+	pollId: Poll_Id
 
 	@ManyToOne()
 	// @JoinColumn({name: 'LABEL_ID', nullable: false})

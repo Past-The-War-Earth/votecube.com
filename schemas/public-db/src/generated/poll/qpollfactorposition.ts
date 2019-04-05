@@ -67,9 +67,11 @@ export interface IPollFactorPosition extends IChildRepoRow {
 
 	// Non-Id Properties
 	id?: number;
+	factorPositionId?: number;
 	axis?: string;
 	color?: number;
 	dir?: number;
+	pollId?: number;
 
 	// Non-Id Relations
 	factorPosition?: IFactorPosition;
@@ -92,9 +94,11 @@ export interface PollFactorPositionESelect
     extends ChildRepoRowESelect, PollFactorPositionEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	factorPositionId?: number | IQNumberField;
 	axis?: string | IQStringField;
 	color?: number | IQNumberField;
 	dir?: number | IQNumberField;
+	pollId?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -132,9 +136,11 @@ export interface PollFactorPositionEUpdateProperties
 	extends ChildRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	factorPositionId?: number | IQNumberField;
 	axis?: string | IQStringField;
 	color?: number | IQNumberField;
 	dir?: number | IQNumberField;
+	pollId?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	factorPosition?: FactorPositionEOptionalId;
@@ -150,9 +156,11 @@ export interface PollFactorPositionEUpdateColumns
 	// Non-Id Columns
 	IS_DRAFT?: boolean | IQBooleanField;
 	POLL_FACTOR_POSITION_ID?: number | IQNumberField;
+	FACTOR_POSITION_ID?: number | IQNumberField;
 	FACTOR_COORDINATE_AXIS?: string | IQStringField;
 	COLOR_ID?: number | IQNumberField;
 	POSITION_ORIENTATION?: number | IQNumberField;
+	POLL_ID?: number | IQNumberField;
 	FACTOR_POSITIONS_RID?: number | IQNumberField;
 	FACTOR_POSITIONS_AID?: number | IQNumberField;
 	FACTOR_POSITIONS_ARID?: number | IQNumberField;
@@ -194,9 +202,11 @@ export interface QPollFactorPosition extends QChildRepoRow
 
 	// Non-Id Fields
 	id: IQNumberField;
+	factorPositionId: IQNumberField;
 	axis: IQStringField;
 	color: IQNumberField;
 	dir: IQNumberField;
+	pollId: IQNumberField;
 
 	// Non-Id Relations
 	factorPosition: QFactorPositionQRelation;

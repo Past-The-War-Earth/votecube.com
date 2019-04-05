@@ -1,14 +1,56 @@
+import {DI}               from '@airport/di'
+import {DATABASE_MANAGER} from '@airport/terminal'
+import {StoreType}        from '@airport/terminal-map'
+import {VOTE_DAO}         from '@votecube/public-db'
+
+export async function init() {
+	const [dbManager] = await DI.getP(DATABASE_MANAGER)
+	await dbManager.init(StoreType.SQLITE_CORDOVA)
+}
+
+export async function setupCubeView(
+	mode,
+	pollId,
+	page
+) {
+	const [
+		      setPositionDataAndMove,
+		      voteDao
+	      ] = await Promise.all([
+		loadCubeLogic(this, () => {
+			page.set({delta: this.get().delta + 1})
+		}),
+		DI.getP(VOTE_DAO)
+	])
+
+	const vote = await voteDao.findMyVoteForPoll(pollId)
+
+	if (!vote) {
+		if (pollId === 0) {
+			routes.navigateToPage(routes.POLL_INFO_MAIN)
+		}
+		return
+	}
+	const poll = vote.poll
+	page.set({mode, poll, vote})
+	setPositionDataAndMove(vote)
+
+	page.store.set({
+		pageTitle: poll.name
+	})
+}
+
 export const SEQUENCES = {
 	colors: 3,
 	factorDescriptions: 3,
 	factorPositions: 6,
 	factors: 3,
-	positions: 6,
-	positionDescriptions: 6,
 	labels: 2,
-	polls: 1,
 	pollDescriptions: 1,
-	pollsFactorsPositions: 3
+	polls: 1,
+	pollsFactorsPositions: 3,
+	positionDescriptions: 6,
+	positions: 6,
 }
 
 export const DB = {
@@ -109,7 +151,7 @@ export const DB = {
 		name: 'Trump\'s policies',
 		pollsContinents: [{
 			continent: {
-				"id": "NorthAmerica"
+				'id': 'NorthAmerica'
 			}
 		}],
 		pollsFactorsPositions: [{

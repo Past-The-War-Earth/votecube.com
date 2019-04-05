@@ -158,6 +158,7 @@
 </style>
 
 <script>
+	import {DI}                           from '@airport/di'
 	import PreviewButton                  from '../../../common/control/button/PreviewButton.html'
 	import AutoComplete                   from '../../../common/field/AutoComplete.html'
 	import IconBlock                      from '../../../common/field/IconBlock.html'
@@ -180,7 +181,6 @@
 	import {loadForms}                    from '../../../libs/forms'
 	import {loadLocations}                from '../../../libs/locations'
 	import {loadLocations as loadLocText} from '../../../libs/text/locations'
-	import {loadUi}                       from '../../../libs/text/ui'
 	import * as routes                    from '../../../routes'
 	import store                          from '../../../store'
 
@@ -306,22 +306,18 @@
 		oncreate() {
 			const {mode, pollId} = formCache.getPollRouteParams(this)
 
-			let tempPoll = pollDao.getTempPoll(pollId)
-
 			Promise.all([
 				loadForms(this),
 				labelDao.getAll(),
 				loadLocations(),
-				loadUi(this.store, 'en-us'),
-				pollDao.findByIdWithDetails(pollId),
-				loadLocText(this.store, 'en-us')
+				loadLocText(this.store, 'en-us'),
+				DI.getP(VOTE_DAO)
 			]).then(([
 				         {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
 				         labels,
 				         locations,
 				         _,
-				         poll,
-				         _2
+				         poll
 			         ]) => {
 				let form = forms.getForm(forms.CREATE_POLL_TOP)
 
@@ -340,17 +336,19 @@
 						Validators)
 					form.setTrackOriginal(mode === 'alter')
 					forms.setForm(forms.CREATE_POLL_TOP, form)
-					if (tempPoll || poll) {
-						if (poll) {
-							form.setValue(pollFormToConverter.dtoToForm(poll), true)
+					pollDao.findByPollIdWithDetails(pollId).then((
+						poll
+					) => {
+						if (!poll) {
+							return
 						}
-						if (tempPoll) {
-							form.setValue(pollFormToConverter.dtoToForm(tempPoll))
-						}
+						form.setValue(pollFormToConverter.dtoToForm(poll), !poll.draft)
 						form.fields.locations.optionText = text.LOCATIONS
 						form.validate()
 						form.touch()
-					}
+					}).catch((error) => {
+						this.set({error})
+					})
 				}
 
 				forms.ensureForm(form, this)
@@ -360,7 +358,7 @@
 			})
 		},
 		ondestroy() {
-			formCache.savePollForm(this)
+			formCache.savePollForm(this).then()
 			forms.clearForm(this)
 		},
 		store: () => store

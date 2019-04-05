@@ -142,6 +142,16 @@ import {
 	QPollTown
 } from './location/qpolltown';
 import {
+	IPollType,
+	PollTypeESelect,
+	PollTypeECreateColumns,
+	PollTypeECreateProperties,
+	PollTypeEUpdateColumns,
+	PollTypeEUpdateProperties,
+	PollTypeEId,
+	QPollType
+} from './poll/qpolltype';
+import {
 	IPosition,
 	PositionESelect,
 	PositionECreateColumns,
@@ -201,6 +211,16 @@ import {
 	VoteFactorEId,
 	QVoteFactor
 } from './vote/qvotefactor';
+import {
+	IVoteFactorType,
+	VoteFactorTypeESelect,
+	VoteFactorTypeECreateColumns,
+	VoteFactorTypeECreateProperties,
+	VoteFactorTypeEUpdateColumns,
+	VoteFactorTypeEUpdateProperties,
+	VoteFactorTypeEId,
+	QVoteFactorType
+} from './vote/qvotefactortype';
 
 
 export interface IBaseContinentDmo
@@ -385,6 +405,19 @@ export class BasePollTownDmo
 }
 
 
+export interface IBasePollTypeDmo
+  extends IDmo<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateProperties, PollTypeEId, QPollType> {
+}
+
+export class BasePollTypeDmo
+  extends Dmo<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateProperties, PollTypeEId, QPollType>
+	implements IBasePollTypeDmo {
+	constructor() {
+		super(Q.db.currentVersion.entityMapByName['PollType']);
+	}
+}
+
+
 export interface IBasePositionDmo
   extends IDmo<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateProperties, PositionEId, QPosition> {
 }
@@ -459,5 +492,18 @@ export class BaseVoteFactorDmo
 	implements IBaseVoteFactorDmo {
 	constructor() {
 		super(Q.db.currentVersion.entityMapByName['VoteFactor']);
+	}
+}
+
+
+export interface IBaseVoteFactorTypeDmo
+  extends IDmo<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, QVoteFactorType> {
+}
+
+export class BaseVoteFactorTypeDmo
+  extends Dmo<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, QVoteFactorType>
+	implements IBaseVoteFactorTypeDmo {
+	constructor() {
+		super(Q.db.currentVersion.entityMapByName['VoteFactorType']);
 	}
 }

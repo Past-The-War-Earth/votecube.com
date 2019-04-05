@@ -1,12 +1,13 @@
 import {
+	IVote,
+	PollFactorPosition_Dir,
+	VoteFactor_Share
+}                  from '@votecube/public-db'
+import {
 	MatrixIndex,
-	MoveIncrement,
-	MV_INC_IDX,
-	NUM_DIVISIONS,
 	NUM_DIVS,
 	populateDegreeValMatrix,
 	STEP_DEGS,
-	ZoomIndex,
 }                  from './cubeMoveMatrix'
 import {Dimension} from './Viewport'
 
@@ -21,20 +22,9 @@ export enum Move {
 	Up   = 1
 }
 
-export type Direction = -1 | 1
+export type Direction = PollFactorPosition_Dir
 
-export type PositionPercent =
-	0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
-	10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 |
-	20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 |
-	30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 |
-	40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 |
-	50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59 |
-	60 | 61 | 62 | 63 | 64 | 65 | 66 | 67 | 68 | 69 |
-	70 | 71 | 72 | 73 | 74 | 75 | 76 | 77 | 78 | 79 |
-	80 | 81 | 82 | 83 | 84 | 85 | 86 | 87 | 88 | 89 |
-	90 | 91 | 92 | 93 | 94 | 95 | 96 | 97 | 98 | 99 |
-	100
+export type PositionPercent = VoteFactor_Share
 
 populateDegreeValMatrix()
 
@@ -48,7 +38,8 @@ export interface IMousePosition {
 	start: IPosition
 }
 
-export interface IUiVote {
+export interface IUiVote
+	extends IVote {
 	x: IUiVoteDimension
 	y: IUiVoteDimension
 	z: IUiVoteDimension
@@ -67,6 +58,7 @@ export type IValuesOutCallback =
 export const mouse: IMousePosition = {
 	start: {x: undefined, y: undefined}
 }
+
 /*
 export function getModXAbsRemainder(
 	num: number,
@@ -99,13 +91,13 @@ export function moveCoordinates(
 	// 	zoomMultiplier = 1
 	// }
 
-	let degreeChange      = STEP_DEGS
-		// * zoomMultiplier
+	const degreeChange    = STEP_DEGS
+	// * zoomMultiplier
 	let zoomedMatrixIndex = Math.floor(
 		currentDegree % 360 / degreeChange
 	)
 
-	let currentDegreeRemainder = currentDegree % degreeChange
+	const currentDegreeRemainder = currentDegree % degreeChange
 	if (move > 0) {
 		zoomedMatrixIndex++
 	} else {
@@ -119,8 +111,8 @@ export function moveCoordinates(
 		page = -Math.floor(Math.abs(currentDegree) / 360)
 	}
 
-	let rotation    = page * 360 + zoomedMatrixIndex * degreeChange
-	let matrixIndex = normMatrixIdx(zoomedMatrixIndex
+	const rotation    = page * 360 + zoomedMatrixIndex * degreeChange
+	const matrixIndex = normMatrixIdx(zoomedMatrixIndex
 		// * zoomMultiplier
 	)
 
@@ -143,7 +135,7 @@ export function normMatrixIdx(
 export function getMatrixIdxFromDeg(
 	rotationDegrees: number
 ): MatrixIndex {
-	let signedMatrixIndex = Math.floor(rotationDegrees % 360 / STEP_DEGS)
+	const signedMatrixIndex = Math.floor(rotationDegrees % 360 / STEP_DEGS)
 
 	return normMatrixIdx(signedMatrixIndex)
 }

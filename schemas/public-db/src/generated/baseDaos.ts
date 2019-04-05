@@ -1,6 +1,13 @@
 import {
-	IDao, 
-	IUtils 
+	IDao,
+	IEntityCreateProperties,
+	IEntityIdProperties,
+	IEntitySelectProperties,
+	IEntityUpdateColumns,
+	IEntityUpdateProperties,
+	IQEntity,
+	IUtils,
+	QSchema as ACQSchema
 } from '@airport/air-control';
 import { Dao } from '@airport/check-in';
 import { Q } from './qSchema';
@@ -145,6 +152,16 @@ import {
 	QPollTown
 } from './location/qpolltown';
 import {
+	IPollType,
+	PollTypeESelect,
+	PollTypeECreateColumns,
+	PollTypeECreateProperties,
+	PollTypeEUpdateColumns,
+	PollTypeEUpdateProperties,
+	PollTypeEId,
+	QPollType
+} from './poll/qpolltype';
+import {
 	IPosition,
 	PositionESelect,
 	PositionECreateColumns,
@@ -204,6 +221,44 @@ import {
 	VoteFactorEId,
 	QVoteFactor
 } from './vote/qvotefactor';
+import {
+	IVoteFactorType,
+	VoteFactorTypeESelect,
+	VoteFactorTypeECreateColumns,
+	VoteFactorTypeECreateProperties,
+	VoteFactorTypeEUpdateColumns,
+	VoteFactorTypeEUpdateProperties,
+	VoteFactorTypeEId,
+	QVoteFactorType
+} from './vote/qvotefactortype';
+
+// Schema Q object Dependency Injection readiness detection DAO
+export class SQDIDao<Entity,
+	EntitySelect extends IEntitySelectProperties,
+	EntityCreate extends IEntityCreateProperties,
+	EntityUpdateColumns extends IEntityUpdateColumns,
+	EntityUpdateProperties extends IEntityUpdateProperties,
+	EntityId extends IEntityIdProperties,
+	IQE extends IQEntity>
+	extends Dao<Entity,
+		EntitySelect,
+		EntityCreate,
+		EntityUpdateColumns,
+		EntityUpdateProperties,
+		EntityId,
+		IQE> {
+
+	static diSet(): boolean {
+		return Q.db as any
+	}
+
+	constructor(
+		dbEntityName: string,
+		qSchema: ACQSchema
+	) {
+		super(dbEntityName, qSchema)
+	}
+}
 
 
 export interface IBaseContinentDao
@@ -211,10 +266,10 @@ export interface IBaseContinentDao
 }
 
 export class BaseContinentDao
-  extends Dao<IContinent, ContinentESelect, ContinentECreateProperties, ContinentEUpdateColumns, ContinentEUpdateProperties, ContinentEId, QContinent>
+  extends SQDIDao<IContinent, ContinentESelect, ContinentECreateProperties, ContinentEUpdateColumns, ContinentEUpdateProperties, ContinentEId, QContinent>
 	implements IBaseContinentDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Continent'], Q)
+		super('Continent', Q)
 	}
 }
 
@@ -224,10 +279,10 @@ export interface IBaseCountryDao
 }
 
 export class BaseCountryDao
-  extends Dao<ICountry, CountryESelect, CountryECreateProperties, CountryEUpdateColumns, CountryEUpdateProperties, CountryEId, QCountry>
+  extends SQDIDao<ICountry, CountryESelect, CountryECreateProperties, CountryEUpdateColumns, CountryEUpdateProperties, CountryEId, QCountry>
 	implements IBaseCountryDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Country'], Q)
+		super('Country', Q)
 	}
 }
 
@@ -237,10 +292,10 @@ export interface IBaseCountyDao
 }
 
 export class BaseCountyDao
-  extends Dao<ICounty, CountyESelect, CountyECreateProperties, CountyEUpdateColumns, CountyEUpdateProperties, CountyEId, QCounty>
+  extends SQDIDao<ICounty, CountyESelect, CountyECreateProperties, CountyEUpdateColumns, CountyEUpdateProperties, CountyEId, QCounty>
 	implements IBaseCountyDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['County'], Q)
+		super('County', Q)
 	}
 }
 
@@ -250,10 +305,10 @@ export interface IBaseFactorDao
 }
 
 export class BaseFactorDao
-  extends Dao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, QFactor>
+  extends SQDIDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, QFactor>
 	implements IBaseFactorDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Factor'], Q)
+		super('Factor', Q)
 	}
 }
 
@@ -263,10 +318,10 @@ export interface IBaseFactorPositionDao
 }
 
 export class BaseFactorPositionDao
-  extends Dao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, QFactorPosition>
+  extends SQDIDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, QFactorPosition>
 	implements IBaseFactorPositionDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['FactorPosition'], Q)
+		super('FactorPosition', Q)
 	}
 }
 
@@ -276,10 +331,10 @@ export interface IBaseLabelDao
 }
 
 export class BaseLabelDao
-  extends Dao<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, QLabel>
+  extends SQDIDao<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, QLabel>
 	implements IBaseLabelDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Label'], Q)
+		super('Label', Q)
 	}
 }
 
@@ -289,10 +344,10 @@ export interface IBasePollDao
 }
 
 export class BasePollDao
-  extends Dao<IPoll, PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, QPoll>
+  extends SQDIDao<IPoll, PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, QPoll>
 	implements IBasePollDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Poll'], Q)
+		super('Poll', Q)
 	}
 }
 
@@ -302,10 +357,10 @@ export interface IBasePollContinentDao
 }
 
 export class BasePollContinentDao
-  extends Dao<IPollContinent, PollContinentESelect, PollContinentECreateProperties, PollContinentEUpdateColumns, PollContinentEUpdateProperties, PollContinentEId, QPollContinent>
+  extends SQDIDao<IPollContinent, PollContinentESelect, PollContinentECreateProperties, PollContinentEUpdateColumns, PollContinentEUpdateProperties, PollContinentEId, QPollContinent>
 	implements IBasePollContinentDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['PollContinent'], Q)
+		super('PollContinent', Q)
 	}
 }
 
@@ -315,10 +370,10 @@ export interface IBasePollCountryDao
 }
 
 export class BasePollCountryDao
-  extends Dao<IPollCountry, PollCountryESelect, PollCountryECreateProperties, PollCountryEUpdateColumns, PollCountryEUpdateProperties, PollCountryEId, QPollCountry>
+  extends SQDIDao<IPollCountry, PollCountryESelect, PollCountryECreateProperties, PollCountryEUpdateColumns, PollCountryEUpdateProperties, PollCountryEId, QPollCountry>
 	implements IBasePollCountryDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['PollCountry'], Q)
+		super('PollCountry', Q)
 	}
 }
 
@@ -328,10 +383,10 @@ export interface IBasePollCountyDao
 }
 
 export class BasePollCountyDao
-  extends Dao<IPollCounty, PollCountyESelect, PollCountyECreateProperties, PollCountyEUpdateColumns, PollCountyEUpdateProperties, PollCountyEId, QPollCounty>
+  extends SQDIDao<IPollCounty, PollCountyESelect, PollCountyECreateProperties, PollCountyEUpdateColumns, PollCountyEUpdateProperties, PollCountyEId, QPollCounty>
 	implements IBasePollCountyDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['PollCounty'], Q)
+		super('PollCounty', Q)
 	}
 }
 
@@ -341,10 +396,10 @@ export interface IBasePollFactorPositionDao
 }
 
 export class BasePollFactorPositionDao
-  extends Dao<IPollFactorPosition, PollFactorPositionESelect, PollFactorPositionECreateProperties, PollFactorPositionEUpdateColumns, PollFactorPositionEUpdateProperties, PollFactorPositionEId, QPollFactorPosition>
+  extends SQDIDao<IPollFactorPosition, PollFactorPositionESelect, PollFactorPositionECreateProperties, PollFactorPositionEUpdateColumns, PollFactorPositionEUpdateProperties, PollFactorPositionEId, QPollFactorPosition>
 	implements IBasePollFactorPositionDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['PollFactorPosition'], Q)
+		super('PollFactorPosition', Q)
 	}
 }
 
@@ -354,10 +409,10 @@ export interface IBasePollLabelDao
 }
 
 export class BasePollLabelDao
-  extends Dao<IPollLabel, PollLabelESelect, PollLabelECreateProperties, PollLabelEUpdateColumns, PollLabelEUpdateProperties, PollLabelEId, QPollLabel>
+  extends SQDIDao<IPollLabel, PollLabelESelect, PollLabelECreateProperties, PollLabelEUpdateColumns, PollLabelEUpdateProperties, PollLabelEId, QPollLabel>
 	implements IBasePollLabelDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['PollLabel'], Q)
+		super('PollLabel', Q)
 	}
 }
 
@@ -367,10 +422,10 @@ export interface IBasePollStateDao
 }
 
 export class BasePollStateDao
-  extends Dao<IPollState, PollStateESelect, PollStateECreateProperties, PollStateEUpdateColumns, PollStateEUpdateProperties, PollStateEId, QPollState>
+  extends SQDIDao<IPollState, PollStateESelect, PollStateECreateProperties, PollStateEUpdateColumns, PollStateEUpdateProperties, PollStateEId, QPollState>
 	implements IBasePollStateDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['PollState'], Q)
+		super('PollState', Q)
 	}
 }
 
@@ -380,10 +435,23 @@ export interface IBasePollTownDao
 }
 
 export class BasePollTownDao
-  extends Dao<IPollTown, PollTownESelect, PollTownECreateProperties, PollTownEUpdateColumns, PollTownEUpdateProperties, PollTownEId, QPollTown>
+  extends SQDIDao<IPollTown, PollTownESelect, PollTownECreateProperties, PollTownEUpdateColumns, PollTownEUpdateProperties, PollTownEId, QPollTown>
 	implements IBasePollTownDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['PollTown'], Q)
+		super('PollTown', Q)
+	}
+}
+
+
+export interface IBasePollTypeDao
+  extends IDao<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateColumns, PollTypeEUpdateProperties, PollTypeEId, QPollType> {
+}
+
+export class BasePollTypeDao
+  extends SQDIDao<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateColumns, PollTypeEUpdateProperties, PollTypeEId, QPollType>
+	implements IBasePollTypeDao {
+	constructor() {
+		super('PollType', Q)
 	}
 }
 
@@ -393,10 +461,10 @@ export interface IBasePositionDao
 }
 
 export class BasePositionDao
-  extends Dao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, QPosition>
+  extends SQDIDao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, QPosition>
 	implements IBasePositionDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Position'], Q)
+		super('Position', Q)
 	}
 }
 
@@ -406,10 +474,10 @@ export interface IBaseStateDao
 }
 
 export class BaseStateDao
-  extends Dao<IState, StateESelect, StateECreateProperties, StateEUpdateColumns, StateEUpdateProperties, StateEId, QState>
+  extends SQDIDao<IState, StateESelect, StateECreateProperties, StateEUpdateColumns, StateEUpdateProperties, StateEId, QState>
 	implements IBaseStateDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['State'], Q)
+		super('State', Q)
 	}
 }
 
@@ -419,10 +487,10 @@ export interface IBaseThemeDao
 }
 
 export class BaseThemeDao
-  extends Dao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, QTheme>
+  extends SQDIDao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, QTheme>
 	implements IBaseThemeDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Theme'], Q)
+		super('Theme', Q)
 	}
 }
 
@@ -432,10 +500,10 @@ export interface IBaseTownDao
 }
 
 export class BaseTownDao
-  extends Dao<ITown, TownESelect, TownECreateProperties, TownEUpdateColumns, TownEUpdateProperties, TownEId, QTown>
+  extends SQDIDao<ITown, TownESelect, TownECreateProperties, TownEUpdateColumns, TownEUpdateProperties, TownEId, QTown>
 	implements IBaseTownDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Town'], Q)
+		super('Town', Q)
 	}
 }
 
@@ -445,10 +513,10 @@ export interface IBaseVoteDao
 }
 
 export class BaseVoteDao
-  extends Dao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, QVote>
+  extends SQDIDao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, QVote>
 	implements IBaseVoteDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['Vote'], Q)
+		super('Vote', Q)
 	}
 }
 
@@ -458,9 +526,22 @@ export interface IBaseVoteFactorDao
 }
 
 export class BaseVoteFactorDao
-  extends Dao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, QVoteFactor>
+  extends SQDIDao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, QVoteFactor>
 	implements IBaseVoteFactorDao {
 	constructor() {
-		super(Q.db.currentVersion.entityMapByName['VoteFactor'], Q)
+		super('VoteFactor', Q)
+	}
+}
+
+
+export interface IBaseVoteFactorTypeDao
+  extends IDao<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateColumns, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, QVoteFactorType> {
+}
+
+export class BaseVoteFactorTypeDao
+  extends SQDIDao<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateColumns, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, QVoteFactorType>
+	implements IBaseVoteFactorTypeDao {
+	constructor() {
+		super('VoteFactorType', Q)
 	}
 }

@@ -1,16 +1,16 @@
 {#if form}
 <form>
-	<Text
-					field="{form.fields.search}"
-	></Text>
+    <Text
+            field="{form.fields.search}"
+    ></Text>
 </form>
 <table>
-	{#each polls as poll}
-	<ListItem
-					poll="{poll}"
-					on:select="goTo(poll.id)"
-	></ListItem>
-	{/each}
+    {#each polls as poll}
+    <ListItem
+            poll="{poll}"
+            on:select="goTo(poll.id)"
+    ></ListItem>
+    {/each}
 </table>
 <!--
 <VirtualList items={factors} component={ListItem} />
@@ -18,20 +18,20 @@
 {/if}
 
 <style>
-	table {
-		width: 100%;
-	}
+    table {
+        width: 100%;
+    }
 </style>
 <script>
+	import {DI}        from '@airport/di'
+	import {POLL_DAO}  from '@votecube/public-db'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import Text        from '../../../common/field/Text.html'
-	import {pollDao}   from '../../../dao/poll'
 	import * as forms  from '../../../form/forms'
 	import {loadForms} from '../../../libs/forms'
-	import {loadUi}    from '../../../libs/text/ui'
 	import * as routes from '../../../routes'
 	import store       from '../../../store'
-	import ListItem    from './ListItem.html';
+	import ListItem    from './ListItem.html'
 
 	export default {
 		components: {
@@ -55,22 +55,24 @@
 			}
 		},
 		oncreate() {
-			Promise.all([
-				loadForms(this),
-				loadUi(this.store, 'en-us'),
-				pollDao.getAll()
-			]).then(([
-				         {Field, FieldGroup},
-				         _,
-				         polls
-			         ]) => {
-				const filter = new FieldGroup('List', {
-					search: new Field([])
-				}, [], this.store.get().text.UI.Poll)
+			DI.get((
+				pollDao
+			) => {
+				Promise.all([
+					loadForms(this),
+					pollDao.findAll()
+				]).then(([
+					         {Field, FieldGroup},
+					         polls
+				         ]) => {
+					const filter = new FieldGroup('List', {
+						search: new Field([])
+					}, [], this.store.get().text.UI.Poll)
 
-				this.set({polls})
-				forms.ensureForm(filter, this)
-			})
+					this.set({polls})
+					forms.ensureForm(filter, this)
+				})
+			}, POLL_DAO)
 			this.store.set({
 				pageTitle: 'Polls'
 			})

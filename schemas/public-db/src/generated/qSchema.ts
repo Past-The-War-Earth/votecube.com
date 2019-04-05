@@ -28,6 +28,8 @@ import { PollState } from '../ddl/location/pollstate';
 import { QPollState } from './location/qpollstate';
 import { PollTown } from '../ddl/location/polltown';
 import { QPollTown } from './location/qpolltown';
+import { PollType } from '../ddl/poll/polltype';
+import { QPollType } from './poll/qpolltype';
 import { Position } from '../ddl/position';
 import { QPosition } from './qposition';
 import { State } from '../ddl/location/state';
@@ -40,6 +42,8 @@ import { Vote } from '../ddl/vote/vote';
 import { QVote } from './vote/qvote';
 import { VoteFactor } from '../ddl/vote/votefactor';
 import { QVoteFactor } from './vote/qvotefactor';
+import { VoteFactorType } from '../ddl/vote/votefactortype';
+import { QVoteFactorType } from './vote/qvotefactortype';
 
 import {
 	IBaseContinentDmo,
@@ -56,12 +60,14 @@ import {
 	IBasePollLabelDmo,
 	IBasePollStateDmo,
 	IBasePollTownDmo,
+	IBasePollTypeDmo,
 	IBasePositionDmo,
 	IBaseStateDmo,
 	IBaseThemeDmo,
 	IBaseTownDmo,
 	IBaseVoteDmo,
-	IBaseVoteFactorDmo
+	IBaseVoteFactorDmo,
+	IBaseVoteFactorTypeDmo
 } from './baseDmos';
 
 import {
@@ -79,12 +85,14 @@ import {
 	IBasePollLabelDao,
 	IBasePollStateDao,
 	IBasePollTownDao,
+	IBasePollTypeDao,
 	IBasePositionDao,
 	IBaseStateDao,
 	IBaseThemeDao,
 	IBaseTownDao,
 	IBaseVoteDao,
-	IBaseVoteFactorDao
+	IBaseVoteFactorDao,
+	IBaseVoteFactorTypeDao
 } from './baseDaos';
 
 export interface LocalQSchema extends AirportQSchema {
@@ -106,12 +114,14 @@ export interface LocalQSchema extends AirportQSchema {
 		PollLabel: IBasePollLabelDmo;
 		PollState: IBasePollStateDmo;
 		PollTown: IBasePollTownDmo;
+		PollType: IBasePollTypeDmo;
 		Position: IBasePositionDmo;
 		State: IBaseStateDmo;
 		Theme: IBaseThemeDmo;
 		Town: IBaseTownDmo;
 		Vote: IBaseVoteDmo;
 		VoteFactor: IBaseVoteFactorDmo;
+		VoteFactorType: IBaseVoteFactorTypeDmo;
 	}
 
 	dao: {
@@ -129,12 +139,14 @@ export interface LocalQSchema extends AirportQSchema {
 		PollLabel: IBasePollLabelDao;
 		PollState: IBasePollStateDao;
 		PollTown: IBasePollTownDao;
+		PollType: IBasePollTypeDao;
 		Position: IBasePositionDao;
 		State: IBaseStateDao;
 		Theme: IBaseThemeDao;
 		Town: IBaseTownDao;
 		Vote: IBaseVoteDao;
 		VoteFactor: IBaseVoteFactorDao;
+		VoteFactorType: IBaseVoteFactorTypeDao;
 	}
 	
 	Continent: QContinent;
@@ -151,12 +163,14 @@ export interface LocalQSchema extends AirportQSchema {
 	PollLabel: QPollLabel;
 	PollState: QPollState;
 	PollTown: QPollTown;
+	PollType: QPollType;
 	Position: QPosition;
 	State: QState;
 	Theme: QTheme;
 	Town: QTown;
 	Vote: QVote;
 	VoteFactor: QVoteFactor;
+	VoteFactorType: QVoteFactorType;
 
 }
 
@@ -175,12 +189,14 @@ const __constructors__ = {
 	PollLabel: PollLabel,
 	PollState: PollState,
 	PollTown: PollTown,
+	PollType: PollType,
 	Position: Position,
 	State: State,
 	Theme: Theme,
 	Town: Town,
 	Vote: Vote,
-	VoteFactor: VoteFactor
+	VoteFactor: VoteFactor,
+	VoteFactorType: VoteFactorType
 };
 
 export const Q_SCHEMA: LocalQSchema = <any>{

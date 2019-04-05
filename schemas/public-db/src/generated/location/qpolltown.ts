@@ -67,6 +67,7 @@ export interface IPollTown extends IChildRepoRow {
 
 	// Non-Id Properties
 	id?: number;
+	pollId?: number;
 
 	// Non-Id Relations
 	poll?: IPoll;
@@ -89,6 +90,7 @@ export interface PollTownESelect
     extends ChildRepoRowESelect, PollTownEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	pollId?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -126,6 +128,7 @@ export interface PollTownEUpdateProperties
 	extends ChildRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	pollId?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	poll?: PollEOptionalId;
@@ -141,6 +144,7 @@ export interface PollTownEUpdateColumns
 	// Non-Id Columns
 	IS_DRAFT?: boolean | IQBooleanField;
 	POLL_STATE_ID?: number | IQNumberField;
+	POLL_ID?: number | IQNumberField;
 	POLLS_RID?: number | IQNumberField;
 	POLLS_AID?: number | IQNumberField;
 	POLLS_ARID?: number | IQNumberField;
@@ -180,6 +184,7 @@ export interface QPollTown extends QChildRepoRow
 
 	// Non-Id Fields
 	id: IQNumberField;
+	pollId: IQNumberField;
 
 	// Non-Id Relations
 	poll: QPollQRelation;

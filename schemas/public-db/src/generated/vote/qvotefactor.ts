@@ -50,6 +50,16 @@ import {
 	QPollFactorPositionQId,
 	QPollFactorPositionQRelation,
 } from '../poll/qpollfactorposition';
+import {
+	IVoteFactorType,
+	VoteFactorTypeEId,
+	VoteFactorTypeEOptionalId,
+	VoteFactorTypeEUpdateProperties,
+	VoteFactorTypeESelect,
+	QVoteFactorType,
+	QVoteFactorTypeQId,
+	QVoteFactorTypeQRelation,
+} from './qvotefactortype';
 
 
 declare function require(moduleName: string): any;
@@ -67,12 +77,13 @@ export interface IVoteFactor extends IChildRepoRow {
 
 	// Non-Id Properties
 	id?: number;
+	voteId?: number;
 	share?: string;
-	type?: string;
 
 	// Non-Id Relations
 	vote?: IVote;
 	pollFactorPos?: IPollFactorPosition;
+	type?: IVoteFactorType;
 
 	// Transient Properties
 
@@ -91,14 +102,15 @@ export interface VoteFactorESelect
     extends ChildRepoRowESelect, VoteFactorEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	voteId?: number | IQNumberField;
 	share?: string | IQStringField;
-	type?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
 	vote?: VoteESelect;
 	pollFactorPos?: PollFactorPositionESelect;
+	type?: VoteFactorTypeESelect;
 
 }
 
@@ -130,12 +142,13 @@ export interface VoteFactorEUpdateProperties
 	extends ChildRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	voteId?: number | IQNumberField;
 	share?: string | IQStringField;
-	type?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	vote?: VoteEOptionalId;
 	pollFactorPos?: PollFactorPositionEOptionalId;
+	type?: VoteFactorTypeEOptionalId;
 
 }
 
@@ -147,14 +160,15 @@ export interface VoteFactorEUpdateColumns
 	// Non-Id Columns
 	IS_DRAFT?: boolean | IQBooleanField;
 	VOTE_FACTOR_ID?: number | IQNumberField;
+	VOTE_ID?: number | IQNumberField;
 	SHARE?: string | IQStringField;
-	TYPE?: string | IQStringField;
 	VOTES_RID?: number | IQNumberField;
 	VOTES_AID?: number | IQNumberField;
 	VOTES_ARID?: number | IQNumberField;
 	POLL_FACTOR_POSITIONS_RID?: number | IQNumberField;
 	POLL_FACTOR_POSITIONS_AID?: number | IQNumberField;
 	POLL_FACTOR_POSITIONS_ARID?: number | IQNumberField;
+	VOTE_FACTOR_TYPE_ID?: number | IQNumberField;
 
 }
 
@@ -190,12 +204,13 @@ export interface QVoteFactor extends QChildRepoRow
 
 	// Non-Id Fields
 	id: IQNumberField;
+	voteId: IQNumberField;
 	share: IQStringField;
-	type: IQStringField;
 
 	// Non-Id Relations
 	vote: QVoteQRelation;
 	pollFactorPos: QPollFactorPositionQRelation;
+	type: QVoteFactorTypeQRelation;
 
 }
 

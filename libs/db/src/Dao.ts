@@ -1,11 +1,11 @@
-export interface IDao<Entity> {
+export interface IDaoTest<Entity> {
 
 	save(entity: Entity)
 
 }
 
 export abstract class Dao<Entity>
-	implements IDao<Entity> {
+	implements IDaoTest<Entity> {
 
 	abstract save(entity: Entity)
 

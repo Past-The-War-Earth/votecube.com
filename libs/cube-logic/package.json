@@ -3,6 +3,9 @@
   "name": "@votecube/cube-logic",
   "typings": "lib/index",
   "version": "0.0.1",
+  "dependencies": {
+    "@votecube/public-db": "0.0.1"
+  },
   "devDependencies": {
     "tslint": "^5.14.0",
     "typescript": "^3.2.2"

@@ -1,5 +1,3 @@
-import {stopResizeInterval} from '../resizer.js'
-
 export function loadCubeLogic(
 	page,
 	viewCallback

@@ -1,5 +1,4 @@
 export * from './mappedSuperclass'
-export * from './schema';
 export * from './qSchema';
 export * from './baseDaos';
 export * from './baseDmos';
@@ -17,9 +16,11 @@ export * from './poll/qlabel';
 export * from './poll/qpoll';
 export * from './poll/qpollfactorposition';
 export * from './poll/qpolllabel';
+export * from './poll/qpolltype';
 export * from './qfactor';
 export * from './qfactorposition';
 export * from './qposition';
 export * from './qtheme';
 export * from './vote/qvote';
 export * from './vote/qvotefactor';
+export * from './vote/qvotefactortype';

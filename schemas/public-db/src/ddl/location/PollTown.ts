@@ -5,10 +5,14 @@ import {
 	ManyToOne,
 	Table,
 	TraditionalServerSeq
-}                     from '@airport/air-control'
-import {ChildRepoRow} from '@airport/holding-pattern'
-import {Poll}         from '../poll/Poll'
-import {Town}         from './Town'
+}                               from '@airport/air-control'
+import {ChildRepoRow}           from '@airport/holding-pattern'
+import {PollFactorPosition_Dir} from '../..'
+import {
+	Poll,
+	Poll_Id
+}                               from '../poll/Poll'
+import {Town}                   from './Town'
 
 export type PollTown_Id = number
 
@@ -21,6 +25,9 @@ export class PollTown
 	@TraditionalServerSeq()
 	@Column({name: 'POLL_STATE_ID'})
 	id: PollTown_Id
+
+	@Column({name: 'POLL_ID'})
+	pollId: Poll_Id
 
 	@ManyToOne()
 		// @JoinColumn({name: 'POLL_ID', nullable: false})

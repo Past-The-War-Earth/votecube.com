@@ -221,7 +221,7 @@ export abstract class FieldBase
 		component: IComponent
 	): void {
 		for (let index = this.components.length - 1; index >= 0; index--) {
-			let currentComponent = this.components[index]
+			const currentComponent = this.components[index]
 			if (component === currentComponent) {
 				this.components.splice(index, 1)
 				break
@@ -230,7 +230,7 @@ export abstract class FieldBase
 	}
 
 	revert(): void {
-		let originalValue = this.originalValue
+		const originalValue = this.originalValue
 		if (originalValue instanceof Object) {
 			this.theValue = {}
 			for (const property in originalValue) {

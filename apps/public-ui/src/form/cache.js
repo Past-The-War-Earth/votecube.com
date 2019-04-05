@@ -1,5 +1,5 @@
-import {pollDao}                  from '../dao/poll'
-import {voteDao}                  from '../dao/vote'
+import {DI}                       from '@airport/di'
+import {POLL_DAO}                 from '@votecube/public-db'
 import * as forms                 from './forms'
 import * as pollFormFromConverter from './poll/fromConverter'
 
@@ -13,7 +13,7 @@ export function getPollRouteParams(
 	return routeParams
 }
 
-export function savePollForm(
+export async function savePollForm(
 	page
 ) {
 	const {keepPollId} = page.get()
@@ -27,9 +27,15 @@ export function savePollForm(
 
 	const poll   = pollFormFromConverter.formToDto(form.value)
 	let {pollId} = page.get().routeParams
+	poll.id      = pollId
 
-	pollDao.addTemp(poll, pollId)
-	voteDao.addTempForPoll(poll, pollId)
+	const [pollDao] = await DI.getP(POLL_DAO)
+
+	await pollDao.stage(poll)
+	// pollDao.addTemp(poll, pollId)
+
+	// TODO: check if this was needed
+	// voteDao.addTempForPoll(poll, pollId)
 
 	forms.uncacheForm(forms.CREATE_POSITION)
 	forms.uncacheForm(forms.CREATE_POLL_TOP)

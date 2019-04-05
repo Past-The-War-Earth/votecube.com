@@ -94,6 +94,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@airport/blueprint",
+      "projectFolder": "../airport/libs/blueprint",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@airport/di",
       "projectFolder": "../airport/libs/di",
       "shouldPublish": true

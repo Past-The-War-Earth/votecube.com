@@ -1,6 +1,5 @@
 import {
 	Column,
-	DbString,
 	Entity,
 	JoinColumn,
 	ManyToOne,
@@ -17,12 +16,12 @@ import {PollTown}           from '../location/PollTown'
 import {Theme}              from '../Theme'
 import {PollFactorPosition} from './PollFactorPosition'
 import {PollLabel}          from './PollLabel'
+import {PollType}           from './PollType'
 
 export type Poll_Id = number
 export type Poll_EndDate = Date
 export type Poll_Name = number
 export type Poll_StartDate = Date
-export type Poll_Type = 'cube'
 
 @Entity()
 @Table({name: 'POLLS'})
@@ -51,9 +50,9 @@ export class Poll
 	@JoinColumn({name: 'THEME_ID', nullable: false})
 	theme: Theme
 
-	@Column({name: 'TYPE', nullable: false})
-	@DbString()
-	type: Poll_Type
+	@ManyToOne()
+	@JoinColumn({name: 'POLL_TYPE_ID', nullable: false})
+	type: PollType
 
 	@OneToMany({mappedBy: 'parentPoll'})
 	childPolls: Poll[]

@@ -87,6 +87,7 @@
 </style>
 
 <script>
+	import {init} from './database'
 	import TextToast           from './common/shell/TextToast.html'
 	import {loadUi}            from './libs/text/ui'
 	import FactorInfoMain   from './pages/factor/info/Main.html'
@@ -193,7 +194,8 @@
 			}
 		},
 		oncreate() {
-			loadUi(this.store, 'en-us')
+			loadUi(this.store, 'en-us').then()
+			init().then()
 
 			setupRoutes(this, pageMap, topMenuMap)
 

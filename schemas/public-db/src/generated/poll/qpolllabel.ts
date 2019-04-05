@@ -67,6 +67,7 @@ export interface IPollLabel extends IImmutableRepoRow {
 
 	// Non-Id Properties
 	id?: number;
+	pollId?: number;
 
 	// Non-Id Relations
 	label?: ILabel;
@@ -89,6 +90,7 @@ export interface PollLabelESelect
     extends ImmutableRepoRowESelect, PollLabelEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	pollId?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -126,6 +128,7 @@ export interface PollLabelEUpdateProperties
 	extends ImmutableRepoRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
+	pollId?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	label?: LabelEOptionalId;
@@ -142,6 +145,7 @@ export interface PollLabelEUpdateColumns
 	IS_DRAFT?: boolean | IQBooleanField;
 	CREATED_AT?: Date | IQDateField;
 	POLL_LABEL_ID?: number | IQNumberField;
+	POLL_ID?: number | IQNumberField;
 	LABELS_RID?: number | IQNumberField;
 	LABELS_AID?: number | IQNumberField;
 	LABELS_ARID?: number | IQNumberField;
@@ -183,6 +187,7 @@ export interface QPollLabel extends QImmutableRepoRow
 
 	// Non-Id Fields
 	id: IQNumberField;
+	pollId: IQNumberField;
 
 	// Non-Id Relations
 	label: QLabelQRelation;

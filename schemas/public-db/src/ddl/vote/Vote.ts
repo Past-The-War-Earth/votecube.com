@@ -1,16 +1,17 @@
 import {
 	Column,
 	Entity,
-	GeneratedValue,
-	JoinColumn,
 	ManyToOne,
 	OneToMany,
 	Table,
 	TraditionalServerSeq
-} from '@airport/air-control'
-import {ImmutableRepoRow} from '@airport/holding-pattern'
+}                         from '@airport/air-control'
 import {CascadeType}      from '@airport/ground-control'
-import {Poll}             from '../poll/Poll'
+import {ImmutableRepoRow} from '@airport/holding-pattern'
+import {
+	Poll,
+	Poll_Id
+}                         from '../poll/Poll'
 import {VoteFactor}       from './VoteFactor'
 
 export type Vote_Id = number
@@ -25,11 +26,14 @@ export class Vote
 	@Column({name: 'VOTE_ID'})
 	id: Vote_Id
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
-	factors: VoteFactor[]
+	@Column({name: 'POLL_ID'})
+	pollId: Poll_Id
 
 	@ManyToOne()
-	// @JoinColumn({name: 'POLL_ID', nullable: false})
-	poll: Poll
+		// @JoinColumn({name: 'POLL_ID', nullable: false})
+		poll: Poll
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
+	factors: VoteFactor[]
 
 }

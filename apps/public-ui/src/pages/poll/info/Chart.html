@@ -1,26 +1,23 @@
 {#if vote}
 <VoteComponentGraph
-				bind:delta
-				bind:maxBarSize
-				bind:poll
-				bind:verticalLayout="$verticalLayout"
-				bind:vote
-				mode="page"
-				on:toggleX="toggleSurface('x')"
-				on:toggleY="toggleSurface('y')"
-				on:toggleZ="toggleSurface('z')"
+        bind:delta
+        bind:maxBarSize
+        bind:poll
+        bind:verticalLayout="$verticalLayout"
+        bind:vote
+        mode="page"
+        on:toggleX="toggleSurface('x')"
+        on:toggleY="toggleSurface('y')"
+        on:toggleZ="toggleSurface('z')"
 ></VoteComponentGraph>
 {/if}
 
 <script>
-	import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
-	import {voteDao}          from '../../../dao/vote';
-	import {
-		loadCubeLogic,
-		shutDownCubeListener
-	}                         from '../../../libs/cubeLogic'
-	import {setResizeCllBck}  from '../../../resizer'
-	import store              from '../../../store'
+	import VoteComponentGraph     from '../../../components/vote/VoteComponentGraph.html'
+	import {setupCubeView}        from '../../../database'
+	import {shutDownCubeListener} from '../../../libs/cubeLogic'
+	import {setResizeCllBck}      from '../../../resizer'
+	import store                  from '../../../store'
 
 	export default {
 		components: {
@@ -46,33 +43,18 @@
 				windowWidth,
 				verticalLayout
 			) => {
-				let maxBarSize = portalHeight - 60;
+				let maxBarSize = portalHeight - 60
 
 				if (verticalLayout) {
-					maxBarSize = portalHeight / 2 - 20;
+					maxBarSize = portalHeight / 2 - 20
 				}
 
-				this.set({maxBarSize});
+				this.set({maxBarSize})
 			}, this.store)
 
 			const pollId = this.store.get().routeParams.pollId
-			Promise.all([
-				loadCubeLogic(this, (vote) => {
-					this.set({delta: this.get().delta + 1})
-				}),
-				voteDao.findMyVoteForPoll(pollId)
-			]).then(([
-				         setPositionDataAndMove,
-				         vote
-			         ]) => {
-				const poll = vote.poll
-				this.set({poll, vote})
-				setPositionDataAndMove(vote)
 
-				this.store.set({
-					pageTitle: poll.name
-				})
-			})
+			setupCubeView(null, pollId, this).then()
 			this.store.set({noOverflow: true})
 		},
 		ondestroy() {

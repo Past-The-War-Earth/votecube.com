@@ -55,7 +55,7 @@
 			})
 		},
 		ondestroy() {
-			formCache.savePollForm(this)
+			formCache.savePollForm(this).then()
 			forms.clearForm(this)
 		},
 		store: () => store

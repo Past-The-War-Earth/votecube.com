@@ -41,6 +41,16 @@ import {
 	QThemeQRelation,
 } from '../qtheme';
 import {
+	IPollType,
+	PollTypeEId,
+	PollTypeEOptionalId,
+	PollTypeEUpdateProperties,
+	PollTypeESelect,
+	QPollType,
+	QPollTypeQId,
+	QPollTypeQRelation,
+} from './qpolltype';
+import {
 	IPollContinent,
 	PollContinentEId,
 	PollContinentEOptionalId,
@@ -120,11 +130,11 @@ export interface IPoll extends IImmutableRepoRow {
 	endDate?: Date;
 	startDate?: Date;
 	name?: number;
-	type?: string;
 
 	// Non-Id Relations
 	parentPoll?: IPoll;
 	theme?: ITheme;
+	type?: IPollType;
 	childPolls?: IPoll[];
 	pollContinents?: IPollContinent[];
 	pollCountries?: IPollCountry[];
@@ -153,13 +163,13 @@ export interface PollESelect
 	endDate?: Date | IQDateField;
 	startDate?: Date | IQDateField;
 	name?: number | IQNumberField;
-	type?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
 	parentPoll?: PollESelect;
 	theme?: ThemeESelect;
+	type?: PollTypeESelect;
 	childPolls?: PollESelect;
 	pollContinents?: PollContinentESelect;
 	pollCountries?: PollCountryESelect;
@@ -201,11 +211,11 @@ export interface PollEUpdateProperties
 	endDate?: Date | IQDateField;
 	startDate?: Date | IQDateField;
 	name?: number | IQNumberField;
-	type?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	parentPoll?: PollEOptionalId;
 	theme?: ThemeEOptionalId;
+	type?: PollTypeEOptionalId;
 
 }
 
@@ -221,11 +231,11 @@ export interface PollEUpdateColumns
 	END_DATE?: Date | IQDateField;
 	START_DATE?: Date | IQDateField;
 	POLL_DESCRIPTION?: number | IQNumberField;
-	TYPE?: string | IQStringField;
 	POLLS_RID?: number | IQNumberField;
 	POLLS_AID?: number | IQNumberField;
 	POLLS_ARID?: number | IQNumberField;
 	THEME_ID?: number | IQNumberField;
+	POLL_TYPE_ID?: number | IQNumberField;
 
 }
 
@@ -264,11 +274,11 @@ export interface QPoll extends QImmutableRepoRow
 	endDate: IQDateField;
 	startDate: IQDateField;
 	name: IQNumberField;
-	type: IQStringField;
 
 	// Non-Id Relations
 	parentPoll: QPollQRelation;
 	theme: QThemeQRelation;
+	type: QPollTypeQRelation;
 	childPolls: IQOneToManyRelation<QPoll>;
 	pollContinents: IQOneToManyRelation<QPollContinent>;
 	pollCountries: IQOneToManyRelation<QPollCountry>;

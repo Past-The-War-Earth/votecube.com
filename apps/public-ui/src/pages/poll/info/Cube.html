@@ -385,6 +385,8 @@
 </style>
 
 <script>
+	import {DI}               from '@airport/di'
+	import {POLL_DAO}         from '@votecube/public-db'
 	import BuildButton        from '../../../common/control/button/BuildButton.html'
 	import FactorInfoButton   from '../../../common/control/button/FactorInfoButton.html'
 	import LeftButton         from '../../../common/control/button/LeftButton.html'
@@ -394,20 +396,19 @@
 	import ActionPopover      from '../../../common/shell/ActionPopover.html'
 	import Positioner         from '../../../components/poll/create/Positioner.html'
 	import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
-	import {pollDao}          from '../../../dao/poll'
-	import {voteDao}          from '../../../dao/vote'
+
+	import {setupCubeView}   from '../../../database'
 	import {
 		getColor,
 		getSideText
-	}                         from '../../../helpers/cube'
+	}                        from '../../../helpers/cube'
 	import {
-		loadCubeLogic,
 		setCubeAdjustment,
 		shutDownCubeListener
-	}                         from '../../../libs/cubeLogic'
-	import {setResizeCllBck}  from '../../../resizer'
-	import * as routes        from '../../../routes'
-	import store              from '../../../store'
+	}                        from '../../../libs/cubeLogic'
+	import {setResizeCllBck} from '../../../resizer'
+	import * as routes       from '../../../routes'
+	import store             from '../../../store'
 
 	export default {
 		components: {
@@ -468,12 +469,17 @@
 		methods: {
 			build() {
 				this.set({saving: 'Saving ...'})
-				pollDao.save(this.get().poll).then(() => {
-					this.set({confirm: false})
-					routes.navigateToPage(routes.POLL_SEARCH_LIST)
-				}).catch((error) => {
-					this.set({error, saving: 'Error'})
-				})
+				DI.get((
+					pollDao
+				) => {
+					pollDao.save(this.get().poll).then(() => {
+						this.set({confirm: false})
+						routes.navigateToPage(routes.POLL_SEARCH_LIST)
+					}).catch((error) => {
+						this.set({error, saving: 'Error'})
+					})
+				}, POLL_DAO)
+
 			},
 			checkBuild() {
 				this.set({confirm: true, error: '', saving: false, voting: false})
@@ -579,7 +585,16 @@
 			},
 			vote() {
 				// this.set({confirm: false})
-				routes.navigateToPage(routes.POLL_SEARCH_LIST)
+				DI.get((
+					voteDao
+				) => {
+					voteDao.save(this.get().poll).then(() => {
+						this.set({confirm: false})
+						routes.navigateToPage(routes.POLL_SEARCH_LIST)
+					}).catch((error) => {
+						this.set({error, saving: 'Error'})
+					})
+				}, POLL_DAO)
 			}
 		},
 		oncreate() {
@@ -600,29 +615,7 @@
 
 			const {mode, pollId} = this.store.get().routeParams
 
-			Promise.all([
-				loadCubeLogic(this, (vote) => {
-					this.set({delta: this.get().delta + 1})
-				}),
-				voteDao.findMyVoteForPoll(pollId)
-			]).then(([
-				         setPositionDataAndMove,
-				         vote
-			         ]) => {
-				if (!vote) {
-					if (pollId == 0) {
-						routes.navigateToPage(routes.POLL_INFO_MAIN)
-					}
-					return
-				}
-				const poll = vote.poll
-				this.set({mode, poll, vote})
-				setPositionDataAndMove(vote)
-
-				this.store.set({
-					pageTitle: poll.name
-				})
-			})
+			setupCubeView(mode, pollId, this).then()
 
 			this.store.set({
 				cube: true,

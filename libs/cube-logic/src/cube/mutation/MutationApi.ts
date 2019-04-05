@@ -105,7 +105,7 @@ export class MutationApi
 		this.vp.rmd = this.vp.rmd.filter(
 			changedDim => dimension !== changedDim)
 		this.vp.rmd.unshift(dimension)
-		let numPreviousMoves = this.vp.rmd.length
+		const numPreviousMoves = this.vp.rmd.length
 		if (numPreviousMoves > 3) {
 			this.vp.rmd.pop()
 		}
