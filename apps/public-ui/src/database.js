@@ -4,7 +4,7 @@ import {StoreType}        from '@airport/terminal-map'
 import {VOTE_DAO}         from '@votecube/public-db'
 
 export async function init() {
-	const [dbManager] = await DI.getP(DATABASE_MANAGER)
+	const dbManager = await DI.getP(DATABASE_MANAGER)
 	await dbManager.init(StoreType.SQLITE_CORDOVA)
 }
 

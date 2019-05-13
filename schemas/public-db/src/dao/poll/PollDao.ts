@@ -4,9 +4,9 @@ import {IRepositoryEntity}      from '@airport/holding-pattern'
 import {Poll_Id}                from '../../ddl/poll/Poll'
 import {
 	POLL_DAO,
-	POLL_FACTOR_POSITION_DMO
+	POLL_FACTOR_POSITION_DUO
 }                               from '../../diTokens'
-import {IPollFactorPositionDmo} from '../../dmo/dmo'
+import {IPollFactorPositionDuo} from '../../duo/duo'
 import {
 	BasePollDao,
 	IBasePollDao,
@@ -25,14 +25,14 @@ export class PollDao
 	extends BasePollDao
 	implements IPollDao {
 
-	pfpDmo: IPollFactorPositionDmo
+	pfpDuo: IPollFactorPositionDuo
 
 	constructor() {
 		super()
 		DI.get(
-			pollFactorPositionDao => {
-				this.pfpDmo = pollFactorPositionDao
-			}, POLL_FACTOR_POSITION_DMO)
+			pollFactorPositionDuo => {
+				this.pfpDuo = pollFactorPositionDuo
+			}, POLL_FACTOR_POSITION_DUO)
 	}
 
 	async findByPollIdWithDetails(
@@ -47,14 +47,14 @@ export class PollDao
 			p: QPoll
 		) => JSONBaseOperation
 	): Promise<IPoll> {
-		const repoIdFieldsSelect = this.db.dmo.getIdFieldsSelect()
+		const repoIdFieldsSelect = this.db.duo.getIdFieldsSelect()
 		let p: QPoll
 		return await this.db.findOne.graph({
 			from: [
 				p = this.db.from
 			],
 			select: {
-				...this.db.dmo.getAllFieldsSelect(),
+				...this.db.duo.getAllFieldsSelect(),
 				pollContinents: {
 					...repoIdFieldsSelect,
 					continent: {}
@@ -64,7 +64,7 @@ export class PollDao
 					country: {}
 				},
 				pollFactorPositions: {
-					...this.pfpDmo.getAllFieldsSelect(),
+					...this.pfpDuo.getAllFieldsSelect(),
 					factorPosition: {
 						...repoIdFieldsSelect,
 						factor: {},

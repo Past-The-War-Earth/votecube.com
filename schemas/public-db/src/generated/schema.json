@@ -1,4 +1,4 @@
-export const SCHEMA = {
+{
 	"domain": "public",
 	"index": null,
 	"name": "@votecube/public-db",
@@ -5864,4 +5864,4 @@ export const SCHEMA = {
 			"versionString": "1.0.0"
 		}
 	]
-};
+}

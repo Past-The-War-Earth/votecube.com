@@ -49,7 +49,7 @@ export class VoteDao
 				u = a.user.innerJoin()
 			],
 			select: {
-				...this.db.dmo.getAllFieldsSelect(),
+				...this.db.duo.getAllFieldsSelect(),
 				factors: {}
 			},
 			where: and(
