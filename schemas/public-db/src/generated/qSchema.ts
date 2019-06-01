@@ -1,5 +1,12 @@
-import { QSchema as AirportQSchema } from '@airport/air-control';
-import { DbSchema } from '@airport/ground-control';
+import {
+	AIR_DB,
+	QSchema as AirportQSchema
+}                      from '@airport/air-control'
+import {DI}            from '@airport/di'
+import {
+	DbSchema,
+	getSchemaName
+}                      from '@airport/ground-control';
 import { Continent } from '../ddl/location/continent';
 import { QContinent } from './location/qcontinent';
 import { Country } from '../ddl/location/country';
@@ -100,6 +107,14 @@ const __constructors__ = {
 };
 
 export const Q_SCHEMA: LocalQSchema = <any>{
-	__constructors__
+	__constructors__,
+  domain: 'public',
+  name: '@votecube/public-db'
 };
-export const Q: LocalQSchema = Q_SCHEMA;
+export const Q: LocalQSchema = Q_SCHEMA
+
+DI.get((
+	airportDatabase
+) => {
+	airportDatabase.QM[getSchemaName(Q_SCHEMA)] = Q
+}, AIR_DB)

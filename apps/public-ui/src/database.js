@@ -1,11 +1,13 @@
 import {DI}               from '@airport/di'
+import {BOGUS}            from '@airport/tarmaq'
 import {DATABASE_MANAGER} from '@airport/terminal'
 import {StoreType}        from '@airport/terminal-map'
 import {VOTE_DAO}         from '@votecube/public-db'
 
 export async function init() {
+	const a         = BOGUS
 	const dbManager = await DI.getP(DATABASE_MANAGER)
-	await dbManager.init(StoreType.SQLITE_CORDOVA)
+	await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA)
 }
 
 export async function setupCubeView(
