@@ -6,7 +6,7 @@ import {VOTE_DAO}         from '@votecube/public-db'
 
 export async function init() {
 	const a         = BOGUS
-	const dbManager = await DI.getP(DATABASE_MANAGER)
+	const dbManager = await DI.get(DATABASE_MANAGER)
 	await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA)
 }
 
@@ -22,7 +22,7 @@ export async function setupCubeView(
 		loadCubeLogic(this, () => {
 			page.set({delta: this.get().delta + 1})
 		}),
-		DI.getP(VOTE_DAO)
+		DI.get(VOTE_DAO)
 	])
 
 	const vote = await voteDao.findMyVoteForPoll(pollId)

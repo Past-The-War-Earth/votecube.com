@@ -311,7 +311,7 @@
 				labelDao.getAll(),
 				loadLocations(),
 				loadLocText(this.store, 'en-us'),
-				DI.getP(VOTE_DAO)
+				DI.get(VOTE_DAO)
 			]).then(([
 				         {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
 				         labels,

@@ -469,16 +469,15 @@
 		methods: {
 			build() {
 				this.set({saving: 'Saving ...'})
-				DI.get((
-					pollDao
-				) => {
-					pollDao.save(this.get().poll).then(() => {
-						this.set({confirm: false})
-						routes.navigateToPage(routes.POLL_SEARCH_LIST)
-					}).catch((error) => {
-						this.set({error, saving: 'Error'})
-					})
-				}, POLL_DAO)
+				DI.get(POLL_DAO).then(
+					pollDao =>
+						pollDao.save(this.get().poll).then(() => {
+							this.set({confirm: false})
+							routes.navigateToPage(routes.POLL_SEARCH_LIST)
+						}).catch((error) => {
+							this.set({error, saving: 'Error'})
+						})
+				)
 
 			},
 			checkBuild() {
@@ -585,16 +584,15 @@
 			},
 			vote() {
 				// this.set({confirm: false})
-				DI.get((
-					voteDao
-				) => {
-					voteDao.save(this.get().poll).then(() => {
-						this.set({confirm: false})
-						routes.navigateToPage(routes.POLL_SEARCH_LIST)
-					}).catch((error) => {
-						this.set({error, saving: 'Error'})
-					})
-				}, POLL_DAO)
+				DI.get(POLL_DAO).then(
+					voteDao =>
+						voteDao.save(this.get().poll).then(() => {
+							this.set({confirm: false})
+							routes.navigateToPage(routes.POLL_SEARCH_LIST)
+						}).catch((error) => {
+							this.set({error, saving: 'Error'})
+						})
+				)
 			}
 		},
 		oncreate() {

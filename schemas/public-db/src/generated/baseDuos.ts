@@ -5,9 +5,15 @@ import {
 	IEntitySelectProperties,
 	IEntityUpdateProperties,
 	IQEntity
-} from '@airport/air-control';
-import { Duo } from "@airport/check-in";
-import { Q } from './qSchema';
+} from '@airport/air-control'
+import { Duo } from "@airport/check-in"
+import {
+	EntityId as DbEntityId
+} from '@airport/ground-control'
+import {
+	Q,
+	diSet
+} from './qSchema'
 import {
 	IContinent,
 	ContinentESelect,
@@ -17,7 +23,7 @@ import {
 	ContinentEUpdateProperties,
 	ContinentEId,
 	QContinent
-} from './location/qcontinent';
+} from './location/qcontinent'
 import {
 	ICountry,
 	CountryESelect,
@@ -27,7 +33,7 @@ import {
 	CountryEUpdateProperties,
 	CountryEId,
 	QCountry
-} from './location/qcountry';
+} from './location/qcountry'
 import {
 	ICounty,
 	CountyESelect,
@@ -37,7 +43,7 @@ import {
 	CountyEUpdateProperties,
 	CountyEId,
 	QCounty
-} from './location/qcounty';
+} from './location/qcounty'
 import {
 	IFactor,
 	FactorESelect,
@@ -47,7 +53,7 @@ import {
 	FactorEUpdateProperties,
 	FactorEId,
 	QFactor
-} from './qfactor';
+} from './qfactor'
 import {
 	IFactorPosition,
 	FactorPositionESelect,
@@ -57,7 +63,7 @@ import {
 	FactorPositionEUpdateProperties,
 	FactorPositionEId,
 	QFactorPosition
-} from './qfactorposition';
+} from './qfactorposition'
 import {
 	ILabel,
 	LabelESelect,
@@ -67,7 +73,7 @@ import {
 	LabelEUpdateProperties,
 	LabelEId,
 	QLabel
-} from './poll/qlabel';
+} from './poll/qlabel'
 import {
 	IPoll,
 	PollESelect,
@@ -77,7 +83,7 @@ import {
 	PollEUpdateProperties,
 	PollEId,
 	QPoll
-} from './poll/qpoll';
+} from './poll/qpoll'
 import {
 	IPollContinent,
 	PollContinentESelect,
@@ -87,7 +93,7 @@ import {
 	PollContinentEUpdateProperties,
 	PollContinentEId,
 	QPollContinent
-} from './location/qpollcontinent';
+} from './location/qpollcontinent'
 import {
 	IPollCountry,
 	PollCountryESelect,
@@ -97,7 +103,7 @@ import {
 	PollCountryEUpdateProperties,
 	PollCountryEId,
 	QPollCountry
-} from './location/qpollcountry';
+} from './location/qpollcountry'
 import {
 	IPollCounty,
 	PollCountyESelect,
@@ -107,7 +113,7 @@ import {
 	PollCountyEUpdateProperties,
 	PollCountyEId,
 	QPollCounty
-} from './location/qpollcounty';
+} from './location/qpollcounty'
 import {
 	IPollFactorPosition,
 	PollFactorPositionESelect,
@@ -117,7 +123,7 @@ import {
 	PollFactorPositionEUpdateProperties,
 	PollFactorPositionEId,
 	QPollFactorPosition
-} from './poll/qpollfactorposition';
+} from './poll/qpollfactorposition'
 import {
 	IPollLabel,
 	PollLabelESelect,
@@ -127,7 +133,7 @@ import {
 	PollLabelEUpdateProperties,
 	PollLabelEId,
 	QPollLabel
-} from './poll/qpolllabel';
+} from './poll/qpolllabel'
 import {
 	IPollState,
 	PollStateESelect,
@@ -137,7 +143,7 @@ import {
 	PollStateEUpdateProperties,
 	PollStateEId,
 	QPollState
-} from './location/qpollstate';
+} from './location/qpollstate'
 import {
 	IPollTown,
 	PollTownESelect,
@@ -147,7 +153,7 @@ import {
 	PollTownEUpdateProperties,
 	PollTownEId,
 	QPollTown
-} from './location/qpolltown';
+} from './location/qpolltown'
 import {
 	IPollType,
 	PollTypeESelect,
@@ -157,7 +163,7 @@ import {
 	PollTypeEUpdateProperties,
 	PollTypeEId,
 	QPollType
-} from './poll/qpolltype';
+} from './poll/qpolltype'
 import {
 	IPosition,
 	PositionESelect,
@@ -167,7 +173,7 @@ import {
 	PositionEUpdateProperties,
 	PositionEId,
 	QPosition
-} from './qposition';
+} from './qposition'
 import {
 	IState,
 	StateESelect,
@@ -177,7 +183,7 @@ import {
 	StateEUpdateProperties,
 	StateEId,
 	QState
-} from './location/qstate';
+} from './location/qstate'
 import {
 	ITheme,
 	ThemeESelect,
@@ -187,7 +193,7 @@ import {
 	ThemeEUpdateProperties,
 	ThemeEId,
 	QTheme
-} from './qtheme';
+} from './qtheme'
 import {
 	ITown,
 	TownESelect,
@@ -197,7 +203,7 @@ import {
 	TownEUpdateProperties,
 	TownEId,
 	QTown
-} from './location/qtown';
+} from './location/qtown'
 import {
 	IVote,
 	VoteESelect,
@@ -207,7 +213,7 @@ import {
 	VoteEUpdateProperties,
 	VoteEId,
 	QVote
-} from './vote/qvote';
+} from './vote/qvote'
 import {
 	IVoteFactor,
 	VoteFactorESelect,
@@ -217,7 +223,7 @@ import {
 	VoteFactorEUpdateProperties,
 	VoteFactorEId,
 	QVoteFactor
-} from './vote/qvotefactor';
+} from './vote/qvotefactor'
 import {
 	IVoteFactorType,
 	VoteFactorTypeESelect,
@@ -227,7 +233,7 @@ import {
 	VoteFactorTypeEUpdateProperties,
 	VoteFactorTypeEId,
 	QVoteFactorType
-} from './vote/qvotefactortype';
+} from './vote/qvotefactortype'
 
 
 // Schema Q object Dependency Injection readiness detection DAO
@@ -244,14 +250,10 @@ export class SQDIDuo<Entity,
 		EntityId,
 		IQE> {
 
-	static diSet(): boolean {
-		return Q.__dbSchema__ as any
-	}
-
 	constructor(
-		dbEntityName: string
+		dbEntityId: DbEntityId
 	) {
-		super(dbEntityName, Q)
+		super(dbEntityId, Q)
 	}
 }
 
@@ -263,8 +265,13 @@ export interface IBaseContinentDuo
 export class BaseContinentDuo
   extends SQDIDuo<IContinent, ContinentESelect, ContinentECreateProperties, ContinentEUpdateProperties, ContinentEId, QContinent>
 	implements IBaseContinentDuo {
+
+	static diSet(): boolean {
+		return diSet(3)
+	}
+	
 	constructor() {
-		super('Continent');
+		super(3)
 	}
 }
 
@@ -276,8 +283,13 @@ export interface IBaseCountryDuo
 export class BaseCountryDuo
   extends SQDIDuo<ICountry, CountryESelect, CountryECreateProperties, CountryEUpdateProperties, CountryEId, QCountry>
 	implements IBaseCountryDuo {
+
+	static diSet(): boolean {
+		return diSet(2)
+	}
+	
 	constructor() {
-		super('Country');
+		super(2)
 	}
 }
 
@@ -289,8 +301,13 @@ export interface IBaseCountyDuo
 export class BaseCountyDuo
   extends SQDIDuo<ICounty, CountyESelect, CountyECreateProperties, CountyEUpdateProperties, CountyEId, QCounty>
 	implements IBaseCountyDuo {
+
+	static diSet(): boolean {
+		return diSet(4)
+	}
+	
 	constructor() {
-		super('County');
+		super(4)
 	}
 }
 
@@ -302,8 +319,13 @@ export interface IBaseFactorDuo
 export class BaseFactorDuo
   extends SQDIDuo<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateProperties, FactorEId, QFactor>
 	implements IBaseFactorDuo {
+
+	static diSet(): boolean {
+		return diSet(9)
+	}
+	
 	constructor() {
-		super('Factor');
+		super(9)
 	}
 }
 
@@ -315,8 +337,13 @@ export interface IBaseFactorPositionDuo
 export class BaseFactorPositionDuo
   extends SQDIDuo<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateProperties, FactorPositionEId, QFactorPosition>
 	implements IBaseFactorPositionDuo {
+
+	static diSet(): boolean {
+		return diSet(11)
+	}
+	
 	constructor() {
-		super('FactorPosition');
+		super(11)
 	}
 }
 
@@ -328,8 +355,13 @@ export interface IBaseLabelDuo
 export class BaseLabelDuo
   extends SQDIDuo<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateProperties, LabelEId, QLabel>
 	implements IBaseLabelDuo {
+
+	static diSet(): boolean {
+		return diSet(13)
+	}
+	
 	constructor() {
-		super('Label');
+		super(13)
 	}
 }
 
@@ -341,8 +373,13 @@ export interface IBasePollDuo
 export class BasePollDuo
   extends SQDIDuo<IPoll, PollESelect, PollECreateProperties, PollEUpdateProperties, PollEId, QPoll>
 	implements IBasePollDuo {
+
+	static diSet(): boolean {
+		return diSet(16)
+	}
+	
 	constructor() {
-		super('Poll');
+		super(16)
 	}
 }
 
@@ -354,8 +391,13 @@ export interface IBasePollContinentDuo
 export class BasePollContinentDuo
   extends SQDIDuo<IPollContinent, PollContinentESelect, PollContinentECreateProperties, PollContinentEUpdateProperties, PollContinentEId, QPollContinent>
 	implements IBasePollContinentDuo {
+
+	static diSet(): boolean {
+		return diSet(21)
+	}
+	
 	constructor() {
-		super('PollContinent');
+		super(21)
 	}
 }
 
@@ -367,8 +409,13 @@ export interface IBasePollCountryDuo
 export class BasePollCountryDuo
   extends SQDIDuo<IPollCountry, PollCountryESelect, PollCountryECreateProperties, PollCountryEUpdateProperties, PollCountryEId, QPollCountry>
 	implements IBasePollCountryDuo {
+
+	static diSet(): boolean {
+		return diSet(5)
+	}
+	
 	constructor() {
-		super('PollCountry');
+		super(5)
 	}
 }
 
@@ -380,8 +427,13 @@ export interface IBasePollCountyDuo
 export class BasePollCountyDuo
   extends SQDIDuo<IPollCounty, PollCountyESelect, PollCountyECreateProperties, PollCountyEUpdateProperties, PollCountyEId, QPollCounty>
 	implements IBasePollCountyDuo {
+
+	static diSet(): boolean {
+		return diSet(17)
+	}
+	
 	constructor() {
-		super('PollCounty');
+		super(17)
 	}
 }
 
@@ -393,8 +445,13 @@ export interface IBasePollFactorPositionDuo
 export class BasePollFactorPositionDuo
   extends SQDIDuo<IPollFactorPosition, PollFactorPositionESelect, PollFactorPositionECreateProperties, PollFactorPositionEUpdateProperties, PollFactorPositionEId, QPollFactorPosition>
 	implements IBasePollFactorPositionDuo {
+
+	static diSet(): boolean {
+		return diSet(12)
+	}
+	
 	constructor() {
-		super('PollFactorPosition');
+		super(12)
 	}
 }
 
@@ -406,8 +463,13 @@ export interface IBasePollLabelDuo
 export class BasePollLabelDuo
   extends SQDIDuo<IPollLabel, PollLabelESelect, PollLabelECreateProperties, PollLabelEUpdateProperties, PollLabelEId, QPollLabel>
 	implements IBasePollLabelDuo {
+
+	static diSet(): boolean {
+		return diSet(14)
+	}
+	
 	constructor() {
-		super('PollLabel');
+		super(14)
 	}
 }
 
@@ -419,8 +481,13 @@ export interface IBasePollStateDuo
 export class BasePollStateDuo
   extends SQDIDuo<IPollState, PollStateESelect, PollStateECreateProperties, PollStateEUpdateProperties, PollStateEId, QPollState>
 	implements IBasePollStateDuo {
+
+	static diSet(): boolean {
+		return diSet(6)
+	}
+	
 	constructor() {
-		super('PollState');
+		super(6)
 	}
 }
 
@@ -432,8 +499,13 @@ export interface IBasePollTownDuo
 export class BasePollTownDuo
   extends SQDIDuo<IPollTown, PollTownESelect, PollTownECreateProperties, PollTownEUpdateProperties, PollTownEId, QPollTown>
 	implements IBasePollTownDuo {
+
+	static diSet(): boolean {
+		return diSet(7)
+	}
+	
 	constructor() {
-		super('PollTown');
+		super(7)
 	}
 }
 
@@ -445,8 +517,13 @@ export interface IBasePollTypeDuo
 export class BasePollTypeDuo
   extends SQDIDuo<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateProperties, PollTypeEId, QPollType>
 	implements IBasePollTypeDuo {
+
+	static diSet(): boolean {
+		return diSet(15)
+	}
+	
 	constructor() {
-		super('PollType');
+		super(15)
 	}
 }
 
@@ -458,8 +535,13 @@ export interface IBasePositionDuo
 export class BasePositionDuo
   extends SQDIDuo<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateProperties, PositionEId, QPosition>
 	implements IBasePositionDuo {
+
+	static diSet(): boolean {
+		return diSet(10)
+	}
+	
 	constructor() {
-		super('Position');
+		super(10)
 	}
 }
 
@@ -471,8 +553,13 @@ export interface IBaseStateDuo
 export class BaseStateDuo
   extends SQDIDuo<IState, StateESelect, StateECreateProperties, StateEUpdateProperties, StateEId, QState>
 	implements IBaseStateDuo {
+
+	static diSet(): boolean {
+		return diSet(1)
+	}
+	
 	constructor() {
-		super('State');
+		super(1)
 	}
 }
 
@@ -484,8 +571,13 @@ export interface IBaseThemeDuo
 export class BaseThemeDuo
   extends SQDIDuo<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateProperties, ThemeEId, QTheme>
 	implements IBaseThemeDuo {
+
+	static diSet(): boolean {
+		return diSet(8)
+	}
+	
 	constructor() {
-		super('Theme');
+		super(8)
 	}
 }
 
@@ -497,8 +589,13 @@ export interface IBaseTownDuo
 export class BaseTownDuo
   extends SQDIDuo<ITown, TownESelect, TownECreateProperties, TownEUpdateProperties, TownEId, QTown>
 	implements IBaseTownDuo {
+
+	static diSet(): boolean {
+		return diSet(0)
+	}
+	
 	constructor() {
-		super('Town');
+		super(0)
 	}
 }
 
@@ -510,8 +607,13 @@ export interface IBaseVoteDuo
 export class BaseVoteDuo
   extends SQDIDuo<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateProperties, VoteEId, QVote>
 	implements IBaseVoteDuo {
+
+	static diSet(): boolean {
+		return diSet(20)
+	}
+	
 	constructor() {
-		super('Vote');
+		super(20)
 	}
 }
 
@@ -523,8 +625,13 @@ export interface IBaseVoteFactorDuo
 export class BaseVoteFactorDuo
   extends SQDIDuo<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateProperties, VoteFactorEId, QVoteFactor>
 	implements IBaseVoteFactorDuo {
+
+	static diSet(): boolean {
+		return diSet(19)
+	}
+	
 	constructor() {
-		super('VoteFactor');
+		super(19)
 	}
 }
 
@@ -536,7 +643,12 @@ export interface IBaseVoteFactorTypeDuo
 export class BaseVoteFactorTypeDuo
   extends SQDIDuo<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, QVoteFactorType>
 	implements IBaseVoteFactorTypeDuo {
+
+	static diSet(): boolean {
+		return diSet(18)
+	}
+	
 	constructor() {
-		super('VoteFactorType');
+		super(18)
 	}
 }

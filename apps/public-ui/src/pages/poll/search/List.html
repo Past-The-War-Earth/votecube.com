@@ -55,24 +55,23 @@
 			}
 		},
 		oncreate() {
-			DI.get((
-				pollDao
-			) => {
-				Promise.all([
-					loadForms(this),
-					pollDao.findAll()
-				]).then(([
-					         {Field, FieldGroup},
-					         polls
-				         ]) => {
-					const filter = new FieldGroup('List', {
-						search: new Field([])
-					}, [], this.store.get().text.UI.Poll)
+			DI.get(POLL_DAO).then(
+				pollDao =>
+					Promise.all([
+						loadForms(this),
+						pollDao.findAll()
+					]).then(([
+						         {Field, FieldGroup},
+						         polls
+					         ]) => {
+						const filter = new FieldGroup('List', {
+							search: new Field([])
+						}, [], this.store.get().text.UI.Poll)
 
-					this.set({polls})
-					forms.ensureForm(filter, this)
-				})
-			}, POLL_DAO)
+						this.set({polls})
+						forms.ensureForm(filter, this)
+					})
+			)
 			this.store.set({
 				pageTitle: 'Polls'
 			})

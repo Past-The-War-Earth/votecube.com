@@ -6,9 +6,17 @@ import {
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IQEntity
-} from '@airport/air-control';
-import { Dao } from '@airport/check-in';
-import { Q } from './qSchema';
+} from '@airport/air-control'
+import {
+	Dao
+} from '@airport/check-in'
+import {
+	EntityId as DbEntityId
+} from '@airport/ground-control'
+import {
+	Q,
+	diSet
+} from './qSchema'
 import {
 	IContinent,
 	ContinentESelect,
@@ -18,7 +26,7 @@ import {
 	ContinentEUpdateProperties,
 	ContinentEId,
 	QContinent
-} from './location/qcontinent';
+} from './location/qcontinent'
 import {
 	ICountry,
 	CountryESelect,
@@ -28,7 +36,7 @@ import {
 	CountryEUpdateProperties,
 	CountryEId,
 	QCountry
-} from './location/qcountry';
+} from './location/qcountry'
 import {
 	ICounty,
 	CountyESelect,
@@ -38,7 +46,7 @@ import {
 	CountyEUpdateProperties,
 	CountyEId,
 	QCounty
-} from './location/qcounty';
+} from './location/qcounty'
 import {
 	IFactor,
 	FactorESelect,
@@ -48,7 +56,7 @@ import {
 	FactorEUpdateProperties,
 	FactorEId,
 	QFactor
-} from './qfactor';
+} from './qfactor'
 import {
 	IFactorPosition,
 	FactorPositionESelect,
@@ -58,7 +66,7 @@ import {
 	FactorPositionEUpdateProperties,
 	FactorPositionEId,
 	QFactorPosition
-} from './qfactorposition';
+} from './qfactorposition'
 import {
 	ILabel,
 	LabelESelect,
@@ -68,7 +76,7 @@ import {
 	LabelEUpdateProperties,
 	LabelEId,
 	QLabel
-} from './poll/qlabel';
+} from './poll/qlabel'
 import {
 	IPoll,
 	PollESelect,
@@ -78,7 +86,7 @@ import {
 	PollEUpdateProperties,
 	PollEId,
 	QPoll
-} from './poll/qpoll';
+} from './poll/qpoll'
 import {
 	IPollContinent,
 	PollContinentESelect,
@@ -88,7 +96,7 @@ import {
 	PollContinentEUpdateProperties,
 	PollContinentEId,
 	QPollContinent
-} from './location/qpollcontinent';
+} from './location/qpollcontinent'
 import {
 	IPollCountry,
 	PollCountryESelect,
@@ -98,7 +106,7 @@ import {
 	PollCountryEUpdateProperties,
 	PollCountryEId,
 	QPollCountry
-} from './location/qpollcountry';
+} from './location/qpollcountry'
 import {
 	IPollCounty,
 	PollCountyESelect,
@@ -108,7 +116,7 @@ import {
 	PollCountyEUpdateProperties,
 	PollCountyEId,
 	QPollCounty
-} from './location/qpollcounty';
+} from './location/qpollcounty'
 import {
 	IPollFactorPosition,
 	PollFactorPositionESelect,
@@ -118,7 +126,7 @@ import {
 	PollFactorPositionEUpdateProperties,
 	PollFactorPositionEId,
 	QPollFactorPosition
-} from './poll/qpollfactorposition';
+} from './poll/qpollfactorposition'
 import {
 	IPollLabel,
 	PollLabelESelect,
@@ -128,7 +136,7 @@ import {
 	PollLabelEUpdateProperties,
 	PollLabelEId,
 	QPollLabel
-} from './poll/qpolllabel';
+} from './poll/qpolllabel'
 import {
 	IPollState,
 	PollStateESelect,
@@ -138,7 +146,7 @@ import {
 	PollStateEUpdateProperties,
 	PollStateEId,
 	QPollState
-} from './location/qpollstate';
+} from './location/qpollstate'
 import {
 	IPollTown,
 	PollTownESelect,
@@ -148,7 +156,7 @@ import {
 	PollTownEUpdateProperties,
 	PollTownEId,
 	QPollTown
-} from './location/qpolltown';
+} from './location/qpolltown'
 import {
 	IPollType,
 	PollTypeESelect,
@@ -158,7 +166,7 @@ import {
 	PollTypeEUpdateProperties,
 	PollTypeEId,
 	QPollType
-} from './poll/qpolltype';
+} from './poll/qpolltype'
 import {
 	IPosition,
 	PositionESelect,
@@ -168,7 +176,7 @@ import {
 	PositionEUpdateProperties,
 	PositionEId,
 	QPosition
-} from './qposition';
+} from './qposition'
 import {
 	IState,
 	StateESelect,
@@ -178,7 +186,7 @@ import {
 	StateEUpdateProperties,
 	StateEId,
 	QState
-} from './location/qstate';
+} from './location/qstate'
 import {
 	ITheme,
 	ThemeESelect,
@@ -188,7 +196,7 @@ import {
 	ThemeEUpdateProperties,
 	ThemeEId,
 	QTheme
-} from './qtheme';
+} from './qtheme'
 import {
 	ITown,
 	TownESelect,
@@ -198,7 +206,7 @@ import {
 	TownEUpdateProperties,
 	TownEId,
 	QTown
-} from './location/qtown';
+} from './location/qtown'
 import {
 	IVote,
 	VoteESelect,
@@ -208,7 +216,7 @@ import {
 	VoteEUpdateProperties,
 	VoteEId,
 	QVote
-} from './vote/qvote';
+} from './vote/qvote'
 import {
 	IVoteFactor,
 	VoteFactorESelect,
@@ -218,7 +226,7 @@ import {
 	VoteFactorEUpdateProperties,
 	VoteFactorEId,
 	QVoteFactor
-} from './vote/qvotefactor';
+} from './vote/qvotefactor'
 import {
 	IVoteFactorType,
 	VoteFactorTypeESelect,
@@ -228,7 +236,7 @@ import {
 	VoteFactorTypeEUpdateProperties,
 	VoteFactorTypeEId,
 	QVoteFactorType
-} from './vote/qvotefactortype';
+} from './vote/qvotefactortype'
 
 // Schema Q object Dependency Injection readiness detection DAO
 export class SQDIDao<Entity,
@@ -246,14 +254,10 @@ export class SQDIDao<Entity,
 		EntityId,
 		IQE> {
 
-	static diSet(): boolean {
-		return Q.__dbSchema__ as any
-	}
-
 	constructor(
-		dbEntityName: string
+		dbEntityId: DbEntityId
 	) {
-		super(dbEntityName, Q)
+		super(dbEntityId, Q)
 	}
 }
 
@@ -265,8 +269,13 @@ export interface IBaseContinentDao
 export class BaseContinentDao
   extends SQDIDao<IContinent, ContinentESelect, ContinentECreateProperties, ContinentEUpdateColumns, ContinentEUpdateProperties, ContinentEId, QContinent>
 	implements IBaseContinentDao {
+
+	static diSet(): boolean {
+		return diSet(3)
+	}
+	
 	constructor() {
-		super('Continent')
+		super(3)
 	}
 }
 
@@ -278,8 +287,13 @@ export interface IBaseCountryDao
 export class BaseCountryDao
   extends SQDIDao<ICountry, CountryESelect, CountryECreateProperties, CountryEUpdateColumns, CountryEUpdateProperties, CountryEId, QCountry>
 	implements IBaseCountryDao {
+
+	static diSet(): boolean {
+		return diSet(2)
+	}
+	
 	constructor() {
-		super('Country')
+		super(2)
 	}
 }
 
@@ -291,8 +305,13 @@ export interface IBaseCountyDao
 export class BaseCountyDao
   extends SQDIDao<ICounty, CountyESelect, CountyECreateProperties, CountyEUpdateColumns, CountyEUpdateProperties, CountyEId, QCounty>
 	implements IBaseCountyDao {
+
+	static diSet(): boolean {
+		return diSet(4)
+	}
+	
 	constructor() {
-		super('County')
+		super(4)
 	}
 }
 
@@ -304,8 +323,13 @@ export interface IBaseFactorDao
 export class BaseFactorDao
   extends SQDIDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, QFactor>
 	implements IBaseFactorDao {
+
+	static diSet(): boolean {
+		return diSet(9)
+	}
+	
 	constructor() {
-		super('Factor')
+		super(9)
 	}
 }
 
@@ -317,8 +341,13 @@ export interface IBaseFactorPositionDao
 export class BaseFactorPositionDao
   extends SQDIDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, QFactorPosition>
 	implements IBaseFactorPositionDao {
+
+	static diSet(): boolean {
+		return diSet(11)
+	}
+	
 	constructor() {
-		super('FactorPosition')
+		super(11)
 	}
 }
 
@@ -330,8 +359,13 @@ export interface IBaseLabelDao
 export class BaseLabelDao
   extends SQDIDao<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, QLabel>
 	implements IBaseLabelDao {
+
+	static diSet(): boolean {
+		return diSet(13)
+	}
+	
 	constructor() {
-		super('Label')
+		super(13)
 	}
 }
 
@@ -343,8 +377,13 @@ export interface IBasePollDao
 export class BasePollDao
   extends SQDIDao<IPoll, PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, QPoll>
 	implements IBasePollDao {
+
+	static diSet(): boolean {
+		return diSet(16)
+	}
+	
 	constructor() {
-		super('Poll')
+		super(16)
 	}
 }
 
@@ -356,8 +395,13 @@ export interface IBasePollContinentDao
 export class BasePollContinentDao
   extends SQDIDao<IPollContinent, PollContinentESelect, PollContinentECreateProperties, PollContinentEUpdateColumns, PollContinentEUpdateProperties, PollContinentEId, QPollContinent>
 	implements IBasePollContinentDao {
+
+	static diSet(): boolean {
+		return diSet(21)
+	}
+	
 	constructor() {
-		super('PollContinent')
+		super(21)
 	}
 }
 
@@ -369,8 +413,13 @@ export interface IBasePollCountryDao
 export class BasePollCountryDao
   extends SQDIDao<IPollCountry, PollCountryESelect, PollCountryECreateProperties, PollCountryEUpdateColumns, PollCountryEUpdateProperties, PollCountryEId, QPollCountry>
 	implements IBasePollCountryDao {
+
+	static diSet(): boolean {
+		return diSet(5)
+	}
+	
 	constructor() {
-		super('PollCountry')
+		super(5)
 	}
 }
 
@@ -382,8 +431,13 @@ export interface IBasePollCountyDao
 export class BasePollCountyDao
   extends SQDIDao<IPollCounty, PollCountyESelect, PollCountyECreateProperties, PollCountyEUpdateColumns, PollCountyEUpdateProperties, PollCountyEId, QPollCounty>
 	implements IBasePollCountyDao {
+
+	static diSet(): boolean {
+		return diSet(17)
+	}
+	
 	constructor() {
-		super('PollCounty')
+		super(17)
 	}
 }
 
@@ -395,8 +449,13 @@ export interface IBasePollFactorPositionDao
 export class BasePollFactorPositionDao
   extends SQDIDao<IPollFactorPosition, PollFactorPositionESelect, PollFactorPositionECreateProperties, PollFactorPositionEUpdateColumns, PollFactorPositionEUpdateProperties, PollFactorPositionEId, QPollFactorPosition>
 	implements IBasePollFactorPositionDao {
+
+	static diSet(): boolean {
+		return diSet(12)
+	}
+	
 	constructor() {
-		super('PollFactorPosition')
+		super(12)
 	}
 }
 
@@ -408,8 +467,13 @@ export interface IBasePollLabelDao
 export class BasePollLabelDao
   extends SQDIDao<IPollLabel, PollLabelESelect, PollLabelECreateProperties, PollLabelEUpdateColumns, PollLabelEUpdateProperties, PollLabelEId, QPollLabel>
 	implements IBasePollLabelDao {
+
+	static diSet(): boolean {
+		return diSet(14)
+	}
+	
 	constructor() {
-		super('PollLabel')
+		super(14)
 	}
 }
 
@@ -421,8 +485,13 @@ export interface IBasePollStateDao
 export class BasePollStateDao
   extends SQDIDao<IPollState, PollStateESelect, PollStateECreateProperties, PollStateEUpdateColumns, PollStateEUpdateProperties, PollStateEId, QPollState>
 	implements IBasePollStateDao {
+
+	static diSet(): boolean {
+		return diSet(6)
+	}
+	
 	constructor() {
-		super('PollState')
+		super(6)
 	}
 }
 
@@ -434,8 +503,13 @@ export interface IBasePollTownDao
 export class BasePollTownDao
   extends SQDIDao<IPollTown, PollTownESelect, PollTownECreateProperties, PollTownEUpdateColumns, PollTownEUpdateProperties, PollTownEId, QPollTown>
 	implements IBasePollTownDao {
+
+	static diSet(): boolean {
+		return diSet(7)
+	}
+	
 	constructor() {
-		super('PollTown')
+		super(7)
 	}
 }
 
@@ -447,8 +521,13 @@ export interface IBasePollTypeDao
 export class BasePollTypeDao
   extends SQDIDao<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateColumns, PollTypeEUpdateProperties, PollTypeEId, QPollType>
 	implements IBasePollTypeDao {
+
+	static diSet(): boolean {
+		return diSet(15)
+	}
+	
 	constructor() {
-		super('PollType')
+		super(15)
 	}
 }
 
@@ -460,8 +539,13 @@ export interface IBasePositionDao
 export class BasePositionDao
   extends SQDIDao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, QPosition>
 	implements IBasePositionDao {
+
+	static diSet(): boolean {
+		return diSet(10)
+	}
+	
 	constructor() {
-		super('Position')
+		super(10)
 	}
 }
 
@@ -473,8 +557,13 @@ export interface IBaseStateDao
 export class BaseStateDao
   extends SQDIDao<IState, StateESelect, StateECreateProperties, StateEUpdateColumns, StateEUpdateProperties, StateEId, QState>
 	implements IBaseStateDao {
+
+	static diSet(): boolean {
+		return diSet(1)
+	}
+	
 	constructor() {
-		super('State')
+		super(1)
 	}
 }
 
@@ -486,8 +575,13 @@ export interface IBaseThemeDao
 export class BaseThemeDao
   extends SQDIDao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, QTheme>
 	implements IBaseThemeDao {
+
+	static diSet(): boolean {
+		return diSet(8)
+	}
+	
 	constructor() {
-		super('Theme')
+		super(8)
 	}
 }
 
@@ -499,8 +593,13 @@ export interface IBaseTownDao
 export class BaseTownDao
   extends SQDIDao<ITown, TownESelect, TownECreateProperties, TownEUpdateColumns, TownEUpdateProperties, TownEId, QTown>
 	implements IBaseTownDao {
+
+	static diSet(): boolean {
+		return diSet(0)
+	}
+	
 	constructor() {
-		super('Town')
+		super(0)
 	}
 }
 
@@ -512,8 +611,13 @@ export interface IBaseVoteDao
 export class BaseVoteDao
   extends SQDIDao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, QVote>
 	implements IBaseVoteDao {
+
+	static diSet(): boolean {
+		return diSet(20)
+	}
+	
 	constructor() {
-		super('Vote')
+		super(20)
 	}
 }
 
@@ -525,8 +629,13 @@ export interface IBaseVoteFactorDao
 export class BaseVoteFactorDao
   extends SQDIDao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, QVoteFactor>
 	implements IBaseVoteFactorDao {
+
+	static diSet(): boolean {
+		return diSet(19)
+	}
+	
 	constructor() {
-		super('VoteFactor')
+		super(19)
 	}
 }
 
@@ -538,7 +647,12 @@ export interface IBaseVoteFactorTypeDao
 export class BaseVoteFactorTypeDao
   extends SQDIDao<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateColumns, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, QVoteFactorType>
 	implements IBaseVoteFactorTypeDao {
+
+	static diSet(): boolean {
+		return diSet(18)
+	}
+	
 	constructor() {
-		super('VoteFactorType')
+		super(18)
 	}
 }
