@@ -1,9 +1,9 @@
+import {DI}        from '@airport/di'
 import {
 	AJAX_Z_POLL,
 	IModelSerializer,
 	Out
 }                  from '@votecube/ajax'
-import {DI}        from '@votecube/di'
 import {
 	FACTOR_POSITIONS,
 	FACTORS,

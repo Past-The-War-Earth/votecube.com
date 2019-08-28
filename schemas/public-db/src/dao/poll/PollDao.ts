@@ -1,12 +1,14 @@
 import {DI}                     from '@airport/di'
-import {JSONBaseOperation}      from '@airport/ground-control'
+import {
+	ensureChildJsMap,
+	JSONBaseOperation
+}                               from '@airport/ground-control'
 import {IRepositoryEntity}      from '@airport/holding-pattern'
 import {Poll_Id}                from '../../ddl/poll/Poll'
 import {
 	POLL_DAO,
 	POLL_FACTOR_POSITION_DUO
 }                               from '../../diTokens'
-import {IPollFactorPositionDuo} from '../../duo/duo'
 import {
 	BasePollDao,
 	IBasePollDao,
@@ -25,16 +27,6 @@ export class PollDao
 	extends BasePollDao
 	implements IPollDao {
 
-	pfpDuo: IPollFactorPositionDuo
-
-	constructor() {
-		super()
-		DI.get(
-			pollFactorPositionDuo => {
-				this.pfpDuo = pollFactorPositionDuo
-			}, POLL_FACTOR_POSITION_DUO)
-	}
-
 	async findByPollIdWithDetails(
 		pollId: Poll_Id
 	): Promise<IPoll> {
@@ -47,6 +39,8 @@ export class PollDao
 			p: QPoll
 		) => JSONBaseOperation
 	): Promise<IPoll> {
+		const pfpDuo = await DI.get(POLL_FACTOR_POSITION_DUO)
+
 		const repoIdFieldsSelect = this.db.duo.getIdFieldsSelect()
 		let p: QPoll
 		return await this.db.findOne.graph({
@@ -64,7 +58,7 @@ export class PollDao
 					country: {}
 				},
 				pollFactorPositions: {
-					...this.pfpDuo.getAllFieldsSelect(),
+					...pfpDuo.getAllFieldsSelect(),
 					factorPosition: {
 						...repoIdFieldsSelect,
 						factor: {},
@@ -96,8 +90,8 @@ export class PollDao
 
 		for (const repositoryEntity of repositoryEntities) {
 			repositoryEntity[referencingEntitiesPropertyName] = []
-			this.utils.ensureChildJsMap(
-				this.utils.ensureChildJsMap(repoEntityMap,
+			ensureChildJsMap(
+				ensureChildJsMap(repoEntityMap,
 					repositoryEntity.repository.id),
 				repositoryEntity.actor.id).set(repositoryEntity.actorRecordId, repositoryEntity)
 		}

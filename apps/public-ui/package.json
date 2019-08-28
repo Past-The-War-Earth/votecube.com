@@ -26,7 +26,7 @@
   "name": "@votecube/public-ui",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack-dev-server --content-base public"
+    "dev": "webpack-dev-server --port 8082 --content-base public"
   },
   "version": "0.0.1"
 }

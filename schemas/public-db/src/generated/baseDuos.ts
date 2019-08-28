@@ -12,7 +12,7 @@ import {
 } from '@airport/ground-control'
 import {
 	Q,
-	diSet
+	duoDiSet
 } from './qSchema'
 import {
 	IContinent,
@@ -267,7 +267,7 @@ export class BaseContinentDuo
 	implements IBaseContinentDuo {
 
 	static diSet(): boolean {
-		return diSet(3)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
@@ -285,7 +285,7 @@ export class BaseCountryDuo
 	implements IBaseCountryDuo {
 
 	static diSet(): boolean {
-		return diSet(2)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
@@ -303,7 +303,7 @@ export class BaseCountyDuo
 	implements IBaseCountyDuo {
 
 	static diSet(): boolean {
-		return diSet(4)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
@@ -321,7 +321,7 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return diSet(9)
+		return duoDiSet(9)
 	}
 	
 	constructor() {
@@ -339,7 +339,7 @@ export class BaseFactorPositionDuo
 	implements IBaseFactorPositionDuo {
 
 	static diSet(): boolean {
-		return diSet(11)
+		return duoDiSet(11)
 	}
 	
 	constructor() {
@@ -357,7 +357,7 @@ export class BaseLabelDuo
 	implements IBaseLabelDuo {
 
 	static diSet(): boolean {
-		return diSet(13)
+		return duoDiSet(13)
 	}
 	
 	constructor() {
@@ -375,7 +375,7 @@ export class BasePollDuo
 	implements IBasePollDuo {
 
 	static diSet(): boolean {
-		return diSet(16)
+		return duoDiSet(16)
 	}
 	
 	constructor() {
@@ -393,7 +393,7 @@ export class BasePollContinentDuo
 	implements IBasePollContinentDuo {
 
 	static diSet(): boolean {
-		return diSet(21)
+		return duoDiSet(21)
 	}
 	
 	constructor() {
@@ -411,7 +411,7 @@ export class BasePollCountryDuo
 	implements IBasePollCountryDuo {
 
 	static diSet(): boolean {
-		return diSet(5)
+		return duoDiSet(5)
 	}
 	
 	constructor() {
@@ -429,7 +429,7 @@ export class BasePollCountyDuo
 	implements IBasePollCountyDuo {
 
 	static diSet(): boolean {
-		return diSet(17)
+		return duoDiSet(17)
 	}
 	
 	constructor() {
@@ -447,7 +447,7 @@ export class BasePollFactorPositionDuo
 	implements IBasePollFactorPositionDuo {
 
 	static diSet(): boolean {
-		return diSet(12)
+		return duoDiSet(12)
 	}
 	
 	constructor() {
@@ -465,7 +465,7 @@ export class BasePollLabelDuo
 	implements IBasePollLabelDuo {
 
 	static diSet(): boolean {
-		return diSet(14)
+		return duoDiSet(14)
 	}
 	
 	constructor() {
@@ -483,7 +483,7 @@ export class BasePollStateDuo
 	implements IBasePollStateDuo {
 
 	static diSet(): boolean {
-		return diSet(6)
+		return duoDiSet(6)
 	}
 	
 	constructor() {
@@ -501,7 +501,7 @@ export class BasePollTownDuo
 	implements IBasePollTownDuo {
 
 	static diSet(): boolean {
-		return diSet(7)
+		return duoDiSet(7)
 	}
 	
 	constructor() {
@@ -519,7 +519,7 @@ export class BasePollTypeDuo
 	implements IBasePollTypeDuo {
 
 	static diSet(): boolean {
-		return diSet(15)
+		return duoDiSet(15)
 	}
 	
 	constructor() {
@@ -537,7 +537,7 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return diSet(10)
+		return duoDiSet(10)
 	}
 	
 	constructor() {
@@ -555,7 +555,7 @@ export class BaseStateDuo
 	implements IBaseStateDuo {
 
 	static diSet(): boolean {
-		return diSet(1)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
@@ -573,7 +573,7 @@ export class BaseThemeDuo
 	implements IBaseThemeDuo {
 
 	static diSet(): boolean {
-		return diSet(8)
+		return duoDiSet(8)
 	}
 	
 	constructor() {
@@ -591,7 +591,7 @@ export class BaseTownDuo
 	implements IBaseTownDuo {
 
 	static diSet(): boolean {
-		return diSet(0)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
@@ -609,7 +609,7 @@ export class BaseVoteDuo
 	implements IBaseVoteDuo {
 
 	static diSet(): boolean {
-		return diSet(20)
+		return duoDiSet(20)
 	}
 	
 	constructor() {
@@ -627,7 +627,7 @@ export class BaseVoteFactorDuo
 	implements IBaseVoteFactorDuo {
 
 	static diSet(): boolean {
-		return diSet(19)
+		return duoDiSet(19)
 	}
 	
 	constructor() {
@@ -645,7 +645,7 @@ export class BaseVoteFactorTypeDuo
 	implements IBaseVoteFactorTypeDuo {
 
 	static diSet(): boolean {
-		return diSet(18)
+		return duoDiSet(18)
 	}
 	
 	constructor() {
