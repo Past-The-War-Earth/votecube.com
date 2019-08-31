@@ -21,24 +21,24 @@ export interface IModelSerializer<M extends IModel> {
 		model: M,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void
+	): Promise<void>
 
 	serializeArray(
 		models: M[],
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void
+	): Promise<void>
 
 	serializeRecord(
 		model: M,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void
+	): Promise<void>
 
 	deserialize(
 		mode: Mode,
 		bin: In
-	): M
+	): Promise<M>
 
 }
 
@@ -52,17 +52,17 @@ export abstract class ModelSerializer<M extends IModel>
 	) {
 	}
 
-	serialize(
+	async serialize(
 		model: M,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void {
+	): Promise<void> {
 		if (!model) {
 			out.nil()
 			return
 		}
 
-		let id = model.id
+		const id = model.id
 		if (id) {
 			out.byte(Mode.REFERENCE)
 			out.num(id)
@@ -77,14 +77,14 @@ export abstract class ModelSerializer<M extends IModel>
 		}
 	}
 
-	serializeArray(
+	async serializeArray(
 		models: M[],
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void {
+	): Promise<void> {
 		out.num(models.length)
 		for (const model of models) {
-			this.serialize(model, out, tempRecordIds)
+			await this.serialize(model, out, tempRecordIds)
 		}
 	}
 
@@ -92,11 +92,11 @@ export abstract class ModelSerializer<M extends IModel>
 		model: M,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void;
+	): Promise<void>;
 
 	abstract deserialize(
 		mode: Mode,
 		bin: In
-	): M;
+	): Promise<M>;
 
 }

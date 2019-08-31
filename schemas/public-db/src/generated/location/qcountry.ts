@@ -62,11 +62,11 @@ declare function require(moduleName: string): any;
 export interface ICountry extends IReferenceRow {
 	
 	// Id Properties
+	id?: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
 	name?: string;
 
 	// Non-Id Relations
@@ -89,7 +89,6 @@ export interface ICountry extends IReferenceRow {
 export interface CountryESelect
     extends ReferenceRowESelect, CountryEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
@@ -106,6 +105,7 @@ export interface CountryESelect
 export interface CountryEId
     extends ReferenceRowEId {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -116,6 +116,7 @@ export interface CountryEId
  */
 export interface CountryEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -127,7 +128,6 @@ export interface CountryEOptionalId {
 export interface CountryEUpdateProperties
 	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -141,7 +141,6 @@ export interface CountryEUpdateProperties
 export interface CountryEUpdateColumns
 	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
-	COUNTRY_ID?: number | IQNumberField;
 	COUNTRY_NAME?: string | IQStringField;
 	CONTINENT_ID?: number | IQNumberField;
 
@@ -174,11 +173,11 @@ extends CountryEId, CountryEUpdateColumns {
 export interface QCountry extends QReferenceRow
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
 	name: IQStringField;
 
 	// Non-Id Relations
@@ -193,6 +192,7 @@ export interface QCountryQId extends QReferenceRowQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 

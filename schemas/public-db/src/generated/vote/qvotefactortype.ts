@@ -42,11 +42,11 @@ declare function require(moduleName: string): any;
 export interface IVoteFactorType extends IReferenceRow {
 	
 	// Id Properties
+	id?: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
 	value?: string;
 
 	// Non-Id Relations
@@ -67,7 +67,6 @@ export interface IVoteFactorType extends IReferenceRow {
 export interface VoteFactorTypeESelect
     extends ReferenceRowESelect, VoteFactorTypeEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	value?: string | IQStringField;
 
 	// Id Relations - full property interfaces
@@ -82,6 +81,7 @@ export interface VoteFactorTypeESelect
 export interface VoteFactorTypeEId
     extends ReferenceRowEId {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -92,6 +92,7 @@ export interface VoteFactorTypeEId
  */
 export interface VoteFactorTypeEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -103,7 +104,6 @@ export interface VoteFactorTypeEOptionalId {
 export interface VoteFactorTypeEUpdateProperties
 	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	value?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -116,7 +116,6 @@ export interface VoteFactorTypeEUpdateProperties
 export interface VoteFactorTypeEUpdateColumns
 	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
-	VOTE_FACTOR_TYPE_ID?: number | IQNumberField;
 	VOTE_FACTOR_TYPE_VALUE?: string | IQStringField;
 
 }
@@ -148,11 +147,11 @@ extends VoteFactorTypeEId, VoteFactorTypeEUpdateColumns {
 export interface QVoteFactorType extends QReferenceRow
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
 	value: IQStringField;
 
 	// Non-Id Relations
@@ -165,6 +164,7 @@ export interface QVoteFactorTypeQId extends QReferenceRowQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 

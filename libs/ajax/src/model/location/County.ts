@@ -1,4 +1,4 @@
-import {DI}                             from '@votecube/di'
+import {DI}                             from '@airport/di'
 import {EntityType, ICounty}            from '@votecube/model'
 import {In}                             from '../../core/In'
 import {Out}                            from '../../core/Out'
@@ -16,17 +16,17 @@ export class CountySerializer
 		super(EntityType.CNTY);
 	}
 
-	serializeRecord(
+	async serializeRecord(
 		model: ICounty,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void {
+	) {
 	}
 
-	deserialize(
+	async deserialize(
 		mode: Mode,
 		bin: In
-	): ICounty {
+	): Promise<ICounty> {
 		return undefined
 	}
 

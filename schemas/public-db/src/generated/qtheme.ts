@@ -42,11 +42,11 @@ declare function require(moduleName: string): any;
 export interface ITheme extends IReferenceRow {
 	
 	// Id Properties
+	id?: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
 	name?: string;
 
 	// Non-Id Relations
@@ -67,7 +67,6 @@ export interface ITheme extends IReferenceRow {
 export interface ThemeESelect
     extends ReferenceRowESelect, ThemeEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
@@ -82,6 +81,7 @@ export interface ThemeESelect
 export interface ThemeEId
     extends ReferenceRowEId {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -92,6 +92,7 @@ export interface ThemeEId
  */
 export interface ThemeEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -103,7 +104,6 @@ export interface ThemeEOptionalId {
 export interface ThemeEUpdateProperties
 	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -116,7 +116,6 @@ export interface ThemeEUpdateProperties
 export interface ThemeEUpdateColumns
 	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
-	THEME_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
 
 }
@@ -148,11 +147,11 @@ extends ThemeEId, ThemeEUpdateColumns {
 export interface QTheme extends QReferenceRow
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
 	name: IQStringField;
 
 	// Non-Id Relations
@@ -165,6 +164,7 @@ export interface QThemeQId extends QReferenceRowQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 

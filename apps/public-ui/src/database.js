@@ -1,13 +1,15 @@
-import {DI}               from '@airport/di'
-import {BOGUS}            from '@airport/tarmaq'
-import {DATABASE_MANAGER} from '@airport/terminal'
-import {StoreType}        from '@airport/terminal-map'
-import {VOTE_DAO}         from '@votecube/public-db'
+import {DI}                     from '@airport/di'
+import {AIR_DB}                 from '@airport/tower'
+import {TransactionalConnector} from '@airport/tarmaq'
+import {DATABASE_MANAGER}       from '@airport/terminal'
+import {StoreType}              from '@airport/terminal-map'
+import {VOTE_DAO}               from '@votecube/public-db'
+import {SCHEMA}                 from '@votecube/public-db/lib/generated/schema'
 
 export async function init() {
-	const a         = BOGUS
+	await DI.get(AIR_DB)
 	const dbManager = await DI.get(DATABASE_MANAGER)
-	await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA)
+	await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, SCHEMA)
 }
 
 export async function setupCubeView(
@@ -22,7 +24,7 @@ export async function setupCubeView(
 		loadCubeLogic(this, () => {
 			page.set({delta: this.get().delta + 1})
 		}),
-		DI.get(VOTE_DAO)
+		await DI.get(VOTE_DAO)
 	])
 
 	const vote = await voteDao.findMyVoteForPoll(pollId)

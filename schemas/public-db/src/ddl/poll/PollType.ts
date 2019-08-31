@@ -2,8 +2,9 @@ import {
 	Column,
 	DbString,
 	Entity,
+	Id,
 	Table
-}                     from '@airport/air-control'
+} from '@airport/air-control'
 import {ReferenceRow} from '@airport/holding-pattern'
 
 export type PollType_Id = number
@@ -14,6 +15,7 @@ export type PollType_Value = 'cube'
 export class PollType
 	extends ReferenceRow {
 
+	@Id()
 	@Column({name: 'POLL_TYPE_ID'})
 	id: PollType_Id
 

@@ -1,20 +1,20 @@
-import {DI}                     from '@airport/di'
+import {DI}                from '@airport/di'
 import {
 	ensureChildJsMap,
 	JSONBaseOperation
-}                               from '@airport/ground-control'
-import {IRepositoryEntity}      from '@airport/holding-pattern'
+}                          from '@airport/ground-control'
+import {IRepositoryEntity} from '@airport/holding-pattern'
 import {Poll_Id}                from '../../ddl/poll/Poll'
 import {
 	POLL_DAO,
 	POLL_FACTOR_POSITION_DUO
-}                               from '../../diTokens'
+}                          from '../../diTokens'
 import {
 	BasePollDao,
 	IBasePollDao,
 	IPoll,
 	QPoll
-}                               from '../../generated/generated'
+}                          from '../../generated/generated'
 
 export interface IPollDao
 	extends IBasePollDao {

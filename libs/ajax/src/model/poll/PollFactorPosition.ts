@@ -1,11 +1,11 @@
-import {DI}                                              from '@votecube/di'
-import {EntityType, IPollFactorPosition}             from '@votecube/model'
-import {In}                                              from '../../core/In'
-import {Out}                                             from '../../core/Out'
-import {AJAX_Z_DIMENSION_DIRECTION, AJAX_Z_POLL_DIM_DIR} from '../../tokens'
-import {Mode}                                            from '../core/Mode'
-import {ITempRecordId, ModelSerializer}                  from '../core/ModelSerializer'
-import {FactorPositionSerializer}                    from '../FactorPosition'
+import {DI}                                                  from '@airport/di'
+import {EntityType, IPollFactorPosition}                     from '@votecube/model'
+import {In}                                                  from '../../core/In'
+import {Out}                                                 from '../../core/Out'
+import {AJAX_Z_FACTOR_POSITION, AJAX_Z_POLL_FACTOR_POSITION} from '../../tokens'
+import {Mode}                                                from '../core/Mode'
+import {ITempRecordId, ModelSerializer}                      from '../core/ModelSerializer'
+import {FactorPositionSerializer}                            from '../FactorPosition'
 
 /**
  * Please try to keep properties serialized in UI-model alphabetic order. :)
@@ -13,31 +13,26 @@ import {FactorPositionSerializer}                    from '../FactorPosition'
 export class PollFactorPositionSerializer
 	extends ModelSerializer<IPollFactorPosition> {
 
-	factorPositionZ: FactorPositionSerializer
-
 	constructor() {
 		super(EntityType.PLL_DIM_DIR)
-		DI.get(
-			di => {
-				[this.factorPositionZ] = di
-			}, AJAX_Z_DIMENSION_DIRECTION)
 	}
 
-	serializeRecord(
+	async serializeRecord(
 		model: IPollFactorPosition,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void {
+	): Promise<void> {
 		out.byte(this.getAxisByte(model.axis))
 		out.num(model.color.id)
-		this.factorPositionZ.serializeRecord(model.factorPosition, out, tempRecordIds)
+		const factorPositionZ = await DI.get(AJAX_Z_FACTOR_POSITION)
+		await factorPositionZ.serializeRecord(model.factorPosition, out, tempRecordIds)
 		out.byte(model.dir === 1 ? 1 : 0)
 	}
 
-	deserialize(
+	async deserialize(
 		mode: Mode,
 		bin: In
-	): IPollFactorPosition {
+	): Promise<IPollFactorPosition> {
 		return undefined
 	}
 
@@ -56,4 +51,4 @@ export class PollFactorPositionSerializer
 
 }
 
-DI.set(AJAX_Z_POLL_DIM_DIR, PollFactorPositionSerializer)
+DI.set(AJAX_Z_POLL_FACTOR_POSITION, PollFactorPositionSerializer)

@@ -1,6 +1,7 @@
 import {
 	Column,
 	Entity,
+	Id,
 	Table,
 	TraditionalServerSeq
 } from '@airport/air-control'
@@ -15,6 +16,7 @@ export class Theme
 	extends ReferenceRow {
 
 	@TraditionalServerSeq()
+	@Id()
 	@Column({name: 'THEME_ID'})
 	id: Theme_Id
 

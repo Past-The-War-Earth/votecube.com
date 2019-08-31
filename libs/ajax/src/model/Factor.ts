@@ -1,8 +1,8 @@
-import {DI}                             from '@votecube/di'
-import {EntityType, IFactor}         from '@votecube/model'
+import {DI}                             from '@airport/di'
+import {EntityType, IFactor}            from '@votecube/model'
 import {In}                             from '../core/In'
 import {Out}                            from '../core/Out'
-import {AJAX_Z_DIMENSION}               from '../tokens'
+import {AJAX_Z_FACTOR}                  from '../tokens'
 import {Mode}                           from './core/Mode'
 import {ITempRecordId, ModelSerializer} from './core/ModelSerializer'
 
@@ -16,24 +16,24 @@ export class FactorSerializer
 		super(EntityType.DIM);
 	}
 
-	serializeRecord(
+	async serializeRecord(
 		model: IFactor,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void {
+	): Promise<void> {
 		// out.num(model.color.id)
 		// out.str(model.description)
 		out.str(model.name)
-		this.serialize(model.parent, out, tempRecordIds)
+		await this.serialize(model.parent, out, tempRecordIds)
 	}
 
-	deserialize(
+	async deserialize(
 		mode: Mode,
 		bin: In
-	): IFactor {
+	): Promise<IFactor> {
 		return undefined
 	}
 
 }
 
-DI.set(AJAX_Z_DIMENSION, FactorSerializer)
+DI.set(AJAX_Z_FACTOR, FactorSerializer)

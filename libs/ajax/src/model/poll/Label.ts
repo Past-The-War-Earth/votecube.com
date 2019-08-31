@@ -1,4 +1,4 @@
-import {DI}                             from '@votecube/di'
+import {DI}                             from '@airport/di'
 import {EntityType, ILabel}             from '@votecube/model'
 import {In}                             from '../../core/In'
 import {Out}                            from '../../core/Out'
@@ -16,19 +16,19 @@ export class LabelSerializer
 		super(EntityType.LBL);
 	}
 
-	serializeRecord(
+	async serializeRecord(
 		model: ILabel,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void {
+	): Promise<void> {
 		out.str(model.description)
 		out.str(model.name)
 	}
 
-	deserialize(
+	async deserialize(
 		mode: Mode,
 		bin: In
-	): ILabel {
+	): Promise<ILabel>  {
 		return undefined
 	}
 

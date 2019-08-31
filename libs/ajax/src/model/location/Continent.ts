@@ -1,4 +1,4 @@
-import {DI}                     from '@votecube/di'
+import {DI}                     from '@airport/di'
 import {EntityType, IContinent} from '@votecube/model'
 import {In}                     from '../../core/In'
 import {Out}                    from '../../core/Out'
@@ -16,16 +16,17 @@ export class ContinentSerializer
 		super(EntityType.CNTNNT)
 	}
 
-	serializeRecord(
+	async serializeRecord(
 		model: IContinent,
 		out: Out
-	): void {
+	) {
+		// TODO: implement
 	}
 
-	deserialize(
+	async deserialize(
 		mode: Mode,
 		bin: In
-	): IContinent {
+	): Promise<IContinent> {
 		return undefined
 	}
 

@@ -42,11 +42,11 @@ declare function require(moduleName: string): any;
 export interface IPollType extends IReferenceRow {
 	
 	// Id Properties
+	id?: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
 	value?: string;
 
 	// Non-Id Relations
@@ -67,7 +67,6 @@ export interface IPollType extends IReferenceRow {
 export interface PollTypeESelect
     extends ReferenceRowESelect, PollTypeEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	value?: string | IQStringField;
 
 	// Id Relations - full property interfaces
@@ -82,6 +81,7 @@ export interface PollTypeESelect
 export interface PollTypeEId
     extends ReferenceRowEId {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -92,6 +92,7 @@ export interface PollTypeEId
  */
 export interface PollTypeEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -103,7 +104,6 @@ export interface PollTypeEOptionalId {
 export interface PollTypeEUpdateProperties
 	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	value?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -116,7 +116,6 @@ export interface PollTypeEUpdateProperties
 export interface PollTypeEUpdateColumns
 	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
-	POLL_TYPE_ID?: number | IQNumberField;
 	POLL_TYPE_VALUE?: string | IQStringField;
 
 }
@@ -148,11 +147,11 @@ extends PollTypeEId, PollTypeEUpdateColumns {
 export interface QPollType extends QReferenceRow
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
 	value: IQStringField;
 
 	// Non-Id Relations
@@ -165,6 +164,7 @@ export interface QPollTypeQId extends QReferenceRowQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 

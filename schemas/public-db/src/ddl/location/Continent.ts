@@ -1,6 +1,7 @@
 import {
 	Column,
 	Entity,
+	Id,
 	OneToMany,
 	Table,
 	TraditionalServerSeq
@@ -19,6 +20,7 @@ export class Continent
 	extends ReferenceRow {
 
 	// @GeneratedValue()
+	@Id()
 	@TraditionalServerSeq()
 	@Column({name: 'CONTINENT_ID'})
 	id: Continent_Id

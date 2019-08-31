@@ -271,11 +271,11 @@ export class BaseContinentDao
 	implements IBaseContinentDao {
 
 	static diSet(): boolean {
-		return diSet(3)
+		return diSet(7)
 	}
 	
 	constructor() {
-		super(3)
+		super(7)
 	}
 }
 
@@ -289,11 +289,11 @@ export class BaseCountryDao
 	implements IBaseCountryDao {
 
 	static diSet(): boolean {
-		return diSet(2)
+		return diSet(6)
 	}
 	
 	constructor() {
-		super(2)
+		super(6)
 	}
 }
 
@@ -307,11 +307,11 @@ export class BaseCountyDao
 	implements IBaseCountyDao {
 
 	static diSet(): boolean {
-		return diSet(4)
+		return diSet(8)
 	}
 	
 	constructor() {
-		super(4)
+		super(8)
 	}
 }
 
@@ -325,11 +325,11 @@ export class BaseFactorDao
 	implements IBaseFactorDao {
 
 	static diSet(): boolean {
-		return diSet(9)
+		return diSet(0)
 	}
 	
 	constructor() {
-		super(9)
+		super(0)
 	}
 }
 
@@ -343,11 +343,11 @@ export class BaseFactorPositionDao
 	implements IBaseFactorPositionDao {
 
 	static diSet(): boolean {
-		return diSet(11)
+		return diSet(2)
 	}
 	
 	constructor() {
-		super(11)
+		super(2)
 	}
 }
 
@@ -415,11 +415,11 @@ export class BasePollCountryDao
 	implements IBasePollCountryDao {
 
 	static diSet(): boolean {
-		return diSet(5)
+		return diSet(9)
 	}
 	
 	constructor() {
-		super(5)
+		super(9)
 	}
 }
 
@@ -487,11 +487,11 @@ export class BasePollStateDao
 	implements IBasePollStateDao {
 
 	static diSet(): boolean {
-		return diSet(6)
+		return diSet(10)
 	}
 	
 	constructor() {
-		super(6)
+		super(10)
 	}
 }
 
@@ -505,11 +505,11 @@ export class BasePollTownDao
 	implements IBasePollTownDao {
 
 	static diSet(): boolean {
-		return diSet(7)
+		return diSet(11)
 	}
 	
 	constructor() {
-		super(7)
+		super(11)
 	}
 }
 
@@ -541,11 +541,11 @@ export class BasePositionDao
 	implements IBasePositionDao {
 
 	static diSet(): boolean {
-		return diSet(10)
+		return diSet(1)
 	}
 	
 	constructor() {
-		super(10)
+		super(1)
 	}
 }
 
@@ -559,11 +559,11 @@ export class BaseStateDao
 	implements IBaseStateDao {
 
 	static diSet(): boolean {
-		return diSet(1)
+		return diSet(5)
 	}
 	
 	constructor() {
-		super(1)
+		super(5)
 	}
 }
 
@@ -577,11 +577,11 @@ export class BaseThemeDao
 	implements IBaseThemeDao {
 
 	static diSet(): boolean {
-		return diSet(8)
+		return diSet(3)
 	}
 	
 	constructor() {
-		super(8)
+		super(3)
 	}
 }
 
@@ -595,11 +595,11 @@ export class BaseTownDao
 	implements IBaseTownDao {
 
 	static diSet(): boolean {
-		return diSet(0)
+		return diSet(4)
 	}
 	
 	constructor() {
-		super(0)
+		super(4)
 	}
 }
 

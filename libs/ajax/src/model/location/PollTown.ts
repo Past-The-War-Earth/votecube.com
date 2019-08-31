@@ -1,4 +1,4 @@
-import {DI}                             from '@votecube/di'
+import {DI}                             from '@airport/di'
 import {EntityType, IPollTown}          from '@votecube/model'
 import {In}                             from '../../core/In'
 import {Out}                            from '../../core/Out'
@@ -16,18 +16,18 @@ export class PollTownSerializer
 		super(EntityType.PLL_TWN);
 	}
 
-	serializeRecord(
+	async serializeRecord(
 		model: IPollTown,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void {
+	): Promise<void> {
 		out.num(model.town.id)
 	}
 
-	deserialize(
+	async deserialize(
 		mode: Mode,
 		bin: In
-	): IPollTown {
+	): Promise<IPollTown> {
 		return undefined
 	}
 

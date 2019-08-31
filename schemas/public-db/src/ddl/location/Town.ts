@@ -1,6 +1,7 @@
 import {
 	Column,
 	Entity,
+	Id,
 	JoinColumn,
 	ManyToOne,
 	Table,
@@ -20,6 +21,7 @@ export class Town
 	extends ReferenceRow {
 
 	// @GeneratedValue()
+	@Id()
 	@TraditionalServerSeq()
 	@Column({name: 'TOWN_ID'})
 	id: Town_Id

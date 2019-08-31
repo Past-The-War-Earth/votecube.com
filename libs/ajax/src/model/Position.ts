@@ -1,8 +1,8 @@
-import {DI}                             from '@votecube/di'
-import {EntityType, IPosition}         from '@votecube/model'
+import {DI}                             from '@airport/di'
+import {EntityType, IPosition}          from '@votecube/model'
 import {In}                             from '../core/In'
 import {Out}                            from '../core/Out'
-import {AJAX_Z_DIRECTION}               from '../tokens'
+import {AJAX_Z_POSITION}                from '../tokens'
 import {Mode}                           from './core/Mode'
 import {ITempRecordId, ModelSerializer} from './core/ModelSerializer'
 
@@ -16,24 +16,24 @@ export class PositionSerializer
 		super(EntityType.DIR);
 	}
 
-	serializeRecord(
+	async serializeRecord(
 		model: IPosition,
 		out: Out,
 		tempRecordIds: ITempRecordId[]
-	): void {
+	): Promise<void> {
 		// out.nil() // emoji
 		// out.nil() // design pattern
 		out.str(model.name)
-		this.serialize(model.parent, out, tempRecordIds)
+		await this.serialize(model.parent, out, tempRecordIds)
 	}
 
-	deserialize(
+	async deserialize(
 		mode: Mode,
 		bin: In
-	): IPosition {
+	): Promise<IPosition> {
 		return undefined
 	}
 
 }
 
-DI.set(AJAX_Z_DIRECTION, PositionSerializer)
+DI.set(AJAX_Z_POSITION, PositionSerializer)

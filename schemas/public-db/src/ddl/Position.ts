@@ -2,6 +2,7 @@ import {
 	Column,
 	Entity,
 	GeneratedValue,
+	Id,
 	JoinColumn,
 	ManyToOne,
 	Table,

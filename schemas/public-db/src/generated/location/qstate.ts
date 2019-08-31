@@ -62,11 +62,11 @@ declare function require(moduleName: string): any;
 export interface IState extends IReferenceRow {
 	
 	// Id Properties
+	id?: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
 	name?: string;
 
 	// Non-Id Relations
@@ -89,7 +89,6 @@ export interface IState extends IReferenceRow {
 export interface StateESelect
     extends ReferenceRowESelect, StateEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
@@ -106,6 +105,7 @@ export interface StateESelect
 export interface StateEId
     extends ReferenceRowEId {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -116,6 +116,7 @@ export interface StateEId
  */
 export interface StateEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -127,7 +128,6 @@ export interface StateEOptionalId {
 export interface StateEUpdateProperties
 	extends ReferenceRowEUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -141,7 +141,6 @@ export interface StateEUpdateProperties
 export interface StateEUpdateColumns
 	extends ReferenceRowEUpdateColumns {
 	// Non-Id Columns
-	STATE_ID?: number | IQNumberField;
 	STATE_NAME?: string | IQStringField;
 	COUNTRY_ID?: number | IQNumberField;
 
@@ -174,11 +173,11 @@ extends StateEId, StateEUpdateColumns {
 export interface QState extends QReferenceRow
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
 	name: IQStringField;
 
 	// Non-Id Relations
@@ -193,6 +192,7 @@ export interface QStateQId extends QReferenceRowQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 

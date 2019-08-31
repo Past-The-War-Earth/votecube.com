@@ -1,9 +1,8 @@
-import {DI}        from '@airport/di'
+import {DI} from '@airport/di'
 import {
 	AJAX_Z_POLL,
-	IModelSerializer,
 	Out
-}                  from '@votecube/ajax'
+}           from '@votecube/ajax'
 import {
 	FACTOR_POSITIONS,
 	FACTORS,
@@ -18,16 +17,11 @@ import {
 	POLL_TOWNS,
 	POLLS,
 	POSITIONS
-}                  from '@votecube/model'
+}           from '@votecube/model'
 import {
 	Dao,
 	IDao
-}                  from '../Dao'
-import {IDatabase} from '../Database'
-import {
-	DATABASE,
-	POLL_DAO
-}                  from '../tokens'
+}           from '../Dao'
 
 export interface IPollDao
 	extends IDao<IPoll> {
@@ -38,17 +32,6 @@ export class PollDao
 	extends Dao<IPoll>
 	implements IPollDao {
 
-	pollSerializer: IModelSerializer<IPoll>
-	db: IDatabase
-
-	constructor() {
-		super()
-		DI.get(
-			di => {
-				[this.pollSerializer, this.db] = di
-			}, AJAX_Z_POLL, DATABASE)
-	}
-
 	async save(
 		entity: IPoll
 	): Promise<void> {
@@ -56,8 +39,10 @@ export class PollDao
 
 		const localDbAvailable = true
 
+		const [pollSerializer, db] = await DI.get(AJAX_Z_POLL, DATABASE)
+
 		if (localDbAvailable) {
-			const transaction = this.db.startTrans(this.getTypesToSave(entity))
+			const transaction = db.startTrans(this.getTypesToSave(entity))
 
 			transaction.with(POLLS)
 		}
@@ -66,7 +51,7 @@ export class PollDao
 		const isOnline = true
 		if (isOnline) {
 			const tempRecordIds = []
-			this.pollSerializer.serialize(entity, out, tempRecordIds)
+			pollSerializer.serialize(entity, out, tempRecordIds)
 		}
 	}
 
