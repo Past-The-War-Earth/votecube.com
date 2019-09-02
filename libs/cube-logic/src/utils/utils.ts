@@ -31,53 +31,53 @@ export const LM: IGlobalEventListenerMap = {
 	tM: new Map(), // Target element Map
 	// Add add event handler to element
 	ad(
-		tg: Node // | NodePtr, // element
+		element: Node // | NodePtr, // element
 	) {
-		return eCO(this.tM, tg,
+		return eCO(this.tM, element,
 			// Per element Event listener map
 			{
 				lM: new Map(), // Listener Map
 				// And a listener fo a particular event
 				ad(
-					eN: string, // event name
-					ln: IEventListener<any> // listener
+					eventName: string, // event name
+					listener: IEventListener<any> // listener
 				) {
 					// add to array
-					eCA(this.lM, eN)
-						.push(ln)
+					eCA(this.lM, eventName)
+						.push(listener)
 					// let node: Node = <Node>tg
 					// if (tg instanceof  NodePtr) {
 					// 	node = tg.val
 					// }
 					// node.addEventListener(eN, ln)
-					tg.addEventListener(eN, ln)
+					element.addEventListener(eventName, listener)
 
 					return (
-						eN2: string,
-						ln2: IEventListener<any>
+						eventName2: string,
+						listener2: IEventListener<any>
 					) => {
-						return this.ad(eN2, ln2)
+						return this.ad(eventName2, listener2)
 					}
 				},
 				rm(
-					eN: string // event name
+					eventName: string // event name
 				) {
-					if (this.lM.has(eN)) {
-						for (let ln of this.lM.get(eN)) {
+					if (this.lM.has(eventName)) {
+						for (const listener of this.lM.get(eventName)) {
 							// let node: Node = <Node>tg
 							// if (tg instanceof NodePtr) {
 							// 	node = tg.val
 							// }
 							// node.removeEventListener(eN, ln)
-							tg.removeEventListener(eN, ln)
+							element.removeEventListener(eventName, listener)
 						}
-						this.lM.delete(eN)
+						this.lM.delete(eventName)
 					}
 
 					return (
-						eN2: string
+						eventName2: string
 					) => {
-						return this.rm(eN2)
+						return this.rm(eventName2)
 					}
 				}
 			})
@@ -87,38 +87,38 @@ export const LM: IGlobalEventListenerMap = {
 
 // Ensure Child Object
 export function eCO<K, V>(
-	mp: Map<K, V>, // map
-	k: K, // key
-	o: V // object
+	map: Map<K, V>, // map
+	key: K, // key
+	object: V // object
 ): V {
-	if (mp.has(k)) {
-		return mp.get(k)
+	if (map.has(key)) {
+		return map.get(key)
 	}
-	mp.set(k, o)
+	map.set(key, object)
 
-	return o
+	return object
 }
 
 // Ensure Child Array
 export function eCA<K, V>(
-	mp: Map<K, V[]>, // map
-	k: K // key
+	map: Map<K, V[]>, // map
+	key: K // key
 ): V[] {
-	let a = mp.get(k)
-	if (a) {
-		return a
+	let array = map.get(key)
+	if (array) {
+		return array
 	}
-	a = []
-	mp.set(k, a)
+	array = []
+	map.set(key, array)
 
-	return a
+	return array
 }
 
 // Get by query selector
 export function gQ(
-	sl: string // selector
+	selector: string // selector
 ): Element {
-	return document.querySelector(sl)
+	return document.querySelector(selector)
 }
 
 export type IDispatchEventOnKnownObject<E> =
@@ -126,16 +126,16 @@ export type IDispatchEventOnKnownObject<E> =
 
 // dispatch event
 export function dE<E>(
-	tg: Node,  // NodePtr, // target
-	eN: string, // Event Name,
-	eO: E // Event Object
+	target: Node,  // NodePtr, // target
+	eventName: string, // Event Name,
+	eventObject: E // Event Object
 ): IDispatchEventOnKnownObject<E> {
 	// tg.val.dispatchEvent(new CustomEvent(eN, {detail: eO}))
-	tg.dispatchEvent(new CustomEvent(eN, {detail: eO}))
+	target.dispatchEvent(new CustomEvent(eventName, {detail: eventObject}))
 	return (
 		eO2 // event object
 	) => {
-		return dE(tg, eN, eO2)
+		return dE(target, eventName, eO2)
 	}
 }
 
@@ -160,20 +160,20 @@ export function iT(
 	aM?: boolean
 ): IsKnownElementOfTag;
 export function iT(
-	t: Element, // target
-	tN?: string, // tag name
-	aM?: boolean  // aggregate match
+	target: Element, // target
+	tagName?: string, // tag name
+	aggregateMatch?: boolean  // aggregate match
 ): any {
-	if (!tN) {
-		return aM
+	if (!tagName) {
+		return aggregateMatch
 	}
-	if (!aM) {
-		aM = t.tagName === tN
+	if (!aggregateMatch) {
+		aggregateMatch = target.tagName === tagName
 	}
 	return function (
-		tN2?: string // tag name
+		tagName2?: string // tag name
 	) {
-		return iT(t, tN2, aM)
+		return iT(target, tagName2, aggregateMatch)
 	}
 }
 

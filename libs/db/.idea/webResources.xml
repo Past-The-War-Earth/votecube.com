@@ -30,13 +30,6 @@
           </resourceRoots>
         </entryData>
       </entry>
-      <entry url="file://$PROJECT_DIR$/../di">
-        <entryData>
-          <resourceRoots>
-            <path value="file://$PROJECT_DIR$/../di/src" />
-          </resourceRoots>
-        </entryData>
-      </entry>
       <entry url="file://$PROJECT_DIR$/../forms">
         <entryData>
           <resourceRoots>
@@ -48,6 +41,13 @@
         <entryData>
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/../model/src" />
+          </resourceRoots>
+        </entryData>
+      </entry>
+      <entry url="file://$PROJECT_DIR$/../public-logic">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/../public-logic/src" />
           </resourceRoots>
         </entryData>
       </entry>

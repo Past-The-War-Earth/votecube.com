@@ -43,8 +43,8 @@ export class Poll
 	name: Poll_Name
 
 	@ManyToOne()
-		// @JoinColumn({name: 'PARENT_POLL_ID', referencedColumnName: 'POLL_ID'})
-		parentPoll: Poll
+	// @JoinColumn({name: 'PARENT_POLL_ID', referencedColumnName: 'POLL_ID'})
+	parentPoll: Poll
 
 	@ManyToOne()
 	@JoinColumn({name: 'THEME_ID', nullable: false})

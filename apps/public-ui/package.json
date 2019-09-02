@@ -6,6 +6,7 @@
     "@airport/terminal": "0.0.1",
     "@airport/terminal-map": "0.0.1",
     "@votecube/public-db": "0.0.1",
+    "@votecube/public-logic": "0.0.1",
     "@sveltejs/svelte-virtual-list": "2.2.1",
     "@votecube/cube-logic": "0.0.1",
     "@votecube/forms": "0.0.1",

@@ -39,6 +39,11 @@
       "projectFolder": "libs/model",
       "shouldPublish": true
     },
+    {
+      "packageName": "@votecube/public-logic",
+      "projectFolder": "libs/public-logic",
+      "shouldPublish": true
+    },
     // "schemas" folder (alphabetical order)
     {
       "packageName": "@votecube/public-db",

@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@airport/di": "0.0.1",
+    "@airport/tarmaq": "0.0.1",
+    "@airport/tower": "0.0.1",
+    "@airport/terminal": "0.0.1",
+    "@airport/terminal-map": "0.0.1",
+    "@votecube/public-db": "0.0.1",
+    "page": "^1.11.3"
+  },
+  "devDependencies": {
+    "tslint": "^5.14.0",
+    "typescript": "^3.2.2"
+  },
+  "main": "lib/index.js",
+  "name": "@votecube/public-logic",
+  "typings": "lib/index",
+  "version": "0.0.1"
+}
