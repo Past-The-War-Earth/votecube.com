@@ -1,4 +1,9 @@
 import {DI}         from '@airport/di'
+import {
+	IPoll,
+	IPollDao,
+	POLL_DAO
+} from '@votecube/public-db/src'
 import {POLL_LOGIC} from '../diTokens'
 
 export interface IPollLogic {
@@ -20,8 +25,20 @@ export class PollLogic
 	 * ?Draft records do not respect non-null rules? - yes, this way you can
 	 * save a partial record temporarily
 	 */
-	stage() {
+	async stage(
+		poll: IPoll
+	): Promise<void> {
+		const pollDao: IPollDao = await DI.get(POLL_DAO);
 
+		await pollDao.save(poll, {
+			pollContinents: {}
+		})
+	}
+
+	async save(
+		poll: IPoll
+	): Promise<void> {
+		DI.get(POLL_DAO)
 	}
 
 }

@@ -472,7 +472,9 @@
 				DI.get(POLL_DAO).then(
 					pollDao => {
 					    const poll = this.get().poll
-              return pollDao.save(this.get().poll).then(() => {
+              return pollDao.save(this.get().poll, {
+
+              }).then(() => {
                   this.set({confirm: false})
                   routes.navigateToPage(routes.POLL_SEARCH_LIST)
               }).catch((error) => {
