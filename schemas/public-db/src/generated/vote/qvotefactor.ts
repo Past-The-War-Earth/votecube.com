@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -21,17 +22,8 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IChildRepoRow,
-	ChildRepoRowEId,
-	ChildRepoRowEUpdateColumns,
-	ChildRepoRowEUpdateProperties,
-	ChildRepoRowESelect,
-	QChildRepoRowQId,
-	QChildRepoRowQRelation,
-	QChildRepoRow,
-} from '@airport/holding-pattern';
-import {
 	IVote,
+	VoteECascadeGraph,
 	VoteEId,
 	VoteEOptionalId,
 	VoteEUpdateProperties,
@@ -42,6 +34,7 @@ import {
 } from './qvote';
 import {
 	IPollFactorPosition,
+	PollFactorPositionECascadeGraph,
 	PollFactorPositionEId,
 	PollFactorPositionEOptionalId,
 	PollFactorPositionEUpdateProperties,
@@ -52,6 +45,7 @@ import {
 } from '../poll/qpollfactorposition';
 import {
 	IVoteFactorType,
+	VoteFactorTypeECascadeGraph,
 	VoteFactorTypeEId,
 	VoteFactorTypeEOptionalId,
 	VoteFactorTypeEUpdateProperties,
@@ -69,15 +63,14 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IVoteFactor extends IChildRepoRow {
+export interface IVoteFactor {
 	
 	// Id Properties
+	id: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
-	voteId?: number;
 	share?: string;
 
 	// Non-Id Relations
@@ -99,10 +92,8 @@ export interface IVoteFactor extends IChildRepoRow {
  * SELECT - All fields and relations (optional).
  */
 export interface VoteFactorESelect
-    extends ChildRepoRowESelect, VoteFactorEOptionalId {
+    extends IEntitySelectProperties, VoteFactorEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
-	voteId?: number | IQNumberField;
 	share?: string | IQStringField;
 
 	// Id Relations - full property interfaces
@@ -118,8 +109,9 @@ export interface VoteFactorESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface VoteFactorEId
-    extends ChildRepoRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -130,6 +122,7 @@ export interface VoteFactorEId
  */
 export interface VoteFactorEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -139,10 +132,8 @@ export interface VoteFactorEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface VoteFactorEUpdateProperties
-	extends ChildRepoRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
-	voteId?: number | IQNumberField;
 	share?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -153,21 +144,23 @@ export interface VoteFactorEUpdateProperties
 }
 
 /**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface VoteFactorECascadeGraph
+	extends IEntityCascadeGraph {
+	// Cascading Relations
+
+}
+
+/**
  * UPDATE - non-id columns (optional).
  */
 export interface VoteFactorEUpdateColumns
-	extends ChildRepoRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
-	IS_DRAFT?: boolean | IQBooleanField;
-	VOTE_FACTOR_ID?: number | IQNumberField;
-	VOTE_ID?: number | IQNumberField;
 	SHARE?: string | IQStringField;
-	VOTES_RID?: number | IQNumberField;
-	VOTES_AID?: number | IQNumberField;
-	VOTES_ARID?: number | IQNumberField;
-	POLL_FACTOR_POSITIONS_RID?: number | IQNumberField;
-	POLL_FACTOR_POSITIONS_AID?: number | IQNumberField;
-	POLL_FACTOR_POSITIONS_ARID?: number | IQNumberField;
+	VOTE_ID?: number | IQNumberField;
+	POLL_FACTOR_POSITION_ID?: number | IQNumberField;
 	VOTE_FACTOR_TYPE_ID?: number | IQNumberField;
 
 }
@@ -196,15 +189,14 @@ extends VoteFactorEId, VoteFactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVoteFactor extends QChildRepoRow
+export interface QVoteFactor extends IQEntity
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
-	voteId: IQNumberField;
 	share: IQStringField;
 
 	// Non-Id Relations
@@ -216,10 +208,11 @@ export interface QVoteFactor extends QChildRepoRow
 
 
 // Entity Id Interface
-export interface QVoteFactorQId extends QChildRepoRowQId
+export interface QVoteFactorQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
@@ -228,6 +221,6 @@ export interface QVoteFactorQId extends QChildRepoRowQId
 
 // Entity Relation Interface
 export interface QVoteFactorQRelation
-	extends QChildRepoRowQRelation<QVoteFactor>, QVoteFactorQId {
+	extends IQRelation<QVoteFactor>, QVoteFactorQId {
 }
 

@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -21,17 +22,8 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IChildRepoRow,
-	ChildRepoRowEId,
-	ChildRepoRowEUpdateColumns,
-	ChildRepoRowEUpdateProperties,
-	ChildRepoRowESelect,
-	QChildRepoRowQId,
-	QChildRepoRowQRelation,
-	QChildRepoRow,
-} from '@airport/holding-pattern';
-import {
 	IFactorPosition,
+	FactorPositionECascadeGraph,
 	FactorPositionEId,
 	FactorPositionEOptionalId,
 	FactorPositionEUpdateProperties,
@@ -42,6 +34,7 @@ import {
 } from '../qfactorposition';
 import {
 	IPoll,
+	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
 	PollEUpdateProperties,
@@ -59,19 +52,17 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollFactorPosition extends IChildRepoRow {
+export interface IPollFactorPosition {
 	
 	// Id Properties
+	id: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
-	factorPositionId?: number;
 	axis?: string;
 	color?: number;
 	dir?: number;
-	pollId?: number;
 
 	// Non-Id Relations
 	factorPosition?: IFactorPosition;
@@ -91,14 +82,11 @@ export interface IPollFactorPosition extends IChildRepoRow {
  * SELECT - All fields and relations (optional).
  */
 export interface PollFactorPositionESelect
-    extends ChildRepoRowESelect, PollFactorPositionEOptionalId {
+    extends IEntitySelectProperties, PollFactorPositionEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
-	factorPositionId?: number | IQNumberField;
 	axis?: string | IQStringField;
 	color?: number | IQNumberField;
 	dir?: number | IQNumberField;
-	pollId?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -112,8 +100,9 @@ export interface PollFactorPositionESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollFactorPositionEId
-    extends ChildRepoRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -124,6 +113,7 @@ export interface PollFactorPositionEId
  */
 export interface PollFactorPositionEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -133,14 +123,11 @@ export interface PollFactorPositionEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollFactorPositionEUpdateProperties
-	extends ChildRepoRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
-	factorPositionId?: number | IQNumberField;
 	axis?: string | IQStringField;
 	color?: number | IQNumberField;
 	dir?: number | IQNumberField;
-	pollId?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	factorPosition?: FactorPositionEOptionalId;
@@ -149,24 +136,25 @@ export interface PollFactorPositionEUpdateProperties
 }
 
 /**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface PollFactorPositionECascadeGraph
+	extends IEntityCascadeGraph {
+	// Cascading Relations
+
+}
+
+/**
  * UPDATE - non-id columns (optional).
  */
 export interface PollFactorPositionEUpdateColumns
-	extends ChildRepoRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
-	IS_DRAFT?: boolean | IQBooleanField;
-	POLL_FACTOR_POSITION_ID?: number | IQNumberField;
-	FACTOR_POSITION_ID?: number | IQNumberField;
 	FACTOR_COORDINATE_AXIS?: string | IQStringField;
 	COLOR_ID?: number | IQNumberField;
 	POSITION_ORIENTATION?: number | IQNumberField;
+	FACTOR_POSITION_ID?: number | IQNumberField;
 	POLL_ID?: number | IQNumberField;
-	FACTOR_POSITIONS_RID?: number | IQNumberField;
-	FACTOR_POSITIONS_AID?: number | IQNumberField;
-	FACTOR_POSITIONS_ARID?: number | IQNumberField;
-	POLLS_RID?: number | IQNumberField;
-	POLLS_AID?: number | IQNumberField;
-	POLLS_ARID?: number | IQNumberField;
 
 }
 
@@ -194,19 +182,17 @@ extends PollFactorPositionEId, PollFactorPositionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollFactorPosition extends QChildRepoRow
+export interface QPollFactorPosition extends IQEntity
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
-	factorPositionId: IQNumberField;
 	axis: IQStringField;
 	color: IQNumberField;
 	dir: IQNumberField;
-	pollId: IQNumberField;
 
 	// Non-Id Relations
 	factorPosition: QFactorPositionQRelation;
@@ -216,10 +202,11 @@ export interface QPollFactorPosition extends QChildRepoRow
 
 
 // Entity Id Interface
-export interface QPollFactorPositionQId extends QChildRepoRowQId
+export interface QPollFactorPositionQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
@@ -228,6 +215,6 @@ export interface QPollFactorPositionQId extends QChildRepoRowQId
 
 // Entity Relation Interface
 export interface QPollFactorPositionQRelation
-	extends QChildRepoRowQRelation<QPollFactorPosition>, QPollFactorPositionQId {
+	extends IQRelation<QPollFactorPosition>, QPollFactorPositionQId {
 }
 

@@ -1,11 +1,11 @@
 import {
 	Column,
 	Entity,
+	GeneratedValue,
 	Id,
 	OneToMany,
-	Table,
-	TraditionalServerSeq
-} from '@airport/air-control'
+	Table
+}                     from '@airport/air-control'
 import {ReferenceRow} from '@airport/holding-pattern'
 import {Country}      from './Country'
 
@@ -19,9 +19,8 @@ export type Continent_Name = string
 export class Continent
 	extends ReferenceRow {
 
-	// @GeneratedValue()
+	@GeneratedValue()
 	@Id()
-	@TraditionalServerSeq()
 	@Column({name: 'CONTINENT_ID'})
 	id: Continent_Id
 

@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -21,17 +22,8 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IChildRepoRow,
-	ChildRepoRowEId,
-	ChildRepoRowEUpdateColumns,
-	ChildRepoRowEUpdateProperties,
-	ChildRepoRowESelect,
-	QChildRepoRowQId,
-	QChildRepoRowQRelation,
-	QChildRepoRow,
-} from '@airport/holding-pattern';
-import {
 	ICountry,
+	CountryECascadeGraph,
 	CountryEId,
 	CountryEOptionalId,
 	CountryEUpdateProperties,
@@ -42,6 +34,7 @@ import {
 } from './qcountry';
 import {
 	IPoll,
+	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
 	PollEUpdateProperties,
@@ -59,15 +52,14 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollCountry extends IChildRepoRow {
+export interface IPollCountry {
 	
 	// Id Properties
+	id: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
-	pollId?: number;
 
 	// Non-Id Relations
 	country?: ICountry;
@@ -87,10 +79,8 @@ export interface IPollCountry extends IChildRepoRow {
  * SELECT - All fields and relations (optional).
  */
 export interface PollCountryESelect
-    extends ChildRepoRowESelect, PollCountryEOptionalId {
+    extends IEntitySelectProperties, PollCountryEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
-	pollId?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -104,8 +94,9 @@ export interface PollCountryESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollCountryEId
-    extends ChildRepoRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -116,6 +107,7 @@ export interface PollCountryEId
  */
 export interface PollCountryEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -125,10 +117,8 @@ export interface PollCountryEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollCountryEUpdateProperties
-	extends ChildRepoRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
-	pollId?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	country?: CountryEOptionalId;
@@ -137,18 +127,22 @@ export interface PollCountryEUpdateProperties
 }
 
 /**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface PollCountryECascadeGraph
+	extends IEntityCascadeGraph {
+	// Cascading Relations
+
+}
+
+/**
  * UPDATE - non-id columns (optional).
  */
 export interface PollCountryEUpdateColumns
-	extends ChildRepoRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
-	IS_DRAFT?: boolean | IQBooleanField;
-	POLL_COUNTRY_ID?: number | IQNumberField;
-	POLL_ID?: number | IQNumberField;
 	COUNTRY_ID?: number | IQNumberField;
-	POLLS_RID?: number | IQNumberField;
-	POLLS_AID?: number | IQNumberField;
-	POLLS_ARID?: number | IQNumberField;
+	POLL_ID?: number | IQNumberField;
 
 }
 
@@ -176,15 +170,14 @@ extends PollCountryEId, PollCountryEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollCountry extends QChildRepoRow
+export interface QPollCountry extends IQEntity
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
-	pollId: IQNumberField;
 
 	// Non-Id Relations
 	country: QCountryQRelation;
@@ -194,10 +187,11 @@ export interface QPollCountry extends QChildRepoRow
 
 
 // Entity Id Interface
-export interface QPollCountryQId extends QChildRepoRowQId
+export interface QPollCountryQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
@@ -206,6 +200,6 @@ export interface QPollCountryQId extends QChildRepoRowQId
 
 // Entity Relation Interface
 export interface QPollCountryQRelation
-	extends QChildRepoRowQRelation<QPollCountry>, QPollCountryQId {
+	extends IQRelation<QPollCountry>, QPollCountryQId {
 }
 

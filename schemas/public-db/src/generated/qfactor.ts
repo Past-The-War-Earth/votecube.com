@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -21,15 +22,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableRepoRow,
-	ImmutableRepoRowEId,
-	ImmutableRepoRowEUpdateColumns,
-	ImmutableRepoRowEUpdateProperties,
-	ImmutableRepoRowESelect,
-	QImmutableRepoRowQId,
-	QImmutableRepoRowQRelation,
-	QImmutableRepoRow,
-} from '@airport/holding-pattern';
+	IImmutableRow,
+	ImmutableRowECascadeGraph,
+	ImmutableRowEId,
+	ImmutableRowEUpdateColumns,
+	ImmutableRowEUpdateProperties,
+	ImmutableRowESelect,
+	QImmutableRowQId,
+	QImmutableRowQRelation,
+	QImmutableRow,
+} from './qimmutablerow';
 
 
 declare function require(moduleName: string): any;
@@ -39,14 +41,14 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IFactor extends IImmutableRepoRow {
+export interface IFactor extends IImmutableRow {
 	
 	// Id Properties
+	id: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
 	color?: number;
 	name?: string;
 
@@ -67,9 +69,8 @@ export interface IFactor extends IImmutableRepoRow {
  * SELECT - All fields and relations (optional).
  */
 export interface FactorESelect
-    extends ImmutableRepoRowESelect, FactorEOptionalId {
+    extends ImmutableRowESelect, FactorEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	color?: number | IQNumberField;
 	name?: string | IQStringField;
 
@@ -84,8 +85,9 @@ export interface FactorESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface FactorEId
-    extends ImmutableRepoRowEId {
+    extends ImmutableRowEId {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -96,6 +98,7 @@ export interface FactorEId
  */
 export interface FactorEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -105,9 +108,8 @@ export interface FactorEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface FactorEUpdateProperties
-	extends ImmutableRepoRowEUpdateProperties {
+	extends ImmutableRowEUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 	color?: number | IQNumberField;
 	name?: string | IQStringField;
 
@@ -117,19 +119,24 @@ export interface FactorEUpdateProperties
 }
 
 /**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface FactorECascadeGraph
+	extends ImmutableRowECascadeGraph {
+	// Cascading Relations
+
+}
+
+/**
  * UPDATE - non-id columns (optional).
  */
 export interface FactorEUpdateColumns
-	extends ImmutableRepoRowEUpdateColumns {
+	extends ImmutableRowEUpdateColumns {
 	// Non-Id Columns
-	IS_DRAFT?: boolean | IQBooleanField;
 	CREATED_AT?: Date | IQDateField;
-	FACTOR_ID?: number | IQNumberField;
 	COLOR_ID?: number | IQNumberField;
 	FACTOR_NAME?: string | IQStringField;
-	FACTORS_RID?: number | IQNumberField;
-	FACTORS_AID?: number | IQNumberField;
-	FACTORS_ARID?: number | IQNumberField;
+	PARENT_FACTOR_ID?: number | IQNumberField;
 
 }
 
@@ -157,14 +164,14 @@ extends FactorEId, FactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactor extends QImmutableRepoRow
+export interface QFactor extends QImmutableRow
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
 	color: IQNumberField;
 	name: IQStringField;
 
@@ -175,10 +182,11 @@ export interface QFactor extends QImmutableRepoRow
 
 
 // Entity Id Interface
-export interface QFactorQId extends QImmutableRepoRowQId
+export interface QFactorQId extends QImmutableRowQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
@@ -187,6 +195,6 @@ export interface QFactorQId extends QImmutableRepoRowQId
 
 // Entity Relation Interface
 export interface QFactorQRelation
-	extends QImmutableRepoRowQRelation<QFactor>, QFactorQId {
+	extends QImmutableRowQRelation<QFactor>, QFactorQId {
 }
 

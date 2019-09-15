@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -21,17 +22,8 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IChildRepoRow,
-	ChildRepoRowEId,
-	ChildRepoRowEUpdateColumns,
-	ChildRepoRowEUpdateProperties,
-	ChildRepoRowESelect,
-	QChildRepoRowQId,
-	QChildRepoRowQRelation,
-	QChildRepoRow,
-} from '@airport/holding-pattern';
-import {
 	IContinent,
+	ContinentECascadeGraph,
 	ContinentEId,
 	ContinentEOptionalId,
 	ContinentEUpdateProperties,
@@ -42,6 +34,7 @@ import {
 } from './qcontinent';
 import {
 	IPoll,
+	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
 	PollEUpdateProperties,
@@ -59,15 +52,14 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollContinent extends IChildRepoRow {
+export interface IPollContinent {
 	
 	// Id Properties
+	id: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
-	pollId?: number;
 
 	// Non-Id Relations
 	continent?: IContinent;
@@ -87,10 +79,8 @@ export interface IPollContinent extends IChildRepoRow {
  * SELECT - All fields and relations (optional).
  */
 export interface PollContinentESelect
-    extends ChildRepoRowESelect, PollContinentEOptionalId {
+    extends IEntitySelectProperties, PollContinentEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
-	pollId?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -104,8 +94,9 @@ export interface PollContinentESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollContinentEId
-    extends ChildRepoRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -116,6 +107,7 @@ export interface PollContinentEId
  */
 export interface PollContinentEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -125,10 +117,8 @@ export interface PollContinentEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollContinentEUpdateProperties
-	extends ChildRepoRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
-	pollId?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	continent?: ContinentEOptionalId;
@@ -137,18 +127,22 @@ export interface PollContinentEUpdateProperties
 }
 
 /**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface PollContinentECascadeGraph
+	extends IEntityCascadeGraph {
+	// Cascading Relations
+
+}
+
+/**
  * UPDATE - non-id columns (optional).
  */
 export interface PollContinentEUpdateColumns
-	extends ChildRepoRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
-	IS_DRAFT?: boolean | IQBooleanField;
-	POLL_CONTINENT_ID?: number | IQNumberField;
-	POLL_ID?: number | IQNumberField;
 	CONTINENT_ID?: number | IQNumberField;
-	POLLS_RID?: number | IQNumberField;
-	POLLS_AID?: number | IQNumberField;
-	POLLS_ARID?: number | IQNumberField;
+	POLL_ID?: number | IQNumberField;
 
 }
 
@@ -176,15 +170,14 @@ extends PollContinentEId, PollContinentEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollContinent extends QChildRepoRow
+export interface QPollContinent extends IQEntity
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
-	pollId: IQNumberField;
 
 	// Non-Id Relations
 	continent: QContinentQRelation;
@@ -194,10 +187,11 @@ export interface QPollContinent extends QChildRepoRow
 
 
 // Entity Id Interface
-export interface QPollContinentQId extends QChildRepoRowQId
+export interface QPollContinentQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
@@ -206,6 +200,6 @@ export interface QPollContinentQId extends QChildRepoRowQId
 
 // Entity Relation Interface
 export interface QPollContinentQRelation
-	extends QChildRepoRowQRelation<QPollContinent>, QPollContinentQId {
+	extends IQRelation<QPollContinent>, QPollContinentQId {
 }
 

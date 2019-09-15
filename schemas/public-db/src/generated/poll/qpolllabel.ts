@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -21,17 +22,19 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableRepoRow,
-	ImmutableRepoRowEId,
-	ImmutableRepoRowEUpdateColumns,
-	ImmutableRepoRowEUpdateProperties,
-	ImmutableRepoRowESelect,
-	QImmutableRepoRowQId,
-	QImmutableRepoRowQRelation,
-	QImmutableRepoRow,
-} from '@airport/holding-pattern';
+	IImmutableRow,
+	ImmutableRowECascadeGraph,
+	ImmutableRowEId,
+	ImmutableRowEUpdateColumns,
+	ImmutableRowEUpdateProperties,
+	ImmutableRowESelect,
+	QImmutableRowQId,
+	QImmutableRowQRelation,
+	QImmutableRow,
+} from '../qimmutablerow';
 import {
 	ILabel,
+	LabelECascadeGraph,
 	LabelEId,
 	LabelEOptionalId,
 	LabelEUpdateProperties,
@@ -42,6 +45,7 @@ import {
 } from './qlabel';
 import {
 	IPoll,
+	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
 	PollEUpdateProperties,
@@ -59,7 +63,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollLabel extends IImmutableRepoRow {
+export interface IPollLabel extends IImmutableRow {
 	
 	// Id Properties
 
@@ -67,7 +71,6 @@ export interface IPollLabel extends IImmutableRepoRow {
 
 	// Non-Id Properties
 	id?: number;
-	pollId?: number;
 
 	// Non-Id Relations
 	label?: ILabel;
@@ -87,10 +90,9 @@ export interface IPollLabel extends IImmutableRepoRow {
  * SELECT - All fields and relations (optional).
  */
 export interface PollLabelESelect
-    extends ImmutableRepoRowESelect, PollLabelEOptionalId {
+    extends ImmutableRowESelect, PollLabelEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
-	pollId?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -104,7 +106,7 @@ export interface PollLabelESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollLabelEId
-    extends ImmutableRepoRowEId {
+    extends ImmutableRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -125,10 +127,9 @@ export interface PollLabelEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollLabelEUpdateProperties
-	extends ImmutableRepoRowEUpdateProperties {
+	extends ImmutableRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
-	pollId?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	label?: LabelEOptionalId;
@@ -137,21 +138,24 @@ export interface PollLabelEUpdateProperties
 }
 
 /**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface PollLabelECascadeGraph
+	extends ImmutableRowECascadeGraph {
+	// Cascading Relations
+
+}
+
+/**
  * UPDATE - non-id columns (optional).
  */
 export interface PollLabelEUpdateColumns
-	extends ImmutableRepoRowEUpdateColumns {
+	extends ImmutableRowEUpdateColumns {
 	// Non-Id Columns
-	IS_DRAFT?: boolean | IQBooleanField;
 	CREATED_AT?: Date | IQDateField;
 	POLL_LABEL_ID?: number | IQNumberField;
+	LABEL_ID?: number | IQNumberField;
 	POLL_ID?: number | IQNumberField;
-	LABELS_RID?: number | IQNumberField;
-	LABELS_AID?: number | IQNumberField;
-	LABELS_ARID?: number | IQNumberField;
-	POLLS_RID?: number | IQNumberField;
-	POLLS_AID?: number | IQNumberField;
-	POLLS_ARID?: number | IQNumberField;
 
 }
 
@@ -179,7 +183,7 @@ extends PollLabelEId, PollLabelEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollLabel extends QImmutableRepoRow
+export interface QPollLabel extends QImmutableRow
 {
 	// Id Fields
 
@@ -187,7 +191,6 @@ export interface QPollLabel extends QImmutableRepoRow
 
 	// Non-Id Fields
 	id: IQNumberField;
-	pollId: IQNumberField;
 
 	// Non-Id Relations
 	label: QLabelQRelation;
@@ -197,7 +200,7 @@ export interface QPollLabel extends QImmutableRepoRow
 
 
 // Entity Id Interface
-export interface QPollLabelQId extends QImmutableRepoRowQId
+export interface QPollLabelQId extends QImmutableRowQId
 {
 	
 	// Id Fields
@@ -209,6 +212,6 @@ export interface QPollLabelQId extends QImmutableRepoRowQId
 
 // Entity Relation Interface
 export interface QPollLabelQRelation
-	extends QImmutableRepoRowQRelation<QPollLabel>, QPollLabelQId {
+	extends QImmutableRowQRelation<QPollLabel>, QPollLabelQId {
 }
 

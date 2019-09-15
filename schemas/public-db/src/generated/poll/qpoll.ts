@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -21,17 +22,19 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableRepoRow,
-	ImmutableRepoRowEId,
-	ImmutableRepoRowEUpdateColumns,
-	ImmutableRepoRowEUpdateProperties,
-	ImmutableRepoRowESelect,
-	QImmutableRepoRowQId,
-	QImmutableRepoRowQRelation,
-	QImmutableRepoRow,
-} from '@airport/holding-pattern';
+	IImmutableRow,
+	ImmutableRowECascadeGraph,
+	ImmutableRowEId,
+	ImmutableRowEUpdateColumns,
+	ImmutableRowEUpdateProperties,
+	ImmutableRowESelect,
+	QImmutableRowQId,
+	QImmutableRowQRelation,
+	QImmutableRow,
+} from '../qimmutablerow';
 import {
 	ITheme,
+	ThemeECascadeGraph,
 	ThemeEId,
 	ThemeEOptionalId,
 	ThemeEUpdateProperties,
@@ -42,6 +45,7 @@ import {
 } from '../qtheme';
 import {
 	IPollType,
+	PollTypeECascadeGraph,
 	PollTypeEId,
 	PollTypeEOptionalId,
 	PollTypeEUpdateProperties,
@@ -52,6 +56,7 @@ import {
 } from './qpolltype';
 import {
 	IPollContinent,
+	PollContinentECascadeGraph,
 	PollContinentEId,
 	PollContinentEOptionalId,
 	PollContinentEUpdateProperties,
@@ -62,6 +67,7 @@ import {
 } from '../location/qpollcontinent';
 import {
 	IPollCountry,
+	PollCountryECascadeGraph,
 	PollCountryEId,
 	PollCountryEOptionalId,
 	PollCountryEUpdateProperties,
@@ -72,6 +78,7 @@ import {
 } from '../location/qpollcountry';
 import {
 	IPollLabel,
+	PollLabelECascadeGraph,
 	PollLabelEId,
 	PollLabelEOptionalId,
 	PollLabelEUpdateProperties,
@@ -82,6 +89,7 @@ import {
 } from './qpolllabel';
 import {
 	IPollFactorPosition,
+	PollFactorPositionECascadeGraph,
 	PollFactorPositionEId,
 	PollFactorPositionEOptionalId,
 	PollFactorPositionEUpdateProperties,
@@ -92,6 +100,7 @@ import {
 } from './qpollfactorposition';
 import {
 	IPollState,
+	PollStateECascadeGraph,
 	PollStateEId,
 	PollStateEOptionalId,
 	PollStateEUpdateProperties,
@@ -102,6 +111,7 @@ import {
 } from '../location/qpollstate';
 import {
 	IPollTown,
+	PollTownECascadeGraph,
 	PollTownEId,
 	PollTownEOptionalId,
 	PollTownEUpdateProperties,
@@ -119,7 +129,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPoll extends IImmutableRepoRow {
+export interface IPoll extends IImmutableRow {
 	
 	// Id Properties
 
@@ -157,7 +167,7 @@ export interface IPoll extends IImmutableRepoRow {
  * SELECT - All fields and relations (optional).
  */
 export interface PollESelect
-    extends ImmutableRepoRowESelect, PollEOptionalId {
+    extends ImmutableRowESelect, PollEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	endDate?: Date | IQDateField;
@@ -184,7 +194,7 @@ export interface PollESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollEId
-    extends ImmutableRepoRowEId {
+    extends ImmutableRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -205,7 +215,7 @@ export interface PollEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollEUpdateProperties
-	extends ImmutableRepoRowEUpdateProperties {
+	extends ImmutableRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
 	endDate?: Date | IQDateField;
@@ -220,20 +230,33 @@ export interface PollEUpdateProperties
 }
 
 /**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface PollECascadeGraph
+	extends ImmutableRowECascadeGraph {
+	// Cascading Relations
+	childPolls?: PollECascadeGraph;
+	pollContinents?: PollContinentECascadeGraph;
+	pollCountries?: PollCountryECascadeGraph;
+	pollLabels?: PollLabelECascadeGraph;
+	pollFactorPositions?: PollFactorPositionECascadeGraph;
+	pollStates?: PollStateECascadeGraph;
+	pollTowns?: PollTownECascadeGraph;
+
+}
+
+/**
  * UPDATE - non-id columns (optional).
  */
 export interface PollEUpdateColumns
-	extends ImmutableRepoRowEUpdateColumns {
+	extends ImmutableRowEUpdateColumns {
 	// Non-Id Columns
-	IS_DRAFT?: boolean | IQBooleanField;
 	CREATED_AT?: Date | IQDateField;
 	POLL_ID?: number | IQNumberField;
 	END_DATE?: Date | IQDateField;
 	START_DATE?: Date | IQDateField;
 	POLL_DESCRIPTION?: number | IQNumberField;
-	POLLS_RID?: number | IQNumberField;
-	POLLS_AID?: number | IQNumberField;
-	POLLS_ARID?: number | IQNumberField;
+	PARENT_POLL_ID?: number | IQNumberField;
 	THEME_ID?: number | IQNumberField;
 	POLL_TYPE_ID?: number | IQNumberField;
 
@@ -263,7 +286,7 @@ extends PollEId, PollEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPoll extends QImmutableRepoRow
+export interface QPoll extends QImmutableRow
 {
 	// Id Fields
 
@@ -291,7 +314,7 @@ export interface QPoll extends QImmutableRepoRow
 
 
 // Entity Id Interface
-export interface QPollQId extends QImmutableRepoRowQId
+export interface QPollQId extends QImmutableRowQId
 {
 	
 	// Id Fields
@@ -303,6 +326,6 @@ export interface QPollQId extends QImmutableRepoRowQId
 
 // Entity Relation Interface
 export interface QPollQRelation
-	extends QImmutableRepoRowQRelation<QPoll>, QPollQId {
+	extends QImmutableRowQRelation<QPoll>, QPollQId {
 }
 

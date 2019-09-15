@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -21,17 +22,19 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableRepoRow,
-	ImmutableRepoRowEId,
-	ImmutableRepoRowEUpdateColumns,
-	ImmutableRepoRowEUpdateProperties,
-	ImmutableRepoRowESelect,
-	QImmutableRepoRowQId,
-	QImmutableRepoRowQRelation,
-	QImmutableRepoRow,
-} from '@airport/holding-pattern';
+	IImmutableRow,
+	ImmutableRowECascadeGraph,
+	ImmutableRowEId,
+	ImmutableRowEUpdateColumns,
+	ImmutableRowEUpdateProperties,
+	ImmutableRowESelect,
+	QImmutableRowQId,
+	QImmutableRowQRelation,
+	QImmutableRow,
+} from './qimmutablerow';
 import {
 	IFactor,
+	FactorECascadeGraph,
 	FactorEId,
 	FactorEOptionalId,
 	FactorEUpdateProperties,
@@ -42,6 +45,7 @@ import {
 } from './qfactor';
 import {
 	IPosition,
+	PositionECascadeGraph,
 	PositionEId,
 	PositionEOptionalId,
 	PositionEUpdateProperties,
@@ -59,14 +63,14 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IFactorPosition extends IImmutableRepoRow {
+export interface IFactorPosition extends IImmutableRow {
 	
 	// Id Properties
+	id: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
 
 	// Non-Id Relations
 	factor?: IFactor;
@@ -86,9 +90,8 @@ export interface IFactorPosition extends IImmutableRepoRow {
  * SELECT - All fields and relations (optional).
  */
 export interface FactorPositionESelect
-    extends ImmutableRepoRowESelect, FactorPositionEOptionalId {
+    extends ImmutableRowESelect, FactorPositionEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -102,8 +105,9 @@ export interface FactorPositionESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface FactorPositionEId
-    extends ImmutableRepoRowEId {
+    extends ImmutableRowEId {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -114,6 +118,7 @@ export interface FactorPositionEId
  */
 export interface FactorPositionEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -123,9 +128,8 @@ export interface FactorPositionEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface FactorPositionEUpdateProperties
-	extends ImmutableRepoRowEUpdateProperties {
+	extends ImmutableRowEUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	factor?: FactorEOptionalId;
@@ -134,20 +138,23 @@ export interface FactorPositionEUpdateProperties
 }
 
 /**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface FactorPositionECascadeGraph
+	extends ImmutableRowECascadeGraph {
+	// Cascading Relations
+
+}
+
+/**
  * UPDATE - non-id columns (optional).
  */
 export interface FactorPositionEUpdateColumns
-	extends ImmutableRepoRowEUpdateColumns {
+	extends ImmutableRowEUpdateColumns {
 	// Non-Id Columns
-	IS_DRAFT?: boolean | IQBooleanField;
 	CREATED_AT?: Date | IQDateField;
-	FACTOR_POSITION_ID?: number | IQNumberField;
-	FACTORS_RID?: number | IQNumberField;
-	FACTORS_AID?: number | IQNumberField;
-	FACTORS_ARID?: number | IQNumberField;
-	POSITIONS_RID?: number | IQNumberField;
-	POSITIONS_AID?: number | IQNumberField;
-	POSITIONS_ARID?: number | IQNumberField;
+	FACTOR_ID?: number | IQNumberField;
+	POSITION_ID?: number | IQNumberField;
 
 }
 
@@ -175,14 +182,14 @@ extends FactorPositionEId, FactorPositionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorPosition extends QImmutableRepoRow
+export interface QFactorPosition extends QImmutableRow
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
 
 	// Non-Id Relations
 	factor: QFactorQRelation;
@@ -192,10 +199,11 @@ export interface QFactorPosition extends QImmutableRepoRow
 
 
 // Entity Id Interface
-export interface QFactorPositionQId extends QImmutableRepoRowQId
+export interface QFactorPositionQId extends QImmutableRowQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
@@ -204,6 +212,6 @@ export interface QFactorPositionQId extends QImmutableRepoRowQId
 
 // Entity Relation Interface
 export interface QFactorPositionQRelation
-	extends QImmutableRepoRowQRelation<QFactorPosition>, QFactorPositionQId {
+	extends QImmutableRowQRelation<QFactorPosition>, QFactorPositionQId {
 }
 

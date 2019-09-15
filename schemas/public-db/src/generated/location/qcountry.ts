@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -22,6 +23,7 @@ import {
 } from '@airport/air-control';
 import {
 	IReferenceRow,
+	ReferenceRowECascadeGraph,
 	ReferenceRowEId,
 	ReferenceRowEUpdateColumns,
 	ReferenceRowEUpdateProperties,
@@ -32,6 +34,7 @@ import {
 } from '@airport/holding-pattern';
 import {
 	IContinent,
+	ContinentECascadeGraph,
 	ContinentEId,
 	ContinentEOptionalId,
 	ContinentEUpdateProperties,
@@ -42,6 +45,7 @@ import {
 } from './qcontinent';
 import {
 	IState,
+	StateECascadeGraph,
 	StateEId,
 	StateEOptionalId,
 	StateEUpdateProperties,
@@ -62,7 +66,7 @@ declare function require(moduleName: string): any;
 export interface ICountry extends IReferenceRow {
 	
 	// Id Properties
-	id?: number;
+	id: number;
 
 	// Id Relations
 
@@ -132,6 +136,16 @@ export interface CountryEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	continent?: ContinentEOptionalId;
+
+}
+
+/**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface CountryECascadeGraph
+	extends ReferenceRowECascadeGraph {
+	// Cascading Relations
+	states?: StateECascadeGraph;
 
 }
 

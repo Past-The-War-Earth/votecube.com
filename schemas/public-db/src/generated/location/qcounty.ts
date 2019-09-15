@@ -1,6 +1,7 @@
 import {
 	IQEntityInternal,
 	IEntityIdProperties,
+	IEntityCascadeGraph,
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
@@ -22,6 +23,7 @@ import {
 } from '@airport/air-control';
 import {
 	IReferenceRow,
+	ReferenceRowECascadeGraph,
 	ReferenceRowEId,
 	ReferenceRowEUpdateColumns,
 	ReferenceRowEUpdateProperties,
@@ -32,6 +34,7 @@ import {
 } from '@airport/holding-pattern';
 import {
 	IState,
+	StateECascadeGraph,
 	StateEId,
 	StateEOptionalId,
 	StateEUpdateProperties,
@@ -42,6 +45,7 @@ import {
 } from './qstate';
 import {
 	ITown,
+	TownECascadeGraph,
 	TownEId,
 	TownEOptionalId,
 	TownEUpdateProperties,
@@ -62,7 +66,7 @@ declare function require(moduleName: string): any;
 export interface ICounty extends IReferenceRow {
 	
 	// Id Properties
-	id?: number;
+	id: number;
 
 	// Id Relations
 
@@ -132,6 +136,16 @@ export interface CountyEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	state?: StateEOptionalId;
+
+}
+
+/**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface CountyECascadeGraph
+	extends ReferenceRowECascadeGraph {
+	// Cascading Relations
+	states?: TownECascadeGraph;
 
 }
 

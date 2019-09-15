@@ -19,6 +19,7 @@ export * from './poll/qpolllabel';
 export * from './poll/qpolltype';
 export * from './qfactor';
 export * from './qfactorposition';
+export * from './qimmutablerow';
 export * from './qposition';
 export * from './qtheme';
 export * from './vote/qvote';

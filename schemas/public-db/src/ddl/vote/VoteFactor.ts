@@ -2,17 +2,14 @@ import {
 	Column,
 	DbString,
 	Entity,
+	GeneratedValue,
+	Id,
 	JoinColumn,
 	ManyToOne,
-	Table,
-	TraditionalServerSeq
+	Table
 }                           from '@airport/air-control'
-import {ChildRepoRow}       from '@airport/holding-pattern'
 import {PollFactorPosition} from '../poll/PollFactorPosition'
-import {
-	Vote,
-	Vote_Id
-}                           from './Vote'
+import {Vote}               from './Vote'
 import {VoteFactorType}     from './VoteFactorType'
 
 export type VoteFactor_Id = number
@@ -31,28 +28,24 @@ export type VoteFactor_Share =
 
 @Entity()
 @Table({name: 'VOTE_FACTORS'})
-export class VoteFactor
-	extends ChildRepoRow {
+export class VoteFactor {
 
-	// @GeneratedValue()
-	@TraditionalServerSeq()
+	@GeneratedValue()
+	@Id()
 	@Column({name: 'VOTE_FACTOR_ID'})
 	id: VoteFactor_Id
 
-	@Column({name: 'VOTE_ID'})
-	voteId: Vote_Id
-
 	@ManyToOne()
-		// @JoinColumn({name: 'VOTE_ID', nullable: false})
-		vote: Vote
+	@JoinColumn({name: 'VOTE_ID', nullable: false})
+	vote: Vote
 
 	@Column({name: 'SHARE', nullable: false})
 	@DbString()
 	share: VoteFactor_Share
 
 	@ManyToOne()
-		// @JoinColumn({name: 'POLL_FACTOR_POSITION_ID', nullable: false})
-		pollFactorPos: PollFactorPosition
+	@JoinColumn({name: 'POLL_FACTOR_POSITION_ID', nullable: false})
+	pollFactorPos: PollFactorPosition
 
 	@ManyToOne()
 	@JoinColumn({name: 'VOTE_FACTOR_TYPE_ID', nullable: false})

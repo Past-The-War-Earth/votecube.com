@@ -1,40 +1,32 @@
 import {
 	Column,
 	Entity,
+	GeneratedValue,
+	Id,
 	JoinColumn,
 	ManyToOne,
-	Table,
-	TraditionalServerSeq
-}                               from '@airport/air-control'
-import {ChildRepoRow}           from '@airport/holding-pattern'
-import {PollFactorPosition_Dir} from '../..'
-import {
-	Poll,
-	Poll_Id
-}                               from '../poll/Poll'
-import {Continent}              from './Continent'
+	Table
+}                  from '@airport/air-control'
+import {Poll}      from '../poll/Poll'
+import {Continent} from './Continent'
 
 export type PollContinent_Id = number
 
 @Entity()
 @Table({name: 'POLL_CONTINENTS'})
-export class PollContinent
-	extends ChildRepoRow {
+export class PollContinent {
 
-	// @GeneratedValue()
-	@TraditionalServerSeq()
+	@GeneratedValue()
+	@Id()
 	@Column({name: 'POLL_CONTINENT_ID'})
 	id: PollContinent_Id
-
-	@Column({name: 'POLL_ID'})
-	pollId: Poll_Id
 
 	@ManyToOne()
 	@JoinColumn({name: 'CONTINENT_ID', nullable: false})
 	continent: Continent
 
 	@ManyToOne()
-		// @JoinColumn({name: 'POLL_ID', nullable: false})
-		poll: Poll
+	@JoinColumn({name: 'POLL_ID', nullable: false})
+	poll: Poll
 
 }

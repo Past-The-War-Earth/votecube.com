@@ -5,32 +5,31 @@ import {
 	Id,
 	JoinColumn,
 	ManyToOne,
-	Table,
-	TraditionalServerSeq
-} from '@airport/air-control'
-import {ImmutableRepoRow} from '@airport/holding-pattern'
-import {CascadeType}      from '@airport/ground-control'
-import {Factor}           from './Factor'
-import {Position}         from './Position'
+	Table
+}                     from '@airport/air-control'
+import {CascadeType}  from '@airport/ground-control'
+import {Factor}       from './Factor'
+import {ImmutableRow} from './ImmutableRow'
+import {Position}     from './Position'
 
 export type FactorPosition_Id = number
 
 @Entity()
 @Table({name: 'FACTOR_POSITIONS'})
 export class FactorPosition
-	extends ImmutableRepoRow {
+	extends ImmutableRow {
 
-	// @GeneratedValue()
-	@TraditionalServerSeq()
+	@GeneratedValue()
+	@Id()
 	@Column({name: 'FACTOR_POSITION_ID'})
 	id: FactorPosition_Id
 
 	@ManyToOne({cascade: CascadeType.PERSIST})
-	// @JoinColumn({name: 'FACTOR_ID'})
+	@JoinColumn({name: 'FACTOR_ID'})
 	factor: Factor
 
 	@ManyToOne({cascade: CascadeType.PERSIST})
-	// @JoinColumn({name: 'POSITION_ID'})
+	@JoinColumn({name: 'POSITION_ID'})
 	position: Position
 
 }
