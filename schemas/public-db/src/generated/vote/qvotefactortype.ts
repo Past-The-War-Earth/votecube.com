@@ -21,17 +21,6 @@ import {
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
-import {
-	IReferenceRow,
-	ReferenceRowECascadeGraph,
-	ReferenceRowEId,
-	ReferenceRowEUpdateColumns,
-	ReferenceRowEUpdateProperties,
-	ReferenceRowESelect,
-	QReferenceRowQId,
-	QReferenceRowQRelation,
-	QReferenceRow,
-} from '@airport/holding-pattern';
 
 
 declare function require(moduleName: string): any;
@@ -41,7 +30,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IVoteFactorType extends IReferenceRow {
+export interface IVoteFactorType {
 	
 	// Id Properties
 	id: number;
@@ -67,7 +56,7 @@ export interface IVoteFactorType extends IReferenceRow {
  * SELECT - All fields and relations (optional).
  */
 export interface VoteFactorTypeESelect
-    extends ReferenceRowESelect, VoteFactorTypeEOptionalId {
+    extends IEntitySelectProperties, VoteFactorTypeEOptionalId {
 	// Non-Id Properties
 	value?: string | IQStringField;
 
@@ -81,7 +70,7 @@ export interface VoteFactorTypeESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface VoteFactorTypeEId
-    extends ReferenceRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -104,7 +93,7 @@ export interface VoteFactorTypeEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface VoteFactorTypeEUpdateProperties
-	extends ReferenceRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
 	value?: string | IQStringField;
 
@@ -116,7 +105,7 @@ export interface VoteFactorTypeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface VoteFactorTypeECascadeGraph
-	extends ReferenceRowECascadeGraph {
+	extends IEntityCascadeGraph {
 	// Cascading Relations
 
 }
@@ -125,7 +114,7 @@ export interface VoteFactorTypeECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface VoteFactorTypeEUpdateColumns
-	extends ReferenceRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	VOTE_FACTOR_TYPE_VALUE?: string | IQStringField;
 
@@ -155,7 +144,7 @@ extends VoteFactorTypeEId, VoteFactorTypeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVoteFactorType extends QReferenceRow
+export interface QVoteFactorType extends IQEntity
 {
 	// Id Fields
 	id: IQNumberField;
@@ -171,7 +160,7 @@ export interface QVoteFactorType extends QReferenceRow
 
 
 // Entity Id Interface
-export interface QVoteFactorTypeQId extends QReferenceRowQId
+export interface QVoteFactorTypeQId
 {
 	
 	// Id Fields
@@ -184,6 +173,6 @@ export interface QVoteFactorTypeQId extends QReferenceRowQId
 
 // Entity Relation Interface
 export interface QVoteFactorTypeQRelation
-	extends QReferenceRowQRelation<QVoteFactorType>, QVoteFactorTypeQId {
+	extends IQRelation<QVoteFactorType>, QVoteFactorTypeQId {
 }
 

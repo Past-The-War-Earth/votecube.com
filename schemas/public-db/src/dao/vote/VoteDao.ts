@@ -49,11 +49,11 @@ export class VoteDao
 				u = a.user.innerJoin()
 			],
 			select: {
-				...this.db.duo.getAllFieldsSelect(),
+				...this.db.duo.select.fields,
 				factors: {}
 			},
 			where: and(
-				v.pollId.equals(pollId),
+				v.poll.id.equals(pollId),
 				u.uniqueId.equals(email)
 			)
 		})

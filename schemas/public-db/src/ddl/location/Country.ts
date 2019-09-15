@@ -8,7 +8,7 @@ import {
 	OneToMany,
 	Table
 }                     from '@airport/air-control'
-import {ReferenceRow} from '@airport/holding-pattern'
+// import {ReferenceRow} from '@airport/holding-pattern'
 import {Continent}    from './Continent'
 import {State}        from './State'
 
@@ -20,7 +20,8 @@ export type Country_Name = string
 	name: 'COUNTRIES'
 })
 export class Country
-	extends ReferenceRow {
+	// extends ReferenceRow
+{
 
 	@GeneratedValue()
 	@Id()

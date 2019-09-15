@@ -21,17 +21,6 @@ import {
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
-import {
-	IReferenceRow,
-	ReferenceRowECascadeGraph,
-	ReferenceRowEId,
-	ReferenceRowEUpdateColumns,
-	ReferenceRowEUpdateProperties,
-	ReferenceRowESelect,
-	QReferenceRowQId,
-	QReferenceRowQRelation,
-	QReferenceRow,
-} from '@airport/holding-pattern';
 
 
 declare function require(moduleName: string): any;
@@ -41,7 +30,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ITheme extends IReferenceRow {
+export interface ITheme {
 	
 	// Id Properties
 	id: number;
@@ -67,7 +56,7 @@ export interface ITheme extends IReferenceRow {
  * SELECT - All fields and relations (optional).
  */
 export interface ThemeESelect
-    extends ReferenceRowESelect, ThemeEOptionalId {
+    extends IEntitySelectProperties, ThemeEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -81,7 +70,7 @@ export interface ThemeESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface ThemeEId
-    extends ReferenceRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -104,7 +93,7 @@ export interface ThemeEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface ThemeEUpdateProperties
-	extends ReferenceRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -116,7 +105,7 @@ export interface ThemeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ThemeECascadeGraph
-	extends ReferenceRowECascadeGraph {
+	extends IEntityCascadeGraph {
 	// Cascading Relations
 
 }
@@ -125,7 +114,7 @@ export interface ThemeECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface ThemeEUpdateColumns
-	extends ReferenceRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	NAME?: string | IQStringField;
 
@@ -155,7 +144,7 @@ extends ThemeEId, ThemeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTheme extends QReferenceRow
+export interface QTheme extends IQEntity
 {
 	// Id Fields
 	id: IQNumberField;
@@ -171,7 +160,7 @@ export interface QTheme extends QReferenceRow
 
 
 // Entity Id Interface
-export interface QThemeQId extends QReferenceRowQId
+export interface QThemeQId
 {
 	
 	// Id Fields
@@ -184,6 +173,6 @@ export interface QThemeQId extends QReferenceRowQId
 
 // Entity Relation Interface
 export interface QThemeQRelation
-	extends QReferenceRowQRelation<QTheme>, QThemeQId {
+	extends IQRelation<QTheme>, QThemeQId {
 }
 

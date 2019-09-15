@@ -5,7 +5,7 @@ import {
 	Id,
 	Table
 } from '@airport/air-control'
-import {ReferenceRow} from '@airport/holding-pattern'
+// import {ReferenceRow} from '@airport/holding-pattern'
 
 export type VoteFactorType_Id = number
 export type VoteFactorType_Value = 'x' | 'y' | 'z'
@@ -13,7 +13,8 @@ export type VoteFactorType_Value = 'x' | 'y' | 'z'
 @Entity()
 @Table({name: 'VOTE_FACTOR_TYPES'})
 export class VoteFactorType
-	extends ReferenceRow {
+	// extends ReferenceRow
+{
 
 	@Id()
 	@Column({name: 'VOTE_FACTOR_TYPE_ID'})

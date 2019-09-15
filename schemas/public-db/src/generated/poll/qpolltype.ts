@@ -21,17 +21,6 @@ import {
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
-import {
-	IReferenceRow,
-	ReferenceRowECascadeGraph,
-	ReferenceRowEId,
-	ReferenceRowEUpdateColumns,
-	ReferenceRowEUpdateProperties,
-	ReferenceRowESelect,
-	QReferenceRowQId,
-	QReferenceRowQRelation,
-	QReferenceRow,
-} from '@airport/holding-pattern';
 
 
 declare function require(moduleName: string): any;
@@ -41,7 +30,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollType extends IReferenceRow {
+export interface IPollType {
 	
 	// Id Properties
 	id: number;
@@ -67,7 +56,7 @@ export interface IPollType extends IReferenceRow {
  * SELECT - All fields and relations (optional).
  */
 export interface PollTypeESelect
-    extends ReferenceRowESelect, PollTypeEOptionalId {
+    extends IEntitySelectProperties, PollTypeEOptionalId {
 	// Non-Id Properties
 	value?: string | IQStringField;
 
@@ -81,7 +70,7 @@ export interface PollTypeESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollTypeEId
-    extends ReferenceRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -104,7 +93,7 @@ export interface PollTypeEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollTypeEUpdateProperties
-	extends ReferenceRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
 	value?: string | IQStringField;
 
@@ -116,7 +105,7 @@ export interface PollTypeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollTypeECascadeGraph
-	extends ReferenceRowECascadeGraph {
+	extends IEntityCascadeGraph {
 	// Cascading Relations
 
 }
@@ -125,7 +114,7 @@ export interface PollTypeECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface PollTypeEUpdateColumns
-	extends ReferenceRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	POLL_TYPE_VALUE?: string | IQStringField;
 
@@ -155,7 +144,7 @@ extends PollTypeEId, PollTypeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollType extends QReferenceRow
+export interface QPollType extends IQEntity
 {
 	// Id Fields
 	id: IQNumberField;
@@ -171,7 +160,7 @@ export interface QPollType extends QReferenceRow
 
 
 // Entity Id Interface
-export interface QPollTypeQId extends QReferenceRowQId
+export interface QPollTypeQId
 {
 	
 	// Id Fields
@@ -184,6 +173,6 @@ export interface QPollTypeQId extends QReferenceRowQId
 
 // Entity Relation Interface
 export interface QPollTypeQRelation
-	extends QReferenceRowQRelation<QPollType>, QPollTypeQId {
+	extends IQRelation<QPollType>, QPollTypeQId {
 }
 
