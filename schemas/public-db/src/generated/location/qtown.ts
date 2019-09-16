@@ -22,17 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IReferenceRow,
-	ReferenceRowECascadeGraph,
-	ReferenceRowEId,
-	ReferenceRowEUpdateColumns,
-	ReferenceRowEUpdateProperties,
-	ReferenceRowESelect,
-	QReferenceRowQId,
-	QReferenceRowQRelation,
-	QReferenceRow,
-} from '@airport/holding-pattern';
-import {
 	IState,
 	StateECascadeGraph,
 	StateEId,
@@ -52,7 +41,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ITown extends IReferenceRow {
+export interface ITown {
 	
 	// Id Properties
 	id: number;
@@ -79,7 +68,7 @@ export interface ITown extends IReferenceRow {
  * SELECT - All fields and relations (optional).
  */
 export interface TownESelect
-    extends ReferenceRowESelect, TownEOptionalId {
+    extends IEntitySelectProperties, TownEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -94,7 +83,7 @@ export interface TownESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface TownEId
-    extends ReferenceRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -117,7 +106,7 @@ export interface TownEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface TownEUpdateProperties
-	extends ReferenceRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -130,7 +119,7 @@ export interface TownEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface TownECascadeGraph
-	extends ReferenceRowECascadeGraph {
+	extends IEntityCascadeGraph {
 	// Cascading Relations
 
 }
@@ -139,7 +128,7 @@ export interface TownECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface TownEUpdateColumns
-	extends ReferenceRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	TOWN_NAME?: string | IQStringField;
 	STATE_ID?: number | IQNumberField;
@@ -170,7 +159,7 @@ extends TownEId, TownEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTown extends QReferenceRow
+export interface QTown extends IQEntity
 {
 	// Id Fields
 	id: IQNumberField;
@@ -187,7 +176,7 @@ export interface QTown extends QReferenceRow
 
 
 // Entity Id Interface
-export interface QTownQId extends QReferenceRowQId
+export interface QTownQId
 {
 	
 	// Id Fields
@@ -200,6 +189,6 @@ export interface QTownQId extends QReferenceRowQId
 
 // Entity Relation Interface
 export interface QTownQRelation
-	extends QReferenceRowQRelation<QTown>, QTownQId {
+	extends IQRelation<QTown>, QTownQId {
 }
 

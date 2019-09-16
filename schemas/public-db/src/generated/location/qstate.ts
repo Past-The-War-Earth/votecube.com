@@ -22,17 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IReferenceRow,
-	ReferenceRowECascadeGraph,
-	ReferenceRowEId,
-	ReferenceRowEUpdateColumns,
-	ReferenceRowEUpdateProperties,
-	ReferenceRowESelect,
-	QReferenceRowQId,
-	QReferenceRowQRelation,
-	QReferenceRow,
-} from '@airport/holding-pattern';
-import {
 	ICountry,
 	CountryECascadeGraph,
 	CountryEId,
@@ -63,7 +52,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IState extends IReferenceRow {
+export interface IState {
 	
 	// Id Properties
 	id: number;
@@ -91,7 +80,7 @@ export interface IState extends IReferenceRow {
  * SELECT - All fields and relations (optional).
  */
 export interface StateESelect
-    extends ReferenceRowESelect, StateEOptionalId {
+    extends IEntitySelectProperties, StateEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -107,7 +96,7 @@ export interface StateESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface StateEId
-    extends ReferenceRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -130,7 +119,7 @@ export interface StateEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface StateEUpdateProperties
-	extends ReferenceRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -143,7 +132,7 @@ export interface StateEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface StateECascadeGraph
-	extends ReferenceRowECascadeGraph {
+	extends IEntityCascadeGraph {
 	// Cascading Relations
 	states?: TownECascadeGraph;
 
@@ -153,7 +142,7 @@ export interface StateECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface StateEUpdateColumns
-	extends ReferenceRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	STATE_NAME?: string | IQStringField;
 	COUNTRY_ID?: number | IQNumberField;
@@ -184,7 +173,7 @@ extends StateEId, StateEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QState extends QReferenceRow
+export interface QState extends IQEntity
 {
 	// Id Fields
 	id: IQNumberField;
@@ -202,7 +191,7 @@ export interface QState extends QReferenceRow
 
 
 // Entity Id Interface
-export interface QStateQId extends QReferenceRowQId
+export interface QStateQId
 {
 	
 	// Id Fields
@@ -215,6 +204,6 @@ export interface QStateQId extends QReferenceRowQId
 
 // Entity Relation Interface
 export interface QStateQRelation
-	extends QReferenceRowQRelation<QState>, QStateQId {
+	extends IQRelation<QState>, QStateQId {
 }
 

@@ -1,7 +1,7 @@
 export const MAPPED_SUPERCLASS = [
 	{
 		"type": "ImmutableRow",
-		"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/immutablerow.ts",
+		"path": "/media/artem/E4D01D0CD01CE718/dac/votecube-ui/schemas/public-db/src/ddl/ImmutableRow.ts",
 		"parentClassName": null,
 		"isSuperclass": true,
 		"ids": [],

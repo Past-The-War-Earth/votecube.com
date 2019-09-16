@@ -41,14 +41,14 @@ export class PollDao
 	): Promise<IPoll> {
 		const pfpDuo = await DI.get(POLL_FACTOR_POSITION_DUO)
 
-		const repoIdFieldsSelect = this.db.duo.getIdFieldsSelect()
+		const repoIdFieldsSelect = this.db.duo.select.fields
 		let p: QPoll
 		return await this.db.findOne.graph({
 			from: [
 				p = this.db.from
 			],
 			select: {
-				...this.db.duo.getAllFieldsSelect(),
+				...this.db.duo.select.fields,
 				pollContinents: {
 					...repoIdFieldsSelect,
 					continent: {}
@@ -58,7 +58,7 @@ export class PollDao
 					country: {}
 				},
 				pollFactorPositions: {
-					...pfpDuo.getAllFieldsSelect(),
+					...pfpDuo.select.fields,
 					factorPosition: {
 						...repoIdFieldsSelect,
 						factor: {},

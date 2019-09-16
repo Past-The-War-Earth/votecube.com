@@ -5,7 +5,7 @@ import {
 	Id,
 	Table
 } from '@airport/air-control'
-import {ReferenceRow} from '@airport/holding-pattern'
+// import {ReferenceRow} from '@airport/holding-pattern'
 
 export type PollType_Id = number
 export type PollType_Value = 'cube'
@@ -13,7 +13,8 @@ export type PollType_Value = 'cube'
 @Entity()
 @Table({name: 'POLL_TYPES'})
 export class PollType
-	extends ReferenceRow {
+	// extends ReferenceRow
+{
 
 	@Id()
 	@Column({name: 'POLL_TYPE_ID'})

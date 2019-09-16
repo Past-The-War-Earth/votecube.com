@@ -7,9 +7,8 @@ import {
 	ManyToOne,
 	Table
 }                     from '@airport/air-control'
-import {ReferenceRow} from '@airport/holding-pattern'
+// import {ReferenceRow} from '@airport/holding-pattern'
 import {County}       from './County'
-import {State}        from './State'
 
 export type Town_Id = number
 export type TownName = string
@@ -19,7 +18,8 @@ export type TownName = string
 	name: 'TOWNS'
 })
 export class Town
-	extends ReferenceRow {
+	// extends ReferenceRow
+{
 
 	@GeneratedValue()
 	@Id()

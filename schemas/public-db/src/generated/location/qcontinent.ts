@@ -22,17 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IReferenceRow,
-	ReferenceRowECascadeGraph,
-	ReferenceRowEId,
-	ReferenceRowEUpdateColumns,
-	ReferenceRowEUpdateProperties,
-	ReferenceRowESelect,
-	QReferenceRowQId,
-	QReferenceRowQRelation,
-	QReferenceRow,
-} from '@airport/holding-pattern';
-import {
 	ICountry,
 	CountryECascadeGraph,
 	CountryEId,
@@ -52,7 +41,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IContinent extends IReferenceRow {
+export interface IContinent {
 	
 	// Id Properties
 	id: number;
@@ -79,7 +68,7 @@ export interface IContinent extends IReferenceRow {
  * SELECT - All fields and relations (optional).
  */
 export interface ContinentESelect
-    extends ReferenceRowESelect, ContinentEOptionalId {
+    extends IEntitySelectProperties, ContinentEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -94,7 +83,7 @@ export interface ContinentESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface ContinentEId
-    extends ReferenceRowEId {
+    extends IEntityIdProperties {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -117,7 +106,7 @@ export interface ContinentEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface ContinentEUpdateProperties
-	extends ReferenceRowEUpdateProperties {
+	extends IEntityUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -129,7 +118,7 @@ export interface ContinentEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ContinentECascadeGraph
-	extends ReferenceRowECascadeGraph {
+	extends IEntityCascadeGraph {
 	// Cascading Relations
 	countries?: CountryECascadeGraph;
 
@@ -139,7 +128,7 @@ export interface ContinentECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface ContinentEUpdateColumns
-	extends ReferenceRowEUpdateColumns {
+	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	CONTINENT_NAME?: string | IQStringField;
 
@@ -169,7 +158,7 @@ extends ContinentEId, ContinentEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QContinent extends QReferenceRow
+export interface QContinent extends IQEntity
 {
 	// Id Fields
 	id: IQNumberField;
@@ -186,7 +175,7 @@ export interface QContinent extends QReferenceRow
 
 
 // Entity Id Interface
-export interface QContinentQId extends QReferenceRowQId
+export interface QContinentQId
 {
 	
 	// Id Fields
@@ -199,6 +188,6 @@ export interface QContinentQId extends QReferenceRowQId
 
 // Entity Relation Interface
 export interface QContinentQRelation
-	extends QReferenceRowQRelation<QContinent>, QContinentQId {
+	extends IQRelation<QContinent>, QContinentQId {
 }
 
