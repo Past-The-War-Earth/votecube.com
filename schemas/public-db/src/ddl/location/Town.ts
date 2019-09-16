@@ -8,6 +8,7 @@ import {
 	Table
 }                     from '@airport/air-control'
 import {ReferenceRow} from '@airport/holding-pattern'
+import {County}       from './County'
 import {State}        from './State'
 
 export type Town_Id = number
@@ -26,8 +27,8 @@ export class Town
 	id: Town_Id
 
 	@ManyToOne()
-	@JoinColumn({name: 'STATE_ID', nullable: false})
-	state: State
+	@JoinColumn({name: 'COUNTY_ID', nullable: false})
+	county: County
 
 	@Column({name: 'TOWN_NAME', nullable: false})
 	name: TownName

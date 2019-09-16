@@ -8,9 +8,10 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
-import {PollFactorPosition} from '../poll/PollFactorPosition'
+import {PollFactorPosition} from '../factor/position/PollFactorPosition'
 import {Vote}               from './Vote'
 import {VoteFactorType}     from './VoteFactorType'
+import {VoteVariation}      from './VoteVariation'
 
 export type VoteFactor_Id = number
 export type VoteFactor_Share =
@@ -36,8 +37,8 @@ export class VoteFactor {
 	id: VoteFactor_Id
 
 	@ManyToOne()
-	@JoinColumn({name: 'VOTE_ID', nullable: false})
-	vote: Vote
+	@JoinColumn({name: 'VOTE_VARIATION_ID', nullable: false})
+	voteVariation: VoteVariation
 
 	@Column({name: 'SHARE', nullable: false})
 	@DbString()

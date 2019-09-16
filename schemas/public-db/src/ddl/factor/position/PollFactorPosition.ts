@@ -8,19 +8,11 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                    from '@airport/air-control'
-import {CascadeType} from '@airport/ground-control'
-import {
-	FactorPosition,
-	FactorPosition_Id
-}                    from '../FactorPosition'
-import {
-	Poll,
-	Poll_Id
-}                    from './Poll'
+}                       from '@airport/air-control'
+import {Poll}           from '../../..'
+import {FactorPosition} from './FactorPosition'
 
 export type PollFactorPosition_Axis = 'x' | 'y' | 'z'
-export type PollFactorPosition_ColorId = number
 export type PollFactorPosition_Dir = -1 | 1
 export type PollFactorPosition_Id = number
 
@@ -37,14 +29,11 @@ export class PollFactorPosition {
 	@DbString()
 	axis: PollFactorPosition_Axis
 
-	@Column({name: 'COLOR_ID', nullable: false})
-	color: PollFactorPosition_ColorId
-
 	@Column({name: 'POSITION_ORIENTATION', nullable: false})
 	@DbNumber()
 	dir: PollFactorPosition_Dir
 
-	@ManyToOne({cascade: CascadeType.PERSIST})
+	@ManyToOne()
 	@JoinColumn({name: 'FACTOR_POSITION_ID', nullable: false})
 	factorPosition: FactorPosition
 

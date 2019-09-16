@@ -5,15 +5,14 @@ import {
 	Id,
 	JoinColumn,
 	ManyToOne,
-	OneToMany,
 	Table
-}                     from '@airport/air-control'
-import {CascadeType}  from '@airport/ground-control'
-import {ImmutableRow} from '../ImmutableRow'
-import {Poll}         from '../poll/Poll'
-import {VoteFactor}   from './VoteFactor'
+}                      from '@airport/air-control'
+import {ImmutableRow}  from '../ImmutableRow'
+import {Poll}          from '../poll/Poll'
+import {VoteVariation} from './VoteVariation'
 
 export type Vote_Id = number
+export type Vote_Current = boolean
 
 @Entity()
 @Table({name: 'VOTES'})
@@ -26,10 +25,17 @@ export class Vote
 	id: Vote_Id
 
 	@ManyToOne()
+	@JoinColumn({name: 'VOTE_VARIATION_ID', nullable: false})
+	currentVariation: VoteVariation
+
+	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID', nullable: false})
 	poll: Poll
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
-	factors: VoteFactor[]
+	/*
+		@ManyToOne()
+		@JoinColumn({name: 'POLL_VARIATION_ID', nullable: false})
+		variation: PollVariation
+		*/
 
 }
