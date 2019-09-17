@@ -7,17 +7,17 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                      from '@airport/air-control'
-import {CascadeType}   from '@airport/ground-control'
-import {Language}      from '../Language'
-import {Factor}          from './Factor'
+}                        from '@airport/air-control'
+import {CascadeType}     from '@airport/ground-control'
+import {Language}        from '../Language'
 import {FactorVariation} from './FactorVariation'
 
 export type FactorVariationTranslation_Id = number
-export type FactorVariationTranslation_Name = number
+export type FactorVariationTranslation_Name = string
+export type FactorVariationTranslation_Description = string
 
 @Entity()
-@Table({name: 'FACTOR_VARIATION_TRANSLATION'})
+@Table({name: 'FACTOR_VARIATION_TRANSLATIONS'})
 export class FactorVariationTranslation {
 
 	@Id()
@@ -28,13 +28,16 @@ export class FactorVariationTranslation {
 	@Column({name: 'FACTOR_VARIATION_TRANSLATION_DESCRIPTION'})
 	name: FactorVariationTranslation_Name
 
-	@ManyToOne()
-	@JoinColumn({name: 'FACTOR_ID'})
-	poll: Factor
+	@Column({name: 'FACTOR_VARIATION_TRANSLATION_DESCRIPTION'})
+	description: FactorVariationTranslation_Description
 
 	@ManyToOne()
 	@JoinColumn({name: 'FACTOR_VARIATION_ID'})
 	variation: FactorVariation
+
+	@ManyToOne()
+	@JoinColumn({name: 'LANGUAGE_ID'})
+	language: Language
 
 	@ManyToOne()
 	@JoinColumn({
@@ -42,16 +45,6 @@ export class FactorVariationTranslation {
 		referencedColumnName: 'FACTOR_VARIATION_TRANSLATION_ID'
 	})
 	parentTranslation: FactorVariation
-
-	@ManyToOne()
-	@JoinColumn({name: 'LANGUAGE_ID'})
-	language: Language
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariationTranslation'})
-	factorVariationTranslations: FactorVariationTranslation[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariationTranslation'})
-	positionVariationTranslations: PositionVariationTranslation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parentTranslation'})
 	childTranslations: FactorVariationTranslation[]

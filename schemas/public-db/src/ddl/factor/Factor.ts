@@ -15,6 +15,7 @@ import {
 }                            from '../common'
 import {ImmutableRow}        from '../ImmutableRow'
 import {FactorSkinVariation} from './FactorSkinVariation'
+import {FactorTranslation}   from './FactorTranslation'
 import {FactorVariation}     from './FactorVariation'
 import {FactorPosition}      from './position/FactorPosition'
 
@@ -22,6 +23,7 @@ export type Factor_BackgroundColor = BackgroundColor
 export type Factor_TextColor = TextColor
 export type Factor_Id = number
 export type Factor_Name = string
+export type Factor_Description = string
 
 @Entity()
 @Table({name: 'FACTORS'})
@@ -42,6 +44,9 @@ export class Factor
 	@Column({name: 'FACTOR_NAME', nullable: false})
 	name: Factor_Name
 
+	@Column({name: 'FACTOR_DESCRIPTION', nullable: false})
+	description: Factor_Description
+
 	@ManyToOne()
 	@JoinColumn({name: 'PARENT_FACTOR_ID', referencedColumnName: 'FACTOR_ID'})
 	parent: Factor
@@ -54,5 +59,8 @@ export class Factor
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
 	skins: FactorSkinVariation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
+	translations: FactorTranslation[]
 
 }

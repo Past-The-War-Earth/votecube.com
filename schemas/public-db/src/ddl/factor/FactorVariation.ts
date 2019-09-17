@@ -11,10 +11,11 @@ import {PollVariation} from '../poll/PollVariation'
 import {Factor}        from './Factor'
 
 export type FactorVariation_Id = number
-export type FactorVariation_Name = number
+export type FactorVariation_Name = string
+export type FactorVariation_Description = string
 
 @Entity()
-@Table({name: 'FACTOR_VARIATION'})
+@Table({name: 'FACTOR_VARIATIONS'})
 export class FactorVariation {
 
 	@Id()
@@ -24,6 +25,9 @@ export class FactorVariation {
 
 	@Column({name: 'FACTOR_VARIATION_NAME'})
 	name: FactorVariation_Name
+
+	@Column({name: 'FACTOR_VARIATION_DESCRIPTION'})
+	description: FactorVariation_Description
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID'})

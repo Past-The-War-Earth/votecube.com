@@ -23,7 +23,7 @@ export class PositionVariation {
 	id: PositionVariation_Id
 
 	@Column({name: 'POSITION_VARIATION_DESCRIPTION', nullable: false})
-	name: PositionVariation_Description
+	description: PositionVariation_Description
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID'})

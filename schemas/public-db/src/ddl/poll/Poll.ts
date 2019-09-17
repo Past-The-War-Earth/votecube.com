@@ -7,18 +7,20 @@ import {
 	OneToMany,
 	Table
 }                              from '@airport/air-control'
-import {CascadeType}           from '@airport/ground-control'
+import {CascadeType}           from '../../../../../../airport/apis/ground-control/lib'
 import {PollFactorPosition}    from '../factor/position/PollFactorPosition'
 import {ImmutableRow}          from '../ImmutableRow'
 import {SuitabilityRating}     from '../SuitabilityRating'
 import {Theme}                 from '../Theme'
 import {PollLabel}             from './PollLabel'
 import {PollLocationTimeFrame} from './PollLocationTimeFrame'
+import {PollTranslation}       from './PollTranslation'
 import {PollType}              from './PollType'
 import {PollVariation}         from './PollVariation'
 
 export type Poll_Id = number
-export type Poll_Name = number
+export type Poll_Name = string
+export type Poll_Description = string
 
 @Entity()
 @Table({name: 'POLLS'})
@@ -29,8 +31,11 @@ export class Poll
 	@Column({name: 'POLL_ID'})
 	id: Poll_Id
 
-	@Column({name: 'POLL_DESCRIPTION', nullable: false})
+	@Column({name: 'POLL_NAME', nullable: false})
 	name: Poll_Name
+
+	@Column({name: 'POLL_DESCRIPTION', nullable: false})
+	description: Poll_Description
 
 	@ManyToOne()
 	@JoinColumn({name: 'SUITABILITY_RATING_ID', nullable: false})
@@ -62,5 +67,8 @@ export class Poll
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	pollFactorPositions: PollFactorPosition[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	translations: PollTranslation[]
 
 }

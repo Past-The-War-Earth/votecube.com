@@ -13,6 +13,7 @@ import {ImmutableRow}             from '../ImmutableRow'
 import {PollLocationTimeFrame}    from '../poll/PollLocationTimeFrame'
 import {PollVariation}            from '../poll/PollVariation'
 import {PollVariationTranslation} from '../poll/PollVariationTranslation'
+import {Vote}                     from './Vote'
 import {VoteFactor}               from './VoteFactor'
 
 export type VoteVariation_Id = number
@@ -30,6 +31,10 @@ export class VoteVariation
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID', nullable: false})
 	variation: PollVariation
+
+	@ManyToOne()
+	@JoinColumn({name: 'VOTE_ID', nullable: false})
+	vote: Vote
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_TRANSLATION_ID', nullable: false})
