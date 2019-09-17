@@ -8,18 +8,10 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                             from '@airport/air-control'
-import {ImmutableRow}         from '../../ImmutableRow'
-import {PollVariation}        from '../../poll/PollVariation'
-import {Factor}               from '../Factor'
-import {FactorSkin_TextColor} from '../FactorSkinVariation'
-import {FactorPosition}       from './FactorPosition'
-import {
-	PollFactorPosition_Axis,
-	PollFactorPosition_Dir,
-	PollFactorPosition_Id
-}                             from './PollFactorPosition'
-import {Position}             from './Position'
+}                       from '@airport/air-control'
+import {ImmutableRow}   from '../../ImmutableRow'
+import {PollVariation}  from '../../poll/PollVariation'
+import {FactorPosition} from './FactorPosition'
 
 export type PollFactorPositionVariation_Id = number
 export type PollFactorPositionVariation_Axis = 'x' | 'y' | 'z'

@@ -7,11 +7,13 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                      from '@airport/air-control'
-import {CascadeType}   from '@airport/ground-control'
-import {ImmutableRow}  from '../ImmutableRow'
-import {PollVariation} from '../poll/PollVariation'
-import {VoteFactor}    from './VoteFactor'
+}                                 from '@airport/air-control'
+import {CascadeType}              from '@airport/ground-control'
+import {ImmutableRow}             from '../ImmutableRow'
+import {PollLocationTimeFrame}    from '../poll/PollLocationTimeFrame'
+import {PollVariation}            from '../poll/PollVariation'
+import {PollVariationTranslation} from '../poll/PollVariationTranslation'
+import {VoteFactor}               from './VoteFactor'
 
 export type VoteVariation_Id = number
 
@@ -28,6 +30,14 @@ export class VoteVariation
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID', nullable: false})
 	variation: PollVariation
+
+	@ManyToOne()
+	@JoinColumn({name: 'POLL_VARIATION_TRANSLATION_ID', nullable: false})
+	variationTranslation: PollVariationTranslation
+
+	@ManyToOne()
+	@JoinColumn({name: 'POLL_LOCATION_TIME_FRAME_ID', nullable: false})
+	locationTimeFrame: PollLocationTimeFrame
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'voteVariation'})
 	factors: VoteFactor[]

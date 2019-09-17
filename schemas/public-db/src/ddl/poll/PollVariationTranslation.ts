@@ -7,13 +7,11 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
-import {FactorVariation}   from '../factor/FactorVariation'
-import {PositionVariation} from '../factor/position/PositionVariation'
-import {Language}          from '../Language'
-import {Poll}              from './Poll'
-import {PollVariation}     from './PollVariation'
+}                      from '@airport/air-control'
+import {CascadeType}   from '@airport/ground-control'
+import {Language}      from '../Language'
+import {Poll}          from './Poll'
+import {PollVariation} from './PollVariation'
 
 export type PollVariationTranslation_Id = number
 export type PollVariationTranslation_Name = number
