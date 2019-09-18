@@ -13,7 +13,7 @@ import {
 	BackgroundColor,
 	TextColor
 }                            from '../common'
-import {ImmutableRow}        from '../ImmutableRow'
+import {ImmutableRow}        from '../infrastructure/ImmutableRow'
 import {FactorSkinVariation} from './FactorSkinVariation'
 import {FactorTranslation}   from './FactorTranslation'
 import {FactorVariation}     from './FactorVariation'

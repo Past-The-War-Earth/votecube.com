@@ -9,7 +9,7 @@ import {
 	Table
 }                          from '@airport/air-control'
 import {CascadeType}       from '@airport/ground-control'
-import {Language}          from '../../Language'
+import {Language}          from '../../infrastructure/Language'
 import {PositionVariation} from './PositionVariation'
 
 export type PositionVariationTranslation_Id = number

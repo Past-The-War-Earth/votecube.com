@@ -15,7 +15,7 @@ import {PollCounty}    from '../location/PollCounty'
 import {PollState}     from '../location/PollState'
 import {PollTown}      from '../location/PollTown'
 import {Poll}          from '../poll/Poll'
-import {PollVariation} from './PollVariation'
+import {PollVariation} from './variation/PollVariation'
 
 export type PollLocationTimeFrame_Id = number
 export type PollLocationTimeFrame_EndDate = Date

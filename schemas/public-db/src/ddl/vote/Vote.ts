@@ -8,7 +8,7 @@ import {
 	ManyToOne,
 	Table
 }                      from '@airport/air-control'
-import {ImmutableRow}  from '../ImmutableRow'
+import {ImmutableRow}  from '../infrastructure/ImmutableRow'
 import {Poll}          from '../poll/Poll'
 import {Actor}         from '../user/Actor'
 import {VoteVariation} from './VoteVariation'

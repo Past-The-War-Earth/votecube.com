@@ -7,7 +7,7 @@ import {
 	ManyToOne,
 	Table
 }                      from '@airport/air-control'
-import {PollVariation} from '../poll/PollVariation'
+import {PollVariation} from '../poll/variation/PollVariation'
 import {Factor}        from './Factor'
 
 export type FactorVariation_Id = number

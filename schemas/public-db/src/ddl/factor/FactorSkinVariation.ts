@@ -11,7 +11,7 @@ import {
 	BackgroundColor,
 	TextColor
 }                      from '../common'
-import {PollVariation} from '../poll/PollVariation'
+import {PollVariation} from '../poll/variation/PollVariation'
 import {Factor}        from './Factor'
 
 export type FactorSkin_Id = number

@@ -6,10 +6,10 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                     from '@airport/air-control'
-import {ImmutableRow} from '../ImmutableRow'
-import {Language}     from '../Language'
-import {PollOpinionResponse}  from './PollOpinionResponse'
+}                            from '@airport/air-control'
+import {ImmutableRow}        from '../infrastructure/ImmutableRow'
+import {Language}            from '../infrastructure/Language'
+import {PollOpinionResponse} from './PollOpinionResponse'
 
 export type PollOpinionResponseTranslation_Id = number
 export type PollOpinionResponseTranslation_Title = string

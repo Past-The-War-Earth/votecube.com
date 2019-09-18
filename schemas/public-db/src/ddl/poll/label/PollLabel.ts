@@ -6,12 +6,12 @@ import {
 	ManyToOne,
 	Table
 }                     from '@airport/air-control'
-import {ImmutableRow} from '../ImmutableRow'
+import {ImmutableRow} from '../../infrastructure/ImmutableRow'
 import {Label}        from './Label'
 import {
 	Poll,
 	Poll_Id
-}                     from './Poll'
+}                     from '../Poll'
 
 export type PollLabel_Id = number
 

@@ -7,14 +7,15 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                               from '@airport/air-control'
-import {CascadeType}            from '@airport/ground-control'
-import {ImmutableRow}           from '../ImmutableRow'
-import {Language}               from '../Language'
-import {Actor}                  from '../user/Actor'
-import {VoteVariation}          from '../vote/VoteVariation'
-import {PollOpinionResponse}    from './PollOpinionResponse'
-import {PollOpinionTranslation} from './PollOpinionTranslation'
+}                                     from '@airport/air-control'
+import {CascadeType}                  from '@airport/ground-control'
+import {ImmutableRow}                 from '../infrastructure/ImmutableRow'
+import {Language}                     from '../infrastructure/Language'
+import {Actor}                        from '../user/Actor'
+import {VoteVariation}                from '../vote/VoteVariation'
+import {PollOpinionResponse}          from './PollOpinionResponse'
+import {PollOpinionSuitabilityRating} from './PollOpinionSuitabilityRating'
+import {PollOpinionTranslation}       from './PollOpinionTranslation'
 
 export type PollOpinion_Id = number
 export type PollOpinion_Title = string
@@ -51,6 +52,9 @@ export class PollOpinion
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})
 	language: Language
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollOpinion'})
+	suitabilityRatings: PollOpinionSuitabilityRating[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollOpinion'})
 	childResponses: PollOpinionResponse[]

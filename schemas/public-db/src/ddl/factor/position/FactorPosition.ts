@@ -7,7 +7,7 @@ import {
 	ManyToOne,
 	Table
 }                     from '@airport/air-control'
-import {ImmutableRow} from '../../ImmutableRow'
+import {ImmutableRow} from '../../infrastructure/ImmutableRow'
 import {Factor}       from '../Factor'
 import {Position}     from './Position'
 

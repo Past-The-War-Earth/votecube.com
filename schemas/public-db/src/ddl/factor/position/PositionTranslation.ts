@@ -6,9 +6,9 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                                   from '@airport/air-control'
-import {ImmutableRow}               from '../../ImmutableRow'
-import {Language}                   from '../../Language'
+}                                     from '@airport/air-control'
+import {ImmutableRow}                 from '../../infrastructure/ImmutableRow'
+import {Language}                     from '../../infrastructure/Language'
 import {PositionVariationTranslation} from './PositionVariationTranslation'
 
 export type PositionTranslation_Id = number

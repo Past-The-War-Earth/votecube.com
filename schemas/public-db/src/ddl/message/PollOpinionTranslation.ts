@@ -7,8 +7,8 @@ import {
 	ManyToOne,
 	Table
 }                     from '@airport/air-control'
-import {ImmutableRow} from '../ImmutableRow'
-import {Language}     from '../Language'
+import {ImmutableRow} from '../infrastructure/ImmutableRow'
+import {Language}     from '../infrastructure/Language'
 import {PollOpinion}  from './PollOpinion'
 
 export type PollOpinionTranslation_Id = number

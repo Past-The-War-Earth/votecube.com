@@ -7,15 +7,18 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                    from '@airport/air-control'
-import {CascadeType}                 from '../../../../../../airport/apis/ground-control/lib'
-import {FactorSkinVariation}         from '../factor/FactorSkinVariation'
-import {FactorVariation}             from '../factor/FactorVariation'
-import {PollFactorPositionVariation} from '../factor/position/PollFactorPositionVariation'
-import {PositionVariation}           from '../factor/position/PositionVariation'
-import {Language}                    from '../Language'
-import {SuitabilityRating}           from '../SuitabilityRating'
-import {Poll}                        from './Poll'
+}                                       from '@airport/air-control'
+import {CascadeType}                    from '@airport/ground-control'
+import {FactorSkinVariation}            from '../../factor/FactorSkinVariation'
+import {FactorVariation}                from '../../factor/FactorVariation'
+import {PollFactorPositionVariation}    from '../../factor/position/PollFactorPositionVariation'
+import {PositionVariation}              from '../../factor/position/PositionVariation'
+import {Language}                       from '../../infrastructure/Language'
+import {SuitabilityRating}              from '../../infrastructure/SuitabilityRating'
+import {Poll}                           from '../Poll'
+import {PollTranslation}                from '../translation/PollTranslation'
+import {PollVariationSuitabilityRating} from './PollVariationSuitabilityRating'
+import {PollVariationTranslation}       from './translation/PollVariationTranslation'
 
 export type PollVariation_Id = number
 export type PollVariation_Name = number
@@ -51,6 +54,12 @@ export class PollVariation {
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})
 	language: Language
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	suitabilityRatings: PollVariationSuitabilityRating[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	translations: PollVariationTranslation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
 	factorVariations: FactorVariation[]

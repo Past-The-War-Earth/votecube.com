@@ -3,8 +3,11 @@ import {
 	Entity,
 	GeneratedValue,
 	Id,
+	JoinColumn,
+	ManyToOne,
 	Table
-} from '@airport/air-control'
+}                              from '@airport/air-control'
+import {SuitabilityRatingType} from './SuitabilityRatingType'
 
 export type SuitabilityRating_Id = number
 export type SuitabilityRating_Name = string
@@ -28,5 +31,9 @@ export class SuitabilityRating {
 
 	@Column({name: 'SUITABILITY_RATING_MIN_AGE', nullable: false})
 	minAge: SuitabilityRating_MaxAge
+
+	@ManyToOne()
+	@JoinColumn({name: 'SUITABILITY_RATING_TYPE_ID'})
+	type: SuitabilityRatingType
 
 }

@@ -9,8 +9,8 @@ import {
 	ManyToOne,
 	Table
 }                       from '@airport/air-control'
-import {ImmutableRow}   from '../../ImmutableRow'
-import {PollVariation}  from '../../poll/PollVariation'
+import {ImmutableRow}   from '../../infrastructure/ImmutableRow'
+import {PollVariation}  from '../../poll/variation/PollVariation'
 import {FactorPosition} from './FactorPosition'
 
 export type PollFactorPositionVariation_Id = number

@@ -4,7 +4,7 @@ import {
 	GeneratedValue,
 	Table
 }                     from '@airport/air-control'
-import {ImmutableRow} from '../ImmutableRow'
+import {ImmutableRow} from '../../infrastructure/ImmutableRow'
 
 export type Label_Id = number
 export type Label_Name = string

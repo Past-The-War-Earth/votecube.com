@@ -9,10 +9,10 @@ import {
 	Table
 }                                 from '@airport/air-control'
 import {CascadeType}              from '@airport/ground-control'
-import {ImmutableRow}             from '../ImmutableRow'
+import {ImmutableRow}             from '../infrastructure/ImmutableRow'
 import {PollLocationTimeFrame}    from '../poll/PollLocationTimeFrame'
-import {PollVariation}            from '../poll/PollVariation'
-import {PollVariationTranslation} from '../poll/PollVariationTranslation'
+import {PollVariation}            from '../poll/variation/PollVariation'
+import {PollVariationTranslation} from '../poll/variation/translation/PollVariationTranslation'
 import {Vote}                     from './Vote'
 import {VoteFactor}               from './VoteFactor'
 

@@ -9,7 +9,7 @@ import {
 	Table
 }                            from '@airport/air-control'
 import {CascadeType}         from '@airport/ground-control'
-import {ImmutableRow}        from '../../ImmutableRow'
+import {ImmutableRow}        from '../../infrastructure/ImmutableRow'
 import {FactorPosition}      from './FactorPosition'
 import {PositionTranslation} from './PositionTranslation'
 import {PositionVariation}   from './PositionVariation'
