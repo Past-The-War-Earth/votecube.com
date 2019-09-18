@@ -16,7 +16,6 @@ import {PositionVariation}              from '../../factor/position/PositionVari
 import {Language}                       from '../../infrastructure/Language'
 import {SuitabilityRating}              from '../../infrastructure/SuitabilityRating'
 import {Poll}                           from '../Poll'
-import {PollTranslation}                from '../translation/PollTranslation'
 import {PollVariationSuitabilityRating} from './PollVariationSuitabilityRating'
 import {PollVariationTranslation}       from './translation/PollVariationTranslation'
 
