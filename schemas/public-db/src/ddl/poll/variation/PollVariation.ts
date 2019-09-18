@@ -31,9 +31,6 @@ export class PollVariation {
 	@Column({name: 'POLL_VARIATION_ID'})
 	id: PollVariation_Id
 
-	@Column({name: 'POLL_VARIATION_DESCRIPTION'})
-	name: PollVariation_Name
-
 	@ManyToOne()
 	@JoinColumn({name: 'SUITABILITY_RATING_ID', nullable: false})
 	suitabilityRating: SuitabilityRating

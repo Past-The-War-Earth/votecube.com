@@ -46,13 +46,16 @@ export class Poll
 	suitabilityRatings: PollSuitabilityRating[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	defaultPollVariation: DefaultPollVariation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	translations: PollTranslation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	pollLocationTimeFrames: PollLocationTimeFrame[]
 
 	@OneToMany({mappedBy: 'parentPoll'})
 	childPolls: Poll[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	defaultPollVariation: DefaultPollVariation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	pollVariations: PollVariation[]
@@ -62,8 +65,5 @@ export class Poll
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	pollFactorPositions: PollFactorPosition[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	translations: PollTranslation[]
 
 }

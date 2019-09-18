@@ -25,10 +25,10 @@ export class FactorVariationTranslation {
 	@Column({name: 'FACTOR_VARIATION_TRANSLATION_ID'})
 	id: FactorVariationTranslation_Id
 
-	@Column({name: 'FACTOR_VARIATION_TRANSLATION_DESCRIPTION'})
+	@Column({name: 'FACTOR_NAME'})
 	name: FactorVariationTranslation_Name
 
-	@Column({name: 'FACTOR_VARIATION_TRANSLATION_DESCRIPTION'})
+	@Column({name: 'FACTOR_DESCRIPTION'})
 	description: FactorVariationTranslation_Description
 
 	@ManyToOne()
