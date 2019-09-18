@@ -8,19 +8,19 @@ import {
 	OneToMany,
 	Table
 }                                       from '@airport/air-control'
-import {CascadeType}                    from '@airport/ground-control'
+import {CascadeType}                    from '../../../../../../../airport/apis/ground-control/lib'
 import {FactorSkinVariation}            from '../../factor/FactorSkinVariation'
 import {FactorVariation}                from '../../factor/FactorVariation'
 import {PollFactorPositionVariation}    from '../../factor/position/PollFactorPositionVariation'
 import {PositionVariation}              from '../../factor/position/PositionVariation'
 import {Language}                       from '../../infrastructure/Language'
-import {SuitabilityRating}              from '../../infrastructure/SuitabilityRating'
+import {PollOpinion}                    from '../../message/PollOpinion'
 import {Poll}                           from '../Poll'
-import {PollVariationSuitabilityRating} from './PollVariationSuitabilityRating'
+import {PollVariationLocationTimeFrame} from './PollVariationLocationTimeFrame'
+import {PollVariationRating}            from './PollVariationRating'
 import {PollVariationTranslation}       from './translation/PollVariationTranslation'
 
 export type PollVariation_Id = number
-export type PollVariation_Name = number
 
 @Entity()
 @Table({name: 'POLL_VARIATIONS'})
@@ -30,13 +30,6 @@ export class PollVariation {
 	@GeneratedValue()
 	@Column({name: 'POLL_VARIATION_ID'})
 	id: PollVariation_Id
-
-	@Column({name: 'POLL_VARIATION_DESCRIPTION'})
-	name: PollVariation_Name
-
-	@ManyToOne()
-	@JoinColumn({name: 'SUITABILITY_RATING_ID', nullable: false})
-	suitabilityRating: SuitabilityRating
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID'})
@@ -55,7 +48,13 @@ export class PollVariation {
 	language: Language
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
-	suitabilityRatings: PollVariationSuitabilityRating[]
+	ratings: PollVariationRating[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	opinions: PollOpinion[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	locationTimeFrames: PollVariationLocationTimeFrame[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
 	translations: PollVariationTranslation[]

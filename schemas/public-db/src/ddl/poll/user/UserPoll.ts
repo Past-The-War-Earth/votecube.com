@@ -5,11 +5,13 @@ import {
 	Id,
 	JoinColumn,
 	ManyToOne,
+	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {SuitabilityRating} from '../../infrastructure/SuitabilityRating'
+import {CascadeType}       from '@airport/ground-control'
 import {Poll}              from '../Poll'
 import {PollVariation}     from '../variation/PollVariation'
+import {UserPollVariation} from './UserPollVariation'
 
 export type UserPoll_Id = number
 
@@ -23,12 +25,11 @@ export class UserPoll {
 	id: UserPoll_Id
 
 	@ManyToOne()
-	@JoinColumn({name: 'SUITABILITY_RATING_ID'})
-	suitabilityRating: SuitabilityRating
-
-	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID'})
 	pinnedVariation: PollVariation
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'userPoll'})
+	userPollVariations: UserPollVariation[]
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID'})

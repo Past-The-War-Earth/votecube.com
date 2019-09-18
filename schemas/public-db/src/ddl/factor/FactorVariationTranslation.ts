@@ -25,10 +25,10 @@ export class FactorVariationTranslation {
 	@Column({name: 'FACTOR_VARIATION_TRANSLATION_ID'})
 	id: FactorVariationTranslation_Id
 
-	@Column({name: 'FACTOR_VARIATION_TRANSLATION_DESCRIPTION'})
+	@Column({name: 'FACTOR_NAME'})
 	name: FactorVariationTranslation_Name
 
-	@Column({name: 'FACTOR_VARIATION_TRANSLATION_DESCRIPTION'})
+	@Column({name: 'FACTOR_DESCRIPTION'})
 	description: FactorVariationTranslation_Description
 
 	@ManyToOne()
@@ -44,7 +44,7 @@ export class FactorVariationTranslation {
 		name: 'PARENT_FACTOR_VARIATION_TRANSLATION_ID',
 		referencedColumnName: 'FACTOR_VARIATION_TRANSLATION_ID'
 	})
-	parentTranslation: FactorVariation
+	parentTranslation: FactorVariationTranslation
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parentTranslation'})
 	childTranslations: FactorVariationTranslation[]

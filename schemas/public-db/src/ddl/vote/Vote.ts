@@ -6,12 +6,15 @@ import {
 	Id,
 	JoinColumn,
 	ManyToOne,
+	OneToMany,
 	Table
-}                      from '@airport/air-control'
-import {ImmutableRow}  from '../infrastructure/ImmutableRow'
-import {Poll}          from '../poll/Poll'
-import {Actor}         from '../user/Actor'
-import {VoteVariation} from './VoteVariation'
+}                            from '@airport/air-control'
+import {CascadeType}         from '@airport/ground-control'
+import {ImmutableActorRow}   from '../infrastructure/ImmutableActorRow'
+import {Poll}                from '../poll/Poll'
+import {SelectPollVariation} from '../poll/variation/SelectPollVariation'
+import {Actor}               from '../user/Actor'
+import {SelectVoteVariation} from './SelectVoteVariation'
 
 export type Vote_Id = number
 
@@ -22,7 +25,7 @@ export enum VoteType {
 @Entity()
 @Table({name: 'VOTES'})
 export class Vote
-	extends ImmutableRow {
+	extends ImmutableActorRow {
 
 	@GeneratedValue()
 	@Id()
@@ -42,12 +45,11 @@ export class Vote
 	type: VoteType
 
 	@ManyToOne()
-	@JoinColumn({name: 'VOTE_VARIATION_ID', nullable: false})
-	currentVariation: VoteVariation
-
-	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID', nullable: false})
 	poll: Poll
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	selectVariations: SelectVoteVariation[]
 
 	/*
 		@ManyToOne()

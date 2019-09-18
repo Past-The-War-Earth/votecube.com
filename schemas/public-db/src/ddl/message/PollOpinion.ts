@@ -7,15 +7,16 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                     from '@airport/air-control'
-import {CascadeType}                  from '@airport/ground-control'
-import {ImmutableRow}                 from '../infrastructure/ImmutableRow'
-import {Language}                     from '../infrastructure/Language'
-import {Actor}                        from '../user/Actor'
-import {VoteVariation}                from '../vote/VoteVariation'
-import {PollOpinionResponse}          from './PollOpinionResponse'
-import {PollOpinionSuitabilityRating} from './PollOpinionSuitabilityRating'
-import {PollOpinionTranslation}       from './PollOpinionTranslation'
+}                               from '@airport/air-control'
+import {CascadeType}            from '@airport/ground-control'
+import {ImmutableRow}           from '../infrastructure/ImmutableRow'
+import {Language}               from '../infrastructure/Language'
+import {PollVariation}          from '../poll/variation/PollVariation'
+import {Actor}                  from '../user/Actor'
+import {VoteVariation}          from '../vote/VoteVariation'
+import {PollOpinionResponse}    from './PollOpinionResponse'
+import {PollOpinionTranslation} from './PollOpinionTranslation'
+import {PollOpinionRating}      from './user/PollOpinionRating'
 
 export type PollOpinion_Id = number
 export type PollOpinion_Title = string
@@ -35,26 +36,20 @@ export class PollOpinion
 	@Column({name: 'POLL_OPINION_ID'})
 	id: PollOpinion_Id
 
-	@Column({name: 'POLL_OPINION_TITLE', nullable: false})
-	name: PollOpinion_Title
-
-	@Column({name: 'POLL_OPINION_TEXT', nullable: false})
-	description: PollOpinion_Text
-
 	@ManyToOne()
 	@JoinColumn({name: 'VOTE_VARIATION_ID', nullable: false})
 	voteVariation: VoteVariation
 
 	@ManyToOne()
-	@JoinColumn({name: 'ACTOR_ID', nullable: false})
-	actor: Actor
+	@JoinColumn({name: 'POLL_VARIATION_ID', nullable: false})
+	pollVariation: PollVariation
 
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})
 	language: Language
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollOpinion'})
-	suitabilityRatings: PollOpinionSuitabilityRating[]
+	ratings: PollOpinionRating[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollOpinion'})
 	childResponses: PollOpinionResponse[]

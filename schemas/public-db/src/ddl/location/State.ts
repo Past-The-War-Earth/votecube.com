@@ -7,10 +7,10 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                     from '@airport/air-control'
+}                  from '@airport/air-control'
 // import {ReferenceRow} from '@airport/holding-pattern'
-import {Country}      from './Country'
-import {Town}         from './Town'
+import {Country}   from './Country'
+import {StateTown} from './StateTown'
 
 export type State_Id = number
 export type State_Name = string
@@ -35,7 +35,7 @@ export class State
 	@Column({name: 'STATE_NAME', nullable: false})
 	name: State_Name
 
-	@OneToMany({mappedBy: 'TOWN_ID'})
-	states: Town[]
+	@OneToMany({mappedBy: 'state'})
+	stateTowns: StateTown
 
 }

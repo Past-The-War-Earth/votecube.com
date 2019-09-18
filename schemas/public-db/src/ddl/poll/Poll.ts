@@ -12,12 +12,12 @@ import {PollFactorPosition}    from '../factor/position/PollFactorPosition'
 import {ImmutableActorRow}     from '../infrastructure/ImmutableActorRow'
 import {PollLabel}             from './label/PollLabel'
 import {PollLocationTimeFrame} from './PollLocationTimeFrame'
-import {PollSuitabilityRating} from './PollSuitabilityRating'
-import {PollTranslation}       from './translation/PollTranslation'
+import {PollRating}            from './PollRating'
 import {PollType}              from './PollType'
 import {Theme}                 from './Theme'
-import {DefaultPollVariation}  from './variation/DefaultPollVariation'
+import {SelectPollTranslation} from './translation/SelectPollTranslation'
 import {PollVariation}         from './variation/PollVariation'
+import {SelectPollVariation}   from './variation/SelectPollVariation'
 
 export type Poll_Id = number
 
@@ -43,16 +43,16 @@ export class Poll
 	parentPoll: Poll
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	suitabilityRatings: PollSuitabilityRating[]
+	ratings: PollRating[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	selectVariations: SelectPollVariation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	pollLocationTimeFrames: PollLocationTimeFrame[]
 
 	@OneToMany({mappedBy: 'parentPoll'})
 	childPolls: Poll[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	defaultPollVariation: DefaultPollVariation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	pollVariations: PollVariation[]
@@ -64,6 +64,6 @@ export class Poll
 	pollFactorPositions: PollFactorPosition[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	translations: PollTranslation[]
+	translations: SelectPollTranslation[]
 
 }

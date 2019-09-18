@@ -7,19 +7,17 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                                  from '@airport/air-control'
-import {CascadeType}                               from '@airport/ground-control'
-import {FactorVariationTranslation}                from '../../../factor/FactorVariationTranslation'
-import {PositionVariationTranslation}              from '../../../factor/position/PositionVariationTranslation'
-import {Language}                                  from '../../../infrastructure/Language'
-import {Poll}                                      from '../../Poll'
-import {PollVariation}                             from '../PollVariation'
-import {PollVariationSuitabilityRating}            from '../PollVariationSuitabilityRating'
-import {DefaultPollVariationTranslation}           from './DefaultPollVariationTranslation'
-import {PollVariationTranslationSuitabilityRating} from './PollVariationTranslationSuitabilityRating'
+}                                         from '@airport/air-control'
+import {CascadeType}                      from '@airport/ground-control'
+import {Language}                         from '../../../infrastructure/Language'
+import {TranslationType}                  from '../../../infrastructure/TranslationType'
+import {PollVariation}                    from '../PollVariation'
+import {PollVariationFactorTranslation}   from './PollVariationFactorTranslation'
+import {PollVariationPositionTranslation} from './PollVariationPositionTranslation'
+import {PollVariationTranslationInstance} from './PollVariationTranslationInstance'
+import {PollVariationTranslationRating}   from './PollVariationTranslationRating'
 
 export type PollVariationTranslation_Id = number
-export type PollVariationTranslation_Name = number
 
 /**
  * This the translation of a given poll variation.
@@ -34,40 +32,29 @@ export class PollVariationTranslation {
 	@Column({name: 'POLL_VARIATION_TRANSLATION_ID'})
 	id: PollVariationTranslation_Id
 
-	@Column({name: 'POLL_NAME'})
-	name: PollVariationTranslation_Name
-
-	@Column({name: 'POLL_DESCRIPTION'})
-	description: PollVariationTranslation_Name
-
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID'})
-	variation: PollVariation
-
-	@ManyToOne()
-	@JoinColumn({
-		name: 'PARENT_POLL_VARIATION_TRANSLATION_ID',
-		referencedColumnName: 'POLL_VARIATION_TRANSLATION_ID'
-	})
-	parentTranslation: PollVariationTranslation
+	pollVariation: PollVariation
 
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})
 	language: Language
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariationTranslation'})
-	suitabilityRatings: PollVariationTranslationSuitabilityRating[]
+	@ManyToOne()
+	@JoinColumn({name: 'POLL_VARIATION_TRANSLATION_INSTANCE_ID'})
+	instance: PollVariationTranslationInstance
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariationTranslation'})
-	defaultTranslation: DefaultPollVariationTranslation[]
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
+	factors: PollVariationFactorTranslation[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariationTranslation'})
-	factorVariationTranslations: FactorVariationTranslation[]
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
+	positions: PollVariationPositionTranslation[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariationTranslation'})
-	positionVariationTranslations: PositionVariationTranslation[]
+	@ManyToOne()
+	@JoinColumn({name: 'TRANSLATION_TYPE_ID'})
+	type: TranslationType
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parentTranslation'})
-	childTranslations: PollVariationTranslation[]
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'translation'})
+	ratings: PollVariationTranslationRating[]
 
 }

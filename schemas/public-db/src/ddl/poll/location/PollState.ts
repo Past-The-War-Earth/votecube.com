@@ -7,8 +7,8 @@ import {
 	ManyToOne,
 	Table
 }              from '@airport/air-control'
-import {Poll}  from '../poll/Poll'
-import {State} from './State'
+import {Poll}  from '../Poll'
+import {State} from '../../location/State'
 
 export type PollState_Id = number
 

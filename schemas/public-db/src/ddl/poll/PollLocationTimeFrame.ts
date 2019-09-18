@@ -9,11 +9,11 @@ import {
 	Table
 }                      from '@airport/air-control'
 import {CascadeType}   from '@airport/ground-control'
-import {PollContinent} from '../location/PollContinent'
-import {PollCountry}   from '../location/PollCountry'
-import {PollCounty}    from '../location/PollCounty'
-import {PollState}     from '../location/PollState'
-import {PollTown}      from '../location/PollTown'
+import {PollContinent} from './location/PollContinent'
+import {PollCountry}   from './location/PollCountry'
+import {PollCounty}    from './location/PollCounty'
+import {PollState}     from './location/PollState'
+import {PollTown}      from './location/PollTown'
 import {Poll}          from '../poll/Poll'
 import {PollVariation} from './variation/PollVariation'
 

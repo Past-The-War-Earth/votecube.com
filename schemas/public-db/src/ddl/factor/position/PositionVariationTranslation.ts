@@ -24,7 +24,7 @@ export class PositionVariationTranslation {
 	@Column({name: 'POSITION_VARIATION_TRANSLATION_ID'})
 	id: PositionVariationTranslation_Id
 
-	@Column({name: 'POSITION_VARIATION_TRANSLATION_DESCRIPTION'})
+	@Column({name: 'POSITION_DESCRIPTION'})
 	description: PositionVariationTranslation_Description
 
 	@ManyToOne()
@@ -40,7 +40,7 @@ export class PositionVariationTranslation {
 		name: 'PARENT_POSITION_VARIATION_TRANSLATION_ID',
 		referencedColumnName: 'POSITION_VARIATION_TRANSLATION_ID'
 	})
-	parentTranslation: PositionVariation
+	parentTranslation: PositionVariationTranslation
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parentTranslation'})
 	childTranslations: PositionVariationTranslation[]
