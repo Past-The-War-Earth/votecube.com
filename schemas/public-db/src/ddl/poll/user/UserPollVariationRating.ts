@@ -8,7 +8,6 @@ import {
 	Table
 }                          from '@airport/air-control'
 import {Rating}            from '../../infrastructure/Rating/Rating'
-import {PollVariation}     from '../variation/PollVariation'
 import {UserPollVariation} from './UserPollVariation'
 
 export type UserPollVariationRating_Id = number
@@ -23,7 +22,6 @@ export class UserPollVariationRating {
 	id: UserPollVariationRating_Id
 
 	@Id()
-	@GeneratedValue()
 	@ManyToOne()
 	@JoinColumn({name: 'USER_POLL_VARIATION_ID'})
 	userPollVariation: UserPollVariation
@@ -32,8 +30,11 @@ export class UserPollVariationRating {
 	@JoinColumn({name: 'RATING_ID'})
 	rating: Rating
 
+	/*
+	Uncomment if needed
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID'})
 	variation: PollVariation
+	*/
 
 }

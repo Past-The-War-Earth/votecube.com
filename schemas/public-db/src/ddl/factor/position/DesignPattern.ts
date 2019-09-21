@@ -4,15 +4,17 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-} from '@airport/air-control'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
 
 export type DesignPattern_Id = number
 export type DesignPattern_Name = string
 export type DesignPattern_CssClass = string
 
 @Entity()
-@Table({name: 'DESIGN_PATTERN'})
-export class DesignPattern {
+@Table({name: 'DESIGN_PATTERNS'})
+export class DesignPattern
+	extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()

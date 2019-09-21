@@ -14,17 +14,18 @@ import {TranslationType}                  from '../../../infrastructure/Translat
 import {PollVariation}                    from '../PollVariation'
 import {PollVariationFactorTranslation}   from './PollVariationFactorTranslation'
 import {PollVariationPositionTranslation} from './PollVariationPositionTranslation'
-import {PollVariationTranslationInstance} from './PollVariationTranslationInstance'
 import {PollVariationTranslationRating}   from './PollVariationTranslationRating'
 
 export type PollVariationTranslation_Id = number
+export type PollVariationTranslation_Name = string
+export type PollVariationTranslation_Description = string
 
 /**
  * This the translation of a given poll variation.
  *
  */
 @Entity()
-@Table({name: 'POLL_VARIATION_TRANSLATION'})
+@Table({name: 'POLL_VARIATION_TRANSLATIONS'})
 export class PollVariationTranslation {
 
 	@Id()
@@ -40,19 +41,31 @@ export class PollVariationTranslation {
 	@JoinColumn({name: 'LANGUAGE_ID'})
 	language: Language
 
+	@Column({name: 'POLL_NAME'})
+	name: PollVariationTranslation_Name
+
+	@Column({name: 'POLL_DESCRIPTION'})
+	description: PollVariationTranslation_Description
+
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_VARIATION_TRANSLATION_INSTANCE_ID'})
-	instance: PollVariationTranslationInstance
+	@JoinColumn({name: 'TRANSLATION_TYPE_ID'})
+	type: TranslationType
+
+	@ManyToOne()
+	@JoinColumn({
+		name: 'PARENT_POLL_VARIATION_TRANSLATION_ID',
+		referencedColumnName: 'POLL_VARIATION_TRANSLATION_ID'
+	})
+	parent: PollVariationTranslation
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	children: PollVariationTranslation[]
 
 	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
 	factors: PollVariationFactorTranslation[]
 
 	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
 	positions: PollVariationPositionTranslation[]
-
-	@ManyToOne()
-	@JoinColumn({name: 'TRANSLATION_TYPE_ID'})
-	type: TranslationType
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'translation'})
 	ratings: PollVariationTranslationRating[]

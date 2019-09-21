@@ -4,7 +4,8 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-} from '@airport/air-control'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
 
 export type Emoji_Id = number
 export type Emoji_Name = string
@@ -12,7 +13,8 @@ export type Emoji_CssClass = string
 
 @Entity()
 @Table({name: 'EMOJI'})
-export class Emoji {
+export class Emoji
+	extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()

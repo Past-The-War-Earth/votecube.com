@@ -7,7 +7,7 @@ import {
 	Table
 } from '@airport/air-control'
 
-export type DeviceId = number;
+export type Device_Id = number;
 export type Device_Hash = string;
 
 @Entity()
@@ -17,7 +17,7 @@ export class Device {
 	@GeneratedValue()
 	@Id()
 	@Column({name: 'DEVICE_ID'})
-	id: DeviceId
+	id: Device_Id
 
 	@Column({name: 'DEVICE_HASH', nullable: false})
 	@DbNumber()

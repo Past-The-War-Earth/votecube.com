@@ -5,9 +5,9 @@ import {
 	Id,
 	OneToMany,
 	Table
-}                     from '@airport/air-control'
-// import {ReferenceRow} from '@airport/holding-pattern'
-import {Country}      from './Country'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {Country}            from './Country'
 
 export type Continent_Id = number
 export type Continent_Name = string
@@ -17,8 +17,7 @@ export type Continent_Name = string
 	name: 'CONTINENTS'
 })
 export class Continent
-	// extends ReferenceRow
-{
+	extends SystemGeneratedRow {
 
 	@GeneratedValue()
 	@Id()

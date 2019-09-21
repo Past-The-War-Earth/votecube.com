@@ -6,9 +6,10 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                          from '@airport/air-control'
-import {Country}           from '../../..'
-import {Rating} from './Rating'
+}                           from '@airport/air-control'
+import {Country}            from '../../location/Country'
+import {SystemGeneratedRow} from '../SystemGeneratedRow'
+import {Rating}             from './Rating'
 
 export type RatingSetting_Id = number
 export type RatingSetting_Key = string
@@ -16,7 +17,8 @@ export type RatingSetting_Value = string
 
 @Entity()
 @Table({name: 'RATING_SETTINGS'})
-export class RatingSetting {
+export class RatingSetting
+	extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()

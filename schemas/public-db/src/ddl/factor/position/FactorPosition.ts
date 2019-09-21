@@ -6,17 +6,25 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                     from '@airport/air-control'
-import {ImmutableRow} from '../../infrastructure/ImmutableRow'
-import {Factor}       from '../Factor'
-import {Position}     from './Position'
+}                          from '@airport/air-control'
+import {ImmutableActorRow} from '../../infrastructure/ImmutableActorRow'
+import {Factor}            from '../Factor'
+import {Position}          from './Position'
 
 export type FactorPosition_Id = number
 
+/**
+ * This is done at Factor + Position level (vs FactorVariation & PositionVariation)
+ * because the underlying relationship between Factor and Position does not change
+ * with variations.
+ *
+ * Essentially this just says which positions belong to which factors.  Which
+ * variations is determined at PollVariation level (not PollFactorPositionVariation)
+ */
 @Entity()
 @Table({name: 'FACTOR_POSITIONS'})
 export class FactorPosition
-	extends ImmutableRow {
+	extends ImmutableActorRow {
 
 	@GeneratedValue()
 	@Id()

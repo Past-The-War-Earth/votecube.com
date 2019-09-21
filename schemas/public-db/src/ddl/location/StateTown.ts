@@ -4,9 +4,10 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}               from '@airport/air-control'
-import {State} from './State'
-import {Town}   from './Town'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {State}              from './State'
+import {Town}               from './Town'
 
 /**
  * Composite Id - should never be referenced by id, only by the first part.
@@ -15,7 +16,8 @@ import {Town}   from './Town'
 @Table({
 	name: 'STATE_TOWNS'
 })
-export class StateTown {
+export class StateTown
+	extends SystemGeneratedRow {
 
 	@Id()
 	@ManyToOne()

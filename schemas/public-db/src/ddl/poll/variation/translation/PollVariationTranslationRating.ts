@@ -18,7 +18,7 @@ export type PollVariationTranslationRating_Id = number
  * parts can be computed.
  */
 @Entity()
-@Table({name: 'POLL_VARIATION_TRANSLATION_RATING'})
+@Table({name: 'POLL_VARIATION_TRANSLATION_RATINGS'})
 export class PollVariationTranslationRating {
 
 	@Id()

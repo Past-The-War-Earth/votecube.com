@@ -7,10 +7,10 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                   from '@airport/air-control'
-import {CountyTown} from './CountyTown'
-// import {ReferenceRow} from '@airport/holding-pattern'
-import {State}      from './State'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {CountyTown}         from './CountyTown'
+import {State}              from './State'
 
 export type County_Id = number
 export type County_Name = string
@@ -20,8 +20,7 @@ export type County_Name = string
 	name: 'COUNTIES'
 })
 export class County
-	// extends ReferenceRow
-{
+	extends SystemGeneratedRow {
 
 	@GeneratedValue()
 	@Id()

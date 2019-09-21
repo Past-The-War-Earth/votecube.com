@@ -8,6 +8,10 @@ import {
 import {FactorVariationTranslation} from '../../../factor/FactorVariationTranslation'
 import {PollVariationTranslation}   from './PollVariationTranslation'
 
+/**
+ * Needed because Factor Translations can be shared across polls and
+ * poll variations.
+ */
 @Entity()
 @Table({name: 'POLL_VARIATION_FACTOR_TRANSLATIONS'})
 export class PollVariationFactorTranslation {

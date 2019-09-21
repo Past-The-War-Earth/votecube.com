@@ -5,33 +5,37 @@ import {
 	Id,
 	JoinColumn,
 	ManyToOne,
+	OneToMany,
 	Table
-}                      from '@airport/air-control'
+}                          from '@airport/air-control'
+import {CascadeType}       from '@airport/ground-control'
 import {
 	BackgroundColor,
 	TextColor
-}                      from '../common'
-import {PollVariation} from '../poll/variation/PollVariation'
-import {Factor}        from './Factor'
+}                          from '../common'
+import {ImmutableActorRow} from '../infrastructure/ImmutableActorRow'
+import {PollVariation}     from '../poll/variation/PollVariation'
+import {Factor}            from './Factor'
 
-export type FactorSkin_Id = number
-export type FactorSkin_BackgroundColor = BackgroundColor
-export type FactorSkin_TextColor = TextColor
+export type FactorSkinVariation_Id = number
+export type FactorSkinVariation_BackgroundColor = BackgroundColor
+export type FactorSkinVariation_TextColor = TextColor
 
 @Entity()
 @Table({name: 'FACTOR_SKIN_VARIATIONS'})
-export class FactorSkinVariation {
+export class FactorSkinVariation
+	extends ImmutableActorRow {
 
 	@Id()
 	@GeneratedValue()
 	@Column({name: 'FACTOR_SKIN_VARIATION_ID'})
-	id: FactorSkin_Id
+	id: FactorSkinVariation_Id
 
 	@Column({name: 'BACKGROUND_COLOR_ID', nullable: false})
-	backgroundColor: FactorSkin_BackgroundColor
+	backgroundColor: FactorSkinVariation_BackgroundColor
 
 	@Column({name: 'TEXT_COLOR_ID', nullable: false})
-	textColor: FactorSkin_TextColor
+	textColor: FactorSkinVariation_TextColor
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID'})
@@ -47,5 +51,8 @@ export class FactorSkinVariation {
 		referencedColumnName: 'FACTOR_SKIN_VARIATION_ID'
 	})
 	parent: FactorSkinVariation
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	children: FactorSkinVariation[]
 
 }

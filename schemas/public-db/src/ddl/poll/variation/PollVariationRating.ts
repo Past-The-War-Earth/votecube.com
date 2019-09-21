@@ -12,7 +12,7 @@ import {PollVariation}     from './PollVariation'
  * manually inserted for now
  */
 @Entity()
-@Table({name: 'POLL_VARIATION_RATING'})
+@Table({name: 'POLL_VARIATION_RATINGS'})
 export class PollVariationRating {
 
 	@ManyToOne()

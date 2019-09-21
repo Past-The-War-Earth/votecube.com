@@ -7,15 +7,16 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                      from '@airport/air-control'
-import {CascadeType}   from '@airport/ground-control'
-import {PollContinent} from './location/PollContinent'
-import {PollCountry}   from './location/PollCountry'
-import {PollCounty}    from './location/PollCounty'
-import {PollState}     from './location/PollState'
-import {PollTown}      from './location/PollTown'
-import {Poll}          from '../poll/Poll'
-import {PollVariation} from './variation/PollVariation'
+}                            from '@airport/air-control'
+import {CascadeType}         from '@airport/ground-control'
+import {Poll}                from '../poll/Poll'
+import {PollContinent}       from './location/PollContinent'
+import {PollCountry}         from './location/PollCountry'
+import {PollCounty}          from './location/PollCounty'
+import {PollState}           from './location/PollState'
+import {PollTown}            from './location/PollTown'
+import {ChosenPollVariation} from './variation/ChosenPollVariation'
+import {PollVariation}       from './variation/PollVariation'
 
 export type PollLocationTimeFrame_Id = number
 export type PollLocationTimeFrame_EndDate = Date
@@ -39,6 +40,12 @@ export class PollLocationTimeFrame {
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID'})
 	poll: Poll
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'locationTimeFrame'})
+	chosenVariations: ChosenPollVariation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'createdAtLocationTimeFrame'})
+	createdAtVariations: PollVariation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	pollContinents: PollContinent[]

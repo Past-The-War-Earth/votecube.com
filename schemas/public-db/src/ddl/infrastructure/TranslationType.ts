@@ -10,7 +10,13 @@ export type TranslationType_Id = number
 export type TranslationType_Code = number
 
 /**
- * Internal Types like: Best As voted, Best composite
+ * Translation isn't necessarily from one language to another.
+ *
+ * You can translate to a different style for instance. You could
+ * make a very technical poll more layman sounding.  Or make something
+ * funny, etc.
+ *
+ * Internal Types like: Default, Best As voted, Best composite
  * User specified types: Funny, Abbreviated, Alegorical
  */
 @Entity()

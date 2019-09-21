@@ -8,7 +8,7 @@ import {
 	ManyToOne,
 	Table
 }                                    from '@airport/air-control'
-import {PollFactorPositionVariation} from '../factor/position/PollFactorPositionVariation'
+import {PollFactorPositionVariation} from '../poll/variation/structure/PollFactorPositionVariation'
 import {VoteFactorType}              from './VoteFactorType'
 import {VoteVariation}               from './VoteVariation'
 

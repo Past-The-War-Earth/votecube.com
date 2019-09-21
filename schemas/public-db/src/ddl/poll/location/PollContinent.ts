@@ -7,11 +7,13 @@ import {
 	ManyToOne,
 	Table
 }                  from '@airport/air-control'
-import {Poll}      from '../Poll'
 import {Continent} from '../../location/Continent'
+import {Poll}      from '../Poll'
 
 export type PollContinent_Id = number
 
+// @Singleton()
+// @InsertOnly()
 @Entity()
 @Table({name: 'POLL_CONTINENTS'})
 export class PollContinent {

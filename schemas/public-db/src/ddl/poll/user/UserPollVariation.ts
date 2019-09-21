@@ -8,9 +8,9 @@ import {
 	OneToMany,
 	Table
 }                                from '@airport/air-control'
-import {CascadeType}             from '../../../../../../../airport/apis/ground-control/lib'
-import {Poll}                    from '../Poll'
+import {CascadeType}             from '@airport/ground-control'
 import {PollVariation}           from '../variation/PollVariation'
+import {UserPoll}                from './UserPoll'
 import {UserPollVariationRating} from './UserPollVariationRating'
 
 export type UserPollVariation_Id = number
@@ -25,8 +25,11 @@ export class UserPollVariation {
 	id: UserPollVariation_Id
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_ID'})
-	poll: Poll
+	@JoinColumn({
+		name: 'USER_POLL_ID',
+		nullable: false
+	})
+	userPoll: UserPoll
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID'})

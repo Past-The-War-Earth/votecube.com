@@ -4,12 +4,14 @@ import {
 	ManyToOne,
 	Table
 }                          from '@airport/air-control'
-import {Rating} from '../../infrastructure/Rating/Rating'
+import {ImmutableActorRow} from '../../infrastructure/ImmutableActorRow'
+import {Rating}            from '../../infrastructure/Rating/Rating'
 import {LabelTranslation}  from './LabelTranslation'
 
 @Entity()
 @Table({name: 'LABEL_TRANSLATION_RATINGS'})
-export class LabelTranslationRating {
+export class LabelTranslationRating
+	extends ImmutableActorRow {
 
 	@ManyToOne()
 	@JoinColumn({name: 'LABEL_TRANSLATION_ID'})
@@ -17,6 +19,6 @@ export class LabelTranslationRating {
 
 	@ManyToOne()
 	@JoinColumn({name: 'RATING_ID'})
-	Rating: Rating
+	rating: Rating
 
 }

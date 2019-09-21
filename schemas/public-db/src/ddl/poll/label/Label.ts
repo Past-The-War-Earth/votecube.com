@@ -4,7 +4,7 @@ import {
 	GeneratedValue,
 	Table
 }                     from '@airport/air-control'
-import {ImmutableRow} from '../../infrastructure/ImmutableRow'
+import {ImmutableActorRow} from '../../infrastructure/ImmutableActorRow'
 
 export type Label_Id = number
 export type Label_Name = string
@@ -12,7 +12,7 @@ export type Label_Name = string
 @Entity()
 @Table({name: 'LABELS'})
 export class Label
-	extends ImmutableRow {
+	extends ImmutableActorRow {
 
 	@GeneratedValue()
 	@Column({name: 'LABEL_ID'})

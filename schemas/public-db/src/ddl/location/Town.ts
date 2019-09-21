@@ -6,9 +6,9 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                     from '@airport/air-control'
-// import {ReferenceRow} from '@airport/holding-pattern'
-import {County}       from './County'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {County}             from './County'
 
 export type Town_Id = number
 export type TownName = string
@@ -18,8 +18,7 @@ export type TownName = string
 	name: 'TOWNS'
 })
 export class Town
-	// extends ReferenceRow
-{
+	extends SystemGeneratedRow {
 
 	@GeneratedValue()
 	@Id()

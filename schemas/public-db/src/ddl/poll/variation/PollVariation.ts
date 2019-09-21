@@ -7,18 +7,19 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                       from '@airport/air-control'
-import {CascadeType}                    from '../../../../../../../airport/apis/ground-control/lib'
-import {FactorSkinVariation}            from '../../factor/FactorSkinVariation'
-import {FactorVariation}                from '../../factor/FactorVariation'
-import {PollFactorPositionVariation}    from '../../factor/position/PollFactorPositionVariation'
-import {PositionVariation}              from '../../factor/position/PositionVariation'
-import {Language}                       from '../../infrastructure/Language'
-import {PollOpinion}                    from '../../message/PollOpinion'
-import {Poll}                           from '../Poll'
-import {PollVariationLocationTimeFrame} from './PollVariationLocationTimeFrame'
-import {PollVariationRating}            from './PollVariationRating'
-import {PollVariationTranslation}       from './translation/PollVariationTranslation'
+}                                    from '@airport/air-control'
+import {CascadeType}                 from '@airport/ground-control'
+import {PollOpinion}                 from '../../message/PollOpinion'
+import {Poll}                        from '../Poll'
+import {PollLocationTimeFrame}       from '../PollLocationTimeFrame'
+import {ChosenPollTranslation}       from '../translation/ChosenPollTranslation'
+import {PollVariationLabel}          from './PollVariationLabel'
+import {PollVariationRating}         from './PollVariationRating'
+import {PollFactorPositionVariation} from './structure/PollFactorPositionVariation'
+import {PollFactorSkinVariation}     from './structure/PollFactorSkinVariation'
+import {PollFactorVariation}         from './structure/PollFactorVariation'
+import {PollPositionVariation}       from './structure/PollPositionVariation'
+import {PollVariationTranslation}    from './translation/PollVariationTranslation'
 
 export type PollVariation_Id = number
 
@@ -36,42 +37,44 @@ export class PollVariation {
 	poll: Poll
 
 	@ManyToOne()
-	@JoinColumn({name: 'PARENT_POLL_VARIATION_ID', referencedColumnName: 'POLL_VARIATION_ID'})
-	parentVariation: PollVariation
-
-	@ManyToOne()
 	@JoinColumn({name: 'POLL_LOCATION_TIME_FRAME_ID'})
-	locationTimeFrame: PollVariation
+	createdAtLocationTimeFrame: PollLocationTimeFrame
 
 	@ManyToOne()
-	@JoinColumn({name: 'LANGUAGE_ID'})
-	language: Language
+	@JoinColumn({
+		name: 'PARENT_POLL_VARIATION_ID',
+		referencedColumnName: 'POLL_VARIATION_ID'
+	})
+	parent: PollVariation
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	children: PollVariation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
 	ratings: PollVariationRating[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
-	opinions: PollOpinion[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
-	locationTimeFrames: PollVariationLocationTimeFrame[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
-	translations: PollVariationTranslation[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
-	factorVariations: FactorVariation[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
-	factorSkinVariations: FactorSkinVariation[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
-	positionVariations: PositionVariation[]
+	variationLabels: PollVariationLabel[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
 	pollFactorPositionVariations: PollFactorPositionVariation[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parentVariation'})
-	childVariations: PollVariation[]
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	factors: PollFactorVariation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	factorSkins: PollFactorSkinVariation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	positions: PollPositionVariation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	chosenTranslations: ChosenPollTranslation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	allTranslations: PollVariationTranslation[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollVariation'})
+	opinions: PollOpinion[]
 
 }

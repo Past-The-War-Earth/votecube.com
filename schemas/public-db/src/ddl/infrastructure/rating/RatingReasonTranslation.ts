@@ -6,9 +6,10 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                                from '@airport/air-control'
-import {Language}                from '../Language'
-import {RatingReason} from './RatingReason'
+}                           from '@airport/air-control'
+import {Language}           from '../Language'
+import {SystemGeneratedRow} from '../SystemGeneratedRow'
+import {RatingReason}       from './RatingReason'
 
 export type RatingReasonTranslation_Id = number
 export type RatingReasonTranslation_Name = string
@@ -16,7 +17,8 @@ export type RatingReasonTranslation_Description = string
 
 @Entity()
 @Table({name: 'RATING_REASON_TRANSLATIONS'})
-export class RatingReasonTranslation {
+export class RatingReasonTranslation
+	extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()

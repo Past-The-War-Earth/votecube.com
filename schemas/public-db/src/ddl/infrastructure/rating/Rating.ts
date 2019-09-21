@@ -7,11 +7,12 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                     from '@airport/air-control'
-import {CascadeType}                  from '@airport/ground-control'
-import {RatingSetting}     from './RatingSetting'
-import {RatingTranslation} from './RatingTranslation'
-import {RatingType}        from './RatingType'
+}                           from '@airport/air-control'
+import {CascadeType}        from '@airport/ground-control'
+import {SystemGeneratedRow} from '../SystemGeneratedRow'
+import {RatingSetting}      from './RatingSetting'
+import {RatingTranslation}  from './RatingTranslation'
+import {RatingType}         from './RatingType'
 
 export type Rating_Id = number
 export type Rating_CssClass = string
@@ -25,7 +26,8 @@ export type Rating_CssClass = string
  */
 @Entity()
 @Table({name: 'RATINGS'})
-export class Rating {
+export class Rating
+	extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()

@@ -5,16 +5,17 @@ import {
 	Id,
 	OneToMany,
 	Table
-}                                           from '@airport/air-control'
-import {CascadeType}                        from '../../../../../../../airport/apis/ground-control/lib'
+}                                from '@airport/air-control'
+import {CascadeType}             from '@airport/ground-control'
+import {SystemGeneratedRow}      from '../SystemGeneratedRow'
 import {RatingReasonTranslation} from './RatingReasonTranslation'
 
 export type RatingReason_Id = number
-export type RatingReason_Name = number
 
 @Entity()
 @Table({name: 'RATING_REASONS'})
-export class RatingReason {
+export class RatingReason
+	extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()
