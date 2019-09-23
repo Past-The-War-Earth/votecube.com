@@ -21,6 +21,17 @@ import {
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
+import {
+	ISystemGeneratedRow,
+	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowEId,
+	SystemGeneratedRowEUpdateColumns,
+	SystemGeneratedRowEUpdateProperties,
+	SystemGeneratedRowESelect,
+	QSystemGeneratedRowQId,
+	QSystemGeneratedRowQRelation,
+	QSystemGeneratedRow,
+} from '../infrastructure/qsystemgeneratedrow';
 
 
 declare function require(moduleName: string): any;
@@ -30,7 +41,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollType {
+export interface IPollType extends ISystemGeneratedRow {
 	
 	// Id Properties
 	id: number;
@@ -56,7 +67,7 @@ export interface IPollType {
  * SELECT - All fields and relations (optional).
  */
 export interface PollTypeESelect
-    extends IEntitySelectProperties, PollTypeEOptionalId {
+    extends SystemGeneratedRowESelect, PollTypeEOptionalId {
 	// Non-Id Properties
 	value?: string | IQStringField;
 
@@ -70,7 +81,7 @@ export interface PollTypeESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollTypeEId
-    extends IEntityIdProperties {
+    extends SystemGeneratedRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -93,7 +104,7 @@ export interface PollTypeEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollTypeEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends SystemGeneratedRowEUpdateProperties {
 	// Non-Id Properties
 	value?: string | IQStringField;
 
@@ -105,7 +116,7 @@ export interface PollTypeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollTypeECascadeGraph
-	extends IEntityCascadeGraph {
+	extends SystemGeneratedRowECascadeGraph {
 	// Cascading Relations
 
 }
@@ -114,8 +125,9 @@ export interface PollTypeECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface PollTypeEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends SystemGeneratedRowEUpdateColumns {
 	// Non-Id Columns
+	CREATED_AT?: Date | IQDateField;
 	POLL_TYPE_VALUE?: string | IQStringField;
 
 }
@@ -144,7 +156,7 @@ extends PollTypeEId, PollTypeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollType extends IQEntity
+export interface QPollType extends QSystemGeneratedRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -160,7 +172,7 @@ export interface QPollType extends IQEntity
 
 
 // Entity Id Interface
-export interface QPollTypeQId
+export interface QPollTypeQId extends QSystemGeneratedRowQId
 {
 	
 	// Id Fields
@@ -173,6 +185,6 @@ export interface QPollTypeQId
 
 // Entity Relation Interface
 export interface QPollTypeQRelation
-	extends IQRelation<QPollType>, QPollTypeQId {
+	extends QSystemGeneratedRowQRelation<QPollType>, QPollTypeQId {
 }
 

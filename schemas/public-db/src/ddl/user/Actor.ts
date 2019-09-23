@@ -7,17 +7,19 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-} from '@airport/air-control'
-import {Application} from './Application'
-import {Device}      from './Device'
-import {UserAccount} from './UserAccount'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {Application}        from './Application'
+import {Device}             from './Device'
+import {UserAccount}        from './UserAccount'
 
 export type Actor_Id = number;
 export type Actor_Hash = number;
 
 @Entity()
 @Table({name: 'ACTORS'})
-export class Actor {
+export class Actor
+	extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()

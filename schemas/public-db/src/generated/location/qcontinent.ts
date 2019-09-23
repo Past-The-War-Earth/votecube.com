@@ -22,6 +22,17 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	ISystemGeneratedRow,
+	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowEId,
+	SystemGeneratedRowEUpdateColumns,
+	SystemGeneratedRowEUpdateProperties,
+	SystemGeneratedRowESelect,
+	QSystemGeneratedRowQId,
+	QSystemGeneratedRowQRelation,
+	QSystemGeneratedRow,
+} from '../infrastructure/qsystemgeneratedrow';
+import {
 	ICountry,
 	CountryECascadeGraph,
 	CountryEId,
@@ -41,7 +52,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IContinent {
+export interface IContinent extends ISystemGeneratedRow {
 	
 	// Id Properties
 	id: number;
@@ -68,7 +79,7 @@ export interface IContinent {
  * SELECT - All fields and relations (optional).
  */
 export interface ContinentESelect
-    extends IEntitySelectProperties, ContinentEOptionalId {
+    extends SystemGeneratedRowESelect, ContinentEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -83,7 +94,7 @@ export interface ContinentESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface ContinentEId
-    extends IEntityIdProperties {
+    extends SystemGeneratedRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -106,7 +117,7 @@ export interface ContinentEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface ContinentEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends SystemGeneratedRowEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -118,7 +129,7 @@ export interface ContinentEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ContinentECascadeGraph
-	extends IEntityCascadeGraph {
+	extends SystemGeneratedRowECascadeGraph {
 	// Cascading Relations
 	countries?: CountryECascadeGraph;
 
@@ -128,8 +139,9 @@ export interface ContinentECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface ContinentEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends SystemGeneratedRowEUpdateColumns {
 	// Non-Id Columns
+	CREATED_AT?: Date | IQDateField;
 	CONTINENT_NAME?: string | IQStringField;
 
 }
@@ -158,7 +170,7 @@ extends ContinentEId, ContinentEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QContinent extends IQEntity
+export interface QContinent extends QSystemGeneratedRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -175,7 +187,7 @@ export interface QContinent extends IQEntity
 
 
 // Entity Id Interface
-export interface QContinentQId
+export interface QContinentQId extends QSystemGeneratedRowQId
 {
 	
 	// Id Fields
@@ -188,6 +200,6 @@ export interface QContinentQId
 
 // Entity Relation Interface
 export interface QContinentQRelation
-	extends IQRelation<QContinent>, QContinentQId {
+	extends QSystemGeneratedRowQRelation<QContinent>, QContinentQId {
 }
 

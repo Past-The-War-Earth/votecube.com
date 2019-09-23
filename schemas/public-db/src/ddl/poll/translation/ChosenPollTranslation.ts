@@ -20,7 +20,9 @@ export type ChosenPollTranslation_Id = number
 
 /**
  * This the computed translation (based on most pinned poll variation).
- *
+ * Note that you can have multiple translations active at the same time,
+ * even within the same language (like standard and a funny or cynical
+ * translation).
  */
 @Entity()
 @Table({name: 'CHOSEN_POLL_TRANSLATIONS'})

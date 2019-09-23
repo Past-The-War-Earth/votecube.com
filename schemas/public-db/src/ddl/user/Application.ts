@@ -6,7 +6,8 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-} from '@airport/air-control'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
 
 export type Application_Id = number;
 export type Application_Host = string;
@@ -14,7 +15,8 @@ export type Application_Port = number;
 
 @Entity()
 @Table({name: 'APPLICATIONS'})
-export class Application {
+export class Application
+	extends SystemGeneratedRow {
 
 	@GeneratedValue()
 	@Id()

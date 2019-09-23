@@ -21,6 +21,17 @@ import {
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
+import {
+	ISystemGeneratedRow,
+	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowEId,
+	SystemGeneratedRowEUpdateColumns,
+	SystemGeneratedRowEUpdateProperties,
+	SystemGeneratedRowESelect,
+	QSystemGeneratedRowQId,
+	QSystemGeneratedRowQRelation,
+	QSystemGeneratedRow,
+} from '../infrastructure/qsystemgeneratedrow';
 
 
 declare function require(moduleName: string): any;
@@ -30,7 +41,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IVoteFactorType {
+export interface IVoteFactorType extends ISystemGeneratedRow {
 	
 	// Id Properties
 	id: number;
@@ -56,7 +67,7 @@ export interface IVoteFactorType {
  * SELECT - All fields and relations (optional).
  */
 export interface VoteFactorTypeESelect
-    extends IEntitySelectProperties, VoteFactorTypeEOptionalId {
+    extends SystemGeneratedRowESelect, VoteFactorTypeEOptionalId {
 	// Non-Id Properties
 	value?: string | IQStringField;
 
@@ -70,7 +81,7 @@ export interface VoteFactorTypeESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface VoteFactorTypeEId
-    extends IEntityIdProperties {
+    extends SystemGeneratedRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -93,7 +104,7 @@ export interface VoteFactorTypeEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface VoteFactorTypeEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends SystemGeneratedRowEUpdateProperties {
 	// Non-Id Properties
 	value?: string | IQStringField;
 
@@ -105,7 +116,7 @@ export interface VoteFactorTypeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface VoteFactorTypeECascadeGraph
-	extends IEntityCascadeGraph {
+	extends SystemGeneratedRowECascadeGraph {
 	// Cascading Relations
 
 }
@@ -114,8 +125,9 @@ export interface VoteFactorTypeECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface VoteFactorTypeEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends SystemGeneratedRowEUpdateColumns {
 	// Non-Id Columns
+	CREATED_AT?: Date | IQDateField;
 	VOTE_FACTOR_TYPE_VALUE?: string | IQStringField;
 
 }
@@ -144,7 +156,7 @@ extends VoteFactorTypeEId, VoteFactorTypeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVoteFactorType extends IQEntity
+export interface QVoteFactorType extends QSystemGeneratedRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -160,7 +172,7 @@ export interface QVoteFactorType extends IQEntity
 
 
 // Entity Id Interface
-export interface QVoteFactorTypeQId
+export interface QVoteFactorTypeQId extends QSystemGeneratedRowQId
 {
 	
 	// Id Fields
@@ -173,6 +185,6 @@ export interface QVoteFactorTypeQId
 
 // Entity Relation Interface
 export interface QVoteFactorTypeQRelation
-	extends IQRelation<QVoteFactorType>, QVoteFactorTypeQId {
+	extends QSystemGeneratedRowQRelation<QVoteFactorType>, QVoteFactorTypeQId {
 }
 

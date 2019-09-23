@@ -22,16 +22,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableRow,
-	ImmutableRowECascadeGraph,
-	ImmutableRowEId,
-	ImmutableRowEUpdateColumns,
-	ImmutableRowEUpdateProperties,
-	ImmutableRowESelect,
-	QImmutableRowQId,
-	QImmutableRowQRelation,
-	QImmutableRow,
-} from '../qimmutablerow';
+	IImmutableActorRow,
+	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowEId,
+	ImmutableActorRowEUpdateColumns,
+	ImmutableActorRowEUpdateProperties,
+	ImmutableActorRowESelect,
+	QImmutableActorRowQId,
+	QImmutableActorRowQRelation,
+	QImmutableActorRow,
+} from '../infrastructure/qimmutableactorrow';
 import {
 	ITheme,
 	ThemeECascadeGraph,
@@ -42,7 +42,7 @@ import {
 	QTheme,
 	QThemeQId,
 	QThemeQRelation,
-} from '../qtheme';
+} from './qtheme';
 import {
 	IPollType,
 	PollTypeECascadeGraph,
@@ -55,71 +55,104 @@ import {
 	QPollTypeQRelation,
 } from './qpolltype';
 import {
-	IPollContinent,
-	PollContinentECascadeGraph,
-	PollContinentEId,
-	PollContinentEOptionalId,
-	PollContinentEUpdateProperties,
-	PollContinentESelect,
-	QPollContinent,
-	QPollContinentQId,
-	QPollContinentQRelation,
-} from '../location/qpollcontinent';
+	IUserPollRating,
+	UserPollRatingECascadeGraph,
+	UserPollRatingEId,
+	UserPollRatingEOptionalId,
+	UserPollRatingEUpdateProperties,
+	UserPollRatingESelect,
+	QUserPollRating,
+	QUserPollRatingQId,
+	QUserPollRatingQRelation,
+} from './user/quserpollrating';
 import {
-	IPollCountry,
-	PollCountryECascadeGraph,
-	PollCountryEId,
-	PollCountryEOptionalId,
-	PollCountryEUpdateProperties,
-	PollCountryESelect,
-	QPollCountry,
-	QPollCountryQId,
-	QPollCountryQRelation,
-} from '../location/qpollcountry';
+	IPollRatingCount,
+	PollRatingCountECascadeGraph,
+	PollRatingCountEId,
+	PollRatingCountEOptionalId,
+	PollRatingCountEUpdateProperties,
+	PollRatingCountESelect,
+	QPollRatingCount,
+	QPollRatingCountQId,
+	QPollRatingCountQRelation,
+} from './count/qpollratingcount';
 import {
-	IPollLabel,
-	PollLabelECascadeGraph,
-	PollLabelEId,
-	PollLabelEOptionalId,
-	PollLabelEUpdateProperties,
-	PollLabelESelect,
-	QPollLabel,
-	QPollLabelQId,
-	QPollLabelQRelation,
-} from './qpolllabel';
+	IChosenPollTranslation,
+	ChosenPollTranslationECascadeGraph,
+	ChosenPollTranslationEId,
+	ChosenPollTranslationEOptionalId,
+	ChosenPollTranslationEUpdateProperties,
+	ChosenPollTranslationESelect,
+	QChosenPollTranslation,
+	QChosenPollTranslationQId,
+	QChosenPollTranslationQRelation,
+} from './translation/qchosenpolltranslation';
 import {
-	IPollFactorPosition,
-	PollFactorPositionECascadeGraph,
-	PollFactorPositionEId,
-	PollFactorPositionEOptionalId,
-	PollFactorPositionEUpdateProperties,
-	PollFactorPositionESelect,
-	QPollFactorPosition,
-	QPollFactorPositionQId,
-	QPollFactorPositionQRelation,
-} from './qpollfactorposition';
+	IChosenPollVariation,
+	ChosenPollVariationECascadeGraph,
+	ChosenPollVariationEId,
+	ChosenPollVariationEOptionalId,
+	ChosenPollVariationEUpdateProperties,
+	ChosenPollVariationESelect,
+	QChosenPollVariation,
+	QChosenPollVariationQId,
+	QChosenPollVariationQRelation,
+} from './variation/qchosenpollvariation';
 import {
-	IPollState,
-	PollStateECascadeGraph,
-	PollStateEId,
-	PollStateEOptionalId,
-	PollStateEUpdateProperties,
-	PollStateESelect,
-	QPollState,
-	QPollStateQId,
-	QPollStateQRelation,
-} from '../location/qpollstate';
+	IPollLocationTimeFrame,
+	PollLocationTimeFrameECascadeGraph,
+	PollLocationTimeFrameEId,
+	PollLocationTimeFrameEOptionalId,
+	PollLocationTimeFrameEUpdateProperties,
+	PollLocationTimeFrameESelect,
+	QPollLocationTimeFrame,
+	QPollLocationTimeFrameQId,
+	QPollLocationTimeFrameQRelation,
+} from './locationtimeframe/qpolllocationtimeframe';
 import {
-	IPollTown,
-	PollTownECascadeGraph,
-	PollTownEId,
-	PollTownEOptionalId,
-	PollTownEUpdateProperties,
-	PollTownESelect,
-	QPollTown,
-	QPollTownQId,
-	QPollTownQRelation,
-} from '../location/qpolltown';
+	IPollVariation,
+	PollVariationECascadeGraph,
+	PollVariationEId,
+	PollVariationEOptionalId,
+	PollVariationEUpdateProperties,
+	PollVariationESelect,
+	QPollVariation,
+	QPollVariationQId,
+	QPollVariationQRelation,
+} from './variation/qpollvariation';
+import {
+	IPollOpinionsCount,
+	PollOpinionsCountECascadeGraph,
+	PollOpinionsCountEId,
+	PollOpinionsCountEOptionalId,
+	PollOpinionsCountEUpdateProperties,
+	PollOpinionsCountESelect,
+	QPollOpinionsCount,
+	QPollOpinionsCountQId,
+	QPollOpinionsCountQRelation,
+} from './count/qpollopinionscount';
+import {
+	IPollOpinionsRatingCount,
+	PollOpinionsRatingCountECascadeGraph,
+	PollOpinionsRatingCountEId,
+	PollOpinionsRatingCountEOptionalId,
+	PollOpinionsRatingCountEUpdateProperties,
+	PollOpinionsRatingCountESelect,
+	QPollOpinionsRatingCount,
+	QPollOpinionsRatingCountQId,
+	QPollOpinionsRatingCountQRelation,
+} from './count/qpollopinionsratingcount';
+import {
+	IPollVoteCount,
+	PollVoteCountECascadeGraph,
+	PollVoteCountEId,
+	PollVoteCountEOptionalId,
+	PollVoteCountEUpdateProperties,
+	PollVoteCountESelect,
+	QPollVoteCount,
+	QPollVoteCountQId,
+	QPollVoteCountQRelation,
+} from './count/qpollvotecount';
 
 
 declare function require(moduleName: string): any;
@@ -129,7 +162,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPoll extends IImmutableRow {
+export interface IPoll extends IImmutableActorRow {
 	
 	// Id Properties
 
@@ -137,21 +170,21 @@ export interface IPoll extends IImmutableRow {
 
 	// Non-Id Properties
 	id?: number;
-	endDate?: Date;
-	startDate?: Date;
-	name?: number;
 
 	// Non-Id Relations
-	parentPoll?: IPoll;
 	theme?: ITheme;
 	type?: IPollType;
-	childPolls?: IPoll[];
-	pollContinents?: IPollContinent[];
-	pollCountries?: IPollCountry[];
-	pollLabels?: IPollLabel[];
-	pollFactorPositions?: IPollFactorPosition[];
-	pollStates?: IPollState[];
-	pollTowns?: IPollTown[];
+	parent?: IPoll;
+	children?: IPoll[];
+	ratings?: IUserPollRating[];
+	ratingCounts?: IPollRatingCount[];
+	chosenPollTranslations?: IChosenPollTranslation[];
+	chosenVariations?: IChosenPollVariation[];
+	locationTimeFrames?: IPollLocationTimeFrame[];
+	allPollVariations?: IPollVariation[];
+	opinionCounts?: IPollOpinionsCount[];
+	opinionRatingCounts?: IPollOpinionsRatingCount[];
+	voteCounts?: IPollVoteCount[];
 
 	// Transient Properties
 
@@ -167,26 +200,26 @@ export interface IPoll extends IImmutableRow {
  * SELECT - All fields and relations (optional).
  */
 export interface PollESelect
-    extends ImmutableRowESelect, PollEOptionalId {
+    extends ImmutableActorRowESelect, PollEOptionalId {
 	// Non-Id Properties
 	id?: number | IQNumberField;
-	endDate?: Date | IQDateField;
-	startDate?: Date | IQDateField;
-	name?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	parentPoll?: PollESelect;
 	theme?: ThemeESelect;
 	type?: PollTypeESelect;
-	childPolls?: PollESelect;
-	pollContinents?: PollContinentESelect;
-	pollCountries?: PollCountryESelect;
-	pollLabels?: PollLabelESelect;
-	pollFactorPositions?: PollFactorPositionESelect;
-	pollStates?: PollStateESelect;
-	pollTowns?: PollTownESelect;
+	parent?: PollESelect;
+	children?: PollESelect;
+	ratings?: UserPollRatingESelect;
+	ratingCounts?: PollRatingCountESelect;
+	chosenPollTranslations?: ChosenPollTranslationESelect;
+	chosenVariations?: ChosenPollVariationESelect;
+	locationTimeFrames?: PollLocationTimeFrameESelect;
+	allPollVariations?: PollVariationESelect;
+	opinionCounts?: PollOpinionsCountESelect;
+	opinionRatingCounts?: PollOpinionsRatingCountESelect;
+	voteCounts?: PollVoteCountESelect;
 
 }
 
@@ -194,7 +227,7 @@ export interface PollESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollEId
-    extends ImmutableRowEId {
+    extends ImmutableActorRowEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -215,17 +248,14 @@ export interface PollEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollEUpdateProperties
-	extends ImmutableRowEUpdateProperties {
+	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
 	id?: number | IQNumberField;
-	endDate?: Date | IQDateField;
-	startDate?: Date | IQDateField;
-	name?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	parentPoll?: PollEOptionalId;
 	theme?: ThemeEOptionalId;
 	type?: PollTypeEOptionalId;
+	parent?: PollEOptionalId;
 
 }
 
@@ -233,15 +263,18 @@ export interface PollEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollECascadeGraph
-	extends ImmutableRowECascadeGraph {
+	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
-	childPolls?: PollECascadeGraph;
-	pollContinents?: PollContinentECascadeGraph;
-	pollCountries?: PollCountryECascadeGraph;
-	pollLabels?: PollLabelECascadeGraph;
-	pollFactorPositions?: PollFactorPositionECascadeGraph;
-	pollStates?: PollStateECascadeGraph;
-	pollTowns?: PollTownECascadeGraph;
+	children?: PollECascadeGraph;
+	ratings?: UserPollRatingECascadeGraph;
+	ratingCounts?: PollRatingCountECascadeGraph;
+	chosenPollTranslations?: ChosenPollTranslationECascadeGraph;
+	chosenVariations?: ChosenPollVariationECascadeGraph;
+	locationTimeFrames?: PollLocationTimeFrameECascadeGraph;
+	allPollVariations?: PollVariationECascadeGraph;
+	opinionCounts?: PollOpinionsCountECascadeGraph;
+	opinionRatingCounts?: PollOpinionsRatingCountECascadeGraph;
+	voteCounts?: PollVoteCountECascadeGraph;
 
 }
 
@@ -249,16 +282,14 @@ export interface PollECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface PollEUpdateColumns
-	extends ImmutableRowEUpdateColumns {
+	extends ImmutableActorRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
+	ACTOR_ID?: number | IQNumberField;
 	POLL_ID?: number | IQNumberField;
-	END_DATE?: Date | IQDateField;
-	START_DATE?: Date | IQDateField;
-	POLL_DESCRIPTION?: number | IQNumberField;
-	PARENT_POLL_ID?: number | IQNumberField;
 	THEME_ID?: number | IQNumberField;
 	POLL_TYPE_ID?: number | IQNumberField;
+	PARENT_POLL_ID?: number | IQNumberField;
 
 }
 
@@ -286,7 +317,7 @@ extends PollEId, PollEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPoll extends QImmutableRow
+export interface QPoll extends QImmutableActorRow
 {
 	// Id Fields
 
@@ -294,27 +325,27 @@ export interface QPoll extends QImmutableRow
 
 	// Non-Id Fields
 	id: IQNumberField;
-	endDate: IQDateField;
-	startDate: IQDateField;
-	name: IQNumberField;
 
 	// Non-Id Relations
-	parentPoll: QPollQRelation;
 	theme: QThemeQRelation;
 	type: QPollTypeQRelation;
-	childPolls: IQOneToManyRelation<QPoll>;
-	pollContinents: IQOneToManyRelation<QPollContinent>;
-	pollCountries: IQOneToManyRelation<QPollCountry>;
-	pollLabels: IQOneToManyRelation<QPollLabel>;
-	pollFactorPositions: IQOneToManyRelation<QPollFactorPosition>;
-	pollStates: IQOneToManyRelation<QPollState>;
-	pollTowns: IQOneToManyRelation<QPollTown>;
+	parent: QPollQRelation;
+	children: IQOneToManyRelation<QPoll>;
+	ratings: IQOneToManyRelation<QUserPollRating>;
+	ratingCounts: IQOneToManyRelation<QPollRatingCount>;
+	chosenPollTranslations: IQOneToManyRelation<QChosenPollTranslation>;
+	chosenVariations: IQOneToManyRelation<QChosenPollVariation>;
+	locationTimeFrames: IQOneToManyRelation<QPollLocationTimeFrame>;
+	allPollVariations: IQOneToManyRelation<QPollVariation>;
+	opinionCounts: IQOneToManyRelation<QPollOpinionsCount>;
+	opinionRatingCounts: IQOneToManyRelation<QPollOpinionsRatingCount>;
+	voteCounts: IQOneToManyRelation<QPollVoteCount>;
 
 }
 
 
 // Entity Id Interface
-export interface QPollQId extends QImmutableRowQId
+export interface QPollQId extends QImmutableActorRowQId
 {
 	
 	// Id Fields
@@ -326,6 +357,6 @@ export interface QPollQId extends QImmutableRowQId
 
 // Entity Relation Interface
 export interface QPollQRelation
-	extends QImmutableRowQRelation<QPoll>, QPollQId {
+	extends QImmutableActorRowQRelation<QPoll>, QPollQId {
 }
 

@@ -22,16 +22,27 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableRow,
-	ImmutableRowECascadeGraph,
-	ImmutableRowEId,
-	ImmutableRowEUpdateColumns,
-	ImmutableRowEUpdateProperties,
-	ImmutableRowESelect,
-	QImmutableRowQId,
-	QImmutableRowQRelation,
-	QImmutableRow,
-} from '../qimmutablerow';
+	IImmutableActorRow,
+	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowEId,
+	ImmutableActorRowEUpdateColumns,
+	ImmutableActorRowEUpdateProperties,
+	ImmutableActorRowESelect,
+	QImmutableActorRowQId,
+	QImmutableActorRowQRelation,
+	QImmutableActorRow,
+} from '../infrastructure/qimmutableactorrow';
+import {
+	IActor,
+	ActorECascadeGraph,
+	ActorEId,
+	ActorEOptionalId,
+	ActorEUpdateProperties,
+	ActorESelect,
+	QActor,
+	QActorQId,
+	QActorQRelation,
+} from '../user/qactor';
 import {
 	IPoll,
 	PollECascadeGraph,
@@ -44,16 +55,27 @@ import {
 	QPollQRelation,
 } from '../poll/qpoll';
 import {
-	IVoteFactor,
-	VoteFactorECascadeGraph,
-	VoteFactorEId,
-	VoteFactorEOptionalId,
-	VoteFactorEUpdateProperties,
-	VoteFactorESelect,
-	QVoteFactor,
-	QVoteFactorQId,
-	QVoteFactorQRelation,
-} from './qvotefactor';
+	IChosenVoteVariation,
+	ChosenVoteVariationECascadeGraph,
+	ChosenVoteVariationEId,
+	ChosenVoteVariationEOptionalId,
+	ChosenVoteVariationEUpdateProperties,
+	ChosenVoteVariationESelect,
+	QChosenVoteVariation,
+	QChosenVoteVariationQId,
+	QChosenVoteVariationQRelation,
+} from './qchosenvotevariation';
+import {
+	IVoteVariation,
+	VoteVariationECascadeGraph,
+	VoteVariationEId,
+	VoteVariationEOptionalId,
+	VoteVariationEUpdateProperties,
+	VoteVariationESelect,
+	QVoteVariation,
+	QVoteVariationQId,
+	QVoteVariationQRelation,
+} from './qvotevariation';
 
 
 declare function require(moduleName: string): any;
@@ -63,7 +85,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IVote extends IImmutableRow {
+export interface IVote extends IImmutableActorRow {
 	
 	// Id Properties
 	id: number;
@@ -71,10 +93,13 @@ export interface IVote extends IImmutableRow {
 	// Id Relations
 
 	// Non-Id Properties
+	type?: number;
 
 	// Non-Id Relations
+	actor?: IActor;
 	poll?: IPoll;
-	factors?: IVoteFactor[];
+	chosenVariations?: IChosenVoteVariation[];
+	variations?: IVoteVariation[];
 
 	// Transient Properties
 
@@ -90,14 +115,17 @@ export interface IVote extends IImmutableRow {
  * SELECT - All fields and relations (optional).
  */
 export interface VoteESelect
-    extends ImmutableRowESelect, VoteEOptionalId {
+    extends ImmutableActorRowESelect, VoteEOptionalId {
 	// Non-Id Properties
+	type?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
+	actor?: ActorESelect;
 	poll?: PollESelect;
-	factors?: VoteFactorESelect;
+	chosenVariations?: ChosenVoteVariationESelect;
+	variations?: VoteVariationESelect;
 
 }
 
@@ -105,7 +133,7 @@ export interface VoteESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface VoteEId
-    extends ImmutableRowEId {
+    extends ImmutableActorRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -128,10 +156,12 @@ export interface VoteEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface VoteEUpdateProperties
-	extends ImmutableRowEUpdateProperties {
+	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
+	type?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
+	actor?: ActorEOptionalId;
 	poll?: PollEOptionalId;
 
 }
@@ -140,9 +170,10 @@ export interface VoteEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface VoteECascadeGraph
-	extends ImmutableRowECascadeGraph {
+	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
-	factors?: VoteFactorECascadeGraph;
+	chosenVariations?: ChosenVoteVariationECascadeGraph;
+	variations?: VoteVariationECascadeGraph;
 
 }
 
@@ -150,9 +181,11 @@ export interface VoteECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface VoteEUpdateColumns
-	extends ImmutableRowEUpdateColumns {
+	extends ImmutableActorRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
+	ACTOR_ID?: number | IQNumberField;
+	VOTE_TYPE_ID?: number | IQNumberField;
 	POLL_ID?: number | IQNumberField;
 
 }
@@ -181,7 +214,7 @@ extends VoteEId, VoteEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVote extends QImmutableRow
+export interface QVote extends QImmutableActorRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -189,16 +222,19 @@ export interface QVote extends QImmutableRow
 	// Id Relations
 
 	// Non-Id Fields
+	type: IQNumberField;
 
 	// Non-Id Relations
+	actor: QActorQRelation;
 	poll: QPollQRelation;
-	factors: IQOneToManyRelation<QVoteFactor>;
+	chosenVariations: IQOneToManyRelation<QChosenVoteVariation>;
+	variations: IQOneToManyRelation<QVoteVariation>;
 
 }
 
 
 // Entity Id Interface
-export interface QVoteQId extends QImmutableRowQId
+export interface QVoteQId extends QImmutableActorRowQId
 {
 	
 	// Id Fields
@@ -211,6 +247,6 @@ export interface QVoteQId extends QImmutableRowQId
 
 // Entity Relation Interface
 export interface QVoteQRelation
-	extends QImmutableRowQRelation<QVote>, QVoteQId {
+	extends QImmutableActorRowQRelation<QVote>, QVoteQId {
 }
 

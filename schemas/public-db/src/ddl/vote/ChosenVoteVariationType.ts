@@ -6,8 +6,8 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                     from '@airport/air-control'
-import {ImmutableRow} from '../infrastructure/ImmutableRow'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
 
 export type ChosenVoteVariationType_Id = number
 export type ChosenVoteVariationType_Code = string
@@ -18,7 +18,7 @@ export type ChosenVoteVariationType_Code = string
 @Entity()
 @Table({name: 'CHOSEN_VOTE_VARIATION_TYPE_TYPES'})
 export class ChosenVoteVariationType
-	extends ImmutableRow {
+	extends SystemGeneratedRow {
 
 	@GeneratedValue()
 	@Id()

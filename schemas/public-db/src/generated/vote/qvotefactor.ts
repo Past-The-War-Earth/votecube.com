@@ -22,27 +22,27 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IVote,
-	VoteECascadeGraph,
-	VoteEId,
-	VoteEOptionalId,
-	VoteEUpdateProperties,
-	VoteESelect,
-	QVote,
-	QVoteQId,
-	QVoteQRelation,
-} from './qvote';
+	IVoteVariation,
+	VoteVariationECascadeGraph,
+	VoteVariationEId,
+	VoteVariationEOptionalId,
+	VoteVariationEUpdateProperties,
+	VoteVariationESelect,
+	QVoteVariation,
+	QVoteVariationQId,
+	QVoteVariationQRelation,
+} from './qvotevariation';
 import {
-	IPollFactorPosition,
-	PollFactorPositionECascadeGraph,
-	PollFactorPositionEId,
-	PollFactorPositionEOptionalId,
-	PollFactorPositionEUpdateProperties,
-	PollFactorPositionESelect,
-	QPollFactorPosition,
-	QPollFactorPositionQId,
-	QPollFactorPositionQRelation,
-} from '../poll/qpollfactorposition';
+	IPollFactorPositionVariation,
+	PollFactorPositionVariationECascadeGraph,
+	PollFactorPositionVariationEId,
+	PollFactorPositionVariationEOptionalId,
+	PollFactorPositionVariationEUpdateProperties,
+	PollFactorPositionVariationESelect,
+	QPollFactorPositionVariation,
+	QPollFactorPositionVariationQId,
+	QPollFactorPositionVariationQRelation,
+} from '../poll/variation/structure/qpollfactorpositionvariation';
 import {
 	IVoteFactorType,
 	VoteFactorTypeECascadeGraph,
@@ -74,8 +74,8 @@ export interface IVoteFactor {
 	share?: string;
 
 	// Non-Id Relations
-	vote?: IVote;
-	pollFactorPos?: IPollFactorPosition;
+	voteVariation?: IVoteVariation;
+	pollFactorPos?: IPollFactorPositionVariation;
 	type?: IVoteFactorType;
 
 	// Transient Properties
@@ -99,8 +99,8 @@ export interface VoteFactorESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	vote?: VoteESelect;
-	pollFactorPos?: PollFactorPositionESelect;
+	voteVariation?: VoteVariationESelect;
+	pollFactorPos?: PollFactorPositionVariationESelect;
 	type?: VoteFactorTypeESelect;
 
 }
@@ -137,8 +137,8 @@ export interface VoteFactorEUpdateProperties
 	share?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	vote?: VoteEOptionalId;
-	pollFactorPos?: PollFactorPositionEOptionalId;
+	voteVariation?: VoteVariationEOptionalId;
+	pollFactorPos?: PollFactorPositionVariationEOptionalId;
 	type?: VoteFactorTypeEOptionalId;
 
 }
@@ -159,8 +159,8 @@ export interface VoteFactorEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	SHARE?: string | IQStringField;
-	VOTE_ID?: number | IQNumberField;
-	POLL_FACTOR_POSITION_ID?: number | IQNumberField;
+	VOTE_VARIATION_ID?: number | IQNumberField;
+	POLL_FACTOR_POSITION_VARIATION_ID?: number | IQNumberField;
 	VOTE_FACTOR_TYPE_ID?: number | IQNumberField;
 
 }
@@ -200,8 +200,8 @@ export interface QVoteFactor extends IQEntity
 	share: IQStringField;
 
 	// Non-Id Relations
-	vote: QVoteQRelation;
-	pollFactorPos: QPollFactorPositionQRelation;
+	voteVariation: QVoteVariationQRelation;
+	pollFactorPos: QPollFactorPositionVariationQRelation;
 	type: QVoteFactorTypeQRelation;
 
 }

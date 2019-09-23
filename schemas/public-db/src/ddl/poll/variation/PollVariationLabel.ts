@@ -5,17 +5,22 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                      from '@airport/air-control'
-import {ImmutableRow}  from '../../infrastructure/ImmutableRow'
-import {Label}         from '../label/Label'
-import {PollVariation} from './PollVariation'
+}                              from '@airport/air-control'
+import {ImmutableActorRow}     from '../../infrastructure/ImmutableActorRow'
+import {PollLocationTimeFrame} from '../locationTimeFrame/PollLocationTimeFrame'
+import {Label}                 from './label/Label'
+import {PollVariation}         from './PollVariation'
 
 export type PollVariationLabel_Id = number
 
+/**
+ * A given Label can only be added to a given poll Variation once
+ * (unlike ratings of which you can have many).
+ */
 @Entity()
 @Table({name: 'POLL_VARIATION_LABELS'})
 export class PollVariationLabel
-	extends ImmutableRow {
+	extends ImmutableActorRow {
 
 	@GeneratedValue()
 	@Column({name: 'POLL_VARIATION_LABEL_ID'})
@@ -28,5 +33,9 @@ export class PollVariationLabel
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_VARIATION_ID', nullable: false})
 	pollVariation: PollVariation
+
+	@ManyToOne()
+	@JoinColumn({name: 'POLL_LOCATION_TIME_FRAME_ID'})
+	locationTimeFrame: PollLocationTimeFrame
 
 }

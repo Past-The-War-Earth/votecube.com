@@ -4,8 +4,8 @@ import {
 	Entity,
 	Id,
 	Table
-} from '@airport/air-control'
-// import {ReferenceRow} from '@airport/holding-pattern'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
 
 export type PollType_Id = number
 export type PollType_Value = 'cube'
@@ -13,8 +13,7 @@ export type PollType_Value = 'cube'
 @Entity()
 @Table({name: 'POLL_TYPES'})
 export class PollType
-	// extends ReferenceRow
-{
+	extends SystemGeneratedRow {
 
 	@Id()
 	@Column({name: 'POLL_TYPE_ID'})

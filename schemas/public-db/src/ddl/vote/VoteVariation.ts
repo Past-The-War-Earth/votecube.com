@@ -9,8 +9,8 @@ import {
 	Table
 }                                 from '@airport/air-control'
 import {CascadeType}              from '@airport/ground-control'
-import {ImmutableRow}             from '../infrastructure/ImmutableRow'
-import {PollLocationTimeFrame}    from '../poll/PollLocationTimeFrame'
+import {ImmutableActorRow}        from '../infrastructure/ImmutableActorRow'
+import {PollLocationTimeFrame}    from '../poll/locationTimeFrame/PollLocationTimeFrame'
 import {PollVariation}            from '../poll/variation/PollVariation'
 import {PollVariationTranslation} from '../poll/variation/translation/PollVariationTranslation'
 import {Vote}                     from './Vote'
@@ -21,7 +21,7 @@ export type VoteVariation_Id = number
 @Entity()
 @Table({name: 'VOTE_VARIATIONS'})
 export class VoteVariation
-	extends ImmutableRow {
+	extends ImmutableActorRow {
 
 	@GeneratedValue()
 	@Id()

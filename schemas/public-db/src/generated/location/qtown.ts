@@ -22,16 +22,27 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IState,
-	StateECascadeGraph,
-	StateEId,
-	StateEOptionalId,
-	StateEUpdateProperties,
-	StateESelect,
-	QState,
-	QStateQId,
-	QStateQRelation,
-} from './qstate';
+	ISystemGeneratedRow,
+	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowEId,
+	SystemGeneratedRowEUpdateColumns,
+	SystemGeneratedRowEUpdateProperties,
+	SystemGeneratedRowESelect,
+	QSystemGeneratedRowQId,
+	QSystemGeneratedRowQRelation,
+	QSystemGeneratedRow,
+} from '../infrastructure/qsystemgeneratedrow';
+import {
+	ICounty,
+	CountyECascadeGraph,
+	CountyEId,
+	CountyEOptionalId,
+	CountyEUpdateProperties,
+	CountyESelect,
+	QCounty,
+	QCountyQId,
+	QCountyQRelation,
+} from './qcounty';
 
 
 declare function require(moduleName: string): any;
@@ -41,7 +52,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ITown {
+export interface ITown extends ISystemGeneratedRow {
 	
 	// Id Properties
 	id: number;
@@ -52,7 +63,7 @@ export interface ITown {
 	name?: string;
 
 	// Non-Id Relations
-	state?: IState;
+	county?: ICounty;
 
 	// Transient Properties
 
@@ -68,14 +79,14 @@ export interface ITown {
  * SELECT - All fields and relations (optional).
  */
 export interface TownESelect
-    extends IEntitySelectProperties, TownEOptionalId {
+    extends SystemGeneratedRowESelect, TownEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	state?: StateESelect;
+	county?: CountyESelect;
 
 }
 
@@ -83,7 +94,7 @@ export interface TownESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface TownEId
-    extends IEntityIdProperties {
+    extends SystemGeneratedRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -106,12 +117,12 @@ export interface TownEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface TownEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends SystemGeneratedRowEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	state?: StateEOptionalId;
+	county?: CountyEOptionalId;
 
 }
 
@@ -119,7 +130,7 @@ export interface TownEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface TownECascadeGraph
-	extends IEntityCascadeGraph {
+	extends SystemGeneratedRowECascadeGraph {
 	// Cascading Relations
 
 }
@@ -128,10 +139,11 @@ export interface TownECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface TownEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends SystemGeneratedRowEUpdateColumns {
 	// Non-Id Columns
+	CREATED_AT?: Date | IQDateField;
 	TOWN_NAME?: string | IQStringField;
-	STATE_ID?: number | IQNumberField;
+	COUNTY_ID?: number | IQNumberField;
 
 }
 
@@ -159,7 +171,7 @@ extends TownEId, TownEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTown extends IQEntity
+export interface QTown extends QSystemGeneratedRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -170,13 +182,13 @@ export interface QTown extends IQEntity
 	name: IQStringField;
 
 	// Non-Id Relations
-	state: QStateQRelation;
+	county: QCountyQRelation;
 
 }
 
 
 // Entity Id Interface
-export interface QTownQId
+export interface QTownQId extends QSystemGeneratedRowQId
 {
 	
 	// Id Fields
@@ -189,6 +201,6 @@ export interface QTownQId
 
 // Entity Relation Interface
 export interface QTownQRelation
-	extends IQRelation<QTown>, QTownQId {
+	extends QSystemGeneratedRowQRelation<QTown>, QTownQId {
 }
 

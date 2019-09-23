@@ -6,17 +6,21 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                              from '@airport/air-control'
-import {CascadeType}           from '@airport/ground-control'
-import {ImmutableActorRow}     from '../infrastructure/ImmutableActorRow'
-import {PollLabel}             from './label/PollLabel'
-import {PollLocationTimeFrame} from './PollLocationTimeFrame'
-import {PollRating}            from './PollRating'
-import {PollType}              from './PollType'
-import {Theme}                 from './Theme'
-import {ChosenPollTranslation} from './translation/ChosenPollTranslation'
-import {ChosenPollVariation}   from './variation/ChosenPollVariation'
-import {PollVariation}         from './variation/PollVariation'
+}                                from '@airport/air-control'
+import {CascadeType}             from '@airport/ground-control'
+import {ImmutableActorRow}       from '../infrastructure/ImmutableActorRow'
+import {PollOpinionsCount}       from './count/PollOpinionsCount'
+import {PollOpinionsRatingCount} from './count/PollOpinionsRatingCount'
+import {PollRatingCount}         from './count/PollRatingCount'
+import {PollVoteCount}           from './count/PollVoteCount'
+import {PollLocationTimeFrame}   from './locationTimeFrame/PollLocationTimeFrame'
+import {PollType}                from './PollType'
+import {Theme}                   from './Theme'
+import {ChosenPollTranslation}   from './translation/ChosenPollTranslation'
+import {UserPollRating}          from './user/UserPollRating'
+import {ChosenPollVariation}     from './variation/ChosenPollVariation'
+import {PollVariation}          from './variation/PollVariation'
+import {PollVariationLabel}     from './variation/PollVariationLabel'
 
 export type Poll_Id = number
 
@@ -48,10 +52,10 @@ export class Poll
 	children: Poll[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	ratings: PollRating[]
+	ratings: UserPollRating[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	pollLabels: PollLabel[]
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'poll'})
+	ratingCounts: PollRatingCount[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	chosenPollTranslations: ChosenPollTranslation[]
@@ -64,5 +68,14 @@ export class Poll
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	allPollVariations: PollVariation[]
+
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'poll'})
+	opinionCounts: PollOpinionsCount[]
+
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'poll'})
+	opinionRatingCounts: PollOpinionsRatingCount[]
+
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'poll'})
+	voteCounts: PollVoteCount[]
 
 }

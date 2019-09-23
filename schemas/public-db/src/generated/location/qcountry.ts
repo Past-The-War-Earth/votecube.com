@@ -22,6 +22,17 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	ISystemGeneratedRow,
+	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowEId,
+	SystemGeneratedRowEUpdateColumns,
+	SystemGeneratedRowEUpdateProperties,
+	SystemGeneratedRowESelect,
+	QSystemGeneratedRowQId,
+	QSystemGeneratedRowQRelation,
+	QSystemGeneratedRow,
+} from '../infrastructure/qsystemgeneratedrow';
+import {
 	IContinent,
 	ContinentECascadeGraph,
 	ContinentEId,
@@ -43,6 +54,17 @@ import {
 	QStateQId,
 	QStateQRelation,
 } from './qstate';
+import {
+	ICountryTown,
+	CountryTownECascadeGraph,
+	CountryTownEId,
+	CountryTownEOptionalId,
+	CountryTownEUpdateProperties,
+	CountryTownESelect,
+	QCountryTown,
+	QCountryTownQId,
+	QCountryTownQRelation,
+} from './qcountrytown';
 
 
 declare function require(moduleName: string): any;
@@ -52,7 +74,7 @@ declare function require(moduleName: string): any;
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ICountry {
+export interface ICountry extends ISystemGeneratedRow {
 	
 	// Id Properties
 	id: number;
@@ -65,6 +87,7 @@ export interface ICountry {
 	// Non-Id Relations
 	continent?: IContinent;
 	states?: IState[];
+	countryTowns?: ICountryTown;
 
 	// Transient Properties
 
@@ -80,7 +103,7 @@ export interface ICountry {
  * SELECT - All fields and relations (optional).
  */
 export interface CountryESelect
-    extends IEntitySelectProperties, CountryEOptionalId {
+    extends SystemGeneratedRowESelect, CountryEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -89,6 +112,7 @@ export interface CountryESelect
   // Non-Id relations (including OneToMany's)
 	continent?: ContinentESelect;
 	states?: StateESelect;
+	countryTowns?: CountryTownESelect;
 
 }
 
@@ -96,7 +120,7 @@ export interface CountryESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface CountryEId
-    extends IEntityIdProperties {
+    extends SystemGeneratedRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -119,7 +143,7 @@ export interface CountryEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface CountryEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends SystemGeneratedRowEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -132,9 +156,10 @@ export interface CountryEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface CountryECascadeGraph
-	extends IEntityCascadeGraph {
+	extends SystemGeneratedRowECascadeGraph {
 	// Cascading Relations
 	states?: StateECascadeGraph;
+	countryTowns?: CountryTownECascadeGraph;
 
 }
 
@@ -142,8 +167,9 @@ export interface CountryECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface CountryEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends SystemGeneratedRowEUpdateColumns {
 	// Non-Id Columns
+	CREATED_AT?: Date | IQDateField;
 	COUNTRY_NAME?: string | IQStringField;
 	CONTINENT_ID?: number | IQNumberField;
 
@@ -173,7 +199,7 @@ extends CountryEId, CountryEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QCountry extends IQEntity
+export interface QCountry extends QSystemGeneratedRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -186,12 +212,13 @@ export interface QCountry extends IQEntity
 	// Non-Id Relations
 	continent: QContinentQRelation;
 	states: IQOneToManyRelation<QState>;
+	countryTowns: QCountryTownQRelation;
 
 }
 
 
 // Entity Id Interface
-export interface QCountryQId
+export interface QCountryQId extends QSystemGeneratedRowQId
 {
 	
 	// Id Fields
@@ -204,6 +231,6 @@ export interface QCountryQId
 
 // Entity Relation Interface
 export interface QCountryQRelation
-	extends IQRelation<QCountry>, QCountryQId {
+	extends QSystemGeneratedRowQRelation<QCountry>, QCountryQId {
 }
 

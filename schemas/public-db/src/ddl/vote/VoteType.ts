@@ -4,8 +4,8 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-}                     from '@airport/air-control'
-import {ImmutableRow} from '../infrastructure/ImmutableRow'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
 
 export type VoteType_Id = number
 export type VoteType_Name = string
@@ -22,7 +22,7 @@ export type VoteType_Description = string
 @Entity()
 @Table({name: 'VOTE_TYPES'})
 export class VoteType
-	extends ImmutableRow {
+	extends SystemGeneratedRow {
 
 	@GeneratedValue()
 	@Id()

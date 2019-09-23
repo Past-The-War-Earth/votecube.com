@@ -1,0 +1,232 @@
+import {
+	IQEntityInternal,
+	IEntityIdProperties,
+	IEntityCascadeGraph,
+	IEntityUpdateColumns,
+	IEntityUpdateProperties,
+	IEntitySelectProperties,
+	IEntityDatabaseFacade,
+	IEntityFind,
+	IEntityFindOne,
+	IEntitySearch,
+	IEntitySearchOne,
+	IQBooleanField,
+	IQDateField,
+	IQNumberField,
+	IQOneToManyRelation,
+	IQStringField,
+	IQUntypedField,
+	IQEntity,
+	IQRelation,
+	RawDelete,
+	RawUpdate,
+} from '@airport/air-control';
+import {
+	ISystemGeneratedRow,
+	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowEId,
+	SystemGeneratedRowEUpdateColumns,
+	SystemGeneratedRowEUpdateProperties,
+	SystemGeneratedRowESelect,
+	QSystemGeneratedRowQId,
+	QSystemGeneratedRowQRelation,
+	QSystemGeneratedRow,
+} from '../../infrastructure/qsystemgeneratedrow';
+import {
+	IFactorOpinionVersion,
+	FactorOpinionVersionECascadeGraph,
+	FactorOpinionVersionEId,
+	FactorOpinionVersionEOptionalId,
+	FactorOpinionVersionEUpdateProperties,
+	FactorOpinionVersionESelect,
+	QFactorOpinionVersion,
+	QFactorOpinionVersionQId,
+	QFactorOpinionVersionQRelation,
+} from '../qfactoropinionversion';
+import {
+	ILanguage,
+	LanguageECascadeGraph,
+	LanguageEId,
+	LanguageEOptionalId,
+	LanguageEUpdateProperties,
+	LanguageESelect,
+	QLanguage,
+	QLanguageQId,
+	QLanguageQRelation,
+} from '../../infrastructure/qlanguage';
+
+
+declare function require(moduleName: string): any;
+
+
+//////////////////////////////
+//     ENTITY INTERFACE     //
+//////////////////////////////
+
+export interface IFactorOpinionVersionTranslation extends ISystemGeneratedRow {
+	
+	// Id Properties
+	id: number;
+
+	// Id Relations
+
+	// Non-Id Properties
+	original?: boolean;
+	title?: string;
+	text?: string;
+
+	// Non-Id Relations
+	factorOpinionVersion?: IFactorOpinionVersion;
+	language?: ILanguage;
+
+	// Transient Properties
+
+	// Public Methods
+	
+}		
+		
+//////////////////////////////
+//  API SPECIFIC INTERFACES //
+//////////////////////////////
+
+/**
+ * SELECT - All fields and relations (optional).
+ */
+export interface FactorOpinionVersionTranslationESelect
+    extends SystemGeneratedRowESelect, FactorOpinionVersionTranslationEOptionalId {
+	// Non-Id Properties
+	original?: boolean | IQBooleanField;
+	title?: string | IQStringField;
+	text?: string | IQStringField;
+
+	// Id Relations - full property interfaces
+
+  // Non-Id relations (including OneToMany's)
+	factorOpinionVersion?: FactorOpinionVersionESelect;
+	language?: LanguageESelect;
+
+}
+
+/**
+ * DELETE - Ids fields and relations only (required).
+ */
+export interface FactorOpinionVersionTranslationEId
+    extends SystemGeneratedRowEId {
+	// Id Properties
+	id: number | IQNumberField;
+
+	// Id Relations - Ids only
+
+}
+
+/**
+ * Ids fields and relations only (optional).
+ */
+export interface FactorOpinionVersionTranslationEOptionalId {
+	// Id Properties
+	id?: number | IQNumberField;
+
+	// Id Relations - Ids only
+
+}
+
+/**
+ * UPDATE - non-id fields and relations (optional).
+ */
+export interface FactorOpinionVersionTranslationEUpdateProperties
+	extends SystemGeneratedRowEUpdateProperties {
+	// Non-Id Properties
+	original?: boolean | IQBooleanField;
+	title?: string | IQStringField;
+	text?: string | IQStringField;
+
+	// Non-Id Relations - ids only & no OneToMany's
+	factorOpinionVersion?: FactorOpinionVersionEOptionalId;
+	language?: LanguageEOptionalId;
+
+}
+
+/**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface FactorOpinionVersionTranslationECascadeGraph
+	extends SystemGeneratedRowECascadeGraph {
+	// Cascading Relations
+
+}
+
+/**
+ * UPDATE - non-id columns (optional).
+ */
+export interface FactorOpinionVersionTranslationEUpdateColumns
+	extends SystemGeneratedRowEUpdateColumns {
+	// Non-Id Columns
+	CREATED_AT?: Date | IQDateField;
+	FACTOR_OPINION_VERSION_TRANSLATION_IS_ORIGINAL?: boolean | IQBooleanField;
+	FACTOR_OPINION_VERSION_TRANSLATION_TITLE?: string | IQStringField;
+	FACTOR_OPINION_VERSION_TRANSLATION_TEXT?: string | IQStringField;
+	FACTOR_OPINION_VERSION_ID?: number | IQNumberField;
+	LANGUAGE_ID?: number | IQNumberField;
+
+}
+
+/**
+ * CREATE - id fields and relations (required) and non-id fields and relations (optional).
+ */
+export interface FactorOpinionVersionTranslationECreateProperties
+extends Partial<FactorOpinionVersionTranslationEId>, FactorOpinionVersionTranslationEUpdateProperties {
+}
+
+/**
+ * CREATE - id columns (required) and non-id columns (optional).
+ */
+export interface FactorOpinionVersionTranslationECreateColumns
+extends FactorOpinionVersionTranslationEId, FactorOpinionVersionTranslationEUpdateColumns {
+}
+
+
+
+
+///////////////////////////////////////////////
+//  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
+///////////////////////////////////////////////
+
+/**
+ * Query Entity Query Definition (used for Q.EntityName).
+ */
+export interface QFactorOpinionVersionTranslation extends QSystemGeneratedRow
+{
+	// Id Fields
+	id: IQNumberField;
+
+	// Id Relations
+
+	// Non-Id Fields
+	original: IQBooleanField;
+	title: IQStringField;
+	text: IQStringField;
+
+	// Non-Id Relations
+	factorOpinionVersion: QFactorOpinionVersionQRelation;
+	language: QLanguageQRelation;
+
+}
+
+
+// Entity Id Interface
+export interface QFactorOpinionVersionTranslationQId extends QSystemGeneratedRowQId
+{
+	
+	// Id Fields
+	id: IQNumberField;
+
+	// Id Relations
+
+
+}
+
+// Entity Relation Interface
+export interface QFactorOpinionVersionTranslationQRelation
+	extends QSystemGeneratedRowQRelation<QFactorOpinionVersionTranslation>, QFactorOpinionVersionTranslationQId {
+}
+

@@ -15,6 +15,7 @@ import {Poll}                from '../poll/Poll'
 import {Actor}               from '../user/Actor'
 import {ChosenVoteVariation} from './ChosenVoteVariation'
 import {VoteType}            from './VoteType'
+import {VoteVariation}       from './VoteVariation'
 
 export type Vote_Id = number
 
@@ -34,7 +35,7 @@ export class Vote
 	actor: Actor
 
 	/**
-	 * Reserved for future use - let people on the the target group vote too (
+	 * Reserved for future use - let people not the the target group vote too (
 	 * since they can see the poll) but track it differently
 	 */
 	@Column({name: 'VOTE_TYPE_ID'})
@@ -45,13 +46,10 @@ export class Vote
 	@JoinColumn({name: 'POLL_ID', nullable: false})
 	poll: Poll
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
 	chosenVariations: ChosenVoteVariation[]
 
-	/*
-		@ManyToOne()
-		@JoinColumn({name: 'POLL_VARIATION_ID', nullable: false})
-		variation: PollVariation
-		*/
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
+	variations: VoteVariation[]
 
 }

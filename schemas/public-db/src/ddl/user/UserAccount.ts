@@ -4,7 +4,8 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-} from '@airport/air-control'
+}                           from '@airport/air-control'
+import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
 
 export type UserAccount_Id = number
 export type UserAccount_UserName = string
@@ -15,7 +16,8 @@ export type UserAccount_BirthDate = Date
 
 @Entity()
 @Table({name: 'USER_ACCOUNTS'})
-export class UserAccount {
+export class UserAccount
+	extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()

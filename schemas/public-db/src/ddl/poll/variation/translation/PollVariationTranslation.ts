@@ -7,14 +7,20 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                         from '@airport/air-control'
-import {CascadeType}                      from '@airport/ground-control'
-import {Language}                         from '../../../infrastructure/Language'
-import {TranslationType}                  from '../../../infrastructure/TranslationType'
-import {PollVariation}                    from '../PollVariation'
-import {PollVariationFactorTranslation}   from './PollVariationFactorTranslation'
-import {PollVariationPositionTranslation} from './PollVariationPositionTranslation'
-import {PollVariationTranslationRating}   from './PollVariationTranslationRating'
+}                                                   from '@airport/air-control'
+import {CascadeType}                                from '@airport/ground-control'
+import {ImmutableActorRow}                          from '../../../infrastructure/ImmutableActorRow'
+import {Language}                                   from '../../../infrastructure/Language'
+import {TranslationType}                            from '../../../infrastructure/TranslationType'
+import {PollLocationTimeFrame}                      from '../../locationTimeFrame/PollLocationTimeFrame'
+import {UserPollVariationTranslationRating}         from '../../user/UserPollVariationTranslationRating'
+import {PollVariation}                              from '../PollVariation'
+import {PollVariationTranslationOpinionCount}       from './count/PollVariationTranslationOpinionCount'
+import {PollVariationTranslationOpinionRatingCount} from './count/PollVariationTranslationOpinionRatingCount'
+import {PollVariationTranslationRatingCount}        from './count/PollVariationTranslationRatingCount'
+import {PollVariationTranslationVoteCount}          from './count/PollVariationTranslationVoteCount'
+import {PollVariationFactorTranslation}             from './PollVariationFactorTranslation'
+import {PollVariationPositionTranslation}           from './PollVariationPositionTranslation'
 
 export type PollVariationTranslation_Id = number
 export type PollVariationTranslation_Name = string
@@ -26,7 +32,8 @@ export type PollVariationTranslation_Description = string
  */
 @Entity()
 @Table({name: 'POLL_VARIATION_TRANSLATIONS'})
-export class PollVariationTranslation {
+export class PollVariationTranslation
+	extends ImmutableActorRow {
 
 	@Id()
 	@GeneratedValue()
@@ -52,6 +59,10 @@ export class PollVariationTranslation {
 	type: TranslationType
 
 	@ManyToOne()
+	@JoinColumn({name: 'POLL_LOCATION_TIME_FRAME_ID'})
+	createdAtLocationTimeFrame: PollLocationTimeFrame
+
+	@ManyToOne()
 	@JoinColumn({
 		name: 'PARENT_POLL_VARIATION_TRANSLATION_ID',
 		referencedColumnName: 'POLL_VARIATION_TRANSLATION_ID'
@@ -61,13 +72,25 @@ export class PollVariationTranslation {
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
 	children: PollVariationTranslation[]
 
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'translation'})
+	ratings: UserPollVariationTranslationRating[]
+
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
+	ratingCounts: PollVariationTranslationRatingCount[]
+
 	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
 	factors: PollVariationFactorTranslation[]
 
 	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
 	positions: PollVariationPositionTranslation[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'translation'})
-	ratings: PollVariationTranslationRating[]
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
+	opinionCounts: PollVariationTranslationOpinionCount[]
+
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
+	opinionRatingCounts: PollVariationTranslationOpinionRatingCount[]
+
+	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollVariationTranslation'})
+	voteCounts: PollVariationTranslationVoteCount[]
 
 }

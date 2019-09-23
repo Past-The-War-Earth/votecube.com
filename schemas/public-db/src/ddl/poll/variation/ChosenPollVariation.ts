@@ -7,9 +7,9 @@ import {
 	ManyToOne,
 	Table
 }                                from '@airport/air-control'
-import {ImmutableRow}            from '../../infrastructure/ImmutableRow'
+import {SystemGeneratedRow}      from '../../infrastructure/SystemGeneratedRow'
+import {PollLocationTimeFrame}   from '../locationTimeFrame/PollLocationTimeFrame'
 import {Poll}                    from '../Poll'
-import {PollLocationTimeFrame}   from '../PollLocationTimeFrame'
 import {ChosenPollVariationType} from './ChosenPollVariationType'
 import {PollVariation}           from './PollVariation'
 
@@ -23,7 +23,7 @@ export type ChosenPollVariation_Id = number
 @Entity()
 @Table({name: 'CHOSEN_POLL_VARIATIONS'})
 export class ChosenPollVariation
-	extends ImmutableRow {
+	extends SystemGeneratedRow {
 
 	@GeneratedValue()
 	@Id()
