@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IVoteVariation,
 	VoteVariationECascadeGraph,
 	VoteVariationEId,
 	VoteVariationEOptionalId,
@@ -33,7 +32,6 @@ import {
 	QVoteVariationQRelation,
 } from './qvotevariation';
 import {
-	IPollFactorPositionVariation,
 	PollFactorPositionVariationECascadeGraph,
 	PollFactorPositionVariationEId,
 	PollFactorPositionVariationEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollFactorPositionVariationQRelation,
 } from '../poll/variation/structure/qpollfactorpositionvariation';
 import {
-	IVoteFactorType,
 	VoteFactorTypeECascadeGraph,
 	VoteFactorTypeEId,
 	VoteFactorTypeEOptionalId,
@@ -59,31 +56,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IVoteFactor {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	share?: string;
-
-	// Non-Id Relations
-	voteVariation?: IVoteVariation;
-	pollFactorPos?: IPollFactorPositionVariation;
-	type?: IVoteFactorType;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

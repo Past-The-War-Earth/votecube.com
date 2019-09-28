@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../../infrastructure/qsystemgeneratedrow';
 import {
-	IPoll,
 	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	IPollVariation,
 	PollVariationECascadeGraph,
 	PollVariationEId,
 	PollVariationEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollVariationQRelation,
 } from './qpollvariation';
 import {
-	IChosenPollVariationType,
 	ChosenPollVariationTypeECascadeGraph,
 	ChosenPollVariationTypeEId,
 	ChosenPollVariationTypeEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QChosenPollVariationTypeQRelation,
 } from './qchosenpollvariationtype';
 import {
-	IPollLocationTimeFrame,
 	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameEId,
 	PollLocationTimeFrameEOptionalId,
@@ -81,31 +76,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IChosenPollVariation extends ISystemGeneratedRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	poll?: IPoll;
-	pollVariation?: IPollVariation;
-	type?: IChosenPollVariationType;
-	locationTimeFrame?: IPollLocationTimeFrame;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

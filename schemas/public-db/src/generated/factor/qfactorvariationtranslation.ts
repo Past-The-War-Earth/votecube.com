@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableActorRow,
 	ImmutableActorRowECascadeGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../infrastructure/qimmutableactorrow';
 import {
-	IFactorVariation,
 	FactorVariationECascadeGraph,
 	FactorVariationEId,
 	FactorVariationEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QFactorVariationQRelation,
 } from './qfactorvariation';
 import {
-	ILanguage,
 	LanguageECascadeGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QLanguageQRelation,
 } from '../infrastructure/qlanguage';
 import {
-	IFactor,
 	FactorECascadeGraph,
 	FactorEId,
 	FactorEOptionalId,
@@ -70,34 +66,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IFactorVariationTranslation extends IImmutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	name?: string;
-	description?: string;
-
-	// Non-Id Relations
-	factorVariation?: IFactorVariation;
-	language?: ILanguage;
-	parent?: IFactorVariationTranslation;
-	children?: IFactorVariationTranslation[];
-	childFactors?: IFactor;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

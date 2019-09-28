@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../infrastructure/qsystemgeneratedrow';
 import {
-	ICounty,
 	CountyECascadeGraph,
 	CountyEId,
 	CountyEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QCountyQRelation,
 } from './qcounty';
 import {
-	ITown,
 	TownECascadeGraph,
 	TownEId,
 	TownEOptionalId,
@@ -59,28 +56,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface ICountyTown extends ISystemGeneratedRow {
-	
-	// Id Properties
-
-	// Id Relations
-	county: ICounty;
-	town: ITown;
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

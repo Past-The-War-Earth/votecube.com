@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableActorRow,
 	ImmutableActorRowECascadeGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../../infrastructure/qimmutableactorrow';
 import {
-	IFactorOpinionVersion,
 	FactorOpinionVersionECascadeGraph,
 	FactorOpinionVersionEId,
 	FactorOpinionVersionEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QFactorOpinionVersionQRelation,
 } from '../qfactoropinionversion';
 import {
-	IRating,
 	RatingECascadeGraph,
 	RatingEId,
 	RatingEOptionalId,
@@ -59,32 +56,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IFactorOpinionVersionRating extends IImmutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	isCurrent?: boolean;
-
-	// Non-Id Relations
-	factorOpinionVersion?: IFactorOpinionVersion;
-	rating?: IRating;
-	parent?: IFactorOpinionVersionRating;
-	child?: IFactorOpinionVersionRating[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

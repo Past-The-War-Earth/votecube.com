@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../qsystemgeneratedrow';
 import {
-	ICountry,
 	CountryECascadeGraph,
 	CountryEId,
 	CountryEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QCountryQRelation,
 } from '../../location/qcountry';
 import {
-	IRating,
 	RatingECascadeGraph,
 	RatingEId,
 	RatingEOptionalId,
@@ -59,31 +56,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IRatingSetting extends ISystemGeneratedRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	key?: string;
-	value?: string;
-
-	// Non-Id Relations
-	country?: ICountry;
-	rating?: IRating;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

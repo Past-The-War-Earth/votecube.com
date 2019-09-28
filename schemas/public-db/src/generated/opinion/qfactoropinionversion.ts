@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IPollOpinionVersion,
 	PollOpinionVersionECascadeGraph,
 	PollOpinionVersionEId,
 	PollOpinionVersionEOptionalId,
@@ -33,7 +32,6 @@ import {
 	QPollOpinionVersionQRelation,
 } from './qpollopinionversion';
 import {
-	IPollFactorVariation,
 	PollFactorVariationECascadeGraph,
 	PollFactorVariationEId,
 	PollFactorVariationEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollFactorVariationQRelation,
 } from '../poll/variation/structure/qpollfactorvariation';
 import {
-	ILanguage,
 	LanguageECascadeGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QLanguageQRelation,
 } from '../infrastructure/qlanguage';
 import {
-	IFactorOpinionVersionRating,
 	FactorOpinionVersionRatingECascadeGraph,
 	FactorOpinionVersionRatingEId,
 	FactorOpinionVersionRatingEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QFactorOpinionVersionRatingQRelation,
 } from './user/qfactoropinionversionrating';
 import {
-	IFactorOpinionVersionTranslation,
 	FactorOpinionVersionTranslationECascadeGraph,
 	FactorOpinionVersionTranslationEId,
 	FactorOpinionVersionTranslationEOptionalId,
@@ -77,7 +72,6 @@ import {
 	QFactorOpinionVersionTranslationQRelation,
 } from './translation/qfactoropinionversiontranslation';
 import {
-	IPositionOpinionVersion,
 	PositionOpinionVersionECascadeGraph,
 	PositionOpinionVersionEId,
 	PositionOpinionVersionEOptionalId,
@@ -88,7 +82,6 @@ import {
 	QPositionOpinionVersionQRelation,
 } from './qpositionopinionversion';
 import {
-	IFactorOpinionVersionRatingCount,
 	FactorOpinionVersionRatingCountECascadeGraph,
 	FactorOpinionVersionRatingCountEId,
 	FactorOpinionVersionRatingCountEOptionalId,
@@ -103,34 +96,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IFactorOpinionVersion {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	pollOpinionVersion?: IPollOpinionVersion;
-	pollFactorVariation?: IPollFactorVariation;
-	language?: ILanguage;
-	ratings?: IFactorOpinionVersionRating[];
-	translations?: IFactorOpinionVersionTranslation[];
-	positions?: IPositionOpinionVersion[];
-	ratingCounts?: IFactorOpinionVersionRatingCount[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

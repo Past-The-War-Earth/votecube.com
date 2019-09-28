@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../../../infrastructure/qsystemgeneratedrow';
 import {
-	IPollLocationTimeFrame,
 	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameEId,
 	PollLocationTimeFrameEOptionalId,
@@ -48,29 +46,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollLTFVoteCount extends ISystemGeneratedRow {
-	
-	// Id Properties
-
-	// Id Relations
-
-	// Non-Id Properties
-	id?: number;
-	count?: number;
-
-	// Non-Id Relations
-	locationTimeFrame?: IPollLocationTimeFrame;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

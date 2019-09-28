@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../../infrastructure/qsystemgeneratedrow';
 import {
-	IPollOpinionVersion,
 	PollOpinionVersionECascadeGraph,
 	PollOpinionVersionEId,
 	PollOpinionVersionEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollOpinionVersionQRelation,
 } from '../qpollopinionversion';
 import {
-	IRating,
 	RatingECascadeGraph,
 	RatingEId,
 	RatingEOptionalId,
@@ -59,30 +56,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollOpinionVersionRatingCount extends ISystemGeneratedRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	count?: number;
-
-	// Non-Id Relations
-	pollOpinionVersion?: IPollOpinionVersion;
-	rating?: IRating;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

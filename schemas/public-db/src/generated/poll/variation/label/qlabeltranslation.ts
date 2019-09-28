@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../../../infrastructure/qsystemgeneratedrow';
 import {
-	ILabelTranslationRatingCount,
 	LabelTranslationRatingCountECascadeGraph,
 	LabelTranslationRatingCountEId,
 	LabelTranslationRatingCountEOptionalId,
@@ -48,29 +46,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface ILabelTranslation extends ISystemGeneratedRow {
-	
-	// Id Properties
-
-	// Id Relations
-
-	// Non-Id Properties
-	id?: number;
-	name?: string;
-
-	// Non-Id Relations
-	counts?: ILabelTranslationRatingCount[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

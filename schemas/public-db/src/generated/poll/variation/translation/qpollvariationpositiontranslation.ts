@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IPollVariationTranslation,
 	PollVariationTranslationECascadeGraph,
 	PollVariationTranslationEId,
 	PollVariationTranslationEOptionalId,
@@ -33,7 +32,6 @@ import {
 	QPollVariationTranslationQRelation,
 } from './qpollvariationtranslation';
 import {
-	IPositionVariationTranslation,
 	PositionVariationTranslationECascadeGraph,
 	PositionVariationTranslationEId,
 	PositionVariationTranslationEOptionalId,
@@ -48,28 +46,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollVariationPositionTranslation {
-	
-	// Id Properties
-
-	// Id Relations
-	pollVariationTranslation: IPollVariationTranslation;
-	positionVariationTranslation: IPositionVariationTranslation;
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableActorRow,
 	ImmutableActorRowECascadeGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../../infrastructure/qimmutableactorrow';
 import {
-	IPoll,
 	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	IChosenPollVariation,
 	ChosenPollVariationECascadeGraph,
 	ChosenPollVariationEId,
 	ChosenPollVariationEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QChosenPollVariationQRelation,
 } from '../variation/qchosenpollvariation';
 import {
-	IPollVariation,
 	PollVariationECascadeGraph,
 	PollVariationEId,
 	PollVariationEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QPollVariationQRelation,
 } from '../variation/qpollvariation';
 import {
-	IPollLTFContinent,
 	PollLTFContinentECascadeGraph,
 	PollLTFContinentEId,
 	PollLTFContinentEOptionalId,
@@ -77,7 +72,6 @@ import {
 	QPollLTFContinentQRelation,
 } from './location/qpollltfcontinent';
 import {
-	IPollLTFCountry,
 	PollLTFCountryECascadeGraph,
 	PollLTFCountryEId,
 	PollLTFCountryEOptionalId,
@@ -88,7 +82,6 @@ import {
 	QPollLTFCountryQRelation,
 } from './location/qpollltfcountry';
 import {
-	IPollLTFState,
 	PollLTFStateECascadeGraph,
 	PollLTFStateEId,
 	PollLTFStateEOptionalId,
@@ -99,7 +92,6 @@ import {
 	QPollLTFStateQRelation,
 } from './location/qpollltfstate';
 import {
-	IPollLTFCounty,
 	PollLTFCountyECascadeGraph,
 	PollLTFCountyEId,
 	PollLTFCountyEOptionalId,
@@ -110,7 +102,6 @@ import {
 	QPollLTFCountyQRelation,
 } from './location/qpollltfcounty';
 import {
-	IPollLTFTown,
 	PollLTFTownECascadeGraph,
 	PollLTFTownEId,
 	PollLTFTownEOptionalId,
@@ -125,38 +116,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollLocationTimeFrame extends IImmutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	endDate?: Date;
-	startDate?: Date;
-
-	// Non-Id Relations
-	poll?: IPoll;
-	chosenVariations?: IChosenPollVariation[];
-	createdAtVariations?: IPollVariation[];
-	pollContinents?: IPollLTFContinent[];
-	pollCountries?: IPollLTFCountry[];
-	pollStates?: IPollLTFState[];
-	pollCounties?: IPollLTFCounty[];
-	pollTowns?: IPollLTFTown[];
-	pollVariations?: IPollVariation[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

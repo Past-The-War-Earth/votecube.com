@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableActorRow,
 	ImmutableActorRowECascadeGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../infrastructure/qimmutableactorrow';
 import {
-	IPollVariation,
 	PollVariationECascadeGraph,
 	PollVariationEId,
 	PollVariationEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollVariationQRelation,
 } from '../poll/variation/qpollvariation';
 import {
-	IVote,
 	VoteECascadeGraph,
 	VoteEId,
 	VoteEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QVoteQRelation,
 } from './qvote';
 import {
-	IPollVariationTranslation,
 	PollVariationTranslationECascadeGraph,
 	PollVariationTranslationEId,
 	PollVariationTranslationEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QPollVariationTranslationQRelation,
 } from '../poll/variation/translation/qpollvariationtranslation';
 import {
-	IPollLocationTimeFrame,
 	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameEId,
 	PollLocationTimeFrameEOptionalId,
@@ -77,7 +72,6 @@ import {
 	QPollLocationTimeFrameQRelation,
 } from '../poll/locationtimeframe/qpolllocationtimeframe';
 import {
-	IVoteFactor,
 	VoteFactorECascadeGraph,
 	VoteFactorEId,
 	VoteFactorEOptionalId,
@@ -92,32 +86,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IVoteVariation extends IImmutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	variation?: IPollVariation;
-	vote?: IVote;
-	variationTranslation?: IPollVariationTranslation;
-	locationTimeFrame?: IPollLocationTimeFrame;
-	factors?: IVoteFactor[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

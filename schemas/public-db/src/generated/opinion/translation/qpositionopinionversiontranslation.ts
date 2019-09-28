@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../../infrastructure/qsystemgeneratedrow';
 import {
-	IPositionOpinionVersion,
 	PositionOpinionVersionECascadeGraph,
 	PositionOpinionVersionEId,
 	PositionOpinionVersionEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPositionOpinionVersionQRelation,
 } from '../qpositionopinionversion';
 import {
-	ILanguage,
 	LanguageECascadeGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -59,32 +56,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPositionOpinionVersionTranslation extends ISystemGeneratedRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	original?: boolean;
-	title?: string;
-	text?: string;
-
-	// Non-Id Relations
-	positionOpinionVersion?: IPositionOpinionVersion;
-	language?: ILanguage;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

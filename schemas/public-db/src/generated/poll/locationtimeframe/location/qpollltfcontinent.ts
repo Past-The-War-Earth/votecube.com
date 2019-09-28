@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IContinent,
 	ContinentECascadeGraph,
 	ContinentEId,
 	ContinentEOptionalId,
@@ -33,7 +32,6 @@ import {
 	QContinentQRelation,
 } from '../../../location/qcontinent';
 import {
-	IPollLocationTimeFrame,
 	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameEId,
 	PollLocationTimeFrameEOptionalId,
@@ -48,29 +46,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollLTFContinent {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	continent?: IContinent;
-	locationTimeFrame?: IPollLocationTimeFrame;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

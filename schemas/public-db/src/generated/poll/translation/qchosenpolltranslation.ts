@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../../infrastructure/qsystemgeneratedrow';
 import {
-	IPoll,
 	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	IPollVariation,
 	PollVariationECascadeGraph,
 	PollVariationEId,
 	PollVariationEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollVariationQRelation,
 } from '../variation/qpollvariation';
 import {
-	ILanguage,
 	LanguageECascadeGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QLanguageQRelation,
 } from '../../infrastructure/qlanguage';
 import {
-	IChosenPollTranslationType,
 	ChosenPollTranslationTypeECascadeGraph,
 	ChosenPollTranslationTypeEId,
 	ChosenPollTranslationTypeEOptionalId,
@@ -77,7 +72,6 @@ import {
 	QChosenPollTranslationTypeQRelation,
 } from './qchosenpolltranslationtype';
 import {
-	IPollVariationTranslation,
 	PollVariationTranslationECascadeGraph,
 	PollVariationTranslationEId,
 	PollVariationTranslationEOptionalId,
@@ -92,32 +86,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IChosenPollTranslation extends ISystemGeneratedRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	poll?: IPoll;
-	pollVariation?: IPollVariation;
-	language?: ILanguage;
-	type?: IChosenPollTranslationType;
-	variationTranslation?: IPollVariationTranslation[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

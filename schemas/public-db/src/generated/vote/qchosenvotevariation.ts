@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../infrastructure/qsystemgeneratedrow';
 import {
-	IVote,
 	VoteECascadeGraph,
 	VoteEId,
 	VoteEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QVoteQRelation,
 } from './qvote';
 import {
-	IChosenVoteVariationType,
 	ChosenVoteVariationTypeECascadeGraph,
 	ChosenVoteVariationTypeEId,
 	ChosenVoteVariationTypeEOptionalId,
@@ -59,29 +56,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IChosenVoteVariation extends ISystemGeneratedRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	vote?: IVote;
-	type?: IChosenVoteVariationType;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

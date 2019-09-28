@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableActorRow,
 	ImmutableActorRowECascadeGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../../../infrastructure/qimmutableactorrow';
 import {
-	IPollVariation,
 	PollVariationECascadeGraph,
 	PollVariationEId,
 	PollVariationEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollVariationQRelation,
 } from '../qpollvariation';
 import {
-	ILanguage,
 	LanguageECascadeGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QLanguageQRelation,
 } from '../../../infrastructure/qlanguage';
 import {
-	ITranslationType,
 	TranslationTypeECascadeGraph,
 	TranslationTypeEId,
 	TranslationTypeEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QTranslationTypeQRelation,
 } from '../../../infrastructure/qtranslationtype';
 import {
-	IPollLocationTimeFrame,
 	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameEId,
 	PollLocationTimeFrameEOptionalId,
@@ -77,7 +72,6 @@ import {
 	QPollLocationTimeFrameQRelation,
 } from '../../locationtimeframe/qpolllocationtimeframe';
 import {
-	IUserPollVariationTranslationRating,
 	UserPollVariationTranslationRatingECascadeGraph,
 	UserPollVariationTranslationRatingEId,
 	UserPollVariationTranslationRatingEOptionalId,
@@ -88,7 +82,6 @@ import {
 	QUserPollVariationTranslationRatingQRelation,
 } from '../../user/quserpollvariationtranslationrating';
 import {
-	IPollVariationTranslationRatingCount,
 	PollVariationTranslationRatingCountECascadeGraph,
 	PollVariationTranslationRatingCountEId,
 	PollVariationTranslationRatingCountEOptionalId,
@@ -99,7 +92,6 @@ import {
 	QPollVariationTranslationRatingCountQRelation,
 } from './count/qpollvariationtranslationratingcount';
 import {
-	IPollVariationFactorTranslation,
 	PollVariationFactorTranslationECascadeGraph,
 	PollVariationFactorTranslationEId,
 	PollVariationFactorTranslationEOptionalId,
@@ -110,7 +102,6 @@ import {
 	QPollVariationFactorTranslationQRelation,
 } from './qpollvariationfactortranslation';
 import {
-	IPollVariationPositionTranslation,
 	PollVariationPositionTranslationECascadeGraph,
 	PollVariationPositionTranslationEId,
 	PollVariationPositionTranslationEOptionalId,
@@ -121,7 +112,6 @@ import {
 	QPollVariationPositionTranslationQRelation,
 } from './qpollvariationpositiontranslation';
 import {
-	IPollVariationTranslationOpinionCount,
 	PollVariationTranslationOpinionCountECascadeGraph,
 	PollVariationTranslationOpinionCountEId,
 	PollVariationTranslationOpinionCountEOptionalId,
@@ -132,7 +122,6 @@ import {
 	QPollVariationTranslationOpinionCountQRelation,
 } from './count/qpollvariationtranslationopinioncount';
 import {
-	IPollVariationTranslationOpinionRatingCount,
 	PollVariationTranslationOpinionRatingCountECascadeGraph,
 	PollVariationTranslationOpinionRatingCountEId,
 	PollVariationTranslationOpinionRatingCountEOptionalId,
@@ -143,7 +132,6 @@ import {
 	QPollVariationTranslationOpinionRatingCountQRelation,
 } from './count/qpollvariationtranslationopinionratingcount';
 import {
-	IPollVariationTranslationVoteCount,
 	PollVariationTranslationVoteCountECascadeGraph,
 	PollVariationTranslationVoteCountEId,
 	PollVariationTranslationVoteCountEOptionalId,
@@ -158,42 +146,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollVariationTranslation extends IImmutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	name?: string;
-	description?: string;
-
-	// Non-Id Relations
-	pollVariation?: IPollVariation;
-	language?: ILanguage;
-	type?: ITranslationType;
-	createdAtLocationTimeFrame?: IPollLocationTimeFrame;
-	parent?: IPollVariationTranslation;
-	children?: IPollVariationTranslation[];
-	ratings?: IUserPollVariationTranslationRating[];
-	ratingCounts?: IPollVariationTranslationRatingCount[];
-	factors?: IPollVariationFactorTranslation[];
-	positions?: IPollVariationPositionTranslation[];
-	opinionCounts?: IPollVariationTranslationOpinionCount[];
-	opinionRatingCounts?: IPollVariationTranslationOpinionRatingCount[];
-	voteCounts?: IPollVariationTranslationVoteCount[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

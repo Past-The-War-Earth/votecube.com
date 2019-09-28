@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableActorRow,
 	ImmutableActorRowECascadeGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../infrastructure/qimmutableactorrow';
 import {
-	IActor,
 	ActorECascadeGraph,
 	ActorEId,
 	ActorEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QActorQRelation,
 } from '../user/qactor';
 import {
-	IPoll,
 	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollQRelation,
 } from '../poll/qpoll';
 import {
-	IChosenVoteVariation,
 	ChosenVoteVariationECascadeGraph,
 	ChosenVoteVariationEId,
 	ChosenVoteVariationEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QChosenVoteVariationQRelation,
 } from './qchosenvotevariation';
 import {
-	IVoteVariation,
 	VoteVariationECascadeGraph,
 	VoteVariationEId,
 	VoteVariationEOptionalId,
@@ -81,32 +76,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IVote extends IImmutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	type?: number;
-
-	// Non-Id Relations
-	actor?: IActor;
-	poll?: IPoll;
-	chosenVariations?: IChosenVoteVariation[];
-	variations?: IVoteVariation[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

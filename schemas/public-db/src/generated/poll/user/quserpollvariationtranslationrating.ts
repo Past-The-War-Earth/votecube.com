@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableActorRow,
 	ImmutableActorRowECascadeGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../../infrastructure/qimmutableactorrow';
 import {
-	IUserPollVariationTranslation,
 	UserPollVariationTranslationECascadeGraph,
 	UserPollVariationTranslationEId,
 	UserPollVariationTranslationEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QUserPollVariationTranslationQRelation,
 } from './quserpollvariationtranslation';
 import {
-	IPollVariationTranslation,
 	PollVariationTranslationECascadeGraph,
 	PollVariationTranslationEId,
 	PollVariationTranslationEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollVariationTranslationQRelation,
 } from '../variation/translation/qpollvariationtranslation';
 import {
-	IPollLocationTimeFrame,
 	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameEId,
 	PollLocationTimeFrameEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QPollLocationTimeFrameQRelation,
 } from '../locationtimeframe/qpolllocationtimeframe';
 import {
-	IRating,
 	RatingECascadeGraph,
 	RatingEId,
 	RatingEOptionalId,
@@ -81,34 +76,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IUserPollVariationTranslationRating extends IImmutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	isCurrent?: boolean;
-
-	// Non-Id Relations
-	userPollVariationTranslation?: IUserPollVariationTranslation;
-	pollVariationTranslation?: IPollVariationTranslation;
-	locationTimeFrame?: IPollLocationTimeFrame;
-	rating?: IRating;
-	parent?: IUserPollVariationTranslationRating;
-	child?: IUserPollVariationTranslationRating[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

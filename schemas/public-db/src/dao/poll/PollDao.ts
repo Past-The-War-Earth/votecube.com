@@ -6,9 +6,10 @@ import {
 import {IRepositoryEntity} from '@airport/holding-pattern'
 import {Poll_Id}                from '../../ddl/poll/Poll'
 import {
+	POLL_CONTINENT_DUO,
 	POLL_DAO,
 	POLL_FACTOR_POSITION_DUO
-}                          from '../../diTokens'
+} from '../../diTokens'
 import {
 	BasePollDao,
 	IBasePollDao,
@@ -40,6 +41,7 @@ export class PollDao
 		) => JSONBaseOperation
 	): Promise<IPoll> {
 		const pfpDuo = await DI.get(POLL_FACTOR_POSITION_DUO)
+		const pconDuo = await DI.get(POLL_CONTINENT_DUO)
 
 		const repoIdFieldsSelect = this.db.duo.select.fields
 		let p: QPoll
@@ -50,7 +52,7 @@ export class PollDao
 			select: {
 				...this.db.duo.select.fields,
 				pollContinents: {
-					...repoIdFieldsSelect,
+					...pconDuo.select.fields,
 					continent: {}
 				},
 				pollCountries: {

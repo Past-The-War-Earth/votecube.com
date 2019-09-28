@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableRow,
 	ImmutableRowECascadeGraph,
 	ImmutableRowEId,
 	ImmutableRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableRow,
 } from '../infrastructure/qimmutablerow';
 import {
-	IPollOpinion,
 	PollOpinionECascadeGraph,
 	PollOpinionEId,
 	PollOpinionEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollOpinionQRelation,
 } from './qpollopinion';
 import {
-	IPollVariation,
 	PollVariationECascadeGraph,
 	PollVariationEId,
 	PollVariationEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollVariationQRelation,
 } from '../poll/variation/qpollvariation';
 import {
-	IVoteVariation,
 	VoteVariationECascadeGraph,
 	VoteVariationEId,
 	VoteVariationEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QVoteVariationQRelation,
 } from '../vote/qvotevariation';
 import {
-	ILanguage,
 	LanguageECascadeGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -77,7 +72,6 @@ import {
 	QLanguageQRelation,
 } from '../infrastructure/qlanguage';
 import {
-	IPollLocationTimeFrame,
 	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameEId,
 	PollLocationTimeFrameEOptionalId,
@@ -88,7 +82,6 @@ import {
 	QPollLocationTimeFrameQRelation,
 } from '../poll/locationtimeframe/qpolllocationtimeframe';
 import {
-	IPollOpinionVersionRating,
 	PollOpinionVersionRatingECascadeGraph,
 	PollOpinionVersionRatingEId,
 	PollOpinionVersionRatingEOptionalId,
@@ -99,7 +92,6 @@ import {
 	QPollOpinionVersionRatingQRelation,
 } from './user/qpollopinionversionrating';
 import {
-	IPollOpinionVersionTranslation,
 	PollOpinionVersionTranslationECascadeGraph,
 	PollOpinionVersionTranslationEId,
 	PollOpinionVersionTranslationEOptionalId,
@@ -110,7 +102,6 @@ import {
 	QPollOpinionVersionTranslationQRelation,
 } from './translation/qpollopinionversiontranslation';
 import {
-	IFactorOpinionVersion,
 	FactorOpinionVersionECascadeGraph,
 	FactorOpinionVersionEId,
 	FactorOpinionVersionEOptionalId,
@@ -121,7 +112,6 @@ import {
 	QFactorOpinionVersionQRelation,
 } from './qfactoropinionversion';
 import {
-	IPollOpinionVersionRatingCount,
 	PollOpinionVersionRatingCountECascadeGraph,
 	PollOpinionVersionRatingCountEId,
 	PollOpinionVersionRatingCountEOptionalId,
@@ -136,38 +126,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollOpinionVersion extends IImmutableRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	pollOpinion?: IPollOpinion;
-	pollVariation?: IPollVariation;
-	voteVariation?: IVoteVariation;
-	language?: ILanguage;
-	locationTimeFrame?: IPollLocationTimeFrame;
-	parent?: IPollOpinionVersion;
-	children?: IPollOpinionVersion[];
-	ratings?: IPollOpinionVersionRating[];
-	translations?: IPollOpinionVersionTranslation[];
-	factors?: IFactorOpinionVersion[];
-	ratingCounts?: IPollOpinionVersionRatingCount[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

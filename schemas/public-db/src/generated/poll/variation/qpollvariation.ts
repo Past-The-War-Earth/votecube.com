@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IImmutableActorRow,
 	ImmutableActorRowECascadeGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../../infrastructure/qimmutableactorrow';
 import {
-	IPoll,
 	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	IPollLocationTimeFrame,
 	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameEId,
 	PollLocationTimeFrameEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollLocationTimeFrameQRelation,
 } from '../locationtimeframe/qpolllocationtimeframe';
 import {
-	IUserPollVariationRating,
 	UserPollVariationRatingECascadeGraph,
 	UserPollVariationRatingEId,
 	UserPollVariationRatingEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QUserPollVariationRatingQRelation,
 } from '../user/quserpollvariationrating';
 import {
-	IPollVariationRatingCount,
 	PollVariationRatingCountECascadeGraph,
 	PollVariationRatingCountEId,
 	PollVariationRatingCountEOptionalId,
@@ -77,7 +72,6 @@ import {
 	QPollVariationRatingCountQRelation,
 } from './count/qpollvariationratingcount';
 import {
-	IPollVariationLabel,
 	PollVariationLabelECascadeGraph,
 	PollVariationLabelEId,
 	PollVariationLabelEOptionalId,
@@ -88,7 +82,6 @@ import {
 	QPollVariationLabelQRelation,
 } from './qpollvariationlabel';
 import {
-	IPollFactorPositionVariation,
 	PollFactorPositionVariationECascadeGraph,
 	PollFactorPositionVariationEId,
 	PollFactorPositionVariationEOptionalId,
@@ -99,7 +92,6 @@ import {
 	QPollFactorPositionVariationQRelation,
 } from './structure/qpollfactorpositionvariation';
 import {
-	IPollFactorVariation,
 	PollFactorVariationECascadeGraph,
 	PollFactorVariationEId,
 	PollFactorVariationEOptionalId,
@@ -110,7 +102,6 @@ import {
 	QPollFactorVariationQRelation,
 } from './structure/qpollfactorvariation';
 import {
-	IPollFactorSkinVariation,
 	PollFactorSkinVariationECascadeGraph,
 	PollFactorSkinVariationEId,
 	PollFactorSkinVariationEOptionalId,
@@ -121,7 +112,6 @@ import {
 	QPollFactorSkinVariationQRelation,
 } from './structure/qpollfactorskinvariation';
 import {
-	IPollPositionVariation,
 	PollPositionVariationECascadeGraph,
 	PollPositionVariationEId,
 	PollPositionVariationEOptionalId,
@@ -132,7 +122,6 @@ import {
 	QPollPositionVariationQRelation,
 } from './structure/qpollpositionvariation';
 import {
-	IChosenPollTranslation,
 	ChosenPollTranslationECascadeGraph,
 	ChosenPollTranslationEId,
 	ChosenPollTranslationEOptionalId,
@@ -143,7 +132,6 @@ import {
 	QChosenPollTranslationQRelation,
 } from '../translation/qchosenpolltranslation';
 import {
-	IPollVariationTranslation,
 	PollVariationTranslationECascadeGraph,
 	PollVariationTranslationEId,
 	PollVariationTranslationEOptionalId,
@@ -154,7 +142,6 @@ import {
 	QPollVariationTranslationQRelation,
 } from './translation/qpollvariationtranslation';
 import {
-	IPollOpinion,
 	PollOpinionECascadeGraph,
 	PollOpinionEId,
 	PollOpinionEOptionalId,
@@ -165,7 +152,6 @@ import {
 	QPollOpinionQRelation,
 } from '../../opinion/qpollopinion';
 import {
-	IPollVariationOpinionCount,
 	PollVariationOpinionCountECascadeGraph,
 	PollVariationOpinionCountEId,
 	PollVariationOpinionCountEOptionalId,
@@ -176,7 +162,6 @@ import {
 	QPollVariationOpinionCountQRelation,
 } from './count/qpollvariationopinioncount';
 import {
-	IPollVariationOpinionRatingCount,
 	PollVariationOpinionRatingCountECascadeGraph,
 	PollVariationOpinionRatingCountEId,
 	PollVariationOpinionRatingCountEOptionalId,
@@ -187,7 +172,6 @@ import {
 	QPollVariationOpinionRatingCountQRelation,
 } from './count/qpollvariationopinionratingcount';
 import {
-	IPollVariationVoteCount,
 	PollVariationVoteCountECascadeGraph,
 	PollVariationVoteCountEId,
 	PollVariationVoteCountEOptionalId,
@@ -202,44 +186,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollVariation extends IImmutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	poll?: IPoll;
-	createdAtLocationTimeFrame?: IPollLocationTimeFrame;
-	parent?: IPollVariation;
-	children?: IPollVariation[];
-	ratings?: IUserPollVariationRating[];
-	ratingCounts?: IPollVariationRatingCount[];
-	variationLabels?: IPollVariationLabel[];
-	pollFactorPositionVariations?: IPollFactorPositionVariation[];
-	factors?: IPollFactorVariation[];
-	factorSkins?: IPollFactorSkinVariation[];
-	positions?: IPollPositionVariation[];
-	chosenTranslations?: IChosenPollTranslation[];
-	allTranslations?: IPollVariationTranslation[];
-	opinions?: IPollOpinion[];
-	opinionCounts?: IPollVariationOpinionCount[];
-	opinionRatingCounts?: IPollVariationOpinionRatingCount[];
-	voteCounts?: IPollVariationVoteCount[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

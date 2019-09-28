@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IMutableActorRow,
 	MutableActorRowECascadeGraph,
 	MutableActorRowEId,
 	MutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QMutableActorRow,
 } from '../infrastructure/qmutableactorrow';
 import {
-	IPoll,
 	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollQRelation,
 } from '../poll/qpoll';
 import {
-	IPollOpinionVersion,
 	PollOpinionVersionECascadeGraph,
 	PollOpinionVersionEId,
 	PollOpinionVersionEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollOpinionVersionQRelation,
 } from './qpollopinionversion';
 import {
-	IPollOpinionRatingCount,
 	PollOpinionRatingCountECascadeGraph,
 	PollOpinionRatingCountEId,
 	PollOpinionRatingCountEOptionalId,
@@ -70,35 +66,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPollOpinion extends IMutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	numberOfVersions?: number;
-
-	// Non-Id Relations
-	poll?: IPoll;
-	firstVersion?: IPollOpinionVersion;
-	lastVersion?: IPollOpinionVersion;
-	parent?: IPollOpinion;
-	children?: IPollOpinion[];
-	versions?: IPollOpinionVersion[];
-	ratingCounts?: IPollOpinionRatingCount[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

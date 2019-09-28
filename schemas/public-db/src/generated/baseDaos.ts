@@ -8,1111 +8,1308 @@ import {
 	IEntityUpdateProperties,
 	IQEntity
 } from '@airport/air-control'
-import {
-	Dao
-} from '@airport/check-in'
+import { Dao } from '@airport/check-in'
 import {
 	EntityId as DbEntityId
 } from '@airport/ground-control'
 import {
 	Q,
-	diSet
+	duoDiSet
 } from './qSchema'
 import {
-	IActor,
+	IActor
+} from './user/actor'
+import {
 	ActorESelect,
-	ActorECascadeGraph,
 	ActorECreateColumns,
 	ActorECreateProperties,
 	ActorEUpdateColumns,
 	ActorEUpdateProperties,
 	ActorEId,
+	ActorECascadeGraph,
 	QActor
 } from './user/qactor'
 import {
-	IApplication,
+	IApplication
+} from './user/application'
+import {
 	ApplicationESelect,
-	ApplicationECascadeGraph,
 	ApplicationECreateColumns,
 	ApplicationECreateProperties,
 	ApplicationEUpdateColumns,
 	ApplicationEUpdateProperties,
 	ApplicationEId,
+	ApplicationECascadeGraph,
 	QApplication
 } from './user/qapplication'
 import {
-	IChosenPollTranslation,
+	IChosenPollTranslation
+} from './poll/translation/chosenpolltranslation'
+import {
 	ChosenPollTranslationESelect,
-	ChosenPollTranslationECascadeGraph,
 	ChosenPollTranslationECreateColumns,
 	ChosenPollTranslationECreateProperties,
 	ChosenPollTranslationEUpdateColumns,
 	ChosenPollTranslationEUpdateProperties,
 	ChosenPollTranslationEId,
+	ChosenPollTranslationECascadeGraph,
 	QChosenPollTranslation
 } from './poll/translation/qchosenpolltranslation'
 import {
-	IChosenPollTranslationType,
+	IChosenPollTranslationType
+} from './poll/translation/chosenpolltranslationtype'
+import {
 	ChosenPollTranslationTypeESelect,
-	ChosenPollTranslationTypeECascadeGraph,
 	ChosenPollTranslationTypeECreateColumns,
 	ChosenPollTranslationTypeECreateProperties,
 	ChosenPollTranslationTypeEUpdateColumns,
 	ChosenPollTranslationTypeEUpdateProperties,
 	ChosenPollTranslationTypeEId,
+	ChosenPollTranslationTypeECascadeGraph,
 	QChosenPollTranslationType
 } from './poll/translation/qchosenpolltranslationtype'
 import {
-	IChosenPollVariation,
+	IChosenPollVariation
+} from './poll/variation/chosenpollvariation'
+import {
 	ChosenPollVariationESelect,
-	ChosenPollVariationECascadeGraph,
 	ChosenPollVariationECreateColumns,
 	ChosenPollVariationECreateProperties,
 	ChosenPollVariationEUpdateColumns,
 	ChosenPollVariationEUpdateProperties,
 	ChosenPollVariationEId,
+	ChosenPollVariationECascadeGraph,
 	QChosenPollVariation
 } from './poll/variation/qchosenpollvariation'
 import {
-	IChosenPollVariationType,
+	IChosenPollVariationType
+} from './poll/variation/chosenpollvariationtype'
+import {
 	ChosenPollVariationTypeESelect,
-	ChosenPollVariationTypeECascadeGraph,
 	ChosenPollVariationTypeECreateColumns,
 	ChosenPollVariationTypeECreateProperties,
 	ChosenPollVariationTypeEUpdateColumns,
 	ChosenPollVariationTypeEUpdateProperties,
 	ChosenPollVariationTypeEId,
+	ChosenPollVariationTypeECascadeGraph,
 	QChosenPollVariationType
 } from './poll/variation/qchosenpollvariationtype'
 import {
-	IChosenVoteVariation,
+	IChosenVoteVariation
+} from './vote/chosenvotevariation'
+import {
 	ChosenVoteVariationESelect,
-	ChosenVoteVariationECascadeGraph,
 	ChosenVoteVariationECreateColumns,
 	ChosenVoteVariationECreateProperties,
 	ChosenVoteVariationEUpdateColumns,
 	ChosenVoteVariationEUpdateProperties,
 	ChosenVoteVariationEId,
+	ChosenVoteVariationECascadeGraph,
 	QChosenVoteVariation
 } from './vote/qchosenvotevariation'
 import {
-	IChosenVoteVariationType,
+	IChosenVoteVariationType
+} from './vote/chosenvotevariationtype'
+import {
 	ChosenVoteVariationTypeESelect,
-	ChosenVoteVariationTypeECascadeGraph,
 	ChosenVoteVariationTypeECreateColumns,
 	ChosenVoteVariationTypeECreateProperties,
 	ChosenVoteVariationTypeEUpdateColumns,
 	ChosenVoteVariationTypeEUpdateProperties,
 	ChosenVoteVariationTypeEId,
+	ChosenVoteVariationTypeECascadeGraph,
 	QChosenVoteVariationType
 } from './vote/qchosenvotevariationtype'
 import {
-	IContinent,
+	IContinent
+} from './location/continent'
+import {
 	ContinentESelect,
-	ContinentECascadeGraph,
 	ContinentECreateColumns,
 	ContinentECreateProperties,
 	ContinentEUpdateColumns,
 	ContinentEUpdateProperties,
 	ContinentEId,
+	ContinentECascadeGraph,
 	QContinent
 } from './location/qcontinent'
 import {
-	ICountry,
+	ICountry
+} from './location/country'
+import {
 	CountryESelect,
-	CountryECascadeGraph,
 	CountryECreateColumns,
 	CountryECreateProperties,
 	CountryEUpdateColumns,
 	CountryEUpdateProperties,
 	CountryEId,
+	CountryECascadeGraph,
 	QCountry
 } from './location/qcountry'
 import {
-	ICountryTown,
+	ICountryTown
+} from './location/countrytown'
+import {
 	CountryTownESelect,
-	CountryTownECascadeGraph,
 	CountryTownECreateColumns,
 	CountryTownECreateProperties,
 	CountryTownEUpdateColumns,
 	CountryTownEUpdateProperties,
 	CountryTownEId,
+	CountryTownECascadeGraph,
 	QCountryTown
 } from './location/qcountrytown'
 import {
-	ICounty,
+	ICounty
+} from './location/county'
+import {
 	CountyESelect,
-	CountyECascadeGraph,
 	CountyECreateColumns,
 	CountyECreateProperties,
 	CountyEUpdateColumns,
 	CountyEUpdateProperties,
 	CountyEId,
+	CountyECascadeGraph,
 	QCounty
 } from './location/qcounty'
 import {
-	ICountyTown,
+	ICountyTown
+} from './location/countytown'
+import {
 	CountyTownESelect,
-	CountyTownECascadeGraph,
 	CountyTownECreateColumns,
 	CountyTownECreateProperties,
 	CountyTownEUpdateColumns,
 	CountyTownEUpdateProperties,
 	CountyTownEId,
+	CountyTownECascadeGraph,
 	QCountyTown
 } from './location/qcountytown'
 import {
-	IDesignPattern,
+	IDesignPattern
+} from './factor/position/designpattern'
+import {
 	DesignPatternESelect,
-	DesignPatternECascadeGraph,
 	DesignPatternECreateColumns,
 	DesignPatternECreateProperties,
 	DesignPatternEUpdateColumns,
 	DesignPatternEUpdateProperties,
 	DesignPatternEId,
+	DesignPatternECascadeGraph,
 	QDesignPattern
 } from './factor/position/qdesignpattern'
 import {
-	IDevice,
+	IDevice
+} from './user/device'
+import {
 	DeviceESelect,
-	DeviceECascadeGraph,
 	DeviceECreateColumns,
 	DeviceECreateProperties,
 	DeviceEUpdateColumns,
 	DeviceEUpdateProperties,
 	DeviceEId,
+	DeviceECascadeGraph,
 	QDevice
 } from './user/qdevice'
 import {
-	IEmoji,
+	IEmoji
+} from './factor/position/emoji'
+import {
 	EmojiESelect,
-	EmojiECascadeGraph,
 	EmojiECreateColumns,
 	EmojiECreateProperties,
 	EmojiEUpdateColumns,
 	EmojiEUpdateProperties,
 	EmojiEId,
+	EmojiECascadeGraph,
 	QEmoji
 } from './factor/position/qemoji'
 import {
-	IFactor,
+	IFactor
+} from './factor/factor'
+import {
 	FactorESelect,
-	FactorECascadeGraph,
 	FactorECreateColumns,
 	FactorECreateProperties,
 	FactorEUpdateColumns,
 	FactorEUpdateProperties,
 	FactorEId,
+	FactorECascadeGraph,
 	QFactor
 } from './factor/qfactor'
 import {
-	IFactorOpinionVersion,
+	IFactorOpinionVersion
+} from './opinion/factoropinionversion'
+import {
 	FactorOpinionVersionESelect,
-	FactorOpinionVersionECascadeGraph,
 	FactorOpinionVersionECreateColumns,
 	FactorOpinionVersionECreateProperties,
 	FactorOpinionVersionEUpdateColumns,
 	FactorOpinionVersionEUpdateProperties,
 	FactorOpinionVersionEId,
+	FactorOpinionVersionECascadeGraph,
 	QFactorOpinionVersion
 } from './opinion/qfactoropinionversion'
 import {
-	IFactorOpinionVersionRating,
+	IFactorOpinionVersionRating
+} from './opinion/user/factoropinionversionrating'
+import {
 	FactorOpinionVersionRatingESelect,
-	FactorOpinionVersionRatingECascadeGraph,
 	FactorOpinionVersionRatingECreateColumns,
 	FactorOpinionVersionRatingECreateProperties,
 	FactorOpinionVersionRatingEUpdateColumns,
 	FactorOpinionVersionRatingEUpdateProperties,
 	FactorOpinionVersionRatingEId,
+	FactorOpinionVersionRatingECascadeGraph,
 	QFactorOpinionVersionRating
 } from './opinion/user/qfactoropinionversionrating'
 import {
-	IFactorOpinionVersionRatingCount,
+	IFactorOpinionVersionRatingCount
+} from './opinion/count/factoropinionversionratingcount'
+import {
 	FactorOpinionVersionRatingCountESelect,
-	FactorOpinionVersionRatingCountECascadeGraph,
 	FactorOpinionVersionRatingCountECreateColumns,
 	FactorOpinionVersionRatingCountECreateProperties,
 	FactorOpinionVersionRatingCountEUpdateColumns,
 	FactorOpinionVersionRatingCountEUpdateProperties,
 	FactorOpinionVersionRatingCountEId,
+	FactorOpinionVersionRatingCountECascadeGraph,
 	QFactorOpinionVersionRatingCount
 } from './opinion/count/qfactoropinionversionratingcount'
 import {
-	IFactorOpinionVersionTranslation,
+	IFactorOpinionVersionTranslation
+} from './opinion/translation/factoropinionversiontranslation'
+import {
 	FactorOpinionVersionTranslationESelect,
-	FactorOpinionVersionTranslationECascadeGraph,
 	FactorOpinionVersionTranslationECreateColumns,
 	FactorOpinionVersionTranslationECreateProperties,
 	FactorOpinionVersionTranslationEUpdateColumns,
 	FactorOpinionVersionTranslationEUpdateProperties,
 	FactorOpinionVersionTranslationEId,
+	FactorOpinionVersionTranslationECascadeGraph,
 	QFactorOpinionVersionTranslation
 } from './opinion/translation/qfactoropinionversiontranslation'
 import {
-	IFactorPosition,
+	IFactorPosition
+} from './factor/position/factorposition'
+import {
 	FactorPositionESelect,
-	FactorPositionECascadeGraph,
 	FactorPositionECreateColumns,
 	FactorPositionECreateProperties,
 	FactorPositionEUpdateColumns,
 	FactorPositionEUpdateProperties,
 	FactorPositionEId,
+	FactorPositionECascadeGraph,
 	QFactorPosition
 } from './factor/position/qfactorposition'
 import {
-	IFactorSkinVariation,
+	IFactorSkinVariation
+} from './factor/factorskinvariation'
+import {
 	FactorSkinVariationESelect,
-	FactorSkinVariationECascadeGraph,
 	FactorSkinVariationECreateColumns,
 	FactorSkinVariationECreateProperties,
 	FactorSkinVariationEUpdateColumns,
 	FactorSkinVariationEUpdateProperties,
 	FactorSkinVariationEId,
+	FactorSkinVariationECascadeGraph,
 	QFactorSkinVariation
 } from './factor/qfactorskinvariation'
 import {
-	IFactorVariation,
+	IFactorVariation
+} from './factor/factorvariation'
+import {
 	FactorVariationESelect,
-	FactorVariationECascadeGraph,
 	FactorVariationECreateColumns,
 	FactorVariationECreateProperties,
 	FactorVariationEUpdateColumns,
 	FactorVariationEUpdateProperties,
 	FactorVariationEId,
+	FactorVariationECascadeGraph,
 	QFactorVariation
 } from './factor/qfactorvariation'
 import {
-	IFactorVariationTranslation,
+	IFactorVariationTranslation
+} from './factor/factorvariationtranslation'
+import {
 	FactorVariationTranslationESelect,
-	FactorVariationTranslationECascadeGraph,
 	FactorVariationTranslationECreateColumns,
 	FactorVariationTranslationECreateProperties,
 	FactorVariationTranslationEUpdateColumns,
 	FactorVariationTranslationEUpdateProperties,
 	FactorVariationTranslationEId,
+	FactorVariationTranslationECascadeGraph,
 	QFactorVariationTranslation
 } from './factor/qfactorvariationtranslation'
 import {
-	ILabel,
+	ILabel
+} from './poll/variation/label/label'
+import {
 	LabelESelect,
-	LabelECascadeGraph,
 	LabelECreateColumns,
 	LabelECreateProperties,
 	LabelEUpdateColumns,
 	LabelEUpdateProperties,
 	LabelEId,
+	LabelECascadeGraph,
 	QLabel
 } from './poll/variation/label/qlabel'
 import {
-	ILabelTranslation,
+	ILabelTranslation
+} from './poll/variation/label/labeltranslation'
+import {
 	LabelTranslationESelect,
-	LabelTranslationECascadeGraph,
 	LabelTranslationECreateColumns,
 	LabelTranslationECreateProperties,
 	LabelTranslationEUpdateColumns,
 	LabelTranslationEUpdateProperties,
 	LabelTranslationEId,
+	LabelTranslationECascadeGraph,
 	QLabelTranslation
 } from './poll/variation/label/qlabeltranslation'
 import {
-	ILabelTranslationRating,
+	ILabelTranslationRating
+} from './poll/variation/label/labeltranslationrating'
+import {
 	LabelTranslationRatingESelect,
-	LabelTranslationRatingECascadeGraph,
 	LabelTranslationRatingECreateColumns,
 	LabelTranslationRatingECreateProperties,
 	LabelTranslationRatingEUpdateColumns,
 	LabelTranslationRatingEUpdateProperties,
 	LabelTranslationRatingEId,
+	LabelTranslationRatingECascadeGraph,
 	QLabelTranslationRating
 } from './poll/variation/label/qlabeltranslationrating'
 import {
-	ILabelTranslationRatingCount,
+	ILabelTranslationRatingCount
+} from './poll/variation/label/labeltranslationratingcount'
+import {
 	LabelTranslationRatingCountESelect,
-	LabelTranslationRatingCountECascadeGraph,
 	LabelTranslationRatingCountECreateColumns,
 	LabelTranslationRatingCountECreateProperties,
 	LabelTranslationRatingCountEUpdateColumns,
 	LabelTranslationRatingCountEUpdateProperties,
 	LabelTranslationRatingCountEId,
+	LabelTranslationRatingCountECascadeGraph,
 	QLabelTranslationRatingCount
 } from './poll/variation/label/qlabeltranslationratingcount'
 import {
-	ILanguage,
+	ILanguage
+} from './infrastructure/language'
+import {
 	LanguageESelect,
-	LanguageECascadeGraph,
 	LanguageECreateColumns,
 	LanguageECreateProperties,
 	LanguageEUpdateColumns,
 	LanguageEUpdateProperties,
 	LanguageEId,
+	LanguageECascadeGraph,
 	QLanguage
 } from './infrastructure/qlanguage'
 import {
-	IPoll,
+	IPoll
+} from './poll/poll'
+import {
 	PollESelect,
-	PollECascadeGraph,
 	PollECreateColumns,
 	PollECreateProperties,
 	PollEUpdateColumns,
 	PollEUpdateProperties,
 	PollEId,
+	PollECascadeGraph,
 	QPoll
 } from './poll/qpoll'
 import {
-	IPollFactorPositionVariation,
+	IPollFactorPositionVariation
+} from './poll/variation/structure/pollfactorpositionvariation'
+import {
 	PollFactorPositionVariationESelect,
-	PollFactorPositionVariationECascadeGraph,
 	PollFactorPositionVariationECreateColumns,
 	PollFactorPositionVariationECreateProperties,
 	PollFactorPositionVariationEUpdateColumns,
 	PollFactorPositionVariationEUpdateProperties,
 	PollFactorPositionVariationEId,
+	PollFactorPositionVariationECascadeGraph,
 	QPollFactorPositionVariation
 } from './poll/variation/structure/qpollfactorpositionvariation'
 import {
-	IPollFactorSkinVariation,
+	IPollFactorSkinVariation
+} from './poll/variation/structure/pollfactorskinvariation'
+import {
 	PollFactorSkinVariationESelect,
-	PollFactorSkinVariationECascadeGraph,
 	PollFactorSkinVariationECreateColumns,
 	PollFactorSkinVariationECreateProperties,
 	PollFactorSkinVariationEUpdateColumns,
 	PollFactorSkinVariationEUpdateProperties,
 	PollFactorSkinVariationEId,
+	PollFactorSkinVariationECascadeGraph,
 	QPollFactorSkinVariation
 } from './poll/variation/structure/qpollfactorskinvariation'
 import {
-	IPollFactorVariation,
+	IPollFactorVariation
+} from './poll/variation/structure/pollfactorvariation'
+import {
 	PollFactorVariationESelect,
-	PollFactorVariationECascadeGraph,
 	PollFactorVariationECreateColumns,
 	PollFactorVariationECreateProperties,
 	PollFactorVariationEUpdateColumns,
 	PollFactorVariationEUpdateProperties,
 	PollFactorVariationEId,
+	PollFactorVariationECascadeGraph,
 	QPollFactorVariation
 } from './poll/variation/structure/qpollfactorvariation'
 import {
-	IPollLTFContinent,
+	IPollLTFContinent
+} from './poll/locationtimeframe/location/pollltfcontinent'
+import {
 	PollLTFContinentESelect,
-	PollLTFContinentECascadeGraph,
 	PollLTFContinentECreateColumns,
 	PollLTFContinentECreateProperties,
 	PollLTFContinentEUpdateColumns,
 	PollLTFContinentEUpdateProperties,
 	PollLTFContinentEId,
+	PollLTFContinentECascadeGraph,
 	QPollLTFContinent
 } from './poll/locationtimeframe/location/qpollltfcontinent'
 import {
-	IPollLTFCountry,
+	IPollLTFCountry
+} from './poll/locationtimeframe/location/pollltfcountry'
+import {
 	PollLTFCountryESelect,
-	PollLTFCountryECascadeGraph,
 	PollLTFCountryECreateColumns,
 	PollLTFCountryECreateProperties,
 	PollLTFCountryEUpdateColumns,
 	PollLTFCountryEUpdateProperties,
 	PollLTFCountryEId,
+	PollLTFCountryECascadeGraph,
 	QPollLTFCountry
 } from './poll/locationtimeframe/location/qpollltfcountry'
 import {
-	IPollLTFCounty,
+	IPollLTFCounty
+} from './poll/locationtimeframe/location/pollltfcounty'
+import {
 	PollLTFCountyESelect,
-	PollLTFCountyECascadeGraph,
 	PollLTFCountyECreateColumns,
 	PollLTFCountyECreateProperties,
 	PollLTFCountyEUpdateColumns,
 	PollLTFCountyEUpdateProperties,
 	PollLTFCountyEId,
+	PollLTFCountyECascadeGraph,
 	QPollLTFCounty
 } from './poll/locationtimeframe/location/qpollltfcounty'
 import {
-	IPollLTFOpinionCount,
+	IPollLTFOpinionCount
+} from './poll/locationtimeframe/count/pollltfopinioncount'
+import {
 	PollLTFOpinionCountESelect,
-	PollLTFOpinionCountECascadeGraph,
 	PollLTFOpinionCountECreateColumns,
 	PollLTFOpinionCountECreateProperties,
 	PollLTFOpinionCountEUpdateColumns,
 	PollLTFOpinionCountEUpdateProperties,
 	PollLTFOpinionCountEId,
+	PollLTFOpinionCountECascadeGraph,
 	QPollLTFOpinionCount
 } from './poll/locationtimeframe/count/qpollltfopinioncount'
 import {
-	IPollLTFOpinionRatingCount,
+	IPollLTFOpinionRatingCount
+} from './poll/locationtimeframe/count/pollltfopinionratingcount'
+import {
 	PollLTFOpinionRatingCountESelect,
-	PollLTFOpinionRatingCountECascadeGraph,
 	PollLTFOpinionRatingCountECreateColumns,
 	PollLTFOpinionRatingCountECreateProperties,
 	PollLTFOpinionRatingCountEUpdateColumns,
 	PollLTFOpinionRatingCountEUpdateProperties,
 	PollLTFOpinionRatingCountEId,
+	PollLTFOpinionRatingCountECascadeGraph,
 	QPollLTFOpinionRatingCount
 } from './poll/locationtimeframe/count/qpollltfopinionratingcount'
 import {
-	IPollLTFRatingCount,
+	IPollLTFRatingCount
+} from './poll/locationtimeframe/count/pollltfratingcount'
+import {
 	PollLTFRatingCountESelect,
-	PollLTFRatingCountECascadeGraph,
 	PollLTFRatingCountECreateColumns,
 	PollLTFRatingCountECreateProperties,
 	PollLTFRatingCountEUpdateColumns,
 	PollLTFRatingCountEUpdateProperties,
 	PollLTFRatingCountEId,
+	PollLTFRatingCountECascadeGraph,
 	QPollLTFRatingCount
 } from './poll/locationtimeframe/count/qpollltfratingcount'
 import {
-	IPollLTFState,
+	IPollLTFState
+} from './poll/locationtimeframe/location/pollltfstate'
+import {
 	PollLTFStateESelect,
-	PollLTFStateECascadeGraph,
 	PollLTFStateECreateColumns,
 	PollLTFStateECreateProperties,
 	PollLTFStateEUpdateColumns,
 	PollLTFStateEUpdateProperties,
 	PollLTFStateEId,
+	PollLTFStateECascadeGraph,
 	QPollLTFState
 } from './poll/locationtimeframe/location/qpollltfstate'
 import {
-	IPollLTFTown,
+	IPollLTFTown
+} from './poll/locationtimeframe/location/pollltftown'
+import {
 	PollLTFTownESelect,
-	PollLTFTownECascadeGraph,
 	PollLTFTownECreateColumns,
 	PollLTFTownECreateProperties,
 	PollLTFTownEUpdateColumns,
 	PollLTFTownEUpdateProperties,
 	PollLTFTownEId,
+	PollLTFTownECascadeGraph,
 	QPollLTFTown
 } from './poll/locationtimeframe/location/qpollltftown'
 import {
-	IPollLTFVoteCount,
+	IPollLTFVoteCount
+} from './poll/locationtimeframe/count/pollltfvotecount'
+import {
 	PollLTFVoteCountESelect,
-	PollLTFVoteCountECascadeGraph,
 	PollLTFVoteCountECreateColumns,
 	PollLTFVoteCountECreateProperties,
 	PollLTFVoteCountEUpdateColumns,
 	PollLTFVoteCountEUpdateProperties,
 	PollLTFVoteCountEId,
+	PollLTFVoteCountECascadeGraph,
 	QPollLTFVoteCount
 } from './poll/locationtimeframe/count/qpollltfvotecount'
 import {
-	IPollLocationTimeFrame,
+	IPollLocationTimeFrame
+} from './poll/locationtimeframe/polllocationtimeframe'
+import {
 	PollLocationTimeFrameESelect,
-	PollLocationTimeFrameECascadeGraph,
 	PollLocationTimeFrameECreateColumns,
 	PollLocationTimeFrameECreateProperties,
 	PollLocationTimeFrameEUpdateColumns,
 	PollLocationTimeFrameEUpdateProperties,
 	PollLocationTimeFrameEId,
+	PollLocationTimeFrameECascadeGraph,
 	QPollLocationTimeFrame
 } from './poll/locationtimeframe/qpolllocationtimeframe'
 import {
-	IPollOpinion,
+	IPollOpinion
+} from './opinion/pollopinion'
+import {
 	PollOpinionESelect,
-	PollOpinionECascadeGraph,
 	PollOpinionECreateColumns,
 	PollOpinionECreateProperties,
 	PollOpinionEUpdateColumns,
 	PollOpinionEUpdateProperties,
 	PollOpinionEId,
+	PollOpinionECascadeGraph,
 	QPollOpinion
 } from './opinion/qpollopinion'
 import {
-	IPollOpinionRatingCount,
+	IPollOpinionRatingCount
+} from './opinion/count/pollopinionratingcount'
+import {
 	PollOpinionRatingCountESelect,
-	PollOpinionRatingCountECascadeGraph,
 	PollOpinionRatingCountECreateColumns,
 	PollOpinionRatingCountECreateProperties,
 	PollOpinionRatingCountEUpdateColumns,
 	PollOpinionRatingCountEUpdateProperties,
 	PollOpinionRatingCountEId,
+	PollOpinionRatingCountECascadeGraph,
 	QPollOpinionRatingCount
 } from './opinion/count/qpollopinionratingcount'
 import {
-	IPollOpinionVersion,
+	IPollOpinionVersion
+} from './opinion/pollopinionversion'
+import {
 	PollOpinionVersionESelect,
-	PollOpinionVersionECascadeGraph,
 	PollOpinionVersionECreateColumns,
 	PollOpinionVersionECreateProperties,
 	PollOpinionVersionEUpdateColumns,
 	PollOpinionVersionEUpdateProperties,
 	PollOpinionVersionEId,
+	PollOpinionVersionECascadeGraph,
 	QPollOpinionVersion
 } from './opinion/qpollopinionversion'
 import {
-	IPollOpinionVersionRating,
+	IPollOpinionVersionRating
+} from './opinion/user/pollopinionversionrating'
+import {
 	PollOpinionVersionRatingESelect,
-	PollOpinionVersionRatingECascadeGraph,
 	PollOpinionVersionRatingECreateColumns,
 	PollOpinionVersionRatingECreateProperties,
 	PollOpinionVersionRatingEUpdateColumns,
 	PollOpinionVersionRatingEUpdateProperties,
 	PollOpinionVersionRatingEId,
+	PollOpinionVersionRatingECascadeGraph,
 	QPollOpinionVersionRating
 } from './opinion/user/qpollopinionversionrating'
 import {
-	IPollOpinionVersionRatingCount,
+	IPollOpinionVersionRatingCount
+} from './opinion/count/pollopinionversionratingcount'
+import {
 	PollOpinionVersionRatingCountESelect,
-	PollOpinionVersionRatingCountECascadeGraph,
 	PollOpinionVersionRatingCountECreateColumns,
 	PollOpinionVersionRatingCountECreateProperties,
 	PollOpinionVersionRatingCountEUpdateColumns,
 	PollOpinionVersionRatingCountEUpdateProperties,
 	PollOpinionVersionRatingCountEId,
+	PollOpinionVersionRatingCountECascadeGraph,
 	QPollOpinionVersionRatingCount
 } from './opinion/count/qpollopinionversionratingcount'
 import {
-	IPollOpinionVersionTranslation,
+	IPollOpinionVersionTranslation
+} from './opinion/translation/pollopinionversiontranslation'
+import {
 	PollOpinionVersionTranslationESelect,
-	PollOpinionVersionTranslationECascadeGraph,
 	PollOpinionVersionTranslationECreateColumns,
 	PollOpinionVersionTranslationECreateProperties,
 	PollOpinionVersionTranslationEUpdateColumns,
 	PollOpinionVersionTranslationEUpdateProperties,
 	PollOpinionVersionTranslationEId,
+	PollOpinionVersionTranslationECascadeGraph,
 	QPollOpinionVersionTranslation
 } from './opinion/translation/qpollopinionversiontranslation'
 import {
-	IPollOpinionsCount,
+	IPollOpinionsCount
+} from './poll/count/pollopinionscount'
+import {
 	PollOpinionsCountESelect,
-	PollOpinionsCountECascadeGraph,
 	PollOpinionsCountECreateColumns,
 	PollOpinionsCountECreateProperties,
 	PollOpinionsCountEUpdateColumns,
 	PollOpinionsCountEUpdateProperties,
 	PollOpinionsCountEId,
+	PollOpinionsCountECascadeGraph,
 	QPollOpinionsCount
 } from './poll/count/qpollopinionscount'
 import {
-	IPollOpinionsRatingCount,
+	IPollOpinionsRatingCount
+} from './poll/count/pollopinionsratingcount'
+import {
 	PollOpinionsRatingCountESelect,
-	PollOpinionsRatingCountECascadeGraph,
 	PollOpinionsRatingCountECreateColumns,
 	PollOpinionsRatingCountECreateProperties,
 	PollOpinionsRatingCountEUpdateColumns,
 	PollOpinionsRatingCountEUpdateProperties,
 	PollOpinionsRatingCountEId,
+	PollOpinionsRatingCountECascadeGraph,
 	QPollOpinionsRatingCount
 } from './poll/count/qpollopinionsratingcount'
 import {
-	IPollPositionVariation,
+	IPollPositionVariation
+} from './poll/variation/structure/pollpositionvariation'
+import {
 	PollPositionVariationESelect,
-	PollPositionVariationECascadeGraph,
 	PollPositionVariationECreateColumns,
 	PollPositionVariationECreateProperties,
 	PollPositionVariationEUpdateColumns,
 	PollPositionVariationEUpdateProperties,
 	PollPositionVariationEId,
+	PollPositionVariationECascadeGraph,
 	QPollPositionVariation
 } from './poll/variation/structure/qpollpositionvariation'
 import {
-	IPollRatingCount,
+	IPollRatingCount
+} from './poll/count/pollratingcount'
+import {
 	PollRatingCountESelect,
-	PollRatingCountECascadeGraph,
 	PollRatingCountECreateColumns,
 	PollRatingCountECreateProperties,
 	PollRatingCountEUpdateColumns,
 	PollRatingCountEUpdateProperties,
 	PollRatingCountEId,
+	PollRatingCountECascadeGraph,
 	QPollRatingCount
 } from './poll/count/qpollratingcount'
 import {
-	IPollType,
+	IPollType
+} from './poll/polltype'
+import {
 	PollTypeESelect,
-	PollTypeECascadeGraph,
 	PollTypeECreateColumns,
 	PollTypeECreateProperties,
 	PollTypeEUpdateColumns,
 	PollTypeEUpdateProperties,
 	PollTypeEId,
+	PollTypeECascadeGraph,
 	QPollType
 } from './poll/qpolltype'
 import {
-	IPollVariation,
+	IPollVariation
+} from './poll/variation/pollvariation'
+import {
 	PollVariationESelect,
-	PollVariationECascadeGraph,
 	PollVariationECreateColumns,
 	PollVariationECreateProperties,
 	PollVariationEUpdateColumns,
 	PollVariationEUpdateProperties,
 	PollVariationEId,
+	PollVariationECascadeGraph,
 	QPollVariation
 } from './poll/variation/qpollvariation'
 import {
-	IPollVariationFactorTranslation,
+	IPollVariationFactorTranslation
+} from './poll/variation/translation/pollvariationfactortranslation'
+import {
 	PollVariationFactorTranslationESelect,
-	PollVariationFactorTranslationECascadeGraph,
 	PollVariationFactorTranslationECreateColumns,
 	PollVariationFactorTranslationECreateProperties,
 	PollVariationFactorTranslationEUpdateColumns,
 	PollVariationFactorTranslationEUpdateProperties,
 	PollVariationFactorTranslationEId,
+	PollVariationFactorTranslationECascadeGraph,
 	QPollVariationFactorTranslation
 } from './poll/variation/translation/qpollvariationfactortranslation'
 import {
-	IPollVariationLabel,
+	IPollVariationLabel
+} from './poll/variation/pollvariationlabel'
+import {
 	PollVariationLabelESelect,
-	PollVariationLabelECascadeGraph,
 	PollVariationLabelECreateColumns,
 	PollVariationLabelECreateProperties,
 	PollVariationLabelEUpdateColumns,
 	PollVariationLabelEUpdateProperties,
 	PollVariationLabelEId,
+	PollVariationLabelECascadeGraph,
 	QPollVariationLabel
 } from './poll/variation/qpollvariationlabel'
 import {
-	IPollVariationOpinionCount,
+	IPollVariationOpinionCount
+} from './poll/variation/count/pollvariationopinioncount'
+import {
 	PollVariationOpinionCountESelect,
-	PollVariationOpinionCountECascadeGraph,
 	PollVariationOpinionCountECreateColumns,
 	PollVariationOpinionCountECreateProperties,
 	PollVariationOpinionCountEUpdateColumns,
 	PollVariationOpinionCountEUpdateProperties,
 	PollVariationOpinionCountEId,
+	PollVariationOpinionCountECascadeGraph,
 	QPollVariationOpinionCount
 } from './poll/variation/count/qpollvariationopinioncount'
 import {
-	IPollVariationOpinionRatingCount,
+	IPollVariationOpinionRatingCount
+} from './poll/variation/count/pollvariationopinionratingcount'
+import {
 	PollVariationOpinionRatingCountESelect,
-	PollVariationOpinionRatingCountECascadeGraph,
 	PollVariationOpinionRatingCountECreateColumns,
 	PollVariationOpinionRatingCountECreateProperties,
 	PollVariationOpinionRatingCountEUpdateColumns,
 	PollVariationOpinionRatingCountEUpdateProperties,
 	PollVariationOpinionRatingCountEId,
+	PollVariationOpinionRatingCountECascadeGraph,
 	QPollVariationOpinionRatingCount
 } from './poll/variation/count/qpollvariationopinionratingcount'
 import {
-	IPollVariationPositionTranslation,
+	IPollVariationPositionTranslation
+} from './poll/variation/translation/pollvariationpositiontranslation'
+import {
 	PollVariationPositionTranslationESelect,
-	PollVariationPositionTranslationECascadeGraph,
 	PollVariationPositionTranslationECreateColumns,
 	PollVariationPositionTranslationECreateProperties,
 	PollVariationPositionTranslationEUpdateColumns,
 	PollVariationPositionTranslationEUpdateProperties,
 	PollVariationPositionTranslationEId,
+	PollVariationPositionTranslationECascadeGraph,
 	QPollVariationPositionTranslation
 } from './poll/variation/translation/qpollvariationpositiontranslation'
 import {
-	IPollVariationRatingCount,
+	IPollVariationRatingCount
+} from './poll/variation/count/pollvariationratingcount'
+import {
 	PollVariationRatingCountESelect,
-	PollVariationRatingCountECascadeGraph,
 	PollVariationRatingCountECreateColumns,
 	PollVariationRatingCountECreateProperties,
 	PollVariationRatingCountEUpdateColumns,
 	PollVariationRatingCountEUpdateProperties,
 	PollVariationRatingCountEId,
+	PollVariationRatingCountECascadeGraph,
 	QPollVariationRatingCount
 } from './poll/variation/count/qpollvariationratingcount'
 import {
-	IPollVariationTranslation,
+	IPollVariationTranslation
+} from './poll/variation/translation/pollvariationtranslation'
+import {
 	PollVariationTranslationESelect,
-	PollVariationTranslationECascadeGraph,
 	PollVariationTranslationECreateColumns,
 	PollVariationTranslationECreateProperties,
 	PollVariationTranslationEUpdateColumns,
 	PollVariationTranslationEUpdateProperties,
 	PollVariationTranslationEId,
+	PollVariationTranslationECascadeGraph,
 	QPollVariationTranslation
 } from './poll/variation/translation/qpollvariationtranslation'
 import {
-	IPollVariationTranslationOpinionCount,
+	IPollVariationTranslationOpinionCount
+} from './poll/variation/translation/count/pollvariationtranslationopinioncount'
+import {
 	PollVariationTranslationOpinionCountESelect,
-	PollVariationTranslationOpinionCountECascadeGraph,
 	PollVariationTranslationOpinionCountECreateColumns,
 	PollVariationTranslationOpinionCountECreateProperties,
 	PollVariationTranslationOpinionCountEUpdateColumns,
 	PollVariationTranslationOpinionCountEUpdateProperties,
 	PollVariationTranslationOpinionCountEId,
+	PollVariationTranslationOpinionCountECascadeGraph,
 	QPollVariationTranslationOpinionCount
 } from './poll/variation/translation/count/qpollvariationtranslationopinioncount'
 import {
-	IPollVariationTranslationOpinionRatingCount,
+	IPollVariationTranslationOpinionRatingCount
+} from './poll/variation/translation/count/pollvariationtranslationopinionratingcount'
+import {
 	PollVariationTranslationOpinionRatingCountESelect,
-	PollVariationTranslationOpinionRatingCountECascadeGraph,
 	PollVariationTranslationOpinionRatingCountECreateColumns,
 	PollVariationTranslationOpinionRatingCountECreateProperties,
 	PollVariationTranslationOpinionRatingCountEUpdateColumns,
 	PollVariationTranslationOpinionRatingCountEUpdateProperties,
 	PollVariationTranslationOpinionRatingCountEId,
+	PollVariationTranslationOpinionRatingCountECascadeGraph,
 	QPollVariationTranslationOpinionRatingCount
 } from './poll/variation/translation/count/qpollvariationtranslationopinionratingcount'
 import {
-	IPollVariationTranslationRatingCount,
+	IPollVariationTranslationRatingCount
+} from './poll/variation/translation/count/pollvariationtranslationratingcount'
+import {
 	PollVariationTranslationRatingCountESelect,
-	PollVariationTranslationRatingCountECascadeGraph,
 	PollVariationTranslationRatingCountECreateColumns,
 	PollVariationTranslationRatingCountECreateProperties,
 	PollVariationTranslationRatingCountEUpdateColumns,
 	PollVariationTranslationRatingCountEUpdateProperties,
 	PollVariationTranslationRatingCountEId,
+	PollVariationTranslationRatingCountECascadeGraph,
 	QPollVariationTranslationRatingCount
 } from './poll/variation/translation/count/qpollvariationtranslationratingcount'
 import {
-	IPollVariationTranslationVoteCount,
+	IPollVariationTranslationVoteCount
+} from './poll/variation/translation/count/pollvariationtranslationvotecount'
+import {
 	PollVariationTranslationVoteCountESelect,
-	PollVariationTranslationVoteCountECascadeGraph,
 	PollVariationTranslationVoteCountECreateColumns,
 	PollVariationTranslationVoteCountECreateProperties,
 	PollVariationTranslationVoteCountEUpdateColumns,
 	PollVariationTranslationVoteCountEUpdateProperties,
 	PollVariationTranslationVoteCountEId,
+	PollVariationTranslationVoteCountECascadeGraph,
 	QPollVariationTranslationVoteCount
 } from './poll/variation/translation/count/qpollvariationtranslationvotecount'
 import {
-	IPollVariationVoteCount,
+	IPollVariationVoteCount
+} from './poll/variation/count/pollvariationvotecount'
+import {
 	PollVariationVoteCountESelect,
-	PollVariationVoteCountECascadeGraph,
 	PollVariationVoteCountECreateColumns,
 	PollVariationVoteCountECreateProperties,
 	PollVariationVoteCountEUpdateColumns,
 	PollVariationVoteCountEUpdateProperties,
 	PollVariationVoteCountEId,
+	PollVariationVoteCountECascadeGraph,
 	QPollVariationVoteCount
 } from './poll/variation/count/qpollvariationvotecount'
 import {
-	IPollVoteCount,
+	IPollVoteCount
+} from './poll/count/pollvotecount'
+import {
 	PollVoteCountESelect,
-	PollVoteCountECascadeGraph,
 	PollVoteCountECreateColumns,
 	PollVoteCountECreateProperties,
 	PollVoteCountEUpdateColumns,
 	PollVoteCountEUpdateProperties,
 	PollVoteCountEId,
+	PollVoteCountECascadeGraph,
 	QPollVoteCount
 } from './poll/count/qpollvotecount'
 import {
-	IPosition,
+	IPosition
+} from './factor/position/position'
+import {
 	PositionESelect,
-	PositionECascadeGraph,
 	PositionECreateColumns,
 	PositionECreateProperties,
 	PositionEUpdateColumns,
 	PositionEUpdateProperties,
 	PositionEId,
+	PositionECascadeGraph,
 	QPosition
 } from './factor/position/qposition'
 import {
-	IPositionOpinionVersion,
+	IPositionOpinionVersion
+} from './opinion/positionopinionversion'
+import {
 	PositionOpinionVersionESelect,
-	PositionOpinionVersionECascadeGraph,
 	PositionOpinionVersionECreateColumns,
 	PositionOpinionVersionECreateProperties,
 	PositionOpinionVersionEUpdateColumns,
 	PositionOpinionVersionEUpdateProperties,
 	PositionOpinionVersionEId,
+	PositionOpinionVersionECascadeGraph,
 	QPositionOpinionVersion
 } from './opinion/qpositionopinionversion'
 import {
-	IPositionOpinionVersionRating,
+	IPositionOpinionVersionRating
+} from './opinion/user/positionopinionversionrating'
+import {
 	PositionOpinionVersionRatingESelect,
-	PositionOpinionVersionRatingECascadeGraph,
 	PositionOpinionVersionRatingECreateColumns,
 	PositionOpinionVersionRatingECreateProperties,
 	PositionOpinionVersionRatingEUpdateColumns,
 	PositionOpinionVersionRatingEUpdateProperties,
 	PositionOpinionVersionRatingEId,
+	PositionOpinionVersionRatingECascadeGraph,
 	QPositionOpinionVersionRating
 } from './opinion/user/qpositionopinionversionrating'
 import {
-	IPositionOpinionVersionRatingCount,
+	IPositionOpinionVersionRatingCount
+} from './opinion/count/positionopinionversionratingcount'
+import {
 	PositionOpinionVersionRatingCountESelect,
-	PositionOpinionVersionRatingCountECascadeGraph,
 	PositionOpinionVersionRatingCountECreateColumns,
 	PositionOpinionVersionRatingCountECreateProperties,
 	PositionOpinionVersionRatingCountEUpdateColumns,
 	PositionOpinionVersionRatingCountEUpdateProperties,
 	PositionOpinionVersionRatingCountEId,
+	PositionOpinionVersionRatingCountECascadeGraph,
 	QPositionOpinionVersionRatingCount
 } from './opinion/count/qpositionopinionversionratingcount'
 import {
-	IPositionOpinionVersionTranslation,
+	IPositionOpinionVersionTranslation
+} from './opinion/translation/positionopinionversiontranslation'
+import {
 	PositionOpinionVersionTranslationESelect,
-	PositionOpinionVersionTranslationECascadeGraph,
 	PositionOpinionVersionTranslationECreateColumns,
 	PositionOpinionVersionTranslationECreateProperties,
 	PositionOpinionVersionTranslationEUpdateColumns,
 	PositionOpinionVersionTranslationEUpdateProperties,
 	PositionOpinionVersionTranslationEId,
+	PositionOpinionVersionTranslationECascadeGraph,
 	QPositionOpinionVersionTranslation
 } from './opinion/translation/qpositionopinionversiontranslation'
 import {
-	IPositionVariation,
+	IPositionVariation
+} from './factor/position/positionvariation'
+import {
 	PositionVariationESelect,
-	PositionVariationECascadeGraph,
 	PositionVariationECreateColumns,
 	PositionVariationECreateProperties,
 	PositionVariationEUpdateColumns,
 	PositionVariationEUpdateProperties,
 	PositionVariationEId,
+	PositionVariationECascadeGraph,
 	QPositionVariation
 } from './factor/position/qpositionvariation'
 import {
-	IPositionVariationTranslation,
+	IPositionVariationTranslation
+} from './factor/position/positionvariationtranslation'
+import {
 	PositionVariationTranslationESelect,
-	PositionVariationTranslationECascadeGraph,
 	PositionVariationTranslationECreateColumns,
 	PositionVariationTranslationECreateProperties,
 	PositionVariationTranslationEUpdateColumns,
 	PositionVariationTranslationEUpdateProperties,
 	PositionVariationTranslationEId,
+	PositionVariationTranslationECascadeGraph,
 	QPositionVariationTranslation
 } from './factor/position/qpositionvariationtranslation'
 import {
-	IRating,
+	IRating
+} from './infrastructure/rating/rating'
+import {
 	RatingESelect,
-	RatingECascadeGraph,
 	RatingECreateColumns,
 	RatingECreateProperties,
 	RatingEUpdateColumns,
 	RatingEUpdateProperties,
 	RatingEId,
+	RatingECascadeGraph,
 	QRating
 } from './infrastructure/rating/qrating'
 import {
-	IRatingReason,
+	IRatingReason
+} from './infrastructure/rating/ratingreason'
+import {
 	RatingReasonESelect,
-	RatingReasonECascadeGraph,
 	RatingReasonECreateColumns,
 	RatingReasonECreateProperties,
 	RatingReasonEUpdateColumns,
 	RatingReasonEUpdateProperties,
 	RatingReasonEId,
+	RatingReasonECascadeGraph,
 	QRatingReason
 } from './infrastructure/rating/qratingreason'
 import {
-	IRatingReasonTranslation,
+	IRatingReasonTranslation
+} from './infrastructure/rating/ratingreasontranslation'
+import {
 	RatingReasonTranslationESelect,
-	RatingReasonTranslationECascadeGraph,
 	RatingReasonTranslationECreateColumns,
 	RatingReasonTranslationECreateProperties,
 	RatingReasonTranslationEUpdateColumns,
 	RatingReasonTranslationEUpdateProperties,
 	RatingReasonTranslationEId,
+	RatingReasonTranslationECascadeGraph,
 	QRatingReasonTranslation
 } from './infrastructure/rating/qratingreasontranslation'
 import {
-	IRatingSetting,
+	IRatingSetting
+} from './infrastructure/rating/ratingsetting'
+import {
 	RatingSettingESelect,
-	RatingSettingECascadeGraph,
 	RatingSettingECreateColumns,
 	RatingSettingECreateProperties,
 	RatingSettingEUpdateColumns,
 	RatingSettingEUpdateProperties,
 	RatingSettingEId,
+	RatingSettingECascadeGraph,
 	QRatingSetting
 } from './infrastructure/rating/qratingsetting'
 import {
-	IRatingTranslation,
+	IRatingTranslation
+} from './infrastructure/rating/ratingtranslation'
+import {
 	RatingTranslationESelect,
-	RatingTranslationECascadeGraph,
 	RatingTranslationECreateColumns,
 	RatingTranslationECreateProperties,
 	RatingTranslationEUpdateColumns,
 	RatingTranslationEUpdateProperties,
 	RatingTranslationEId,
+	RatingTranslationECascadeGraph,
 	QRatingTranslation
 } from './infrastructure/rating/qratingtranslation'
 import {
-	IRatingType,
+	IRatingType
+} from './infrastructure/rating/ratingtype'
+import {
 	RatingTypeESelect,
-	RatingTypeECascadeGraph,
 	RatingTypeECreateColumns,
 	RatingTypeECreateProperties,
 	RatingTypeEUpdateColumns,
 	RatingTypeEUpdateProperties,
 	RatingTypeEId,
+	RatingTypeECascadeGraph,
 	QRatingType
 } from './infrastructure/rating/qratingtype'
 import {
-	IState,
+	IState
+} from './location/state'
+import {
 	StateESelect,
-	StateECascadeGraph,
 	StateECreateColumns,
 	StateECreateProperties,
 	StateEUpdateColumns,
 	StateEUpdateProperties,
 	StateEId,
+	StateECascadeGraph,
 	QState
 } from './location/qstate'
 import {
-	IStateTown,
+	IStateTown
+} from './location/statetown'
+import {
 	StateTownESelect,
-	StateTownECascadeGraph,
 	StateTownECreateColumns,
 	StateTownECreateProperties,
 	StateTownEUpdateColumns,
 	StateTownEUpdateProperties,
 	StateTownEId,
+	StateTownECascadeGraph,
 	QStateTown
 } from './location/qstatetown'
 import {
-	ITheme,
+	ITheme
+} from './poll/theme'
+import {
 	ThemeESelect,
-	ThemeECascadeGraph,
 	ThemeECreateColumns,
 	ThemeECreateProperties,
 	ThemeEUpdateColumns,
 	ThemeEUpdateProperties,
 	ThemeEId,
+	ThemeECascadeGraph,
 	QTheme
 } from './poll/qtheme'
 import {
-	ITown,
+	ITown
+} from './location/town'
+import {
 	TownESelect,
-	TownECascadeGraph,
 	TownECreateColumns,
 	TownECreateProperties,
 	TownEUpdateColumns,
 	TownEUpdateProperties,
 	TownEId,
+	TownECascadeGraph,
 	QTown
 } from './location/qtown'
 import {
-	ITranslationType,
+	ITranslationType
+} from './infrastructure/translationtype'
+import {
 	TranslationTypeESelect,
-	TranslationTypeECascadeGraph,
 	TranslationTypeECreateColumns,
 	TranslationTypeECreateProperties,
 	TranslationTypeEUpdateColumns,
 	TranslationTypeEUpdateProperties,
 	TranslationTypeEId,
+	TranslationTypeECascadeGraph,
 	QTranslationType
 } from './infrastructure/qtranslationtype'
 import {
-	IUserAccount,
+	IUserAccount
+} from './user/useraccount'
+import {
 	UserAccountESelect,
-	UserAccountECascadeGraph,
 	UserAccountECreateColumns,
 	UserAccountECreateProperties,
 	UserAccountEUpdateColumns,
 	UserAccountEUpdateProperties,
 	UserAccountEId,
+	UserAccountECascadeGraph,
 	QUserAccount
 } from './user/quseraccount'
 import {
-	IUserPoll,
+	IUserPoll
+} from './poll/user/userpoll'
+import {
 	UserPollESelect,
-	UserPollECascadeGraph,
 	UserPollECreateColumns,
 	UserPollECreateProperties,
 	UserPollEUpdateColumns,
 	UserPollEUpdateProperties,
 	UserPollEId,
+	UserPollECascadeGraph,
 	QUserPoll
 } from './poll/user/quserpoll'
 import {
-	IUserPollRating,
+	IUserPollRating
+} from './poll/user/userpollrating'
+import {
 	UserPollRatingESelect,
-	UserPollRatingECascadeGraph,
 	UserPollRatingECreateColumns,
 	UserPollRatingECreateProperties,
 	UserPollRatingEUpdateColumns,
 	UserPollRatingEUpdateProperties,
 	UserPollRatingEId,
+	UserPollRatingECascadeGraph,
 	QUserPollRating
 } from './poll/user/quserpollrating'
 import {
-	IUserPollVariation,
+	IUserPollVariation
+} from './poll/user/userpollvariation'
+import {
 	UserPollVariationESelect,
-	UserPollVariationECascadeGraph,
 	UserPollVariationECreateColumns,
 	UserPollVariationECreateProperties,
 	UserPollVariationEUpdateColumns,
 	UserPollVariationEUpdateProperties,
 	UserPollVariationEId,
+	UserPollVariationECascadeGraph,
 	QUserPollVariation
 } from './poll/user/quserpollvariation'
 import {
-	IUserPollVariationRating,
+	IUserPollVariationRating
+} from './poll/user/userpollvariationrating'
+import {
 	UserPollVariationRatingESelect,
-	UserPollVariationRatingECascadeGraph,
 	UserPollVariationRatingECreateColumns,
 	UserPollVariationRatingECreateProperties,
 	UserPollVariationRatingEUpdateColumns,
 	UserPollVariationRatingEUpdateProperties,
 	UserPollVariationRatingEId,
+	UserPollVariationRatingECascadeGraph,
 	QUserPollVariationRating
 } from './poll/user/quserpollvariationrating'
 import {
-	IUserPollVariationTranslation,
+	IUserPollVariationTranslation
+} from './poll/user/userpollvariationtranslation'
+import {
 	UserPollVariationTranslationESelect,
-	UserPollVariationTranslationECascadeGraph,
 	UserPollVariationTranslationECreateColumns,
 	UserPollVariationTranslationECreateProperties,
 	UserPollVariationTranslationEUpdateColumns,
 	UserPollVariationTranslationEUpdateProperties,
 	UserPollVariationTranslationEId,
+	UserPollVariationTranslationECascadeGraph,
 	QUserPollVariationTranslation
 } from './poll/user/quserpollvariationtranslation'
 import {
-	IUserPollVariationTranslationRating,
+	IUserPollVariationTranslationRating
+} from './poll/user/userpollvariationtranslationrating'
+import {
 	UserPollVariationTranslationRatingESelect,
-	UserPollVariationTranslationRatingECascadeGraph,
 	UserPollVariationTranslationRatingECreateColumns,
 	UserPollVariationTranslationRatingECreateProperties,
 	UserPollVariationTranslationRatingEUpdateColumns,
 	UserPollVariationTranslationRatingEUpdateProperties,
 	UserPollVariationTranslationRatingEId,
+	UserPollVariationTranslationRatingECascadeGraph,
 	QUserPollVariationTranslationRating
 } from './poll/user/quserpollvariationtranslationrating'
 import {
-	IVote,
+	IVote
+} from './vote/vote'
+import {
 	VoteESelect,
-	VoteECascadeGraph,
 	VoteECreateColumns,
 	VoteECreateProperties,
 	VoteEUpdateColumns,
 	VoteEUpdateProperties,
 	VoteEId,
+	VoteECascadeGraph,
 	QVote
 } from './vote/qvote'
 import {
-	IVoteFactor,
+	IVoteFactor
+} from './vote/votefactor'
+import {
 	VoteFactorESelect,
-	VoteFactorECascadeGraph,
 	VoteFactorECreateColumns,
 	VoteFactorECreateProperties,
 	VoteFactorEUpdateColumns,
 	VoteFactorEUpdateProperties,
 	VoteFactorEId,
+	VoteFactorECascadeGraph,
 	QVoteFactor
 } from './vote/qvotefactor'
 import {
-	IVoteFactorType,
+	IVoteFactorType
+} from './vote/votefactortype'
+import {
 	VoteFactorTypeESelect,
-	VoteFactorTypeECascadeGraph,
 	VoteFactorTypeECreateColumns,
 	VoteFactorTypeECreateProperties,
 	VoteFactorTypeEUpdateColumns,
 	VoteFactorTypeEUpdateProperties,
 	VoteFactorTypeEId,
+	VoteFactorTypeECascadeGraph,
 	QVoteFactorType
 } from './vote/qvotefactortype'
 import {
-	IVoteType,
+	IVoteType
+} from './vote/votetype'
+import {
 	VoteTypeESelect,
-	VoteTypeECascadeGraph,
 	VoteTypeECreateColumns,
 	VoteTypeECreateProperties,
 	VoteTypeEUpdateColumns,
 	VoteTypeEUpdateProperties,
 	VoteTypeEId,
+	VoteTypeECascadeGraph,
 	QVoteType
 } from './vote/qvotetype'
 import {
-	IVoteVariation,
+	IVoteVariation
+} from './vote/votevariation'
+import {
 	VoteVariationESelect,
-	VoteVariationECascadeGraph,
 	VoteVariationECreateColumns,
 	VoteVariationECreateProperties,
 	VoteVariationEUpdateColumns,
 	VoteVariationEUpdateProperties,
 	VoteVariationEId,
+	VoteVariationECascadeGraph,
 	QVoteVariation
 } from './vote/qvotevariation'
 
-// Schema Q object Dependency Injection readiness detection DAO
+
+// Schema Q object Dependency Injection readiness detection Dao
 export class SQDIDao<Entity,
 	EntitySelect extends IEntitySelectProperties,
 	EntityCreate extends IEntityCreateProperties,
-	EntityUpdateColumns extends IEntityUpdateColumns,
+  EntityUpdateColumns extends IEntityUpdateColumns,
 	EntityUpdateProperties extends IEntityUpdateProperties,
 	EntityId extends IEntityIdProperties,
 	EntityCascadeGraph extends IEntityCascadeGraph,
@@ -1143,7 +1340,7 @@ export class BaseActorDao
 	implements IBaseActorDao {
 
 	static diSet(): boolean {
-		return diSet(5)
+		return duoDiSet(5)
 	}
 	
 	constructor() {
@@ -1161,7 +1358,7 @@ export class BaseApplicationDao
 	implements IBaseApplicationDao {
 
 	static diSet(): boolean {
-		return diSet(2)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
@@ -1179,11 +1376,11 @@ export class BaseChosenPollTranslationDao
 	implements IBaseChosenPollTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(53)
+		return duoDiSet(43)
 	}
 	
 	constructor() {
-		super(53)
+		super(43)
 	}
 }
 
@@ -1197,11 +1394,11 @@ export class BaseChosenPollTranslationTypeDao
 	implements IBaseChosenPollTranslationTypeDao {
 
 	static diSet(): boolean {
-		return diSet(52)
+		return duoDiSet(42)
 	}
 	
 	constructor() {
-		super(52)
+		super(42)
 	}
 }
 
@@ -1215,11 +1412,11 @@ export class BaseChosenPollVariationDao
 	implements IBaseChosenPollVariationDao {
 
 	static diSet(): boolean {
-		return diSet(24)
+		return duoDiSet(45)
 	}
 	
 	constructor() {
-		super(24)
+		super(45)
 	}
 }
 
@@ -1233,11 +1430,11 @@ export class BaseChosenPollVariationTypeDao
 	implements IBaseChosenPollVariationTypeDao {
 
 	static diSet(): boolean {
-		return diSet(23)
+		return duoDiSet(44)
 	}
 	
 	constructor() {
-		super(23)
+		super(44)
 	}
 }
 
@@ -1251,11 +1448,11 @@ export class BaseChosenVoteVariationDao
 	implements IBaseChosenVoteVariationDao {
 
 	static diSet(): boolean {
-		return diSet(59)
+		return duoDiSet(53)
 	}
 	
 	constructor() {
-		super(59)
+		super(53)
 	}
 }
 
@@ -1269,11 +1466,11 @@ export class BaseChosenVoteVariationTypeDao
 	implements IBaseChosenVoteVariationTypeDao {
 
 	static diSet(): boolean {
-		return diSet(58)
+		return duoDiSet(46)
 	}
 	
 	constructor() {
-		super(58)
+		super(46)
 	}
 }
 
@@ -1287,7 +1484,7 @@ export class BaseContinentDao
 	implements IBaseContinentDao {
 
 	static diSet(): boolean {
-		return diSet(7)
+		return duoDiSet(7)
 	}
 	
 	constructor() {
@@ -1305,7 +1502,7 @@ export class BaseCountryDao
 	implements IBaseCountryDao {
 
 	static diSet(): boolean {
-		return diSet(14)
+		return duoDiSet(14)
 	}
 	
 	constructor() {
@@ -1323,7 +1520,7 @@ export class BaseCountryTownDao
 	implements IBaseCountryTownDao {
 
 	static diSet(): boolean {
-		return diSet(13)
+		return duoDiSet(13)
 	}
 	
 	constructor() {
@@ -1341,7 +1538,7 @@ export class BaseCountyDao
 	implements IBaseCountyDao {
 
 	static diSet(): boolean {
-		return diSet(11)
+		return duoDiSet(11)
 	}
 	
 	constructor() {
@@ -1359,7 +1556,7 @@ export class BaseCountyTownDao
 	implements IBaseCountyTownDao {
 
 	static diSet(): boolean {
-		return diSet(8)
+		return duoDiSet(8)
 	}
 	
 	constructor() {
@@ -1377,7 +1574,7 @@ export class BaseDesignPatternDao
 	implements IBaseDesignPatternDao {
 
 	static diSet(): boolean {
-		return diSet(0)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
@@ -1395,7 +1592,7 @@ export class BaseDeviceDao
 	implements IBaseDeviceDao {
 
 	static diSet(): boolean {
-		return diSet(3)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
@@ -1413,7 +1610,7 @@ export class BaseEmojiDao
 	implements IBaseEmojiDao {
 
 	static diSet(): boolean {
-		return diSet(1)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
@@ -1431,11 +1628,11 @@ export class BaseFactorDao
 	implements IBaseFactorDao {
 
 	static diSet(): boolean {
-		return diSet(88)
+		return duoDiSet(97)
 	}
 	
 	constructor() {
-		super(88)
+		super(97)
 	}
 }
 
@@ -1449,11 +1646,11 @@ export class BaseFactorOpinionVersionDao
 	implements IBaseFactorOpinionVersionDao {
 
 	static diSet(): boolean {
-		return diSet(76)
+		return duoDiSet(67)
 	}
 	
 	constructor() {
-		super(76)
+		super(67)
 	}
 }
 
@@ -1467,11 +1664,11 @@ export class BaseFactorOpinionVersionRatingDao
 	implements IBaseFactorOpinionVersionRatingDao {
 
 	static diSet(): boolean {
-		return diSet(75)
+		return duoDiSet(66)
 	}
 	
 	constructor() {
-		super(75)
+		super(66)
 	}
 }
 
@@ -1485,11 +1682,11 @@ export class BaseFactorOpinionVersionRatingCountDao
 	implements IBaseFactorOpinionVersionRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(68)
+		return duoDiSet(55)
 	}
 	
 	constructor() {
-		super(68)
+		super(55)
 	}
 }
 
@@ -1503,11 +1700,11 @@ export class BaseFactorOpinionVersionTranslationDao
 	implements IBaseFactorOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(74)
+		return duoDiSet(65)
 	}
 	
 	constructor() {
-		super(74)
+		super(65)
 	}
 }
 
@@ -1521,11 +1718,11 @@ export class BaseFactorPositionDao
 	implements IBaseFactorPositionDao {
 
 	static diSet(): boolean {
-		return diSet(89)
+		return duoDiSet(98)
 	}
 	
 	constructor() {
-		super(89)
+		super(98)
 	}
 }
 
@@ -1539,11 +1736,11 @@ export class BaseFactorSkinVariationDao
 	implements IBaseFactorSkinVariationDao {
 
 	static diSet(): boolean {
-		return diSet(87)
+		return duoDiSet(96)
 	}
 	
 	constructor() {
-		super(87)
+		super(96)
 	}
 }
 
@@ -1557,11 +1754,11 @@ export class BaseFactorVariationDao
 	implements IBaseFactorVariationDao {
 
 	static diSet(): boolean {
-		return diSet(44)
+		return duoDiSet(34)
 	}
 	
 	constructor() {
-		super(44)
+		super(34)
 	}
 }
 
@@ -1575,11 +1772,11 @@ export class BaseFactorVariationTranslationDao
 	implements IBaseFactorVariationTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(45)
+		return duoDiSet(35)
 	}
 	
 	constructor() {
-		super(45)
+		super(35)
 	}
 }
 
@@ -1593,11 +1790,11 @@ export class BaseLabelDao
 	implements IBaseLabelDao {
 
 	static diSet(): boolean {
-		return diSet(54)
+		return duoDiSet(68)
 	}
 	
 	constructor() {
-		super(54)
+		super(68)
 	}
 }
 
@@ -1611,11 +1808,11 @@ export class BaseLabelTranslationDao
 	implements IBaseLabelTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(97)
+		return duoDiSet(70)
 	}
 	
 	constructor() {
-		super(97)
+		super(70)
 	}
 }
 
@@ -1629,11 +1826,11 @@ export class BaseLabelTranslationRatingDao
 	implements IBaseLabelTranslationRatingDao {
 
 	static diSet(): boolean {
-		return diSet(98)
+		return duoDiSet(71)
 	}
 	
 	constructor() {
-		super(98)
+		super(71)
 	}
 }
 
@@ -1647,11 +1844,11 @@ export class BaseLabelTranslationRatingCountDao
 	implements IBaseLabelTranslationRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(96)
+		return duoDiSet(69)
 	}
 	
 	constructor() {
-		super(96)
+		super(69)
 	}
 }
 
@@ -1665,7 +1862,7 @@ export class BaseLanguageDao
 	implements IBaseLanguageDao {
 
 	static diSet(): boolean {
-		return diSet(16)
+		return duoDiSet(16)
 	}
 	
 	constructor() {
@@ -1683,11 +1880,11 @@ export class BasePollDao
 	implements IBasePollDao {
 
 	static diSet(): boolean {
-		return diSet(56)
+		return duoDiSet(93)
 	}
 	
 	constructor() {
-		super(56)
+		super(93)
 	}
 }
 
@@ -1701,11 +1898,11 @@ export class BasePollFactorPositionVariationDao
 	implements IBasePollFactorPositionVariationDao {
 
 	static diSet(): boolean {
-		return diSet(62)
+		return duoDiSet(48)
 	}
 	
 	constructor() {
-		super(62)
+		super(48)
 	}
 }
 
@@ -1719,11 +1916,11 @@ export class BasePollFactorSkinVariationDao
 	implements IBasePollFactorSkinVariationDao {
 
 	static diSet(): boolean {
-		return diSet(85)
+		return duoDiSet(72)
 	}
 	
 	constructor() {
-		super(85)
+		super(72)
 	}
 }
 
@@ -1737,11 +1934,11 @@ export class BasePollFactorVariationDao
 	implements IBasePollFactorVariationDao {
 
 	static diSet(): boolean {
-		return diSet(67)
+		return duoDiSet(54)
 	}
 	
 	constructor() {
-		super(67)
+		super(54)
 	}
 }
 
@@ -1755,11 +1952,11 @@ export class BasePollLTFContinentDao
 	implements IBasePollLTFContinentDao {
 
 	static diSet(): boolean {
-		return diSet(25)
+		return duoDiSet(73)
 	}
 	
 	constructor() {
-		super(25)
+		super(73)
 	}
 }
 
@@ -1773,11 +1970,11 @@ export class BasePollLTFCountryDao
 	implements IBasePollLTFCountryDao {
 
 	static diSet(): boolean {
-		return diSet(26)
+		return duoDiSet(74)
 	}
 	
 	constructor() {
-		super(26)
+		super(74)
 	}
 }
 
@@ -1791,11 +1988,11 @@ export class BasePollLTFCountyDao
 	implements IBasePollLTFCountyDao {
 
 	static diSet(): boolean {
-		return diSet(27)
+		return duoDiSet(75)
 	}
 	
 	constructor() {
-		super(27)
+		super(75)
 	}
 }
 
@@ -1809,11 +2006,11 @@ export class BasePollLTFOpinionCountDao
 	implements IBasePollLTFOpinionCountDao {
 
 	static diSet(): boolean {
-		return diSet(92)
+		return duoDiSet(76)
 	}
 	
 	constructor() {
-		super(92)
+		super(76)
 	}
 }
 
@@ -1827,11 +2024,11 @@ export class BasePollLTFOpinionRatingCountDao
 	implements IBasePollLTFOpinionRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(93)
+		return duoDiSet(77)
 	}
 	
 	constructor() {
-		super(93)
+		super(77)
 	}
 }
 
@@ -1845,11 +2042,11 @@ export class BasePollLTFRatingCountDao
 	implements IBasePollLTFRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(94)
+		return duoDiSet(78)
 	}
 	
 	constructor() {
-		super(94)
+		super(78)
 	}
 }
 
@@ -1863,11 +2060,11 @@ export class BasePollLTFStateDao
 	implements IBasePollLTFStateDao {
 
 	static diSet(): boolean {
-		return diSet(28)
+		return duoDiSet(79)
 	}
 	
 	constructor() {
-		super(28)
+		super(79)
 	}
 }
 
@@ -1881,11 +2078,11 @@ export class BasePollLTFTownDao
 	implements IBasePollLTFTownDao {
 
 	static diSet(): boolean {
-		return diSet(29)
+		return duoDiSet(80)
 	}
 	
 	constructor() {
-		super(29)
+		super(80)
 	}
 }
 
@@ -1899,11 +2096,11 @@ export class BasePollLTFVoteCountDao
 	implements IBasePollLTFVoteCountDao {
 
 	static diSet(): boolean {
-		return diSet(95)
+		return duoDiSet(81)
 	}
 	
 	constructor() {
-		super(95)
+		super(81)
 	}
 }
 
@@ -1917,11 +2114,11 @@ export class BasePollLocationTimeFrameDao
 	implements IBasePollLocationTimeFrameDao {
 
 	static diSet(): boolean {
-		return diSet(30)
+		return duoDiSet(92)
 	}
 	
 	constructor() {
-		super(30)
+		super(92)
 	}
 }
 
@@ -1935,11 +2132,11 @@ export class BasePollOpinionDao
 	implements IBasePollOpinionDao {
 
 	static diSet(): boolean {
-		return diSet(80)
+		return duoDiSet(94)
 	}
 	
 	constructor() {
-		super(80)
+		super(94)
 	}
 }
 
@@ -1953,11 +2150,11 @@ export class BasePollOpinionRatingCountDao
 	implements IBasePollOpinionRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(57)
+		return duoDiSet(82)
 	}
 	
 	constructor() {
-		super(57)
+		super(82)
 	}
 }
 
@@ -1971,11 +2168,11 @@ export class BasePollOpinionVersionDao
 	implements IBasePollOpinionVersionDao {
 
 	static diSet(): boolean {
-		return diSet(79)
+		return duoDiSet(59)
 	}
 	
 	constructor() {
-		super(79)
+		super(59)
 	}
 }
 
@@ -1989,11 +2186,11 @@ export class BasePollOpinionVersionRatingDao
 	implements IBasePollOpinionVersionRatingDao {
 
 	static diSet(): boolean {
-		return diSet(78)
+		return duoDiSet(58)
 	}
 	
 	constructor() {
-		super(78)
+		super(58)
 	}
 }
 
@@ -2007,11 +2204,11 @@ export class BasePollOpinionVersionRatingCountDao
 	implements IBasePollOpinionVersionRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(66)
+		return duoDiSet(56)
 	}
 	
 	constructor() {
-		super(66)
+		super(56)
 	}
 }
 
@@ -2025,11 +2222,11 @@ export class BasePollOpinionVersionTranslationDao
 	implements IBasePollOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(77)
+		return duoDiSet(57)
 	}
 	
 	constructor() {
-		super(77)
+		super(57)
 	}
 }
 
@@ -2043,7 +2240,7 @@ export class BasePollOpinionsCountDao
 	implements IBasePollOpinionsCountDao {
 
 	static diSet(): boolean {
-		return diSet(6)
+		return duoDiSet(6)
 	}
 	
 	constructor() {
@@ -2061,7 +2258,7 @@ export class BasePollOpinionsRatingCountDao
 	implements IBasePollOpinionsRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(20)
+		return duoDiSet(20)
 	}
 	
 	constructor() {
@@ -2079,11 +2276,11 @@ export class BasePollPositionVariationDao
 	implements IBasePollPositionVariationDao {
 
 	static diSet(): boolean {
-		return diSet(69)
+		return duoDiSet(60)
 	}
 	
 	constructor() {
-		super(69)
+		super(60)
 	}
 }
 
@@ -2097,7 +2294,7 @@ export class BasePollRatingCountDao
 	implements IBasePollRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(21)
+		return duoDiSet(21)
 	}
 	
 	constructor() {
@@ -2115,11 +2312,11 @@ export class BasePollTypeDao
 	implements IBasePollTypeDao {
 
 	static diSet(): boolean {
-		return diSet(31)
+		return duoDiSet(83)
 	}
 	
 	constructor() {
-		super(31)
+		super(83)
 	}
 }
 
@@ -2133,11 +2330,11 @@ export class BasePollVariationDao
 	implements IBasePollVariationDao {
 
 	static diSet(): boolean {
-		return diSet(86)
+		return duoDiSet(95)
 	}
 	
 	constructor() {
-		super(86)
+		super(95)
 	}
 }
 
@@ -2151,11 +2348,11 @@ export class BasePollVariationFactorTranslationDao
 	implements IBasePollVariationFactorTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(46)
+		return duoDiSet(36)
 	}
 	
 	constructor() {
-		super(46)
+		super(36)
 	}
 }
 
@@ -2169,11 +2366,11 @@ export class BasePollVariationLabelDao
 	implements IBasePollVariationLabelDao {
 
 	static diSet(): boolean {
-		return diSet(55)
+		return duoDiSet(84)
 	}
 	
 	constructor() {
-		super(55)
+		super(84)
 	}
 }
 
@@ -2187,11 +2384,11 @@ export class BasePollVariationOpinionCountDao
 	implements IBasePollVariationOpinionCountDao {
 
 	static diSet(): boolean {
-		return diSet(81)
+		return duoDiSet(85)
 	}
 	
 	constructor() {
-		super(81)
+		super(85)
 	}
 }
 
@@ -2205,11 +2402,11 @@ export class BasePollVariationOpinionRatingCountDao
 	implements IBasePollVariationOpinionRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(82)
+		return duoDiSet(86)
 	}
 	
 	constructor() {
-		super(82)
+		super(86)
 	}
 }
 
@@ -2223,11 +2420,11 @@ export class BasePollVariationPositionTranslationDao
 	implements IBasePollVariationPositionTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(50)
+		return duoDiSet(40)
 	}
 	
 	constructor() {
-		super(50)
+		super(40)
 	}
 }
 
@@ -2241,11 +2438,11 @@ export class BasePollVariationRatingCountDao
 	implements IBasePollVariationRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(83)
+		return duoDiSet(87)
 	}
 	
 	constructor() {
-		super(83)
+		super(87)
 	}
 }
 
@@ -2259,11 +2456,11 @@ export class BasePollVariationTranslationDao
 	implements IBasePollVariationTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(51)
+		return duoDiSet(41)
 	}
 	
 	constructor() {
-		super(51)
+		super(41)
 	}
 }
 
@@ -2277,11 +2474,11 @@ export class BasePollVariationTranslationOpinionCountDao
 	implements IBasePollVariationTranslationOpinionCountDao {
 
 	static diSet(): boolean {
-		return diSet(40)
+		return duoDiSet(30)
 	}
 	
 	constructor() {
-		super(40)
+		super(30)
 	}
 }
 
@@ -2295,11 +2492,11 @@ export class BasePollVariationTranslationOpinionRatingCountDao
 	implements IBasePollVariationTranslationOpinionRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(41)
+		return duoDiSet(31)
 	}
 	
 	constructor() {
-		super(41)
+		super(31)
 	}
 }
 
@@ -2313,11 +2510,11 @@ export class BasePollVariationTranslationRatingCountDao
 	implements IBasePollVariationTranslationRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(42)
+		return duoDiSet(32)
 	}
 	
 	constructor() {
-		super(42)
+		super(32)
 	}
 }
 
@@ -2331,11 +2528,11 @@ export class BasePollVariationTranslationVoteCountDao
 	implements IBasePollVariationTranslationVoteCountDao {
 
 	static diSet(): boolean {
-		return diSet(43)
+		return duoDiSet(33)
 	}
 	
 	constructor() {
-		super(43)
+		super(33)
 	}
 }
 
@@ -2349,11 +2546,11 @@ export class BasePollVariationVoteCountDao
 	implements IBasePollVariationVoteCountDao {
 
 	static diSet(): boolean {
-		return diSet(84)
+		return duoDiSet(88)
 	}
 	
 	constructor() {
-		super(84)
+		super(88)
 	}
 }
 
@@ -2367,7 +2564,7 @@ export class BasePollVoteCountDao
 	implements IBasePollVoteCountDao {
 
 	static diSet(): boolean {
-		return diSet(22)
+		return duoDiSet(22)
 	}
 	
 	constructor() {
@@ -2385,11 +2582,11 @@ export class BasePositionDao
 	implements IBasePositionDao {
 
 	static diSet(): boolean {
-		return diSet(47)
+		return duoDiSet(37)
 	}
 	
 	constructor() {
-		super(47)
+		super(37)
 	}
 }
 
@@ -2403,11 +2600,11 @@ export class BasePositionOpinionVersionDao
 	implements IBasePositionOpinionVersionDao {
 
 	static diSet(): boolean {
-		return diSet(73)
+		return duoDiSet(64)
 	}
 	
 	constructor() {
-		super(73)
+		super(64)
 	}
 }
 
@@ -2421,11 +2618,11 @@ export class BasePositionOpinionVersionRatingDao
 	implements IBasePositionOpinionVersionRatingDao {
 
 	static diSet(): boolean {
-		return diSet(72)
+		return duoDiSet(63)
 	}
 	
 	constructor() {
-		super(72)
+		super(63)
 	}
 }
 
@@ -2439,11 +2636,11 @@ export class BasePositionOpinionVersionRatingCountDao
 	implements IBasePositionOpinionVersionRatingCountDao {
 
 	static diSet(): boolean {
-		return diSet(70)
+		return duoDiSet(61)
 	}
 	
 	constructor() {
-		super(70)
+		super(61)
 	}
 }
 
@@ -2457,11 +2654,11 @@ export class BasePositionOpinionVersionTranslationDao
 	implements IBasePositionOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(71)
+		return duoDiSet(62)
 	}
 	
 	constructor() {
-		super(71)
+		super(62)
 	}
 }
 
@@ -2475,11 +2672,11 @@ export class BasePositionVariationDao
 	implements IBasePositionVariationDao {
 
 	static diSet(): boolean {
-		return diSet(48)
+		return duoDiSet(38)
 	}
 	
 	constructor() {
-		super(48)
+		super(38)
 	}
 }
 
@@ -2493,11 +2690,11 @@ export class BasePositionVariationTranslationDao
 	implements IBasePositionVariationTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(49)
+		return duoDiSet(39)
 	}
 	
 	constructor() {
-		super(49)
+		super(39)
 	}
 }
 
@@ -2511,7 +2708,7 @@ export class BaseRatingDao
 	implements IBaseRatingDao {
 
 	static diSet(): boolean {
-		return diSet(19)
+		return duoDiSet(19)
 	}
 	
 	constructor() {
@@ -2529,11 +2726,11 @@ export class BaseRatingReasonDao
 	implements IBaseRatingReasonDao {
 
 	static diSet(): boolean {
-		return diSet(91)
+		return duoDiSet(90)
 	}
 	
 	constructor() {
-		super(91)
+		super(90)
 	}
 }
 
@@ -2547,11 +2744,11 @@ export class BaseRatingReasonTranslationDao
 	implements IBaseRatingReasonTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(90)
+		return duoDiSet(89)
 	}
 	
 	constructor() {
-		super(90)
+		super(89)
 	}
 }
 
@@ -2565,7 +2762,7 @@ export class BaseRatingSettingDao
 	implements IBaseRatingSettingDao {
 
 	static diSet(): boolean {
-		return diSet(15)
+		return duoDiSet(15)
 	}
 	
 	constructor() {
@@ -2583,7 +2780,7 @@ export class BaseRatingTranslationDao
 	implements IBaseRatingTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(17)
+		return duoDiSet(17)
 	}
 	
 	constructor() {
@@ -2601,7 +2798,7 @@ export class BaseRatingTypeDao
 	implements IBaseRatingTypeDao {
 
 	static diSet(): boolean {
-		return diSet(18)
+		return duoDiSet(18)
 	}
 	
 	constructor() {
@@ -2619,7 +2816,7 @@ export class BaseStateDao
 	implements IBaseStateDao {
 
 	static diSet(): boolean {
-		return diSet(10)
+		return duoDiSet(10)
 	}
 	
 	constructor() {
@@ -2637,7 +2834,7 @@ export class BaseStateTownDao
 	implements IBaseStateTownDao {
 
 	static diSet(): boolean {
-		return diSet(9)
+		return duoDiSet(9)
 	}
 	
 	constructor() {
@@ -2655,11 +2852,11 @@ export class BaseThemeDao
 	implements IBaseThemeDao {
 
 	static diSet(): boolean {
-		return diSet(32)
+		return duoDiSet(91)
 	}
 	
 	constructor() {
-		super(32)
+		super(91)
 	}
 }
 
@@ -2673,7 +2870,7 @@ export class BaseTownDao
 	implements IBaseTownDao {
 
 	static diSet(): boolean {
-		return diSet(12)
+		return duoDiSet(12)
 	}
 	
 	constructor() {
@@ -2691,11 +2888,11 @@ export class BaseTranslationTypeDao
 	implements IBaseTranslationTypeDao {
 
 	static diSet(): boolean {
-		return diSet(33)
+		return duoDiSet(23)
 	}
 	
 	constructor() {
-		super(33)
+		super(23)
 	}
 }
 
@@ -2709,7 +2906,7 @@ export class BaseUserAccountDao
 	implements IBaseUserAccountDao {
 
 	static diSet(): boolean {
-		return diSet(4)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
@@ -2727,11 +2924,11 @@ export class BaseUserPollDao
 	implements IBaseUserPollDao {
 
 	static diSet(): boolean {
-		return diSet(35)
+		return duoDiSet(25)
 	}
 	
 	constructor() {
-		super(35)
+		super(25)
 	}
 }
 
@@ -2745,11 +2942,11 @@ export class BaseUserPollRatingDao
 	implements IBaseUserPollRatingDao {
 
 	static diSet(): boolean {
-		return diSet(34)
+		return duoDiSet(24)
 	}
 	
 	constructor() {
-		super(34)
+		super(24)
 	}
 }
 
@@ -2763,11 +2960,11 @@ export class BaseUserPollVariationDao
 	implements IBaseUserPollVariationDao {
 
 	static diSet(): boolean {
-		return diSet(37)
+		return duoDiSet(27)
 	}
 	
 	constructor() {
-		super(37)
+		super(27)
 	}
 }
 
@@ -2781,11 +2978,11 @@ export class BaseUserPollVariationRatingDao
 	implements IBaseUserPollVariationRatingDao {
 
 	static diSet(): boolean {
-		return diSet(36)
+		return duoDiSet(26)
 	}
 	
 	constructor() {
-		super(36)
+		super(26)
 	}
 }
 
@@ -2799,11 +2996,11 @@ export class BaseUserPollVariationTranslationDao
 	implements IBaseUserPollVariationTranslationDao {
 
 	static diSet(): boolean {
-		return diSet(38)
+		return duoDiSet(28)
 	}
 	
 	constructor() {
-		super(38)
+		super(28)
 	}
 }
 
@@ -2817,11 +3014,11 @@ export class BaseUserPollVariationTranslationRatingDao
 	implements IBaseUserPollVariationTranslationRatingDao {
 
 	static diSet(): boolean {
-		return diSet(39)
+		return duoDiSet(29)
 	}
 	
 	constructor() {
-		super(39)
+		super(29)
 	}
 }
 
@@ -2835,11 +3032,11 @@ export class BaseVoteDao
 	implements IBaseVoteDao {
 
 	static diSet(): boolean {
-		return diSet(61)
+		return duoDiSet(52)
 	}
 	
 	constructor() {
-		super(61)
+		super(52)
 	}
 }
 
@@ -2853,11 +3050,11 @@ export class BaseVoteFactorDao
 	implements IBaseVoteFactorDao {
 
 	static diSet(): boolean {
-		return diSet(64)
+		return duoDiSet(50)
 	}
 	
 	constructor() {
-		super(64)
+		super(50)
 	}
 }
 
@@ -2871,11 +3068,11 @@ export class BaseVoteFactorTypeDao
 	implements IBaseVoteFactorTypeDao {
 
 	static diSet(): boolean {
-		return diSet(63)
+		return duoDiSet(49)
 	}
 	
 	constructor() {
-		super(63)
+		super(49)
 	}
 }
 
@@ -2889,11 +3086,11 @@ export class BaseVoteTypeDao
 	implements IBaseVoteTypeDao {
 
 	static diSet(): boolean {
-		return diSet(60)
+		return duoDiSet(47)
 	}
 	
 	constructor() {
-		super(60)
+		super(47)
 	}
 }
 
@@ -2907,10 +3104,10 @@ export class BaseVoteVariationDao
 	implements IBaseVoteVariationDao {
 
 	static diSet(): boolean {
-		return diSet(65)
+		return duoDiSet(51)
 	}
 	
 	constructor() {
-		super(65)
+		super(51)
 	}
 }

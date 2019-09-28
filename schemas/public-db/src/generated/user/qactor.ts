@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ISystemGeneratedRow,
 	SystemGeneratedRowECascadeGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../infrastructure/qsystemgeneratedrow';
 import {
-	IUserAccount,
 	UserAccountECascadeGraph,
 	UserAccountEId,
 	UserAccountEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QUserAccountQRelation,
 } from './quseraccount';
 import {
-	IDevice,
 	DeviceECascadeGraph,
 	DeviceEId,
 	DeviceEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QDeviceQRelation,
 } from './qdevice';
 import {
-	IApplication,
 	ApplicationECascadeGraph,
 	ApplicationEId,
 	ApplicationEOptionalId,
@@ -70,31 +66,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IActor extends ISystemGeneratedRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	hash?: number;
-
-	// Non-Id Relations
-	userAccount?: IUserAccount;
-	device?: IDevice;
-	application?: IApplication;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

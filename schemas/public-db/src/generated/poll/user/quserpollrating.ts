@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IMutableActorRow,
 	MutableActorRowECascadeGraph,
 	MutableActorRowEId,
 	MutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QMutableActorRow,
 } from '../../infrastructure/qmutableactorrow';
 import {
-	IUserPoll,
 	UserPollECascadeGraph,
 	UserPollEId,
 	UserPollEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QUserPollQRelation,
 } from './quserpoll';
 import {
-	IPoll,
 	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	IRating,
 	RatingECascadeGraph,
 	RatingEId,
 	RatingEOptionalId,
@@ -70,30 +66,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IUserPollRating extends IMutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	userPoll?: IUserPoll;
-	poll?: IPoll;
-	rating?: IRating;
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

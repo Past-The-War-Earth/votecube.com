@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IMutableActorRow,
 	MutableActorRowECascadeGraph,
 	MutableActorRowEId,
 	MutableActorRowEUpdateColumns,
@@ -33,7 +32,6 @@ import {
 	QMutableActorRow,
 } from '../../infrastructure/qmutableactorrow';
 import {
-	IPoll,
 	PollECascadeGraph,
 	PollEId,
 	PollEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	IPollVariation,
 	PollVariationECascadeGraph,
 	PollVariationEId,
 	PollVariationEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QPollVariationQRelation,
 } from '../variation/qpollvariation';
 import {
-	IUserPollVariation,
 	UserPollVariationECascadeGraph,
 	UserPollVariationEId,
 	UserPollVariationEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QUserPollVariationQRelation,
 } from './quserpollvariation';
 import {
-	IUserPollRating,
 	UserPollRatingECascadeGraph,
 	UserPollRatingEId,
 	UserPollRatingEOptionalId,
@@ -81,32 +76,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IUserPoll extends IMutableActorRow {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-	pinnedExplicitly?: boolean;
-
-	// Non-Id Relations
-	poll?: IPoll;
-	pinnedVariation?: IPollVariation;
-	userPollVariations?: IUserPollVariation[];
-	ratings?: IUserPollRating[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////

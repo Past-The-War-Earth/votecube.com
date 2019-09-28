@@ -22,7 +22,6 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	IFactorOpinionVersion,
 	FactorOpinionVersionECascadeGraph,
 	FactorOpinionVersionEId,
 	FactorOpinionVersionEOptionalId,
@@ -33,7 +32,6 @@ import {
 	QFactorOpinionVersionQRelation,
 } from './qfactoropinionversion';
 import {
-	IPollPositionVariation,
 	PollPositionVariationECascadeGraph,
 	PollPositionVariationEId,
 	PollPositionVariationEOptionalId,
@@ -44,7 +42,6 @@ import {
 	QPollPositionVariationQRelation,
 } from '../poll/variation/structure/qpollpositionvariation';
 import {
-	ILanguage,
 	LanguageECascadeGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -55,7 +52,6 @@ import {
 	QLanguageQRelation,
 } from '../infrastructure/qlanguage';
 import {
-	IPositionOpinionVersionRating,
 	PositionOpinionVersionRatingECascadeGraph,
 	PositionOpinionVersionRatingEId,
 	PositionOpinionVersionRatingEOptionalId,
@@ -66,7 +62,6 @@ import {
 	QPositionOpinionVersionRatingQRelation,
 } from './user/qpositionopinionversionrating';
 import {
-	IPositionOpinionVersionTranslation,
 	PositionOpinionVersionTranslationECascadeGraph,
 	PositionOpinionVersionTranslationEId,
 	PositionOpinionVersionTranslationEOptionalId,
@@ -77,7 +72,6 @@ import {
 	QPositionOpinionVersionTranslationQRelation,
 } from './translation/qpositionopinionversiontranslation';
 import {
-	IPositionOpinionVersionRatingCount,
 	PositionOpinionVersionRatingCountECascadeGraph,
 	PositionOpinionVersionRatingCountEId,
 	PositionOpinionVersionRatingCountEOptionalId,
@@ -92,33 +86,6 @@ import {
 declare function require(moduleName: string): any;
 
 
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-
-export interface IPositionOpinionVersion {
-	
-	// Id Properties
-	id: number;
-
-	// Id Relations
-
-	// Non-Id Properties
-
-	// Non-Id Relations
-	factorOpinionVersion?: IFactorOpinionVersion;
-	pollPositionVariation?: IPollPositionVariation;
-	language?: ILanguage;
-	ratings?: IPositionOpinionVersionRating[];
-	translations?: IPositionOpinionVersionTranslation[];
-	ratingCounts?: IPositionOpinionVersionRatingCount[];
-
-	// Transient Properties
-
-	// Public Methods
-	
-}		
-		
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
