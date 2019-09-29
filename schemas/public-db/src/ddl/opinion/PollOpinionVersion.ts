@@ -9,10 +9,11 @@ import {
 	Table
 }                                      from '@airport/air-control'
 import {CascadeType}                   from '@airport/ground-control'
+import {PollOpinionVersion_Id}         from '../../types/opinion/PollOpinionVersion'
 import {
 	PollLocationTimeFrame,
 }                                      from '../poll/locationTimeFrame/PollLocationTimeFrame'
-import {ImmutableRow}                  from '../infrastructure/ImmutableRow'
+import {ImmutableRow}                  from '../infrastructure/row/ImmutableRow'
 import {Language}                      from '../infrastructure/Language'
 import {PollVariation}                 from '../poll/variation/PollVariation'
 import {VoteVariation}                 from '../vote/VoteVariation'
@@ -21,8 +22,6 @@ import {FactorOpinionVersion}          from './FactorOpinionVersion'
 import {PollOpinion}                   from './PollOpinion'
 import {PollOpinionVersionTranslation} from './translation/PollOpinionVersionTranslation'
 import {PollOpinionVersionRating}      from './user/PollOpinionVersionRating'
-
-export type PollOpinionVersion_Id = number
 
 /**
  * This the computed translation (based on most pinned factor variation).

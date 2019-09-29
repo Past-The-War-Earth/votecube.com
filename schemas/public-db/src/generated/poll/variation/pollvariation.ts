@@ -61,6 +61,8 @@ export interface IPollVariation extends IImmutableActorRow {
 	// Id Relations
 
 	// Non-Id Properties
+	backgroundColor?: number;
+	textColor?: number;
 
 	// Non-Id Relations
 	poll?: IPoll;

@@ -4,10 +4,11 @@ import {
 	GeneratedValue,
 	Table
 }                          from '@airport/air-control'
-import {ImmutableActorRow} from '../../../infrastructure/ImmutableActorRow'
-
-export type Label_Id = number
-export type Label_Name = string
+import {
+	Label_Id,
+	Label_Name
+}                          from '../../../../types/poll/variation/label/Label'
+import {ImmutableActorRow} from '../../../infrastructure/row/ImmutableActorRow'
 
 @Entity()
 @Table({name: 'LABELS'})

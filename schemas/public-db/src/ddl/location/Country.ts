@@ -8,13 +8,14 @@ import {
 	OneToMany,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {
+	Country_Id,
+	Country_Name
+}                           from '../../types/location/Country'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 import {Continent}          from './Continent'
 import {CountryTown}        from './CountryTown'
 import {State}              from './State'
-
-export type Country_Id = number
-export type Country_Name = string
 
 @Entity()
 @Table({

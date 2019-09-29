@@ -6,12 +6,13 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
+import {
+	PollVariationOpinionRatingCount_Count,
+	PollVariationOpinionRatingCount_Id
+}                           from '../../../../types/poll/variation/count/PollVariationOpinionRatingCount'
 import {Rating}             from '../../../infrastructure/rating/Rating'
-import {SystemGeneratedRow} from '../../../infrastructure/SystemGeneratedRow'
+import {SystemGeneratedRow} from '../../../infrastructure/row/SystemGeneratedRow'
 import {PollVariation}      from '../PollVariation'
-
-export type PollVariationOpinionRatingCount_Id = number
-export type PollVariationOpinionRatingCount_Count = number
 
 /**
  * Count of all opinion ratings (including reversals).

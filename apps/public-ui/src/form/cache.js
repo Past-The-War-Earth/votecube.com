@@ -26,13 +26,13 @@ export async function savePollForm(
 	}
 
 	const poll   = pollFormFromConverter.formToDto(form.value)
-	let {pollId} = page.get().routeParams
+	let {pollId} = page.get().$routeParams
 	poll.id      = pollId
 
 	const pollDao = await DI.get(POLL_DAO)
 
-	await pollDao.stage(poll)
-	// pollDao.addTemp(poll, pollId)
+	// await pollDao.stage(poll)
+	pollDao.addTemp(poll, pollId)
 
 	// TODO: check if this was needed
 	// voteDao.addTempForPoll(poll, pollId)
@@ -40,4 +40,5 @@ export async function savePollForm(
 	forms.uncacheForm(forms.CREATE_POSITION)
 	forms.uncacheForm(forms.CREATE_POLL_TOP)
 	forms.uncacheForm(forms.CREATE_FACTOR)
+
 }

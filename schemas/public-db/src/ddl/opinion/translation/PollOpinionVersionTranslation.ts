@@ -7,14 +7,15 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
+import {
+	PollOpinionVersionTranslation_Id,
+	PollOpinionVersionTranslation_IsOriginal,
+	PollOpinionVersionTranslation_Text,
+	PollOpinionVersionTranslation_Title
+} from '../../../types/opinion/translation/PollOpinionVersionTranslation'
 import {Language}           from '../../infrastructure/Language'
-import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
+import {SystemGeneratedRow} from '../../infrastructure/row/SystemGeneratedRow'
 import {PollOpinionVersion} from '../PollOpinionVersion'
-
-export type PollOpinionVersionTranslation_Id = number
-export type PollOpinionVersionTranslation_Title = string
-export type PollOpinionVersionTranslation_Text = string
-export type PollOpinionVersionTranslation_IsOriginal = boolean
 
 /**
  * Belongs to PollOpinionVersion - does not need user tracking.

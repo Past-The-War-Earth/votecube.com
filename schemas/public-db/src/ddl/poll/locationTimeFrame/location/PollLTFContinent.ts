@@ -7,10 +7,9 @@ import {
 	ManyToOne,
 	Table
 }                              from '@airport/air-control'
+import {PollContinent_Id}      from '../../../../types/poll/locationTimeFrame/location/PollLTFContinent'
 import {Continent}             from '../../../location/Continent'
 import {PollLocationTimeFrame} from '../PollLocationTimeFrame'
-
-export type PollContinent_Id = number
 
 // @Singleton()
 // @InsertOnly()

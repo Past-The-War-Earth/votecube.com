@@ -9,13 +9,14 @@ import {
 	Table
 }                               from '@airport/air-control'
 import {CascadeType}            from '@airport/ground-control'
-import {MutableActorRow}        from '../infrastructure/MutableActorRow'
+import {
+	PollOpinion_Id,
+	PollOpinion_NumberOfVersions
+}                               from '../../types/opinion/PollOpinion'
+import {MutableActorRow}        from '../infrastructure/row/MutableActorRow'
 import {Poll}                   from '../poll/Poll'
 import {PollOpinionRatingCount} from './count/PollOpinionRatingCount'
 import {PollOpinionVersion}     from './PollOpinionVersion'
-
-export type PollOpinion_Id = number
-export type PollOpinion_NumberOfVersions = number
 
 /**
  * This the computed translation (based on most pinned factor variation).

@@ -6,11 +6,12 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
-
-export type ChosenPollVariationType_Id = number
-export type ChosenPollVariationType_Code = string
+}                                   from '@airport/air-control'
+import {
+	ChosenPollVariationType_Code,
+	ChosenPollVariationType_Id
+} from '../../../types/poll/variation/ChosenPollVariationType'
+import {SystemGeneratedRow}         from '../../infrastructure/row/SystemGeneratedRow'
 
 /**
  * Types: Current, Most responded too, best rated, etc

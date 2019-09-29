@@ -160,6 +160,7 @@
 <script>
 	import {DI}                           from '@airport/di'
 	import {
+		LABEL_DAO,
 		POLL_DAO,
 		VOTE_DAO
 	}                                     from '@votecube/public-db'
@@ -174,7 +175,6 @@
 	import ActionPopover                  from '../../../common/shell/ActionPopover.html'
 	import SelectionBlock
 	                                      from '../../../components/factor/SelectionBlock.html'
-	import {labelDao}                     from '../../../dao/label'
 	import * as formCache                 from '../../../form/cache'
 	import * as forms                     from '../../../form/forms'
 	import * as pollFormCreator           from '../../../form/poll/creator'
@@ -290,7 +290,7 @@
 				factorsModified,
 				locationOrTimeframeModified
 			) {
-				const {form, routeParams} = this.get()
+				const {form} = this.get()
 				form.touch()
 
 				if (!form.valid) {
@@ -298,7 +298,7 @@
 				}
 
 				if (
-					routeParams.mode !== 'build'
+					$routeParams.mode !== 'build'
 					&& !factorsModified
 					&& !locationOrTimeframeModified) {
 					this.set({invalidAlter: true})
@@ -309,64 +309,68 @@
 			}
 		},
 		oncreate() {
-			const {mode, pollId} = formCache.getPollRouteParams(this)
-
-			Promise.all([
-				loadForms(this),
-				labelDao.getAll(),
-				loadLocations(),
-				loadLocText(this.store, 'en-us'),
-				DI.get(POLL_DAO, VOTE_DAO)
-			]).then(([
-				         {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
-				         labels,
-				         locations,
-				         _,
-				         [pollDao, voteDao]
-			         ]) => {
-				let form = forms.getForm(forms.CREATE_POLL_TOP)
-
-				const {text} = this.store.get()
-
-				if (!form) {
-					form = pollFormCreator.createPollForm(
-						labels,
-						locations,
-						text.UI,
-						DateField,
-						Field,
-						FieldGroup,
-						MatchingField,
-						OptionsField,
-						Validators)
-					form.setTrackOriginal(mode === 'alter')
-					forms.setForm(forms.CREATE_POLL_TOP, form)
-					pollDao.findByPollIdWithDetails(pollId).then((
-						poll
-					) => {
-						if (!poll) {
-							return
-						}
-						form.setValue(pollFormToConverter.dtoToForm(poll), !poll.draft)
-						form.fields.locations.optionText = text.LOCATIONS
-						form.validate()
-						form.touch()
-					}).catch((error) => {
-						this.set({error})
-					})
-				}
-
-				forms.ensureForm(form, this)
-			})
-			this.store.set({
-				pageTitle: 'Poll Info'
-			})
+			initPage(this)
 		},
 		ondestroy() {
 			formCache.savePollForm(this).then()
 			forms.clearForm(this)
 		},
 		store: () => store
+	}
+
+	async function initPage(page) {
+		const [
+			      {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
+			      locations,
+			      _,
+			      [labelDao, pollDao, voteDao]
+		      ] = await Promise.all([
+			loadForms(page),
+			loadLocations(),
+			loadLocText(page.store, 'en-us'),
+			DI.get(LABEL_DAO, POLL_DAO, VOTE_DAO)
+		])
+
+		let labels = await labelDao.getAll()
+
+		let form = forms.getForm(forms.CREATE_POLL_TOP)
+
+		const {text} = page.store.get()
+
+		if (!form) {
+			const {mode, pollId} = formCache.getPollRouteParams(page)
+
+			form = pollFormCreator.createPollForm(
+				labels,
+				locations,
+				text.UI,
+				DateField,
+				Field,
+				FieldGroup,
+				MatchingField,
+				OptionsField,
+				Validators)
+			form.setTrackOriginal(mode === 'alter')
+			forms.setForm(forms.CREATE_POLL_TOP, form)
+			let poll
+			try {
+				poll = await pollDao.findByIdWithDetails(pollId)
+			} catch (error) {
+				page.set({error})
+			}
+			form.fields.locations.optionText = text.LOCATIONS
+			if (poll) {
+				form.setValue(pollFormToConverter.dtoToForm(poll), !poll.draft)
+				form.validate()
+				form.touch()
+			}
+		}
+
+		forms.ensureForm(form, page)
+
+		page.store.set({
+			pageTitle: 'Poll Info'
+		})
 	}
 
 

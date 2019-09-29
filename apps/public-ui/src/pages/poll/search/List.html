@@ -1,16 +1,16 @@
 {#if form}
 <form>
-    <Text
-            field="{form.fields.search}"
-    ></Text>
+	<Text
+			field="{form.fields.search}"
+	></Text>
 </form>
 <table>
-    {#each polls as poll}
-    <ListItem
-            poll="{poll}"
-            on:select="goTo(poll.id)"
-    ></ListItem>
-    {/each}
+	{#each polls as poll}
+	<ListItem
+			poll="{poll}"
+			on:select="goTo(poll.id)"
+	></ListItem>
+	{/each}
 </table>
 <!--
 <VirtualList items={factors} component={ListItem} />
@@ -18,9 +18,9 @@
 {/if}
 
 <style>
-    table {
-        width: 100%;
-    }
+	table {
+		width: 100%;
+	}
 </style>
 <script>
 	import {DI}        from '@airport/di'
@@ -55,30 +55,33 @@
 			}
 		},
 		oncreate() {
-			DI.get(POLL_DAO).then(
-				pollDao =>
-					Promise.all([
-						loadForms(this),
-						pollDao.findAll()
-					]).then(([
-						         {Field, FieldGroup},
-						         polls
-					         ]) => {
-						const filter = new FieldGroup('List', {
-							search: new Field([])
-						}, [], this.store.get().text.UI.Poll)
-
-						this.set({polls})
-						forms.ensureForm(filter, this)
-					})
-			)
-			this.store.set({
-				pageTitle: 'Polls'
-			})
+			initPage(this)
 		},
 		ondestroy() {
 			forms.clearForm(this)
 		},
 		store: () => store
+	}
+
+	async function initPage(page) {
+		const pollDao = await DI.get(POLL_DAO)
+		const [
+			      {Field, FieldGroup},
+			      polls
+		      ]       = await Promise.all([
+			loadForms(page),
+			pollDao.getAll()
+		])
+
+		const filter = new FieldGroup('List', {
+			search: new Field([])
+		}, [], page.store.get().text.UI.Poll)
+
+		page.set({polls})
+		forms.ensureForm(filter, page)
+
+		page.store.set({
+			pageTitle: 'Polls'
+		})
 	}
 </script>

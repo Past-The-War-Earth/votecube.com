@@ -9,14 +9,13 @@ import {
 	Table
 }                                  from '@airport/air-control'
 import {CascadeType}               from '@airport/ground-control'
-import {PollVariation}             from '../../..'
+import {ChosenPollTranslation_Id}  from '../../../types/poll/translation/ChosenPollTranslation'
 import {Language}                  from '../../infrastructure/Language'
-import {SystemGeneratedRow}        from '../../infrastructure/SystemGeneratedRow'
+import {SystemGeneratedRow}        from '../../infrastructure/row/SystemGeneratedRow'
 import {Poll}                      from '../Poll'
+import {PollVariation}             from '../variation/PollVariation'
 import {PollVariationTranslation}  from '../variation/translation/PollVariationTranslation'
 import {ChosenPollTranslationType} from './ChosenPollTranslationType'
-
-export type ChosenPollTranslation_Id = number
 
 /**
  * This the computed translation (based on most pinned poll variation).

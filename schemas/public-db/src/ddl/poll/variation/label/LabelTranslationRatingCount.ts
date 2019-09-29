@@ -6,12 +6,13 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
+import {
+	LabelTranslationRatingCount_Count,
+	LabelTranslationRatingCount_Id
+}                           from '../../../../types/poll/variation/label/LabelTranslationRatingCount'
 import {Rating}             from '../../../infrastructure/rating/Rating'
-import {SystemGeneratedRow} from '../../../infrastructure/SystemGeneratedRow'
+import {SystemGeneratedRow} from '../../../infrastructure/row/SystemGeneratedRow'
 import {LabelTranslation}   from './LabelTranslation'
-
-export type LabelTranslationRatingCount_Id = number
-export type LabelTranslationRatingCount_Count = number
 
 /**
  * Computation of all ratings (including reversals).

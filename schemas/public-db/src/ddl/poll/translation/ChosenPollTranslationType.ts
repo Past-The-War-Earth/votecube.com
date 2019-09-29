@@ -6,11 +6,12 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
-
-export type ChosenPollTranslationType_Id = number
-export type ChosenPollTranslationType_Code = string
+}                                     from '@airport/air-control'
+import {
+	ChosenPollTranslationType_Code,
+	ChosenPollTranslationType_Id
+} from '../../../types/poll/translation/ChosenPollTranslationType'
+import {SystemGeneratedRow}           from '../../infrastructure/row/SystemGeneratedRow'
 
 /**
  * Types: some more aggregate stats based on Most responded too, best rated, etc

@@ -5,13 +5,14 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                              from '@airport/air-control'
-import {Rating}                from '../../../infrastructure/rating/Rating'
-import {SystemGeneratedRow}    from '../../../infrastructure/SystemGeneratedRow'
-import {PollLocationTimeFrame} from '../PollLocationTimeFrame'
-
-export type PollLTFOpinionRatingCount_Id = number
-export type PollLTFOpinionRatingCount_Count = number
+}                                     from '@airport/air-control'
+import {
+	PollLTFOpinionRatingCount_Count,
+	PollLTFOpinionRatingCount_Id
+} from '../../../../types/poll/locationTimeFrame/count/PollLTFOpinionRatingCount'
+import {Rating}                       from '../../../infrastructure/rating/Rating'
+import {SystemGeneratedRow}           from '../../../infrastructure/row/SystemGeneratedRow'
+import {PollLocationTimeFrame}        from '../PollLocationTimeFrame'
 
 /**
  * Count of all opinion ratings (including reversals).

@@ -5,10 +5,11 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
-
-export type VoteFactorType_Id = number
-export type VoteFactorType_Value = 'x' | 'y' | 'z'
+import {
+	VoteFactorType_Id,
+	VoteFactorType_Value
+}                           from '../../types/vote/VoteFactorType'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'VOTE_FACTOR_TYPES'})

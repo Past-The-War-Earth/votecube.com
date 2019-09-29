@@ -8,7 +8,8 @@ import {
 	Table
 }                                from '@airport/air-control'
 import {CascadeType}             from '@airport/ground-control'
-import {ImmutableActorRow}       from '../infrastructure/ImmutableActorRow'
+import {Poll_Id}                 from '../../types/poll/Poll'
+import {ImmutableActorDocument}  from '../infrastructure/document/ImmutableActorDocument'
 import {PollOpinionsCount}       from './count/PollOpinionsCount'
 import {PollOpinionsRatingCount} from './count/PollOpinionsRatingCount'
 import {PollRatingCount}         from './count/PollRatingCount'
@@ -19,15 +20,12 @@ import {Theme}                   from './Theme'
 import {ChosenPollTranslation}   from './translation/ChosenPollTranslation'
 import {UserPollRating}          from './user/UserPollRating'
 import {ChosenPollVariation}     from './variation/ChosenPollVariation'
-import {PollVariation}          from './variation/PollVariation'
-import {PollVariationLabel}     from './variation/PollVariationLabel'
-
-export type Poll_Id = number
+import {PollVariation}           from './variation/PollVariation'
 
 @Entity()
 @Table({name: 'POLLS'})
 export class Poll
-	extends ImmutableActorRow {
+	extends ImmutableActorDocument {
 
 	@GeneratedValue()
 	@Column({name: 'POLL_ID'})

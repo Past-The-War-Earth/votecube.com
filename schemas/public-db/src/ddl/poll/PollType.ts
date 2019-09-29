@@ -5,10 +5,11 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
-
-export type PollType_Id = number
-export type PollType_Value = 'cube'
+import {
+	PollType_Id,
+	PollType_Value
+}                           from '../../types/poll/PollType'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'POLL_TYPES'})

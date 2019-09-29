@@ -6,12 +6,11 @@ import {
 	ManyToOne,
 	Table
 }                              from '@airport/air-control'
-import {ImmutableActorRow}     from '../../infrastructure/ImmutableActorRow'
+import {PollVariationLabel_Id} from '../../../types/poll/variation/PollVariationLabel'
+import {ImmutableActorRow}     from '../../infrastructure/row/ImmutableActorRow'
 import {PollLocationTimeFrame} from '../locationTimeFrame/PollLocationTimeFrame'
 import {Label}                 from './label/Label'
 import {PollVariation}         from './PollVariation'
-
-export type PollVariationLabel_Id = number
 
 /**
  * A given Label can only be added to a given poll Variation once

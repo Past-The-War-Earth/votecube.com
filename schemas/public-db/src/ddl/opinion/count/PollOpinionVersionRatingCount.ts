@@ -6,13 +6,14 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                           from '@airport/air-control'
-import {Rating}             from '../../infrastructure/rating/Rating'
-import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
-import {PollOpinionVersion} from '../PollOpinionVersion'
-
-export type PollOpinionVersionRatingCount_Id = number
-export type PollOpinionVersionRatingCount_Count = number
+}                                         from '@airport/air-control'
+import {
+	PollOpinionVersionRatingCount_Count,
+	PollOpinionVersionRatingCount_Id
+} from '../../../types/opinion/count/PollOpinionVersionRatingCount'
+import {Rating}                           from '../../infrastructure/rating/Rating'
+import {SystemGeneratedRow}               from '../../infrastructure/row/SystemGeneratedRow'
+import {PollOpinionVersion}               from '../PollOpinionVersion'
 
 /**
  * Computation of all ratings (including reversals) on the PollOpinionVersion.

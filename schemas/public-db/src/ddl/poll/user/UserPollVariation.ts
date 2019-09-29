@@ -9,13 +9,12 @@ import {
 	Table
 }                                     from '@airport/air-control'
 import {CascadeType}                  from '@airport/ground-control'
-import {MutableActorRow}              from '../../infrastructure/MutableActorRow'
+import {UserPollVariation_Id}         from '../../../types/poll/user/UserPollVariation'
+import {MutableActorRow}              from '../../infrastructure/row/MutableActorRow'
 import {PollVariation}                from '../variation/PollVariation'
 import {UserPoll}                     from './UserPoll'
 import {UserPollVariationRating}      from './UserPollVariationRating'
 import {UserPollVariationTranslation} from './UserPollVariationTranslation'
-
-export type UserPollVariation_Id = number
 
 /**
  * User records for a particular variation

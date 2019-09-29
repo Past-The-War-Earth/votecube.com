@@ -6,12 +6,13 @@ import {
 	ManyToOne,
 	Table
 }                              from '@airport/air-control'
+import {
+	PollLTFRatingCount_Count,
+	PollLTFRatingCount_Id
+} from '../../../../types/poll/locationTimeFrame/count/PollLTFRatingCount'
 import {Rating}                from '../../../infrastructure/rating/Rating'
-import {SystemGeneratedRow}    from '../../../infrastructure/SystemGeneratedRow'
+import {SystemGeneratedRow}    from '../../../infrastructure/row/SystemGeneratedRow'
 import {PollLocationTimeFrame} from '../PollLocationTimeFrame'
-
-export type PollLTFRatingCount_Id = number
-export type PollLTFRatingCount_Count = number
 
 /**
  * Computation of all ratings (including reversals).

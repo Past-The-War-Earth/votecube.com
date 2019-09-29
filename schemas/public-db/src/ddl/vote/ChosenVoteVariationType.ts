@@ -7,10 +7,11 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
-
-export type ChosenVoteVariationType_Id = number
-export type ChosenVoteVariationType_Code = string
+import {
+	ChosenVoteVariationType_Code,
+	ChosenVoteVariationType_Id
+}                           from '../../types/vote/ChosenVoteVariationType'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 /**
  * Types: Current, Most responded too, best rated, etc

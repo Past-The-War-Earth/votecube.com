@@ -9,7 +9,12 @@ import {
 	Table
 }                                        from '@airport/air-control'
 import {CascadeType}                     from '@airport/ground-control'
-import {ImmutableActorRow}               from '../../infrastructure/ImmutableActorRow'
+import {
+	PollVariation_BackgroundColor,
+	PollVariation_Id,
+	PollVariation_TextColor
+}                                        from '../../../types/poll/variation/PollVariation'
+import {ImmutableActorDocument}          from '../../infrastructure/document/ImmutableActorDocument'
 import {PollOpinion}                     from '../../opinion/PollOpinion'
 import {PollLocationTimeFrame}           from '../locationTimeFrame/PollLocationTimeFrame'
 import {Poll}                            from '../Poll'
@@ -26,17 +31,21 @@ import {PollFactorVariation}             from './structure/PollFactorVariation'
 import {PollPositionVariation}           from './structure/PollPositionVariation'
 import {PollVariationTranslation}        from './translation/PollVariationTranslation'
 
-export type PollVariation_Id = number
-
 @Entity()
 @Table({name: 'POLL_VARIATIONS'})
 export class PollVariation
-	extends ImmutableActorRow {
+	extends ImmutableActorDocument {
 
 	@Id()
 	@GeneratedValue()
 	@Column({name: 'POLL_VARIATION_ID'})
 	id: PollVariation_Id
+
+	@Column({name: 'BACKGROUND_COLOR_ID', nullable: false})
+	backgroundColor: PollVariation_BackgroundColor
+
+	@Column({name: 'TEXT_COLOR_ID', nullable: false})
+	textColor: PollVariation_TextColor
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID'})

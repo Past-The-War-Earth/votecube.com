@@ -6,11 +6,12 @@ import {
 	Table
 }                                    from '@airport/air-control'
 import {CascadeType}                 from '@airport/ground-control'
-import {SystemGeneratedRow}          from '../../../infrastructure/SystemGeneratedRow'
+import {
+	LabelTranslation_Id,
+	LabelTranslation_Name
+}                                    from '../../../../types/poll/variation/label/LabelTranslation'
+import {SystemGeneratedRow}          from '../../../infrastructure/row/SystemGeneratedRow'
 import {LabelTranslationRatingCount} from './LabelTranslationRatingCount'
-
-export type LabelTranslation_Id = number
-export type LabelTranslation_Name = string
 
 @Entity()
 @Table({name: 'LABEL_TRANSLATIONS'})

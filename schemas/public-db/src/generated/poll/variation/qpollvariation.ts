@@ -196,6 +196,8 @@ declare function require(moduleName: string): any;
 export interface PollVariationESelect
     extends ImmutableActorRowESelect, PollVariationEOptionalId {
 	// Non-Id Properties
+	backgroundColor?: number | IQNumberField;
+	textColor?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -249,6 +251,8 @@ export interface PollVariationEOptionalId {
 export interface PollVariationEUpdateProperties
 	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
+	backgroundColor?: number | IQNumberField;
+	textColor?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	poll?: PollEOptionalId;
@@ -288,6 +292,8 @@ export interface PollVariationEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
+	BACKGROUND_COLOR_ID?: number | IQNumberField;
+	TEXT_COLOR_ID?: number | IQNumberField;
 	POLL_ID?: number | IQNumberField;
 	POLL_LOCATION_TIME_FRAME_ID?: number | IQNumberField;
 	PARENT_POLL_VARIATION_ID?: number | IQNumberField;
@@ -326,6 +332,8 @@ export interface QPollVariation extends QImmutableActorRow
 	// Id Relations
 
 	// Non-Id Fields
+	backgroundColor: IQNumberField;
+	textColor: IQNumberField;
 
 	// Non-Id Relations
 	poll: QPollQRelation;

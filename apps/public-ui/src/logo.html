@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		#viewport.svelte-xop62s {
+			height: 100%;
+			perspective: 1500px;
+			perspective-origin: 50% 160px;
+			width: 100%;
+		}
+		#cube.svelte-xop62s {
+			height: 320px;
+			margin: auto;
+			position: relative;
+			transform-style: preserve-3d;
+			transition: transform 128ms linear;
+			width: 320px;
+		}
+
+		#cube.svelte-xop62s > div.svelte-xop62s {
+			font-size: 1.7em;
+			height: 311px;
+			line-height: 1.7em;
+			position: absolute;
+			width: 311px;
+		}
+
+		#s0.svelte-xop62s {
+			transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
+		}
+
+		#s1.svelte-xop62s {
+			transform: translateZ(160px) /*translateZ(200px)*/;
+		}
+
+		#s2.svelte-xop62s {
+			transform: rotateY(90deg) translateZ(160px) /*translateZ(200px)*/;
+		}
+	</style>
+</head>
+<body>
+<section id="viewport" class="svelte-xop62s"
+         style="transform: scale(0.582495, 0.582495);">
+	<figure id="cube" class="svelte-xop62s"
+	        style="transform: rotateX(324deg) rotateY(315deg);">
+		<div class="surface svelte-xop62s" id="s0"
+		     style="background-color: yellow;">
+		</div>
+		<div class="surface svelte-xop62s" id="s1"
+		     style="background-color: darkorange;">
+		</div>
+		<div class="surface svelte-xop62s" id="s2"
+		     style="background-color: purple;">
+		</div>
+	</figure>
+</section>
+<svg width="320" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+	<!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+	<g class="layer">
+		<title>Votecube TM</title>
+		<polygon fill="#FF0000" id="svg_8" points="180,131 133,177 87,131 133,84 180,131 "/>
+		<polygon fill="#FF0000" id="svg_9" points="302,230 220,311 139,230 220,149 302,230 "/>
+		<polygon fill="#FF0000" id="svg_10" points="119,230 54,295 0,230 54,165 119,230 "/>
+	</g>
+</svg>
+</body>
+</html>

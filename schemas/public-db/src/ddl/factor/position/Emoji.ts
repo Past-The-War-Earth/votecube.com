@@ -5,11 +5,12 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
-
-export type Emoji_Id = number
-export type Emoji_Name = string
-export type Emoji_CssClass = string
+import {
+	Emoji_CssClass,
+	Emoji_Id,
+	Emoji_Name
+} from '../../../types/factor/position/Emoji'
+import {SystemGeneratedRow} from '../../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'EMOJI'})

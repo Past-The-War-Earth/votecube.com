@@ -7,11 +7,12 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
-
-export type Application_Id = number;
-export type Application_Host = string;
-export type Application_Port = number;
+import {
+	Application_Host,
+	Application_Id,
+	Application_Port
+}                           from '../../types/user/Application'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'APPLICATIONS'})

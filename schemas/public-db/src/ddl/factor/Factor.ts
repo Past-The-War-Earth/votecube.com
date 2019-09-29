@@ -9,13 +9,12 @@ import {
 	Table
 }                                   from '@airport/air-control'
 import {CascadeType}                from '@airport/ground-control'
-import {ImmutableActorRow}          from '../infrastructure/ImmutableActorRow'
+import {Factor_Id}                  from '../../types/factor/Factor'
+import {ImmutableActorRow}          from '../infrastructure/row/ImmutableActorRow'
 import {FactorSkinVariation}        from './FactorSkinVariation'
 import {FactorVariation}            from './FactorVariation'
 import {FactorVariationTranslation} from './FactorVariationTranslation'
 import {FactorPosition}             from './position/FactorPosition'
-
-export type Factor_Id = number
 
 @Entity()
 @Table({name: 'FACTORS'})

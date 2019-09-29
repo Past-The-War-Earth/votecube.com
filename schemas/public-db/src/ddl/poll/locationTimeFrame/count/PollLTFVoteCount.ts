@@ -6,11 +6,12 @@ import {
 	ManyToOne,
 	Table
 }                              from '@airport/air-control'
-import {SystemGeneratedRow}    from '../../../infrastructure/SystemGeneratedRow'
+import {
+	PollLTFVoteCount_Count,
+	PollLTFVoteCount_Id
+}                              from '../../../../types/poll/locationTimeFrame/count/PollLTFVoteCount'
+import {SystemGeneratedRow}    from '../../../infrastructure/row/SystemGeneratedRow'
 import {PollLocationTimeFrame} from '../PollLocationTimeFrame'
-
-export type PollLTFVoteCount_Id = number
-export type PollLTFVoteCount_Count = number
 
 /**
  * Count of all votes.

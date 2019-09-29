@@ -9,14 +9,13 @@ import {
 	Table
 }                                 from '@airport/air-control'
 import {CascadeType}              from '@airport/ground-control'
-import {ImmutableActorRow}        from '../infrastructure/ImmutableActorRow'
+import {VoteVariation_Id}         from '../../types/vote/VoteVariation'
+import {ImmutableActorRow}        from '../infrastructure/row/ImmutableActorRow'
 import {PollLocationTimeFrame}    from '../poll/locationTimeFrame/PollLocationTimeFrame'
 import {PollVariation}            from '../poll/variation/PollVariation'
 import {PollVariationTranslation} from '../poll/variation/translation/PollVariationTranslation'
 import {Vote}                     from './Vote'
 import {VoteFactor}               from './VoteFactor'
-
-export type VoteVariation_Id = number
 
 @Entity()
 @Table({name: 'VOTE_VARIATIONS'})

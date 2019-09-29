@@ -5,7 +5,7 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 import {State}              from './State'
 import {Town}               from './Town'
 

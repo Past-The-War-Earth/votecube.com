@@ -7,11 +7,10 @@ import {
 	ManyToOne,
 	Table
 }                          from '@airport/air-control'
-import {ImmutableActorRow} from '../../infrastructure/ImmutableActorRow'
+import {FactorPosition_Id} from '../../../types/factor/position/FactorPosition'
+import {ImmutableActorRow} from '../../infrastructure/row/ImmutableActorRow'
 import {Factor}            from '../Factor'
 import {Position}          from './Position'
-
-export type FactorPosition_Id = number
 
 /**
  * This is done at Factor + Position level (vs FactorVariation & PositionVariation)

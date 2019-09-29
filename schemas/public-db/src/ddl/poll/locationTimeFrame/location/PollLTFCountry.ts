@@ -7,10 +7,9 @@ import {
 	ManyToOne,
 	Table
 }                              from '@airport/air-control'
+import {PollCountry_Id}        from '../../../../types/poll/locationTimeFrame/location/PollLTFCountry'
 import {Country}               from '../../../location/Country'
 import {PollLocationTimeFrame} from '../PollLocationTimeFrame'
-
-export type PollCountry_Id = number
 
 @Entity()
 @Table({name: 'POLL_COUNTRIES'})

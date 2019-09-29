@@ -9,6 +9,7 @@ import {
 	Table
 }                                        from '@airport/air-control'
 import {CascadeType}                     from '@airport/ground-control'
+import {FactorOpinionVersion_Id}         from '../../types/opinion/FactorOpinionVersion'
 import {Language}                        from '../infrastructure/Language'
 import {PollFactorVariation}             from '../poll/variation/structure/PollFactorVariation'
 import {FactorOpinionVersionRatingCount} from './count/FactorOpinionVersionRatingCount'
@@ -16,8 +17,6 @@ import {PollOpinionVersion}              from './PollOpinionVersion'
 import {PositionOpinionVersion}          from './PositionOpinionVersion'
 import {FactorOpinionVersionTranslation} from './translation/FactorOpinionVersionTranslation'
 import {FactorOpinionVersionRating}      from './user/FactorOpinionVersionRating'
-
-export type FactorOpinionVersion_Id = number
 
 /**
  * Belongs to PollOpinionVersion - does not need user or creation tracking.

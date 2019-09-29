@@ -9,14 +9,15 @@ import {
 	Table
 }                          from '@airport/air-control'
 import {CascadeType}       from '@airport/ground-control'
-import {MutableActorRow}   from '../../infrastructure/MutableActorRow'
+import {
+	UserPoll_Id,
+	UserPoll_PinnedExplicitly
+}                          from '../../../types/poll/user/UserPoll'
+import {MutableActorRow}   from '../../infrastructure/row/MutableActorRow'
 import {Poll}              from '../Poll'
 import {PollVariation}     from '../variation/PollVariation'
 import {UserPollRating}    from './UserPollRating'
 import {UserPollVariation} from './UserPollVariation'
-
-export type UserPoll_Id = number
-export type UserPoll_PinnedExplicitly = boolean
 
 /**
  * This is a mutable record - its OK because it pertains only to a given user,

@@ -5,11 +5,12 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../SystemGeneratedRow'
-
-export type RatingType_Id = number;
-export type RatingType_Code = string;
-export type RatingType_Description = string;
+import {
+	RatingType_Code,
+	RatingType_Description,
+	RatingType_Id
+}                           from '../../../types/infrastructure/rating/RatingType'
+import {SystemGeneratedRow} from '../row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'RATING_TYPES'})

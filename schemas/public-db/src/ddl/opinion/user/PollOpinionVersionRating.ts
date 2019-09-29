@@ -9,12 +9,13 @@ import {
 	Table
 }                           from '@airport/air-control'
 import {CascadeType}        from '@airport/ground-control'
-import {ImmutableActorRow}  from '../../infrastructure/ImmutableActorRow'
+import {
+	PollOpinionRating_Id,
+	PollOpinionRating_IsCurrent
+}                           from '../../../types/opinion/user/PollOpinionVersionRating'
 import {Rating}             from '../../infrastructure/rating/Rating'
+import {ImmutableActorRow}  from '../../infrastructure/row/ImmutableActorRow'
 import {PollOpinionVersion} from '../PollOpinionVersion'
-
-export type PollOpinionRating_Id = number
-export type PollOpinionRating_IsCurrent = boolean
 
 /**
  * Rating counts are aggregated by a batch job.  The batch job needs to know

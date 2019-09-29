@@ -7,13 +7,14 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
+import {
+	RatingReasonTranslation_Description,
+	RatingReasonTranslation_Id,
+	RatingReasonTranslation_Name
+} from '../../../types/infrastructure/rating/RatingReasonTranslation'
 import {Language}           from '../Language'
-import {SystemGeneratedRow} from '../SystemGeneratedRow'
+import {SystemGeneratedRow} from '../row/SystemGeneratedRow'
 import {RatingReason}       from './RatingReason'
-
-export type RatingReasonTranslation_Id = number
-export type RatingReasonTranslation_Name = string
-export type RatingReasonTranslation_Description = string
 
 @Entity()
 @Table({name: 'RATING_REASON_TRANSLATIONS'})

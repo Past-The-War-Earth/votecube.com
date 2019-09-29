@@ -9,8 +9,13 @@ import {
 	Table
 }                                                   from '@airport/air-control'
 import {CascadeType}                                from '@airport/ground-control'
-import {ImmutableActorRow}                          from '../../../infrastructure/ImmutableActorRow'
+import {
+	PollVariationTranslation_Description,
+	PollVariationTranslation_Id,
+	PollVariationTranslation_Name
+}                                                   from '../../../../types/poll/variation/translation/PollVariationTranslation'
 import {Language}                                   from '../../../infrastructure/Language'
+import {ImmutableActorRow}                          from '../../../infrastructure/row/ImmutableActorRow'
 import {TranslationType}                            from '../../../infrastructure/TranslationType'
 import {PollLocationTimeFrame}                      from '../../locationTimeFrame/PollLocationTimeFrame'
 import {UserPollVariationTranslationRating}         from '../../user/UserPollVariationTranslationRating'
@@ -21,10 +26,6 @@ import {PollVariationTranslationRatingCount}        from './count/PollVariationT
 import {PollVariationTranslationVoteCount}          from './count/PollVariationTranslationVoteCount'
 import {PollVariationFactorTranslation}             from './PollVariationFactorTranslation'
 import {PollVariationPositionTranslation}           from './PollVariationPositionTranslation'
-
-export type PollVariationTranslation_Id = number
-export type PollVariationTranslation_Name = string
-export type PollVariationTranslation_Description = string
 
 /**
  * This the translation of a given poll variation.

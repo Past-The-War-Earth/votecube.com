@@ -7,11 +7,12 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {
+	Town_Id,
+	TownName
+}                           from '../../types/location/Town'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 import {County}             from './County'
-
-export type Town_Id = number
-export type TownName = string
 
 @Entity()
 @Table({

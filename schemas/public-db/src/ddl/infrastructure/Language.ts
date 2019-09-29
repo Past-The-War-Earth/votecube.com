@@ -5,9 +5,10 @@ import {
 	Id,
 	Table
 } from '@airport/air-control'
-
-export type Language_Id = number
-export type Language_Name = string
+import {
+	Language_Id,
+	Language_Name
+} from '../../types/infrastructure/Language'
 
 @Entity()
 @Table({name: 'LANGUAGES'})

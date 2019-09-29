@@ -10,15 +10,13 @@ import {
 	Table
 }                            from '@airport/air-control'
 import {CascadeType}         from '@airport/ground-control'
-import {ImmutableActorRow}   from '../infrastructure/ImmutableActorRow'
+import {Vote_Id}             from '../../types/vote/Vote'
+import {ImmutableActorRow}   from '../infrastructure/row/ImmutableActorRow'
 import {Poll}                from '../poll/Poll'
 import {Actor}               from '../user/Actor'
 import {ChosenVoteVariation} from './ChosenVoteVariation'
 import {VoteType}            from './VoteType'
 import {VoteVariation}       from './VoteVariation'
-
-export type Vote_Id = number
-
 
 @Entity()
 @Table({name: 'VOTES'})

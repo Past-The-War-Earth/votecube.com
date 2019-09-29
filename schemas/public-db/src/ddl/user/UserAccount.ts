@@ -5,14 +5,15 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
-
-export type UserAccount_Id = number
-export type UserAccount_UserName = string
-export type UserAccount_FirstName = string
-export type UserAccount_MiddleName = string
-export type UserAccount_LastName = string
-export type UserAccount_BirthDate = Date
+import {
+	UserAccount_BirthDate,
+	UserAccount_FirstName,
+	UserAccount_Id,
+	UserAccount_LastName,
+	UserAccount_MiddleName,
+	UserAccount_UserName
+}                           from '../../types/user/UserAccount'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'USER_ACCOUNTS'})

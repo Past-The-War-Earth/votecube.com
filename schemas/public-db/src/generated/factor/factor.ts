@@ -21,7 +21,7 @@ import {
 //////////////////////////////
 
 export interface IFactor extends IImmutableActorRow {
-	
+
 	// Id Properties
 	id: number;
 
@@ -40,7 +40,5 @@ export interface IFactor extends IImmutableActorRow {
 	// Transient Properties
 
 	// Public Methods
-	
+
 }
-
-

@@ -6,13 +6,12 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                        from '@airport/air-control'
-import {MutableActorRow} from '../../infrastructure/MutableActorRow'
-import {Rating}          from '../../infrastructure/Rating/Rating'
-import {Poll}            from '../Poll'
-import {UserPoll}        from './UserPoll'
-
-export type UserPollRating_Id = number
+}                          from '@airport/air-control'
+import {UserPollRating_Id} from '../../../types/poll/user/UserPollRating'
+import {Rating}            from '../../infrastructure/Rating/Rating'
+import {MutableActorRow}   from '../../infrastructure/row/MutableActorRow'
+import {Poll}              from '../Poll'
+import {UserPoll}          from './UserPoll'
 
 // export type UserPollRating_IsCurrent = boolean
 

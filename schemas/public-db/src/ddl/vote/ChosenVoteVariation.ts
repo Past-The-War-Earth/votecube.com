@@ -7,11 +7,10 @@ import {
 	ManyToOne,
 	Table
 }                                from '@airport/air-control'
-import {SystemGeneratedRow}      from '../infrastructure/SystemGeneratedRow'
+import {ChosenVoteVariation_Id}  from '../../types/vote/ChosenVoteVariation'
+import {SystemGeneratedRow}      from '../infrastructure/row/SystemGeneratedRow'
 import {ChosenVoteVariationType} from './ChosenVoteVariationType'
 import {Vote}                    from './Vote'
-
-export type ChosenVoteVariation_Id = number
 
 @Entity()
 @Table({name: 'CHOSEN_VOTE_VARIATIONS'})

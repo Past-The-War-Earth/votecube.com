@@ -9,13 +9,13 @@ import {
 	Table
 }                          from '@airport/air-control'
 import {CascadeType}       from '@airport/ground-control'
-import {ImmutableActorRow} from '../../../infrastructure/ImmutableActorRow'
+import {
+	LabelTranslationRating_Id,
+	LabelTranslationRating_IsCurrent
+}                          from '../../../../types/poll/variation/label/LabelTranslationRating'
 import {Rating}            from '../../../infrastructure/rating/Rating'
+import {ImmutableActorRow} from '../../../infrastructure/row/ImmutableActorRow'
 import {LabelTranslation}  from './LabelTranslation'
-
-
-export type LabelTranslationRating_Id = number
-export type LabelTranslationRating_IsCurrent = boolean
 
 /**
  * Rating counts are aggregated by a batch job.  The batch job needs to know

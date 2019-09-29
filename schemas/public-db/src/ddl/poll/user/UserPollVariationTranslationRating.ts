@@ -9,14 +9,15 @@ import {
 	Table
 }                                     from '@airport/air-control'
 import {CascadeType}                  from '@airport/ground-control'
-import {ImmutableActorRow}            from '../../infrastructure/ImmutableActorRow'
+import {
+	UserPollVariationTranslationRating_Id,
+	UserPollVariationTranslationRating_IsCurrent
+}                                     from '../../../types/poll/user/UserPollVariationTranslationRating'
 import {Rating}                       from '../../infrastructure/Rating/Rating'
+import {ImmutableActorRow}            from '../../infrastructure/row/ImmutableActorRow'
 import {PollLocationTimeFrame}        from '../locationTimeFrame/PollLocationTimeFrame'
 import {PollVariationTranslation}     from '../variation/translation/PollVariationTranslation'
 import {UserPollVariationTranslation} from './UserPollVariationTranslation'
-
-export type UserPollVariationTranslationRating_Id = number
-export type UserPollVariationTranslationRating_IsCurrent = boolean
 
 /**
  * User ratings for a particular Poll Variation Translation.

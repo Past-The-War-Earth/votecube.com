@@ -8,13 +8,14 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
+import {
+	Actor_Hash,
+	Actor_Id
+}                           from '../../types/user/Actor'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 import {Application}        from './Application'
 import {Device}             from './Device'
 import {UserAccount}        from './UserAccount'
-
-export type Actor_Id = number;
-export type Actor_Hash = number;
 
 @Entity()
 @Table({name: 'ACTORS'})

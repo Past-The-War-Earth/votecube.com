@@ -1,22 +1,22 @@
 {#if form}
 <form>
-    <div class="pure-control-group">
-        <AutoComplete
-                field="{form.fields.theme}"
-        ></AutoComplete>
-    </div>
-    <div class="pure-control-group">
-        <MultiSelect
-                field="{form.fields.labels}"
-        ></MultiSelect>
-    </div>
+	<div class="pure-control-group">
+		<AutoComplete
+				field="{form.fields.theme}"
+		></AutoComplete>
+	</div>
+	<div class="pure-control-group">
+		<MultiSelect
+				field="{form.fields.labels}"
+		></MultiSelect>
+	</div>
 </form>
 <table>
-    {#each factors as factor}
-    <ListItem
-            factor="{factor}"
-    ></ListItem>
-    {/each}
+	{#each factors as factor}
+	<ListItem
+			factor="{factor}"
+	></ListItem>
+	{/each}
 </table>
 <!--
 <VirtualList items={factors} component={ListItem} />
@@ -24,15 +24,15 @@
 {/if}
 
 <style>
-    table {
-        width: 100%;
-    }
+	table {
+		width: 100%;
+	}
 </style>
 <script>
+	import {FACTOR_DAO}         from '@votecube/public-db'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import AutoComplete         from '../../../common/field/AutoComplete.html'
 	import MultiSelect          from '../../../common/field/MultiSelect.html'
-	import {factorDao}          from '../../../dao/factor'
 	import {
 		clearForm,
 		ensureForm,
@@ -61,56 +61,62 @@
 			}
 		},
 		oncreate() {
-			Promise.all([
-				loadForms(this),
-				factorDao.getAll()
-			]).then(([
-				         {FieldGroup, OptionsField, Validators},
-				         factors
-			         ]) => {
-				const filter = new FieldGroup('List', {
-					theme: new OptionsField([
-						// Validators.required()
-					], [{
-						id: 1,
-						text: 'Politics'
-					}, {
-						id: 2,
-						text: 'Culture'
-					}, {
-						id: 3,
-						text: 'Technology'
-					}, {
-						id: 4,
-						text: 'Space'
-					}, {
-						id: 5,
-						text: 'Security'
-					}]),
-					labels: new OptionsField([], [{
-						id: 1,
-						text: 'Trump',
-						theme: {
-							id: 1
-						}
-					}, {
-						id: 2,
-						text: 'Integration',
-						theme: {
-							id: 1
-						}
-					}], {
-						multi: true
-					})
-				}, [], this.store.get().text.UI.Factor)
-
-				this.set({factors})
-				ensureForm(filter, this)
-			})
+			loadPage(this).then()
 		},
 		ondestroy() {
 			clearForm(this)
 		},
 		store: () => store
+	}
+
+	async function loadPage(page) {
+		const factorDao  = await DI.get(FACTOR_DAO)
+		const filterForm = await initForm(page)
+
+		const factors = await factorDao.getAll()
+
+		page.set({factors})
+		ensureForm(filterForm, this)
+	}
+
+	async function initForm(page) {
+		const {FieldGroup, OptionsField, Validators} = await loadForms(page)
+
+		const filter = new FieldGroup('List', {
+			theme: new OptionsField([
+				// Validators.required()
+			], [{
+				id: 1,
+				text: 'Politics'
+			}, {
+				id: 2,
+				text: 'Culture'
+			}, {
+				id: 3,
+				text: 'Technology'
+			}, {
+				id: 4,
+				text: 'Space'
+			}, {
+				id: 5,
+				text: 'Security'
+			}]),
+			labels: new OptionsField([], [{
+				id: 1,
+				text: 'Trump',
+				theme: {
+					id: 1
+				}
+			}, {
+				id: 2,
+				text: 'Integration',
+				theme: {
+					id: 1
+				}
+			}], {
+				multi: true
+			})
+		}, [], page.store.get().text.UI.Factor)
+
 	}
 </script>

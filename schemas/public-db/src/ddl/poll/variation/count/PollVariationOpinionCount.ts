@@ -5,12 +5,13 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                                 from '@airport/air-control'
-import {SystemGeneratedRow}       from '../../../infrastructure/SystemGeneratedRow'
-import {PollVariation} from '../PollVariation'
-
-export type PollVariationOpinionCount_Id = number
-export type PollVariationOpinionCount_Count = number
+}                           from '@airport/air-control'
+import {
+	PollVariationOpinionCount_Count,
+	PollVariationOpinionCount_Id
+}                           from '../../../../types/poll/variation/count/PollVariationOpinionCount'
+import {SystemGeneratedRow} from '../../../infrastructure/row/SystemGeneratedRow'
+import {PollVariation}      from '../PollVariation'
 
 /**
  * Count of all opinions.

@@ -5,11 +5,12 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
-
-export type DesignPattern_Id = number
-export type DesignPattern_Name = string
-export type DesignPattern_CssClass = string
+import {
+	DesignPattern_CssClass,
+	DesignPattern_Id,
+	DesignPattern_Name
+} from '../../../types/factor/position/DesignPattern'
+import {SystemGeneratedRow} from '../../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'DESIGN_PATTERNS'})

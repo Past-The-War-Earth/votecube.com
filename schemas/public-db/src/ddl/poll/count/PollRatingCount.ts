@@ -7,12 +7,13 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
+import {
+	PollRatingCount_Count,
+	PollRatingCount_Id
+} from '../../../types/poll/count/PollRatingCount'
 import {Rating}             from '../../infrastructure/rating/Rating'
-import {SystemGeneratedRow} from '../../infrastructure/SystemGeneratedRow'
+import {SystemGeneratedRow} from '../../infrastructure/row/SystemGeneratedRow'
 import {Poll}               from '../Poll'
-
-export type PollRatingCount_Id = number
-export type PollRatingCount_Count = number
 
 /**
  * Computation of all ratings (including reversals).

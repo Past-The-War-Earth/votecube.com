@@ -9,13 +9,14 @@ import {
 	Table
 }                           from '@airport/air-control'
 import {CascadeType}        from '@airport/ground-control'
-import {SystemGeneratedRow} from '../SystemGeneratedRow'
+import {
+	Rating_CssClass,
+	Rating_Id
+} from '../../../types/infrastructure/rating/Rating'
+import {SystemGeneratedRow} from '../row/SystemGeneratedRow'
 import {RatingSetting}      from './RatingSetting'
 import {RatingTranslation}  from './RatingTranslation'
 import {RatingType}         from './RatingType'
-
-export type Rating_Id = number
-export type Rating_CssClass = string
 
 /**
  * Note suitability settings will either have a dedicated UI (like in age suitability),

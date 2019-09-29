@@ -5,10 +5,11 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
-
-export type Theme_Id = number
-export type Theme_Name = string
+import {
+	Theme_Id,
+	Theme_Name
+}                           from '../../types/poll/Theme'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'THEMES'})

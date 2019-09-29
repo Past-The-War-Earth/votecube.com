@@ -6,10 +6,11 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
-
-export type Device_Id = number;
-export type Device_Hash = string;
+import {
+	Device_Hash,
+	Device_Id
+} from '../../types/user/Device'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
 @Table({name: 'DEVICES'})

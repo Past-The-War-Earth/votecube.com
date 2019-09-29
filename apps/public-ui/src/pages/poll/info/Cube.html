@@ -1,392 +1,393 @@
 <article>
-    {#if previewMode}
-    <a
-            class:bottomLeft="!$verticalLayout"
-            class:topLeft="$verticalLayout"
-            on:click="togglePositionMode()"
-    >
-        <PositionButton
-                color="{dirPosButtonColor}"
-        ></PositionButton>
-    </a>
-    {/if}
-    <main
-            class:offToRight="!$verticalLayout"
-    >
-        <section
-                id="viewport"
-                style="
+	{#if previewMode}
+	<a
+			class:bottomLeft="!$verticalLayout"
+			class:topLeft="$verticalLayout"
+			on:click="togglePositionMode()"
+	>
+		<PositionButton
+				color="{dirPosButtonColor}"
+		></PositionButton>
+	</a>
+	{/if}
+	<main
+			class:offToRight="!$verticalLayout"
+	>
+		<section
+				id="viewport"
+				style="
   transform: scale({zoomFactor}, {zoomFactor});
 "
-                class:leftViewport="!$verticalLayout"
-        >
-            <figure
-                    id="cube"
-            >
-                {#if poll}
-                {#each positions as position, i}
-                <div
-                        class="surface"
-                        id="s{i}"
-                        style="
+				class:leftViewport="!$verticalLayout"
+		>
+			<figure
+					id="cube"
+			>
+				{#if poll}
+				{#each positions as position, i}
+				<div
+						class="surface"
+						id="s{i}"
+						style="
             background-color: #{getColor(delta, poll, position.axis)};
                 "
-                >
-                    {#if position.dir == 1}
-                    <header>
-                        {getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-                    </header>
-                    {/if}
-                    {#if positionMode}
-                    <Positioner
-                            on:moveRight="moveRight(position.axis, position.dir)"
-                            on:moveDown="moveDown(position.axis, position.dir)"
-                            on:moveLeft="moveLeft(position.axis, position.dir)"
-                            on:moveUp="moveUp(position.axis, position.dir)"
-                            on:switchDir="switchDir(position.axis, position.dir)"
-                    ></Positioner>
-                    {/if}
-                    <p>
-                        {getSideText(delta, 'cube', poll, position.axis, position.dir)}
-                    </p>
-                    {#if position.dir == -1}
-                    <footer>
-                        {getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-                    </footer>
-                    {/if}
-                </div>
-                {/each}
-                {/if}
-            </figure>
-        </section>
-    </main>
-    {#if vote}
-    {#if percentMode}
-    <PercentPicker
-            on:close="togglePercentPicker()"
-            on:move="move(event)"
-            on:moveToValue="moveToValue(event)"
-            poll="{poll}"
-            vote="{vote}"
-    ></PercentPicker>
-    {:else}
-    {#if previewMode}
-    <LeftButton
-            classes="{modifyActionButtonPosition}"
-            on:select="toPollForm($routeParams)"
-    ></LeftButton>
-    {:else}
-    <a
-            class="app-button {modifyActionButtonPosition}"
-            on:click="togglePercentPicker()"
-    >
-        %
-    </a>
-    {/if}
-    <table
-            class="{$verticalLayout ? 'bottom-factor-table' : 'right-factor-table'}"
-    >
-        <tr>
-            {#if $verticalLayout}
-            <td
-            >
-                <FactorInfoButton
-                        axis='x'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('x')"
-                        poll="{poll}"
-                        voteDim="{vote.x}"
-                ></FactorInfoButton>
-            </td>
-            <td
-            >
-                <FactorInfoButton
-                        axis='y'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('y')"
-                        poll="{poll}"
-                        voteDim="{vote.y}"
-                ></FactorInfoButton>
-            </td>
-            <td>
-                <FactorInfoButton
-                        axis='z'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('z')"
-                        poll="{poll}"
-                        voteDim="{vote.z}"
-                ></FactorInfoButton>
-            </td>
-            {/if}
-        </tr>
-        {#if !$verticalLayout}
-        <tr>
-            <td>
-                <FactorInfoButton
-                        axis='z'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('z')"
-                        poll="{poll}"
-                        voteDim="{vote.z}"
-                ></FactorInfoButton>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <FactorInfoButton
-                        axis='y'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('y')"
-                        poll="{poll}"
-                        voteDim="{vote.y}"
-                ></FactorInfoButton>
-            </td>
-        </tr>
-        <tr>
-            <td
-            >
-                <FactorInfoButton
-                        axis='x'
-                        delta="{delta}"
-                        mode="page"
-                        on:toggle="toggleSurface('x')"
-                        poll="{poll}"
-                        voteDim="{vote.x}"
-                ></FactorInfoButton>
-            </td>
-        </tr>
-        {/if}
-    </table>
-    {#if previewMode}
-    <BuildButton
-            classes="{submitButtonPosition}"
-            on:select="checkBuild()"
-    ></BuildButton>
-    {:else}
-    <VoteButton
-            classes="{submitButtonPosition}"
-            on:select="confirmVote()"
-    ></VoteButton>
-    {/if}
-    {/if}
-    {#if confirm}
-    {#if saving}
-    <ActionPopover
-            on:cancel="closeConfirm()"
-            viewOnly="!error"
-            infoOnly="error"
-    >
-        <div slot="header">
-            {saving}
-        </div>
-        <div slot="content">
-            {error}
-        </div>
-    </ActionPopover>
-    {:elseif voting}
-    <ActionPopover
-            contentClass="smallPadding"
-            on:cancel="closeConfirm()"
-    >
-        <div slot="header">
-            Confirm Vote
-        </div>
-        <div slot="content">
-            <div>
-                {poll.name}
-            </div>
-            <VoteComponentGraph
-                    bind:delta
-                    bind:poll
-                    verticalLayout="Y"
-                    bind:vote
-                    maxBarSize="60"
-                    mode="confirm"
-            ></VoteComponentGraph>
-        </div>
-        <div slot="actions">
-            <VoteButton
-                    on:select="vote()"
-            ></VoteButton>
-        </div>
-    </ActionPopover>
-    {:else}
-    <ActionPopover
-            on:cancel="closeConfirm()"
-    >
-        <div slot="header">
-            Please Confirm
-        </div>
-        <div slot="content">
-            Create the "{poll.name}" poll?
-        </div>
-        <div slot="actions">
-            <BuildButton
-                    on:select="build()"
-            ></BuildButton>
-        </div>
-    </ActionPopover>
-    {/if}
-    {/if}
-    {/if}
+				>
+					{#if position.dir == 1}
+					<header>
+						{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
+					</header>
+					{/if}
+					{#if positionMode}
+					<Positioner
+							on:moveRight="moveRight(position.axis, position.dir)"
+							on:moveDown="moveDown(position.axis, position.dir)"
+							on:moveLeft="moveLeft(position.axis, position.dir)"
+							on:moveUp="moveUp(position.axis, position.dir)"
+							on:switchDir="switchDir(position.axis, position.dir)"
+					></Positioner>
+					{/if}
+					<p>
+						{getSideText(delta, 'cube', poll, position.axis, position.dir)}
+					</p>
+					{#if position.dir == -1}
+					<footer>
+						{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
+					</footer>
+					{/if}
+				</div>
+				{/each}
+				{/if}
+			</figure>
+		</section>
+	</main>
+	{#if vote}
+	{#if percentMode}
+	<PercentPicker
+			on:close="togglePercentPicker()"
+			on:move="move(event)"
+			on:moveToValue="moveToValue(event)"
+			poll="{poll}"
+			vote="{vote}"
+	></PercentPicker>
+	{:else}
+	{#if previewMode}
+	<LeftButton
+			classes="{modifyActionButtonPosition}"
+			on:select="toPollForm($routeParams)"
+	></LeftButton>
+	{:else}
+	<a
+			class="app-button {modifyActionButtonPosition}"
+			on:click="togglePercentPicker()"
+	>
+		%
+	</a>
+	{/if}
+	<table
+			class="{$verticalLayout ? 'bottom-factor-table' : 'right-factor-table'}"
+	>
+		<tr>
+			{#if $verticalLayout}
+			<td
+			>
+				<FactorInfoButton
+						axis='x'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('x')"
+						poll="{poll}"
+						voteDim="{vote.x}"
+				></FactorInfoButton>
+			</td>
+			<td
+			>
+				<FactorInfoButton
+						axis='y'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('y')"
+						poll="{poll}"
+						voteDim="{vote.y}"
+				></FactorInfoButton>
+			</td>
+			<td>
+				<FactorInfoButton
+						axis='z'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('z')"
+						poll="{poll}"
+						voteDim="{vote.z}"
+				></FactorInfoButton>
+			</td>
+			{/if}
+		</tr>
+		{#if !$verticalLayout}
+		<tr>
+			<td>
+				<FactorInfoButton
+						axis='z'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('z')"
+						poll="{poll}"
+						voteDim="{vote.z}"
+				></FactorInfoButton>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<FactorInfoButton
+						axis='y'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('y')"
+						poll="{poll}"
+						voteDim="{vote.y}"
+				></FactorInfoButton>
+			</td>
+		</tr>
+		<tr>
+			<td
+			>
+				<FactorInfoButton
+						axis='x'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('x')"
+						poll="{poll}"
+						voteDim="{vote.x}"
+				></FactorInfoButton>
+			</td>
+		</tr>
+		{/if}
+	</table>
+	{#if previewMode}
+	<BuildButton
+			classes="{submitButtonPosition}"
+			on:select="checkBuild()"
+	></BuildButton>
+	{:else}
+	<VoteButton
+			classes="{submitButtonPosition}"
+			on:select="confirmVote()"
+	></VoteButton>
+	{/if}
+	{/if}
+	{#if confirm}
+	{#if saving}
+	<ActionPopover
+			on:cancel="closeConfirm()"
+			viewOnly="!error"
+			infoOnly="error"
+	>
+		<div slot="header">
+			{saving}
+		</div>
+		<div slot="content">
+			{error}
+		</div>
+	</ActionPopover>
+	{:elseif voting}
+	<ActionPopover
+			contentClass="smallPadding"
+			on:cancel="closeConfirm()"
+	>
+		<div slot="header">
+			Confirm Vote
+		</div>
+		<div slot="content">
+			<div>
+				{poll.name}
+			</div>
+			<VoteComponentGraph
+					bind:delta
+					bind:poll
+					verticalLayout="Y"
+					bind:vote
+					maxBarSize="60"
+					mode="confirm"
+			></VoteComponentGraph>
+		</div>
+		<div slot="actions">
+			<VoteButton
+					on:select="vote()"
+			></VoteButton>
+		</div>
+	</ActionPopover>
+	{:else}
+	<ActionPopover
+			on:cancel="closeConfirm()"
+	>
+		<div slot="header">
+			Please Confirm
+		</div>
+		<div slot="content">
+			Create the "{poll.name}" poll?
+		</div>
+		<div slot="actions">
+			<BuildButton
+					on:select="build()"
+			></BuildButton>
+		</div>
+	</ActionPopover>
+	{/if}
+	{/if}
+	{/if}
 </article>
 <style>
-    @media (min-width: 62em) {
-        article {
-            width: 54%;
-        }
+	@media (min-width: 62em) {
+		article {
+			width: 54%;
+		}
 
-        .bottom-factor-table {
-            width: calc(54% - 140px) !important;
-        }
-    }
+		.bottom-factor-table {
+			width: calc(54% - 140px) !important;
+		}
+	}
 
-    article {
-        position: absolute;
-    }
+	article {
+		position: absolute;
+	}
 
-    footer,
-    header {
-        color: #fff;
-        background-color: #000;
-        font-size: 0.9em;
-        font-weight: 500;
-        line-height: 1em;
-        overflow: hidden;
-        text-align: center;
-        text-overflow: ellipsis;
-        width: 100%;
-        white-space: nowrap;
-    }
+	footer,
+	header {
+		color: #fff;
+		background-color: #000;
+		font-size: 0.9em;
+		font-weight: 500;
+		line-height: 1em;
+		overflow: hidden;
+		text-align: center;
+		text-overflow: ellipsis;
+		width: 100%;
+		white-space: nowrap;
+	}
 
-    footer {
-        bottom: 0px;
-        position: absolute;
-    }
+	footer {
+		bottom: 0px;
+		position: absolute;
+	}
 
-    main {
-        position: absolute;
-        top: 33%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-    }
+	main {
+		position: absolute;
+		top: 33%;
+		left: 50%;
+		margin-right: -50%;
+		transform: translate(-50%, -50%);
+	}
 
-    p {
-        margin-block-start: 0em;
-        margin-block-end: 0em;
-        padding: 0 10px;
-    }
+	p {
+		margin-block-start: 0em;
+		margin-block-end: 0em;
+		padding: 0 10px;
+	}
 
-    table {
-        z-index: 2;
-    }
+	table {
+		z-index: 2;
+	}
 
-    .bottom-factor-table {
-        bottom: 10px;
-        color: black;
-        margin-left: 70px;
-        margin-right: 70px;
-        position: fixed;
-        width: calc(100% - 140px);
-    }
+	.bottom-factor-table {
+		bottom: 10px;
+		color: black;
+		margin-left: 70px;
+		margin-right: 70px;
+		position: fixed;
+		width: calc(100% - 140px);
+	}
 
-    .leftViewport {
-        right: 20%;
-    }
+	.leftViewport {
+		right: 20%;
+	}
 
-    .offToRight {
-        left: 33%;
-    }
+	.offToRight {
+		left: 33%;
+	}
 
-    .right-factor-table {
-        height: calc(100% - 84px);
-        margin-top: 20px;
-        position: fixed;
-        right: 75px;
-        top: 44px;
-    }
+	.right-factor-table {
+		height: calc(100% - 84px);
+		margin-top: 20px;
+		position: fixed;
+		right: 75px;
+		top: 44px;
+	}
 
-    .surface {
-        position: relative;
-    }
+	.surface {
+		position: relative;
+	}
 
-    #viewport {
-        height: 100%;
-        perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
-        /* 1500 increases range from 11% to 9%, 2500 increases to 6% */
-        perspective-origin: 50% 160px; /* 670px; */
-        /*transform: scale(0.75,0.75);*/
-        width: 100%;
-    }
+	#viewport {
+		height: 100%;
+		perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
+		/* 1500 increases range from 11% to 9%, 2500 increases to 6% */
+		perspective-origin: 50% 160px; /* 670px; */
+		/*transform: scale(0.75,0.75);*/
+		width: 100%;
+	}
 
-    #cube {
-        height: 320px;
-        margin: auto;
-        position: relative;
-        /*transform: rotateX(0deg) rotateY(-90deg);*/
-        transform-style: preserve-3d;
-        transition: transform 128ms linear;
-        /*top: 50%;*/
-        width: 320px;
-    }
+	#cube {
+		height: 320px;
+		margin: auto;
+		position: relative;
+		/*transform: rotateX(0deg) rotateY(-90deg);*/
+		transform-style: preserve-3d;
+		transition: transform 128ms linear;
+		/*top: 50%;*/
+		width: 320px;
+	}
 
-    #cube > div {
-        /*border: 5px groove gray;*/
-        border: 5px solid gray;
-        border-radius: 10px;
-        color: #000;
-        font-size: 1.7em;
-        /*height: 320px;*/
-        height: 311px;
-        line-height: 1.7em;
-        position: absolute;
-        /*width: 320px;*/
-        width: 311px;
-        /*
-        height: 360px;
-        width: 360px;
-        padding: 20px;
-        font-size: 1.8em;
-        line-height: 2em;
-        */
-    }
+	#cube > div {
+		/*border: 5px groove gray;*/
+		border: 5px solid gray;
+		border-radius: 10px;
+		color: #000;
+		font-size: 1.7em;
+		/*height: 320px;*/
+		height: 311px;
+		line-height: 1.7em;
+		position: absolute;
+		/*width: 320px;*/
+		width: 311px;
+		/*
+		height: 360px;
+		width: 360px;
+		padding: 20px;
+		font-size: 1.8em;
+		line-height: 2em;
+		*/
+	}
 
-    #s0 {
-        /*background: hsla(  0, 100%, 50%, 0.95);*/
-        transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s0 {
+		/*background: hsla(  0, 100%, 50%, 0.95);*/
+		transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s1 {
-        transform: translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s1 {
+		transform: translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s2 {
-        transform: rotateY(90deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s2 {
+		transform: rotateY(90deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s3 {
-        transform: rotateY(180deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s3 {
+		transform: rotateY(180deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s4 {
-        transform: rotateY(-90deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s4 {
+		transform: rotateY(-90deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
-    #s5 {
-        transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
-    }
+	#s5 {
+		transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
+	}
 
 </style>
 
 <script>
 	import {DI}               from '@airport/di'
 	import {POLL_DAO}         from '@votecube/public-db'
+	import {VOTE_DAO}         from '@votecube/public-db'
 	import BuildButton        from '../../../common/control/button/BuildButton.html'
 	import FactorInfoButton   from '../../../common/control/button/FactorInfoButton.html'
 	import LeftButton         from '../../../common/control/button/LeftButton.html'
@@ -468,20 +469,7 @@
 		},
 		methods: {
 			build() {
-				this.set({saving: 'Saving ...'})
-				DI.get(POLL_DAO).then(
-					pollDao => {
-					    const poll = this.get().poll
-              return pollDao.save(this.get().poll, {
-
-              }).then(() => {
-                  this.set({confirm: false})
-                  routes.navigateToPage(routes.POLL_SEARCH_LIST)
-              }).catch((error) => {
-                  this.set({error, saving: 'Error'})
-              })
-          })
-
+				save(this)
 			},
 			checkBuild() {
 				this.set({confirm: true, error: '', saving: false, voting: false})
@@ -586,16 +574,7 @@
 				routes.navigateToPage(routes.POLL_INFO_MAIN, $routeParams)
 			},
 			vote() {
-				// this.set({confirm: false})
-				DI.get(POLL_DAO).then(
-					voteDao =>
-						voteDao.save(this.get().poll).then(() => {
-							this.set({confirm: false})
-							routes.navigateToPage(routes.POLL_SEARCH_LIST)
-						}).catch((error) => {
-							this.set({error, saving: 'Error'})
-						})
-				)
+				vote(this)
 			}
 		},
 		oncreate() {
@@ -632,6 +611,35 @@
 			})
 		},
 		store: () => store
+	}
+
+	async function save(
+		page
+	) {
+		page.set({saving: 'Saving ...'})
+		const pollDao = await DI.get(POLL_DAO)
+		const poll    = page.get().poll
+		try {
+			await pollDao.save(poll, {})
+			page.set({confirm: false})
+			routes.navigateToPage(routes.POLL_SEARCH_LIST)
+		} catch (error) {
+			page.set({error, saving: 'Error'})
+		}
+	}
+
+	async function vote(
+		page
+	) {
+		// page.set({confirm: false})
+		const voteDao = await DI.get(VOTE_DAO)
+		try {
+			await voteDao.save(page.get().poll)
+			page.set({confirm: false})
+			routes.navigateToPage(routes.POLL_SEARCH_LIST)
+		} catch (error) {
+			page.set({error, saving: 'Error'})
+		}
 	}
 
 	function move(

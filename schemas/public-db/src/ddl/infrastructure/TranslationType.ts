@@ -5,9 +5,10 @@ import {
 	Id,
 	Table
 } from '@airport/air-control'
-
-export type TranslationType_Id = number
-export type TranslationType_Code = number
+import {
+	TranslationType_Code,
+	TranslationType_Id
+} from '../../types/infrastructure/TranslationType'
 
 /**
  * Translation isn't necessarily from one language to another.

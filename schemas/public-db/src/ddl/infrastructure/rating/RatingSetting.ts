@@ -7,14 +7,19 @@ import {
 	ManyToOne,
 	Table
 }                           from '@airport/air-control'
+import {
+	RatingSetting_Id,
+	RatingSetting_Key,
+	RatingSetting_Value
+} from '../../../types/infrastructure/rating/RatingSetting'
 import {Country}            from '../../location/Country'
-import {SystemGeneratedRow} from '../SystemGeneratedRow'
+import {SystemGeneratedRow} from '../row/SystemGeneratedRow'
 import {Rating}             from './Rating'
 
-export type RatingSetting_Id = number
-export type RatingSetting_Key = string
-export type RatingSetting_Value = string
-
+/**
+ * Different countries might have different age brackets for common
+ * suitability ratings - record that here.
+ */
 @Entity()
 @Table({name: 'RATING_SETTINGS'})
 export class RatingSetting

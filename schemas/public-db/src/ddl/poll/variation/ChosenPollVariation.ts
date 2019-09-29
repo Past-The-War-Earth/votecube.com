@@ -7,13 +7,12 @@ import {
 	ManyToOne,
 	Table
 }                                from '@airport/air-control'
-import {SystemGeneratedRow}      from '../../infrastructure/SystemGeneratedRow'
+import {ChosenPollVariation_Id}  from '../../../types/poll/variation/ChosenPollVariation'
+import {SystemGeneratedRow}      from '../../infrastructure/row/SystemGeneratedRow'
 import {PollLocationTimeFrame}   from '../locationTimeFrame/PollLocationTimeFrame'
 import {Poll}                    from '../Poll'
 import {ChosenPollVariationType} from './ChosenPollVariationType'
 import {PollVariation}           from './PollVariation'
-
-export type ChosenPollVariation_Id = number
 
 /**
  * Chosen are: Default (for entire poll), Most Something (Funny, Cynical, ...), etc.

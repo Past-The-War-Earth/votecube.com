@@ -9,14 +9,13 @@ import {
 	Table
 }                                           from '@airport/air-control'
 import {CascadeType}                        from '@airport/ground-control'
+import {PositionOpinionVersion_Id}          from '../../types/opinion/PositionOpinionVersion'
 import {Language}                           from '../infrastructure/Language'
 import {PollPositionVariation}              from '../poll/variation/structure/PollPositionVariation'
 import {PositionOpinionVersionRatingCount}  from './count/PositionOpinionVersionRatingCount'
 import {FactorOpinionVersion}               from './FactorOpinionVersion'
 import {PositionOpinionVersionTranslation,} from './translation/PositionOpinionVersionTranslation'
 import {PositionOpinionVersionRating}       from './user/PositionOpinionVersionRating'
-
-export type PositionOpinionVersion_Id = number
 
 /**
  * Belongs to FactorOpinionVersion - does not need user or creation tracking.

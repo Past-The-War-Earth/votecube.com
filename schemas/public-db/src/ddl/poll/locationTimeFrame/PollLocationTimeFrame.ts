@@ -10,6 +10,11 @@ import {
 }                            from '@airport/air-control'
 import {CascadeType}         from '@airport/ground-control'
 import {ImmutableActorRow}   from '../../..'
+import {
+	PollLocationTimeFrame_EndDate,
+	PollLocationTimeFrame_Id,
+	PollLocationTimeFrame_StartDate
+}                            from '../../../types/poll/locationTimeFrame/PollLocationTimeFrame'
 import {Poll}                from '../Poll'
 import {ChosenPollVariation} from '../variation/ChosenPollVariation'
 import {PollVariation}       from '../variation/PollVariation'
@@ -18,10 +23,6 @@ import {PollLTFCountry}      from './location/PollLTFCountry'
 import {PollLTFCounty}       from './location/PollLTFCounty'
 import {PollLTFState}        from './location/PollLTFState'
 import {PollLTFTown}         from './location/PollLTFTown'
-
-export type PollLocationTimeFrame_Id = number
-export type PollLocationTimeFrame_EndDate = Date
-export type PollLocationTimeFrame_StartDate = Date
 
 @Entity()
 @Table({name: 'POLL_LOCATION_TIME_FRAMES'})

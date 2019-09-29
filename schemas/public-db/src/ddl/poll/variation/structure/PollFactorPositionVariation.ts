@@ -11,13 +11,14 @@ import {
 	Table
 }                       from '@airport/air-control'
 import {CascadeType}    from '@airport/ground-control'
+import {
+	PollFactorPositionVariation_Axis,
+	PollFactorPositionVariation_Dir,
+	PollFactorPositionVariation_Id
+}                       from '../../../../types/poll/variation/structure/PollFactorPositionVariation'
 import {FactorPosition} from '../../../factor/position/FactorPosition'
-import {ImmutableRow}   from '../../../infrastructure/ImmutableRow'
+import {ImmutableRow}   from '../../../infrastructure/row/ImmutableRow'
 import {PollVariation}  from '../PollVariation'
-
-export type PollFactorPositionVariation_Id = number
-export type PollFactorPositionVariation_Axis = 'x' | 'y' | 'z'
-export type PollFactorPositionVariation_Dir = -1 | 1
 
 @Entity()
 @Table({name: 'POLL_FACTOR_POSITION_VARIATIONS'})

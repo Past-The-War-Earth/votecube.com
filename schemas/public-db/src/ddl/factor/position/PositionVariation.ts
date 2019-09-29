@@ -7,14 +7,12 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
-import {ImmutableActorRow} from '../../infrastructure/ImmutableActorRow'
-import {PollVariation}     from '../../poll/variation/PollVariation'
-import {Position}          from './Position'
-
-export type PositionVariation_Id = number
-export type PositionVariation_Description = string
+}                             from '@airport/air-control'
+import {CascadeType}          from '@airport/ground-control'
+import {PositionVariation_Id} from '../../../types/factor/position/PositionVariation'
+import {ImmutableActorRow}    from '../../infrastructure/row/ImmutableActorRow'
+import {PollVariation}        from '../../poll/variation/PollVariation'
+import {Position}             from './Position'
 
 @Entity()
 @Table({name: 'POSITION_VARIATIONS'})

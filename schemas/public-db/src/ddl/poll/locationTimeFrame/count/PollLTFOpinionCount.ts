@@ -5,12 +5,13 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                              from '@airport/air-control'
-import {SystemGeneratedRow}    from '../../../infrastructure/SystemGeneratedRow'
-import {PollLocationTimeFrame} from '../PollLocationTimeFrame'
-
-export type PollLTFOpinionCount_Id = number
-export type PollLTFOpinionCount_Count = number
+}                               from '@airport/air-control'
+import {
+	PollLTFOpinionCount_Count,
+	PollLTFOpinionCount_Id
+} from '../../../../types/poll/locationTimeFrame/count/PollLTFOpinionCount'
+import {SystemGeneratedRow}     from '../../../infrastructure/row/SystemGeneratedRow'
+import {PollLocationTimeFrame}  from '../PollLocationTimeFrame'
 
 /**
  * Count of all opinions.

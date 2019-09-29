@@ -7,10 +7,9 @@ import {
 	Table
 }                                from '@airport/air-control'
 import {CascadeType}             from '@airport/ground-control'
-import {SystemGeneratedRow}      from '../SystemGeneratedRow'
+import {RatingReason_Id}         from '../../../types/infrastructure/rating/RatingReason'
+import {SystemGeneratedRow}      from '../row/SystemGeneratedRow'
 import {RatingReasonTranslation} from './RatingReasonTranslation'
-
-export type RatingReason_Id = number
 
 @Entity()
 @Table({name: 'RATING_REASONS'})

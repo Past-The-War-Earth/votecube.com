@@ -5,11 +5,12 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
-import {SystemGeneratedRow} from '../infrastructure/SystemGeneratedRow'
-
-export type VoteType_Id = number
-export type VoteType_Name = string
-export type VoteType_Description = string
+import {
+	VoteType_Description,
+	VoteType_Id,
+	VoteType_Name
+}                           from '../../types/vote/VoteType'
+import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 /**
  * Reserved for future use - let people on the the target group vote too (

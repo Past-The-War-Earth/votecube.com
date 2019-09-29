@@ -7,19 +7,16 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
+}                               from '@airport/air-control'
+import {CascadeType}            from '@airport/ground-control'
 import {
-	BackgroundColor,
-	TextColor
-}                          from '../common'
-import {ImmutableActorRow} from '../infrastructure/ImmutableActorRow'
-import {PollVariation}     from '../poll/variation/PollVariation'
-import {Factor}            from './Factor'
-
-export type FactorSkinVariation_Id = number
-export type FactorSkinVariation_BackgroundColor = BackgroundColor
-export type FactorSkinVariation_TextColor = TextColor
+	FactorSkinVariation_BackgroundColor,
+	FactorSkinVariation_Id,
+	FactorSkinVariation_TextColor
+} from '../../types/factor/FactorSkinVariation'
+import {ImmutableActorRow}      from '../infrastructure/row/ImmutableActorRow'
+import {PollVariation}          from '../poll/variation/PollVariation'
+import {Factor}                 from './Factor'
 
 @Entity()
 @Table({name: 'FACTOR_SKIN_VARIATIONS'})
