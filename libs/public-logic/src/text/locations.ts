@@ -1,11 +1,11 @@
-import {get}     from '../../common/ajax'
-import {setText} from './setText'
+import {get} from '../ajax'
 
-export function loadLocations(
-	store,
-	locale
-) {
-	return get(`./text_${locale}_locations.js`).then(text => setText(store, text))
+export async function getTextLocations(
+	locale: string
+): Promise<{ [key: string]: string }> {
+	const text = await get(`./text_${locale}_locations.js`)
+	return JSON.parse(text)
+
 	// return get(`./text/${locale}/locations.json`).then(text => setText(store, text))
 
 	// switch (locale) {

@@ -1,4 +1,4 @@
-import {getRGB} from "../../helpers/general";
+import {getRGB} from "helpers/general";
 
 export function dtoToForm(
 	poll

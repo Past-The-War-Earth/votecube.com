@@ -43,6 +43,9 @@ export function createPollForm(
 	})
 
 	const locations = new FieldGroup('Locations', {
+		cities: new OptionsField([], locationsData.cities, {
+			multi: true
+		}),
 		continents: new OptionsField([
 			Validators.required()
 		], locationsData.continents, {
@@ -52,9 +55,6 @@ export function createPollForm(
 			multi: true
 		}),
 		states: new OptionsField([], locationsData.states, {
-			multi: true
-		}),
-		cities: new OptionsField([], locationsData.cities, {
 			multi: true
 		}),
 	}, [Validators.required()], text)
@@ -84,12 +84,12 @@ export function createPollForm(
 	}])
 
 	const timeframe = new FieldGroup('Timeframe', {
-		startDate,
 		endDate: new DateField([
 			Validators.required(),
 			Validators.minTomorrow(),
 			Validators.greaterThanOrEquals(startDate)
 		]),
+		startDate,
 	}, [Validators.required()], text)
 
 	return new FieldGroup('MainInfo', {
@@ -113,7 +113,7 @@ function createFactorForm(
 	Validators,
 	formValidators
 ) {
-	const name                = new MatchingField([
+	const name               = new MatchingField([
 		Validators.required(),
 		Validators.minLength(5)
 	], {

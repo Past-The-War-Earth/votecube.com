@@ -1,24 +1,21 @@
-import page from 'page'
-
-export var PAGE_CONF = {}
-
-let appComp, pageComp, topMenuComp
+import {
+	configPage,
+	PAGE_CONF,
+	setupPage
+} from '@votecube/public-logic'
 
 export const FACTOR_INFO_MAIN   = '/factor/info/Main/:mode/:pollId'
 export const FACTOR_SEARCH_LIST = '/factor/List'
 export const FACTOR_PICK_COLOR  = '/factor/PickColor/:mode/:pollId'
-export const POSITION_INFO_MAIN   = '/position/info/Main/:mode/:pollId'
-export const POLL_SEARCH_LIST      = '/poll/search/List'
-export const POLL_INFO_MAIN        = '/poll/info/Main/:mode/:pollId'
-export const POLL_INFO_CHART       = '/poll/info/Chart/:mode/:pollId'
-export const POLL_INFO_CUBE        = '/poll/info/Cube/:mode/:pollId'
-export const POLL_LOCATIONS        = '/poll/Locations/:mode/:pollId'
-export const POLL_TIMEFRAME        = '/poll/Timeframe/:mode/:pollId'
+export const POSITION_INFO_MAIN = '/position/info/Main/:mode/:pollId'
+export const POLL_SEARCH_LIST   = '/poll/search/List'
+export const POLL_INFO_MAIN     = '/poll/info/Main/:mode/:pollId'
+export const POLL_INFO_CHART    = '/poll/info/Chart/:mode/:pollId'
+export const POLL_INFO_CUBE     = '/poll/info/Cube/:mode/:pollId'
+export const POLL_LOCATIONS     = '/poll/Locations/:mode/:pollId'
+export const POLL_TIMEFRAME     = '/poll/Timeframe/:mode/:pollId'
 
-export const DEFAULT_ROUTE_PARAMS = {
-	mode: 'build',
-	pollId: 0
-}
+let appComp
 
 configPage(
 	POSITION_INFO_MAIN,
@@ -61,30 +58,6 @@ configPage(
 	false
 )
 
-export function getPageComponent() {
-	return pageComp
-}
-
-export function getTopMenuComponent() {
-	return topMenuComp
-}
-
-
-export function navigateToPage(
-	pageKey,
-	paramMap = DEFAULT_ROUTE_PARAMS
-) {
-	let currentPage = PAGE_CONF[pageKey]
-	let url         = '' + currentPage.url
-	if (paramMap) {
-		for (const paramKey in paramMap) {
-			url = url.replace(':' + paramKey, paramMap[paramKey])
-		}
-	}
-	page(url)
-	appComp.store.set({currentPage})
-}
-
 export function setupRoutes(
 	applicationComponent,
 	pageMap,
@@ -98,42 +71,4 @@ export function setupRoutes(
 	page({
 		hashbang: true
 	})
-}
-
-function configPage(
-	key,
-	rightMenu,
-	url = key
-) {
-	PAGE_CONF[key] = {
-		key,
-		rightMenu,
-		url
-	}
-}
-
-function setupPage(
-	pageConfig,
-	PageComp,
-	TopMenuComp,
-	appComp,
-	url = pageConfig.url
-) {
-	page(
-		url, (context) => {
-			setPageComp(pageConfig, context.params, PageComp, TopMenuComp, appComp)
-		})
-}
-
-function setPageComp(
-	currentPage,
-	routeParams,
-	PageComp,
-	TopMenuComp,
-	appComp
-) {
-	pageComp    = PageComp
-	topMenuComp = TopMenuComp
-	appComp.store.set({currentPage, routeParams})
-	appComp.set({PageComp})
 }

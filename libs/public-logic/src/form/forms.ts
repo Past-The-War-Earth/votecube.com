@@ -1,0 +1,213 @@
+import {
+	DEFAULT_ROUTE_PARAMS,
+	navigateToPage
+} from '../helpers/routes'
+
+/*
+export const CREATE_POLL_TOP  = routes.POLL_INFO_MAIN
+export const CREATE_FACTOR = routes.FACTOR_INFO_MAIN
+export const CREATE_POSITION = routes.POSITION_INFO_MAIN
+*/
+
+const forms = {}
+
+export function setForm(
+	name,
+	newCurrentForm
+) {
+	forms[name] = newCurrentForm
+}
+
+export function getForm(
+	name
+) {
+	return forms[name]
+}
+
+export function ensureChildForm(
+	parentFormName,
+	childFormName,
+	page,
+	navigateToRouteOnNotFound,
+	navigateParamsOnNotFound = DEFAULT_ROUTE_PARAMS
+) {
+	const parentForm = getForm(parentFormName)
+	if (!parentForm) {
+		navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
+		return null
+	}
+
+	let form = parentForm
+	// TODO: see if nested child form resolution is needed
+	// childFormName.split('.').forEach(childNameFragment => {
+	form = form.fields[childFormName]
+	// })
+
+	ensureForm(form, page)
+
+	return form
+}
+
+export function ensureTopForm(
+	topFormName,
+	page,
+	navigateToRouteOnNotFound,
+	navigateParamsOnNotFound = DEFAULT_ROUTE_PARAMS
+) {
+	const topForm = getForm(topFormName)
+	if (!topForm) {
+		navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
+		return null
+	}
+	ensureForm(topForm, page)
+
+	return topForm
+}
+
+export function ensureForm(
+	form,
+	page
+) {
+	form.addComponent(page)
+	page.set({form, isValid: form.valid, isOriginal: form.isOriginal()})
+}
+
+export function uncacheForm(
+	formName
+) {
+	delete forms[formName]
+}
+
+export function clearForm(
+	page
+) {
+	const {form} = page.get()
+	if (form) {
+		form.clearComponents()
+	}
+}
+
+function getTopForm(
+	topFormName,
+	navigateToRouteOnNotFound,
+	navigateParamsOnNotFound = DEFAULT_ROUTE_PARAMS
+) {
+	const topForm = getForm(topFormName)
+	if (!topForm) {
+		navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
+
+		return null
+	}
+
+	return topForm
+}
+
+export function navigateOnValid(
+	page,
+	navigateToRouteOnValid,
+	paramMap
+) {
+	const {form} = page.get()
+
+	form.touch()
+
+	if (!form.valid) {
+		return
+	}
+
+	navigateToPage(navigateToRouteOnValid, paramMap)
+}
+
+export function log(
+	page
+) {
+	const {form} = page.get()
+
+	console.log(form.value)
+}
+
+export function handleKeydown(
+	event,
+	activeOptionIndex,
+	filter,
+	field,
+	options,
+	showOptions,
+	multi
+): {
+	activeOptionIndex: string,
+	filter: string
+} {
+	if (!showOptions) {
+		return
+	}
+	showOptions = true
+	switch (event.key) {
+		case 'ArrowDown':
+			if (activeOptionIndex + 1 < options.length) {
+				activeOptionIndex++
+			}
+			break
+		case 'ArrowUp':
+			if (activeOptionIndex) {
+				activeOptionIndex--
+			}
+			break
+		case 'Escape':
+			activeOptionIndex = 0
+			showOptions       = false
+			break
+		case 'Enter':
+			const selectedOption = options[activeOptionIndex]
+			activeOptionIndex    = 0
+			field.select(selectedOption)
+			if (multi) {
+				filter = ''
+			} else {
+				filter = selectedOption.text
+			}
+			showOptions = false
+			event.preventDefault()
+			break
+	}
+	/*
+		if (!showOptions) {
+			page.hideOptions()
+		}
+		*/
+	return {
+		activeOptionIndex,
+		filter
+	}
+}
+
+export function showFiltered(
+	event,
+	showOptions,
+	element,
+	field,
+	filter
+	// focus
+): {
+	dropdownTopPx: number,
+	showOptions: boolean,
+} {
+	if (!showOptions) {
+		if (field.filteredOptions.length) {
+			// if(focus) {
+			field.focus()
+			// }
+			event.stopPropagation()
+
+			return {
+				dropdownTopPx: element.offsetHeight + 6,
+				showOptions: true,
+			}
+		}
+	}
+	// if(focus) {
+	filter.focus()
+	// }
+
+	return null
+}

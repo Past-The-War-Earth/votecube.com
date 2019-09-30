@@ -1,14 +1,13 @@
 {
   "dependencies": {
     "@airport/di": "0.0.1",
-    "@airport/tarmaq": "0.0.1",
-    "@airport/tower": "0.0.1",
-    "@airport/terminal": "0.0.1",
-    "@airport/terminal-map": "0.0.1",
+    "@votecube/cube-logic": "0.0.1",
+    "@votecube/forms": "0.0.1",
     "@votecube/public-db": "0.0.1",
-    "page": "^1.11.3"
+    "page": "^1.11.5"
   },
   "devDependencies": {
+    "svelte": "^3.12.1",
     "tslint": "^5.14.0",
     "typescript": "^3.2.2"
   },

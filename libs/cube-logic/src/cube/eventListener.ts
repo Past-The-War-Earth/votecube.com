@@ -1,5 +1,6 @@
 import {
 	gQ,
+	IPerElementEventListenerMap,
 	iT,
 	LM,
 	pD
@@ -22,8 +23,41 @@ export interface IMoveViewportEvent {
 	y: number;
 }
 
+export interface IEventListenerFile {
+	dLM: IPerElementEventListenerMap
+
+	addCubeAdjustment(): void
+
+	clearCubeAdjustment(): void
+
+	setPositionData(
+		positionData: IUiVote
+	): boolean
+
+	setPositionDataAndMove(
+		uiVote: IUiVote
+	): void
+
+	setViewPort(
+		forCube: boolean,
+		cb?: IValuesOutCallback
+	): MutationApi
+
+}
+
+export type MovementDirection = -1 | 0 | 1
+export type ChangeInPixels = number
+// export type Range = -1 | 1;
+export type DirectionVector = [MovementDirection, ChangeInPixels
+	// , Range
+]
+
 // document listener map
 export const dLM = LM.ad(document)
+
+const TOUCH = document.ontouchmove !== undefined
+
+let lastMove = 0
 
 export function setViewPort(
 	forCube: boolean,
@@ -47,7 +81,7 @@ export function setViewPort(
 
 export function setPositionDataAndMove(
 	uiVote: IUiVote
-) {
+): void {
 	if (setPositionData(uiVote)) {
 		viewport.moveToDegree()
 	}
@@ -63,7 +97,7 @@ export function setPositionData(
 
 export function addCubeAdjustment(): void {
 	// let moveSpeed = 256
-	dLM.ad('keydown', function (ev) {
+	dLM.ad('keydown', (ev) => {
 		rmMmTm()
 		switch (ev.keyCode) {
 			case 37: // left
@@ -118,7 +152,7 @@ export function addCubeAdjustment(): void {
 
 }
 
-export function clearCubeAdjustment() {
+export function clearCubeAdjustment(): void {
 	dLM.rm('keydown')
 	('mousedown')
 	('touchstart')
@@ -145,7 +179,7 @@ function oMdTs(
 	}
 
 	// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
-	let p: MouseEvent | Touch = (ev as TouchEvent).touches
+	const p: MouseEvent | Touch = (ev as TouchEvent).touches
 		? (ev as TouchEvent).touches[0]
 		: ev as MouseEvent
 	// console.log('---===<<<((( mouse start )))>>>===---')
@@ -153,8 +187,6 @@ function oMdTs(
 	mouse.start.y             = p.screenY
 	dLM.ad('mousemove', oMmTm)('touchmove', oMmTm)
 }
-
-const TOUCH = document.ontouchmove !== undefined
 
 /**
  * On mousemove or touchmove
@@ -165,12 +197,12 @@ function oMmTm(
 	if (!viewport.el) {
 		return
 	}
-	let t = ev.touches
+	const t = ev.touches
 
 	// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
 	if (!TOUCH || !(t && t.length > 1)) {
 		ev.preventDefault()
-		let p = t ? t[0] : ev
+		const p = t ? t[0] : ev
 		// Get touch co-ords
 		// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
 		// dispatch 'move-viewport' event
@@ -188,13 +220,11 @@ function rmMmTm() {
 	dLM.rm('mousemove')('touchmove')
 }
 
-let lastMove = 0
-
 function moveViewport(
 	event: IMoveViewportEvent // event
 ) {
-	let mouseObject = mouse
-	let startCoords = mouseObject.start
+	const mouseObject = mouse
+	const startCoords = mouseObject.start
 	let lastCoords  = mouseObject.last
 
 	let
@@ -208,7 +238,7 @@ function moveViewport(
 		yBy: MovementDirection = 0
 	// directionChanged = 0
 
-	let now: number = new Date().getTime()
+	const now: number = new Date().getTime()
 
 	if (!mouse.last) {
 		mouse.last = lastCoords = mouse.start
@@ -251,13 +281,6 @@ function moveViewport(
 	lastCoords.x = event.x
 	lastCoords.y = event.y
 }
-
-export type MovementDirection = -1 | 0 | 1;
-export type ChangeInPixels = number;
-// export type Range = -1 | 1;
-export type DirectionVector = [MovementDirection, ChangeInPixels
-	// , Range
-	];
 
 function directionVector(
 	fromPosition,

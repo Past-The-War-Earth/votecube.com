@@ -26,7 +26,6 @@ export function removeWatch(
 export function watchMultilineField(
 	component,
 	field
-	//, selectionSizer
 ) {
 	watches.push({
 		callback: (

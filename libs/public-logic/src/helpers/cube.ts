@@ -1,10 +1,14 @@
-import {getColor as getGeneralColor} from "./general";
+import {
+	IPoll,
+	PollFactorPositionVariation_Axis
+}                                    from '@votecube/public-db'
+import {getColorHexString} from './general'
 
 export function getPollFactorPositions(
-	poll,
-	axis
+	poll: IPoll,
+	axis: PollFactorPositionVariation_Axis
 ) {
-	return poll.pollsFactorsPositions.filter(
+	return (poll as any).pollsFactorsPositions.filter(
 		pollsFactorPosition =>
 			pollsFactorPosition.axis === axis
 	)
@@ -33,9 +37,9 @@ export function getFactor(
 export function getColor(
 	delta,
 	poll,
-	axis
+	axis: PollFactorPositionVariation_Axis
 ) {
-	return getGeneralColor(getPollFactorPositions(poll, axis)[0].color)
+	return getColorHexString(getPollFactorPositions(poll, axis)[0].color)
 }
 
 export function getSideText(
@@ -54,9 +58,9 @@ export function getSideText(
 
 	switch (mode) {
 		case 'confirm':
-			return factorPosition.factor.name;
+			return factorPosition.factor.name
 		case 'cube':
-			return factorPosition.position.name;
+			return factorPosition.position.name
 		default:
 			return `${factorPosition.factor.name}: ${factorPosition.position.name}`
 	}

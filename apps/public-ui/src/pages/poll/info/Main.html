@@ -158,31 +158,31 @@
 </style>
 
 <script>
-	import {DI}                           from '@airport/di'
+	import {DI}          from '@airport/di'
 	import {
 		LABEL_DAO,
 		POLL_DAO,
 		VOTE_DAO
-	}                                     from '@votecube/public-db'
+	}                    from '@votecube/public-db'
 	import PreviewButton
-	                                      from '../../../common/control/button/PreviewButton.html'
-	import AutoComplete                   from '../../../common/field/AutoComplete.html'
-	import IconBlock                      from '../../../common/field/IconBlock.html'
-	import MultiSelect                    from '../../../common/field/MultiSelect.html'
-	import Text                           from '../../../common/field/Text.html'
-	import LocationIcon                   from '../../../common/icon/LocationIcon.html'
-	import TimeIcon                       from '../../../common/icon/TimeIcon.html'
-	import ActionPopover                  from '../../../common/shell/ActionPopover.html'
+	                     from '../../../common/control/button/PreviewButton.html'
+	import AutoComplete  from '../../../common/field/AutoComplete.svelte'
+	import IconBlock     from '../../../common/field/IconBlock.html'
+	import MultiSelect   from '../../../common/field/MultiSelect.html'
+	import Text          from '../../../common/field/Text.html'
+	import LocationIcon  from '../../../common/icon/LocationIcon.html'
+	import TimeIcon      from '../../../common/icon/TimeIcon.html'
+	import ActionPopover from '../../../common/shell/ActionPopover.html'
 	import SelectionBlock
-	                                      from '../../../components/factor/SelectionBlock.html'
-	import * as formCache                 from '../../../form/cache'
-	import * as forms                     from '../../../form/forms'
-	import * as pollFormCreator           from '../../../form/poll/creator'
-	import * as pollFormToConverter       from '../../../form/poll/toConverter'
+	                     from '../../../components/factor/SelectionBlock.html'
+	import * as formCache                 from '@votecube/public-logic/src/form/cache'
+	import * as forms                     from '@votecube/public-logic/src/form/forms'
+	import * as pollFormCreator           from '@votecube/public-logic/src/form/poll/creator'
+	import * as pollFormToConverter       from '@votecube/public-logic/src/form/poll/toConverter'
 	import {
 		getArrayValueTexts,
 		getDate
-	}                                     from '../../../helpers/general'
+	}                                     from '@votecube/public-logic/src/helpers/general'
 	import {loadForms}                    from '../../../libs/forms'
 	import {loadLocations}                from '../../../libs/locations'
 	import {loadLocations as loadLocText} from '../../../libs/text/locations'

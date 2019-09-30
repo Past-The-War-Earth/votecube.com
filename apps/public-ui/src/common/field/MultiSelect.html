@@ -50,7 +50,7 @@
 			{/each}
 			<input
 							autocomplete="off"
-							bind:value="filter"
+							bind:value="{filter}"
 							ref:filter
 							type="text"
 							use:id="{id}"
@@ -227,12 +227,12 @@
 </style>
 
 <script>
-	import {OPTIONS} from '../../form/forms'
+	import {OPTIONS} from '@votecube/public-logic/src/form/forms'
 	import store     from '../../store'
 	import {
 		removeWatch,
 		watchMultilineField
-	}                from '../../watch'
+	}                from '@votecube/public-logic/src/watch'
 	import ClearIcon from '../icon/ClearIcon.html'
 	import InfoIcon  from '../icon/InfoIcon.html'
 	import UndoIcon  from '../icon/UndoIcon.html'

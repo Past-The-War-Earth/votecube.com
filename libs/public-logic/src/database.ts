@@ -1,13 +1,10 @@
-import {DI}            from '@airport/di'
-import {VOTE_DAO}      from '@votecube/public-db'
-import {loadCubeLogic} from './libs/cubeLogic'
-
 export async function init() {
 	// await DI.get(AIR_DB)
 	// const dbManager = await DI.get(DATABASE_MANAGER)
 	// await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, SCHEMA)
 }
 
+/*
 export async function setupCubeView(
 	mode,
 	pollId,
@@ -17,7 +14,7 @@ export async function setupCubeView(
 		      setPositionDataAndMove,
 		      voteDao
 	      ] = await Promise.all([
-		loadCubeLogic(page, () => {
+		loadCubeLogic(() => {
 			page.set({delta: page.get().delta + 1})
 		}),
 		await DI.get(VOTE_DAO)
@@ -27,7 +24,7 @@ export async function setupCubeView(
 
 	if (!vote) {
 		if (pollId === 0) {
-			routes.navigateToPage(routes.POLL_INFO_MAIN)
+			navigateToPage(routes.POLL_INFO_MAIN)
 		}
 		return
 	}
@@ -39,3 +36,4 @@ export async function setupCubeView(
 		pageTitle: poll.name
 	})
 }
+*/

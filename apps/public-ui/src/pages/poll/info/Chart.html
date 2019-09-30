@@ -1,22 +1,27 @@
 {#if vote}
 <VoteComponentGraph
-        bind:delta
-        bind:maxBarSize
-        bind:poll
-        bind:verticalLayout="$verticalLayout"
-        bind:vote
-        mode="page"
-        on:toggleX="toggleSurface('x')"
-        on:toggleY="toggleSurface('y')"
-        on:toggleZ="toggleSurface('z')"
+		bind:delta
+		bind:maxBarSize
+		bind:poll
+		bind:verticalLayout="{$verticalLayout}"
+		bind:vote
+		mode="page"
+		on:toggleX="toggleSurface('x')"
+		on:toggleY="toggleSurface('y')"
+		on:toggleZ="toggleSurface('z')"
 ></VoteComponentGraph>
 {/if}
 
 <script>
+	import {shutDownCubeListener} from '@votecube/public-logic'
+	import {
+		navigateToPage,
+		pageTitle
+	}                             from '@votecube/public-logic/src'
 	import VoteComponentGraph     from '../../../components/vote/VoteComponentGraph.html'
-	import {setupCubeView}        from '../../../database'
-	import {shutDownCubeListener} from '../../../libs/cubeLogic'
-	import {setResizeCllBck}      from '../../../resizer'
+	import {setupCubeView}        from '@votecube/public-logic/src/database'
+	import {setResizeCllBck}      from '@votecube/public-logic/src/resizer'
+	import {POLL_INFO_MAIN}       from '../../../routes'
 	import store                  from '../../../store'
 
 	export default {
@@ -50,7 +55,7 @@
 				}
 
 				this.set({maxBarSize})
-			}, this.store)
+			})
 
 			const pollId = this.store.get().routeParams.pollId
 
@@ -58,11 +63,44 @@
 			this.store.set({noOverflow: true})
 		},
 		ondestroy() {
-			shutDownCubeListener(this.get().cubeListener, this)
+			shutDownCubeListener()
 			setResizeCllBck(null)
 			this.store.set({noOverflow: false})
 		},
 		store: () => store
+	}let vote
+	let poll
+	let mode
+	let delta
+
+	async function setupCubeView(
+		newMode,
+		pollId,
+		page
+	) {
+		const [
+			      setPositionDataAndMove,
+			      voteDao
+		      ] = await Promise.all([
+			loadCubeLogic(() => {
+				delta += 1
+			}),
+			await DI.get(VOTE_DAO)
+		])
+
+		vote = await voteDao.findMyVoteForPoll(pollId)
+
+		if (!vote) {
+			if (pollId === 0) {
+				navigateToPage(POLL_INFO_MAIN)
+			}
+			return
+		}
+		mode = newMode
+		poll = vote.poll
+		setPositionDataAndMove(vote)
+
+		pageTitle.set(poll.name)
 	}
 
 </script>

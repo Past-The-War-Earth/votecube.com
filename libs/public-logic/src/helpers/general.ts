@@ -1,6 +1,11 @@
+import {IContinent} from '../../../model/src'
+import {
+	IColor
+}                   from '../colors'
+
 export function getDate(
-	date
-) {
+	date: Date
+): string {
 	if (!date) {
 		return 'N/A'
 	}
@@ -10,25 +15,27 @@ export function getDate(
 
 export function getLocations(
 	locationFormGroupFields
-) {
-	let continents = locationFormGroupFields.continents.value
-
-	return continents
+): IContinent[] {
+	return locationFormGroupFields.continents.value
 }
 
 export function getArrayValueTexts(
-	arrayValue
-) {
+	arrayValue: any[]
+): string {
 	return arrayValue
-		.map(value => value.text)
-		.reduce((accumulator, text) => accumulator + (accumulator
+		.map(
+			value => value.text)
+		.reduce((
+			accumulator,
+			text
+		) => accumulator + (accumulator
 			? ', ' + text
 			: text), '')
 }
 
-export function getColor(
-	color
-) {
+export function getColorHexString(
+	color: IColor
+): string {
 	if (!color) {
 		return `fff`
 	}
@@ -41,19 +48,19 @@ export function getColor(
 }
 
 export function getRGB(
-	color
-) {
+	color: IColor
+): IColor {
 	const rgb = color.id
 
 	return {
-		red: rgb >> 16,
+		blue: rgb % 256,
 		green: (rgb >> 8) % 256,
-		blue: rgb % 256
+		red: rgb >> 16
 	}
 }
 
 function ensure2Digits(
-	colorString
-) {
+	colorString: string
+): string {
 	return colorString.length === 1 ? '0' + colorString : colorString
 }
