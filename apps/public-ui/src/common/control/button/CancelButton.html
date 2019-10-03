@@ -1,8 +1,9 @@
 <svg
 				class="{classes}"
-				width="50"
+				height="{size}"
 				on:click="fire('select', {event})"
-				height="50"
+				viewBox="{viewBox(size)}"
+				width="{size}"
 >
 	<g>
 		<circle
@@ -37,7 +38,11 @@
 			return {
 				classes: '',
 				highlightColor: '000',
+				size: 50
 			}
+		},
+		helpers: {
+			viewBox: (size) => size === 50 ? '' : '0 0 50 50'
 		}
 	}
 </script>

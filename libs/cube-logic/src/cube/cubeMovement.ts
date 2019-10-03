@@ -1,6 +1,6 @@
 import {
 	IVote,
-	PollFactorPosition_Dir,
+	PollFactorPositionVariation_Dir,
 	VoteFactor_Share
 }                  from '@votecube/public-db'
 import {
@@ -22,7 +22,7 @@ export enum Move {
 	Up   = 1
 }
 
-export type Direction = PollFactorPosition_Dir
+export type Direction = PollFactorPositionVariation_Dir | 0
 
 export type PositionPercent = VoteFactor_Share
 

@@ -1,8 +1,9 @@
 <svg
 				class="{classes}"
-				height="50"
+				height="{size}"
 				on:click="fire('select', {event})"
-				width="50"
+				viewBox="{viewBox(size)}"
+				width="{size}"
 >
 	<g class="layer">
 		<circle
@@ -39,8 +40,12 @@
 				circleRadius: 23,
 				fillColor: 'fff',
 				highlightColor: '000',
-				strokeWidth: 3
+				strokeWidth: 3,
+				size: 50
 			}
+		},
+		helpers: {
+			viewBox: (size) => size === 50 ? '' : '0 0 50 50'
 		}
 	}
 </script>

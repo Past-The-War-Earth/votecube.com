@@ -31,6 +31,8 @@ export interface IMutationApi {
 		value: string
 	): void
 
+	recompute(): void
+
 	toggleSurface(
 		dimension: Dimension
 	): void
@@ -88,10 +90,37 @@ export class MutationApi
 		dimension: Dimension
 	): void {
 		const dimensionPositionData = this.vp.pd[dimension]
-		if (dimensionPositionData.value === 100) {
-			dimensionPositionData.dir = -dimensionPositionData.dir as Direction;
+		if (!dimensionPositionData.dir) {
+			dimensionPositionData.dir = 1
+		} else if (dimensionPositionData.value === 100) {
+			dimensionPositionData.dir = -dimensionPositionData.dir as Direction
+		}
+		switch (dimension) {
+			case 'x': {
+				this.vp.pd.y.dir = 0
+				this.vp.pd.z.dir = 0
+				break
+			}
+			case 'y': {
+				this.vp.pd.x.dir = 0
+				this.vp.pd.z.dir = 0
+				break
+			}
+			case 'z': {
+				this.vp.pd.x.dir = 0
+				this.vp.pd.y.dir = 0
+				break
+			}
 		}
 		this.moveToPercent(dimension, 100, null, null)
+	}
+
+	recompute(): void {
+		const closestMatrixPosition = this.matrixValueChooser.getClosestMatrixPosition(this.vp)
+
+		const finalPosition = this.finalPositionFinder.findFinalPosition(closestMatrixPosition, this.vp)
+
+		this.degreePositionChooser.setFinalDegrees(finalPosition, this.vp)
 	}
 
 	private moveToPercent(
@@ -101,7 +130,6 @@ export class MutationApi
 		direction?: Direction
 	): void {
 		// First see the order of recently moved dimensions
-
 		this.vp.rmd = this.vp.rmd.filter(
 			changedDim => dimension !== changedDim)
 		this.vp.rmd.unshift(dimension)
@@ -118,11 +146,7 @@ export class MutationApi
 				dimension, newPercent, this.vp.pd[dimension].dir, this.vp)
 		}
 
-		const closestMatrixPosition = this.matrixValueChooser.getClosestMatrixPosition(this.vp)
-
-		const finalPosition = this.finalPositionFinder.findFinalPosition(closestMatrixPosition, this.vp)
-
-		this.degreePositionChooser.setFinalDegrees(finalPosition, this.vp)
+		this.recompute()
 	}
 
 	private getPercentChange(): PercentChange {
@@ -132,7 +156,7 @@ export class MutationApi
 		// 	case 1:
 		// 		return 20
 		// 	case 2:
-				return 5
+		return 5
 		// }
 	}
 

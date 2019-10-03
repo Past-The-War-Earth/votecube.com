@@ -1,19 +1,142 @@
 {#if vote}
-<VoteComponentGraph
-        bind:delta
-        bind:maxBarSize
-        bind:poll
-        bind:verticalLayout="$verticalLayout"
-        bind:vote
-        mode="page"
-        on:toggleX="toggleSurface('x')"
-        on:toggleY="toggleSurface('y')"
-        on:toggleZ="toggleSurface('z')"
-></VoteComponentGraph>
+<article>
+	<main
+			class:offToRight="!$verticalLayout"
+	>
+		<ChoiceRanking
+				delta="{delta}"
+				poll="{poll}"
+				vote="{vote}"
+		></ChoiceRanking>
+	</main>
+	<table
+			class="{$verticalLayout ? 'bottom-factor-table' : 'right-factor-table'}"
+			class:leftViewport="!$verticalLayout"
+	>
+		<tr>
+			{#if $verticalLayout}
+			<td
+			>
+				<FactorInfoButton
+						axis='x'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('x')"
+						poll="{poll}"
+						voteDim="{vote.x}"
+				></FactorInfoButton>
+			</td>
+			<td
+			>
+				<FactorInfoButton
+						axis='y'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('y')"
+						poll="{poll}"
+						voteDim="{vote.y}"
+				></FactorInfoButton>
+			</td>
+			<td>
+				<FactorInfoButton
+						axis='z'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('z')"
+						poll="{poll}"
+						voteDim="{vote.z}"
+				></FactorInfoButton>
+			</td>
+			{/if}
+		</tr>
+		{#if !$verticalLayout}
+		<tr>
+			<td>
+				<FactorInfoButton
+						axis='z'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('z')"
+						poll="{poll}"
+						voteDim="{vote.z}"
+				></FactorInfoButton>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<FactorInfoButton
+						axis='y'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('y')"
+						poll="{poll}"
+						voteDim="{vote.y}"
+				></FactorInfoButton>
+			</td>
+		</tr>
+		<tr>
+			<td
+			>
+				<FactorInfoButton
+						axis='x'
+						delta="{delta}"
+						mode="page"
+						on:toggle="toggleSurface('x')"
+						poll="{poll}"
+						voteDim="{vote.x}"
+				></FactorInfoButton>
+			</td>
+		</tr>
+		{/if}
+	</table>
+</article>
 {/if}
 
+<style>
+	@media (min-width: 62em) {
+		article {
+			width: 54%;
+		}
+
+		.bottom-factor-table {
+			width: calc(54% - 140px) !important;
+		}
+	}
+
+	article {
+		position: absolute;
+	}
+
+	.bottom-factor-table {
+		bottom: 10px;
+		color: black;
+		margin-left: 70px;
+		margin-right: 70px;
+		position: fixed;
+		width: calc(100% - 140px);
+	}
+
+	.leftViewport {
+		right: 20%;
+	}
+
+	.offToRight {
+		left: 33%;
+	}
+
+	.right-factor-table {
+		height: calc(100% - 84px);
+		margin-top: 20px;
+		position: fixed;
+		right: 75px;
+		top: 44px;
+	}
+
+</style>
+
 <script>
-	import VoteComponentGraph     from '../../../components/vote/VoteComponentGraph.html'
+	import FactorInfoButton       from '../../../common/control/button/FactorInfoButton.html'
+	import ChoiceRanking     from '../../../components/poll/ChoiceRanking.html'
 	import {setupCubeView}        from '../../../database'
 	import {shutDownCubeListener} from '../../../libs/cubeLogic'
 	import {setResizeCllBck}      from '../../../resizer'
@@ -21,11 +144,11 @@
 
 	export default {
 		components: {
-			VoteComponentGraph
+			ChoiceRanking,
+			FactorInfoButton
 		},
 		data() {
 			return {
-				factor: null,
 				delta: 0
 			}
 		},
@@ -38,19 +161,19 @@
 			}
 		},
 		oncreate() {
-			setResizeCllBck((
-				portalHeight,
-				windowWidth,
-				verticalLayout
-			) => {
-				let maxBarSize = portalHeight - 60
+			/*			setResizeCllBck((
+							portalHeight,
+							windowWidth,
+							verticalLayout
+						) => {
+							let maxBarSize = portalHeight - 60
 
-				if (verticalLayout) {
-					maxBarSize = portalHeight / 2 - 20
-				}
+							if (verticalLayout) {
+								maxBarSize = portalHeight / 2 - 20
+							}
 
-				this.set({maxBarSize})
-			}, this.store)
+							this.set({maxBarSize})
+						}, this.store)*/
 
 			const pollId = this.store.get().routeParams.pollId
 

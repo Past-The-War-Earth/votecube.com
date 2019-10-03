@@ -1,10 +1,10 @@
 <slot name="icon"></slot>
-<li
+<!--<li
 				class="viewType"
 >
 	<FilterIcon
 	></FilterIcon>
-</li>
+</li>-->
 
 <style>
 	.viewType {
@@ -32,19 +32,19 @@
 			FilterIcon
 		},
 		computed: {
-			showCube({$currentPage}) {
-				return $currentPage.key === routes.POLL_INFO_CHART
-			},
-
-			showChart({$currentPage}) {
-				return $currentPage.key === routes.POLL_INFO_CUBE
-			},
+			// showCube({$currentPage}) {
+			// 	return $currentPage.key === routes.POLL_INFO_CHART
+			// },
+			//
+			// showChart({$currentPage}) {
+			// 	return $currentPage.key === routes.POLL_INFO_CUBE
+			// },
 		},
 		data() {
 			return {
 				routes: {
 					cube: routes.POLL_INFO_CUBE,
-					chart: routes.POLL_INFO_CHART
+					// chart: routes.POLL_INFO_CHART
 				}
 			}
 		},

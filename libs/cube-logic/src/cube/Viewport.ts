@@ -1,4 +1,4 @@
-import {PollFactorPosition_Axis} from '@votecube/public-db'
+import {PollFactorPositionVariation_Axis} from '@votecube/public-db'
 import {
 	MOVE_INCREMENTS,
 	MoveIncrement,
@@ -6,7 +6,7 @@ import {
 	VALUE_MATRIX,
 	ValueArrayPosition,
 	ZoomIndex
-}                                from './cubeMoveMatrix'
+}                                         from './cubeMoveMatrix'
 import {
 	Bool,
 	Direction,
@@ -16,7 +16,7 @@ import {
 	IValuesOutCallback,
 	Move,
 	moveCoordinates,
-}                                from './cubeMovement'
+}                                         from './cubeMovement'
 
 export interface IViewport {
 
@@ -64,7 +64,7 @@ export interface IVisibleDirection {
 	z: Direction
 }
 
-export type Dimension = PollFactorPosition_Axis
+export type Dimension = PollFactorPositionVariation_Axis
 
 export const viewport: IViewport = {
 	cb: null,
@@ -134,6 +134,8 @@ export const viewport: IViewport = {
 			if (positionValues[negativePosition]) {
 				dir   = -1
 				value = positionValues[negativePosition]
+			} else if (!value) {
+				dir = 0
 			}
 			voteDimension.dir   = dir
 			voteDimension.valid = true

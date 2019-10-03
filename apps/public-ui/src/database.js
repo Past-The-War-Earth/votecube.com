@@ -9,7 +9,6 @@ export async function init() {
 }
 
 export async function setupCubeView(
-	mode,
 	pollId,
 	page
 ) {
@@ -32,7 +31,7 @@ export async function setupCubeView(
 		return
 	}
 	const poll = vote.poll
-	page.set({mode, poll, vote})
+	page.set({poll, vote})
 	setPositionDataAndMove(vote)
 
 	page.store.set({

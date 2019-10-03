@@ -1,6 +1,8 @@
-<aside>
+<aside
+		transition:fly='{y:200, duration: 500}'
+>
 	<nav
-					on:click="fire('close')"
+			on:click="fire('close')"
 	>
 		x
 	</nav>
@@ -9,34 +11,34 @@
 		<table>
 			<!-- TODO: add support for voting value -->
 			<LinearPositionPicker
-							axis="x"
-							moveDelta="{moveDelta}"
-							on:move="move('x', event.position, event.percentChange)"
-							on:moveToValue="moveToValue('x', event)"
-							on:update="update()"
-							poll="{poll}"
-							value="{vote.x}"
-							ref:xPicker
+					axis="x"
+					moveDelta="{moveDelta}"
+					on:move="move('x', event.position, event.percentChange)"
+					on:moveToValue="moveToValue('x', event)"
+					on:update="update()"
+					poll="{poll}"
+					value="{vote.x}"
+					ref:xPicker
 			/>
 			<LinearPositionPicker
-							axis="y"
-							moveDelta="{moveDelta}"
-							on:move="move('y', event.position, event.percentChange)"
-							on:moveToValue="moveToValue('y', event)"
-							on:update="update()"
-							poll="{poll}"
-							value="{vote.y}"
-							ref:yPicker
+					axis="y"
+					moveDelta="{moveDelta}"
+					on:move="move('y', event.position, event.percentChange)"
+					on:moveToValue="moveToValue('y', event)"
+					on:update="update()"
+					poll="{poll}"
+					value="{vote.y}"
+					ref:yPicker
 			/>
 			<LinearPositionPicker
-							axis="z"
-							moveDelta="{moveDelta}"
-							on:move="move('z', event.position, event.percentChange)"
-							on:moveToValue="moveToValue('z', event)"
-							on:update="update()"
-							poll="{poll}"
-							value="{vote.z}"
-							ref:zPicker
+					axis="z"
+					moveDelta="{moveDelta}"
+					on:move="move('z', event.position, event.percentChange)"
+					on:moveToValue="moveToValue('z', event)"
+					on:update="update()"
+					poll="{poll}"
+					value="{vote.z}"
+					ref:zPicker
 			/>
 		</table>
 	</section>
@@ -92,7 +94,8 @@
 
 
 <script>
-	import store                from '../../store.js';
+	import store                from '../../store.js'
+	import {fly}             from 'svelte-transitions'
 	import LinearPositionPicker from './LinearPositionPicker.html'
 
 	export default {
@@ -101,7 +104,12 @@
 		},
 		data: () => {
 			return {
-				moveDelta: 0
+				internalDelta: 0
+			}
+		},
+		computed: {
+			moveDelta: ({delta, internalDelta}) => {
+				return delta + internalDelta
 			}
 		},
 		methods: {
@@ -115,7 +123,7 @@
 					position,
 					percentChange
 				})
-				this.set({moveDelta: this.get().moveDelta + 1})
+				this.set({internalDelta: this.get().internalDelta + 1})
 			},
 			moveToValue(
 				factor,
@@ -131,7 +139,8 @@
 				refresh(this)
 			}
 		},
-		store: () => store
+		store: () => store,
+		transitions: {fly}
 	}
 
 	function refresh(

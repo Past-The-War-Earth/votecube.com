@@ -82,10 +82,10 @@
 			rightCircleRadius: ({moveDelta, value}) => getRadius(1, value),
 			leftStrokeWidth: ({moveDelta, value}) => getStrokeWidth(-1, value),
 			rightStrokeWidth: ({moveDelta, value}) => getStrokeWidth(1, value),
-			leftHighlightColor: ({axis, moveDelta, poll, value}) => getTheColor(1, value, poll, axis),
-			rightHighlightColor: ({axis, moveDelta, poll, value}) => getTheColor(-1, value, poll, axis),
-			leftFillColor: ({axis, moveDelta, poll, value}) => getTheColor(-1, value, poll, axis),
-			rightFillColor: ({axis, moveDelta, poll, value}) => getTheColor(1, value, poll, axis),
+			leftHighlightColor: ({axis, moveDelta, poll, value}) => getTheColor([1, 0], value, poll, axis),
+			rightHighlightColor: ({axis, moveDelta, poll, value}) => getTheColor([-1, 0], value, poll, axis),
+			leftFillColor: ({axis, moveDelta, poll, value}) => getTheColor([-1], value, poll, axis),
+			rightFillColor: ({axis, moveDelta, poll, value}) => getTheColor([1], value, poll, axis),
 		},
 		methods: {
 			mouseDown(
@@ -121,9 +121,12 @@
 			}
 		},
 		oncreate() {
-			this.on('refresh', () => {
+			this.refreshListener = this.on('refresh', () => {
 				updateValue(this)
 			})
+		},
+		ondestroy() {
+			this.refreshListener.cancel()
 		}
 	}
 
@@ -206,12 +209,12 @@
 	}
 
 	function getTheColor(
-		dir,
+		matchingDirs,
 		value,
 		poll,
 		axis
 	) {
-		return dir === value.dir
+		return matchingDirs.indexOf(value.dir) > -1
 			? getColor(0, poll, axis)
 			: 'fff'
 	}

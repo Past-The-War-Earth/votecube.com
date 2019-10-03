@@ -6,21 +6,18 @@ import {
 }                 from '../utils/utils'
 import {
 	Bool,
+	IPosition,
 	IUiVote,
 	IValuesOutCallback,
 	mouse,
 	Move
 }                 from './cubeMovement'
+import {getMove}  from './direction'
 import {
 	mutationApi,
 	MutationApi
 }                 from './mutation/MutationApi'
 import {viewport} from './Viewport'
-
-export interface IMoveViewportEvent {
-	x: number;
-	y: number;
-}
 
 // document listener map
 export const dLM = LM.ad(document)
@@ -61,9 +58,23 @@ export function setPositionData(
 	return !!positionData
 }
 
+let suspended = false
+
+export function suspendInteraction(): void {
+	suspended = true
+}
+
+export function resumeInteraction(): void {
+	suspended = false
+}
+
 export function addCubeAdjustment(): void {
 	// let moveSpeed = 256
-	dLM.ad('keydown', function (ev) {
+	dLM.ad('keydown', (ev) => {
+		if (suspended) {
+			return
+		}
+
 		rmMmTm()
 		switch (ev.keyCode) {
 			case 37: // left
@@ -111,11 +122,28 @@ export function addCubeAdjustment(): void {
 		}
 
 	})
-	('mousedown', oMdTs)
-	('touchstart', oMdTs)
-	('mouseup', rmMmTm)
-	('touchend', rmMmTm)
+	('mousedown', safeOMdTs)
+	('touchstart', safeOMdTs)
+	('mouseup', safeRmMmTm)
+	('touchend', safeRmMmTm)
 
+}
+
+function safeOMdTs(
+	event: MouseEvent | TouchEvent
+): void {
+	if (suspended) {
+		return
+	}
+	oMdTs(event)
+}
+
+function safeRmMmTm(): void {
+	if (suspended) {
+		return
+	}
+
+	rmMmTm()
 }
 
 export function clearCubeAdjustment() {
@@ -144,17 +172,38 @@ function oMdTs(
 		return true
 	}
 
-	// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
-	let p: MouseEvent | Touch = (ev as TouchEvent).touches
-		? (ev as TouchEvent).touches[0]
-		: ev as MouseEvent
-	// console.log('---===<<<((( mouse start )))>>>===---')
-	mouse.start.x             = p.screenX
-	mouse.start.y             = p.screenY
+	populateStartCoords(ev, mouse.start)
 	dLM.ad('mousemove', oMmTm)('touchmove', oMmTm)
 }
 
-const TOUCH = document.ontouchmove !== undefined
+export function populateStartCoords(
+	ev: MouseEvent | TouchEvent, // Event,
+	start: IPosition
+): void {
+	// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
+	return populateCoords(ev, (ev as TouchEvent).touches, start)
+}
+
+export function populateEndCoords(
+	ev: MouseEvent | TouchEvent, // Event,
+	end: IPosition
+): void {
+	return populateCoords(ev, (ev as TouchEvent).changedTouches, end)
+}
+
+export function populateCoords(
+	ev: MouseEvent | TouchEvent, // Event,
+	touches: TouchList,
+	start: IPosition
+): void {
+	const p: MouseEvent | Touch = touches
+		? touches[0]
+		: ev as MouseEvent
+	start.x                     = p.pageX
+	start.y                     = p.pageY
+}
+
+export const TOUCH = document.ontouchmove !== undefined
 
 /**
  * On mousemove or touchmove
@@ -165,7 +214,7 @@ function oMmTm(
 	if (!viewport.el) {
 		return
 	}
-	let t = ev.touches
+	const t = ev.touches
 
 	// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
 	if (!TOUCH || !(t && t.length > 1)) {
@@ -191,53 +240,21 @@ function rmMmTm() {
 let lastMove = 0
 
 function moveViewport(
-	event: IMoveViewportEvent // event
+	event: IPosition // event
 ) {
-	let mouseObject = mouse
-	let startCoords = mouseObject.start
-	let lastCoords  = mouseObject.last
+	const mouseObject = mouse
+	const startCoords = mouseObject.start
+	let lastCoords    = mouseObject.last
 
-	let
-		dx,
-		dy,
-		vx: DirectionVector,
-		vy: DirectionVector,
-		moveX: 0 | 1           = 0,
-		xBy: MovementDirection = 0,
-		moveY: 0 | 1           = 0,
-		yBy: MovementDirection = 0
-	// directionChanged = 0
 
-	let now: number = new Date().getTime()
+	const now: number = new Date().getTime()
 
 	if (!mouse.last) {
 		mouse.last = lastCoords = mouse.start
 		lastMove   = now
 	}
 
-	vx = directionVector(startCoords.x, event.x)
-	vy = directionVector(startCoords.y, event.y)
-
-	dx = vx[1]
-	dy = vy[1]
-
-	// console.log(`dx: ${dx}, dy: ${dy}`)
-
-	if (dx >= 2 && dx / 2 > dy) {
-		// If general directionVector is in X
-		yBy   = vx[0]
-		moveY = 1
-	} else if (dy >= 2 && dy / 2 > dx) {
-		// If general directionVector is in Y
-		xBy   = -vy[0] as MovementDirection
-		moveX = 1
-	} else if (dx >= 2 && dy >= 2) {
-		// Otherwise its in both x and y
-		xBy   = -vy[0] as MovementDirection
-		yBy   = vx[0]
-		moveX = 1
-		moveY = 1
-	}
+	const {moveX, moveY, xBy, yBy} = getMove(startCoords, event)
 
 	if (now - lastMove >= 8) {
 		startCoords.x = lastCoords.x
@@ -257,35 +274,4 @@ export type ChangeInPixels = number;
 // export type Range = -1 | 1;
 export type DirectionVector = [MovementDirection, ChangeInPixels
 	// , Range
-	];
-
-function directionVector(
-	fromPosition,
-	toPosition
-): DirectionVector {
-	let movementDirection, changeInPixels // , range
-	if (toPosition >= 0 && fromPosition >= 0) {
-		// range = 1
-		if (toPosition >= fromPosition) {
-			movementDirection = 1
-			changeInPixels    = toPosition - fromPosition
-		} else {
-			movementDirection = -1
-			changeInPixels    = fromPosition - toPosition
-		}
-	} else {
-		// range = -1
-		if (toPosition < fromPosition) {
-			movementDirection = -1
-			changeInPixels    = toPosition - fromPosition
-		} else {
-			movementDirection = 1
-			changeInPixels    = fromPosition - toPosition
-		}
-	}
-	return [
-		movementDirection,
-		changeInPixels
-		// , range
-	]
-}
+];

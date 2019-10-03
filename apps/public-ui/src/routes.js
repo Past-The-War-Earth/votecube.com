@@ -10,7 +10,6 @@ export const FACTOR_PICK_COLOR  = '/factor/PickColor/:mode/:pollId'
 export const POSITION_INFO_MAIN   = '/position/info/Main/:mode/:pollId'
 export const POLL_SEARCH_LIST      = '/poll/search/List'
 export const POLL_INFO_MAIN        = '/poll/info/Main/:mode/:pollId'
-export const POLL_INFO_CHART       = '/poll/info/Chart/:mode/:pollId'
 export const POLL_INFO_CUBE        = '/poll/info/Cube/:mode/:pollId'
 export const POLL_LOCATIONS        = '/poll/Locations/:mode/:pollId'
 export const POLL_TIMEFRAME        = '/poll/Timeframe/:mode/:pollId'
@@ -34,10 +33,6 @@ configPage(
 )
 configPage(
 	FACTOR_SEARCH_LIST,
-	true
-)
-configPage(
-	POLL_INFO_CHART,
 	true
 )
 configPage(

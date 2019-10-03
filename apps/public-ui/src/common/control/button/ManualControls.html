@@ -1,0 +1,67 @@
+<div
+		class="{classes}"
+		on:click="fire('select', {event})"
+>
+	<svg
+			height="50"
+			width="50"
+	>
+		<g>
+			<circle
+					cx="25"
+					cy="25"
+					fill="#fff"
+					stroke="#{highlightColor}"
+					stroke-width="3"
+					r="23"
+			/>
+		</g>
+	</svg>
+	<Toggle
+			inButton="{true}"
+			vertical="{true}"
+	></Toggle>
+	<svg
+			height="50"
+			width="50"
+			class="onTop"
+	>
+		<g>
+			{#if on}
+			<line
+					stroke="#{highlightColor}"
+					stroke-width="4"
+					x1="9"
+					x2="41"
+					y1="9"
+					y2="41"
+			/>
+			{/if}
+		</g>
+	</svg>
+</div>
+<style>
+	.onTop {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+</style>
+<script>
+	import Toggle from '../../field/Toggle.html'
+
+	export default {
+		components: {
+			Toggle
+		},
+		computed: {
+			highlightColor: ({on}) => on ? 'f00' : '000'
+		},
+		data() {
+			return {
+				classes: '',
+				on: true
+			}
+		}
+	}
+</script>

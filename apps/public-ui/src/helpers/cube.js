@@ -1,4 +1,4 @@
-import {getColor as getGeneralColor} from "./general";
+import {getColor as getGeneralColor} from './general'
 
 export function getPollFactorPositions(
 	poll,
@@ -45,6 +45,9 @@ export function getSideText(
 	axis,
 	dir
 ) {
+	if (!dir) {
+		return ''
+	}
 	const pollFactorPositions = getPollFactorPositions(poll, axis)
 
 	const factorPosition = pollFactorPositions.filter(
@@ -54,9 +57,9 @@ export function getSideText(
 
 	switch (mode) {
 		case 'confirm':
-			return factorPosition.factor.name;
+			return factorPosition.factor.name
 		case 'cube':
-			return factorPosition.position.name;
+			return factorPosition.position.name
 		default:
 			return `${factorPosition.factor.name}: ${factorPosition.position.name}`
 	}

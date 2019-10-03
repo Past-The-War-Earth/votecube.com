@@ -42,7 +42,7 @@ Cube
 	width: 100%;
 }
 
-.slider {
+.sliderControl {
 	-webkit-appearance: none;
 	width: 70%;
 	height: 5px;
@@ -53,11 +53,11 @@ Cube
 	transition: opacity .2s;
 }
 
-.slider:hover {
+.sliderControl:hover {
 	opacity: 1;
 }
 
-.slider::-webkit-slider-thumb {
+.sliderControl::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	appearance: none;
 	width: 35px;
@@ -67,7 +67,7 @@ Cube
 	border-radius: 18px;
 }
 
-.slider::-moz-range-thumb {
+.sliderControl::-moz-range-thumb {
 	width: 35px;
 	height: 35px;
 	background: #333333;
@@ -77,7 +77,6 @@ Cube
 
 
 .app-button {
-	background-color: #F0F0F0;
 	border: 3px solid black;
 	border-radius: 30px;
 	color: black;
@@ -182,6 +181,36 @@ html {
 	height: 100%;
 	position: fixed;
 	width: 100%;
+}
+
+/*
+https://w3bits.com/prevent-chrome-pull-to-refresh-css/
+ */
+body,
+.wrapper {
+	/* Break the flow */
+	position: absolute;
+	top: 0px;
+
+	/* Give them all the available space */
+	width: 100%;
+	height: 100%;
+
+	/* Remove the margins if any */
+	margin: 0;
+
+	/* Allow them to scroll down the document */
+	overflow-y: hidden;
+}
+
+body {
+	/* Sending body at the bottom of the stack */
+	z-index: 1;
+}
+
+.wrapper {
+	/* Making the wrapper stack above the body */
+	z-index: 2;
 }
 
 /**

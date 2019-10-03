@@ -6,6 +6,9 @@ export {
 	Direction,
 	PositionPercent
 }                     from './cube/cubeMovement'
+
+export *              from './cube/direction'
+export *              from './cube/eventListener'
 export {
 	Dimension
 }                     from './cube/Viewport'

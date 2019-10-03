@@ -1,68 +1,49 @@
 <article>
-	{#if previewMode}
-	<a
-			class:bottomLeft="!$verticalLayout"
-			class:topLeft="$verticalLayout"
-			on:click="togglePositionMode()"
-	>
-		<PositionButton
-				color="{dirPosButtonColor}"
-		></PositionButton>
-	</a>
-	{/if}
+	<!--
+			class:topLeft="!cubeView && !$verticalLayout"
+			-->
 	<main
-			class:offToRight="!$verticalLayout"
+			class:offToRight="cubeView && !$verticalLayout"
+			class:icon="!cubeView"
+			class:full="cubeView"
+			on:click="toggleView(cubeView, true)"
+			in:fly='{y:-200, x: 200, duration: 750, easing: elasticOut}'
 	>
-		<section
-				id="viewport"
-				style="
-  transform: scale({zoomFactor}, {zoomFactor});
-"
-				class:leftViewport="!$verticalLayout"
-		>
-			<figure
-					id="cube"
-			>
-				{#if poll}
-				{#each positions as position, i}
-				<div
-						class="surface"
-						id="s{i}"
-						style="
-            background-color: #{getColor(delta, poll, position.axis)};
-                "
-				>
-					{#if position.dir == 1}
-					<header>
-						{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-					</header>
-					{/if}
-					{#if positionMode}
-					<Positioner
-							on:moveRight="moveRight(position.axis, position.dir)"
-							on:moveDown="moveDown(position.axis, position.dir)"
-							on:moveLeft="moveLeft(position.axis, position.dir)"
-							on:moveUp="moveUp(position.axis, position.dir)"
-							on:switchDir="switchDir(position.axis, position.dir)"
-					></Positioner>
-					{/if}
-					<p>
-						{getSideText(delta, 'cube', poll, position.axis, position.dir)}
-					</p>
-					{#if position.dir == -1}
-					<footer>
-						{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-					</footer>
-					{/if}
-				</div>
-				{/each}
-				{/if}
-			</figure>
-		</section>
+		<DetailedCube
+				delta="{delta}"
+				on:cubeAltered="pollAltered()"
+				poll="{poll}"
+				positionMode="{positionMode}"
+				verticalLayout="{verticalLayout}"
+				zoomFactor="{cubeZoom}"
+		></DetailedCube>
 	</main>
+	<div>
+		<!--
+				class:topLeft="cubeView && !$verticalLayout"
+				-->
+		<aside
+				class:icon="cubeView"
+				class:full="!cubeView"
+		>
+			<ChoiceRanking
+					delta="{delta}"
+					iconMode="{cubeView}"
+					manualControls="{manualControls}"
+					on:directionCorrected="pollAltered()"
+					on:rankingAdjusted="pollAdjusted()"
+					on:select="toggleView(cubeView, false)"
+					poll="{poll}"
+					verticalLayout="{verticalLayout}"
+					vote="{vote}"
+					zoomFactor="{choiceRankingZoom}"
+			></ChoiceRanking>
+		</aside>
+	</div>
 	{#if vote}
 	{#if percentMode}
 	<PercentPicker
+			delta="{delta}"
 			on:close="togglePercentPicker()"
 			on:move="move(event)"
 			on:moveToValue="moveToValue(event)"
@@ -70,24 +51,15 @@
 			vote="{vote}"
 	></PercentPicker>
 	{:else}
-	{#if previewMode}
-	<LeftButton
-			classes="{modifyActionButtonPosition}"
-			on:select="toPollForm($routeParams)"
-	></LeftButton>
-	{:else}
-	<a
-			class="app-button {modifyActionButtonPosition}"
-			on:click="togglePercentPicker()"
-	>
-		%
-	</a>
-	{/if}
-	<table
+	<!--
 			class="{$verticalLayout ? 'bottom-factor-table' : 'right-factor-table'}"
+	-->
+	<table
+			class="bottom-factor-table"
+			in:fly="{y: 200, delay: 800, duration: 1000}"
 	>
 		<tr>
-			{#if $verticalLayout}
+			<!--			{#if $verticalLayout}-->
 			<td
 			>
 				<FactorInfoButton
@@ -120,8 +92,9 @@
 						voteDim="{vote.z}"
 				></FactorInfoButton>
 			</td>
-			{/if}
+			<!--			{/if}-->
 		</tr>
+		<!--
 		{#if !$verticalLayout}
 		<tr>
 			<td>
@@ -161,19 +134,12 @@
 			</td>
 		</tr>
 		{/if}
+		-->
 	</table>
-	{#if previewMode}
-	<BuildButton
-			classes="{submitButtonPosition}"
-			on:select="checkBuild()"
-	></BuildButton>
-	{:else}
-	<VoteButton
-			classes="{submitButtonPosition}"
-			on:select="confirmVote()"
-	></VoteButton>
 	{/if}
-	{/if}
+	<Fab
+	>
+	</Fab>
 	{#if confirm}
 	{#if saving}
 	<ActionPopover
@@ -234,6 +200,23 @@
 	{/if}
 	{/if}
 	{/if}
+	{#if $confirmAlter}
+	<ActionPopover
+			on:cancel="doNotAlter()"
+	>
+		<div slot="header">
+			Alter Poll
+		</div>
+		<div slot="content">
+			Alter this poll?
+		</div>
+		<div slot="actions">
+			<AlterButton
+					on:select="alter($routeParams)"
+			></AlterButton>
+		</div>
+	</ActionPopover>
+	{/if}
 </article>
 <style>
 	@media (min-width: 62em) {
@@ -250,37 +233,40 @@
 		position: absolute;
 	}
 
-	footer,
-	header {
-		color: #fff;
-		background-color: #000;
-		font-size: 0.9em;
-		font-weight: 500;
-		line-height: 1em;
-		overflow: hidden;
-		text-align: center;
-		text-overflow: ellipsis;
-		width: 100%;
-		white-space: nowrap;
-	}
-
-	footer {
-		bottom: 0px;
-		position: absolute;
-	}
-
 	main {
-		position: absolute;
-		top: 33%;
 		left: 50%;
 		margin-right: -50%;
+		position: absolute;
+		top: 33%;
 		transform: translate(-50%, -50%);
 	}
 
-	p {
-		margin-block-start: 0em;
-		margin-block-end: 0em;
-		padding: 0 10px;
+	main.icon {
+		height: 50px;
+		left: initial;
+		margin-right: initial;
+		position: fixed;
+		right: 35px;
+		top: 40px;
+		width: 50px;
+		transform: initial;
+	}
+
+	/*
+		main.icon.topLeft {
+			position: fixed;
+			left: -10px;
+			top: 35px;
+			z-index: 3;
+		}
+	*/
+
+	aside.full {
+		margin-top: 70px;
+	}
+
+	aside.icon {
+		position: absolute;
 	}
 
 	table {
@@ -312,97 +298,28 @@
 		top: 44px;
 	}
 
-	.surface {
-		position: relative;
-	}
-
-	#viewport {
-		height: 100%;
-		perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
-		/* 1500 increases range from 11% to 9%, 2500 increases to 6% */
-		perspective-origin: 50% 160px; /* 670px; */
-		/*transform: scale(0.75,0.75);*/
-		width: 100%;
-	}
-
-	#cube {
-		height: 320px;
-		margin: auto;
-		position: relative;
-		/*transform: rotateX(0deg) rotateY(-90deg);*/
-		transform-style: preserve-3d;
-		transition: transform 128ms linear;
-		/*top: 50%;*/
-		width: 320px;
-	}
-
-	#cube > div {
-		/*border: 5px groove gray;*/
-		border: 5px solid gray;
-		border-radius: 10px;
-		color: #000;
-		font-size: 1.7em;
-		/*height: 320px;*/
-		height: 311px;
-		line-height: 1.7em;
-		position: absolute;
-		/*width: 320px;*/
-		width: 311px;
-		/*
-		height: 360px;
-		width: 360px;
-		padding: 20px;
-		font-size: 1.8em;
-		line-height: 2em;
-		*/
-	}
-
-	#s0 {
-		/*background: hsla(  0, 100%, 50%, 0.95);*/
-		transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
-	}
-
-	#s1 {
-		transform: translateZ(160px) /*translateZ(200px)*/;
-	}
-
-	#s2 {
-		transform: rotateY(90deg) translateZ(160px) /*translateZ(200px)*/;
-	}
-
-	#s3 {
-		transform: rotateY(180deg) translateZ(160px) /*translateZ(200px)*/;
-	}
-
-	#s4 {
-		transform: rotateY(-90deg) translateZ(160px) /*translateZ(200px)*/;
-	}
-
-	#s5 {
-		transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
-	}
-
 </style>
 
 <script>
 	import {DI}               from '@airport/di'
-	import {POLL_DAO}         from '@votecube/public-db'
-	import {VOTE_DAO}         from '@votecube/public-db'
+	import {
+		POLL_DAO,
+		VOTE_DAO
+	}                         from '@votecube/public-db'
+	import {fly}              from 'svelte-transitions'
+	import AlterButton        from '../../../common/control/button/AlterButton.html'
 	import BuildButton        from '../../../common/control/button/BuildButton.html'
+	import EditButton         from '../../../common/control/button/EditButton.html'
 	import FactorInfoButton   from '../../../common/control/button/FactorInfoButton.html'
-	import LeftButton         from '../../../common/control/button/LeftButton.html'
-	import PositionButton     from '../../../common/control/button/PositionButton.html'
 	import VoteButton         from '../../../common/control/button/VoteButton.html'
 	import PercentPicker      from '../../../common/control/PercentPicker.html'
 	import ActionPopover      from '../../../common/shell/ActionPopover.html'
-	import Positioner         from '../../../components/poll/create/Positioner.html'
+	import ChoiceRanking      from '../../../components/poll/ChoiceRanking.html'
+	import DetailedCube       from '../../../components/poll/DetailedCube.html'
+	import Fab                from '../../../components/poll/Fab.html'
 	import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
 
 	import {setupCubeView}   from '../../../database'
-	import {
-		getColor,
-		getSideText
-	}                        from '../../../helpers/cube'
 	import {
 		setCubeAdjustment,
 		shutDownCubeListener
@@ -414,60 +331,58 @@
 	export default {
 		components: {
 			ActionPopover,
+			AlterButton,
 			BuildButton,
+			ChoiceRanking,
+			DetailedCube,
+			EditButton,
+			Fab,
 			FactorInfoButton,
-			PositionButton,
-			Positioner,
-			LeftButton,
 			PercentPicker,
 			VoteButton,
 			VoteComponentGraph
 		},
 		computed: {
+			choiceRankingZoom: ({cubeView, miniatureScale, zoomFactor}) =>
+				cubeView ? miniatureScale * zoomFactor : 1,
+			cubeZoom: ({cubeView, miniatureScale, zoomFactor}) =>
+				cubeView ? zoomFactor : miniatureScale * zoomFactor,
 			dirPosButtonColor: ({positionMode}) => positionMode
 				? '0b0'
 				: '000',
-			previewMode: ({mode}) => mode === 'build' || mode === 'alter',
-			modifyActionButtonPosition: ({$verticalLayout}) => $verticalLayout
-				? 'bottomLeft'
-				: 'bottomRight',
-			submitButtonPosition: ({$verticalLayout}) => $verticalLayout
-				? 'bottomRight'
-				: 'topRight'
+			previewMode: ({$mode}) => $mode === 'build' || $mode === 'alter',
+			// modifyActionButtonPosition: ({$verticalLayout}) => $verticalLayout
+			// 	? 'bottomLeft'
+			// 	: 'bottomRight',
+			// submitButtonPosition: ({$verticalLayout}) => $verticalLayout
+			// 	? 'bottomRight'
+			// 	: 'topRight',
 		},
 		data() {
 			return {
-				positions: [{
-					axis: 'x',
-					dir: 1
-				}, {
-					axis: 'y',
-					dir: 1
-				}, {
-					axis: 'z',
-					dir: 1
-				}, {
-					axis: 'y',
-					dir: -1
-				}, {
-					axis: 'z',
-					dir: -1
-				}, {
-					axis: 'x',
-					dir: -1
-				}],
-				currentZoom: 1,
-				percentMode: false,
+				cubeView: false,
 				delta: 0,
+				manualControls: true,
+				miniatureScale: 0.2,
+				percentMode: false,
 				verticalLayout: true,
 				zoomFactor: 0.65
 			}
 		},
-		helpers: {
-			getColor,
-			getSideText
-		},
 		methods: {
+			alter($routeParams) {
+				this.store.set({confirmAlter: false})
+				routes.navigateToPage(routes.POLL_INFO_MAIN, {
+					...$routeParams,
+					mode: 'alter'
+				})
+			},
+			confirmAlter(event) {
+				this.store.set({confirmAlter: true})
+			},
+			doNotAlter() {
+				this.store.set({confirmAlter: false})
+			},
 			build() {
 				save(this)
 			},
@@ -482,6 +397,14 @@
 				setCubeAdjustment(this.get().cubeListener, false)
 				this.set({confirm: true, error: '', saving: false, voting: true})
 			},
+			pollAltered() {
+				const {delta} = this.get()
+				this.set({delta: delta + 1})
+			},
+			pollAdjusted() {
+				this.pollAltered()
+				this.get().mutationApi.recompute()
+			},
 			move(
 				event
 			) {
@@ -491,68 +414,13 @@
 					event.percentChange
 				)
 			},
-			moveDown(
-				axis,
-				dir
-			) {
-				move(this, axis, dir, [
-					['y', 1], // x+
-					['y', 1], // x-
-					['x', -1], // y+
-					['x', -1], // y-
-					['x', -1], // z+
-					['x', -1] // z-
-				])
-			},
-			moveLeft(
-				axis,
-				dir
-			) {
-				move(this, axis, dir, [
-					['z', -1], // x+
-					['z', 1], // x-
-					['z', -1], // y+
-					['z', 1], // y-
-					['y', 1], // z+
-					['y', -1] // z-
-				])
-			},
-			moveRight(
-				axis,
-				dir
-			) {
-				move(this, axis, dir, [
-					['z', 1], // x+
-					['z', -1], // x-
-					['z', 1], // y+
-					['z', -1], // y-
-					['y', -1], // z+
-					['y', 1] // z-
-				])
-			},
 			moveToValue(
 				event
 			) {
 				this.get().mutationApi.moveToValue(event.factor, event.value)
 			},
-			moveUp(
-				axis,
-				dir
-			) {
-				move(this, axis, dir, [
-					['y', -1], // x+
-					['y', -1], // x-
-					['x', 1], // y+
-					['x', 1], // y-
-					['x', 1], // z+
-					['x', 1] // z-
-				])
-			},
-			switchDir(
-				axis,
-				dir
-			) {
-				switchPoles(this, axis, dir)
+			toggleManualControls() {
+				this.set({manualControls: !this.get().manualControls})
 			},
 			togglePercentPicker() {
 				const percentMode = !this.get().percentMode
@@ -560,13 +428,21 @@
 				this.set({percentMode})
 			},
 			togglePositionMode() {
-				this.set({positionMode: !this.get().positionMode})
+				let positionMode = !this.get().positionMode
+				let cubeView     = positionMode ? true : this.get().cubeView
+				this.set({cubeView, positionMode})
 			},
 			toggleSurface(
 				factorKey
 			) {
 				this.get().mutationApi.toggleSurface(factorKey)
 				this.set({delta: this.get().delta + 1})
+			},
+			toggleView(
+				currentlyInCubeView,
+				forCubeView,
+			) {
+				toggleView(currentlyInCubeView, forCubeView, this)
 			},
 			toPollForm(
 				$routeParams
@@ -578,39 +454,63 @@
 			}
 		},
 		oncreate() {
-			setResizeCllBck((
-				portalHeight,
-				windowWidth
-			) => {
-				const figureHeight = portalHeight * 0.55 + 95
-
-				const cubeAreaLeastFactor = windowWidth < figureHeight
-					? windowWidth
-					: figureHeight
-
-				const zoomFactor = (Math.sqrt(cubeAreaLeastFactor) * 3) / 100
-
-				this.set({zoomFactor})
-			}, this.store)
-
 			const {mode, pollId} = this.store.get().routeParams
 
-			setupCubeView(mode, pollId, this).then()
-
+			resize(this)
+			setupCubeView(pollId, this).then(() => {
+				toggleView(!this.get().cubeView, this.get().cubeView, this)
+			})
 			this.store.set({
 				cube: true,
+				mode,
 				noOverflow: true
 			})
 		},
 		ondestroy() {
-			shutDownCubeListener(this.get().cubeListener, this)
 			setResizeCllBck(null)
+			shutDownCubeListener(this.get().cubeListener, this)
 			this.store.set({
 				cube: false,
 				noOverflow: false
 			})
 		},
-		store: () => store
+		store: () => store,
+		transitions: {fly}
+	}
+
+	function toggleView(
+		currentlyInCubeView,
+		forCubeView,
+		page
+	) {
+		if (forCubeView) {
+			if (!currentlyInCubeView) {
+				page.get().cubeListener.resumeInteraction()
+				page.set({cubeView: forCubeView})
+			}
+		} else {
+			if (currentlyInCubeView) {
+				page.get().cubeListener.suspendInteraction()
+				page.set({cubeView: forCubeView})
+			}
+		}
+	}
+
+	function resize(page) {
+		setResizeCllBck((
+			portalHeight,
+			windowWidth
+		) => {
+			const figureHeight = portalHeight * 0.55 + 95
+
+			const cubeAreaLeastFactor = windowWidth < figureHeight
+				? windowWidth
+				: figureHeight
+
+			const zoomFactor = (Math.sqrt(cubeAreaLeastFactor) * 3) / 100
+
+			page.set({zoomFactor})
+		}, page.store)
 	}
 
 	async function save(
@@ -640,140 +540,6 @@
 		} catch (error) {
 			page.set({error, saving: 'Error'})
 		}
-	}
-
-	function move(
-		page,
-		axis,
-		dir,
-		switchToDefinitions
-	) {
-		const {delta, poll} = page.get()
-		let switchPositions = getSwitchArray(axis, dir, switchToDefinitions)
-		repositionAll(poll, switchPositions)
-
-		page.set({delta: delta + 1})
-	}
-
-	function switchPoles(
-		page,
-		axis,
-		dir
-	) {
-		const {delta, poll} = page.get()
-		let switchPositions = [{
-			axis,
-			dir
-		},
-			{
-				axis,
-				dir: dir === 1 ? -1 : 1
-			}]
-
-		const switchPollFactorPositions = getSwitchPollFactorPositions(poll, switchPositions)
-		reposition(switchPollFactorPositions, 0, 1)
-
-		page.set({delta: delta + 1})
-	}
-
-	function getSwitchArray(
-		axis,
-		dir,
-		switchToDefinitions
-	) {
-		switch (axis) {
-			case 'x':
-				if (dir == 1) {
-					// X+ -> Z+
-					return getSwitchPositions('x', 1, switchToDefinitions[0])
-				} else {
-					// X- -> Z-
-					return getSwitchPositions('x', -1, switchToDefinitions[1])
-				}
-			case 'y':
-				if (dir == 1) {
-					// Y+ -> Z+
-					return getSwitchPositions('y', 1, switchToDefinitions[2])
-				} else {
-					// Y- -> Z-
-					return getSwitchPositions('y', -1, switchToDefinitions[3])
-				}
-			case 'z':
-				if (dir == 1) {
-					// Z+ -> Y-
-					return getSwitchPositions('z', 1, switchToDefinitions[4])
-				} else {
-					// Z- -> Y+
-					return getSwitchPositions('z', -1, switchToDefinitions[5])
-				}
-		}
-	}
-
-	function getSwitchPositions(
-		axis,
-		dir,
-		to
-	) {
-		const [toAxis, toDir] = to
-		const oppositeDir     = dir == 1 ? -1 : 1
-		const toOppositeDir   = toDir == 1 ? -1 : 1
-		return [{
-			axis,
-			dir
-		},
-			{
-				axis: toAxis,
-				dir: toDir
-			},
-			{
-				axis,
-				dir: oppositeDir
-			},
-			{
-				axis: toAxis,
-				dir: toOppositeDir
-			}]
-	}
-
-	function repositionAll(
-		poll,
-		switchPositions
-	) {
-		const switchPollFactorPositions = getSwitchPollFactorPositions(poll, switchPositions)
-		reposition(switchPollFactorPositions, 0, 1)
-		reposition(switchPollFactorPositions, 2, 3)
-	}
-
-	function getSwitchPollFactorPositions(
-		poll,
-		switchPositions
-	) {
-		const switchPollFactorPositions = []
-		switchPositions.forEach((
-			switchPosition
-		) => {
-			switchPollFactorPositions.push(poll.pollsFactorsPositions.filter(
-				pollFactorPosition =>
-					switchPosition.axis === pollFactorPosition.axis
-					&& switchPosition.dir === pollFactorPosition.dir)[0])
-		})
-
-		return switchPollFactorPositions
-	}
-
-	function reposition(
-		switchPollFactorPositions,
-		fromIndex,
-		toIndex
-	) {
-		const fromFactorPosition                            = switchPollFactorPositions[fromIndex].factorPosition
-		const fromColor                                     = switchPollFactorPositions[fromIndex].color
-		const toFactorPosition                              = switchPollFactorPositions[toIndex].factorPosition
-		const toColor                                       = switchPollFactorPositions[toIndex].color
-		switchPollFactorPositions[fromIndex].factorPosition = toFactorPosition
-		switchPollFactorPositions[fromIndex].color          = toColor
-		switchPollFactorPositions[toIndex].factorPosition   = fromFactorPosition
-		switchPollFactorPositions[toIndex].color            = fromColor
 	}
 
 </script>

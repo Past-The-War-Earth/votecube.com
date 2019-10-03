@@ -1,6 +1,6 @@
 <svelte:window on:resize="handleResize(event)"/>
 <article
-				class="{activeClass}"
+				class="{activeClass} wrapper"
 				class:noOverflow="$noOverflow"
 				class:cube="$cube"
 				id="layout"
@@ -95,7 +95,6 @@
 	import FactorSearchList from './pages/factor/search/List.html'
 
 	import PositionInfoMain     from './pages/position/info/Main.html'
-	import PollInfoChart         from './pages/poll/info/Chart.html'
 	import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
 	import PollInfoCube          from './pages/poll/info/Cube.html'
 	import PollInfoMain          from './pages/poll/info/Main.html'
@@ -121,7 +120,6 @@
 		[routes.FACTOR_INFO_MAIN]: FactorInfoMain,
 		[routes.FACTOR_SEARCH_LIST]: FactorSearchList,
 		[routes.FACTOR_PICK_COLOR]: FactorPickColor,
-		[routes.POLL_INFO_CHART]: PollInfoChart,
 		[routes.POLL_SEARCH_LIST]: PollSearchList,
 		[routes.POLL_INFO_MAIN]: PollInfoMain,
 		[routes.POLL_INFO_CUBE]: PollInfoCube,
@@ -130,7 +128,6 @@
 	};
 
 	const topMenuMap = {
-		[routes.POLL_INFO_CHART]: PollInfoCommonTopMenu,
 		[routes.POLL_INFO_CUBE]: PollInfoCommonTopMenu,
 		[routes.POLL_SEARCH_LIST]: PollSearchListTopMenu
 	}

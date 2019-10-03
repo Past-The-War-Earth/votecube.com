@@ -17,7 +17,12 @@ export class PercentagePositionChooser {
 		direction: Direction,
 		viewport: IViewport
 	): void {
-		let positionData              = viewport.pd
+		let positionData = viewport.pd
+		if (percent && !direction) {
+			direction = 1
+		} else if (direction && !percent) {
+			direction = 0
+		}
 		positionData[dimension].value = percent
 		positionData[dimension].dir   = direction
 
@@ -54,7 +59,7 @@ export class PercentagePositionChooser {
 				dimensionPositionData.value = decreasedValue
 			} else if (decreasedValue === 0) {
 				dimensionPositionData.value = 0
-				dimensionPositionData.dir   = 1
+				dimensionPositionData.dir   = 0
 			} else {
 				dimensionPositionData.value = -decreasedValue as PositionPercent
 				dimensionPositionData.dir   = direction
@@ -77,7 +82,7 @@ export class PercentagePositionChooser {
 		dimension: Dimension,
 		viewport: IViewport,
 	): void {
-		const positionData      = viewport.pd
+		const positionData             = viewport.pd
 		const newChangedDimensionValue = viewport.pd[dimension].value
 		let i                          = -1
 		let dimensionToPreserve        = this.getDimensionToPreserve(dimension, viewport)
@@ -118,11 +123,16 @@ export class PercentagePositionChooser {
 				return false
 			}
 			dimensionPositionData.value = 0
+			dimensionPositionData.dir   = 0
 
 			return true
 		}
 		// total value < 100
 		const increaseBy = 100 - totalValue
+
+		if (!dimensionPositionData.dir) {
+			dimensionPositionData.dir = 1
+		}
 
 		if (currentDimensionValue + increaseBy <= 100) {
 			dimensionPositionData.value += increaseBy

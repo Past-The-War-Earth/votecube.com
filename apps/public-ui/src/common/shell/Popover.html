@@ -1,4 +1,6 @@
-<aside>
+<aside
+		transition:fade='{duration: 100}'
+>
 	<div>
 		<section
 						style="
@@ -41,6 +43,7 @@
 	}
 </style>
 <script>
+	import {fade}             from 'svelte-transitions'
 	export default {
 		computed: {
 			theWidth: ({
@@ -60,6 +63,7 @@
 				height: 'initial',
 				width: 'initial'
 			}
-		}
+		},
+		transitions: {fade}
 	}
 </script>

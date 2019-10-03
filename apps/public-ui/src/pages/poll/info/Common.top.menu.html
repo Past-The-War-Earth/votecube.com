@@ -11,6 +11,7 @@
 	</nav>
 </li>
 <slot name="icon"></slot>
+<!--
 {#if editable}
 <li
 				class="viewType"
@@ -54,24 +55,8 @@
 	</svg>
 </li>
 {/if}
+-->
 
-{#if $confirm}
-<ActionPopover
-				on:cancel="doNotAlter()"
->
-	<div slot="header">
-		Alter Poll
-	</div>
-	<div slot="content">
-		Alter this poll?
-	</div>
-	<div slot="actions">
-		<AlterButton
-						on:select="alter($routeParams)"
-		></AlterButton>
-	</div>
-</ActionPopover>
-{/if}
 <style>
 	.viewType {
 		color: white;
@@ -89,50 +74,37 @@
 </style>
 
 <script>
-	import AlterButton   from '../../../common/control/button/AlterButton.html'
-	import AlterIcon     from '../../../common/icon/AlterIcon.html'
-	import ActionPopover from '../../../common/shell/ActionPopover.html'
+	// import AlterButton   from '../../../common/control/button/AlterButton.html'
+	// import AlterIcon     from '../../../common/icon/AlterIcon.html'
+	// import ActionPopover from '../../../common/shell/ActionPopover.html'
 	import * as routes   from '../../../routes'
 	import store         from '../../../store.js'
 
 	export default {
-		components: {
-			ActionPopover,
-			AlterButton,
-			AlterIcon
-		},
+		// components: {
+		// 	ActionPopover,
+		// 	AlterButton,
+		// 	AlterIcon
+		// },
 		computed: {
 			editable: ({$routeParams}) => $routeParams.mode === 'vote',
-			showCube({$currentPage}) {
-				return $currentPage.key === routes.POLL_INFO_CHART
-			},
-
-			showChart({$currentPage}) {
-				return $currentPage.key === routes.POLL_INFO_CUBE
-			},
+			// showCube({$currentPage}) {
+			// 	return $currentPage.key === routes.POLL_INFO_CHART
+			// },
+			//
+			// showChart({$currentPage}) {
+			// 	return $currentPage.key === routes.POLL_INFO_CUBE
+			// },
 		},
 		data() {
 			return {
 				routes: {
 					cube: routes.POLL_INFO_CUBE,
-					chart: routes.POLL_INFO_CHART
+					// chart: routes.POLL_INFO_CHART
 				}
 			}
 		},
 		methods: {
-			alter($routeParams) {
-				this.store.set({confirm: false})
-				routes.navigateToPage(routes.POLL_INFO_MAIN, {
-					...$routeParams,
-					mode: 'alter'
-				})
-			},
-			confirmAlter(event) {
-				this.store.set({confirm: true})
-			},
-			doNotAlter() {
-				this.store.set({confirm: false})
-			},
 			setViewType(
 				type
 			) {
