@@ -19,12 +19,12 @@
 		<td
 				factorIndex="{i}"
 				on:mousedown="moveStart(voteDims, i, event)"
-				on:mouseup="moveEnd(voteDims, vote, i, event)"
-				on:touchend="moveEnd(voteDims, vote, i, event)"
+				on:mouseup="moveEnd(movingVoteDim, vote, voteDims, i, event)"
+				on:touchend="moveEnd(movingVoteDim, vote, voteDims, i, event)"
 				on:touchstart="moveStart(voteDims, i, event)"
 				style="display: block; min-height: 150px;"
 		>
-			{#if showPosition(voteDim)}
+			{#if showPosition(voteDim, movingVoteDim, movingVoteDimDelta)}
 			<figure
 					class="factor {manualControls ? '' : 'swipeOnlyMargin'}
 					{factorHighlight(movingVoteDim, i, movingVoteDimDelta)}"
@@ -32,17 +32,18 @@
 						{factorPosition(voteDim, movingVoteDimDelta)}
             background-color: #{getColor(delta, poll, voteDim.axis)};
                 "
-					transition:fly='{x:-200}'
+					transition:fly='{x: -200}'
 			>
-				{#if voteDim.dir == 1}
+				<!-- TODO: if the default starting value becomes dynamic change this -->
+				{#if voteDim.dir >= 0}
 				<header
 						in:fly="{y: 150}"
 				>
-					{getSideText(delta, 'confirm', poll, voteDim.axis, voteDim.dir)}
+					{getSideText(delta, 'confirm', poll, voteDim.axis, voteDim.dir, 1)}
 				</header>
 				{/if}
 				<p>
-					{getSideText(delta, 'cube', poll, voteDim.axis, voteDim.dir)}
+					{getSideText(delta, 'cube', poll, voteDim.axis, voteDim.dir, 1)}
 				</p>
 				{#if voteDim.dir == -1}
 				<footer
@@ -179,12 +180,7 @@
 </style>
 
 <script>
-	import {
-		getMove,
-		populateEndCoords,
-		populateStartCoords,
-		TOUCH
-	}                        from '@votecube/cube-logic'
+	import {TOUCH}           from '@votecube/cube-logic'
 	import {
 		fade,
 		fly
@@ -228,6 +224,10 @@
 		data() {
 			return {
 				factorOrderDelta: 0,
+				factorFlySettings: {
+					// TODO: this breaks the slide-in animation, ?will do manual animation?
+					x: -200
+				},
 				movingVoteDimDelta: 0,
 				removeCount: 0,
 				removeDoneCount: 0
@@ -238,41 +238,41 @@
 				movingVoteDim,
 				movingVoteDimDelta
 			) {
-				if (movingVoteDim.moving) {
-					let left = movingVoteDim.originalTopLeftX
-					let top  = movingVoteDim.pageY
+				if (!movingVoteDim.moving || !movingVoteDim.dir) {
+					return ''
+				}
+				let left = movingVoteDim.originalTopLeftX
+				let top  = movingVoteDim.pageY
+				if (movingVoteDim.offset) {
+					top -= movingVoteDim.offset.y
+				}
+				const xChange    = movingVoteDim.originalX - movingVoteDim.pageX
+				const absXChange = Math.abs(xChange)
+				const absYChange = Math.abs(movingVoteDim.originalY - movingVoteDim.pageY)
+
+				// console.log('dX: ' + xChange
+				// 	+ '\tabsDX: ' + absXChange
+				// 	+ '\tabsDY: ' + absYChange)
+
+				if (movingVoteDim.index > 0
+					&& xChange > 0
+					&& absXChange > absYChange
+				) {
+					left = movingVoteDim.pageX
 					if (movingVoteDim.offset) {
-						top -= movingVoteDim.offset.y
+						left -= movingVoteDim.offset.x
 					}
-					const xChange    = movingVoteDim.originalX - movingVoteDim.pageX
-					const absXChange = Math.abs(xChange)
-					const absYChange = Math.abs(movingVoteDim.originalY - movingVoteDim.pageY)
-
-					// console.log('dX: ' + xChange
-					// 	+ '\tabsDX: ' + absXChange
-					// 	+ '\tabsDY: ' + absYChange)
-
-					if (movingVoteDim.index > 0
-						&& xChange > 0
-						&& absXChange > absYChange
-					) {
-						left = movingVoteDim.pageX
-						if (movingVoteDim.offset) {
-							left -= movingVoteDim.offset.x
-						}
-						top = movingVoteDim.originalTopLeftY
+					top = movingVoteDim.originalTopLeftY
 					// 	console.log('-\tleft: ' + left + '\ttop: ' + top)
-						// } else {
-						// 	console.log('|\tleft: ' + left + '\ttop: ' + top)
-					}
-					return `position: fixed;
+					// } else {
+					// 	console.log('|\tleft: ' + left + '\ttop: ' + top)
+				}
+				return `position: fixed;
 					left: ${left}px;
 					top: ${top}px;
 					width: ${movingVoteDim.width}px;
 					z-index: 5;
 					`
-				}
-				return ''
 			},
 			getColor,
 			getSideText,
@@ -297,9 +297,13 @@
 				return removeCount === removeDoneCount
 			},
 			showPosition: (
-				voteDim
+				voteDim,
+				movingVoteDim,
+				movingVoteDimDelta
 			) => {
 				return !!voteDim.value
+					|| (movingVoteDim === voteDim
+						&& movingVoteDim.originalX - movingVoteDim.pageX < -10)
 			},
 			showSwap: (
 				voteDims,
@@ -316,72 +320,60 @@
 				voteDims,
 				index
 			) {
-				if (voteDims[index].dir) {
-					schedulePlaceholder(this)
-					setDir(voteDims, index, 0, this)
-				} else {
-					if (index === 2) {
-						setDir(voteDims, 1, 1, this, false)
-					}
-					setDir(voteDims, index, 1, this)
-				}
+				addRemoveFactor(voteDims, index, this)
 			},
 			moveEnd(
-				voteDims,
+				movingVoteDim,
 				vote,
+				voteDims,
 				index,
 				event,
 			) {
 				try {
-					document.removeEventListener('mousemove', onFactorMove)
-					document.removeEventListener('touchmove', onFactorMove)
+					stopMoveEventListening(this, movingVoteDim)
 					const lastMoveStart = this.get().lastMoveStart
 					if (!lastMoveStart) {
 						return
 					}
-					let millis = new Date().getTime()
 					// TODO: see if this is needed
+					// let millis = new Date().getTime()
 					// if (millis - lastMoveStart.millis > 5000) {
 					// 	return
 					// }
-					let moveEnd = {
-						x: 0,
-						y: 0
+
+					const usefulEvent = event.changedTouches && event.changedTouches[0]
+						? event.changedTouches[0] : event
+					const factorInfo  = getFactorInfoAtCoords(voteDims[index].originalX, usefulEvent.pageY, index)
+					if (factorInfo && factorInfo.factorIndex >= 0) {
+						index = factorInfo.factorIndex
 					}
 
-					if (event.changedTouches && event.changedTouches[0]) {
-						let touch        = event.changedTouches[0]
-						const factorInfo = getFactorInfoAtCoords(voteDims[index].originalX, touch.pageY, index)
-						if (factorInfo && factorInfo.factorIndex >= 0) {
-							index = factorInfo.factorIndex
-						}
-					}
+					let dx      = movingVoteDim.pageX - movingVoteDim.originalX
+					let dy      = movingVoteDim.pageY - movingVoteDim.originalY
+					const absDx = Math.abs(dx)
+					const absDy = Math.abs(dy)
 
-					populateEndCoords(event, moveEnd)
-
-					const moveCoords = getMove(lastMoveStart, moveEnd)
-					// console.log('moveEnd: ' + index)
+					// console.log('moving: ' + index)
 					// console.log(event)
-					// console.log(moveCoords)
 
 					if (lastMoveStart.index === index) {
 						// Change to 1 factor only
-						if (moveCoords.moveX) {
-							changeFactorPosition(voteDims, index, moveCoords.xBy, this)
-						} else if (moveCoords.moveY) {
-							removeOrAddAFactor(voteDims, index, moveCoords.yBy, this)
+						if (absDy - 10 > absDx) {
+							changeFactorPosition(voteDims, index, -dy, this)
+						} else if (absDx - 10 > absDy) {
+							removeOrAddAFactor(voteDims, index, dx, this)
 						}
 						// Else a no-op
 					} else {
 						// Change across multiple items
 						let originalIndex = lastMoveStart.index
-						if (moveCoords.moveX) {
+						if (absDy - 10 > absDx) {
 							if (!voteDims[originalIndex].dir
 								|| !voteDims[index].dir) {
 								return
 							}
 							// Move items
-							if (moveCoords.xBy <= 0) {
+							if (dy > 0) {
 								moveFactorDown(voteDims, vote, lastMoveStart.index, index, this)
 							} else {
 								moveFactorUp(voteDims, vote, lastMoveStart.index, index, this)
@@ -400,11 +392,7 @@
 						// Else a no-op
 					}
 				} finally {
-					this.get().movingVoteDim.moving = false
-					this.set({
-						movingVoteDim: null,
-						movingVoteDimDelta: this.get().movingVoteDimDelta + 1
-					})
+					stopVoteDimMovement(this, movingVoteDim)
 				}
 			},
 			moveStart(
@@ -412,14 +400,14 @@
 				index,
 				event
 			) {
-				let millis        = new Date().getTime()
+				// let millis        = new Date().getTime()
 				let lastMoveStart = {
 					index,
-					millis,
-					x: 0,
-					y: 0
+					// millis,
+					// x: 0,
+					// y: 0
 				}
-				populateStartCoords(event, lastMoveStart)
+				// populateStartCoords(event, lastMoveStart)
 
 				const movingVoteDim = voteDims[index]
 
@@ -440,7 +428,7 @@
 				document.addEventListener('mousemove', getFactorMoveHandler(this))
 				document.addEventListener('touchmove', getFactorMoveHandler(this))
 				voteDims[index].moving = true
-				// console.log('moveStart: ' + index)
+				console.log('moveStart: ' + index)
 				// console.log(event)
 				// console.log(lastMoveStart)
 			},
@@ -491,6 +479,22 @@
 			this.set({movingVoteDim: null})
 		},
 		transitions: {fade, fly}
+	}
+
+	function addRemoveFactor(
+		voteDims,
+		index,
+		page
+	) {
+		if (voteDims[index].dir) {
+			schedulePlaceholder(page)
+			setDir(voteDims, index, 0, page)
+		} else {
+			if (index === 2) {
+				setDir(voteDims, 1, 1, page, false)
+			}
+			setDir(voteDims, index, 1, page)
+		}
 	}
 
 	function setDir(
@@ -926,11 +930,11 @@
 
 		// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
 		if (!TOUCH || !(touches && touches.length > 1)) {
-			// try {
-			event.preventDefault()
-			// } catch (error) {
-			// 	console.log(error)
-			// }
+			try {
+				event.preventDefault()
+			} catch (error) {
+				// console.log(error)
+			}
 
 			let position = touches ? touches[0] : event
 			// Get touch co-ords
@@ -939,8 +943,40 @@
 			const page          = onFactorMove.page
 			const movingVoteDim = page.get().movingVoteDim
 			positionMovingVoteDim(movingVoteDim, position)
-			page.set({movingVoteDimDelta: page.get().movingVoteDimDelta + 1})
+
+			if (movingVoteDim.moving && !movingVoteDim.dir
+				&& movingVoteDim.originalX - movingVoteDim.pageX < -10) {
+				stopMoveEventListening(page, movingVoteDim)
+				// stopping movement before adding factor to get the slide in animation
+				stopVoteDimMovement(page, movingVoteDim)
+				setTimeout(() => {
+					addRemoveFactor(page.get().voteDims, movingVoteDim.index, page)
+				})
+			} else {
+				page.set({movingVoteDimDelta: page.get().movingVoteDimDelta + 1})
+			}
 		}
+	}
+
+	function stopMoveEventListening(
+		page,
+		movingVoteDim
+	) {
+		document.removeEventListener('mousemove', onFactorMove)
+		document.removeEventListener('touchmove', onFactorMove)
+	}
+
+	function stopVoteDimMovement(
+		page,
+		movingVoteDim
+	) {
+		if (movingVoteDim) {
+			movingVoteDim.moving = false
+		}
+		page.set({
+			movingVoteDim: null,
+			movingVoteDimDelta: page.get().movingVoteDimDelta + 1
+		})
 	}
 
 	function positionMovingVoteDim(

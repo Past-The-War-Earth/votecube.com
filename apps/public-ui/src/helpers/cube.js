@@ -43,8 +43,12 @@ export function getSideText(
 	mode,
 	poll,
 	axis,
-	dir
+	dir,
+	defaultDir
 ) {
+	if(defaultDir && !dir) {
+		dir = defaultDir
+	}
 	if (!dir) {
 		return ''
 	}
