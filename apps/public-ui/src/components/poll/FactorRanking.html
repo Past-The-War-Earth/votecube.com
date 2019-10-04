@@ -25,19 +25,21 @@
 				style="display: block; min-height: 150px;"
 		>
 			{#if showPosition(voteDim, movingVoteDim, movingVoteDimDelta)}
+
 			<figure
 					class="factor {manualControls ? '' : 'swipeOnlyMargin'}
 					{factorHighlight(movingVoteDim, i, movingVoteDimDelta)}"
+					id="factor_{i}"
 					style="
 						{factorPosition(voteDim, movingVoteDimDelta)}
             background-color: #{getColor(delta, poll, voteDim.axis)};
                 "
-					transition:fly='{x: -200}'
+					transition:fly='{x: -200, duration: 700}'
 			>
 				<!-- TODO: if the default starting value becomes dynamic change this -->
-				{#if voteDim.dir >= 0}
+				{#if voteDim.dir === 1}
 				<header
-						in:fly="{y: 150}"
+						id="header_{i}"
 				>
 					{getSideText(delta, 'confirm', poll, voteDim.axis, voteDim.dir, 1)}
 				</header>
@@ -45,9 +47,9 @@
 				<p>
 					{getSideText(delta, 'cube', poll, voteDim.axis, voteDim.dir, 1)}
 				</p>
-				{#if voteDim.dir == -1}
+				{#if voteDim.dir === -1}
 				<footer
-						in:fly="{y: -150}"
+						id="footer_{i}"
 				>
 					{getSideText(delta, 'confirm', poll, voteDim.axis, voteDim.dir)}
 				</footer>
@@ -177,6 +179,38 @@
 		margin-left: 60px;
 		margin-right: 60px;
 	}
+
+	/*
+		manually calling wrapTransitions instead (works better and less code)
+		figure.slideDownOne {
+			-webkit-animation-name: slideDownOne; !* Safari 4.0 - 8.0 *!
+			-webkit-animation-duration: 4s; !* Safari 4.0 - 8.0 *!
+			animation-name: slideDownOne;
+			animation-duration: 4s;
+		}
+
+		!* Safari 4.0 - 8.0 *!
+		@-webkit-keyframes slideDownOne {
+			from {
+				position: absolute;
+				top: -100px;
+			}
+			to {
+				position: relative;
+			}
+		}
+
+		!* Standard syntax *!
+		@keyframes slideDownOne {
+			from {
+				position: absolute;
+				top: -100px;
+			}
+			to {
+				position: relative;
+			}
+		}*/
+
 </style>
 
 <script>
@@ -185,6 +219,7 @@
 		fade,
 		fly
 	}                        from 'svelte-transitions'
+	import {wrapTransition}  from 'svelte/shared'
 	import AddRemoveButton   from '../../common/control/button/AddRemoveButton.html'
 	import SwapButton        from '../../common/control/button/SwapButton.html'
 	import {
@@ -224,10 +259,14 @@
 		data() {
 			return {
 				factorOrderDelta: 0,
+				/*
+				// Dynamically assigned transition fly values is applied too late
+				// for the slide in animation to work, so animating other transitions
+				// manually
 				factorFlySettings: {
-					// TODO: this breaks the slide-in animation, ?will do manual animation?
 					x: -200
 				},
+				*/
 				movingVoteDimDelta: 0,
 				removeCount: 0,
 				removeDoneCount: 0
@@ -437,7 +476,13 @@
 				index,
 				dir
 			) {
-				setDir(voteDims, index, dir, this)
+				setDir(voteDims, index, dir, this, true)
+				// this.fire('rankingAdjusted')
+				if (dir > 0) {
+					transition(this, 'header_' + index, fly, {y: 135, duration: 700})
+				} else {
+					transition(this, 'footer_' + index, fly, {y: -135, duration: 700})
+				}
 			},
 			swapFactors(
 				voteDims,
@@ -451,6 +496,13 @@
 					vote,
 					this
 				)
+				if (index == 2) {
+					moveUpOne(1, this, 800)
+					moveDownOne(2, this, 800)
+				} else {
+					moveUpOne(0, this, 800)
+					moveDownOne(1, this, 800)
+				}
 			}
 		},
 		oncreate() {
@@ -486,14 +538,22 @@
 		index,
 		page
 	) {
+		// moveInOrOut(index, page)
 		if (voteDims[index].dir) {
-			schedulePlaceholder(page)
+			scheduleFactorPlaceholder(page)
+			if (index === 1) {
+				setDir(voteDims, 2, 0, page)
+				// adjustRanking(voteDims, 1, 1, page, false)
+			}
 			setDir(voteDims, index, 0, page)
+			adjustRanking(voteDims, index, 0, page)
 		} else {
 			if (index === 2) {
-				setDir(voteDims, 1, 1, page, false)
+				setDir(voteDims, 1, 1, page)
+				adjustRanking(voteDims, 1, 1, page, false)
 			}
 			setDir(voteDims, index, 1, page)
+			adjustRanking(voteDims, index, 1, page)
 		}
 	}
 
@@ -502,12 +562,25 @@
 		index,
 		dir,
 		page,
-		adjustRanking = true
+		adjustRanking = false
+	) {
+		voteDims[index].dir = dir
+		if (adjustRanking) {
+			page.fire('rankingAdjusted')
+		}
+	}
+
+	function adjustRanking(
+		voteDims,
+		index,
+		dir,
+		page,
+		doAdjust = true
 	) {
 		const [firstFactor, secondFactor, thirdFactor] = voteDims
 		switch (index) {
 			case 0: {
-				firstFactor.dir = dir
+				// firstFactor.dir = dir
 				// Don't have to worry about dir === 0 - 1st factor cannot have it as such
 				if (
 					// If there the 1st factor is present in vote
@@ -523,20 +596,20 @@
 					secondFactor.value = 30
 					thirdFactor.value  = 15
 					// Default 2nd factor to positive direction
-					secondFactor.dir   = 1
+					// secondFactor.dir   = 1
 					// Default 3rd factor to positive direction
-					thirdFactor.dir    = 1
+					// thirdFactor.dir    = 1
 				}
 				break
 			}
 			case 1: {
-				secondFactor.dir = dir
+				// secondFactor.dir = dir
 				// If the 2nd factor is being removed from the vote
 				if (dir === 0) {
 					firstFactor.value  = 100
 					secondFactor.value = 0
 					thirdFactor.value  = 0
-					thirdFactor.dir    = 0
+					// thirdFactor.dir    = 0
 					break
 				}
 				// Otherwise the 2nd factor is now present in the vote
@@ -556,12 +629,12 @@
 					secondFactor.value = 30
 					thirdFactor.value  = 15
 					// Default 3rd factor to positive direction
-					thirdFactor.dir    = 1
+					// thirdFactor.dir    = 1
 				}
 				break
 			}
 			case 2: {
-				thirdFactor.dir = dir
+				// thirdFactor.dir = dir
 				// If the 3rd factor is being removed from the vote
 				if (dir === 0) {
 					firstFactor.value  = 66
@@ -585,9 +658,73 @@
 			default:
 				return
 		}
-		if (adjustRanking) {
+		if (doAdjust) {
 			page.fire('rankingAdjusted')
 		}
+	}
+
+	function moveUpOne(
+		index,
+		page,
+		duration = 400
+	) {
+		move(index, {y: 150, duration}, page)
+	}
+
+	function moveUpTwo(
+		index,
+		page
+	) {
+		move(index, {y: 300, duration: 800}, page)
+	}
+
+	function moveDownOne(
+		index,
+		page,
+		duration = 400
+	) {
+		move(index, {y: -150, duration}, page)
+	}
+
+	function moveDownTwo(
+		index,
+		page
+	) {
+		move(index, {y: -300, duration: 800}, page)
+	}
+
+	/*	function moveInOrOut(
+			index,
+			page
+		) {
+			move(index, {x: -200, duration: 700}, page)
+		}*/
+
+	function move(
+		index,
+		options,
+		page
+	) {
+		transition(
+			page,
+			'factor_' + index,
+			fly,
+			options
+		)
+	}
+
+	function transition(
+		component,
+		elementId,
+		transitionFunction,
+		options
+	) {
+		// setTimeout(() => {
+		const domElementToTransition = document.getElementById(elementId)
+		const figure_intro           = wrapTransition(
+			component, domElementToTransition, transitionFunction, options, true)
+		figure_intro.run(1)
+		// })
 	}
 
 	function setFactorOrder(
@@ -636,14 +773,14 @@
 		}
 		oldHigherDir          = oldHigherFactor.dir
 		oldHigherValue        = oldHigherFactor.value
-		oldHigherFactor.dir   = oldLowerFactor.dir
+		// oldHigherFactor.dir   = oldLowerFactor.dir
 		oldHigherFactor.value = oldLowerFactor.value
-		oldLowerFactor.dir    = oldHigherDir
+		// oldLowerFactor.dir    = oldHigherDir
 		oldLowerFactor.value  = oldHigherValue
 
 		page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
 
-		setDir(getVoteDimsInValueOrder(vote), deltaIndex, oldHigherDir, page)
+		adjustRanking(getVoteDimsInValueOrder(vote), deltaIndex, oldHigherDir, page)
 	}
 
 	function getVoteDimsInValueOrder(
@@ -710,7 +847,8 @@
 			// If the factor isn't shown don't change position
 			return
 		}
-		setDir(voteDims, index, direction, page)
+		setDir(voteDims, index, direction, page, true)
+		// adjustRanking(voteDims, index, direction, page)
 	}
 
 	function removeOrAddAFactor(
@@ -730,21 +868,34 @@
 				// Don't remove if it's already removed
 				return
 			}
-			schedulePlaceholder(page)
-			if (index == 1 && thirdFactor.dir) {
-				setDir(voteDims, 2, 0, page, false)
-			}
+			// moveInOrOut(index, page)
+			scheduleFactorPlaceholder(page)
+			// if (index == 1 && thirdFactor.dir) {
+			// 	adjustRanking(voteDims, 2, 0, page, false)
+			// }
 			setDir(voteDims, index, 0, page)
+			if (index === 1 && thirdFactor.dir) {
+				setDir(voteDims, 2, 0, page)
+				// adjustRanking(voteDims, 1, 0, page)
+				// } else {
+			}
+			adjustRanking(voteDims, index, 0, page)
 		} else {
 			// add
 			if (voteDims[index].dir) {
 				// Don't add if it's already added
 				return
 			}
-			if (index == 2 && !secondFactor.dir) {
-				setDir(voteDims, 1, 1, page, false)
+			// moveInOrOut(index, page)
+			// if (index == 2 && !secondFactor.dir) {
+			// 	adjustRanking(voteDims, 1, 1, page, false)
+			// }
+			if (index === 2 && !secondFactor.dir) {
+				setDir(voteDims, 1, 1, page)
+				adjustRanking(voteDims, 1, 1, page)
 			}
 			setDir(voteDims, index, 1, page)
+			adjustRanking(voteDims, index, 1, page)
 		}
 	}
 
@@ -770,6 +921,7 @@
 					vote,
 					page
 				)
+				moveDownOne(1, page)
 				break
 			}
 			// Started the move from 3rd Factor
@@ -782,6 +934,7 @@
 						vote,
 						page
 					)
+					moveDownOne(2, page)
 				} else {
 					setFactorOrder(
 						voteDims,
@@ -793,6 +946,7 @@
 						voteDims[2],
 						0
 					)
+					moveDownTwo(2, page)
 				}
 				break
 			}
@@ -817,6 +971,7 @@
 						vote,
 						page
 					)
+					moveUpOne(0, page)
 				} else {
 					setFactorOrder(
 						voteDims,
@@ -828,6 +983,7 @@
 						voteDims[2],
 						0
 					)
+					moveUpTwo(0, page)
 				}
 				break
 			}
@@ -840,6 +996,7 @@
 					vote,
 					page
 				)
+				moveUpOne(1, page)
 				break
 			}
 			// Started the move from 3rd Factor
@@ -987,13 +1144,13 @@
 		movingVoteDim.pageY = position.pageY
 	}
 
-	function schedulePlaceholder(
+	function scheduleFactorPlaceholder(
 		page
 	) {
 		page.set({removeCount: page.get().removeCount + 1})
 		setTimeout(() => {
 			page.set({removeDoneCount: page.get().removeDoneCount + 1})
-		}, 400)
+		}, 701)
 	}
 
 	function getInElementOffset(

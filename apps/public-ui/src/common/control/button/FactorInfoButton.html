@@ -1,8 +1,8 @@
 <var
-				on:click="fire('toggle')"
-				class:pageInfo="isPage"
-				class:confirmInfo="!isPage"
-				style="
+		on:click="fire('toggle')"
+		class:pageInfo="isPage"
+		class:confirmInfo="!isPage"
+		style="
         background-color: #{getColor(delta, poll, axis)};
         border-bottom-color: #{bottomBorderColor};
         border-top-color: #{topBorderColor};
@@ -44,28 +44,49 @@
 
 	export default {
 		computed: {
-			bottomBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, -1),
-			float: ({axis, position, $verticalLayout}) => $verticalLayout && axis == 'x' && position != 'left' ? 'right' : 'initial',
+			bottomBorderColor: ({axis, cubeView, delta, poll, voteDim}) =>
+				borderColor(cubeView, delta, poll, axis, voteDim, -1),
+			float: ({axis, position, $verticalLayout}) =>
+				$verticalLayout && axis == 'x' && position != 'left'
+					? 'right' : 'initial',
 			isPage: ({mode}) => mode == 'page',
-			margin: ({axis, position, $verticalLayout}) => $verticalLayout && axis == 'y' && position != 'left' ? 'auto' : 'initial',
-			topBorderColor: ({axis, delta, poll, voteDim}) => borderColor(delta, poll, axis, voteDim, 1),
-			percentValue: ({delta, voteDim}) => voteDim.value
+			margin: ({axis, position, $verticalLayout}) =>
+				$verticalLayout && axis == 'y' && position != 'left'
+					? 'auto' : 'initial',
+			topBorderColor: ({axis, cubeView, delta, poll, voteDim}) =>
+				borderColor(cubeView, delta, poll, axis, voteDim, 1),
+			percentValue: ({cubeView, delta, voteDim}) =>
+				getValue(cubeView ? voteDim.value : voteDim.factorValue)
 		},
 		helpers: {
 			getColor
 		}
 	}
 
+	function getValue(
+		value
+	) {
+		return value === undefined ? '' : value
+	}
+
 	function borderColor(
+		cubeView,
 		delta,
 		poll,
 		axis,
 		voteDim,
 		dir
 	) {
-		if (!voteDim
-			|| voteDim.dir === dir) {
+		if (!voteDim) {
 			return '000'
+		} else if (cubeView) {
+			if (voteDim.dir === dir) {
+				return '000'
+			}
+		} else {
+			if (voteDim.factorDir === dir) {
+				return '000'
+			}
 		}
 
 		return getColor(delta, poll, axis)

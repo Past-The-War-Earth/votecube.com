@@ -3,11 +3,11 @@
 	<main
 			class:offToRight="!$verticalLayout"
 	>
-		<ChoiceRanking
+		<FactorRanking
 				delta="{delta}"
 				poll="{poll}"
 				vote="{vote}"
-		></ChoiceRanking>
+		></FactorRanking>
 	</main>
 	<table
 			class="{$verticalLayout ? 'bottom-factor-table' : 'right-factor-table'}"
@@ -136,7 +136,7 @@
 
 <script>
 	import FactorInfoButton       from '../../../common/control/button/FactorInfoButton.html'
-	import ChoiceRanking     from '../../../components/poll/ChoiceRanking.html'
+	import FactorRanking          from '../../../components/poll/FactorRanking.html'
 	import {setupCubeView}        from '../../../database'
 	import {shutDownCubeListener} from '../../../libs/cubeLogic'
 	import {setResizeCllBck}      from '../../../resizer'
@@ -144,7 +144,7 @@
 
 	export default {
 		components: {
-			ChoiceRanking,
+			FactorRanking,
 			FactorInfoButton
 		},
 		data() {

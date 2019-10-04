@@ -47,6 +47,10 @@
 		transition: .4s;
 	}
 
+	/*
+	setting transition to .7 to match the FactorRanking.html timing
+	refactor out in future, if needed
+	*/
 	.slider:before {
 		position: absolute;
 		content: "";
@@ -55,8 +59,8 @@
 		left: 4px;
 		bottom: 4px;
 		background-color: white;
-		-webkit-transition: .4s;
-		transition: .4s;
+		-webkit-transition: .7s;
+		transition: .7s;
 	}
 
 	input:checked + .slider {

@@ -10,7 +10,9 @@
 			in:fly='{y:-200, x: 200, duration: 750, easing: elasticOut}'
 	>
 		<DetailedCube
+				cubeView="{cubeView}"
 				delta="{delta}"
+				moveType="{moveType}"
 				on:cubeAltered="pollAltered()"
 				poll="{poll}"
 				positionMode="{positionMode}"
@@ -26,7 +28,7 @@
 				class:icon="cubeView"
 				class:full="!cubeView"
 		>
-			<ChoiceRanking
+			<FactorRanking
 					delta="{delta}"
 					iconMode="{cubeView}"
 					manualControls="{manualControls}"
@@ -37,7 +39,7 @@
 					verticalLayout="{verticalLayout}"
 					vote="{vote}"
 					zoomFactor="{choiceRankingZoom}"
-			></ChoiceRanking>
+			></FactorRanking>
 		</aside>
 	</div>
 	{#if vote}
@@ -51,6 +53,13 @@
 			vote="{vote}"
 	></PercentPicker>
 	{:else}
+
+	<VoteComponentGraph
+			cubeView="{cubeView}"
+			delta="{dynamicDelta}"
+			poll="{poll}"
+			vote="{dynamicVote}"
+	></VoteComponentGraph>
 	<!--
 			class="{$verticalLayout ? 'bottom-factor-table' : 'right-factor-table'}"
 	-->
@@ -64,32 +73,35 @@
 			>
 				<FactorInfoButton
 						axis='x'
-						delta="{delta}"
+						cubeView="{cubeView}"
+						delta="{dynamicDelta}"
 						mode="page"
 						on:toggle="toggleSurface('x')"
 						poll="{poll}"
-						voteDim="{vote.x}"
+						voteDim="{dynamicVote.x}"
 				></FactorInfoButton>
 			</td>
 			<td
 			>
 				<FactorInfoButton
 						axis='y'
-						delta="{delta}"
+						cubeView="{cubeView}"
+						delta="{dynamicDelta}"
 						mode="page"
 						on:toggle="toggleSurface('y')"
 						poll="{poll}"
-						voteDim="{vote.y}"
+						voteDim="{dynamicVote.y}"
 				></FactorInfoButton>
 			</td>
 			<td>
 				<FactorInfoButton
 						axis='z'
-						delta="{delta}"
+						cubeView="{cubeView}"
+						delta="{dynamicDelta}"
 						mode="page"
 						on:toggle="toggleSurface('z')"
 						poll="{poll}"
-						voteDim="{vote.z}"
+						voteDim="{dynamicVote.z}"
 				></FactorInfoButton>
 			</td>
 			<!--			{/if}-->
@@ -166,14 +178,14 @@
 			<div>
 				{poll.name}
 			</div>
-			<VoteComponentGraph
+			<VoteComponentSummary
 					bind:delta
 					bind:poll
 					verticalLayout="Y"
 					bind:vote
 					maxBarSize="60"
 					mode="confirm"
-			></VoteComponentGraph>
+			></VoteComponentSummary>
 		</div>
 		<div slot="actions">
 			<VoteButton
@@ -301,23 +313,24 @@
 </style>
 
 <script>
-	import {DI}               from '@airport/di'
+	import {DI}                 from '@airport/di'
 	import {
 		POLL_DAO,
 		VOTE_DAO
-	}                         from '@votecube/public-db'
-	import {fly}              from 'svelte-transitions'
-	import AlterButton        from '../../../common/control/button/AlterButton.html'
-	import BuildButton        from '../../../common/control/button/BuildButton.html'
-	import EditButton         from '../../../common/control/button/EditButton.html'
-	import FactorInfoButton   from '../../../common/control/button/FactorInfoButton.html'
-	import VoteButton         from '../../../common/control/button/VoteButton.html'
-	import PercentPicker      from '../../../common/control/PercentPicker.html'
-	import ActionPopover      from '../../../common/shell/ActionPopover.html'
-	import ChoiceRanking      from '../../../components/poll/ChoiceRanking.html'
-	import DetailedCube       from '../../../components/poll/DetailedCube.html'
-	import Fab                from '../../../components/poll/Fab.html'
-	import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
+	}                           from '@votecube/public-db'
+	import {fly}                from 'svelte-transitions'
+	import AlterButton          from '../../../common/control/button/AlterButton.html'
+	import BuildButton          from '../../../common/control/button/BuildButton.html'
+	import EditButton           from '../../../common/control/button/EditButton.html'
+	import FactorInfoButton     from '../../../common/control/button/FactorInfoButton.html'
+	import VoteButton           from '../../../common/control/button/VoteButton.html'
+	import PercentPicker        from '../../../common/control/PercentPicker.html'
+	import ActionPopover        from '../../../common/shell/ActionPopover.html'
+	import DetailedCube         from '../../../components/poll/DetailedCube.html'
+	import Fab                  from '../../../components/poll/Fab.html'
+	import FactorRanking        from '../../../components/poll/FactorRanking.html'
+	import VoteComponentGraph   from '../../../components/vote/VoteComponentGraph.html'
+	import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
 
 	import {setupCubeView}   from '../../../database'
 	import {
@@ -333,14 +346,15 @@
 			ActionPopover,
 			AlterButton,
 			BuildButton,
-			ChoiceRanking,
+			FactorRanking,
 			DetailedCube,
 			EditButton,
 			Fab,
 			FactorInfoButton,
 			PercentPicker,
 			VoteButton,
-			VoteComponentGraph
+			VoteComponentGraph,
+			VoteComponentSummary
 		},
 		computed: {
 			choiceRankingZoom: ({cubeView, miniatureScale, zoomFactor}) =>
@@ -350,6 +364,12 @@
 			dirPosButtonColor: ({positionMode}) => positionMode
 				? '0b0'
 				: '000',
+			dynamicVote: ({cubeView, currentVote, vote}) =>
+				cubeView ? vote : currentVote,
+			dynamicDelta: ({cubeView, delta, factorDelta}) =>
+				cubeView ? delta : factorDelta,
+			manualControls: ({cubeView, manualControlsOn}) =>
+				cubeView ? false : manualControlsOn,
 			previewMode: ({$mode}) => $mode === 'build' || $mode === 'alter',
 			// modifyActionButtonPosition: ({$verticalLayout}) => $verticalLayout
 			// 	? 'bottomLeft'
@@ -361,8 +381,23 @@
 		data() {
 			return {
 				cubeView: false,
+				currentVote: {
+					x: {
+						value: 0,
+						dir: 0
+					},
+					y: {
+						value: 0,
+						dir: 0
+					},
+					z: {
+						value: 0,
+						dir: 0
+					}
+				},
 				delta: 0,
-				manualControls: true,
+				factorDelta: 0, // Only for the factor cubes
+				manualControlsOn: true,
 				miniatureScale: 0.2,
 				percentMode: false,
 				verticalLayout: true,
@@ -420,7 +455,7 @@
 				this.get().mutationApi.moveToValue(event.factor, event.value)
 			},
 			toggleManualControls() {
-				this.set({manualControls: !this.get().manualControls})
+				this.set({manualControlsOn: !this.get().manualControlsOn})
 			},
 			togglePercentPicker() {
 				const percentMode = !this.get().percentMode
@@ -435,8 +470,15 @@
 			toggleSurface(
 				factorKey
 			) {
-				this.get().mutationApi.toggleSurface(factorKey)
-				this.set({delta: this.get().delta + 1})
+				const {cubeView, delta, moveType, mutationApi} = this.get()
+				this.set({moveType: 'toggle'})
+				setTimeout(() => {
+					mutationApi.toggleSurface(factorKey)
+					this.set({delta: delta + 1})
+					setTimeout(() => {
+						this.set({moveType})
+					}, 500)
+				}, 1)
 			},
 			toggleView(
 				currentlyInCubeView,
@@ -465,17 +507,55 @@
 				mode,
 				noOverflow: true
 			})
+			this.stateListener = this.on('state', ({changed, current, previous}) => {
+					if (current.cubeView
+						|| !changed.delta
+						|| !current.vote) {
+						return
+					}
+
+					let currentVote = current.currentVote
+					if (votesEqual(currentVote, current.vote)) {
+						return
+					}
+
+					let lastVote = currentVote
+					currentVote  = copyVoteToTween(current.vote)
+
+					// Not needed, current vote is always set
+					// if (!lastVote) {
+					// 	this.set({currentVote})
+					// 	return
+					// }
+
+					if (current.currentVoteInterval) {
+						clearInterval(current.currentVoteInterval)
+					}
+
+					let currentVoteInterval = scheduleFactorTweens(
+						lastVote,
+						currentVote,
+						this
+					)
+					this.set({currentVote, currentVoteInterval})
+				}
+			)
 		},
 		ondestroy() {
 			setResizeCllBck(null)
 			shutDownCubeListener(this.get().cubeListener, this)
+			this.stateListener.cancel()
 			this.store.set({
 				cube: false,
 				noOverflow: false
 			})
-		},
+		}
+		,
 		store: () => store,
-		transitions: {fly}
+		transitions:
+			{
+				fly
+			}
 	}
 
 	function toggleView(
@@ -540,6 +620,168 @@
 		} catch (error) {
 			page.set({error, saving: 'Error'})
 		}
+	}
+
+	function votesEqual(
+		lastVote,
+		vote
+	) {
+		return lastVote && vote
+			&& lastVote.x.dir === vote.x.dir
+			&& lastVote.y.dir === vote.y.dir
+			&& lastVote.z.dir === vote.z.dir
+			&& lastVote.x.value === vote.x.value
+			&& lastVote.y.value === vote.y.value
+			&& lastVote.z.value === vote.z.value
+	}
+
+	function copyVoteToTween(
+		vote
+	) {
+		return {
+			x: {
+				value: vote.x.value,
+				dir: vote.x.dir
+			},
+			y: {
+				value: vote.y.value,
+				dir: vote.y.dir
+			},
+			z: {
+				value: vote.z.value,
+				dir: vote.z.dir
+			}
+		}
+	}
+
+	function scheduleFactorTweens(
+		oldVote,
+		newVote,
+		page
+	) {
+		const durationMills = 400
+		// const durationMills    = 15000
+		// const durationMills    = 300
+		const numFrames        = Math.ceil(durationMills / 17)
+		let numRemainingFrames = numFrames
+
+		let config = {}
+		config.x   = setupFactorTween('x', oldVote, newVote, numFrames)
+		config.y   = setupFactorTween('y', oldVote, newVote, numFrames)
+		config.z   = setupFactorTween('z', oldVote, newVote, numFrames)
+
+		let intervalHandle = setInterval(() => {
+			runFactorTween(config.x, numRemainingFrames)
+			runFactorTween(config.y, numRemainingFrames)
+			runFactorTween(config.z, numRemainingFrames)
+
+			numRemainingFrames--
+			if (!numRemainingFrames) {
+				setFinalFactor(newVote.x, config.x)
+				setFinalFactor(newVote.y, config.y)
+				setFinalFactor(newVote.z, config.z)
+				clearInterval(intervalHandle)
+			}
+
+			page.set({factorDelta: page.get().factorDelta + 1})
+		}, 17)
+
+		return intervalHandle
+	}
+
+	function setupFactorTween(
+		axis,
+		oldVote,
+		newVote,
+		numFrames
+	) {
+
+		const oldVoteFactor = oldVote[axis]
+		const newVoteFactor = newVote[axis]
+
+		const oldVoteValue = oldVoteFactor.value
+		const newVoteValue = newVoteFactor.value
+
+		let zeroValueFrameNumber     = 0
+		let numNewDirFrames
+		let numOldDirFrames          = 0
+		let newDirFrameNumber        = 0
+		let numRemainingOldDirFrames = 0
+		if (oldVoteFactor.dir !== newVoteFactor.dir) {
+			const valueDifference    = oldVoteValue + newVoteValue
+			const oldVoteFraction    = oldVoteValue / valueDifference
+			numOldDirFrames          = zeroValueFrameNumber = Math.ceil(numFrames * oldVoteFraction)
+			numRemainingOldDirFrames = numOldDirFrames
+			numNewDirFrames          = numFrames - numOldDirFrames
+			newDirFrameNumber        = -numOldDirFrames
+			newVoteFactor.factorDir  = oldVoteFactor.dir
+		} else {
+			numNewDirFrames         = numFrames
+			newVoteFactor.factorDir = newVoteFactor.dir
+		}
+
+		return {
+			newDirFrameNumber,
+			newVoteFactor,
+			newVoteValue,
+			numNewDirFrames,
+			numOldDirFrames,
+			numRemainingOldDirFrames,
+			oldVoteFactor,
+			oldVoteValue,
+			zeroValueFrameNumber
+		}
+	}
+
+	function runFactorTween(
+		config,
+		numRemainingFrames
+	) {
+		config.newDirFrameNumber++
+
+		const {
+			      newDirFrameNumber,
+			      newVoteFactor,
+			      newVoteValue,
+			      numNewDirFrames,
+			      numOldDirFrames,
+			      numRemainingOldDirFrames,
+			      oldVoteFactor,
+			      oldVoteValue,
+			      zeroValueFrameNumber
+		      } = config
+
+		if (zeroValueFrameNumber) {
+			if (newVoteFactor.dir
+				&& numRemainingFrames === zeroValueFrameNumber) {
+				newVoteFactor.factorValue = 0
+				newVoteFactor.factorDir   = newVoteFactor.dir
+			} else if (!newVoteFactor.dir
+				|| numRemainingFrames > zeroValueFrameNumber) {
+				// Always go here if the factor is being removed (dir === 0)
+				newVoteFactor.factorValue = Math.floor(oldVoteValue / numOldDirFrames * numRemainingOldDirFrames)
+				newVoteFactor.factorDir   = oldVoteFactor.dir
+			} else {
+				newVoteFactor.factorValue = Math.floor(newVoteValue / numNewDirFrames * newDirFrameNumber)
+				newVoteFactor.factorDir   = newVoteFactor.dir
+			}
+		} else {
+			const factorValue         = oldVoteValue + ((newVoteValue - oldVoteValue) / numNewDirFrames * newDirFrameNumber)
+			newVoteFactor.factorValue = newVoteValue > oldVoteValue ? Math.floor(factorValue) : Math.ceil(factorValue)
+			newVoteFactor.factorDir   = newVoteFactor.dir
+		}
+
+		config.numRemainingOldDirFrames--
+	}
+
+	function setFinalFactor(
+		newVoteAxis,
+		axisConfig
+	) {
+		// if(!newVoteFactor.dir) {
+		newVoteAxis.factorDir   = axisConfig.newVoteFactor.dir
+		// }
+		newVoteAxis.factorValue = axisConfig.newVoteFactor.value
 	}
 
 </script>

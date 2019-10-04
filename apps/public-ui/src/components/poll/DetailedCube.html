@@ -15,7 +15,7 @@
 				id="s{i}"
 				style="
             background-color: #{getColor(delta, poll, position.axis)};
-                "
+              "
 		>
 			{#if position.dir == 1}
 			<header>
@@ -90,7 +90,6 @@
 		position: relative;
 		/*transform: rotateX(0deg) rotateY(-90deg);*/
 		transform-style: preserve-3d;
-		transition: transform 128ms linear;
 		/*top: 50%;*/
 		width: 320px;
 	}
@@ -115,6 +114,7 @@
 		line-height: 2em;
 		*/
 	}
+
 
 	#s0 {
 		/*background: hsla(  0, 100%, 50%, 0.95);*/
@@ -147,9 +147,8 @@
 	import {
 		getColor,
 		getSideText
-	}                        from '../../helpers/cube'
-	import {setResizeCllBck} from '../../resizer'
-	import Positioner        from './create/Positioner.html'
+	}                 from '../../helpers/cube'
+	import Positioner from './create/Positioner.html'
 
 	export default {
 		components: {
@@ -186,7 +185,8 @@
 		},
 		helpers: {
 			getColor,
-			getSideText
+			getSideText,
+
 		},
 		methods: {
 			moveDown(
@@ -251,6 +251,28 @@
 				poll
 			) {
 				switchPoles(this, poll, axis, dir)
+			}
+		},
+		onstate({changed, current}) {
+			if (!current.poll) {
+				return
+			}
+
+			let cubeElement
+			if (changed.cubeView) {
+				cubeElement = document.getElementById('cube')
+				cubeElement.classList.remove('cubeView')
+				if (current.cubeView) {
+					cubeElement.classList.add('cubeView')
+				}
+			}
+
+			if (changed.moveType) {
+				cubeElement = document.getElementById('cube')
+				cubeElement.classList.remove('toggle')
+				if (current.moveType === 'toggle') {
+					cubeElement.classList.add('toggle')
+				}
 			}
 		}
 	}
