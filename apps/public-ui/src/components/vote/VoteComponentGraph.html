@@ -138,7 +138,6 @@
 </style>
 
 <script>
-	import {tween}    from 'svelte-extras'
 	import {getColor} from '../../helpers/cube'
 
 	export default {
@@ -163,9 +162,6 @@
 		},
 		helpers: {
 			getColor
-		},
-		methods: {
-			tween
 		},
 		onstate({changed, current}) {
 			if (!current.vote || !changed.delta) {
