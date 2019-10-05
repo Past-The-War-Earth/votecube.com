@@ -1,6 +1,7 @@
 <table
-		on:click="fire('select', {event})"
-		style="{transform}"
+		style="{closing ? 'transform: scale(0.12, 0.12);' : ''}"
+		out:fly='{x: 2000, y: -3500, duration: 1500}'
+		in:fade
 >
 	{#each voteDims as voteDim, i}
 	<tr>
@@ -22,7 +23,7 @@
 				on:mouseup="moveEnd(movingVoteDim, vote, voteDims, i, event)"
 				on:touchend="moveEnd(movingVoteDim, vote, voteDims, i, event)"
 				on:touchstart="moveStart(voteDims, i, event)"
-				style="display: block; min-height: 150px;"
+				style="display: block; min-height: 140px;"
 		>
 			{#if showPosition(voteDim, movingVoteDim, movingVoteDimDelta)}
 
@@ -94,10 +95,20 @@
 </table>
 
 <style>
+	@media only screen and (min-width: 321px) {
+		td.setDirectionRow {
+			display: table-cell !important;
+		}
+	}
+
+	td.setDirectionRow {
+		display: none;
+	}
+
 	figure {
 		border-radius: 5px;
-		margin: 10px;
-		min-height: 139px;
+		margin: 1px;
+		min-height: 138px;
 		position: relative;
 	}
 
@@ -146,10 +157,6 @@
 		top: calc(50% - 10px);
 		transform: translate(-50%, -50%);
 		width: 20%;
-	}
-
-	table {
-		z-index: 2;
 	}
 
 	p {
@@ -214,19 +221,20 @@
 </style>
 
 <script>
-	import {TOUCH}           from '@votecube/cube-logic'
+	import {TOUCH}                   from '@votecube/cube-logic'
 	import {
 		fade,
 		fly
-	}                        from 'svelte-transitions'
-	import {wrapTransition}  from 'svelte/shared'
-	import AddRemoveButton   from '../../common/control/button/AddRemoveButton.html'
-	import SwapButton        from '../../common/control/button/SwapButton.html'
+	}                                from 'svelte-transitions'
+	import AddRemoveButton           from '../../common/control/button/AddRemoveButton.html'
+	import SwapButton                from '../../common/control/button/SwapButton.html'
+	import {transition}              from '../../helpers/animation'
 	import {
 		getColor,
 		getSideText
-	}                        from '../../helpers/cube'
-	import DirectionSelector from '../vote/DirectionSelector.html'
+	}                                from '../../helpers/cube'
+	import {getVoteDimsInValueOrder} from '../../helpers/factorRanking'
+	import DirectionSelector         from '../vote/DirectionSelector.html'
 
 	export default {
 		components: {
@@ -235,24 +243,6 @@
 			SwapButton
 		},
 		computed: {
-			transform: ({iconMode, zoomFactor}) => {
-				if (!iconMode) {
-					return 'width: 100%'
-				}
-				return 'transform: scale('
-					+ zoomFactor
-					+ ', '
-					+ zoomFactor
-					+ ') translate(calc(calc(60% / '
-					+ zoomFactor
-					+ ') - calc(20px / '
-					+ zoomFactor
-					+ ')), calc(calc(-50% /'
-					+ zoomFactor
-					+ ') + calc(35px / '
-					+ zoomFactor
-					+ ')));\n width: 90%;'
-			},
 			voteDims: ({factorOrderDelta, delta, vote}) =>
 				getVoteDimsInValueOrder(vote)
 		},
@@ -479,9 +469,9 @@
 				setDir(voteDims, index, dir, this, true)
 				// this.fire('rankingAdjusted')
 				if (dir > 0) {
-					transition(this, 'header_' + index, fly, {y: 135, duration: 700})
+					transition(this, 'header_' + index, fly, {y: 125, duration: 700})
 				} else {
-					transition(this, 'footer_' + index, fly, {y: -135, duration: 700})
+					transition(this, 'footer_' + index, fly, {y: -125, duration: 700})
 				}
 			},
 			swapFactors(
@@ -668,7 +658,7 @@
 		page,
 		duration = 400
 	) {
-		move(index, {y: 150, duration}, page)
+		move(index, {y: 140, duration}, page)
 	}
 
 	function moveUpTwo(
@@ -683,7 +673,7 @@
 		page,
 		duration = 400
 	) {
-		move(index, {y: -150, duration}, page)
+		move(index, {y: -140, duration}, page)
 	}
 
 	function moveDownTwo(
@@ -711,20 +701,6 @@
 			fly,
 			options
 		)
-	}
-
-	function transition(
-		component,
-		elementId,
-		transitionFunction,
-		options
-	) {
-		// setTimeout(() => {
-		const domElementToTransition = document.getElementById(elementId)
-		const figure_intro           = wrapTransition(
-			component, domElementToTransition, transitionFunction, options, true)
-		figure_intro.run(1)
-		// })
 	}
 
 	function setFactorOrder(
@@ -781,44 +757,6 @@
 		page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
 
 		adjustRanking(getVoteDimsInValueOrder(vote), deltaIndex, oldHigherDir, page)
-	}
-
-	function getVoteDimsInValueOrder(
-		vote
-	) {
-		if (!vote) {
-			return []
-		}
-		const xNode        = {
-			voteDim: vote.x
-		}
-		const yNode        = {
-			voteDim: vote.y
-		}
-		const zNode        = {
-			voteDim: vote.z
-		}
-		let voteDimensions = []
-		let headNode
-		if (vote.y.value >= vote.z.value) {
-			yNode.next = zNode
-			headNode   = yNode
-		} else {
-			zNode.next = yNode
-			headNode   = zNode
-		}
-		if (headNode.voteDim.value < vote.x.value) {
-			xNode.next = headNode
-			headNode   = xNode
-		} else if (headNode.next.voteDim.value < vote.x.value) {
-			let lastNode  = headNode.next
-			headNode.next = xNode
-			xNode.next    = lastNode
-		} else {
-			headNode.next.next = xNode
-		}
-
-		return [headNode.voteDim, headNode.next.voteDim, headNode.next.next.voteDim]
 	}
 
 	function factorsAt(

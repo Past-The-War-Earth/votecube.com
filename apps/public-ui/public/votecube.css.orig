@@ -87,7 +87,66 @@ Cube
 	vertical-align: middle;
 	width: 50px;
 }
+/*
 
+@media (min-width: 62em) {
+
+	.bottomLeft {
+		left: 24% !important;
+	}
+	.bottomLeft5 {
+		 left: 23% !important;
+	 }
+
+	.bottomRight {
+		right: 24% !important;
+	}
+
+!*	.topLeft {
+		left: 24% !important;
+	}
+
+	.topRight {
+		right: 24% !important;
+	}*!
+}
+
+!*.bottomLeft {
+	bottom: 10px;
+	left: 10px;
+	position: fixed;
+	z-index: 3;
+}*!
+
+.bottomLeft5 {
+	bottom: 5px;
+	left: 5px;
+	position: fixed;
+	z-index: 3;
+}
+
+!*.bottomRight {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	z-index: 3;
+}
+
+.topLeft {
+	position: fixed;
+	left: 10px;
+	top: 55px;
+	z-index: 3;
+}
+
+.topRight {
+	position: fixed;
+	right: 10px;
+	top: 55px;
+	z-index: 3;
+}*!
+
+*/
 var {
 	font-style: normal;
 }

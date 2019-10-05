@@ -1,0 +1,102 @@
+<Fab
+		leftHelp="{upHelp}"
+>
+	<div
+			class="{visibility}"
+			slot="up3"
+	>
+		{#if previewMode}
+		<PositionButton
+				on:click="togglePositionMode()"
+				color="{dirPosButtonColor}"
+		></PositionButton>
+		{:else}
+			<EditButton
+			></EditButton>
+		{/if}
+	</div>
+	<div
+			class="{visibility}"
+			slot="up2"
+	>
+		{#if previewMode}
+		<LeftButton
+				on:click="toPollForm($routeParams)"
+		></LeftButton>
+		{:else}
+		<ManualControls
+				on="{manualControls}"
+				on:click="toggleManualControls()"
+		></ManualControls>
+		{/if}
+	</div>
+	<div
+			class="{visibility}"
+			on:click="checkBuild()"
+			slot="up1"
+	>
+		{#if previewMode}
+		<BuildButton
+		></BuildButton>
+		{:else}
+		<VoteButton
+				on:click="confirmVote()"
+		></VoteButton>
+		{/if}
+	</div>
+	<!--<div
+			class="{visibility}"
+			class="app-button"
+			on:click="togglePercentPicker()"
+			slot="up2"
+	>
+		%
+	</div>-->
+</Fab>
+<style>
+	/* For desktop: */
+	/*
+	@media only screen and (min-width: 768px) {
+		.col-1 {width: 8.33%;}
+		.col-2 {width: 16.66%;}
+		.col-3 {width: 25%;}
+		.col-4 {width: 33.33%;}
+		.col-5 {width: 41.66%;}
+		.col-6 {width: 50%;}
+		.col-7 {width: 58.33%;}
+		.col-8 {width: 66.66%;}
+		.col-9 {width: 75%;}
+		.col-10 {width: 83.33%;}
+		.col-11 {width: 91.66%;}
+		.col-12 {width: 100%;}
+	}
+*/
+</style>
+<script>
+	import AddRemoveButton from '../../common/control/button/AddRemoveButton.html'
+	import BuildButton     from '../../common/control/button/BuildButton.html'
+	import EditButton      from '../../common/control/button/EditButton.html'
+	import LeftButton      from '../../common/control/button/LeftButton.html'
+	import ManualControls  from '../../common/control/button/ManualControls.html'
+	import PositionButton  from '../../common/control/button/PositionButton.html'
+	import VoteButton      from '../../common/control/button/VoteButton.html'
+	import Fab             from '../../common/control/Fab.html'
+
+	export default {
+		components: {
+			AddRemoveButton,
+			BuildButton,
+			EditButton,
+			Fab,
+			ManualControls,
+			PositionButton,
+			LeftButton,
+			VoteButton
+		},
+		methods: {
+			toggle(opened) {
+				this.set({opened: !opened})
+			}
+		}
+	}
+</script>

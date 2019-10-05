@@ -1,5 +1,5 @@
 <figure
-		class="bottomLeft5"
+		class="{classes}"
 >
 	<table
 			class="chart-contents"
@@ -86,9 +86,25 @@
 	</table>
 </figure>
 <style>
+	/*
+	@media (min-width: 62em) {
+		.mainView {
+			top: 15px;
+			left: 5px;
+		}
+	}
+	 */
+
 	figure {
 		height: 89px;
 		width: 62px;
+	}
+
+	.mainView {
+		top: 50px;
+		right: 5px;
+		position: fixed;
+		/*z-index: 3; not relevant - not clickable for simplicity*/
 	}
 
 	.bottomDirection {
@@ -168,7 +184,7 @@
 				return
 			}
 
-			const cubeView = current.cubeView
+			const cubeView   = current.cubeView
 			const maxBarSize = current.maxBarSize
 			const vote       = current.vote
 
@@ -189,10 +205,10 @@
 		position,
 		maxBarSize
 	) {
-		if(!voteFactor) {
+		if (!voteFactor) {
 			return 0
 		}
-		if(cubeView) {
+		if (cubeView) {
 			return voteFactor.dir === position
 				? voteFactor.value * maxBarSize / 100
 				: 0

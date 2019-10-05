@@ -1,0 +1,89 @@
+<table
+		height="{height}px"
+>
+<!--		on:click="toggleView(event)"-->
+	{#each voteDims as voteDim, i}
+	{#if showPosition(voteDim)}
+	<tr>
+		<td>
+			<figure
+					style="background-color: #{getColor(delta, poll, voteDim.axis)};"
+					transition:fly='{x: -50, duration: 200}'
+			>
+				{#if voteDim.dir === 1}
+				<header></header>
+				{:else}
+				<footer></footer>
+				{/if}
+			</figure>
+		</td>
+	</tr>
+	{/if}
+	{/each}
+</table>
+
+<style>
+	table {
+		position: fixed;
+		left: 10px;
+		top: 55px;
+		width: 30px;
+		z-index: 2;
+	}
+
+	figure {
+		width: 100%;
+		height: 15px;
+		position: relative;
+		border: 1px solid gray;
+		border-radius: 3px;
+	}
+
+	footer {
+		bottom: 0px;
+	}
+
+	header,
+	footer {
+		width: 100%;
+		height: 3px;
+		position: absolute;
+		background-color: black;
+	}
+
+	header {
+		top: 0px
+	}
+</style>
+
+<script>
+	import {fly}                     from 'svelte-transitions'
+	import {getColor}                from '../../helpers/cube'
+	import {getVoteDimsInValueOrder} from '../../helpers/factorRanking'
+
+	export default {
+		computed: {
+			height: ({voteDims}) => voteDims.filter(
+				voteDim => voteDim.value).length * 16,
+			voteDims: ({delta, vote}) =>
+				getVoteDimsInValueOrder(vote)
+		},
+		helpers: {
+			getColor,
+			showPosition: (
+				voteDim
+			) => {
+				return !!voteDim.value
+			}
+		},
+/*		methods: {
+			toggleView(
+				event
+			) {
+				this.fire('select', event)
+			}
+		},*/
+		transitions: {fly}
+	}
+
+</script>

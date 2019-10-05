@@ -1,0 +1,178 @@
+<aside>
+	<menu
+			class="horizontalButtons"
+	>
+		<!--		<slot name="vertical"></slot>-->
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_up1"
+		>
+			<slot name="up1"></slot>
+		</nav>
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_up2"
+		>
+			<slot name="up2"></slot>
+		</nav>
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_up3"
+		>
+			<slot name="up3"></slot>
+		</nav>
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_up4"
+		>
+			<slot name="up4"></slot>
+		</nav>
+	</menu>
+	<menu
+			class="verticalButtons"
+	>
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_left1"
+		>
+			<slot name="left1"></slot>
+			A
+		</nav>
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_left2"
+		>
+			<slot name="left2"></slot>
+			B
+		</nav>
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_left3"
+		>
+			<slot name="left3"></slot>
+			C
+		</nav>
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_left4"
+		>
+			<slot name="left4"></slot>
+			D
+		</nav>
+	</menu>
+	<AddRemoveButton
+			classes="fab"
+			add="{!opened}"
+			on:select="toggle(opened)"
+			reversible="{true}"
+			size="50"
+	></AddRemoveButton>
+</aside>
+<style>
+
+	nav {
+		align-items: center;
+		display: flex;
+		height: 65px;
+		justify-content: center;
+		width: 65px;
+	}
+
+	nav.closed {
+		display: none;
+	}
+
+	nav.open {
+	}
+
+	/*nav {*/
+	/*	position: relative;*/
+	/*}*/
+
+	menu {
+		margin: 0px;
+		position: fixed;
+		z-index: 3;
+	}
+
+	/* https://davidwalsh.name/css-reverse */
+	.verticalButtons {
+		bottom: 10px;
+		display: flex;
+		flex-direction: row-reverse;
+		right: 80px;
+	}
+
+	/* show reverse by vertical column */
+	.horizontalButtons {
+		bottom: 80px;
+		display: flex;
+		flex-direction: column-reverse;
+		right: 10px;
+	}
+
+	/* For desktop: */
+	/*
+	@media only screen and (min-width: 768px) {
+		.col-1 {width: 8.33%;}
+		.col-2 {width: 16.66%;}
+		.col-3 {width: 25%;}
+		.col-4 {width: 33.33%;}
+		.col-5 {width: 41.66%;}
+		.col-6 {width: 50%;}
+		.col-7 {width: 58.33%;}
+		.col-8 {width: 66.66%;}
+		.col-9 {width: 75%;}
+		.col-10 {width: 83.33%;}
+		.col-11 {width: 91.66%;}
+		.col-12 {width: 100%;}
+	}
+*/
+</style>
+<script>
+	import {fade}          from 'svelte-transitions'
+	import {transition}    from '../../helpers/animation'
+	import AddRemoveButton from './button/AddRemoveButton.html'
+
+	export default {
+		components: {
+			AddRemoveButton
+		},
+		computed: {
+			visibility: ({opened}) => opened ? 'open' : 'closed'
+		},
+		data: () => {
+			return {
+				opened: false
+			}
+		},
+		methods: {
+			toggle(opened) {
+				this.set({opened: !opened})
+			}
+		},
+		onstate({changed, current}) {
+			const animations = current.opened ? IN_ANIMATIONS : OUT_ANIMATIONS
+			for (let i = 1; i <= animations.length; i++) {
+				transition(this, 'fabNav_left' + i, fade, animations[i])
+				transition(this, 'fabNav_up' + i, fade, animations[i])
+			}
+		},
+		transitions: {fade}
+	}
+
+	const IN_ANIMATIONS  = [
+		null,
+		{delay: 50, duration: 250},
+		{delay: 80, duration: 250},
+		{delay: 110, duration: 250},
+		{delay: 140, duration: 200},
+	]
+	const OUT_ANIMATIONS = [
+		null,
+		{delay: 20, duration: 200},
+		{delay: 50, duration: 200},
+		{delay: 80, duration: 200},
+		{delay: 110, duration: 200},
+	]
+</script>

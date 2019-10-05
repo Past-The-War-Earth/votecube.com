@@ -8,6 +8,7 @@
 	<figure
 			id="cube"
 	>
+<!--			on:click="toggleView(cubeView, event)"-->
 		{#if poll}
 		{#each positions as position, i}
 		<div
@@ -251,7 +252,15 @@
 				poll
 			) {
 				switchPoles(this, poll, axis, dir)
-			}
+			},
+/*			toggleView(
+				cubeView,
+				event
+			) {
+				if (!cubeView) {
+					this.fire('select', event)
+				}
+			}*/
 		},
 		onstate({changed, current}) {
 			if (!current.poll) {

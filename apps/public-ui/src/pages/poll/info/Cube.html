@@ -2,11 +2,62 @@
 	<!--
 			class:topLeft="!cubeView && !$verticalLayout"
 			-->
+	<!-- for toggling the view -->
+	<!--
+	<nav>
+	</nav>
+	should clicking on non-buttons cause the view to change - probably not,
+	the interface should be simple and orthogonal, only the buttons toggle,
+	not free floating icons.
+
+	And all buttons are always behind the Fab
+
+	Fab has all of the actions related to that screen, system wide
+	actions are in ?top menu?
+
+	for example for the poll screens Fab shows the:
+
+	vertical - on screen actions
+	horizontal - related views
+
+	?but what if you have to navigate to an unrelated view?  some views
+	are accessible from anywhere, like:
+		create new poll
+		poll listings (there is only one with filters)
+		favorites (like bookmarks of saved listing filters) - post beta launch
+		about (mission statement and the team)
+
+	so a top level menu seems appropriate, BUT we can hide it until
+	you click on the Fab.  But in that case, where does the poll title
+	go - probably just across the screen on the top, without a menu.
+	That leaves more space for the title (of poll or just screen,
+	if needed)
+
+	how important are animations
+
+	for ranking view it is important that:
+
+		using it is intuitive
+		the information on it ties in with the rest the cube and the percentages
+
+	general UI automation:
+
+		while it is very important it is not essential for the initial launch
+
+	to a certain degree transition between the default ranking screen and the
+	cube screen is important, we should tie in the main ranking with the miniature
+	cube speaks for itself
+
+	clicking:
+
+	All clickable buttons are round, so the individual dimension buttons are
+	also round.  To make them toggle up and down images are used (for lack of
+	a better known way).
+	-->
 	<main
 			class:offToRight="cubeView && !$verticalLayout"
 			class:icon="!cubeView"
 			class:full="cubeView"
-			on:click="toggleView(cubeView, true)"
 			in:fly='{y:-200, x: 200, duration: 750, easing: elasticOut}'
 	>
 		<DetailedCube
@@ -14,6 +65,7 @@
 				delta="{delta}"
 				moveType="{moveType}"
 				on:cubeAltered="pollAltered()"
+				on:select="toggleView(cubeView, true)"
 				poll="{poll}"
 				positionMode="{positionMode}"
 				verticalLayout="{verticalLayout}"
@@ -28,18 +80,18 @@
 				class:icon="cubeView"
 				class:full="!cubeView"
 		>
+			{#if !cubeView}
 			<FactorRanking
+					closing="{beforeCubeView}"
 					delta="{delta}"
-					iconMode="{cubeView}"
 					manualControls="{manualControls}"
 					on:directionCorrected="pollAltered()"
 					on:rankingAdjusted="pollAdjusted()"
-					on:select="toggleView(cubeView, false)"
 					poll="{poll}"
 					verticalLayout="{verticalLayout}"
 					vote="{vote}"
-					zoomFactor="{choiceRankingZoom}"
 			></FactorRanking>
+			{/if}
 		</aside>
 	</div>
 	{#if vote}
@@ -55,11 +107,20 @@
 	{:else}
 
 	<VoteComponentGraph
+			classes="mainView"
 			cubeView="{cubeView}"
 			delta="{dynamicDelta}"
 			poll="{poll}"
 			vote="{dynamicVote}"
 	></VoteComponentGraph>
+	{#if cubeView}
+	<FactorRankingMiniature
+			delta="{delta}"
+			on:select="toggleView(cubeView, false)"
+			poll="{poll}"
+			vote="{vote}"
+	></FactorRankingMiniature>
+	{/if}
 	<!--
 			class="{$verticalLayout ? 'bottom-factor-table' : 'right-factor-table'}"
 	-->
@@ -149,9 +210,9 @@
 		-->
 	</table>
 	{/if}
-	<Fab
+	<PollFab
 	>
-	</Fab>
+	</PollFab>
 	{#if confirm}
 	{#if saving}
 	<ActionPopover
@@ -245,12 +306,19 @@
 		position: absolute;
 	}
 
+	aside {
+		/* position below the cube to make miniature cube clickable when in ranking view */
+		/*z-index: -2; not relevant, icons are not clickable for simplicity*/
+	}
+
 	main {
 		left: 50%;
 		margin-right: -50%;
 		position: absolute;
 		top: 33%;
 		transform: translate(-50%, -50%);
+		/* position below other controls to main them clickable when in cubeView */
+		/*z-index: -1; // not relevant icons are not clickable for simplicity*/
 	}
 
 	main.icon {
@@ -258,7 +326,7 @@
 		left: initial;
 		margin-right: initial;
 		position: fixed;
-		right: 35px;
+		left: -10px;
 		top: 40px;
 		width: 50px;
 		transform: initial;
@@ -322,13 +390,16 @@
 	import AlterButton          from '../../../common/control/button/AlterButton.html'
 	import BuildButton          from '../../../common/control/button/BuildButton.html'
 	import EditButton           from '../../../common/control/button/EditButton.html'
-	import FactorInfoButton     from '../../../common/control/button/FactorInfoButton.html'
+	import FactorInfoButton
+	                            from '../../../common/control/button/FactorInfoButton.html'
 	import VoteButton           from '../../../common/control/button/VoteButton.html'
 	import PercentPicker        from '../../../common/control/PercentPicker.html'
 	import ActionPopover        from '../../../common/shell/ActionPopover.html'
 	import DetailedCube         from '../../../components/poll/DetailedCube.html'
-	import Fab                  from '../../../components/poll/Fab.html'
 	import FactorRanking        from '../../../components/poll/FactorRanking.html'
+	import FactorRankingMiniature
+	                            from '../../../components/poll/FactorRankingMiniature.html'
+	import PollFab              from '../../../components/poll/PollFab.html'
 	import VoteComponentGraph   from '../../../components/vote/VoteComponentGraph.html'
 	import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
 
@@ -346,12 +417,13 @@
 			ActionPopover,
 			AlterButton,
 			BuildButton,
-			FactorRanking,
 			DetailedCube,
 			EditButton,
-			Fab,
 			FactorInfoButton,
+			FactorRanking,
+			FactorRankingMiniature,
 			PercentPicker,
+			PollFab,
 			VoteButton,
 			VoteComponentGraph,
 			VoteComponentSummary
@@ -565,6 +637,9 @@
 	) {
 		if (forCubeView) {
 			if (!currentlyInCubeView) {
+				// Animate Factor Rankings out of the view
+				page.set({beforeCubeView: forCubeView})
+
 				page.get().cubeListener.resumeInteraction()
 				page.set({cubeView: forCubeView})
 			}
