@@ -1,7 +1,4 @@
 <article>
-	<!--
-			class:topLeft="!cubeView && !$verticalLayout"
-			-->
 	<!-- for toggling the view -->
 	<!--
 	<nav>
@@ -53,47 +50,89 @@
 	All clickable buttons are round, so the individual dimension buttons are
 	also round.  To make them toggle up and down images are used (for lack of
 	a better known way).
+
+	10/6/2019 - The miniatures are also clickable to give the users a quick access
+	point.  They do not have equivalents in the Fab so the interface is orthogonal.
+	The chart miniature brings up the percentage view.
 	-->
-	<main
-			class:offToRight="cubeView && !$verticalLayout"
-			class:icon="!cubeView"
-			class:full="cubeView"
-			in:fly='{y:-200, x: 200, duration: 750, easing: elasticOut}'
-	>
-		<DetailedCube
-				cubeView="{cubeView}"
-				delta="{delta}"
-				moveType="{moveType}"
-				on:cubeAltered="pollAltered()"
-				on:select="toggleView(cubeView, true)"
-				poll="{poll}"
-				positionMode="{positionMode}"
-				verticalLayout="{verticalLayout}"
-				zoomFactor="{cubeZoom}"
-		></DetailedCube>
-	</main>
-	<div>
-		<!--
-				class:topLeft="cubeView && !$verticalLayout"
-				-->
-		<aside
-				class:icon="cubeView"
-				class:full="!cubeView"
-		>
-			{#if !cubeView}
-			<FactorRanking
-					closing="{beforeCubeView}"
-					delta="{delta}"
-					manualControls="{manualControls}"
-					on:directionCorrected="pollAltered()"
-					on:rankingAdjusted="pollAdjusted()"
-					poll="{poll}"
-					verticalLayout="{verticalLayout}"
-					vote="{vote}"
-			></FactorRanking>
-			{/if}
-		</aside>
-	</div>
+	<table>
+		<tr>
+			<td
+					class="mainMiniature"
+			>
+				{#if cubeView}
+
+				<FactorRankingMiniature
+						delta="{delta}"
+						on:select="toggleView(cubeView, false)"
+						poll="{poll}"
+						vote="{vote}"
+				></FactorRankingMiniature>
+				{:else}
+				<DetailedCube
+						class:icon="!cubeView"
+						cubeView="{cubeView}"
+						delta="{delta}"
+						moveType="{moveType}"
+						on:cubeAltered="pollAltered()"
+						on:select="toggleView(cubeView, true)"
+						poll="{poll}"
+						positionMode="{positionMode}"
+						verticalLayout="{verticalLayout}"
+						zoomFactor="{cubeZoom}"
+				></DetailedCube>
+				{/if}
+			</td>
+			<td
+					class="pollTitle"
+			>
+				The poll title, not very long.
+			</td>
+			<td
+					class="graphMiniature"
+			>
+				<VoteComponentGraph
+						classes="mainView"
+						cubeView="{cubeView}"
+						delta="{dynamicDelta}"
+						poll="{poll}"
+						vote="{dynamicVote}"
+				></VoteComponentGraph>
+			</td>
+		</tr>
+		<tr>
+			<!-- the main view -->
+			<td
+					class="main"
+					colspan="3"
+			>
+				{#if cubeView}
+				<DetailedCube
+						cubeView="{cubeView}"
+						delta="{delta}"
+						moveType="{moveType}"
+						on:cubeAltered="pollAltered()"
+						on:select="toggleView(cubeView, true)"
+						poll="{poll}"
+						positionMode="{positionMode}"
+						verticalLayout="{verticalLayout}"
+						zoomFactor="{cubeZoom}"
+				></DetailedCube>
+				{:else}
+				<FactorRanking
+						closing="{beforeCubeView}"
+						delta="{delta}"
+						manualControls="{manualControls}"
+						on:directionCorrected="pollAltered()"
+						on:rankingAdjusted="pollAdjusted()"
+						poll="{poll}"
+						verticalLayout="{verticalLayout}"
+						vote="{vote}"
+				></FactorRanking>
+				{/if}
+			</td>
+		</tr>
+	</table>
 	{#if vote}
 	{#if percentMode}
 	<PercentPicker
@@ -104,111 +143,6 @@
 			poll="{poll}"
 			vote="{vote}"
 	></PercentPicker>
-	{:else}
-
-	<VoteComponentGraph
-			classes="mainView"
-			cubeView="{cubeView}"
-			delta="{dynamicDelta}"
-			poll="{poll}"
-			vote="{dynamicVote}"
-	></VoteComponentGraph>
-	{#if cubeView}
-	<FactorRankingMiniature
-			delta="{delta}"
-			on:select="toggleView(cubeView, false)"
-			poll="{poll}"
-			vote="{vote}"
-	></FactorRankingMiniature>
-	{/if}
-	<!--
-			class="{$verticalLayout ? 'bottom-factor-table' : 'right-factor-table'}"
-	-->
-	<table
-			class="bottom-factor-table"
-			in:fly="{y: 200, delay: 800, duration: 1000}"
-	>
-		<tr>
-			<!--			{#if $verticalLayout}-->
-			<td
-			>
-				<FactorInfoButton
-						axis='x'
-						cubeView="{cubeView}"
-						delta="{dynamicDelta}"
-						mode="page"
-						on:toggle="toggleSurface('x')"
-						poll="{poll}"
-						voteDim="{dynamicVote.x}"
-				></FactorInfoButton>
-			</td>
-			<td
-			>
-				<FactorInfoButton
-						axis='y'
-						cubeView="{cubeView}"
-						delta="{dynamicDelta}"
-						mode="page"
-						on:toggle="toggleSurface('y')"
-						poll="{poll}"
-						voteDim="{dynamicVote.y}"
-				></FactorInfoButton>
-			</td>
-			<td>
-				<FactorInfoButton
-						axis='z'
-						cubeView="{cubeView}"
-						delta="{dynamicDelta}"
-						mode="page"
-						on:toggle="toggleSurface('z')"
-						poll="{poll}"
-						voteDim="{dynamicVote.z}"
-				></FactorInfoButton>
-			</td>
-			<!--			{/if}-->
-		</tr>
-		<!--
-		{#if !$verticalLayout}
-		<tr>
-			<td>
-				<FactorInfoButton
-						axis='z'
-						delta="{delta}"
-						mode="page"
-						on:toggle="toggleSurface('z')"
-						poll="{poll}"
-						voteDim="{vote.z}"
-				></FactorInfoButton>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<FactorInfoButton
-						axis='y'
-						delta="{delta}"
-						mode="page"
-						on:toggle="toggleSurface('y')"
-						poll="{poll}"
-						voteDim="{vote.y}"
-				></FactorInfoButton>
-			</td>
-		</tr>
-		<tr>
-			<td
-			>
-				<FactorInfoButton
-						axis='x'
-						delta="{delta}"
-						mode="page"
-						on:toggle="toggleSurface('x')"
-						poll="{poll}"
-						voteDim="{vote.x}"
-				></FactorInfoButton>
-			</td>
-		</tr>
-		{/if}
-		-->
-	</table>
 	{/if}
 	<PollFab
 	>
@@ -296,22 +230,14 @@
 		article {
 			width: 54%;
 		}
-
-		.bottom-factor-table {
-			width: calc(54% - 140px) !important;
-		}
 	}
 
-	article {
-		position: absolute;
-	}
+	/*
+		article {
+			position: absolute;
+		}*/
 
-	aside {
-		/* position below the cube to make miniature cube clickable when in ranking view */
-		/*z-index: -2; not relevant, icons are not clickable for simplicity*/
-	}
-
-	main {
+	.main {
 		left: 50%;
 		margin-right: -50%;
 		position: absolute;
@@ -320,64 +246,6 @@
 		/* position below other controls to main them clickable when in cubeView */
 		/*z-index: -1; // not relevant icons are not clickable for simplicity*/
 	}
-
-	main.icon {
-		height: 50px;
-		left: initial;
-		margin-right: initial;
-		position: fixed;
-		left: -10px;
-		top: 40px;
-		width: 50px;
-		transform: initial;
-	}
-
-	/*
-		main.icon.topLeft {
-			position: fixed;
-			left: -10px;
-			top: 35px;
-			z-index: 3;
-		}
-	*/
-
-	aside.full {
-		margin-top: 70px;
-	}
-
-	aside.icon {
-		position: absolute;
-	}
-
-	table {
-		z-index: 2;
-	}
-
-	.bottom-factor-table {
-		bottom: 10px;
-		color: black;
-		margin-left: 70px;
-		margin-right: 70px;
-		position: fixed;
-		width: calc(100% - 140px);
-	}
-
-	.leftViewport {
-		right: 20%;
-	}
-
-	.offToRight {
-		left: 33%;
-	}
-
-	.right-factor-table {
-		height: calc(100% - 84px);
-		margin-top: 20px;
-		position: fixed;
-		right: 75px;
-		top: 44px;
-	}
-
 </style>
 
 <script>
@@ -390,8 +258,6 @@
 	import AlterButton          from '../../../common/control/button/AlterButton.html'
 	import BuildButton          from '../../../common/control/button/BuildButton.html'
 	import EditButton           from '../../../common/control/button/EditButton.html'
-	import FactorInfoButton
-	                            from '../../../common/control/button/FactorInfoButton.html'
 	import VoteButton           from '../../../common/control/button/VoteButton.html'
 	import PercentPicker        from '../../../common/control/PercentPicker.html'
 	import ActionPopover        from '../../../common/shell/ActionPopover.html'
@@ -419,7 +285,6 @@
 			BuildButton,
 			DetailedCube,
 			EditButton,
-			FactorInfoButton,
 			FactorRanking,
 			FactorRankingMiniature,
 			PercentPicker,
@@ -429,13 +294,8 @@
 			VoteComponentSummary
 		},
 		computed: {
-			choiceRankingZoom: ({cubeView, miniatureScale, zoomFactor}) =>
-				cubeView ? miniatureScale * zoomFactor : 1,
 			cubeZoom: ({cubeView, miniatureScale, zoomFactor}) =>
 				cubeView ? zoomFactor : miniatureScale * zoomFactor,
-			dirPosButtonColor: ({positionMode}) => positionMode
-				? '0b0'
-				: '000',
 			dynamicVote: ({cubeView, currentVote, vote}) =>
 				cubeView ? vote : currentVote,
 			dynamicDelta: ({cubeView, delta, factorDelta}) =>
@@ -443,12 +303,6 @@
 			manualControls: ({cubeView, manualControlsOn}) =>
 				cubeView ? false : manualControlsOn,
 			previewMode: ({$mode}) => $mode === 'build' || $mode === 'alter',
-			// modifyActionButtonPosition: ({$verticalLayout}) => $verticalLayout
-			// 	? 'bottomLeft'
-			// 	: 'bottomRight',
-			// submitButtonPosition: ({$verticalLayout}) => $verticalLayout
-			// 	? 'bottomRight'
-			// 	: 'topRight',
 		},
 		data() {
 			return {
