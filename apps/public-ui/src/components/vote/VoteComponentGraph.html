@@ -1,90 +1,112 @@
-<figure
+<table
 		class="{classes}"
 >
-	<table
-			class="chart-contents"
-	>
-		<tr class="plus">
-			<td>
-				{#if xPlusHeight}
-				<div
-						class="{xPlus}"
-						style="
-        background-color: #{getColor(delta, poll, 'x')};
-        height: {xPlusHeight}px;
-            "
-				>
-				</div>
-				{/if}
-			</td>
-			<td>
-				{#if yPlusHeight}
-				<div
-						class="{yPlus}"
-						style="
-        background-color: #{getColor(delta, poll, 'y')};
-        height: {yPlusHeight}px;
-            "
-				>
-				</div>
-				{/if}
-			</td>
-			<td>
-				{#if zPlusHeight}
-				<div
-						class="{zPlus}"
-						style="
+	<tr>
+		<td
+				class="plus"
+		>
+			<div
+					class="aAxisLabel"
+			>
+				A 100%
+			</div>
+			<div
+					class="bAxisLabel"
+			>
+				B 100%
+			</div>
+			<div
+					class="zeroAxisLabel"
+			>
+				0%
+			</div>
+			{#if zPlusWidth}
+			<div
+					class="{zPlus}"
+					style="
         background-color: #{getColor(delta, poll, 'z')};
-        height: {zPlusHeight}px;
+        width: {zPlusWidth}px;
             "
-				>
-				</div>
-				{/if}
-			</td>
-		</tr>
-		<tr class="minus">
-			<td
 			>
-				{#if xMinusHeight}
-				<div
-						class="{xMinus}"
-						style="
-        background-color: #{getColor(delta, poll, 'x')};
-        height: {xMinusHeight}px;
-            "
-				>
-				</div>
-				{/if}
-			</td>
-			<td
-			>
-				{#if yMinusHeight}
-				<div
-						class="{yMinus}"
-						style="
-        background-color: #{getColor(delta, poll, 'y')};
-        height: {yMinusHeight}px;
-            "
-				>
-				</div>
-				{/if}
-			</td>
-			<td
-			>
-				{#if zMinusHeight}
-				<div
-						class="{zMinus}"
-						style="
+			</div>
+			{/if}
+		</td>
+		<td
+				class="minus"
+		>
+			{#if zMinusWidth}
+			<div
+					class="{zMinus}"
+					style="
         background-color: #{getColor(delta, poll, 'z')};
-        height: {zMinusHeight}px;
+        width: {zMinusWidth}px;
             "
-				>
-				</div>
-				{/if}
-			</td>
-		</tr>
-	</table>
-</figure>
+			>
+			</div>
+			{/if}
+		</td>
+	</tr>
+	<tr>
+		<td
+				class="plus"
+		>
+			{#if yPlusWidth}
+			<div
+					class="{yPlus}"
+					style="
+        background-color: #{getColor(delta, poll, 'y')};
+        width: {yPlusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+		<td
+				class="minus"
+		>
+			{#if yMinusWidth}
+			<div
+					class="{yMinus}"
+					style="
+        background-color: #{getColor(delta, poll, 'y')};
+        width: {yMinusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+	</tr>
+	<tr>
+		<td
+				class="plus"
+		>
+			{#if xPlusWidth}
+			<div
+					class="{xPlus}"
+					style="
+        background-color: #{getColor(delta, poll, 'x')};
+        width: {xPlusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+		<td
+				class="minus"
+		>
+			{#if xMinusWidth}
+			<div
+					class="{xMinus}"
+					style="
+        background-color: #{getColor(delta, poll, 'x')};
+        width: {xMinusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+	</tr>
+</table>
 <style>
 	/*
 	@media (min-width: 62em) {
@@ -95,60 +117,82 @@
 	}
 	 */
 
-	figure {
-		height: 89px;
-		width: 62px;
+	div {
+		height: 26px;
+		margin-top: 3px;
 	}
 
-	.mainView {
-		top: 50px;
-		right: 5px;
-		position: fixed;
-		/*z-index: 3; not relevant - not clickable for simplicity*/
+
+	table {
+		float: right;
+		height: 78px;
+		position: relative;
+		width: 240px;
 	}
 
-	.bottomDirection {
-		border-bottom: 2px solid black;
+	table.right {
+		float: right;
 	}
 
-	.chart-contents {
-		width: 100%;
+	.aAxisLabel {
+		bottom: -30px;
+		left: -20px;
+		position: absolute;
 	}
 
-	.confirmFigure td {
-		padding: 2px;
-		vertical-align: middle;
+	.bAxisLabel {
+		bottom: -30px;
+		position: absolute;
+		right: -25px;
 	}
 
-	.minus div {
-		margin-top: 0px;
+	.zeroAxisLabel {
+		bottom: -30px;
+		position: absolute;
+		left: 112px;
 	}
 
-	.minus td {
-		vertical-align: top;
+	.leftDirection {
+		border-left: 2px solid black;
 	}
 
+	.minus,
+	.plus {
+		width: 120px;
+	}
+
+	.plus {
+		border-right: 1px solid black;
+	}
+
+	.plus div {
+		float: right
+	}
+
+	.rightDirection {
+		border-right: 2px solid black;
+	}
+
+	/*
+		.minus td {
+			vertical-align: top;
+		}*/
+
+	/*
 	.pageFigure td,
 	.pageTable td {
 		padding: 5px;
 		vertical-align: middle;
 	}
+	*/
 
-	.plus {
-		height: 45px;
-	}
-
-	.plus div {
-		margin-bottom: 0px;
-	}
+	/*	.plus div {
+			margin-bottom: 0px;
+		}*/
 
 	.plus td {
-		vertical-align: bottom;
-		border-bottom: 1px solid black;
-	}
-
-	.topDirection {
-		border-top: 2px solid black;
+		/*vertical-align: bottom;*/
+		border-right: 1px solid black;
 	}
 
 </style>
@@ -158,22 +202,22 @@
 
 	export default {
 		computed: {
-			xMinus: ({xMinusHeight}) => xMinusHeight ? 'bottomDirection' : '',
-			xPlus: ({xPlusHeight}) => xPlusHeight ? 'topDirection' : '',
-			yMinus: ({yMinusHeight}) => yMinusHeight ? 'bottomDirection' : '',
-			yPlus: ({yPlusHeight}) => yPlusHeight ? 'topDirection' : '',
-			zMinus: ({zMinusHeight}) => zMinusHeight ? 'bottomDirection' : '',
-			zPlus: ({zPlusHeight}) => zPlusHeight ? 'topDirection' : ''
+			xMinus: ({xMinusWidth}) => xMinusWidth ? 'rightDirection' : '',
+			xPlus: ({xPlusWidth}) => xPlusWidth ? 'leftDirection' : '',
+			yMinus: ({yMinusWidth}) => yMinusWidth ? 'rightDirection' : '',
+			yPlus: ({yPlusWidth}) => yPlusWidth ? 'leftDirection' : '',
+			zMinus: ({zMinusWidth}) => zMinusWidth ? 'rightDirection' : '',
+			zPlus: ({zPlusWidth}) => zPlusWidth ? 'leftDirection' : ''
 		},
 		data: () => {
 			return {
-				maxBarSize: 44,
-				xMinusHeight: 0,
-				xPlusHeight: 0,
-				yMinusHeight: 0,
-				yPlusHeight: 0,
-				zMinusHeight: 0,
-				zPlusHeight: 0,
+				maxBarSize: 120,
+				xMinusWidth: 0,
+				xPlusWidth: 0,
+				yMinusWidth: 0,
+				yPlusWidth: 0,
+				zMinusWidth: 0,
+				zPlusWidth: 0,
 			}
 		},
 		helpers: {
@@ -189,17 +233,17 @@
 			const vote       = current.vote
 
 			this.set({
-				xMinusHeight: barHeight(cubeView, vote.x, -1, maxBarSize),
-				xPlusHeight: barHeight(cubeView, vote.x, 1, maxBarSize),
-				yMinusHeight: barHeight(cubeView, vote.y, -1, maxBarSize),
-				yPlusHeight: barHeight(cubeView, vote.y, 1, maxBarSize),
-				zMinusHeight: barHeight(cubeView, vote.z, -1, maxBarSize),
-				zPlusHeight: barHeight(cubeView, vote.z, 1, maxBarSize)
+				xMinusWidth: barWidth(cubeView, vote.x, -1, maxBarSize),
+				xPlusWidth: barWidth(cubeView, vote.x, 1, maxBarSize),
+				yMinusWidth: barWidth(cubeView, vote.y, -1, maxBarSize),
+				yPlusWidth: barWidth(cubeView, vote.y, 1, maxBarSize),
+				zMinusWidth: barWidth(cubeView, vote.z, -1, maxBarSize),
+				zPlusWidth: barWidth(cubeView, vote.z, 1, maxBarSize)
 			})
 		}
 	}
 
-	function barHeight(
+	function barWidth(
 		cubeView,
 		voteFactor,
 		position,

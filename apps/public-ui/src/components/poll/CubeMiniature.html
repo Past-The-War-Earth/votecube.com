@@ -20,14 +20,7 @@
 		>
 			{#if position.dir == 1}
 			<header>
-				<var>
-					<CharacterButton
-							character="A"
-					></CharacterButton>
-				</var>
-				<span>
-					{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-				</span>
+				{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
 			</header>
 			{/if}
 			{#if positionMode}
@@ -44,14 +37,7 @@
 			</p>
 			{#if position.dir == -1}
 			<footer>
-				<var>
-					<CharacterButton
-							character="B"
-					></CharacterButton>
-				</var>
-				<span>
-					{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-				</span>
+				{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
 			</footer>
 			{/if}
 		</div>
@@ -69,7 +55,6 @@
 		font-weight: 500;
 		line-height: 1em;
 		overflow: hidden;
-		position: relative;
 		text-align: center;
 		text-overflow: ellipsis;
 		width: 100%;
@@ -85,23 +70,6 @@
 		margin-block-start: 0em;
 		margin-block-end: 0em;
 		padding: 0 10px;
-	}
-
-	span {
-		position: absolute;
-		left: 55px;
-		top: 7px;
-	}
-
-	span,
-	var {
-		display: inline-block;
-	}
-
-	var {
-		position: relative;
-		left: -129px;
-		top: 2px;
 	}
 
 	.surface {
@@ -132,13 +100,10 @@
 		border: 5px solid gray;
 		border-radius: 10px;
 		color: #000;
-		/*font-size: 2.0em;*/
-		font-size: 2.8em;
-		font-weight: bold;
+		font-size: 1.7em;
 		/*height: 320px;*/
 		height: 311px;
-		/*line-height: 2.0em;*/
-		line-height: 1.2em;
+		line-height: 1.7em;
 		position: absolute;
 		/*width: 320px;*/
 		width: 311px;
@@ -180,7 +145,6 @@
 </style>
 
 <script>
-	import CharacterButton    from '../../common/control/button/CharacterButton.html'
 	import {
 		getColor,
 		getSideText
@@ -189,7 +153,6 @@
 
 	export default {
 		components: {
-			CharacterButton,
 			Positioner
 		},
 		computed: {
@@ -226,101 +189,7 @@
 			getSideText,
 
 		},
-		methods: {
-			moveDown(
-				axis,
-				dir,
-				poll
-			) {
-				move(this, poll, axis, dir, [
-					['y', 1], // x+
-					['y', 1], // x-
-					['x', -1], // y+
-					['x', -1], // y-
-					['x', -1], // z+
-					['x', -1] // z-
-				])
-			},
-			moveLeft(
-				axis,
-				dir,
-				poll
-			) {
-				move(this, poll, axis, dir, [
-					['z', -1], // x+
-					['z', 1], // x-
-					['z', -1], // y+
-					['z', 1], // y-
-					['y', 1], // z+
-					['y', -1] // z-
-				])
-			},
-			moveRight(
-				axis,
-				dir,
-				poll
-			) {
-				move(this, poll, axis, dir, [
-					['z', 1], // x+
-					['z', -1], // x-
-					['z', 1], // y+
-					['z', -1], // y-
-					['y', -1], // z+
-					['y', 1] // z-
-				])
-			},
-			moveUp(
-				axis,
-				dir,
-				poll
-			) {
-				move(this, poll, axis, dir, [
-					['y', -1], // x+
-					['y', -1], // x-
-					['x', 1], // y+
-					['x', 1], // y-
-					['x', 1], // z+
-					['x', 1] // z-
-				])
-			},
-			switchDir(
-				axis,
-				dir,
-				poll
-			) {
-				switchPoles(this, poll, axis, dir)
-			},
-			/*			toggleView(
-							cubeView,
-							event
-						) {
-							if (!cubeView) {
-								this.fire('select', event)
-							}
-						}*/
-		},
-		onstate({changed, current}) {
-			if (!current.poll) {
-				return
-			}
-
-			let cubeElement
-			if (changed.cubeView) {
-				cubeElement = document.getElementById('cube')
-				cubeElement.classList.remove('cubeView')
-				if (current.cubeView) {
-					cubeElement.classList.add('cubeView')
-				}
-			}
-
-			if (changed.moveType) {
-				cubeElement = document.getElementById('cube')
-				cubeElement.classList.remove('toggle')
-				if (current.moveType === 'toggle') {
-					cubeElement.classList.add('toggle')
-				}
-			}
-		}
+		methods: {}
 	}
 
 	function move(

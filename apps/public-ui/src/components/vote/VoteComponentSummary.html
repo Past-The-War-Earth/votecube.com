@@ -8,12 +8,14 @@
 	<table
 			class="chart-contents"
 	>
+		{#each voteDims as voteDim, i}
+		{#if showPosition(voteDim)}
 		<tr id="plus">
 			<td>
 				<div
 						style="
-        background-color: #{getColor(delta, poll, 'x')};
-        height: {xPlusHeight(delta, maxBarSize, maxValue, vote)}px;
+        background-color: #{getColor(delta, poll, voteDim.axis)};
+        width: {voteDim.value}%;
             "
 				>
 				</div>
@@ -21,54 +23,15 @@
 			<td>
 				<div
 						style="
-        background-color: #{getColor(delta, poll, 'y')};
-        height: {yPlusHeight(delta, maxBarSize, maxValue, vote)}px;
-            "
-				>
-				</div>
-			</td>
-			<td>
-				<div
-						style="
-        background-color: #{getColor(delta, poll, 'z')};
-        height: {zPlusHeight(delta, maxBarSize, maxValue, vote)}px;
+        background-color: #{getColor(delta, poll, voteDim.axis)};
+        width: {voteDim.value}%;
             "
 				>
 				</div>
 			</td>
 		</tr>
-		<tr id="minus">
-			<td
-			>
-				<div
-						style="
-        background-color: #{getColor(delta, poll, 'x')};
-        height: {xMinusHeight(delta, maxBarSize, maxValue, vote)}px;
-            "
-				>
-				</div>
-			</td>
-			<td
-			>
-				<div
-						style="
-        background-color: #{getColor(delta, poll, 'y')};
-        height: {yMinusHeight(delta, maxBarSize, maxValue, vote)}px;
-            "
-				>
-				</div>
-			</td>
-			<td
-			>
-				<div
-						style="
-        background-color: #{getColor(delta, poll, 'z')};
-        height: {zMinusHeight(delta, maxBarSize, maxValue, vote)}px;
-            "
-				>
-				</div>
-			</td>
-		</tr>
+		{/if}
+		{/each}
 	</table>
 </figure>
 <table
@@ -78,6 +41,8 @@
 		class:pageTable="isPage"
 		class:rightInfo="horizontalPage"
 >
+
+	{#each voteDims as voteDim, i}
 	<tr>
 		<td>
 			<FactorInfoButton
@@ -87,13 +52,13 @@
 					on:toggle="fire('toggleX')"
 					poll="{poll}"
 					position="left"
-					voteDim="{vote.x}"
+					voteDim="{voteDim}"
 			></FactorInfoButton>
 		</td>
 		<td
 				class="positionText"
 		>
-			{xText(delta, mode, poll, vote)}
+			{dirText(voteDim, mode, poll, vote, delta)}
 		</td>
 	<tr>
 	</tr>
@@ -106,13 +71,13 @@
 				on:toggle="fire('toggleY')"
 				poll="{poll}"
 				position="left"
-				voteDim="{vote.y}"
+				voteDim="{voteDim}"
 		></FactorInfoButton>
 	</td>
 	<td
 			class="positionText"
 	>
-		{yText(delta, mode, poll, vote)}
+		{dirText(voteDim, mode, poll, vote, delta)}
 	</td>
 	<tr>
 		<td>
@@ -124,15 +89,16 @@
 					on:toggle="fire('toggleZ')"
 					poll="{poll}"
 					position="left"
-					voteDim="{vote.z}"
+					voteDim="{voteDim}"
 			></FactorInfoButton>
 		</td>
 		<td
 				class="positionText"
 		>
-			{zText(delta, mode, poll, vote)}
+			{dirText(voteDim, mode, poll, vote, delta)}
 		</td>
 	</tr>
+	{/each}
 </table>
 
 <style>
@@ -265,7 +231,7 @@
 			                 }) => {
 				return mode == 'page' && !verticalLayout
 			},
-			maxValue: ({poll, delta, vote}) => {
+/*			maxValue: ({poll, delta, vote}) => {
 				if (!vote) {
 					return 0
 				}
@@ -281,7 +247,7 @@
 				const maxNegativeValue = getMaxVal(negativeValues)
 
 				return maxPositiveValue + maxNegativeValue
-			},
+			},*/
 			isPage: ({mode}) => mode == 'page',
 			verticalPage: ({
 				               mode,
@@ -292,91 +258,31 @@
 		},
 		helpers: {
 			getColor,
-			xMinusHeight: (
-				delta,
+/*			dirWidth: (
+				voteDim,
 				maxBarSize,
 				maxValue,
-				vote
+				vote,
+				delta,
 			) =>
 				vote ?
-					barHeight(vote.x, -1, maxBarSize, maxValue)
-					: 0,
-			xPlusHeight: (
-				delta,
-				maxBarSize,
-				maxValue,
-				vote
-			) =>
-				vote ?
-					barHeight(vote.x, 1, maxBarSize, maxValue)
-					: 0,
-			xText: (
-				delta,
+					barHeight(vote[voteDim.axis], voteDim.dir, maxBarSize, maxValue)
+					: 0,*/
+			dirText: (
+				voteDim,
 				mode,
 				poll,
-				vote
+				vote,
+				delta
 			) =>
 				vote ?
-					positionText(delta, mode, poll, vote.x)
-					: '',
-			yMinusHeight: (
-				delta,
-				maxBarSize,
-				maxValue,
-				vote
-			) =>
-				vote ?
-					barHeight(vote.y, -1, maxBarSize, maxValue)
-					: 0,
-			yPlusHeight: (
-				delta,
-				maxBarSize,
-				maxValue,
-				vote
-			) =>
-				vote ?
-					barHeight(vote.y, 1, maxBarSize, maxValue)
-					: 0,
-			yText: (
-				delta,
-				mode,
-				poll,
-				vote
-			) =>
-				vote ?
-					positionText(delta, mode, poll, vote.y)
-					: '',
-			zMinusHeight: (
-				delta,
-				maxBarSize,
-				maxValue,
-				vote
-			) =>
-				vote ?
-					barHeight(vote.z, -1, maxBarSize, maxValue)
-					: 0,
-			zPlusHeight: (
-				delta,
-				maxBarSize,
-				maxValue,
-				vote
-			) =>
-				vote ?
-					barHeight(vote.z, 1, maxBarSize, maxValue)
-					: 0,
-			zText: (
-				delta,
-				mode,
-				poll,
-				vote
-			) =>
-				vote ?
-					positionText(delta, mode, poll, vote.z)
+					positionText(delta, mode, poll, vote[voteDim.axis])
 					: ''
 		}
 	}
 
-	function barHeight(
+/*
+	function barWidth(
 		voteFactor,
 		position,
 		maxBarSize,
@@ -387,6 +293,7 @@
 			? voteFactor.value * maxBarSize / (maxValue * 1.2)
 			: 0
 	}
+*/
 
 	function positionText(
 		delta,
@@ -397,6 +304,7 @@
 		return getSideText(delta, mode, poll, voteFactor.axis, voteFactor.dir)
 	}
 
+/*
 	function addToVals(
 		poll,
 		voteFactor,
@@ -409,7 +317,9 @@
 			negativeValues.push(voteFactor.value)
 		}
 	}
+*/
 
+/*
 	function getMaxVal(
 		values
 	) {
@@ -423,5 +333,6 @@
 
 		return maximumValue
 	}
+*/
 
 </script>

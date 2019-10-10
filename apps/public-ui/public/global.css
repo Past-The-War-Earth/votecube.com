@@ -17,7 +17,7 @@ Copyright (c) Nicolas Gallagher and Jonathan Neal
  */
 
 html {
-	font-family: sans-serif; /* 1 */
+	font-family: 'Dosis', sans-serif; /* 1 */
 	-ms-text-size-adjust: 100%; /* 2 */
 	-webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -730,7 +730,7 @@ a {
 }
 
 html, button, input, select, textarea {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Dosis', sans-serif;
 	letter-spacing: 0.01em;
 }
 

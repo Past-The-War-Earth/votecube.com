@@ -1,0 +1,140 @@
+<section>
+	<table
+			height="{height}px"
+	>
+		<!--		on:click="toggleView(event)"-->
+		{#each voteDims as voteDim, i}
+		{#if showPosition(voteDim)}
+		<tr>
+			<td>
+				{#if voteDim.dir === 1}
+				<CharacterButton
+						character="A"
+						fontSize="22"
+						fontX="13"
+						fontY="20"
+						size="26"
+						strokeWidth="1"
+						styles="left: 0px; position: absolute; top: 3px;"
+				></CharacterButton>
+				{:else}
+				<CharacterButton
+						character="B"
+						fontSize="22"
+						fontX="13"
+						fontY="21"
+						size="26"
+						strokeWidth="1"
+						styles="left: 0px; position: absolute; top: 3px;"
+				></CharacterButton>
+				{/if}
+				<span>{voteDim.value}%</span>
+			</td>
+		</tr>
+		{/if}
+		{/each}
+	</table>
+	<div>
+		<span
+				class="totalLabel"
+		>Total:</span>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<CharacterButton
+				character="A"
+				fontSize="22"
+				fontX="13"
+				fontY="20"
+				size="26"
+				strokeWidth="1"
+				styles="left: 50px; position: absolute; top: 3px;"
+		></CharacterButton>
+		<span
+				class="total"
+		>
+		20%
+		</span>
+	</div>
+</section>
+
+<style>
+
+	div {
+		border-top: 1px solid gray;
+		bottom: -70px;
+		color: black;
+		left: -50px;
+		padding-top: 10px;
+		position: absolute;
+		width: 150px;
+	}
+
+	section {
+		position: relative;
+	}
+
+
+	span {
+		display: inline-block;
+		color: black;
+		font-weight: bold;
+		font-size: 1.7em;
+		height: 29px;
+		left: 30px;
+		line-height: 29px;
+		position: absolute;
+		top: 0px;
+		vertical-align: center;
+	}
+
+	span.total {
+		left: 80px;
+	}
+
+	span.totalLabel {
+		font-weight: normal;
+		left: -20px;
+	}
+
+	td {
+		/*padding-top: 1px;*/
+		position: relative;
+	}
+
+
+</style>
+
+<script>
+	import {fly}                     from 'svelte-transitions'
+	import CharacterButton           from '../../common/control/button/CharacterButton.html'
+	import {getColor}                from '../../helpers/cube'
+	import {getVoteDimsInValueOrder} from '../../helpers/factorRanking'
+
+	export default {
+		components: {
+			CharacterButton
+		},
+		computed: {
+			height: ({voteDims}) => voteDims.filter(
+				voteDim => voteDim.value).length * 28,
+			voteDims: ({delta, vote}) =>
+				getVoteDimsInValueOrder(vote)
+		},
+		helpers: {
+			getColor,
+			showPosition: (
+				voteDim
+			) => {
+				return !!voteDim.value
+			}
+		},
+		/*		methods: {
+					toggleView(
+						event
+					) {
+						this.fire('select', event)
+					}
+				},*/
+		transitions: {fly}
+	}
+
+</script>

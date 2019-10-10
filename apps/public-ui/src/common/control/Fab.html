@@ -60,13 +60,13 @@
 			D
 		</nav>
 	</menu>
-	<AddRemoveButton
+	<!--			add="{!opened}"-->
+	<!--			reversible="{true}"-->
+	<VoteButton
 			classes="fab"
-			add="{!opened}"
 			on:select="toggle(opened)"
-			reversible="{true}"
 			size="50"
-	></AddRemoveButton>
+	></VoteButton>
 </aside>
 <style>
 
@@ -133,10 +133,12 @@
 	import {fade}          from 'svelte-transitions'
 	import {transition}    from '../../helpers/animation'
 	import AddRemoveButton from './button/AddRemoveButton.html'
+	import VoteButton      from './button/VoteButton.html'
 
 	export default {
 		components: {
-			AddRemoveButton
+			AddRemoveButton,
+			VoteButton
 		},
 		computed: {
 			visibility: ({opened}) => opened ? 'open' : 'closed'
