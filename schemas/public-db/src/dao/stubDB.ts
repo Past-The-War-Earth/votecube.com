@@ -71,52 +71,52 @@ export const DB = {
 	}],
 	factors: [{
 		id: 1,
-		name: 'Future Burden'
-		// name: 'Security'
+		// name: 'Future Burden'
+		name: 'Security'
 	}, {
 		id: 2,
-		name: 'Scientific Proof'
-		// name: 'Economy'
+		// name: 'Scientific Proof'
+		name: 'Economy'
 	}, {
 		id: 3,
-		name: 'Personal Impact',
-		// name: 'Equality',
+		// name: 'Personal Impact',
+		name: 'Equality',
 	}],
 	positions: [{
 		id: 1,
 		// name: ' . . . . . X+',
-		name: 'We are shifting the burden to future generations'
-		// name: 'Trumps policies reduce military\'s over extension and let it focus on the real
-		// threats.'
+		// name: 'We are shifting the burden to future generations'
+		name: `Trumps policies reduce military's over extension and let it focus on the real
+		threats.`
 	}, {
 		id: 2,
 		// name: ' . . . . . X-',
-		name: ''
-		// name: 'Trump\'s policies reduce the trust in our alliances and hurt the stability of the
-		// world.'
+		// name: ''
+		name: `Trump's policies reduce the trust in our alliances and hurt the stability of the
+		world.`
 	}, {
 		id: 3,
 		// name: ' . . . . . Y+'
-		name: 'There is enough evidence that climate change is man-made'
-		// name: 'Trump\'s policies give profound confidence to companies and are good for the
-		// economy.'
+		// name: 'There is enough evidence that climate change is man-made'
+		name: `Trump's policies give profound confidence to companies and are good for the
+		economy.`
 	}, {
 		id: 4,
 		// name: ' . . . . . Y-'
-		name: ''
-		// name: 'Trump\'s policies have no real effect on the economy, it\'s purely cyclical.'
+		// name: ''
+		name: `Trump's policies have no real effect on the economy, it's purely cyclical.`
 	}, {
 		id: 5,
 		// name: ' . . . . . Z+'
-		name: ''
-		// name: 'Trump\'s policies are better for equality because they are fighting the dominance
-		// of globalism and are bringing the jobs back.'
+		// name: ''
+		name: `Trump's policies are better for equality because they are fighting the dominance
+		of globalism and are bringing the jobs back.`
 	}, {
 		id: 6,
 		// name: ' . . . . . Z-'
-		name: 'I am personally not yet affected by climate change'
-		// name: 'Trump\'s policies are tailored with the interests of the wealthy in mind and hurt
-		// equality.'
+		// name: 'I am personally not yet affected by climate change'
+		name: `Trump's policies are tailored with the interests of the wealthy in mind and hurt
+		equality.`
 	}],
 	labels: [{
 		id: 1,
@@ -128,8 +128,8 @@ export const DB = {
 	polls: [{
 		endDate: new Date(new Date().getTime() + 3600000 * 75),
 		id: 1,
-		name: 'Act now to slow climate change?',
-		// name: 'Trump\'s policies',
+		// name: 'Act now to slow climate change?',
+		name: `The effect of Trump's policies`,
 		outcomes: [{
 			id: 1,
 			key: 'A',

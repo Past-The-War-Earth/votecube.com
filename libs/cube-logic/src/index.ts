@@ -1,4 +1,7 @@
-export {IMutationApi} from './cube/mutation/MutationApi'
+export {
+	IMutationApi,
+	mutationApi
+}                     from './cube/mutation/MutationApi'
 export {ZoomIndex}    from './cube/cubeMoveMatrix'
 export {
 	IUiVoteDimension,

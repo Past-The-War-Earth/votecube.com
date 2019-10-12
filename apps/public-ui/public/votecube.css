@@ -284,9 +284,10 @@ button:focus {
 
 
 #cube {
-	transition: transform 600ms linear
+	transition: transform 128ms linear
 }
 
+/*
 #cube.toggle {
 	transition: transform 600ms linear
 }
@@ -298,3 +299,4 @@ button:focus {
 #cube.cubeView.toggle {
 	transition: transform 700ms linear
 }
+*/

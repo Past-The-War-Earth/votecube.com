@@ -55,96 +55,55 @@
 	point.  They do not have equivalents in the Fab so the interface is orthogonal.
 	The chart miniature brings up the percentage view.
 	-->
-	<table>
-		<tr>
-			<td
-					class="mainMiniature"
+	<VoteComponentGraph
+			cubeView="{effectiveCubeView}"
+			delta="{delta}"
+			moveType="{moveType}"
+			on:cubeAltered="pollAltered()"
+			on:toggleView="toggleView(cubeView, !cubeView)"
+			poll="{poll}"
+			positionMode="{positionMode}"
+			verticalLayout="{verticalLayout}"
+			vote="{vote}"
+			voteDims="{voteDims}"
+	></VoteComponentGraph>
+	<!-- the main view -->
+	<!--			class:ranking="!effectiveCubeView"-->
+	<section
+			class:cube="effectiveCubeView"
+			class:card="!effectiveCubeView"
+			colspan="4"
+	>
+		<main>
+			<section
+					id="viewport"
+					class:leftViewport="horizontalLayout"
+					style="{scale}"
 			>
-				{#if cubeView}
-				<FactorRankingMiniature
-						delta="{delta}"
-						on:select="toggleView(cubeView, false)"
-						poll="{poll}"
-						vote="{vote}"
-						voteDims="{voteDims}"
-				></FactorRankingMiniature>
-				{:else}
+				{#if effectiveCubeView}
 				<DetailedCube
-						cubeView="{cubeView}"
+						cubeView="{effectiveCubeView}"
 						delta="{delta}"
 						moveType="{moveType}"
 						on:cubeAltered="pollAltered()"
-						on:select="toggleView(cubeView, true)"
 						poll="{poll}"
 						positionMode="{positionMode}"
 						verticalLayout="{verticalLayout}"
-						zoomFactor="{cubeZoom}"
 				></DetailedCube>
 				{/if}
-			</td>
-			<td
-					class="graphMiniature"
-			>
-				<VoteComponentGraph
-						cubeView="{cubeView}"
-						delta="{dynamicDelta}"
-						poll="{poll}"
-						vote="{dynamicVote}"
-						voteDims="{voteDims}"
-				></VoteComponentGraph>
-			</td>
-			<td
-					class="percentMiniature"
-					on:click="togglePercentPicker()"
-			>
-				<FactorPercentagesMiniature
-						delta="{delta}"
-						poll="{poll}"
-						vote="{vote}"
-						voteDims="{voteDims}"
-				></FactorPercentagesMiniature>
-			</td>
-		</tr>
-		<tr>
-			<!-- the main view -->
-			<td
-					class="main"
-					colspan="5"
-			>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				{#if cubeView}
-				<DetailedCube
-						cubeView="{cubeView}"
-						delta="{delta}"
-						moveType="{moveType}"
-						on:cubeAltered="pollAltered()"
-						on:select="toggleView(cubeView, true)"
-						poll="{poll}"
-						positionMode="{positionMode}"
-						verticalLayout="{verticalLayout}"
-						zoomFactor="{cubeZoom}"
-				></DetailedCube>
-				{:else}
+				{#if !cubeView}
+<!--						on:directionCorrected="pollAltered()"-->
 				<FactorRanking
-						closing="{beforeCubeView}"
 						delta="{delta}"
-						manualControls="{manualControls}"
-						on:directionCorrected="pollAltered()"
 						on:rankingAdjusted="pollAdjusted()"
 						poll="{poll}"
 						verticalLayout="{verticalLayout}"
 						vote="{vote}"
 				></FactorRanking>
 				{/if}
-			</td>
-		</tr>
-	</table>
+			</section>
+		</main>
+	</section>
 	{#if vote}
 	{#if percentMode}
 	<PercentPicker
@@ -156,9 +115,11 @@
 			vote="{vote}"
 	></PercentPicker>
 	{/if}
+	<!--
 	<PollFab
 	>
 	</PollFab>
+	-->
 	{#if confirm}
 	{#if saving}
 	<ActionPopover
@@ -245,52 +206,37 @@
 		}
 	}
 
-	table {
+	#viewport {
+		height: 100%;
+		perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
+		/* 1500 increases range from 11% to 9%, 2500 increases to 6% */
+		perspective-origin: 50% 160px; /* 670px; */
+		/*transform: scale(0.75,0.75);*/
 		width: 100%;
 	}
 
-	/*
-		article {
-			position: absolute;
+	.card {
+		margin-left: 3px;
+		margin-right: 3px;
+	}
+
+	.cube {
+		left: 50%;
+		margin-right: -50%;
+		position: absolute;
+		top: 42%;
+		transform: translate(-50%, -50%);
+	}
+
+	/*	.ranking {
+			top: 275px;
 		}*/
-
-	.graphMiniature {
-		border-left: 1px solid gray;
-		border-right: 1px solid gray;
-		left: 50%;
-		margin-top: 51px;
-		margin-right: -50%;
-		position: absolute;
-		/*top: 33%;*/
-		transform: translate(-50%, -50%);
-	}
-
-	.main {
-		left: 50%;
-		margin-right: -50%;
-		position: absolute;
-		top: 33%;
-		transform: translate(-50%, -50%);
-		/* position below other controls to main them clickable when in cubeView */
-		/*z-index: -1; // not relevant icons are not clickable for simplicity*/
-	}
-
-	.mainMiniature {
-		padding-left: 20px;
-		padding-top: 10px;
-		width: 105px;
-	}
-
-	.percentMiniature {
-		padding-right: 10px;
-		padding-top: 10px;
-		width: 105px;
-	}
 
 </style>
 
 <script>
 	import {DI}          from '@airport/di'
+	import {mutationApi} from '@votecube/cube-logic'
 	import {
 		POLL_DAO,
 		VOTE_DAO
@@ -340,20 +286,21 @@
 			VoteComponentSummary
 		},
 		computed: {
-			cubeZoom: ({cubeView, miniatureScale, zoomFactor}) =>
-				cubeView ? zoomFactor : miniatureScale * zoomFactor,
-			dynamicVote: ({cubeView, currentVote, vote}) =>
-				cubeView ? vote : currentVote,
-			dynamicDelta: ({cubeView, delta, factorDelta}) =>
-				cubeView ? delta : factorDelta,
-			manualControls: ({cubeView, manualControlsOn}) =>
-				cubeView ? false : manualControlsOn,
+			dynamicVote: ({effectiveCubeView, currentVote, vote}) =>
+				effectiveCubeView ? vote : currentVote,
+			dynamicDelta: ({effectiveCubeView, delta, factorDelta}) =>
+				effectiveCubeView ? delta : factorDelta,
+			effectiveCubeView: ({cubeView, beforeCubeView}) => cubeView && !beforeCubeView,
 			previewMode: ({$mode}) => $mode === 'build' || $mode === 'alter',
+			scale: ({cubeView, zoomFactor}) => cubeView
+				? `transform: scale(${zoomFactor}, ${zoomFactor});`
+				: '',
 			voteDims: ({delta, vote}) =>
 				getVoteDimsInValueOrder(vote)
 		},
 		data() {
 			return {
+				beforeCubeView: false,
 				cubeView: true,
 				currentVote: {
 					x: {
@@ -372,7 +319,6 @@
 				delta: 0,
 				factorDelta: 0, // Only for the factor cubes
 				manualControlsOn: true,
-				miniatureScale: 0.2,
 				percentMode: false,
 				verticalLayout: true,
 				zoomFactor: 0.65
@@ -412,12 +358,12 @@
 			},
 			pollAdjusted() {
 				this.pollAltered()
-				this.get().mutationApi.recompute()
+				mutationApi.recompute()
 			},
 			move(
 				event
 			) {
-				this.get().mutationApi.move(
+				mutationApi.move(
 					event.factor,
 					event.position,
 					event.percentChange
@@ -426,7 +372,7 @@
 			moveToValue(
 				event
 			) {
-				this.get().mutationApi.moveToValue(event.factor, event.value)
+				mutationApi.moveToValue(event.factor, event.value)
 			},
 			toggleManualControls() {
 				this.set({manualControlsOn: !this.get().manualControlsOn})
@@ -444,7 +390,7 @@
 			toggleSurface(
 				factorKey
 			) {
-				const {cubeView, delta, moveType, mutationApi} = this.get()
+				const {cubeView, delta, moveType} = this.get()
 				this.set({moveType: 'toggle'})
 				setTimeout(() => {
 					mutationApi.toggleSurface(factorKey)
@@ -540,10 +486,13 @@
 		if (forCubeView) {
 			if (!currentlyInCubeView) {
 				// Animate Factor Rankings out of the view
-				page.set({beforeCubeView: forCubeView})
+				page.set({beforeCubeView: true})
 
 				page.get().cubeListener.resumeInteraction()
 				page.set({cubeView: forCubeView})
+				setTimeout(() => {
+					page.set({beforeCubeView: false})
+				}, 701)
 			}
 		} else {
 			if (currentlyInCubeView) {

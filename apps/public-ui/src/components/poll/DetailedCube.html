@@ -1,121 +1,76 @@
-<section
-		id="viewport"
-		style="
-  transform: scale({zoomFactor}, {zoomFactor});
-"
-		class:leftViewport="horizontalLayout"
+<figure
+		id="cube"
 >
-	<figure
-			id="cube"
-	>
-		<!--			on:click="toggleView(cubeView, event)"-->
-		{#if poll}
-		{#each positions as position, i}
-		<div
-				class="surface"
-				id="s{i}"
-				style="
+	<!--			on:click="toggleView(cubeView, event)"-->
+	{#if poll}
+	{#each positions as position, i}
+	<div
+			class="surface"
+			id="s{i}"
+			style="
             background-color: #{getColor(delta, poll, position.axis)};
               "
-		>
-			{#if position.dir == 1}
-			<header>
-				<var>
-					<CharacterButton
-							character="A"
-					></CharacterButton>
-				</var>
-				<span>
-					{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-				</span>
-			</header>
+	>
+		<header>
+			{#if position.dir > 0}
+			<!--						character="A"-->
+			<CharacterButton
+					character="A"
+					fontSize="23"
+					fontX="14.5"
+					fontY="23"
+					size="30"
+					strokeWidth="0"
+					styles="left: 1px; position: absolute; top: 0px;"
+			></CharacterButton>
 			{/if}
-			{#if positionMode}
-			<Positioner
-					on:moveRight="moveRight(position.axis, position.dir, poll)"
-					on:moveDown="moveDown(position.axis, position.dir, poll)"
-					on:moveLeft="moveLeft(position.axis, position.dir, poll)"
-					on:moveUp="moveUp(position.axis, position.dir, poll)"
-					on:switchDir="switchDir(position.axis, position.dir, poll)"
-			></Positioner>
+			<!--			<span>-->
+			{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
+			<!--				</span>-->
+			{#if position.dir < 0}
+			<!--						character="A"-->
+			<CharacterButton
+					character="B"
+					fontSize="23"
+					fontX="14.5"
+					fontY="23"
+					size="30"
+					strokeWidth="0"
+					styles="right: 1px; position: absolute; top: 0px;"
+			></CharacterButton>
 			{/if}
-			<p>
-				{getSideText(delta, 'cube', poll, position.axis, position.dir)}
-			</p>
-			{#if position.dir == -1}
-			<footer>
-				<var>
-					<CharacterButton
-							character="B"
-					></CharacterButton>
-				</var>
-				<span>
-					{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-				</span>
-			</footer>
-			{/if}
-		</div>
-		{/each}
+		</header>
+		{#if positionMode}
+		<Positioner
+				on:moveRight="moveRight(position.axis, position.dir, poll)"
+				on:moveDown="moveDown(position.axis, position.dir, poll)"
+				on:moveLeft="moveLeft(position.axis, position.dir, poll)"
+				on:moveUp="moveUp(position.axis, position.dir, poll)"
+				on:switchDir="switchDir(position.axis, position.dir, poll)"
+		></Positioner>
 		{/if}
-	</figure>
-</section>
+		<p>
+			{getSideText(delta, 'cube', poll, position.axis, position.dir)}
+		</p>
+		<!--
+		{#if position.dir == -1}
+		<footer>
+			<var>
+				<CharacterButton
+						character="B"
+				></CharacterButton>
+			</var>
+			<span>
+					{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
+				</span>
+		</footer>
+		{/if}
+		-->
+	</div>
+	{/each}
+	{/if}
+</figure>
 <style>
-
-	footer,
-	header {
-		color: #fff;
-		background-color: #000;
-		font-size: 0.9em;
-		font-weight: 500;
-		line-height: 1em;
-		overflow: hidden;
-		position: relative;
-		text-align: center;
-		text-overflow: ellipsis;
-		width: 100%;
-		white-space: nowrap;
-	}
-
-	footer {
-		bottom: 0px;
-		position: absolute;
-	}
-
-	p {
-		margin-block-start: 0em;
-		margin-block-end: 0em;
-		padding: 0 10px;
-	}
-
-	span {
-		position: absolute;
-		left: 55px;
-		top: 7px;
-	}
-
-	span,
-	var {
-		display: inline-block;
-	}
-
-	var {
-		position: relative;
-		left: -129px;
-		top: 2px;
-	}
-
-	.surface {
-		position: relative;
-	}
-
-	#viewport {
-		height: 100%;
-		perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
-		/* 1500 increases range from 11% to 9%, 2500 increases to 6% */
-		perspective-origin: 50% 160px; /* 670px; */
-		/*transform: scale(0.75,0.75);*/
-		width: 100%;
-	}
 
 	#cube {
 		height: 320px;
@@ -133,7 +88,7 @@
 		border-radius: 10px;
 		color: #000;
 		/*font-size: 2.0em;*/
-		font-size: 2.8em;
+		font-size: 1.9em;
 		font-weight: bold;
 		/*height: 320px;*/
 		height: 311px;
@@ -177,15 +132,65 @@
 		transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
 	}
 
+	/*footer,*/
+	header {
+		color: #fff;
+		background-color: #000;
+		font-size: 0.8em;
+		font-weight: 500;
+		height: 30px;
+		line-height: 1em;
+		overflow: hidden;
+		position: relative;
+		text-align: center;
+		text-overflow: ellipsis;
+		width: 100%;
+		white-space: nowrap;
+	}
+
+	header {
+		top: 0px
+	}
+
+	/*	footer {
+			bottom: 0px;
+			position: absolute;
+		}*/
+
+	p {
+		margin-block-start: 0em;
+		margin-block-end: 0em;
+		padding: 0 10px;
+	}
+
+	/*	span {
+			position: absolute;
+			left: 55px;
+			top: 7px;
+		}
+
+		span {
+			display: inline-block;
+		}*/
+
+	.surface {
+		position: relative;
+	}
+
 </style>
 
 <script>
-	import CharacterButton    from '../../common/control/button/CharacterButton.html'
+	import {
+		clearView,
+		mutationApi,
+		setView
+	}                      from '@votecube/cube-logic'
+	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import {
 		getColor,
 		getSideText
-	}                 from '../../helpers/cube'
-	import Positioner from './create/Positioner.html'
+	}                      from '../../helpers/cube'
+	import Positioner      from './create/Positioner.html'
 
 	export default {
 		components: {
@@ -193,7 +198,6 @@
 			Positioner
 		},
 		computed: {
-			finalZoom: ({scaleFactor, zoomFactor}) => scaleFactor * zoomFactor,
 			horizontalLayout: ({verticalLayout}) => !verticalLayout
 		},
 		data() {
@@ -216,15 +220,12 @@
 				}, {
 					axis: 'x',
 					dir: -1
-				}],
-				scaleFactor: 1,
-				zoomFactor: 0.65
+				}]
 			}
 		},
 		helpers: {
 			getColor,
-			getSideText,
-
+			getSideText
 		},
 		methods: {
 			moveDown(
@@ -299,28 +300,45 @@
 							}
 						}*/
 		},
-		onstate({changed, current}) {
-			if (!current.poll) {
-				return
-			}
-
-			let cubeElement
-			if (changed.cubeView) {
-				cubeElement = document.getElementById('cube')
-				cubeElement.classList.remove('cubeView')
-				if (current.cubeView) {
-					cubeElement.classList.add('cubeView')
-				}
-			}
-
-			if (changed.moveType) {
-				cubeElement = document.getElementById('cube')
-				cubeElement.classList.remove('toggle')
-				if (current.moveType === 'toggle') {
-					cubeElement.classList.add('toggle')
-				}
-			}
-		}
+		oncreate() {
+			setView('cube')
+			mutationApi.recompute()
+		},
+		ondestroy() {
+			clearView('cube')
+		},
+		// onstate({changed, current}) {
+		// 	if (!current.poll) {
+		// 		return
+		// 	}
+		//
+		// 	// let cubeElement
+		// 	// if (changed.cubeView) {
+		// 	// 	let options = {
+		// 	// 		// x: 400,
+		// 	// 		// y: 400,
+		// 	// 		// duration: 700
+		// 	// 	}
+		// 	// 	// cubeElement = document.getElementById('cube')
+		// 	// 	// cubeElement.classList.remove('cubeView')
+		// 	// 	// if (current.cubeView) {
+		// 	// 	// 	cubeElement.classList.add('cubeView')
+		// 	// 	// 	// options.x = -options.x
+		// 	// 	// 	// options.y = -options.y
+		// 	// 	// }
+		// 	// 	setTimeout(() => {
+		// 	// 		transition(this, 'viewport', fade, options)
+		// 	// 	})
+		// 	// }
+		//
+		// 	if (changed.moveType) {
+		// 		cubeElement = document.getElementById('cube')
+		// 		cubeElement.classList.remove('toggle')
+		// 		if (current.moveType === 'toggle') {
+		// 			cubeElement.classList.add('toggle')
+		// 		}
+		// 	}
+		// }
 	}
 
 	function move(

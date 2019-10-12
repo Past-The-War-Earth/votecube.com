@@ -1,45 +1,40 @@
 <section
-		id="viewport"
-		style="
-  transform: scale({zoomFactor}, {zoomFactor});
-"
-		class:leftViewport="horizontalLayout"
+		id="viewportMin"
 >
 	<figure
-			id="cube"
+			id="cubeMin"
 	>
-		<!--			on:click="toggleView(cubeView, event)"-->
-		{#if poll}
+		{#if poll && vote}
 		{#each positions as position, i}
 		<div
 				class="surface"
-				id="s{i}"
+				id="sm{i}"
 				style="
             background-color: #{getColor(delta, poll, position.axis)};
               "
 		>
-			{#if position.dir == 1}
+
+			<!--{#if position.dir == 1}-->
 			<header>
-				{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
 			</header>
-			{/if}
-			{#if positionMode}
-			<Positioner
-					on:moveRight="moveRight(position.axis, position.dir, poll)"
-					on:moveDown="moveDown(position.axis, position.dir, poll)"
-					on:moveLeft="moveLeft(position.axis, position.dir, poll)"
-					on:moveUp="moveUp(position.axis, position.dir, poll)"
-					on:switchDir="switchDir(position.axis, position.dir, poll)"
-			></Positioner>
-			{/if}
+			<!--{/if}-->
 			<p>
-				{getSideText(delta, 'cube', poll, position.axis, position.dir)}
+				<CharacterButton
+						character="{factorOutcome(position)}"
+						fontSize="20"
+						fontX="12"
+						fontY="19"
+						size="24"
+						strokeWidth="1"
+						styles="left: 4px; position: absolute; top: 4px;"
+				></CharacterButton>
 			</p>
+			<!--
 			{#if position.dir == -1}
 			<footer>
-				{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
 			</footer>
 			{/if}
+			-->
 		</div>
 		{/each}
 		{/if}
@@ -51,14 +46,9 @@
 	header {
 		color: #fff;
 		background-color: #000;
-		font-size: 0.9em;
-		font-weight: 500;
-		line-height: 1em;
-		overflow: hidden;
-		text-align: center;
-		text-overflow: ellipsis;
 		width: 100%;
 		white-space: nowrap;
+		height: 5px;
 	}
 
 	footer {
@@ -72,41 +62,47 @@
 		padding: 0 10px;
 	}
 
+	section {
+		position: absolute;
+		left: 5px;
+		top: 5px;
+	}
+
 	.surface {
 		position: relative;
 	}
 
-	#viewport {
+	#viewportMin {
 		height: 100%;
-		perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
-		/* 1500 increases range from 11% to 9%, 2500 increases to 6% */
-		perspective-origin: 50% 160px; /* 670px; */
+		perspective: 90px; /* FIXME: make the cube more approachable 150px ~ 250px;*/
+		/* 150 increases range from 11% to 9%, 250 increases to 6% */
+		perspective-origin: 50% 16px; /* 670px; */
 		/*transform: scale(0.75,0.75);*/
 		width: 100%;
 	}
 
-	#cube {
-		height: 320px;
+	#cubeMin {
+		height: 32px;
 		margin: auto;
 		position: relative;
 		/*transform: rotateX(0deg) rotateY(-90deg);*/
 		transform-style: preserve-3d;
 		/*top: 50%;*/
-		width: 320px;
+		width: 32px;
 	}
 
-	#cube > div {
+	#cubeMin > div {
 		/*border: 5px groove gray;*/
-		border: 5px solid gray;
-		border-radius: 10px;
+		border: 1px solid gray;
+		border-radius: 2px;
 		color: #000;
 		font-size: 1.7em;
 		/*height: 320px;*/
-		height: 311px;
+		height: 31px;
 		line-height: 1.7em;
 		position: absolute;
 		/*width: 320px;*/
-		width: 311px;
+		width: 31px;
 		/*
 		height: 360px;
 		width: 360px;
@@ -117,47 +113,45 @@
 	}
 
 
-	#s0 {
+	#sm0 {
 		/*background: hsla(  0, 100%, 50%, 0.95);*/
-		transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
+		transform: rotateX(90deg) translateZ(16px) /*translateZ(200px)*/;
 	}
 
-	#s1 {
-		transform: translateZ(160px) /*translateZ(200px)*/;
+	#sm1 {
+		transform: translateZ(16px) /*translateZ(200px)*/;
 	}
 
-	#s2 {
-		transform: rotateY(90deg) translateZ(160px) /*translateZ(200px)*/;
+	#sm2 {
+		transform: rotateY(90deg) translateZ(16px) /*translateZ(200px)*/;
 	}
 
-	#s3 {
-		transform: rotateY(180deg) translateZ(160px) /*translateZ(200px)*/;
+	#sm3 {
+		transform: rotateY(180deg) translateZ(16px) /*translateZ(200px)*/;
 	}
 
-	#s4 {
-		transform: rotateY(-90deg) translateZ(160px) /*translateZ(200px)*/;
+	#sm4 {
+		transform: rotateY(-90deg) translateZ(16px) /*translateZ(200px)*/;
 	}
 
-	#s5 {
-		transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
+	#sm5 {
+		transform: rotateX(-90deg) rotate(180deg) translateZ(16px) /*translateZ(200px)*/;
 	}
 
 </style>
 
 <script>
 	import {
-		getColor,
-		getSideText
-	}                 from '../../helpers/cube'
-	import Positioner from './create/Positioner.html'
+		clearView,
+		mutationApi,
+		setView
+	}                      from '@votecube/cube-logic'
+	import CharacterButton from '../../common/control/button/CharacterButton.html'
+	import {getColor}      from '../../helpers/cube'
 
 	export default {
 		components: {
-			Positioner
-		},
-		computed: {
-			finalZoom: ({scaleFactor, zoomFactor}) => scaleFactor * zoomFactor,
-			horizontalLayout: ({verticalLayout}) => !verticalLayout
+			CharacterButton
 		},
 		data() {
 			return {
@@ -179,151 +173,23 @@
 				}, {
 					axis: 'x',
 					dir: -1
-				}],
-				scaleFactor: 1,
-				zoomFactor: 0.65
+				}]
 			}
 		},
 		helpers: {
-			getColor,
-			getSideText,
-
+			factorOutcome: (
+				position
+			) => position.dir > 0 ? 'A' : 'B',
+			getColor
 		},
-		methods: {}
-	}
-
-	function move(
-		component,
-		poll,
-		axis,
-		dir,
-		switchToDefinitions
-	) {
-		let switchPositions = getSwitchArray(axis, dir, switchToDefinitions)
-		repositionAll(poll, switchPositions)
-
-		component.fire('cubeAltered')
-	}
-
-	function switchPoles(
-		component,
-		poll,
-		axis,
-		dir
-	) {
-		let switchPositions = [{
-			axis,
-			dir
+		methods: {},
+		oncreate() {
+			setView('cubeMin')
+			mutationApi.recompute()
 		},
-			{
-				axis,
-				dir: dir === 1 ? -1 : 1
-			}]
-
-		const switchPollFactorPositions = getSwitchPollFactorPositions(poll, switchPositions)
-		reposition(switchPollFactorPositions, 0, 1)
-
-		component.fire('cubeAltered')
-	}
-
-	function getSwitchArray(
-		axis,
-		dir,
-		switchToDefinitions
-	) {
-		switch (axis) {
-			case 'x':
-				if (dir == 1) {
-					// X+ -> Z+
-					return getSwitchPositions('x', 1, switchToDefinitions[0])
-				} else {
-					// X- -> Z-
-					return getSwitchPositions('x', -1, switchToDefinitions[1])
-				}
-			case 'y':
-				if (dir == 1) {
-					// Y+ -> Z+
-					return getSwitchPositions('y', 1, switchToDefinitions[2])
-				} else {
-					// Y- -> Z-
-					return getSwitchPositions('y', -1, switchToDefinitions[3])
-				}
-			case 'z':
-				if (dir == 1) {
-					// Z+ -> Y-
-					return getSwitchPositions('z', 1, switchToDefinitions[4])
-				} else {
-					// Z- -> Y+
-					return getSwitchPositions('z', -1, switchToDefinitions[5])
-				}
-		}
-	}
-
-	function getSwitchPositions(
-		axis,
-		dir,
-		to
-	) {
-		const [toAxis, toDir] = to
-		const oppositeDir     = dir == 1 ? -1 : 1
-		const toOppositeDir   = toDir == 1 ? -1 : 1
-		return [{
-			axis,
-			dir
+		ondestroy() {
+			clearView('cubeMin')
 		},
-			{
-				axis: toAxis,
-				dir: toDir
-			},
-			{
-				axis,
-				dir: oppositeDir
-			},
-			{
-				axis: toAxis,
-				dir: toOppositeDir
-			}]
-	}
-
-	function repositionAll(
-		poll,
-		switchPositions
-	) {
-		const switchPollFactorPositions = getSwitchPollFactorPositions(poll, switchPositions)
-		reposition(switchPollFactorPositions, 0, 1)
-		reposition(switchPollFactorPositions, 2, 3)
-	}
-
-	function getSwitchPollFactorPositions(
-		poll,
-		switchPositions
-	) {
-		const switchPollFactorPositions = []
-		switchPositions.forEach((
-			switchPosition
-		) => {
-			switchPollFactorPositions.push(poll.pollsFactorsPositions.filter(
-				pollFactorPosition =>
-					switchPosition.axis === pollFactorPosition.axis
-					&& switchPosition.dir === pollFactorPosition.dir)[0])
-		})
-
-		return switchPollFactorPositions
-	}
-
-	function reposition(
-		switchPollFactorPositions,
-		fromIndex,
-		toIndex
-	) {
-		const fromFactorPosition                            = switchPollFactorPositions[fromIndex].factorPosition
-		const fromColor                                     = switchPollFactorPositions[fromIndex].color
-		const toFactorPosition                              = switchPollFactorPositions[toIndex].factorPosition
-		const toColor                                       = switchPollFactorPositions[toIndex].color
-		switchPollFactorPositions[fromIndex].factorPosition = toFactorPosition
-		switchPollFactorPositions[fromIndex].color          = toColor
-		switchPollFactorPositions[toIndex].factorPosition   = fromFactorPosition
-		switchPollFactorPositions[toIndex].color            = fromColor
 	}
 
 </script>

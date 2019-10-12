@@ -116,6 +116,9 @@ export class MutationApi
 	}
 
 	recompute(): void {
+		if (!this.vp.pd) {
+			return
+		}
 		const closestMatrixPosition = this.matrixValueChooser.getClosestMatrixPosition(this.vp)
 
 		const finalPosition = this.finalPositionFinder.findFinalPosition(closestMatrixPosition, this.vp)

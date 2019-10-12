@@ -22,7 +22,7 @@ export interface IViewport {
 
 	cb: IValuesOutCallback,
 	cr: ICubeRotation,
-	el: Element | null
+	el: { [elementId: string]: Element }
 	increment: MoveIncrement
 	pd: IUiVote
 	// Recently Moved Dimension
@@ -72,7 +72,7 @@ export const viewport: IViewport = {
 		x: 0,
 		y: 0
 	},
-	el: null,
+	el: {},
 	increment: MoveIncrement.FIVE,
 	pd: null,
 	// Recently moved factor
@@ -98,7 +98,7 @@ export const viewport: IViewport = {
 		moveY: Bool,
 		yBy: Move
 	): void {
-		if (!this.el) {
+		if (!Object.keys(this.el).length) {
 			return
 		}
 		if (!moveX && !moveY) {
@@ -154,12 +154,13 @@ export const viewport: IViewport = {
 	moveToDegree(): void {
 		// console.log('x: ' + this.x + '\t\ty: ' + this.y)
 		this.cb(this.pd)
-		if (this.el) {
-			this.el.style.transform = 'rotateX(' + this.x + 'deg) rotateY(' + this.y + 'deg)'
+
+		for (const elementId in this.el) {
+			this.el[elementId].style.transform = 'rotateX(' + this.x + 'deg) rotateY(' + this.y + 'deg)'
 		}
 	},
 	reset(): void {
-		if (!this.el) {
+		if (!Object.keys(this.el).length) {
 			return
 		}
 		this.increment = MoveIncrement.FIVE

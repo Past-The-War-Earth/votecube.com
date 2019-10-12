@@ -1,109 +1,143 @@
 <table
 		class="{classes}"
 >
-	<tr>
+	{#each voteDims as voteDim, i}
+	{#if showPosition(voteDim, delta)}
+	<tr
+			transition:fade
+	>
+		{#if !i || cubeView}
 		<td
-				class="plus"
+				class="ranking"
+				on:click="onClick(cubeView)"
+				rowspan="{cubeView ? 1 : 3}"
 		>
+			{#if !cubeView}
+			<CubeMiniature
+					poll="{poll}"
+					vote="{vote}"
+			></CubeMiniature>
+			{/if}
+			{#if cubeView}
+			<figure
+					style="background-color: #{getColor(delta, poll, voteDim.axis)};"
+			>
+<!--				{#if voteDim.dir === 1}-->
+				<header></header>
+<!--				{:else}-->
+<!--				<footer></footer>-->
+<!--				{/if}-->
+				<CharacterButton
+						character="{factorOutcome(voteDim)}"
+						fontSize="20"
+						fontX="12"
+						fontY="19"
+						size="24"
+						strokeWidth="1"
+						styles="left: {factorMiniLeft(voteDim)}px; position: absolute; top: 1px;"
+				></CharacterButton>
+			</figure>
+			{/if}
+		</td>
+		{/if}
+		<td
+				class="a"
+		>
+			{#if haveWidth(voteDim, 1, delta)}
+			<div
+					class="bar {aClass(voteDim)}"
+					style="
+        background-color: #{getColor(delta, poll, voteDim.axis)};
+        width: {getWidth(voteDim, delta)}%;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+		<td
+				class="b"
+		>
+			{#if haveWidth(voteDim, -1, delta)}
+			<div
+					class="bar {bClass(voteDim)}"
+					style="
+        background-color: #{getColor(delta, poll, voteDim.axis)};
+        width: {getWidth(voteDim, delta)}%;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+		<td
+				class="percent"
+		>
+			<!--
+			<CharacterButton
+					character="{factorOutcome(voteDim)}"
+					fontSize="20"
+					fontX="12"
+					fontY="19"
+					size="24"
+					strokeWidth="1"
+					styles="left: 3px; position: absolute; top: 3px;"
+			></CharacterButton>
+			-->
+			<span>{voteDim.value}%</span>
+		</td>
+	</tr>
+	{/if}
+	{/each}
+	<tr>
+		<td>
+		</td>
+		<td
+		>
+			<div
+					class="spacer"
+			></div>
 			<div
 					class="aAxisLabel"
 			>
 				A 100%
 			</div>
 			<div
-					class="bAxisLabel"
-			>
-				B 100%
-			</div>
-			<div
 					class="zeroAxisLabel"
 			>
 				0%
 			</div>
-			{#if zPlusWidth}
+		</td>
+		<td>
 			<div
-					class="{zPlus}"
-					style="
-        background-color: #{getColor(delta, poll, 'z')};
-        width: {zPlusWidth}px;
-            "
+					class="spacer"
+			></div>
+			<div
+					class="bAxisLabel"
 			>
+				B 100%
 			</div>
-			{/if}
 		</td>
 		<td
-				class="minus"
+				class="overall"
 		>
-			{#if zMinusWidth}
-			<div
-					class="{zMinus}"
-					style="
-        background-color: #{getColor(delta, poll, 'z')};
-        width: {zMinusWidth}px;
-            "
-			>
-			</div>
-			{/if}
-		</td>
-	</tr>
-	<tr>
-		<td
-				class="plus"
-		>
-			{#if yPlusWidth}
-			<div
-					class="{yPlus}"
-					style="
-        background-color: #{getColor(delta, poll, 'y')};
-        width: {yPlusWidth}px;
-            "
-			>
-			</div>
-			{/if}
-		</td>
-		<td
-				class="minus"
-		>
-			{#if yMinusWidth}
-			<div
-					class="{yMinus}"
-					style="
-        background-color: #{getColor(delta, poll, 'y')};
-        width: {yMinusWidth}px;
-            "
-			>
-			</div>
-			{/if}
-		</td>
-	</tr>
-	<tr>
-		<td
-				class="plus"
-		>
-			{#if xPlusWidth}
-			<div
-					class="{xPlus}"
-					style="
-        background-color: #{getColor(delta, poll, 'x')};
-        width: {xPlusWidth}px;
-            "
-			>
-			</div>
-			{/if}
-		</td>
-		<td
-				class="minus"
-		>
-			{#if xMinusWidth}
-			<div
-					class="{xMinus}"
-					style="
-        background-color: #{getColor(delta, poll, 'x')};
-        width: {xMinusWidth}px;
-            "
-			>
-			</div>
-			{/if}
+			<summary>
+		<span
+				class="totalLabel"
+		>Total:</span>
+				<CharacterButton
+						character="{outcome}"
+						fontSize="22"
+						fontX="13"
+						fontY="21"
+						size="26"
+						strokeWidth="1"
+						styles="left: 40px; position: absolute; top: 3px;"
+				></CharacterButton>
+				<span
+						class="total"
+				>
+		{total}%
+		</span>
+			</summary>
 		</td>
 	</tr>
 </table>
@@ -117,55 +151,143 @@
 	}
 	 */
 
-	div {
-		height: 26px;
+	div.bar {
+		height: 23px;
 		margin-top: 3px;
 	}
 
-
-	table {
-		float: right;
-		height: 78px;
-		position: relative;
-		width: 240px;
+	div.spacer {
+		height: 1px;
+		width: 100%;
+		border-right: 1px solid white;
 	}
 
-	table.right {
-		float: right;
+	figure {
+		width: 45px;
+		height: 25px;
+		position: relative;
+		border: 1px solid gray;
+		border-radius: 3px;
+	}
+
+	footer {
+		bottom: 0px;
+	}
+
+	header,
+	footer {
+		width: 100%;
+		height: 5px;
+		position: absolute;
+		background-color: black;
+	}
+
+	header {
+		top: 0px
+	}
+
+	.overall .total {
+		font-size: 1.7em;
+	}
+
+	span {
+		display: inline-block;
+		color: black;
+		font-size: 1.4em;
+		font-weight: bold;
+		height: 29px;
+		left: 19px;
+		line-height: 30px;
+		position: absolute;
+		top: 0px;
+		vertical-align: center;
+	}
+
+	span.total {
+		left: 70px;
+	}
+
+	span.totalLabel {
+		font-weight: normal;
+		left: -20px;
+	}
+
+	summary {
+		border-top: 1px solid gray;
+		bottom: -40px;
+		color: black;
+		left: -50px;
+		padding-top: 10px;
+		position: absolute;
+		width: 150px;
+	}
+
+	/*
+	https://stackoverflow.com/questions/15873302/using-calc-with-tables
+	 */
+	table {
+		/* required for table-layout to be used
+			(since this is the default value it is normally not necessary;
+		just included for completeness) */
+		/*display: table;*/
+		position: relative;
+		table-layout: fixed; /* this keeps your columns with at the defined width */
+		width: 100%; /* a width must be specified */
+	}
+
+	td {
+		/*padding-top: 1px;*/
+		position: relative;
+	}
+
+	td.ranking {
+		width: 80px;
+	}
+
+	td.a {
+		border-left: 1px solid gray;
+	}
+
+	td.b {
+		border-right: 1px solid gray;
+	}
+
+	td.percent {
+		width: 80px;
+	}
+
+	.a {
+		border-right: 1px solid black;
 	}
 
 	.aAxisLabel {
-		bottom: -30px;
+		bottom: -20px;
 		left: -20px;
 		position: absolute;
 	}
 
 	.bAxisLabel {
-		bottom: -30px;
+		bottom: -20px;
 		position: absolute;
 		right: -25px;
 	}
 
 	.zeroAxisLabel {
-		bottom: -30px;
+		bottom: -20px;
 		position: absolute;
-		left: 112px;
+		right: -14px;
 	}
 
 	.leftDirection {
 		border-left: 2px solid black;
 	}
 
-	.minus,
-	.plus {
-		width: 120px;
+	.b,
+	.a {
+		width: calc(50% - 80px);
 	}
 
-	.plus {
-		border-right: 1px solid black;
-	}
-
-	.plus div {
+	.a div {
 		float: right
 	}
 
@@ -190,7 +312,7 @@
 			margin-bottom: 0px;
 		}*/
 
-	.plus td {
+	.a td {
 		/*vertical-align: bottom;*/
 		border-right: 1px solid black;
 	}
@@ -198,68 +320,63 @@
 </style>
 
 <script>
-	import {getColor} from '../../helpers/cube'
+	import {
+		fade,
+		fly
+	}                      from 'svelte-transitions'
+	import CharacterButton from '../../common/control/button/CharacterButton.html'
+	import {getColor}      from '../../helpers/cube'
+	import CubeMiniature   from '../poll/CubeMiniature.html'
+	import DetailedCube    from '../poll/DetailedCube.html'
 
 	export default {
-		computed: {
-			xMinus: ({xMinusWidth}) => xMinusWidth ? 'rightDirection' : '',
-			xPlus: ({xPlusWidth}) => xPlusWidth ? 'leftDirection' : '',
-			yMinus: ({yMinusWidth}) => yMinusWidth ? 'rightDirection' : '',
-			yPlus: ({yPlusWidth}) => yPlusWidth ? 'leftDirection' : '',
-			zMinus: ({zMinusWidth}) => zMinusWidth ? 'rightDirection' : '',
-			zPlus: ({zPlusWidth}) => zPlusWidth ? 'leftDirection' : ''
+		components: {
+			CharacterButton,
+			CubeMiniature,
+			DetailedCube
 		},
-		data: () => {
-			return {
-				maxBarSize: 120,
-				xMinusWidth: 0,
-				xPlusWidth: 0,
-				yMinusWidth: 0,
-				yPlusWidth: 0,
-				zMinusWidth: 0,
-				zPlusWidth: 0,
-			}
+		computed: {
+			signedTotal: ({voteDims, delta}) => voteDims.reduce((
+				total,
+				voteDim
+			) => total + voteDim.value * voteDim.dir, 0),
+			outcome: ({signedTotal}) => {
+				if (signedTotal === 0) {
+					return ' '
+				}
+				return signedTotal > 0 ? 'A' : 'B'
+			},
+			total:
+				({signedTotal}) => Math.abs(signedTotal),
+			// outcomeFontY: ({outcome}) => outcome === 'B' ? 21 : 21
 		},
 		helpers: {
-			getColor
+			aClass:
+				voteDim => voteDim.dir === 1 ? 'leftDirection' : '',
+			bClass:
+				voteDim => voteDim.dir === -1 ? 'rightDirection' : '',
+			factorOutcome:
+				voteDim => voteDim.dir > 0 ? 'A' : 'B',
+			factorMiniLeft:
+				voteDim => voteDim.dir > 0 ? 0 : 19,
+			getColor,
+			getWidth:
+				voteDim => voteDim.value,
+			haveWidth: (
+				voteDim,
+				dir
+			) => voteDim.dir === dir,
+			showPosition:
+				voteDim => voteDim.value,
 		},
-		onstate({changed, current}) {
-			if (!current.vote || !changed.delta) {
-				return
+		methods: {
+			onClick(cubeView) {
+				this.fire('toggleView')
 			}
-
-			const cubeView   = current.cubeView
-			const maxBarSize = current.maxBarSize
-			const vote       = current.vote
-
-			this.set({
-				xMinusWidth: barWidth(cubeView, vote.x, -1, maxBarSize),
-				xPlusWidth: barWidth(cubeView, vote.x, 1, maxBarSize),
-				yMinusWidth: barWidth(cubeView, vote.y, -1, maxBarSize),
-				yPlusWidth: barWidth(cubeView, vote.y, 1, maxBarSize),
-				zMinusWidth: barWidth(cubeView, vote.z, -1, maxBarSize),
-				zPlusWidth: barWidth(cubeView, vote.z, 1, maxBarSize)
-			})
-		}
-	}
-
-	function barWidth(
-		cubeView,
-		voteFactor,
-		position,
-		maxBarSize
-	) {
-		if (!voteFactor) {
-			return 0
-		}
-		if (cubeView) {
-			return voteFactor.dir === position
-				? voteFactor.value * maxBarSize / 100
-				: 0
-		} else {
-			return voteFactor.factorDir === position
-				? voteFactor.factorValue * maxBarSize / 100
-				: 0
+		},
+		transitions: {
+			fade,
+			fly
 		}
 	}
 

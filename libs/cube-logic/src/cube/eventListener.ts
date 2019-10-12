@@ -31,15 +31,25 @@ export function setViewPort(
 
 	if (forCube) {
 		if (cb) {
-			viewport.el = gQ('#cube')
 			addCubeAdjustment()
 		} else {
-			viewport.el = null
 			clearCubeAdjustment()
 		}
 	}
 
 	return cb ? mutationApi : null
+}
+
+export function setView(
+	elementId: string
+): void {
+	viewport.el[elementId] = gQ('#' + elementId)
+}
+
+export function clearView(
+	elementId: string
+): void {
+	delete viewport.el[elementId]
 }
 
 export function setPositionDataAndMove(
@@ -123,7 +133,13 @@ export function addCubeAdjustment(): void {
 
 	})
 	('mousedown', safeOMdTs)
-	('touchstart', safeOMdTs)
+	('touchstart', (
+		event
+	) => {
+		// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Supporting_both_TouchEvent_and_MouseEvent
+		event.preventDefault()
+		safeOMdTs(event)
+	})
 	('mouseup', safeRmMmTm)
 	('touchend', safeRmMmTm)
 
@@ -160,7 +176,7 @@ export function clearCubeAdjustment() {
 function oMdTs(
 	ev: MouseEvent | TouchEvent // Event
 ) {
-	if (!viewport.el) {
+	if (!Object.keys(viewport.el).length) {
 		return
 	}
 	rmMmTm()
@@ -211,7 +227,7 @@ export const TOUCH = document.ontouchmove !== undefined
 function oMmTm(
 	ev // event
 ) {
-	if (!viewport.el) {
+	if (!Object.keys(viewport.el).length) {
 		return
 	}
 	const t = ev.touches
@@ -231,7 +247,7 @@ function oMmTm(
  * Remove mousemove or touchmove
  */
 function rmMmTm() {
-	if (!viewport.el) {
+	if (!Object.keys(viewport.el).length) {
 		return
 	}
 	dLM.rm('mousemove')('touchmove')
