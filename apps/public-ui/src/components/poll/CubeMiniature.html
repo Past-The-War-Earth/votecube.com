@@ -3,17 +3,18 @@
 >
 	<figure
 			id="cubeMin"
+			style="transition: transform {transformMillis}ms linear;"
 	>
-		{#if poll && vote}
+		{#if poll}
 		{#each positions as position, i}
 		<div
-				class="surface"
+				class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 				id="sm{i}"
 				style="
-            background-color: #{getColor(delta, poll, position.axis)};
+            background-color: #{getColor(1, poll, position.axis)};
               "
 		>
-
+			{#if !loading && !rotating}
 			<!--{#if position.dir == 1}-->
 			<header>
 			</header>
@@ -35,52 +36,13 @@
 			</footer>
 			{/if}
 			-->
+			{/if}
 		</div>
 		{/each}
 		{/if}
 	</figure>
 </section>
 <style>
-
-	footer,
-	header {
-		color: #fff;
-		background-color: #000;
-		width: 100%;
-		white-space: nowrap;
-		height: 5px;
-	}
-
-	footer {
-		bottom: 0px;
-		position: absolute;
-	}
-
-	p {
-		margin-block-start: 0em;
-		margin-block-end: 0em;
-		padding: 0 10px;
-	}
-
-	section {
-		position: absolute;
-		left: 5px;
-		top: 5px;
-	}
-
-	.surface {
-		position: relative;
-	}
-
-	#viewportMin {
-		height: 100%;
-		perspective: 90px; /* FIXME: make the cube more approachable 150px ~ 250px;*/
-		/* 150 increases range from 11% to 9%, 250 increases to 6% */
-		perspective-origin: 50% 16px; /* 670px; */
-		/*transform: scale(0.75,0.75);*/
-		width: 100%;
-	}
-
 	#cubeMin {
 		height: 32px;
 		margin: auto;
@@ -112,7 +74,6 @@
 		*/
 	}
 
-
 	#sm0 {
 		/*background: hsla(  0, 100%, 50%, 0.95);*/
 		transform: rotateX(90deg) translateZ(16px) /*translateZ(200px)*/;
@@ -138,6 +99,59 @@
 		transform: rotateX(-90deg) rotate(180deg) translateZ(16px) /*translateZ(200px)*/;
 	}
 
+	#viewportMin {
+		height: 100%;
+		perspective: 90px; /* FIXME: make the cube more approachable 150px ~ 250px;*/
+		/* 150 increases range from 11% to 9%, 250 increases to 6% */
+		perspective-origin: 50% 16px; /* 670px; */
+		/*transform: scale(0.75,0.75);*/
+		width: 100%;
+	}
+
+	div {
+		transition: width 700ms, height 700ms, transform 700ms;
+		transition-timing-function: ease-out;
+	}
+
+	div.rotating {
+		transform: rotateX(180deg) rotateY(180deg) !important;
+	}
+
+	div.loading {
+		width: 1px !important;
+		height: 1px !important;
+	}
+
+	footer,
+	header {
+		color: #fff;
+		background-color: #000;
+		width: 100%;
+		white-space: nowrap;
+		height: 5px;
+	}
+
+	footer {
+		bottom: 0px;
+		position: absolute;
+	}
+
+	p {
+		margin-block-start: 0em;
+		margin-block-end: 0em;
+		padding: 0 10px;
+	}
+
+	section {
+		left: 0px;
+		position: absolute;
+		top: 23px;
+	}
+
+	.surface {
+		position: relative;
+	}
+
 </style>
 
 <script>
@@ -153,8 +167,12 @@
 		components: {
 			CharacterButton
 		},
+		computed: {
+			transformMillis: ({delta, vote}) => vote ? vote.changeMillis : 700
+		},
 		data() {
 			return {
+				loading: true,
 				positions: [{
 					axis: 'x',
 					dir: 1
@@ -173,7 +191,8 @@
 				}, {
 					axis: 'x',
 					dir: -1
-				}]
+				}],
+				rotating: false
 			}
 		},
 		helpers: {
@@ -186,10 +205,16 @@
 		oncreate() {
 			setView('cubeMin')
 			mutationApi.recompute()
+			setTimeout(() => {
+				this.set({loading: false, rotating: true})
+				setTimeout(() => {
+					this.set({rotating: false})
+				}, 700)
+			}, 100)
 		},
 		ondestroy() {
 			clearView('cubeMin')
-		},
+		}
 	}
 
 </script>

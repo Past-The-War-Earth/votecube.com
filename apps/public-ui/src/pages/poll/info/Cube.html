@@ -58,6 +58,7 @@
 	<VoteComponentGraph
 			cubeView="{effectiveCubeView}"
 			delta="{delta}"
+			factorDelta="{factorDelta}"
 			moveType="{moveType}"
 			on:cubeAltered="pollAltered()"
 			on:toggleView="toggleView(cubeView, !cubeView)"
@@ -65,7 +66,7 @@
 			positionMode="{positionMode}"
 			verticalLayout="{verticalLayout}"
 			vote="{vote}"
-			voteDims="{voteDims}"
+			voteDims="{currentVoteDims}"
 	></VoteComponentGraph>
 	<!-- the main view -->
 	<!--			class:ranking="!effectiveCubeView"-->
@@ -89,16 +90,18 @@
 						poll="{poll}"
 						positionMode="{positionMode}"
 						verticalLayout="{verticalLayout}"
+						vote="{vote}"
 				></DetailedCube>
 				{/if}
 				{#if !cubeView}
-<!--						on:directionCorrected="pollAltered()"-->
+				<!--						on:directionCorrected="pollAltered()"-->
 				<FactorRanking
 						delta="{delta}"
 						on:rankingAdjusted="pollAdjusted()"
 						poll="{poll}"
 						verticalLayout="{verticalLayout}"
 						vote="{vote}"
+						voteDims="{voteDims}"
 				></FactorRanking>
 				{/if}
 			</section>
@@ -200,9 +203,17 @@
 	{/if}
 </article>
 <style>
-	@media (min-width: 62em) {
-		article {
-			width: 54%;
+	article {
+		max-width: 420px;
+	}
+
+	@media (min-width: 321px) {
+		section.card {
+			top: 145px !important;
+		}
+
+		section.cube {
+			top: 56% !important;
 		}
 	}
 
@@ -215,16 +226,18 @@
 		width: 100%;
 	}
 
-	.card {
-		margin-left: 3px;
-		margin-right: 3px;
+	section.card {
+		left: 0px;
+		position: absolute;
+		top: 110px;
+		width: 100%;
 	}
 
-	.cube {
+	section.cube {
 		left: 50%;
 		margin-right: -50%;
 		position: absolute;
-		top: 42%;
+		top: 56%;
 		transform: translate(-50%, -50%);
 	}
 
@@ -292,16 +305,19 @@
 				effectiveCubeView ? delta : factorDelta,
 			effectiveCubeView: ({cubeView, beforeCubeView}) => cubeView && !beforeCubeView,
 			previewMode: ({$mode}) => $mode === 'build' || $mode === 'alter',
-			scale: ({cubeView, zoomFactor}) => cubeView
+			scale: ({effectiveCubeView, zoomFactor}) => effectiveCubeView
 				? `transform: scale(${zoomFactor}, ${zoomFactor});`
 				: '',
 			voteDims: ({delta, vote}) =>
-				getVoteDimsInValueOrder(vote)
+				getVoteDimsInValueOrder(vote),
+			currentVoteDims: ({delta, currentVote}) =>
+				getVoteDimsInValueOrder(currentVote)
 		},
 		data() {
 			return {
 				beforeCubeView: false,
-				cubeView: true,
+				beforeCardView: false,
+				cubeView: false,
 				currentVote: {
 					x: {
 						value: 0,
@@ -428,8 +444,7 @@
 				noOverflow: true
 			})
 			this.stateListener = this.on('state', ({changed, current, previous}) => {
-					if (current.cubeView
-						|| !changed.delta
+					if (!changed.delta
 						|| !current.vote) {
 						return
 					}
@@ -440,7 +455,7 @@
 					}
 
 					let lastVote = currentVote
-					currentVote  = copyVoteToTween(current.vote)
+					currentVote  = copyVoteToTween(current.vote, lastVote)
 
 					// Not needed, current vote is always set
 					// if (!lastVote) {
@@ -455,6 +470,7 @@
 					let currentVoteInterval = scheduleFactorTweens(
 						lastVote,
 						currentVote,
+						current.vote.changeMillis ? current.vote.changeMillis : 400,
 						this
 					)
 					this.set({currentVote, currentVoteInterval})
@@ -496,8 +512,13 @@
 			}
 		} else {
 			if (currentlyInCubeView) {
+				// Animate Factor Rankings out of the view
+				page.set({beforeCardView: true})
 				page.get().cubeListener.suspendInteraction()
 				page.set({cubeView: forCubeView})
+				setTimeout(() => {
+					page.set({beforeCardView: false})
+				}, 701)
 			}
 		}
 	}
@@ -562,18 +583,28 @@
 	}
 
 	function copyVoteToTween(
-		vote
+		vote,
+		lastVote
 	) {
 		return {
 			x: {
+				axis: 'x',
+				factorDir: lastVote.x.dir,
+				factorValue: lastVote.x.value,
 				value: vote.x.value,
 				dir: vote.x.dir
 			},
 			y: {
+				axis: 'y',
+				factorDir: lastVote.y.dir,
+				factorValue: lastVote.y.value,
 				value: vote.y.value,
 				dir: vote.y.dir
 			},
 			z: {
+				axis: 'z',
+				factorDir: lastVote.z.dir,
+				factorValue: lastVote.z.value,
 				value: vote.z.value,
 				dir: vote.z.dir
 			}
@@ -583,12 +614,12 @@
 	function scheduleFactorTweens(
 		oldVote,
 		newVote,
+		durationMillis,
 		page
 	) {
-		const durationMills = 400
-		// const durationMills    = 15000
-		// const durationMills    = 300
-		const numFrames        = Math.ceil(durationMills / 17)
+		// const durationMillis    = 15000
+		// const durationMillis    = 300
+		const numFrames        = Math.ceil(durationMillis / 17)
 		let numRemainingFrames = numFrames
 
 		let config = {}

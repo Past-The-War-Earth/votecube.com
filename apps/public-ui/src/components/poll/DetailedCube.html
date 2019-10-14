@@ -5,12 +5,13 @@
 	{#if poll}
 	{#each positions as position, i}
 	<div
-			class="surface"
+			class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 			id="s{i}"
 			style="
             background-color: #{getColor(delta, poll, position.axis)};
               "
 	>
+		{#if !loading && !rotating}
 		<header>
 			{#if position.dir > 0}
 			<!--						character="A"-->
@@ -66,11 +67,21 @@
 		</footer>
 		{/if}
 		-->
+		{/if}
 	</div>
 	{/each}
 	{/if}
 </figure>
 <style>
+
+	@media (min-width: 321px) {
+
+		#cube > div {
+			font-size: 1.9em;
+			line-height: 1.2em;
+		}
+
+	}
 
 	#cube {
 		height: 320px;
@@ -88,7 +99,7 @@
 		border-radius: 10px;
 		color: #000;
 		/*font-size: 2.0em;*/
-		font-size: 1.9em;
+		font-size: 1.7em;
 		font-weight: bold;
 		/*height: 320px;*/
 		height: 311px;
@@ -130,6 +141,20 @@
 
 	#s5 {
 		transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
+	}
+
+	div {
+		transition: width 700ms, height 700ms, transform 700ms;
+		transition-timing-function: ease-out;
+	}
+
+	div.rotating {
+		transform: rotateX(180deg) rotateY(180deg) !important;
+	}
+
+	div.loading {
+		width: 1px !important;
+		height: 1px !important;
 	}
 
 	/*footer,*/
@@ -185,6 +210,10 @@
 		mutationApi,
 		setView
 	}                      from '@votecube/cube-logic'
+	import {
+		fade,
+		fly
+	}                      from 'svelte-transitions'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import {
 		getColor,
@@ -202,6 +231,7 @@
 		},
 		data() {
 			return {
+				loading: true,
 				positions: [{
 					axis: 'x',
 					dir: 1
@@ -220,7 +250,8 @@
 				}, {
 					axis: 'x',
 					dir: -1
-				}]
+				}],
+				rotating: false
 			}
 		},
 		helpers: {
@@ -303,10 +334,28 @@
 		oncreate() {
 			setView('cube')
 			mutationApi.recompute()
+			this.stateListener = this.on('state', ({changed, current, previous}) => {
+				if (current.vote) {
+					this.get().vote.changeMillis = 128
+					if (this.stateListener) {
+						this.stateListener.cancel()
+					}
+				}
+			})
+			setTimeout(() => {
+				this.set({loading: false, rotating: true})
+				setTimeout(() => {
+					this.set({rotating: false})
+				}, 700)
+			}, 100)
 		},
 		ondestroy() {
 			clearView('cube')
 		},
+		transitions: {
+			fade,
+			fly
+		}
 		// onstate({changed, current}) {
 		// 	if (!current.poll) {
 		// 		return

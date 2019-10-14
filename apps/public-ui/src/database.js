@@ -1,4 +1,8 @@
 import {DI}            from '@airport/di'
+import {
+	mutationApi,
+	setPositionData
+}                      from '@votecube/cube-logic'
 import {VOTE_DAO}      from '@votecube/public-db'
 import {loadCubeLogic} from './libs/cubeLogic'
 
@@ -30,6 +34,8 @@ export async function setupCubeView(
 		}
 		return
 	}
+	setPositionData(vote)
+	mutationApi.recompute()
 	const poll = vote.poll
 	page.set({poll, vote})
 	setPositionDataAndMove(vote)

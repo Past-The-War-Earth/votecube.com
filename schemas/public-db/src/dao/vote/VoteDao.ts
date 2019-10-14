@@ -111,18 +111,18 @@ export class VoteDao
 			poll,
 			x: {
 				axis: 'x',
-				dir: 0,
-				value: 0
+				dir: 1,
+				value: 33
 			},
 			y: {
 				axis: 'y',
 				dir: 1,
-				value: 100
+				value: 34
 			},
 			z: {
 				axis: 'z',
-				dir: 0,
-				value: 0
+				dir: -1,
+				value: 33
 			}
 		} as any
 	}
