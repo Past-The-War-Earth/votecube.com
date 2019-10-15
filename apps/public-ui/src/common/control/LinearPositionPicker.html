@@ -1,26 +1,34 @@
 <tr>
 	<td>
 		<div
-						on:mousedown="mouseDown(-1, event)"
-						on:mouseup="mouseUp(-1, event)"
-						on:touchstart="mouseDown(-1, event)"
-						on:touchend="mouseUp(-1, event)"
+				on:mousedown="mouseDown(1, event)"
+				on:mouseup="mouseUp(1, event)"
+				on:touchstart="mouseDown(1, event)"
+				on:touchend="mouseUp(1, event)"
 		>
 			<LeftButton
-							circleRadius="{leftCircleRadius}"
-							fillColor="{leftFillColor}"
-							highlightColor="{leftHighlightColor}"
-							strokeWidth="{leftStrokeWidth}"
+					circleRadius="{leftCircleRadius}"
+					fillColor="{leftFillColor}"
+					highlightColor="{leftHighlightColor}"
+					strokeWidth="{leftStrokeWidth}"
+					styles="left: 0px; position: absolute; top: 0px;"
 			></LeftButton>
 		</div>
 	</td>
 	<td>
-		<input
-						maxlength="3"
-						on:input="moveToValue(this.value)"
-						ref:input
-						value="{value.value}"
+		<figure
+				class:factor="voteDim.value"
+				style="background-color: {factorColor};"
 		>
+
+			<input
+					maxlength="3"
+					on:input="moveToValue(this.value)"
+					ref:input
+					value="{voteDim.value}"
+			>
+			<span>%</span>
+		</figure>
 		<!--
 						style="
 				border-bottom: {valueBottomBorder};
@@ -30,16 +38,17 @@
 	<td
 	>
 		<div
-						on:mousedown="mouseDown(1, event)"
-						on:mouseup="mouseUp(1, event)"
-						on:touchstart="mouseDown(1, event)"
-						on:touchend="mouseUp(1, event)"
+				on:mousedown="mouseDown(-1, event)"
+				on:mouseup="mouseUp(-1, event)"
+				on:touchstart="touchStart(-1, event)"
+				on:touchend="mouseUp(-1, event)"
 		>
 			<RightButton
-							circleRadius="{rightCircleRadius}"
-							fillColor="{rightFillColor}"
-							highlightColor="{rightHighlightColor}"
-							strokeWidth="{rightStrokeWidth}"
+					circleRadius="{rightCircleRadius}"
+					fillColor="{rightFillColor}"
+					highlightColor="{rightHighlightColor}"
+					strokeWidth="{rightStrokeWidth}"
+					styles="left: 0px; position: absolute; top: 0px;"
 			></RightButton>
 		</div>
 	</td>
@@ -49,25 +58,56 @@
 
 	div {
 		display: inline-block;
+		height: 50px;
+		position: relative;
+		width: 50px;
+	}
+
+	figure {
+		border-top: 10px solid transparent;
+		display: inline-block;
+		height: 60px;
+		margin: auto;
+		position: relative;
+		width: 110px;
 	}
 
 	input {
 		background: transparent;
 		border: 0px;
-		width: 100%;
-		text-align: center;
+		font-family: "Lucida Console";
+		left: 0px;
+		margin: 0px;
+		padding: 0px 15px 0px 0px;
+		position: absolute;
+		text-align: right;
+		top: 0px;
+		width: 85px;
+	}
+
+	span {
+		font-family: "Lucida Console";
+		font-size: 0.7em;
+		position: absolute;
+		right: 17px;
+		top: 9px;
 	}
 
 	td {
 		font-size: 0.8em;
-		height: 70px;
 		width: 33%;
+	}
+
+	.factor {
+		border: 1px solid black;
+		border-radius: 4px;
+		border-top: 10px solid;
 	}
 
 </style>
 
 <script>
-	import {getColor}  from '../../helpers/cube';
+	import {getColor}  from '../../helpers/cube'
 	import LeftButton  from './button/LeftButton.html'
 	import RightButton from './button/RightButton.html'
 
@@ -78,32 +118,27 @@
 		},
 		computed: {
 			// valueBottomBorder: ({moveToValueDelta, value}) => getInputBorder(value),
-			leftCircleRadius: ({moveDelta, value}) => getRadius(-1, value),
-			rightCircleRadius: ({moveDelta, value}) => getRadius(1, value),
-			leftStrokeWidth: ({moveDelta, value}) => getStrokeWidth(-1, value),
-			rightStrokeWidth: ({moveDelta, value}) => getStrokeWidth(1, value),
-			leftHighlightColor: ({axis, moveDelta, poll, value}) => getTheColor([1, 0], value, poll, axis),
-			rightHighlightColor: ({axis, moveDelta, poll, value}) => getTheColor([-1, 0], value, poll, axis),
-			leftFillColor: ({axis, moveDelta, poll, value}) => getTheColor([-1], value, poll, axis),
-			rightFillColor: ({axis, moveDelta, poll, value}) => getTheColor([1], value, poll, axis),
+			leftCircleRadius: ({moveDelta, voteDim}) => getRadius(1, voteDim),
+			rightCircleRadius: ({moveDelta, voteDim}) => getRadius(-1, voteDim),
+			leftStrokeWidth: ({moveDelta, voteDim}) => getStrokeWidth(1, voteDim),
+			rightStrokeWidth: ({moveDelta, voteDim}) => getStrokeWidth(-1, voteDim),
+			leftHighlightColor: ({moveDelta, voteDim}) => getButtonColor([-1, 0], voteDim),
+			rightHighlightColor: ({moveDelta, voteDim}) => getButtonColor([1, 0], voteDim),
+			leftFillColor: ({moveDelta, voteDim}) => getButtonColor([1], voteDim),
+			rightFillColor: ({moveDelta, voteDim}) => getButtonColor([-1], voteDim),
+			factorColor: ({moveDelta, poll, voteDim}) => voteDim.dir
+				? '#' + getColor(moveDelta, poll, voteDim.axis)
+				: 'initial'
+		},
+		helpers: {
+			getColor
 		},
 		methods: {
 			mouseDown(
 				position,
 				event
 			) {
-				event.preventDefault()
-
-				const percentChange = 1
-				this.set({lastNumIncs: 5, percentChange})
-
-				this.fire('move', {
-					position,
-					percentChange
-				})
-
-				setIntrvl(this, 360, position, 4, 3, 1)
-				this.fire('update')
+				onPress(position, event, this)
 			},
 			mouseUp(
 				position,
@@ -118,6 +153,13 @@
 			) {
 				this.fire('moveToValue', value)
 				// this.set({moveToValueDelta: this.get().moveToValueDelta + 1})
+			},
+			touchStart(
+				position,
+				event
+			) {
+				event.preventDefault()
+				onPress(position, event, this)
 			}
 		},
 		oncreate() {
@@ -135,11 +177,16 @@
 	) {
 		let numIncs       = page.get().numIncs - 1
 		let percentChange = page.get().percentChange
-		let position     = page.get().position
+		let position      = page.get().position
+		if (page.get().lastVoteDim !== page.get().voteDim) {
+			clearIntrvl(page)
+			page.set({numIncs: 0})
+			return
+		}
 		page.fire('move', {
 			position,
 			percentChange
-		});
+		})
 		if (!numIncs) {
 			clearIntrvl(page)
 			let numReIncs = page.get().numReIncs - 1
@@ -148,7 +195,7 @@
 			}
 			let interval  = page.get().interval / 2
 			let numIncs   = page.get().lastNumIncs * 2
-			percentChange = percentChange * 3
+			percentChange = percentChange * 2
 			page.set({lastNumIncs: numIncs})
 			setIntrvl(page, interval, position, numIncs, numReIncs, percentChange)
 		} else {
@@ -177,7 +224,7 @@
 	) {
 		let incrementInterval = page.get().incrementInterval
 		if (incrementInterval) {
-			clearInterval(incrementInterval);
+			clearInterval(incrementInterval)
 		}
 	}
 
@@ -192,31 +239,49 @@
 
 	function getRadius(
 		dir,
-		value
+		voteDim
 	) {
-		return dir === value.dir
+		return dir === voteDim.dir
 			? 24
 			: 23
 	}
 
 	function getStrokeWidth(
 		dir,
-		value
+		voteDim
 	) {
-		return dir === value.dir
+		return dir === voteDim.dir
 			? 0
 			: 3
 	}
 
-	function getTheColor(
+	function getButtonColor(
 		matchingDirs,
-		value,
-		poll,
-		axis
+		voteDim,
+		poll
 	) {
-		return matchingDirs.indexOf(value.dir) > -1
-			? getColor(0, poll, axis)
+		return matchingDirs.indexOf(voteDim.dir) > -1
+			? '000'
 			: 'fff'
+	}
+
+	function onPress(
+		position,
+		event,
+		page
+	) {
+		// event.preventDefault()
+
+		const percentChange = 1
+		page.set({lastNumIncs: 5, lastVoteDim: page.get().voteDim, percentChange})
+
+		page.fire('move', {
+			position,
+			percentChange
+		})
+
+		setIntrvl(page, 360, position, 8, 4, 1)
+		page.fire('update')
 	}
 
 	function updateValue(

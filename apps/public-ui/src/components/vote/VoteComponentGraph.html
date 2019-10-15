@@ -19,11 +19,7 @@
 					style="background-color: #{getColor(delta, poll, voteDim.axis)};"
 					transition:fly="{x: -50, duration: 700}"
 			>
-				<!--				{#if voteDim.dir === 1}-->
 				<header></header>
-				<!--				{:else}-->
-				<!--				<footer></footer>-->
-				<!--				{/if}-->
 				<CharacterButton
 						character="{factorOutcome(voteDim, factorDelta)}"
 						fontSize="20"
@@ -38,6 +34,7 @@
 		</td>
 		<td
 				class="chart"
+				on:click="fire('toggleChart')"
 		>
 			<table>
 				<tr>
@@ -76,6 +73,7 @@
 		</td>
 		<td
 				class="percent"
+				on:click="fire('togglePercent', event)"
 		>
 			{#if showPosition(voteDim, delta)}
 			<!--
@@ -91,11 +89,11 @@
 			-->
 			<span
 					class="value"
-					transition:fade
+					in:fade
 			>{factorPercent(voteDim, factorDelta)}</span>
 			<span
 					class="sign"
-					transition:fade
+					in:fade
 			>%</span>
 			{/if}
 		</td>
@@ -221,20 +219,12 @@
 		border-radius: 3px;
 	}
 
-	footer {
-		bottom: 0px;
-	}
-
-	header,
-	footer {
-		width: 100%;
+	header {
+		background-color: black;
 		height: 5px;
 		position: absolute;
-		background-color: black;
-	}
-
-	header {
-		top: 0px
+		top: 0px;
+		width: 100%;
 	}
 
 	span {
@@ -464,6 +454,19 @@
 					return
 				}
 				const {move, moved} = current.cardMove
+
+				if (moved.length === 3) {
+					const options = {
+						duration: 300,
+						y: 26
+					}
+					setTimeout(() => {
+						transition(this, 'bar_' + 0, fly, options)
+						transition(this, 'bar_' + 1, fly, options)
+						transition(this, 'bar_' + 2, fly, {duration: 700, y: -56})
+					})
+					return
+				}
 
 				let has0 = moved.indexOf(0) >= 0
 				let has1 = moved.indexOf(1) >= 0

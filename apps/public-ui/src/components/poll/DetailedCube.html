@@ -74,14 +74,23 @@
 </figure>
 <style>
 
+	/*
 	@media (min-width: 321px) {
 
-		#cube > div {
+		figure#cube > div {
 			font-size: 1.9em;
 			line-height: 1.2em;
 		}
 
 	}
+
+	@media (min-width: 376px) {
+		figure#cube > div {
+			font-size: 2.1em !important;
+			line-height: 1.3em !important;
+		}
+	}
+	 */
 
 	#cube {
 		height: 320px;
@@ -183,6 +192,7 @@
 		}*/
 
 	p {
+		margin: 0;
 		margin-block-start: 0em;
 		margin-block-end: 0em;
 		padding: 0 10px;
@@ -210,10 +220,6 @@
 		mutationApi,
 		setView
 	}                      from '@votecube/cube-logic'
-	import {
-		fade,
-		fly
-	}                      from 'svelte-transitions'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import {
 		getColor,
@@ -347,14 +353,10 @@
 				setTimeout(() => {
 					this.set({rotating: false})
 				}, 700)
-			}, 100)
+			}, 1)
 		},
 		ondestroy() {
 			clearView('cube')
-		},
-		transitions: {
-			fade,
-			fly
 		}
 		// onstate({changed, current}) {
 		// 	if (!current.poll) {

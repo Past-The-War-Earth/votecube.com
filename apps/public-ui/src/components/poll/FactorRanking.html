@@ -4,20 +4,23 @@
 		on:mouseup="moveEnd(movingVoteDim, vote, voteDims, i, event)"
 		on:touchend="moveEnd(movingVoteDim, vote, voteDims, i, event)"
 		on:touchstart="touchStart(voteDims, i, event)"
+		id="factorPlace_{i}"
 >
-	{#if showPosition(voteDim, movingVoteDim, movingVoteDimDelta)}
+	{#if showPosition(voteDim, removingDir[i], movingVoteDim, movingVoteDimDelta)}
 	<figure
+			class="factorFigure"
 			class:isB="isB(voteDim, delta)"
+			class:removingFactor="removeCount && !voteDim.dir"
 			factorIndex="{i}"
 			id="factor_{i}"
 			style="{factorPosition(voteDim, movingVoteDimDelta)}
 					 {transitionStyle(showTransition)}"
-			transition:fly='{x: flyX(voteDim), duration: 700}'
+			in:fly='{x: flyX(voteDim), duration: 700}'
 	>
 		<!--
 			transition:fade
 			-->
-		{#if sideMatch(voteDims[i], 1, switchingDir)}
+		{#if sideMatch(voteDims[i], 1, switchingDir, removingDir[i])}
 		<var
 				class="factor A
 					{factorHighlight(movingVoteDim, i, movingVoteDimDelta)}"
@@ -38,13 +41,15 @@
 						styles="left: 1px; position: absolute; top: -1px;"
 				></CharacterButton>
 				{getSideText(delta, 'confirm', poll, voteDim.axis, 1)}
-				{#if i}
+				{#if canRemove(voteDims, i, delta)}
 				<MoveButton
 						on:selectStart="addOrRemove(-1, event)"
 						classes="right"
 						size="19"
 						styles="left: 24px; position: absolute; top: -1.5px"
 				></MoveButton>
+				{/if}
+				{#if i}
 				<MoveButton
 						on:selectStart="upStart(i, event)"
 						classes="up"
@@ -58,7 +63,7 @@
 			</p>
 		</var>
 		{/if}
-		{#if sideMatch(voteDims[i], -1, switchingDir)}
+		{#if sideMatch(voteDims[i], -1, switchingDir, removingDir[i])}
 		<!--
 		transition:fly='{x: -200, duration: 1000}'
 		-->
@@ -81,13 +86,15 @@
 						strokeWidth="1"
 						styles="right: 1px; position: absolute; top: -1px;"
 				></CharacterButton>
-				{#if i}
+				{#if canRemove(voteDims, i, delta)}
 				<MoveButton
 						on:selectStart="addOrRemove(-1, event)"
 						classes="right"
 						size="19"
 						styles="left: 24px; position: absolute; top: -1.5px"
 				></MoveButton>
+				{/if}
+				{#if i}
 				<MoveButton
 						on:selectStart="upStart(i, event)"
 						classes="up"
@@ -152,29 +159,6 @@
 		transform-style: preserve-3d;
 	}
 
-	var {
-		border-radius: 5px;
-		height: 100px;
-		position: absolute;
-		width: 100%;
-	}
-
-	.isB {
-		transform: rotateY(180deg);
-	}
-
-	var.factor {
-		border: 3px solid gray;
-	}
-
-	var.factor.highlighted {
-		border: 5px dashed red;
-	}
-
-	var.placeholder {
-		border: 1px dotted gray;
-	}
-
 	/*	footer {
 			bottom: 0px;
 		}*/
@@ -230,6 +214,25 @@
 		height: 100px;
 	}
 
+	var {
+		border-radius: 5px;
+		height: 100px;
+		position: absolute;
+		width: 100%;
+	}
+
+	var.factor {
+		border: 3px solid gray;
+	}
+
+	var.factor.highlighted {
+		border: 5px dashed red;
+	}
+
+	var.placeholder {
+		border: 1px dotted gray;
+	}
+
 	.A {
 		transform: translateZ(5px);
 	}
@@ -237,6 +240,19 @@
 	/*transform: rotateY(180deg) translateY(-100px) translateZ(5px);*/
 	.B {
 		transform: rotateY(180deg) translateZ(5px);
+	}
+
+	.factorFigure {
+		left: 0px;
+	}
+
+	.isB {
+		transform: rotateY(180deg);
+	}
+
+	.removingFactor {
+		opacity: 0;
+		left: -400px;
 	}
 
 </style>
@@ -268,22 +284,19 @@
 		data() {
 			return {
 				factorOrderDelta: 0,
-				/*
-				// Dynamically assigned transition fly values is applied too late
-				// for the slide in animation to work, so animating other transitions
-				// manually
-				factorFlySettings: {
-					x: -200
-				},
-				*/
 				movingVoteDimDelta: 0,
 				removeCount: 0,
 				removeDoneCount: 0,
+				removingDir: [0, 0, 0],
 				showTransition: true,
 				switchingDir: false
 			}
 		},
 		helpers: {
+			canRemove: (
+				voteDims,
+				index
+			) => index ? true : voteDims[1].dir,
 			factorHighlight(
 				movingVoteDim,
 				index,
@@ -304,85 +317,66 @@
 				if (!movingVoteDim.moving || !movingVoteDim.dir) {
 					return ''
 				}
-				// let left = movingVoteDim.originalTopLeftX
+				// let left = Math.ceil(movingVoteDim.offset.topLeft.x)
+				// let left = movingVoteDim.pageX
 				let top = movingVoteDim.pageY
 				if (movingVoteDim.offset) {
+					// left -= movingVoteDim.offset.x
 					top -= movingVoteDim.offset.y
 				}
 				const xChange    = movingVoteDim.originalX - movingVoteDim.pageX
 				const absXChange = Math.abs(xChange)
 				const absYChange = Math.abs(movingVoteDim.originalY - movingVoteDim.pageY)
 
-				// console.log('dX: ' + xChange
-				// 	+ '\tabsDX: ' + absXChange
-				// 	+ '\tabsDY: ' + absYChange)
-
 				if (movingVoteDim.index > 0
 					&& xChange > 0
 					&& absXChange > absYChange
 				) {
-					// left = movingVoteDim.pageX
-					// if (movingVoteDim.offset) {
-					// 	left -= movingVoteDim.offset.x
-					// }
 					if (movingVoteDim.originalTopLeftY) {
 						top = movingVoteDim.originalTopLeftY
 					}
-					// 	console.log('-\tleft: ' + left + '\ttop: ' + top)
-					// } else {
-					// 	console.log('|\tleft: ' + left + '\ttop: ' + top)
 				}
 				// left: ${left}px;
 				return `position: absolute;
-					top: ${top - 125}px;
+					top: ${top - 212}px;
 					width: ${movingVoteDim.width}px;
 					z-index: 5000;
 					`
 			},
 			flyX: (
-				voteDim
+				voteDim,
+				// cubeTransition
 			) => voteDim.dir === 1 ? -200 : 200,
+			// cubeTransition ? 0 : voteDim.dir === 1 ? -200 : 200,
 			getColor,
 			getSideText,
 			isB: (
 				voteDim
 			) => voteDim.dir === -1,
-			showPlaceholder(
+			showPlaceholder: (
 				removeCount,
 				removeDoneCount
-			) {
-				return removeCount === removeDoneCount
-			},
-			showMovePlaceholder(
+			) => removeCount === removeDoneCount,
+			showMovePlaceholder: (
 				movingVoteDim,
 				index,
 				movingVoteDimDelta
-			) {
-				return movingVoteDim && movingVoteDim.moving && index === movingVoteDim.index
-			},
+			) => movingVoteDim && movingVoteDim.moving && index === movingVoteDim.index,
 			showPosition:
-				voteDim => {
-					return !!voteDim.value
-					// || (movingVoteDim === voteDim
-					// 	&& movingVoteDim.originalX - movingVoteDim.pageX < -10)
-				},
-			/*			showSwap: (
-							voteDims,
-							index
-						) => {
-							if (index === 0) {
-								return false
-							}
-							return voteDims[index].dir
-						}*/
+				(
+					voteDim,
+					removingDir
+				) => voteDim.value || removingDir,
 			sideMatch: (
 				voteDim,
 				dir,
-				switchingDir
-			) => switchingDir || dir === voteDim.dir,
+				switchingDir,
+				removingDir
+			) => switchingDir || dir === voteDim.dir || dir === removingDir,
 			transitionStyle: (
 				showTransition
-			) => showTransition ? 'transition: transform 1000ms linear;' : ''
+				// ) => showTransition ? 'transition: transform 1000ms linear;' : ''
+			) => 'transition: left 700ms, opacity 700ms' + (showTransition ? ', transform 1000ms linear;' : ';')
 		},
 		methods: {
 			moveEnd(
@@ -392,28 +386,15 @@
 				index,
 				event,
 			) {
-				// let nowMillis = new Date().getTime()
 				try {
-					stopMoveEventListening(
-						// this, movingVoteDim
-					)
+					stopMoveEventListening()
 
-					let {
-						    // lastMoveEnd,
-						    lastMoveStart,
-						    // lastClickMillis
-					    } = this.get()
-
-					// if (lastMoveEnd && time - lastMoveEnd.time < 500) {
-					// 	return
-					// }
+					let {lastMoveStart} = this.get()
 
 					if (!lastMoveStart
 						||
 						// Already added the factor in
-						!movingVoteDim
-					// || nowMillis - lastClickMillis < 100
-					) {
+						!movingVoteDim) {
 						return
 					}
 
@@ -437,7 +418,7 @@
 					const addOrRemove       = lastMoveStart.addOrRemove
 					if (!upButtonClickMove && originalIndex === index) {
 						singleFactorChange(
-							absDx, absDy, addOrRemove, dy, index, originalIndex,
+							absDx, absDy, addOrRemove, dx, dy, index, originalIndex,
 							upButtonClickMove, vote, voteDims, this)
 					} else {
 						multiFactorChange(absDx, absDy, dy, index,
@@ -452,31 +433,7 @@
 				index,
 				event
 			) {
-				// let millis        = new Date().getTime()
-				let time = new Date().getTime()
-
-				// let {
-				// 	    lastClickMillis
-				//     } = this.get()
-				//
-				// if (time - lastClickMillis < 100) {
-				// 	return
-				// }
-
-				// const {lastMoveStart} = this.get()
-				//
-				// if (lastMoveStart && time - lastMoveStart.time < 500) {
-				// 	return
-				// }
-
-				// {
-				// index,
-				// millis,
-				// x: 0,
-				// y: 0
-				// }
-				// populateStartCoords(event, lastMoveStart)
-
+				let time            = new Date().getTime()
 				const movingVoteDim = voteDims[index]
 
 				const usefulEvent    = event.touches ? event.touches[0] : event
@@ -491,11 +448,8 @@
 				const addOrRemove = event.factorButtonAddOrRemove
 				if (addOrRemove || move) {
 					movingVoteDim.moving = true
-					// usefulEvent.target.parentNode.parentNode.parentNode.clientWidth
-				} else {
-					// movingVoteDim.width = usefulEvent.target.clientWidth
 				}
-				movingVoteDim.width = 320
+				movingVoteDim.width = document.getElementById('factorPlace_' + index).clientWidth
 
 				this.set({
 					lastMoveStart: {
@@ -515,13 +469,12 @@
 				}
 				// console.log('moveStart: ' + index)
 				// console.log(event)
-				// console.log(lastMoveStart)
 			},
 			addOrRemove(
-				dir,
+				operation,
 				event
 			) {
-				event.factorButtonAddOrRemove = dir
+				event.factorButtonAddOrRemove = operation
 			},
 			touchStart(
 				voteDims,
@@ -532,16 +485,6 @@
 				event.preventDefault()
 				this.moveStart(voteDims, index, event)
 			},
-			/*			up(
-							vote,
-							voteDims,
-							index,
-							event
-						) {
-							event.preventDefault()
-							// moveFactorUp(voteDims, vote, index, index - 1, this)
-							move(index, {y: -100, delay: 400}, page)
-						},*/
 			upStart(
 				index,
 				event
@@ -549,42 +492,13 @@
 				event.factorButtonMove  = true
 				event.factorButtonIndex = index - 1
 				setTimeout(() => {
-					// move(index - 1, {y: 100, delay: 50}, this)
 					move(index - 1, {y: 100}, this)
 					move(index, {y: -100}, this)
 				}, 100)
 			}
 		},
-		// oncreate() {
-		/*
-		this.stateListener = this.on('state', ({changed, current, previous}) => {
-			if (previous.voteDims.length
-				|| !current.voteDims.length) {
-				return
-			}
-			const [_, secondFactor, thirdFactor] = current.voteDims
-			let adjusted                         = false
-			if (!secondFactor.value && secondFactor.dir) {
-				adjusted         = true
-				secondFactor.dir = 0
-			}
-			if (!thirdFactor.value && thirdFactor.dir) {
-				adjusted        = true
-				thirdFactor.dir = 0
-			}
-			if (adjusted) {
-				this.fire('directionCorrected')
-			}
-		})
-		 */
-		// },
-		// ondestroy() {
-		// 	// this.stateListener.cancel()
-		// 	this.set({movingVoteDim: null})
-		// },
 		store: () => store,
 		transitions: {
-			// fade,
 			fly
 		}
 	}
@@ -592,7 +506,8 @@
 	function getAlternateIndex(
 		absDy,
 		dy,
-		originalIndex
+		originalIndex,
+		have3
 	) {
 		switch (originalIndex) {
 			case 0: {
@@ -600,7 +515,7 @@
 					if (absDy < 200) {
 						return 1
 					} else {
-						return 2
+						return have3 ? 2 : 1
 					}
 				}
 				break
@@ -631,6 +546,7 @@
 		absDx,
 		absDy,
 		addOrRemove,
+		dx,
 		dy,
 		index,
 		originalIndex,
@@ -644,21 +560,15 @@
 		}
 		// Change to 1 factor only
 		else if (addOrRemove || absDx - 10 > absDy) {
-			pauseRotation(page)
-			const numMoved = addOrRemoveAFactor(
-				voteDims, index, addOrRemove ? addOrRemove : dx, page)
-			if (addOrRemove === 1) {
-				setTimeout(() => {
-					move(index, {x: -200, duration: 700}, page)
-					if (numMoved === 2) {
-						setTimeout(() => {
-							move(index - 1, {x: -200, duration: 700}, page)
-						}, 50)
-					}
-				})
-			}
+			addOrRemoveAFactor(
+				voteDims, index, addOrRemove ? addOrRemove : dx, vote, page)
+			// if (addOrRemove === 1) {
+			// 	setTimeout(() => {
+			// 		move(index, {x: -200, duration: 700}, page)
+			// 	})
+			// }
 		} else if (absDy >= 10 && absDx * 2 < absDy) {
-			const index = getAlternateIndex(absDy, dy, originalIndex)
+			const index = getAlternateIndex(absDy, dy, originalIndex, voteDims[2].dir)
 			if (index !== originalIndex) {
 				multiFactorChange(absDx, absDy, dy, index,
 					originalIndex, upButtonClickMove, vote, voteDims, page)
@@ -706,31 +616,6 @@
 		// Else a no-op
 	}
 
-	function addRemoveFactor(
-		voteDims,
-		index,
-		page
-	) {
-		page.get().vote.changeMillis = 550
-		// moveInOrOut(index, page)
-		if (voteDims[index].dir) {
-			scheduleFactorPlaceholder(page)
-			if (index === 1) {
-				setDir(voteDims, 2, 0, page)
-				// adjustRanking(voteDims, 1, 1, page, false)
-			}
-			setDir(voteDims, index, 0, page)
-			adjustRanking(voteDims, index, 0, page)
-		} else {
-			if (index === 2) {
-				setDir(voteDims, 1, 1, page)
-				adjustRanking(voteDims, 1, 1, page, false)
-			}
-			setDir(voteDims, index, 1, page)
-			adjustRanking(voteDims, index, 1, page)
-		}
-	}
-
 	function setDir(
 		voteDims,
 		index,
@@ -769,10 +654,6 @@
 					firstFactor.value  = 55
 					secondFactor.value = 30
 					thirdFactor.value  = 15
-					// Default 2nd factor to positive direction
-					// secondFactor.dir   = 1
-					// Default 3rd factor to positive direction
-					// thirdFactor.dir    = 1
 				}
 				break
 			}
@@ -802,13 +683,10 @@
 					firstFactor.value  = 55
 					secondFactor.value = 30
 					thirdFactor.value  = 15
-					// Default 3rd factor to positive direction
-					// thirdFactor.dir    = 1
 				}
 				break
 			}
 			case 2: {
-				// thirdFactor.dir = dir
 				// If the 3rd factor is being removed from the vote
 				if (dir === 0) {
 					firstFactor.value  = 66
@@ -843,10 +721,6 @@
 		duration = 400
 	) {
 		move(index, {y: -100, duration}, page)
-		return {
-			move: 1,
-			moved: [index, index + 1]
-		}
 	}
 
 	function moveDownTwo(
@@ -854,10 +728,6 @@
 		page
 	) {
 		move(index, {y: -200, duration: 800}, page)
-		return {
-			move: 2,
-			moved: [index, index + 2]
-		}
 	}
 
 	function moveUpOne(
@@ -875,28 +745,43 @@
 		move(index, {y: 200, duration: 800}, page)
 	}
 
-	/*
-		function moveInAndOut(
-			index,
-			outcome,
-			page
-		) {
-			move(index, {x: -300}, page, '_' + outcome)
-		}
-	*/
-
 	function move(
 		index,
 		options,
-		page,
-		// suffix = ''
+		page
 	) {
 		transition(
 			page,
-			'factor_' + index // + suffix
+			'factor_' + index
 			, fly,
 			options
 		)
+	}
+
+	function swapOnRemove(
+		voteDims,
+		vote,
+		removedFactor,
+		movedFactor1,
+		movedFactor2,
+		adjustRankingIndex,
+		page
+	) {
+		if (movedFactor2) {
+			movedFactor2.value = movedFactor1.value
+		}
+
+		movedFactor1.value  = removedFactor.value
+		removedFactor.value = 0
+		removedFactor.dir   = 0
+
+		page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
+
+		if (!adjustRankingIndex) {
+			adjustRankingIndex = movedFactor2 ? 2 : 1
+		}
+
+		adjustRanking(getVoteDimsInValueOrder(vote), adjustRankingIndex, 0, page)
 	}
 
 	function setFactorOrder(
@@ -945,9 +830,7 @@
 		}
 		oldHigherDir          = oldHigherFactor.dir
 		oldHigherValue        = oldHigherFactor.value
-		// oldHigherFactor.dir   = oldLowerFactor.dir
 		oldHigherFactor.value = oldLowerFactor.value
-		// oldLowerFactor.dir    = oldHigherDir
 		oldLowerFactor.value  = oldHigherValue
 
 		page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
@@ -975,7 +858,6 @@
 			// If the factor isn't shown don't change position
 			return
 		}
-		// const voteDim = voteDims[index]
 		let direction = -1
 		if (voteDims[index].dir < 0) {
 			direction = 1
@@ -988,7 +870,6 @@
 		setTimeout(() => {
 			page.get().vote.changeMillis = 1000
 			setDir(voteDims, index, direction, page, true)
-			// adjustRanking(voteDims, index, direction, page)
 			page.set({
 				timeoutHandle: setTimeout(() => {
 					page.set({switchingDir: false})
@@ -1001,13 +882,26 @@
 		voteDims,
 		index,
 		addOrRemove,
+		vote,
 		page
 	) {
-		if (index === 0) {
-			// Cannot add or remove the first factor
-			return 0
-		}
 		const [_, secondFactor, thirdFactor] = voteDims
+		if (index === 0) {
+			if (
+				// Cannot add the first factor
+				addOrRemove > 0
+				// Cannot remove the first factor if there are no other factors
+				|| (!secondFactor.dir && !thirdFactor.dir)) {
+				return 0
+			}
+			pauseRotation(page)
+			scheduleFactorPlaceholder(page)
+			page.get().vote.changeMillis = 550
+
+			// Remove first factor
+			removeFirstFactor(voteDims, vote, page, thirdFactor.dir)
+			return 1
+		}
 
 		let numMoved    = 1
 		const direction = voteDims[index].dir
@@ -1017,34 +911,24 @@
 				// Don't remove if it's already removed
 				return 0
 			}
-
-			// moveInAndOut(index, direction === 1 ? 'A' : 'B', page)
-			// moveInOrOut(index, page)
-			scheduleFactorPlaceholder(page)
-			// if (index == 1 && thirdFactor.dir) {
-			// 	adjustRanking(voteDims, 2, 0, page, false)
-			// }
+			pauseRotation(page)
 			page.get().vote.changeMillis = 550
-			setDir(voteDims, index, 0, page)
+			scheduleFactorPlaceholder(page, index, direction)
 			if (index === 1 && thirdFactor.dir) {
-				setDir(voteDims, 2, 0, page)
-				numMoved = 2
-				// adjustRanking(voteDims, 1, 0, page)
-				// } else {
+				onMove(1, [2, 1], page)
+				swapOnRemove(voteDims, vote, secondFactor, thirdFactor, null, 2, page)
+				moveUpOne(1, page)
+			} else {
+				setDir(voteDims, index, 0, page)
+				adjustRanking(voteDims, index, 0, page)
 			}
-			adjustRanking(voteDims, index, 0, page)
 		} else {
 			// add
 			if (direction) {
 				// Don't add if it's already added
 				return 0
 			}
-
-			// moveInAndOut(index, 'A', page)
-			// moveInOrOut(index, page)
-			// if (index == 2 && !secondFactor.dir) {
-			// 	adjustRanking(voteDims, 1, 1, page, false)
-			// }
+			pauseRotation(page)
 			page.get().vote.changeMillis = 550
 			if (index === 2 && !secondFactor.dir) {
 				setDir(voteDims, 1, 1, page)
@@ -1056,6 +940,26 @@
 		}
 
 		return numMoved
+	}
+
+	function removeFirstFactor(
+		voteDims,
+		vote,
+		page,
+		move3
+	) {
+		if (move3) {
+			onMove(1, [2, 1, 0], page)
+		} else {
+			onMove(1, [1, 0], page)
+		}
+		const [firstFactor, secondFactor, thirdFactor] = voteDims
+		swapOnRemove(voteDims, vote, firstFactor, secondFactor,
+			move3 ? thirdFactor : null, 0, page)
+		if (move3) {
+			moveUpOne(1, page)
+		}
+		moveUpOne(0, page)
 	}
 
 	function moveFactorUp(
@@ -1266,6 +1170,7 @@
 			const movingVoteDim = page.get().movingVoteDim
 			positionMovingVoteDim(movingVoteDim, position)
 
+			// If the user is swiping in the factor
 			if (movingVoteDim.moving && !movingVoteDim.dir
 				&& movingVoteDim.originalX - movingVoteDim.pageX < -10) {
 				stopMoveEventListening(
@@ -1274,7 +1179,10 @@
 				// stopping movement before adding factor to get the slide in animation
 				stopVoteDimMovement(page, movingVoteDim)
 				setTimeout(() => {
-					addRemoveFactor(page.get().voteDims, movingVoteDim.index, page)
+
+					const {voteDims, vote} = page.get()
+					// Proactively swipe in the factor
+					addOrRemoveAFactor(voteDims, movingVoteDim.index, 1, vote, page)
 				})
 			}
 			incMovingDelta(page)
@@ -1291,18 +1199,12 @@
 
 	function stopVoteDimMovement(
 		page,
-		movingVoteDim,
-		// index,
-		// time
+		movingVoteDim
 	) {
 		if (movingVoteDim) {
 			movingVoteDim.moving = false
 		}
 		page.set({
-			// lastMoveEnd: {
-			// 	index,
-			// 	time
-			// },
 			movingVoteDim: null,
 		})
 		incMovingDelta(page)
@@ -1317,11 +1219,22 @@
 	}
 
 	function scheduleFactorPlaceholder(
-		page
+		page,
+		index,
+		direction
 	) {
-		page.set({removeCount: page.get().removeCount + 1})
+		const newState = {removeCount: page.get().removeCount + 1}
+		if (direction) {
+			const removingDir    = [0, 0, 0]
+			removingDir[index]   = direction
+			newState.removingDir = removingDir
+		}
+		page.set(newState)
 		setTimeout(() => {
-			page.set({removeDoneCount: page.get().removeDoneCount + 1})
+			page.set({
+				removeDoneCount: page.get().removeDoneCount + 1,
+				removingDir: [0, 0, 0]
+			})
 		}, 701)
 	}
 
@@ -1353,10 +1266,10 @@
 		// so need to know the offset by which to move the picture to top and left:
 
 		return {
-			// topLeft: {
-			// 	x: elemTopLeftCornerX,
-			// 	y: elemTopLeftCornerY,
-			// },
+			topLeft: {
+				x: elemTopLeftCornerX,
+				y: elemTopLeftCornerY
+			},
 			x: cursorPositionX - elemTopLeftCornerX,
 			y: cursorPositionY - elemTopLeftCornerY
 		}
@@ -1371,7 +1284,7 @@
 		page.set({showTransition: false})
 		setTimeout(() => {
 			page.set({showTransition: true})
-		}, 801)
+		}, 701)
 	}
 
 	function onMove(

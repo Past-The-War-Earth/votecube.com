@@ -14,15 +14,14 @@ export async function init() {
 
 export async function setupCubeView(
 	pollId,
-	page
+	page,
+	callback
 ) {
 	const [
 		      setPositionDataAndMove,
 		      voteDao
 	      ] = await Promise.all([
-		loadCubeLogic(page, () => {
-			page.set({delta: page.get().delta + 1})
-		}),
+		loadCubeLogic(page, callback),
 		await DI.get(VOTE_DAO)
 	])
 

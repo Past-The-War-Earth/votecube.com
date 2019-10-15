@@ -131,10 +131,12 @@ export const DB = {
 		// name: 'Act now to slow climate change?',
 		name: `The effect of Trump's policies`,
 		outcomes: [{
+			dir: 1,
 			id: 1,
 			key: 'A',
 			outcome: 'Trump\'s policies are generally beneficial.'
 		}, {
+			dir: -1,
 			id: 2,
 			key: 'B',
 			outcome: 'Trump\'s policies are generally detrimental.'

@@ -62,6 +62,8 @@
 			moveType="{moveType}"
 			on:cubeAltered="pollAltered()"
 			on:toggleView="toggleView(cubeView, !cubeView)"
+			on:togglePercent="togglePercentPicker()"
+			on:toggleChart="toggleOutcomes()"
 			poll="{poll}"
 			positionMode="{positionMode}"
 			verticalLayout="{verticalLayout}"
@@ -93,8 +95,9 @@
 						vote="{vote}"
 				></DetailedCube>
 				{/if}
-				{#if !cubeView}
+				{#if !effectiveCubeView}
 				<!--						on:directionCorrected="pollAltered()"-->
+				<!--						cubeTransition="{cubeTransition}"-->
 				<FactorRanking
 						delta="{delta}"
 						on:rankingAdjusted="pollAdjusted()"
@@ -116,6 +119,7 @@
 			on:moveToValue="moveToValue(event)"
 			poll="{poll}"
 			vote="{vote}"
+			voteDims="{voteDims}"
 	></PercentPicker>
 	{/if}
 	<!--
@@ -123,6 +127,27 @@
 	>
 	</PollFab>
 	-->
+	{#if showOutcomes}
+	<ActionPopover
+			customCancel="{true}"
+			infoOnly="true"
+	>
+		<div slot="header">
+			{poll.name}
+		</div>
+		<div slot="content">
+			<Outcomes
+					final="{loaded}"
+					poll="{poll}"
+			></Outcomes>
+		</div>
+		<div slot="cancel">
+			<OutcomeButton
+					on:select="toggleOutcomes()"
+			></OutcomeButton>
+		</div>
+	</ActionPopover>
+	{/if}
 	{#if confirm}
 	{#if saving}
 	<ActionPopover
@@ -254,10 +279,11 @@
 		POLL_DAO,
 		VOTE_DAO
 	}                    from '@votecube/public-db'
-	import {fly}         from 'svelte-transitions'
 	import AlterButton   from '../../../common/control/button/AlterButton.html'
 	import BuildButton   from '../../../common/control/button/BuildButton.html'
 	import EditButton    from '../../../common/control/button/EditButton.html'
+	import OutcomeButton
+	                     from '../../../common/control/button/OutcomeButton.html'
 	import VoteButton    from '../../../common/control/button/VoteButton.html'
 	import PercentPicker from '../../../common/control/PercentPicker.html'
 	import ActionPopover from '../../../common/shell/ActionPopover.html'
@@ -268,6 +294,7 @@
 	import FactorRankingMiniature
 	                     from '../../../components/poll/FactorRankingMiniature.html'
 
+	import Outcomes             from '../../../components/poll/Outcomes.html'
 	import PollFab              from '../../../components/poll/PollFab.html'
 	import VoteComponentGraph   from '../../../components/vote/VoteComponentGraph.html'
 	import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
@@ -292,6 +319,8 @@
 			FactorPercentagesMiniature,
 			FactorRanking,
 			FactorRankingMiniature,
+			OutcomeButton,
+			Outcomes,
 			PercentPicker,
 			PollFab,
 			VoteButton,
@@ -318,6 +347,7 @@
 				beforeCubeView: false,
 				beforeCardView: false,
 				cubeView: false,
+				// cubeTransition: false,
 				currentVote: {
 					x: {
 						value: 0,
@@ -336,6 +366,7 @@
 				factorDelta: 0, // Only for the factor cubes
 				manualControlsOn: true,
 				percentMode: false,
+				showOutcomes: true,
 				verticalLayout: true,
 				zoomFactor: 0.65
 			}
@@ -368,6 +399,9 @@
 				setCubeAdjustment(this.get().cubeListener, false)
 				this.set({confirm: true, error: '', saving: false, voting: true})
 			},
+			toggleOutcomes() {
+				this.set({showOutcomes: !this.get().showOutcomes})
+			},
 			pollAltered() {
 				const {delta} = this.get()
 				this.set({delta: delta + 1})
@@ -379,6 +413,7 @@
 			move(
 				event
 			) {
+				this.set({percentMove: true})
 				mutationApi.move(
 					event.factor,
 					event.position,
@@ -388,15 +423,19 @@
 			moveToValue(
 				event
 			) {
+				this.set({percentMove: true})
 				mutationApi.moveToValue(event.factor, event.value)
-			},
-			toggleManualControls() {
-				this.set({manualControlsOn: !this.get().manualControlsOn})
 			},
 			togglePercentPicker() {
 				const percentMode = !this.get().percentMode
 				setCubeAdjustment(this.get().cubeListener, !percentMode)
-				this.set({percentMode})
+				const stateChange = {
+					percentMode
+				}
+				if (percentMode) {
+					stateChange.cubeView = true
+				}
+				this.set(stateChange)
 			},
 			togglePositionMode() {
 				let positionMode = !this.get().positionMode
@@ -435,8 +474,25 @@
 			const {mode, pollId} = this.store.get().routeParams
 
 			resize(this)
-			setupCubeView(pollId, this).then(() => {
+			setupCubeView(pollId, this, () => {
+				/*
+				if (this.get().percentMove) {
+					TODO: implement correct card and graph animations for the PercentPicker, IF NEEDED
+									let oldVoteDims = this.get().voteDims
+									let newVoteDims = getVoteDimsInValueOrder(this.get().vote)
+									if (oldVoteDims[0] !== newVoteDims[0]
+										|| oldVoteDims[1] !== newVoteDims[1]
+										|| oldVoteDims[2] !== newVoteDims[2]) {
+										console.log('Positions changed.')
+									}
+				}
+				*/
+				this.set({delta: this.get().delta + 1, percentMove: false})
+			}).then(() => {
 				toggleView(!this.get().cubeView, this.get().cubeView, this)
+				this.set({
+					loaded: true
+				})
 			})
 			this.store.set({
 				cube: true,
@@ -487,11 +543,7 @@
 			})
 		}
 		,
-		store: () => store,
-		transitions:
-			{
-				fly
-			}
+		store: () => store
 	}
 
 	function toggleView(
@@ -503,12 +555,17 @@
 			if (!currentlyInCubeView) {
 				// Animate Factor Rankings out of the view
 				page.set({beforeCubeView: true})
+				// page.set({cubeTransition: true})
+				// page.set({delta: page.get().delta + 1})
 
 				page.get().cubeListener.resumeInteraction()
 				page.set({cubeView: forCubeView})
 				setTimeout(() => {
 					page.set({beforeCubeView: false})
-				}, 701)
+					// setTimeout(() => {
+					// 	page.set({cubeTransition: false})
+					// }, 5)
+				}, 5)
 			}
 		} else {
 			if (currentlyInCubeView) {

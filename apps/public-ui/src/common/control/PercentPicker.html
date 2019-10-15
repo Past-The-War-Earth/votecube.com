@@ -1,115 +1,189 @@
 <aside
 		transition:fly='{y:200, duration: 500}'
 >
-	<nav
-			on:click="fire('close')"
-	>
-		x
-	</nav>
-	<div></div>
-	<section>
+	<div>
+		<nav
+				on:click="fire('close')"
+		>
+			╳
+		</nav>
+		<summary
+				class="override"
+		>
+			Manual Override
+		</summary>
 		<table>
+			<tr>
+				<td>
+					<CharacterButton
+							character="{sortedOutcomes[0].key}"
+							fontSize="20"
+							fontX="12"
+							fontY="19"
+							size="24"
+							strokeWidth="1"
+					></CharacterButton>
+				</td>
+				<td></td>
+				<td>
+					<CharacterButton
+							character="{sortedOutcomes[1].key}"
+							fontSize="20"
+							fontX="12"
+							fontY="19"
+							size="24"
+							strokeWidth="1"
+					></CharacterButton>
+				</td>
+			</tr>
+			<!--
+			<tr>
+				<td
+						colspan="3"
+				>
+					<var
+							style="position: relative; width: 100%"
+					>
+						<figure
+								style="margin: 26px; width: 100%"
+						>
+
+							<CharacterButton
+									character="A"
+									fontSize="22"
+									fontX="13"
+									fontY="21"
+									size="26"
+									strokeWidth="1"
+									styles="left: -13px; position: absolute; top: 1px;"
+							></CharacterButton>
+							<RibbonIcon></RibbonIcon>
+							<CharacterButton
+									character="B"
+									fontSize="22"
+									fontX="13"
+									fontY="21"
+									size="26"
+									strokeWidth="1"
+									styles="right: -13px; position: absolute; top: 1px;"
+							></CharacterButton>
+						</figure>
+					</var>
+				</td>
+			</tr>
+			-->
 			<!-- TODO: add support for voting value -->
+
+			{#each voteDims as voteDim, i}
 			<LinearPositionPicker
-					axis="x"
 					moveDelta="{moveDelta}"
-					on:move="move('x', event.position, event.percentChange)"
-					on:moveToValue="moveToValue('x', event)"
+					on:move="move(voteDim.axis, event.position, event.percentChange)"
+					on:moveToValue="moveToValue(voteDim.axis, event)"
 					on:update="update()"
 					poll="{poll}"
-					value="{vote.x}"
-					ref:xPicker
+					voteDim="{voteDim}"
 			/>
-			<LinearPositionPicker
-					axis="y"
-					moveDelta="{moveDelta}"
-					on:move="move('y', event.position, event.percentChange)"
-					on:moveToValue="moveToValue('y', event)"
-					on:update="update()"
-					poll="{poll}"
-					value="{vote.y}"
-					ref:yPicker
-			/>
-			<LinearPositionPicker
-					axis="z"
-					moveDelta="{moveDelta}"
-					on:move="move('z', event.position, event.percentChange)"
-					on:moveToValue="moveToValue('z', event)"
-					on:update="update()"
-					poll="{poll}"
-					value="{vote.z}"
-					ref:zPicker
-			/>
+			{/each}
 		</table>
-	</section>
+	</div>
 </aside>
 
 <style>
-	@media (min-width: 62em) {
-		aside {
-			width: 54%;
+	@media (min-width: 321px) {
+		summary.override {
+			font-size: 0.65em;
+			padding-top: 4px;
+		}
+	}
+
+	@media (min-width: 376px) {
+		summary.override {
+			font-size: 0.7em !important;
+			padding-top: 3px;
 		}
 	}
 
 	aside {
-		background: transparent;
+		background: hsla(0, 100%, 100%, 0.8);
+		border: 2px dashed black;
+		border-radius: 5px;
 		bottom: 0px;
 		color: black;
+		font-size: 3em;
 		margin: 0px;
+		max-width: 420px;
 		padding: 3px;
 		position: fixed;
+		text-align: center;
+		width: 100%;
 	}
 
-	div {
-		border-top: 2px dashed black;
-		margin-left: 50px;
+	aside > div {
 		position: relative;
-		top: 0px;
-		width: calc(100% - 53px);
+		width: 100%;
 	}
 
 	nav {
-		background: hsla(0, 100%, 100%, 0.8);
-		border: 2px dashed black;
-		border-bottom: 0px;
-		border-top-left-radius: 3px;
-		border-top-right-radius: 3px;
 		color: black;
-		font-size: 2em;
-		height: 45px;
+		font-size: 0.5em;
+		height: 50px;
+		position: absolute;
+		right: 1px;
 		text-align: center;
+		top: 7px;
 		vertical-align: middle;
 		width: 50px;
 	}
 
-	section {
-		background: hsla(0, 100%, 100%, 0.8);
-		border: 2px dashed black;
-		border-top: 0px;
-		font-size: 3em;
+	summary {
+		font-size: 0.6em;
+		font-weight: 300;
+		margin-bottom: -10px;
+		padding-top: 5px;
 		text-align: center;
 		width: 100%;
+	}
+
+	table {
+		width: 100%;
+	}
+
+	td {
+		height: 70px;
+		width: 33%;
 	}
 </style>
 
 
 <script>
+	import {fly}                from 'svelte-transitions'
 	import store                from '../../store.js'
-	import {fly}             from 'svelte-transitions'
+	import RibbonIcon           from '../icon/RibbonIcon.html'
+	import CharacterButton      from './button/CharacterButton.html'
 	import LinearPositionPicker from './LinearPositionPicker.html'
 
 	export default {
 		components: {
-			LinearPositionPicker
+			CharacterButton,
+			LinearPositionPicker,
+			RibbonIcon
 		},
 		data: () => {
 			return {
-				internalDelta: 0
+				pickerDelta: 0
 			}
 		},
 		computed: {
-			moveDelta: ({delta, internalDelta}) => {
-				return delta + internalDelta
+			moveDelta: ({delta, pickerDelta}) => {
+				return delta + pickerDelta
+			},
+			sortedOutcomes: ({poll}) => {
+				const sortedOutcomes = poll.outcomes.sort((
+					outcome1,
+					outcome2
+				) => outcome1.key > outcome2.key)
+
+				return sortedOutcomes
 			}
 		},
 		methods: {
@@ -123,7 +197,7 @@
 					position,
 					percentChange
 				})
-				this.set({internalDelta: this.get().internalDelta + 1})
+				this.set({pickerDelta: this.get().pickerDelta + 1})
 			},
 			moveToValue(
 				factor,
@@ -146,9 +220,7 @@
 	function refresh(
 		page
 	) {
-		page.refs.xPicker.fire('refresh')
-		page.refs.yPicker.fire('refresh')
-		page.refs.zPicker.fire('refresh')
+		page.set({pickerDelta: page.get().pickerDelta + 1})
 	}
 
 </script>

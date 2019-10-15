@@ -1,22 +1,26 @@
 <Popover
-				width="{width}"
+		width="{width}"
 >
 	<div slot="content">
 		<header>
 			<slot name="header"></slot>
 		</header>
 		<p
-						class="{contentClass}"
+				class="{contentClass}"
 		>
 			<slot name="content"></slot>
 		</p>
 		{#if !viewOnly}
 		<footer
-						class:infoOnly="infoOnly"
+				class:infoOnly="infoOnly"
 		>
+			{#if customCancel}
+			<slot name="cancel"></slot>
+			{:else}
 			<CancelButton
-							on:select="fire('cancel')"
+					on:select="fire('cancel')"
 			></CancelButton>
+			{/if}
 			<div>
 				<slot name="actions"></slot>
 			</div>
