@@ -1,101 +1,208 @@
 <Fab
-		leftHelp="{upHelp}"
+		on:opened="setOpened(event)"
 >
 	<div
-			class="{visibility}"
+			slot="up5"
+	>
+		<DescribedButton
+				expanded="{expanded}"
+				closing="{closing}"
+				label="Set Age Suitability"
+		>
+			<CharacterButton
+					character="G"
+					fontSize="42"
+					fontX="24.5"
+					fontY="40"
+					on:click="open('ratings')"
+					size="50"
+					strokeWidth="3"
+			></CharacterButton>
+		</DescribedButton>
+	</div>
+	<div
+			slot="up4"
+	>
+		<DescribedButton
+				expanded="{expanded}"
+				closing="{closing}"
+				label="View Outcomes"
+		>
+			<OutcomeButton
+					on:click="open('outcomes')"
+			></OutcomeButton>
+		</DescribedButton>
+	</div>
+	<div
 			slot="up3"
 	>
-		{#if previewMode}
-		<PositionButton
-				on:click="togglePositionMode()"
-				color="{dirPosButtonColor}"
-		></PositionButton>
-		{:else}
-			<EditButton
-			></EditButton>
-		{/if}
+		<DescribedButton
+				expanded="{expanded}"
+				closing="{closing}"
+				label="{previewMode ? 'Align Positions' : 'Manually Override'}"
+		>
+			{#if previewMode}
+			<PositionButton
+					on:click="open('positionMode')"
+					color="{dirPosButtonColor}"
+			></PositionButton>
+			{:else}
+			<ManualOverwriteButton
+					on="{manualControls}"
+					on:click="open('manualOverwrite')"
+			></ManualOverwriteButton>
+			{/if}
+		</DescribedButton>
 	</div>
 	<div
-			class="{visibility}"
 			slot="up2"
 	>
-		{#if previewMode}
-		<LeftButton
-				on:click="toPollForm($routeParams)"
-		></LeftButton>
-		{:else}
-		<ManualControls
-				on="{manualControls}"
-				on:click="toggleManualControls()"
-		></ManualControls>
-		{/if}
+		<DescribedButton
+				expanded="{expanded}"
+				closing="{closing}"
+				label="Improve Poll"
+		>
+			<EditButton
+					on:click="open('edit')"
+			></EditButton>
+		</DescribedButton>
 	</div>
 	<div
-			class="{visibility}"
-			on:click="checkBuild()"
 			slot="up1"
 	>
-		{#if previewMode}
-		<BuildButton
-		></BuildButton>
-		{:else}
-		<VoteButton
-				on:click="confirmVote()"
-		></VoteButton>
-		{/if}
+		<DescribedButton
+				expanded="{expanded}"
+				closing="{closing}"
+				label="{previewMode ? 'Build Poll' : 'Submit Vote'}"
+		>
+			{#if previewMode}
+			<BuildButton
+					on:click="open('build')"
+			></BuildButton>
+			{:else}
+			<VoteButton
+					on:click="open('confirmVote')"
+			></VoteButton>
+			{/if}
+		</DescribedButton>
 	</div>
-	<!--<div
-			class="{visibility}"
-			class="app-button"
-			on:click="togglePercentPicker()"
-			slot="up2"
+	<div
+			slot="left1"
 	>
-		%
-	</div>-->
+		<UndescribedButton>
+			<VariationTreeButton
+					styles="position: absolute; right: 0px; top: 0px;"
+			></VariationTreeButton>
+		</UndescribedButton>
+	</div>
+	<div
+			slot="left2"
+	>
+		<UndescribedButton>
+			<OpinionButton
+					styles="position: absolute; right: 0px; top: 0px;"
+			></OpinionButton>
+		</UndescribedButton>
+	</div>
+	<div
+			slot="left3"
+	>
+		<UndescribedButton>
+			<BellCurveButton
+					styles="position: absolute; right: 0px; top: 0px;"
+			></BellCurveButton>
+		</UndescribedButton>
+	</div>
+	<div
+			slot="left4"
+	>
+		<UndescribedButton>
+			<RankingsButton
+					styles="position: absolute; right: 0px; top: 0px;"
+			></RankingsButton>
+		</UndescribedButton>
+	</div>
 </Fab>
 <style>
-	/* For desktop: */
-	/*
-	@media only screen and (min-width: 768px) {
-		.col-1 {width: 8.33%;}
-		.col-2 {width: 16.66%;}
-		.col-3 {width: 25%;}
-		.col-4 {width: 33.33%;}
-		.col-5 {width: 41.66%;}
-		.col-6 {width: 50%;}
-		.col-7 {width: 58.33%;}
-		.col-8 {width: 66.66%;}
-		.col-9 {width: 75%;}
-		.col-10 {width: 83.33%;}
-		.col-11 {width: 91.66%;}
-		.col-12 {width: 100%;}
+	div[slot^="up"] {
+		position: absolute;
+		right: 10px;
+		top: 5px;
 	}
-*/
+
+	div[slot^="left"] {
+		position: absolute;
+		right: 10px;
+		top: 5px;
+	}
 </style>
 <script>
-	import AddRemoveButton from '../../common/control/button/AddRemoveButton.html'
-	import BuildButton     from '../../common/control/button/BuildButton.html'
-	import EditButton      from '../../common/control/button/EditButton.html'
-	import LeftButton      from '../../common/control/button/LeftButton.html'
-	import ManualControls  from '../../common/control/button/ManualControls.html'
-	import PositionButton  from '../../common/control/button/PositionButton.html'
-	import VoteButton      from '../../common/control/button/VoteButton.html'
-	import Fab             from '../../common/control/Fab.html'
+	import AddRemoveButton     from '../../common/control/button/AddRemoveButton.html'
+	import BellCurveButton     from '../../common/control/button/BellCurveButton.html'
+	import BuildButton         from '../../common/control/button/BuildButton.html'
+	import CharacterButton     from '../../common/control/button/CharacterButton.html'
+	import DescribedButton     from '../../common/control/button/DescribedButton.html'
+	import EditButton          from '../../common/control/button/EditButton.html'
+	import LeftButton          from '../../common/control/button/LeftButton.html'
+	import ManualOverwriteButton
+	                           from '../../common/control/button/ManualOverwriteButton.html'
+	import OpinionButton       from '../../common/control/button/OpinionButton.html'
+	import OutcomeButton       from '../../common/control/button/OutcomeButton.html'
+	import PositionButton      from '../../common/control/button/PositionButton.html'
+	import RankingsButton      from '../../common/control/button/RankingsButton.html'
+	import UndescribedButton   from '../../common/control/button/UndescribedButton.html'
+	import VariationTreeButton from '../../common/control/button/VariationTreeButton.html'
+	import VoteButton          from '../../common/control/button/VoteButton.html'
+	import Fab                 from '../../common/control/Fab.html'
 
 	export default {
 		components: {
 			AddRemoveButton,
+			BellCurveButton,
 			BuildButton,
+			CharacterButton,
+			DescribedButton,
 			EditButton,
 			Fab,
-			ManualControls,
+			ManualOverwriteButton,
+			OpinionButton,
+			OutcomeButton,
 			PositionButton,
+			RankingsButton,
 			LeftButton,
+			UndescribedButton,
+			VariationTreeButton,
 			VoteButton
 		},
+		/*		data: () => ({
+					opened: true
+				}),*/
+		data: () => ({
+			expanded: false
+		}),
 		methods: {
-			toggle(opened) {
-				this.set({opened: !opened})
+			open(
+				action
+			) {
+				this.set({opened: false})
+				this.fire(action)
+			},
+			setOpened(
+				opened
+			) {
+				setTimeout(() => {
+					const change = {expanded: opened}
+					if (!opened) {
+						change.closing = true
+						setTimeout(() => {
+							change.closing = false
+							this.set(change)
+						}, 201)
+					} else {
+						change.closing = false
+					}
+					this.set(change)
+				}, 1)
 			}
 		}
 	}

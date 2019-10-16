@@ -122,11 +122,13 @@
 			voteDims="{voteDims}"
 	></PercentPicker>
 	{/if}
-	<!--
 	<PollFab
+			on:edit="console.log('openEdit')"
+			on:manualOverwrite="togglePercentPicker()"
+			on:outcomes="toggleOutcomes()"
+			on:ratings="console.log('openRatings')"
 	>
 	</PollFab>
-	-->
 	{#if showOutcomes}
 	<ActionPopover
 			customCancel="{true}"
@@ -366,7 +368,7 @@
 				factorDelta: 0, // Only for the factor cubes
 				manualControlsOn: true,
 				percentMode: false,
-				showOutcomes: true,
+				showOutcomes: false,
 				verticalLayout: true,
 				zoomFactor: 0.65
 			}

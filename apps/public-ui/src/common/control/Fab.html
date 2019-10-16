@@ -1,6 +1,6 @@
 <aside>
 	<menu
-			class="horizontalButtons"
+			class="verticalButtons"
 	>
 		<!--		<slot name="vertical"></slot>-->
 		<nav
@@ -27,62 +27,155 @@
 		>
 			<slot name="up4"></slot>
 		</nav>
+		<nav
+				class="{visibility} fabNav"
+				id="fabNav_up5"
+		>
+			<slot name="up5"></slot>
+		</nav>
 	</menu>
 	<menu
-			class="verticalButtons"
+			class="horizontalButtons"
 	>
 		<nav
 				class="{visibility} fabNav"
 				id="fabNav_left1"
 		>
 			<slot name="left1"></slot>
-			A
 		</nav>
 		<nav
 				class="{visibility} fabNav"
 				id="fabNav_left2"
 		>
 			<slot name="left2"></slot>
-			B
 		</nav>
 		<nav
 				class="{visibility} fabNav"
 				id="fabNav_left3"
 		>
 			<slot name="left3"></slot>
-			C
 		</nav>
 		<nav
 				class="{visibility} fabNav"
 				id="fabNav_left4"
 		>
 			<slot name="left4"></slot>
-			D
 		</nav>
 	</menu>
-	<!--			add="{!opened}"-->
-	<!--			reversible="{true}"-->
-	<VoteButton
-			classes="fab"
-			on:select="toggle(opened)"
-			size="50"
-	></VoteButton>
+	<nav
+			class="fab"
+			on:click="toggle(opened)"
+	>
+		<span>
+		<div
+				class="farAway"
+		>
+			<AddRemoveButton
+					add="{!opened}"
+					reversible="{true}"
+					size="35"
+					styles="bottom: 3px; position: absolute; right: 1.5px;"
+			></AddRemoveButton>
+		</div>
+		</span>
+	</nav>
 </aside>
 <style>
+
+	aside {
+		bottom: 5px;
+		height: 1px;
+		max-width: 420px;
+		position: fixed;
+		width: 100%;
+		z-index: 2000;
+	}
+
+	div.farAway {
+		border: 2px solid black;
+		border-radius: 25px;
+		height: 32px;
+		width: 32px;
+	}
 
 	nav {
 		align-items: center;
 		display: flex;
 		height: 65px;
 		justify-content: center;
+		position: relative;
 		width: 65px;
 	}
 
 	nav.closed {
+		opacity: 0;
+	}
+
+	nav.hidden {
 		display: none;
 	}
 
+	nav.fab {
+		border-radius: 34px;
+		bottom: -2px;
+		height: 69px;
+		position: absolute;
+		padding: 17px;
+		right: -1px;
+		width: 69px;
+	}
+
+	nav[id$="1"] {
+		transition-duration: 250ms;
+		transition-delay: 50ms;
+	}
+
+	nav[id$="1"].closing {
+		transition-delay: 150ms;
+	}
+
+	nav[id$="2"] {
+		transition-duration: 250ms;
+		transition-delay: 80ms;
+	}
+
+	nav[id$="2"].closing {
+		transition-delay: 120ms;
+	}
+
+	nav[id$="3"] {
+		transition-duration: 250ms;
+		transition-delay: 110ms;
+	}
+
+	nav[id$="3"].closing {
+		transition-delay: 90ms;
+	}
+
+	nav[id$="4"] {
+		transition-duration: 200ms;
+		transition-delay: 140ms;
+	}
+
+	nav[id$="4"].closing {
+		transition-delay: 60ms;
+	}
+
+	nav[id$="5"] {
+		transition-duration: 150ms;
+		transition-delay: 170ms;
+	}
+
+	nav[id$="5"].closing {
+		transition-delay: 30ms;
+	}
+
+	/*nav.closed {*/
+	/*	display: none;*/
+	/*}*/
+
 	nav.open {
+		opacity: 1;
 	}
 
 	/*nav {*/
@@ -91,47 +184,35 @@
 
 	menu {
 		margin: 0px;
-		position: fixed;
+		position: absolute;
 		z-index: 3;
 	}
 
+	span {
+		display: block;
+		height: 100%;
+		position: relative;
+		width: 100%;
+	}
+
 	/* https://davidwalsh.name/css-reverse */
-	.verticalButtons {
-		bottom: 10px;
+	.horizontalButtons {
+		bottom: 0px;
 		display: flex;
 		flex-direction: row-reverse;
-		right: 80px;
+		right: 60px;
 	}
 
 	/* show reverse by vertical column */
-	.horizontalButtons {
-		bottom: 80px;
+	.verticalButtons {
+		bottom: 60px;
 		display: flex;
 		flex-direction: column-reverse;
-		right: 10px;
+		right: 0px;
 	}
 
-	/* For desktop: */
-	/*
-	@media only screen and (min-width: 768px) {
-		.col-1 {width: 8.33%;}
-		.col-2 {width: 16.66%;}
-		.col-3 {width: 25%;}
-		.col-4 {width: 33.33%;}
-		.col-5 {width: 41.66%;}
-		.col-6 {width: 50%;}
-		.col-7 {width: 58.33%;}
-		.col-8 {width: 66.66%;}
-		.col-9 {width: 75%;}
-		.col-10 {width: 83.33%;}
-		.col-11 {width: 91.66%;}
-		.col-12 {width: 100%;}
-	}
-*/
 </style>
 <script>
-	import {fade}          from 'svelte-transitions'
-	import {transition}    from '../../helpers/animation'
 	import AddRemoveButton from './button/AddRemoveButton.html'
 	import VoteButton      from './button/VoteButton.html'
 
@@ -141,40 +222,47 @@
 			VoteButton
 		},
 		computed: {
-			visibility: ({opened}) => opened ? 'open' : 'closed'
+			visibility: ({openState}) => {
+				switch (openState) {
+					case 0:
+						return 'hidden'
+					case 1:
+						return 'closed'
+					case 2:
+						return 'open'
+					case 3:
+						return 'closed closing'
+				}
+				return ''
+			}
 		},
 		data: () => {
 			return {
-				opened: false
+				opened: false,
+				openState: 0
 			}
 		},
 		methods: {
 			toggle(opened) {
-				this.set({opened: !opened})
+				if (opened === undefined) {
+					opened = this.get().opened
+				}
+				opened = !opened
+				this.fire('opened', opened)
+
+				if (opened) {
+					this.set({opened, openState: 1})
+					setTimeout(() => {
+						this.set({openState: 2})
+					}, 10)
+				} else {
+					this.set({opened, openState: 3})
+					setTimeout(() => {
+						this.set({openState: 0})
+					}, 260)
+				}
 			}
-		},
-		onstate({changed, current}) {
-			const animations = current.opened ? IN_ANIMATIONS : OUT_ANIMATIONS
-			for (let i = 1; i <= animations.length; i++) {
-				transition(this, 'fabNav_left' + i, fade, animations[i])
-				transition(this, 'fabNav_up' + i, fade, animations[i])
-			}
-		},
-		transitions: {fade}
+		}
 	}
 
-	const IN_ANIMATIONS  = [
-		null,
-		{delay: 50, duration: 250},
-		{delay: 80, duration: 250},
-		{delay: 110, duration: 250},
-		{delay: 140, duration: 200},
-	]
-	const OUT_ANIMATIONS = [
-		null,
-		{delay: 20, duration: 200},
-		{delay: 50, duration: 200},
-		{delay: 80, duration: 200},
-		{delay: 110, duration: 200},
-	]
 </script>

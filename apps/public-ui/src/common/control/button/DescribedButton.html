@@ -1,0 +1,94 @@
+<section>
+	<div
+			class="upClose"
+			class:closing="closing"
+			class:expanded="expanded"
+	>
+		{#if displayed}
+		<span>
+		{label}
+		</span>
+		{/if}
+	</div>
+	<div>
+		<slot></slot>
+	</div>
+</section>
+<style>
+	div {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+	}
+
+	div:first-child.expanded {
+		width: 250px;
+	}
+
+	div:first-child {
+		background-color: #808080;
+		border: 3px solid black;
+		height: 50px;
+		transition: width 1s;
+		transition-delay: 2s;
+		width: 50px;
+	}
+
+	div.closing:first-child {
+		transition: width 200ms;
+		transition-delay: 0s;
+	}
+
+	div:first-child,
+	span {
+		border-radius: 25px;
+	}
+
+	span {
+		color: white;
+		display: inline-block;
+		font-size: 1.2em;
+		font-weight: 300;
+		height: 100%;
+		line-height: 42px;
+		padding-left: 15px;
+		vertical-align: middle;
+		width: 100%;
+	}
+
+	section {
+		position: relative;
+	}
+</style>
+<script>
+	export default {
+		data: () => ({
+			displayed: false,
+			expanded: false,
+			label: ''
+		}),
+		onstate({changed, current}) {
+			if (changed.expanded || changed.closing) {
+				let displayed = current.expanded
+				if (current.closing) {
+					displayed = false
+				}
+				if (displayed) {
+					const displayedHandle = setTimeout(() => {
+						this.set({displayed})
+					}, 3000)
+					this.set({displayedHandle})
+				} else {
+					let displayedHandle = this.get().displayedHandle
+
+					if (displayedHandle) {
+						clearTimeout(displayedHandle)
+						displayedHandle = 0
+					}
+
+					this.set({displayed, displayedHandle})
+				}
+			}
+		}
+	}
+</script>
