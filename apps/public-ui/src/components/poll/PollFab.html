@@ -1,5 +1,6 @@
 <Fab
 		on:opened="setOpened(event)"
+		closed="{closed}"
 >
 	<div
 			slot="up5"
@@ -8,16 +9,10 @@
 				expanded="{expanded}"
 				closing="{closing}"
 				label="Set Age Suitability"
+				on:select="open('ageSuitability')"
 		>
-			<CharacterButton
-					character="G"
-					fontSize="42"
-					fontX="24.5"
-					fontY="40"
-					on:click="open('ratings')"
-					size="50"
-					strokeWidth="3"
-			></CharacterButton>
+			<ShieldButton
+			></ShieldButton>
 		</DescribedButton>
 	</div>
 	<div
@@ -27,9 +22,9 @@
 				expanded="{expanded}"
 				closing="{closing}"
 				label="View Outcomes"
+				on:select="open('outcomes')"
 		>
 			<OutcomeButton
-					on:click="open('outcomes')"
 			></OutcomeButton>
 		</DescribedButton>
 	</div>
@@ -40,16 +35,15 @@
 				expanded="{expanded}"
 				closing="{closing}"
 				label="{previewMode ? 'Align Positions' : 'Manually Override'}"
+				on:select="open(previewMode ? 'positionMode' : 'manualOverwrite')"
 		>
 			{#if previewMode}
 			<PositionButton
-					on:click="open('positionMode')"
 					color="{dirPosButtonColor}"
 			></PositionButton>
 			{:else}
 			<ManualOverwriteButton
 					on="{manualControls}"
-					on:click="open('manualOverwrite')"
 			></ManualOverwriteButton>
 			{/if}
 		</DescribedButton>
@@ -61,9 +55,9 @@
 				expanded="{expanded}"
 				closing="{closing}"
 				label="Improve Poll"
+				on:select="open('edit')"
 		>
 			<EditButton
-					on:click="open('edit')"
 			></EditButton>
 		</DescribedButton>
 	</div>
@@ -74,14 +68,13 @@
 				expanded="{expanded}"
 				closing="{closing}"
 				label="{previewMode ? 'Build Poll' : 'Submit Vote'}"
+				on:select="open(previewMode ? 'build' : 'confirmVote')"
 		>
 			{#if previewMode}
 			<BuildButton
-					on:click="open('build')"
 			></BuildButton>
 			{:else}
 			<VoteButton
-					on:click="open('confirmVote')"
 			></VoteButton>
 			{/if}
 		</DescribedButton>
@@ -91,6 +84,7 @@
 	>
 		<UndescribedButton>
 			<VariationTreeButton
+					on:select="open('variations')"
 					styles="position: absolute; right: 0px; top: 0px;"
 			></VariationTreeButton>
 		</UndescribedButton>
@@ -100,6 +94,7 @@
 	>
 		<UndescribedButton>
 			<OpinionButton
+					on:select="open('opinions')"
 					styles="position: absolute; right: 0px; top: 0px;"
 			></OpinionButton>
 		</UndescribedButton>
@@ -109,6 +104,7 @@
 	>
 		<UndescribedButton>
 			<BellCurveButton
+					on:select="open('stats')"
 					styles="position: absolute; right: 0px; top: 0px;"
 			></BellCurveButton>
 		</UndescribedButton>
@@ -118,6 +114,7 @@
 	>
 		<UndescribedButton>
 			<RankingsButton
+					on:select="open('rankings')"
 					styles="position: absolute; right: 0px; top: 0px;"
 			></RankingsButton>
 		</UndescribedButton>
@@ -140,7 +137,7 @@
 	import AddRemoveButton     from '../../common/control/button/AddRemoveButton.html'
 	import BellCurveButton     from '../../common/control/button/BellCurveButton.html'
 	import BuildButton         from '../../common/control/button/BuildButton.html'
-	import CharacterButton     from '../../common/control/button/CharacterButton.html'
+	import ShieldButton     from '../../common/control/button/ShieldButton.html'
 	import DescribedButton     from '../../common/control/button/DescribedButton.html'
 	import EditButton          from '../../common/control/button/EditButton.html'
 	import LeftButton          from '../../common/control/button/LeftButton.html'
@@ -160,7 +157,7 @@
 			AddRemoveButton,
 			BellCurveButton,
 			BuildButton,
-			CharacterButton,
+			ShieldButton,
 			DescribedButton,
 			EditButton,
 			Fab,
@@ -174,24 +171,22 @@
 			VariationTreeButton,
 			VoteButton
 		},
-		/*		data: () => ({
-					opened: true
-				}),*/
 		data: () => ({
+			closed: false,
 			expanded: false
 		}),
 		methods: {
 			open(
 				action
 			) {
-				this.set({opened: false})
+				this.set({closed: true})
 				this.fire(action)
 			},
 			setOpened(
 				opened
 			) {
 				setTimeout(() => {
-					const change = {expanded: opened}
+					const change = {closed: !opened, expanded: opened}
 					if (!opened) {
 						change.closing = true
 						setTimeout(() => {

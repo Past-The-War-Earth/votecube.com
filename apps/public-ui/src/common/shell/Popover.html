@@ -3,7 +3,7 @@
 >
 	<div>
 		<section
-						style="
+				style="
                 height: {height};
                 width: {theWidth};
             "
@@ -44,7 +44,9 @@
 	}
 </style>
 <script>
-	import {fade}             from 'svelte-transitions'
+	import {fade} from 'svelte-transitions'
+	import store  from '../../store'
+
 	export default {
 		computed: {
 			theWidth: ({
@@ -65,6 +67,13 @@
 				width: 'initial'
 			}
 		},
+		oncreate() {
+			this.store.set({popup: true})
+		},
+		ondestroy() {
+			this.store.set({popup: false})
+		},
+		store: () => store,
 		transitions: {fade}
 	}
 </script>

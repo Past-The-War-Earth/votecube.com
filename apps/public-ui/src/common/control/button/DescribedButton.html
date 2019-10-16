@@ -1,4 +1,6 @@
-<section>
+<section
+		on:click="fire('select')"
+>
 	<div
 			class="upClose"
 			class:closing="closing"
@@ -29,7 +31,7 @@
 		background-color: #808080;
 		border: 3px solid black;
 		height: 50px;
-		transition: width 1s;
+		transition: width 0.5s;
 		transition-delay: 2s;
 		width: 50px;
 	}
@@ -76,7 +78,7 @@
 				if (displayed) {
 					const displayedHandle = setTimeout(() => {
 						this.set({displayed})
-					}, 3000)
+					}, 2500)
 					this.set({displayedHandle})
 				} else {
 					let displayedHandle = this.get().displayedHandle

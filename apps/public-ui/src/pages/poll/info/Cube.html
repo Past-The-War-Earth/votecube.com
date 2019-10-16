@@ -63,7 +63,7 @@
 			on:cubeAltered="pollAltered()"
 			on:toggleView="toggleView(cubeView, !cubeView)"
 			on:togglePercent="togglePercentPicker()"
-			on:toggleChart="toggleOutcomes()"
+			on:toggleChart="showOutcomes(true)"
 			poll="{poll}"
 			positionMode="{positionMode}"
 			verticalLayout="{verticalLayout}"
@@ -123,13 +123,23 @@
 	></PercentPicker>
 	{/if}
 	<PollFab
-			on:edit="console.log('openEdit')"
+			on:ageSuitability="showAgeSuitability(true)"
+			on:confirmVote="confirmVote()"
+			on:edit="alter($routeParams)"
 			on:manualOverwrite="togglePercentPicker()"
-			on:outcomes="toggleOutcomes()"
-			on:ratings="console.log('openRatings')"
+			on:outcomes="showOutcomes(true)"
+			on:opinions="setAction('opinions')"
+			on:rankings="setAction('rankings')"
+			on:stats="setAction('stats')"
+			on:variations="console.log('variations')"
 	>
 	</PollFab>
-	{#if showOutcomes}
+	{#if ageSuitabilityVisible}
+	<AgeSuitability
+			on:cancel="showAgeSuitability(false)"
+	></AgeSuitability>
+	{/if}
+	{#if outcomesVisible}
 	<ActionPopover
 			customCancel="{true}"
 			infoOnly="true"
@@ -145,13 +155,12 @@
 		</div>
 		<div slot="cancel">
 			<OutcomeButton
-					on:select="toggleOutcomes()"
+					on:select="showOutcomes(false)"
 			></OutcomeButton>
 		</div>
 	</ActionPopover>
 	{/if}
-	{#if confirm}
-	{#if saving}
+	{#if action === 'save'}
 	<ActionPopover
 			on:cancel="closeConfirm()"
 			viewOnly="!error"
@@ -164,18 +173,30 @@
 			{error}
 		</div>
 	</ActionPopover>
-	{:elseif voting}
+	{:elseif ['vote', 'stats', 'rankings', 'opinions'].indexOf(action) > -1}
+	<!--			contentClass="smallPadding"-->
 	<ActionPopover
-			contentClass="smallPadding"
+			customCancel="{true}"
 			on:cancel="closeConfirm()"
 	>
 		<div slot="header">
-			Confirm Vote
+			{#if action === 'opinions'}
+			Almost Here - Poll Opinions
+			{:elseif action === 'vote'}
+			Coming soon - Confirm Vote
+			{:elseif action === 'rankings'}
+			Coming soon - Poll Rankings
+			{:elseif action === 'stats'}
+			Coming in Beta - Poll Statistics
+			{/if}
 		</div>
 		<div slot="content">
+			<!--
 			<div>
 				{poll.name}
 			</div>
+			-->
+			<!--
 			<VoteComponentSummary
 					bind:delta
 					bind:poll
@@ -185,14 +206,43 @@
 					mode="confirm"
 					voteDims="{voteDims}"
 			></VoteComponentSummary>
+			-->
+			<br>
+			<h3>
+				{#if action === 'opinions'}
+				Ability to post your opinions about Polls is coming next!
+				{:elseif action === 'vote'}
+				Voting is scheduled to be released at the end of Alpha testing period.
+				{:elseif action === 'rankings'}
+				We'll start providing basic Poll Rankings at the end of Alpha testing period. More
+				will
+				be added in subsequent releases.
+				{:elseif action === 'stats'}
+				Basic Poll Statistics will be available in Beta release. More advanced stats
+				will be provided in version 1.
+				{/if}
+				<br>
+				<br>
+				Please see
+				the <a
+					href="#releasePlan">Release Plan</a> for details.
+			</h3>
+			<br>
 		</div>
+		<!--
 		<div slot="actions">
 			<VoteButton
 					on:select="vote()"
 			></VoteButton>
 		</div>
+-->
+		<div slot="cancel">
+			<CancelButton
+					on:select="closeConfirm()"
+			></CancelButton>
+		</div>
 	</ActionPopover>
-	{:else}
+	{:elseif action === 'confirm'}
 	<ActionPopover
 			on:cancel="closeConfirm()"
 	>
@@ -210,24 +260,23 @@
 	</ActionPopover>
 	{/if}
 	{/if}
-	{/if}
-	{#if $confirmAlter}
-	<ActionPopover
-			on:cancel="doNotAlter()"
-	>
-		<div slot="header">
-			Alter Poll
-		</div>
-		<div slot="content">
-			Alter this poll?
-		</div>
-		<div slot="actions">
-			<AlterButton
-					on:select="alter($routeParams)"
-			></AlterButton>
-		</div>
-	</ActionPopover>
-	{/if}
+	<!--	{#if $confirmAlter}
+		<ActionPopover
+				on:cancel="doNotAlter()"
+		>
+			<div slot="header">
+				Alter Poll
+			</div>
+			<div slot="content">
+				Alter this poll?
+			</div>
+			<div slot="actions">
+				<AlterButton
+						on:select="alter($routeParams)"
+				></AlterButton>
+			</div>
+		</ActionPopover>
+		{/if}-->
 </article>
 <style>
 	article {
@@ -253,6 +302,10 @@
 		width: 100%;
 	}
 
+	div[slot="cancel"] {
+		text-align: center;
+	}
+
 	section.card {
 		left: 0px;
 		position: absolute;
@@ -275,26 +328,29 @@
 </style>
 
 <script>
-	import {DI}          from '@airport/di'
-	import {mutationApi} from '@votecube/cube-logic'
+	import {DI}           from '@airport/di'
+	import {mutationApi}  from '@votecube/cube-logic'
 	import {
 		POLL_DAO,
 		VOTE_DAO
-	}                    from '@votecube/public-db'
-	import AlterButton   from '../../../common/control/button/AlterButton.html'
-	import BuildButton   from '../../../common/control/button/BuildButton.html'
-	import EditButton    from '../../../common/control/button/EditButton.html'
+	}                     from '@votecube/public-db'
+	import AlterButton    from '../../../common/control/button/AlterButton.html'
+	import BuildButton    from '../../../common/control/button/BuildButton.html'
+	import CancelButton
+	                      from '../../../common/control/button/CancelButton.html'
+	import EditButton     from '../../../common/control/button/EditButton.html'
 	import OutcomeButton
-	                     from '../../../common/control/button/OutcomeButton.html'
-	import VoteButton    from '../../../common/control/button/VoteButton.html'
-	import PercentPicker from '../../../common/control/PercentPicker.html'
-	import ActionPopover from '../../../common/shell/ActionPopover.html'
-	import DetailedCube  from '../../../components/poll/DetailedCube.html'
+	                      from '../../../common/control/button/OutcomeButton.html'
+	import VoteButton     from '../../../common/control/button/VoteButton.html'
+	import PercentPicker  from '../../../common/control/PercentPicker.html'
+	import ActionPopover  from '../../../common/shell/ActionPopover.html'
+	import AgeSuitability from '../../../components/AgeSuitability.html'
+	import DetailedCube   from '../../../components/poll/DetailedCube.html'
 	import FactorPercentagesMiniature
-	                     from '../../../components/poll/FactorPercentagesMiniature.html'
-	import FactorRanking from '../../../components/poll/FactorRanking.html'
+	                      from '../../../components/poll/FactorPercentagesMiniature.html'
+	import FactorRanking  from '../../../components/poll/FactorRanking.html'
 	import FactorRankingMiniature
-	                     from '../../../components/poll/FactorRankingMiniature.html'
+	                      from '../../../components/poll/FactorRankingMiniature.html'
 
 	import Outcomes             from '../../../components/poll/Outcomes.html'
 	import PollFab              from '../../../components/poll/PollFab.html'
@@ -314,8 +370,10 @@
 	export default {
 		components: {
 			ActionPopover,
+			AgeSuitability,
 			AlterButton,
 			BuildButton,
+			CancelButton,
 			DetailedCube,
 			EditButton,
 			FactorPercentagesMiniature,
@@ -368,41 +426,43 @@
 				factorDelta: 0, // Only for the factor cubes
 				manualControlsOn: true,
 				percentMode: false,
-				showOutcomes: false,
+				outcomesVisible: false,
 				verticalLayout: true,
 				zoomFactor: 0.65
 			}
 		},
 		methods: {
 			alter($routeParams) {
-				this.store.set({confirmAlter: false})
+				// this.store.set({confirmAlter: false})
 				routes.navigateToPage(routes.POLL_INFO_MAIN, {
 					...$routeParams,
 					mode: 'alter'
 				})
 			},
-			confirmAlter(event) {
-				this.store.set({confirmAlter: true})
-			},
-			doNotAlter() {
-				this.store.set({confirmAlter: false})
-			},
+			// confirmAlter(event) {
+			// 	this.store.set({confirmAlter: true})
+			// },
+			// doNotAlter() {
+			// 	this.store.set({confirmAlter: false})
+			// },
 			build() {
 				save(this)
 			},
 			checkBuild() {
-				this.set({confirm: true, error: '', saving: false, voting: false})
+				this.setAction('confirm')
 			},
 			closeConfirm() {
 				setCubeAdjustment(this.get().cubeListener, true)
-				this.set({confirm: false})
+				this.setAction('none')
 			},
 			confirmVote() {
 				setCubeAdjustment(this.get().cubeListener, false)
-				this.set({confirm: true, error: '', saving: false, voting: true})
+				this.setAction('vote')
 			},
-			toggleOutcomes() {
-				this.set({showOutcomes: !this.get().showOutcomes})
+			setAction(
+				action
+			) {
+				this.set({action, error: ''})
 			},
 			pollAltered() {
 				const {delta} = this.get()
@@ -427,6 +487,16 @@
 			) {
 				this.set({percentMove: true})
 				mutationApi.moveToValue(event.factor, event.value)
+			},
+			showAgeSuitability(
+				ageSuitabilityVisible
+			) {
+				this.set({ageSuitabilityVisible})
+			},
+			showOutcomes(
+				outcomesVisible
+			) {
+				this.set({outcomesVisible})
 			},
 			togglePercentPicker() {
 				const percentMode = !this.get().percentMode
@@ -469,7 +539,8 @@
 				routes.navigateToPage(routes.POLL_INFO_MAIN, $routeParams)
 			},
 			vote() {
-				vote(this)
+				this.set({confirm: false})
+				// vote(this)
 			}
 		},
 		oncreate() {

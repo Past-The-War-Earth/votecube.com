@@ -3,6 +3,13 @@
 >
 	<div>
 		<nav
+				class="left"
+				on:click="fire('close')"
+		>
+			╳
+		</nav>
+		<nav
+				class="right"
 				on:click="fire('close')"
 		>
 			╳
@@ -125,15 +132,24 @@
 
 	nav {
 		color: black;
-		font-size: 0.5em;
+		font-size: 0.3em;
 		height: 50px;
+		line-height: 50px;
 		position: absolute;
-		right: 1px;
 		text-align: center;
-		top: 7px;
+		top: 0px;
 		vertical-align: middle;
 		width: 50px;
 	}
+
+	nav.left {
+		left: 0px;
+	}
+
+	nav.right {
+		right: 0px;
+	}
+
 
 	summary {
 		font-size: 0.6em;
@@ -212,6 +228,12 @@
 			update() {
 				refresh(this)
 			}
+		},
+		oncreate() {
+			this.store.set({popup: true})
+		},
+		ondestroy() {
+			this.store.set({popup: false})
 		},
 		store: () => store,
 		transitions: {fly}

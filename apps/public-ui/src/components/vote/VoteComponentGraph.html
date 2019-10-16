@@ -98,16 +98,24 @@
 			{/if}
 		</td>
 	</tr>
-	<!--	{:else}
-		<tr>
-			<td
-					colspan="4"
-			>Filler
-			</td>
-		</tr>-->
 	{/each}
 	<tr>
-		<td>
+		<td
+				style="position: relative"
+		>
+			<div
+					class="ageSuitabilityDash"
+			>
+				<var>
+					<ShieldButton
+							styles="left: 0px; position: absolute; top: 1px;"
+							viewBox="0 0 100 100"
+					></ShieldButton>
+					<span
+							class="ageSuitability"
+					>0+</span>
+				</var>
+			</div>
 		</td>
 		<td
 		>
@@ -123,18 +131,11 @@
 								class="aAxisLabel"
 						>
 							A
-							<!--
-							100
-							%
-							-->
 						</div>
 						<div
 								class="zeroAxisLabel"
 						>
 							0
-							<!--
-							%
-							-->
 						</div>
 					</td>
 					<td
@@ -147,10 +148,6 @@
 								class="bAxisLabel"
 						>
 							B
-							<!--
-							100
-							%
-							-->
 						</div>
 					</td>
 				</tr>
@@ -196,6 +193,10 @@
 		}
 
 		.totals {
+			top: 30px !important;
+		}
+
+		.ageSuitabilityDash {
 			top: 30px !important;
 		}
 	}
@@ -247,7 +248,8 @@
 		left: -20px;
 	}
 
-	summary {
+	summary,
+	var {
 		position: relative;
 	}
 
@@ -305,6 +307,19 @@
 		/*left: -20px;*/
 		left: -4px;
 		position: absolute;
+	}
+
+	.ageSuitability {
+		position: absolute;
+		left: 30px;
+		top: -1px;
+	}
+
+	.ageSuitabilityDash {
+		color: black;
+		left: 5px;
+		position: absolute;
+		top: 4px;
 	}
 
 	.bAxisLabel {
@@ -395,6 +410,7 @@
 		fly
 	}                      from 'svelte-transitions'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
+	import ShieldButton    from '../../common/control/button/ShieldButton.html'
 	import {transition}    from '../../helpers/animation'
 	import {getColor}      from '../../helpers/cube'
 	import store           from '../../store'
@@ -405,7 +421,8 @@
 		components: {
 			CharacterButton,
 			CubeMiniature,
-			DetailedCube
+			DetailedCube,
+			ShieldButton
 		},
 		computed: {
 			signedTotal: ({voteDims, factorDelta}) => voteDims.reduce((

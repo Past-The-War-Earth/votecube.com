@@ -1,0 +1,70 @@
+<ActionPopover
+		on:cancel
+>
+	<div slot="header">
+		Poll Age Suitability
+	</div>
+	<div slot="content">
+		<table>
+			{#each values as value}
+			<tr>
+				<td>
+					<Radio
+							name="ageSuitability"
+							styles="position: absolute; right: 5px; top: -1px;"
+							value="{value}"
+					></Radio>
+				</td>
+				<td>
+					{value}+
+				</td>
+			</tr>
+			{/each}
+		</table>
+	</div>
+	<div slot="actions">
+		<SaveButton
+				on:select="save()"
+		></SaveButton>
+	</div>
+</ActionPopover>
+<style>
+	table {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	td:first-child {
+		height: 42px;
+		position: relative;
+		width: 55%;
+	}
+
+	td:last-child {
+		font-size: 1.5em;
+		font-weight: 400;
+		text-align: left;
+	}
+</style>
+<script>
+	import SaveButton    from '../common/control/button/SaveButton.html'
+	import Radio         from '../common/field/Radio.html'
+	import ActionPopover from '../common/shell/ActionPopover.html'
+
+	export default {
+		components: {
+			ActionPopover,
+			Radio,
+			SaveButton
+		},
+		data: () => ({
+			values: [0, 7, 13, 17, 21]
+		}),
+		methods: {
+			save() {
+				// TODO: save age suitability
+				this.fire('cancel')
+			}
+		}
+	}
+</script>

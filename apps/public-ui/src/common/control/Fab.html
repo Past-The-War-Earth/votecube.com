@@ -1,4 +1,6 @@
-<aside>
+<aside
+		class:hidden="hidden"
+>
 	<menu
 			class="verticalButtons"
 	>
@@ -89,6 +91,10 @@
 		position: fixed;
 		width: 100%;
 		z-index: 2000;
+	}
+
+	aside.hidden {
+		display: none;
 	}
 
 	div.farAway {
@@ -213,6 +219,7 @@
 
 </style>
 <script>
+	import store           from '../../store'
 	import AddRemoveButton from './button/AddRemoveButton.html'
 	import VoteButton      from './button/VoteButton.html'
 
@@ -262,7 +269,24 @@
 					}, 260)
 				}
 			}
-		}
+		},
+		oncreate() {
+			this.storeListener = store.on('state', ({changed, current}) => {
+				if (!changed.popup) {
+					return
+				}
+				this.set({hidden: current.popup})
+			})
+		},
+		ondestroy() {
+			this.storeListener.cancel()
+		},
+		onstate({changed, current}) {
+			if (changed.closed && current.closed) {
+				this.toggle(true)
+			}
+		},
+		store: () => store
 	}
 
 </script>
