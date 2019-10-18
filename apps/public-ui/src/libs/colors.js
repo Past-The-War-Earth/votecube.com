@@ -1,4 +1,5 @@
 import {get}                         from '../common/ajax'
+import {HASH}                        from '../helpers/hash'
 import {loadColors as loadColorText} from './text/colors'
 
 var rawColors
@@ -8,7 +9,7 @@ export async function loadColors() {
 		return rawColors
 	}
 
-	const data = await get(`./data/colors.json`)
+	const data = await get(`./assets/data/colors${HASH}.json`)
 	rawColors  = JSON.parse(data)
 
 	return rawColors

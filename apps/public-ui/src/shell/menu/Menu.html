@@ -90,6 +90,7 @@
 			},
 			signOut() {
 				signOut()
+				this.store.toggleMainMenu()
 			},
 			selectMenu(menuItem) {
 				this.set({selectedMenuIndex: menuItem.index})

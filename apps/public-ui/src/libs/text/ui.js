@@ -1,11 +1,12 @@
 import {get}     from '../../common/ajax'
+import {HASH}    from '../../helpers/hash'
 import {setText} from './setText'
 
 export var loadUi = async (
 	store,
 	locale
 ) => {
-	const text = await get(`./text/${locale}/ui.json`)
+	const text = await get(`./assets/text/${locale}/ui${HASH}.json`)
 
 	return setText(store, text)
 }
