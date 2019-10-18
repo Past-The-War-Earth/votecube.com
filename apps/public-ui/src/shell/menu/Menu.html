@@ -1,23 +1,46 @@
 <nav
-				class:active="active"
-				id="menu"
+		class:active="active"
+		id="menu"
 >
 	<section
-					class="pure-menu"
+			class="pure-menu"
 	>
 		<ul class="pure-menu-list">
 			{#each menuItems as menuItem, index}
 			<MenuItem
-							index="{index}"
-							menuItem="{menuItem}"
-							on:select="selectMenu(event)"
-							selectedIndex="{selectedMenuIndex}"
+					index="{index}"
+					menuItem="{menuItem}"
+					on:select="selectMenu(event)"
+					selectedIndex="{selectedMenuIndex}"
 			></MenuItem>
 			{/each}
+			{#if $user}
+			<li
+					class="pure-menu-item {selectedClass}"
+					on:click="signOut()"
+			>
+				<a
+						class="pure-menu-link"
+				>
+					Sign Out
+				</a>
+			</li>
+			{:else}
+			<li
+					class="pure-menu-item {selectedClass}"
+					on:click="signIn()"
+			>
+				<a
+						class="pure-menu-link"
+				>
+					Sign In
+				</a>
+			</li>
+			{/if}
 		</ul>
 	</section>
 	<div
-					id="sizer"
+			id="sizer"
 	></div>
 
 </nav>
@@ -27,8 +50,9 @@
 	}
 </style>
 <script>
+	import {signOut}   from '../../helpers/auth'
 	import * as routes from '../../routes'
-	import store       from '../../store.js';
+	import store       from '../../store.js'
 	import MenuItem    from './MenuItem.html'
 
 	export default {
@@ -42,6 +66,7 @@
 					key: routes.POLL_SEARCH_LIST,
 					name: 'Polls'
 				}, {
+					auth: true,
 					index: 1,
 					key: routes.POLL_INFO_MAIN,
 					params: routes.DEFAULT_ROUTE_PARAMS,
@@ -59,6 +84,13 @@
 			//   this.toggleAll(event)
 			// }
 			// },
+			signIn() {
+				this.store.set({signIn: true})
+				this.store.toggleMainMenu()
+			},
+			signOut() {
+				signOut()
+			},
 			selectMenu(menuItem) {
 				this.set({selectedMenuIndex: menuItem.index})
 				this.fire('selected', menuItem)
@@ -71,8 +103,8 @@
 	}
 
 	function getEmInPx() {
-		var div          = document.getElementById('sizer');
-		div.style.height = '1em';
-		return div.offsetHeight;
+		var div          = document.getElementById('sizer')
+		div.style.height = '1em'
+		return div.offsetHeight
 	}
 </script>

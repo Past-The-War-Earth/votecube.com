@@ -9,6 +9,7 @@ export const FACTOR_SEARCH_LIST = '/factor/List'
 export const FACTOR_PICK_COLOR  = '/factor/PickColor/:mode/:pollId'
 export const POSITION_INFO_MAIN   = '/position/info/Main/:mode/:pollId'
 export const POLL_SEARCH_LIST      = '/poll/search/List'
+export const POLL_VARIATION_LIST      = '/poll/variation/List'
 export const POLL_INFO_MAIN        = '/poll/info/Main/:mode/:pollId'
 export const POLL_INFO_CUBE        = '/poll/info/Cube/:mode/:pollId'
 export const POLL_LOCATIONS        = '/poll/Locations/:mode/:pollId'
@@ -37,6 +38,10 @@ configPage(
 )
 configPage(
 	POLL_SEARCH_LIST,
+	true
+)
+configPage(
+	POLL_VARIATION_LIST,
 	true
 )
 configPage(
@@ -86,7 +91,13 @@ export function setupRoutes(
 	topMenuMap
 ) {
 	appComp = applicationComponent
-	setupPage(PAGE_CONF[POLL_SEARCH_LIST], pageMap[POLL_SEARCH_LIST], topMenuMap[POLL_SEARCH_LIST], applicationComponent, '/')
+	setupPage(
+		PAGE_CONF[POLL_SEARCH_LIST],
+		pageMap[POLL_SEARCH_LIST],
+		topMenuMap[POLL_SEARCH_LIST],
+		applicationComponent,
+		'/'
+	)
 	for (const pageKey in PAGE_CONF) {
 		setupPage(PAGE_CONF[pageKey], pageMap[pageKey], topMenuMap[pageKey], applicationComponent)
 	}

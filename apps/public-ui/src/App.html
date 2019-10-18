@@ -1,14 +1,14 @@
 <svelte:window on:resize="handleResize(event)"/>
 <article
-				class="{activeClass} wrapper"
-				class:noOverflow="$noOverflow"
-				class:cube="$cube"
-				id="layout"
+		class="{activeClass} wrapper"
+		class:noOverflow="$noOverflow"
+		class:cube="$cube"
+		id="layout"
 >
 	<!-- Menu toggle -->
 	<TopBar
-					mainMenuActive={isMenuActive}
-					on:setViewType="setViewType(event)"
+			mainMenuActive={isMenuActive}
+			on:setViewType="setViewType(event)"
 	></TopBar>
 
 	{#if showLogo}
@@ -18,28 +18,33 @@
 	{/if}
 
 	<nav
-					class="menu-link {activeClass}"
-					id="menuLink"
-					on:click="toggleMenu()"
+			class="menu-link {activeClass}"
+			id="menuLink"
+			on:click="toggleMenu()"
 	>
 		<!--Hamburger icon -->
 		<span></span>
 	</nav>
 	<Menu
-					active="{$showMainMenu}"
-					on:selected="selectMenu(event)"
+			active="{$showMainMenu}"
+			on:selected="selectMenu(event)"
 	></Menu>
 	<section
-					id="main"
-					on:click="clickMain()"
+			id="main"
+			on:click="clickMain()"
 	>
 		<svelte:component this="{PageComp}"/>
 	</section>
 </article>
 {#if showTextToast}
 <TextToast
-				text="{$textToast.text}"
+		text="{$textToast.text}"
 ></TextToast>
+{/if}
+{#if $signIn}
+<Login
+		on:closed="closeLogin()"
+></Login>
 {/if}
 
 <style>
@@ -87,14 +92,14 @@
 </style>
 
 <script>
-	import {init} from './database'
-	import TextToast           from './common/shell/TextToast.html'
-	import {loadUi}            from './libs/text/ui'
-	import FactorInfoMain   from './pages/factor/info/Main.html'
-	import FactorPickColor  from './pages/factor/PickColor.html'
-	import FactorSearchList from './pages/factor/search/List.html'
 
-	import PositionInfoMain     from './pages/position/info/Main.html'
+	import TextToast             from './common/shell/TextToast.html'
+	import {init}                from './database'
+	import {reactToUser}         from './helpers/auth'
+	import {loadUi}              from './libs/text/ui'
+	import FactorInfoMain        from './pages/factor/info/Main.html'
+	import FactorPickColor       from './pages/factor/PickColor.html'
+	import FactorSearchList      from './pages/factor/search/List.html'
 	import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
 	import PollInfoCube          from './pages/poll/info/Cube.html'
 	import PollInfoMain          from './pages/poll/info/Main.html'
@@ -102,18 +107,22 @@
 	import PollSearchList        from './pages/poll/search/List.html'
 	import PollSearchListTopMenu from './pages/poll/search/List.top.menu.html'
 	import PollTimeframe         from './pages/poll/Timeframe.html'
+	import PollVariationList     from './pages/poll/variation/List.html'
+
+	import PositionInfoMain from './pages/position/info/Main.html'
 	import {
 		scheduleToResize,
 		startResizeInterval
-	}                            from './resizer.js'
-	import * as routes           from './routes'
+	}                       from './resizer.js'
+	import * as routes      from './routes'
 	import {
 		navigateToPage,
 		setupRoutes
-	}                            from './routes.js'
-	import Menu                  from './shell/menu/Menu.html'
-	import TopBar                from './shell/top/TopBar.html'
-	import store                 from './store.js';
+	}                       from './routes.js'
+	import Login            from './shell/SignIn.html'
+	import Menu             from './shell/menu/Menu.html'
+	import TopBar           from './shell/top/TopBar.html'
+	import store            from './store.js'
 
 	const pageMap = {
 		[routes.POSITION_INFO_MAIN]: PositionInfoMain,
@@ -121,11 +130,12 @@
 		[routes.FACTOR_SEARCH_LIST]: FactorSearchList,
 		[routes.FACTOR_PICK_COLOR]: FactorPickColor,
 		[routes.POLL_SEARCH_LIST]: PollSearchList,
+		[routes.POLL_VARIATION_LIST]: PollVariationList,
 		[routes.POLL_INFO_MAIN]: PollInfoMain,
 		[routes.POLL_INFO_CUBE]: PollInfoCube,
 		[routes.POLL_LOCATIONS]: PollLocations,
 		[routes.POLL_TIMEFRAME]: PollTimeframe,
-	};
+	}
 
 	const topMenuMap = {
 		[routes.POLL_INFO_CUBE]: PollInfoCommonTopMenu,
@@ -134,6 +144,7 @@
 
 	export default {
 		components: {
+			Login,
 			Menu,
 			TextToast,
 			TopBar
@@ -156,6 +167,9 @@
 				if (this.store.get().showMainMenu) {
 					this.toggleMenu()
 				}
+			},
+			closeLogin() {
+				this.store.set({signIn: false})
 			},
 			handleResize(
 				event
@@ -191,6 +205,7 @@
 			}
 		},
 		oncreate() {
+			reactToUser(this.store)
 			loadUi(this.store, 'en-us').then()
 			init().then()
 

@@ -3,6 +3,7 @@ import {
 	getChange
 }                    from '../changeTracker'
 import {IValidator}  from '../validator/Validator'
+import {IFieldText}  from './Field'
 import {IFieldGroup} from './FieldGroup'
 
 export interface IFieldError {
@@ -296,4 +297,29 @@ export abstract class FieldBase
 		})
 	}
 
+}
+
+export function validate(
+	field: FieldBase
+) {
+	field.errors = []
+
+	field.validators.some(
+		validator => {
+			const error = validator(field)
+			if (error) {
+				if (error instanceof Array) {
+					error.forEach(
+						anError => {
+							anError.message = field.text.errors[anError.key]
+						})
+					field.errors = field.errors.concat(error)
+				} else {
+					error.message = field.text.errors[error.key]
+					field.errors.push(error)
+				}
+
+				return true
+			}
+		})
 }

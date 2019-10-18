@@ -1,11 +1,9 @@
-export function loadForms(
+export async function loadForms(
 	page
 ) {
-	return import('@votecube/forms').then((
-		forms
-	) => {
-		page.store.set({forms})
+	const forms = await import('@votecube/forms')
 
-		return forms
-	})
+	page.store.set({forms})
+
+	return forms
 }

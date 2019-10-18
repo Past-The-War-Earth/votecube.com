@@ -1,15 +1,19 @@
+{#if !menuItem.auth || $user}
 <li
-				class="pure-menu-item {selectedClass}"
-				on:click="click()"
+		class="pure-menu-item {selectedClass}"
+		on:click="click()"
 >
 	<a
-					class="pure-menu-link"
+			class="pure-menu-link"
 	>
 		{menuItem.name}
 	</a>
 </li>
+{/if}
 
 <script>
+	import store from '../../store.js'
+
 	export default {
 		computed: {
 			selectedClass: ({menuIndex, selectedIndex}) =>
@@ -20,6 +24,7 @@
 			click() {
 				this.fire('select', this.get().menuItem)
 			}
-		}
+		},
+		store: () => store
 	}
 </script>

@@ -1,17 +1,17 @@
 import {get}     from '../../common/ajax'
 import {setText} from './setText'
 
-export function loadLocations(
+export var loadLocations = async (
 	store,
 	locale
-) {
-	return get(`./text_${locale}_locations.js`).then(text => setText(store, text))
-	// return get(`./text/${locale}/locations.json`).then(text => setText(store, text))
+) => {
+	const text = await get(`./text/${locale}/locations.json`)
 
-	// switch (locale) {
-	//     case 'en-us': {
-	// import('@votecube/text_en-us/lib/locations').then(text => setText(store, text))
-	// break
-	// }
-	// }
+	return setText(store, text)
 }
+// switch (locale) {
+//     case 'en-us': {
+// import('@votecube/text_en-us/lib/locations').then(text => setText(store, text))
+// break
+// }
+// }

@@ -1,0 +1,453 @@
+<article
+		transition:fade="{duration: 700}"
+>
+	{#if form}
+	<!--
+	<form>
+		<Text
+				field="{form.fields.search}"
+		></Text>
+	</form>
+	-->
+
+	{#if currentVariation.depth}
+	<nav>
+		<div>
+			<RightButton
+					styles="transform: rotate(-90deg);"
+					on:select="moveUpHierarchy(currentVariation, navList)"
+					size="25"
+			></RightButton>
+		</div>
+		<var>
+			&nbsp;&nbsp;{currentVariation.depth}
+		</var>
+	</nav>
+	{/if}
+	<ListItem
+			childMode="{false}"
+			classes="{switchToClasses(switching, switchedToId, currentVariation)}"
+			mode="{mode}"
+			navList="{navList}"
+			on:select="goTo(currentVariation.id)"
+			variation="{currentVariation}"
+	></ListItem>
+	<div
+			class="divider"
+	></div>
+	{#each childVariations as variation}
+	<ListItem
+			classes="{switchToClasses(switching, switchedToId, variation)}"
+			mode="{mode}"
+			navList="{navList}"
+			on:moveDownHierarchy="moveDownHierarchy(variation, navList)"
+			on:select="goTo(variation.id)"
+			variation="{variation}"
+	></ListItem>
+	{/each}
+	{#if !childVariations.length}
+	No child variations exist yet.
+	{/if}
+	<PollListingFab
+			entityNames="Polls"
+			on:factors="showFactors()"
+			on:sort="setAction('sort')"
+			on:filter="setAction('filter')"
+			on:outcomes="showOutcomes()"
+	></PollListingFab>
+	<!--
+	<VirtualList items={factors} component={ListItem} />
+	-->
+	{#if ['filter', 'sort'].indexOf(action) > -1}
+	<!--			contentClass="smallPadding"-->
+	<ActionPopover
+			customCancel="{true}"
+			on:cancel="setAction('none')"
+	>
+		<div slot="header">
+			{#if action === 'filter'}
+			Coming soon - Filtering
+			{:elseif action === 'sort'}
+			Coming soon - Sorting
+			{/if}
+		</div>
+		<div slot="content">
+			<br>
+			<h3>
+				{#if action === 'filter'}
+				Ability filter Poll results is coming right after Opinions and will be
+				released mid-Alpha.
+				{:elseif action === 'sort'}
+				Ability sort Poll results is at the same time as the ability to filter
+				and will be released mid-Alpha.
+				{/if}
+				<br>
+				<br>
+				Please see the <a
+					href="#releasePlan">Release Plan</a> for details.
+			</h3>
+			<br>
+		</div>
+		<!--
+		<div slot="actions">
+			<VoteButton
+					on:select="vote()"
+			></VoteButton>
+		</div>
+	-->
+		<div slot="cancel">
+			<CancelButton
+					on:select="setAction('none')"
+			></CancelButton>
+		</div>
+	</ActionPopover>
+	{/if}
+
+	{/if}
+</article>
+
+<style>
+	article {
+		height: initial;
+		max-width: 420px;
+		position: relative;
+		width: 100%;
+	}
+
+	nav {
+		display: flex;
+		text-align: center;
+		width: 100%;
+	}
+
+	nav > div {
+		flex-basis: 100%;
+		text-align: right;
+	}
+
+	nav > var {
+		color: black;
+		flex-basis: 100%;
+		text-align: left;
+		line-height: 27px;
+		vertical-align: middle;
+	}
+
+	span {
+		color: black;
+		display: inline-block;
+	}
+
+	.divider {
+		height: 3px;
+		background-color: black;
+		margin: 2px 10px 2px 10px;
+		max-width: 100%;
+	}
+
+</style>
+<script>
+	import {DI}           from '@airport/di'
+	import {POLL_DAO}     from '@votecube/public-db'
+	import {fade}         from 'svelte-transitions'
+	import CancelButton   from '../../../common/control/button/CancelButton.html'
+	import RightButton    from '../../../common/control/button/RightButton.html'
+	// import VirtualList from '@sveltejs/svelte-virtual-list';
+	import Text           from '../../../common/field/Text.html'
+	import ActionPopover  from '../../../common/shell/ActionPopover.html'
+	import PollListingFab from '../../../components/poll/PollListingFab.html'
+	import * as forms     from '../../../form/forms'
+	import {loadForms}    from '../../../libs/forms'
+	import * as routes    from '../../../routes'
+	import store          from '../../../store'
+	import ListItem       from './ListItem.html'
+
+	export default {
+		components: {
+			ActionPopover,
+			CancelButton,
+			ListItem,
+			PollListingFab,
+			RightButton,
+			Text,
+			// VirtualList
+		},
+		data() {
+			return {
+				// ListItem,
+				mode: 'factors'
+			}
+		},
+		helpers: {
+			switchToClasses(
+				switching,
+				switchedToId,
+				currentVariation
+			) {
+				if (!switching) {
+					return ''
+				}
+				const switchedToItem = switchedToId === currentVariation.id
+				if (switching === 1) {
+					return switchedToItem ? '' : 'closing'
+				} else if (switching === 2) {
+					return switchedToItem ? '' : 'closed'
+				}
+			}
+		},
+		methods: {
+			goTo(
+				pollId
+			) {
+				routes.navigateToPage(routes.POLL_INFO_CUBE, {
+					// pollId,
+					pollId: 1,
+					mode: 'vote'
+				})
+			},
+			moveDownHierarchy(
+				moveToVariation,
+				navList
+			) {
+				this.set({switching: 1, switchedToId: moveToVariation.id})
+				setTimeout(() => {
+					this.set({switching: 2})
+					setTimeout(() => {
+						if ([0, 1].indexOf(navList.direction) > -1
+							&& navList.variation.id !== moveToVariation.id) {
+							navList = {
+								direction: 1,
+								isTarget: false,
+								previous: navList,
+								variation: moveToVariation,
+							}
+						} else if (navList.direction === -1) {
+							if(navList.variation.id === moveToVariation.id) {
+								navList = navList.previous
+							} else {
+								navList = {
+									direction: 1,
+									isTarget: false,
+									previous: navList,
+									variation: moveToVariation,
+								}
+							}
+						}
+						this.set({
+							childVariations: moveToVariation.children,
+							currentVariation: moveToVariation,
+							navList
+						})
+						setTimeout(() => {
+							this.set({switching: 1})
+							setTimeout(() => {
+								this.set({switching: 0})
+							}, 1500)
+						}, 10)
+					}, 1500)
+				}, 10)
+			},
+			moveUpHierarchy(
+				moveToVariation,
+				navList,
+			) {
+				this.set({switching: 1, switchedToId: moveToVariation.id})
+				setTimeout(() => {
+					this.set({switching: 2})
+					setTimeout(() => {
+						if (navList.direction === -1) {
+							navList = {
+								direction: -1,
+								isTarget: false,
+								previous: navList,
+								variation: moveToVariation.parent,
+							}
+						} else if (navList.direction === 0
+							&& moveToVariation.id !== navList.variation.id) {
+							navList = {
+								direction: -1,
+								isTarget: false,
+								previous: navList,
+								variation: moveToVariation,
+							}
+						} else if (navList.direction === 1) {
+							navList = navList.previous
+						}
+						this.set({
+							childVariations: moveToVariation.parent.children,
+							currentVariation: moveToVariation.parent,
+							navList
+						})
+						setTimeout(() => {
+							this.set({switching: 1})
+							setTimeout(() => {
+								this.set({switching: 0})
+							}, 1500)
+						}, 10)
+					}, 1500)
+				}, 10)
+			},
+			setAction(
+				action
+			) {
+				this.set({action, error: ''})
+			},
+			showFactors() {
+				this.set({mode: 'factors'})
+			},
+			showOutcomes() {
+				this.set({mode: 'outcomes'})
+			},
+		},
+		oncreate() {
+			initPage(this)
+		},
+		ondestroy() {
+			forms.clearForm(this)
+		},
+		store: () => store,
+		transitions: {
+			fade
+		}
+	}
+
+	async function initPage(page) {
+		const pollDao = await DI.get(POLL_DAO)
+		const [
+			      {Field, FieldGroup},
+			      polls
+		      ]       = await Promise.all([
+			loadForms(page),
+			pollDao.getAll()
+		])
+
+		const filter = new FieldGroup('List', {
+			search: new Field([])
+		}, [], page.store.get().text.UI.Poll)
+
+		const variations = polls.map(convertPoll)
+
+		const currentVariation = variations[0]
+
+		const navList = {
+			direction: 0,
+			isTarget: true,
+			previous: null,
+			variation: currentVariation,
+		}
+
+		page.set({childVariations: currentVariation.children, currentVariation, navList})
+		forms.ensureForm(filter, page)
+
+		page.store.set({
+			pageTitle: 'Poll Variations'
+		})
+	}
+
+	function convertPoll(
+		poll
+	) {
+		let id          = 1500
+		const variation = {
+			...poll,
+			children: [],
+			depth: 2,
+			id: ++id,
+		}
+		for (let i = 0; i < 5; i++) {
+			let childVariation = {
+				...variation,
+				children: [],
+				depth: 3,
+				id: ++id,
+				parent: variation
+			}
+			variation.children.push(childVariation)
+
+			for (let i = 0; i < 5; i++) {
+				let grandChildVariation = {
+					...childVariation,
+					children: [],
+					depth: 4,
+					id: ++id,
+					parent: childVariation
+				}
+				childVariation.children.push(grandChildVariation)
+				for (let i = 0; i < 5; i++) {
+					grandChildVariation.children.push({
+						...grandChildVariation,
+						children: [],
+						depth: 5,
+						id: ++id,
+						parent: grandChildVariation
+					})
+				}
+			}
+		}
+
+
+		let grandParentVariation = {
+			...variation,
+			children: [],
+			depth: 0,
+			id: ++id,
+			parent: null
+		}
+
+		let parentVariation = {
+			...variation,
+			children: [],
+			depth: 1,
+			id: ++id,
+			parent: grandParentVariation
+		}
+		variation.parent    = parentVariation
+		parentVariation.children.push(variation)
+
+		for (let i = 0; i < 5; i++) {
+			let siblingVariation = {
+				...variation,
+				children: [],
+				depth: 2,
+				id: ++id,
+				parent: parentVariation
+			}
+			for (let i = 0; i < 5; i++) {
+				let nieceVariation = {
+					...variation,
+					children: [],
+					depth: 3,
+					id: ++id,
+					parent: siblingVariation
+				}
+				siblingVariation.children.push(nieceVariation)
+			}
+
+			parentVariation.children.push(siblingVariation)
+		}
+
+		for (let i = 0; i < 5; i++) {
+			let auntVariation = {
+				...variation,
+				children: [],
+				depth: 1,
+				id: ++id,
+				parent: grandParentVariation
+			}
+			for (let i = 0; i < 5; i++) {
+				let cousinVariation = {
+					...variation,
+					children: [],
+					depth: 2,
+					id: ++id,
+					parent: auntVariation
+				}
+				auntVariation.children.push(cousinVariation)
+			}
+			grandParentVariation.children.push(auntVariation)
+		}
+		grandParentVariation.children.push(parentVariation)
+
+		return variation
+	}
+</script>

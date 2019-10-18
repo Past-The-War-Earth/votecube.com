@@ -65,11 +65,12 @@ export class FieldGroup
 		name,
 		public fields: IFieldMap = {},
 		validators: IValidator[],
-		text: any
+		text: any,
+		textName?: string
 	) {
 		super(validators)
 		this.name = name
-		this.text = text[this.name]
+		this.text = text[textName ? textName : this.name]
 
 		for (const fieldName in fields) {
 			const field = fields[fieldName]
@@ -245,6 +246,9 @@ export class FieldGroup
 				this.theIsOriginal = false
 			}
 		}
+
+		// FIXME: add FieldGroup validation
+		// validate(this)
 
 		this.valid = this.valid || (!this.hasChildValues && !this.validatorMap.required)
 

@@ -131,7 +131,7 @@
 			on:opinions="setAction('opinions')"
 			on:rankings="setAction('rankings')"
 			on:stats="setAction('stats')"
-			on:variations="console.log('variations')"
+			on:variations="goToVariations()"
 	>
 	</PollFab>
 	{#if ageSuitabilityVisible}
@@ -452,12 +452,15 @@
 				this.setAction('confirm')
 			},
 			closeConfirm() {
-				setCubeAdjustment(this.get().cubeListener, true)
+				// setCubeAdjustment(this.get().cubeListener, true)
 				this.setAction('none')
 			},
 			confirmVote() {
 				setCubeAdjustment(this.get().cubeListener, false)
 				this.setAction('vote')
+			},
+			goToVariations() {
+				routes.navigateToPage(routes.POLL_VARIATION_LIST)
 			},
 			setAction(
 				action

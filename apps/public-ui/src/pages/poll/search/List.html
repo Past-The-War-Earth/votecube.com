@@ -1,49 +1,125 @@
-{#if form}
-<form>
-	<Text
-			field="{form.fields.search}"
-	></Text>
-</form>
-<table>
-	{#each polls as poll}
-	<ListItem
-			poll="{poll}"
-			on:select="goTo(poll.id)"
-	></ListItem>
-	{/each}
-</table>
-<!--
-<VirtualList items={factors} component={ListItem} />
--->
-{/if}
+<article
+		transition:fade="{duration: 700}"
+>
+	{#if form}
+	<!--
+	<form>
+		<Text
+				field="{form.fields.search}"
+		></Text>
+	</form>
+	-->
+	<table>
+		{#each polls as poll}
+		<ListItem
+				mode="{mode}"
+				on:select="goTo(poll.id)"
+				poll="{poll}"
+		></ListItem>
+		{/each}
+	</table>
+	<PollListingFab
+			entityNames="Polls"
+			on:factors="showFactors()"
+			on:sort="setAction('sort')"
+			on:filter="setAction('filter')"
+			on:outcomes="showOutcomes()"
+	></PollListingFab>
+	<!--
+	<VirtualList items={factors} component={ListItem} />
+	-->
+	{#if ['filter', 'sort'].indexOf(action) > -1}
+	<!--			contentClass="smallPadding"-->
+	<ActionPopover
+			customCancel="{true}"
+			on:cancel="setAction('none')"
+	>
+		<div slot="header">
+			{#if action === 'filter'}
+			Coming soon - Filtering
+			{:elseif action === 'sort'}
+			Coming soon - Sorting
+			{/if}
+		</div>
+		<div slot="content">
+			<br>
+			<h3>
+				{#if action === 'filter'}
+				Ability filter Poll results is coming right after Opinions and will be
+				released mid-Alpha.
+				{:elseif action === 'sort'}
+				Ability sort Poll results is at the same time as the ability to filter
+				and will be released mid-Alpha.
+				{/if}
+				<br>
+				<br>
+				Please see the <a
+					href="#releasePlan">Release Plan</a> for details.
+			</h3>
+			<br>
+		</div>
+		<!--
+		<div slot="actions">
+			<VoteButton
+					on:select="vote()"
+			></VoteButton>
+		</div>
+	-->
+		<div slot="cancel">
+			<CancelButton
+					on:select="setAction('none')"
+			></CancelButton>
+		</div>
+	</ActionPopover>
+	{/if}
+
+	{/if}
+</article>
 
 <style>
+
+	article {
+		height: initial;
+		position: relative;
+		max-width: 420px;
+		width: 100%;
+	}
+
 	table {
 		width: 100%;
 	}
+
 </style>
 <script>
-	import {DI}        from '@airport/di'
-	import {POLL_DAO}  from '@votecube/public-db'
+	import {DI}           from '@airport/di'
+	import {POLL_DAO}     from '@votecube/public-db'
+	import {fade}         from 'svelte-transitions'
+	import CancelButton   from '../../../common/control/button/CancelButton.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
-	import Text        from '../../../common/field/Text.html'
-	import * as forms  from '../../../form/forms'
-	import {loadForms} from '../../../libs/forms'
-	import * as routes from '../../../routes'
-	import store       from '../../../store'
-	import ListItem    from './ListItem.html'
+	import Text           from '../../../common/field/Text.html'
+	import ActionPopover  from '../../../common/shell/ActionPopover.html'
+	import PollListingFab from '../../../components/poll/PollListingFab.html'
+	import * as forms     from '../../../form/forms'
+	import {loadForms}    from '../../../libs/forms'
+	import * as routes    from '../../../routes'
+	import store          from '../../../store'
+	import ListItem       from './ListItem.html'
 
 	export default {
 		components: {
+			ActionPopover,
+			CancelButton,
 			ListItem,
+			PollListingFab,
 			Text,
 			// VirtualList
 		},
-		// data() {
-		//   return {
-		//     ListItem
-		//   }
-		// },
+		data() {
+			return {
+				// ListItem,
+				mode: 'factors'
+			}
+		},
 		methods: {
 			goTo(
 				pollId
@@ -52,7 +128,18 @@
 					pollId,
 					mode: 'vote'
 				})
-			}
+			},
+			setAction(
+				action
+			) {
+				this.set({action, error: ''})
+			},
+			showFactors() {
+				this.set({mode: 'factors'})
+			},
+			showOutcomes() {
+				this.set({mode: 'outcomes'})
+			},
 		},
 		oncreate() {
 			initPage(this)
@@ -60,7 +147,10 @@
 		ondestroy() {
 			forms.clearForm(this)
 		},
-		store: () => store
+		store: () => store,
+		transitions: {
+			fade
+		}
 	}
 
 	async function initPage(page) {

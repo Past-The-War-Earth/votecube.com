@@ -1,48 +1,48 @@
 {#if $forms}
 <div
-				class="textField"
+		class="textField"
 >
 	<label
-					class="field-label"
-					use:for="{id}"
+			class="field-label"
+			use:for="{id}"
 	>{label}</label>
 	{#if matches}
 	<a>{matches.length} matches</a>
 	{/if}
 	<section
-					class="field fieldBox"
-					class:invalid="touched && errors.length"
-					class:modified="modified"
-					class:requiredInvalid="requiredInvalid"
-					class:requiredValid="requiredValid"
+			class="field fieldBox"
+			class:invalid="touched && errors.length"
+			class:modified="modified"
+			class:requiredInvalid="requiredInvalid"
+			class:requiredValid="requiredValid"
 	>
 		<div
-						class="text"
+				class="text"
 		>
 			<input
-							on:blur="onBlur(event)"
-							on:input="onInput(event)"
-							placeholder="{placeholder}"
-							type="text"
-							use:id="{id}"
-							use:maxlength="field.rules.maxLength"
-							value="{value}"
+					on:blur="onBlur(event)"
+					on:input="onInput(event)"
+					placeholder="{placeholder}"
+					type="{type}"
+					use:id="{id}"
+					use:maxlength="field.rules.maxLength"
+					value="{value}"
 			>
 		</div>
 		<div
-						class="icons"
+				class="icons"
 		>
 			<div>
 				<InfoIcon
-								on:select="help()"
+						on:select="help()"
 				></InfoIcon>
 				{#if trackOriginal}
 				<UndoIcon
-								on:select="revert()"
+						on:select="revert()"
 				></UndoIcon>
 				{:else}
 				<ClearIcon
-								on:select="clear()"
+						on:select="clear()"
 				></ClearIcon>
 				{/if}
 			</div>
@@ -69,7 +69,7 @@
 		position: relative;
 	}
 
-	input[type="text"] {
+	input {
 		border: 0;
 		box-shadow: none;
 		display: inline-block;
@@ -98,6 +98,7 @@
 
 	.textField {
 		position: relative;
+		text-align: left;
 	}
 
 	.text {
@@ -108,26 +109,35 @@
 </style>
 
 <script>
-	import store     from '../../store.js'
+	import store from '../../store.js'
 	import ClearIcon from '../icon/ClearIcon.html'
-	import InfoIcon  from '../icon/InfoIcon.html'
-	import UndoIcon  from '../icon/UndoIcon.html'
+	import InfoIcon from '../icon/InfoIcon.html'
+	import UndoIcon from '../icon/UndoIcon.html'
 
 	export default {
 		actions: {
-			for(node, id) {
+			for(
+				node,
+				id
+			) {
 				if (id) {
-					node.id = id;
+					node.id = id
 				}
 			},
-			id(node, id) {
+			id(
+				node,
+				id
+			) {
 				if (id) {
-					node.id = id;
+					node.id = id
 				}
 			},
-			maxlength(node, maxLength) {
+			maxlength(
+				node,
+				maxLength
+			) {
 				if (maxLength) {
-					node.maxLength = maxLength;
+					node.maxLength = maxLength
 				}
 			}
 		},
@@ -151,6 +161,9 @@
 			trackOriginal: ({delta, field}) => field.rules.trackOriginal,
 			value: ({delta, field}) => field.value
 		},
+		data: () => ({
+			type: 'text'
+		}),
 		immutable: true,
 		methods: {
 			clear() {

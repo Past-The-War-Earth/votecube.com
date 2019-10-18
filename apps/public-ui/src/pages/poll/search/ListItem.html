@@ -1,41 +1,75 @@
 <tr
-				on:click="fire('select', {event})"
+		on:click="fire('select', {event})"
 >
 	<td
-					class="icon"
+			class="icon"
 	>
 		<figure>
 			<div
-							class="surface s1"
-							style="
+					class="surface s1"
+					style="
         background-color: #{getColor(0, poll, 'x')};
                         "
 			></div>
 			<div
-							class="surface s2"
-							style="
+					class="surface s2"
+					style="
         background-color: #{getColor(0, poll, 'z')};
                         "
 			></div>
 			<div
-							class="surface s5"
-							style="
+					class="surface s5"
+					style="
         background-color: #{getColor(0, poll, 'y')};
                         "
 			></div>
 		</figure>
 	<td
-					class="description"
+			class="description"
 	>
-		<div>
+		<div
+				class:outcomes="mode === 'outcomes'"
+		>
 			{poll.name}
 		</div>
+
+		{#if mode === 'factors'}
+		<var>
+			{getSideText(delta, 'confirm', poll, 'x', 1)}
+		</var>
+		<var>
+			{getSideText(delta, 'confirm', poll, 'y', 1)}
+		</var>
+		<var>
+			{getSideText(delta, 'confirm', poll, 'z', 1)}
+		</var>
+		{:else}
+
+		<section>
+			<var
+					class="A"
+			>
+				{sortedOutcomes[0].outcome}
+			</var>
+			<var
+					class="B"
+			>
+				{sortedOutcomes[1].outcome}
+			</var>
+		</section>
+
+		{/if}
 	</td>
 </tr>
 <style>
 	div {
-		max-height: 72px;
+		color: black;
+		font-weight: 500;
 		overflow: hidden;
+	}
+
+	div.outcomes {
+		text-align: center;
 	}
 
 	figure {
@@ -45,56 +79,93 @@
 		transform-style: preserve-3d;
 	}
 
+	section {
+		display: flex;
+		text-align: center;
+		width: 100%;
+	}
+
+	section > var {
+		flex-basis: 100%;
+	}
+
+	section > var:first-child {
+		padding-right: 5px;
+	}
+
+	section > var:last-child {
+		padding-left: 5px;
+	}
+
 	td {
 		border-top: 1px solid #ddd;
+	}
+
+	td > var {
+		display: block;
+		padding-left: 15px;
 	}
 
 	.description {
 		border-left: none;
 		padding: 9px;
-		width: calc(100% - 60px);
+		width: calc(100% - 40px);
 	}
 
 	.icon {
-		height: 90px;
-		perspective: 700px;
-		perspective-origin: 50% 160px;
-		width: 90px;
+		height: 45px;
+		perspective: 350px;
+		perspective-origin: 50% 80px;
+		width: 45px;
 	}
 
 	figure {
 		border-radius: 3px;
 		margin: auto;
-		height: 42px;
-		width: 42px;
+		height: 21px;
+		width: 21px;
 	}
 
 	.s1 {
-		transform: rotateX(90deg) translateZ(24px)
+		transform: rotateX(90deg) translateZ(12px)
 	}
 
 	.s2 {
-		transform: translateZ(24px)
+		transform: translateZ(12px)
 	}
 
 	.s5 {
-		transform: rotateY(90deg) translateZ(-24px)
+		transform: rotateY(90deg) translateZ(-12px)
 	}
 
 	.surface {
 		position: absolute;
-		height: 45px;
-		width: 45px;
-		border-radius: 4px;
-		border: 3px groove gray;
+		height: 22.5px;
+		width: 22.5px;
+		border-radius: 3px;
+		border: 2px groove gray;
 	}
 </style>
 <script>
-	import {getColor} from '../../../helpers/cube';
+	import {
+		getColor,
+		getSideText
+	} from '../../../helpers/cube'
 
 	export default {
+		computed: {
+			sortedOutcomes: ({poll}) => {
+				const sortedOutcomes = poll.outcomes.sort((
+					outcome1,
+					outcome2
+				) => outcome1.key > outcome2.key)
+
+				return sortedOutcomes
+			}
+		},
 		helpers: {
-			getColor
+			getColor,
+			getSideText
 		},
 		immutable: true
 	}

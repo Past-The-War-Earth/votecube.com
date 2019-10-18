@@ -5,7 +5,8 @@ import {
 import {
 	FieldBase,
 	IFieldBase,
-	IFieldError
+	IFieldError,
+	validate
 } from './FieldBase'
 
 export enum LabelRule {
@@ -173,26 +174,8 @@ export class Field
 	validate(
 		fromParentGroup?: boolean
 	): void {
-		this.errors = []
+		validate(this)
 
-		this.validators.some(
-			validator => {
-				let error = validator(this)
-				if (error) {
-					if (error instanceof Array) {
-						error.forEach(
-							anError => {
-								anError.message = this.text.errors[anError.key]
-							})
-						this.errors = this.errors.concat(error)
-					} else {
-						error.message = this.text.errors[error.key]
-						this.errors.push(error)
-					}
-
-					return true
-				}
-			})
 		this.updateValidity(fromParentGroup)
 	}
 

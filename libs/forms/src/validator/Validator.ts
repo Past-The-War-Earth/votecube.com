@@ -2,6 +2,7 @@ import {
 	IFieldBase,
 	IFieldError
 }                            from '../field/FieldBase'
+import {custom}              from './custom'
 import {greaterThanOrEquals} from './greaterThanOrEquals'
 import {minDate}             from './minDate'
 import {minLength}           from './minLength'
@@ -15,11 +16,17 @@ export interface IValidator<F extends IFieldBase = IFieldBase> {
 }
 
 export interface IValidators {
+	custom: (
+		validatorName: string,
+		validatorFunction: () => IFieldError[] | IFieldError | null,
+		validatorType?: string
+	) => IValidator,
 	minLength: (minLength: number) => IValidator,
 	required: () => IValidator
 }
 
 export const Validators = {
+	custom,
 	greaterThanOrEquals,
 	minDate,
 	minLength,

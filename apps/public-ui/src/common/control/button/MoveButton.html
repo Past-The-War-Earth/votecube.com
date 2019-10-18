@@ -1,22 +1,22 @@
 <svg
-				class="{classes}"
-				height="{size}"
-				on:click="fire('select', event)"
-				on:mousedown="fire('selectStart', event)"
-				on:touchend="fire('select', event)"
-				on:touchstart="fire('selectStart', event)"
-				style="{styles}"
-				viewBox="{viewBox(size)}"
-				width="{size}"
+		class="{classes}"
+		height="{size}"
+		on:click="fire('select', event)"
+		on:mousedown="fire('selectStart', event)"
+		on:touchend="fire('select', event)"
+		on:touchstart="fire('selectStart', event)"
+		style="{styles}"
+		viewBox="{viewBox(size)}"
+		width="{size}"
 >
 	<g class="layer">
 		<line
-						stroke="#{highlightColor}"
-						stroke-width="4"
-						x1="11"
-						x2="19"
-						y1="0"
-						y2="11"
+				stroke="#{highlightColor}"
+				stroke-width="4"
+				x1="11"
+				x2="19"
+				y1="0"
+				y2="11"
 		/>
 		<line
 				stroke="#{highlightColor}"
@@ -27,12 +27,12 @@
 				y2="11"
 		/>
 		<line
-						stroke="#{highlightColor}"
-						stroke-width="4"
-						x1="11"
-						x2="19"
-						y1="20"
-						y2="9"
+				stroke="#{highlightColor}"
+				stroke-width="4"
+				x1="11"
+				x2="19"
+				y1="20"
+				y2="9"
 		/>
 		<line
 				stroke="#{highlightColor}"
@@ -48,6 +48,7 @@
 	svg.right {
 		transform: rotate(180deg);
 	}
+
 	svg.up {
 		transform: rotate(-90deg);
 	}

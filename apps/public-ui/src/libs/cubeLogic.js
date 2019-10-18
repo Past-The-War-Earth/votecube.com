@@ -1,24 +1,21 @@
-export function loadCubeLogic(
+export async function loadCubeLogic(
 	page,
 	viewCallback
 ) {
-	return import('@votecube/cube-logic/lib/cube/eventListener').then((
-		cubeListener
-	) => {
-		page.set({cubeListener})
+	const cubeListener = await import('@votecube/cube-logic/lib/cube/eventListener')
+	page.set({cubeListener})
 
-		setCubeViewPort(
-			cubeListener,
-			(
-				mutationApi
-			) => {
-				page.set({mutationApi})
-			},
-			viewCallback,
-		)
+	setCubeViewPort(
+		cubeListener,
+		(
+			mutationApi
+		) => {
+			page.set({mutationApi})
+		},
+		viewCallback,
+	)
 
-		return cubeListener.setPositionDataAndMove
-	})
+	return cubeListener.setPositionDataAndMove
 	// startResizeInterval(page, viewCallback)
 }
 

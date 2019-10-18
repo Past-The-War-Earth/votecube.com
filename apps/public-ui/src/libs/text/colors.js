@@ -2,19 +2,15 @@ import {get} from '../../common/ajax'
 
 var colorText
 
-export function loadColors(
+export async function loadColors(
 	locale
 ) {
 	if (colorText) {
-		return new Promise((resolve) => resolve(
-			colorText
-		))
+		return colorText
 	}
 
-	// ./text/${locale}/locations.json
-	return get(`./text_${locale}_colors.js`).then(text => {
-		colorText = JSON.parse(text)
+	const text = await get(`./text/${locale}/colors.json`)
+	colorText  = JSON.parse(text)
 
-		return colorText
-	})
+	return colorText
 }
