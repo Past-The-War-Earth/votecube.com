@@ -6,6 +6,14 @@ export async function init() {
 }
 */
 
+export function insert<T>(
+	collection,
+	object: T
+) {
+	console.log(object)
+	const stringData = JSON.stringify(object)
+}
+
 export const SEQUENCES = {
 	colors: 3,
 	factorDescriptions: 3,
@@ -14,7 +22,7 @@ export const SEQUENCES = {
 	labels: 2,
 	pollDescriptions: 1,
 	polls: 1,
-	pollsFactorsPositions: 3,
+	pollFactorPositions: 3,
 	positionDescriptions: 6,
 	positions: 6,
 }
@@ -146,7 +154,7 @@ export const DB = {
 				id: 'NorthAmerica'
 			}
 		}],
-		pollsFactorsPositions: [{
+		pollFactorPositions: [{
 			axis: 'x',
 			color: {
 				id: 255 * 256 * 256 + 255 * 256

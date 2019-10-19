@@ -34,13 +34,13 @@
 		<DescribedButton
 				expanded="{expanded}"
 				closing="{closing}"
-				label="{previewMode ? 'Align Positions' : 'Manually Override'}"
-				on:select="open(previewMode ? 'positionMode' : 'manualOverwrite')"
+				label="{previewMode ? (alignmentMode ? 'Hide Alignment' : 'Show Alignment') : 'Manually Override'}"
+				on:select="open(previewMode ? 'position' : 'manuallyOverwrite')"
 		>
 			{#if previewMode}
-			<PositionButton
-					color="{dirPosButtonColor}"
-			></PositionButton>
+			<AlignmentButton
+					alignmentMode="{alignmentMode}"
+			></AlignmentButton>
 			{:else}
 			<ManualOverwriteButton
 					on="{manualControls}"
@@ -135,9 +135,9 @@
 </style>
 <script>
 	import AddRemoveButton     from '../../common/control/button/AddRemoveButton.html'
+	import AlignmentButton     from '../../common/control/button/AlignmentButton.html'
 	import BellCurveButton     from '../../common/control/button/BellCurveButton.html'
 	import BuildButton         from '../../common/control/button/BuildButton.html'
-	import ShieldButton     from '../../common/control/button/ShieldButton.html'
 	import DescribedButton     from '../../common/control/button/DescribedButton.html'
 	import EditButton          from '../../common/control/button/EditButton.html'
 	import LeftButton          from '../../common/control/button/LeftButton.html'
@@ -145,8 +145,8 @@
 	                           from '../../common/control/button/ManualOverwriteButton.html'
 	import OpinionButton       from '../../common/control/button/OpinionButton.html'
 	import OutcomeButton       from '../../common/control/button/OutcomeButton.html'
-	import PositionButton      from '../../common/control/button/PositionButton.html'
 	import RankingsButton      from '../../common/control/button/RankingsButton.html'
+	import ShieldButton        from '../../common/control/button/ShieldButton.html'
 	import UndescribedButton   from '../../common/control/button/UndescribedButton.html'
 	import VariationTreeButton from '../../common/control/button/VariationTreeButton.html'
 	import VoteButton          from '../../common/control/button/VoteButton.html'
@@ -155,6 +155,7 @@
 	export default {
 		components: {
 			AddRemoveButton,
+			AlignmentButton,
 			BellCurveButton,
 			BuildButton,
 			ShieldButton,
@@ -164,7 +165,6 @@
 			ManualOverwriteButton,
 			OpinionButton,
 			OutcomeButton,
-			PositionButton,
 			RankingsButton,
 			LeftButton,
 			UndescribedButton,
@@ -172,6 +172,7 @@
 			VoteButton
 		},
 		data: () => ({
+			alignmentMode: false,
 			closed: false,
 			expanded: false
 		}),
@@ -181,6 +182,17 @@
 			) {
 				this.set({closed: true})
 				this.fire(action)
+			},
+			position(
+				alignmentMode,
+				previewMode
+			) {
+				if (!previewMode) {
+					this.fire('manuallyOverwrite')
+					return
+				}
+				alignmentMode = !alignmentMode
+				this.set({alignmentMode})
 			},
 			setOpened(
 				opened

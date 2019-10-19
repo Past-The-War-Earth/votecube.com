@@ -1,67 +1,79 @@
 {#if $forms && colors}
-<div>
-	<table>
+<section>
+
+	<table
+			class="sliders"
+	>
 		<tr>
 			<td>
-				<select
-								on:input="selectColor(this.selectedIndex)"
-								ref:select
-				>
-					{#each colors as color, index}
-					<option
-									value="{index}"
+				<div>
+					<input
+							class="redSlider"
+							max="255"
+							min="0"
+							on:input="syncInput()"
+							ref:redSlider
+							type="range"
+							value="{color.red}"
 					>
-						{color.name}
-					</option>
-					{/each}
-				</select>
-				{#if trackOriginal}
-				<UndoIcon
-								multiLine="y"
-								on:select="revert()"
-				></UndoIcon>
-				{/if}
+				</div>
 			</td>
+		</tr>
+		<tr>
 			<td>
-				<figure
-								style="background-color: rgb({color.red}, {color.green}, {color.blue})"
-				></figure>
+				<div>
+					<input
+							class="greenSlider"
+							max="255"
+							min="0"
+							on:input="syncInput()"
+							ref:greenSlider
+							type="range"
+							value="{color.green}"
+					>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div>
+					<input
+							class="blueSlider"
+							max="255"
+							min="0"
+							on:input="syncInput()"
+							ref:blueSlider
+							type="range"
+							value="{color.blue}"
+					>
+				</div>
 			</td>
 		</tr>
 	</table>
-</div>
-<section>
-	<input
-					class="redSlider"
-					max="255"
-					min="0"
-					on:input="syncInput()"
-					ref:redSlider
-					type="range"
-					value="{color.red}"
-	>
-</section>
-<section>
-	<input
-					class="greenSlider"
-					max="255"
-					min="0"
-					on:input="syncInput()"
-					ref:greenSlider
-					type="range"
-					value="{color.green}"
-	>
-</section>
-<section>
-	<input
-					class="blueSlider"
-					max="255"
-					min="0"
-					on:input="syncInput()"
-					ref:blueSlider
-					type="range"
-					value="{color.blue}"
-	>
+	<div>
+		<select
+				on:input="selectColor(this.selectedIndex)"
+				ref:select
+		>
+			{#each colors as color, index}
+			<option
+					value="{index}"
+			>
+				{color.name}
+			</option>
+			{/each}
+		</select>
+		{#if trackOriginal}
+		<UndoIcon
+				multiLine="y"
+				on:select="revert()"
+		></UndoIcon>
+		{/if}
+		<br>
+		<figure
+				style="background-color: rgb({color.red}, {color.green}, {color.blue})"
+		></figure>
+	</div>
 </section>
 {/if}
 
@@ -71,9 +83,9 @@
 		-webkit-appearance: none; /* Override default CSS styles */
 		appearance: none;
 		background: #aaa;
-		height: 5px; /* Specified height */
+		height: 5px;
 		outline: none; /* Remove outline */
-		width: 100%; /* Full-width */
+		width: 256px; /* Full-width */
 	}
 
 	input::-webkit-slider-thumb {
@@ -82,20 +94,16 @@
 		border: 3px groove gray;
 		border-radius: 3px;
 		cursor: pointer; /* Cursor on hover */
-		height: 45px; /* Slider handle height */
-		width: 45px; /* Set a specific slider handle width */
+		height: 35px; /* Slider handle height */
+		width: 35px; /* Set a specific slider handle width */
 	}
 
 	input::-moz-range-thumb {
 		cursor: pointer; /* Cursor on hover */
 		border: 3px groove gray;
 		border-radius: 3px;
-		height: 45px; /* Slider handle height */
-		width: 45px; /* Set a specific slider handle width */
-	}
-
-	section {
-		margin: 35px 0;
+		height: 35px; /* Slider handle height */
+		width: 35px; /* Set a specific slider handle width */
 	}
 
 	select {
@@ -111,8 +119,28 @@
 		width: 90px;
 	}
 
+	section {
+		height: 280px;
+		position: relative;
+		text-align: center;
+	}
+
+	section > div {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+	}
+
 	table {
-		width: 100%;
+		left: -60px;
+		position: absolute;
+		top: 60px;
+		transform: rotate(-90deg);
+		width: initial;
+	}
+
+	td {
+		height: 50px;
 	}
 
 	.redSlider::-webkit-slider-thumb {

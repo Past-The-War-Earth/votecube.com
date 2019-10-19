@@ -13,14 +13,14 @@
 			class:removingFactor="removeCount && !voteDim.dir"
 			factorIndex="{i}"
 			id="factor_{i}"
-			style="{factorPosition(voteDim, movingVoteDimDelta)}
+			style="{factorPosition($windowWidth, voteDim, movingVoteDimDelta)}
 					 {transitionStyle(showTransition)}"
 			in:fly='{x: flyX(voteDim), duration: 700}'
 	>
 		<!--
 			transition:fade
 			-->
-		{#if sideMatch(voteDims[i], 1, switchingDir, removingDir[i])}
+		{#if sideMatch(voteDim, 1, switchingDir, removingDir[i])}
 		<var
 				class="factor A
 					{factorHighlight(movingVoteDim, i, movingVoteDimDelta)}"
@@ -40,7 +40,7 @@
 						strokeWidth="1"
 						styles="left: 1px; position: absolute; top: -1px;"
 				></CharacterButton>
-				{getSideText(delta, 'confirm', poll, voteDim.axis, 1)}
+				{pFPsByAxisAndOutcome[voteDim.axis][1].factorPosition.factor.name}
 				{#if canRemove(voteDims, i, delta)}
 				<MoveButton
 						on:selectStart="addOrRemove(-1, event)"
@@ -59,7 +59,7 @@
 				{/if}
 			</header>
 			<p>
-				{getSideText(delta, 'cube', poll, voteDim.axis, 1)}
+				{pFPsByAxisAndOutcome[voteDim.axis][1].factorPosition.position.name}
 			</p>
 		</var>
 		{/if}
@@ -76,7 +76,7 @@
 				id="factor_{i}_B"
 				-->
 			<header>
-				{getSideText(delta, 'confirm', poll, voteDim.axis, -1)}
+				{pFPsByAxisAndOutcome[voteDim.axis][-1].factorPosition.factor.name}
 				<CharacterButton
 						character="B"
 						fontSize="20"
@@ -104,13 +104,8 @@
 				{/if}
 			</header>
 			<p>
-				{getSideText(delta, 'cube', poll, voteDim.axis, -1)}
+				{pFPsByAxisAndOutcome[voteDim.axis][-1].factorPosition.position.name}
 			</p>
-			<!--
-					<footer>
-						{getSideText(delta, 'confirm', poll, voteDim.axis, -1)}
-					</footer>
-					-->
 		</var>
 		{/if}
 	</figure>
@@ -187,6 +182,7 @@
 		padding: 3px;
 		position: absolute;
 		top: 21px;
+		word-break: break-word;
 	}
 
 	/*	nav {
@@ -266,8 +262,7 @@
 	import SwapButton                from '../../common/control/button/SwapButton.html'
 	import {transition}              from '../../helpers/animation'
 	import {
-		getColor,
-		getSideText
+		getColor
 	}                                from '../../helpers/cube'
 	import {getVoteDimsInValueOrder} from '../../helpers/factorRanking'
 	import store                     from '../../store'
@@ -312,6 +307,7 @@
 				return factorInfo && factorInfo.factorIndex === index ? 'highlighted' : ''
 			},
 			factorPosition(
+				$windowWidth,
 				movingVoteDim
 			) {
 				if (!movingVoteDim.moving || !movingVoteDim.dir) {
@@ -336,9 +332,11 @@
 						top = movingVoteDim.originalTopLeftY
 					}
 				}
+				const topOffset = $windowWidth > 320 ? 187 : 153
+
 				// left: ${left}px;
 				return `position: absolute;
-					top: ${top - 175}px;
+					top: ${top - topOffset}px;
 					width: ${movingVoteDim.width}px;
 					z-index: 5000;
 					`
@@ -349,7 +347,6 @@
 			) => voteDim.dir === 1 ? -200 : 200,
 			// cubeTransition ? 0 : voteDim.dir === 1 ? -200 : 200,
 			getColor,
-			getSideText,
 			isB: (
 				voteDim
 			) => voteDim.dir === -1,

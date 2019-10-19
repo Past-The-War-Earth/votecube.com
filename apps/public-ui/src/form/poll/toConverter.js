@@ -1,4 +1,4 @@
-import {getRGB} from "../../helpers/general";
+import {getRGB} from '../../helpers/general'
 
 export function dtoToForm(
 	poll
@@ -9,18 +9,25 @@ export function dtoToForm(
 		text: themeDto.name
 	}
 
-	const pollsContinents = poll.pollsContinents
-		? poll.pollsContinents
-		: []
-	const pollsCountries  = poll.pollsCountries
-		? poll.pollsCountries
-		: []
-	const pollsStates     = poll.pollsStates
-		? poll.pollsStates
-		: []
-	const pollsTowns      = poll.pollsTowns
-		? poll.pollsTowns
-		: []
+	const outcomes = poll.outcomes
+
+	// const pollsContinents = poll.pollsContinents
+	// 	? poll.pollsContinents
+	// 	: []
+	// const pollsCountries  = poll.pollsCountries
+	// 	? poll.pollsCountries
+	// 	: []
+	// const pollsStates     = poll.pollsStates
+	// 	? poll.pollsStates
+	// 	: []
+	// const pollsTowns      = poll.pollsTowns
+	// 	? poll.pollsTowns
+	// 	: []
+
+	outcomes.sort((
+		outcome1,
+		outcome2
+	) => outcome1.key > outcome2.key)
 
 	return {
 		factors: {
@@ -28,26 +35,30 @@ export function dtoToForm(
 			second: getDimForm(getPollFactorPositionDtos(poll, 'z')),
 			third: getDimForm(getPollFactorPositionDtos(poll, 'x'))
 		},
-		labels: poll.pollsLabels.map(pollLabel => ({
-			id: pollLabel.label.id,
-			text: pollLabel.label.name
-		})),
-		locations: {
-			continents: pollsContinents.map(pollContinent =>
-				pollContinent.continent),
-			countries: pollsCountries.map(pollCountry =>
-				pollCountry.country),
-			states: pollsStates.map(pollState =>
-				pollState.state),
-			cities: pollsTowns.map(pollTown =>
-				pollTown.town)
-		},
+		// labels: poll.pollsLabels.map(pollLabel => ({
+		// 	id: pollLabel.label.id,
+		// 	text: pollLabel.label.name
+		// })),
+		// locations: {
+		// 	continents: pollsContinents.map(pollContinent =>
+		// 		pollContinent.continent),
+		// 	countries: pollsCountries.map(pollCountry =>
+		// 		pollCountry.country),
+		// 	states: pollsStates.map(pollState =>
+		// 		pollState.state),
+		// 	cities: pollsTowns.map(pollTown =>
+		// 		pollTown.town)
+		// },
 		name: poll.name,
+		outcomes: {
+			A: outcomes.length ? outcomes[0].outcome : '',
+			B: outcomes.length ? outcomes[1].outcome : '',
+		},
 		theme,
-		timeframe: {
-			endDate: poll.endDate,
-			startDate: poll.startDate
-		}
+		// timeframe: {
+		// 	endDate: poll.endDate,
+		// 	startDate: poll.startDate
+		// }
 	}
 }
 
@@ -55,8 +66,9 @@ function getPollFactorPositionDtos(
 	poll,
 	axis
 ) {
-	return poll.pollsFactorsPositions.filter(pollFactorPosition =>
-		axis === pollFactorPosition.axis
+	return poll.pollFactorPositions.filter(
+		pollFactorPosition =>
+			axis === pollFactorPosition.axis
 	)
 }
 
@@ -64,25 +76,27 @@ function getDimForm(
 	pollFactorPositions
 ) {
 	const color = pollFactorPositions[0].color
-	let bottomPosition, topPosition
+	let positionA,
+	    positionB
 
-	pollFactorPositions.forEach(pollFactorPosition => {
-		const position = pollFactorPosition.factorPosition.position
-		if (pollFactorPosition.dir === 1) {
-			topPosition = position
-		} else {
-			bottomPosition = position
-		}
-	})
-	return {
-		bottomPosition,
-		color: {
-			picker: {
-				...getRGB(pollFactorPositions[0].color),
-				name: ''
+	pollFactorPositions.forEach(
+		pollFactorPosition => {
+			const position = pollFactorPosition.factorPosition.position
+			if (pollFactorPosition.outcome === 1) {
+				positionA = position.name
+			} else {
+				positionB = position.name
 			}
+		})
+	return {
+		color: {
+			...getRGB(color),
+			name: ''
 		},
 		name: pollFactorPositions[0].factorPosition.factor.name,
-		topPosition
+		positions: {
+			A: positionA,
+			B: positionB,
+		}
 	}
 }

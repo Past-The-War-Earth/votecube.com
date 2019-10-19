@@ -1,7 +1,7 @@
-{#if factor.valid && factor.hasChildValues}
 <Block
-				fieldGroup="{factor}"
-				on:select="fire('select')"
+		customError="{text.error}"
+		fieldGroup="{factor}"
+		on:select="fire('select')"
 >
 	<div slot="content">
 		<table>
@@ -9,8 +9,8 @@
 				<td>
 					<div>
 						<figure
-										class="colorSelection centered"
-										style="
+								class="colorSelection centered"
+								style="
                     background-color: {selectedColor}
                 "
 						>
@@ -18,53 +18,62 @@
 					</div>
 				</td>
 				<td>
+					{#if factor.valid && factor.hasChildValues}
 					{factor.fields.name.value}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div>
-						<PositionIcon
-										classes="centered"
-						></PositionIcon>
-					</div>
-				</td>
-				<td>
-					{factor.fields.topPosition.fields.name.value}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div>
-						<PositionIcon
-										classes="centeredUpsideDown"
-						></PositionIcon>
-					</div>
-				</td>
-				<td>
-					{factor.fields.bottomPosition.fields.name.value}
+					{:else}
+					{text.label}
+					{/if}
 				</td>
 			</tr>
 		</table>
+		<section>
+			<div>
+				<CharacterButton
+						character="A"
+						fontSize="20"
+						fontX="12"
+						fontY="19"
+						size="24"
+						strokeWidth="1"
+				></CharacterButton>
+				<div>
+					{#if factor.valid && factor.hasChildValues}
+					{factor.fields.positions.fields.A.value}
+					{/if}
+				</div>
+			</div>
+			<div>
+				<CharacterButton
+						character="B"
+						fontSize="20"
+						fontX="12"
+						fontY="19"
+						size="24"
+						strokeWidth="1"
+				></CharacterButton>
+				<div>
+					{#if factor.valid && factor.hasChildValues}
+					{factor.fields.positions.fields.B.value}
+					{/if}
+				</div>
+			</div>
+		</section>
 	</div>
 </Block>
-{:else}
-<IconBlock
-				customError="{text.error}"
-				fieldGroup="{factor}"
-				on:select="fire('select')"
->
-	<div slot="icon">
-		<FactorIcon
-		></FactorIcon>
-	</div>
-	<div slot="text">
-		{text.label}
-	</div>
-</IconBlock>
-{/if}
 
 <style>
+
+	section {
+		display: flex;
+		margin-top: 10px;
+		width: 100%;
+	}
+
+	section > div {
+		flex-basis: 100%;
+		text-align: center;
+		word-break: break-word;
+	}
 
 	td > div {
 		position: relative;
@@ -83,39 +92,29 @@
 </style>
 
 <script>
-	import Block         from '../../common/field/Block.html'
-	import IconBlock     from '../../common/field/IconBlock.html'
-	import FactorIcon from '../../common/icon/FactorIcon.html'
-	import PositionIcon from '../../common/icon/PositionIcon.html'
+	import CharacterButton from '../../common/control/button/CharacterButton.html'
+	import Block           from '../../common/field/Block.html'
 
 	export default {
 		components: {
 			Block,
-			FactorIcon,
-			PositionIcon,
-			IconBlock
+			CharacterButton,
 		},
 		computed: {
-			bottomPosition: ({factor}) => factor
-				? factor.fields.bottomPosition
-				: null,
 			color: ({factor}) => factor
 				? factor.fields.color
 				: null,
 			selectedColor: ({color}) => {
 				if (!color || !color.valid) {
-					return 'initial'
+					return '#808080'
 				}
-				const value = color.value.picker
+				const value = color.value
 
 				return `rgb(${value.red}, ${value.green}, ${value.blue})`
 			},
 			submitHighlight: ({isValid}) => isValid
 				? '0b0'
-				: 'b00',
-			topPosition: ({factor}) => factor
-				? factor.fields.topPosition
-				: null
+				: 'b00'
 		},
 	}
 </script>

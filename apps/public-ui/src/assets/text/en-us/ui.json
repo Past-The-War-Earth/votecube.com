@@ -9,6 +9,11 @@
             "required": "Factor Name is required",
             "minLength": "Factor Name must be at least 5 characters long"
           }
+        },
+        "color": {
+          "errors": {
+            "required": "Factor Color is required"
+          }
         }
       },
       "List": {
@@ -20,15 +25,6 @@
         },
         "labels": {
           "label": "Select Tags"
-        }
-      },
-      "PickColor": {
-        "error": "Factor Color is required",
-        "label": "Select Color",
-        "picker": {
-          "errors": {
-            "required": "Factor Color is required"
-          }
         }
       }
     },
@@ -61,32 +57,6 @@
         }
       }
     },
-    "Position": {
-      "BottomPosition": {
-        "error": "Down Position is required",
-        "label": "Select Down Position",
-        "name": {
-          "info": "The Down Position on a Factor of the vote cube.  This is the CON/Down side.",
-          "label": "Down Position",
-          "errors": {
-            "required": "Down Position is required",
-            "minLength": "Position Name must be at least 5 characters long"
-          }
-        }
-      },
-      "TopPosition": {
-        "error": "Up Position is required",
-        "label": "Select Up Position",
-        "name": {
-          "info": "The Up Position on a Factor of the vote cube.  This is the PRO/Up side.",
-          "label": "Up Position",
-          "errors": {
-            "required": "Up Position is required",
-            "minLength": "Position Name must be at least 5 characters long"
-          }
-        }
-      }
-    },
     "Poll": {
       "List": {
         "search": {
@@ -105,7 +75,7 @@
         },
         "factors": {
           "info": "Select the Factors of the poll",
-          "error": "At least two poll Factors are required"
+          "error": "All 3 Factors are required"
         },
         "labels": {
           "info": "Select matching Tag(s) for this poll",
@@ -127,18 +97,42 @@
           }
         }
       },
+      "Outcomes": {
+        "A": {
+          "info": "What is the result of the poll in case A.",
+          "label": "Outcome A",
+          "errors": {
+            "required": "Outcome A is required",
+            "minLength": "Outcome A must be at least 5 characters long"
+          }
+        },
+        "B": {
+          "info": "What is the result of the poll in case B.",
+          "label": "Outcome B",
+          "errors": {
+            "required": "Outcome B is required",
+            "minLength": "Outcome B must be at least 5 characters long"
+          }
+        }
+      },
       "Factors": {
         "first": {
           "label": "Select 1st Factor",
-          "error": "First Factor is required"
+          "error": {
+            "message": "1st Factor is required"
+          }
         },
         "second": {
           "label": "Select 2nd Factor",
-          "error": "Second Factor is required"
+          "error": {
+            "message": "2nd Factor is required"
+          }
         },
         "third": {
           "label": "Select 3rd Factor",
-          "error": "Third Factor must be fully omitted or fully specified"
+          "error": {
+            "message": "3rd Factor is required"
+          }
         }
       },
       "Labels": {
@@ -167,6 +161,24 @@
         "states": {
           "info": "Select one or more States to which this poll will apply",
           "label": "State(s)"
+        }
+      },
+      "Positions": {
+        "A": {
+          "info": "The Position for Outcome A for this Factor.",
+          "label": "Position A",
+          "errors": {
+            "required": "Position A is required",
+            "minLength": "Position A must be at least 5 characters long"
+          }
+        },
+        "B": {
+          "info": "The Position for Outcome B for this Factor.",
+          "label": "Position B",
+          "errors": {
+            "required": "Position B is required",
+            "minLength": "Position B must be at least 5 characters long"
+          }
         }
       },
       "Timeframe": {

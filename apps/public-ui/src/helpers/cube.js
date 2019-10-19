@@ -4,7 +4,7 @@ export function getPollFactorPositions(
 	poll,
 	axis
 ) {
-	return poll.pollsFactorsPositions.filter(
+	return poll.pollFactorPositions.filter(
 		pollsFactorPosition =>
 			pollsFactorPosition.axis === axis
 	)

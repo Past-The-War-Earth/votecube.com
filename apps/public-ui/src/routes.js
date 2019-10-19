@@ -6,8 +6,6 @@ let appComp, pageComp, topMenuComp
 
 export const FACTOR_INFO_MAIN   = '/factor/info/Main/:mode/:pollId'
 export const FACTOR_SEARCH_LIST = '/factor/List'
-export const FACTOR_PICK_COLOR  = '/factor/PickColor/:mode/:pollId'
-export const POSITION_INFO_MAIN   = '/position/info/Main/:mode/:pollId'
 export const POLL_SEARCH_LIST      = '/poll/search/List'
 export const POLL_VARIATION_LIST      = '/poll/variation/List'
 export const POLL_INFO_MAIN        = '/poll/info/Main/:mode/:pollId'
@@ -21,15 +19,7 @@ export const DEFAULT_ROUTE_PARAMS = {
 }
 
 configPage(
-	POSITION_INFO_MAIN,
-	false
-)
-configPage(
 	FACTOR_INFO_MAIN,
-	false
-)
-configPage(
-	FACTOR_PICK_COLOR,
 	false
 )
 configPage(

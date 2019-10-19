@@ -4,6 +4,7 @@ import {IPoll}    from '../../generated/interfaces'
 import {Poll_Id}  from '../../types/poll/Poll'
 import {
 	DB,
+	insert,
 	SEQUENCES
 }                 from '../stubDB'
 
@@ -96,10 +97,10 @@ export class PollDao
 		poll: IPoll
 	): Promise<IPoll> {
 		poll.id = ++SEQUENCES.polls;
-		(poll as any).pollsFactorsPositions.forEach((
+		(poll as any).pollFactorPositions.forEach((
 			pollFactorPosition
 		) => {
-			pollFactorPosition.id      = ++SEQUENCES.pollsFactorsPositions
+			pollFactorPosition.id      = ++SEQUENCES.pollFactorPositions
 			const factorPosition       = pollFactorPosition.factorPosition
 			factorPosition.id          = ++SEQUENCES.factorPositions
 			factorPosition.factor.id   = ++SEQUENCES.factors
@@ -110,13 +111,15 @@ export class PollDao
 		DB.polls.push(poll as any)
 		delete this.tempPollMap[0]
 
+		insert('polls', poll)
+
 		return poll
 	}
 
 	private cachePoll(
 		poll: IPoll
 	): IPoll {
-		for (const pollFactorPosition of (poll as any).pollsFactorsPositions) {
+		for (const pollFactorPosition of (poll as any).pollFactorPositions) {
 			let currentFactorPosition
 			pollFactorPosition.factorPosition = DB.factorPositions.filter((factorPosition) => {
 				if (factorPosition.id === pollFactorPosition.factorPosition.id) {

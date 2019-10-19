@@ -1,12 +1,12 @@
 {#if $forms}
 <a
-				class="field"
-				class:invalid="touched && error"
-				class:modified="modified"
-				class:requiredInvalid="requiredInvalid"
-				class:requiredValid="requiredValid"
-				on:click="select()"
-				use:id="{id}"
+		class="field"
+		class:invalid="touched && error"
+		class:modified="modified"
+		class:requiredInvalid="requiredInvalid"
+		class:requiredValid="requiredValid"
+		on:click="select()"
+		use:id="{id}"
 >
 	<slot name="content"></slot>
 </a>
@@ -38,14 +38,21 @@
 
 	export default {
 		actions: {
-			id(node, id) {
+			id(
+				node,
+				id
+			) {
 				if (id) {
-					node.id = id;
+					node.id = id
 				}
 			}
 		},
 		computed: {
-			error: ({delta, fieldGroup}) => fieldGroup.error,
+			error: ({customError, delta, fieldGroup}) => {
+				return fieldGroup.error
+					? (customError ? customError : fieldGroup.error)
+					: null
+			},
 			label: ({delta, fieldGroup}) => fieldGroup.label,
 			modified: ({delta, error, fieldGroup}) =>
 				!error && fieldGroup.rules.trackOriginal && !fieldGroup.theIsOriginal,

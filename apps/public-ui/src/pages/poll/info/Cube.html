@@ -89,6 +89,7 @@
 						delta="{delta}"
 						moveType="{moveType}"
 						on:cubeAltered="pollAltered()"
+						pFPsByAxisAndDir="{pFPsByAxisAndDir}"
 						poll="{poll}"
 						positionMode="{positionMode}"
 						verticalLayout="{verticalLayout}"
@@ -101,6 +102,7 @@
 				<FactorRanking
 						delta="{delta}"
 						on:rankingAdjusted="pollAdjusted()"
+						pFPsByAxisAndOutcome="{pFPsByAxisAndOutcome}"
 						poll="{poll}"
 						verticalLayout="{verticalLayout}"
 						vote="{vote}"
@@ -124,14 +126,17 @@
 	{/if}
 	<PollFab
 			on:ageSuitability="showAgeSuitability(true)"
+			on:build="build()"
 			on:confirmVote="confirmVote()"
 			on:edit="alter($routeParams)"
-			on:manualOverwrite="togglePercentPicker()"
+			on:manuallyOverwrite="togglePercentPicker()"
 			on:outcomes="showOutcomes(true)"
 			on:opinions="setAction('opinions')"
+			on:position="togglePositionMode()"
 			on:rankings="setAction('rankings')"
 			on:stats="setAction('stats')"
 			on:variations="goToVariations()"
+			previewMode="{previewMode}"
 	>
 	</PollFab>
 	{#if ageSuitabilityVisible}
@@ -388,19 +393,23 @@
 			VoteComponentSummary
 		},
 		computed: {
-			dynamicVote: ({effectiveCubeView, currentVote, vote}) =>
-				effectiveCubeView ? vote : currentVote,
+			currentVoteDims: ({delta, currentVote}) =>
+				getVoteDimsInValueOrder(currentVote),
 			dynamicDelta: ({effectiveCubeView, delta, factorDelta}) =>
 				effectiveCubeView ? delta : factorDelta,
+			dynamicVote: ({effectiveCubeView, currentVote, vote}) =>
+				effectiveCubeView ? vote : currentVote,
 			effectiveCubeView: ({cubeView, beforeCubeView}) => cubeView && !beforeCubeView,
+			pFPsByAxisAndDir: ({moveDelta, poll}) =>
+				pFPsByAxisAndOther(poll, 'dir'),
+			pFPsByAxisAndOutcome: ({poll}) =>
+				pFPsByAxisAndOther(poll, 'outcome'),
 			previewMode: ({$mode}) => $mode === 'build' || $mode === 'alter',
 			scale: ({effectiveCubeView, zoomFactor}) => effectiveCubeView
 				? `transform: scale(${zoomFactor}, ${zoomFactor});`
 				: '',
 			voteDims: ({delta, vote}) =>
 				getVoteDimsInValueOrder(vote),
-			currentVoteDims: ({delta, currentVote}) =>
-				getVoteDimsInValueOrder(currentVote)
 		},
 		data() {
 			return {
@@ -425,6 +434,7 @@
 				delta: 0,
 				factorDelta: 0, // Only for the factor cubes
 				manualControlsOn: true,
+				moveDelta: 0,
 				percentMode: false,
 				outcomesVisible: false,
 				verticalLayout: true,
@@ -468,8 +478,8 @@
 				this.set({action, error: ''})
 			},
 			pollAltered() {
-				const {delta} = this.get()
-				this.set({delta: delta + 1})
+				const {delta, moveDelta} = this.get()
+				this.set({delta: delta + 1, moveDelta: moveDelta + 1})
 			},
 			pollAdjusted() {
 				this.pollAltered()
@@ -864,14 +874,34 @@
 		config.numRemainingOldDirFrames--
 	}
 
-	function setFinalFactor(
-		newVoteAxis,
-		axisConfig
-	) {
 		// if(!newVoteFactor.dir) {
+		function setFinalFactor(
+			newVoteAxis,
+			axisConfig
+		) {
 		newVoteAxis.factorDir   = axisConfig.newVoteFactor.dir
 		// }
 		newVoteAxis.factorValue = axisConfig.newVoteFactor.value
+	}
+
+	function pFPsByAxisAndOther(
+		poll,
+		other
+	) {
+		const pfpsByAxisAndOther = {}
+		if (!poll) {
+			return pfpsByAxisAndOther
+		}
+		for (const pollFactorPosition of poll.pollFactorPositions) {
+			let mapForAxis = pfpsByAxisAndOther[pollFactorPosition.axis]
+			if (!mapForAxis) {
+				mapForAxis                                  = {}
+				pfpsByAxisAndOther[pollFactorPosition.axis] = mapForAxis
+			}
+			mapForAxis[pollFactorPosition[other]] = pollFactorPosition
+		}
+
+		return pfpsByAxisAndOther
 	}
 
 </script>

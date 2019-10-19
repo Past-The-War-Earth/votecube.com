@@ -13,8 +13,7 @@
 	>
 		{#if !loading && !rotating}
 		<header>
-			{#if position.dir > 0}
-			<!--						character="A"-->
+			{#if pFPsByAxisAndDir[position.axis][position.dir].outcome > 0}
 			<CharacterButton
 					character="A"
 					fontSize="23"
@@ -25,11 +24,8 @@
 					styles="left: 1px; position: absolute; top: 0px;"
 			></CharacterButton>
 			{/if}
-			<!--			<span>-->
-			{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-			<!--				</span>-->
-			{#if position.dir < 0}
-			<!--						character="A"-->
+			{pFPsByAxisAndDir[position.axis][position.dir].factorPosition.factor.name}
+			{#if pFPsByAxisAndDir[position.axis][position.dir].outcome < 0}
 			<CharacterButton
 					character="B"
 					fontSize="23"
@@ -51,22 +47,8 @@
 		></Positioner>
 		{/if}
 		<p>
-			{getSideText(delta, 'cube', poll, position.axis, position.dir)}
+			{pFPsByAxisAndDir[position.axis][position.dir].factorPosition.position.name}}
 		</p>
-		<!--
-		{#if position.dir == -1}
-		<footer>
-			<var>
-				<CharacterButton
-						character="B"
-				></CharacterButton>
-			</var>
-			<span>
-					{getSideText(delta, 'confirm', poll, position.axis, position.dir)}
-				</span>
-		</footer>
-		{/if}
-		-->
 		{/if}
 	</div>
 	{/each}
@@ -196,6 +178,7 @@
 		margin-block-start: 0em;
 		margin-block-end: 0em;
 		padding: 0 10px;
+		word-break: break-word;
 	}
 
 	/*	span {
@@ -222,8 +205,7 @@
 	}                      from '@votecube/cube-logic'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import {
-		getColor,
-		getSideText
+		getColor
 	}                      from '../../helpers/cube'
 	import Positioner      from './create/Positioner.html'
 
@@ -261,8 +243,7 @@
 			}
 		},
 		helpers: {
-			getColor,
-			getSideText
+			getColor
 		},
 		methods: {
 			moveDown(
@@ -502,7 +483,7 @@
 		switchPositions.forEach((
 			switchPosition
 		) => {
-			switchPollFactorPositions.push(poll.pollsFactorsPositions.filter(
+			switchPollFactorPositions.push(poll.pollFactorPositions.filter(
 				pollFactorPosition =>
 					switchPosition.axis === pollFactorPosition.axis
 					&& switchPosition.dir === pollFactorPosition.dir)[0])

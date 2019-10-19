@@ -1,21 +1,23 @@
 <svg
-		on:click="fire('select')"
+		class="{classes}"
 		height="50"
+		on:click="fire('select')"
+		style="{styles}"
 		width="50"
 >
 	<g>
 		<circle
 				cx="25"
 				cy="25"
-				fill="#fff"
+				fill="#{fillColor}"
 				r="23"
-				stroke="#000"
+				stroke="#{highlightColor}"
 				stroke-width="3"
 		/>
 		<rect
 				fill="#FFF"
 				height="20"
-				stroke="#000"
+				stroke="#{highlightColor}"
 				stroke-linejoin="round"
 				stroke-width="4"
 				width="28"
@@ -23,7 +25,6 @@
 				x="11"
 		/>
 		<line
-				fill="none"
 				stroke="#FFF"
 				stroke-width="12"
 				x1="25"
@@ -32,8 +33,7 @@
 				y2="19"
 		/>
 		<line
-				fill="none"
-				stroke="#000"
+				stroke="#{highlightColor}"
 				stroke-linecap="round"
 				stroke-width="4"
 				x1="25"
@@ -42,8 +42,7 @@
 				y2="28"
 		/>
 		<line
-				fill="none"
-				stroke="#000"
+				stroke="#{highlightColor}"
 				stroke-width="4"
 				stroke-linecap="round"
 				x1="20"
@@ -52,8 +51,7 @@
 				y2="28"
 		/>
 		<line
-				fill="none"
-				stroke="#000"
+				stroke="#{highlightColor}"
 				stroke-linecap="round"
 				stroke-width="4"
 				x1="30"
@@ -63,3 +61,15 @@
 		/>
 	</g>
 </svg>
+<script>
+	export default {
+		data() {
+			return {
+				classes: '',
+				fillColor: 'fff',
+				highlightColor: '000',
+				styles: ''
+			}
+		}
+	}
+</script>

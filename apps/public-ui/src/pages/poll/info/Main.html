@@ -9,6 +9,45 @@
 				field="{form.fields.theme}"
 		></AutoComplete>
 	</div>
+	<div
+			class="outcomes"
+	>
+		<div
+				class="A"
+		>
+			<CharacterButton
+					character="A"
+					fontSize="20"
+					fontX="12"
+					fontY="19"
+					size="24"
+					strokeWidth="1"
+			></CharacterButton>
+			<TextArea
+					field="{form.fields.outcomes.fields.A}"
+					floatLabel="{false}"
+					mini="{true}"
+			></TextArea>
+		</div>
+		<div
+				class="B"
+		>
+			<CharacterButton
+					character="B"
+					fontSize="20"
+					fontX="12"
+					fontY="19"
+					size="24"
+					strokeWidth="1"
+			></CharacterButton>
+			<TextArea
+					field="{form.fields.outcomes.fields.B}"
+					floatLabel="{false}"
+					mini="{true}"
+			></TextArea>
+		</div>
+	</div>
+	<!--
 	<div class="pure-control-group">
 		<MultiSelect
 				field="{form.fields.labels}"
@@ -29,21 +68,18 @@
 			{#if countries.length}
 			{#if states.length}
 			{#if cities.length}
-			<!-- TODO: cleanup -->
 			Cities:
 			<br>
 			{getArrayValueTexts(cities)}
 			<br>
 			<br>
 			{/if}
-			<!-- TODO: cleanup -->
 			States:
 			<br>
 			{getArrayValueTexts(states)}
 			<br>
 			<br>
 			{/if}
-			<!-- TODO: cleanup -->
 			Countries:
 			<br>
 			{getArrayValueTexts(countries)}
@@ -51,20 +87,18 @@
 			<br>
 
 			{/if}
-			<!-- TODO: cleanup -->
 			Continents:
 			<br>
 			{getArrayValueTexts(continents)}
 			{:else}
-			<!-- TODO: cleanup -->
 			Select Geography
 			{/if}
 			{:else}
-			<!-- TODO: cleanup -->
 			Select Geography
 			{/if}
 		</div>
 	</IconBlock>
+
 	<IconBlock
 			fieldGroup="{form.fields.timeframe}"
 			on:select="selectTimeframe($routeParams)"
@@ -99,6 +133,7 @@
 			{/if}
 		</div>
 	</IconBlock>
+	-->
 	<SelectionBlock
 			factor="{form.fields.factors.fields.first}"
 			text="{form.fields.factors.text.first}"
@@ -143,6 +178,21 @@
 		display: none;
 	}
 
+	.A, .B {
+		flex-basis: 100%;
+		text-align: center;
+	}
+
+	.B {
+		margin-left: 0.4em;
+	}
+
+	.outcomes {
+		display: flex;
+		margin-top: 10px;
+		width: 100%;
+	}
+
 	.timeframe td {
 		padding: 5px;
 	}
@@ -158,54 +208,51 @@
 </style>
 
 <script>
-	import {DI}                           from '@airport/di'
-	import {
-		LABEL_DAO,
-		POLL_DAO,
-		VOTE_DAO
-	}                                     from '@votecube/public-db'
-	import PreviewButton
-	                                      from '../../../common/control/button/PreviewButton.html'
-	import AutoComplete                   from '../../../common/field/AutoComplete.html'
-	import IconBlock                      from '../../../common/field/IconBlock.html'
-	import MultiSelect                    from '../../../common/field/MultiSelect.html'
-	import Text                           from '../../../common/field/Text.html'
-	import LocationIcon                   from '../../../common/icon/LocationIcon.html'
-	import TimeIcon                       from '../../../common/icon/TimeIcon.html'
-	import ActionPopover                  from '../../../common/shell/ActionPopover.html'
-	import SelectionBlock
-	                                      from '../../../components/factor/SelectionBlock.html'
-	import * as formCache                 from '../../../form/cache'
-	import * as forms                     from '../../../form/forms'
-	import * as pollFormCreator           from '../../../form/poll/creator'
-	import * as pollFormToConverter       from '../../../form/poll/toConverter'
+	import {DI}                     from '@airport/di'
+	import {POLL_DAO}               from '@votecube/public-db'
+	import CharacterButton
+	                                from '../../../common/control/button/CharacterButton.html'
+	import PreviewButton            from '../../../common/control/button/PreviewButton.html'
+	import AutoComplete             from '../../../common/field/AutoComplete.html'
+	import IconBlock                from '../../../common/field/IconBlock.html'
+	import MultiSelect              from '../../../common/field/MultiSelect.html'
+	import Text                     from '../../../common/field/Text.html'
+	import TextArea                 from '../../../common/field/TextArea.html'
+	import LocationIcon             from '../../../common/icon/LocationIcon.html'
+	import TimeIcon                 from '../../../common/icon/TimeIcon.html'
+	import ActionPopover            from '../../../common/shell/ActionPopover.html'
+	import SelectionBlock           from '../../../components/factor/SelectionBlock.html'
+	import * as formCache           from '../../../form/cache'
+	import * as forms               from '../../../form/forms'
+	import * as pollFormCreator     from '../../../form/poll/creator'
+	import * as pollFormToConverter from '../../../form/poll/toConverter'
 	import {
 		getArrayValueTexts,
 		getDate
-	}                                     from '../../../helpers/general'
-	import {loadForms}                    from '../../../libs/forms'
-	import {loadLocations}                from '../../../libs/locations'
-	import {loadLocations as loadLocText} from '../../../libs/text/locations'
-	import * as routes                    from '../../../routes'
-	import store                          from '../../../store'
+	}                               from '../../../helpers/general'
+	import {loadForms}              from '../../../libs/forms'
+	import * as routes              from '../../../routes'
+	import store                    from '../../../store'
 
 	export default {
 		components: {
 			ActionPopover,
 			AutoComplete,
+			CharacterButton,
 			IconBlock,
 			LocationIcon,
 			MultiSelect,
 			PreviewButton,
 			SelectionBlock,
 			Text,
+			TextArea,
 			TimeIcon
 		},
 		computed: {
-			cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
-			continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
-			countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
-			locations: ({form}) => form ? form.fields.locations : null,
+			// cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
+			// continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
+			// countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
+			// locations: ({form}) => form ? form.fields.locations : null,
 			factorsModified: ({$routeParams, isOriginal, form}) => {
 				if (!form
 					|| $routeParams.mode !== 'alter'
@@ -214,6 +261,7 @@
 				}
 				return !form.fields.factors.isOriginal()
 			},
+			/*
 			locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 				if (!form
 					|| $routeParams.mode !== 'alter'
@@ -223,8 +271,9 @@
 				return !form.fields.locations.isOriginal()
 					|| !form.fields.timeframe.isOriginal()
 			},
+			 */
 			name: ({test}) => true,
-			states: ({form}) => form ? form.fields.locations.fields.states.value : [],
+			// states: ({form}) => form ? form.fields.locations.fields.states.value : [],
 			submitHighlight: ({
 				                  $routeParams,
 				                  factorsModified,
@@ -242,7 +291,7 @@
 					? '0b0'
 					: 'b00'
 			},
-			timeframe: ({form}) => form ? form.fields.timeframe : null
+			// timeframe: ({form}) => form ? form.fields.timeframe : null
 		},
 		data() {
 			return {
@@ -321,17 +370,25 @@
 	async function initPage(page) {
 		const [
 			      {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
-			      locations,
-			      _,
-			      [labelDao, pollDao, voteDao]
+			      // locations,
+			      // _,
+			      // [
+			      // labelDao,
+			      pollDao
+			      // , voteDao
+			      // ]
 		      ] = await Promise.all([
 			loadForms(page),
-			loadLocations(),
-			loadLocText(page.store, 'en-us'),
-			DI.get(LABEL_DAO, POLL_DAO, VOTE_DAO)
+			// loadLocations(),
+			// loadLocText(page.store, 'en-us'),
+			DI.get(
+				// LABEL_DAO,
+				POLL_DAO
+				// , VOTE_DAO
+			)
 		])
 
-		let labels = await labelDao.getAll()
+		// let labels = await labelDao.getAll()
 
 		let form = forms.getForm(forms.CREATE_POLL_TOP)
 
@@ -341,8 +398,8 @@
 			const {mode, pollId} = formCache.getPollRouteParams(page)
 
 			form = pollFormCreator.createPollForm(
-				labels,
-				locations,
+				// labels,
+				// locations,
 				text.UI,
 				DateField,
 				Field,
@@ -358,7 +415,7 @@
 			} catch (error) {
 				page.set({error})
 			}
-			form.fields.locations.optionText = text.LOCATIONS
+			// form.fields.locations.optionText = text.LOCATIONS
 			if (poll) {
 				form.setValue(pollFormToConverter.dtoToForm(poll), !poll.draft)
 				form.validate()

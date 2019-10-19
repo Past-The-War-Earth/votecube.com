@@ -1,39 +1,47 @@
 export function formToDto(
 	formValue
 ) {
-	const factors     = formValue.factors
+	const factors        = formValue.factors
 	const formThemeValue = formValue.theme
-	const locations      = formValue.locations
+	// const locations      = formValue.locations
+	const outcomes       = formValue.outcomes
 
 	return {
-		endDate: formValue.timeframe.endDate,
+		// endDate: formValue.timeframe.endDate,
 		id: formValue.id ? formValue.id : 0,
 		name: formValue.name,
-		startDate: formValue.timeframe.startDate,
-		pollsContinents: locations.continents.map((continent) => ({
-			continent
-		})),
-		pollsCountries: locations.countries.map((country) => ({
-			country
-		})),
-		pollsFactorsPositions: [
+		// startDate: formValue.timeframe.startDate,
+		// pollsContinents: locations.continents.map((continent) => ({
+		// 	continent
+		// })),
+		// pollsCountries: locations.countries.map((country) => ({
+		// 	country
+		// })),
+		pollFactorPositions: [
 			...get2PollFactorPositions('y', factors.first),
 			...get2PollFactorPositions('z', factors.second),
 			...get2PollFactorPositions('x', factors.third)
 		],
-		pollsLabels: formValue.labels.map(label => ({
-			label: {
-				id: label.id,
-				name: label.text
-			},
-			poll: {}
-		})),
-		pollsStates: locations.states.map((state) => ({
-			state
-		})),
-		pollsTowns: locations.cities.map((town) => ({
-			town
-		})),
+		// pollsLabels: formValue.labels.map(label => ({
+		// 	label: {
+		// 		id: label.id,
+		// 		name: label.text
+		// 	},
+		// 	poll: {}
+		// })),
+		// pollsStates: locations.states.map((state) => ({
+		// 	state
+		// })),
+		// pollsTowns: locations.cities.map((town) => ({
+		// 	town
+		// })),
+		outcomes: [{
+			key: 'A',
+			outcome: outcomes.A
+		}, {
+			key: 'B',
+			outcome: outcomes.B
+		}],
 		theme: {
 			id: formThemeValue ? formThemeValue.id : null,
 			name: formThemeValue ? formThemeValue.text : ''
@@ -47,12 +55,12 @@ function get2PollFactorPositions(
 ) {
 	const {color, factor} = getDimDto(factorFormValue)
 
-	let topDir    = factorFormValue.topPosition
-	let bottomDir = factorFormValue.bottomPosition
+	let aDir = factorFormValue.positions.A
+	let bDir = factorFormValue.positions.B
 
 	return [
-		getPollFactorPositionDto(axis, factor, 1, topDir.name, color),
-		getPollFactorPositionDto(axis, factor, -1, bottomDir.name, color)
+		getPollFactorPositionDto(axis, factor, 1, aDir, color, 1),
+		getPollFactorPositionDto(axis, factor, -1, bDir, color, -1)
 	]
 }
 
@@ -61,7 +69,8 @@ function getPollFactorPositionDto(
 	factor,
 	dir,
 	name,
-	color
+	color,
+	outcome
 ) {
 	return {
 		axis,
@@ -73,6 +82,7 @@ function getPollFactorPositionDto(
 			}
 		},
 		dir,
+		outcome
 	}
 
 }
@@ -80,7 +90,7 @@ function getPollFactorPositionDto(
 function getDimDto(
 	formFactor
 ) {
-	let picker = formFactor.color.picker
+	let picker = formFactor.color
 
 	const red   = parseInt(picker.red)
 	const green = parseInt(picker.green)
