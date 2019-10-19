@@ -58,7 +58,9 @@
 				></MoveButton>
 				{/if}
 			</header>
-			<p>
+			<p
+					style="color: #{getTextColor(pFPsByAxisAndOutcome[voteDim.axis][1].color)};"
+			>
 				{pFPsByAxisAndOutcome[voteDim.axis][1].factorPosition.position.name}
 			</p>
 		</var>
@@ -103,7 +105,9 @@
 				></MoveButton>
 				{/if}
 			</header>
-			<p>
+			<p
+					style="color: #{getTextColor(pFPsByAxisAndOutcome[voteDim.axis][-1].color)};"
+			>
 				{pFPsByAxisAndOutcome[voteDim.axis][-1].factorPosition.position.name}
 			</p>
 		</var>
@@ -264,6 +268,9 @@
 	import {
 		getColor
 	}                                from '../../helpers/cube'
+	import {
+		getTextColor
+	}                                from '../../helpers/general'
 	import {getVoteDimsInValueOrder} from '../../helpers/factorRanking'
 	import store                     from '../../store'
 	import DirectionSelector         from '../vote/DirectionSelector.html'
@@ -332,7 +339,7 @@
 						top = movingVoteDim.originalTopLeftY
 					}
 				}
-				const topOffset = $windowWidth > 320 ? 187 : 153
+				const topOffset = $windowWidth > 320 ? 189 : 153
 
 				// left: ${left}px;
 				return `position: absolute;
@@ -347,6 +354,7 @@
 			) => voteDim.dir === 1 ? -200 : 200,
 			// cubeTransition ? 0 : voteDim.dir === 1 ? -200 : 200,
 			getColor,
+			getTextColor,
 			isB: (
 				voteDim
 			) => voteDim.dir === -1,

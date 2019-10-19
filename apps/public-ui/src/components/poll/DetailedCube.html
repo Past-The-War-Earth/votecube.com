@@ -46,7 +46,9 @@
 				on:switchDir="switchDir(position.axis, position.dir, poll)"
 		></Positioner>
 		{/if}
-		<p>
+		<p
+				style="color: #{getTextColor(pFPsByAxisAndDir[position.axis][position.dir].color)};"
+		>
 			{pFPsByAxisAndDir[position.axis][position.dir].factorPosition.position.name}}
 		</p>
 		{/if}
@@ -206,7 +208,10 @@
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import {
 		getColor
-	}                      from '../../helpers/cube'
+	}                                from '../../helpers/cube'
+	import {
+		getTextColor
+	}                                from '../../helpers/general'
 	import Positioner      from './create/Positioner.html'
 
 	export default {
@@ -243,7 +248,8 @@
 			}
 		},
 		helpers: {
-			getColor
+			getColor,
+			getTextColor
 		},
 		methods: {
 			moveDown(

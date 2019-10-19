@@ -212,8 +212,8 @@
 			UndoIcon
 		},
 		computed: {
-			charCount: ({delta, field, mini}) => {
-				const separator = mini ? '/' : ' / '
+			charCount: ({delta, field, mid, mini}) => {
+				const separator = mid || mini ? '/' : ' / '
 				return field.rules.maxLength
 					? `${field.value ? field.value.length : 0}${separator}${field.rules.maxLength}`
 					: ''

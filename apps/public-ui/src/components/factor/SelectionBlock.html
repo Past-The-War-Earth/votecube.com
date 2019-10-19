@@ -11,9 +11,11 @@
 						<figure
 								class="colorSelection centered"
 								style="
-                    background-color: {selectedColor}
+                    background-color: {selectedColor};
+                    color: #{getTextColor(color.value)};
                 "
 						>
+							T
 						</figure>
 					</div>
 				</td>
@@ -63,6 +65,10 @@
 
 <style>
 
+	figure {
+		font-size: 1.9em;
+	}
+
 	section {
 		display: flex;
 		margin-top: 10px;
@@ -94,6 +100,7 @@
 <script>
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import Block           from '../../common/field/Block.html'
+	import {getTextColor}  from '../../helpers/general'
 
 	export default {
 		components: {
@@ -116,5 +123,8 @@
 				? '0b0'
 				: 'b00'
 		},
+		helpers: {
+			getTextColor
+		}
 	}
 </script>

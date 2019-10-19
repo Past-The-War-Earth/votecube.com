@@ -20,8 +20,12 @@ export function getArrayValueTexts(
 	arrayValue
 ) {
 	return arrayValue
-		.map(value => value.text)
-		.reduce((accumulator, text) => accumulator + (accumulator
+		.map(
+			value => value.text)
+		.reduce((
+			accumulator,
+			text
+		) => accumulator + (accumulator
 			? ', ' + text
 			: text), '')
 }
@@ -38,6 +42,20 @@ export function getColor(
 	const {blue, green, red} = getRGB(color)
 
 	return `${ensure2Digits(red.toString(16))}${ensure2Digits(green.toString(16))}${ensure2Digits(blue.toString(16))}`
+}
+
+export function getTextColor(
+	color
+) {
+	const red   = parseInt(color.red)
+	const green = parseInt(color.green)
+	const blue  = parseInt(color.blue)
+	if (red + green + blue > 384) {
+		return '000'
+	} else if (!red < 10 & blue < 10 && green >= 240) {
+		return '000'
+	}
+	return 'FFF'
 }
 
 export function getRGB(

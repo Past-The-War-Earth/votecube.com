@@ -7,6 +7,12 @@
 		<tr>
 			<td>
 				<div>
+					<AddRemoveButton
+							add="{false}"
+							on:select="change('red', -1)"
+							size="35"
+							styles="{minusStyles}"
+					></AddRemoveButton>
 					<input
 							class="redSlider"
 							max="255"
@@ -16,12 +22,27 @@
 							type="range"
 							value="{color.red}"
 					>
+					<AddRemoveButton
+							add="{true}"
+							on:select="change('red', 1)"
+							size="35"
+							styles="{plusStyles}"
+					></AddRemoveButton>
+					<var>
+						{color.red}
+					</var>
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<div>
+					<AddRemoveButton
+							add="{false}"
+							on:select="change('green', -1)"
+							size="35"
+							styles="{minusStyles}"
+					></AddRemoveButton>
 					<input
 							class="greenSlider"
 							max="255"
@@ -31,12 +52,27 @@
 							type="range"
 							value="{color.green}"
 					>
+					<AddRemoveButton
+							add="{true}"
+							on:select="change('green', 1)"
+							size="35"
+							styles="{plusStyles}"
+					></AddRemoveButton>
+					<var>
+						{color.green}
+					</var>
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<div>
+					<AddRemoveButton
+							add="{false}"
+							on:select="change('blue', -1)"
+							size="35"
+							styles="{minusStyles}"
+					></AddRemoveButton>
 					<input
 							class="blueSlider"
 							max="255"
@@ -46,6 +82,15 @@
 							type="range"
 							value="{color.blue}"
 					>
+					<AddRemoveButton
+							add="{true}"
+							on:select="change('blue', 1)"
+							size="35"
+							styles="{plusStyles}"
+					></AddRemoveButton>
+					<var>
+						{color.blue}
+					</var>
 				</div>
 			</td>
 		</tr>
@@ -71,20 +116,36 @@
 		{/if}
 		<br>
 		<figure
-				style="background-color: rgb({color.red}, {color.green}, {color.blue})"
-		></figure>
+				style="background-color: rgb({color.red}, {color.green}, {color.blue});
+							 color: #{getTextColor(color)};"
+		>
+			T
+		</figure>
 	</div>
 </section>
 {/if}
 
 <style>
 
+	@media (min-width: 321px) {
+		table {
+			left: -110px !important;
+		}
+
+		td {
+			height: 50px !important;
+		}
+	}
+
 	input {
 		-webkit-appearance: none; /* Override default CSS styles */
 		appearance: none;
 		background: #aaa;
 		height: 5px;
+		left: 67px;
 		outline: none; /* Remove outline */
+		position: absolute;
+		top: 20px;
 		width: 256px; /* Full-width */
 	}
 
@@ -99,9 +160,10 @@
 	}
 
 	input::-moz-range-thumb {
-		cursor: pointer; /* Cursor on hover */
 		border: 3px groove gray;
 		border-radius: 3px;
+		cursor: pointer; /* Cursor on hover */
+		display: inline-block;
 		height: 35px; /* Slider handle height */
 		width: 35px; /* Set a specific slider handle width */
 	}
@@ -114,13 +176,14 @@
 	figure {
 		border: 4px groove gray;
 		border-radius: 6px;
+		font-size: 3.7em;
 		height: 90px;
 		margin: auto;
 		width: 90px;
 	}
 
 	section {
-		height: 280px;
+		height: 400px;
 		position: relative;
 		text-align: center;
 	}
@@ -131,16 +194,34 @@
 		top: 0px;
 	}
 
+	select {
+		width: 150px;
+	}
+
 	table {
-		left: -60px;
+		left: -135px;
 		position: absolute;
-		top: 60px;
+		top: 110px;
 		transform: rotate(-90deg);
-		width: initial;
+		width: 390px;
 	}
 
 	td {
-		height: 50px;
+		height: 45px;
+	}
+
+	td > div {
+		position: relative;
+		height: 100%;
+	}
+
+	var {
+		height: 30px;
+		left: -15px;
+		position: absolute;
+		transform: rotate(90deg);
+		top: 8px;
+		width: 35px;
 	}
 
 	.redSlider::-webkit-slider-thumb {
@@ -170,15 +251,18 @@
 </style>
 
 <script>
+	import {getTextColor}  from '../../helpers/general'
 	import {
 		getColorKey,
 		getColors
-	}               from '../../libs/colors'
-	import store    from '../../store.js'
-	import UndoIcon from '../icon/UndoIcon.html'
+	}                      from '../../libs/colors'
+	import store           from '../../store.js'
+	import AddRemoveButton from '../control/button/AddRemoveButton.html'
+	import UndoIcon        from '../icon/UndoIcon.html'
 
 	export default {
 		components: {
+			AddRemoveButton,
 			UndoIcon
 		},
 		computed: {
@@ -191,7 +275,30 @@
 				!modified && field.validatorMap.required && !errors.length,
 			trackOriginal: ({delta, field}) => field.rules.trackOriginal
 		},
+		data: () => ({
+			plusStyles: 'display: inline-block; position: absolute; right: 23px; top: 5.5px;',
+			minusStyles: 'display: inline-block; position: absolute; left: 23px; top: 5.5px;',
+		}),
+		helpers: {
+			getTextColor
+		},
 		methods: {
+			change(
+				primary,
+				value
+			) {
+				const {color}        = this.get()
+				const exitingPrimary = parseInt(color[primary])
+
+				if (exitingPrimary + value > 255) {
+					return
+				} else if (exitingPrimary + value < 0) {
+					return
+				}
+				color[primary] = exitingPrimary + value
+				color[primary] = color[primary].toString()
+				this.set({color})
+			},
 			revert() {
 				const {colorMap, field} = this.get()
 				field.revert()
