@@ -2,16 +2,18 @@ import page from 'page'
 
 export var PAGE_CONF = {}
 
-let appComp, pageComp, topMenuComp
+let appComp,
+    pageComp,
+    topMenuComp
 
-export const FACTOR_INFO_MAIN   = '/factor/info/Main/:mode/:pollId'
-export const FACTOR_SEARCH_LIST = '/factor/List'
-export const POLL_SEARCH_LIST      = '/poll/search/List'
-export const POLL_VARIATION_LIST      = '/poll/variation/List'
-export const POLL_INFO_MAIN        = '/poll/info/Main/:mode/:pollId'
-export const POLL_INFO_CUBE        = '/poll/info/Cube/:mode/:pollId'
-export const POLL_LOCATIONS        = '/poll/Locations/:mode/:pollId'
-export const POLL_TIMEFRAME        = '/poll/Timeframe/:mode/:pollId'
+export const FACTOR_INFO_MAIN    = '/factor/info/Main/:mode/:pollId'
+export const FACTOR_SEARCH_LIST  = '/factor/List'
+export const POLL_SEARCH_LIST    = '/poll/search/List'
+export const POLL_VARIATION_LIST = '/poll/variation/List'
+export const POLL_INFO_MAIN      = '/poll/info/Main/:mode/:pollId'
+export const POLL_INFO_CUBE      = '/poll/info/Cube/:mode/:pollId'
+export const POLL_LOCATIONS      = '/poll/Locations/:mode/:pollId'
+export const POLL_TIMEFRAME      = '/poll/Timeframe/:mode/:pollId'
 
 export const DEFAULT_ROUTE_PARAMS = {
 	mode: 'build',
@@ -20,34 +22,42 @@ export const DEFAULT_ROUTE_PARAMS = {
 
 configPage(
 	FACTOR_INFO_MAIN,
-	false
+	false,
+	false,
 )
 configPage(
 	FACTOR_SEARCH_LIST,
+	false,
 	true
 )
 configPage(
 	POLL_SEARCH_LIST,
+	false,
 	true
 )
 configPage(
 	POLL_VARIATION_LIST,
+	false,
 	true
 )
 configPage(
 	POLL_INFO_MAIN,
+	true,
 	false
 )
 configPage(
 	POLL_INFO_CUBE,
+	false,
 	true
 )
 configPage(
 	POLL_LOCATIONS,
+	true,
 	false
 )
 configPage(
 	POLL_TIMEFRAME,
+	true,
 	false
 )
 
@@ -64,15 +74,16 @@ export function navigateToPage(
 	pageKey,
 	paramMap = DEFAULT_ROUTE_PARAMS
 ) {
-	let currentPage = PAGE_CONF[pageKey]
-	let url         = '' + currentPage.url
+	const nextPage = PAGE_CONF[pageKey]
+	const {user}   = appComp.store.get()
+	let url        = '' + nextPage.url
 	if (paramMap) {
 		for (const paramKey in paramMap) {
 			url = url.replace(':' + paramKey, paramMap[paramKey])
 		}
 	}
 	page(url)
-	appComp.store.set({currentPage})
+	appComp.store.set({currentPage: nextPage})
 }
 
 export function setupRoutes(
@@ -98,10 +109,12 @@ export function setupRoutes(
 
 function configPage(
 	key,
+	authenticated,
 	rightMenu,
 	url = key
 ) {
 	PAGE_CONF[key] = {
+		authenticated,
 		key,
 		rightMenu,
 		url
@@ -117,7 +130,46 @@ function setupPage(
 ) {
 	page(
 		url, (context) => {
-			setPageComp(pageConfig, context.params, PageComp, TopMenuComp, appComp)
+			let {user}   = appComp.store.get()
+			const params = {
+				...context.params
+			}
+			if (!pageConfig.authenticated || user) {
+				setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+				return
+			}
+			user = appComp.store.get().user
+			if (user) {
+				setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+				return
+			}
+
+			// Give Firebase Auth a bit of time to react
+			setTimeout(() => {
+				user = appComp.store.get().user
+				if (user) {
+					setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+					return
+				}
+				appComp.store.set({signIn: true})
+				const storeListener = appComp.store.on('state', ({changed, current}) => {
+					if (changed.authChecked && current.user) {
+						storeListener.cancel()
+						appComp.store.set({signIn: false})
+						setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+						return
+					}
+					if (!changed.signIn || current.signIn) {
+						return
+					}
+					storeListener.cancel()
+					if (current.user) {
+						setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+					} else {
+						navigateToPage(POLL_SEARCH_LIST)
+					}
+				})
+			}, 400)
 		})
 }
 

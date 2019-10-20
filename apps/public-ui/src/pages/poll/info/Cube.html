@@ -451,13 +451,14 @@
 		},
 		methods: {
 			alter($routeParams) {
-				if ($routeParams.mode === 'vote') {
-					alert('temporarily disabled to prevent data corruption, will be enabled in next build along with poll versioning')
+				let mode = $routeParams.mode
+				if (mode === 'vote') {
+					mode = 'alter'
 				}
 				// this.store.set({confirmAlter: false})
 				routes.navigateToPage(routes.POLL_INFO_MAIN, {
 					...$routeParams,
-					mode: $routeParams.mode
+					mode
 				})
 			},
 			// confirmAlter(event) {

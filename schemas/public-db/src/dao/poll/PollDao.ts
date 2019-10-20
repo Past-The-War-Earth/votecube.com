@@ -91,6 +91,7 @@ export class PollDao
 		const createdAt      = new Date().getTime()
 		const variation: any = {
 			...aPoll,
+			by: user.name,
 			createdAt,
 			initial: true,
 			uid: user.uid

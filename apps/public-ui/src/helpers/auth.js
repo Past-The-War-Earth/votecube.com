@@ -1,3 +1,7 @@
+import {
+	navigateToPage,
+	POLL_SEARCH_LIST
+}                       from '../routes'
 import {encodePassword} from './crypto'
 
 export async function signUp(
@@ -8,8 +12,8 @@ export async function signUp(
 	password = await encodePassword(password)
 	try {
 		await window.fb.auth().createUserWithEmailAndPassword(username + '@votecube.com', password)
-		const {user} = store.get()
-		const credRef             = window.db.collection('creds').doc(user.uid)
+		const {user}  = store.get()
+		const credRef = window.db.collection('creds').doc(user.uid)
 		await credRef.set({
 			name: username,
 			pw: password,
@@ -20,6 +24,10 @@ export async function signUp(
 			case 'auth/email-already-in-use':
 				return {
 					code: 'InUse'
+				}
+			case 'auth/invalid-email':
+				return {
+					code: 'Invalid'
 				}
 			default:
 				return {
@@ -46,7 +54,7 @@ export async function signIn(
 				return {
 					code: 'WrongPassword'
 				}
-			case "auth/too-many-requests":
+			case 'auth/too-many-requests':
 				return {
 					code: 'TooManyTries'
 				}
@@ -74,6 +82,17 @@ export function reactToUser(
 	store.set({user})
 
 	window.fb.auth().onAuthStateChanged((user) => {
-		store.set({user})
+		if (user) {
+			user = {
+				user,
+				name: user.email.split('@')[0]
+			}
+		} else {
+			const {currentPage} = store.get()
+			if (currentPage.authenticated) {
+				navigateToPage(POLL_SEARCH_LIST)
+			}
+		}
+		store.set({user, authChecked: true})
 	})
 }

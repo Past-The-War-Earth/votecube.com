@@ -42,9 +42,9 @@
 ></TextToast>
 {/if}
 {#if $signIn}
-<Login
-		on:closed="closeLogin()"
-></Login>
+<SignIn
+		on:closed="closeSignIn()"
+></SignIn>
 {/if}
 
 <style>
@@ -117,7 +117,7 @@
 		setupRoutes
 	}                            from './routes.js'
 	import Menu                  from './shell/menu/Menu.html'
-	import Login                 from './shell/SignIn.html'
+	import SignIn                 from './shell/SignIn.html'
 	import TopBar                from './shell/top/TopBar.html'
 	import store                 from './store.js'
 
@@ -139,8 +139,8 @@
 
 	export default {
 		components: {
-			Login,
 			Menu,
+			SignIn,
 			TextToast,
 			TopBar
 		},
@@ -163,7 +163,7 @@
 					this.toggleMenu()
 				}
 			},
-			closeLogin() {
+			closeSignIn() {
 				this.store.set({signIn: false})
 			},
 			handleResize(

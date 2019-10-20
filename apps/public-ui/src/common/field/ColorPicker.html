@@ -126,27 +126,16 @@
 {/if}
 
 <style>
-
-	@media (min-width: 321px) {
-		table {
-			left: -110px !important;
-		}
-
-		td {
-			height: 50px !important;
-		}
-	}
-
 	input {
 		-webkit-appearance: none; /* Override default CSS styles */
 		appearance: none;
 		background: #aaa;
 		height: 5px;
-		left: 67px;
+		left: 37px;
 		outline: none; /* Remove outline */
 		position: absolute;
 		top: 20px;
-		width: 256px; /* Full-width */
+		width: calc(100% - 75px); /* Full-width */
 	}
 
 	input::-webkit-slider-thumb {
@@ -175,23 +164,20 @@
 
 	figure {
 		border: 4px groove gray;
-		border-radius: 6px;
-		font-size: 3.7em;
-		height: 90px;
+		border-radius: 4px;
+		font-size: 2.3em;
+		height: 55px;
 		margin: auto;
-		width: 90px;
+		width: 55px;
 	}
 
 	section {
-		height: 400px;
 		position: relative;
 		text-align: center;
 	}
 
 	section > div {
-		position: absolute;
-		right: 0px;
-		top: 0px;
+		margin-top: -5px;
 	}
 
 	select {
@@ -199,15 +185,12 @@
 	}
 
 	table {
-		left: -135px;
-		position: absolute;
-		top: 110px;
-		transform: rotate(-90deg);
-		width: 390px;
+		margin-top: 20px;
+		width: 100%;
 	}
 
 	td {
-		height: 45px;
+		height: 65px;
 	}
 
 	td > div {
@@ -216,12 +199,13 @@
 	}
 
 	var {
-		height: 30px;
-		left: -15px;
+		/*height: 30px;*/
+		/*left: -15px;*/
+		float: top;
+		left: calc(50% - 20px);
 		position: absolute;
-		transform: rotate(90deg);
-		top: 8px;
-		width: 35px;
+		top: -19px;
+		width: 40px;
 	}
 
 	.redSlider::-webkit-slider-thumb {
@@ -276,8 +260,8 @@
 			trackOriginal: ({delta, field}) => field.rules.trackOriginal
 		},
 		data: () => ({
-			plusStyles: 'display: inline-block; position: absolute; right: 23px; top: 5.5px;',
-			minusStyles: 'display: inline-block; position: absolute; left: 23px; top: 5.5px;',
+			plusStyles: 'display: inline-block; position: absolute; right: 0px; top: 5.5px;',
+			minusStyles: 'display: inline-block; position: absolute; left: 0px; top: 5.5px;',
 		}),
 		helpers: {
 			getTextColor

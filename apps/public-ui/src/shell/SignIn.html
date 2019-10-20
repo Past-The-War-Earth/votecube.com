@@ -210,7 +210,7 @@
 				page.set({error: 'Wrong password.'})
 				break
 			case 'TooManyTries':
-				page.set({error: 'Too many login requests, please try later.'})
+				page.set({error: 'Too many Sign In requests, please try later.'})
 				break
 			default:
 				page.set({error: 'Error Signing In.  Please check your network connection and try again.'})
@@ -233,6 +233,9 @@
 		switch (error.code) {
 			case 'InUse':
 				page.set({error: 'Username already taken.'})
+				break
+			case 'Invalid':
+				page.set({error: 'Invalid username.'})
 				break
 			default:
 				page.set({error: 'Error Signing Up.  Please check your network connection and try again.'})

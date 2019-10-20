@@ -155,7 +155,7 @@
 		<PreviewButton
 				classes="submitButton"
 				highlightColor="{submitHighlight}"
-				on:select="submit($routeParams, factorsModified, locationOrTimeframeModified)"
+				on:select="submit($routeParams, modified)"
 		></PreviewButton>
 	</nav>
 </form>
@@ -168,7 +168,7 @@
 		Error
 	</div>
 	<div slot="content">
-		Please modify either Location or Start/End dates or Factors to alter the poll.
+		Please make a modification.
 	</div>
 </ActionPopover>
 {/if}
@@ -255,6 +255,15 @@
 			// continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
 			// countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
 			// locations: ({form}) => form ? form.fields.locations : null,
+			modified: ({$routeParams, isOriginal, form}) => {
+				if (!form
+					|| $routeParams.mode !== 'alter'
+					|| isOriginal) {
+					return false
+				}
+				return !form.isOriginal()
+			},
+			/*
 			factorsModified: ({$routeParams, isOriginal, form}) => {
 				if (!form
 					|| $routeParams.mode !== 'alter'
@@ -263,7 +272,8 @@
 				}
 				return !form.fields.factors.isOriginal()
 			},
-			/*
+			*/
+						/*
 			locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 				if (!form
 					|| $routeParams.mode !== 'alter'
@@ -278,8 +288,7 @@
 			// states: ({form}) => form ? form.fields.locations.fields.states.value : [],
 			submitHighlight: ({
 				                  $routeParams,
-				                  factorsModified,
-				                  locationOrTimeframeModified,
+				                  modified,
 				                  isValid
 			                  }) => {
 				if (!isValid) {
@@ -289,7 +298,7 @@
 					return '0b0'
 				}
 
-				return factorsModified || locationOrTimeframeModified
+				return modified
 					? '0b0'
 					: 'b00'
 			},
@@ -338,8 +347,7 @@
 			},
 			submit(
 				$routeParams,
-				factorsModified,
-				locationOrTimeframeModified
+				modified
 			) {
 				const {form} = this.get()
 				form.touch()
@@ -349,9 +357,8 @@
 				}
 
 				if (
-					$routeParams.mode !== 'build'
-					&& !factorsModified
-					&& !locationOrTimeframeModified) {
+					$routeParams.mode === 'alter'
+					&& !modified) {
 					this.set({invalidAlter: true})
 					return
 				}
