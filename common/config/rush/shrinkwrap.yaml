@@ -45,9 +45,9 @@ dependencies:
   eslint: 5.16.0
   firebase: 7.2.1
   html-webpack-plugin: 3.2.0
+  jssha: 2.3.1
   mini-css-extract-plugin: 0.5.0
   optimize-css-assets-webpack-plugin: 5.0.3
-  page: 1.11.5
   serve: 10.1.2
   sql.js: 0.5.0
   style-loader: 0.23.1
@@ -3865,6 +3865,10 @@ packages:
       graceful-fs: 4.2.2
     resolution:
       integrity: sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
+  /jssha/2.3.1:
+    dev: false
+    resolution:
+      integrity: sha1-FHshJTaQNcpLL30hDcU58Amz3po=
   /killable/1.0.1:
     dev: false
     resolution:
@@ -7606,11 +7610,13 @@ packages:
       eslint: 5.16.0
       firebase: 7.2.1
       html-webpack-plugin: /html-webpack-plugin/3.2.0/webpack@4.41.2
+      jssha: 2.3.1
       mini-css-extract-plugin: /mini-css-extract-plugin/0.5.0/webpack@4.41.2
       navaid: 1.0.0
       optimize-css-assets-webpack-plugin: /optimize-css-assets-webpack-plugin/5.0.3/webpack@4.41.2
       page: 1.11.5
       serve: 10.1.2
+      sha.js: 2.4.11
       style-loader: 0.23.1
       svelte: 2.16.1
       svelte-extras: /svelte-extras/2.0.2/svelte@2.16.1
@@ -7625,7 +7631,7 @@ packages:
     dev: false
     name: '@rush-temp/public-ui'
     resolution:
-      integrity: sha512-tXXq8hJOAC4szcEa2YBWSSHevCtCAKuY95K62/DyA1Op34kQ14Np4y/HDEn3hWJNUP43fYVXFV1pOL6JtRMrHQ==
+      integrity: sha512-Xfz6vjvvIn/Lwiv1RBZvm7TWOghxizK3wmsUK8ypy+0KBpHF6sqZFqXC+YknBRtemuyATXTNHHNmU9thDGrkGg==
       tarball: 'file:projects/public-ui.tgz'
     version: 0.0.0
   'file:projects/runway-edge-lighting.tgz':
@@ -7774,9 +7780,9 @@ specifiers:
   eslint: ^5.14.1
   firebase: ^7.2.x
   html-webpack-plugin: ^3.2.x
+  jssha: ^2.3.x
   mini-css-extract-plugin: ^0.5.0
   optimize-css-assets-webpack-plugin: ^5.0.x
-  page: ^1.11.3
   serve: ^10.1.1
   sql.js: ^0.5.0
   style-loader: ^0.23.1

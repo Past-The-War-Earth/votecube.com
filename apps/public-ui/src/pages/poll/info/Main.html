@@ -411,11 +411,15 @@
 				Validators)
 			form.setTrackOriginal(mode === 'alter')
 			form.validate()
-				
+
 			forms.setForm(forms.CREATE_POLL_TOP, form)
 			let poll
 			try {
-				poll = await pollDao.findByIdWithDetails(pollId)
+				poll = await pollDao.getOriginalDetails(pollId)
+				if (!poll && pollId != 0) {
+					routes.navigateToPage(routes.POLL_SEARCH_LIST)
+					return
+				}
 			} catch (error) {
 				page.set({error})
 			}
@@ -423,7 +427,9 @@
 			if (poll) {
 				form.setValue(pollFormToConverter.dtoToForm(poll), !poll.draft)
 				form.validate()
-				form.touch()
+				if(pollId != 0) {
+					form.touch()
+				}
 			}
 		}
 

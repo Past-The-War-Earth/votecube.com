@@ -666,6 +666,7 @@
 		forCubeView,
 		page
 	) {
+		const {cubeListener} = page.get()
 		if (forCubeView) {
 			if (!currentlyInCubeView) {
 				// Animate Factor Rankings out of the view
@@ -673,7 +674,9 @@
 				// page.set({cubeTransition: true})
 				// page.set({delta: page.get().delta + 1})
 
-				page.get().cubeListener.resumeInteraction()
+				if (cubeListener) {
+					cubeListener.resumeInteraction()
+				}
 				page.set({cubeView: forCubeView})
 				setTimeout(() => {
 					page.set({beforeCubeView: false})
@@ -686,7 +689,9 @@
 			if (currentlyInCubeView) {
 				// Animate Factor Rankings out of the view
 				page.set({beforeCardView: true})
-				page.get().cubeListener.suspendInteraction()
+				if (cubeListener) {
+					cubeListener.suspendInteraction()
+				}
 				page.set({cubeView: forCubeView})
 				setTimeout(() => {
 					page.set({beforeCardView: false})

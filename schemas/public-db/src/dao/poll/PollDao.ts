@@ -20,7 +20,7 @@ export interface IPollDao
 		themeId: number
 	): Promise<IPoll[]>
 
-	findByIdWithDetails(
+	getOriginalDetails(
 		pollId: Poll_Id
 	): Promise<IPoll>
 
@@ -46,7 +46,9 @@ export class PollDao
 
 	async getAll(): Promise<IPoll[]> {
 		const db = (window as any).db
-		return await db.collection('polls').get()
+		return await db.collection('polls')
+			.orderBy('createdAt', 'desc')
+			.get()
 	}
 
 	async getForTheme(
@@ -54,32 +56,45 @@ export class PollDao
 	): Promise<IPoll[]> {
 		const db = (window as any).db
 		return await db.collection('polls')
-			.where('theme.id', '==', themeId).get()
+			.where('theme.id', '==', themeId)
+			.orderBy('createdAt', 'desc')
+			.get()
 	}
 
-	async findByIdWithDetails(
+	async getOriginalDetails(
 		pollId: Poll_Id
 	): Promise<IPoll> {
 		if (pollId == 0) {
 			return this.tempPoll
 		}
 
-		const docRef             = (window as any).db
+		const docRef = (window as any).db
 			.collection('polls').doc(pollId)
 			.collection('variations')
 			.where('initial', '==', true)
 
 		const result = await docRef.get()
 
-		return result.docs[0].data()
+		const docs = result.docs
+
+		if (!docs.length) {
+			return null
+		}
+
+		return docs[0].data()
 	}
 
 	async save(
 		aPoll: IPoll,
 		user
 	): Promise<IPoll> {
-		const db             = (window as any).db
-		const variation: any = aPoll
+		const createdAt      = new Date().getTime()
+		const variation: any = {
+			...aPoll,
+			createdAt,
+			initial: true,
+			uid: user.uid
+		}
 		delete variation.id
 
 		const factors = {}
@@ -100,6 +115,7 @@ export class PollDao
 
 		const poll: any = {
 			ageSuitability: variation.ageSuitability,
+			createdAt,
 			factors,
 			name: variation.name,
 			outcomes,
@@ -108,6 +124,7 @@ export class PollDao
 		}
 
 		try {
+			const db = (window as any).db
 			await db.runTransaction(async (transaction) => {
 				const pollRef             = db.collection('polls').doc()
 				const variationRef        = pollRef
@@ -118,8 +135,6 @@ export class PollDao
 				poll.key          = pollRef.id
 				variation.key     = variationRef.id
 				variation.pollKey = pollRef.id
-				variation.uid     = user.uid
-				variation.initial = true
 
 				const variationListing = {
 					...poll,
@@ -128,9 +143,9 @@ export class PollDao
 					variationKey: variationRef.id,
 				}
 
-				await pollRef.set(poll)
-				await variationRef.set(variation)
-				await variationListingRef.set(variationListing)
+				await transaction.set(pollRef, poll)
+				await transaction.set(variationRef, variation)
+				await transaction.set(variationListingRef, variationListing)
 
 				delete this.tempPoll
 			})

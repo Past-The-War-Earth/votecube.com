@@ -5,6 +5,7 @@ import {
 }                      from '@votecube/cube-logic'
 import {VOTE_DAO}      from '@votecube/public-db'
 import {loadCubeLogic} from './libs/cubeLogic'
+import * as routes     from './routes'
 
 export async function init() {
 	// await DI.get(AIR_DB)
@@ -28,9 +29,7 @@ export async function setupCubeView(
 	const vote = await voteDao.findMyVoteForPoll(pollId)
 
 	if (!vote) {
-		if (pollId === 0) {
-			routes.navigateToPage(routes.POLL_INFO_MAIN)
-		}
+		routes.navigateToPage(routes.POLL_INFO_MAIN)
 		return
 	}
 	setPositionData(vote)

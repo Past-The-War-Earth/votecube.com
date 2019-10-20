@@ -61,10 +61,41 @@ module.exports = {
 		runtimeChunk: 'single',
 		splitChunks: {
 			cacheGroups: {
+				jssha: {
+					test: (module) => {
+						const context = module.context;
+						const targets = [
+							"jssha",
+						];
+						return context && context.indexOf("node_modules") >= 0 && targets.find(t => context.indexOf(/${t}/) > -1);
+					},
+					name: 'jssha',
+					chunks: 'all'
+				},
 				vendor: {
-					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					chunks: 'all',
+					test: (module) => {
+						const context = module.context;
+						const targets = [
+							"firebase",
+							"page",
+							"svelte",
+							"svelte-transitions",
+						];
+						return context && context.indexOf("node_modules") >= 0 && targets.find(t => context.indexOf(/${t}/) > -1);
+					},
+					name: 'vendor',
+					chunks: 'all'
+				},
+				votecube: {
+					test: (module) => {
+						const context = module.context;
+						const targets = [
+							"@votecube",
+						];
+						return context && context.indexOf("node_modules") >= 0 && targets.find(t => context.indexOf(/${t}/) > -1);
+					},
+					name: 'votecube',
+					chunks: 'all'
 				},
 			},
 		},

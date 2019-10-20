@@ -11,7 +11,8 @@
     "@votecube/cube-logic": "0.0.1",
     "@votecube/forms": "0.0.1",
     "firebase": "^7.2.x",
-    "page": "^1.11.3"
+    "page": "^1.11.x",
+    "jssha": "^2.3.x"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.x",

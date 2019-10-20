@@ -126,7 +126,7 @@
 				if (!signUpForm.valid) {
 					return
 				}
-				doSignUp(signUpForm.value.username, signUpForm.value.password, this).then(
+				doSignUp(signUpForm.value.username, signUpForm.value.password, this, this.store).then(
 					success => {
 						if (success) {
 							this.fire('closed')
@@ -223,9 +223,10 @@
 	async function doSignUp(
 		username,
 		password,
-		page
+		page,
+		store
 	) {
-		const error = await signUp(username, password)
+		const error = await signUp(username, password, store)
 		if (!error) {
 			return true
 		}

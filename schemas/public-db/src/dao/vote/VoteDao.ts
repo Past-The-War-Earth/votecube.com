@@ -37,7 +37,11 @@ export class VoteDao
 	): Promise<IVote> {
 		const pollDao = await DI.get(POLL_DAO)
 
-		const poll = await pollDao.findByIdWithDetails(pollId)
+		const poll = await pollDao.getOriginalDetails(pollId)
+
+		if (!poll) {
+			return null
+		}
 
 		return this.getDummy(poll)
 	}

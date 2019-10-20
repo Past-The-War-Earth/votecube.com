@@ -1,9 +1,20 @@
+import {encodePassword} from './crypto'
+
 export async function signUp(
 	username,
-	password
+	password,
+	store
 ) {
+	password = await encodePassword(password)
 	try {
 		await window.fb.auth().createUserWithEmailAndPassword(username + '@votecube.com', password)
+		const {user} = store.get()
+		const credRef             = window.db.collection('creds').doc(user.uid)
+		await credRef.set({
+			name: username,
+			pw: password,
+			uid: user.uid
+		})
 	} catch (error) {
 		switch (error.code) {
 			case 'auth/email-already-in-use':
@@ -22,6 +33,7 @@ export async function signIn(
 	username,
 	password
 ) {
+	password = await encodePassword(password)
 	try {
 		await window.fb.auth().signInWithEmailAndPassword(username + '@votecube.com', password)
 	} catch (error) {
