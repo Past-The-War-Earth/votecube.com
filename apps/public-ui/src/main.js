@@ -31,7 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 		window.fb            = firebase.initializeApp(firebaseConfig)
 		window.db            = firebase.firestore()
-		window.app           = new App({
+		try {
+			window.db.enablePersistence({synchronizeTabs: true})
+		} catch (error) {
+			// Its OK if caching could not be enabled
+		}
+		window.app = new App({
 			target: document.body
 		})
 	} catch (e) {

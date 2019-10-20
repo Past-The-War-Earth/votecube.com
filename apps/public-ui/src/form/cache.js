@@ -32,13 +32,8 @@ export async function savePollForm(
 	const pollDao = await DI.get(POLL_DAO)
 
 	// await pollDao.stage(poll)
-	pollDao.addTemp(poll, pollId)
+	pollDao.addTemp(poll)
 
-	// TODO: check if this was needed
-	// voteDao.addTempForPoll(poll, pollId)
-
-	forms.uncacheForm(forms.CREATE_POSITION)
 	forms.uncacheForm(forms.CREATE_POLL_TOP)
 	forms.uncacheForm(forms.CREATE_FACTOR)
-
 }

@@ -13,11 +13,6 @@ export interface IVoteDao
 	// extends IBaseVoteDao
 {
 
-	addTempForPoll(
-		poll: IPoll,
-		pollId?: Poll_Id
-	): void
-
 	findMyVoteForPoll(
 		pollId: Poll_Id
 	): Promise<IVote>
@@ -37,39 +32,14 @@ export class VoteDao
 	// extends BaseVoteDao
 	implements IVoteDao {
 
-	voteMap: { [id: string]: IVote } = {}
-
-	addTempForPoll(
-		poll: IPoll,
-		pollId: Poll_Id = poll.id
-	): void {
-		const tempVote = this.getDummy(poll)
-
-		this.voteMap[pollId] = tempVote
-	}
-
 	async findMyVoteForPoll(
 		pollId: Poll_Id
 	): Promise<IVote> {
-		pollId = parseInt(pollId as any)
-		if (!pollId && pollId !== 0) {
-			return null
-		}
-
-		let vote = this.voteMap[pollId]
-		if (vote) {
-			return vote
-		}
-
 		const pollDao = await DI.get(POLL_DAO)
 
 		const poll = await pollDao.findByIdWithDetails(pollId)
 
-		vote = this.getDummy(poll)
-
-		this.voteMap[pollId] = vote
-
-		return vote
+		return this.getDummy(poll)
 	}
 
 	async findVoteForPoll(

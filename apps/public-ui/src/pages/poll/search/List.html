@@ -2,18 +2,16 @@
 		transition:fade="{duration: 700}"
 >
 	{#if form}
-	<!--
 	<form>
-		<Text
-				field="{form.fields.search}"
-		></Text>
+		<AutoComplete
+				field="{form.fields.theme}"
+		></AutoComplete>
 	</form>
-	-->
 	<table>
 		{#each polls as poll}
 		<ListItem
 				mode="{mode}"
-				on:select="goTo(poll.id)"
+				on:select="goTo(poll.key)"
 				poll="{poll}"
 		></ListItem>
 		{/each}
@@ -95,6 +93,7 @@
 	import {POLL_DAO}     from '@votecube/public-db'
 	import {fade}         from 'svelte-transitions'
 	import CancelButton   from '../../../common/control/button/CancelButton.html'
+	import AutoComplete   from '../../../common/field/AutoComplete.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import Text           from '../../../common/field/Text.html'
 	import ActionPopover  from '../../../common/shell/ActionPopover.html'
@@ -108,6 +107,7 @@
 	export default {
 		components: {
 			ActionPopover,
+			AutoComplete,
 			CancelButton,
 			ListItem,
 			PollListingFab,
@@ -156,15 +156,39 @@
 	async function initPage(page) {
 		const pollDao = await DI.get(POLL_DAO)
 		const [
-			      {Field, FieldGroup},
-			      polls
-		      ]       = await Promise.all([
+			    {OptionsField, FieldGroup},
+			    polls
+		    ]         = await Promise.all([
 			loadForms(page),
-			pollDao.getAll()
+			findPolls(null, pollDao)
 		])
 
+		const theme = new OptionsField([], [{
+			id: 1,
+			text: 'Politics'
+		}, {
+			id: 2,
+			text: 'Culture'
+		}, {
+			id: 3,
+			text: 'Technology'
+		}, {
+			id: 4,
+			text: 'Space'
+		}, {
+			id: 5,
+			text: 'Security'
+		}])
+
+		theme.onChange((aTheme) => {
+			findPolls(aTheme, pollDao).then(
+				polls => {
+					page.set({polls})
+				})
+		})
+
 		const filter = new FieldGroup('List', {
-			search: new Field([])
+			theme
 		}, [], page.store.get().text.UI.Poll)
 
 		page.set({polls})
@@ -173,5 +197,19 @@
 		page.store.set({
 			pageTitle: 'Polls'
 		})
+	}
+
+	async function findPolls(
+		theme,
+		pollDao
+	) {
+		let result
+		if (!theme) {
+			result = await pollDao.getAll()
+		} else {
+			result = await pollDao.getForTheme(theme.id)
+		}
+		return result.docs.map(
+			doc => doc.data())
 	}
 </script>

@@ -56,6 +56,7 @@ export interface IDateField
 	showPopup(): void
 
 	setToDate(
+		external: boolean,
 		date: Date
 	): void
 
@@ -66,6 +67,7 @@ export interface IDateField
 export interface IMutableDateState {
 
 	setState(
+		external: boolean,
 		date: DateOfMonth,
 		month: Month,
 		year: number,
@@ -130,7 +132,7 @@ export class DateField
 	}
 
 	clear(): void {
-		this.setState(null, null, null)
+		this.setState(true, null, null, null)
 	}
 
 	hidePopup(): void {
@@ -170,14 +172,14 @@ export class DateField
 	}
 
 	reset(): void {
-		this.setState(null, null, null, true)
+		this.setState(true, null, null, null, true)
 	}
 
 	revert(): void {
 		if (!this.originalValue) {
 			this.clear()
 		} else {
-			this.setToDate(this.originalValue)
+			this.setToDate(true, this.originalValue)
 		}
 	}
 
@@ -187,20 +189,22 @@ export class DateField
 	): void {
 		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
 
-		this.setState(dateOfMonth, month, year)
+		this.setState(true, dateOfMonth, month, year)
 	}
 
 	setToDate(
+		external: boolean,
 		date: Date // UTC only
 	): void {
 		this.setState(
+			external,
 			date.getUTCDate() as DateOfMonth,
 			date.getUTCMonth() as Month,
 			date.getUTCFullYear())
 	}
 
 	setToNow(): void {
-		this.setToDate(utcNow())
+		this.setToDate(true, utcNow())
 	}
 
 	setValue(
@@ -208,7 +212,7 @@ export class DateField
 		resetOriginal = false
 	): void {
 		if (value) {
-			this.setToDate(value)
+			this.setToDate(false, value)
 		} else {
 			this.clear()
 		}
@@ -219,6 +223,7 @@ export class DateField
 	}
 
 	setState(
+		external: boolean,
 		date: DateOfMonth,
 		month: Month,
 		year: number,
@@ -231,14 +236,14 @@ export class DateField
 			calendarMonth = now.getMonth() as Month
 			calendarYear  = now.getFullYear()
 		}
-		this.calendar.setState(null, calendarMonth, calendarYear)
+		this.calendar.setState(external, null, calendarMonth, calendarYear)
 
 		if (calendarOnly) {
 			return
 		}
 
-		this.fragments.setState(date, month, year)
-		this.selection.setState(date, month, year)
+		this.fragments.setState(external, date, month, year)
+		this.selection.setState(external, date, month, year)
 
 		if (year) {
 			this.theValue = new Date(Date.UTC(year, month, date))
@@ -247,7 +252,7 @@ export class DateField
 		}
 		this.onValueChanged()
 
-		this.validate()
+		this.validate(external, false)
 		this.detect()
 	}
 
@@ -256,16 +261,20 @@ export class DateField
 		if (!this.selection.date) {
 			return
 		}
-		this.calendar.setState(null, this.selection.month, this.selection.year)
+		this.calendar.setState(false, null, this.selection.month, this.selection.year)
 	}
 
 	validate(
+		external = true,
 		fromParentGroup?: boolean
 	): void {
 		if (this.fragments.valid) {
-			super.validate(fromParentGroup)
+			super.validate(external, fromParentGroup)
 		} else {
-			let key     = 'format'
+			if (!this.shouldValidate(external)) {
+				return
+			}
+			const key     = 'format'
 			this.errors = [{
 				key,
 				message: this.text.errors[key]

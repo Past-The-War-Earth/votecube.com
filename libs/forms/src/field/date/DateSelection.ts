@@ -40,6 +40,7 @@ export class DateSelection
 	}
 
 	setState(
+		external: boolean,
 		date: DateOfMonth,
 		month: Month,
 		year: number

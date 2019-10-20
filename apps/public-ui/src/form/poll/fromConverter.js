@@ -6,7 +6,14 @@ export function formToDto(
 	// const locations      = formValue.locations
 	const outcomes       = formValue.outcomes
 
+	let ageSuitability = formValue.ageSuitability;
+
+	if(ageSuitability.length > 0) {
+		ageSuitability = parseInt(ageSuitability)
+	}
+
 	return {
+		ageSuitability,
 		// endDate: formValue.timeframe.endDate,
 		id: formValue.id ? formValue.id : 0,
 		name: formValue.name,
@@ -98,7 +105,6 @@ function getDimDto(
 
 	return {
 		color: {
-			id: red * 256 * 256 + green * 256 + blue,
 			red,
 			green,
 			blue

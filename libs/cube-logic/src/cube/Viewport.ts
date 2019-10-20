@@ -152,6 +152,9 @@ export const viewport: IViewport = {
 	 * Need to be able to move to a particular angle
 	 */
 	moveToDegree(): void {
+		if (!this.cb) {
+			return
+		}
 		// console.log('x: ' + this.x + '\t\ty: ' + this.y)
 		this.cb(this.pd)
 

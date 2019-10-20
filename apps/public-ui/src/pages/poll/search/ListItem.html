@@ -7,21 +7,15 @@
 		<figure>
 			<div
 					class="surface s1"
-					style="
-        background-color: #{getColor(0, poll, 'x')};
-                        "
+					style="background-color: #{getColor(poll.factors.x.color)};"
 			></div>
 			<div
 					class="surface s2"
-					style="
-        background-color: #{getColor(0, poll, 'z')};
-                        "
+					style="background-color: #{getColor(poll.factors.z.color)};"
 			></div>
 			<div
 					class="surface s5"
-					style="
-        background-color: #{getColor(0, poll, 'y')};
-                        "
+					style="background-color: #{getColor(poll.factors.y.color)};"
 			></div>
 		</figure>
 	<td
@@ -35,13 +29,13 @@
 
 		{#if mode === 'factors'}
 		<var>
-			{getSideText(delta, 'confirm', poll, 'x', 1)}
+			{poll.factors.x.name}
 		</var>
 		<var>
-			{getSideText(delta, 'confirm', poll, 'y', 1)}
+			{poll.factors.y.name}
 		</var>
 		<var>
-			{getSideText(delta, 'confirm', poll, 'z', 1)}
+			{poll.factors.z.name}
 		</var>
 		{:else}
 
@@ -49,12 +43,12 @@
 			<var
 					class="A"
 			>
-				{sortedOutcomes[0].outcome}
+				{poll.outcomes.A.name}
 			</var>
 			<var
 					class="B"
 			>
-				{sortedOutcomes[1].outcome}
+				{poll.outcomes.B.name}
 			</var>
 		</section>
 
@@ -148,24 +142,12 @@
 </style>
 <script>
 	import {
-		getColor,
-		getSideText
-	} from '../../../helpers/cube'
+		getColor
+	} from '../../../helpers/general'
 
 	export default {
-		computed: {
-			sortedOutcomes: ({poll}) => {
-				const sortedOutcomes = poll.outcomes.sort((
-					outcome1,
-					outcome2
-				) => outcome1.key > outcome2.key)
-
-				return sortedOutcomes
-			}
-		},
 		helpers: {
-			getColor,
-			getSideText
+			getColor
 		},
 		immutable: true
 	}

@@ -2,11 +2,6 @@ import {DI}       from '@airport/di'
 import {POLL_DAO} from '../../diTokens'
 import {IPoll}    from '../../generated/interfaces'
 import {Poll_Id}  from '../../types/poll/Poll'
-import {
-	DB,
-	insert,
-	SEQUENCES
-}                 from '../stubDB'
 
 export interface IPollDao
 	// extends IBasePollDao
@@ -16,22 +11,22 @@ export interface IPollDao
 	// ): Promise<IPoll>
 
 	addTemp(
-		poll: IPoll,
-		pollId?: Poll_Id
+		poll: IPoll
 	): void
 
 	getAll(): Promise<IPoll[]>
+
+	getForTheme(
+		themeId: number
+	): Promise<IPoll[]>
 
 	findByIdWithDetails(
 		pollId: Poll_Id
 	): Promise<IPoll>
 
-	getTempPoll(
-		pollId: Poll_Id
-	): Promise<IPoll>
-
 	save(
-		poll: IPoll
+		poll: IPoll,
+		user
 	): Promise<IPoll>
 
 }
@@ -40,104 +35,110 @@ export class PollDao
 	// extends BasePollDao
 	implements IPollDao {
 
-	pollMap: { [pollId: number]: IPoll }     = {}
-	tempPollMap: { [pollId: number]: IPoll } = {}
+	tempPoll: IPoll
+	DI
 
 	async addTemp(
-		poll: IPoll,
-		pollId: Poll_Id = poll.id
+		poll: IPoll
 	): Promise<void> {
-		this.tempPollMap[pollId] = poll
+		this.tempPoll = poll
 	}
 
 	async getAll(): Promise<IPoll[]> {
-		return DB.polls.map(
-			poll => {
-				if (this.pollMap[poll.id]) {
-					return poll
-				}
+		const db = (window as any).db
+		return await db.collection('polls').get()
+	}
 
-				return this.cachePoll(poll)
-			}).filter(
-			poll => poll.id)
+	async getForTheme(
+		themeId: number
+	): Promise<IPoll[]> {
+		const db = (window as any).db
+		return await db.collection('polls')
+			.where('theme.id', '==', themeId).get()
 	}
 
 	async findByIdWithDetails(
 		pollId: Poll_Id
 	): Promise<IPoll> {
-		pollId = parseInt(pollId as any)
-		if (!pollId && pollId != 0) {
-			return null
-		}
-		let poll = this.tempPollMap[pollId]
-
-		if (poll) {
-			return poll
+		if (pollId == 0) {
+			return this.tempPoll
 		}
 
-		poll = this.pollMap[pollId]
+		const docRef             = (window as any).db
+			.collection('polls').doc(pollId)
+			.collection('variations')
+			.where('initial', '==', true)
 
-		if (poll) {
-			return poll
-		}
+		const result = await docRef.get()
 
-		poll = DB.polls.filter(
-			aPoll => pollId === aPoll.id)[0]
-
-		return this.cachePoll(poll)
-	}
-
-	async getTempPoll(
-		pollId: Poll_Id
-	): Promise<IPoll> {
-		return this.tempPollMap[pollId]
+		return result.docs[0].data()
 	}
 
 	async save(
-		poll: IPoll
+		aPoll: IPoll,
+		user
 	): Promise<IPoll> {
-		poll.id = ++SEQUENCES.polls;
-		(poll as any).pollFactorPositions.forEach((
-			pollFactorPosition
-		) => {
-			pollFactorPosition.id      = ++SEQUENCES.pollFactorPositions
-			const factorPosition       = pollFactorPosition.factorPosition
-			factorPosition.id          = ++SEQUENCES.factorPositions
-			factorPosition.factor.id   = ++SEQUENCES.factors
-			factorPosition.position.id = ++SEQUENCES.positions
-		})
+		const db             = (window as any).db
+		const variation: any = aPoll
+		delete variation.id
 
-		this.pollMap[poll.id] = poll
-		DB.polls.push(poll as any)
-		delete this.tempPollMap[0]
+		const factors = {}
 
-		insert('polls', poll)
-
-		return poll
-	}
-
-	private cachePoll(
-		poll: IPoll
-	): IPoll {
-		for (const pollFactorPosition of (poll as any).pollFactorPositions) {
-			let currentFactorPosition
-			pollFactorPosition.factorPosition = DB.factorPositions.filter((factorPosition) => {
-				if (factorPosition.id === pollFactorPosition.factorPosition.id) {
-					currentFactorPosition = factorPosition
-					return true
-				}
-			})[0]
-
-			currentFactorPosition.factor = DB.factors.filter((factor) =>
-				factor.id === currentFactorPosition.factor.id
-			)[0]
-
-			currentFactorPosition.position = DB.positions.filter((position) =>
-				position.id === currentFactorPosition.position.id
-			)[0]
+		for (const pfp of variation.pollFactorPositions) {
+			factors[pfp.axis] = {
+				...pfp.factorPosition.factor,
+				color: pfp.color
+			}
 		}
 
-		this.pollMap[poll.id] = poll
+		const outcomes = {}
+		for (const outcome of variation.outcomes) {
+			outcomes[outcome.key] = {
+				name: outcome.outcome
+			}
+		}
+
+		const poll: any = {
+			ageSuitability: variation.ageSuitability,
+			factors,
+			name: variation.name,
+			outcomes,
+			theme: variation.theme,
+			uid: user.uid
+		}
+
+		try {
+			await db.runTransaction(async (transaction) => {
+				const pollRef             = db.collection('polls').doc()
+				const variationRef        = pollRef
+					.collection('variations').doc()
+				const variationListingRef = pollRef
+					.collection('variationListings').doc()
+
+				poll.key          = pollRef.id
+				variation.key     = variationRef.id
+				variation.pollKey = pollRef.id
+				variation.uid     = user.uid
+				variation.initial = true
+
+				const variationListing = {
+					...poll,
+					key: variationListingRef.id,
+					pollKey: pollRef.id,
+					variationKey: variationRef.id,
+				}
+
+				await pollRef.set(poll)
+				await variationRef.set(variation)
+				await variationListingRef.set(variationListing)
+
+				delete this.tempPoll
+			})
+		} catch (error) {
+			alert(error)
+		} finally {
+			// Nothing to do
+		}
 
 		return poll
 	}
@@ -204,7 +205,7 @@ export class PollDao
 		referencingEntitiesPropertyName: string
 	): void {
 		const repoEntityMap: Map<number, Map<number, Map<number, IRepositoryEntity>>>
-			      = new Map<number, Map<number, Map<number, IRepositoryEntity>>>()
+						= new Map<number, Map<number, Map<number, IRepositoryEntity>>>()
 
 		for (const repositoryEntity of repositoryEntities) {
 			repositoryEntity[referencingEntitiesPropertyName] = []

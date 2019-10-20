@@ -113,7 +113,7 @@
 					></ShieldButton>
 					<span
 							class="ageSuitability"
-					>0+</span>
+					>{ageSuitability}</span>
 				</var>
 			</div>
 		</td>
@@ -425,6 +425,21 @@
 			ShieldButton
 		},
 		computed: {
+			ageSuitability: ({delta, poll}) => {
+				if (!poll) {
+					return '?'
+				}
+				switch (poll.ageSuitability) {
+					case 0:
+					case 7:
+					case 13:
+					case 17:
+					case 21:
+						return poll.ageSuitability + '+'
+					default:
+						return '?'
+				}
+			},
 			signedTotal: ({voteDims, factorDelta}) => voteDims.reduce((
 				total,
 				voteDim

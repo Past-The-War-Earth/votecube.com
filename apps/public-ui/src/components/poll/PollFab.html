@@ -34,8 +34,8 @@
 		<DescribedButton
 				expanded="{expanded}"
 				closing="{closing}"
-				label="{previewMode ? (alignmentMode ? 'Hide Alignment' : 'Show Alignment') : 'Manually Override'}"
-				on:select="open(previewMode ? 'position' : 'manuallyOverwrite')"
+				label="{previewMode ? (alignmentMode ? 'Hide Alignment' : 'Set Alignment') : 'Manually Override'}"
+				on:select="position(alignmentMode, previewMode)"
 		>
 			{#if previewMode}
 			<AlignmentButton
@@ -54,7 +54,7 @@
 		<DescribedButton
 				expanded="{expanded}"
 				closing="{closing}"
-				label="Improve Poll"
+				label="{editPollLabel}"
 				on:select="open('edit')"
 		>
 			<EditButton
@@ -171,6 +171,10 @@
 			VariationTreeButton,
 			VoteButton
 		},
+		computed: {
+			previewMode: ({mode}) => mode === 'build' || mode === 'alter',
+			editPollLabel: ({mode}) => mode === 'build' ? 'Edit Poll' : 'Improve Poll'
+		},
 		data: () => ({
 			alignmentMode: false,
 			closed: false,
@@ -188,11 +192,12 @@
 				previewMode
 			) {
 				if (!previewMode) {
-					this.fire('manuallyOverwrite')
+					this.open('manuallyOverwrite')
 					return
 				}
 				alignmentMode = !alignmentMode
 				this.set({alignmentMode})
+				this.open('position')
 			},
 			setOpened(
 				opened

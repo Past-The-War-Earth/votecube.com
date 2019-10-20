@@ -8,5 +8,38 @@ service cloud.firestore {
       allow read, update, delete: if false;
       allow create: if true;
     }
+
+    match /polls/{pollId} {
+      allow get: if false;
+      allow list: if true;
+      allow create: if byUser();
+      allow update: if false;
+      allow delete: if false;
+
+      match /variationListings/{pollVariationListingId} {
+        allow get: if false;
+        allow list: if true;
+        allow create: if byUser();
+        allow update: if false;
+        allow delete: if false;
+      }
+
+      match /variations/{pollVariationId} {
+        allow get: if true;
+        allow list: if true;
+        allow create: if byUser();
+        allow update: if false;
+        allow delete: if false;
+      }
+    }
+  }
+
+  function byUser() {
+    return request.auth.uid != null
+        && request.auth.uid == request.resource.data.uid;
+  }
+
+  function validListing() {
+        return ['x', 'y', 'z'].indexOf(request.resource.data.factors[0].axis) > -1
   }
 }

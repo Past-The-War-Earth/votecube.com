@@ -1,5 +1,3 @@
-import {getRGB} from '../../helpers/general'
-
 export function dtoToForm(
 	poll
 ) {
@@ -30,6 +28,7 @@ export function dtoToForm(
 	) => outcome1.key > outcome2.key)
 
 	return {
+		ageSuitability: poll.ageSuitability,
 		factors: {
 			first: getDimForm(getPollFactorPositionDtos(poll, 'y')),
 			second: getDimForm(getPollFactorPositionDtos(poll, 'z')),
@@ -90,7 +89,7 @@ function getDimForm(
 		})
 	return {
 		color: {
-			...getRGB(color),
+			...color,
 			name: ''
 		},
 		name: pollFactorPositions[0].factorPosition.factor.name,

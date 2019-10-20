@@ -45,6 +45,7 @@ export class DateCalendar
 		}*/
 
 	setState(
+		external: boolean,
 		date: DateOfMonth,
 		month: Month,
 		year: number
@@ -53,7 +54,7 @@ export class DateCalendar
 			&& year === this.year) {
 			return
 		}
-		super.setState(null, month, year)
+		super.setState(external, null, month, year)
 		this.setWeeks(this.month)
 	}
 

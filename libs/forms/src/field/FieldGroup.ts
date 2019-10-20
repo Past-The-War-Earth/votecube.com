@@ -83,7 +83,7 @@ export class FieldGroup
 				this.hasRequiredChild = true
 			}
 		}
-		this.validate()
+		this.validate(false)
 	}
 
 	get hasValue(): boolean {
@@ -220,11 +220,25 @@ export class FieldGroup
 	 * @param relatedField
 	 */
 
+	setRun(
+		runNumber: number
+	): void {
+		super.setRun(runNumber)
+
+		for (const fieldName in this.fields) {
+			this.fields[fieldName].setRun(runNumber)
+		}
+	}
+
 	validate(
+		external = true,
 		fromParentGroup?: boolean,
 		relatedField?: IFieldBase,
 		originalCheckOnly: boolean = false
 	): void {
+		if (!this.shouldValidate(external)) {
+			return
+		}
 		this.hasChildValues = false
 		this.valid          = true
 		this.theIsOriginal  = true
@@ -233,9 +247,8 @@ export class FieldGroup
 			const field = this.fields[fieldName]
 			if (!originalCheckOnly
 				&& (!relatedField ||
-					(relatedField !== field
-						&& field.valid == null))) {
-				field.validate(true)
+					relatedField !== field)) {
+				field.validate(false, true)
 			}
 			this.hasChildValues = this.hasChildValues || field.hasValue
 			if (!field.valid) {
@@ -260,7 +273,7 @@ export class FieldGroup
 			}
 
 		if (this.group) {
-			this.group.validate(false, this)
+			this.group.validate(false, false, this)
 		}
 		for (const page of this.components) {
 			page.set({isValid: this.valid, isOriginal: this.theIsOriginal})

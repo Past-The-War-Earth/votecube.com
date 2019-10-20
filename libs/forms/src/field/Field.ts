@@ -30,6 +30,7 @@ export interface IFieldText {
 
 export interface IValidate {
 	validate(
+		external?: boolean,
 		fromParentGroup?: boolean,
 		relatedField?: IFieldBase,
 		originalCheckOnly?: boolean
@@ -172,8 +173,12 @@ export class Field
 	}
 
 	validate(
+		external = true,
 		fromParentGroup?: boolean
 	): void {
+		if (!this.shouldValidate(external)) {
+			return
+		}
 		validate(this)
 
 		this.updateValidity(fromParentGroup)
@@ -189,7 +194,7 @@ export class Field
 		const originalCheckOnly = lastIsValid === this.valid
 			&& this.lastValue === this.value
 		if (!fromParentGroup) {
-			this.group.validate(false, this, originalCheckOnly)
+			this.group.validate(false, false, this, originalCheckOnly)
 		}
 	}
 

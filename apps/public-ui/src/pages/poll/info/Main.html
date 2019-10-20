@@ -26,6 +26,7 @@
 			<TextArea
 					field="{form.fields.outcomes.fields.A}"
 					floatLabel="{false}"
+					mid="{false}"
 					mini="{true}"
 			></TextArea>
 		</div>
@@ -43,6 +44,7 @@
 			<TextArea
 					field="{form.fields.outcomes.fields.B}"
 					floatLabel="{false}"
+					mid="{false}"
 					mini="{true}"
 			></TextArea>
 		</div>
@@ -408,6 +410,8 @@
 				OptionsField,
 				Validators)
 			form.setTrackOriginal(mode === 'alter')
+			form.validate()
+				
 			forms.setForm(forms.CREATE_POLL_TOP, form)
 			let poll
 			try {

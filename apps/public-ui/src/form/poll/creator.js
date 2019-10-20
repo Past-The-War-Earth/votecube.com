@@ -105,6 +105,7 @@ export function createPollForm(
 		}, [Validators.required()], text)
 	*/
 	return new FieldGroup('MainInfo', {
+		ageSuitability: new Field([], {}),
 		factors,
 		// labels,
 		// locations,
@@ -209,7 +210,6 @@ function createFactorForm(
 	color.setValue({
 		blue: 128,
 		green: 128,
-		id: 128 * 256 * 256 + 128 * 256 + 128,
 		red: 128
 	})
 

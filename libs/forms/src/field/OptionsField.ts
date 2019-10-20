@@ -70,8 +70,8 @@ export class OptionsField
 	) {
 		this.setOptions(newOptions)
 
-		let newValue        = []
-		let newSelectionMap = {}
+		const newValue        = []
+		const newSelectionMap = {}
 		let valueChanged    = false
 		for (const selection of this.value) {
 			if (!this.optionsMap[selection.id]) {
@@ -84,7 +84,7 @@ export class OptionsField
 		if (valueChanged) {
 			this.selectionMap = newSelectionMap
 			this.value        = newValue
-			this.validate()
+			this.validate(true, false)
 		}
 		this.detect()
 	}
@@ -116,6 +116,7 @@ export class OptionsField
 			this.value = null
 		}
 		this.onBlur()
+		this.onValueChanged()
 	}
 
 	hidePopup(): void {
@@ -154,6 +155,7 @@ export class OptionsField
 		value,
 		resetOriginal = false
 	) {
+		this.theValue = null
 		if (this.theValue instanceof Array) {
 			this.theValue = []
 			if (!value) {

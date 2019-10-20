@@ -3,7 +3,6 @@ import {
 	getChange
 }                    from '../changeTracker'
 import {IValidator}  from '../validator/Validator'
-import {IFieldText}  from './Field'
 import {IFieldGroup} from './FieldGroup'
 
 export interface IFieldError {
@@ -31,12 +30,17 @@ export interface IFieldBase {
 	text
 	touched: boolean
 	valid: boolean
+	validationRun: number
 	validators?: IValidator[]
 	validatorMap?: { [validatorName: string]: IValidator }
 	value: any
 
 	addComponent(
 		component: IComponent
+	): void
+
+	setRun(
+		runNumber: number
 	): void
 
 	clearComponents(): void
@@ -87,6 +91,7 @@ export interface IFieldBase {
 	): void
 
 	validate(
+		external?: boolean,
 		fromParentGroup?: boolean,
 		relatedField?: IFieldBase,
 		originalCheckOnly?: boolean
@@ -109,6 +114,7 @@ export abstract class FieldBase
 	text
 	theIsOriginal            = true
 	valid                    = null
+	validationRun            = 0
 	validatorMap
 	valueChangeCallbacks     = []
 
@@ -147,6 +153,12 @@ export abstract class FieldBase
 		newValue
 	) {
 		this.setValue(newValue)
+	}
+
+	setRun(
+		runNumber: number
+	): void {
+		this.validationRun = runNumber
 	}
 
 	addComponent(
@@ -285,6 +297,7 @@ export abstract class FieldBase
 	}
 
 	abstract validate(
+		external?: boolean,
 		fromParentGroup?: boolean,
 		relatedField?: IFieldBase
 	): void;
@@ -295,6 +308,20 @@ export abstract class FieldBase
 				callback(this.theValue)
 			}
 		})
+	}
+
+	protected shouldValidate(
+		external: boolean
+	) {
+		if (external) {
+			VALIDATION_RUN_NUMBER++
+		}
+		if (this.validationRun !== VALIDATION_RUN_NUMBER) {
+			this.validationRun = VALIDATION_RUN_NUMBER
+			return true
+		}
+
+		return false
 	}
 
 }
@@ -323,3 +350,5 @@ export function validate(
 			}
 		})
 }
+
+let VALIDATION_RUN_NUMBER = 0

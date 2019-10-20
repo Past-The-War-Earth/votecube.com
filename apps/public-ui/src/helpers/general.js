@@ -37,9 +37,7 @@ export function getColor(
 		return `fff`
 	}
 
-	const rgb = color.id
-
-	const {blue, green, red} = getRGB(color)
+	const {blue, green, red} = color
 
 	return `${ensure2Digits(red.toString(16))}${ensure2Digits(green.toString(16))}${ensure2Digits(blue.toString(16))}`
 }
@@ -56,18 +54,6 @@ export function getTextColor(
 		return '000'
 	}
 	return 'FFF'
-}
-
-export function getRGB(
-	color
-) {
-	const rgb = color.id
-
-	return {
-		red: rgb >> 16,
-		green: (rgb >> 8) % 256,
-		blue: rgb % 256
-	}
 }
 
 function ensure2Digits(

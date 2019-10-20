@@ -3,7 +3,7 @@
     "Factor": {
       "Info": {
         "name": {
-          "info": "A short name that is common to both Positions.  It is prefixed to the descriptions on both opposite sides of a cube for this Factor.",
+          "info": "A short name for this Factor.  Factor is a particular aspect of the issue that is being considered.",
           "label": "Factor Name",
           "errors": {
             "required": "Factor Name is required",
@@ -62,9 +62,16 @@
         "search": {
           "info": "Search for Polls or use the filter in the top-right menu",
           "label": "Find Polls"
+        },
+        "theme": {
+          "info": "Pick a Theme to focus your results",
+          "label": "Pick a theme"
         }
       },
       "MainInfo": {
+        "ageSuitability": {
+          "errors": {}
+        },
         "name": {
           "info": "Select the name for this poll",
           "label": "Poll Issue",

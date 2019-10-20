@@ -49,7 +49,7 @@
 		<p
 				style="color: #{getTextColor(pFPsByAxisAndDir[position.axis][position.dir].color)};"
 		>
-			{pFPsByAxisAndDir[position.axis][position.dir].factorPosition.position.name}}
+			{pFPsByAxisAndDir[position.axis][position.dir].factorPosition.position.name}
 		</p>
 		{/if}
 	</div>
@@ -206,12 +206,8 @@
 		setView
 	}                      from '@votecube/cube-logic'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
-	import {
-		getColor
-	}                                from '../../helpers/cube'
-	import {
-		getTextColor
-	}                                from '../../helpers/general'
+	import {getColor}      from '../../helpers/cube'
+	import {getTextColor}  from '../../helpers/general'
 	import Positioner      from './create/Positioner.html'
 
 	export default {
@@ -503,14 +499,20 @@
 		fromIndex,
 		toIndex
 	) {
-		const fromFactorPosition                            = switchPollFactorPositions[fromIndex].factorPosition
-		const fromColor                                     = switchPollFactorPositions[fromIndex].color
-		const toFactorPosition                              = switchPollFactorPositions[toIndex].factorPosition
-		const toColor                                       = switchPollFactorPositions[toIndex].color
-		switchPollFactorPositions[fromIndex].factorPosition = toFactorPosition
-		switchPollFactorPositions[fromIndex].color          = toColor
-		switchPollFactorPositions[toIndex].factorPosition   = fromFactorPosition
-		switchPollFactorPositions[toIndex].color            = fromColor
+		const fromPFP            = switchPollFactorPositions[fromIndex]
+		const toPFP              = switchPollFactorPositions[toIndex]
+		const fromFactorPosition = fromPFP.factorPosition
+		const fromColor          = fromPFP.color
+		const fromOutcome        = fromPFP.outcome
+		const toFactorPosition   = toPFP.factorPosition
+		const toColor            = toPFP.color
+		const toOutcome          = toPFP.outcome
+		fromPFP.factorPosition   = toFactorPosition
+		fromPFP.color            = toColor
+		fromPFP.outcome          = toOutcome
+		toPFP.factorPosition     = fromFactorPosition
+		toPFP.color              = fromColor
+		toPFP.outcome            = fromOutcome
 	}
 
 </script>

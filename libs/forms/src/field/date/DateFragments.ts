@@ -131,12 +131,12 @@ export class DateFragments
 		element: HTMLInputElement
 	): void {
 		// this.impl.last.inputOrKeydown = LastInputOrKeydownEvent.ON_KEYDOWN
-		let currentValue = element.value
+		const currentValue = element.value
 
 		const fragmentTypeToFocus = this.setFragmentValue(
 			currentValue, fragmentType)
 
-		let newValue = this[fragmentType]
+		const newValue = this[fragmentType]
 
 		if (currentValue !== newValue) {
 			// value binding does not work in this case, set manually
@@ -154,7 +154,7 @@ export class DateFragments
 		fragmentType: FragmentType,
 		event: KeyboardEvent
 	): void {
-		let element = event.target as HTMLInputElement
+		const element = event.target as HTMLInputElement
 
 		// this.impl.last[fragmentType] = this.getActivity(
 		// 	inputOrKeydown.code, element.selectionEnd, element.selectionStart, element.value)
@@ -171,7 +171,7 @@ export class DateFragments
 		// NOTE: Backspace in input with no selection and cursor at beginning
 		// (this case) does not cause input event
 
-		let previousFragmentType = this.getPreviousFragmentType(fragmentType)
+		const previousFragmentType = this.getPreviousFragmentType(fragmentType)
 		if (!previousFragmentType) {
 			return
 		}
@@ -188,6 +188,7 @@ export class DateFragments
 	}
 
 	setState(
+		external: boolean,
 		date: DateOfMonth,
 		month: Month,
 		year: number
@@ -337,7 +338,7 @@ export class DateFragments
 		const month = this.getInputFragmentValidity<Month>(monthString)
 		const year  = this.getInputFragmentValidity<number>(yearString)
 
-		let validity: IDateFragmentsValidity = {
+		const validity: IDateFragmentsValidity = {
 			date,
 			fragmentToFocus: null,
 			isValid: false,
@@ -474,6 +475,7 @@ export class DateFragments
 
 		if (validity.isValid) {
 			this.fieldState.setState(
+				true,
 				validity.date.number,
 				validity.month.number,
 				validity.year.number)

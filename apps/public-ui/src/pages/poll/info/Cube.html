@@ -126,7 +126,7 @@
 	{/if}
 	<PollFab
 			on:ageSuitability="showAgeSuitability(true)"
-			on:build="build()"
+			on:build="checkBuild(poll)"
 			on:confirmVote="confirmVote()"
 			on:edit="alter($routeParams)"
 			on:manuallyOverwrite="togglePercentPicker()"
@@ -136,12 +136,15 @@
 			on:rankings="setAction('rankings')"
 			on:stats="setAction('stats')"
 			on:variations="goToVariations()"
-			previewMode="{previewMode}"
+			mode="{$mode}"
 	>
 	</PollFab>
 	{#if ageSuitabilityVisible}
 	<AgeSuitability
+			saving="{saving}"
 			on:cancel="showAgeSuitability(false)"
+			on:save="onAgeSuitabilitySave(delta, saving)"
+			poll="{poll}"
 	></AgeSuitability>
 	{/if}
 	{#if outcomesVisible}
@@ -172,7 +175,7 @@
 			infoOnly="error"
 	>
 		<div slot="header">
-			{saving}
+			{savingMessage}
 		</div>
 		<div slot="content">
 			{error}
@@ -256,10 +259,14 @@
 		</div>
 		<div slot="content">
 			Create the "{poll.name}" poll?
+			<br>
+			Theme: {poll.theme.name}
+			<br>
+			Age Suitability: {poll.ageSuitability}+
 		</div>
 		<div slot="actions">
 			<BuildButton
-					on:select="build()"
+					on:select="build($user)"
 			></BuildButton>
 		</div>
 	</ActionPopover>
@@ -413,6 +420,7 @@
 		},
 		data() {
 			return {
+				saving: false,
 				beforeCubeView: false,
 				beforeCardView: false,
 				cubeView: false,
@@ -443,10 +451,13 @@
 		},
 		methods: {
 			alter($routeParams) {
+				if ($routeParams.mode === 'vote') {
+					alert('temporarily disabled to prevent data corruption, will be enabled in next build along with poll versioning')
+				}
 				// this.store.set({confirmAlter: false})
 				routes.navigateToPage(routes.POLL_INFO_MAIN, {
 					...$routeParams,
-					mode: 'alter'
+					mode: $routeParams.mode
 				})
 			},
 			// confirmAlter(event) {
@@ -455,10 +466,16 @@
 			// doNotAlter() {
 			// 	this.store.set({confirmAlter: false})
 			// },
-			build() {
-				save(this)
+			build($user) {
+				save(this, $user)
 			},
-			checkBuild() {
+			checkBuild(
+				poll
+			) {
+				if (!poll.ageSuitability && poll.ageSuitability !== 0) {
+					this.set({ageSuitabilityVisible: true, saving: true})
+					return
+				}
 				this.setAction('confirm')
 			},
 			closeConfirm() {
@@ -471,6 +488,17 @@
 			},
 			goToVariations() {
 				routes.navigateToPage(routes.POLL_VARIATION_LIST)
+			},
+			onAgeSuitabilitySave(
+				delta,
+				saving
+			) {
+				if (saving) {
+					setTimeout(() => {
+						this.setAction('confirm')
+					})
+				}
+				this.set({ageSuitabilityVisible: false, delta: delta + 1})
 			},
 			setAction(
 				action
@@ -502,7 +530,8 @@
 				mutationApi.moveToValue(event.factor, event.value)
 			},
 			showAgeSuitability(
-				ageSuitabilityVisible
+				ageSuitabilityVisible,
+				poll
 			) {
 				this.set({ageSuitabilityVisible})
 			},
@@ -684,18 +713,20 @@
 	}
 
 	async function save(
-		page
+		page,
+		$user
 	) {
-		page.set({saving: 'Saving ...'})
+		page.set({savingMessage: 'Saving ...'})
 		const pollDao = await DI.get(POLL_DAO)
 		const poll    = page.get().poll
 		try {
-			await pollDao.save(poll, {})
+			await pollDao.save(poll, $user)
 			page.set({confirm: false})
 			routes.navigateToPage(routes.POLL_SEARCH_LIST)
 		} catch (error) {
-			page.set({error, saving: 'Error'})
+			page.set({error, savingMessage: 'Error'})
 		}
+		0
 	}
 
 	async function vote(
@@ -708,7 +739,7 @@
 			page.set({confirm: false})
 			routes.navigateToPage(routes.POLL_SEARCH_LIST)
 		} catch (error) {
-			page.set({error, saving: 'Error'})
+			page.set({error, savingMessage: 'Error'})
 		}
 	}
 
@@ -874,11 +905,11 @@
 		config.numRemainingOldDirFrames--
 	}
 
-		// if(!newVoteFactor.dir) {
-		function setFinalFactor(
-			newVoteAxis,
-			axisConfig
-		) {
+	// if(!newVoteFactor.dir) {
+	function setFinalFactor(
+		newVoteAxis,
+		axisConfig
+	) {
 		newVoteAxis.factorDir   = axisConfig.newVoteFactor.dir
 		// }
 		newVoteAxis.factorValue = axisConfig.newVoteFactor.value

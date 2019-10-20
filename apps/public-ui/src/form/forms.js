@@ -2,7 +2,6 @@ import * as routes from '../routes'
 
 export const CREATE_POLL_TOP  = routes.POLL_INFO_MAIN
 export const CREATE_FACTOR = routes.FACTOR_INFO_MAIN
-export const CREATE_POSITION = routes.POSITION_INFO_MAIN
 
 
 let forms = {}
@@ -81,21 +80,6 @@ export function clearForm(
 	if (form) {
 		form.clearComponents()
 	}
-}
-
-function getTopForm(
-	topFormName,
-	navigateToRouteOnNotFound,
-	navigateParamsOnNotFound = routes.DEFAULT_ROUTE_PARAMS
-) {
-	const topForm = getForm(topFormName)
-	if (!topForm) {
-		routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
-
-		return null
-	}
-
-	return topForm
 }
 
 export function navigateOnValid(
