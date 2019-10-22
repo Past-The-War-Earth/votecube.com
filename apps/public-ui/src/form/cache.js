@@ -1,7 +1,5 @@
-import {DI}                       from '@airport/di'
-import {POLL_DAO}                 from '@votecube/public-db'
-import * as forms                 from './forms'
-import * as pollFormFromConverter from './poll/fromConverter'
+import * as forms  from '../form/forms'
+import {PollStore} from '../helpers/PollStore'
 
 export function getPollRouteParams(
 	page
@@ -16,23 +14,30 @@ export function getPollRouteParams(
 export async function savePollForm(
 	page
 ) {
-	const {keepPollId} = page.get()
-	if (keepPollId) {
-		return
-	}
-	const form = forms.getForm(forms.CREATE_POLL_TOP)
-	if (!form) {
+	const {interFormNavigation} = page.get()
+	// const {positionMap} = page.store.get()
+	if (interFormNavigation) {
 		return
 	}
 
-	const poll   = pollFormFromConverter.formToDto(form.value)
-	let {pollId} = page.get().$routeParams
-	poll.id      = pollId
+	// const form = forms.getForm(forms.CREATE_POLL_TOP)
+	// if (!form) {
+	// 	return
+	// }
 
-	const pollDao = await DI.get(POLL_DAO)
+	// const changeFlags = form.changeFlags
+
+	// const poll   = pollFormFromConverter.formToDto(form.value
+	// 	, positionMap
+	// )
+	// let {pollId} = page.get().$routeParams
+	// poll.id      = pollId
+
+	// const pollDao = await DI.get(POLL_DAO)
 
 	// await pollDao.stage(poll)
-	pollDao.addTemp(poll)
+	// pollDao.addTemp(poll)
+	PollStore.mergeForm()
 
 	forms.uncacheForm(forms.CREATE_POLL_TOP)
 	forms.uncacheForm(forms.CREATE_FACTOR)

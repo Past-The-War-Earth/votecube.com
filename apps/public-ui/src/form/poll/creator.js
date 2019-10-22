@@ -2,6 +2,7 @@ export function createPollForm(
 	// labelData,
 	// locationsData,
 	uiText,
+	ColorField,
 	DateField,
 	Field,
 	FieldGroup,
@@ -14,7 +15,7 @@ export function createPollForm(
 	const factors = new FieldGroup('Factors', {
 		first: createFactorForm(
 			uiText,
-			Field,
+			ColorField,
 			FieldGroup,
 			MatchingField,
 			Validators,
@@ -22,7 +23,7 @@ export function createPollForm(
 		),
 		second: createFactorForm(
 			uiText,
-			Field,
+			ColorField,
 			FieldGroup,
 			MatchingField,
 			Validators,
@@ -30,7 +31,7 @@ export function createPollForm(
 		),
 		third: createFactorForm(
 			uiText,
-			Field,
+			ColorField,
 			FieldGroup,
 			MatchingField,
 			Validators,
@@ -105,7 +106,7 @@ export function createPollForm(
 		}, [Validators.required()], text)
 	*/
 	return new FieldGroup('MainInfo', {
-		ageSuitability: new Field([], {}),
+		// ageSuitability: new Field([], {}),
 		factors,
 		// labels,
 		// locations,
@@ -121,7 +122,7 @@ export function createPollForm(
 
 function createFactorForm(
 	uiText,
-	Field,
+	ColorField,
 	FieldGroup,
 	MatchingField,
 	Validators,
@@ -204,7 +205,7 @@ function createFactorForm(
 			])
 		}, [Validators.required()], uiText.Factor)
 	*/
-	const color = new Field([
+	const color = new ColorField([
 		Validators.required()
 	])
 	color.setValue({

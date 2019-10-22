@@ -1,5 +1,45 @@
 import {getColor as getGeneralColor} from './general'
 
+export function getDefaultCubePositions() {
+	return [{
+		axis: 'x',
+		dir: 1
+	}, {
+		axis: 'y',
+		dir: 1
+	}, {
+		axis: 'z',
+		dir: 1
+	}, {
+		axis: 'y',
+		dir: -1
+	}, {
+		axis: 'z',
+		dir: -1
+	}, {
+		axis: 'x',
+		dir: -1
+	}]
+}
+
+export function getDefaultCubePositionMapByFactorIndexAndOutcome() {
+	const dcp =  getDefaultCubePositions();
+	return {
+		1: {
+			A: dcp[0],
+			B: dcp[5],
+		},
+		2: {
+			A: dcp[1],
+			B: dcp[3],
+		},
+		3: {
+			A: dcp[2],
+			B: dcp[4],
+		}
+	}
+}
+
 export function getPollFactorPositions(
 	poll,
 	axis

@@ -25,7 +25,7 @@ service cloud.firestore {
       allow delete: if false;
 
       match /variationListings/{pollVariationListingId} {
-        allow get: if false;
+        allow get: if true;
         allow list: if true;
         allow create: if byUser();
         allow update: if false;

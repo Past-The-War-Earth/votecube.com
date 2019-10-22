@@ -22,21 +22,15 @@
 		<figure>
 			<div
 					class="surface s1"
-					style="
-        background-color: #{getColor(0, variation, 'x')};
-                        "
+					style="background-color: #{getColor(variation.factors[1].color)};"
 			></div>
 			<div
 					class="surface s2"
-					style="
-        background-color: #{getColor(0, variation, 'z')};
-                        "
+					style="background-color: #{getColor(variation.factors[3].color)};"
 			></div>
 			<div
 					class="surface s5"
-					style="
-        background-color: #{getColor(0, variation, 'y')};
-                        "
+					style="background-color: #{getColor(variation.factors[2].color)};"
 			></div>
 		</figure>
 	</div>
@@ -52,13 +46,13 @@
 
 		{#if mode === 'factors'}
 		<var>
-			{getSideText(delta, 'confirm', variation, 'x', 1)}
+			{variation.factors[1].name}
 		</var>
 		<var>
-			{getSideText(delta, 'confirm', variation, 'y', 1)}
+			{variation.factors[2].name}
 		</var>
 		<var>
-			{getSideText(delta, 'confirm', variation, 'z', 1)}
+			{variation.factors[3].name}
 		</var>
 		{:else}
 
@@ -66,12 +60,12 @@
 			<var
 					class="A"
 			>
-				{sortedOutcomes[0].outcome}
+				{variation.outcomes.A.name}
 			</var>
 			<var
 					class="B"
 			>
-				{sortedOutcomes[1].outcome}
+				{variation.outcomes.B.name}
 			</var>
 		</section>
 		{/if}
@@ -201,9 +195,8 @@
 	import LinkIcon    from '../../../common/icon/LinkIcon.html'
 	import TargetIcon  from '../../../common/icon/TargetIcon.html'
 	import {
-		getColor,
-		getSideText
-	}                  from '../../../helpers/cube'
+		getColor
+	}                  from '../../../helpers/general'
 
 	export default {
 		components: {
@@ -213,27 +206,18 @@
 		},
 		computed: {
 			showLink: ({navList, variation}) =>
-				variation.id === navList.variation.id
+				variation.variationKey === navList.variation.variationKey
 				&& !navList.isTarget,
 			showTarget: ({navList, variation}) =>
-				variation.id === navList.variation.id
-				&& navList.isTarget,
-			sortedOutcomes: ({variation}) => {
-				const sortedOutcomes = variation.outcomes.sort((
-					outcome1,
-					outcome2
-				) => outcome1.key > outcome2.key)
-
-				return sortedOutcomes
-			}
+				variation.variationKey === navList.variation.variationKey
+				&& navList.isTarget
 		},
 		data: () => ({
 			childMode: true,
 			classes: ''
 		}),
 		helpers: {
-			getColor,
-			getSideText
+			getColor
 		},
 		immutable: true
 	}

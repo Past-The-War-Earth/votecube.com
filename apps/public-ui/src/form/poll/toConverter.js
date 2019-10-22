@@ -1,5 +1,6 @@
 export function dtoToForm(
-	poll
+	poll,
+	// positionMap
 ) {
 	const themeDto = poll.theme
 	const theme    = {
@@ -28,11 +29,17 @@ export function dtoToForm(
 	) => outcome1.key > outcome2.key)
 
 	return {
-		ageSuitability: poll.ageSuitability,
+		// ageSuitability: poll.ageSuitability,
 		factors: {
-			first: getDimForm(getPollFactorPositionDtos(poll, 'y')),
-			second: getDimForm(getPollFactorPositionDtos(poll, 'z')),
-			third: getDimForm(getPollFactorPositionDtos(poll, 'x'))
+			first: getDimForm(getPollFactorPositionDtos(poll, 1)
+				// , positionMap
+			),
+			second: getDimForm(getPollFactorPositionDtos(poll, 2)
+				// , positionMap
+			),
+			third: getDimForm(getPollFactorPositionDtos(poll, 3)
+				// , positionMap
+			)
 		},
 		// labels: poll.pollsLabels.map(pollLabel => ({
 		// 	id: pollLabel.label.id,
@@ -63,16 +70,18 @@ export function dtoToForm(
 
 function getPollFactorPositionDtos(
 	poll,
-	axis
+	factorIndex
 ) {
 	return poll.pollFactorPositions.filter(
 		pollFactorPosition =>
-			axis === pollFactorPosition.axis
+			// FIXME: dto factorIndex (from DB) is a string, convert to number
+			factorIndex == pollFactorPosition.factorIndex
 	)
 }
 
 function getDimForm(
-	pollFactorPositions
+	pollFactorPositions,
+	// positionMap
 ) {
 	const color = pollFactorPositions[0].color
 	let positionA,
@@ -81,11 +90,15 @@ function getDimForm(
 	pollFactorPositions.forEach(
 		pollFactorPosition => {
 			const position = pollFactorPosition.factorPosition.position
-			if (pollFactorPosition.outcome === 1) {
+			if (pollFactorPosition.outcome === 'A') {
 				positionA = position.name
 			} else {
 				positionB = position.name
 			}
+			// positionMap[pollFactorPosition.factorIndex][pollFactorPosition.outcome] = {
+			// 	dir: pollFactorPosition.dir,
+			// 	axis: pollFactorPosition.axis
+			// }
 		})
 	return {
 		color: {

@@ -60,7 +60,6 @@
 			delta="{delta}"
 			factorDelta="{factorDelta}"
 			moveType="{moveType}"
-			on:cubeAltered="pollAltered()"
 			on:toggleView="toggleView(cubeView, !cubeView)"
 			on:togglePercent="togglePercentPicker()"
 			on:toggleChart="showOutcomes(true)"
@@ -97,8 +96,6 @@
 				></DetailedCube>
 				{/if}
 				{#if !effectiveCubeView}
-				<!--						on:directionCorrected="pollAltered()"-->
-				<!--						cubeTransition="{cubeTransition}"-->
 				<FactorRanking
 						delta="{delta}"
 						on:rankingAdjusted="pollAdjusted()"
@@ -342,10 +339,7 @@
 <script>
 	import {DI}           from '@airport/di'
 	import {mutationApi}  from '@votecube/cube-logic'
-	import {
-		POLL_DAO,
-		VOTE_DAO
-	}                     from '@votecube/public-db'
+	import {VOTE_DAO}     from '@votecube/public-db'
 	import AlterButton    from '../../../common/control/button/AlterButton.html'
 	import BuildButton    from '../../../common/control/button/BuildButton.html'
 	import CancelButton
@@ -371,6 +365,7 @@
 
 	import {setupCubeView}           from '../../../database'
 	import {getVoteDimsInValueOrder} from '../../../helpers/factorRanking'
+	import {PollStore}               from '../../../helpers/PollStore'
 	import {
 		setCubeAdjustment,
 		shutDownCubeListener
@@ -411,7 +406,7 @@
 				pFPsByAxisAndOther(poll, 'dir'),
 			pFPsByAxisAndOutcome: ({poll}) =>
 				pFPsByAxisAndOther(poll, 'outcome'),
-			previewMode: ({$mode}) => $mode === 'build' || $mode === 'alter',
+			poll: ({$pollStore, vote}) => PollStore.currentVariation().ui,
 			scale: ({effectiveCubeView, zoomFactor}) => effectiveCubeView
 				? `transform: scale(${zoomFactor}, ${zoomFactor});`
 				: '',
@@ -444,6 +439,14 @@
 				manualControlsOn: true,
 				moveDelta: 0,
 				percentMode: false,
+				positionChanges: {
+					0: 0,
+					1: 1,
+					2: 2,
+					3: 3,
+					4: 4,
+					5: 5
+				},
 				outcomesVisible: false,
 				verticalLayout: true,
 				zoomFactor: 0.65
@@ -488,7 +491,8 @@
 				this.setAction('vote')
 			},
 			goToVariations() {
-				routes.navigateToPage(routes.POLL_VARIATION_LIST)
+				const {pollKey, pollVariationKey} = this.store.get().routeParams
+				routes.navigateToPage(routes.POLL_VARIATION_LIST, {pollKey, pollVariationKey})
 			},
 			onAgeSuitabilitySave(
 				delta,
@@ -587,10 +591,10 @@
 			}
 		},
 		oncreate() {
-			const {mode, pollId} = this.store.get().routeParams
+			const {mode, pollKey, pollVariationKey} = this.store.get().routeParams
 
 			resize(this)
-			setupCubeView(pollId, this, () => {
+			setupCubeView(pollKey, pollVariationKey, this, () => {
 				/*
 				if (this.get().percentMove) {
 					TODO: implement correct card and graph animations for the PercentPicker, IF NEEDED
@@ -723,16 +727,14 @@
 		$user
 	) {
 		page.set({savingMessage: 'Saving ...'})
-		const pollDao = await DI.get(POLL_DAO)
-		const poll    = page.get().poll
+		// const pollDao = await DI.get(POLL_DAO)
 		try {
-			await pollDao.save(poll, $user)
+			await PollStore.saveCurrentVariation($user)
 			page.set({confirm: false})
 			routes.navigateToPage(routes.POLL_SEARCH_LIST)
 		} catch (error) {
 			page.set({error, savingMessage: 'Error'})
 		}
-		0
 	}
 
 	async function vote(

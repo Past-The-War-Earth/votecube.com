@@ -1,7 +1,11 @@
 import {Store} from 'svelte/store.js';
+import {PollStore} from './helpers/PollStore'
 
 class VCStore
 	extends Store {
+
+	// thePollStore
+	//
 
 	toggleMainMenu() {
 		const showMainMenu = !this.get().showMainMenu

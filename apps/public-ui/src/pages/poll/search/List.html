@@ -11,7 +11,7 @@
 		{#each polls as poll}
 		<ListItem
 				mode="{mode}"
-				on:select="goTo(poll.key)"
+				on:select="goTo(poll.key, poll.rootVariationKey)"
 				poll="{poll}"
 		></ListItem>
 		{/each}
@@ -91,18 +91,19 @@
 <script>
 	import {DI}           from '@airport/di'
 	import {POLL_DAO}     from '@votecube/public-db'
-	import {fade}         from 'svelte-transitions'
-	import CancelButton   from '../../../common/control/button/CancelButton.html'
-	import AutoComplete   from '../../../common/field/AutoComplete.html'
+	import {fade}               from 'svelte-transitions'
+	import CancelButton         from '../../../common/control/button/CancelButton.html'
+	import AutoComplete         from '../../../common/field/AutoComplete.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
-	import Text           from '../../../common/field/Text.html'
-	import ActionPopover  from '../../../common/shell/ActionPopover.html'
-	import PollListingFab from '../../../components/poll/PollListingFab.html'
-	import * as forms     from '../../../form/forms'
-	import {loadForms}    from '../../../libs/forms'
-	import * as routes    from '../../../routes'
-	import store          from '../../../store'
-	import ListItem       from './ListItem.html'
+	import Text                 from '../../../common/field/Text.html'
+	import ActionPopover        from '../../../common/shell/ActionPopover.html'
+	import PollListingFab       from '../../../components/poll/PollListingFab.html'
+	import * as forms           from '../../../form/forms'
+	import {fromPollListingDoc} from '../../../helpers/db/fromConverter'
+	import {loadForms}          from '../../../libs/forms'
+	import * as routes          from '../../../routes'
+	import store                from '../../../store'
+	import ListItem             from './ListItem.html'
 
 	export default {
 		components: {
@@ -122,11 +123,13 @@
 		},
 		methods: {
 			goTo(
-				pollId
+				pollKey,
+				pollVariationKey
 			) {
 				routes.navigateToPage(routes.POLL_INFO_CUBE, {
-					pollId,
-					mode: 'vote'
+					mode: 'vote',
+					pollKey,
+					pollVariationKey,
 				})
 			},
 			setAction(
@@ -203,13 +206,13 @@
 		theme,
 		pollDao
 	) {
-		let result
+		let dbDocs
 		if (!theme) {
-			result = await pollDao.getAll()
+			dbDocs = await pollDao.getAll()
 		} else {
-			result = await pollDao.getForTheme(theme.id)
+			dbDocs = await pollDao.getForTheme(theme.id)
 		}
-		return result.docs.map(
-			doc => doc.data())
+
+		return dbDocs.map(fromPollListingDoc)
 	}
 </script>

@@ -7,15 +7,15 @@
 		<figure>
 			<div
 					class="surface s1"
-					style="background-color: #{getColor(poll.factors.x.color)};"
+					style="background-color: #{getColor(poll.factors[1].color)};"
 			></div>
 			<div
 					class="surface s2"
-					style="background-color: #{getColor(poll.factors.z.color)};"
+					style="background-color: #{getColor(poll.factors[3].color)};"
 			></div>
 			<div
 					class="surface s5"
-					style="background-color: #{getColor(poll.factors.y.color)};"
+					style="background-color: #{getColor(poll.factors[2].color)};"
 			></div>
 		</figure>
 	<td
@@ -29,13 +29,13 @@
 
 		{#if mode === 'factors'}
 		<var>
-			{poll.factors.x.name}
+			{poll.factors[1].name}
 		</var>
 		<var>
-			{poll.factors.y.name}
+			{poll.factors[2].name}
 		</var>
 		<var>
-			{poll.factors.z.name}
+			{poll.factors[3].name}
 		</var>
 		{:else}
 

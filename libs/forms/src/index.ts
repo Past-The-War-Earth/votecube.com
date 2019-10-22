@@ -1,6 +1,7 @@
 export {FragmentType} from './field/date/DateFragments'
 export *             from './field/date/DateField'
 export *             from './field/MatchingField'
+export *             from './field/ColorField'
 export *             from './field/Field'
 // export *             from './field/FieldArray'
 export *             from './field/FieldBase'

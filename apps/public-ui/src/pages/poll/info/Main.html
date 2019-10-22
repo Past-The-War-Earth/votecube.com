@@ -210,10 +210,7 @@
 </style>
 
 <script>
-	import {DI}                     from '@airport/di'
-	import {POLL_DAO}               from '@votecube/public-db'
-	import CharacterButton
-	                                from '../../../common/control/button/CharacterButton.html'
+	import CharacterButton          from '../../../common/control/button/CharacterButton.html'
 	import PreviewButton            from '../../../common/control/button/PreviewButton.html'
 	import AutoComplete             from '../../../common/field/AutoComplete.html'
 	import IconBlock                from '../../../common/field/IconBlock.html'
@@ -232,6 +229,7 @@
 		getArrayValueTexts,
 		getDate
 	}                               from '../../../helpers/general'
+	import {PollStore}              from '../../../helpers/PollStore'
 	import {loadForms}              from '../../../libs/forms'
 	import * as routes              from '../../../routes'
 	import store                    from '../../../store'
@@ -251,6 +249,7 @@
 			TimeIcon
 		},
 		computed: {
+			form: ({$pollStore}) => PollStore.currentVariation().form,
 			// cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
 			// continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
 			// countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
@@ -273,17 +272,17 @@
 				return !form.fields.factors.isOriginal()
 			},
 			*/
-						/*
-			locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
-				if (!form
-					|| $routeParams.mode !== 'alter'
-					|| isOriginal) {
-					return false
-				}
-				return !form.fields.locations.isOriginal()
-					|| !form.fields.timeframe.isOriginal()
-			},
-			 */
+			/*
+locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
+	if (!form
+		|| $routeParams.mode !== 'alter'
+		|| isOriginal) {
+		return false
+	}
+	return !form.fields.locations.isOriginal()
+		|| !form.fields.timeframe.isOriginal()
+},
+ */
 			name: ({test}) => true,
 			// states: ({form}) => form ? form.fields.locations.fields.states.value : [],
 			submitHighlight: ({
@@ -313,43 +312,37 @@
 		},
 		helpers: {
 			getArrayValueTexts,
-			getDate
+			getDate,
 		},
 		methods: {
 			ack() {
 				this.set({invalidAlter: false})
 			},
-			createPoll() {
-				const poll = this.get().poll
-				if (!poll.name) {
-					return
-				}
-			},
 			selectFactor(
 				factorForm,
 				$routeParams
 			) {
-				this.set({keepPollId: $routeParams.pollId})
+				this.set({interFormNavigation: true})
 				forms.setForm(forms.CREATE_FACTOR, factorForm)
 				routes.navigateToPage(routes.FACTOR_INFO_MAIN, $routeParams)
 			},
 			selectLocations(
 				$routeParams
 			) {
-				this.set({keepPollId: $routeParams.pollId})
+				// this.set({keepPollId: $routeParams.pollId})
 				routes.navigateToPage(routes.POLL_LOCATIONS, $routeParams)
 			},
 			selectTimeframe(
 				$routeParams
 			) {
-				this.set({keepPollId: $routeParams.pollId})
+				// this.set({keepPollId: $routeParams.pollId})
 				routes.navigateToPage(routes.POLL_TIMEFRAME, $routeParams)
 			},
 			submit(
 				$routeParams,
 				modified
 			) {
-				const {form} = this.get()
+				const form = PollStore.currentVariation().form
 				form.touch()
 
 				if (!form.valid) {
@@ -378,23 +371,22 @@
 
 	async function initPage(page) {
 		const [
-			      {DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
+			      {ColorField, DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
 			      // locations,
 			      // _,
 			      // [
 			      // labelDao,
-			      pollDao
+			      // pollDao
 			      // , voteDao
 			      // ]
 		      ] = await Promise.all([
 			loadForms(page),
 			// loadLocations(),
 			// loadLocText(page.store, 'en-us'),
-			DI.get(
-				// LABEL_DAO,
-				POLL_DAO
-				// , VOTE_DAO
-			)
+			/*			DI.get(
+							// FIXME: add PollStore to di
+							// POLL_STORE
+						)*/
 		])
 
 		// let labels = await labelDao.getAll()
@@ -404,12 +396,25 @@
 		const {text} = page.store.get()
 
 		if (!form) {
-			const {mode, pollId} = formCache.getPollRouteParams(page)
+			const {mode} = formCache.getPollRouteParams(page)
+
+			let currentVariation
+			try {
+				currentVariation = PollStore.currentVariation()
+				if (!currentVariation.ui && mode !== 'build') {
+					routes.navigateToPage(routes.POLL_SEARCH_LIST)
+					return
+				}
+			} catch (error) {
+				page.set({error})
+				return
+			}
 
 			form = pollFormCreator.createPollForm(
 				// labels,
 				// locations,
 				text.UI,
+				ColorField,
 				DateField,
 				Field,
 				FieldGroup,
@@ -418,23 +423,14 @@
 				Validators)
 			form.setTrackOriginal(mode === 'alter')
 			form.validate()
-
 			forms.setForm(forms.CREATE_POLL_TOP, form)
-			let poll
-			try {
-				poll = await pollDao.getOriginalDetails(pollId)
-				if (!poll && pollId != 0) {
-					routes.navigateToPage(routes.POLL_SEARCH_LIST)
-					return
-				}
-			} catch (error) {
-				page.set({error})
-			}
+			currentVariation.form = form
+
 			// form.fields.locations.optionText = text.LOCATIONS
-			if (poll) {
-				form.setValue(pollFormToConverter.dtoToForm(poll), !poll.draft)
+			if (currentVariation.ui) {
+				form.setValue(pollFormToConverter.dtoToForm(currentVariation.ui), !currentVariation.ui.draft)
 				form.validate()
-				if(pollId != 0) {
+				if (mode !== 'create') {
 					form.touch()
 				}
 			}
@@ -443,7 +439,8 @@
 		forms.ensureForm(form, page)
 
 		page.store.set({
-			pageTitle: 'Poll Info'
+			pageTitle: 'Poll Info',
+			// positionMap
 		})
 	}
 

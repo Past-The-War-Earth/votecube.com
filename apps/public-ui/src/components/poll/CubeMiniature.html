@@ -161,7 +161,10 @@
 		setView
 	}                      from '@votecube/cube-logic'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
-	import {getColor}      from '../../helpers/cube'
+	import {
+		getColor,
+		getDefaultCubePositions
+	}                      from '../../helpers/cube'
 
 	export default {
 		components: {
@@ -173,25 +176,7 @@
 		data() {
 			return {
 				loading: true,
-				positions: [{
-					axis: 'x',
-					dir: 1
-				}, {
-					axis: 'y',
-					dir: 1
-				}, {
-					axis: 'z',
-					dir: 1
-				}, {
-					axis: 'y',
-					dir: -1
-				}, {
-					axis: 'z',
-					dir: -1
-				}, {
-					axis: 'x',
-					dir: -1
-				}],
+				positions: getDefaultCubePositions(),
 				rotating: false
 			}
 		},

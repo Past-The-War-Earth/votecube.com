@@ -18,6 +18,7 @@ export interface IComponent {
 
 export interface IFieldBase {
 
+	changeFlags: any
 	components: IComponent[]
 	errors: IFieldError[]
 	group: IFieldGroup
@@ -147,6 +148,10 @@ export abstract class FieldBase
 
 	get value() {
 		return this.theValue
+	}
+
+	get changeFlags(): any {
+		return this.isOriginal() ? 0 : 1
 	}
 
 	set value(

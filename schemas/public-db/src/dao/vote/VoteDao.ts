@@ -35,15 +35,17 @@ export class VoteDao
 	async findMyVoteForPoll(
 		pollId: Poll_Id
 	): Promise<IVote> {
-		const pollDao = await DI.get(POLL_DAO)
+		// const pollDao = await DI.get(POLL_DAO)
 
-		const poll = await pollDao.getOriginalDetails(pollId)
+		// const poll = await pollDao.getOriginalDetails(pollId)
+		//
+		// if (!poll) {
+		// 	return null
+		// }
 
-		if (!poll) {
-			return null
-		}
-
-		return this.getDummy(poll)
+		return this.getDummy(
+			// poll
+		)
 	}
 
 	async findVoteForPoll(
@@ -79,10 +81,10 @@ export class VoteDao
 	}
 
 	private getDummy(
-		poll: IPoll
+		// poll: IPoll
 	): IVote {
 		return {
-			poll,
+			// poll,
 			x: {
 				axis: 'x',
 				dir: 1,

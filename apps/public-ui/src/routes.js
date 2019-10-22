@@ -4,20 +4,21 @@ export var PAGE_CONF = {}
 
 let appComp,
     pageComp,
-    topMenuComp
+    topMenuComp,
+    inProgressUrl,
+    inProgressParams
 
-export const FACTOR_INFO_MAIN    = '/factor/info/Main/:mode/:pollId'
+export const FACTOR_INFO_MAIN    = '/factor/info/Main/:mode'
 export const FACTOR_SEARCH_LIST  = '/factor/List'
 export const POLL_SEARCH_LIST    = '/poll/search/List'
-export const POLL_VARIATION_LIST = '/poll/variation/List'
-export const POLL_INFO_MAIN      = '/poll/info/Main/:mode/:pollId'
-export const POLL_INFO_CUBE      = '/poll/info/Cube/:mode/:pollId'
-export const POLL_LOCATIONS      = '/poll/Locations/:mode/:pollId'
-export const POLL_TIMEFRAME      = '/poll/Timeframe/:mode/:pollId'
+export const POLL_VARIATION_LIST = '/poll/variation/List/:pollKey/:pollVariationKey'
+export const POLL_INFO_MAIN      = '/poll/info/Main/:mode'
+export const POLL_INFO_CUBE      = '/poll/info/Cube/:mode/:pollKey/:pollVariationKey'
+export const POLL_LOCATIONS      = '/poll/Locations/:mode'
+export const POLL_TIMEFRAME      = '/poll/Timeframe/:mode'
 
 export const DEFAULT_ROUTE_PARAMS = {
-	mode: 'build',
-	pollId: 0
+	mode: 'build'
 }
 
 configPage(
@@ -75,15 +76,36 @@ export function navigateToPage(
 	paramMap = DEFAULT_ROUTE_PARAMS
 ) {
 	const nextPage = PAGE_CONF[pageKey]
-	const {user}   = appComp.store.get()
-	let url        = '' + nextPage.url
+	setInProgressState(paramMap, nextPage.url)
+
+	page(inProgressUrl)
+	// let currentPage,
+	//     currentUrl
+	// if (appComp.store) {
+	// 	const state = appComp.store.get()
+	// 	currentPage = state.currentPage
+	// 	currentUrl  = state.currentUrl
+	// }
+	// appComp.store.set({
+	// 	currentPage: nextPage,
+	// 	currentUrl: url,
+	// 	lastPage: currentPage,
+	// 	lastUrl: currentUrl,
+	// 	routeParams: paramMap
+	// })
+}
+
+function setInProgressState(
+	paramMap,
+	url
+) {
+	inProgressUrl    = '' + url
+	inProgressParams = paramMap
 	if (paramMap) {
 		for (const paramKey in paramMap) {
-			url = url.replace(':' + paramKey, paramMap[paramKey])
+			inProgressUrl = inProgressUrl.replace(':' + paramKey, paramMap[paramKey])
 		}
 	}
-	page(url)
-	appComp.store.set({currentPage: nextPage})
 }
 
 export function setupRoutes(
@@ -131,16 +153,21 @@ function setupPage(
 	page(
 		url, (context) => {
 			let {user}   = appComp.store.get()
-			const params = {
-				...context.params
+			let params = inProgressParams
+			let nextUrl = inProgressUrl
+
+			if (!inProgressUrl) {
+				params = inProgressParams = context.params
+				nextUrl = inProgressUrl    = context.path
 			}
+
 			if (!pageConfig.authenticated || user) {
-				setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+				setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
 				return
 			}
 			user = appComp.store.get().user
 			if (user) {
-				setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+				setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
 				return
 			}
 
@@ -148,7 +175,7 @@ function setupPage(
 			setTimeout(() => {
 				user = appComp.store.get().user
 				if (user) {
-					setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+					setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
 					return
 				}
 				appComp.store.set({signIn: true})
@@ -156,17 +183,29 @@ function setupPage(
 					if (changed.authChecked && current.user) {
 						storeListener.cancel()
 						appComp.store.set({signIn: false})
-						setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+						setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
 						return
 					}
 					if (!changed.signIn || current.signIn) {
 						return
 					}
 					storeListener.cancel()
+					appComp.store.set({signIn: false})
 					if (current.user) {
-						setPageComp(pageConfig, params, PageComp, TopMenuComp, appComp)
+						setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
 					} else {
-						navigateToPage(POLL_SEARCH_LIST)
+						// const {lastPage, lastUrl} = appComp.store.get()
+						// if (!lastPage || lastPage.authenticated) {
+						// 	navigateToPage(POLL_SEARCH_LIST)
+						// } else if (lastUrl) {
+						// 	page(lastUrl)
+						// }
+						const {currentPage, currentUrl} = appComp.store.get()
+						if (!currentPage || currentPage.authenticated) {
+							navigateToPage(POLL_SEARCH_LIST)
+						} else if (currentUrl) {
+							page(currentUrl)
+						}
 					}
 				})
 			}, 400)
@@ -175,6 +214,7 @@ function setupPage(
 
 function setPageComp(
 	currentPage,
+	currentUrl,
 	routeParams,
 	PageComp,
 	TopMenuComp,
@@ -182,6 +222,16 @@ function setPageComp(
 ) {
 	pageComp    = PageComp
 	topMenuComp = TopMenuComp
-	appComp.store.set({currentPage, routeParams})
+
+	// const state = appComp.store.get()
+
+	appComp.store.set({
+		currentPage,
+		currentUrl,
+		// lastPage: state.currentPage,
+		// lastUrl: state.currentUrl,
+		routeParams
+	})
+
 	appComp.set({PageComp})
 }

@@ -1,3 +1,4 @@
+{#if poll}
 {#each voteDims as voteDim, i}
 <section
 		on:mousedown="moveStart(voteDims, i, event)"
@@ -40,7 +41,7 @@
 						strokeWidth="1"
 						styles="left: 1px; position: absolute; top: -1px;"
 				></CharacterButton>
-				{pFPsByAxisAndOutcome[voteDim.axis][1].factorPosition.factor.name}
+				{pFPsByAxisAndOutcome[voteDim.axis].A.factorPosition.factor.name}
 				{#if canRemove(voteDims, i, delta)}
 				<MoveButton
 						on:selectStart="addOrRemove(-1, event)"
@@ -59,9 +60,9 @@
 				{/if}
 			</header>
 			<p
-					style="color: #{getTextColor(pFPsByAxisAndOutcome[voteDim.axis][1].color)};"
+					style="color: #{getTextColor(pFPsByAxisAndOutcome[voteDim.axis].A.color)};"
 			>
-				{pFPsByAxisAndOutcome[voteDim.axis][1].factorPosition.position.name}
+				{pFPsByAxisAndOutcome[voteDim.axis].A.factorPosition.position.name}
 			</p>
 		</var>
 		{/if}
@@ -78,7 +79,7 @@
 				id="factor_{i}_B"
 				-->
 			<header>
-				{pFPsByAxisAndOutcome[voteDim.axis][-1].factorPosition.factor.name}
+				{pFPsByAxisAndOutcome[voteDim.axis].B.factorPosition.factor.name}
 				<CharacterButton
 						character="B"
 						fontSize="20"
@@ -106,9 +107,9 @@
 				{/if}
 			</header>
 			<p
-					style="color: #{getTextColor(pFPsByAxisAndOutcome[voteDim.axis][-1].color)};"
+					style="color: #{getTextColor(pFPsByAxisAndOutcome[voteDim.axis].B.color)};"
 			>
-				{pFPsByAxisAndOutcome[voteDim.axis][-1].factorPosition.position.name}
+				{pFPsByAxisAndOutcome[voteDim.axis].B.factorPosition.position.name}
 			</p>
 		</var>
 		{/if}
@@ -135,7 +136,7 @@
 	{/if}
 </section>
 {/each}
-
+{/if}
 <style>
 
 	@media (min-width: 321px) {

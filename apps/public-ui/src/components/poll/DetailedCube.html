@@ -8,12 +8,12 @@
 			class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 			id="s{i}"
 			style="
-            background-color: #{getColor(delta, poll, position.axis)};
+            background-color: #{getColor(pFPsByAxisAndDir[position.axis][position.dir].color)};
               "
 	>
 		{#if !loading && !rotating}
 		<header>
-			{#if pFPsByAxisAndDir[position.axis][position.dir].outcome > 0}
+			{#if pFPsByAxisAndDir[position.axis][position.dir].outcome === 'A'}
 			<CharacterButton
 					character="A"
 					fontSize="23"
@@ -25,7 +25,7 @@
 			></CharacterButton>
 			{/if}
 			{pFPsByAxisAndDir[position.axis][position.dir].factorPosition.factor.name}
-			{#if pFPsByAxisAndDir[position.axis][position.dir].outcome < 0}
+			{#if pFPsByAxisAndDir[position.axis][position.dir].outcome === 'B'}
 			<CharacterButton
 					character="B"
 					fontSize="23"
@@ -39,11 +39,11 @@
 		</header>
 		{#if positionMode}
 		<Positioner
-				on:moveRight="moveRight(position.axis, position.dir, poll)"
-				on:moveDown="moveDown(position.axis, position.dir, poll)"
-				on:moveLeft="moveLeft(position.axis, position.dir, poll)"
-				on:moveUp="moveUp(position.axis, position.dir, poll)"
-				on:switchDir="switchDir(position.axis, position.dir, poll)"
+				on:moveRight="moveRight(position.axis, position.dir, pFPsByAxisAndDir)"
+				on:moveDown="moveDown(position.axis, position.dir, pFPsByAxisAndDir)"
+				on:moveLeft="moveLeft(position.axis, position.dir, pFPsByAxisAndDir)"
+				on:moveUp="moveUp(position.axis, position.dir, pFPsByAxisAndDir)"
+				on:switchDir="switchDir(position.axis, position.dir, pFPsByAxisAndDir)"
 		></Positioner>
 		{/if}
 		<p
@@ -204,11 +204,14 @@
 		clearView,
 		mutationApi,
 		setView
-	}                      from '@votecube/cube-logic'
-	import CharacterButton from '../../common/control/button/CharacterButton.html'
-	import {getColor}      from '../../helpers/cube'
-	import {getTextColor}  from '../../helpers/general'
-	import Positioner      from './create/Positioner.html'
+	}                                from '@votecube/cube-logic'
+	import CharacterButton           from '../../common/control/button/CharacterButton.html'
+	import {getDefaultCubePositions} from '../../helpers/cube'
+	import {
+		getColor,
+		getTextColor
+	}                                from '../../helpers/general'
+	import Positioner                from './create/Positioner.html'
 
 	export default {
 		components: {
@@ -221,25 +224,7 @@
 		data() {
 			return {
 				loading: true,
-				positions: [{
-					axis: 'x',
-					dir: 1
-				}, {
-					axis: 'y',
-					dir: 1
-				}, {
-					axis: 'z',
-					dir: 1
-				}, {
-					axis: 'y',
-					dir: -1
-				}, {
-					axis: 'z',
-					dir: -1
-				}, {
-					axis: 'x',
-					dir: -1
-				}],
+				positions: getDefaultCubePositions(),
 				rotating: false
 			}
 		},
@@ -251,9 +236,9 @@
 			moveDown(
 				axis,
 				dir,
-				poll
+				pFPsByAxisAndDir
 			) {
-				move(this, poll, axis, dir, [
+				move(this, pFPsByAxisAndDir, axis, dir, [
 					['y', 1], // x+
 					['y', 1], // x-
 					['x', -1], // y+
@@ -265,9 +250,9 @@
 			moveLeft(
 				axis,
 				dir,
-				poll
+				pFPsByAxisAndDir
 			) {
-				move(this, poll, axis, dir, [
+				move(this, pFPsByAxisAndDir, axis, dir, [
 					['z', -1], // x+
 					['z', 1], // x-
 					['z', -1], // y+
@@ -279,9 +264,9 @@
 			moveRight(
 				axis,
 				dir,
-				poll
+				pFPsByAxisAndDir
 			) {
-				move(this, poll, axis, dir, [
+				move(this, pFPsByAxisAndDir, axis, dir, [
 					['z', 1], // x+
 					['z', -1], // x-
 					['z', 1], // y+
@@ -293,9 +278,9 @@
 			moveUp(
 				axis,
 				dir,
-				poll
+				pFPsByAxisAndDir
 			) {
-				move(this, poll, axis, dir, [
+				move(this, pFPsByAxisAndDir, axis, dir, [
 					['y', -1], // x+
 					['y', -1], // x-
 					['x', 1], // y+
@@ -307,9 +292,9 @@
 			switchDir(
 				axis,
 				dir,
-				poll
+				pFPsByAxisAndDir
 			) {
-				switchPoles(this, poll, axis, dir)
+				switchPoles(this, pFPsByAxisAndDir, axis, dir)
 			},
 			/*			toggleView(
 							cubeView,
@@ -342,7 +327,7 @@
 			clearView('cube')
 		}
 		// onstate({changed, current}) {
-		// 	if (!current.poll) {
+		// 	if (!current.pFPsByAxisAndDir) {
 		// 		return
 		// 	}
 		//
@@ -377,20 +362,39 @@
 
 	function move(
 		component,
-		poll,
+		pFPsByAxisAndDir,
 		axis,
 		dir,
 		switchToDefinitions
 	) {
 		let switchPositions = getSwitchArray(axis, dir, switchToDefinitions)
-		repositionAll(poll, switchPositions)
+
+		movePfpPair(switchPositions[0], pFPsByAxisAndDir)
+		movePfpPair(switchPositions[1], pFPsByAxisAndDir)
 
 		component.fire('cubeAltered')
 	}
 
+	function movePfpPair(
+		switchPosition,
+		pFPsByAxisAndDir
+	) {
+		const pfpFrom = pFPsByAxisAndDir[switchPosition.from.axis][switchPosition.from.dir]
+		const pfpTo   = pFPsByAxisAndDir[switchPosition.to.axis][switchPosition.to.dir]
+
+		const toDir  = pfpTo.dir
+		const toAxis = pfpTo.axis
+
+		pfpTo.axis = pfpFrom.axis
+		pfpTo.dir  = pfpFrom.dir
+
+		pfpFrom.axis = toAxis
+		pfpFrom.dir  = toDir
+	}
+
 	function switchPoles(
 		component,
-		poll,
+		pFPsByAxisAndDir,
 		axis,
 		dir
 	) {
@@ -403,8 +407,12 @@
 				dir: dir === 1 ? -1 : 1
 			}]
 
-		const switchPollFactorPositions = getSwitchPollFactorPositions(poll, switchPositions)
-		reposition(switchPollFactorPositions, 0, 1)
+		const pfpFrom = pFPsByAxisAndDir[switchPositions[0].axis][switchPositions[0].dir]
+		const pfpTo   = pFPsByAxisAndDir[switchPositions[1].axis][switchPositions[1].dir]
+
+		const toDir = pfpFrom.dir
+		pfpTo.dir   = pfpFrom.dir
+		pfpFrom.dir = toDir
 
 		component.fire('cubeAltered')
 	}
@@ -414,105 +422,45 @@
 		dir,
 		switchToDefinitions
 	) {
-		switch (axis) {
-			case 'x':
-				if (dir == 1) {
-					// X+ -> Z+
-					return getSwitchPositions('x', 1, switchToDefinitions[0])
-				} else {
-					// X- -> Z-
-					return getSwitchPositions('x', -1, switchToDefinitions[1])
-				}
-			case 'y':
-				if (dir == 1) {
-					// Y+ -> Z+
-					return getSwitchPositions('y', 1, switchToDefinitions[2])
-				} else {
-					// Y- -> Z-
-					return getSwitchPositions('y', -1, switchToDefinitions[3])
-				}
-			case 'z':
-				if (dir == 1) {
-					// Z+ -> Y-
-					return getSwitchPositions('z', 1, switchToDefinitions[4])
-				} else {
-					// Z- -> Y+
-					return getSwitchPositions('z', -1, switchToDefinitions[5])
-				}
+		const switchPositionMap = {
+			x: {
+				1: 0,
+				'-1': 1
+			},
+			y: {
+				1: 2,
+				'-1': 3
+			},
+			z: {
+				1: 4,
+				'-1': 5
+			}
 		}
-	}
+		const to                = switchToDefinitions[switchPositionMap[axis][dir]]
 
-	function getSwitchPositions(
-		axis,
-		dir,
-		to
-	) {
 		const [toAxis, toDir] = to
 		const oppositeDir     = dir == 1 ? -1 : 1
 		const toOppositeDir   = toDir == 1 ? -1 : 1
+
 		return [{
-			axis,
-			dir
-		},
-			{
+			from: {
+				axis,
+				dir
+			},
+			to: {
 				axis: toAxis,
 				dir: toDir
-			},
-			{
+			}
+		}, {
+			from: {
 				axis,
 				dir: oppositeDir
 			},
-			{
+			to: {
 				axis: toAxis,
 				dir: toOppositeDir
-			}]
-	}
-
-	function repositionAll(
-		poll,
-		switchPositions
-	) {
-		const switchPollFactorPositions = getSwitchPollFactorPositions(poll, switchPositions)
-		reposition(switchPollFactorPositions, 0, 1)
-		reposition(switchPollFactorPositions, 2, 3)
-	}
-
-	function getSwitchPollFactorPositions(
-		poll,
-		switchPositions
-	) {
-		const switchPollFactorPositions = []
-		switchPositions.forEach((
-			switchPosition
-		) => {
-			switchPollFactorPositions.push(poll.pollFactorPositions.filter(
-				pollFactorPosition =>
-					switchPosition.axis === pollFactorPosition.axis
-					&& switchPosition.dir === pollFactorPosition.dir)[0])
-		})
-
-		return switchPollFactorPositions
-	}
-
-	function reposition(
-		switchPollFactorPositions,
-		fromIndex,
-		toIndex
-	) {
-		const fromPFP            = switchPollFactorPositions[fromIndex]
-		const toPFP              = switchPollFactorPositions[toIndex]
-		const fromFactorPosition = fromPFP.factorPosition
-		const fromColor          = fromPFP.color
-		const fromOutcome        = fromPFP.outcome
-		const toFactorPosition   = toPFP.factorPosition
-		const toColor            = toPFP.color
-		const toOutcome          = toPFP.outcome
-		fromPFP.factorPosition   = toFactorPosition
-		fromPFP.color            = toColor
-		fromPFP.outcome          = toOutcome
-		toPFP.factorPosition     = fromFactorPosition
-		toPFP.color              = fromColor
-		toPFP.outcome            = fromOutcome
+			}
+		}]
 	}
 
 </script>

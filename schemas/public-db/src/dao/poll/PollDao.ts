@@ -2,6 +2,10 @@ import {DI}       from '@airport/di'
 import {POLL_DAO} from '../../diTokens'
 import {IPoll}    from '../../generated/interfaces'
 import {Poll_Id}  from '../../types/poll/Poll'
+import {
+	calculateWaterMarks,
+	copy
+}                 from '../DB'
 
 export interface IPollDao
 	// extends IBasePollDao
@@ -19,10 +23,6 @@ export interface IPollDao
 	getForTheme(
 		themeId: number
 	): Promise<IPoll[]>
-
-	getOriginalDetails(
-		pollId: Poll_Id
-	): Promise<IPoll>
 
 	save(
 		poll: IPoll,
@@ -45,106 +45,147 @@ export class PollDao
 	}
 
 	async getAll(): Promise<IPoll[]> {
-		const db = (window as any).db
-		return await db.collection('polls')
-			.orderBy('createdAt', 'desc')
+		const db     = (window as any).db
+		const result = await db.collection('polls')
+			.orderBy('createdAt.m', 'desc')
 			.get()
+		return result.docs.map(
+			doc => doc.data())
 	}
 
 	async getForTheme(
 		themeId: number
 	): Promise<IPoll[]> {
-		const db = (window as any).db
-		return await db.collection('polls')
-			.where('theme.id', '==', themeId)
-			.orderBy('createdAt', 'desc')
+		const db     = (window as any).db
+		const result = await db.collection('polls')
+			.where('theme.id.v', '==', themeId)
+			.orderBy('createdAt.m', 'desc')
 			.get()
+		return result.docs.map(
+			doc => doc.data())
 	}
 
-	async getOriginalDetails(
-		pollId: Poll_Id
+	async getVariation(
+		pollKey: Poll_Id,
+		variationKey: any
 	): Promise<IPoll> {
-		if (pollId == 0) {
-			return this.tempPoll
-		}
+		return await this.getChildPollObjectByKey(pollKey, variationKey, 'variations')
+	}
 
-		const docRef = (window as any).db
-			.collection('polls').doc(pollId)
-			.collection('variations')
-			.where('initial', '==', true)
+	async getVariationListing(
+		pollKey: Poll_Id,
+		variationKey: any
+	): Promise<IPoll> {
+		const result = await (window as any).db
+			.collection('polls').doc(pollKey)
+			.collection('variationListings')
+			.where('variationKey', '==', variationKey)
+			.get()
 
-		const result = await docRef.get()
+		const records = result.docs.map(
+			doc => doc.data())
 
-		const docs = result.docs
-
-		if (!docs.length) {
+		if (!records.length) {
 			return null
 		}
 
-		return docs[0].data()
+		return records[0]
+	}
+
+	async getChildVariationListings(
+		pollKey: Poll_Id,
+		variationKey: any
+	): Promise<IPoll> {
+		const result = await (window as any).db
+			.collection('polls').doc(pollKey)
+			.collection('variationListings')
+			.where('parent.key', '==', variationKey)
+			.orderBy('createdAt.m', 'desc')
+			.get()
+
+		return result.docs.map(
+			doc => doc.data())
 	}
 
 	async save(
 		aPoll: IPoll,
 		user
 	): Promise<IPoll> {
-		const createdAt      = new Date().getTime()
+		const createdAt: any = {}
+		const date           = new Date()
+
+		createdAt.m      = date.getTime()
+		createdAt.o      = date.getTimezoneOffset()
+		const dateString = date.toString()
+		const timezone   = dateString.split('(')[1].split(')')[0]
+		createdAt.z      = timezone
+
 		const variation: any = {
 			...aPoll,
-			by: user.name,
 			createdAt,
-			initial: true,
 			uid: user.uid
 		}
 		delete variation.id
 
+		calculateWaterMarks(variation)
+
 		const factors = {}
 
-		for (const pfp of variation.pollFactorPositions) {
-			factors[pfp.axis] = {
-				...pfp.factorPosition.factor,
-				color: pfp.color
+		for (const factorName in variation.factors) {
+			if (factorName === 'marks') {
+				continue
 			}
-		}
-
-		const outcomes = {}
-		for (const outcome of variation.outcomes) {
-			outcomes[outcome.key] = {
-				name: outcome.outcome
+			const variationFactor = variation.factors[factorName]
+			factors[factorName]   = {
+				axis: copy(variationFactor.axis),
+				color: copy(variationFactor.color),
+				name: copy(variationFactor.name)
 			}
 		}
 
 		const poll: any = {
-			ageSuitability: variation.ageSuitability,
+			ageSuitability: copy(variation.ageSuitability),
 			createdAt,
 			factors,
-			name: variation.name,
-			outcomes,
-			theme: variation.theme,
+			name: copy(variation.name),
+			outcomes: copy(variation.outcomes),
+			theme: copy(variation.theme),
 			uid: user.uid
 		}
 
 		try {
 			const db = (window as any).db
 			await db.runTransaction(async (transaction) => {
-				const pollRef             = db.collection('polls').doc()
+				let pollRef
+
+				if (!variation.parent) {
+					pollRef           = db.collection('polls').doc()
+					poll.key          = pollRef.id
+					variation.pollKey = poll.key
+				} else {
+					pollRef = db.collection('polls').doc(variation.pollKey)
+				}
+
 				const variationRef        = pollRef
 					.collection('variations').doc()
 				const variationListingRef = pollRef
 					.collection('variationListings').doc()
 
-				poll.key          = pollRef.id
-				variation.key     = variationRef.id
-				variation.pollKey = pollRef.id
+				variation.key = variationRef.id
 
 				const variationListing = {
 					...poll,
+					depth: variation.depth,
 					key: variationListingRef.id,
-					pollKey: pollRef.id,
-					variationKey: variationRef.id,
+					parent: variation.parent,
+					pollKey: variation.pollKey,
+					variationKey: variation.key,
 				}
 
-				await transaction.set(pollRef, poll)
+				if (!variation.parent) {
+					poll.rootVariationKey = variation.key
+					await transaction.set(pollRef, poll)
+				}
 				await transaction.set(variationRef, variation)
 				await transaction.set(variationListingRef, variationListing)
 
@@ -157,6 +198,26 @@ export class PollDao
 		}
 
 		return poll
+	}
+
+	private async getChildPollObjectByKey(
+		pollKey: Poll_Id,
+		variationKey: any,
+		childPollCollectionName
+	): Promise<IPoll> {
+		const docRef = (window as any).db
+			.collection('polls').doc(pollKey)
+			.collection(childPollCollectionName).doc(variationKey)
+
+		// const result = await result.ref.get()
+
+		const doc = await docRef.get()
+
+		if (doc.exists) {
+			return doc.data()
+		}
+
+		return null
 	}
 
 	/*

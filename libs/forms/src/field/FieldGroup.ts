@@ -109,6 +109,17 @@ export class FieldGroup
 		return value
 	}
 
+	get changeFlags(): any {
+		const changeFlags = {}
+
+		for (const fieldName in this.fields) {
+			const field      = this.fields[fieldName]
+			changeFlags[fieldName] = field.changeFlags
+		}
+
+		return changeFlags
+	}
+
 	set value(
 		value: any
 	) {

@@ -4,8 +4,8 @@ import {
 	setPositionData
 }                      from '@votecube/cube-logic'
 import {VOTE_DAO}      from '@votecube/public-db'
+import {PollStore}     from './helpers/PollStore'
 import {loadCubeLogic} from './libs/cubeLogic'
-import * as routes     from './routes'
 
 export async function init() {
 	// await DI.get(AIR_DB)
@@ -14,7 +14,8 @@ export async function init() {
 }
 
 export async function setupCubeView(
-	pollId,
+	pollKey,
+	pollVariationKey,
 	page,
 	callback
 ) {
@@ -26,19 +27,24 @@ export async function setupCubeView(
 		await DI.get(VOTE_DAO)
 	])
 
-	const vote = await voteDao.findMyVoteForPoll(pollId)
+	const vote = await voteDao.findMyVoteForPoll(pollKey)
 
-	if (!vote) {
-		routes.navigateToPage(routes.POLL_INFO_MAIN)
-		return
-	}
+	// if (!vote) {
+	// 	routes.navigateToPage(routes.POLL_INFO_MAIN)
+	// 	return
+	// }
+
+	const poll = await PollStore.getVariation(pollKey, pollVariationKey)
+
 	setPositionData(vote)
 	mutationApi.recompute()
-	const poll = vote.poll
-	page.set({poll, vote})
+	// const poll = vote.poll
+	// const originalPoll =
+	page.set({vote})
 	setPositionDataAndMove(vote)
 
 	page.store.set({
-		pageTitle: poll.name
+		pageTitle: poll.name,
+		pollStore: true
 	})
 }

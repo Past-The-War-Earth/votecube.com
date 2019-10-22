@@ -1,19 +1,20 @@
 export function formToDto(
-	formValue
+	formValue,
+	// positionMap
 ) {
 	const factors        = formValue.factors
 	const formThemeValue = formValue.theme
 	// const locations      = formValue.locations
 	const outcomes       = formValue.outcomes
 
-	let ageSuitability = formValue.ageSuitability;
-
-	if(ageSuitability.length > 0) {
-		ageSuitability = parseInt(ageSuitability)
-	}
+	// let ageSuitability = formValue.ageSuitability
+	//
+	// if (ageSuitability.length > 0) {
+	// 	ageSuitability = parseInt(ageSuitability)
+	// }
 
 	return {
-		ageSuitability,
+		// ageSuitability,
 		// endDate: formValue.timeframe.endDate,
 		id: formValue.id ? formValue.id : 0,
 		name: formValue.name,
@@ -25,9 +26,9 @@ export function formToDto(
 		// 	country
 		// })),
 		pollFactorPositions: [
-			...get2PollFactorPositions('y', factors.first),
-			...get2PollFactorPositions('z', factors.second),
-			...get2PollFactorPositions('x', factors.third)
+			...get2PollFactorPositions(1, factors.first),
+			...get2PollFactorPositions(2, factors.second),
+			...get2PollFactorPositions(3, factors.third)
 		],
 		// pollsLabels: formValue.labels.map(label => ({
 		// 	label: {
@@ -57,8 +58,8 @@ export function formToDto(
 }
 
 function get2PollFactorPositions(
-	axis,
-	factorFormValue
+	factorIndex,
+	factorFormValue,
 ) {
 	const {color, factor} = getDimDto(factorFormValue)
 
@@ -66,29 +67,31 @@ function get2PollFactorPositions(
 	let bDir = factorFormValue.positions.B
 
 	return [
-		getPollFactorPositionDto(axis, factor, 1, aDir, color, 1),
-		getPollFactorPositionDto(axis, factor, -1, bDir, color, -1)
+		getPollFactorPositionDto(factorIndex, factor, 'A', aDir, color),
+		getPollFactorPositionDto(factorIndex, factor, 'B', bDir, color)
 	]
 }
 
 function getPollFactorPositionDto(
-	axis,
+	factorIndex,
 	factor,
-	dir,
+	outcome,
 	name,
 	color,
-	outcome
+	// positionMap
 ) {
+	// const position = positionMap[factorIndex][outcome]
 	return {
-		axis,
+		// axis: position.axis,
 		color,
+		// dir: position.dir,
+		factorIndex,
 		factorPosition: {
 			factor,
 			position: {
 				name
 			}
 		},
-		dir,
 		outcome
 	}
 

@@ -281,7 +281,8 @@
 				}
 				color[primary] = exitingPrimary + value
 				color[primary] = color[primary].toString()
-				this.set({color})
+				const {field}  = this.get()
+				setColor(color, field, this)
 			},
 			revert() {
 				const {colorMap, field} = this.get()
@@ -297,9 +298,7 @@
 				const {colors} = this.get()
 				const color    = copyColor(colors[colorIndex])
 				const {field}  = this.get()
-				field.value    = color
-				field.validate()
-				this.set({color})
+				setColor(color, field, this)
 			},
 			syncInput() {
 				const {color, colorMap, field} = this.get()
@@ -364,6 +363,16 @@
 			name: color.name,
 			...color
 		}
+	}
+
+	function setColor(
+		color,
+		field,
+		page
+	) {
+		field.value    = color
+		field.validate()
+		page.set({color})
 	}
 
 </script>

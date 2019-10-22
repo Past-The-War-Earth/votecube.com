@@ -105,7 +105,7 @@
 		},
 		methods: {
 			select($routeParams) {
-				this.set({keepPollId: $routeParams.pollId})
+				this.set({interFormNavigation: true})
 				forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
 			},
 		},
