@@ -97,6 +97,9 @@
 	import {init}                from './database'
 	import {reactToUser}         from './helpers/auth'
 	import {loadUi}              from './libs/text/ui'
+	import AboutUs               from './pages/AboutUs.html'
+	import Feedback               from './pages/Feedback.html'
+	import ReleasePlan               from './pages/ReleasePlan.html'
 	import FactorInfoMain        from './pages/factor/info/Main.html'
 	import FactorSearchList      from './pages/factor/search/List.html'
 	import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
@@ -111,17 +114,21 @@
 		scheduleToResize,
 		startResizeInterval
 	}                            from './resizer.js'
+	import {RELEASE_PLAN}        from './routes'
 	import * as routes           from './routes'
 	import {
 		navigateToPage,
 		setupRoutes
 	}                            from './routes.js'
 	import Menu                  from './shell/menu/Menu.html'
-	import SignIn                 from './shell/SignIn.html'
+	import SignIn                from './shell/SignIn.html'
 	import TopBar                from './shell/top/TopBar.html'
 	import store                 from './store.js'
 
 	const pageMap = {
+		[routes.ABOUT]: AboutUs,
+		[routes.FEEDBACK]: Feedback,
+		[routes.CARD_CLIMATE_CHANGE]: PollInfoCube,
 		[routes.FACTOR_INFO_MAIN]: FactorInfoMain,
 		[routes.FACTOR_SEARCH_LIST]: FactorSearchList,
 		[routes.POLL_SEARCH_LIST]: PollSearchList,
@@ -130,6 +137,7 @@
 		[routes.POLL_INFO_CUBE]: PollInfoCube,
 		[routes.POLL_LOCATIONS]: PollLocations,
 		[routes.POLL_TIMEFRAME]: PollTimeframe,
+		[routes.RELEASE_PLAN]: ReleasePlan,
 	}
 
 	const topMenuMap = {
@@ -203,6 +211,7 @@
 			reactToUser(this.store)
 			loadUi(this.store, 'en-us').then()
 			init().then()
+
 
 			setupRoutes(this, pageMap, topMenuMap)
 

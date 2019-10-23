@@ -98,8 +98,10 @@ export var PollStore = {
 				newPfp.dir                = defaultCubePosition.dir
 			}
 		}
+		if(oldUi) {			
 		copyVariationProperties(currVariation.ui, ui)
 		copyDbProperties(currVariation.ui, ui)
+		}
 		currVariation.ui      = ui
 		currVariation.uiDelta = uiDelta
 	},

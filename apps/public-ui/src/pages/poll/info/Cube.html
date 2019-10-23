@@ -230,7 +230,7 @@
 				<br>
 				Please see
 				the <a
-					href="#releasePlan">Release Plan</a> for details.
+					on:click="goToReleasePlan()">Release Plan</a> for details.
 			</h3>
 			<br>
 		</div>
@@ -490,6 +490,9 @@
 				setCubeAdjustment(this.get().cubeListener, false)
 				this.setAction('vote')
 			},
+			goToReleasePlan() {
+				routes.navigateToPage(routes.RELEASE_PLAN)
+			},
 			goToVariations() {
 				const {pollKey, pollVariationKey} = this.store.get().routeParams
 				routes.navigateToPage(routes.POLL_VARIATION_LIST, {pollKey, pollVariationKey})
@@ -591,9 +594,13 @@
 			}
 		},
 		oncreate() {
-			const {mode, pollKey, pollVariationKey} = this.store.get().routeParams
+			let {mode, pollKey, pollVariationKey} = this.store.get().routeParams
 
 			resize(this)
+			if (window.location.href.indexOf('card/ClimateChange') > 0) {
+				pollKey          = '7U2Z2ItoJVTnpZwZdjrg'
+				pollVariationKey = 'NFKgyOxEfT8RlqBBwEf2'
+			}
 			setupCubeView(pollKey, pollVariationKey, this, () => {
 				/*
 				if (this.get().percentMove) {

@@ -1,0 +1,164 @@
+{#if form}
+<form>
+	<legend>Submit Feedback</legend>
+	<AutoComplete
+			field="{form.fields.category}"
+	></AutoComplete>
+	<TextArea
+			field="{form.fields.comment}"
+	></TextArea>
+	<nav class="pure-controls">
+		{#if error}
+		<div
+				class="error"
+		>
+			{error}
+		</div>
+		<br>
+		<br>
+		{/if}
+		<SaveButton
+				classes="submitButton"
+				highlightColor="{submitHighlight}"
+				on:select="submit()"
+		></SaveButton>
+	</nav>
+</form>
+{/if}
+<style>
+	.error {
+		color: red;
+		text-align: center;
+		width: 100%;
+	}
+</style>
+<script>
+	import SaveButton   from '../common/control/button/SaveButton.html'
+	import AutoComplete from '../common/field/AutoComplete.html'
+	import TextArea     from '../common/field/TextArea.html'
+	import {loadForms}  from '../libs/forms'
+	import * as routes  from '../routes'
+	import store        from '../store'
+
+	export default {
+		components: {
+			AutoComplete,
+			SaveButton,
+			TextArea
+		},
+		computed: {
+			submitHighlight: ({
+				                  isValid
+			                  }) => {
+				if (!isValid) {
+					return 'b00'
+				}
+				return '0b0'
+			}
+		},
+		methods: {
+			submit() {
+				const form = this.get().form
+				form.touch()
+
+				if (!form.valid) {
+					return
+				}
+				saveFeedback(form.value, this.store).then(
+					success => {
+						if (success) {
+							routes.navigateToPage(routes.POLL_SEARCH_LIST)
+						} else {
+							this.set({error: 'Error saving feedback, please check your network connection'})
+						}
+					})
+			}
+		},
+		oncreate() {
+			initPage(this).then()
+		},
+		ondestroy() {
+			this.get().form.clearComponents()
+		},
+		store: () => store
+	}
+
+	async function saveFeedback(
+		formValue,
+		store
+	) {
+		const db          = window.db
+		const feedbackRef = db.collection('feedback').doc()
+
+		let uid
+
+		const user = store.get().user
+
+		if (user) {
+			uid = user.user.uid
+		} else {
+			uid = null
+		}
+		try {
+			await feedbackRef.set({
+				...formValue,
+				uid
+			})
+			return true
+		} catch (error) {
+			return false
+		}
+	}
+
+	async function initPage(page) {
+		const [
+			      {ColorField, DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
+			      // locations,
+			      // _,
+			      // [
+			      // labelDao,
+			      // pollDao
+			      // , voteDao
+			      // ]
+		      ] = await Promise.all([
+			loadForms(page),
+			// loadLocations(),
+			// loadLocText(page.store, 'en-us'),
+			/*			DI.get(
+							// FIXME: add PollStore to di
+							// POLL_STORE
+						)*/
+		])
+
+		const {text} = page.store.get()
+		const form   = new FieldGroup('Feedback', {
+			category: new OptionsField([
+				Validators.required()
+			], [{
+				id: 1,
+				text: 'Feature Request'
+			}, {
+				id: 2,
+				text: 'Bug Report'
+			}, {
+				id: 3,
+				text: 'Suggestion'
+			}, {
+				id: 4,
+				text: 'Question'
+			}, {
+				id: 5,
+				text: 'Other'
+			}]),
+			comment: new Field([
+				Validators.minLength(3),
+				Validators.required()
+			], {maxLength: 2500})
+		}, [Validators.required()], text.UI)
+
+		form.addComponent(page)
+		form.validate()
+
+		page.set({form})
+	}
+</script>

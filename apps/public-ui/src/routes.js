@@ -8,6 +8,9 @@ let appComp,
     inProgressUrl,
     inProgressParams
 
+export const ABOUT    = '/about'
+export const FEEDBACK    = '/feedback'
+export const RELEASE_PLAN    = '/releasePlan'
 export const FACTOR_INFO_MAIN    = '/factor/info/Main/:mode'
 export const FACTOR_SEARCH_LIST  = '/factor/List'
 export const POLL_SEARCH_LIST    = '/poll/search/List'
@@ -16,11 +19,35 @@ export const POLL_INFO_MAIN      = '/poll/info/Main/:mode'
 export const POLL_INFO_CUBE      = '/poll/info/Cube/:mode/:pollKey/:pollVariationKey'
 export const POLL_LOCATIONS      = '/poll/Locations/:mode'
 export const POLL_TIMEFRAME      = '/poll/Timeframe/:mode'
+export const CARD_CLIMATE_CHANGE      = '/card/ClimateChange'
 
 export const DEFAULT_ROUTE_PARAMS = {
 	mode: 'build'
 }
 
+configPage(
+	ABOUT,
+	false,
+	false,
+)
+
+configPage(
+	FEEDBACK,
+	false,
+	false,
+)
+
+configPage(
+	RELEASE_PLAN,
+	false,
+	false,
+)
+
+configPage(
+	CARD_CLIMATE_CHANGE,
+	false,
+	false,
+)
 configPage(
 	FACTOR_INFO_MAIN,
 	false,
@@ -113,11 +140,12 @@ export function setupRoutes(
 	pageMap,
 	topMenuMap
 ) {
+
 	appComp = applicationComponent
 	setupPage(
-		PAGE_CONF[POLL_SEARCH_LIST],
-		pageMap[POLL_SEARCH_LIST],
-		topMenuMap[POLL_SEARCH_LIST],
+		PAGE_CONF[ABOUT],
+		pageMap[ABOUT],
+		topMenuMap[ABOUT],
 		applicationComponent,
 		'/'
 	)

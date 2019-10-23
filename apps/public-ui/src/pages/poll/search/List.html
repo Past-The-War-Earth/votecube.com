@@ -52,7 +52,8 @@
 				<br>
 				<br>
 				Please see the <a
-					href="#releasePlan">Release Plan</a> for details.
+					on:click="goToReleasePlan()"
+			>Release Plan</a> for details.
 			</h3>
 			<br>
 		</div>
@@ -131,6 +132,9 @@
 					pollKey,
 					pollVariationKey,
 				})
+			},
+			goToReleasePlan() {
+				routes.navigateToPage(routes.RELEASE_PLAN)
 			},
 			setAction(
 				action

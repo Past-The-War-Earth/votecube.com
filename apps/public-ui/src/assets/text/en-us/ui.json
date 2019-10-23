@@ -28,6 +28,24 @@
         }
       }
     },
+    "Feedback": {
+      "category": {
+        "info": "Please enter the category for your feedback",
+        "label": "Category",
+        "errors": {
+          "required": "A comment is required",
+          "minLength": "Comment must be at least 3 characters long"
+        }
+      },
+      "comment": {
+        "info": "Please enter your Comment",
+        "label": "Comment",
+        "errors": {
+          "required": "A comment is required",
+          "minLength": "Comment must be at least 3 characters long"
+        }
+      }
+    },
     "SignIn": {
       "SignUp": {
         "username": {

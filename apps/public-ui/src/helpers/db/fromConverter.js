@@ -36,7 +36,7 @@ export function fromVariationDoc(
 			pollFp.from([variationToFactor]).to(['outcome']).set(positionOutcome)
 			pollFp.from(['name']).to(['factorPosition', 'position', 'name']).set()
 			pollFp.from([]).to(['factorIndex']).set(factorIndex)
-			pollFp.from(['name']).to(['factorPosition', 'factor', 'name']).set()
+			pollFp.from([dbFactor, 'name']).to(['factorPosition', 'factor', 'name']).set()
 			pollFp.fromTo(['dir']).set()
 		})
 	})

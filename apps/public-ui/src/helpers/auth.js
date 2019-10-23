@@ -12,12 +12,22 @@ export async function signUp(
 	password = await encodePassword(password)
 	try {
 		await window.fb.auth().createUserWithEmailAndPassword(username + '@votecube.com', password)
-		const {user}  = store.get()
-		const credRef = window.db.collection('creds').doc(user.uid)
-		await credRef.set({
-			name: username,
-			pw: password,
-			uid: user.uid
+		const {user} = store.get()
+		const db     = window.db
+
+		await window.db.runTransaction(async (transaction) => {
+			const credRef = db.collection('creds').doc(user.user.uid)
+			const userRef = db.collection('users').doc(user.user.uid)
+			await credRef.set({
+				name: username,
+				pw: password,
+				uid: user.user.uid
+			})
+
+			await userRef.set({
+				name: username,
+				uid: user.user.uid
+			})
 		})
 	} catch (error) {
 		switch (error.code) {
