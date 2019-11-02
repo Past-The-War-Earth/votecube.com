@@ -495,7 +495,7 @@
 			},
 			goToVariations() {
 				const {pollKey, pollVariationKey} = this.store.get().routeParams
-				routes.navigateToPage(routes.POLL_VARIATION_LIST, {pollKey, pollVariationKey})
+				routes.navigateToPage(routes.VARIATION_LIST, {pollKey, pollVariationKey})
 			},
 			onAgeSuitabilitySave(
 				delta,
@@ -738,7 +738,7 @@
 		try {
 			await PollStore.saveCurrentVariation($user)
 			page.set({confirm: false})
-			routes.navigateToPage(routes.POLL_SEARCH_LIST)
+			routes.navigateToPage(routes.POLL_LIST)
 		} catch (error) {
 			page.set({error, savingMessage: 'Error'})
 		}
@@ -752,7 +752,7 @@
 		try {
 			await voteDao.save(page.get().poll)
 			page.set({confirm: false})
-			routes.navigateToPage(routes.POLL_SEARCH_LIST)
+			routes.navigateToPage(routes.POLL_LIST)
 		} catch (error) {
 			page.set({error, savingMessage: 'Error'})
 		}

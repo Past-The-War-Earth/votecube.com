@@ -55,18 +55,18 @@ export function toVariationDoc(
 		dbObject.path[originalDbObject.depth] = {
 			createdAt: originalDbObject.createdAt,
 			key: originalDbObject.key,
-			uid: originalDbObject.uid
+			userKey: originalDbObject.userKey
 		}
 		dbObject.parent                       = {
 			depth: originalDbObject.depth,
-			key: originalDbObject.key
+			key: originalDbObject.key,
+			userKey: originalDbObject.userKey
 		}
 		dbObject.pollKey                      = originalDbObject.pollKey
 	} else {
-		dbObject.parent    = null
-		dbObject.parentKey = null
-		dbObject.path      = {}
-		dbObject.depth     = 1
+		dbObject.parent = null
+		dbObject.path   = {}
+		dbObject.depth  = 1
 	}
 
 	return dbObject

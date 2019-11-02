@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@airport/runway": "0.0.1",
+    "firebase": "^7.2.x",
     "tslint": "^5.14.0",
     "typescript": "^3.2.2"
   }

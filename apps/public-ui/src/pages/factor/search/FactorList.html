@@ -13,9 +13,9 @@
 </form>
 <table>
 	{#each factors as factor}
-	<ListItem
+	<FactorListItem
 			factor="{factor}"
-	></ListItem>
+	></FactorListItem>
 	{/each}
 </table>
 <!--
@@ -29,35 +29,30 @@
 	}
 </style>
 <script>
-	import {FACTOR_DAO}         from '@votecube/public-db'
+	import {FACTOR_DAO}   from '@votecube/public-db'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
-	import AutoComplete         from '../../../common/field/AutoComplete.html'
-	import MultiSelect          from '../../../common/field/MultiSelect.html'
+	import AutoComplete   from '../../../common/field/AutoComplete.html'
+	import MultiSelect    from '../../../common/field/MultiSelect.html'
 	import {
 		clearForm,
 		ensureForm,
 		navigateOnValid
-	}                           from '../../../form/forms'
-	import {loadForms}          from '../../../libs/forms'
-	import {FACTOR_SEARCH_LIST} from '../../../routes'
-	import store                from '../../../store'
-	import ListItem             from './ListItem.html'
+	}                     from '../../../form/forms'
+	import {loadForms}    from '../../../libs/forms'
+	import {FACTOR_LIST}  from '../../../routes'
+	import store          from '../../../store'
+	import FactorListItem from './FactorListItem.html'
 
 	export default {
 		components: {
 			AutoComplete,
-			ListItem,
+			FactorListItem,
 			MultiSelect,
 			// VirtualList
 		},
-		// data() {
-		//   return {
-		//     ListItem
-		//   }
-		// },
 		methods: {
 			submit() {
-				navigateOnValid(this, FACTOR_SEARCH_LIST)
+				navigateOnValid(this, FACTOR_LIST)
 			}
 		},
 		oncreate() {

@@ -29,6 +29,19 @@ document.addEventListener('DOMContentLoaded', function () {
 			messagingSenderId: '786611247734',
 			appId: '1:786611247734:web:516b06d350cbe146461d57'
 		}
+
+		/*
+		const firebaseConfig = {
+			apiKey: "AIzaSyBUly0jLwN9GV5Md0sEhT4abcWdoWmITME",
+			authDomain: "votecube-v1.firebaseapp.com",
+			databaseURL: "https://votecube-v1.firebaseio.com",
+			projectId: "votecube-v1",
+			storageBucket: "votecube-v1.appspot.com",
+			messagingSenderId: "149193719099",
+			appId: "1:149193719099:web:69e7bcd97ba579b5470b1e"
+		}
+		*/
+
 		window.fb            = firebase.initializeApp(firebaseConfig)
 		window.db            = firebase.firestore()
 		try {

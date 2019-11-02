@@ -1,12 +1,22 @@
 import {DI}         from '@airport/di'
 import {
-	IPoll,
 	IPollDao,
+	IUserDoc,
+	IVariationDoc,
 	POLL_DAO
-} from '@votecube/public-db/src'
+}                   from '@votecube/public-db/src'
 import {POLL_LOGIC} from '../diTokens'
 
 export interface IPollLogic {
+
+	stage(
+		variation: IVariationDoc
+	): Promise<void>
+
+	save(
+		variation: IVariationDoc,
+		user: IUserDoc
+	): Promise<void>
 
 }
 
@@ -15,7 +25,7 @@ export class PollLogic
 
 	/**
 	 * All Poll data is immutable once created,
-	 * draft polls can be modified though.
+	 * draft pollDrafts can be modified though.
 	 * Stage simply modifies a draft poll (or creates if if there is none)
 	 * Q&A:
 	 * ?Note a poll that has nothing different form its default state should not
@@ -26,19 +36,20 @@ export class PollLogic
 	 * save a partial record temporarily
 	 */
 	async stage(
-		poll: IPoll
+		variation: IVariationDoc
 	): Promise<void> {
-		const pollDao: IPollDao = await DI.get(POLL_DAO);
+		const pollDao: IPollDao = await DI.get(POLL_DAO)
 
-		await pollDao.save(poll, {
-			pollContinents: {}
-		})
+		await pollDao.addTemp(variation)
 	}
 
 	async save(
-		poll: IPoll
+		variation: IVariationDoc,
+		user: IUserDoc
 	): Promise<void> {
-		DI.get(POLL_DAO)
+		const pollDao: IPollDao = await DI.get(POLL_DAO)
+
+		await pollDao.save(variation, user)
 	}
 
 }

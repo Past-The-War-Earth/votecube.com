@@ -24,26 +24,26 @@
 		</var>
 	</nav>
 	{/if}
-	<ListItem
+	<VariationListItem
 			childMode="{false}"
 			classes="{switchToClasses(switching, switchedToKey, currentVariation)}"
 			mode="{mode}"
 			navList="{navList}"
 			on:select="goTo(currentVariation.pollKey, currentVariation.variationKey)"
 			variation="{currentVariation}"
-	></ListItem>
+	></VariationListItem>
 	<div
 			class="divider"
 	></div>
 	{#each childVariations as variation}
-	<ListItem
+	<VariationListItem
 			classes="{switchToClasses(switching, switchedToKey, variation)}"
 			mode="{mode}"
 			navList="{navList}"
 			on:moveDownHierarchy="moveDownHierarchy(childVariations, variation, navList)"
 			on:select="goTo(variation.pollKey, variation.variationKey)"
 			variation="{variation}"
-	></ListItem>
+	></VariationListItem>
 	{/each}
 	{#if !childVariations.length}
 	<div
@@ -52,13 +52,13 @@
 		No child variations exist yet.
 	</div>
 	{/if}
-	<PollListingFab
+	<VariationListFab
 			entityNames="Polls"
 			on:factors="showFactors()"
 			on:sort="setAction('sort')"
 			on:filter="setAction('filter')"
 			on:outcomes="showOutcomes()"
-	></PollListingFab>
+	></VariationListFab>
 	<!--
 	<VirtualList items={factors} component={ListItem} />
 	-->
@@ -158,35 +158,36 @@
 
 </style>
 <script>
-	import {DI}                      from '@airport/di'
-	import {POLL_DAO}                from '@votecube/public-db'
-	import {fade}                    from 'svelte-transitions'
-	import CancelButton              from '../../../common/control/button/CancelButton.html'
+	import {DI}                       from '@airport/di'
+	import {POLL_DAO}                 from '@votecube/public-db'
+	import {fade}                     from 'svelte-transitions'
+	import CancelButton
+	                                  from '../../../common/control/button/CancelButton.html'
 	import RightButton               from '../../../common/control/button/RightButton.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import Text                      from '../../../common/field/Text.html'
 	import ActionPopover             from '../../../common/shell/ActionPopover.html'
-	import PollListingFab            from '../../../components/poll/PollListingFab.html'
+	import VariationListFab
+	                                 from '../../../components/poll/variation/VariationListFab.html'
 	import * as forms                from '../../../form/forms'
 	import {fromVariationListingDoc} from '../../../helpers/db/fromConverter'
 	import {loadForms}               from '../../../libs/forms'
 	import * as routes               from '../../../routes'
 	import store                     from '../../../store'
-	import ListItem                  from './ListItem.html'
+	import VariationListItem         from './VariationListItem.html'
 
 	export default {
 		components: {
 			ActionPopover,
 			CancelButton,
-			ListItem,
-			PollListingFab,
 			RightButton,
 			Text,
+			VariationListFab,
+			VariationListItem,
 			// VirtualList
 		},
 		data() {
 			return {
-				// ListItem,
 				mode: 'factors'
 			}
 		},

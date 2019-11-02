@@ -33,12 +33,12 @@
 	}
 </style>
 <script>
-	import SaveButton   from '../common/control/button/SaveButton.html'
-	import AutoComplete from '../common/field/AutoComplete.html'
-	import TextArea     from '../common/field/TextArea.html'
-	import {loadForms}  from '../libs/forms'
-	import * as routes  from '../routes'
-	import store        from '../store'
+	import SaveButton   from '../../common/control/button/SaveButton.html'
+	import AutoComplete from '../../common/field/AutoComplete.html'
+	import TextArea     from '../../common/field/TextArea.html'
+	import {loadForms}  from '../../libs/forms'
+	import * as routes  from '../../routes'
+	import store        from '../../store'
 
 	export default {
 		components: {
@@ -67,7 +67,7 @@
 				saveFeedback(form.value, this.store).then(
 					success => {
 						if (success) {
-							routes.navigateToPage(routes.POLL_SEARCH_LIST)
+							routes.navigateToPage(routes.POLL_LIST)
 						} else {
 							this.set({error: 'Error saving feedback, please check your network connection'})
 						}
@@ -90,19 +90,19 @@
 		const db          = window.db
 		const feedbackRef = db.collection('feedback').doc()
 
-		let uid
+		let userKey
 
 		const user = store.get().user
 
 		if (user) {
-			uid = user.user.uid
+			userKey = user.userKey
 		} else {
-			uid = null
+			userKey = null
 		}
 		try {
 			await feedbackRef.set({
 				...formValue,
-				uid
+				userKey
 			})
 			return true
 		} catch (error) {

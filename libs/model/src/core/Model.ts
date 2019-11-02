@@ -1,4 +1,5 @@
 export type Id = number;
+export type Key = string;
 
 export type ActorRecordId = number;
 export type RepositoryActorId = number;

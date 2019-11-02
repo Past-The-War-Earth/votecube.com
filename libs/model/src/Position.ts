@@ -8,7 +8,7 @@ export const POSITIONS = 'POSITIONS'
 export interface IPosition
 	extends ITemporalModel {
 
-	id: PositionId
+	key: PositionId
 	name: string
 	parent: IPosition
 

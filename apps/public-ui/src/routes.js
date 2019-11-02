@@ -8,18 +8,18 @@ let appComp,
     inProgressUrl,
     inProgressParams
 
-export const ABOUT    = '/about'
-export const FEEDBACK    = '/feedback'
-export const RELEASE_PLAN    = '/releasePlan'
+export const ABOUT               = '/about'
+export const FEEDBACK            = '/feedback'
+export const RELEASE_PLAN        = '/releasePlan'
 export const FACTOR_INFO_MAIN    = '/factor/info/Main/:mode'
-export const FACTOR_SEARCH_LIST  = '/factor/List'
-export const POLL_SEARCH_LIST    = '/poll/search/List'
-export const POLL_VARIATION_LIST = '/poll/variation/List/:pollKey/:pollVariationKey'
+export const FACTOR_LIST         = '/factor/List'
+export const POLL_LIST           = '/poll/List'
+export const VARIATION_LIST      = '/variation/List/:pollKey/:pollVariationKey'
 export const POLL_INFO_MAIN      = '/poll/info/Main/:mode'
 export const POLL_INFO_CUBE      = '/poll/info/Cube/:mode/:pollKey/:pollVariationKey'
 export const POLL_LOCATIONS      = '/poll/Locations/:mode'
 export const POLL_TIMEFRAME      = '/poll/Timeframe/:mode'
-export const CARD_CLIMATE_CHANGE      = '/card/ClimateChange'
+export const CARD_CLIMATE_CHANGE = '/card/ClimateChange'
 
 export const DEFAULT_ROUTE_PARAMS = {
 	mode: 'build'
@@ -54,17 +54,17 @@ configPage(
 	false,
 )
 configPage(
-	FACTOR_SEARCH_LIST,
+	FACTOR_LIST,
 	false,
 	true
 )
 configPage(
-	POLL_SEARCH_LIST,
+	POLL_LIST,
 	false,
 	true
 )
 configPage(
-	POLL_VARIATION_LIST,
+	VARIATION_LIST,
 	false,
 	true
 )
@@ -224,13 +224,13 @@ function setupPage(
 					} else {
 						// const {lastPage, lastUrl} = appComp.store.get()
 						// if (!lastPage || lastPage.authenticated) {
-						// 	navigateToPage(POLL_SEARCH_LIST)
+						// 	navigateToPage(POLL_LIST)
 						// } else if (lastUrl) {
 						// 	page(lastUrl)
 						// }
 						const {currentPage, currentUrl} = appComp.store.get()
 						if (!currentPage || currentPage.authenticated) {
-							navigateToPage(POLL_SEARCH_LIST)
+							navigateToPage(POLL_LIST)
 						} else if (currentUrl) {
 							page(currentUrl)
 						}

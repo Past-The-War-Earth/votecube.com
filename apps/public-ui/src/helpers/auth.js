@@ -1,6 +1,6 @@
 import {
 	navigateToPage,
-	POLL_SEARCH_LIST
+	POLL_LIST
 }                       from '../routes'
 import {encodePassword} from './crypto'
 
@@ -16,17 +16,16 @@ export async function signUp(
 		const db     = window.db
 
 		await window.db.runTransaction(async (transaction) => {
-			const credRef = db.collection('creds').doc(user.user.uid)
-			const userRef = db.collection('users').doc(user.user.uid)
-			await credRef.set({
-				name: username,
-				pw: password,
-				uid: user.user.uid
-			})
+			const userRef = db.collection('users').doc(user.key)
+			const credRef = userRef.collection('creds').doc(user.key)
 
 			await userRef.set({
 				name: username,
-				uid: user.user.uid
+				key: user.key,
+			})
+			await credRef.set({
+				hash: password,
+				userKey: user.key
 			})
 		})
 	} catch (error) {
@@ -91,16 +90,18 @@ export function reactToUser(
 	const user = window.fb.auth().currentUser
 	store.set({user})
 
-	window.fb.auth().onAuthStateChanged((user) => {
-		if (user) {
+	window.fb.auth().onAuthStateChanged((dbUser) => {
+		let user
+		if (dbUser) {
 			user = {
-				user,
-				name: user.email.split('@')[0]
+				db: dbUser,
+				key: dbUser.uid,
+				name: dbUser.email.split('@')[0]
 			}
 		} else {
 			const {currentPage} = store.get()
 			if (currentPage.authenticated) {
-				navigateToPage(POLL_SEARCH_LIST)
+				navigateToPage(POLL_LIST)
 			}
 		}
 		store.set({user, authChecked: true})

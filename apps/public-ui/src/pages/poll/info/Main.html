@@ -402,7 +402,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			try {
 				currentVariation = PollStore.currentVariation()
 				if (!currentVariation.ui && mode !== 'build') {
-					routes.navigateToPage(routes.POLL_SEARCH_LIST)
+					routes.navigateToPage(routes.POLL_LIST)
 					return
 				}
 			} catch (error) {

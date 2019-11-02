@@ -9,20 +9,20 @@
 	</form>
 	<table>
 		{#each polls as poll}
-		<ListItem
+		<PollListItem
 				mode="{mode}"
 				on:select="goTo(poll.key, poll.rootVariationKey)"
 				poll="{poll}"
-		></ListItem>
+		></PollListItem>
 		{/each}
 	</table>
-	<PollListingFab
+	<PollListFab
 			entityNames="Polls"
 			on:factors="showFactors()"
 			on:sort="setAction('sort')"
 			on:filter="setAction('filter')"
 			on:outcomes="showOutcomes()"
-	></PollListingFab>
+	></PollListFab>
 	<!--
 	<VirtualList items={factors} component={ListItem} />
 	-->
@@ -91,34 +91,33 @@
 </style>
 <script>
 	import {DI}           from '@airport/di'
-	import {POLL_DAO}     from '@votecube/public-db'
-	import {fade}               from 'svelte-transitions'
+	import {POLL_DAO}            from '@votecube/public-db'
+	import {fade}                from 'svelte-transitions'
 	import CancelButton         from '../../../common/control/button/CancelButton.html'
 	import AutoComplete         from '../../../common/field/AutoComplete.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import Text                 from '../../../common/field/Text.html'
 	import ActionPopover        from '../../../common/shell/ActionPopover.html'
-	import PollListingFab       from '../../../components/poll/PollListingFab.html'
+	import PollListFab          from '../../../components/poll/PollListFab.html'
 	import * as forms           from '../../../form/forms'
 	import {fromPollListingDoc} from '../../../helpers/db/fromConverter'
 	import {loadForms}          from '../../../libs/forms'
 	import * as routes          from '../../../routes'
 	import store                from '../../../store'
-	import ListItem             from './ListItem.html'
+	import PollListItem         from './PollListItem.html'
 
 	export default {
 		components: {
 			ActionPopover,
 			AutoComplete,
 			CancelButton,
-			ListItem,
-			PollListingFab,
+			PollListFab,
+			PollListItem,
 			Text,
 			// VirtualList
 		},
 		data() {
 			return {
-				// ListItem,
 				mode: 'factors'
 			}
 		},

@@ -1,33 +1,54 @@
-import {DI}       from '@airport/di'
-import {POLL_DAO} from '../../diTokens'
-import {IPoll}    from '../../generated/interfaces'
-import {Poll_Id}  from '../../types/poll/Poll'
+import {DI} from '@airport/di'
+
+import {firestore} from 'firebase'
+import {POLL_DAO}  from '../../diTokens'
+import {
+	FactorKey,
+	ICollection,
+	IDoc,
+	IFactorDoc,
+	IOutcomeDoc,
+	IPollDoc,
+	IPollFactors,
+	IPositionDoc,
+	ITimestamp,
+	IUserCreatedDoc,
+	IUserDoc,
+	IVariationDoc,
+	IVariationListingDoc,
+	IVCDocumentReference,
+	IVCTransaction,
+	IVoteCubeSchema,
+	Key,
+	PollKey,
+	Schema,
+	VariationKey
+}                  from '../../document/document'
 import {
 	calculateWaterMarks,
 	copy
-}                 from '../DB'
+}                  from '../DB'
 
-export interface IPollDao
-	// extends IBasePollDao
-{
+// extends IBasePollDao
+export interface IPollDao {
 	// findByPollIdWithDetails(
 	// 	pollId: Poll_Id
 	// ): Promise<IPoll>
 
 	addTemp(
-		poll: IPoll
+		poll: IVariationDoc
 	): void
 
-	getAll(): Promise<IPoll[]>
+	getAll(): Promise<IPollDoc[]>
 
 	getForTheme(
 		themeId: number
-	): Promise<IPoll[]>
+	): Promise<IPollDoc[]>
 
 	save(
-		poll: IPoll,
-		user
-	): Promise<IPoll>
+		variation: IVariationDoc,
+		user: IUserDoc
+	): Promise<IPollDoc>
 
 }
 
@@ -35,18 +56,22 @@ export class PollDao
 	// extends BasePollDao
 	implements IPollDao {
 
-	tempPoll: IPoll
-	DI
+	tempVariation: IVariationDoc
 
-	async addTemp(
-		poll: IPoll
-	): Promise<void> {
-		this.tempPoll = poll
+	schema: IVoteCubeSchema
+
+	constructor() {
+		this.schema = new Schema((window as any).db)
 	}
 
-	async getAll(): Promise<IPoll[]> {
-		const db     = (window as any).db
-		const result = await db.collection('polls')
+	async addTemp(
+		poll: IVariationDoc
+	): Promise<void> {
+		this.tempVariation = poll
+	}
+
+	async getAll(): Promise<IPollDoc[]> {
+		const result = await this.schema.pollDrafts.reference
 			.orderBy('createdAt.m', 'desc')
 			.get()
 		return result.docs.map(
@@ -55,9 +80,8 @@ export class PollDao
 
 	async getForTheme(
 		themeId: number
-	): Promise<IPoll[]> {
-		const db     = (window as any).db
-		const result = await db.collection('polls')
+	): Promise<IPollDoc[]> {
+		const result = await this.schema.pollDrafts.reference
 			.where('theme.id.v', '==', themeId)
 			.orderBy('createdAt.m', 'desc')
 			.get()
@@ -66,20 +90,20 @@ export class PollDao
 	}
 
 	async getVariation(
-		pollKey: Poll_Id,
-		variationKey: any
-	): Promise<IPoll> {
-		return await this.getChildPollObjectByKey(pollKey, variationKey, 'variations')
+		pollKey: PollKey,
+		variationKey: VariationKey
+	): Promise<IVariationDoc> {
+		return await this.getOne(
+			this.schema.pollDrafts.pollVariations(pollKey).doc(variationKey)
+		)
 	}
 
 	async getVariationListing(
-		pollKey: Poll_Id,
-		variationKey: any
-	): Promise<IPoll> {
-		const result = await (window as any).db
-			.collection('polls').doc(pollKey)
-			.collection('variationListings')
-			.where('variationKey', '==', variationKey)
+		pollKey: PollKey,
+		variationKey: VariationKey
+	): Promise<IVariationListingDoc> {
+		const result = await this.schema.pollDrafts.pollVariationListings(pollKey)
+			.reference.where('key', '==', variationKey)
 			.get()
 
 		const records = result.docs.map(
@@ -93,13 +117,11 @@ export class PollDao
 	}
 
 	async getChildVariationListings(
-		pollKey: Poll_Id,
-		variationKey: any
-	): Promise<IPoll> {
-		const result = await (window as any).db
-			.collection('polls').doc(pollKey)
-			.collection('variationListings')
-			.where('parent.key', '==', variationKey)
+		pollKey: PollKey,
+		variationKey: VariationKey
+	): Promise<IVariationListingDoc[]> {
+		const result = await this.schema.pollDrafts.pollVariationListings(pollKey)
+			.reference.where('parent.key', '==', variationKey)
 			.orderBy('createdAt.m', 'desc')
 			.get()
 
@@ -108,28 +130,83 @@ export class PollDao
 	}
 
 	async save(
-		aPoll: IPoll,
-		user
-	): Promise<IPoll> {
-		const createdAt: any = {}
-		const date           = new Date()
+		variationIn: IVariationDoc,
+		user: IUserDoc,
+	): Promise<IPollDoc> {
+		const variationOnly = !!variationIn.pollKey
 
-		createdAt.m      = date.getTime()
-		createdAt.o      = date.getTimezoneOffset()
+		const variation = this.setupVariation(variationIn, user)
+		const poll      = this.setupPoll(variation, user)
+
+		try {
+			await this.schema.db.runTransaction(async (transaction) => {
+				const {
+					      pollRef,
+					      variationRef
+				      } = variationOnly
+					? await this.getRefs(variation)
+					: await this.savePollAndGetRefs(poll, transaction)
+
+				variation.pollKey = poll.key
+				variation.key     = variationRef.id
+				await transaction.set(variationRef, variation)
+
+				const variationListing    = this.setupVariationListing(poll, variation)
+				const variationListingRef = this.schema.pollDrafts.pollVariationListings(pollRef)
+					.doc(variation.key)
+				await transaction.set(variationListingRef, variationListing)
+
+				await this.addOutcomesFactorsAndPositions(
+					poll, variationOnly, variation,
+					user, transaction)
+
+				delete this.tempVariation
+			})
+		} catch (error) {
+			alert(error)
+		} finally {
+			// Nothing to do
+		}
+
+		return poll
+	}
+
+	private setupVariation(
+		variationIn: IVariationDoc,
+		user: IUserDoc
+	): IVariationDoc {
+		const date       = new Date()
 		const dateString = date.toString()
 		const timezone   = dateString.split('(')[1].split(')')[0]
-		createdAt.z      = timezone
 
-		const variation: any = {
-			...aPoll,
-			createdAt,
-			uid: user.uid
+		const createdAt: ITimestamp = {
+			m: date.getTime(),
+			o: date.getTimezoneOffset(),
+			s: firestore.FieldValue.serverTimestamp(),
+			z: timezone
 		}
-		delete variation.id
+
+		const variation: IVariationDoc = {
+			...variationIn,
+			createdAt,
+			userKey: user.key
+		}
+		delete (variation as any).id
 
 		calculateWaterMarks(variation)
 
-		const factors = {}
+		return variation
+	}
+
+	private setupPoll(
+		variation: IVariationDoc,
+		user: IUserDoc
+	): IPollDoc {
+		const factors: IPollFactors = {
+			1: undefined,
+			2: undefined,
+			3: undefined
+		}
 
 		for (const factorName in variation.factors) {
 			if (factorName === 'marks') {
@@ -143,74 +220,208 @@ export class PollDao
 			}
 		}
 
-		const poll: any = {
+		return {
 			ageSuitability: copy(variation.ageSuitability),
-			createdAt,
+			createdAt: variation.createdAt,
 			factors,
+			fts: undefined,
+			key: undefined,
 			name: copy(variation.name),
 			outcomes: copy(variation.outcomes),
+			rootVariationKey: variation.key,
 			theme: copy(variation.theme),
-			uid: user.uid
+			userKey: user.key
 		}
-
-		try {
-			const db = (window as any).db
-			await db.runTransaction(async (transaction) => {
-				let pollRef
-
-				if (!variation.parent) {
-					pollRef           = db.collection('polls').doc()
-					poll.key          = pollRef.id
-					variation.pollKey = poll.key
-				} else {
-					pollRef = db.collection('polls').doc(variation.pollKey)
-				}
-
-				const variationRef        = pollRef
-					.collection('variations').doc()
-				const variationListingRef = pollRef
-					.collection('variationListings').doc()
-
-				variation.key = variationRef.id
-
-				const variationListing = {
-					...poll,
-					depth: variation.depth,
-					key: variationListingRef.id,
-					parent: variation.parent,
-					pollKey: variation.pollKey,
-					variationKey: variation.key,
-				}
-
-				if (!variation.parent) {
-					poll.rootVariationKey = variation.key
-					await transaction.set(pollRef, poll)
-				}
-				await transaction.set(variationRef, variation)
-				await transaction.set(variationListingRef, variationListing)
-
-				delete this.tempPoll
-			})
-		} catch (error) {
-			alert(error)
-		} finally {
-			// Nothing to do
-		}
-
-		return poll
 	}
 
-	private async getChildPollObjectByKey(
-		pollKey: Poll_Id,
-		variationKey: any,
-		childPollCollectionName
-	): Promise<IPoll> {
-		const docRef = (window as any).db
-			.collection('polls').doc(pollKey)
-			.collection(childPollCollectionName).doc(variationKey)
+	private setupVariationListing(
+		poll: IPollDoc,
+		variation: IVariationDoc
+	): IVariationListingDoc {
+		return {
+			...poll,
+			depth: variation.depth,
+			key: variation.key,
+			parent: variation.parent,
+			path: variation.path,
+			pollKey: variation.pollKey
+		}
+	}
 
-		// const result = await result.ref.get()
+	private async getRefs(
+		variation: IVariationDoc
+	): Promise<{
+		pollRef: IVCDocumentReference<PollKey, IPollDoc>,
+		variationRef: IVCDocumentReference<VariationKey, IVariationDoc, PollKey, IPollDoc>
+	}> {
+		const pollRef      = this.schema.pollDrafts.doc(variation.pollKey)
+		const variationRef = this.schema.pollDrafts.pollVariations(pollRef).reference.doc()
 
+		return {
+			pollRef,
+			variationRef
+		}
+	}
+
+	private async savePollAndGetRefs(
+		poll: IPollDoc,
+		transaction: IVCTransaction,
+	): Promise<{
+		pollRef: IVCDocumentReference<PollKey, IPollDoc>,
+		variationRef: IVCDocumentReference<VariationKey, IVariationDoc, PollKey, IPollDoc>
+	}> {
+		const pollRef = this.schema.pollDrafts.doc()
+		poll.key      = pollRef.id
+
+		const variationRef = this.schema.pollDrafts.pollVariations(pollRef).doc()
+
+		poll.rootVariationKey = variationRef.id
+		await transaction.set(pollRef, poll)
+
+		return {
+			pollRef,
+			variationRef
+		}
+	}
+
+	private async addOutcomesFactorsAndPositions(
+		poll: IPollDoc,
+		pollExists: boolean,
+		variation: IVariationDoc,
+		user: IUserDoc,
+		transaction: IVCTransaction
+	): Promise<void> {
+		await this.addOutcome(poll.outcomes.A, poll, pollExists, user, transaction)
+		await this.addOutcome(poll.outcomes.B, poll, pollExists, user, transaction)
+
+		await this.addFactor(variation.factors[1], poll, pollExists, user, transaction)
+		await this.addFactor(variation.factors[2], poll, pollExists, user, transaction)
+		await this.addFactor(variation.factors[3], poll, pollExists, user, transaction)
+	}
+
+	private async addOutcome(
+		outcome: IOutcomeDoc,
+		poll: IPollDoc,
+		pollExists: boolean,
+		user: IUserDoc,
+		transaction: IVCTransaction
+	): Promise<void> {
+		const outcomeExists = !!outcome.key
+		const outcomeRef    = await this.addResource(outcome, this.schema.outcomes,
+			user, transaction)
+
+		await this.addManyToManyResource(this.schema.outcomes.outcomePolls(outcomeRef), outcome, 'outcome', outcomeExists,
+			poll, pollExists, user, transaction)
+	}
+
+	private async addFactor(
+		factor: IFactorDoc,
+		poll: IPollDoc,
+		pollExists: boolean,
+		user: IUserDoc,
+		transaction: IVCTransaction
+	): Promise<void> {
+		const factorExists     = !!factor.key
+		const standAloneFactor = {...factor}
+		delete standAloneFactor.positions
+
+		const factorRef = await this.addResource(standAloneFactor, this.schema.factors,
+			user, transaction)
+
+		await this.addManyToManyResource(this.schema.factors.factorPolls(factorRef),
+			factor, 'factor', factorExists,
+			poll, pollExists, user, transaction)
+
+		await this.addPosition(factor.positions.A, factorRef, factor, factorExists,
+			poll, pollExists, user, transaction)
+		await this.addPosition(factor.positions.B, factorRef, factor, factorExists,
+			poll, pollExists, user, transaction)
+	}
+
+	private async addManyToManyResource<K extends Key, T extends IUserCreatedDoc<K>,
+		PK extends Key, PT extends IDoc<PK>>(
+		collection: ICollection<K, T, PK, PT>,
+		parent: IUserCreatedDoc<any>,
+		parentName: string,
+		parentExists: boolean,
+		child: IUserCreatedDoc<any>,
+		childExists: boolean,
+		user: IUserDoc,
+		transaction: IVCTransaction
+	): Promise<void> {
+		const manyToManyRef = collection.doc(child.key)
+
+		// If both factor and this poll existed before, check if this poll is already listed under
+		// this factor
+		let createManyToMany = true
+		if (parentExists && childExists) {
+			const manyToManyDoc = await manyToManyRef.get()
+
+			if (manyToManyDoc.exists) {
+				createManyToMany = false
+			}
+		}
+
+		if (!createManyToMany) {
+			return
+		}
+
+		const manyToMany = {
+			...child,
+			[parentName + 'Key']: parent.key
+		}
+		// manyToManyRef =
+		await this.addResource(manyToMany, collection, user, transaction)
+	}
+
+	private async addPosition(
+		position: IPositionDoc,
+		factorRef: IVCDocumentReference<FactorKey, IFactorDoc>,
+		factor: IFactorDoc,
+		factorExists: boolean,
+		poll: IPollDoc,
+		pollExists: boolean,
+		user: IUserDoc,
+		transaction: IVCTransaction
+	): Promise<void> {
+		const positionExists = !!position.key
+
+		const positionRef = await this.addResource(position, this.schema.positions,
+			user, transaction)
+
+		await this.addManyToManyResource(this.schema.positions.positionPolls(positionRef),
+			position, 'position', positionExists,
+			poll, pollExists, user, transaction)
+
+		await this.addManyToManyResource(this.schema.factors.factorPositions(factorRef),
+			factor, 'factor', factorExists,
+			position, positionExists, user, transaction)
+	}
+
+	private async addResource<K extends Key, T extends IUserCreatedDoc<K>,
+		PK extends Key, PT extends IDoc<PK>>(
+		resource: T,
+		collection: ICollection<K, T, PK, PT>,
+		user: IUserDoc,
+		transaction: IVCTransaction
+	): Promise<IVCDocumentReference<K, T, PK, PT>> {
+		if (resource.key) {
+			return collection.doc(resource.key)
+		}
+
+		const resourceRef = collection.doc()
+		resource.key      = resourceRef.id as K
+		resource.userKey  = user.key
+
+		await transaction.set(resourceRef, resource)
+
+		return resourceRef
+	}
+
+	private async getOne<K extends Key, T extends IDoc<K>,
+		PK extends Key, PT extends IDoc<PK>>(
+		docRef: IVCDocumentReference<K, T, PK, PT>
+	): Promise<T | null> {
 		const doc = await docRef.get()
 
 		if (doc.exists) {
@@ -220,104 +431,6 @@ export class PollDao
 		return null
 	}
 
-	/*
-
-	async findByPollIdWithDetails(
-		pollId: Poll_Id
-	): Promise<IPoll> {
-		return await this.findFromWhereClauseWithSomeDetails(
-			p => p.id.equals(pollId))
-	}
-
-	private async findFromWhereClauseWithSomeDetails(
-		callback: (
-			p: QPoll
-		) => JSONBaseOperation
-	): Promise<IPoll> {
-		const pfpDuo = await DI.get(POLL_FACTOR_POSITION_DUO)
-		const pconDuo = await DI.get(POLL_CONTINENT_DUO)
-
-		const repoIdFieldsSelect = this.db.duo.select.fields
-		let p: QPoll
-		return await this.db.findOne.graph({
-			from: [
-				p = this.db.from
-			],
-			select: {
-				...this.db.duo.select.fields,
-				pollContinents: {
-					...pconDuo.select.fields,
-					continent: {}
-				},
-				pollCountries: {
-					...repoIdFieldsSelect,
-					country: {}
-				},
-				pollFactorPositions: {
-					...pfpDuo.select.fields,
-					factorPosition: {
-						...repoIdFieldsSelect,
-						factor: {},
-						position: {}
-					}
-				},
-				pollStates: {
-					...repoIdFieldsSelect,
-					state: {}
-				},
-				pollTowns: {
-					...repoIdFieldsSelect,
-					town: {}
-				},
-				theme: {}
-			},
-			where: callback(p)
-		})
-	}
-
-	private matchRepoEntitiesByIds(
-		repositoryEntities: IRepositoryEntity[],
-		referencingEntities: any[],
-		repositoryEntityPropertyName: string,
-		referencingEntitiesPropertyName: string
-	): void {
-		const repoEntityMap: Map<number, Map<number, Map<number, IRepositoryEntity>>>
-						= new Map<number, Map<number, Map<number, IRepositoryEntity>>>()
-
-		for (const repositoryEntity of repositoryEntities) {
-			repositoryEntity[referencingEntitiesPropertyName] = []
-			ensureChildJsMap(
-				ensureChildJsMap(repoEntityMap,
-					repositoryEntity.repository.id),
-				repositoryEntity.actor.id).set(repositoryEntity.actorRecordId, repositoryEntity)
-		}
-
-		for (const referencingEntity of referencingEntities) {
-			const repoEntityReference = referencingEntity[repositoryEntityPropertyName]
-
-			const repoEntityMapForRepoId = repoEntityMap.get(repoEntityReference.repository.id)
-
-			if (!repoEntityMapForRepoId) {
-				continue
-			}
-
-			const repoEntityMapForActorId = repoEntityMapForRepoId.get(repoEntityReference.actor.id)
-
-			if (!repoEntityMapForActorId) {
-				continue
-			}
-
-			const repositoryEntity = repoEntityMapForActorId.get(repoEntityReference.actorRecordId)
-
-			if (!repositoryEntity) {
-				continue
-			}
-
-			repositoryEntity[referencingEntitiesPropertyName].push(referencingEntity)
-			referencingEntity[repositoryEntityPropertyName] = repositoryEntity
-		}
-	}
-*/
 }
 
 DI.set(POLL_DAO, PollDao)

@@ -9,6 +9,7 @@
     "page": "^1.11.3"
   },
   "devDependencies": {
+    "@types/elasticlunr": "^0.9.x",
     "tslint": "^5.14.0",
     "typescript": "^3.2.2"
   },

@@ -7,6 +7,8 @@ export async function init() {
 */
 
 
+import {IMarked} from '..'
+
 export function copy(
 	object,
 	skipKeys = ['marks']
@@ -33,7 +35,7 @@ export function copy(
 }
 
 export function calculateWaterMarks(
-	dbObject
+	dbObject: IMarked
 ) {
 	const marks    = {
 		change: {
@@ -57,7 +59,7 @@ export function calculateWaterMarks(
 			'parentKey',
 			'path',
 			'pollKey',
-			'uid'].indexOf(key) > -1) {
+			'userKey'].indexOf(key) > -1) {
 			continue
 		}
 		const childObject = dbObject[key]
