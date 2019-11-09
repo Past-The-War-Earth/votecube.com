@@ -1,6 +1,6 @@
-import {Id}         from '../core/Model'
-import {IPoll}      from '../poll/Poll'
-import {IContinent} from './Continent'
+import {Id}            from '../old/model'
+import {IPreparedPoll} from '../poll/PreparedPoll'
+import {IContinent}    from './Continent'
 
 export type PollContinentId = Id
 
@@ -10,6 +10,6 @@ export interface IPollContinent {
 
 	continent: IContinent
 	id: PollContinentId
-	poll: IPoll
+	poll: IPreparedPoll
 
 }

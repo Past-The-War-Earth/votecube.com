@@ -1,13 +1,13 @@
-import {Id}             from '../core/Model'
-import {ITemporalModel} from '../core/TemporalModel'
-import {IUser}          from '../User'
+import {IUser} from '../core/User'
+import {Id}    from '../old/model'
 
 export type LabelId = Id
 
 export const LABELS = 'LABELS'
 
 export interface ILabel
-	extends ITemporalModel {
+	// extends ITemporalModel
+{
 
 	description: string
 	id: LabelId

@@ -1,15 +1,11 @@
 import {
 	FactorKey,
-	IFactorDoc
-}                             from '../Factor'
-import {
+	IFactorDoc,
 	IFactorPollDoc,
-	PollKey
-}                             from '../Poll'
-import {
 	IFactorPositionDoc,
+	PollKey,
 	PositionKey
-}                             from '../Position'
+}                             from '@votecube/model'
 import {
 	ICollection,
 	ISchema

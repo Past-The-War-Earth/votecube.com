@@ -1,7 +1,3 @@
 export * from './dao/dao'
-// export * from './duo/duo'
 export * from './diTokens'
 export * from './document/document'
-// export * from './generated/generated'
-export * from './generated/interfaces'
-export * from './types/types'

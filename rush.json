@@ -50,6 +50,11 @@
       "projectFolder": "schemas/public-db",
       "shouldPublish": true
     },
+    {
+      "packageName": "@votecube/relational-db",
+      "projectFolder": "schemas/relational-db",
+      "shouldPublish": true
+    },
     // "apis" folder (alphabetical order)
     {
       "packageName": "@airport/air-control",

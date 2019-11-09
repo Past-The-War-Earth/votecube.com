@@ -1,6 +1,6 @@
 import * as routes from '../routes'
 
-export const CREATE_POLL_TOP  = routes.POLL_INFO_MAIN
+export const CREATE_POLL_TOP  = routes.POLL_FORM
 export const CREATE_FACTOR = routes.FACTOR_INFO_MAIN
 
 

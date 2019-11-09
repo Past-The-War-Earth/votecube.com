@@ -1,11 +1,9 @@
 import {
 	IOutcomeDoc,
-	OutcomeKey
-}                             from '../Outcome'
-import {
 	IOutcomePollDoc,
+	OutcomeKey,
 	PollKey
-}                             from '../Poll'
+}                             from '@votecube/model'
 import {
 	ICollection,
 	ISchema

@@ -1,4 +1,4 @@
-import {Id}       from '../core/Model'
+import {Id}       from '../old/model'
 import {ICountry} from './Country'
 
 export type StateId = Id

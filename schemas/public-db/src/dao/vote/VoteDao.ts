@@ -7,7 +7,7 @@ import {
 	IPoll,
 	IVote
 }                from '../../generated/generated'
-import {Poll_Id} from '../../types/poll/Poll'
+import {Poll_Id} from '../../../../relational-db/src/types/poll/Poll'
 
 export interface IVoteDao
 	// extends IBaseVoteDao

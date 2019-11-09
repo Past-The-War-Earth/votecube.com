@@ -170,7 +170,7 @@
 	import VariationListFab
 	                                 from '../../../components/poll/variation/VariationListFab.html'
 	import * as forms                from '../../../form/forms'
-	import {fromVariationListingDoc} from '../../../helpers/db/fromConverter'
+	import {fromVariationListingDoc} from '../../../../../../schemas/relational-db/src/dao/fromConverter'
 	import {loadForms}               from '../../../libs/forms'
 	import * as routes               from '../../../routes'
 	import store                     from '../../../store'
@@ -214,7 +214,7 @@
 				pollVariationKey
 			) {
 				// FIXME: need a new mode, something like 'view' - since you can't vote on a variation
-				routes.navigateToPage(routes.POLL_INFO_CUBE, {
+				routes.navigateToPage(routes.POLL_MAIN, {
 					mode: 'vote',
 					pollKey,
 					pollVariationKey,

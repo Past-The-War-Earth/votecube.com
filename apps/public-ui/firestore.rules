@@ -25,6 +25,14 @@ service cloud.firestore {
       allow update: if false;
       allow delete: if false;
 
+      match /factorTranslations/{factorTranslationKey} {
+        allow get: if true;
+        allow list: if true;
+        allow create: if byUser();
+        allow update: if false;
+        allow delete: if false;
+      }
+
       // Listing of Polls by Factor
       // cannot be replicated with "factorKeys" on pollDrafts
       // because number of factors can grow beyond the limit (technically)
@@ -104,6 +112,14 @@ service cloud.firestore {
       allow update: if false;
       allow delete: if false;
 
+      match /outcomeTranslations/{outcomeTranslationKey} {
+        allow get: if true;
+        allow list: if true;
+        allow create: if byUser();
+        allow update: if false;
+        allow delete: if false;
+      }
+
       // Listing of Polls by Outcome (Many-to-Many)
       match /outcomePolls/{pollKey} {
         allow get: if false;
@@ -140,6 +156,14 @@ service cloud.firestore {
       allow update: if false;
       allow delete: if false;
 
+      match /pollDraftTranslations/{pollDraftTranslationKey} {
+        allow get: if true;
+        allow list: if true;
+        allow create: if byUser();
+        allow update: if false;
+        allow delete: if false;
+      }
+
       // Poll Variation listing records
       match /pollVariationListings/{variationKey} {
         allow get: if true;
@@ -147,6 +171,14 @@ service cloud.firestore {
         allow create: if byUser();
         allow update: if false;
         allow delete: if false;
+
+        match /pollVariationListingTranslations/{pollVariationListingTranslationKey} {
+          allow get: if true;
+          allow list: if true;
+          allow create: if byUser();
+          allow update: if false;
+          allow delete: if false;
+        }
       }
 
       // The actual Poll Variation records
@@ -156,6 +188,14 @@ service cloud.firestore {
         allow create: if byUser();
         allow update: if false;
         allow delete: if false;
+
+        match /pollVariationTranslations/{pollVariationTranslationKey} {
+          allow get: if true;
+          allow list: if true;
+          allow create: if byUser();
+          allow update: if false;
+          allow delete: if false;
+        }
       }
     }
 
@@ -166,6 +206,14 @@ service cloud.firestore {
       allow create: if byUser();
       allow update: if false;
       allow delete: if false;
+
+      match /positionTranslations/{positionTranslationKey} {
+        allow get: if true;
+        allow list: if true;
+        allow create: if byUser();
+        allow update: if false;
+        allow delete: if false;
+      }
 
       // The Polls using this Position (Many-to-Many)
       match /positionPolls/{pollKey} {

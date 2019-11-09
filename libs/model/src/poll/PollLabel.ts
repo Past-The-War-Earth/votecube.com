@@ -1,7 +1,7 @@
-import {Id}     from '../core/Model'
-import {IUser}  from '../User'
-import {ILabel} from './Label'
-import {IPoll}  from './Poll'
+import {IUser}         from '../core/User'
+import {Id}            from '../old/model'
+import {ILabel}        from './Label'
+import {IPreparedPoll} from './PreparedPoll'
 
 export type PollLabelId = Id
 
@@ -12,7 +12,7 @@ export interface IPollLabel {
 	createdAt?: Date
 	id: PollLabelId
 	label: ILabel
-	poll: IPoll
+	poll: IPreparedPoll
 	user: IUser
 
 }

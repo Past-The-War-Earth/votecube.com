@@ -1,15 +1,18 @@
 import {
-	IDoc,
+	IKeyed,
 	Key
-}                   from '../common'
+}                   from '@votecube/model'
 import {Collection} from './Collection'
-import {ISchema}    from './common'
+import {
+	CollectionName,
+	ISchema
+}                   from './common'
 
-export class RootCollection<K extends Key, T extends IDoc<K>>
+export class RootCollection<K extends Key, T extends IKeyed<K>>
 	extends Collection<K, T> {
 
 	constructor(
-		public name: string,
+		public name: CollectionName,
 		public schema: ISchema,
 	) {
 		super(name)

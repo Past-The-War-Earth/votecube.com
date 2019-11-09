@@ -1,28 +1,31 @@
 import {DI} from '@airport/di'
+import {
+	FactorKey,
+	ICorePollFactorsFragment,
+	IFactorDoc,
+	IKeyed,
+	IOutcomeDoc,
+	IPollDoc,
+	IPositionDoc,
+	IsDoc,
+	ITimestamp,
+	IUser,
+	IUserCreated,
+	IVariationDoc,
+	IVariationListingDoc,
+	Key,
+	PollKey,
+	VariationKey
+}           from '@votecube/model'
 
 import {firestore} from 'firebase'
 import {POLL_DAO}  from '../../diTokens'
 import {
-	FactorKey,
 	ICollection,
-	IDoc,
-	IFactorDoc,
-	IOutcomeDoc,
-	IPollDoc,
-	IPollFactors,
-	IPositionDoc,
-	ITimestamp,
-	IUserCreatedDoc,
-	IUserDoc,
-	IVariationDoc,
-	IVariationListingDoc,
 	IVCDocumentReference,
 	IVCTransaction,
 	IVoteCubeSchema,
-	Key,
-	PollKey,
-	Schema,
-	VariationKey
+	Schema
 }                  from '../../document/document'
 import {
 	calculateWaterMarks,
@@ -41,13 +44,28 @@ export interface IPollDao {
 
 	getAll(): Promise<IPollDoc[]>
 
+	getChildVariationListings(
+		pollKey: PollKey,
+		variationKey: VariationKey
+	): Promise<IVariationListingDoc[]>
+
 	getForTheme(
 		themeId: number
 	): Promise<IPollDoc[]>
 
+	getVariation(
+		pollKey: PollKey,
+		variationKey: VariationKey
+	): Promise<IVariationDoc>
+
+	getVariationListing(
+		pollKey: PollKey,
+		variationKey: VariationKey
+	): Promise<IVariationListingDoc>
+
 	save(
 		variation: IVariationDoc,
-		user: IUserDoc
+		user: IUser
 	): Promise<IPollDoc>
 
 }
@@ -131,7 +149,7 @@ export class PollDao
 
 	async save(
 		variationIn: IVariationDoc,
-		user: IUserDoc,
+		user: IUser,
 	): Promise<IPollDoc> {
 		const variationOnly = !!variationIn.pollKey
 
@@ -173,7 +191,7 @@ export class PollDao
 
 	private setupVariation(
 		variationIn: IVariationDoc,
-		user: IUserDoc
+		user: IUser
 	): IVariationDoc {
 		const date       = new Date()
 		const dateString = date.toString()
@@ -200,9 +218,9 @@ export class PollDao
 
 	private setupPoll(
 		variation: IVariationDoc,
-		user: IUserDoc
+		user: IUser
 	): IPollDoc {
-		const factors: IPollFactors = {
+		const factors: ICorePollFactorsFragment<IsDoc> = {
 			1: undefined,
 			2: undefined,
 			3: undefined
@@ -288,7 +306,7 @@ export class PollDao
 		poll: IPollDoc,
 		pollExists: boolean,
 		variation: IVariationDoc,
-		user: IUserDoc,
+		user: IUser,
 		transaction: IVCTransaction
 	): Promise<void> {
 		await this.addOutcome(poll.outcomes.A, poll, pollExists, user, transaction)
@@ -303,7 +321,7 @@ export class PollDao
 		outcome: IOutcomeDoc,
 		poll: IPollDoc,
 		pollExists: boolean,
-		user: IUserDoc,
+		user: IUser,
 		transaction: IVCTransaction
 	): Promise<void> {
 		const outcomeExists = !!outcome.key
@@ -318,7 +336,7 @@ export class PollDao
 		factor: IFactorDoc,
 		poll: IPollDoc,
 		pollExists: boolean,
-		user: IUserDoc,
+		user: IUser,
 		transaction: IVCTransaction
 	): Promise<void> {
 		const factorExists     = !!factor.key
@@ -338,15 +356,15 @@ export class PollDao
 			poll, pollExists, user, transaction)
 	}
 
-	private async addManyToManyResource<K extends Key, T extends IUserCreatedDoc<K>,
-		PK extends Key, PT extends IDoc<PK>>(
+	private async addManyToManyResource<K extends Key, T extends IUserCreated<K>,
+		PK extends Key, PT extends IKeyed<PK>>(
 		collection: ICollection<K, T, PK, PT>,
-		parent: IUserCreatedDoc<any>,
+		parent: IUserCreated<any>,
 		parentName: string,
 		parentExists: boolean,
-		child: IUserCreatedDoc<any>,
+		child: IUserCreated<any>,
 		childExists: boolean,
-		user: IUserDoc,
+		user: IUser,
 		transaction: IVCTransaction
 	): Promise<void> {
 		const manyToManyRef = collection.doc(child.key)
@@ -381,7 +399,7 @@ export class PollDao
 		factorExists: boolean,
 		poll: IPollDoc,
 		pollExists: boolean,
-		user: IUserDoc,
+		user: IUser,
 		transaction: IVCTransaction
 	): Promise<void> {
 		const positionExists = !!position.key
@@ -398,11 +416,11 @@ export class PollDao
 			position, positionExists, user, transaction)
 	}
 
-	private async addResource<K extends Key, T extends IUserCreatedDoc<K>,
-		PK extends Key, PT extends IDoc<PK>>(
+	private async addResource<K extends Key, T extends IUserCreated<K>,
+		PK extends Key, PT extends IKeyed<PK>>(
 		resource: T,
 		collection: ICollection<K, T, PK, PT>,
-		user: IUserDoc,
+		user: IUser,
 		transaction: IVCTransaction
 	): Promise<IVCDocumentReference<K, T, PK, PT>> {
 		if (resource.key) {
@@ -418,8 +436,8 @@ export class PollDao
 		return resourceRef
 	}
 
-	private async getOne<K extends Key, T extends IDoc<K>,
-		PK extends Key, PT extends IDoc<PK>>(
+	private async getOne<K extends Key, T extends IKeyed<K>,
+		PK extends Key, PT extends IKeyed<PK>>(
 		docRef: IVCDocumentReference<K, T, PK, PT>
 	): Promise<T | null> {
 		const doc = await docRef.get()

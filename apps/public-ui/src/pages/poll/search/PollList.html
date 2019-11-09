@@ -100,7 +100,7 @@
 	import ActionPopover        from '../../../common/shell/ActionPopover.html'
 	import PollListFab          from '../../../components/poll/PollListFab.html'
 	import * as forms           from '../../../form/forms'
-	import {fromPollListingDoc} from '../../../helpers/db/fromConverter'
+	import {fromPollListingDoc} from '../../../../../../schemas/relational-db/src/dao/fromConverter'
 	import {loadForms}          from '../../../libs/forms'
 	import * as routes          from '../../../routes'
 	import store                from '../../../store'
@@ -126,7 +126,7 @@
 				pollKey,
 				pollVariationKey
 			) {
-				routes.navigateToPage(routes.POLL_INFO_CUBE, {
+				routes.navigateToPage(routes.POLL_MAIN, {
 					mode: 'vote',
 					pollKey,
 					pollVariationKey,

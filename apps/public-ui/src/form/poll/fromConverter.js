@@ -44,10 +44,10 @@ export function formToDto(
 		// 	town
 		// })),
 		outcomes: [{
-			key: 'A',
+			ordinal: 'A',
 			outcome: outcomes.A
 		}, {
-			key: 'B',
+			ordinal: 'B',
 			outcome: outcomes.B
 		}],
 		theme: {

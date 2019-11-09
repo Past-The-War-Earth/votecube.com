@@ -1,12 +1,10 @@
 import {
 	IPollDoc,
-	PollKey
-}                             from '../Poll'
-import {
 	IVariationDoc,
+	IVariationListingDoc,
+	PollKey,
 	VariationKey
-}                             from '../Variation'
-import {IVariationListingDoc} from '../VariationListing'
+}                             from '@votecube/model'
 import {
 	ICollection,
 	ISchema

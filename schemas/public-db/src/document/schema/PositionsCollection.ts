@@ -1,11 +1,9 @@
 import {
-	IPositionPollDoc,
-	PollKey
-}                             from '../Poll'
-import {
 	IPositionDoc,
+	IPositionPollDoc,
+	PollKey,
 	PositionKey
-}                             from '../Position'
+}                             from '@votecube/model'
 import {
 	ICollection,
 	ISchema

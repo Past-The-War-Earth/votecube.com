@@ -15,8 +15,8 @@ export const FACTOR_INFO_MAIN    = '/factor/info/Main/:mode'
 export const FACTOR_LIST         = '/factor/List'
 export const POLL_LIST           = '/poll/List'
 export const VARIATION_LIST      = '/variation/List/:pollKey/:pollVariationKey'
-export const POLL_INFO_MAIN      = '/poll/info/Main/:mode'
-export const POLL_INFO_CUBE      = '/poll/info/Cube/:mode/:pollKey/:pollVariationKey'
+export const POLL_FORM           = '/poll/Form/:mode'
+export const POLL_MAIN           = '/poll/Main/:mode/:pollKey/:pollVariationKey'
 export const POLL_LOCATIONS      = '/poll/Locations/:mode'
 export const POLL_TIMEFRAME      = '/poll/Timeframe/:mode'
 export const CARD_CLIMATE_CHANGE = '/card/ClimateChange'
@@ -69,12 +69,12 @@ configPage(
 	true
 )
 configPage(
-	POLL_INFO_MAIN,
+	POLL_FORM,
 	true,
 	false
 )
 configPage(
-	POLL_INFO_CUBE,
+	POLL_MAIN,
 	false,
 	true
 )

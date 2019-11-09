@@ -1,22 +1,25 @@
 import {
-	IDoc,
+	IKeyed,
 	Key
-}                    from '../common'
-import {Collection}  from './Collection'
-import {ICollection} from './common'
+}                   from '@votecube/model'
+import {Collection} from './Collection'
+import {
+	CollectionName,
+	ICollection
+}                   from './common'
 import {
 	IVCCollectionReference,
 	IVCDocumentReference
-}                    from './DocRef'
+}                   from './DocRef'
 
-export class ChildCollection<K extends Key, T extends IDoc<K>,
-	PK extends Key, PT extends IDoc<PK>>
+export class ChildCollection<K extends Key, T extends IKeyed<K>,
+	PK extends Key, PT extends IKeyed<PK>>
 	extends Collection<K, T, PK, PT> {
 
 	reference: IVCCollectionReference<K, T, PK, PT>
 
 	constructor(
-		public name: string,
+		public name: CollectionName,
 		public parent: ICollection<PK, PT>,
 		parentKeyOrReference: Key | IVCDocumentReference<PK, PT>,
 	) {

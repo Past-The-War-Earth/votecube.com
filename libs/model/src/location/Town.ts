@@ -1,4 +1,4 @@
-import {Id}      from '../core/Model'
+import {Id}      from '../old/model'
 import {ICounty} from './County'
 
 export type TownId = Id

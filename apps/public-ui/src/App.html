@@ -103,8 +103,8 @@
 	import FactorInfoMain        from './pages/factor/info/Main.html'
 	import FactorList            from './pages/factor/search/FactorList.html'
 	import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
-	import PollInfoCube          from './pages/poll/info/Cube.html'
-	import PollInfoMain          from './pages/poll/info/Main.html'
+	import PollInfoMain          from './pages/poll/info/PollMain.html'
+	import PollInfoForm          from './pages/poll/info/PollForm.html'
 	import PollLocations         from './pages/poll/Locations.html'
 	import PollList              from './pages/poll/search/PollList.html'
 	import PollListTopMenu       from './pages/poll/search/PollList.top.menu.html'
@@ -128,20 +128,20 @@
 	const pageMap = {
 		[routes.ABOUT]: AboutUs,
 		[routes.FEEDBACK]: Feedback,
-		[routes.CARD_CLIMATE_CHANGE]: PollInfoCube,
+		[routes.CARD_CLIMATE_CHANGE]: PollInfoMain,
 		[routes.FACTOR_INFO_MAIN]: FactorInfoMain,
 		[routes.FACTOR_LIST]: FactorList,
 		[routes.POLL_LIST]: PollList,
 		[routes.VARIATION_LIST]: VariationList,
-		[routes.POLL_INFO_MAIN]: PollInfoMain,
-		[routes.POLL_INFO_CUBE]: PollInfoCube,
+		[routes.POLL_FORM]: PollInfoForm,
+		[routes.POLL_MAIN]: PollInfoMain,
 		[routes.POLL_LOCATIONS]: PollLocations,
 		[routes.POLL_TIMEFRAME]: PollTimeframe,
 		[routes.RELEASE_PLAN]: ReleasePlan,
 	}
 
 	const topMenuMap = {
-		[routes.POLL_INFO_CUBE]: PollInfoCommonTopMenu,
+		[routes.POLL_MAIN]: PollInfoCommonTopMenu,
 		[routes.POLL_LIST]: PollListTopMenu
 	}
 

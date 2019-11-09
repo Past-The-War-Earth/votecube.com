@@ -1,6 +1,6 @@
-import {Id}    from '../core/Model'
-import {IPoll} from '../poll/Poll'
-import {ITown} from './Town'
+import {Id}            from '../old/model'
+import {IPreparedPoll} from '../poll/PreparedPoll'
+import {ITown}         from './Town'
 
 export type PollTownId = Id
 
@@ -9,7 +9,7 @@ export const POLL_TOWNS = 'POLL_TOWNS'
 export interface IPollTown {
 
 	id: PollTownId
-	poll: IPoll
+	poll: IPreparedPoll
 	town: ITown
 
 }

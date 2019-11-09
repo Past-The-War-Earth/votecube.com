@@ -106,14 +106,14 @@
 		methods: {
 			select($routeParams) {
 				this.set({interFormNavigation: true})
-				forms.navigateOnValid(this, routes.POLL_INFO_MAIN, $routeParams)
+				forms.navigateOnValid(this, routes.POLL_FORM, $routeParams)
 			},
 		},
 		oncreate() {
 			formCache.getPollRouteParams(this)
 			forms.ensureTopForm(
 				forms.CREATE_FACTOR,
-				this, routes.POLL_INFO_MAIN)
+				this, routes.POLL_FORM)
 			this.store.set({
 				pageTitle: 'Factor Info'
 			})

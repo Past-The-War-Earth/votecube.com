@@ -1,24 +1,24 @@
-import {firestore} from 'firebase'
 import {
-	IDoc,
+	IKeyed,
 	Key
-}                  from '../common'
+}                  from '@votecube/model'
+import {firestore} from 'firebase'
 
 export interface IVCFirestore
 	extends firestore.Firestore {
 
-	collection<K extends Key, T extends IDoc<K>,
-		PK extends Key = null, PT extends IDoc<PK> = null>(
+	collection<K extends Key, T extends IKeyed<K>,
+		PK extends Key = null, PT extends IKeyed<PK> = null>(
 		collectionPath: string
 	): IVCCollectionReference<K, T, PK, PT>;
 
-	doc<K extends Key, T extends IDoc<K>,
-		PK extends Key = null, PT extends IDoc<PK> = null>(
+	doc<K extends Key, T extends IKeyed<K>,
+		PK extends Key = null, PT extends IKeyed<PK> = null>(
 		documentPath: string
 	): IVCDocumentReference<K, T, PK, PT>;
 
-	collectionGroup<K extends Key, T extends IDoc<K>,
-		PK extends Key = null, PT extends IDoc<PK> = null>(
+	collectionGroup<K extends Key, T extends IKeyed<K>,
+		PK extends Key = null, PT extends IKeyed<PK> = null>(
 		collectionId: string
 	): IVCQuery<K, T, PK, PT>;
 
@@ -31,40 +31,40 @@ export interface IVCFirestore
 export interface IVCTransaction
 	extends firestore.Transaction {
 
-	get<K extends Key, T extends IDoc<K>,
-		PK extends Key = null, PT extends IDoc<PK> = null>(
+	get<K extends Key, T extends IKeyed<K>,
+		PK extends Key = null, PT extends IKeyed<PK> = null>(
 		documentRef: IVCDocumentReference<K, T, PK, PT>
 	): Promise<IVCDocumentSnapshot<K, T, PK, PT>>
 
-	set<K extends Key, T extends IDoc<K>,
-		PK extends Key = null, PT extends IDoc<PK> = null>(
+	set<K extends Key, T extends IKeyed<K>,
+		PK extends Key = null, PT extends IKeyed<PK> = null>(
 		documentRef: IVCDocumentReference<K, T, PK, PT>,
 		data: T,
 		options?: firestore.SetOptions
 	): IVCTransaction
 
-	update<K extends Key, T extends IDoc<K>,
-		PK extends Key = null, PT extends IDoc<PK> = null>(
+	update<K extends Key, T extends IKeyed<K>,
+		PK extends Key = null, PT extends IKeyed<PK> = null>(
 		documentRef: IVCDocumentReference<K, T, PK, PT>,
 		data: Partial<T>
 	): IVCTransaction
 
-	update<K extends Key, T extends IDoc<K>,
-		PK extends Key = null, PT extends IDoc<PK> = null>(
+	update<K extends Key, T extends IKeyed<K>,
+		PK extends Key = null, PT extends IKeyed<PK> = null>(
 		documentRef: IVCDocumentReference<K, T, PK, PT>,
 		field: string | firestore.FieldPath,
 		value: any,
 		...moreFieldsAndValues: any[]
 	): IVCTransaction
 
-	delete<K extends Key, T extends IDoc<K>,
-		PK extends Key = null, PT extends IDoc<PK> = null>(
+	delete<K extends Key, T extends IKeyed<K>,
+		PK extends Key = null, PT extends IKeyed<PK> = null>(
 		documentRef: IVCDocumentReference<K, T, PK, PT>
 	): IVCTransaction
 }
 
-export interface IVCCollectionReference<K extends Key, T extends IDoc<K>,
-	PK extends Key = null, PT extends IDoc<PK> = null>
+export interface IVCCollectionReference<K extends Key, T extends IKeyed<K>,
+	PK extends Key = null, PT extends IKeyed<PK> = null>
 	extends IVCQuery<K, T> {
 
 	/** The collection's identifier. */
@@ -96,13 +96,13 @@ export interface IVCCollectionReference<K extends Key, T extends IDoc<K>,
 
 }
 
-export interface IVCDocumentReference<K extends Key, T extends IDoc<K>,
-	PK extends Key = null, PT extends IDoc<PK> = null>
+export interface IVCDocumentReference<K extends Key, T extends IKeyed<K>,
+	PK extends Key = null, PT extends IKeyed<PK> = null>
 	extends firestore.DocumentReference {
 
 	readonly parent: IVCCollectionReference<PK, PT>
 
-	collection<CK extends Key, CT extends IDoc<CK>>(
+	collection<CK extends Key, CT extends IKeyed<CK>>(
 		collectionPath: string
 	): IVCCollectionReference<CK, CT, K, T>
 
@@ -153,8 +153,8 @@ export interface IVCDocumentReference<K extends Key, T extends IDoc<K>,
 
 }
 
-export interface IVCQuerySnapshot<K extends Key, T extends IDoc<K>,
-	PK extends Key = null, PT extends IDoc<PK> = null>
+export interface IVCQuerySnapshot<K extends Key, T extends IKeyed<K>,
+	PK extends Key = null, PT extends IKeyed<PK> = null>
 	extends firestore.QuerySnapshot {
 
 	readonly query: IVCQuery<K, T, PK, PT>
@@ -171,16 +171,16 @@ export interface IVCQuerySnapshot<K extends Key, T extends IDoc<K>,
 
 }
 
-export interface IVCDocumentChange<K extends Key, T extends IDoc<K>,
-	PK extends Key = null, PT extends IDoc<PK> = null>
+export interface IVCDocumentChange<K extends Key, T extends IKeyed<K>,
+	PK extends Key = null, PT extends IKeyed<PK> = null>
 	extends firestore.DocumentChange {
 
 	readonly doc: IVCQueryDocumentSnapshot<K, T, PK, PT>;
 
 }
 
-export interface IVCDocumentSnapshot<K extends Key, T extends IDoc<K>,
-	PK extends Key = null, PT extends IDoc<PK> = null>
+export interface IVCDocumentSnapshot<K extends Key, T extends IKeyed<K>,
+	PK extends Key = null, PT extends IKeyed<PK> = null>
 	extends firestore.DocumentSnapshot {
 
 	readonly ref: IVCDocumentReference<K, T, PK, PT>
@@ -191,16 +191,16 @@ export interface IVCDocumentSnapshot<K extends Key, T extends IDoc<K>,
 
 }
 
-export interface IVCQueryDocumentSnapshot<K extends Key, T extends IDoc<K>,
-	PK extends Key = null, PT extends IDoc<PK> = null>
+export interface IVCQueryDocumentSnapshot<K extends Key, T extends IKeyed<K>,
+	PK extends Key = null, PT extends IKeyed<PK> = null>
 	extends firestore.QueryDocumentSnapshot {
 
 	data(options?: firestore.SnapshotOptions): T
 
 }
 
-export interface IVCQuery<K extends Key, T extends IDoc<K>,
-	PK extends Key = null, PT extends IDoc<PK> = null>
+export interface IVCQuery<K extends Key, T extends IKeyed<K>,
+	PK extends Key = null, PT extends IKeyed<PK> = null>
 	extends firestore.Query {
 
 	where(

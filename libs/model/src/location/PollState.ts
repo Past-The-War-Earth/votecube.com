@@ -1,6 +1,6 @@
-import {Id}     from '../core/Model'
-import {IPoll}  from '../poll/Poll'
-import {IState} from './State'
+import {Id}            from '../old/model'
+import {IPreparedPoll} from '../poll/PreparedPoll'
+import {IState}        from './State'
 
 export type PollStateId = Id
 
@@ -9,7 +9,7 @@ export const POLL_STATES = 'POLL_STATES'
 export interface IPollState {
 
 	id: PollStateId
-	poll: IPoll
+	poll: IPreparedPoll
 	state: IState
 
 }

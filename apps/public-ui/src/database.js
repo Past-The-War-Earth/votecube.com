@@ -30,7 +30,7 @@ export async function setupCubeView(
 	const vote = await voteDao.findMyVoteForPoll(pollKey)
 
 	// if (!vote) {
-	// 	routes.navigateToPage(routes.POLL_INFO_MAIN)
+	// 	routes.navigateToPage(routes.POLL_FORM)
 	// 	return
 	// }
 

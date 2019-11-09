@@ -1,4 +1,4 @@
-import {Id} from '../core/Model'
+import {Id} from '../old/model'
 
 export type ContinentId = Id
 
