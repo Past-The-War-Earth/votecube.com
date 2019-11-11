@@ -1,5 +1,3 @@
-import {getColor as getGeneralColor} from './general'
-
 export function getPollFactorPositions(
 	poll,
 	axis
@@ -46,7 +44,7 @@ export function getSideText(
 	dir,
 	defaultDir
 ) {
-	if(defaultDir && !dir) {
+	if (defaultDir && !dir) {
 		dir = defaultDir
 	}
 	if (!dir) {

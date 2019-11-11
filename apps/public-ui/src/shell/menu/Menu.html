@@ -80,7 +80,8 @@
 	}
 </style>
 <script>
-	import {signOut}   from '../../helpers/auth'
+	import {DI}        from '@airport/di'
+	import {AUTH}      from '@votecube/public-logic'
 	import * as routes from '../../routes'
 	import store       from '../../store.js'
 	import MenuItem    from './MenuItem.html'
@@ -131,7 +132,10 @@
 				this.store.toggleMainMenu()
 			},
 			signOut() {
-				signOut()
+				DI.get(AUTH).then(
+					auth => {
+						return auth.signOut().then()
+					})
 				this.store.toggleMainMenu()
 			},
 			selectMenu(menuItem) {

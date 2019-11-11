@@ -72,26 +72,26 @@
 			{#if cities.length}
 			Cities:
 			<br>
-			{getArrayValueTexts(cities)}
+			{getArrayValueTexts(cities, logicUtils)}
 			<br>
 			<br>
 			{/if}
 			States:
 			<br>
-			{getArrayValueTexts(states)}
+			{getArrayValueTexts(states, logicUtils)}
 			<br>
 			<br>
 			{/if}
 			Countries:
 			<br>
-			{getArrayValueTexts(countries)}
+			{getArrayValueTexts(countries, logicUtils)}
 			<br>
 			<br>
 
 			{/if}
 			Continents:
 			<br>
-			{getArrayValueTexts(continents)}
+			{getArrayValueTexts(continents, logicUtils)}
 			{:else}
 			Select Geography
 			{/if}
@@ -118,7 +118,7 @@
 						Start Date:
 					</td>
 					<td>
-						{getDate(timeframe.fields.startDate.value)}
+						{getDate(timeframe.fields.startDate.value, logicUtils)}
 					</td>
 				</tr>
 				<tr>
@@ -126,7 +126,7 @@
 						End Date:
 					</td>
 					<td>
-						{getDate(timeframe.fields.endDate.value)}
+						{getDate(timeframe.fields.endDate.value, logicUtils)}
 					</td>
 				</tr>
 			</table>
@@ -210,31 +210,28 @@
 </style>
 
 <script>
-	import {DI}            from '@airport/di'
+	import {DI} from '@airport/di'
 	import {
+		LOGIC_UTILS,
 		POLL_FORM_LOGIC,
 		POLL_MANAGER
-	}                      from '@votecube/public-logic'
+	} from '@votecube/public-logic'
 	import CharacterButton from '../../../common/control/button/CharacterButton.html'
-	import PreviewButton   from '../../../common/control/button/PreviewButton.html'
-	import AutoComplete    from '../../../common/field/AutoComplete.html'
-	import IconBlock       from '../../../common/field/IconBlock.html'
-	import MultiSelect     from '../../../common/field/MultiSelect.html'
-	import Text            from '../../../common/field/Text.html'
-	import TextArea        from '../../../common/field/TextArea.html'
-	import LocationIcon    from '../../../common/icon/LocationIcon.html'
-	import TimeIcon        from '../../../common/icon/TimeIcon.html'
-	import ActionPopover   from '../../../common/shell/ActionPopover.html'
-	import SelectionBlock  from '../../../components/factor/SelectionBlock.html'
-	import * as formCache  from '../../../form/cache'
-	import * as forms      from '../../../form/forms'
-	import {
-		getArrayValueTexts,
-		getDate
-	}                      from '../../../helpers/general'
-	import {loadForms}     from '../../../libs/forms'
-	import * as routes     from '../../../routes'
-	import store           from '../../../store'
+	import PreviewButton from '../../../common/control/button/PreviewButton.html'
+	import AutoComplete from '../../../common/field/AutoComplete.html'
+	import IconBlock from '../../../common/field/IconBlock.html'
+	import MultiSelect from '../../../common/field/MultiSelect.html'
+	import Text from '../../../common/field/Text.html'
+	import TextArea from '../../../common/field/TextArea.html'
+	import LocationIcon from '../../../common/icon/LocationIcon.html'
+	import TimeIcon from '../../../common/icon/TimeIcon.html'
+	import ActionPopover from '../../../common/shell/ActionPopover.html'
+	import SelectionBlock from '../../../components/factor/SelectionBlock.html'
+	import * as formCache from '../../../form/cache'
+	import * as forms from '../../../form/forms'
+	import {loadForms} from '../../../libs/forms'
+	import * as routes from '../../../routes'
+	import store from '../../../store'
 
 	export default {
 		components: {
@@ -313,8 +310,24 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			}
 		},
 		helpers: {
-			getArrayValueTexts,
-			getDate,
+			getArrayValueTexts: (
+				arrayValue,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return ''
+				}
+				return logicUtils.getArrayValueTexts(arrayValue)
+			},
+			getDate: (
+				date,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return ''
+				}
+				return logicUtils.getDate(date)
+			}
 		},
 		methods: {
 			ack() {
@@ -348,7 +361,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			}
 		},
 		oncreate() {
-			initPage(this)
+			initPage(this).then()
 		},
 		ondestroy() {
 			formCache.savePollForm(this).then()
@@ -408,8 +421,11 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 
 		forms.ensureForm(form, page)
 
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
 		page.store.set({
 			form,
+			logicUtils,
 			pageTitle: 'Poll Info',
 			// positionMap
 		})

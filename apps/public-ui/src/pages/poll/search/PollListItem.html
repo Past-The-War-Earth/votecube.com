@@ -1,3 +1,5 @@
+{# await load}
+{:then result}
 <tr
 		on:click="fire('select', {event})"
 >
@@ -7,15 +9,15 @@
 		<figure>
 			<div
 					class="surface s1"
-					style="background-color: #{getColor(poll.factors[1].color)};"
+					style="background-color: #{logicUtils.getColor(poll.factors[1].color)};"
 			></div>
 			<div
 					class="surface s2"
-					style="background-color: #{getColor(poll.factors[3].color)};"
+					style="background-color: #{logicUtils.getColor(poll.factors[3].color)};"
 			></div>
 			<div
 					class="surface s5"
-					style="background-color: #{getColor(poll.factors[2].color)};"
+					style="background-color: #{logicUtils.getColor(poll.factors[2].color)};"
 			></div>
 		</figure>
 	<td
@@ -55,6 +57,7 @@
 		{/if}
 	</td>
 </tr>
+{/await}
 <style>
 	div {
 		color: black;
@@ -141,15 +144,22 @@
 	}
 </style>
 <script>
-	import {
-		getColor
-	} from '../../../helpers/general'
 
 	export default {
-		helpers: {
-			getColor
+		data() {
+			return {
+				load: initPage(this)
+			}
 		},
 		immutable: true
+	}
+
+	async function initPage(
+		page
+	) {
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.set({logicUtils})
 	}
 
 </script>

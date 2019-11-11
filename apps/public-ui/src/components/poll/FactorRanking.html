@@ -25,7 +25,7 @@
 		<var
 				class="factor A
 					{factorHighlight(movingVoteFactor, i, movingVoteFactorDelta, logic)}"
-				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, delta)};"
+				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
 		>
 			<!--
 				id="factor_{i}_A"
@@ -60,7 +60,7 @@
 				{/if}
 			</header>
 			<p
-					style="color: #{getColor(poll.factors[voteFactor.factorNumber].color)};"
+					style="color: #{getTextColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
 			>
 				{poll.factors[voteFactor.factorNumber].positions.A.name}
 			</p>
@@ -73,7 +73,7 @@
 		<var
 				class="factor B
 					{factorHighlight(movingVoteFactor, i, movingVoteFactorDelta, logic)}"
-				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, delta)};"
+				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
 		>
 			<!--
 				id="factor_{i}_B"
@@ -107,7 +107,7 @@
 				{/if}
 			</header>
 			<p
-					style="color: #{getColor(poll.factors[voteFactor.factorNumber].color)};"
+					style="color: #{getTextColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
 			>
 				{poll.factors[voteFactor.factorNumber].positions.B.name}
 			</p>
@@ -257,10 +257,6 @@
 	import CharacterButton   from '../../common/control/button/CharacterButton.html'
 	import MoveButton        from '../../common/control/button/MoveButton.html'
 	import SwapButton        from '../../common/control/button/SwapButton.html'
-	import {
-		getColor,
-		getTextColor
-	}                        from '../../helpers/general'
 	import store             from '../../store'
 	import DirectionSelector from '../vote/DirectionSelector.html'
 
@@ -342,8 +338,24 @@
 				// cubeTransition
 			) => voteFactor.outcome === 'A' ? -200 : 200,
 			// cubeTransition ? 0 : voteFactor.outcome === 'A' ? -200 : 200,
-			getColor,
-			getTextColor,
+			getColor: (
+				color,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return 'FFF'
+				}
+				return logicUtils.getColor(color)
+			},
+			getTextColor: (
+				color,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return '000'
+				}
+				return logicUtils.getTextColor(color)
+			},
 			isB: (
 				voteFactor
 			) => voteFactor.outcome === 'B',
@@ -496,16 +508,16 @@
 				event.factorButtonMove  = true
 				event.factorButtonIndex = index - 1
 				setTimeout(() => {
-					DI.get(FACTOR_RANKING_LOGIC).then(
-						factorRankingLogic => {
-							factorRankingLogic.move(index - 1, {y: 100}, this)
-							factorRankingLogic.move(index, {y: -100}, this)
+					DI.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS).then(
+						([factorRankingLogic, logicUtils]) => {
+							factorRankingLogic.move(index - 1, {y: 100}, this, logicUtils)
+							factorRankingLogic.move(index, {y: -100}, this, logicUtils)
 						})
 				}, 100)
 			}
 		},
 		oncreate() {
-			setupPage(this).then()
+			initPage(this).then()
 		},
 		store: () => store,
 		transitions: {
@@ -513,12 +525,12 @@
 		}
 	}
 
-	async function setupPage(
+	async function initPage(
 		page
 	) {
-		const logic = await DI.get(FACTOR_RANKING_LOGIC)
+		const [logic, logicUtils] = await DI.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
 
-		page.set({logic})
+		page.set({logic, logicUtils})
 	}
 
 	function singleFactorChange(

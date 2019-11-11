@@ -82,15 +82,13 @@
 	}
 </style>
 <script>
+	import {DI}                           from '@airport/di'
+	import {AUTH}                         from '@votecube/public-logic'
 	import EnterButton                    from '../common/control/button/EnterButton.html'
 	import SaveButton                     from '../common/control/button/SaveButton.html'
 	// import * as forms                     from '../form/forms'
 	import Text                           from '../common/field/Text.html'
 	import ActionPopover                  from '../common/shell/ActionPopover.html'
-	import {
-		signIn,
-		signUp
-	}                                     from '../helpers/auth'
 	import {loadForms}                    from '../libs/forms'
 	import {loadLocations as loadLocText} from '../libs/text/locations'
 	import store                          from '../store'
@@ -126,7 +124,7 @@
 				if (!signUpForm.valid) {
 					return
 				}
-				doSignUp(signUpForm.value.username, signUpForm.value.password, this, this.store).then(
+				doSignUp(signUpForm.value.username, signUpForm.value.password, this).then(
 					success => {
 						if (success) {
 							this.fire('closed')
@@ -135,7 +133,7 @@
 			}
 		},
 		oncreate() {
-			initPage(this)
+			initPage(this).then()
 		},
 		store: () => store
 	}
@@ -198,7 +196,8 @@
 		password,
 		page
 	) {
-		const error = await signIn(username, password)
+		const auth  = await DI.get(AUTH)
+		const error = await auth.signIn(username, password)
 		if (!error) {
 			return true
 		}
@@ -223,10 +222,10 @@
 	async function doSignUp(
 		username,
 		password,
-		page,
-		store
+		page
 	) {
-		const error = await signUp(username, password, store)
+		const auth  = await DI.get(AUTH)
+		const error = await auth.signUp(username, password)
 		if (!error) {
 			return true
 		}

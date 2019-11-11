@@ -1,3 +1,5 @@
+import {DI}           from '@airport/di'
+import {SCHEMA}       from '../../diTokens'
 import {IVCFirestore} from './DocRef'
 import {
 	FactorsCollection,
@@ -20,7 +22,7 @@ import {
 	UsersCollection
 }                     from './UsersCollection'
 
-export interface IVoteCubeSchema {
+export interface IVotecubeSchema {
 
 	db: IVCFirestore
 	factors: IFactorsCollection
@@ -32,11 +34,12 @@ export interface IVoteCubeSchema {
 }
 
 export class Schema
-	implements IVoteCubeSchema {
+	implements IVotecubeSchema {
 
-	constructor(
-		public db: IVCFirestore
-	) {
+	db: IVCFirestore
+
+	constructor() {
+		this.db = (window as any).db
 	}
 
 	get factors(): IFactorsCollection {
@@ -60,3 +63,4 @@ export class Schema
 	}
 
 }
+DI.set(SCHEMA, Schema)

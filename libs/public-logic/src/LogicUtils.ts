@@ -1,9 +1,13 @@
-import {DI}               from '@airport/di'
+import {DI}          from '@airport/di'
 import {
+	ICoreColor,
+	IsData,
+	ITweenVoteFactor,
 	IVote,
 	IVoteFactor
-}                         from '@votecube/model'
-import {LOGIC_UTILS}      from './diTokens'
+}                    from '@votecube/model'
+import {wrapTransition} from 'svelte/shared'
+import {LOGIC_UTILS} from './diTokens'
 
 interface IVoteFactorNode {
 
@@ -19,6 +23,24 @@ export interface ILogicUtils {
 		to,
 		properties: string[]
 	): void
+
+	getArrayValueTexts(
+		arrayValue: Array<{
+			text: string
+		}>
+	): string
+
+	getColor(
+		color: ICoreColor<IsData>
+	): string
+
+	getDate(
+		date: Date
+	): string
+
+	getTextColor(
+		color: ICoreColor<IsData>
+	): string
 
 	getVoteFactorNodesInValueOrder(
 		vote: IVote
@@ -36,9 +58,17 @@ export interface ILogicUtils {
 		excludeKeys?: string[]
 	): void
 
+	transition(
+		component,
+		elementId: string,
+		transitionFunction,
+		options
+	): void
+
 }
 
-export class LogicUtils {
+export class LogicUtils
+	implements ILogicUtils {
 
 	copyProperties(
 		from,
@@ -50,9 +80,63 @@ export class LogicUtils {
 		}
 	}
 
-	getVoteFactorNodesInValueOrder(
-		vote: IVote
-	): IVoteFactor[] {
+	getArrayValueTexts(
+		arrayValue: Array<{
+			text: string
+		}>
+	): string {
+		return arrayValue
+			.map(
+				value => value.text)
+			.reduce((
+				accumulator,
+				text
+			) => accumulator + (accumulator
+				? ', ' + text
+				: text), '')
+	}
+
+	getColor(
+		color: ICoreColor<IsData>
+	): string {
+		if (!color) {
+			return `FFF`
+		}
+
+		const {blue, green, red} = color
+
+		return this.ensure2Digits(red.toString(16))
+			+ this.ensure2Digits(green.toString(16))
+			+ this.ensure2Digits(blue.toString(16))
+	}
+
+	getDate(
+		date: Date
+	): string {
+		if (!date) {
+			return 'N/A'
+		}
+
+		return `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`
+	}
+
+	getTextColor(
+		color: ICoreColor<IsData>
+	): string {
+		const red   = parseInt(color.red as any)
+		const green = parseInt(color.green as any)
+		const blue  = parseInt(color.blue as any)
+		if (red + green + blue > 384) {
+			return '000'
+		} else if (red < 10 && blue < 10 && green >= 240) {
+			return '000'
+		}
+		return 'FFF'
+	}
+
+	getVoteFactorNodesInValueOrder<V extends IVote = IVote>(
+		vote: V
+	): IVoteFactor[] | ITweenVoteFactor[] {
 		if (!vote) {
 			return []
 		}
@@ -126,5 +210,29 @@ export class LogicUtils {
 		}
 	}
 
+	transition(
+		component,
+		elementId: string,
+		transitionFunction,
+		options
+	): void {
+		// setTimeout(() => {
+		const domElementToTransition = document.getElementById(elementId)
+		if (!domElementToTransition) {
+			return
+		}
+		const figureIntro = wrapTransition(
+			component, domElementToTransition, transitionFunction, options, true)
+		figureIntro.run(1)
+		// })
+	}
+
+	private ensure2Digits(
+		colorString: string
+	): string {
+		return colorString.length === 1 ? '0' + colorString : colorString
+	}
+
 }
+
 DI.set(LOGIC_UTILS, LogicUtils)

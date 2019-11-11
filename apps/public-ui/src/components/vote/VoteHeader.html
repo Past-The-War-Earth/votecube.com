@@ -1,0 +1,266 @@
+<table
+		class="{classes}"
+>
+	<tr>
+		<td
+				class="plus"
+		>
+			<div
+					class="aAxisLabel"
+			>
+				A 100%
+			</div>
+			<div
+					class="bAxisLabel"
+			>
+				B 100%
+			</div>
+			<div
+					class="zeroAxisLabel"
+			>
+				0%
+			</div>
+			{#if zPlusWidth}
+			<div
+					class="{zPlus}"
+					style="
+        background-color: #{getColor(delta, poll, 'z')};
+        width: {zPlusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+		<td
+				class="minus"
+		>
+			{#if zMinusWidth}
+			<div
+					class="{zMinus}"
+					style="
+        background-color: #{getColor(delta, poll, 'z')};
+        width: {zMinusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+	</tr>
+	<tr>
+		<td
+				class="plus"
+		>
+			{#if yPlusWidth}
+			<div
+					class="{yPlus}"
+					style="
+        background-color: #{getColor(delta, poll, 'y')};
+        width: {yPlusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+		<td
+				class="minus"
+		>
+			{#if yMinusWidth}
+			<div
+					class="{yMinus}"
+					style="
+        background-color: #{getColor(delta, poll, 'y')};
+        width: {yMinusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+	</tr>
+	<tr>
+		<td
+				class="plus"
+		>
+			{#if xPlusWidth}
+			<div
+					class="{xPlus}"
+					style="
+        background-color: #{getColor(delta, poll, 'x')};
+        width: {xPlusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+		<td
+				class="minus"
+		>
+			{#if xMinusWidth}
+			<div
+					class="{xMinus}"
+					style="
+        background-color: #{getColor(delta, poll, 'x')};
+        width: {xMinusWidth}px;
+            "
+			>
+			</div>
+			{/if}
+		</td>
+	</tr>
+</table>
+<style>
+	/*
+	@media (min-width: 62em) {
+		.mainView {
+			top: 15px;
+			left: 5px;
+		}
+	}
+	 */
+
+	div {
+		height: 26px;
+		margin-top: 3px;
+	}
+
+
+	table {
+		float: right;
+		height: 78px;
+		position: relative;
+		width: 240px;
+	}
+
+	table.right {
+		float: right;
+	}
+
+	.aAxisLabel {
+		bottom: -30px;
+		left: -20px;
+		position: absolute;
+	}
+
+	.bAxisLabel {
+		bottom: -30px;
+		position: absolute;
+		right: -25px;
+	}
+
+	.zeroAxisLabel {
+		bottom: -30px;
+		position: absolute;
+		left: 112px;
+	}
+
+	.leftDirection {
+		border-left: 2px solid black;
+	}
+
+	.minus,
+	.plus {
+		width: 120px;
+	}
+
+	.plus {
+		border-right: 1px solid black;
+	}
+
+	.plus div {
+		float: right
+	}
+
+	.rightDirection {
+		border-right: 2px solid black;
+	}
+
+	/*
+		.minus td {
+			vertical-align: top;
+		}*/
+
+	/*
+	.pageFigure td,
+	.pageTable td {
+		padding: 5px;
+		vertical-align: middle;
+	}
+	*/
+
+	/*	.plus div {
+			margin-bottom: 0px;
+		}*/
+
+	.plus td {
+		/*vertical-align: bottom;*/
+		border-right: 1px solid black;
+	}
+
+</style>
+
+<script>
+	import {getColor} from '../../helpers/cube'
+
+	export default {
+		computed: {
+			xMinus: ({xMinusWidth}) => xMinusWidth ? 'rightDirection' : '',
+			xPlus: ({xPlusWidth}) => xPlusWidth ? 'leftDirection' : '',
+			yMinus: ({yMinusWidth}) => yMinusWidth ? 'rightDirection' : '',
+			yPlus: ({yPlusWidth}) => yPlusWidth ? 'leftDirection' : '',
+			zMinus: ({zMinusWidth}) => zMinusWidth ? 'rightDirection' : '',
+			zPlus: ({zPlusWidth}) => zPlusWidth ? 'leftDirection' : ''
+		},
+		data: () => {
+			return {
+				maxBarSize: 120,
+				xMinusWidth: 0,
+				xPlusWidth: 0,
+				yMinusWidth: 0,
+				yPlusWidth: 0,
+				zMinusWidth: 0,
+				zPlusWidth: 0,
+			}
+		},
+		helpers: {
+			getColor
+		},
+		onstate({changed, current}) {
+			if (!current.vote || !changed.delta) {
+				return
+			}
+
+			const cubeView   = current.cubeView
+			const maxBarSize = current.maxBarSize
+			const vote       = current.vote
+
+			this.set({
+				xMinusWidth: barWidth(cubeView, vote.x, -1, maxBarSize),
+				xPlusWidth: barWidth(cubeView, vote.x, 1, maxBarSize),
+				yMinusWidth: barWidth(cubeView, vote.y, -1, maxBarSize),
+				yPlusWidth: barWidth(cubeView, vote.y, 1, maxBarSize),
+				zMinusWidth: barWidth(cubeView, vote.z, -1, maxBarSize),
+				zPlusWidth: barWidth(cubeView, vote.z, 1, maxBarSize)
+			})
+		}
+	}
+
+	function barWidth(
+		cubeView,
+		voteFactor,
+		position,
+		maxBarSize
+	) {
+		if (!voteFactor) {
+			return 0
+		}
+		if (cubeView) {
+			return voteFactor.dir === position
+				? voteFactor.value * maxBarSize / 100
+				: 0
+		} else {
+			return voteFactor.factorDir === position
+				? voteFactor.factorValue * maxBarSize / 100
+				: 0
+		}
+	}
+
+</script>

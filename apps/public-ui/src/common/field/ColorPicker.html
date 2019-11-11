@@ -117,7 +117,7 @@
 		<br>
 		<figure
 				style="background-color: rgb({color.red}, {color.green}, {color.blue});
-							 color: #{getTextColor(color)};"
+							 color: #{getTextColor(color, logicUtils)};"
 		>
 			T
 		</figure>
@@ -235,7 +235,8 @@
 </style>
 
 <script>
-	import {getTextColor}  from '../../helpers/general'
+	import {DI}            from '@airport/di'
+	import {LOGIC_UTILS}   from '@votecube/public-logic'
 	import {
 		getColorKey,
 		getColors
@@ -264,7 +265,15 @@
 			minusStyles: 'display: inline-block; position: absolute; left: 0px; top: 5.5px;',
 		}),
 		helpers: {
-			getTextColor
+			getTextColor: (
+				color,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return '000'
+				}
+				return logicUtils.getTextColor(color)
+			}
 		},
 		methods: {
 			change(
@@ -313,31 +322,37 @@
 			}
 		},
 		oncreate() {
-			getColors().then(({
-				                  colors,
-				                  colorMap
-			                  }) => {
-				const {field} = this.get()
-
-				const color = field.value
-					? field.value
-					: copyColor(colors[132])
-				this.set({colors, colorMap, color})
-
-				field.setAsField(this)
-
-				if (!field.value) {
-					field.value = color
-				}
-				field.validate()
-
-				matchColor(color, colorMap, this.refs.select)
-			})
+			initPage(this).then()
 		},
 		ondestroy() {
 			this.get().field.removeComponent(this)
 		},
 		store: () => store
+	}
+
+	async function initPage(page) {
+		const {
+			      colors,
+			      colorMap
+		      }       = await getColors()
+		const {field} = page.get()
+
+		const color = field.value
+			? field.value
+			: copyColor(colors[132])
+
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.set({color, colorMap, colors, logicUtils})
+
+		field.setAsField(page)
+
+		if (!field.value) {
+			field.value = color
+		}
+		field.validate()
+
+		matchColor(color, colorMap, page.refs.select)
 	}
 
 	function matchColor(
@@ -370,7 +385,7 @@
 		field,
 		page
 	) {
-		field.value    = color
+		field.value = color
 		field.validate()
 		page.set({color})
 	}

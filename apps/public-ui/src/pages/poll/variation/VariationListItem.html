@@ -3,6 +3,8 @@
 		class="parentContainer"
 ></div>
 -->
+{# await load}
+{:then result}
 <div
 		class="details {classes}"
 		on:click="fire('select', {event})"
@@ -22,15 +24,15 @@
 		<figure>
 			<div
 					class="surface s1"
-					style="background-color: #{getColor(variation.factors[1].color)};"
+					style="background-color: #{logicUtils.getColor(variation.factors[1].color)};"
 			></div>
 			<div
 					class="surface s2"
-					style="background-color: #{getColor(variation.factors[3].color)};"
+					style="background-color: #{logicUtils.getColor(variation.factors[3].color)};"
 			></div>
 			<div
 					class="surface s5"
-					style="background-color: #{getColor(variation.factors[2].color)};"
+					style="background-color: #{logicUtils.getColor(variation.factors[2].color)};"
 			></div>
 		</figure>
 	</div>
@@ -82,6 +84,7 @@
 	></RightButton>
 </nav>
 {/if}
+{/await}
 <style>
 	figure {
 		border-radius: 3px;
@@ -194,9 +197,6 @@
 	import RightButton from '../../../common/control/button/RightButton.html'
 	import LinkIcon    from '../../../common/icon/LinkIcon.html'
 	import TargetIcon  from '../../../common/icon/TargetIcon.html'
-	import {
-		getColor
-	}                  from '../../../helpers/general'
 
 	export default {
 		components: {
@@ -214,12 +214,18 @@
 		},
 		data: () => ({
 			childMode: true,
-			classes: ''
+			classes: '',
+			load: initPage(this)
 		}),
-		helpers: {
-			getColor
-		},
 		immutable: true
+	}
+
+	async function initPage(
+		page
+	) {
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.set({logicUtils})
 	}
 
 </script>

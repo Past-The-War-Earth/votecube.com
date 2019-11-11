@@ -21,14 +21,13 @@ import {
 import {firestore} from 'firebase'
 import {
 	DB_UTILS,
-	POLL_DAO
-} from '../../diTokens'
+	POLL_DAO,
+	SCHEMA
+}                  from '../../diTokens'
 import {
 	ICollection,
 	IVCDocumentReference,
-	IVCTransaction,
-	IVoteCubeSchema,
-	Schema
+	IVCTransaction
 }                  from '../../document/document'
 
 // extends IBasePollDao
@@ -75,11 +74,6 @@ export class PollDao
 
 	tempVariation: IVariationDoc
 
-	schema: IVoteCubeSchema
-
-	constructor() {
-		this.schema = new Schema((window as any).db)
-	}
 
 	async addTemp(
 		poll: IVariationDoc
@@ -88,7 +82,8 @@ export class PollDao
 	}
 
 	async getAll(): Promise<IPollDoc[]> {
-		const result = await this.schema.pollDrafts.reference
+		const schema = await DI.get(SCHEMA)
+		const result = await schema.pollDrafts.reference
 			.orderBy('createdAt.m', 'desc')
 			.get()
 		return result.docs.map(
@@ -98,7 +93,8 @@ export class PollDao
 	async getForTheme(
 		themeId: number
 	): Promise<IPollDoc[]> {
-		const result = await this.schema.pollDrafts.reference
+		const schema = await DI.get(SCHEMA)
+		const result = await schema.pollDrafts.reference
 			.where('theme.id.v', '==', themeId)
 			.orderBy('createdAt.m', 'desc')
 			.get()
@@ -110,8 +106,9 @@ export class PollDao
 		pollKey: PollKey,
 		variationKey: VariationKey
 	): Promise<IVariationDoc> {
+		const schema = await DI.get(SCHEMA)
 		return await this.getOne(
-			this.schema.pollDrafts.pollVariations(pollKey).doc(variationKey)
+			schema.pollDrafts.pollVariations(pollKey).doc(variationKey)
 		)
 	}
 
@@ -119,7 +116,8 @@ export class PollDao
 		pollKey: PollKey,
 		variationKey: VariationKey
 	): Promise<IVariationListingDoc> {
-		const result = await this.schema.pollDrafts.pollVariationListings(pollKey)
+		const schema = await DI.get(SCHEMA)
+		const result = await schema.pollDrafts.pollVariationListings(pollKey)
 			.reference.where('key', '==', variationKey)
 			.get()
 
@@ -137,7 +135,8 @@ export class PollDao
 		pollKey: PollKey,
 		variationKey: VariationKey
 	): Promise<IVariationListingDoc[]> {
-		const result = await this.schema.pollDrafts.pollVariationListings(pollKey)
+		const schema = await DI.get(SCHEMA)
+		const result = await schema.pollDrafts.pollVariationListings(pollKey)
 			.reference.where('parent.key', '==', variationKey)
 			.orderBy('createdAt.m', 'desc')
 			.get()
@@ -156,7 +155,8 @@ export class PollDao
 		const poll      = await this.setupPoll(variation, user)
 
 		try {
-			await this.schema.db.runTransaction(async (transaction) => {
+			const schema = await DI.get(SCHEMA)
+			await schema.db.runTransaction(async (transaction) => {
 				const {
 					      pollRef,
 					      variationRef
@@ -169,7 +169,7 @@ export class PollDao
 				await transaction.set(variationRef, variation)
 
 				const variationListing    = this.setupVariationListing(poll, variation)
-				const variationListingRef = this.schema.pollDrafts.pollVariationListings(pollRef)
+				const variationListingRef = schema.pollDrafts.pollVariationListings(pollRef)
 					.doc(variation.key)
 				await transaction.set(variationListingRef, variationListing)
 
@@ -274,8 +274,9 @@ export class PollDao
 		pollRef: IVCDocumentReference<PollKey, IPollDoc>,
 		variationRef: IVCDocumentReference<VariationKey, IVariationDoc, PollKey, IPollDoc>
 	}> {
-		const pollRef      = this.schema.pollDrafts.doc(variation.pollKey)
-		const variationRef = this.schema.pollDrafts.pollVariations(pollRef).reference.doc()
+		const schema       = await DI.get(SCHEMA)
+		const pollRef      = schema.pollDrafts.doc(variation.pollKey)
+		const variationRef = schema.pollDrafts.pollVariations(pollRef).reference.doc()
 
 		return {
 			pollRef,
@@ -290,10 +291,11 @@ export class PollDao
 		pollRef: IVCDocumentReference<PollKey, IPollDoc>,
 		variationRef: IVCDocumentReference<VariationKey, IVariationDoc, PollKey, IPollDoc>
 	}> {
-		const pollRef = this.schema.pollDrafts.doc()
+		const schema  = await DI.get(SCHEMA)
+		const pollRef = schema.pollDrafts.doc()
 		poll.key      = pollRef.id
 
-		const variationRef = this.schema.pollDrafts.pollVariations(pollRef).doc()
+		const variationRef = schema.pollDrafts.pollVariations(pollRef).doc()
 
 		poll.rootVariationKey = variationRef.id
 		await transaction.set(pollRef, poll)
@@ -327,10 +329,12 @@ export class PollDao
 		transaction: IVCTransaction
 	): Promise<void> {
 		const outcomeExists = !!outcome.key
-		const outcomeRef    = await this.addResource(outcome, this.schema.outcomes,
+		const schema        = await DI.get(SCHEMA)
+		const outcomeRef    = await this.addResource(outcome, schema.outcomes,
 			user, transaction)
 
-		await this.addManyToManyResource(this.schema.outcomes.outcomePolls(outcomeRef), outcome, 'outcome', outcomeExists,
+		await this.addManyToManyResource(schema.outcomes.outcomePolls(outcomeRef),
+			outcome, 'outcome', outcomeExists,
 			poll, pollExists, user, transaction)
 	}
 
@@ -345,10 +349,11 @@ export class PollDao
 		const standAloneFactor = {...factor}
 		delete standAloneFactor.positions
 
-		const factorRef = await this.addResource(standAloneFactor, this.schema.factors,
+		const schema    = await DI.get(SCHEMA)
+		const factorRef = await this.addResource(standAloneFactor, schema.factors,
 			user, transaction)
 
-		await this.addManyToManyResource(this.schema.factors.factorPolls(factorRef),
+		await this.addManyToManyResource(schema.factors.factorPolls(factorRef),
 			factor, 'factor', factorExists,
 			poll, pollExists, user, transaction)
 
@@ -406,14 +411,15 @@ export class PollDao
 	): Promise<void> {
 		const positionExists = !!position.key
 
-		const positionRef = await this.addResource(position, this.schema.positions,
+		const schema = await DI.get(SCHEMA)
+		const positionRef = await this.addResource(position, schema.positions,
 			user, transaction)
 
-		await this.addManyToManyResource(this.schema.positions.positionPolls(positionRef),
+		await this.addManyToManyResource(schema.positions.positionPolls(positionRef),
 			position, 'position', positionExists,
 			poll, pollExists, user, transaction)
 
-		await this.addManyToManyResource(this.schema.factors.factorPositions(factorRef),
+		await this.addManyToManyResource(schema.factors.factorPositions(factorRef),
 			factor, 'factor', factorExists,
 			position, positionExists, user, transaction)
 	}

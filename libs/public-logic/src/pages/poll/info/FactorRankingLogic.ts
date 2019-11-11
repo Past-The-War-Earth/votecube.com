@@ -6,7 +6,6 @@ import {
 }                             from '@votecube/model'
 import {fly}                  from 'svelte-transitions'
 import {FACTOR_RANKING_LOGIC} from '../../../diTokens'
-import {transition}           from '../../../helpers/animation'
 import {ILogicUtils}          from '../../../LogicUtils'
 import {IPageVote}            from '../../../poll/PollManager'
 
@@ -280,7 +279,7 @@ export class FactorRankingLogic
 					// voteFactors,
 					vote, secondFactor, thirdFactor,
 					null, 2, logicUtils)
-				this.moveUpOne(1, component)
+				this.moveUpOne(1, component, logicUtils)
 			} else {
 				this.setOutcome(voteFactors, index, null
 					// , page
@@ -325,9 +324,10 @@ export class FactorRankingLogic
 	move(
 		index: number,
 		options,
-		component
+		component,
+		logicUtils: ILogicUtils
 	): void {
-		transition(
+		logicUtils.transition(
 			component,
 			'factor_' + index,
 			fly,
@@ -358,7 +358,7 @@ export class FactorRankingLogic
 						logicUtils,
 						// page
 					)
-					this.moveUpOne(0, component)
+					this.moveUpOne(0, component, logicUtils)
 				} else {
 					this.onMove(2, [0, 2], store)
 					vote.changeMillis = 600
@@ -373,7 +373,7 @@ export class FactorRankingLogic
 						voteFactors[2],
 						0
 					)
-					this.moveUpTwo(0, component)
+					this.moveUpTwo(0, component, logicUtils)
 				}
 				return true
 			}
@@ -389,7 +389,7 @@ export class FactorRankingLogic
 					logicUtils,
 					// page
 				)
-				this.moveUpOne(1, component)
+				this.moveUpOne(1, component, logicUtils)
 				return true
 			}
 			// Started the move from 3rd Factor
@@ -428,7 +428,7 @@ export class FactorRankingLogic
 					logicUtils,
 					// page
 				)
-				this.moveDownOne(1, component)
+				this.moveDownOne(1, component, logicUtils)
 				return true
 			}
 			// Started the move from 3rd Factor
@@ -444,7 +444,7 @@ export class FactorRankingLogic
 						logicUtils,
 						// page
 					)
-					this.moveDownOne(2, component)
+					this.moveDownOne(2, component, logicUtils)
 				} else {
 					this.onMove(2, [2, 0], store)
 					vote.changeMillis = 600
@@ -459,7 +459,7 @@ export class FactorRankingLogic
 						voteFactors[2],
 						0
 					)
-					this.moveDownTwo(2, component)
+					this.moveDownTwo(2, component, logicUtils)
 				}
 				return true
 			}
@@ -621,9 +621,9 @@ export class FactorRankingLogic
 			vote, firstFactor, secondFactor,
 			move3 ? thirdFactor : null, 0, logicUtils)
 		if (move3) {
-			this.moveUpOne(1, component)
+			this.moveUpOne(1, component, logicUtils)
 		}
-		this.moveUpOne(0, component)
+		this.moveUpOne(0, component, logicUtils)
 	}
 
 	private setFactorOrder(
@@ -689,7 +689,7 @@ export class FactorRankingLogic
 		move,
 		moved,
 		store
-	):void {
+	): void {
 		store.set({
 			cardMove: {
 				move,
@@ -699,33 +699,37 @@ export class FactorRankingLogic
 	}
 
 	private moveDownOne(
-		index,
+		index: number,
 		component,
+		logicUtils: ILogicUtils,
 		duration = 400
-	):void {
-		this.move(index, {y: -100, duration}, component)
+	): void {
+		this.move(index, {y: -100, duration}, component, logicUtils)
 	}
 
 	private moveDownTwo(
 		index,
-		component
-	):void {
-		this.move(index, {y: -200, duration: 800}, component)
+		component,
+		logicUtils: ILogicUtils
+	): void {
+		this.move(index, {y: -200, duration: 800}, component, logicUtils)
 	}
 
 	private moveUpOne(
 		index,
 		component,
+		logicUtils: ILogicUtils,
 		duration = 400
-	):void {
-		this.move(index, {y: 100, duration}, component)
+	): void {
+		this.move(index, {y: 100, duration}, component, logicUtils)
 	}
 
 	private moveUpTwo(
 		index,
-		component
-	):void {
-		this.move(index, {y: 200, duration: 800}, component)
+		component,
+		logicUtils: ILogicUtils
+	): void {
+		this.move(index, {y: 200, duration: 800}, component, logicUtils)
 	}
 
 	private factorsAt(

@@ -5,9 +5,13 @@ import {
 } from './common'
 
 export type UserKey = Key
+export type UserName = string
 
 export interface IUser
 	extends IKeyed<UserKey> {
+
+	name: UserName
+
 }
 
 export interface IUserCreated<K extends Key>

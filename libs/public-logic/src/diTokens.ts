@@ -1,4 +1,5 @@
 import {diToken}             from '@airport/di'
+import {IAuth}               from './Auth'
 import {ILogicUtils}         from './LogicUtils'
 import {IFactorRankingLogic} from './pages/poll/info/FactorRankingLogic'
 import {IPollFormLogic}      from './pages/poll/info/PollFormLogic'
@@ -8,6 +9,7 @@ import {ICubeLogic}          from './poll/CubeLogic'
 import {IPollLogic}          from './poll/PollLogic'
 import {IPollManager}        from './poll/PollManager'
 
+export const AUTH                 = diToken<IAuth>()
 export const CUBE_LOGIC           = diToken<ICubeLogic>()
 export const FACTOR_RANKING_LOGIC = diToken<IFactorRankingLogic>()
 export const LOGIC_UTILS          = diToken<ILogicUtils>()

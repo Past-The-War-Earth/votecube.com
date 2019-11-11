@@ -2,7 +2,7 @@
 <table
 		class="{classes}"
 >
-	{#each voteDims as voteDim, i}
+	{#each voteFactors as voteFactor, i}
 	<tr>
 		<td
 				class="ranking"
@@ -14,20 +14,20 @@
 					poll="{poll}"
 					vote="{vote}"
 			></CubeMiniature>
-			{:elseif cubeView && showPosition(voteDim, delta)}
+			{:elseif cubeView && showPosition(voteFactor, delta)}
 			<figure
-					style="background-color: #{getColor(delta, poll, voteDim.axis)};"
+					style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
 					transition:fly="{x: -50, duration: 700}"
 			>
 				<header></header>
 				<CharacterButton
-						character="{factorOutcome(voteDim, factorDelta)}"
+						character="{tweenOutcome(voteFactor, tweenDelta)}"
 						fontSize="20"
 						fontX="12"
 						fontY="19"
 						size="24"
 						strokeWidth="1"
-						styles="left: {factorMiniLeft(voteDim, factorDelta)}px; position: absolute; top: 1px;"
+						styles="left: {factorMiniLeft(voteFactor, tweenDelta)}px; position: absolute; top: 1px;"
 				></CharacterButton>
 			</figure>
 			{/if}
@@ -41,13 +41,13 @@
 					<td
 							class="a"
 					>
-						{#if haveWidth(voteDim, 1, factorDelta)}
+						{#if haveWidth(voteFactor, 'A', tweenDelta)}
 						<div
-								class="bar {aClass(voteDim, factorDelta)}"
+								class="bar {aClass(voteFactor, tweenDelta)}"
 								id="bar_{i}"
 								style="
-        background-color: #{getColor(delta, poll, voteDim.axis)};
-        width: {getWidth(voteDim, factorDelta)}%;
+        background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};
+        width: {getWidth(voteFactor, tweenDelta)}%;
             "
 						>
 						</div>
@@ -56,13 +56,13 @@
 					<td
 							class="b"
 					>
-						{#if haveWidth(voteDim, -1, factorDelta)}
+						{#if haveWidth(voteFactor, 'B', tweenDelta)}
 						<div
-								class="bar {bClass(voteDim, factorDelta)}"
+								class="bar {bClass(voteFactor, tweenDelta)}"
 								id="bar_{i}"
 								style="
-        background-color: #{getColor(delta, poll, voteDim.axis)};
-        width: {getWidth(voteDim, factorDelta)}%;
+        background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};
+        width: {getWidth(voteFactor, tweenDelta)}%;
             "
 						>
 						</div>
@@ -75,10 +75,10 @@
 				class="percent"
 				on:click="fire('togglePercent', event)"
 		>
-			{#if showPosition(voteDim, delta)}
+			{#if showPosition(voteFactor, delta)}
 			<!--
 			<CharacterButton
-					character="{factorOutcome(voteDim)}"
+					character="{tweenOutcome(voteFactor)}"
 					fontSize="20"
 					fontX="12"
 					fontY="19"
@@ -90,7 +90,7 @@
 			<span
 					class="value"
 					in:fade
-			>{factorPercent(voteDim, factorDelta)}</span>
+			>{tweenValue(voteFactor, tweenDelta)}</span>
 			<span
 					class="sign"
 					in:fade
@@ -405,14 +405,14 @@
 </style>
 
 <script>
+	import {DI}            from '@airport/di'
+	import {LOGIC_UTILS}   from '@votecube/public-logic'
 	import {
 		fade,
 		fly
 	}                      from 'svelte-transitions'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import ShieldButton    from '../../common/control/button/ShieldButton.html'
-	import {transition}    from '@votecube/public-logic/src/helpers/animation'
-	import {getColor}      from '../../helpers/cube'
 	import store           from '../../store'
 	import CubeMiniature   from '../poll/CubeMiniature.html'
 	import DetailedCube    from '../poll/DetailedCube.html'
@@ -440,40 +440,50 @@
 						return '?'
 				}
 			},
-			signedTotal: ({voteDims, factorDelta}) => voteDims.reduce((
+			signedTotal: ({voteFactors, tweenDelta}) => voteFactors.reduce((
 				total,
-				voteDim
-			) => total + voteDim.factorValue * voteDim.factorDir, 0),
-			outcome: ({signedTotal, factorDelta}) => {
+				voteFactor
+			) => total + voteFactor.tweenValue * (
+				voteFactor.tweenOutcome === 'A' ? 1 : -1
+			), 0),
+			outcome: ({signedTotal, tweenDelta}) => {
 				if (signedTotal === 0) {
 					return ' '
 				}
 				return signedTotal > 0 ? 'A' : 'B'
 			},
 			total:
-				({signedTotal, factorDelta}) => Math.abs(signedTotal),
+				({signedTotal, tweenDelta}) => Math.abs(signedTotal),
 			// outcomeFontY: ({outcome}) => outcome === 'B' ? 21 : 21
 		},
 		helpers: {
 			aClass:
-				voteDim => voteDim.factorDir === 1 ? 'leftDirection' : '',
+				voteFactor => voteFactor.tweenOutcome === 'A' ? 'leftDirection' : '',
 			bClass:
-				voteDim => voteDim.factorDir === -1 ? 'rightDirection' : '',
-			factorOutcome:
-				voteDim => voteDim.factorDir > 0 ? 'A' : 'B',
+				voteFactor => voteFactor.tweenOutcome === 'B' ? 'rightDirection' : '',
+			tweenOutcome:
+				voteFactor => voteFactor.tweenOutcome,
 			factorMiniLeft:
-				voteDim => voteDim.factorDir > 0 ? 0 : 19,
-			factorPercent:
-				voteDim => voteDim.factorValue,
-			getColor,
+				voteFactor => voteFactor.tweenOutcome === 'A' ? 0 : 19,
+			tweenValue:
+				voteFactor => voteFactor.tweenValue,
+			getColor: (
+				color,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return 'FFF'
+				}
+				return logicUtils.getColor(color)
+			},
 			getWidth:
-				voteDim => voteDim.factorValue,
+				voteFactor => voteFactor.tweenValue,
 			haveWidth: (
-				voteDim,
-				dir
-			) => voteDim.factorDir === dir,
+				voteFactor,
+				outcome
+			) => voteFactor.tweenOutcome === outcome,
 			showPosition:
-				voteDim => voteDim.value || voteDim.factorValue,
+				voteFactor => voteFactor.value || voteFactor.tweenValue,
 		},
 		methods: {
 			onClick(cubeView) {
@@ -481,42 +491,7 @@
 			}
 		},
 		oncreate() {
-			this.storeListener = store.on('state', ({changed, current, previous}) => {
-				if (!changed.cardMove || this.get().cubeView) {
-					return
-				}
-				const {move, moved} = current.cardMove
-
-				if (moved.length === 3) {
-					const options = {
-						duration: 300,
-						y: 26
-					}
-					setTimeout(() => {
-						transition(this, 'bar_' + 0, fly, options)
-						transition(this, 'bar_' + 1, fly, options)
-						transition(this, 'bar_' + 2, fly, {duration: 700, y: -56})
-					})
-					return
-				}
-
-				let has0 = moved.indexOf(0) >= 0
-				let has1 = moved.indexOf(1) >= 0
-
-				const options = moved.map(
-					index => {
-						const y = getMoveY(index, has0, has1)
-						return {
-							duration: move === 1 ? 300 : 900,
-							y
-						}
-					})
-
-				setTimeout(() => {
-					transition(this, 'bar_' + moved[0], fly, options[0])
-					transition(this, 'bar_' + moved[1], fly, options[1])
-				})
-			})
+			initPage(this).then()
 		},
 		ondestroy() {
 			this.storeListener.cancel()
@@ -526,6 +501,59 @@
 			fade,
 			fly
 		}
+	}
+
+	async function initPage(
+		page
+	) {
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.storeListener = store.on('state', ({changed, current, previous}) => {
+			if (!changed.cardMove || page.get().cubeView) {
+				return
+			}
+			onStateChange(current, page, logicUtils)
+		})
+
+		page.set({logicUtils})
+	}
+
+	function onStateChange(
+		current,
+		page,
+		logicUtils
+	) {
+		const {move, moved} = current.cardMove
+
+		if (moved.length === 3) {
+			const options = {
+				duration: 300,
+				y: 26
+			}
+			setTimeout(() => {
+				logicUtils.transition(page, 'bar_' + 0, fly, options)
+				logicUtils.transition(page, 'bar_' + 1, fly, options)
+				logicUtils.transition(page, 'bar_' + 2, fly, {duration: 700, y: -56})
+			})
+			return
+		}
+
+		let has0 = moved.indexOf(0) >= 0
+		let has1 = moved.indexOf(1) >= 0
+
+		const options = moved.map(
+			index => {
+				const y = getMoveY(index, has0, has1)
+				return {
+					duration: move === 1 ? 300 : 900,
+					y
+				}
+			})
+
+		setTimeout(() => {
+			logicUtils.transition(page, 'bar_' + moved[0], fly, options[0])
+			logicUtils.transition(page, 'bar_' + moved[1], fly, options[1])
+		})
 	}
 
 	function getMoveY(

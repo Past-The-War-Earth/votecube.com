@@ -11,7 +11,7 @@
 						<figure
 								style="
                     background-color: {selectedColor};
-                    color: #{getTextColor(color.value)};
+                    color: #{getTextColor(color.value, logicUtils)};
                 "
 						>
 							T
@@ -119,9 +119,10 @@
 </style>
 
 <script>
+	import {DI}            from '@airport/di'
+	import {LOGIC_UTILS}   from '@votecube/public-logic'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import Block           from '../../common/field/Block.html'
-	import {getTextColor}  from '../../helpers/general'
 
 	export default {
 		components: {
@@ -145,7 +146,24 @@
 				: 'b00'
 		},
 		helpers: {
-			getTextColor
+			getTextColor: (
+				color,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return '000'
+				}
+				return logicUtils.getTextColor(color)
+			}
+		},
+		oncreate() {
+			initPage(this).then()
 		}
+	}
+
+	async function initPage(page) {
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.set({logicUtils})
 	}
 </script>

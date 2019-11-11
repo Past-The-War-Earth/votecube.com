@@ -8,7 +8,7 @@
 			class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 			id="s{i}"
 			style="
-            background-color: #{getColor(factorsByAxis[position.axis].color)};
+            background-color: #{getColor(factorsByAxis[position.axis].color, logicUtils)};
               "
 	>
 		{#if !loading && !rotating}
@@ -47,7 +47,7 @@
 		></Positioner>
 		{/if}
 		<p
-				style="color: #{getTextColor(factorsByAxis[position.axis].color)};"
+				style="color: #{getTextColor(factorsByAxis[position.axis].color, logicUtils)};"
 		>
 			{positionsByAxisAndDir[position.axis][position.dir].name}
 		</p>
@@ -200,17 +200,15 @@
 </style>
 
 <script>
+	import {DI}            from '@airport/di'
 	import {
 		clearView,
 		mutationApi,
 		setView
-	}                                from '@votecube/cube-logic'
-	import CharacterButton           from '../../common/control/button/CharacterButton.html'
-	import {
-		getColor,
-		getTextColor
-	}                                from '../../helpers/general'
-	import Positioner                from './create/Positioner.html'
+	}                      from '@votecube/cube-logic'
+	import {LOGIC_UTILS}   from '@votecube/public-logic'
+	import CharacterButton from '../../common/control/button/CharacterButton.html'
+	import Positioner      from './create/Positioner.html'
 
 	export default {
 		components: {
@@ -228,8 +226,24 @@
 			}
 		},
 		helpers: {
-			getColor,
-			getTextColor
+			getColor: (
+				color,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return 'FFF'
+				}
+				return logicUtils.getColor(color)
+			},
+			getTextColor: (
+				color,
+				logicUtils
+			) => {
+				if (!logicUtils) {
+					return '000'
+				}
+				return logicUtils.getTextColor(color)
+			}
 		},
 		methods: {
 			moveDown(
@@ -305,7 +319,7 @@
 						}*/
 		},
 		oncreate() {
-			setupPage(this).then()
+			initPage(this).then()
 		},
 		ondestroy() {
 			clearView('cube')
@@ -344,7 +358,7 @@
 		// }
 	}
 
-	async function setupPage(
+	async function initPage(
 		page
 	) {
 		setView('cube')
@@ -363,6 +377,10 @@
 				this.set({rotating: false})
 			}, 700)
 		}, 1)
+
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.set({logicUtils})
 	}
 
 	function move(
@@ -415,7 +433,7 @@
 		const positionFrom = positionsByAxisAndDir[switchPositions[0].axis][switchPositions[0].dir]
 		const positionTo   = positionsByAxisAndDir[switchPositions[1].axis][switchPositions[1].dir]
 
-		const toDir = positionFrom.dir
+		const toDir      = positionFrom.dir
 		positionTo.dir   = positionFrom.dir
 		positionFrom.dir = toDir
 

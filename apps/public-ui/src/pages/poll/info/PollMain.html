@@ -58,7 +58,7 @@
 	<VoteComponentGraph
 			cubeView="{effectiveCubeView}"
 			delta="{delta}"
-			factorDelta="{factorDelta}"
+			tweenDelta="{tweenDelta}"
 			moveType="{moveType}"
 			on:toggleView="toggleView(cubeView, !cubeView)"
 			on:togglePercent="togglePercentPicker()"
@@ -67,7 +67,7 @@
 			positionMode="{positionMode}"
 			verticalLayout="{verticalLayout}"
 			vote="{vote}"
-			voteDims="{currentVoteDims}"
+			voteFactors="{currentVoteFactors}"
 	></VoteComponentGraph>
 	<!-- the main view -->
 	<!--			class:ranking="!effectiveCubeView"-->
@@ -337,43 +337,41 @@
 </style>
 
 <script>
-	import {DI}              from '@airport/di'
-	import {mutationApi}     from '@votecube/cube-logic'
-	import {VOTE_DAO}        from '@votecube/public-db'
-	import {POLL_MANAGER}    from '@votecube/public-logic/src'
-	import {POLL_MAIN_LOGIC} from '@votecube/public-logic/src/diTokens'
-	import AlterButton       from '../../../common/control/button/AlterButton.html'
-	import BuildButton       from '../../../common/control/button/BuildButton.html'
-	import CancelButton
-	                         from '../../../common/control/button/CancelButton.html'
-	import EditButton        from '../../../common/control/button/EditButton.html'
-	import OutcomeButton
-	                         from '../../../common/control/button/OutcomeButton.html'
-	import VoteButton        from '../../../common/control/button/VoteButton.html'
-	import PercentPicker     from '../../../common/control/PercentPicker.html'
-	import ActionPopover     from '../../../common/shell/ActionPopover.html'
-	import AgeSuitability    from '../../../components/AgeSuitability.html'
-	import DetailedCube      from '../../../components/poll/DetailedCube.html'
-	import FactorPercentagesMiniature
-	                         from '../../../components/poll/FactorPercentagesMiniature.html'
-	import FactorRanking     from '../../../components/poll/FactorRanking.html'
-	import FactorRankingMiniature
-	                         from '../../../components/poll/FactorRankingMiniature.html'
-
+	import {DI}           from '@airport/di'
+	import {mutationApi}  from '@votecube/cube-logic'
+	import {VOTE_DAO}     from '@votecube/public-db'
+	import {
+		LOGIC_UTILS,
+		POLL_MAIN_LOGIC,
+		POLL_MANAGER
+	}                     from '@votecube/public-logic'
+	import AlterButton    from '../../../common/control/button/AlterButton.html'
+	import BuildButton    from '../../../common/control/button/BuildButton.html'
+	import CancelButton   from '../../../common/control/button/CancelButton.html'
+	import EditButton     from '../../../common/control/button/EditButton.html'
+	import OutcomeButton  from '../../../common/control/button/OutcomeButton.html'
+	import VoteButton     from '../../../common/control/button/VoteButton.html'
+	import PercentPicker  from '../../../common/control/PercentPicker.html'
+	import ActionPopover  from '../../../common/shell/ActionPopover.html'
+	import AgeSuitability from '../../../components/AgeSuitability.html'
+	import DetailedCube   from '../../../components/poll/DetailedCube.html'
+	import FactorRanking  from '../../../components/poll/FactorRanking.html'
 	import Outcomes             from '../../../components/poll/Outcomes.html'
 	import PollFab              from '../../../components/poll/PollFab.html'
 	import VoteComponentGraph   from '../../../components/vote/VoteComponentGraph.html'
 	import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
 
-	import {setupCubeView}           from '../../../database'
-	import {getVoteDimsInValueOrder} from '../../../helpers/factorRanking'
+	import {setupCubeView}   from '../../../database'
 	import {
 		setCubeAdjustment,
 		shutDownCubeListener
-	}                                from '../../../libs/cubeLogic'
-	import {setResizeCllBck}         from '../../../resizer'
-	import * as routes               from '../../../routes'
-	import store                     from '../../../store'
+	}                        from '../../../libs/cubeLogic'
+	import {setResizeCllBck} from '../../../resizer'
+	import * as routes       from '../../../routes'
+	import store             from '../../../store'
+
+	let theCurrentVoteFactors = []
+	let theVoteFactors        = []
 
 	export default {
 		components: {
@@ -384,9 +382,7 @@
 			CancelButton,
 			DetailedCube,
 			EditButton,
-			FactorPercentagesMiniature,
 			FactorRanking,
-			FactorRankingMiniature,
 			OutcomeButton,
 			Outcomes,
 			PercentPicker,
@@ -396,10 +392,15 @@
 			VoteComponentSummary
 		},
 		computed: {
-			currentVoteDims: ({delta, currentVote}) =>
-				getVoteDimsInValueOrder(currentVote),
-			dynamicDelta: ({effectiveCubeView, delta, factorDelta}) =>
-				effectiveCubeView ? delta : factorDelta,
+			currentVoteFactors: ({delta, currentVote, logicUtils}) => {
+				if (logicUtils && currentVote) {
+					theCurrentVoteFactors = logicUtils.getVoteFactorNodesInValueOrder(currentVote)
+				}
+
+				return theCurrentVoteFactors
+			},
+			dynamicDelta: ({effectiveCubeView, delta, tweenDelta}) =>
+				effectiveCubeView ? delta : tweenDelta,
 			dynamicVote: ({effectiveCubeView, currentVote, vote}) =>
 				effectiveCubeView ? vote : currentVote,
 			effectiveCubeView: ({cubeView, beforeCubeView}) => cubeView && !beforeCubeView,
@@ -422,8 +423,13 @@
 			scale: ({effectiveCubeView, zoomFactor}) => effectiveCubeView
 				? `transform: scale(${zoomFactor}, ${zoomFactor});`
 				: '',
-			voteDims: ({delta, vote}) =>
-				getVoteDimsInValueOrder(vote),
+			voteDims: ({delta, vote, logicUtils}) => {
+				if (logicUtils && vote) {
+					theVoteFactors = logicUtils.getVoteFactorNodesInValueOrder(vote)
+				}
+
+				return theVoteFactors
+			}
 		},
 		data() {
 			return {
@@ -447,7 +453,7 @@
 					}
 				},
 				delta: 0,
-				factorDelta: 0, // Only for the factor cubes
+				tweenDelta: 0, // Only for the factor cubes
 				manualControlsOn: true,
 				moveDelta: 0,
 				percentMode: false,
@@ -607,76 +613,7 @@
 			}
 		},
 		oncreate() {
-			let {mode, pollKey, pollVariationKey} = this.store.get().routeParams
-
-			resize(this)
-			if (window.location.href.indexOf('card/ClimateChange') > 0) {
-				pollKey          = '7U2Z2ItoJVTnpZwZdjrg'
-				pollVariationKey = 'NFKgyOxEfT8RlqBBwEf2'
-			}
-			setupCubeView(pollKey, pollVariationKey, this, () => {
-				/*
-				if (this.get().percentMove) {
-					TODO: implement correct card and graph animations for the PercentPicker, IF NEEDED
-									let oldVoteDims = this.get().voteDims
-									let newVoteDims = getVoteDimsInValueOrder(this.get().vote)
-									if (oldVoteDims[0] !== newVoteDims[0]
-										|| oldVoteDims[1] !== newVoteDims[1]
-										|| oldVoteDims[2] !== newVoteDims[2]) {
-										console.log('Positions changed.')
-									}
-				}
-				*/
-				this.set({delta: this.get().delta + 1, percentMove: false})
-			}).then(
-				poll => {
-					toggleView(!this.get().cubeView, this.get().cubeView, this)
-					this.set({
-						loaded: true,
-						poll
-					})
-				})
-			this.store.set({
-				cube: true,
-				mode,
-				noOverflow: true
-			})
-			this.stateListener = this.on('state', ({changed, current, previous}) => {
-					if (!changed.delta
-						|| !current.vote) {
-						return
-					}
-
-					const logic = DI.getSync(POLL_MAIN_LOGIC)
-
-					let currentVote = current.currentVote
-					if (logic.votesEqual(currentVote, current.vote)) {
-						return
-					}
-
-					let lastVote = currentVote
-					currentVote  = logic.copyVoteToTween(current.vote, lastVote)
-
-					// Not needed, current vote is always set
-					// if (!lastVote) {
-					// 	this.set({currentVote})
-					// 	return
-					// }
-
-					// if (current.currentVoteInterval) {
-					// 	clearInterval(current.currentVoteInterval)
-					// }
-
-					logic.scheduleFactorTweens(
-						lastVote,
-						currentVote,
-						current.vote.changeMillis ? current.vote.changeMillis : 400,
-						this
-					).subscribe(
-						newVote => this.set({factorDelta: this.get().factorDelta + 1}))
-					this.set({currentVote})
-				}
-			)
+			initPage(this).then()
 		},
 		ondestroy() {
 			setResizeCllBck(null)
@@ -691,11 +628,94 @@
 		store: () => store
 	}
 
+	async function initPage(
+		page
+	) {
+		let {mode, pollKey, pollVariationKey} = page.store.get().routeParams
+
+		resize(page)
+		if (window.location.href.indexOf('card/ClimateChange') > 0) {
+			pollKey          = '7U2Z2ItoJVTnpZwZdjrg'
+			pollVariationKey = 'NFKgyOxEfT8RlqBBwEf2'
+		}
+		page.store.set({
+			cube: true,
+			mode,
+			noOverflow: true
+		})
+		page.stateListener = page.on('state', ({changed, current, previous}) => {
+			if (!changed.delta
+				|| !current.vote) {
+				return
+			}
+
+			onStateChange(current, page).then()
+		})
+
+		const poll = await setupCubeView(pollKey, pollVariationKey, page, () => {
+			/*
+			if (this.get().percentMove) {
+				TODO: implement correct card and graph animations for the PercentPicker, IF NEEDED
+								let oldVoteDims = this.get().voteDims
+								let newVoteDims = getVoteDimsInValueOrder(this.get().vote)
+								if (oldVoteDims[0] !== newVoteDims[0]
+									|| oldVoteDims[1] !== newVoteDims[1]
+									|| oldVoteDims[2] !== newVoteDims[2]) {
+									console.log('Positions changed.')
+								}
+			}
+			*/
+			page.set({delta: page.get().delta + 1, percentMove: false})
+		})
+		toggleView(!page.get().cubeView, page.get().cubeView, page)
+
+		const logicUtils = await DI.get(LOGIC_UTILS)
+		page.set({
+			loaded: true,
+			logicUtils,
+			poll
+		})
+	}
+
+	async function onStateChange(
+		current,
+		page
+	) {
+		const logic = await DI.get(POLL_MAIN_LOGIC)
+
+		let currentVote = current.currentVote
+		if (logic.votesEqual(currentVote, current.vote)) {
+			return
+		}
+
+		let lastVote = currentVote
+		currentVote  = logic.copyVoteToTween(current.vote, lastVote)
+
+		// Not needed, current vote is always set
+		// if (!lastVote) {
+		// 	this.set({currentVote})
+		// 	return
+		// }
+
+		// if (current.currentVoteInterval) {
+		// 	clearInterval(current.currentVoteInterval)
+		// }
+
+		logic.scheduleFactorTweens(
+			lastVote,
+			currentVote,
+			current.vote.changeMillis ? current.vote.changeMillis : 400,
+			page
+		).subscribe(
+			newVote => page.set({tweenDelta: page.get().tweenDelta + 1}))
+		page.set({currentVote})
+	}
+
 	function factorPositionsByDir(
 		factors,
 		factorNumber
 	) {
-		const positions =  factors[factorNumber].positions
+		const positions = factors[factorNumber].positions
 		return {
 			[positions.A.dir]: positions.A,
 			[positions.B.dir]: positions.B
@@ -760,7 +780,7 @@
 		page.set({savingMessage: 'Saving ...'})
 		const pollManager = await DI.get(POLL_MANAGER)
 		try {
-			await pollManager.saveCurrentVariation($user.user)
+			await pollManager.saveCurrentVariation($user)
 			page.set({confirm: false})
 			routes.navigateToPage(routes.POLL_LIST)
 		} catch (error) {

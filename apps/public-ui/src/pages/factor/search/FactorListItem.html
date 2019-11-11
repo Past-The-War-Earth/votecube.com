@@ -1,19 +1,22 @@
+{# await load}
+{:then result}
 <tr>
 	<td
-					class="icon"
+			class="icon"
 	>
 		<figure
-						style="
-            background-color: #{getColor(factor.color)};
+				style="
+            background-color: #{logicUtils.getColor(factor.color)};
         "
 		>
 		</figure>
 	<td
-					class="description"
+			class="description"
 	>
 		{factor.name}
 	</td>
 </tr>
+{/await}
 <style>
 	td {
 		border: 1px solid #f8f8f8;
@@ -38,13 +41,22 @@
 	}
 </style>
 <script>
-	import {getColor} from '../../../helpers/general';
 
 	export default {
-		helpers: {
-			getColor
+		data() {
+			return {
+				load: initPage(this)
+			}
 		},
 		immutable: true
+	}
+
+	async function initPage(
+		page
+	) {
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.set({logicUtils})
 	}
 
 </script>
