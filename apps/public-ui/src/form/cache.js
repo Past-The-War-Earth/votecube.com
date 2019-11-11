@@ -1,5 +1,6 @@
-import * as forms  from '../form/forms'
-import {PollStore} from '../helpers/PollStore'
+import {DI}           from '@airport/di'
+import {POLL_MANAGER} from '@votecube/public-logic'
+import * as forms     from '../form/forms'
 
 export function getPollRouteParams(
 	page
@@ -37,7 +38,9 @@ export async function savePollForm(
 
 	// await pollDao.stage(poll)
 	// pollDao.addTemp(poll)
-	PollStore.mergeForm()
+
+	const pollManager = await DI.get(POLL_MANAGER)
+	await pollManager.mergeForm()
 
 	forms.uncacheForm(forms.CREATE_POLL_TOP)
 	forms.uncacheForm(forms.CREATE_FACTOR)

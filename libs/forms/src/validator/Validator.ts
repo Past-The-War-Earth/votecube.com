@@ -25,6 +25,11 @@ export interface IValidators {
 	required: () => IValidator
 }
 
+export interface IErrorsText {
+	minLength?: string;
+	required?: string;
+}
+
 export const Validators = {
 	custom,
 	greaterThanOrEquals,
@@ -46,9 +51,4 @@ export function isPositiveInteger(
 	value: string
 ): boolean {
 	return /^[1-9][0-9]*$/.test(value)
-}
-
-export interface IErrorsText {
-	minLength?: string;
-	required?: string;
 }

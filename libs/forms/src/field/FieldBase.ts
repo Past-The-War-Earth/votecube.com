@@ -83,7 +83,7 @@ export interface IFieldBase {
 
 	setValue(
 		newValue: any,
-		resetOriginal: boolean
+		resetOriginal?: boolean
 	): void
 
 	touch(

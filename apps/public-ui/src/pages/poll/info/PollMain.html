@@ -86,10 +86,11 @@
 				<DetailedCube
 						cubeView="{effectiveCubeView}"
 						delta="{delta}"
+						factorsByAxis="{factorsByAxis}"
 						moveType="{moveType}"
 						on:cubeAltered="pollAltered()"
-						pFPsByAxisAndDir="{pFPsByAxisAndDir}"
 						poll="{poll}"
+						positionsByAxisAndDir="{positionsByAxisAndDir}"
 						positionMode="{positionMode}"
 						verticalLayout="{verticalLayout}"
 						vote="{vote}"
@@ -99,7 +100,6 @@
 				<FactorRanking
 						delta="{delta}"
 						on:rankingAdjusted="pollAdjusted()"
-						pFPsByAxisAndOutcome="{pFPsByAxisAndOutcome}"
 						poll="{poll}"
 						verticalLayout="{verticalLayout}"
 						vote="{vote}"
@@ -340,6 +340,7 @@
 	import {DI}              from '@airport/di'
 	import {mutationApi}     from '@votecube/cube-logic'
 	import {VOTE_DAO}        from '@votecube/public-db'
+	import {POLL_MANAGER}    from '@votecube/public-logic/src'
 	import {POLL_MAIN_LOGIC} from '@votecube/public-logic/src/diTokens'
 	import AlterButton       from '../../../common/control/button/AlterButton.html'
 	import BuildButton       from '../../../common/control/button/BuildButton.html'
@@ -348,16 +349,16 @@
 	import EditButton        from '../../../common/control/button/EditButton.html'
 	import OutcomeButton
 	                         from '../../../common/control/button/OutcomeButton.html'
-	import VoteButton               from '../../../common/control/button/VoteButton.html'
-	import PercentPicker            from '../../../common/control/PercentPicker.html'
-	import ActionPopover            from '../../../common/shell/ActionPopover.html'
-	import AgeSuitability           from '../../../components/AgeSuitability.html'
-	import DetailedCube             from '../../../components/poll/DetailedCube.html'
+	import VoteButton        from '../../../common/control/button/VoteButton.html'
+	import PercentPicker     from '../../../common/control/PercentPicker.html'
+	import ActionPopover     from '../../../common/shell/ActionPopover.html'
+	import AgeSuitability    from '../../../components/AgeSuitability.html'
+	import DetailedCube      from '../../../components/poll/DetailedCube.html'
 	import FactorPercentagesMiniature
-	                                from '../../../components/poll/FactorPercentagesMiniature.html'
-	import FactorRanking            from '../../../components/poll/FactorRanking.html'
+	                         from '../../../components/poll/FactorPercentagesMiniature.html'
+	import FactorRanking     from '../../../components/poll/FactorRanking.html'
 	import FactorRankingMiniature
-	                                from '../../../components/poll/FactorRankingMiniature.html'
+	                         from '../../../components/poll/FactorRankingMiniature.html'
 
 	import Outcomes             from '../../../components/poll/Outcomes.html'
 	import PollFab              from '../../../components/poll/PollFab.html'
@@ -366,7 +367,6 @@
 
 	import {setupCubeView}           from '../../../database'
 	import {getVoteDimsInValueOrder} from '../../../helpers/factorRanking'
-	import {PollStore}               from '../../../helpers/PollStore'
 	import {
 		setCubeAdjustment,
 		shutDownCubeListener
@@ -403,11 +403,22 @@
 			dynamicVote: ({effectiveCubeView, currentVote, vote}) =>
 				effectiveCubeView ? vote : currentVote,
 			effectiveCubeView: ({cubeView, beforeCubeView}) => cubeView && !beforeCubeView,
-			pFPsByAxisAndDir: ({moveDelta, poll}) =>
-				pFPsByAxisAndOther(poll, 'dir'),
-			pFPsByAxisAndOutcome: ({poll}) =>
-				pFPsByAxisAndOther(poll, 'outcome'),
-			poll: ({$pollStore, vote}) => PollStore.currentVariation().ui,
+			factorsByAxis: ({moveDelta, poll}) => {
+				const factors = poll.factors
+				return {
+					[factors[1].axis]: factors[1],
+					[factors[2].axis]: factors[2],
+					[factors[3].axis]: factors[3]
+				}
+			},
+			positionsByAxisAndDir({moveDelta, poll}) {
+				const factors = poll.factors
+				return {
+					[factors[1].axis]: factorPositionsByDir(factors, 1),
+					[factors[2].axis]: factorPositionsByDir(factors, 2),
+					[factors[3].axis]: factorPositionsByDir(factors, 3)
+				}
+			},
 			scale: ({effectiveCubeView, zoomFactor}) => effectiveCubeView
 				? `transform: scale(${zoomFactor}, ${zoomFactor});`
 				: '',
@@ -440,6 +451,7 @@
 				manualControlsOn: true,
 				moveDelta: 0,
 				percentMode: false,
+				poll: null,
 				positionChanges: {
 					0: 0,
 					1: 1,
@@ -616,12 +628,14 @@
 				}
 				*/
 				this.set({delta: this.get().delta + 1, percentMove: false})
-			}).then(() => {
-				toggleView(!this.get().cubeView, this.get().cubeView, this)
-				this.set({
-					loaded: true
+			}).then(
+				poll => {
+					toggleView(!this.get().cubeView, this.get().cubeView, this)
+					this.set({
+						loaded: true,
+						poll
+					})
 				})
-			})
 			this.store.set({
 				cube: true,
 				mode,
@@ -675,6 +689,17 @@
 		}
 		,
 		store: () => store
+	}
+
+	function factorPositionsByDir(
+		factors,
+		factorNumber
+	) {
+		const positions =  factors[factorNumber].positions
+		return {
+			[positions.A.dir]: positions.A,
+			[positions.B.dir]: positions.B
+		}
 	}
 
 	function toggleView(
@@ -733,9 +758,9 @@
 		$user
 	) {
 		page.set({savingMessage: 'Saving ...'})
-		// const pollDao = await DI.get(POLL_DAO)
+		const pollManager = await DI.get(POLL_MANAGER)
 		try {
-			await PollStore.saveCurrentVariation($user)
+			await pollManager.saveCurrentVariation($user.user)
 			page.set({confirm: false})
 			routes.navigateToPage(routes.POLL_LIST)
 		} catch (error) {

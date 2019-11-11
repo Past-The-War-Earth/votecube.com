@@ -7,7 +7,7 @@ import {
 }                   from './Field'
 
 export interface IFieldOption {
-	id: string
+	id: string | number
 	text?: string
 
 	[optionalKey: string]: any

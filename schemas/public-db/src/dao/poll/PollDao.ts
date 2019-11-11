@@ -19,7 +19,10 @@ import {
 }           from '@votecube/model'
 
 import {firestore} from 'firebase'
-import {POLL_DAO}  from '../../diTokens'
+import {
+	DB_UTILS,
+	POLL_DAO
+} from '../../diTokens'
 import {
 	ICollection,
 	IVCDocumentReference,
@@ -27,10 +30,6 @@ import {
 	IVoteCubeSchema,
 	Schema
 }                  from '../../document/document'
-import {
-	calculateWaterMarks,
-	copy
-}                  from '../DB'
 
 // extends IBasePollDao
 export interface IPollDao {
@@ -153,8 +152,8 @@ export class PollDao
 	): Promise<IPollDoc> {
 		const variationOnly = !!variationIn.pollKey
 
-		const variation = this.setupVariation(variationIn, user)
-		const poll      = this.setupPoll(variation, user)
+		const variation = await this.setupVariation(variationIn, user)
+		const poll      = await this.setupPoll(variation, user)
 
 		try {
 			await this.schema.db.runTransaction(async (transaction) => {
@@ -189,10 +188,10 @@ export class PollDao
 		return poll
 	}
 
-	private setupVariation(
+	private async setupVariation(
 		variationIn: IVariationDoc,
 		user: IUser
-	): IVariationDoc {
+	): Promise<IVariationDoc> {
 		const date       = new Date()
 		const dateString = date.toString()
 		const timezone   = dateString.split('(')[1].split(')')[0]
@@ -211,20 +210,23 @@ export class PollDao
 		}
 		delete (variation as any).id
 
-		calculateWaterMarks(variation)
+		const dbUtils = await DI.get(DB_UTILS)
+		dbUtils.calculateWaterMarks(variation)
 
 		return variation
 	}
 
-	private setupPoll(
+	private async setupPoll(
 		variation: IVariationDoc,
 		user: IUser
-	): IPollDoc {
+	): Promise<IPollDoc> {
 		const factors: ICorePollFactorsFragment<IsDoc> = {
 			1: undefined,
 			2: undefined,
 			3: undefined
 		}
+
+		const dbUtils = await DI.get(DB_UTILS)
 
 		for (const factorName in variation.factors) {
 			if (factorName === 'marks') {
@@ -232,22 +234,22 @@ export class PollDao
 			}
 			const variationFactor = variation.factors[factorName]
 			factors[factorName]   = {
-				axis: copy(variationFactor.axis),
-				color: copy(variationFactor.color),
-				name: copy(variationFactor.name)
+				axis: dbUtils.copy(variationFactor.axis),
+				color: dbUtils.copy(variationFactor.color),
+				name: dbUtils.copy(variationFactor.name)
 			}
 		}
 
 		return {
-			ageSuitability: copy(variation.ageSuitability),
+			ageSuitability: dbUtils.copy(variation.ageSuitability),
 			createdAt: variation.createdAt,
 			factors,
 			fts: undefined,
 			key: undefined,
-			name: copy(variation.name),
-			outcomes: copy(variation.outcomes),
+			name: dbUtils.copy(variation.name),
+			outcomes: dbUtils.copy(variation.outcomes),
 			rootVariationKey: variation.key,
-			theme: copy(variation.theme),
+			theme: dbUtils.copy(variation.theme),
 			userKey: user.key
 		}
 	}

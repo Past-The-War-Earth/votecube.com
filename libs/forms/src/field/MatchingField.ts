@@ -1,6 +1,10 @@
-import {Field} from './Field'
+import {
+	Field,
+	IField
+} from './Field'
 
-export interface IMatchingField {
+export interface IMatchingField
+	extends IField {
 	matches: any[]
 }
 

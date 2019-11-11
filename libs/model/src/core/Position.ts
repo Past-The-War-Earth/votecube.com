@@ -18,19 +18,29 @@ export type PositionDir = -1 | 1 | 0
 
 export interface ICorePosition<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,
+	        ICorePositionDefault<Doc>,
+	        ICorePositionFromForm<Doc>,
 	        IFullTextSearch,
 	        IUserCreated<PositionKey> {
-
-	dir: Doc extends IsDoc ? IDocumentValue<PositionDir> :
-		Doc extends IsDelta ? boolean : PositionDir
-	name: Doc extends IsDoc ? IDocumentValue<PositionName> :
-		Doc extends IsDelta ? boolean : PositionName
-
 }
 
 export interface ICoreFactorPosition<Doc extends DocStatus>
 	extends ICorePosition<Doc> {
 
 	factorKey: FactorKey
+
+}
+
+export interface ICorePositionDefault<Doc extends DocStatus> {
+
+	dir: Doc extends IsDoc ? IDocumentValue<PositionDir> :
+		Doc extends IsDelta ? boolean : PositionDir
+
+}
+
+export interface ICorePositionFromForm<Doc extends DocStatus> {
+
+	name: Doc extends IsDoc ? IDocumentValue<PositionName> :
+		Doc extends IsDelta ? boolean : PositionName
 
 }

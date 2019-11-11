@@ -8,12 +8,12 @@
 			class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 			id="s{i}"
 			style="
-            background-color: #{getColor(pFPsByAxisAndDir[position.axis][position.dir].color)};
+            background-color: #{getColor(factorsByAxis[position.axis].color)};
               "
 	>
 		{#if !loading && !rotating}
 		<header>
-			{#if pFPsByAxisAndDir[position.axis][position.dir].outcome === 'A'}
+			{#if positionsByAxisAndDir[position.axis][position.dir].outcome === 'A'}
 			<CharacterButton
 					character="A"
 					fontSize="23"
@@ -24,8 +24,8 @@
 					styles="left: 1px; position: absolute; top: 0px;"
 			></CharacterButton>
 			{/if}
-			{pFPsByAxisAndDir[position.axis][position.dir].factorPosition.factor.name}
-			{#if pFPsByAxisAndDir[position.axis][position.dir].outcome === 'B'}
+			{factorsByAxis[position.axis].name}
+			{#if positionsByAxisAndDir[position.axis][position.dir].outcome === 'B'}
 			<CharacterButton
 					character="B"
 					fontSize="23"
@@ -39,17 +39,17 @@
 		</header>
 		{#if positionMode}
 		<Positioner
-				on:moveRight="moveRight(position.axis, position.dir, pFPsByAxisAndDir)"
-				on:moveDown="moveDown(position.axis, position.dir, pFPsByAxisAndDir)"
-				on:moveLeft="moveLeft(position.axis, position.dir, pFPsByAxisAndDir)"
-				on:moveUp="moveUp(position.axis, position.dir, pFPsByAxisAndDir)"
-				on:switchDir="switchDir(position.axis, position.dir, pFPsByAxisAndDir)"
+				on:moveRight="moveRight(position.axis, position.dir, positionsByAxisAndDir)"
+				on:moveDown="moveDown(position.axis, position.dir, positionsByAxisAndDir)"
+				on:moveLeft="moveLeft(position.axis, position.dir, positionsByAxisAndDir)"
+				on:moveUp="moveUp(position.axis, position.dir, positionsByAxisAndDir)"
+				on:switchDir="switchDir(position.axis, position.dir, positionsByAxisAndDir)"
 		></Positioner>
 		{/if}
 		<p
-				style="color: #{getTextColor(pFPsByAxisAndDir[position.axis][position.dir].color)};"
+				style="color: #{getTextColor(factorsByAxis[position.axis].color)};"
 		>
-			{pFPsByAxisAndDir[position.axis][position.dir].factorPosition.position.name}
+			{positionsByAxisAndDir[position.axis][position.dir].name}
 		</p>
 		{/if}
 	</div>
@@ -206,7 +206,6 @@
 		setView
 	}                                from '@votecube/cube-logic'
 	import CharacterButton           from '../../common/control/button/CharacterButton.html'
-	import {getDefaultCubePositions} from '../../helpers/cube'
 	import {
 		getColor,
 		getTextColor
@@ -224,7 +223,7 @@
 		data() {
 			return {
 				loading: true,
-				positions: getDefaultCubePositions(),
+				positions: [],
 				rotating: false
 			}
 		},
@@ -236,9 +235,9 @@
 			moveDown(
 				axis,
 				dir,
-				pFPsByAxisAndDir
+				positionsByAxisAndDir
 			) {
-				move(this, pFPsByAxisAndDir, axis, dir, [
+				move(this, positionsByAxisAndDir, axis, dir, [
 					['y', 1], // x+
 					['y', 1], // x-
 					['x', -1], // y+
@@ -250,9 +249,9 @@
 			moveLeft(
 				axis,
 				dir,
-				pFPsByAxisAndDir
+				positionsByAxisAndDir
 			) {
-				move(this, pFPsByAxisAndDir, axis, dir, [
+				move(this, positionsByAxisAndDir, axis, dir, [
 					['z', -1], // x+
 					['z', 1], // x-
 					['z', -1], // y+
@@ -264,9 +263,9 @@
 			moveRight(
 				axis,
 				dir,
-				pFPsByAxisAndDir
+				positionsByAxisAndDir
 			) {
-				move(this, pFPsByAxisAndDir, axis, dir, [
+				move(this, positionsByAxisAndDir, axis, dir, [
 					['z', 1], // x+
 					['z', -1], // x-
 					['z', 1], // y+
@@ -278,9 +277,9 @@
 			moveUp(
 				axis,
 				dir,
-				pFPsByAxisAndDir
+				positionsByAxisAndDir
 			) {
-				move(this, pFPsByAxisAndDir, axis, dir, [
+				move(this, positionsByAxisAndDir, axis, dir, [
 					['y', -1], // x+
 					['y', -1], // x-
 					['x', 1], // y+
@@ -292,9 +291,9 @@
 			switchDir(
 				axis,
 				dir,
-				pFPsByAxisAndDir
+				positionsByAxisAndDir
 			) {
-				switchPoles(this, pFPsByAxisAndDir, axis, dir)
+				switchPoles(this, positionsByAxisAndDir, axis, dir)
 			},
 			/*			toggleView(
 							cubeView,
@@ -306,22 +305,7 @@
 						}*/
 		},
 		oncreate() {
-			setView('cube')
-			mutationApi.recompute()
-			this.stateListener = this.on('state', ({changed, current, previous}) => {
-				if (current.vote) {
-					this.get().vote.changeMillis = 128
-					if (this.stateListener) {
-						this.stateListener.cancel()
-					}
-				}
-			})
-			setTimeout(() => {
-				this.set({loading: false, rotating: true})
-				setTimeout(() => {
-					this.set({rotating: false})
-				}, 700)
-			}, 1)
+			setupPage(this).then()
 		},
 		ondestroy() {
 			clearView('cube')
@@ -360,41 +344,62 @@
 		// }
 	}
 
+	async function setupPage(
+		page
+	) {
+		setView('cube')
+		mutationApi.recompute()
+		page.stateListener = this.on('state', ({changed, current, previous}) => {
+			if (current.vote) {
+				page.get().vote.changeMillis = 128
+				if (page.stateListener) {
+					this.stateListener.cancel()
+				}
+			}
+		})
+		setTimeout(() => {
+			this.set({loading: false, rotating: true})
+			setTimeout(() => {
+				this.set({rotating: false})
+			}, 700)
+		}, 1)
+	}
+
 	function move(
 		component,
-		pFPsByAxisAndDir,
+		positionsByAxisAndDir,
 		axis,
 		dir,
 		switchToDefinitions
 	) {
 		let switchPositions = getSwitchArray(axis, dir, switchToDefinitions)
 
-		movePfpPair(switchPositions[0], pFPsByAxisAndDir)
-		movePfpPair(switchPositions[1], pFPsByAxisAndDir)
+		movePositionPair(switchPositions[0], positionsByAxisAndDir)
+		movePositionPair(switchPositions[1], positionsByAxisAndDir)
 
 		component.fire('cubeAltered')
 	}
 
-	function movePfpPair(
+	function movePositionPair(
 		switchPosition,
-		pFPsByAxisAndDir
+		positionsByAxisAndDir
 	) {
-		const pfpFrom = pFPsByAxisAndDir[switchPosition.from.axis][switchPosition.from.dir]
-		const pfpTo   = pFPsByAxisAndDir[switchPosition.to.axis][switchPosition.to.dir]
+		const positionFrom = positionsByAxisAndDir[switchPosition.from.axis][switchPosition.from.dir]
+		const positionTo   = positionsByAxisAndDir[switchPosition.to.axis][switchPosition.to.dir]
 
-		const toDir  = pfpTo.dir
-		const toAxis = pfpTo.axis
+		const toDir  = positionTo.dir
+		const toAxis = positionTo.axis
 
-		pfpTo.axis = pfpFrom.axis
-		pfpTo.dir  = pfpFrom.dir
+		positionTo.axis = positionFrom.axis
+		positionTo.dir  = positionFrom.dir
 
-		pfpFrom.axis = toAxis
-		pfpFrom.dir  = toDir
+		positionFrom.axis = toAxis
+		positionFrom.dir  = toDir
 	}
 
 	function switchPoles(
 		component,
-		pFPsByAxisAndDir,
+		positionsByAxisAndDir,
 		axis,
 		dir
 	) {
@@ -407,12 +412,12 @@
 				dir: dir === 1 ? -1 : 1
 			}]
 
-		const pfpFrom = pFPsByAxisAndDir[switchPositions[0].axis][switchPositions[0].dir]
-		const pfpTo   = pFPsByAxisAndDir[switchPositions[1].axis][switchPositions[1].dir]
+		const positionFrom = positionsByAxisAndDir[switchPositions[0].axis][switchPositions[0].dir]
+		const positionTo   = positionsByAxisAndDir[switchPositions[1].axis][switchPositions[1].dir]
 
-		const toDir = pfpFrom.dir
-		pfpTo.dir   = pfpFrom.dir
-		pfpFrom.dir = toDir
+		const toDir = positionFrom.dir
+		positionTo.dir   = positionFrom.dir
+		positionFrom.dir = toDir
 
 		component.fire('cubeAltered')
 	}

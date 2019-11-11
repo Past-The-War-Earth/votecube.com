@@ -80,30 +80,9 @@ export class PollMainLogic
 		lastVote: IVote
 	): ITweenVote {
 		return {
-			1: {
-				// axis: vote[1].axis,
-				outcome: vote[1].outcome,
-				// tweenAxis: lastVote[1].axis,
-				tweenOutcome: lastVote[1].outcome,
-				tweenValue: lastVote[1].value,
-				value: vote[1].value
-			},
-			2: {
-				// axis: vote[2].axis,
-				outcome: vote[2].outcome,
-				// tweenAxis: lastVote[2].axis,
-				tweenOutcome: lastVote[2].outcome,
-				tweenValue: lastVote[2].value,
-				value: vote[2].value
-			},
-			3: {
-				// axis: vote[3].axis,
-				outcome: vote[3].outcome,
-				// tweenAxis: lastVote[3].axis,
-				tweenOutcome: lastVote[3].outcome,
-				tweenValue: lastVote[3].value,
-				value: vote[3].value
-			}
+			1: this.getTweenVoteFactor(vote, lastVote, 1),
+			2: this.getTweenVoteFactor(vote, lastVote, 2),
+			3: this.getTweenVoteFactor(vote, lastVote, 3)
 		}
 	}
 
@@ -144,6 +123,20 @@ export class PollMainLogic
 		}, 17)
 
 		return subject
+	}
+
+	private getTweenVoteFactor(
+		vote,
+		lastVote,
+		factorNumber
+	): ITweenVoteFactor {
+		return {
+			factorNumber,
+			outcome: vote[factorNumber].outcome,
+			tweenOutcome: lastVote[factorNumber].outcome,
+			tweenValue: lastVote[factorNumber].value,
+			value: vote[factorNumber].value
+		}
 	}
 
 	private runFactorTween(

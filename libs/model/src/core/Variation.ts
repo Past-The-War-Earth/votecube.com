@@ -3,25 +3,38 @@ import {
 	IFullTextSearch,
 	IMarked,
 	IMarks,
+	IsData,
+	IsDelta,
+	IsDoc,
 	Key
-}                          from './common'
+}                   from './common'
 import {
 	ICoreAgeSuitabilityTracked,
 	IDocumentValue
-}                          from './DocumentValue'
-import {ICoreMarkedFactor} from './Factor'
-import {ICoreOutcome}      from './Outcome'
-import {IVersioned}        from './PathFragment'
+}                   from './DocumentValue'
+import {
+	ICoreFactorFromForm,
+	ICoreMarkedFactor
+}                   from './Factor'
+import {
+	ICoreOutcome,
+	ICoreOutcomeFromForm
+}                   from './Outcome'
+import {IVersioned} from './PathFragment'
 import {
 	PollKey,
 	PollName
-}                          from './Poll'
-import {ICoreTheme}        from './Theme'
+}                   from './Poll'
+import {
+	ICoreTheme,
+	ICoreThemeFromForm
+}                   from './Theme'
 
 export type VariationKey = Key
 
 export interface ICoreVariation<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,
+	        ICoreVariationFromForm<Doc>,
 	        IFullTextSearch,
 	        IVersioned<VariationKey> {
 
@@ -32,7 +45,6 @@ export interface ICoreVariation<Doc extends DocStatus>
 		marks: IMarks
 	}
 	marks: IMarks
-	name: IDocumentValue<PollName>
 	outcomes: {
 		A: ICoreOutcome<Doc> & IMarked
 		B: ICoreOutcome<Doc> & IMarked
@@ -40,5 +52,22 @@ export interface ICoreVariation<Doc extends DocStatus>
 	}
 	pollKey: PollKey
 	theme: ICoreTheme<Doc>
+
+}
+
+export interface ICoreVariationFromForm<Doc extends DocStatus = IsData> {
+
+	factors: {
+		1: ICoreFactorFromForm<Doc>
+		2: ICoreFactorFromForm<Doc>
+		3: ICoreFactorFromForm<Doc>
+	}
+	name: Doc extends IsDoc ? IDocumentValue<PollName>
+		: Doc extends IsDelta ? boolean : PollName
+	outcomes: {
+		A: ICoreOutcomeFromForm<Doc>
+		B: ICoreOutcomeFromForm<Doc>
+	}
+	theme: ICoreThemeFromForm
 
 }

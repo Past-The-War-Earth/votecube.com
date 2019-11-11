@@ -1,11 +1,11 @@
-import {FactorAxis}     from './core/Factor'
+import {FactorNumber}   from './core/Factor'
 import {OutcomeOrdinal} from './core/Outcome'
 
 export type VoteValue = number
 
 export interface IVoteFactor {
 
-	// axis: FactorAxis
+	factorNumber: FactorNumber
 	outcome: OutcomeOrdinal
 	value: VoteValue
 

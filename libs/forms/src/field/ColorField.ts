@@ -1,10 +1,30 @@
-import {Field} from './Field'
+import {
+	Field,
+	IField
+} from './Field'
+
+export type IColorChangeFlag = 0 | 1
+
+export interface IColorChangeFlags {
+
+	blue: IColorChangeFlag
+	green: IColorChangeFlag
+	red: IColorChangeFlag
+
+}
+
+export interface IColorField
+	extends IField {
+
+	changeFlags: IColorChangeFlags
+
+}
 
 export class ColorField
 	extends Field {
 
 
-	get changeFlags(): any {
+	get changeFlags(): IColorChangeFlags {
 		if (!this.originalValue) {
 			return {
 				blue: 0,

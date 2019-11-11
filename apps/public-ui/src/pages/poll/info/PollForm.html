@@ -210,29 +210,31 @@
 </style>
 
 <script>
-	import CharacterButton          from '../../../common/control/button/CharacterButton.html'
-	import PreviewButton            from '../../../common/control/button/PreviewButton.html'
-	import AutoComplete             from '../../../common/field/AutoComplete.html'
-	import IconBlock                from '../../../common/field/IconBlock.html'
-	import MultiSelect              from '../../../common/field/MultiSelect.html'
-	import Text                     from '../../../common/field/Text.html'
-	import TextArea                 from '../../../common/field/TextArea.html'
-	import LocationIcon             from '../../../common/icon/LocationIcon.html'
-	import TimeIcon                 from '../../../common/icon/TimeIcon.html'
-	import ActionPopover            from '../../../common/shell/ActionPopover.html'
-	import SelectionBlock           from '../../../components/factor/SelectionBlock.html'
-	import * as formCache           from '../../../form/cache'
-	import * as forms               from '../../../form/forms'
-	import * as pollFormCreator     from '../../../form/poll/creator'
-	import * as pollFormToConverter from '../../../form/poll/toConverter'
+	import {DI}            from '@airport/di'
+	import {
+		POLL_FORM_LOGIC,
+		POLL_MANAGER
+	}                      from '@votecube/public-logic'
+	import CharacterButton from '../../../common/control/button/CharacterButton.html'
+	import PreviewButton   from '../../../common/control/button/PreviewButton.html'
+	import AutoComplete    from '../../../common/field/AutoComplete.html'
+	import IconBlock       from '../../../common/field/IconBlock.html'
+	import MultiSelect     from '../../../common/field/MultiSelect.html'
+	import Text            from '../../../common/field/Text.html'
+	import TextArea        from '../../../common/field/TextArea.html'
+	import LocationIcon    from '../../../common/icon/LocationIcon.html'
+	import TimeIcon        from '../../../common/icon/TimeIcon.html'
+	import ActionPopover   from '../../../common/shell/ActionPopover.html'
+	import SelectionBlock  from '../../../components/factor/SelectionBlock.html'
+	import * as formCache  from '../../../form/cache'
+	import * as forms      from '../../../form/forms'
 	import {
 		getArrayValueTexts,
 		getDate
-	}                               from '../../../helpers/general'
-	import {PollStore}              from '../../../helpers/PollStore'
-	import {loadForms}              from '../../../libs/forms'
-	import * as routes              from '../../../routes'
-	import store                    from '../../../store'
+	}                      from '../../../helpers/general'
+	import {loadForms}     from '../../../libs/forms'
+	import * as routes     from '../../../routes'
+	import store           from '../../../store'
 
 	export default {
 		components: {
@@ -249,7 +251,6 @@
 			TimeIcon
 		},
 		computed: {
-			form: ({$pollStore}) => PollStore.currentVariation().form,
 			// cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
 			// continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
 			// countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
@@ -305,6 +306,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 		},
 		data() {
 			return {
+				form: null,
 				poll: {
 					name: ''
 				}
@@ -342,21 +344,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 				$routeParams,
 				modified
 			) {
-				const form = PollStore.currentVariation().form
-				form.touch()
-
-				if (!form.valid) {
-					return
-				}
-
-				if (
-					$routeParams.mode === 'alter'
-					&& !modified) {
-					this.set({invalidAlter: true})
-					return
-				}
-
-				forms.navigateOnValid(this, routes.POLL_MAIN, $routeParams)
+				doSubmit($routeParams, modified).then()
 			}
 		},
 		oncreate() {
@@ -383,10 +371,6 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			loadForms(page),
 			// loadLocations(),
 			// loadLocText(page.store, 'en-us'),
-			/*			DI.get(
-							// FIXME: add PollStore to di
-							// POLL_STORE
-						)*/
 		])
 
 		// let labels = await labelDao.getAll()
@@ -398,51 +382,61 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 		if (!form) {
 			const {mode} = formCache.getPollRouteParams(page)
 
-			let currentVariation
 			try {
-				currentVariation = PollStore.currentVariation()
+				const pollManager = await DI.get(POLL_MANAGER)
+
+				const currentVariation = pollManager.currentVariation
 				if (!currentVariation.ui && mode !== 'build') {
 					routes.navigateToPage(routes.POLL_LIST)
 					return
 				}
+
+				const pollFormLogic = await DI.get(POLL_FORM_LOGIC)
+
+				const form = await pollFormLogic.getPollForm(
+					currentVariation,
+					mode === 'alter',
+					mode !== 'create',
+					text)
+
+				forms.setForm(forms.CREATE_POLL_TOP, form)
 			} catch (error) {
 				page.set({error})
 				return
-			}
-
-			form = pollFormCreator.createPollForm(
-				// labels,
-				// locations,
-				text.UI,
-				ColorField,
-				DateField,
-				Field,
-				FieldGroup,
-				MatchingField,
-				OptionsField,
-				Validators)
-			form.setTrackOriginal(mode === 'alter')
-			form.validate()
-			forms.setForm(forms.CREATE_POLL_TOP, form)
-			currentVariation.form = form
-
-			// form.fields.locations.optionText = text.LOCATIONS
-			if (currentVariation.ui) {
-				form.setValue(pollFormToConverter.dtoToForm(currentVariation.ui), !currentVariation.ui.draft)
-				form.validate()
-				if (mode !== 'create') {
-					form.touch()
-				}
 			}
 		}
 
 		forms.ensureForm(form, page)
 
 		page.store.set({
+			form,
 			pageTitle: 'Poll Info',
 			// positionMap
 		})
 	}
 
+
+	async function doSubmit(
+		$routeParams,
+		modified
+	) {
+		const pollManager = await DI.get(POLL_MANAGER)
+
+		const form = pollManager.currentVariation.form
+		form.touch()
+
+		if (!form.valid) {
+			return
+		}
+
+		if (
+			$routeParams.mode === 'alter'
+			&& !modified) {
+			this.set({invalidAlter: true})
+			return
+		}
+
+		forms.navigateOnValid(this, routes.POLL_MAIN, $routeParams)
+	}
 
 </script>

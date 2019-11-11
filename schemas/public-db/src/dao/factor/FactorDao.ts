@@ -1,17 +1,17 @@
 import {DI}         from '@airport/di'
+import {IFactorDoc} from '@votecube/model'
 import {FACTOR_DAO} from '../../diTokens'
-import {IFactor}    from '../../generated/interfaces'
 
 export interface IFactorDao {
 
-	getAll(): Promise<IFactor[]>
+	getAll(): Promise<IFactorDoc[]>
 
 }
 
 export class FactorDao
 	implements IFactorDao {
 
-	async getAll(): Promise<IFactor[]> {
+	async getAll(): Promise<IFactorDoc[]> {
 		return []
 	}
 

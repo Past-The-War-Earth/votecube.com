@@ -1,6 +1,14 @@
-import {IsData}         from '../core/common'
+import {
+	IsData,
+	IsDelta
+}                       from '../core/common'
 import {ICoreVariation} from '../core/Variation'
 
 export interface IVariationData
-	extends ICoreVariation<IsData> {
+	extends IVariationDataOrDelta<IsData> {
+}
+
+export interface IVariationDataOrDelta<DataOrDelta extends IsData | IsDelta>
+	extends ICoreVariation<DataOrDelta> {
+
 }

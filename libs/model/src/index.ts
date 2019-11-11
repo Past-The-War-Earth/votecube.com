@@ -2,6 +2,7 @@ export * from './core/core'
 export * from './data/data'
 export * from './delta/delta'
 export * from './doc/doc'
+export * from './form/form'
 /*
 export * from './location/Continent'
 export * from './location/Country'

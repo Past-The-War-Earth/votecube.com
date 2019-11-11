@@ -1,11 +1,7 @@
-import {Store} from 'svelte/store.js';
-import {PollStore} from './helpers/PollStore'
+import {Store} from 'svelte/store.js'
 
 class VCStore
 	extends Store {
-
-	// thePollStore
-	//
 
 	toggleMainMenu() {
 		const showMainMenu = !this.get().showMainMenu
@@ -32,8 +28,8 @@ class VCStore
 			textToast
 		})
 		this.fire('setTextToast', {textToast})
-
 	}
+
 }
 
 var vcStore = new VCStore({
@@ -45,7 +41,10 @@ var vcStore = new VCStore({
 vcStore.compute(
 	'showTopMenu',
 	['showMainMenu', 'topMenuShown'],
-	(showMainMenu, topMenuShown) => !showMainMenu && topMenuShown
-);
+	(
+		showMainMenu,
+		topMenuShown
+	) => !showMainMenu && topMenuShown
+)
 
 export default vcStore

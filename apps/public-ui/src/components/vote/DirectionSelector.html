@@ -4,7 +4,7 @@
 		class="container"
 >
 	<label
-			on:click="fire('setDir', 1)"
+			on:click="fire('setOutcome', 1)"
 	>
 		<input
 				bind:group="direction"
@@ -24,7 +24,7 @@
 		class="container"
 >
 	<label
-			on:click="fire('setDir', -1)"
+			on:click="fire('setOutcome', -1)"
 	>
 		<input
 				bind:group='direction'
@@ -39,7 +39,7 @@
 -->
 <Toggle
 		toggled="{direction === 1 ? false : true}"
-		on:select="fire('setDir', event ? -1 : 1)"
+		on:select="fire('setOutcome', event ? -1 : 1)"
 		vertical="{true}"
 ></Toggle>
 {/if}

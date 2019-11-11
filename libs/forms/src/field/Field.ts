@@ -19,7 +19,7 @@ export enum LabelRule {
 export interface IFieldRules {
 	label?: LabelRule
 	maxLength?: '' | number,
-	trackOriginal: boolean
+	trackOriginal?: boolean
 }
 
 export interface IFieldText {

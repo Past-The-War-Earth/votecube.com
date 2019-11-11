@@ -1,24 +1,10 @@
-import {DI}             from '@airport/di'
-import {IDocumentValue} from '@votecube/model'
-import {DB_CONVERTER}   from '../diTokens'
-
-export const CORE_PROPERTY_NAMES = [
-	'createdAt',
-	'key',
-	'marks',
-	'userKey',
-]
-
-export const VERSIONED_PROPERTY_NAMES = [
-	...CORE_PROPERTY_NAMES,
-	'depth',
-	'parent',
-	'path',
-]
-
-export const CREATE_DEFAULTS = [
-
-]
+import {DI}           from '@airport/di'
+import {
+	IDocumentValue,
+	IVersioned,
+	Key
+}                     from '@votecube/model'
+import {DB_CONVERTER} from '../diTokens'
 
 export interface IDbConverter {
 
@@ -31,9 +17,16 @@ export interface IDbConverter {
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
-		create: boolean,
 		directProperties: any[]
 	): Db
+
+	toVersionedDb<K extends Key, Ui extends IVersioned<K>, Delta, Db extends IVersioned<K>>(
+		uiObject: Ui,
+		deltas: Delta,
+		originalDbObject: Db,
+		directProperties: any[]
+	): Db
+
 }
 
 export class DbConverter
@@ -62,9 +55,9 @@ export class DbConverter
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
-		create: boolean,
 		directProperties: any[]
 	): Db {
+		const create = !!originalDbObject;
 		const dbObject: any = {}
 
 		for (const propertyName in uiObject) {
@@ -77,6 +70,39 @@ export class DbConverter
 					create ? null : (originalDbObject as any)[propertyName],
 					create)
 			}
+		}
+
+		return dbObject
+	}
+
+	toVersionedDb<K extends Key, Ui extends IVersioned<K>, Delta, Db extends IVersioned<K>>(
+		uiObject: Ui,
+		deltas: Delta,
+		originalDbObject: Db,
+		directProperties: any[]
+	): Db {
+		const dbObject = this.toDb(uiObject, deltas, originalDbObject, directProperties)
+
+		if (originalDbObject) {
+			dbObject.depth                        = originalDbObject.depth + 1
+			dbObject.path                         = [
+				...originalDbObject.path
+			]
+			dbObject.path[originalDbObject.depth] = {
+				createdAt: originalDbObject.createdAt,
+				key: originalDbObject.key,
+				userKey: originalDbObject.userKey
+			}
+			dbObject.parent                       = {
+				createdAt: originalDbObject.createdAt,
+				depth: originalDbObject.depth,
+				key: originalDbObject.key,
+				userKey: originalDbObject.userKey
+			}
+		} else {
+			dbObject.parent = null
+			dbObject.path   = []
+			dbObject.depth  = 1
 		}
 
 		return dbObject

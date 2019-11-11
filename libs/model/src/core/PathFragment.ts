@@ -8,11 +8,16 @@ export interface IPathFragment<K extends Key>
 	extends IUserCreated<K> {
 }
 
+export interface IParent<K extends Key>
+	extends IPathFragment<K> {
+	depth: DocDepth
+}
+
 export interface IVersioned<K extends Key>
 	extends IUserCreated<K> {
 
 	depth: DocDepth
-	parent: IPathFragment<K>
+	parent: IParent<K>
 	path: Array<IPathFragment<K>>
 
 }

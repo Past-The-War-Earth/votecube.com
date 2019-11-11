@@ -9,6 +9,10 @@ export type IsDoc = 'doc'
 
 export type DocStatus = IsData | IsDelta | IsDoc
 
+export type IsFromForm = true
+export type IsNotFromForm = false
+export type FromForm = IsFromForm | IsNotFromForm
+
 export interface IKeyed<K extends Key> {
 
 	key: K

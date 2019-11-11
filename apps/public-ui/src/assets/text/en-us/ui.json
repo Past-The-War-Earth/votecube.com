@@ -141,19 +141,19 @@
         }
       },
       "Factors": {
-        "first": {
+        "1": {
           "label": "Select 1st Factor",
           "error": {
             "message": "1st Factor is required"
           }
         },
-        "second": {
+        "2": {
           "label": "Select 2nd Factor",
           "error": {
             "message": "2nd Factor is required"
           }
         },
-        "third": {
+        "3": {
           "label": "Select 3rd Factor",
           "error": {
             "message": "3rd Factor is required"

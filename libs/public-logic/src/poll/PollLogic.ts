@@ -1,10 +1,12 @@
 import {DI}         from '@airport/di'
 import {
+	IUser,
+	IVariationDoc
+}                   from '@votecube/model'
+import {
 	IPollDao,
-	IUserDoc,
-	IVariationDoc,
 	POLL_DAO
-}                   from '@votecube/public-db/src'
+}                   from '@votecube/public-db'
 import {POLL_LOGIC} from '../diTokens'
 
 export interface IPollLogic {
@@ -15,7 +17,7 @@ export interface IPollLogic {
 
 	save(
 		variation: IVariationDoc,
-		user: IUserDoc
+		user: IUser
 	): Promise<void>
 
 }
@@ -45,7 +47,7 @@ export class PollLogic
 
 	async save(
 		variation: IVariationDoc,
-		user: IUserDoc
+		user: IUser
 	): Promise<void> {
 		const pollDao: IPollDao = await DI.get(POLL_DAO)
 

@@ -11,8 +11,8 @@ export function transition(
 	if (!domElementToTransition) {
 		return
 	}
-	const figure_intro = wrapTransition(
+	const figureIntro = wrapTransition(
 		component, domElementToTransition, transitionFunction, options, true)
-	figure_intro.run(1)
+	figureIntro.run(1)
 	// })
 }
