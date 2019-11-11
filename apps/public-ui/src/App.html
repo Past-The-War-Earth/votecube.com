@@ -94,10 +94,9 @@
 <script>
 
 	import {DI}                  from '@airport/di'
-	import {AUTH}                from '@votecube/public-logic/src'
+	import {AUTH}                from '@votecube/public-logic'
 	import TextToast             from './common/shell/TextToast.html'
 	import {init}                from './database'
-	import {reactToUser}         from './helpers/auth'
 	import {loadUi}              from './libs/text/ui'
 	import AboutUs               from './pages/AboutUs.html'
 	import FactorInfoMain        from './pages/factor/info/Main.html'
@@ -210,41 +209,46 @@
 			}
 		},
 		oncreate() {
-			DI.get(AUTH).then(
-				auth => {
-					const user = auth.getUser()
-					this.store.set({user})
-					return auth.reactToUser().then(
-						userChanges$ => {
-							userChanges$.subscribe(
-								user => {
-									const {currentPage} = store.get()
-									if (currentPage.authenticated) {
-										navigateToPage(POLL_LIST)
-									}
-									this.store.set({user, authChecked: true})
-								})
-						})
-				})
-			loadUi(this.store, 'en-us').then()
-			init().then()
-
-
-			setupRoutes(this, pageMap, topMenuMap)
-
-			startResizeInterval(this.store)
-
-			this.store.on('setTextToast', ({textToast}) => {
-				this.set({lastTextToast: textToast, showTextToast: true})
-				setTimeout(() => {
-					let now             = new Date().getTime()
-					let {lastTextToast} = this.get()
-					if (now - lastTextToast.seconds * 1000 >= lastTextToast.time) {
-						this.set({showTextToast: false})
-					}
-				}, textToast.seconds * 1000)
-			})
+			initApp(this).then()
 		},
 		store: () => store
+	}
+
+	async function initApp(
+		page
+	) {
+		setupRoutes(page, pageMap, topMenuMap)
+
+		startResizeInterval(page.store)
+
+		page.store.on('setTextToast', ({textToast}) => {
+			page.set({lastTextToast: textToast, showTextToast: true})
+			setTimeout(() => {
+				let now             = new Date().getTime()
+				let {lastTextToast} = page.get()
+				if (now - lastTextToast.seconds * 1000 >= lastTextToast.time) {
+					page.set({showTextToast: false})
+				}
+			}, textToast.seconds * 1000)
+		})
+
+		const [auth, _, _2] = await Promise.all([
+			DI.get(AUTH),
+			loadUi(this.store, 'en-us'),
+			init()
+		])
+		const user          = auth.getUser()
+		page.store.set({user})
+
+		const userChanges$ = await auth.reactToUser()
+
+		userChanges$.subscribe(
+			user => {
+				const {currentPage} = store.get()
+				if (currentPage.authenticated) {
+					navigateToPage(POLL_LIST)
+				}
+				page.store.set({user, authChecked: true})
+			})
 	}
 </script>

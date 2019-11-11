@@ -4,7 +4,7 @@ import {
 	setPositionData
 }                      from '@votecube/cube-logic'
 import {VOTE_DAO}      from '@votecube/public-db'
-import {POLL_MANAGER}  from '@votecube/public-logic/src'
+import {POLL_MANAGER}  from '@votecube/public-logic'
 import {loadCubeLogic} from './libs/cubeLogic'
 
 export async function init() {

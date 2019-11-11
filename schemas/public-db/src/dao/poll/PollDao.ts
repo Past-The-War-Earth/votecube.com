@@ -1,4 +1,4 @@
-import {DI} from '@airport/di'
+import {DI}        from '@airport/di'
 import {
 	FactorKey,
 	ICorePollFactorsFragment,
@@ -16,8 +16,7 @@ import {
 	Key,
 	PollKey,
 	VariationKey
-}           from '@votecube/model'
-
+}                  from '@votecube/model'
 import {firestore} from 'firebase'
 import {
 	DB_UTILS,
@@ -411,7 +410,7 @@ export class PollDao
 	): Promise<void> {
 		const positionExists = !!position.key
 
-		const schema = await DI.get(SCHEMA)
+		const schema      = await DI.get(SCHEMA)
 		const positionRef = await this.addResource(position, schema.positions,
 			user, transaction)
 
