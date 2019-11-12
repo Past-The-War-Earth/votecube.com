@@ -1,15 +1,16 @@
 import {
 	IVote,
-	PositionDir,
+	Position_Dir,
 	VoteFactor_Value
-}                  from '@votecube/model'
+}                      from '@votecube/model'
+import {Factor_Number} from '@votecube/model'
 import {
 	MatrixIndex,
 	NUM_DIVS,
 	populateDegreeValMatrix,
 	STEP_DEGS,
-}                  from './cubeMoveMatrix'
-import {Dimension} from './Viewport'
+}                      from './cubeMoveMatrix'
+import {Dimension}     from './Viewport'
 
 export enum Bool {
 	False = 0,
@@ -22,7 +23,7 @@ export enum Move {
 	Up   = 1
 }
 
-export type Direction = PositionDir | 0
+export type Direction = Position_Dir | 0
 
 export type PositionPercent = VoteFactor_Value
 
@@ -38,8 +39,13 @@ export interface IMousePosition {
 	start: IPosition
 }
 
-export interface IUiVote
-	extends IVote {
+export interface IUiVote {
+	axisToFactorMapping: {
+		x: Factor_Number
+		y: Factor_Number
+		z: Factor_Number
+	}
+	vote: IVote
 	x: IUiVoteDimension
 	y: IUiVoteDimension
 	z: IUiVoteDimension
@@ -53,7 +59,10 @@ export interface IUiVoteDimension {
 }
 
 export type IValuesOutCallback =
-	(values: IUiVote) => void
+	(vote: IVote) => void
+
+export type IValuesThruCallback =
+	(vote: IUiVote) => void
 
 export const mouse: IMousePosition = {
 	start: {x: undefined, y: undefined}

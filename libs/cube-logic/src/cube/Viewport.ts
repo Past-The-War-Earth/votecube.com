@@ -14,13 +14,14 @@ import {
 	IUiVote,
 	IUiVoteDimension,
 	IValuesOutCallback,
+	IValuesThruCallback,
 	Move,
 	moveCoordinates,
-}                   from './cubeMovement'
+} from './cubeMovement'
 
 export interface IViewport {
 
-	cb: IValuesOutCallback,
+	cb: IValuesThruCallback,
 	cr: ICubeRotation,
 	el: { [elementId: string]: Element }
 	increment: MoveIncrement

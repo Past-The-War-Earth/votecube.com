@@ -1,4 +1,10 @@
 import {
+	Factor_Axis,
+	Factor_Number,
+	IVote,
+	IVoteFactor
+}                 from '@votecube/model'
+import {
 	gQ,
 	iT,
 	LM,
@@ -8,6 +14,7 @@ import {
 	Bool,
 	IPosition,
 	IUiVote,
+	IUiVoteDimension,
 	IValuesOutCallback,
 	mouse,
 	Move
@@ -27,7 +34,15 @@ export function setViewPort(
 	cb?: IValuesOutCallback
 ): MutationApi {
 	viewport.reset()
-	viewport.cb = cb
+	viewport.cb = (
+		uiVote: IUiVote
+	) => {
+		populateVoteFactor('x', uiVote)
+		populateVoteFactor('y', uiVote)
+		populateVoteFactor('z', uiVote)
+		cb(uiVote.vote)
+	}
+
 
 	if (forCube) {
 		if (cb) {
@@ -38,6 +53,17 @@ export function setViewPort(
 	}
 
 	return cb ? mutationApi : null
+}
+
+function populateVoteFactor(
+	axis: Factor_Axis,
+	uiVote: IUiVote
+): void {
+	const vote                    = uiVote.vote
+	const voteFactor: IVoteFactor = vote[uiVote.axisToFactorMapping[axis]]
+	const voteDimension           = uiVote[axis]
+	voteFactor.outcome            = voteDimension.dir ? 'A' : 'B'
+	voteFactor.value              = voteDimension.value
 }
 
 export function setView(
@@ -53,19 +79,43 @@ export function clearView(
 }
 
 export function setPositionDataAndMove(
-	uiVote: IUiVote
+	vote: IVote
 ) {
-	if (setPositionData(uiVote)) {
+	if (setPositionData(vote)) {
 		viewport.moveToDegree()
 	}
 }
 
 export function setPositionData(
-	positionData: IUiVote
+	vote: IVote,
+	factorNumbers: Factor_Number[] = [1, 2, 3]
 ): boolean {
-	viewport.pd = positionData
+	viewport.pd = {
+		axisToFactorMapping: {
+			x: factorNumbers[0],
+			y: factorNumbers[1],
+			z: factorNumbers[2]
+		},
+		vote,
+		x: this.getUiVoteDimension(0, 'x', vote[0]),
+		y: this.getUiVoteDimension(1, 'y', vote[1]),
+		z: this.getUiVoteDimension(2, 'z', vote[2]),
+	}
 
-	return !!positionData
+	return !!vote
+}
+
+function getUiVoteDimension(
+	factorNumber: Factor_Number,
+	axis: Factor_Axis,
+	voteFactor: IVoteFactor
+): IUiVoteDimension {
+	return {
+		axis,
+		dir: voteFactor.outcome === 'A' ? 1 : -1,
+		valid: true,
+		value: voteFactor.value
+	}
 }
 
 let suspended = false
@@ -230,16 +280,16 @@ function oMmTm(
 	if (!Object.keys(viewport.el).length) {
 		return
 	}
-	const t = ev.touches
+	const touches = ev.touches
 
 	// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
-	if (!TOUCH || !(t && t.length > 1)) {
+	if (!TOUCH || !(touches && touches.length > 1)) {
 		ev.preventDefault()
-		let p = t ? t[0] : ev
+		const point = touches ? touches[0] : ev
 		// Get touch co-ords
 		// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
 		// dispatch 'move-viewport' event
-		moveViewport({x: p.screenX, y: p.screenY})
+		moveViewport({x: point.screenX, y: point.screenY})
 	}
 }
 
