@@ -2,8 +2,8 @@ import {
 	IPollDoc,
 	IVariationDoc,
 	IVariationListingDoc,
-	PollKey,
-	VariationKey
+	Poll_Key,
+	Variation_Key
 }                             from '@votecube/model'
 import {
 	ICollection,
@@ -13,20 +13,20 @@ import {IVCDocumentReference} from './DocRef'
 import {RootCollection}       from './RootCollection'
 
 export interface IPollDraftsCollection
-	extends ICollection<PollKey, IPollDoc> {
+	extends ICollection<Poll_Key, IPollDoc> {
 
 	pollVariationListings(
-		keyOrReference: PollKey | IVCDocumentReference<PollKey, IPollDoc>
-	): ICollection<VariationKey, IVariationListingDoc, PollKey, IPollDoc>
+		keyOrReference: Poll_Key | IVCDocumentReference<Poll_Key, IPollDoc>
+	): ICollection<Variation_Key, IVariationListingDoc, Poll_Key, IPollDoc>
 
 	pollVariations(
-		keyOrReference: PollKey | IVCDocumentReference<PollKey, IPollDoc>
-	): ICollection<VariationKey, IVariationDoc, PollKey, IPollDoc>
+		keyOrReference: Poll_Key | IVCDocumentReference<Poll_Key, IPollDoc>
+	): ICollection<Variation_Key, IVariationDoc, Poll_Key, IPollDoc>
 
 }
 
 export class PollDraftsCollection
-	extends RootCollection<PollKey, IPollDoc>
+	extends RootCollection<Poll_Key, IPollDoc>
 	implements IPollDraftsCollection {
 
 	constructor(
@@ -36,14 +36,14 @@ export class PollDraftsCollection
 	}
 
 	pollVariationListings(
-		keyOrReference: PollKey | IVCDocumentReference<PollKey, IPollDoc>
-	): ICollection<VariationKey, IVariationListingDoc, PollKey, IPollDoc> {
+		keyOrReference: Poll_Key | IVCDocumentReference<Poll_Key, IPollDoc>
+	): ICollection<Variation_Key, IVariationListingDoc, Poll_Key, IPollDoc> {
 		return this.child(keyOrReference, 'pollVariationListings')
 	}
 
 	pollVariations(
-		keyOrReference: PollKey | IVCDocumentReference<PollKey, IPollDoc>
-	): ICollection<VariationKey, IVariationDoc, PollKey, IPollDoc> {
+		keyOrReference: Poll_Key | IVCDocumentReference<Poll_Key, IPollDoc>
+	): ICollection<Variation_Key, IVariationDoc, Poll_Key, IPollDoc> {
 		return this.child(keyOrReference, 'pollVariations')
 	}
 

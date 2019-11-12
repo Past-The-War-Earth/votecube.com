@@ -1,5 +1,5 @@
 import {DI}      from '@airport/di'
-import {PollKey} from '@votecube/model'
+import {Poll_Key} from '@votecube/model'
 import {
 	POLL_DAO,
 	VOTE_DAO

@@ -1,7 +1,4 @@
-import {
-	DateField,
-	IDateField
-}                   from '..'
+import {IDateField} from '../field/date/DateField'
 import {utcNow}     from '../field/date/types'
 import {minDate}    from './minDate'
 import {IValidator} from './Validator'

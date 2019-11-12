@@ -1,9 +1,9 @@
+import {IsData}               from '../core/common'
 import {
-	FactorAxis,
-	ICorePositionDefault
-}                    from '..'
-import {IsData}      from '../core/common'
-import {ICoreFactor} from '../core/Factor'
+	Factor_Axis,
+	ICoreFactor
+}                             from '../core/Factor'
+import {ICorePositionDefault} from '../core/Position'
 
 export interface IFactorData
 	extends ICoreFactor<IsData> {
@@ -11,7 +11,7 @@ export interface IFactorData
 
 export interface IFactorPositionDefault {
 
-	axis: FactorAxis
+	axis: Factor_Axis
 	positions: {
 		A: ICorePositionDefault<IsData>
 		B: ICorePositionDefault<IsData>

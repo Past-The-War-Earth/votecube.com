@@ -1,6 +1,6 @@
 import {DI}        from '@airport/di'
 import {
-	FactorKey,
+	Factor_Key,
 	ICorePollFactorsFragment,
 	IFactorDoc,
 	IKeyed,
@@ -14,8 +14,8 @@ import {
 	IVariationDoc,
 	IVariationListingDoc,
 	Key,
-	PollKey,
-	VariationKey
+	Poll_Key,
+	Variation_Key
 }                  from '@votecube/model'
 import * as firebase from 'firebase/app'
 import {
@@ -42,8 +42,8 @@ export interface IPollDao {
 	getAll(): Promise<IPollDoc[]>
 
 	getChildVariationListings(
-		pollKey: PollKey,
-		variationKey: VariationKey
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
 	): Promise<IVariationListingDoc[]>
 
 	getForTheme(
@@ -51,13 +51,13 @@ export interface IPollDao {
 	): Promise<IPollDoc[]>
 
 	getVariation(
-		pollKey: PollKey,
-		variationKey: VariationKey
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
 	): Promise<IVariationDoc>
 
 	getVariationListing(
-		pollKey: PollKey,
-		variationKey: VariationKey
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
 	): Promise<IVariationListingDoc>
 
 	save(
@@ -102,8 +102,8 @@ export class PollDao
 	}
 
 	async getVariation(
-		pollKey: PollKey,
-		variationKey: VariationKey
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
 	): Promise<IVariationDoc> {
 		const schema = await DI.get(SCHEMA)
 		return await this.getOne(
@@ -112,8 +112,8 @@ export class PollDao
 	}
 
 	async getVariationListing(
-		pollKey: PollKey,
-		variationKey: VariationKey
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
 	): Promise<IVariationListingDoc> {
 		const schema = await DI.get(SCHEMA)
 		const result = await schema.pollDrafts.pollVariationListings(pollKey)
@@ -131,8 +131,8 @@ export class PollDao
 	}
 
 	async getChildVariationListings(
-		pollKey: PollKey,
-		variationKey: VariationKey
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
 	): Promise<IVariationListingDoc[]> {
 		const schema = await DI.get(SCHEMA)
 		const result = await schema.pollDrafts.pollVariationListings(pollKey)
@@ -270,8 +270,8 @@ export class PollDao
 	private async getRefs(
 		variation: IVariationDoc
 	): Promise<{
-		pollRef: IVCDocumentReference<PollKey, IPollDoc>,
-		variationRef: IVCDocumentReference<VariationKey, IVariationDoc, PollKey, IPollDoc>
+		pollRef: IVCDocumentReference<Poll_Key, IPollDoc>,
+		variationRef: IVCDocumentReference<Variation_Key, IVariationDoc, Poll_Key, IPollDoc>
 	}> {
 		const schema       = await DI.get(SCHEMA)
 		const pollRef      = schema.pollDrafts.doc(variation.pollKey)
@@ -287,8 +287,8 @@ export class PollDao
 		poll: IPollDoc,
 		transaction: IVCTransaction,
 	): Promise<{
-		pollRef: IVCDocumentReference<PollKey, IPollDoc>,
-		variationRef: IVCDocumentReference<VariationKey, IVariationDoc, PollKey, IPollDoc>
+		pollRef: IVCDocumentReference<Poll_Key, IPollDoc>,
+		variationRef: IVCDocumentReference<Variation_Key, IVariationDoc, Poll_Key, IPollDoc>
 	}> {
 		const schema  = await DI.get(SCHEMA)
 		const pollRef = schema.pollDrafts.doc()
@@ -400,7 +400,7 @@ export class PollDao
 
 	private async addPosition(
 		position: IPositionDoc,
-		factorRef: IVCDocumentReference<FactorKey, IFactorDoc>,
+		factorRef: IVCDocumentReference<Factor_Key, IFactorDoc>,
 		factor: IFactorDoc,
 		factorExists: boolean,
 		poll: IPollDoc,

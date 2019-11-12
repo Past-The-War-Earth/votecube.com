@@ -1,15 +1,15 @@
 import {DI}         from '@airport/di'
 import {
-	FactorAxis,
+	Factor_Axis,
 	IFactorPositionDefault,
 	IPollFactorPositionDefault,
-	PositionDir
+	Position_Dir
 }                   from '@votecube/model'
 import {CUBE_LOGIC} from '../diTokens'
 
 export interface ICubePosition {
-	axis: FactorAxis
-	dir: PositionDir
+	axis: Factor_Axis
+	dir: Position_Dir
 }
 
 export interface ICubeLogic {

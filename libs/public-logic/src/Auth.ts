@@ -5,7 +5,7 @@ import {
 }             from '@airport/observe'
 import {
 	IUser,
-	UserName
+	User_Name
 }             from '@votecube/model'
 import {
 	Password,
@@ -112,7 +112,7 @@ export class Auth
 	}
 
 	async signIn(
-		username: UserName,
+		username: User_Name,
 		password: Password
 	): Promise<IAuthError | void> {
 		password = await this.encodePassword(password)

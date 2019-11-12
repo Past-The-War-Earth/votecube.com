@@ -1,7 +1,7 @@
 import {DI} from '@airport/di'
 import {
 	IUser,
-	UserName
+	User_Name
 }           from '@votecube/model'
 import {
 	SCHEMA,
@@ -13,7 +13,7 @@ export type Password = string
 export interface IUserDao {
 
 	signUp(
-		username: UserName,
+		username: User_Name,
 		password: Password,
 		user: IUser
 	): Promise<void>
@@ -24,7 +24,7 @@ export class UserDao
 	implements IUserDao {
 
 	async signUp(
-		username: UserName,
+		username: User_Name,
 		password: Password,
 		user: IUser
 	): Promise<void> {

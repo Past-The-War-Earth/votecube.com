@@ -4,12 +4,12 @@ import {
 	Subject
 }                        from '@airport/observe'
 import {
-	FactorNumber,
+	Factor_Number,
 	ITweenVote,
 	ITweenVoteFactor,
 	IVote,
 	IVoteFactor,
-	VoteValue
+	VoteFactor_Value
 }                        from '@votecube/model'
 import {POLL_MAIN_LOGIC} from '../../../diTokens'
 
@@ -20,12 +20,12 @@ type NumberOfFrames = number
 export interface IFactorFrameConfig {
 	newDirFrameNumber: FrameNumber
 	newVoteFactor: ITweenVoteFactor
-	newVoteValue: VoteValue
+	newVoteValue: VoteFactor_Value
 	numNewDirFrames: NumberOfFrames
 	numOldDirFrames: NumberOfFrames
 	numRemainingOldDirFrames: NumberOfFrames
 	oldVoteFactor: IVoteFactor
-	oldVoteValue: VoteValue
+	oldVoteValue: VoteFactor_Value
 	zeroValueFrameNumber: FrameNumber
 }
 
@@ -118,7 +118,8 @@ export class PollMainLogic
 				clearInterval(intervalHandle)
 			}
 
-			subject.finalize(() => subject.next(newVote))
+			subject.next(newVote)
+
 			// page.set({factorDelta: page.get().factorDelta + 1})
 		}, 17)
 
@@ -166,19 +167,19 @@ export class PollMainLogic
 				|| numRemainingFrames > zeroValueFrameNumber) {
 				// Always go here if the factor is being removed (dir === 0)
 				newVoteFactor.tweenValue   = Math.floor(oldVoteValue
-					/ numOldDirFrames * numRemainingOldDirFrames)
+					/ numOldDirFrames * numRemainingOldDirFrames) as VoteFactor_Value
 				newVoteFactor.tweenOutcome = oldVoteFactor.outcome
 			} else {
 				newVoteFactor.tweenValue   = Math.floor(newVoteValue
-					/ numNewDirFrames * newDirFrameNumber)
+					/ numNewDirFrames * newDirFrameNumber) as VoteFactor_Value
 				newVoteFactor.tweenOutcome = newVoteFactor.outcome
 			}
 		} else {
 			const factorValue          = oldVoteValue + ((newVoteValue - oldVoteValue)
 				/ numNewDirFrames * newDirFrameNumber)
 			newVoteFactor.tweenValue   = newVoteValue > oldVoteValue
-				? Math.floor(factorValue)
-				: Math.ceil(factorValue)
+				? Math.floor(factorValue) as VoteFactor_Value
+				: Math.ceil(factorValue) as VoteFactor_Value
 			newVoteFactor.tweenOutcome = newVoteFactor.outcome
 		}
 
@@ -196,7 +197,7 @@ export class PollMainLogic
 	}
 
 	private setupFactorTween(
-		factorNumber: FactorNumber,
+		factorNumber: Factor_Number,
 		oldVote: IVote,
 		newVote: ITweenVote,
 		numFrames: NumberOfFrames
@@ -205,8 +206,8 @@ export class PollMainLogic
 		const oldVoteFactor: IVoteFactor      = oldVote[factorNumber]
 		const newVoteFactor: ITweenVoteFactor = newVote[factorNumber]
 
-		const oldVoteValue: VoteValue = oldVoteFactor.value
-		const newVoteValue: VoteValue = newVoteFactor.value
+		const oldVoteValue: VoteFactor_Value = oldVoteFactor.value
+		const newVoteValue: VoteFactor_Value = newVoteFactor.value
 
 		let zeroValueFrameNumber: FrameNumber        = 0
 		let numNewDirFrames: NumberOfFrames

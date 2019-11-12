@@ -2,7 +2,8 @@ import {DI}                   from '@airport/di'
 import {
 	IVote,
 	IVoteFactor,
-	OutcomeOrdinal
+	Outcome_Ordinal,
+	VoteFactor_Value
 }                             from '@votecube/model'
 import {fly}                  from 'svelte-transitions'
 import {FACTOR_RANKING_LOGIC} from '../../../diTokens'
@@ -90,7 +91,7 @@ export interface IFactorRankingLogic {
 	setOutcome(
 		voteFactors: IVoteFactor[],
 		index: number,
-		outcome: OutcomeOrdinal,
+		outcome: Outcome_Ordinal,
 		// page,
 		// adjustRanking = false
 	): void
@@ -470,7 +471,7 @@ export class FactorRankingLogic
 	setOutcome(
 		voteFactors: IVoteFactor[],
 		index: number,
-		outcome: OutcomeOrdinal,
+		outcome: Outcome_Ordinal,
 		// page,
 		// adjustRanking = false
 	): void {
@@ -483,7 +484,7 @@ export class FactorRankingLogic
 	private adjustRanking(
 		voteFactors: IVoteFactor[],
 		index: number,
-		outcome: OutcomeOrdinal,
+		outcome: Outcome_Ordinal,
 		// page,
 		// doAdjust = true
 	): boolean {
@@ -639,7 +640,7 @@ export class FactorRankingLogic
 	): boolean {
 		const [firstVoteFactor, secondVoteFactor, thirdVoteFactor]
 			      = voteFactors
-		let oldHigherOutcome: OutcomeOrdinal
+		let oldHigherOutcome: Outcome_Ordinal
 		let oldHigherValue: number
 		if (!oldHigherFactor) {
 			switch (index) {
@@ -674,7 +675,7 @@ export class FactorRankingLogic
 		oldHigherOutcome      = oldHigherFactor.outcome
 		oldHigherValue        = oldHigherFactor.value
 		oldHigherFactor.value = oldLowerFactor.value
-		oldLowerFactor.value  = oldHigherValue
+		oldLowerFactor.value  = oldHigherValue as VoteFactor_Value
 
 		// page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
 

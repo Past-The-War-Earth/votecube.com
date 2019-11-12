@@ -54,7 +54,7 @@ export class PollFormManager
 			}
 		}
 
-		return variationFromForm as IVariationData
+		return variationFromForm as IVariationDataOrDelta<DataOrDelta>
 	}
 
 	toForm(

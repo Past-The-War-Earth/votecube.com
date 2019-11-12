@@ -1,8 +1,8 @@
 import {
 	IOutcomeDoc,
 	IOutcomePollDoc,
-	OutcomeKey,
-	PollKey
+	Outcome_Key,
+	Poll_Key
 }                             from '@votecube/model'
 import {
 	ICollection,
@@ -12,16 +12,16 @@ import {IVCDocumentReference} from './DocRef'
 import {RootCollection}       from './RootCollection'
 
 export interface IOutcomesCollection
-	extends ICollection<OutcomeKey, IOutcomeDoc> {
+	extends ICollection<Outcome_Key, IOutcomeDoc> {
 
 	outcomePolls(
-		keyOrReference: OutcomeKey | IVCDocumentReference<OutcomeKey, IOutcomeDoc>
-	): ICollection<PollKey, IOutcomePollDoc, OutcomeKey, IOutcomeDoc>
+		keyOrReference: Outcome_Key | IVCDocumentReference<Outcome_Key, IOutcomeDoc>
+	): ICollection<Poll_Key, IOutcomePollDoc, Outcome_Key, IOutcomeDoc>
 
 }
 
 export class OutcomesCollection
-	extends RootCollection<OutcomeKey, IOutcomeDoc>
+	extends RootCollection<Outcome_Key, IOutcomeDoc>
 	implements IOutcomesCollection {
 
 	constructor(
@@ -31,8 +31,8 @@ export class OutcomesCollection
 	}
 
 	outcomePolls(
-		keyOrReference: OutcomeKey | IVCDocumentReference<OutcomeKey, IOutcomeDoc>
-	): ICollection<PollKey, IOutcomePollDoc, OutcomeKey, IOutcomeDoc> {
+		keyOrReference: Outcome_Key | IVCDocumentReference<Outcome_Key, IOutcomeDoc>
+	): ICollection<Poll_Key, IOutcomePollDoc, Outcome_Key, IOutcomeDoc> {
 		return this.child(keyOrReference, 'outcomePolls')
 	}
 

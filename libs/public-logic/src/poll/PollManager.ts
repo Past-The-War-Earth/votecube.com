@@ -6,8 +6,8 @@ import {
 	IVariationDelta,
 	IVariationDoc,
 	IVote,
-	PollKey,
-	VariationKey
+	Poll_Key,
+	Variation_Key
 }                    from '@votecube/model'
 import {
 	DB_CONVERTER,
@@ -31,8 +31,8 @@ export interface IPollManager {
 	currentVariation: IStoredVariation
 
 	getVariation(
-		pollKey: PollKey,
-		variationKey: VariationKey
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
 	): Promise<IVariationData>
 
 	mergeForm(): Promise<void>
@@ -69,8 +69,8 @@ export class PollManager
 	}
 
 	async getVariation(
-		pollKey: PollKey,
-		variationKey: VariationKey
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
 	): Promise<IVariationData> {
 		if (!pollKey) {
 			this.currVariation.doc = null

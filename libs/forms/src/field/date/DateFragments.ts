@@ -1,4 +1,4 @@
-import {isPositiveInteger} from '../..'
+import {isPositiveInteger} from '../../validator/Validator'
 import {
 	IDetect,
 	IValidate

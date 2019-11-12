@@ -1,8 +1,8 @@
 import {
 	IPositionDoc,
 	IPositionPollDoc,
-	PollKey,
-	PositionKey
+	Poll_Key,
+	Position_Key
 }                             from '@votecube/model'
 import {
 	ICollection,
@@ -12,16 +12,16 @@ import {IVCDocumentReference} from './DocRef'
 import {RootCollection}       from './RootCollection'
 
 export interface IPositionsCollection
-	extends ICollection<PositionKey, IPositionDoc> {
+	extends ICollection<Position_Key, IPositionDoc> {
 
 	positionPolls(
-		keyOrReference: PositionKey | IVCDocumentReference<PositionKey, IPositionDoc>
-	): ICollection<PollKey, IPositionPollDoc, PositionKey, IPositionDoc>
+		keyOrReference: Position_Key | IVCDocumentReference<Position_Key, IPositionDoc>
+	): ICollection<Poll_Key, IPositionPollDoc, Position_Key, IPositionDoc>
 
 }
 
 export class PositionsCollection
-	extends RootCollection<PositionKey, IPositionDoc>
+	extends RootCollection<Position_Key, IPositionDoc>
 	implements IPositionsCollection {
 
 	constructor(
@@ -31,8 +31,8 @@ export class PositionsCollection
 	}
 
 	positionPolls(
-		keyOrReference: PositionKey | IVCDocumentReference<PositionKey, IPositionDoc>
-	): ICollection<PollKey, IPositionPollDoc, PositionKey, IPositionDoc> {
+		keyOrReference: Position_Key | IVCDocumentReference<Position_Key, IPositionDoc>
+	): ICollection<Poll_Key, IPositionPollDoc, Position_Key, IPositionDoc> {
 		return this.child(keyOrReference, 'positionPolls')
 	}
 
