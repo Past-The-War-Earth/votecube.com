@@ -9,6 +9,10 @@ import './assets/styles/global.css'
 import './assets/styles/votecube.css'
 
 document.addEventListener('DOMContentLoaded', function () {
+	setupApp().then()
+})
+
+async function setupApp() {
 	// // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 	// // The Firebase SDK is initialized and available here!
 	//
@@ -45,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		window.fb            = firebase.initializeApp(firebaseConfig)
 		window.db            = firebase.firestore()
 		try {
-			window.db.enablePersistence({synchronizeTabs: true})
+			await window.db.enablePersistence({synchronizeTabs: true})
 		} catch (error) {
 			// Its OK if caching could not be enabled
 		}
@@ -55,4 +59,4 @@ document.addEventListener('DOMContentLoaded', function () {
 	} catch (e) {
 		console.error(e)
 	}
-})
+}

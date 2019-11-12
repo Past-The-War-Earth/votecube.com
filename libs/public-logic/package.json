@@ -10,7 +10,7 @@
     "@votecube/model": "0.0.1",
     "@votecube/public-db": "0.0.1",
     "elasticlunr": "^0.9.x",
-    "firebase": "^7.2.x",
+    "firebase": "^7.3.0",
     "jssha": "^2.3.x",
     "page": "^1.11.3"
   },

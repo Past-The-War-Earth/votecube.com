@@ -11,10 +11,10 @@
   "version": "0.0.1",
   "dependencies": {
     "@airport/di": "0.0.1",
-    "@votecube/model": "0.0.1"
+    "@votecube/model": "0.0.1",
+    "firebase": "^7.3.0"
   },
   "devDependencies": {
-    "firebase": "^7.2.x",
     "tslint": "^5.14.0",
     "typescript": "^3.3.3333"
   }

@@ -1,4 +1,7 @@
 dependencies:
+  '@firebase/app': 0.4.23
+  '@firebase/auth': 0.12.4
+  '@firebase/firestore': 1.7.0
   '@rush-temp/air-control': 'file:projects/air-control.tgz'
   '@rush-temp/airport-code': 'file:projects/airport-code.tgz'
   '@rush-temp/ajax': 'file:projects/ajax.tgz'
@@ -115,6 +118,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-0CSfdo0o4NGvdownwcOIpMWpnxyx8M4Ucp0vovBLnJkK3qoLo1AXTvt5Q/C3Rla1kLG3nygE0vF6jue18qDJsA==
+  /@firebase/auth-types/0.8.2:
+    dev: false
+    peerDependencies:
+      '@firebase/app-types': 0.x
+      '@firebase/util': 0.x
+    resolution:
+      integrity: sha512-qcP7wZ76CIb7IN+K544GomA42cCS36KZmQ3n9Ou1JsYplEaMo52x4UuQTZFqlRoMaUWi61oQ9jiuE5tOAMJwDA==
   /@firebase/auth-types/0.8.2/305de2a962dddce397be80ab56d1283e:
     dependencies:
       '@firebase/app-types': 0.4.7
@@ -126,6 +136,24 @@ packages:
       '@firebase/util': 0.x
     resolution:
       integrity: sha512-qcP7wZ76CIb7IN+K544GomA42cCS36KZmQ3n9Ou1JsYplEaMo52x4UuQTZFqlRoMaUWi61oQ9jiuE5tOAMJwDA==
+  /@firebase/auth/0.12.4:
+    dependencies:
+      '@firebase/auth-types': 0.8.2
+    dev: false
+    peerDependencies:
+      '@firebase/app': 0.x
+    resolution:
+      integrity: sha512-nGzXJDB6NlGnd4JH16Myl2n+vQKRlJ5Wmjk10CB5ZTJu5NGs65uRf4wLBB6P2VyK0cGD/WcE+mfE34RxY/26hA==
+  /@firebase/auth/0.12.4/@firebase!app@0.4.23:
+    dependencies:
+      '@firebase/app': 0.4.23
+      '@firebase/auth-types': 0.8.2
+    dev: false
+    id: registry.npmjs.org/@firebase/auth/0.12.4
+    peerDependencies:
+      '@firebase/app': 0.x
+    resolution:
+      integrity: sha512-nGzXJDB6NlGnd4JH16Myl2n+vQKRlJ5Wmjk10CB5ZTJu5NGs65uRf4wLBB6P2VyK0cGD/WcE+mfE34RxY/26hA==
   /@firebase/auth/0.12.4/d975ba6558ce23c85de6c5bbad03302a:
     dependencies:
       '@firebase/app': 0.4.23
@@ -152,6 +180,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YEakG5uILYkZ3qEDU4F9pe1HyvPlPG2Zk1FJ5RN2Yt564lTNJTrnltRELoutWoSCAtgEUXEfiTDV+864qFSG9g==
+  /@firebase/firestore-types/1.7.0:
+    dev: false
+    peerDependencies:
+      '@firebase/app-types': 0.x
+    resolution:
+      integrity: sha512-mmWeP6XRZXYHC4LIBm69LMk6QXJDp2nVct8Xs1yH3gz517w6S7KAj0NcM7ZvvGwcUoXsm79eGukkvzQWnceTJw==
   /@firebase/firestore-types/1.7.0/@firebase!app-types@0.4.7:
     dependencies:
       '@firebase/app-types': 0.4.7
@@ -161,11 +195,43 @@ packages:
       '@firebase/app-types': 0.x
     resolution:
       integrity: sha512-mmWeP6XRZXYHC4LIBm69LMk6QXJDp2nVct8Xs1yH3gz517w6S7KAj0NcM7ZvvGwcUoXsm79eGukkvzQWnceTJw==
+  /@firebase/firestore/1.7.0:
+    dependencies:
+      '@firebase/firestore-types': 1.7.0
+      '@firebase/logger': 0.1.29
+      '@firebase/util': 0.2.32
+      '@firebase/webchannel-wrapper': 0.2.30
+      '@grpc/proto-loader': 0.5.3
+      grpc: 1.24.2
+      tslib: 1.10.0
+    dev: false
+    peerDependencies:
+      '@firebase/app': 0.x
+      '@firebase/app-types': 0.x
+    resolution:
+      integrity: sha512-/UWkJxXGrTMPG3KVruuW7SR+knyioKWfLi0jkW5ayoQ0lPyIuQ5/SUeOLT3PsEcmJFtHAGQK/eyGoOq9mkaT9A==
   /@firebase/firestore/1.7.0/2a18ed57b135a0c8fce1dbc334609b88:
     dependencies:
       '@firebase/app': 0.4.23
       '@firebase/app-types': 0.4.7
       '@firebase/firestore-types': /@firebase/firestore-types/1.7.0/@firebase!app-types@0.4.7
+      '@firebase/logger': 0.1.29
+      '@firebase/util': 0.2.32
+      '@firebase/webchannel-wrapper': 0.2.30
+      '@grpc/proto-loader': 0.5.3
+      grpc: 1.24.2
+      tslib: 1.10.0
+    dev: false
+    id: registry.npmjs.org/@firebase/firestore/1.7.0
+    peerDependencies:
+      '@firebase/app': 0.x
+      '@firebase/app-types': 0.x
+    resolution:
+      integrity: sha512-/UWkJxXGrTMPG3KVruuW7SR+knyioKWfLi0jkW5ayoQ0lPyIuQ5/SUeOLT3PsEcmJFtHAGQK/eyGoOq9mkaT9A==
+  /@firebase/firestore/1.7.0/@firebase!app@0.4.23:
+    dependencies:
+      '@firebase/app': 0.4.23
+      '@firebase/firestore-types': 1.7.0
       '@firebase/logger': 0.1.29
       '@firebase/util': 0.2.32
       '@firebase/webchannel-wrapper': 0.2.30
@@ -1837,15 +1903,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-KzoRBTnFNV8c2NMUYj6HCxIeyFg=
-  /css-select/2.0.2:
+  /css-select/2.1.0:
     dependencies:
       boolbase: 1.0.0
-      css-what: 2.1.3
+      css-what: 3.2.1
       domutils: 1.7.0
       nth-check: 1.0.2
     dev: false
     resolution:
-      integrity: sha512-dSpYaDVoWaELjvZ3mS6IKZM/y2PMPa/XYoEfYNZePL4U/XgyxZNroHEHReDx/d+VgXh9VbCTtFqLkFbmeqeaRQ==
+      integrity: sha512-Dqk7LQKpwLoH3VovzZnkzegqNSuAziQyNZUcrdDM401iY+R5NkGBXGmtO05/yaXQziALuPogeG0b7UAgjnTJTQ==
   /css-selector-tokenizer/0.7.1:
     dependencies:
       cssesc: 0.1.0
@@ -1871,6 +1937,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-a+EPoD+uZiNfh+5fxw2nO9QwFa6nJe2Or35fGY6Ipw1R3R4AGz1d1TEZrCegvw2YTmZ0jXirGYlzxxpYSHwpEg==
+  /css-what/3.2.1:
+    dev: false
+    engines:
+      node: '>= 6'
+    resolution:
+      integrity: sha512-WwOrosiQTvyms+Ti5ZC5vGEK0Vod3FTt1ca+payZqvKuGJF+dq7bG63DstxtN0dpm6FxY27a/zS3Wten+gEtGw==
   /cssauron/1.4.0:
     dependencies:
       through: 2.3.8
@@ -2173,13 +2245,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-gd3ypIPfOMr9h5jIKq8E3sHOTCjeirnl0WK5ZdS1AW0Odt0b1PaWaHdJ4Qk4klv+YB9aJBS7mESXjFoDQPu6DA==
-  /dom-serializer/0.2.1:
+  /dom-serializer/0.2.2:
     dependencies:
       domelementtype: 2.0.1
       entities: 2.0.0
     dev: false
     resolution:
-      integrity: sha512-sK3ujri04WyjwQXVoK4PU3y8ula1stq10GJZpqHIUgoGZdsGzAGu65BnU3d08aTVSvO7mGPZUc0wTEDL+qGE0Q==
+      integrity: sha512-2/xPb3ORsQ42nHYiSunXkDjPLBaEj/xTwUO4B7XCZQTRk7EBtTOPaygh10YAAh2OI1Qrp6NWfpAhzswj0ydt9g==
   /dom-storage/2.1.0:
     dev: false
     resolution:
@@ -2207,14 +2279,14 @@ packages:
       integrity: sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==
   /domutils/1.5.1:
     dependencies:
-      dom-serializer: 0.2.1
+      dom-serializer: 0.2.2
       domelementtype: 1.3.1
     dev: false
     resolution:
       integrity: sha1-3NhIiib1Y9YQeeSMn3t+Mjc2gs8=
   /domutils/1.7.0:
     dependencies:
-      dom-serializer: 0.2.1
+      dom-serializer: 0.2.2
       domelementtype: 1.3.1
     dev: false
     resolution:
@@ -2335,13 +2407,13 @@ packages:
       integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==
   /es-abstract/1.16.0:
     dependencies:
-      es-to-primitive: 1.2.0
+      es-to-primitive: 1.2.1
       function-bind: 1.1.1
       has: 1.0.3
       has-symbols: 1.0.0
       is-callable: 1.1.4
       is-regex: 1.0.4
-      object-inspect: 1.6.0
+      object-inspect: 1.7.0
       object-keys: 1.1.1
       string.prototype.trimleft: 2.1.0
       string.prototype.trimright: 2.1.0
@@ -2350,7 +2422,7 @@ packages:
       node: '>= 0.4'
     resolution:
       integrity: sha512-xdQnfykZ9JMEiasTAJZJdMWCQ1Vm00NBw79/AWi7ELfZuuPCSOMDZbT9mkOfSctVtfhb+sAAzrm+j//GjjLHLg==
-  /es-to-primitive/1.2.0:
+  /es-to-primitive/1.2.1:
     dependencies:
       is-callable: 1.1.4
       is-date-object: 1.0.1
@@ -2359,7 +2431,7 @@ packages:
     engines:
       node: '>= 0.4'
     resolution:
-      integrity: sha512-qZryBOJjV//LaxLTV6UC//WewneB3LcXOL9NP++ozKVXsIIIpm/2c13UDiD9Jp2eThsecw9m3jPqDwTyobcdbg==
+      integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -4523,10 +4595,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-fn2Fi3gb18mRpBupde04EnVOmYw=
-  /object-inspect/1.6.0:
+  /object-inspect/1.7.0:
     dev: false
     resolution:
-      integrity: sha512-GJzfBZ6DgDAmnuaM3104jR4s1Myxr3Y3zfIyN4z3UdqN69oSRacNK8UhnobDdC+7J2AHCjGwxQubNJfE70SXXQ==
+      integrity: sha512-a7pEHdh1xKIAgTySUGgLMx/xwDZskN1Ud6egYYN3EdRW4ZMPNEDUTF+hwy2LUC+Bl+SyLXANnwz/jyh/qutKUw==
   /object-is/1.0.1:
     dev: false
     engines:
@@ -6426,7 +6498,7 @@ packages:
     dependencies:
       chalk: 2.4.2
       coa: 2.0.2
-      css-select: 2.0.2
+      css-select: 2.1.0
       css-select-base-adapter: 0.1.1
       css-tree: 1.0.0-alpha.37
       csso: 4.0.2
@@ -6476,7 +6548,7 @@ packages:
       schema-utils: 1.0.0
       serialize-javascript: 1.9.1
       source-map: 0.6.1
-      terser: 4.3.9
+      terser: 4.4.0
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
     dev: false
@@ -6494,7 +6566,7 @@ packages:
       schema-utils: 2.5.0
       serialize-javascript: 2.1.0
       source-map: 0.6.1
-      terser: 4.3.9
+      terser: 4.4.0
       webpack-sources: 1.4.3
     dev: false
     engines:
@@ -6511,7 +6583,7 @@ packages:
       schema-utils: 2.5.0
       serialize-javascript: 2.1.0
       source-map: 0.6.1
-      terser: 4.3.9
+      terser: 4.4.0
       webpack: 4.41.2
       webpack-sources: 1.4.3
     dev: false
@@ -6522,7 +6594,7 @@ packages:
       webpack: ^4.0.0
     resolution:
       integrity: sha512-jwdauV5Al7zopR6OAYvIIRcxXCSvLjZjr7uZE8l2tIWb/ryrGN48sJftqGf5k9z09tWhajx53ldp0XPI080YnA==
-  /terser/4.3.9:
+  /terser/4.4.0:
     dependencies:
       commander: 2.20.3
       source-map: 0.6.1
@@ -6532,7 +6604,7 @@ packages:
       node: '>=6.0.0'
     hasBin: true
     resolution:
-      integrity: sha512-NFGMpHjlzmyOtPL+fDw3G7+6Ueh/sz4mkaUYa4lJCxOPTNzd0Uj0aZJOmsDYoSQyfuVoWDMSWTPU3huyOm2zdA==
+      integrity: sha512-oDG16n2WKm27JO8h4y/w3iqBGAOSCtq7k8dRmrn4Wf9NouL0b2WpMHGChFGZq4nFAQy1FsNJrVQHfurXOSTmOA==
   /text-table/0.2.0:
     dev: false
     resolution:
@@ -7517,7 +7589,7 @@ packages:
     dev: false
     name: '@rush-temp/forms'
     resolution:
-      integrity: sha512-6meqyEh/aL0dgBA1W1L58igNhQ+AX1p76urAV9xuAKCN7cehyDPwQGEcMvZHggl9CDy3D+U3Jv+cJ1CT2EjzwQ==
+      integrity: sha512-+YoSxNDpKaG3zeZrVGelW+SI5CBxweh/CPav88P9F7KUiDecNhrNtn5Io18lmr5n8fSqD4HCWGqcAU1QRVHTow==
       tarball: 'file:projects/forms.tgz'
     version: 0.0.0
   'file:projects/fuel-hydrant-system.tgz':
@@ -7617,6 +7689,9 @@ packages:
     version: 0.0.0
   'file:projects/public-db.tgz':
     dependencies:
+      '@firebase/app': 0.4.23
+      '@firebase/auth': /@firebase/auth/0.12.4/@firebase!app@0.4.23
+      '@firebase/firestore': /@firebase/firestore/1.7.0/@firebase!app@0.4.23
       elasticlunr: 0.9.5
       firebase: 7.3.0
       tslint: /tslint/5.20.1/typescript@3.7.2
@@ -7625,19 +7700,28 @@ packages:
     dev: false
     name: '@rush-temp/public-db'
     resolution:
-      integrity: sha512-oHhUzbTDMnU5oXvJxfkyil72/VLX0vCbe1QeAPmBvTF8cXJxv3CwaWPCOTpEBg2uxZyc9OJUz1ASyl3Kt18KTg==
+      integrity: sha512-jLlcqzTzM+AV9NeZ82i3EC1m3nmHgSciFDE7EjD1cX9itT07KzGXhKkpwx9CWnlOB43YUTe0e+yJ0MEywMTWfQ==
       tarball: 'file:projects/public-db.tgz'
     version: 0.0.0
   'file:projects/public-logic.tgz':
     dependencies:
+      '@firebase/app': 0.4.23
+      '@firebase/auth': /@firebase/auth/0.12.4/@firebase!app@0.4.23
+      '@firebase/firestore': /@firebase/firestore/1.7.0/@firebase!app@0.4.23
       '@types/elasticlunr': 0.9.0
+      elasticlunr: 0.9.5
+      firebase: 7.3.0
+      jssha: 2.3.1
       page: 1.11.5
+      svelte: 2.16.1
+      svelte-loader: /svelte-loader/2.13.6/svelte@2.16.1
+      svelte-transitions: 1.2.0
       tslint: /tslint/5.20.1/typescript@3.7.2
       typescript: 3.7.2
     dev: false
     name: '@rush-temp/public-logic'
     resolution:
-      integrity: sha512-KF1yxltb5yRMSNvIczpD3er9YRa6fn4aWl/x8kQg+0sn/sNScaS+kr0tM5iN5p5QXOOH0AEjGmfe6PCPKtp18A==
+      integrity: sha512-DcgxG9Is0EZmA30nyv07TLSjcbSebyHLyFDQp7tGJRX/kgkI64YY1MZ+/luUB7KCgctiBGGOW/KtVizbOg0ZPw==
       tarball: 'file:projects/public-logic.tgz'
     version: 0.0.0
   'file:projects/public-ui.tgz':
@@ -7672,7 +7756,7 @@ packages:
     dev: false
     name: '@rush-temp/public-ui'
     resolution:
-      integrity: sha512-6kZdjm3GuTVNJyMHREp0Rt9OPCOFh98c7YMhj1ipV+yR6TZ4d+xWkG+neg8TbknoyBKmt4fjedG4uMDxfK4Ubg==
+      integrity: sha512-NGEy6Wt0R100xf6UGOjw9usOcjo8aq/jKtdHEkzdjE+ISvoE/wa6Ww8aTZeuA3yDgdE7MZcc4x+g/P8Af0dX1Q==
       tarball: 'file:projects/public-ui.tgz'
     version: 0.0.0
   'file:projects/relational-db.tgz':
@@ -7786,6 +7870,9 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  '@firebase/app': ^0.4.23
+  '@firebase/auth': ^0.12.4
+  '@firebase/firestore': ^1.7.0
   '@rush-temp/air-control': 'file:./projects/air-control.tgz'
   '@rush-temp/airport-code': 'file:./projects/airport-code.tgz'
   '@rush-temp/ajax': 'file:./projects/ajax.tgz'

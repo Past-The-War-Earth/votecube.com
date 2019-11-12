@@ -17,7 +17,7 @@ import {
 	PollKey,
 	VariationKey
 }                  from '@votecube/model'
-import {firestore} from 'firebase'
+import * as firebase from 'firebase/app'
 import {
 	DB_UTILS,
 	POLL_DAO,
@@ -198,7 +198,7 @@ export class PollDao
 		const createdAt: ITimestamp = {
 			m: date.getTime(),
 			o: date.getTimezoneOffset(),
-			s: firestore.FieldValue.serverTimestamp(),
+			s: firebase.firestore.FieldValue.serverTimestamp(),
 			z: timezone
 		}
 
