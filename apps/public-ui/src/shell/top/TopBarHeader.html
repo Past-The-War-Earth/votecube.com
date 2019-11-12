@@ -1,6 +1,6 @@
 <div class="pure-menu custom-menu custom-menu-top">
 	<nav
-					class="pure-menu-heading custom-menu-brand"
+			class="pure-menu-heading custom-menu-brand"
 	>
 		{title}
 	</nav>
@@ -10,15 +10,11 @@
 </div>
 
 <script>
-	import store         from '../../store.js'
-	import TopMenuToggle from './TopMenuToggle.html'
+	import store from '../../store.js'
 
 	export default {
 		computed: {
 			title: ({$pageTitle}) => $pageTitle ? $pageTitle : 'Votecube'
-		},
-		components: {
-			TopMenuToggle
 		},
 		store: () => store
 	}

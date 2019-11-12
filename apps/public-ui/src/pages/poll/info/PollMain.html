@@ -347,12 +347,9 @@
 		POLL_MAIN_LOGIC,
 		POLL_MANAGER
 	}                     from '@votecube/public-logic'
-	import AlterButton    from '../../../common/control/button/AlterButton.html'
 	import BuildButton    from '../../../common/control/button/BuildButton.html'
 	import CancelButton   from '../../../common/control/button/CancelButton.html'
-	import EditButton     from '../../../common/control/button/EditButton.html'
 	import OutcomeButton  from '../../../common/control/button/OutcomeButton.html'
-	import VoteButton     from '../../../common/control/button/VoteButton.html'
 	import PercentPicker  from '../../../common/control/PercentPicker.html'
 	import ActionPopover  from '../../../common/shell/ActionPopover.html'
 	import AgeSuitability from '../../../components/AgeSuitability.html'
@@ -379,17 +376,14 @@
 		components: {
 			ActionPopover,
 			AgeSuitability,
-			AlterButton,
 			BuildButton,
 			CancelButton,
 			DetailedCube,
-			EditButton,
 			FactorRanking,
 			OutcomeButton,
 			Outcomes,
 			PercentPicker,
 			PollFab,
-			VoteButton,
 			VoteComponentGraph,
 			// VoteComponentSummary
 		},
@@ -548,7 +542,7 @@
 				this.set({percentMove: true})
 				mutationApi.move(
 					event.factorNumber,
-					event.outcome === 'A' ? 1 : -1,
+					event.outcome,
 					event.percentChange
 				)
 			},
@@ -586,12 +580,12 @@
 				this.set({cubeView, positionMode})
 			},
 			toggleSurface(
-				factorKey
+				factorNumber
 			) {
 				const {cubeView, delta, moveType} = this.get()
 				this.set({moveType: 'toggle'})
 				setTimeout(() => {
-					mutationApi.toggleSurface(factorKey)
+					mutationApi.toggleSurface(factorNumber)
 					this.set({delta: delta + 1})
 					setTimeout(() => {
 						this.set({moveType})

@@ -253,20 +253,14 @@
 		LOGIC_UTILS
 	}                        from '@votecube/public-logic'
 	import {fly}             from 'svelte-transitions'
-	import AddRemoveButton   from '../../common/control/button/AddRemoveButton.html'
 	import CharacterButton   from '../../common/control/button/CharacterButton.html'
 	import MoveButton        from '../../common/control/button/MoveButton.html'
-	import SwapButton        from '../../common/control/button/SwapButton.html'
 	import store             from '../../store'
-	import DirectionSelector from '../vote/DirectionSelector.html'
 
 	export default {
 		components: {
-			AddRemoveButton,
 			CharacterButton,
-			DirectionSelector,
 			MoveButton,
-			SwapButton
 		},
 		data() {
 			return {

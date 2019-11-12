@@ -195,57 +195,50 @@
 		width: 100%;
 	}
 
-	.timeframe td {
-		padding: 5px;
-	}
+	/*
+		.timeframe td {
+			padding: 5px;
+		}
 
-	.timeframe td:first-child {
-		text-align: right;
-	}
+		.timeframe td:first-child {
+			text-align: right;
+		}
 
-	.timeframe td:nth-child(2) {
-		text-align: left;
-	}
-
+		.timeframe td:nth-child(2) {
+			text-align: left;
+		}
+	*/
 </style>
 
 <script>
-	import {DI} from '@airport/di'
+	import {DI}            from '@airport/di'
 	import {
 		LOGIC_UTILS,
 		POLL_FORM_LOGIC,
 		POLL_MANAGER
-	} from '@votecube/public-logic'
+	}                      from '@votecube/public-logic'
 	import CharacterButton from '../../../common/control/button/CharacterButton.html'
-	import PreviewButton from '../../../common/control/button/PreviewButton.html'
-	import AutoComplete from '../../../common/field/AutoComplete.html'
-	import IconBlock from '../../../common/field/IconBlock.html'
-	import MultiSelect from '../../../common/field/MultiSelect.html'
-	import Text from '../../../common/field/Text.html'
-	import TextArea from '../../../common/field/TextArea.html'
-	import LocationIcon from '../../../common/icon/LocationIcon.html'
-	import TimeIcon from '../../../common/icon/TimeIcon.html'
-	import ActionPopover from '../../../common/shell/ActionPopover.html'
-	import SelectionBlock from '../../../components/factor/SelectionBlock.html'
-	import * as formCache from '../../../form/cache'
-	import * as forms from '../../../form/forms'
-	import {loadForms} from '../../../libs/forms'
-	import * as routes from '../../../routes'
-	import store from '../../../store'
+	import PreviewButton   from '../../../common/control/button/PreviewButton.html'
+	import AutoComplete    from '../../../common/field/AutoComplete.html'
+	import Text            from '../../../common/field/Text.html'
+	import TextArea        from '../../../common/field/TextArea.html'
+	import ActionPopover   from '../../../common/shell/ActionPopover.html'
+	import SelectionBlock  from '../../../components/factor/SelectionBlock.html'
+	import * as formCache  from '../../../form/cache'
+	import * as forms      from '../../../form/forms'
+	import {loadForms}     from '../../../libs/forms'
+	import * as routes     from '../../../routes'
+	import store           from '../../../store'
 
 	export default {
 		components: {
 			ActionPopover,
 			AutoComplete,
 			CharacterButton,
-			IconBlock,
-			LocationIcon,
-			MultiSelect,
 			PreviewButton,
 			SelectionBlock,
 			Text,
 			TextArea,
-			TimeIcon
 		},
 		computed: {
 			// cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
@@ -310,6 +303,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			}
 		},
 		helpers: {
+			/*
 			getArrayValueTexts: (
 				arrayValue,
 				logicUtils
@@ -328,6 +322,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 				}
 				return logicUtils.getDate(date)
 			}
+			*/
 		},
 		methods: {
 			ack() {

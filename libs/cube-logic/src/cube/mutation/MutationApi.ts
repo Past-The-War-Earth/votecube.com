@@ -1,3 +1,7 @@
+import {
+	Factor_Number,
+	Outcome_Ordinal
+}                                  from '@votecube/model'
 import {ZoomIndex}                 from '../cubeMoveMatrix'
 import {
 	Direction,
@@ -21,20 +25,20 @@ export interface IMutationApi {
 	): void
 
 	move(
-		dimension: Dimension,
-		direction: Direction,
+		factorNumber: Factor_Number,
+		outcome: Outcome_Ordinal,
 		percentChange: PercentChange
 	): void
 
 	moveToValue(
-		dimension: Dimension,
+		factorNumber: Factor_Number,
 		value: string
 	): void
 
 	recompute(): void
 
 	toggleSurface(
-		dimension: Dimension
+		factorNumber: Factor_Number
 	): void
 
 }
@@ -59,10 +63,12 @@ export class MutationApi
 	}
 
 	move(
-		dimension: Dimension,
-		direction: Direction,
+		factorNumber: Factor_Number,
+		outcome: Outcome_Ordinal,
 		percentChange: PercentChange
 	): void {
+		const dimension             = this.vp.pd.factorToAxisMapping[factorNumber]
+		const direction             = outcome === 'A' ? 1 : -1
 		const dimensionPositionData = this.vp.pd[dimension]
 		if (dimensionPositionData.value === 100
 			&& dimensionPositionData.dir === direction) {
@@ -74,9 +80,10 @@ export class MutationApi
 	}
 
 	moveToValue(
-		dimension: Dimension,
+		factorNumber: Factor_Number,
 		value: any
 	): void {
+		const dimension             = this.vp.pd.factorToAxisMapping[factorNumber]
 		const numericValue          = parseInt(value) as PositionPercent
 		this.vp.pd[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100
 		if (!this.vp.pd[dimension].valid) {
@@ -87,8 +94,9 @@ export class MutationApi
 	}
 
 	toggleSurface(
-		dimension: Dimension
+		factorNumber: Factor_Number
 	): void {
+		const dimension             = this.vp.pd.factorToAxisMapping[factorNumber]
 		const dimensionPositionData = this.vp.pd[dimension]
 		if (!dimensionPositionData.dir) {
 			dimensionPositionData.dir = 1

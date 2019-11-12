@@ -2,7 +2,8 @@ import {
 	Factor_Axis,
 	Factor_Number,
 	IVote,
-	IVoteFactor
+	IVoteFactor,
+	Position_Dir
 }                 from '@votecube/model'
 import {
 	gQ,
@@ -12,6 +13,7 @@ import {
 }                 from '../utils/utils'
 import {
 	Bool,
+	IFactorToAxisMapping,
 	IPosition,
 	IUiVote,
 	IUiVoteDimension,
@@ -62,8 +64,13 @@ function populateVoteFactor(
 	const vote                    = uiVote.vote
 	const voteFactor: IVoteFactor = vote[uiVote.axisToFactorMapping[axis]]
 	const voteDimension           = uiVote[axis]
-	voteFactor.outcome            = voteDimension.dir ? 'A' : 'B'
-	voteFactor.value              = voteDimension.value
+	voteFactor.outcome            = null
+	if (voteDimension.dir === 1) {
+		voteFactor.outcome = 'A'
+	} else if (voteDimension.dir === -1) {
+		voteFactor.outcome = 'B'
+	}
+	voteFactor.value = voteDimension.value
 }
 
 export function setView(
@@ -90,12 +97,21 @@ export function setPositionData(
 	vote: IVote,
 	factorNumbers: Factor_Number[] = [1, 2, 3]
 ): boolean {
-	viewport.pd = {
+	const factorToAxisMapping: IFactorToAxisMapping = {
+		1: null,
+		2: null,
+		3: null
+	}
+	factorToAxisMapping[factorNumbers[0]]           = 'x'
+	factorToAxisMapping[factorNumbers[1]]           = 'y'
+	factorToAxisMapping[factorNumbers[2]]           = 'z'
+	viewport.pd                                     = {
 		axisToFactorMapping: {
 			x: factorNumbers[0],
 			y: factorNumbers[1],
 			z: factorNumbers[2]
 		},
+		factorToAxisMapping,
 		vote,
 		x: this.getUiVoteDimension(0, 'x', vote[0]),
 		y: this.getUiVoteDimension(1, 'y', vote[1]),
@@ -110,9 +126,15 @@ function getUiVoteDimension(
 	axis: Factor_Axis,
 	voteFactor: IVoteFactor
 ): IUiVoteDimension {
+	let dir: Position_Dir = 0
+	if (voteFactor.outcome === 'A') {
+		dir = 1
+	} else if (voteFactor.outcome === 'B') {
+		dir = -1
+	}
 	return {
 		axis,
-		dir: voteFactor.outcome === 'A' ? 1 : -1,
+		dir,
 		valid: true,
 		value: voteFactor.value
 	}

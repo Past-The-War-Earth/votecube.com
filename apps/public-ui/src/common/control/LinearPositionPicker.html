@@ -110,7 +110,9 @@
 </style>
 
 <script>
-	import {getColor}  from '../../helpers/cube'
+
+	import {DI}          from '@airport/di'
+	import {LOGIC_UTILS} from '@votecube/public-logic'
 	import LeftButton  from './button/LeftButton.html'
 	import RightButton from './button/RightButton.html'
 
@@ -121,20 +123,22 @@
 		},
 		computed: {
 			// valueBottomBorder: ({moveToValueDelta, value}) => getInputBorder(value),
-			leftCircleRadius: ({moveDelta, voteFactor}) => getRadius(1, voteFactor),
-			rightCircleRadius: ({moveDelta, voteFactor}) => getRadius(-1, voteFactor),
-			leftStrokeWidth: ({moveDelta, voteFactor}) => getStrokeWidth(1, voteFactor),
-			rightStrokeWidth: ({moveDelta, voteFactor}) => getStrokeWidth(-1, voteFactor),
-			leftHighlightColor: ({moveDelta, voteFactor}) => getButtonColor([-1, 0], voteFactor),
-			rightHighlightColor: ({moveDelta, voteFactor}) => getButtonColor([1, 0], voteFactor),
-			leftFillColor: ({moveDelta, voteFactor}) => getButtonColor([1], voteFactor),
-			rightFillColor: ({moveDelta, voteFactor}) => getButtonColor([-1], voteFactor),
-			factorColor: ({moveDelta, poll, voteFactor}) => voteFactor.dir
-				? '#' + getColor(moveDelta, poll, voteFactor.axis)
+			leftCircleRadius: ({moveDelta, voteFactor}) => getRadius('A', voteFactor),
+			rightCircleRadius: ({moveDelta, voteFactor}) => getRadius('B', voteFactor),
+			leftStrokeWidth: ({moveDelta, voteFactor}) => getStrokeWidth('A', voteFactor),
+			rightStrokeWidth: ({moveDelta, voteFactor}) => getStrokeWidth('B', voteFactor),
+			leftHighlightColor: ({moveDelta, voteFactor}) => getButtonColor(['B', null], voteFactor),
+			rightHighlightColor: ({moveDelta, voteFactor}) => getButtonColor(['A', null], voteFactor),
+			leftFillColor: ({moveDelta, voteFactor}) => getButtonColor(['A'], voteFactor),
+			rightFillColor: ({moveDelta, voteFactor}) => getButtonColor(['B'], voteFactor),
+			factorColor: ({logicUtils, moveDelta, poll, voteFactor}) => voteFactor.outcome
+				? '#' + logicUtils.getColor(poll.factors[voteFactor.factorNumber].color)
 				: 'initial'
 		},
-		helpers: {
-			getColor
+		data() {
+			return {
+				load: initPage(this)
+			}
 		},
 		methods: {
 			mouseDown(
@@ -172,6 +176,14 @@
 		ondestroy() {
 			this.refreshListener.cancel()
 		}
+	}
+
+	async function initPage(
+		page
+	) {
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.set({logicUtils})
 	}
 
 	function checkInterval(
@@ -240,29 +252,29 @@
 			}*/
 
 	function getRadius(
-		dir,
+		outcome,
 		voteFactor
 	) {
-		return dir === voteFactor.dir
+		return outcome === voteFactor.outcome
 			? 24
 			: 23
 	}
 
 	function getStrokeWidth(
-		dir,
+		outcome,
 		voteFactor
 	) {
-		return dir === voteFactor.dir
+		return outcome === voteFactor.outcome
 			? 0
 			: 3
 	}
 
 	function getButtonColor(
-		matchingDirs,
+		matchingOutcomes,
 		voteFactor,
 		poll
 	) {
-		return matchingDirs.indexOf(voteFactor.dir) > -1
+		return matchingOutcomes.indexOf(voteFactor.outcome) > -1
 			? '000'
 			: 'fff'
 	}

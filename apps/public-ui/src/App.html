@@ -80,15 +80,6 @@
 	nav {
 		z-index: 1100;
 	}
-
-	#sizer {
-		height: 0;
-		width: 0;
-		outline: none;
-		border: none;
-		padding: none;
-		margin: none;
-	}
 </style>
 
 <script>
@@ -190,11 +181,6 @@
 					return
 				}
 				this.store.toggleMainMenu()
-			},
-			toggleSurface(
-				factor
-			) {
-				this.get().mutationApi.toggleSurface(factor)
 			},
 			setPageComp(
 				PageComp

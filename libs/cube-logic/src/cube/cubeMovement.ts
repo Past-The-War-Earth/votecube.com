@@ -4,6 +4,7 @@ import {
 	VoteFactor_Value
 }                      from '@votecube/model'
 import {Factor_Number} from '@votecube/model'
+import {Factor_Axis}   from '@votecube/model'
 import {
 	MatrixIndex,
 	NUM_DIVS,
@@ -30,25 +31,40 @@ export type PositionPercent = VoteFactor_Value
 populateDegreeValMatrix()
 
 export interface IPosition {
+
 	x: number
 	y: number
+
 }
 
 export interface IMousePosition {
+
 	last?: IPosition
 	start: IPosition
+
 }
 
 export interface IUiVote {
+
 	axisToFactorMapping: {
 		x: Factor_Number
 		y: Factor_Number
 		z: Factor_Number
 	}
+	factorToAxisMapping: IFactorToAxisMapping
 	vote: IVote
 	x: IUiVoteDimension
 	y: IUiVoteDimension
 	z: IUiVoteDimension
+
+}
+
+export interface IFactorToAxisMapping {
+
+	1: Factor_Axis
+	2: Factor_Axis
+	3: Factor_Axis
+
 }
 
 export interface IUiVoteDimension {
