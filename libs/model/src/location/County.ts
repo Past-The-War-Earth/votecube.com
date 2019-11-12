@@ -1,14 +1,14 @@
 import {Id}     from '../old/model'
 import {IState} from './State'
 
-export type CountyId = Id
+export type County_Id = Id
 
 export const COUNTIES = 'COUNTIES'
 
 export interface ICounty {
 
 	state: IState
-	id: CountyId
+	id: County_Id
 	name: string
 
 }

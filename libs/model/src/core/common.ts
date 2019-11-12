@@ -19,42 +19,42 @@ export interface IKeyed<K extends Key> {
 
 }
 
-export type DocDepth = number
+export type Doc_Depth = number
 
 /*
 export interface IParent<K extends Key> {
 
-	depth: DocDepth
+	depth: Doc_Depth
 	key: K
 
 }
  */
 
-export type TimestampMilliseconds = number
-export type TimestampTimezoneOffset = number
-export type TimestampServer = any
-export type TimestampTimezone = string
+export type Timestamp_Milliseconds = number
+export type Timestamp_TimezoneOffset = number
+export type Timestamp_Server = any
+export type Timestamp_Timezone = string
 
 export interface ITimestamp {
 
-	m: TimestampMilliseconds // milliseconds
-	o: TimestampTimezoneOffset // timezone offset
-	s: TimestampServer // server timestamp
-	z: TimestampTimezone // the timezone as extracted from JS Date.toString()
+	m: Timestamp_Milliseconds // milliseconds
+	o: Timestamp_TimezoneOffset // timezone offset
+	s: Timestamp_Server // server timestamp
+	z: Timestamp_Timezone // the timezone as extracted from JS Date.toString()
 
 }
 
-export type MarksHigh = number
-export type MarksLow = number
+export type Marks_High = number
+export type Marks_Low = number
 
 export interface IMarks {
 	change: {
-		high: MarksHigh
-		low: MarksLow
+		high: Marks_High
+		low: Marks_Low
 	},
 	same: {
-		high: MarksHigh
-		low: MarksLow
+		high: Marks_High
+		low: Marks_Low
 	}
 }
 
@@ -62,9 +62,9 @@ export interface IMarked {
 	marks: IMarks
 }
 
-export type FullTextSearchFlag = true
+export type FullTextSearch_Flag = true
 
 export interface IFullTextSearch {
-	fts: { [key: string]: FullTextSearchFlag }
+	fts: { [key: string]: FullTextSearch_Flag }
 }
 

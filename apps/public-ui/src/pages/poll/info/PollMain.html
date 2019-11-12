@@ -58,13 +58,15 @@
 	<VoteComponentGraph
 			cubeView="{effectiveCubeView}"
 			delta="{delta}"
-			tweenDelta="{tweenDelta}"
+			factorsByAxis="{factorsByAxis}"
 			moveType="{moveType}"
 			on:toggleView="toggleView(cubeView, !cubeView)"
 			on:togglePercent="togglePercentPicker()"
 			on:toggleChart="showOutcomes(true)"
 			poll="{poll}"
 			positionMode="{positionMode}"
+			positionsByAxisAndDir="{positionsByAxisAndDir}"
+			tweenDelta="{tweenDelta}"
 			verticalLayout="{verticalLayout}"
 			vote="{vote}"
 			voteFactors="{currentVoteFactors}"
@@ -103,7 +105,7 @@
 						poll="{poll}"
 						verticalLayout="{verticalLayout}"
 						vote="{vote}"
-						voteDims="{voteDims}"
+						voteFactors="{voteFactors}"
 				></FactorRanking>
 				{/if}
 			</section>
@@ -118,7 +120,7 @@
 			on:moveToValue="moveToValue(event)"
 			poll="{poll}"
 			vote="{vote}"
-			voteDims="{voteDims}"
+			voteFactors="{voteFactors}"
 	></PercentPicker>
 	{/if}
 	<PollFab
@@ -209,7 +211,7 @@
 					bind:vote
 					maxBarSize="{120}"
 					mode="confirm"
-					voteDims="{voteDims}"
+					voteFactors="{voteFactors}"
 			></VoteComponentSummary>
 			-->
 			<br>
@@ -359,7 +361,7 @@
 	import Outcomes             from '../../../components/poll/Outcomes.html'
 	import PollFab              from '../../../components/poll/PollFab.html'
 	import VoteComponentGraph   from '../../../components/vote/VoteComponentGraph.html'
-	import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
+	// import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
 
 	import {setupCubeView}   from '../../../database'
 	import {
@@ -389,7 +391,7 @@
 			PollFab,
 			VoteButton,
 			VoteComponentGraph,
-			VoteComponentSummary
+			// VoteComponentSummary
 		},
 		computed: {
 			currentVoteFactors: ({delta, currentVote, logicUtils}) => {
@@ -423,7 +425,7 @@
 			scale: ({effectiveCubeView, zoomFactor}) => effectiveCubeView
 				? `transform: scale(${zoomFactor}, ${zoomFactor});`
 				: '',
-			voteDims: ({delta, vote, logicUtils}) => {
+			voteFactors: ({delta, vote, logicUtils}) => {
 				if (logicUtils && vote) {
 					theVoteFactors = logicUtils.getVoteFactorNodesInValueOrder(vote)
 				}
@@ -545,8 +547,8 @@
 			) {
 				this.set({percentMove: true})
 				mutationApi.move(
-					event.factor,
-					event.position,
+					event.factorNumber,
+					event.outcome === 'A' ? 1 : -1,
 					event.percentChange
 				)
 			},
@@ -554,7 +556,7 @@
 				event
 			) {
 				this.set({percentMove: true})
-				mutationApi.moveToValue(event.factor, event.value)
+				mutationApi.moveToValue(event.factorNumber, event.value)
 			},
 			showAgeSuitability(
 				ageSuitabilityVisible,
@@ -656,7 +658,7 @@
 			/*
 			if (this.get().percentMove) {
 				TODO: implement correct card and graph animations for the PercentPicker, IF NEEDED
-								let oldVoteDims = this.get().voteDims
+								let oldVoteDims = this.get().voteFactors
 								let newVoteDims = getVoteDimsInValueOrder(this.get().vote)
 								if (oldVoteDims[0] !== newVoteDims[0]
 									|| oldVoteDims[1] !== newVoteDims[1]

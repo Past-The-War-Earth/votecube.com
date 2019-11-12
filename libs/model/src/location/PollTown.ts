@@ -2,13 +2,13 @@ import {Id}            from '../old/model'
 import {IPreparedPoll} from '../poll/PreparedPoll'
 import {ITown}         from './Town'
 
-export type PollTownId = Id
+export type PollTown_Id = Id
 
 export const POLL_TOWNS = 'POLL_TOWNS'
 
 export interface IPollTown {
 
-	id: PollTownId
+	id: PollTown_Id
 	poll: IPreparedPoll
 	town: ITown
 

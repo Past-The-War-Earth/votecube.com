@@ -4,13 +4,13 @@ import {
 	Key
 } from './common'
 
-export type UserKey = Key
-export type UserName = string
+export type User_Key = Key
+export type User_Name = string
 
 export interface IUser
-	extends IKeyed<UserKey> {
+	extends IKeyed<User_Key> {
 
-	name: UserName
+	name: User_Name
 
 }
 
@@ -18,14 +18,14 @@ export interface IUserCreated<K extends Key>
 	extends IKeyed<K> {
 
 	createdAt: ITimestamp
-	userKey: UserKey
+	userKey: User_Key
 
 }
 
 export interface ICred
-	extends IKeyed<UserKey> {
+	extends IKeyed<User_Key> {
 
 	hash: string
-	userKey: UserKey
+	userKey: User_Key
 
 }

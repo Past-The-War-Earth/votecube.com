@@ -5,11 +5,11 @@ import {
 	IsDoc
 } from './common'
 
-export type DocumentValueDelta = number
+export type DocumentValue_Delta = number
 
 export interface IDocumentValue<T> {
 	v: T, // The value
-	d: DocumentValueDelta // delta count
+	d: DocumentValue_Delta // delta count
 }
 
 

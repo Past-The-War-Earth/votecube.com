@@ -11,7 +11,9 @@
 			{#if !i && !cubeView}
 			<CubeMiniature
 					delta="{delta}"
+					factorsByAxis="{factorsByAxis}"
 					poll="{poll}"
+					positionsByAxisAndDir="{positionsByAxisAndDir}"
 					vote="{vote}"
 			></CubeMiniature>
 			{:elseif cubeView && showPosition(voteFactor, delta)}

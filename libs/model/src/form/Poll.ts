@@ -1,6 +1,6 @@
 import {
-	OutcomeName,
-	PollName
+	Outcome_Name,
+	Poll_Name
 }                    from '../core/core'
 import {IFactorForm} from './Factor'
 import {IThemeForm}  from './Theme'
@@ -8,7 +8,7 @@ import {IThemeForm}  from './Theme'
 export interface IPollForm {
 
 	factors: IPollFactorsForm
-	name: PollName
+	name: Poll_Name
 	outcomes: IPollOutcomesForm
 	theme: IThemeForm
 
@@ -24,7 +24,7 @@ export interface IPollFactorsForm {
 
 export interface IPollOutcomesForm {
 
-	A: OutcomeName
-	B: OutcomeName
+	A: Outcome_Name
+	B: Outcome_Name
 
 }

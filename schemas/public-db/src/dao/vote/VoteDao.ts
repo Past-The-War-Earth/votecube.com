@@ -10,11 +10,11 @@ export interface IVoteDao
 {
 
 	// findMyVoteForPoll(
-	// 	pollKey: PollKey
+	// 	pollKey: Poll_Key
 	// ): Promise<IVoteDso>
 	//
 	// findVoteForPoll(
-	// 	pollKey: PollKey,
+	// 	pollKey: Poll_Key,
 	// 	email: string
 	// ): Promise<IVoteDso>
 	//
@@ -29,7 +29,7 @@ export class VoteDao
 	implements IVoteDao {
 
 	// async findMyVoteForPoll(
-	// 	pollKey: PollKey
+	// 	pollKey: Poll_Key
 	// ): Promise<IVoteDso> {
 	// 	// const pollDao = await DI.get(POLL_DAO)
 	//
@@ -45,7 +45,7 @@ export class VoteDao
 	// }
 	//
 	// async findVoteForPoll(
-	// 	pollId: PollKey,
+	// 	pollId: Poll_Key,
 	// 	email: string
 	// ): Promise<IVoteDso> {
 	// 	return null

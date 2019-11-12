@@ -1,19 +1,19 @@
 import {
-	FactorName,
+	Factor_Name,
 	ICoreColor,
 	IsData,
-	PositionName
+	Position_Name
 } from '../core/core'
 
 export interface IFactorForm {
 	color: ICoreColor<IsData>
-	name: FactorName
+	name: Factor_Name
 	positions: IFactorPositionsForm
 }
 
 export interface IFactorPositionsForm {
 
-	A: PositionName
-	B: PositionName
+	A: Position_Name
+	B: Position_Name
 
 }

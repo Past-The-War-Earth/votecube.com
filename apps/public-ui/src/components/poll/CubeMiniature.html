@@ -1,3 +1,5 @@
+{#await load}
+{:then result}
 <section
 		id="viewportMin"
 >
@@ -11,7 +13,7 @@
 				class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 				id="sm{i}"
 				style="
-            background-color: #{getColor(1, poll, position.axis)};
+            background-color: #{logicUtils.getColor(factorsByAxis[position.axis].color)};
               "
 		>
 			{#if !loading && !rotating}
@@ -21,7 +23,7 @@
 			<!--{/if}-->
 			<p>
 				<CharacterButton
-						character="{factorOutcome(position)}"
+						character="{positionsByAxisAndDir[position.axis][position.dir].outcome}"
 						fontSize="20"
 						fontX="12"
 						fontY="19"
@@ -42,6 +44,7 @@
 		{/if}
 	</figure>
 </section>
+{/await}
 <style>
 	#cubeMin {
 		height: 32px;
@@ -155,16 +158,18 @@
 </style>
 
 <script>
+
+	import {DI}            from '@airport/di'
 	import {
 		clearView,
 		mutationApi,
 		setView
 	}                      from '@votecube/cube-logic'
-	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import {
-		getColor,
-		getDefaultCubePositions
-	}                      from '../../helpers/cube'
+		CUBE_LOGIC,
+		LOGIC_UTILS
+	}                      from '@votecube/public-logic'
+	import CharacterButton from '../../common/control/button/CharacterButton.html'
 
 	export default {
 		components: {
@@ -175,16 +180,11 @@
 		},
 		data() {
 			return {
+				load: initPage(this),
 				loading: true,
-				positions: getDefaultCubePositions(),
+				positions: [],
 				rotating: false
 			}
-		},
-		helpers: {
-			factorOutcome: (
-				position
-			) => position.dir > 0 ? 'A' : 'B',
-			getColor
 		},
 		methods: {},
 		oncreate() {
@@ -201,5 +201,17 @@
 			clearView('cubeMin')
 		}
 	}
+
+	async function initPage(
+		page
+	) {
+		const [cubeLogic, logicUtils] = await DI.get(CUBE_LOGIC, LOGIC_UTILS)
+
+		page.set({
+			logicUtils,
+			positions: cubeLogic.getDefaultCubePositions()
+		})
+	}
+
 
 </script>

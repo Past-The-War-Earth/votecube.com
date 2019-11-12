@@ -8,10 +8,8 @@ import {
 	ManyToOne,
 	Table
 }                                    from '@airport/air-control'
-import {
-	VoteFactor_Id,
-	VoteFactor_Share
-}                                    from '../../types/vote/VoteFactor'
+import {VoteFactor_Value}            from '@votecube/model'
+import {VoteFactor_Id}               from '../../types/vote/VoteFactor'
 import {PollFactorPositionVariation} from '../poll/variation/structure/PollFactorPositionVariation'
 import {VoteFactorType}              from './VoteFactorType'
 import {VoteVariation}               from './VoteVariation'
@@ -31,7 +29,7 @@ export class VoteFactor {
 
 	@Column({name: 'SHARE', nullable: false})
 	@DbString()
-	share: VoteFactor_Share
+	share: VoteFactor_Value
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_FACTOR_POSITION_VARIATION_ID', nullable: false})

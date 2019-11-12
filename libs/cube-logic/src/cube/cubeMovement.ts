@@ -1,8 +1,8 @@
 import {
 	IVote,
-	PollFactorPositionVariation_Dir,
-	VoteFactor_Share
-}                  from '@votecube/public-db'
+	PositionDir,
+	VoteFactor_Value
+}                  from '@votecube/model'
 import {
 	MatrixIndex,
 	NUM_DIVS,
@@ -22,9 +22,9 @@ export enum Move {
 	Up   = 1
 }
 
-export type Direction = PollFactorPositionVariation_Dir | 0
+export type Direction = PositionDir | 0
 
-export type PositionPercent = VoteFactor_Share
+export type PositionPercent = VoteFactor_Value
 
 populateDegreeValMatrix()
 

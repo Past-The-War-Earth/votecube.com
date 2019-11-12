@@ -12,24 +12,24 @@ import {
 }                     from './DocumentValue'
 import {IUserCreated} from './User'
 
-export type OutcomeKey = Key
-export type OutcomeName = string
-export type OutcomeOrdinal = 'A' | 'B'
+export type Outcome_Key = Key
+export type Outcome_Name = string
+export type Outcome_Ordinal = 'A' | 'B'
 
 export interface ICoreOutcome<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,
 	        ICoreOutcomeFromForm<Doc>,
 	        IFullTextSearch,
-	        IUserCreated<OutcomeKey> {
+	        IUserCreated<Outcome_Key> {
 
-	name: Doc extends IsDoc ? IDocumentValue<OutcomeName> :
-		Doc extends IsDelta ? boolean : OutcomeName
+	name: Doc extends IsDoc ? IDocumentValue<Outcome_Name> :
+		Doc extends IsDelta ? boolean : Outcome_Name
 
 }
 
 export interface ICoreOutcomeFromForm<Doc extends DocStatus> {
 
-	name: Doc extends IsDoc ? IDocumentValue<OutcomeName> :
-		Doc extends IsDelta ? boolean : OutcomeName
+	name: Doc extends IsDoc ? IDocumentValue<Outcome_Name> :
+		Doc extends IsDelta ? boolean : Outcome_Name
 
 }

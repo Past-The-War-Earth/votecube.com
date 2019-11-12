@@ -1,9 +1,9 @@
 import {
-	ThemeId,
-	ThemeName
+	Theme_Id,
+	Theme_Name
 } from '../core/core'
 
 export interface IThemeForm {
-	id: ThemeId
-	text: ThemeName
+	id: Theme_Id
+	text: Theme_Name
 }

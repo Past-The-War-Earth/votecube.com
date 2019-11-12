@@ -233,7 +233,7 @@
 
 		const [auth, _, _2] = await Promise.all([
 			DI.get(AUTH),
-			loadUi(this.store, 'en-us'),
+			loadUi(page.store, 'en-us'),
 			init()
 		])
 		const user          = auth.getUser()

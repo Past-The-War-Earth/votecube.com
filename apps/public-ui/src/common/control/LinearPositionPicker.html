@@ -1,10 +1,12 @@
+{#await load}
+{:then result}
 <tr>
 	<td>
 		<div
-				on:mousedown="mouseDown(1, event)"
-				on:mouseup="mouseUp(1, event)"
-				on:touchstart="mouseDown(1, event)"
-				on:touchend="mouseUp(1, event)"
+				on:mousedown="mouseDown('A', event)"
+				on:mouseup="mouseUp(event)"
+				on:touchstart="touchStart('A', event)"
+				on:touchend="mouseUp(event)"
 		>
 			<LeftButton
 					circleRadius="{leftCircleRadius}"
@@ -17,7 +19,7 @@
 	</td>
 	<td>
 		<figure
-				class:factor="voteDim.value"
+				class:factor="voteFactor.value"
 				style="background-color: {factorColor};"
 		>
 
@@ -25,7 +27,7 @@
 					maxlength="3"
 					on:input="moveToValue(this.value)"
 					ref:input
-					value="{voteDim.value}"
+					value="{voteFactor.value}"
 			>
 			<span>%</span>
 		</figure>
@@ -38,10 +40,10 @@
 	<td
 	>
 		<div
-				on:mousedown="mouseDown(-1, event)"
-				on:mouseup="mouseUp(-1, event)"
-				on:touchstart="touchStart(-1, event)"
-				on:touchend="mouseUp(-1, event)"
+				on:mousedown="mouseDown('B', event)"
+				on:mouseup="mouseUp(event)"
+				on:touchstart="touchStart('B', event)"
+				on:touchend="mouseUp(event)"
 		>
 			<RightButton
 					circleRadius="{rightCircleRadius}"
@@ -53,6 +55,7 @@
 		</div>
 	</td>
 </tr>
+{/await}
 
 <style>
 
@@ -118,16 +121,16 @@
 		},
 		computed: {
 			// valueBottomBorder: ({moveToValueDelta, value}) => getInputBorder(value),
-			leftCircleRadius: ({moveDelta, voteDim}) => getRadius(1, voteDim),
-			rightCircleRadius: ({moveDelta, voteDim}) => getRadius(-1, voteDim),
-			leftStrokeWidth: ({moveDelta, voteDim}) => getStrokeWidth(1, voteDim),
-			rightStrokeWidth: ({moveDelta, voteDim}) => getStrokeWidth(-1, voteDim),
-			leftHighlightColor: ({moveDelta, voteDim}) => getButtonColor([-1, 0], voteDim),
-			rightHighlightColor: ({moveDelta, voteDim}) => getButtonColor([1, 0], voteDim),
-			leftFillColor: ({moveDelta, voteDim}) => getButtonColor([1], voteDim),
-			rightFillColor: ({moveDelta, voteDim}) => getButtonColor([-1], voteDim),
-			factorColor: ({moveDelta, poll, voteDim}) => voteDim.dir
-				? '#' + getColor(moveDelta, poll, voteDim.axis)
+			leftCircleRadius: ({moveDelta, voteFactor}) => getRadius(1, voteFactor),
+			rightCircleRadius: ({moveDelta, voteFactor}) => getRadius(-1, voteFactor),
+			leftStrokeWidth: ({moveDelta, voteFactor}) => getStrokeWidth(1, voteFactor),
+			rightStrokeWidth: ({moveDelta, voteFactor}) => getStrokeWidth(-1, voteFactor),
+			leftHighlightColor: ({moveDelta, voteFactor}) => getButtonColor([-1, 0], voteFactor),
+			rightHighlightColor: ({moveDelta, voteFactor}) => getButtonColor([1, 0], voteFactor),
+			leftFillColor: ({moveDelta, voteFactor}) => getButtonColor([1], voteFactor),
+			rightFillColor: ({moveDelta, voteFactor}) => getButtonColor([-1], voteFactor),
+			factorColor: ({moveDelta, poll, voteFactor}) => voteFactor.dir
+				? '#' + getColor(moveDelta, poll, voteFactor.axis)
 				: 'initial'
 		},
 		helpers: {
@@ -135,13 +138,12 @@
 		},
 		methods: {
 			mouseDown(
-				position,
+				outcome,
 				event
 			) {
-				onPress(position, event, this)
+				onPress(outcome, event, this)
 			},
 			mouseUp(
-				position,
 				event
 			) {
 				event.preventDefault()
@@ -155,11 +157,11 @@
 				// this.set({moveToValueDelta: this.get().moveToValueDelta + 1})
 			},
 			touchStart(
-				position,
+				outcome,
 				event
 			) {
 				event.preventDefault()
-				onPress(position, event, this)
+				onPress(outcome, event, this)
 			}
 		},
 		oncreate() {
@@ -177,14 +179,14 @@
 	) {
 		let numIncs       = page.get().numIncs - 1
 		let percentChange = page.get().percentChange
-		let position      = page.get().position
-		if (page.get().lastVoteDim !== page.get().voteDim) {
+		let outcome      = page.get().outcome
+		if (page.get().lastVoteFactor !== page.get().voteFactor) {
 			clearIntrvl(page)
 			page.set({numIncs: 0})
 			return
 		}
 		page.fire('move', {
-			position,
+			outcome,
 			percentChange
 		})
 		if (!numIncs) {
@@ -197,7 +199,7 @@
 			let numIncs   = page.get().lastNumIncs * 2
 			percentChange = percentChange * 2
 			page.set({lastNumIncs: numIncs})
-			setIntrvl(page, interval, position, numIncs, numReIncs, percentChange)
+			setIntrvl(page, interval, outcome, numIncs, numReIncs, percentChange)
 		} else {
 			page.set({numIncs})
 		}
@@ -206,17 +208,17 @@
 	function setIntrvl(
 		page,
 		interval,
-		position,
+		outcome,
 		numIncs,
 		numReIncs,
 		percentChange,
 	) {
-		// console.log(`interval: ${interval}, position: ${position}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
+		// console.log(`interval: ${interval}, outcome: ${outcome}, numIncs: ${numIncs}, numReIncs: ${numReIncs}, percentChange: ${percentChange}`)
 		const incrementInterval = setInterval(() => {
 			checkInterval(page)
 			page.fire('update')
 		}, interval)
-		page.set({position, incrementInterval, interval, numIncs, numReIncs, percentChange})
+		page.set({outcome, incrementInterval, interval, numIncs, numReIncs, percentChange})
 	}
 
 	function clearIntrvl(
@@ -239,48 +241,48 @@
 
 	function getRadius(
 		dir,
-		voteDim
+		voteFactor
 	) {
-		return dir === voteDim.dir
+		return dir === voteFactor.dir
 			? 24
 			: 23
 	}
 
 	function getStrokeWidth(
 		dir,
-		voteDim
+		voteFactor
 	) {
-		return dir === voteDim.dir
+		return dir === voteFactor.dir
 			? 0
 			: 3
 	}
 
 	function getButtonColor(
 		matchingDirs,
-		voteDim,
+		voteFactor,
 		poll
 	) {
-		return matchingDirs.indexOf(voteDim.dir) > -1
+		return matchingDirs.indexOf(voteFactor.dir) > -1
 			? '000'
 			: 'fff'
 	}
 
 	function onPress(
-		position,
+		outcome,
 		event,
 		page
 	) {
 		// event.preventDefault()
 
 		const percentChange = 1
-		page.set({lastNumIncs: 5, lastVoteDim: page.get().voteDim, percentChange})
+		page.set({lastNumIncs: 5, lastVoteFactor: page.get().voteFactor, percentChange})
 
 		page.fire('move', {
-			position,
+			outcome,
 			percentChange
 		})
 
-		setIntrvl(page, 360, position, 8, 4, 1)
+		setIntrvl(page, 360, outcome, 8, 4, 1)
 		page.fire('update')
 	}
 

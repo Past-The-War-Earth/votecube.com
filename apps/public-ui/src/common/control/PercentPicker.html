@@ -81,14 +81,14 @@
 			-->
 			<!-- TODO: add support for voting value -->
 
-			{#each voteDims as voteDim, i}
+			{#each voteFactors as voteFactor, i}
 			<LinearPositionPicker
 					moveDelta="{moveDelta}"
-					on:move="move(voteDim.axis, event.position, event.percentChange)"
-					on:moveToValue="moveToValue(voteDim.axis, event)"
+					on:move="move(voteFactor.factorNumber, event.outcome, event.percentChange)"
+					on:moveToValue="moveToValue(voteFactor.factorNumber, event)"
 					on:update="update()"
 					poll="{poll}"
-					voteDim="{voteDim}"
+					voteFactor="{voteFactor}"
 			/>
 			{/each}
 		</table>
@@ -204,23 +204,23 @@
 		},
 		methods: {
 			move(
-				factor,
-				position,
+				factorNumber,
+				outcome,
 				percentChange
 			) {
 				this.fire('move', {
-					factor,
-					position,
+					factorNumber,
+					outcome,
 					percentChange
 				})
 				this.set({pickerDelta: this.get().pickerDelta + 1})
 			},
 			moveToValue(
-				factor,
+				factorNumber,
 				value
 			) {
 				this.fire('moveToValue', {
-					factor,
+					factorNumber,
 					value
 				})
 				refresh(this)

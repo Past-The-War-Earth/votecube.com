@@ -1,12 +1,12 @@
 import {Id} from '../old/model'
 
-export type ContinentId = Id
+export type Continent_Id = Id
 
 export const CONTINENTS = 'CONTINENTS'
 
 export interface IContinent {
 
-	id: ContinentId
+	id: Continent_Id
 	name: string
 
 }

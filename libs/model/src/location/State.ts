@@ -1,14 +1,14 @@
 import {Id}       from '../old/model'
 import {ICountry} from './Country'
 
-export type StateId = Id
+export type State_Id = Id
 
 export const STATES = 'STATES'
 
 export interface IState {
 
 	country: ICountry
-	id: StateId
+	id: State_Id
 	name: string
 
 }

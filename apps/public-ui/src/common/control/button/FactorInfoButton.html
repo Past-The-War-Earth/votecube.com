@@ -1,9 +1,11 @@
+{#await load}
+{:then result}
 <var
 		on:click="fire('toggle')"
 		class:pageInfo="isPage"
 		class:confirmInfo="!isPage"
 		style="
-        background-color: #{getColor(delta, poll, axis)};
+        background-color: #{logicUtils.getColor(poll.factors[factorNumber].color)};
         border-bottom-color: #{bottomBorderColor};
         border-top-color: #{topBorderColor};
         float: {float};
@@ -12,6 +14,7 @@
 >
 	{percentValue}%
 </var>
+{/await}
 <style>
 	var {
 		border-bottom: 5px solid;
@@ -40,56 +43,68 @@
 </style>
 
 <script>
-	import {getColor} from '../../../helpers/cube'
+	import {DI} from '@airport/di'
+	import {LOGIC_UTILS} from '@votecube/public-logic'
 
 	export default {
 		computed: {
-			bottomBorderColor: ({axis, cubeView, delta, poll, voteDim}) =>
-				borderColor(cubeView, delta, poll, axis, voteDim, -1),
-			float: ({axis, position, $verticalLayout}) =>
-				$verticalLayout && axis == 'x' && position != 'left'
+			bottomBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, voteFactor}) =>
+				borderColor(cubeView, delta, poll, factorNumber, voteFactor, 'B', logicUtils),
+			float: ({factorNumber, position, $verticalLayout}) =>
+				$verticalLayout && factorNumber === 1 && position != 'left'
 					? 'right' : 'initial',
 			isPage: ({mode}) => mode == 'page',
-			margin: ({axis, position, $verticalLayout}) =>
-				$verticalLayout && axis == 'y' && position != 'left'
+			margin: ({factorNumber, position, $verticalLayout}) =>
+				$verticalLayout && factorNumber === 2 && position != 'left'
 					? 'auto' : 'initial',
-			topBorderColor: ({axis, cubeView, delta, poll, voteDim}) =>
-				borderColor(cubeView, delta, poll, axis, voteDim, 1),
-			percentValue: ({cubeView, delta, voteDim}) =>
-				getValue(cubeView ? voteDim.value : voteDim.factorValue)
+			topBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, voteFactor}) =>
+				borderColor(cubeView, delta, poll, factorNumber, voteFactor, 'A', logicUtils),
+			percentValue: ({cubeView, delta, voteFactor}) =>
+				getValue(cubeView ? voteFactor.value : voteFactor.tweenValue)
 		},
-		helpers: {
-			getColor
+		data() {
+			return {
+				load: initPage(this)
+			}
 		}
 	}
 
-	function getValue(
-		value
+	async function initPage(
+		page
 	) {
-		return value === undefined ? '' : value
+		const logicUtils = await DI.get(LOGIC_UTILS)
+
+		page.set({logicUtils})
 	}
 
 	function borderColor(
 		cubeView,
 		delta,
 		poll,
-		axis,
-		voteDim,
-		dir
+		factorNumber,
+		voteFactor,
+		outcome,
+		logicUtils
 	) {
-		if (!voteDim) {
+		if (!voteFactor) {
 			return '000'
 		} else if (cubeView) {
-			if (voteDim.dir === dir) {
+			if (voteFactor.outcome === outcome) {
 				return '000'
 			}
 		} else {
-			if (voteDim.factorDir === dir) {
+			if (voteFactor.tweenOutcome === outcome) {
 				return '000'
 			}
 		}
 
-		return getColor(delta, poll, axis)
+		return logicUtils.getColor(poll.factors[factorNumber].color)
+	}
+
+	function getValue(
+		value
+	) {
+		return value === undefined ? '' : value
 	}
 
 </script>

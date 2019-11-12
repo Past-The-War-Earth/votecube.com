@@ -6,7 +6,7 @@ import {IPollTown}      from '../location/PollTown'
 import {Id}             from '../old/model'
 import {IPollLabel}     from './PollLabel'
 
-export type PollId = Id
+export type Poll_Id = Id
 
 export const POLLS = 'POLLS'
 
@@ -26,8 +26,8 @@ export interface IPreparedPoll
 {
 
 	endDate: Date
-	id: PollId
-	name: string // PollName
+	id: Poll_Id
+	name: string // Poll_Name
 	pollsContinents: IPollContinent[]
 	pollsCounties: IPollCounty[]
 	pollsCountries: IPollCountry[]

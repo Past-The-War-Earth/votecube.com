@@ -1,7 +1,7 @@
 import {IUser} from '../core/User'
 import {Id}    from '../old/model'
 
-export type LabelId = Id
+export type Label_Id = Id
 
 export const LABELS = 'LABELS'
 
@@ -10,7 +10,7 @@ export interface ILabel
 {
 
 	description: string
-	id: LabelId
+	id: Label_Id
 	name: string
 	user: IUser
 

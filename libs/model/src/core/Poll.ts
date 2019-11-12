@@ -4,37 +4,37 @@ import {
 	IsDelta,
 	IsDoc,
 	Key
-}                     from './common'
+}                      from './common'
 import {
 	ICoreAgeSuitabilityTracked,
 	IDocumentValue
-}                     from './DocumentValue'
+}                      from './DocumentValue'
 import {
-	FactorKey,
+	Factor_Key,
 	ICoreFactorBase
-}                     from './Factor'
+}                      from './Factor'
 import {
 	ICoreOutcome,
-	OutcomeKey
-}                     from './Outcome'
-import {PositionKey}  from './Position'
-import {ICoreTheme}   from './Theme'
-import {IUserCreated} from './User'
-import {VariationKey} from './Variation'
+	Outcome_Key
+}                      from './Outcome'
+import {Position_Key}  from './Position'
+import {ICoreTheme}    from './Theme'
+import {IUserCreated}  from './User'
+import {Variation_Key} from './Variation'
 
-export type PollKey = Key
-export type PollName = string
+export type Poll_Key = Key
+export type Poll_Name = string
 
-export interface ICorePoll<Doc extends DocStatus, K extends Key = PollKey>
+export interface ICorePoll<Doc extends DocStatus, K extends Key = Poll_Key>
 	extends ICoreAgeSuitabilityTracked<Doc>,
 	        IFullTextSearch,
 	        IUserCreated<K> {
 
 	factors: ICorePollFactorsFragment<Doc>
-	name: Doc extends IsDoc ? IDocumentValue<PollName> :
-		Doc extends IsDelta ? boolean : PollName
+	name: Doc extends IsDoc ? IDocumentValue<Poll_Name> :
+		Doc extends IsDelta ? boolean : Poll_Name
 	outcomes: ICorePollOutcomesFragment<Doc>
-	rootVariationKey: VariationKey
+	rootVariationKey: Variation_Key
 	theme: ICoreTheme<Doc>
 
 }
@@ -57,20 +57,20 @@ export interface ICorePollOutcomesFragment<Doc extends DocStatus> {
 export interface ICoreFactorPoll<Doc extends DocStatus>
 	extends ICorePoll<Doc> {
 
-	factorKey: FactorKey
+	factorKey: Factor_Key
 
 }
 
 export interface ICoreOutcomePoll<Doc extends DocStatus>
 	extends ICorePoll<Doc> {
 
-	outcomeKey: OutcomeKey
+	outcomeKey: Outcome_Key
 
 }
 
 export interface ICorePositionPoll<Doc extends DocStatus>
 	extends ICorePoll<Doc> {
 
-	positionKey: PositionKey
+	positionKey: Position_Key
 
 }

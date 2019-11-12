@@ -7,7 +7,7 @@ import {
 	IsDelta,
 	IsDoc,
 	Key
-} from './common'
+}                     from './common'
 import {
 	ICoreAgeSuitabilityTracked,
 	IDocumentValue
@@ -18,10 +18,10 @@ import {
 }                     from './Position'
 import {IUserCreated} from './User'
 
-export type FactorAxis = 'x' | 'y' | 'z'
-export type FactorKey = Key
-export type FactorName = string
-export type FactorNumber = 1 | 2 | 3
+export type Factor_Axis = 'x' | 'y' | 'z'
+export type Factor_Key = Key
+export type Factor_Name = string
+export type Factor_Number = 1 | 2 | 3
 
 export interface ICoreFactor<Doc extends DocStatus>
 	extends ICoreFactorBase<Doc>,
@@ -37,8 +37,8 @@ export interface ICoreFactor<Doc extends DocStatus>
 export interface ICoreFactorFromForm<Doc extends DocStatus = IsData> {
 
 	color: ICoreColor<Doc>
-	name: Doc extends IsDoc ? IDocumentValue<FactorName>
-		: Doc extends IsDelta ? boolean : FactorName
+	name: Doc extends IsDoc ? IDocumentValue<Factor_Name>
+		: Doc extends IsDelta ? boolean : Factor_Name
 	positions: {
 		A: ICorePositionFromForm<Doc>
 		B: ICorePositionFromForm<Doc>
@@ -62,11 +62,11 @@ export interface ICoreMarkedFactor<Doc extends DocStatus>
 
 export interface ICoreFactorBase<Doc extends DocStatus>
 	extends IFullTextSearch,
-	        IUserCreated<FactorKey> {
+	        IUserCreated<Factor_Key> {
 
-	axis: Doc extends IsDoc ? IDocumentValue<FactorAxis>
-		: Doc extends IsDelta ? boolean : FactorAxis
-	name: Doc extends IsDoc ? IDocumentValue<FactorName>
-		: Doc extends IsDelta ? boolean : FactorName
+	axis: Doc extends IsDoc ? IDocumentValue<Factor_Axis>
+		: Doc extends IsDelta ? boolean : Factor_Axis
+	name: Doc extends IsDoc ? IDocumentValue<Factor_Name>
+		: Doc extends IsDelta ? boolean : Factor_Name
 
 }
