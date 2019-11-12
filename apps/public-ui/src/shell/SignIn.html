@@ -140,38 +140,38 @@
 
 	async function initPage(page) {
 		const [
-			      {Field, FieldGroup, Validators},
+			      formFactory,
 			      _
 		      ] = await Promise.all([
-			loadForms(page),
+			loadForms(),
 			loadLocText(page.store, 'en-us')
 		])
 
 		const {text} = page.store.get()
 
-		const signInForm = new FieldGroup('SignIn', {
-			username: new Field([
-				Validators.required(),
-				Validators.minLength(5),
+		const signInForm = formFactory.group('SignIn', {
+			username: formFactory.field([
+				formFactory.validators.required(),
+				formFactory.validators.minLength(5),
 			], {maxLength: 64}),
-			password: new Field([
-				Validators.required(),
-				Validators.minLength(8),
+			password: formFactory.field([
+				formFactory.validators.required(),
+				formFactory.validators.minLength(8),
 			], {maxLength: 64})
-		}, [Validators.required()], text.UI.SignIn, 'SignUp')
+		}, [formFactory.validators.required()], text.UI.SignIn, 'SignUp')
 
-		const signUpForm = new FieldGroup('SignUp', {
-			username: new Field([
-				Validators.required(),
-				Validators.minLength(5),
+		const signUpForm = formFactory.group('SignUp', {
+			username: formFactory.field([
+				formFactory.validators.required(),
+				formFactory.validators.minLength(5),
 			], {maxLength: 64}),
-			password: new Field([
-				Validators.required(),
-				Validators.minLength(8),
+			password: formFactory.field([
+				formFactory.validators.required(),
+				formFactory.validators.minLength(8),
 			], {maxLength: 64}),
-			passwordCheck: new Field([
-				Validators.required(),
-				Validators.minLength(8), Validators.custom('passwordMismatch', (
+			passwordCheck: formFactory.field([
+				formFactory.validators.required(),
+				formFactory.validators.minLength(8), formFactory.validators.custom('passwordMismatch', (
 					field
 				) => {
 					const passwordValue = field.group.fields.password.value
@@ -183,7 +183,7 @@
 					}
 				}),
 			], {maxLength: 64}),
-		}, [Validators.required()], text.UI.SignIn)
+		}, [formFactory.validators.required()], text.UI.SignIn)
 
 		page.set({
 			signInForm,

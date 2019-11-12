@@ -43,7 +43,7 @@ export {
 	IErrorsText
 }                                                 from './validator/Validator'
 export *                                          from './diTokens'
-export {IFormFactory}                             from './FormFactory'
+export *                                          from './FormFactory'
 
 export interface IConstants {
 	rules: IRuleConstants

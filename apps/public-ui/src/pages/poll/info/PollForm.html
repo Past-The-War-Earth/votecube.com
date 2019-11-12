@@ -367,7 +367,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 
 	async function initPage(page) {
 		const [
-			      {ColorField, DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
+			      formFactory,
 			      // locations,
 			      // _,
 			      // [
@@ -376,7 +376,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			      // , voteDao
 			      // ]
 		      ] = await Promise.all([
-			loadForms(page),
+			loadForms(),
 			// loadLocations(),
 			// loadLocText(page.store, 'en-us'),
 		])
@@ -405,7 +405,8 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 					currentVariation,
 					mode === 'alter',
 					mode !== 'create',
-					text)
+					text,
+					formFactory)
 
 				forms.setForm(forms.CREATE_POLL_TOP, form)
 			} catch (error) {

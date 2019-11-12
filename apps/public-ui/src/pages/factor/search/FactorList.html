@@ -76,10 +76,10 @@
 	}
 
 	async function initForm(page) {
-		const {FieldGroup, OptionsField, Validators} = await loadForms(page)
+		const formFactory = await loadForms()
 
-		const filter = new FieldGroup('List', {
-			theme: new OptionsField([
+		const filter = formFactory.group('List', {
+			theme: formFactory.options([
 				// Validators.required()
 			], [{
 				id: 1,
@@ -97,7 +97,7 @@
 				id: 5,
 				text: 'Security'
 			}]),
-			labels: new OptionsField([], [{
+			labels: formFactory.options([], [{
 				id: 1,
 				text: 'Trump',
 				theme: {

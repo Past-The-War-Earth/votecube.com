@@ -1,3 +1,5 @@
+{#await load}
+{:then}
 <article
 		transition:fade="{duration: 700}"
 >
@@ -74,7 +76,9 @@
 
 	{/if}
 </article>
-
+{:catch error}
+{error}
+{/await}
 <style>
 
 	article {
@@ -90,16 +94,16 @@
 
 </style>
 <script>
-	import {DI}           from '@airport/di'
-	import {POLL_DAO}            from '@votecube/public-db'
-	import {fade}                from 'svelte-transitions'
+	import {DI}                 from '@airport/di'
+	import {POLL_DAO}           from '@votecube/public-db'
+	import {fade}               from 'svelte-transitions'
+	import {fromPollListingDoc} from '../../../../../../schemas/relational-db/src/dao/fromConverter'
 	import CancelButton         from '../../../common/control/button/CancelButton.html'
 	import AutoComplete         from '../../../common/field/AutoComplete.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import ActionPopover        from '../../../common/shell/ActionPopover.html'
 	import PollListFab          from '../../../components/poll/PollListFab.html'
 	import * as forms           from '../../../form/forms'
-	import {fromPollListingDoc} from '../../../../../../schemas/relational-db/src/dao/fromConverter'
 	import {loadForms}          from '../../../libs/forms'
 	import * as routes          from '../../../routes'
 	import store                from '../../../store'
@@ -116,7 +120,12 @@
 		},
 		data() {
 			return {
-				mode: 'factors'
+				mode: 'factors',
+				load: new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(initPage())
+					}, 1)
+				})
 			}
 		},
 		methods: {
@@ -146,7 +155,7 @@
 			},
 		},
 		oncreate() {
-			initPage(this).then()
+			initPage.page = this
 		},
 		ondestroy() {
 			forms.clearForm(this)
@@ -157,17 +166,17 @@
 		}
 	}
 
-	async function initPage(page) {
+	async function initPage() {
 		const pollDao = await DI.get(POLL_DAO)
 		const [
-			    {OptionsField, FieldGroup},
-			    polls
-		    ]         = await Promise.all([
-			loadForms(page),
+			      formFactory,
+			      polls
+		      ]       = await Promise.all([
+			loadForms(),
 			findPolls(null, pollDao)
 		])
 
-		const theme = new OptionsField([], [{
+		const theme = formFactory.options([], [{
 			id: 1,
 			text: 'Politics'
 		}, {
@@ -187,18 +196,18 @@
 		theme.onChange((aTheme) => {
 			findPolls(aTheme, pollDao).then(
 				polls => {
-					page.set({polls})
+					initPage.page.set({polls})
 				})
 		})
 
-		const filter = new FieldGroup('List', {
+		const filter = formFactory.group('List', {
 			theme
-		}, [], page.store.get().text.UI.Poll)
+		}, [], initPage.page.store.get().text.UI.Poll)
 
-		page.set({polls})
-		forms.ensureForm(filter, page)
+		initPage.page.set({polls})
+		forms.ensureForm(filter, initPage.page)
 
-		page.store.set({
+		initPage.page.store.set({
 			pageTitle: 'Polls'
 		})
 	}

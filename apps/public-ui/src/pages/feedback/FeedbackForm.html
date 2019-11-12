@@ -112,7 +112,7 @@
 
 	async function initPage(page) {
 		const [
-			      {ColorField, DateField, Field, FieldGroup, MatchingField, OptionsField, Validators},
+			      formFactory,
 			      // locations,
 			      // _,
 			      // [
@@ -127,9 +127,9 @@
 		])
 
 		const {text} = page.store.get()
-		const form   = new FieldGroup('Feedback', {
-			category: new OptionsField([
-				Validators.required()
+		const form   = formFactory.group('Feedback', {
+			category: formFactory.options([
+				formFactory.validators.required()
 			], [{
 				id: 1,
 				text: 'Feature Request'
@@ -146,11 +146,11 @@
 				id: 5,
 				text: 'Other'
 			}]),
-			comment: new Field([
-				Validators.minLength(3),
-				Validators.required()
+			comment: formFactory.field([
+				formFactory.validators.minLength(3),
+				formFactory.validators.required()
 			], {maxLength: 2500})
-		}, [Validators.required()], text.UI)
+		}, [formFactory.validators.required()], text.UI)
 
 		form.addComponent(page)
 		form.validate()

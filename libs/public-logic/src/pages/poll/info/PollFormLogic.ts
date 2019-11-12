@@ -16,7 +16,8 @@ export interface IPollFormLogic {
 		currentVariation: IStoredVariation,
 		trackOriginal: boolean,
 		touch: boolean,
-		text
+		text,
+		formFactory: IFormFactory
 	): Promise<IFieldGroup>
 
 }
@@ -28,14 +29,16 @@ export class PollFormLogic
 		currentVariation: IStoredVariation,
 		trackOriginal: boolean,
 		touch: boolean,
-		text
+		text,
+		formFactory: IFormFactory
 	): Promise<IFieldGroup> {
 		const pollFormManager = await DI.get(POLL_FORM_MANAGER)
 
 		const form = await this.createPollForm(
 			// labels,
 			// locations,
-			text.UI
+			text.UI,
+			formFactory
 		)
 		form.setTrackOriginal(trackOriginal)
 		form.validate()
@@ -62,39 +65,39 @@ export class PollFormLogic
 		// labelData,
 		// locationsData,
 		uiText,
+		formFactory: IFormFactory
 	): Promise<IFieldGroup> {
-		const form = await DI.get(FORM_FACTORY)
 
 		const text = uiText.Poll
 
-		const factors = form.group('Factors', {
+		const factors = formFactory.group('Factors', {
 			first: this.createFactorForm(
 				uiText,
-				form,
-				[form.validators.required()]
+				formFactory,
+				[formFactory.validators.required()]
 			),
 			second: this.createFactorForm(
 				uiText,
-				form,
-				[form.validators.required()]
+				formFactory,
+				[formFactory.validators.required()]
 			),
 			third: this.createFactorForm(
 				uiText,
-				form,
-				[form.validators.required()]
+				formFactory,
+				[formFactory.validators.required()]
 			)
-		}, [form.validators.required()], text)
+		}, [formFactory.validators.required()], text)
 
-		const outcomes = form.group('Outcomes', {
-			A: form.field([
-				form.validators.minLength(3),
-				form.validators.required()
+		const outcomes = formFactory.group('Outcomes', {
+			A: formFactory.field([
+				formFactory.validators.minLength(3),
+				formFactory.validators.required()
 			], {
 				maxLength: 50
 			}),
-			B: form.field([
-				form.validators.minLength(3),
-				form.validators.required()
+			B: formFactory.field([
+				formFactory.validators.minLength(3),
+				formFactory.validators.required()
 			], {
 				maxLength: 50
 			})
@@ -127,8 +130,8 @@ export class PollFormLogic
 				form.validators.minTomorrow()
 			])
 		*/
-		const theme = form.options([
-			form.validators.required()
+		const theme = formFactory.options([
+			formFactory.validators.required()
 		], [{
 			id: 1,
 			text: 'Politics'
@@ -155,21 +158,21 @@ export class PollFormLogic
 				]),
 			}, [form.validators.required()], text)
 		*/
-		return form.group('MainInfo', {
+		return formFactory.group('MainInfo', {
 			// ageSuitability: form.field([], {}),
 			factors,
 			// labels,
 			// locations,
-			name: form.field([
-				form.validators.minLength(3),
-				form.validators.required()
+			name: formFactory.field([
+				formFactory.validators.minLength(3),
+				formFactory.validators.required()
 			], {
 				maxLength: 40
 			}),
 			outcomes,
 			theme,
 			// timeframe
-		}, [form.validators.required()], text)
+		}, [formFactory.validators.required()], text)
 	}
 
 	private createFactorForm(

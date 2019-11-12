@@ -259,15 +259,15 @@
 		let [
 			    currentVariation,
 			    childVariations,
-			    {Field, FieldGroup}
+			    formFactory
 		    ]                             = await getListingsAndOther(
 			pollKey,
 			pollVariationKey,
-			loadForms(page)
+			loadForms()
 		)
 
-		const filter = new FieldGroup('List', {
-			search: new Field([])
+		const filter = formFactory.group('List', {
+			search: formFactory.field([])
 		}, [], page.store.get().text.UI.Poll)
 
 
