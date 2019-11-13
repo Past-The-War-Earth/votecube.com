@@ -76,7 +76,7 @@
 	}
 
 	async function initForm(page) {
-		const formFactory = await loadForms()
+		const formFactory = await loadForms(page.store)
 
 		const filter = formFactory.group('List', {
 			theme: formFactory.options([

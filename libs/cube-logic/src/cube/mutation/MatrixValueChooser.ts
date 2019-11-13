@@ -1,26 +1,42 @@
-import {secondIsGreaterShortcircuit} from '../../utils/utils'
+import {DI}         from '@airport/di'
+import {
+	MATRIX_VALUE_CHOOSER,
+	PERCENTAGE_POSITION_CHOOSER
+}                   from '../../diTokens'
+import {ICubeUtils} from '../../utils/CubeUtils'
 import {
 	NUM_VALS,
 	PositionValues,
 	VALUE_MATRIX,
 	ValueArrayPosition
-}                                    from '../cubeMoveMatrix'
+}                   from '../CubeMoveMatrix'
 import {
-	IUiVoteDimension,
-	IUiVote
-}                                    from '../cubeMovement'
-import {IViewport}                   from '../Viewport'
+	IUiVote,
+	IUiVoteDimension
+}                   from '../CubeMovement'
+import {IViewport}  from '../Viewport'
 import {
 	DistanceFromClosestMatrixPosition,
 	IMatrixPosition
-}                                    from './types'
+}                   from './types'
 
 const MAX_DIST = 12
 
-export class MatrixValueChooser {
+export interface IMatrixValueChooser {
 
 	getClosestMatrixPosition(
-		viewport: IViewport
+		viewport: IViewport,
+		cubeUtils: ICubeUtils
+	): IMatrixPosition
+
+}
+
+export class MatrixValueChooser
+	implements IMatrixValueChooser {
+
+	getClosestMatrixPosition(
+		viewport: IViewport,
+		cubeUtils: ICubeUtils
 	): IMatrixPosition {
 		const x = viewport.pd.x
 		if (x.value === 100
@@ -36,7 +52,8 @@ export class MatrixValueChooser {
 			}
 		}
 		const positionsWithZeroes = this.getZeroedPositions(viewport)
-		let matrixPosition        = this.getClosestPositionByDistanceAndMedian(positionsWithZeroes, viewport)
+		const matrixPosition      = this.getClosestPositionByDistanceAndMedian(
+			positionsWithZeroes, viewport, cubeUtils)
 
 		matrixPosition.numNonZeroPos = 0 as any
 		for (let k = 0; k < NUM_VALS; k++) {
@@ -50,7 +67,8 @@ export class MatrixValueChooser {
 
 	private getClosestPositionByDistanceAndMedian(
 		positionsWithZeroes: boolean[],
-		viewport: IViewport
+		viewport: IViewport,
+		cubeUtils: ICubeUtils
 	): IMatrixPosition {
 		// need to find the percentages that best endPoint the specified ones
 		const valueMatrix = VALUE_MATRIX
@@ -103,7 +121,7 @@ export class MatrixValueChooser {
 					const largest      = sortedValues[2]
 					const sum          = xDistance + yDistance + zDistance
 					const upsideDown   = i > 18 && i < 54 ? 1 : 0
-					if (secondIsGreaterShortcircuit([
+					if (cubeUtils.secondIsGreaterShortCircuit([
 						[sum, lowestSum],
 						[median, lowestMedian],
 						[largest, lowestLargest],
@@ -187,3 +205,5 @@ export class MatrixValueChooser {
 	}
 
 }
+
+DI.set(MATRIX_VALUE_CHOOSER, MatrixValueChooser)

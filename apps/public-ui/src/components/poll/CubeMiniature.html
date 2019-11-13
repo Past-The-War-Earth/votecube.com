@@ -7,7 +7,7 @@
 			id="cubeMin"
 			style="transition: transform {transformMillis}ms linear;"
 	>
-		{#if poll}
+		{#if poll && factorsByAxis}
 		{#each positions as position, i}
 		<div
 				class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"

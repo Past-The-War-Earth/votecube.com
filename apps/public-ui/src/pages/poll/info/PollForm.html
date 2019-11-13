@@ -137,19 +137,19 @@
 	</IconBlock>
 	-->
 	<SelectionBlock
-			factor="{form.fields.factors.fields.first}"
-			text="{form.fields.factors.text.first}"
-			on:select="selectFactor(form.fields.factors.fields.first, $routeParams)"
+			factor="{form.fields.factors.fields[1]}"
+			text="{form.fields.factors.text[1]}"
+			on:select="selectFactor(form.fields.factors.fields[1], $routeParams)"
 	></SelectionBlock>
 	<SelectionBlock
-			factor="{form.fields.factors.fields.second}"
-			text="{form.fields.factors.text.second}"
-			on:select="selectFactor(form.fields.factors.fields.second, $routeParams)"
+			factor="{form.fields.factors.fields[2]}"
+			text="{form.fields.factors.text[2]}"
+			on:select="selectFactor(form.fields.factors.fields[2], $routeParams)"
 	></SelectionBlock>
 	<SelectionBlock
-			factor="{form.fields.factors.fields.third}"
-			text="{form.fields.factors.text.third}"
-			on:select="selectFactor(form.fields.factors.fields.third, $routeParams)"
+			factor="{form.fields.factors.fields[3]}"
+			text="{form.fields.factors.text[3]}"
+			on:select="selectFactor(form.fields.factors.fields[3], $routeParams)"
 	></SelectionBlock>
 	<nav class="pure-controls">
 		<PreviewButton
@@ -352,7 +352,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 				$routeParams,
 				modified
 			) {
-				doSubmit($routeParams, modified).then()
+				doSubmit($routeParams, modified, this).then()
 			}
 		},
 		oncreate() {
@@ -376,7 +376,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			      // , voteDao
 			      // ]
 		      ] = await Promise.all([
-			loadForms(),
+			loadForms(page.store),
 			// loadLocations(),
 			// loadLocText(page.store, 'en-us'),
 		])
@@ -401,7 +401,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 
 				const pollFormLogic = await DI.get(POLL_FORM_LOGIC)
 
-				const form = await pollFormLogic.getPollForm(
+				form = await pollFormLogic.getPollForm(
 					currentVariation,
 					mode === 'alter',
 					mode !== 'create',
@@ -430,7 +430,8 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 
 	async function doSubmit(
 		$routeParams,
-		modified
+		modified,
+		page
 	) {
 		const pollManager = await DI.get(POLL_MANAGER)
 
@@ -444,11 +445,11 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 		if (
 			$routeParams.mode === 'alter'
 			&& !modified) {
-			this.set({invalidAlter: true})
+			page.set({invalidAlter: true})
 			return
 		}
 
-		forms.navigateOnValid(this, routes.POLL_MAIN, $routeParams)
+		forms.navigateOnValid(page, routes.POLL_MAIN, $routeParams)
 	}
 
 </script>

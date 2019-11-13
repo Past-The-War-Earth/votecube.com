@@ -2,7 +2,7 @@
 		id="cube"
 >
 	<!--			on:click="toggleView(cubeView, event)"-->
-	{#if poll}
+	{#if poll && factorsByAxis}
 	{#each positions as position, i}
 	<div
 			class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"

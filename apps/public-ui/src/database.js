@@ -21,7 +21,7 @@ export async function setupCubeView(
 ) {
 	const [
 		      setPositionDataAndMove,
-		      pollManager, voteDao
+		      [pollManager, voteDao]
 	      ] = await Promise.all([
 		loadCubeLogic(page, callback),
 		await DI.get(POLL_MANAGER, VOTE_DAO)

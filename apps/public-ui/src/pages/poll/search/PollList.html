@@ -172,7 +172,7 @@
 			      formFactory,
 			      polls
 		      ]       = await Promise.all([
-			loadForms(),
+			loadForms(initPage.page.store),
 			findPolls(null, pollDao)
 		])
 

@@ -71,17 +71,17 @@ export class PollFormLogic
 		const text = uiText.Poll
 
 		const factors = formFactory.group('Factors', {
-			first: this.createFactorForm(
+			1: this.createFactorForm(
 				uiText,
 				formFactory,
 				[formFactory.validators.required()]
 			),
-			second: this.createFactorForm(
+			2: this.createFactorForm(
 				uiText,
 				formFactory,
 				[formFactory.validators.required()]
 			),
-			third: this.createFactorForm(
+			3: this.createFactorForm(
 				uiText,
 				formFactory,
 				[formFactory.validators.required()]

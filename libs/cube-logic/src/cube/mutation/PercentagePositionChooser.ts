@@ -1,15 +1,40 @@
+import {DI}            from '@airport/di'
+import {
+	DEGREE_POSITION_CHOOSER,
+	PERCENTAGE_POSITION_CHOOSER
+}                      from '../../diTokens'
 import {
 	Direction,
 	IUiVote,
 	PositionPercent
-}                      from '../cubeMovement'
+}                      from '../CubeMovement'
 import {
 	Dimension,
 	IViewport
 }                      from '../Viewport'
 import {PercentChange} from './types'
 
-export class PercentagePositionChooser {
+export interface IPercentagePositionChooser {
+
+
+	changePositionPercentages(
+		dimension: Dimension,
+		percentChange: PercentChange,
+		direction: Direction,
+		viewport: IViewport
+	): void
+
+	setPositionPercentages(
+		dimension: Dimension,
+		percent: PositionPercent,
+		direction: Direction,
+		viewport: IViewport
+	): void
+
+}
+
+export class PercentagePositionChooser
+	implements IPercentagePositionChooser {
 
 	setPositionPercentages(
 		dimension: Dimension,
@@ -17,7 +42,7 @@ export class PercentagePositionChooser {
 		direction: Direction,
 		viewport: IViewport
 	): void {
-		let positionData = viewport.pd
+		const positionData = viewport.pd
 		if (percent && !direction) {
 			direction = 1
 		} else if (direction && !percent) {
@@ -34,7 +59,7 @@ export class PercentagePositionChooser {
 		percentChange: PercentChange,
 		direction: Direction,
 		viewport: IViewport
-	) {
+	): void {
 		this.updateDimensionPercent(
 			dimension,
 			percentChange,
@@ -85,10 +110,11 @@ export class PercentagePositionChooser {
 		const positionData             = viewport.pd
 		const newChangedDimensionValue = viewport.pd[dimension].value
 		let i                          = -1
-		let dimensionToPreserve        = this.getDimensionToPreserve(dimension, viewport)
-		let dimensionToMove            = this.getDimensionToMove(dimension, dimensionToPreserve)
-		let otherDimensions            = [dimensionToMove, dimensionToPreserve]
-		let otherDimensionValues, totalValue
+		const dimensionToPreserve      = this.getDimensionToPreserve(dimension, viewport)
+		const dimensionToMove          = this.getDimensionToMove(dimension, dimensionToPreserve)
+		const otherDimensions          = [dimensionToMove, dimensionToPreserve]
+		let otherDimensionValues
+		let totalValue
 		do {
 			otherDimensionValues = [
 				viewport.pd[dimensionToMove].value,
@@ -197,3 +223,5 @@ export class PercentagePositionChooser {
 	}
 
 }
+
+DI.set(PERCENTAGE_POSITION_CHOOSER, PercentagePositionChooser)

@@ -1,17 +1,16 @@
-import {DI}      from '@airport/di'
-import {Poll_Key} from '@votecube/model'
+import {DI}       from '@airport/di'
 import {
-	POLL_DAO,
-	VOTE_DAO
-}                from '../../diTokens'
+	IVote,
+	Poll_Key
+}                 from '@votecube/model'
+import {VOTE_DAO} from '../../diTokens'
 
-export interface IVoteDao
-	// extends IBaseVoteDao
-{
+export interface IVoteDao {
 
-	// findMyVoteForPoll(
-	// 	pollKey: Poll_Key
-	// ): Promise<IVoteDso>
+	findMyVoteForPoll(
+		pollKey: Poll_Key
+	): Promise<IVote>
+
 	//
 	// findVoteForPoll(
 	// 	pollKey: Poll_Key,
@@ -25,24 +24,24 @@ export interface IVoteDao
 }
 
 export class VoteDao
-	// extends BaseVoteDao
 	implements IVoteDao {
 
-	// async findMyVoteForPoll(
-	// 	pollKey: Poll_Key
-	// ): Promise<IVoteDso> {
-	// 	// const pollDao = await DI.get(POLL_DAO)
-	//
-	// 	// const poll = await pollDao.getOriginalDetails(pollId)
-	// 	//
-	// 	// if (!poll) {
-	// 	// 	return null
-	// 	// }
-	//
-	// 	return this.getDummy(
-	// 		// poll
-	// 	)
-	// }
+	async findMyVoteForPoll(
+		pollKey: Poll_Key
+	): Promise<IVote> {
+		// 	// const pollDao = await DI.get(POLL_DAO)
+		//
+		// 	// const poll = await pollDao.getOriginalDetails(pollId)
+		// 	//
+		// 	// if (!poll) {
+		// 		return null
+		// 	// }
+		//
+		return this.getDummy(
+			// poll
+		)
+	}
+
 	//
 	// async findVoteForPoll(
 	// 	pollId: Poll_Key,
@@ -76,28 +75,28 @@ export class VoteDao
 	// 	return
 	// }
 	//
-	// private getDummy(
-	// 	// poll: IPoll
-	// ): IVoteDso {
-	// 	return {
-	// 		// poll,
-	// 		x: {
-	// 			axis: 'x',
-	// 			dir: 1,
-	// 			value: 33
-	// 		},
-	// 		y: {
-	// 			axis: 'y',
-	// 			dir: 1,
-	// 			value: 34
-	// 		},
-	// 		z: {
-	// 			axis: 'z',
-	// 			dir: -1,
-	// 			value: 33
-	// 		}
-	// 	} as any
-	// }
+	private getDummy(
+		// poll: IPoll
+	): IVote {
+		return {
+			// poll,
+			1: {
+				factorNumber: 1,
+				outcome: 'A',
+				value: 33
+			},
+			2: {
+				factorNumber: 2,
+				outcome: 'A',
+				value: 34
+			},
+			3: {
+				factorNumber: 3,
+				outcome: 'B',
+				value: 33
+			}
+		}
+	}
 
 }
 

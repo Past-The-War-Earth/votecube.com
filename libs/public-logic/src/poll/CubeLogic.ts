@@ -63,6 +63,65 @@ export class CubeLogic
 		}
 	}
 
+	async loadCubeLogic(
+		page,
+		viewCallback
+	) {
+		const cubeLogic = await import('@votecube/cube-logic')
+
+		const cubeEventListener = await DI.get(cubeLogic.CUBE_EVENT_LISTENER)
+
+		// page.set({cubeListener})
+
+		this.setCubeViewPort(
+			cubeListener,
+			(
+				mutationApi
+			) => {
+				page.set({mutationApi})
+			},
+			viewCallback,
+		)
+
+		return cubeListener.setPositionDataAndMove
+		// startResizeInterval(page, viewCallback)
+	}
+
+	shutDownCubeListener(
+		cubeListener,
+		page
+	) {
+		// stopResizeInterval(page)
+		setCubeViewPort(
+			cubeListener,
+			(
+				mutationApi
+			) => {
+				page.set({mutationApi})
+			}
+		)
+		cubeListener.setPositionData(null)
+	}
+
+	setCubeAdjustment(
+		cubeListener,
+		enableCubeAdjustment
+	) {
+		if (enableCubeAdjustment) {
+			cubeListener.addCubeAdjustment()
+		} else {
+			cubeListener.clearCubeAdjustment()
+		}
+	}
+
+	private setCubeViewPort(
+		cubeListener,
+		setMutationApi,
+		callback
+	) {
+		setMutationApi(cubeListener.setViewPort(true, callback))
+	}
+
 	private getFactorPositionDefault(
 		cubePosition1: ICubePosition,
 		cubePosition2: ICubePosition,

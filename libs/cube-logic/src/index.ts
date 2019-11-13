@@ -2,16 +2,17 @@ export {
 	IMutationApi,
 	mutationApi
 }                     from './cube/mutation/MutationApi'
-export {ZoomIndex}    from './cube/cubeMoveMatrix'
+export {ZoomIndex}    from './cube/CubeMoveMatrix'
 export {
 	IUiVoteDimension,
 	IUiVote,
 	Direction,
 	PositionPercent
-}                     from './cube/cubeMovement'
+}                     from './cube/CubeMovement'
 
-export *              from './cube/direction'
-export *              from './cube/eventListener'
+export *              from './cube/CubeDirection'
+export *              from './cube/CubeEventListener'
 export {
 	Dimension
 }                     from './cube/Viewport'
+export *              from './diTokens'

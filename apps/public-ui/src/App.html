@@ -230,7 +230,7 @@
 		userChanges$.subscribe(
 			user => {
 				const {currentPage} = store.get()
-				if (currentPage.authenticated) {
+				if (!user && currentPage && currentPage.authenticated) {
 					navigateToPage(POLL_LIST)
 				}
 				page.store.set({user, authChecked: true})

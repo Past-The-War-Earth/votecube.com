@@ -143,7 +143,7 @@
 			      formFactory,
 			      _
 		      ] = await Promise.all([
-			loadForms(),
+			loadForms(page.store),
 			loadLocText(page.store, 'en-us')
 		])
 

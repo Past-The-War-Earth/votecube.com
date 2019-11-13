@@ -339,35 +339,34 @@
 </style>
 
 <script>
-	import {DI}           from '@airport/di'
-	import {mutationApi}  from '@votecube/cube-logic'
-	import {VOTE_DAO}     from '@votecube/public-db'
+	import {DI}               from '@airport/di'
+	import {mutationApi}      from '@votecube/cube-logic'
+	import {VOTE_DAO}         from '@votecube/public-db'
 	import {
 		LOGIC_UTILS,
 		POLL_MAIN_LOGIC,
 		POLL_MANAGER
-	}                     from '@votecube/public-logic'
-	import BuildButton    from '../../../common/control/button/BuildButton.html'
-	import CancelButton   from '../../../common/control/button/CancelButton.html'
-	import OutcomeButton  from '../../../common/control/button/OutcomeButton.html'
-	import PercentPicker  from '../../../common/control/PercentPicker.html'
-	import ActionPopover  from '../../../common/shell/ActionPopover.html'
-	import AgeSuitability from '../../../components/AgeSuitability.html'
-	import DetailedCube   from '../../../components/poll/DetailedCube.html'
-	import FactorRanking  from '../../../components/poll/FactorRanking.html'
-	import Outcomes             from '../../../components/poll/Outcomes.html'
-	import PollFab              from '../../../components/poll/PollFab.html'
-	import VoteComponentGraph   from '../../../components/vote/VoteComponentGraph.html'
-	// import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
-
-	import {setupCubeView}   from '../../../database'
+	}                         from '@votecube/public-logic'
+	import BuildButton        from '../../../common/control/button/BuildButton.html'
+	import CancelButton       from '../../../common/control/button/CancelButton.html'
+	import OutcomeButton      from '../../../common/control/button/OutcomeButton.html'
+	import PercentPicker      from '../../../common/control/PercentPicker.html'
+	import ActionPopover      from '../../../common/shell/ActionPopover.html'
+	import AgeSuitability     from '../../../components/AgeSuitability.html'
+	import DetailedCube       from '../../../components/poll/DetailedCube.html'
+	import FactorRanking      from '../../../components/poll/FactorRanking.html'
+	import Outcomes           from '../../../components/poll/Outcomes.html'
+	import PollFab            from '../../../components/poll/PollFab.html'
+	import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
+	import {setupCubeView}    from '../../../database'
 	import {
 		setCubeAdjustment,
 		shutDownCubeListener
-	}                        from '../../../libs/cubeLogic'
-	import {setResizeCllBck} from '../../../resizer'
-	import * as routes       from '../../../routes'
-	import store             from '../../../store'
+	}                         from '../../../libs/cubeLogic'
+	import {setResizeCllBck}  from '../../../resizer'
+	import * as routes        from '../../../routes'
+	import store              from '../../../store'
+	// import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
 
 	let theCurrentVoteFactors = []
 	let theVoteFactors        = []
@@ -401,6 +400,9 @@
 				effectiveCubeView ? vote : currentVote,
 			effectiveCubeView: ({cubeView, beforeCubeView}) => cubeView && !beforeCubeView,
 			factorsByAxis: ({moveDelta, poll}) => {
+				if (!poll) {
+					return null
+				}
 				const factors = poll.factors
 				return {
 					[factors[1].axis]: factors[1],
@@ -409,6 +411,9 @@
 				}
 			},
 			positionsByAxisAndDir({moveDelta, poll}) {
+				if (!poll) {
+					return null
+				}
 				const factors = poll.factors
 				return {
 					[factors[1].axis]: factorPositionsByDir(factors, 1),

@@ -263,7 +263,7 @@
 		    ]                             = await getListingsAndOther(
 			pollKey,
 			pollVariationKey,
-			loadForms()
+			loadForms(page.store)
 		)
 
 		const filter = formFactory.group('List', {

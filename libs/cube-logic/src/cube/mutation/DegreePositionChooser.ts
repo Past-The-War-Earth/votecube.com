@@ -1,7 +1,22 @@
-import {IViewport}      from '../Viewport'
-import {IFinalPosition} from './types'
+import {DI}                    from '@airport/di'
+import {
+	DEGREE_POSITION_CHOOSER,
+	FINAL_POSITION_FINDER
+} from '../../diTokens'
+import {IViewport}             from '../Viewport'
+import {IFinalPosition}        from './types'
 
-export class DegreePositionChooser {
+export interface IDegreePositionChooser {
+
+	setFinalDegrees(
+		finalPosition: IFinalPosition,
+		viewport: IViewport
+	): void
+
+}
+
+export class DegreePositionChooser
+	implements IDegreePositionChooser {
 
 	setFinalDegrees(
 		finalPosition: IFinalPosition,
@@ -30,3 +45,5 @@ export class DegreePositionChooser {
 	}
 
 }
+
+DI.set(DEGREE_POSITION_CHOOSER, DegreePositionChooser)

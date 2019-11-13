@@ -1,4 +1,6 @@
+import {DI}          from '@airport/di'
 import {Factor_Axis} from '@votecube/model'
+import {VIEWPORT}    from '../diTokens'
 import {
 	MOVE_INCREMENTS,
 	MoveIncrement,
@@ -6,23 +8,22 @@ import {
 	VALUE_MATRIX,
 	ValueArrayPosition,
 	ZoomIndex
-}                   from './cubeMoveMatrix'
+}                    from './CubeMoveMatrix'
 import {
 	Bool,
 	Direction,
 	getMatrixIdxFromDeg,
 	IUiVote,
 	IUiVoteDimension,
-	IValuesOutCallback,
 	IValuesThruCallback,
 	Move,
 	moveCoordinates,
-} from './cubeMovement'
+}                    from './CubeMovement'
 
 export interface IViewport {
 
-	cb: IValuesThruCallback,
-	cr: ICubeRotation,
+	cb: IValuesThruCallback
+	cr: ICubeRotation
 	el: { [elementId: string]: Element }
 	increment: MoveIncrement
 	pd: IUiVote
@@ -67,24 +68,27 @@ export interface IVisibleDirection {
 
 export type Dimension = Factor_Axis
 
-export const viewport: IViewport = {
-	cb: null,
-	cr: {
+export class Viewport
+	implements IViewport {
+
+	cb        = null
+	cr        = {
 		x: 0,
 		y: 0
-	},
-	el: {},
-	increment: MoveIncrement.FIVE,
-	pd: null,
+	}
+	el        = {}
+	increment = MoveIncrement.FIVE
+	pd        = null
 	// Recently moved factor
-	rmd: [],
-	vd: {
-		x: 1,
-		y: 1,
-		z: 1
-	},
-	x: 0,
-	y: 0,
+	rmd       = []
+	vd        = {
+		x: 1 as Direction,
+		y: 1 as Direction,
+		z: 1 as Direction
+	}
+	x         = 0
+	y         = 0
+
 	// zm: MV_INC_IDX[MoveIncrement.FIFTEEN],
 	changeZoom(
 		zoomIndex: ZoomIndex
@@ -92,7 +96,8 @@ export const viewport: IViewport = {
 		this.increment = MOVE_INCREMENTS[zoomIndex]
 
 		console.log('TODO: implement')
-	},
+	}
+
 	move(
 		moveX: Bool,
 		xBy: Move,
@@ -148,7 +153,8 @@ export const viewport: IViewport = {
 		getDimensionState(2, 4, values, this.pd.z)
 
 		this.moveToDegree()
-	},
+	}
+
 	/**
 	 * Need to be able to move to a particular angle
 	 */
@@ -162,7 +168,8 @@ export const viewport: IViewport = {
 		for (const elementId in this.el) {
 			this.el[elementId].style.transform = 'rotateX(' + this.x + 'deg) rotateY(' + this.y + 'deg)'
 		}
-	},
+	}
+
 	reset(): void {
 		if (!Object.keys(this.el).length) {
 			return
@@ -170,4 +177,7 @@ export const viewport: IViewport = {
 		this.increment = MoveIncrement.FIVE
 		this.move(0, 0, 0, 0)
 	}
+
 }
+
+DI.set(VIEWPORT, Viewport)
