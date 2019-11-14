@@ -1,4 +1,3 @@
-import {DI}            from '@airport/di'
 import {ROUTES}        from '@votecube/public-logic'
 import {APP_CONTAINER} from './container'
 

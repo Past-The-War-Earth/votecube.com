@@ -341,6 +341,7 @@
 <script>
 	import {DI}                  from '@airport/di'
 	import {CUBE_EVENT_LISTENER} from '@votecube/cube-logic'
+	import {MUTATION_API}        from '@votecube/cube-logic/src'
 	import {VOTE_DAO}            from '@votecube/public-db'
 	import {
 		CUBE_LOGIC,
@@ -540,23 +541,35 @@
 			},
 			pollAdjusted() {
 				this.pollAltered()
-				mutationApi.recompute()
+				const {container} = this.get()
+				container.get(MUTATION_API).then(
+					mutationApi => {
+						mutationApi.recompute()
+					})
 			},
 			move(
 				event
 			) {
 				this.set({percentMove: true})
-				mutationApi.move(
-					event.factorNumber,
-					event.outcome,
-					event.percentChange
-				)
+				const {container} = this.get()
+				container.get(MUTATION_API).then(
+					mutationApi => {
+						mutationApi.move(
+							event.factorNumber,
+							event.outcome,
+							event.percentChange
+						)
+					})
 			},
 			moveToValue(
 				event
 			) {
 				this.set({percentMove: true})
-				mutationApi.moveToValue(event.factorNumber, event.value)
+				const {container} = this.get()
+				container.get(MUTATION_API).then(
+					mutationApi => {
+						mutationApi.moveToValue(event.factorNumber, event.value)
+					})
 			},
 			showAgeSuitability(
 				ageSuitabilityVisible,
@@ -590,14 +603,17 @@
 			toggleSurface(
 				factorNumber
 			) {
-				const {cubeView, delta, moveType} = this.get()
+				const {container, delta, moveType} = this.get()
 				this.set({moveType: 'toggle'})
 				setTimeout(() => {
-					mutationApi.toggleSurface(factorNumber)
-					this.set({delta: delta + 1})
-					setTimeout(() => {
-						this.set({moveType})
-					}, 500)
+					container.get(MUTATION_API).then(
+						mutationApi => {
+							mutationApi.toggleSurface(factorNumber)
+							this.set({delta: delta + 1})
+							setTimeout(() => {
+								this.set({moveType})
+							}, 500)
+						})
 				}, 1)
 			},
 			toggleView(
@@ -621,6 +637,8 @@
 		},
 		ondestroy() {
 			stopPage(this).then()
+			const {container} = this.get()
+			DI.remove(container)
 		}
 		,
 		store: () => store
@@ -700,7 +718,8 @@
 		current,
 		page
 	) {
-		const logic = await DI.get(POLL_MAIN_LOGIC)
+		const {container} = page.get()
+		const logic = await container.get(POLL_MAIN_LOGIC)
 
 		let currentVote = current.currentVote
 		if (logic.votesEqual(currentVote, current.vote)) {
@@ -809,7 +828,8 @@
 		$user
 	) {
 		page.set({savingMessage: 'Saving ...'})
-		const pollManager = await DI.get(POLL_MANAGER)
+		const {container} = page.get()
+		const pollManager = await container.get(POLL_MANAGER)
 		try {
 			await pollManager.saveCurrentVariation($user)
 			page.set({confirm: false})
@@ -823,7 +843,8 @@
 		page
 	) {
 		// page.set({confirm: false})
-		const voteDao = await DI.get(VOTE_DAO)
+		const {container} = page.get()
+		const voteDao = await container.get(VOTE_DAO)
 		try {
 			await voteDao.save(page.get().poll)
 			page.set({confirm: false})

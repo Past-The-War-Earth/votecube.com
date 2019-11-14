@@ -34,7 +34,8 @@ export async function savePollForm(
 	// let {pollId} = page.get().$routeParams
 	// poll.id      = pollId
 
-	// const pollDao = await DI.get(POLL_DAO)
+	// const {container}  = page.get()
+	// const pollDao = await container.get(POLL_DAO)
 
 	// await pollDao.stage(poll)
 	// pollDao.addTemp(poll)

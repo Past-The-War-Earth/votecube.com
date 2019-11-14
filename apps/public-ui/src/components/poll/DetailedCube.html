@@ -202,11 +202,9 @@
 <script>
 	import {DI}            from '@airport/di'
 	import {
-		clearView,
-		mutationApi,
-		setView
+		CUBE_EVENT_LISTENER,
+		MUTATION_API
 	}                      from '@votecube/cube-logic'
-	import {MUTATION_API}  from '@votecube/cube-logic/src'
 	import {LOGIC_UTILS}   from '@votecube/public-logic'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import Positioner      from './create/Positioner.html'
@@ -323,9 +321,7 @@
 			initPage(this).then()
 		},
 		ondestroy() {
-			clearView('cube')
-			const {container} = this.get()
-			DI.remove(container)
+			stopPage(this).then()
 		}
 		// onstate({changed, current}) {
 		// 	if (!current.pFPsByAxisAndDir) {
@@ -364,10 +360,12 @@
 	async function initPage(
 		page
 	) {
-		const container  = DI.ui('DetailedCube')
-		setView('cube')
+		const container = DI.ui('DetailedCube')
+		const [cubeEventListener, mutationApi] =
+			      await container.get(CUBE_EVENT_LISTENER, MUTATION_API)
 
-		const mutationApi = await container.get(MUTATION_API)
+		cubeEventListener.setView('cube')
+
 		await mutationApi.recompute()
 		page.stateListener = this.on('state', ({changed, current, previous}) => {
 			if (current.vote) {
@@ -387,6 +385,17 @@
 		const logicUtils = await container.get(LOGIC_UTILS)
 
 		page.set({container, logicUtils})
+	}
+
+	async function stopPage(
+		page
+	) {
+		const {container}       = page.get()
+		const cubeEventListener = await container.get(
+			CUBE_EVENT_LISTENER)
+
+		cubeEventListener.clearView('cube')
+		DI.remove(container)
 	}
 
 	function move(

@@ -1,13 +1,14 @@
-import {MUTATION_API} from '@votecube/cube-logic'
-import {VOTE_DAO}     from '@votecube/public-db'
+import {MUTATION_API}  from '@votecube/cube-logic'
+import {VOTE_DAO}      from '@votecube/public-db'
 import {
 	CUBE_LOGIC,
 	POLL_MANAGER
-}                     from '@votecube/public-logic'
+}                      from '@votecube/public-logic'
+// import {APP_CONTAINER} from './container'
 
 export async function init() {
-	// await DI.get(AIR_DB)
-	// const dbManager = await DI.get(DATABASE_MANAGER)
+	// await APP_CONTAINER.get(AIR_DB)
+	// const dbManager = await APP_CONTAINER.get(DATABASE_MANAGER)
 	// await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, SCHEMA)
 }
 

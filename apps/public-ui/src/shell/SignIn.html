@@ -135,6 +135,10 @@
 		oncreate() {
 			initPage(this).then()
 		},
+		ondestroy() {
+			const {container} = this.get()
+			DI.remove(container)
+		},
 		store: () => store
 	}
 
@@ -185,7 +189,10 @@
 			], {maxLength: 64}),
 		}, [formFactory.validators.required()], text.UI.SignIn)
 
+		const container  = DI.ui('SignIn')
+
 		page.set({
+			container,
 			signInForm,
 			signUpForm
 		})
@@ -196,7 +203,9 @@
 		password,
 		page
 	) {
-		const auth  = await DI.get(AUTH)
+		const {container} = this.get()
+
+		const auth  = await container.get(AUTH)
 		const error = await auth.signIn(username, password)
 		if (!error) {
 			return true
@@ -224,7 +233,9 @@
 		password,
 		page
 	) {
-		const auth  = await DI.get(AUTH)
+		const {container} = this.get()
+
+		const auth  = await container.get(AUTH)
 		const error = await auth.signUp(username, password)
 		if (!error) {
 			return true

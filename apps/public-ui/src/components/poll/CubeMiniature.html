@@ -155,9 +155,8 @@
 
 	import {DI}            from '@airport/di'
 	import {
-		clearView,
-		mutationApi,
-		setView
+		CUBE_EVENT_LISTENER,
+		MUTATION_API
 	}                      from '@votecube/cube-logic'
 	import {
 		CUBE_LOGIC,
@@ -187,34 +186,38 @@
 		methods: {},
 		oncreate() {
 			initPage.page = this
-			setView('cubeMin')
-			mutationApi.recompute()
-			setTimeout(() => {
-				this.set({loading: false, rotating: true})
-				setTimeout(() => {
-					this.set({rotating: false})
-				}, 700)
-			}, 1)
 		},
 		ondestroy() {
-			clearView('cubeMin')
-			const {container} = this.get()
-			DI.remove(container)
+			stopPage().then()
 		}
 	}
 
-	async function initPage(
-		page
-	) {
-		const container  = DI.ui('CubeMiniature')
-		const [cubeLogic, logicUtils] = await container.get(CUBE_LOGIC, LOGIC_UTILS)
+	async function initPage() {
+		const container                                               = DI.ui('CubeMiniature')
+		const [cubeEventListener, cubeLogic, logicUtils, mutationApi] = await container.get(
+			CUBE_EVENT_LISTENER, CUBE_LOGIC, LOGIC_UTILS, MUTATION_API)
 
-		page.set({
+		cubeEventListener.setView('cubeMin')
+		await mutationApi.recompute()
+		setTimeout(() => {
+			this.set({loading: false, rotating: true})
+			setTimeout(() => {
+				this.set({rotating: false})
+			}, 700)
+		}, 1)
+
+		initPage.page.set({
 			container,
 			logicUtils,
 			positions: cubeLogic.getDefaultCubePositions()
 		})
 	}
 
+	async function stopPage() {
+		const {container}       = this.get()
+		const cubeEventListener = await container.get(CUBE_EVENT_LISTENER)
+		cubeEventListener.clearView('cubeMin')
+		DI.remove(container)
+	}
 
 </script>

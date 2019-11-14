@@ -366,6 +366,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 	}
 
 	async function initPage(page) {
+		const container  = DI.ui('PollForm')
 		const [
 			      formFactory,
 			      // locations,
@@ -391,7 +392,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			const {mode} = formCache.getPollRouteParams(page)
 
 			try {
-				const pollManager = await DI.get(POLL_MANAGER)
+				const pollManager = await container.get(POLL_MANAGER)
 
 				const currentVariation = pollManager.currentVariation
 				if (!currentVariation.ui && mode !== 'build') {
@@ -399,7 +400,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 					return
 				}
 
-				const pollFormLogic = await DI.get(POLL_FORM_LOGIC)
+				const pollFormLogic = await container.get(POLL_FORM_LOGIC)
 
 				form = await pollFormLogic.getPollForm(
 					currentVariation,
@@ -417,9 +418,10 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 
 		forms.ensureForm(form, page)
 
-		const logicUtils = await DI.get(LOGIC_UTILS)
+		const logicUtils = await container.get(LOGIC_UTILS)
 
 		page.store.set({
+			container,
 			form,
 			logicUtils,
 			pageTitle: 'Poll Info',
@@ -433,7 +435,9 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 		modified,
 		page
 	) {
-		const pollManager = await DI.get(POLL_MANAGER)
+		const {container} = page.get()
+
+		const pollManager = await container.get(POLL_MANAGER)
 
 		const form = pollManager.currentVariation.form
 		form.touch()

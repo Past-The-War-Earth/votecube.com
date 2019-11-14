@@ -255,6 +255,8 @@
 	}
 
 	async function initPage(page) {
+		const container  = DI.ui('VariationList')
+
 		const {pollKey, pollVariationKey} = page.store.get().routeParams
 		let [
 			    currentVariation,
@@ -278,7 +280,7 @@
 			variation: currentVariation,
 		}
 
-		page.set({childVariations, currentVariation, navList})
+		page.set({childVariations, container, currentVariation, navList})
 		forms.ensureForm(filter, page)
 
 		page.store.set({
@@ -291,7 +293,9 @@
 		pollVariationKey,
 		otherPromise
 	) {
-		const pollDao = await DI.get(POLL_DAO)
+		const {container} = this.get()
+
+		const pollDao = await container.get(POLL_DAO)
 		let [
 			    currentVariation,
 			    childVariations,
