@@ -1,4 +1,4 @@
-import {DI}               from '@airport/di'
+import {container, DI}               from '@airport/di'
 import {
 	FORM_FACTORY,
 	IFieldGroup,
@@ -32,7 +32,7 @@ export class PollFormLogic
 		text,
 		formFactory: IFormFactory
 	): Promise<IFieldGroup> {
-		const pollFormManager = await DI.get(POLL_FORM_MANAGER)
+		const pollFormManager = await container(this).get(POLL_FORM_MANAGER)
 
 		const form = await this.createPollForm(
 			// labels,

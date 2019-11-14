@@ -1,23 +1,26 @@
-import {DI}          from '@airport/di'
-import {Factor_Axis} from '@votecube/model'
-import {VIEWPORT}    from '../diTokens'
 import {
-	MOVE_INCREMENTS,
+	container,
+	DI
+}                    from '@airport/di'
+import {Factor_Axis} from '@votecube/model'
+import {
+	CUBE_MOVE_MATRIX,
+	CUBE_MOVEMENT,
+	VIEWPORT
+}                    from '../diTokens'
+import {
 	MoveIncrement,
 	PositionValues,
-	VALUE_MATRIX,
 	ValueArrayPosition,
 	ZoomIndex
 }                    from './CubeMoveMatrix'
 import {
 	Bool,
 	Direction,
-	getMatrixIdxFromDeg,
 	IUiVote,
 	IUiVoteDimension,
 	IValuesThruCallback,
-	Move,
-	moveCoordinates,
+	Move
 }                    from './CubeMovement'
 
 export interface IViewport {
@@ -93,9 +96,12 @@ export class Viewport
 	changeZoom(
 		zoomIndex: ZoomIndex
 	): void {
-		this.increment = MOVE_INCREMENTS[zoomIndex]
+		container(this).get(CUBE_MOVE_MATRIX).then(
+			cubeMoveMatrix => {
+				this.increment = cubeMoveMatrix.MOVE_INCREMENTS[zoomIndex]
 
-		console.log('TODO: implement')
+				console.log('TODO: implement')
+			})
 	}
 
 	move(
@@ -104,55 +110,60 @@ export class Viewport
 		moveY: Bool,
 		yBy: Move
 	): void {
-		if (!Object.keys(this.el).length) {
-			return
-		}
-		if (!moveX && !moveY) {
-			return
-		}
-		let xi
-		let yi
-		if (moveX) {
-			[this.x, xi] = moveCoordinates(
-				// this.zm,
-				this.x, xBy)
-		} else {
-			xi = getMatrixIdxFromDeg(this.x)
-		}
-		if (moveY) {
-			[this.y, yi] = moveCoordinates(
-				// this.zm,
-				this.y, yBy)
-		} else {
-			yi = getMatrixIdxFromDeg(this.y)
-		}
-
-		const values = VALUE_MATRIX[xi][yi]
-
-		function getDimensionState(
-			positivePosition: ValueArrayPosition,
-			negativePosition: ValueArrayPosition,
-			positionValues: PositionValues,
-			voteDimension: IUiVoteDimension
-		): void {
-			let dir: Direction = 1
-			let value          = positionValues[positivePosition]
-			if (positionValues[negativePosition]) {
-				dir   = -1
-				value = positionValues[negativePosition]
-			} else if (!value) {
-				dir = 0
+		container(this).get(CUBE_MOVE_MATRIX, CUBE_MOVEMENT).then(([
+			                                                           cubeMoveMatrix,
+			                                                           cubeMovement
+		                                                           ]) => {
+			if (!Object.keys(this.el).length) {
+				return
 			}
-			voteDimension.dir   = dir
-			voteDimension.valid = true
-			voteDimension.value = value
-		}
+			if (!moveX && !moveY) {
+				return
+			}
+			let xi
+			let yi
+			if (moveX) {
+				[this.x, xi] = cubeMovement.moveCoordinates(
+					// this.zm,
+					this.x, xBy, cubeMoveMatrix)
+			} else {
+				xi = cubeMovement.getMatrixIdxFromDeg(this.x, cubeMoveMatrix)
+			}
+			if (moveY) {
+				[this.y, yi] = cubeMovement.moveCoordinates(
+					// this.zm,
+					this.y, yBy, cubeMoveMatrix)
+			} else {
+				yi = cubeMovement.getMatrixIdxFromDeg(this.y, cubeMoveMatrix)
+			}
 
-		getDimensionState(0, 5, values, this.pd.x)
-		getDimensionState(1, 3, values, this.pd.y)
-		getDimensionState(2, 4, values, this.pd.z)
+			const values = cubeMoveMatrix.VALUE_MATRIX[xi][yi]
 
-		this.moveToDegree()
+			function getDimensionState(
+				positivePosition: ValueArrayPosition,
+				negativePosition: ValueArrayPosition,
+				positionValues: PositionValues,
+				voteDimension: IUiVoteDimension
+			): void {
+				let dir: Direction = 1
+				let value          = positionValues[positivePosition]
+				if (positionValues[negativePosition]) {
+					dir   = -1
+					value = positionValues[negativePosition]
+				} else if (!value) {
+					dir = 0
+				}
+				voteDimension.dir   = dir
+				voteDimension.valid = true
+				voteDimension.value = value
+			}
+
+			getDimensionState(0, 5, values, this.pd.x)
+			getDimensionState(1, 3, values, this.pd.y)
+			getDimensionState(2, 4, values, this.pd.z)
+
+			this.moveToDegree()
+		})
 	}
 
 	/**

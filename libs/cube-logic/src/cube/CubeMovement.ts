@@ -8,10 +8,8 @@ import {
 }                      from '@votecube/model'
 import {CUBE_MOVEMENT} from '../diTokens'
 import {
-	MatrixIndex,
-	NUM_DIVS,
-	populateDegreeValMatrix,
-	STEP_DEGS,
+	ICubeMoveMatrix,
+	MatrixIndex
 }                      from './CubeMoveMatrix'
 import {Dimension}     from './Viewport'
 
@@ -29,8 +27,6 @@ export enum Move {
 export type Direction = Position_Dir | 0
 
 export type PositionPercent = VoteFactor_Value
-
-populateDegreeValMatrix()
 
 export interface IPosition {
 
@@ -87,17 +83,20 @@ export interface ICubeMovement {
 	mouse: IMousePosition
 
 	getMatrixIdxFromDeg(
-		rotationDegrees: number
+		rotationDegrees: number,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): MatrixIndex
 
 	moveCoordinates(
 		// zoomIndex: ZoomIndex,
 		currentDegree: number,
-		move: Move
+		move: Move,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): [number, MatrixIndex]
 
 	normMatrixIdx(
-		signedMatrixIndex: number
+		signedMatrixIndex: number,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): MatrixIndex
 
 }
@@ -126,17 +125,19 @@ export class CubeMovement
 	*/
 
 	getMatrixIdxFromDeg(
-		rotationDegrees: number
+		rotationDegrees: number,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): MatrixIndex {
-		const signedMatrixIndex = Math.floor(rotationDegrees % 360 / STEP_DEGS)
+		const signedMatrixIndex = Math.floor(rotationDegrees % 360 / cubeMoveMatrix.STEP_DEGS)
 
-		return this.normMatrixIdx(signedMatrixIndex)
+		return this.normMatrixIdx(signedMatrixIndex, cubeMoveMatrix)
 	}
 
 	moveCoordinates(
 		// zoomIndex: ZoomIndex,
 		currentDegree: number,
-		move: Move
+		move: Move,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): [number, MatrixIndex] {
 		// not needed checked higher
 		// if (!move) {
@@ -150,7 +151,7 @@ export class CubeMovement
 		// 	zoomMultiplier = 1
 		// }
 
-		const degreeChange    = STEP_DEGS
+		const degreeChange    = cubeMoveMatrix.STEP_DEGS
 		// * zoomMultiplier
 		let zoomedMatrixIndex = Math.floor(
 			currentDegree % 360 / degreeChange
@@ -173,15 +174,17 @@ export class CubeMovement
 		const rotation    = page * 360 + zoomedMatrixIndex * degreeChange
 		const matrixIndex = this.normMatrixIdx(zoomedMatrixIndex
 			// * zoomMultiplier
+			, cubeMoveMatrix
 		)
 
 		return [rotation, matrixIndex]
 	}
 
 	normMatrixIdx(
-		signedMatrixIndex: number
+		signedMatrixIndex: number,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): MatrixIndex {
-		const numberOfMatrixDivisions = NUM_DIVS
+		const numberOfMatrixDivisions = cubeMoveMatrix.NUM_DIVISIONS
 
 		let normalizedMatrixIndex = signedMatrixIndex
 		if (signedMatrixIndex < 0) {

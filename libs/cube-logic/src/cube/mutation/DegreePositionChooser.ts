@@ -1,10 +1,7 @@
-import {DI}                    from '@airport/di'
-import {
-	DEGREE_POSITION_CHOOSER,
-	FINAL_POSITION_FINDER
-} from '../../diTokens'
-import {IViewport}             from '../Viewport'
-import {IFinalPosition}        from './types'
+import {DI}                      from '@airport/di'
+import {DEGREE_POSITION_CHOOSER} from '../../diTokens'
+import {IViewport}               from '../Viewport'
+import {IFinalPosition}          from './types'
 
 export interface IDegreePositionChooser {
 

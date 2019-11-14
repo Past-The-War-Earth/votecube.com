@@ -1,11 +1,9 @@
-import {DI}            from '@airport/di'
+import {MUTATION_API} from '@votecube/cube-logic'
+import {VOTE_DAO}     from '@votecube/public-db'
 import {
-	mutationApi,
-	setPositionData
-}                      from '@votecube/cube-logic'
-import {VOTE_DAO}      from '@votecube/public-db'
-import {POLL_MANAGER}  from '@votecube/public-logic'
-import {loadCubeLogic} from './libs/cubeLogic'
+	CUBE_LOGIC,
+	POLL_MANAGER
+}                     from '@votecube/public-logic'
 
 export async function init() {
 	// await DI.get(AIR_DB)
@@ -17,15 +15,14 @@ export async function setupCubeView(
 	pollKey,
 	pollVariationKey,
 	page,
-	callback
+	callback,
+	container
 ) {
 	const [
-		      setPositionDataAndMove,
-		      [pollManager, voteDao]
-	      ] = await Promise.all([
-		loadCubeLogic(page, callback),
-		await DI.get(POLL_MANAGER, VOTE_DAO)
-	])
+		      cubeLogic, mutationApi, pollManager, voteDao
+	      ] = await container.get(CUBE_LOGIC, MUTATION_API, POLL_MANAGER, VOTE_DAO)
+
+	const setPositionDataAndMove = await cubeLogic.loadCubeLogic(page, callback)
 
 	const vote = await voteDao.findMyVoteForPoll(pollKey)
 
@@ -36,8 +33,8 @@ export async function setupCubeView(
 
 	const poll = await pollManager.getVariation(pollKey, pollVariationKey)
 
-	setPositionData(vote)
-	mutationApi.recompute()
+	await cubeLogic.setPositionData(vote)
+	await mutationApi.recompute()
 	// const poll = vote.poll
 	// const originalPoll =
 	page.set({vote})

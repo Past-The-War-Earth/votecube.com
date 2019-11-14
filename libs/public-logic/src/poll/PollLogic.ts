@@ -1,4 +1,4 @@
-import {DI}         from '@airport/di'
+import {container, DI}         from '@airport/di'
 import {
 	IUser,
 	IVariationDoc
@@ -40,7 +40,7 @@ export class PollLogic
 	async stage(
 		variation: IVariationDoc
 	): Promise<void> {
-		const pollDao: IPollDao = await DI.get(POLL_DAO)
+		const pollDao: IPollDao = await container(this).get(POLL_DAO)
 
 		await pollDao.addTemp(variation)
 	}
@@ -49,7 +49,7 @@ export class PollLogic
 		variation: IVariationDoc,
 		user: IUser
 	): Promise<void> {
-		const pollDao: IPollDao = await DI.get(POLL_DAO)
+		const pollDao: IPollDao = await container(this).get(POLL_DAO)
 
 		await pollDao.save(variation, user)
 	}

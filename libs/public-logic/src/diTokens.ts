@@ -1,4 +1,4 @@
-import {diToken}             from '@airport/di'
+import {system}              from '@airport/di'
 import {IAuth}               from './Auth'
 import {ILogicUtils}         from './LogicUtils'
 import {IFactorRankingLogic} from './pages/poll/info/FactorRankingLogic'
@@ -8,13 +8,17 @@ import {IPollFormManager}    from './pages/poll/PollFormManager'
 import {ICubeLogic}          from './poll/CubeLogic'
 import {IPollLogic}          from './poll/PollLogic'
 import {IPollManager}        from './poll/PollManager'
+import {IRoutes}             from './Routes'
 
-export const AUTH                 = diToken<IAuth>()
-export const CUBE_LOGIC           = diToken<ICubeLogic>()
-export const FACTOR_RANKING_LOGIC = diToken<IFactorRankingLogic>()
-export const LOGIC_UTILS          = diToken<ILogicUtils>()
-export const POLL_FORM_LOGIC      = diToken<IPollFormLogic>()
-export const POLL_FORM_MANAGER    = diToken<IPollFormManager>()
-export const POLL_LOGIC           = diToken<IPollLogic>()
-export const POLL_MAIN_LOGIC      = diToken<IPollMainLogic>()
-export const POLL_MANAGER         = diToken<IPollManager>()
+const publicLogic = system('votecube-ui').lib('public-logic')
+
+export const AUTH                 = publicLogic.token<IAuth>()
+export const CUBE_LOGIC           = publicLogic.token<ICubeLogic>()
+export const FACTOR_RANKING_LOGIC = publicLogic.token<IFactorRankingLogic>()
+export const LOGIC_UTILS          = publicLogic.token<ILogicUtils>()
+export const POLL_FORM_LOGIC      = publicLogic.token<IPollFormLogic>()
+export const POLL_FORM_MANAGER    = publicLogic.token<IPollFormManager>()
+export const POLL_LOGIC           = publicLogic.token<IPollLogic>()
+export const POLL_MAIN_LOGIC      = publicLogic.token<IPollMainLogic>()
+export const POLL_MANAGER         = publicLogic.token<IPollManager>()
+export const ROUTES               = publicLogic.token<IRoutes>()

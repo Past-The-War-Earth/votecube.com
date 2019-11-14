@@ -1,4 +1,4 @@
-import {DI}          from '@airport/di'
+import {container, DI}          from '@airport/di'
 import {IFieldGroup} from '@votecube/forms'
 import {
 	IUser,
@@ -84,11 +84,11 @@ export class PollManager
 			return this.currVariation.ui
 		}
 
-		const pollDao = await DI.get(POLL_DAO)
+		const pollDao = await container(this).get(POLL_DAO)
 
 		const doc = await pollDao.getVariation(pollKey, variationKey)
 
-		const [dbConverter, dbUtils] = await DI.get(DB_CONVERTER, DB_UTILS)
+		const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
 
 		const ui: any = dbConverter.fromDb(doc, dbUtils.subPollProps)
 
@@ -109,7 +109,7 @@ export class PollManager
 			return
 		}
 
-		const [pollFormManager, logicUtils, dbUtils] = await DI.get(
+		const [pollFormManager, logicUtils, dbUtils] = await container(this).get(
 			POLL_FORM_MANAGER, LOGIC_UTILS, DB_UTILS)
 
 		const ui: IVariationData      = pollFormManager.fromForm(form.value)
@@ -120,7 +120,7 @@ export class PollManager
 		if (oldUi) {
 			logicUtils.overlay(oldUi, ui)
 		} else {
-			const cubeLogic = await DI.get(CUBE_LOGIC)
+			const cubeLogic = await container(this).get(CUBE_LOGIC)
 
 			logicUtils.overlay(cubeLogic.getPollFactorPositionDefault(), ui)
 		}
@@ -138,16 +138,16 @@ export class PollManager
 		const ui         = this.currVariation.originalUi
 		const delta      = this.currVariation.uiDelta
 
-		const [dbUtils, logicUtils] = await DI.get(DB_UTILS, LOGIC_UTILS)
+		const [dbUtils, logicUtils] = await container(this).get(DB_UTILS, LOGIC_UTILS)
 
 		logicUtils.setDeltas(originalUi, ui, delta)
 
-		const dbConverter = await DI.get(DB_CONVERTER)
+		const dbConverter = await container(this).get(DB_CONVERTER)
 
 		const newDoc = dbConverter.toVersionedDb(ui, delta,
 			this.currVariation.doc, dbUtils.subPollProps)
 
-		const pollDao = await DI.get(POLL_DAO)
+		const pollDao = await container(this).get(POLL_DAO)
 
 		await pollDao.save(newDoc, user)
 

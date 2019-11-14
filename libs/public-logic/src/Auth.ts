@@ -1,4 +1,4 @@
-import {DI}   from '@airport/di'
+import {container, DI}   from '@airport/di'
 import {
 	BehaviorSubject,
 	IObservable
@@ -170,7 +170,7 @@ export class Auth
 					user = createdUser
 			).unsubscribe()
 
-			const userDao = await DI.get(USER_DAO)
+			const userDao = await container(this).get(USER_DAO)
 
 			await userDao.signUp(username, password, user)
 		} catch (error) {

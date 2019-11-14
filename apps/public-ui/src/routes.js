@@ -97,7 +97,6 @@ export function getTopMenuComponent() {
 	return topMenuComp
 }
 
-
 export function navigateToPage(
 	pageKey,
 	paramMap = DEFAULT_ROUTE_PARAMS

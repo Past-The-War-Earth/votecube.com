@@ -2,8 +2,6 @@ import {DI}               from '@airport/di'
 import {CUBE_MOVE_MATRIX} from '../diTokens'
 import {PositionPercent}  from './CubeMovement'
 
-
-
 export enum MoveIncrement {
 	FORTY_FIVE = 45,
 	FIFTEEN    = 15,
@@ -37,14 +35,17 @@ export type PositionValueTemplate = [
 
 export interface ICubeMoveMatrix {
 
+	MOVE_INCREMENTS: MoveIncrement[]
+	MV_INC_IDX: { [key: string]: ZoomIndex }
+	NUM_DIVISIONS: NumDivisions
+	NUM_VALS: number
+	STEP_DEGS: number
+	VALUE_MATRIX: PositionValues[][]
+
 }
 
 export class CubeMoveMatrix
 	implements ICubeMoveMatrix {
-
-	VALUE_MATRIX: PositionValues[][] = []
-
-	NUM_DIVISIONS: NumDivisions = 72
 
 	MOVE_INCREMENTS = [
 		MoveIncrement.FORTY_FIVE,
@@ -58,14 +59,16 @@ export class CubeMoveMatrix
 		[MoveIncrement.FIVE]: 2,
 	}
 
-	NUM_VALS               = 6
-	STEP_DEGS              = 5
-	NUM_DIVS: NumDivisions = 72
+	NUM_DIVISIONS: NumDivisions = 72
+	// NUM_DIVS: NumDivisions = 72
+
+	NUM_VALS  = 6
+	STEP_DEGS = 5
+
+	VALUE_MATRIX: PositionValues[][] = []
 
 	/* tslint:disable:max-line-length */
-	DI
-	/* tslint:enable:max-line-length */
-//  4   0   1
+	//  4   0   1
 	private fiveDegreeValueTemplate: PositionValueTemplate[][] = [
 		[[0, 0, 100], [0, 0, 100], [0, 0, 100], [6, 0, 94], [13, 0, 87], [20, 0, 80], [28, 0, 72], [35, 0, 65], [42, 0, 58], [50, 0, 50]],
 		[[0, 0, 100], [0, 0, 100], [0, 0, 100], [6, 0, 94], [13, 0, 87], [20, 0, 80], [28, 0, 72], [35, 0, 65], [42, 0, 58], [50, 0, 50]],
@@ -87,6 +90,8 @@ export class CubeMoveMatrix
 		[[0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0]],
 		[[0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0], [0, 100, 0]],
 	]
+	/* tslint:enable:max-line-length */
+
 // always starting at perpendicular x (due to 7 positions defined)
 // starting from full square and going towards 45/45 (in y)
 // same for every 4 MATRIX_TEMPLATE_DIRECTED POSITIONS
@@ -125,7 +130,6 @@ export class CubeMoveMatrix
 	private tempMatrixMoveXY                = []
 
 	constructor() {
-
 		for (let i = 0; i < 4; i++) {
 			for (let _ = 0; _ < 4; _++) {
 				this.tempMatrixMoveXY.push(this.matrixMoveXY[i])
@@ -150,24 +154,24 @@ export class CubeMoveMatrix
 		for (let i = 0; i < 16; i++) {
 			const template = this.matrixTemplateDirectedPositions[i]
 			const upDown   = template[1] === 0 ? 5 : 0
-			this.matrixTemplateDirectedPositions.push([template[0], upDown, template[2], Math.abs(template[3] - 12), template[4] + 12])
+			this.matrixTemplateDirectedPositions.push([
+				template[0], upDown, template[2], Math.abs(template[3] - 12),
+				template[4] + 12])
 		}
-	}
 
-	populateDegreeValMatrix() {
 		this.populateValueMatrix(19, 10,
 			this.fiveDegreeValueTemplate, this.NUM_DIVISIONS,
 			9, this.VALUE_MATRIX)
 	}
 
-	populateValueMatrix(
+	private populateValueMatrix(
 		endX: number,
 		endY: number,
 		matrixValueTemplate: PositionValueTemplate[][],
 		numDivisions: NumDivisions,
 		indexStartMultiplier: 9,
 		valueMatrix: PositionValues[][]
-	) {
+	): void {
 		for (let i = 0; i < numDivisions; i++) {
 			valueMatrix.push([] as any)
 		}

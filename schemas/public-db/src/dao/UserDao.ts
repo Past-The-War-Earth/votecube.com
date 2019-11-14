@@ -1,4 +1,4 @@
-import {DI} from '@airport/di'
+import {container, DI} from '@airport/di'
 import {
 	IUser,
 	User_Name
@@ -28,7 +28,7 @@ export class UserDao
 		password: Password,
 		user: IUser
 	): Promise<void> {
-		const schema = await DI.get(SCHEMA)
+		const schema = await container(this).get(SCHEMA)
 
 		await schema.db.runTransaction(async (transaction) => {
 			const userRef = schema.users.doc(user.key)

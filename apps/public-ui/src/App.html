@@ -85,6 +85,7 @@
 <script>
 	import {DI}                  from '@airport/di'
 	import {AUTH}                from '@votecube/public-logic'
+	import {ROUTES}              from '@votecube/public-logic/src'
 	import TextToast             from './common/shell/TextToast.html'
 	import {init}                from './database'
 	import {loadUi}              from './libs/text/ui'
@@ -105,8 +106,6 @@
 		scheduleToResize,
 		startResizeInterval
 	}                            from './resizer.js'
-	import * as routes           from './routes'
-	import {POLL_LIST}           from './routes'
 	import {
 		navigateToPage,
 		setupRoutes
@@ -116,25 +115,10 @@
 	import TopBar                from './shell/top/TopBar.html'
 	import store                 from './store.js'
 
-	const pageMap = {
-		[routes.ABOUT]: AboutUs,
-		[routes.FEEDBACK]: Feedback,
-		[routes.CARD_CLIMATE_CHANGE]: PollInfoMain,
-		[routes.FACTOR_INFO_MAIN]: FactorInfoMain,
-		[routes.FACTOR_LIST]: FactorList,
-		[routes.POLL_LIST]: PollList,
-		[routes.VARIATION_LIST]: VariationList,
-		[routes.POLL_FORM]: PollInfoForm,
-		[routes.POLL_MAIN]: PollInfoMain,
-		[routes.POLL_LOCATIONS]: PollLocations,
-		[routes.POLL_TIMEFRAME]: PollTimeframe,
-		[routes.RELEASE_PLAN]: ReleasePlan,
-	}
+	let appContainer = DI.ui('App')
 
-	const topMenuMap = {
-		[routes.POLL_MAIN]: PollInfoCommonTopMenu,
-		[routes.POLL_LIST]: PollListTopMenu
-	}
+	let pageMap
+	let topMenuMap
 
 	export default {
 		components: {
@@ -202,6 +186,28 @@
 	async function initApp(
 		page
 	) {
+		const routes = await appContainer.get(ROUTES)
+
+		pageMap    = {
+			[routes.ABOUT]: AboutUs,
+			[routes.FEEDBACK]: Feedback,
+			[routes.CARD_CLIMATE_CHANGE]: PollInfoMain,
+			[routes.FACTOR_INFO_MAIN]: FactorInfoMain,
+			[routes.FACTOR_LIST]: FactorList,
+			[routes.POLL_LIST]: PollList,
+			[routes.VARIATION_LIST]: VariationList,
+			[routes.POLL_FORM]: PollInfoForm,
+			[routes.POLL_MAIN]: PollInfoMain,
+			[routes.POLL_LOCATIONS]: PollLocations,
+			[routes.POLL_TIME_FRAME]: PollTimeframe,
+			[routes.RELEASE_PLAN]: ReleasePlan,
+		}
+		topMenuMap = {
+			[routes.POLL_MAIN]: PollInfoCommonTopMenu,
+			[routes.POLL_LIST]: PollListTopMenu
+		}
+
+
 		setupRoutes(page, pageMap, topMenuMap)
 
 		startResizeInterval(page.store)
@@ -218,7 +224,7 @@
 		})
 
 		const [auth, _, _2] = await Promise.all([
-			DI.get(AUTH),
+			appContainer.get(AUTH),
 			loadUi(page.store, 'en-us'),
 			init()
 		])
@@ -231,7 +237,7 @@
 			user => {
 				const {currentPage} = store.get()
 				if (!user && currentPage && currentPage.authenticated) {
-					navigateToPage(POLL_LIST)
+					navigateToPage(routes.POLL_LIST)
 				}
 				page.store.set({user, authChecked: true})
 			})

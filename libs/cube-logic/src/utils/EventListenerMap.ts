@@ -133,7 +133,7 @@ export class EventListenerMap
 		return (
 			eO2 // event object
 		) => {
-			return dE(target, eventName, eO2)
+			return this.dE(target, eventName, eO2)
 		}
 	}
 

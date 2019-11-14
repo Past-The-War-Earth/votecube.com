@@ -1,8 +1,17 @@
-import {DI}         from '@airport/di'
+import {
+	container,
+	DI
+}                   from '@airport/di'
+import {
+	ICubeEventListener,
+	IMutationApi,
+	IValuesOutCallback
+}                   from '@votecube/cube-logic'
 import {
 	Factor_Axis,
 	IFactorPositionDefault,
 	IPollFactorPositionDefault,
+	IVote,
 	Position_Dir
 }                   from '@votecube/model'
 import {CUBE_LOGIC} from '../diTokens'
@@ -17,6 +26,21 @@ export interface ICubeLogic {
 	getDefaultCubePositions(): ICubePosition[]
 
 	getPollFactorPositionDefault(): IPollFactorPositionDefault
+
+	loadCubeLogic(
+		page,
+		viewCallback: IValuesOutCallback
+	): Promise<(vote: IVote) => void>
+
+	shutDownCubeListener(
+		cubeEventListener: ICubeEventListener,
+		page
+	): void
+
+	setCubeAdjustment(
+		cubeEventListener: ICubeEventListener,
+		enableCubeAdjustment: boolean
+	): void
 
 }
 
@@ -65,16 +89,17 @@ export class CubeLogic
 
 	async loadCubeLogic(
 		page,
-		viewCallback
-	) {
+		viewCallback: IValuesOutCallback
+	): Promise<(vote: IVote) => void> {
 		const cubeLogic = await import('@votecube/cube-logic')
 
-		const cubeEventListener = await DI.get(cubeLogic.CUBE_EVENT_LISTENER)
+		const cubeEventListener: ICubeEventListener = await container(this)
+			.get(cubeLogic.CUBE_EVENT_LISTENER)
 
 		// page.set({cubeListener})
 
 		this.setCubeViewPort(
-			cubeListener,
+			cubeEventListener,
 			(
 				mutationApi
 			) => {
@@ -83,43 +108,47 @@ export class CubeLogic
 			viewCallback,
 		)
 
-		return cubeListener.setPositionDataAndMove
+		return (vote: IVote) => cubeEventListener.setPositionDataAndMove(vote).then()
 		// startResizeInterval(page, viewCallback)
 	}
 
 	shutDownCubeListener(
-		cubeListener,
+		cubeEventListener: ICubeEventListener,
 		page
-	) {
+	): void {
 		// stopResizeInterval(page)
-		setCubeViewPort(
-			cubeListener,
+		this.setCubeViewPort(
+			cubeEventListener,
 			(
 				mutationApi
 			) => {
 				page.set({mutationApi})
-			}
+			},
+			null
 		)
-		cubeListener.setPositionData(null)
+		cubeEventListener.setPositionData(null).then()
 	}
 
 	setCubeAdjustment(
-		cubeListener,
-		enableCubeAdjustment
-	) {
+		cubeEventListener: ICubeEventListener,
+		enableCubeAdjustment: boolean
+	): void {
 		if (enableCubeAdjustment) {
-			cubeListener.addCubeAdjustment()
+			cubeEventListener.addCubeAdjustment().then()
 		} else {
-			cubeListener.clearCubeAdjustment()
+			cubeEventListener.clearCubeAdjustment()
 		}
 	}
 
 	private setCubeViewPort(
-		cubeListener,
-		setMutationApi,
-		callback
-	) {
-		setMutationApi(cubeListener.setViewPort(true, callback))
+		cubeEventListener: ICubeEventListener,
+		setMutationApi: (mutationApi: IMutationApi) => void,
+		callback: IValuesOutCallback
+	): void {
+		cubeEventListener.setViewPort(true, callback).then(
+			mutationApi => {
+				setMutationApi(mutationApi)
+			})
 	}
 
 	private getFactorPositionDefault(

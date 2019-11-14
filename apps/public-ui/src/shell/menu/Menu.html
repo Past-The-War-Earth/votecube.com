@@ -82,6 +82,7 @@
 <script>
 	import {DI}        from '@airport/di'
 	import {AUTH}      from '@votecube/public-logic'
+	import {ROUTES}    from '@votecube/public-logic/src'
 	import * as routes from '../../routes'
 	import store       from '../../store.js'
 	import MenuItem    from './MenuItem.html'
@@ -109,16 +110,13 @@
 		},
 		methods: {
 			aboutUs() {
-				routes.navigateToPage(routes.ABOUT)
-				this.store.toggleMainMenu()
+				toPage('ABOUT', this).then()
 			},
 			feedback() {
-				routes.navigateToPage(routes.FEEDBACK)
-				this.store.toggleMainMenu()
+				toPage('FEEDBACK', this).then()
 			},
 			releasePlan() {
-				routes.navigateToPage(routes.RELEASE_PLAN)
-				this.store.toggleMainMenu()
+				toPage('RELEASE_PLAN', this).then()
 			},
 			// clickMenuLink(event) {
 			// if (DOM_API.e(menuElementIdSelector)
@@ -132,11 +130,7 @@
 				this.store.toggleMainMenu()
 			},
 			signOut() {
-				DI.get(AUTH).then(
-					auth => {
-						return auth.signOut().then()
-					})
-				this.store.toggleMainMenu()
+				doSignOut(this).then()
 			},
 			selectMenu(menuItem) {
 				this.set({selectedMenuIndex: menuItem.index})
@@ -144,9 +138,39 @@
 			}
 		},
 		oncreate() {
-			this.store.set({emInPx: getEmInPx()})
+			initComp(this)
 		},
 		store: () => store
+	}
+
+	async function initComp(
+		comp
+	) {
+		comp.store.set({emInPx: getEmInPx()})
+		const container = DI.ui('Menu')
+
+		comp.set({container})
+	}
+
+	async function toPage(
+		pageKey,
+		comp
+	) {
+		const {container} = comp.get()
+
+		const routes = await container.get(ROUTES)
+
+		routes.navigateToPage(routes[pageKey])
+		this.store.toggleMainMenu()
+	}
+
+	async function doSignOut(
+		comp
+	) {
+		const {container} = comp.get()
+		const auth = await container.get(AUTH)
+		await auth.signOut()
+		this.store.toggleMainMenu()
 	}
 
 	function getEmInPx() {

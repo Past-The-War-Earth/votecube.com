@@ -1,24 +1,20 @@
-import {DI}         from '@airport/di'
+import {DI}                   from '@airport/di'
+import {MATRIX_VALUE_CHOOSER} from '../../diTokens'
+import {ICubeUtils}           from '../../utils/CubeUtils'
 import {
-	MATRIX_VALUE_CHOOSER,
-	PERCENTAGE_POSITION_CHOOSER
-}                   from '../../diTokens'
-import {ICubeUtils} from '../../utils/CubeUtils'
-import {
-	NUM_VALS,
+	ICubeMoveMatrix,
 	PositionValues,
-	VALUE_MATRIX,
 	ValueArrayPosition
-}                   from '../CubeMoveMatrix'
+} from '../CubeMoveMatrix'
 import {
 	IUiVote,
 	IUiVoteDimension
-}                   from '../CubeMovement'
-import {IViewport}  from '../Viewport'
+}                             from '../CubeMovement'
+import {IViewport}            from '../Viewport'
 import {
 	DistanceFromClosestMatrixPosition,
 	IMatrixPosition
-}                   from './types'
+}                             from './types'
 
 const MAX_DIST = 12
 
@@ -26,7 +22,8 @@ export interface IMatrixValueChooser {
 
 	getClosestMatrixPosition(
 		viewport: IViewport,
-		cubeUtils: ICubeUtils
+		cubeUtils: ICubeUtils,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): IMatrixPosition
 
 }
@@ -36,7 +33,8 @@ export class MatrixValueChooser
 
 	getClosestMatrixPosition(
 		viewport: IViewport,
-		cubeUtils: ICubeUtils
+		cubeUtils: ICubeUtils,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): IMatrixPosition {
 		const x = viewport.pd.x
 		if (x.value === 100
@@ -48,15 +46,15 @@ export class MatrixValueChooser
 				// j: 36,
 				i: 20,
 				j: 36,
-				values: VALUE_MATRIX[20][36]
+				values: cubeMoveMatrix.VALUE_MATRIX[20][36]
 			}
 		}
 		const positionsWithZeroes = this.getZeroedPositions(viewport)
 		const matrixPosition      = this.getClosestPositionByDistanceAndMedian(
-			positionsWithZeroes, viewport, cubeUtils)
+			positionsWithZeroes, viewport, cubeUtils, cubeMoveMatrix)
 
 		matrixPosition.numNonZeroPos = 0 as any
-		for (let k = 0; k < NUM_VALS; k++) {
+		for (let k = 0; k < cubeMoveMatrix.NUM_VALS; k++) {
 			if (!positionsWithZeroes[k]) {
 				matrixPosition.numNonZeroPos++
 			}
@@ -68,10 +66,11 @@ export class MatrixValueChooser
 	private getClosestPositionByDistanceAndMedian(
 		positionsWithZeroes: boolean[],
 		viewport: IViewport,
-		cubeUtils: ICubeUtils
+		cubeUtils: ICubeUtils,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): IMatrixPosition {
 		// need to find the percentages that best endPoint the specified ones
-		const valueMatrix = VALUE_MATRIX
+		const valueMatrix = cubeMoveMatrix.VALUE_MATRIX
 
 		const newPositionData: IUiVote = viewport.pd
 
@@ -86,7 +85,7 @@ export class MatrixValueChooser
 			value_loop:
 				for (let j = 0; j < dimensionMatrix.length; j++) {
 					const values = dimensionMatrix[j]
-					for (let k = 0; k < NUM_VALS; k++) {
+					for (let k = 0; k < cubeMoveMatrix.NUM_VALS; k++) {
 						if (positionsWithZeroes[k]) {
 							if (values[k]) {
 								continue value_loop

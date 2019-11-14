@@ -1,9 +1,14 @@
-import {DI}                         from '@airport/di'
+import {
+	container,
+	DI
+}                                   from '@airport/di'
 import {
 	Factor_Number,
 	Outcome_Ordinal
 }                                   from '@votecube/model'
 import {
+	CUBE_MOVE_MATRIX,
+	CUBE_MOVEMENT,
 	CUBE_UTILS,
 	DEGREE_POSITION_CHOOSER,
 	FINAL_POSITION_FINDER,
@@ -11,7 +16,7 @@ import {
 	MUTATION_API,
 	PERCENTAGE_POSITION_CHOOSER,
 	VIEWPORT
-}                                   from '../../diTokens'
+} from '../../diTokens'
 import {
 	Direction,
 	PositionPercent
@@ -33,7 +38,7 @@ export interface IMutationApi {
 		factorNumber: Factor_Number,
 		outcome: Outcome_Ordinal,
 		percentChange: PercentChange
-	): Promise<void>
+	): void
 
 	moveToValue(
 		factorNumber: Factor_Number,
@@ -57,32 +62,34 @@ export class MutationApi
 			// this.vp.zm = zoomIndex
 		}*/
 
-	async move(
+	move(
 		factorNumber: Factor_Number,
 		outcome: Outcome_Ordinal,
 		percentChange: PercentChange
-	): Promise<void> {
-		const [percentagePositionChooser, viewport] = await DI.get(
-			PERCENTAGE_POSITION_CHOOSER, VIEWPORT)
+	): void {
+		container(this).get(
+			PERCENTAGE_POSITION_CHOOSER, VIEWPORT).then((
+			[percentagePositionChooser, viewport
+			]) => {
+			const dimension             = viewport.pd.factorToAxisMapping[factorNumber]
+			const direction             = outcome === 'A' ? 1 : -1
+			const dimensionPositionData = viewport.pd[dimension]
+			if (dimensionPositionData.value === 100
+				&& dimensionPositionData.dir === direction) {
+				return
+			}
+			// let percentChange = this.getPercentChange()
 
-		const dimension             = viewport.pd.factorToAxisMapping[factorNumber]
-		const direction             = outcome === 'A' ? 1 : -1
-		const dimensionPositionData = viewport.pd[dimension]
-		if (dimensionPositionData.value === 100
-			&& dimensionPositionData.dir === direction) {
-			return
-		}
-		// let percentChange = this.getPercentChange()
-
-		this.moveToPercent(dimension, null,
-			percentagePositionChooser, viewport, percentChange, direction)
+			this.moveToPercent(dimension, null,
+				percentagePositionChooser, viewport, percentChange, direction)
+		})
 	}
 
 	async moveToValue(
 		factorNumber: Factor_Number,
 		value: PositionPercent
 	): Promise<void> {
-		const [percentagePositionChooser, viewport] = await DI.get(
+		const [percentagePositionChooser, viewport] = await container(this).get(
 			PERCENTAGE_POSITION_CHOOSER, VIEWPORT)
 
 		const dimension              = viewport.pd.factorToAxisMapping[factorNumber]
@@ -98,7 +105,7 @@ export class MutationApi
 	async toggleSurface(
 		factorNumber: Factor_Number
 	): Promise<void> {
-		const viewport = await DI.get(VIEWPORT)
+		const viewport = await container(this).get(VIEWPORT)
 
 		const dimension             = viewport.pd.factorToAxisMapping[factorNumber]
 		const dimensionPositionData = viewport.pd[dimension]
@@ -128,18 +135,18 @@ export class MutationApi
 	}
 
 	async recompute(): Promise<void> {
-		const [cubeUtils, degreePositionChooser, finalPositionFinder,
-			      matrixValueChooser, viewport] = await DI.get(
-			CUBE_UTILS, DEGREE_POSITION_CHOOSER,
+		const [cubeMoveMatrix, cubeMovement, cubeUtils, degreePositionChooser, finalPositionFinder,
+			      matrixValueChooser, viewport] = await container(this).get(
+			CUBE_MOVE_MATRIX, CUBE_MOVEMENT, CUBE_UTILS, DEGREE_POSITION_CHOOSER,
 			FINAL_POSITION_FINDER, MATRIX_VALUE_CHOOSER, VIEWPORT)
 		if (!viewport.pd) {
 			return
 		}
 		const closestMatrixPosition = matrixValueChooser.getClosestMatrixPosition(
-			viewport, cubeUtils)
+			viewport, cubeUtils, cubeMoveMatrix)
 
 		const finalPosition = finalPositionFinder.findFinalPosition(
-			closestMatrixPosition, viewport, cubeUtils)
+			closestMatrixPosition, viewport, cubeUtils, cubeMoveMatrix, cubeMovement)
 
 		degreePositionChooser.setFinalDegrees(finalPosition, viewport)
 	}

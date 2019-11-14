@@ -1,4 +1,4 @@
-import {diToken}         from '@airport/di'
+import {system}         from '@airport/di'
 import {IDbConverter}    from './dao/DbConverter'
 import {IDbUtils}        from './dao/DbUtils'
 import {IFactorDao}      from './dao/factor/FactorDao'
@@ -8,11 +8,13 @@ import {IUserDao}        from './dao/UserDao'
 import {IVoteDao}        from './dao/vote/VoteDao'
 import {IVotecubeSchema} from './document/schema/Schema'
 
-export const DB_CONVERTER = diToken<IDbConverter>()
-export const DB_UTILS     = diToken<IDbUtils>()
-export const FACTOR_DAO   = diToken<IFactorDao>()
-export const LABEL_DAO    = diToken<ILabelDao>()
-export const POLL_DAO     = diToken<IPollDao>()
-export const SCHEMA       = diToken<IVotecubeSchema>()
-export const USER_DAO     = diToken<IUserDao>()
-export const VOTE_DAO     = diToken<IVoteDao>()
+const publicDb = system('votecube-ui').lib('public-db')
+
+export const DB_CONVERTER = publicDb.token<IDbConverter>()
+export const DB_UTILS     = publicDb.token<IDbUtils>()
+export const FACTOR_DAO   = publicDb.token<IFactorDao>()
+export const LABEL_DAO    = publicDb.token<ILabelDao>()
+export const POLL_DAO     = publicDb.token<IPollDao>()
+export const SCHEMA       = publicDb.token<IVotecubeSchema>()
+export const USER_DAO     = publicDb.token<IUserDao>()
+export const VOTE_DAO     = publicDb.token<IVoteDao>()

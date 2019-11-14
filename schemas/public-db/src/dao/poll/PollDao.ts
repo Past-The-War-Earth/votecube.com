@@ -1,4 +1,4 @@
-import {DI}        from '@airport/di'
+import {container, DI}        from '@airport/di'
 import {
 	Factor_Key,
 	ICorePollFactorsFragment,
@@ -81,7 +81,7 @@ export class PollDao
 	}
 
 	async getAll(): Promise<IPollDoc[]> {
-		const schema = await DI.get(SCHEMA)
+		const schema = await container(this).get(SCHEMA)
 		const result = await schema.pollDrafts.reference
 			.orderBy('createdAt.m', 'desc')
 			.get()
@@ -92,7 +92,7 @@ export class PollDao
 	async getForTheme(
 		themeId: number
 	): Promise<IPollDoc[]> {
-		const schema = await DI.get(SCHEMA)
+		const schema = await container(this).get(SCHEMA)
 		const result = await schema.pollDrafts.reference
 			.where('theme.id.v', '==', themeId)
 			.orderBy('createdAt.m', 'desc')
@@ -105,7 +105,7 @@ export class PollDao
 		pollKey: Poll_Key,
 		variationKey: Variation_Key
 	): Promise<IVariationDoc> {
-		const schema = await DI.get(SCHEMA)
+		const schema = await container(this).get(SCHEMA)
 		return await this.getOne(
 			schema.pollDrafts.pollVariations(pollKey).doc(variationKey)
 		)
@@ -115,7 +115,7 @@ export class PollDao
 		pollKey: Poll_Key,
 		variationKey: Variation_Key
 	): Promise<IVariationListingDoc> {
-		const schema = await DI.get(SCHEMA)
+		const schema = await container(this).get(SCHEMA)
 		const result = await schema.pollDrafts.pollVariationListings(pollKey)
 			.reference.where('key', '==', variationKey)
 			.get()
@@ -134,7 +134,7 @@ export class PollDao
 		pollKey: Poll_Key,
 		variationKey: Variation_Key
 	): Promise<IVariationListingDoc[]> {
-		const schema = await DI.get(SCHEMA)
+		const schema = await container(this).get(SCHEMA)
 		const result = await schema.pollDrafts.pollVariationListings(pollKey)
 			.reference.where('parent.key', '==', variationKey)
 			.orderBy('createdAt.m', 'desc')
@@ -154,7 +154,7 @@ export class PollDao
 		const poll      = await this.setupPoll(variation, user)
 
 		try {
-			const schema = await DI.get(SCHEMA)
+			const schema = await container(this).get(SCHEMA)
 			await schema.db.runTransaction(async (transaction) => {
 				const {
 					      pollRef,
@@ -209,7 +209,7 @@ export class PollDao
 		}
 		delete (variation as any).id
 
-		const dbUtils = await DI.get(DB_UTILS)
+		const dbUtils = await container(this).get(DB_UTILS)
 		dbUtils.calculateWaterMarks(variation)
 
 		return variation
@@ -225,7 +225,7 @@ export class PollDao
 			3: undefined
 		}
 
-		const dbUtils = await DI.get(DB_UTILS)
+		const dbUtils = await container(this).get(DB_UTILS)
 
 		for (const factorName in variation.factors) {
 			if (factorName === 'marks') {
@@ -273,7 +273,7 @@ export class PollDao
 		pollRef: IVCDocumentReference<Poll_Key, IPollDoc>,
 		variationRef: IVCDocumentReference<Variation_Key, IVariationDoc, Poll_Key, IPollDoc>
 	}> {
-		const schema       = await DI.get(SCHEMA)
+		const schema       = await container(this).get(SCHEMA)
 		const pollRef      = schema.pollDrafts.doc(variation.pollKey)
 		const variationRef = schema.pollDrafts.pollVariations(pollRef).reference.doc()
 
@@ -290,7 +290,7 @@ export class PollDao
 		pollRef: IVCDocumentReference<Poll_Key, IPollDoc>,
 		variationRef: IVCDocumentReference<Variation_Key, IVariationDoc, Poll_Key, IPollDoc>
 	}> {
-		const schema  = await DI.get(SCHEMA)
+		const schema  = await container(this).get(SCHEMA)
 		const pollRef = schema.pollDrafts.doc()
 		poll.key      = pollRef.id
 
@@ -328,7 +328,7 @@ export class PollDao
 		transaction: IVCTransaction
 	): Promise<void> {
 		const outcomeExists = !!outcome.key
-		const schema        = await DI.get(SCHEMA)
+		const schema        = await container(this).get(SCHEMA)
 		const outcomeRef    = await this.addResource(outcome, schema.outcomes,
 			user, transaction)
 
@@ -348,7 +348,7 @@ export class PollDao
 		const standAloneFactor = {...factor}
 		delete standAloneFactor.positions
 
-		const schema    = await DI.get(SCHEMA)
+		const schema    = await container(this).get(SCHEMA)
 		const factorRef = await this.addResource(standAloneFactor, schema.factors,
 			user, transaction)
 
@@ -410,7 +410,7 @@ export class PollDao
 	): Promise<void> {
 		const positionExists = !!position.key
 
-		const schema      = await DI.get(SCHEMA)
+		const schema      = await container(this).get(SCHEMA)
 		const positionRef = await this.addResource(position, schema.positions,
 			user, transaction)
 

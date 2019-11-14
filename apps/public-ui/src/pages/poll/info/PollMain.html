@@ -339,33 +339,30 @@
 </style>
 
 <script>
-	import {DI}               from '@airport/di'
-	import {mutationApi}      from '@votecube/cube-logic'
-	import {VOTE_DAO}         from '@votecube/public-db'
+	import {DI}                  from '@airport/di'
+	import {CUBE_EVENT_LISTENER} from '@votecube/cube-logic'
+	import {VOTE_DAO}            from '@votecube/public-db'
 	import {
 		LOGIC_UTILS,
 		POLL_MAIN_LOGIC,
 		POLL_MANAGER
-	}                         from '@votecube/public-logic'
-	import BuildButton        from '../../../common/control/button/BuildButton.html'
-	import CancelButton       from '../../../common/control/button/CancelButton.html'
-	import OutcomeButton      from '../../../common/control/button/OutcomeButton.html'
-	import PercentPicker      from '../../../common/control/PercentPicker.html'
-	import ActionPopover      from '../../../common/shell/ActionPopover.html'
-	import AgeSuitability     from '../../../components/AgeSuitability.html'
-	import DetailedCube       from '../../../components/poll/DetailedCube.html'
-	import FactorRanking      from '../../../components/poll/FactorRanking.html'
-	import Outcomes           from '../../../components/poll/Outcomes.html'
-	import PollFab            from '../../../components/poll/PollFab.html'
-	import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
-	import {setupCubeView}    from '../../../database'
-	import {
-		setCubeAdjustment,
-		shutDownCubeListener
-	}                         from '../../../libs/cubeLogic'
-	import {setResizeCllBck}  from '../../../resizer'
-	import * as routes        from '../../../routes'
-	import store              from '../../../store'
+	}                            from '@votecube/public-logic'
+	import {CUBE_LOGIC}          from '@votecube/public-logic/src'
+	import BuildButton           from '../../../common/control/button/BuildButton.html'
+	import CancelButton          from '../../../common/control/button/CancelButton.html'
+	import OutcomeButton         from '../../../common/control/button/OutcomeButton.html'
+	import PercentPicker         from '../../../common/control/PercentPicker.html'
+	import ActionPopover         from '../../../common/shell/ActionPopover.html'
+	import AgeSuitability        from '../../../components/AgeSuitability.html'
+	import DetailedCube          from '../../../components/poll/DetailedCube.html'
+	import FactorRanking         from '../../../components/poll/FactorRanking.html'
+	import Outcomes              from '../../../components/poll/Outcomes.html'
+	import PollFab               from '../../../components/poll/PollFab.html'
+	import VoteComponentGraph    from '../../../components/vote/VoteComponentGraph.html'
+	import {setupCubeView}       from '../../../database'
+	import {setResizeCllBck}     from '../../../resizer'
+	import * as routes           from '../../../routes'
+	import store                 from '../../../store'
 	// import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
 
 	let theCurrentVoteFactors = []
@@ -503,12 +500,16 @@
 				this.setAction('confirm')
 			},
 			closeConfirm() {
-				// setCubeAdjustment(this.get().cubeListener, true)
+				// const {container} = this.get()
+				// setCubeAdjustment(true).then(() => {
 				this.setAction('none')
+				// })
 			},
 			confirmVote() {
-				setCubeAdjustment(this.get().cubeListener, false)
-				this.setAction('vote')
+				const {container} = this.get()
+				setCubeAdjustment(container, false).then(() => {
+					this.setAction('vote')
+				})
 			},
 			goToReleasePlan() {
 				routes.navigateToPage(routes.RELEASE_PLAN)
@@ -570,14 +571,16 @@
 			},
 			togglePercentPicker() {
 				const percentMode = !this.get().percentMode
-				setCubeAdjustment(this.get().cubeListener, !percentMode)
-				const stateChange = {
-					percentMode
-				}
-				if (percentMode) {
-					stateChange.cubeView = true
-				}
-				this.set(stateChange)
+				const {container} = this.get()
+				setCubeAdjustment(container, !percentMode).then(() => {
+					const stateChange = {
+						percentMode
+					}
+					if (percentMode) {
+						stateChange.cubeView = true
+					}
+					this.set(stateChange)
+				})
 			},
 			togglePositionMode() {
 				let positionMode = !this.get().positionMode
@@ -601,7 +604,7 @@
 				currentlyInCubeView,
 				forCubeView,
 			) {
-				toggleView(currentlyInCubeView, forCubeView, this)
+				toggleView(currentlyInCubeView, forCubeView, this).then()
 			},
 			toPollForm(
 				$routeParams
@@ -617,13 +620,7 @@
 			initPage(this).then()
 		},
 		ondestroy() {
-			setResizeCllBck(null)
-			shutDownCubeListener(this.get().cubeListener, this)
-			this.stateListener.cancel()
-			this.store.set({
-				cube: false,
-				noOverflow: false
-			})
+			stopPage(this).then()
 		}
 		,
 		store: () => store
@@ -632,6 +629,7 @@
 	async function initPage(
 		page
 	) {
+		const container                       = DI.ui('PollMain')
 		let {mode, pollKey, pollVariationKey} = page.store.get().routeParams
 
 		resize(page)
@@ -640,6 +638,7 @@
 			pollVariationKey = 'NFKgyOxEfT8RlqBBwEf2'
 		}
 		page.store.set({
+			container,
 			cube: true,
 			mode,
 			noOverflow: true
@@ -667,14 +666,33 @@
 			}
 			*/
 			page.set({delta: page.get().delta + 1, percentMove: false})
-		})
-		toggleView(!page.get().cubeView, page.get().cubeView, page)
+		}, container)
 
-		const logicUtils = await DI.get(LOGIC_UTILS)
+		await toggleView(!page.get().cubeView, page.get().cubeView, page)
+
+		const logicUtils = await container.get(LOGIC_UTILS)
 		page.set({
 			loaded: true,
 			logicUtils,
 			poll
+		})
+	}
+
+	async function stopPage(
+		page
+	) {
+		setResizeCllBck(null)
+
+		const {container} = this.get()
+
+		const [cubeEventListener, cubeLogic]
+			      = await container.get(CUBE_EVENT_LISTENER, CUBE_LOGIC)
+
+		cubeLogic.shutDownCubeListener(cubeEventListener, this)
+		this.stateListener.cancel()
+		this.store.set({
+			cube: false,
+			noOverflow: false
 		})
 	}
 
@@ -712,6 +730,16 @@
 		page.set({currentVote})
 	}
 
+	async function setCubeAdjustment(
+		container,
+		enableCubeAdjustment
+	) {
+		const [cubeEventListener, cubeLogic] =
+			      await container.get(CUBE_EVENT_LISTENER, CUBE_LOGIC)
+
+		cubeLogic.setCubeAdjustment(cubeEventListener, enableCubeAdjustment)
+	}
+
 	function factorPositionsByDir(
 		factors,
 		factorNumber
@@ -723,20 +751,22 @@
 		}
 	}
 
-	function toggleView(
+	async function toggleView(
 		currentlyInCubeView,
 		forCubeView,
 		page
 	) {
-		const {cubeListener} = page.get()
+		const {container} = page.get()
+
+		const cubeEventListener = await container.get(CUBE_EVENT_LISTENER)
+
 		if (forCubeView) {
 			if (!currentlyInCubeView) {
 				// Animate Factor Rankings out of the view
 				page.set({beforeCubeView: true})
 
-				if (cubeListener) {
-					cubeListener.resumeInteraction()
-				}
+				cubeEventListener.resumeInteraction()
+
 				page.set({cubeView: forCubeView})
 				setTimeout(() => {
 					page.set({beforeCubeView: false})
@@ -746,9 +776,9 @@
 			if (currentlyInCubeView) {
 				// Animate Factor Rankings out of the view
 				page.set({beforeCardView: true})
-				if (cubeListener) {
-					cubeListener.suspendInteraction()
-				}
+
+				cubeEventListener.suspendInteraction()
+
 				page.set({cubeView: forCubeView})
 				setTimeout(() => {
 					page.set({beforeCardView: false})

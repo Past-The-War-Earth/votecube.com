@@ -2,20 +2,17 @@ import {DI}                    from '@airport/di'
 import {FINAL_POSITION_FINDER} from '../../diTokens'
 import {ICubeUtils}            from '../../utils/CubeUtils'
 import {
+	ICubeMoveMatrix,
 	MatrixIndex,
-	NUM_DIVS,
-	NUM_VALS,
 	PositionValues,
-	STEP_DEGS,
-	VALUE_MATRIX,
 	ValueArrayPosition
-}                              from '../CubeMoveMatrix'
+} from '../CubeMoveMatrix'
 import {
 	Direction,
+	ICubeMovement,
 	IUiVoteDimension,
-	normMatrixIdx,
 	PositionPercent
-}                              from '../CubeMovement'
+} from '../CubeMovement'
 import {IViewport}             from '../Viewport'
 import {
 	DistanceFromClosestMatrixPosition,
@@ -61,7 +58,9 @@ export interface IFinalPositionFinder {
 	findFinalPosition(
 		closestMatrixPosition: IMatrixPosition,
 		viewport: IViewport,
-		cubeUtils: ICubeUtils
+		cubeUtils: ICubeUtils,
+		cubeMoveMatrix: ICubeMoveMatrix,
+		cubeMovement: ICubeMovement
 	): IFinalPosition
 
 }
@@ -72,7 +71,9 @@ export class FinalPositionFinder
 	findFinalPosition(
 		closestMatrixPosition: IMatrixPosition,
 		viewport: IViewport,
-		cubeUtils: ICubeUtils
+		cubeUtils: ICubeUtils,
+		cubeMoveMatrix: ICubeMoveMatrix,
+		cubeMovement: ICubeMovement
 	): IFinalPosition {
 		const positionData = viewport.pd
 
@@ -87,8 +88,9 @@ export class FinalPositionFinder
 			zNeg,
 			xNeg,
 		]
-		const matrixStepDegrees           = STEP_DEGS
-		if (this.matrixPositionsMatch(closestMatrixPosition.values, newPosition)) {
+		const matrixStepDegrees           = cubeMoveMatrix.STEP_DEGS
+		if (this.matrixPositionsMatch(closestMatrixPosition.values, newPosition,
+			cubeMoveMatrix)) {
 			return {
 				x: closestMatrixPosition.i * matrixStepDegrees,
 				y: closestMatrixPosition.j * matrixStepDegrees
@@ -104,11 +106,11 @@ export class FinalPositionFinder
 		} as any
 		this.findVectorEndPoint(
 			{}, newPosition, closestMatrixPosition,
-			vectorPosition, cubeUtils)
+			vectorPosition, cubeUtils, cubeMoveMatrix, cubeMovement)
 		const directionVectorMatch = vectorPosition.endPoint
 
 		return this.get2DOffsetFinalPosition(
-			closestMatrixPosition, directionVectorMatch)
+			closestMatrixPosition, directionVectorMatch, cubeMoveMatrix)
 	}
 
 	private getDirectionVals(
@@ -124,13 +126,16 @@ export class FinalPositionFinder
 		newPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
 		vectorPosition: IVectorPosition,
-		cubeUtils: ICubeUtils
+		cubeUtils: ICubeUtils,
+		cubeMoveMatrix: ICubeMoveMatrix,
+		cubeMovement: ICubeMovement
 	): void {
 		const closestMatrixPositionKey = closestMatrixPosition.i + ':' + closestMatrixPosition.j
 		closestMatrixPosition.key      = closestMatrixPositionKey
 		vectorPosition.exactMatches.set(closestMatrixPositionKey, closestMatrixPosition)
 		const endPointPosition     = this.findEndPointPosition(
-			newPosition, closestMatrixPosition, vectorPosition.exactMatches, cubeUtils)
+			newPosition, closestMatrixPosition, vectorPosition.exactMatches,
+			cubeUtils, cubeMoveMatrix, cubeMovement)
 		closestMatrixPosition.done = true
 
 		const newMatch = endPointPosition.match
@@ -148,16 +153,17 @@ export class FinalPositionFinder
 			if (!exactMatchPosition.done) {
 				this.findVectorEndPoint(
 					processedMatches, newPosition, exactMatchPosition,
-					vectorPosition, cubeUtils)
+					vectorPosition, cubeUtils, cubeMoveMatrix, cubeMovement)
 			}
 		}
 	}
 
 	private matrixPositionsMatch(
 		vals1: PositionValues,
-		vals2: PositionValues
+		vals2: PositionValues,
+		cubeMoveMatrix: ICubeMoveMatrix
 	) {
-		for (let i = 0; i < NUM_VALS; i++) {
+		for (let i = 0; i < cubeMoveMatrix.NUM_VALS; i++) {
 			if (vals1[i] !== vals2[i]) {
 				return false
 			}
@@ -170,9 +176,11 @@ export class FinalPositionFinder
 		newPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
 		exactMatches: Map<string, IMatrixPosition>,
-		cubeUtils: ICubeUtils
+		cubeUtils: ICubeUtils,
+		cubeMoveMatrix: ICubeMoveMatrix,
+		cubeMovement: ICubeMovement
 	): IEndPointPosition {
-		const numValuesInArray                                   = NUM_VALS
+		const numValuesInArray                                   = cubeMoveMatrix.NUM_VALS
 		let dimensionMismatchInClosestPosition                   = false
 		const closestValues                                      = closestMatrixPosition.values
 		const directionFromClosestPosition: Array<Direction | 0> = []
@@ -206,15 +214,15 @@ export class FinalPositionFinder
 					continue
 				}
 				const neighborI = this.base72Pos(
-					closestMatrixPosition.i, verticalMatrixShift)
+					closestMatrixPosition.i, verticalMatrixShift, cubeMoveMatrix, cubeMovement)
 				const neighborJ = this.base72Pos(
-					closestMatrixPosition.j, horizontalMatrixShift)
+					closestMatrixPosition.j, horizontalMatrixShift, cubeMoveMatrix, cubeMovement)
 
 				const neighborPositionKey = neighborI + ':' + neighborJ
 				if (exactMatches.has(neighborPositionKey)) {
 					continue
 				}
-				const values = VALUE_MATRIX[neighborI][neighborJ]
+				const values = cubeMoveMatrix.VALUE_MATRIX[neighborI][neighborJ]
 
 				let maxDistance: DistanceFromClosestMatrixPosition        = 0
 				const neighborDistance: INeighborDistance                 = {
@@ -347,13 +355,15 @@ export class FinalPositionFinder
 	private get2DOffsetFinalPosition(
 		// newPosition: PositionValues,
 		closestMatrixPosition: IMatrixPosition,
-		directionVectorMatch: IMatrixPositionMatch
+		directionVectorMatch: IMatrixPositionMatch,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): IFinalPosition {
 		// 0 & 5 determine x movement
 		// 1,2,3,4 determine y movement
 		// need to take the distances from newPosition and apply them accordingly
-		const separations = this.get2DDegreeSeparations(closestMatrixPosition, directionVectorMatch)
-		const stepDegrees = STEP_DEGS
+		const separations = this.get2DDegreeSeparations(
+			closestMatrixPosition, directionVectorMatch, cubeMoveMatrix)
+		const stepDegrees = cubeMoveMatrix.STEP_DEGS
 
 		return {
 			x: this.getFinalPositionOfDimension(
@@ -391,13 +401,14 @@ export class FinalPositionFinder
 
 	private get2DDegreeSeparations(
 		closestMatrixPosition: IMatrixPosition,
-		directionVectorMatch: IMatrixPositionMatch
+		directionVectorMatch: IMatrixPositionMatch,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): {
 		i: number,
 		j: number
 	} {
 		const cellSeparationDistances           = this.getDirectionalDists(
-			closestMatrixPosition, directionVectorMatch.values)
+			closestMatrixPosition, directionVectorMatch.values, cubeMoveMatrix)
 		const [largestIDistIndex, largestIDist] = this.getLargestDistAndIdx(
 			[0, 5], cellSeparationDistances)
 		const [largestJDistIndex, largestJDist] = this.getLargestDistAndIdx(
@@ -409,16 +420,17 @@ export class FinalPositionFinder
 		const jRatio    = largestJDist ? 1 - jDistance / largestJDist : 0
 
 		return {
-			i: this.getDegreeShift(directionVectorMatch.iShift, iRatio),
-			j: this.getDegreeShift(directionVectorMatch.jShift, jRatio)
+			i: this.getDegreeShift(directionVectorMatch.iShift, iRatio, cubeMoveMatrix),
+			j: this.getDegreeShift(directionVectorMatch.jShift, jRatio, cubeMoveMatrix)
 		}
 	}
 
 	private getDegreeShift(
 		matrixCellShift: MatrixPositionShift,
-		ratio: number
+		ratio: number,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): DistanceFromClosestMatrixPosition {
-		const matrixStepDegrees = STEP_DEGS
+		const matrixStepDegrees = cubeMoveMatrix.STEP_DEGS
 		let exactShift
 		// if (matrixCellShift) {
 		exactShift              = (matrixStepDegrees * matrixCellShift) * ratio
@@ -431,10 +443,11 @@ export class FinalPositionFinder
 
 	private getDirectionalDists(
 		closestMatrixPosition: IMatrixPosition,
-		directionVectorPositionValues: PositionValues
+		directionVectorPositionValues: PositionValues,
+		cubeMoveMatrix: ICubeMoveMatrix
 	): number[] {
 		const distances = []
-		for (let k = 0; k < NUM_VALS; k++) {
+		for (let k = 0; k < cubeMoveMatrix.NUM_VALS; k++) {
 			const currentDistance = Math.abs(
 				directionVectorPositionValues[k]
 				- closestMatrixPosition.values[k]) as DistanceFromClosestMatrixPosition
@@ -463,11 +476,13 @@ export class FinalPositionFinder
 
 	private base72Pos(
 		matrixPosition: number,
-		offset: number
+		offset: number,
+		cubeMoveMatrix: ICubeMoveMatrix,
+		cubeMovement: ICubeMovement
 	): MatrixIndex {
-		const base72Position = (matrixPosition + offset) % NUM_DIVS
+		const base72Position = (matrixPosition + offset) % cubeMoveMatrix.NUM_DIVISIONS
 
-		return normMatrixIdx(base72Position)
+		return cubeMovement.normMatrixIdx(base72Position, cubeMoveMatrix)
 	}
 
 	private getPositionDiffDirection(
