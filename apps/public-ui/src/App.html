@@ -83,21 +83,22 @@
 </style>
 
 <script>
-	import {DI}           from '@airport/di'
+	import {DI}            from '@airport/di'
 	import {
 		AUTH,
 		ROUTES
-	}                     from '@votecube/public-logic'
-	import TextToast      from './common/shell/TextToast.html'
-	import {init}         from './database'
-	import {loadUi}       from './libs/text/ui'
-	import AboutUs        from './pages/AboutUs.html'
-	import FactorInfoMain from './pages/factor/info/Main.html'
-	import FactorList     from './pages/factor/search/FactorList.html'
-	import Feedback       from './pages/feedback/FeedbackForm.html'
+	}                      from '@votecube/public-logic'
+	import TextToast       from './common/shell/TextToast.html'
+	import {APP_CONTAINER} from './container'
+	import {init}          from './database'
+	import {loadUi}        from './libs/text/ui'
+	import AboutUs         from './pages/AboutUs.html'
+	import FactorInfoMain  from './pages/factor/info/Main.html'
+	import FactorList      from './pages/factor/search/FactorList.html'
+	import Feedback        from './pages/feedback/FeedbackForm.html'
 	// import PollInfoCommonTopMenu from '../../old-ui/src/pages/poll/info/Common.top.menu.html'
-	import PollInfoForm   from './pages/poll/info/PollForm.html'
-	import PollInfoMain   from './pages/poll/info/PollMain.html'
+	import PollInfoForm    from './pages/poll/info/PollForm.html'
+	import PollInfoMain    from './pages/poll/info/PollMain.html'
 	import PollLocations  from './pages/poll/Locations.html'
 	import PollList       from './pages/poll/search/PollList.html'
 	// import PollListTopMenu       from '../../old-ui/src/pages/poll/search/PollList.top.menu.html'
@@ -127,8 +128,6 @@
 	import SignIn         from './shell/SignIn.html'
 	import TopBar         from './shell/top/TopBar.html'
 	import store          from './store.js'
-
-	let appContainer = DI.ui('App')
 
 	let pageMap
 	// let topMenuMap
@@ -199,7 +198,7 @@
 	async function initApp(
 		page
 	) {
-		const routes = await appContainer.get(ROUTES)
+		const routes = await APP_CONTAINER.get(ROUTES)
 
 		pageMap = {
 			[ABOUT]: AboutUs,
@@ -254,7 +253,7 @@
 		})
 
 		const [auth, _, _2] = await Promise.all([
-			appContainer.get(AUTH),
+			APP_CONTAINER.get(AUTH),
 			loadUi(page.store, 'en-us'),
 			init()
 		])

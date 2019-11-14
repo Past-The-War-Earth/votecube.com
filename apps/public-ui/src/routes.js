@@ -1,5 +1,6 @@
-import {DI}     from '@airport/di'
-import {ROUTES} from '@votecube/public-logic'
+import {DI}            from '@airport/di'
+import {ROUTES}        from '@votecube/public-logic'
+import {APP_CONTAINER} from './container'
 
 export const ABOUT               = '/about'
 export const FEEDBACK            = '/feedback'
@@ -18,8 +19,7 @@ export function navigateToPage(
 	pageKey,
 	paramMap
 ) {
-	const container = DI.ui('App')
-	container.get(ROUTES).then(
+	APP_CONTAINER.get(ROUTES).then(
 		routes => {
 			routes.navigateToPage(pageKey, paramMap)
 		})
