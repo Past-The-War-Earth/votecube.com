@@ -131,7 +131,7 @@
 	let appContainer = DI.ui('App')
 
 	let pageMap
-	let topMenuMap
+	// let topMenuMap
 
 	export default {
 		components: {
@@ -203,23 +203,37 @@
 
 		pageMap = {
 			[ABOUT]: AboutUs,
-			[FEEDBACK]: Feedback,
 			[CARD_CLIMATE_CHANGE]: PollInfoMain,
 			[FACTOR_INFO_MAIN]: FactorInfoMain,
 			[FACTOR_LIST]: FactorList,
-			[POLL_LIST]: PollList,
-			[VARIATION_LIST]: VariationList,
+			[FEEDBACK]: Feedback,
 			[POLL_FORM]: PollInfoForm,
-			[POLL_MAIN]: PollInfoMain,
+			[POLL_LIST]: PollList,
 			[POLL_LOCATIONS]: PollLocations,
+			[POLL_MAIN]: PollInfoMain,
 			[POLL_TIME_FRAME]: PollTimeframe,
 			[RELEASE_PLAN]: ReleasePlan,
+			[VARIATION_LIST]: VariationList,
 		}
 		/*		topMenuMap = {
 					[routes.POLL_MAIN]: PollInfoCommonTopMenu,
 					[routes.POLL_LIST]: PollListTopMenu
 				}*/
 
+		routes.configPages([
+			[ABOUT, false, false],
+			[CARD_CLIMATE_CHANGE, false, false],
+			[FACTOR_INFO_MAIN, false, false],
+			[FACTOR_LIST, false, true],
+			[FEEDBACK, false, false],
+			[POLL_FORM, true, false],
+			[POLL_LIST, false, true],
+			[POLL_LOCATIONS, true, false],
+			[POLL_MAIN, false, true],
+			[POLL_TIME_FRAME, true, false],
+			[RELEASE_PLAN, false, false],
+			[VARIATION_LIST, false, true],
+		])
 
 		routes.setupRoutes(page, pageMap,
 			// topMenuMap,

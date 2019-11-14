@@ -14,30 +14,11 @@ export const POLL_LOCATIONS      = '/poll/Locations/:mode'
 export const POLL_TIME_FRAME     = '/poll/TimeFrame/:mode'
 export const CARD_CLIMATE_CHANGE = '/card/ClimateChange'
 
-const container = DI.ui('App')
-
-container.get(ROUTES).then(
-	routes => {
-		routes.configPages([
-			[ABOUT, false, false],
-			[FEEDBACK, false, false],
-			[RELEASE_PLAN, false, false],
-			[CARD_CLIMATE_CHANGE, false, false],
-			[FACTOR_INFO_MAIN, false, false],
-			[FACTOR_LIST, false, true],
-			[POLL_LIST, false, true],
-			[VARIATION_LIST, false, true],
-			[POLL_FORM, true, false],
-			[POLL_MAIN, false, true],
-			[POLL_LOCATIONS, true, false],
-			[POLL_TIME_FRAME, true, false]
-		])
-	})
-
 export function navigateToPage(
 	pageKey,
 	paramMap
 ) {
+	const container = DI.ui('App')
 	container.get(ROUTES).then(
 		routes => {
 			routes.navigateToPage(pageKey, paramMap)

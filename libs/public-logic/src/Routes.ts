@@ -146,6 +146,7 @@ export class Routes
 			pageMap[defaultRoutePath],
 			// topMenuMap[this.ABOUT],
 			applicationComponent,
+			errorRoutePath,
 			'/'
 		)
 
