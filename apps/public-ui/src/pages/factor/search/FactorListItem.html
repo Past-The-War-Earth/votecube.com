@@ -48,18 +48,28 @@
 	export default {
 		data() {
 			return {
-				load: initPage(this)
+				load: new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(initPage())
+					}, 1)
+				})
 			}
+		},
+		oncreate() {
+			initPage.page = this
+		},
+		ondestroy() {
+			const {container} = this.get()
+			DI.remove(container)
 		},
 		immutable: true
 	}
 
-	async function initPage(
-		page
-	) {
-		const logicUtils = await DI.get(LOGIC_UTILS)
+	async function initPage() {
+		const container  = DI.ui('LinearPositionPicker')
+		const logicUtils = await container.get(LOGIC_UTILS)
 
-		page.set({logicUtils})
+		initPage.page.set({container, logicUtils})
 	}
 
 </script>

@@ -57,21 +57,24 @@
 			}
 		},
 		oncreate() {
-			loadPage(this).then()
+			initPage(this).then()
 		},
 		ondestroy() {
 			clearForm(this)
+			const {container} = this.get()
+			DI.remove(container)
 		},
 		store: () => store
 	}
 
-	async function loadPage(page) {
-		const factorDao  = await DI.get(FACTOR_DAO)
+	async function initPage(page) {
+		const container  = DI.ui('FactorList')
+		const factorDao  = await container.get(FACTOR_DAO)
 		const filterForm = await initForm(page)
 
 		const factors = await factorDao.getAll()
 
-		page.set({factors})
+		page.set({container, factors})
 		ensureForm(filterForm, this)
 	}
 

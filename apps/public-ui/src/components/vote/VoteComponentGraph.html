@@ -485,6 +485,8 @@
 			initPage(this).then()
 		},
 		ondestroy() {
+			const {container} = this.get()
+			DI.remove(container)
 			this.storeListener.cancel()
 		},
 		store: () => store,
@@ -497,7 +499,8 @@
 	async function initPage(
 		page
 	) {
-		const logicUtils = await DI.get(LOGIC_UTILS)
+		const container  = DI.ui('VoteComponentGraph')
+		const logicUtils = await container.get(LOGIC_UTILS)
 
 		page.storeListener = store.on('state', ({changed, current, previous}) => {
 			if (!changed.cardMove || page.get().cubeView) {
@@ -506,7 +509,7 @@
 			onStateChange(current, page, logicUtils)
 		})
 
-		page.set({logicUtils})
+		page.set({container, logicUtils})
 	}
 
 	function onStateChange(

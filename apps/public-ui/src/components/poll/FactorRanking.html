@@ -2,8 +2,8 @@
 {#each voteFactors as voteFactor, i}
 <section
 		on:mousedown="moveStart(voteFactors, i, event, logic)"
-		on:mouseup="moveEnd(movingVoteFactor, vote, voteFactors, i, event, logic)"
-		on:touchend="moveEnd(movingVoteFactor, vote, voteFactors, i, event, logic)"
+		on:mouseup="moveEnd(movingVoteFactor, vote, voteFactors, i, event, logic, container)"
+		on:touchend="moveEnd(movingVoteFactor, vote, voteFactors, i, event, logic, container)"
 		on:touchstart="touchStart(voteFactors, i, event)"
 		id="factorPlace_{i}"
 >
@@ -52,7 +52,7 @@
 				{/if}
 				{#if i}
 				<MoveButton
-						on:selectStart="upStart(i, event)"
+						on:selectStart="upStart(i, event, container)"
 						classes="up"
 						size="19"
 						styles="right: 24px; position: absolute; top: -2px"
@@ -99,7 +99,7 @@
 				{/if}
 				{#if i}
 				<MoveButton
-						on:selectStart="upStart(i, event)"
+						on:selectStart="upStart(i, event, container)"
 						classes="up"
 						size="19"
 						styles="right: 24px; position: absolute; top: -2px"
@@ -246,16 +246,16 @@
 </style>
 
 <script>
-	import {DI}              from '@airport/di'
-	import {TOUCH}           from '@votecube/cube-logic'
+	import {DI}            from '@airport/di'
+	import {TOUCH}         from '@votecube/cube-logic'
 	import {
 		FACTOR_RANKING_LOGIC,
 		LOGIC_UTILS
-	}                        from '@votecube/public-logic'
-	import {fly}             from 'svelte-transitions'
-	import CharacterButton   from '../../common/control/button/CharacterButton.html'
-	import MoveButton        from '../../common/control/button/MoveButton.html'
-	import store             from '../../store'
+	}                      from '@votecube/public-logic'
+	import {fly}           from 'svelte-transitions'
+	import CharacterButton from '../../common/control/button/CharacterButton.html'
+	import MoveButton      from '../../common/control/button/MoveButton.html'
+	import store           from '../../store'
 
 	export default {
 		components: {
@@ -383,7 +383,8 @@
 				voteFactors,
 				index,
 				event,
-				logic
+				logic,
+				container
 			) {
 				if (!logic) {
 					return
@@ -419,10 +420,11 @@
 					const upButtonClickMove = lastMoveStart.move
 					const addOrRemove       = lastMoveStart.addOrRemove
 
-					DI.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS).then(([
-						                                                factorRankingLogic,
-						                                                logicUtils
-					                                                ]) => {
+					container.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS).then((
+						[
+							factorRankingLogic,
+							logicUtils
+						]) => {
 						if (!upButtonClickMove && originalIndex === index) {
 							singleFactorChange(absDx, absDy, addOrRemove, dx, dy, index,
 								originalIndex, upButtonClickMove, vote,
@@ -497,12 +499,13 @@
 			},
 			upStart(
 				index,
-				event
+				event,
+				container
 			) {
 				event.factorButtonMove  = true
 				event.factorButtonIndex = index - 1
 				setTimeout(() => {
-					DI.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS).then(
+					container.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS).then(
 						([factorRankingLogic, logicUtils]) => {
 							factorRankingLogic.move(index - 1, {y: 100}, this, logicUtils)
 							factorRankingLogic.move(index, {y: -100}, this, logicUtils)
@@ -513,6 +516,10 @@
 		oncreate() {
 			initPage(this).then()
 		},
+		ondestroy() {
+			const {container} = this.get()
+			DI.remove(container)
+		},
 		store: () => store,
 		transitions: {
 			fly
@@ -522,9 +529,10 @@
 	async function initPage(
 		page
 	) {
-		const [logic, logicUtils] = await DI.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
+		const container           = DI.ui('FactorRanking')
+		const [logic, logicUtils] = await container.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
 
-		page.set({logic, logicUtils})
+		page.set({container, logic, logicUtils})
 	}
 
 	function singleFactorChange(
@@ -672,6 +680,7 @@
 			// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
 			// dispatch 'move-viewport' event
 			const page             = onFactorMove.page
+			const {container}        = page.get()
 			const movingVoteFactor = page.get().movingVoteFactor
 			positionMovingVoteFactor(movingVoteFactor, position)
 
@@ -687,10 +696,10 @@
 
 					const {voteFactors, vote} = page.get()
 					// Proactively swipe in the factor
-					DI.get([FACTOR_RANKING_LOGIC, LOGIC_UTILS]).then(([
-						                                                  factorRankingLogic,
-						                                                  logicUtils
-					                                                  ]) => {
+					container.get([FACTOR_RANKING_LOGIC, LOGIC_UTILS]).then(([
+						                                                         factorRankingLogic,
+						                                                         logicUtils
+					                                                         ]) => {
 						handleMoveEffects(
 							factorRankingLogic.addOrRemoveAFactor(
 								voteFactors, movingVoteFactor.index, 1, vote,

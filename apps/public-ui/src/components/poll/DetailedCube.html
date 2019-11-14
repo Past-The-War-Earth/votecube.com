@@ -206,6 +206,7 @@
 		mutationApi,
 		setView
 	}                      from '@votecube/cube-logic'
+	import {MUTATION_API}  from '@votecube/cube-logic/src'
 	import {LOGIC_UTILS}   from '@votecube/public-logic'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import Positioner      from './create/Positioner.html'
@@ -323,6 +324,8 @@
 		},
 		ondestroy() {
 			clearView('cube')
+			const {container} = this.get()
+			DI.remove(container)
 		}
 		// onstate({changed, current}) {
 		// 	if (!current.pFPsByAxisAndDir) {
@@ -361,8 +364,11 @@
 	async function initPage(
 		page
 	) {
+		const container  = DI.ui('DetailedCube')
 		setView('cube')
-		mutationApi.recompute()
+
+		const mutationApi = await container.get(MUTATION_API)
+		await mutationApi.recompute()
 		page.stateListener = this.on('state', ({changed, current, previous}) => {
 			if (current.vote) {
 				page.get().vote.changeMillis = 128
@@ -378,9 +384,9 @@
 			}, 700)
 		}, 1)
 
-		const logicUtils = await DI.get(LOGIC_UTILS)
+		const logicUtils = await container.get(LOGIC_UTILS)
 
-		page.set({logicUtils})
+		page.set({container, logicUtils})
 	}
 
 	function move(

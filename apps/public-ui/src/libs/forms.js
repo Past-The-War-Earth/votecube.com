@@ -1,4 +1,4 @@
-import {DI}           from '@airport/di'
+import {APP_CONTAINER} from '../container'
 
 export async function loadForms(
 	store
@@ -7,5 +7,5 @@ export async function loadForms(
 
 	store.set({forms})
 
-	return await DI.get(forms.FORM_FACTORY)
+	return await APP_CONTAINER.get(forms.FORM_FACTORY)
 }

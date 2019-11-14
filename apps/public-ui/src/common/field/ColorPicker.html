@@ -326,11 +326,14 @@
 		},
 		ondestroy() {
 			this.get().field.removeComponent(this)
+			const {container} = this.get()
+			DI.remove(container)
 		},
 		store: () => store
 	}
 
 	async function initPage(page) {
+		const container  = DI.ui('ColorPicker')
 		const {
 			      colors,
 			      colorMap
@@ -341,9 +344,9 @@
 			? field.value
 			: copyColor(colors[132])
 
-		const logicUtils = await DI.get(LOGIC_UTILS)
+		const logicUtils = await container.get(LOGIC_UTILS)
 
-		page.set({color, colorMap, colors, logicUtils})
+		page.set({color, colorMap, colors, container, logicUtils})
 
 		field.setAsField(page)
 

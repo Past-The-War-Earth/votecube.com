@@ -174,7 +174,11 @@
 		},
 		data() {
 			return {
-				load: initPage(this),
+				load: new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(initPage())
+					}, 1)
+				}),
 				loading: true,
 				positions: [],
 				rotating: false
@@ -182,6 +186,7 @@
 		},
 		methods: {},
 		oncreate() {
+			initPage.page = this
 			setView('cubeMin')
 			mutationApi.recompute()
 			setTimeout(() => {
@@ -193,15 +198,19 @@
 		},
 		ondestroy() {
 			clearView('cubeMin')
+			const {container} = this.get()
+			DI.remove(container)
 		}
 	}
 
 	async function initPage(
 		page
 	) {
-		const [cubeLogic, logicUtils] = await DI.get(CUBE_LOGIC, LOGIC_UTILS)
+		const container  = DI.ui('CubeMiniature')
+		const [cubeLogic, logicUtils] = await container.get(CUBE_LOGIC, LOGIC_UTILS)
 
 		page.set({
+			container,
 			logicUtils,
 			positions: cubeLogic.getDefaultCubePositions()
 		})

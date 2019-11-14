@@ -158,12 +158,17 @@
 		},
 		oncreate() {
 			initPage(this).then()
+		},
+		ondestroy() {
+			const {container} = this.get()
+			DI.remove(container)
 		}
 	}
 
 	async function initPage(page) {
-		const logicUtils = await DI.get(LOGIC_UTILS)
+		const container  = DI.ui('SelectionBlock')
+		const logicUtils = await container.get(LOGIC_UTILS)
 
-		page.set({logicUtils})
+		page.set({container, logicUtils})
 	}
 </script>
