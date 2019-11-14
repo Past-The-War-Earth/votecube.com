@@ -72,26 +72,26 @@
 			{#if cities.length}
 			Cities:
 			<br>
-			{getArrayValueTexts(cities, logicUtils)}
+			{getArrayValueTexts(cities)}
 			<br>
 			<br>
 			{/if}
 			States:
 			<br>
-			{getArrayValueTexts(states, logicUtils)}
+			{getArrayValueTexts(states)}
 			<br>
 			<br>
 			{/if}
 			Countries:
 			<br>
-			{getArrayValueTexts(countries, logicUtils)}
+			{getArrayValueTexts(countries)}
 			<br>
 			<br>
 
 			{/if}
 			Continents:
 			<br>
-			{getArrayValueTexts(continents, logicUtils)}
+			{getArrayValueTexts(continents)}
 			{:else}
 			Select Geography
 			{/if}
@@ -213,7 +213,6 @@
 <script>
 	import {DI}            from '@airport/di'
 	import {
-		LOGIC_UTILS,
 		POLL_FORM_LOGIC,
 		POLL_MANAGER
 	}                      from '@votecube/public-logic'
@@ -306,17 +305,23 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			/*
 			getArrayValueTexts: (
 				arrayValue,
-				logicUtils
 			) => {
+				const {container} = this.get()
+
+				container.get(LOGIC_UTILS)
+
 				if (!logicUtils) {
 					return ''
 				}
 				return logicUtils.getArrayValueTexts(arrayValue)
 			},
 			getDate: (
-				date,
-				logicUtils
+				date
 			) => {
+				const {container} = this.get()
+
+				container.get(LOGIC_UTILS)
+
 				if (!logicUtils) {
 					return ''
 				}
@@ -366,7 +371,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 	}
 
 	async function initPage(page) {
-		const container  = DI.ui('PollForm')
+		const container = DI.ui('PollForm')
 		const [
 			      formFactory,
 			      // locations,
@@ -376,7 +381,7 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 			      // pollDao
 			      // , voteDao
 			      // ]
-		      ] = await Promise.all([
+		      ]         = await Promise.all([
 			loadForms(page.store),
 			// loadLocations(),
 			// loadLocText(page.store, 'en-us'),
@@ -418,12 +423,12 @@ locationOrTimeframeModified: ({$routeParams, isOriginal, form}) => {
 
 		forms.ensureForm(form, page)
 
-		const logicUtils = await container.get(LOGIC_UTILS)
+		page.set({
+			container
+		})
 
 		page.store.set({
-			container,
 			form,
-			logicUtils,
 			pageTitle: 'Poll Info',
 			// positionMap
 		})

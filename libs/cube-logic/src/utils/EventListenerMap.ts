@@ -43,6 +43,7 @@ export class EventListenerMap
 	ad(
 		element: Node // | NodePtr, // element
 	) {
+		const eventListener = this
 		return this.eCO(this.tM, element,
 			// Per element Event listener map
 			{
@@ -53,7 +54,7 @@ export class EventListenerMap
 					listener: IEventListener<any> // listener
 				) {
 					// add to array
-					this.eCA(this.lM, eventName)
+					eventListener.eCA(this.lM, eventName)
 						.push(listener)
 					// let node: Node = <Node>tg
 					// if (tg instanceof  NodePtr) {

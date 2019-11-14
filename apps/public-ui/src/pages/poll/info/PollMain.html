@@ -339,31 +339,33 @@
 </style>
 
 <script>
-	import {DI}                  from '@airport/di'
-	import {CUBE_EVENT_LISTENER} from '@votecube/cube-logic'
-	import {MUTATION_API}        from '@votecube/cube-logic/src'
-	import {VOTE_DAO}            from '@votecube/public-db'
+	import {DI}               from '@airport/di'
+	import {
+		CUBE_EVENT_LISTENER,
+		MUTATION_API
+	}                         from '@votecube/cube-logic'
+	import {VOTE_DAO}         from '@votecube/public-db'
 	import {
 		CUBE_LOGIC,
 		LOGIC_UTILS,
 		POLL_MAIN_LOGIC,
 		POLL_MANAGER
-	}                            from '@votecube/public-logic'
-	import BuildButton           from '../../../common/control/button/BuildButton.html'
-	import CancelButton          from '../../../common/control/button/CancelButton.html'
-	import OutcomeButton         from '../../../common/control/button/OutcomeButton.html'
-	import PercentPicker         from '../../../common/control/PercentPicker.html'
-	import ActionPopover         from '../../../common/shell/ActionPopover.html'
-	import AgeSuitability        from '../../../components/AgeSuitability.html'
-	import DetailedCube          from '../../../components/poll/DetailedCube.html'
-	import FactorRanking         from '../../../components/poll/FactorRanking.html'
-	import Outcomes              from '../../../components/poll/Outcomes.html'
-	import PollFab               from '../../../components/poll/PollFab.html'
-	import VoteComponentGraph    from '../../../components/vote/VoteComponentGraph.html'
-	import {setupCubeView}       from '../../../database'
-	import {setResizeCllBck}     from '../../../resizer'
-	import * as routes           from '../../../routes'
-	import store                 from '../../../store'
+	}                         from '@votecube/public-logic'
+	import BuildButton        from '../../../common/control/button/BuildButton.html'
+	import CancelButton       from '../../../common/control/button/CancelButton.html'
+	import OutcomeButton      from '../../../common/control/button/OutcomeButton.html'
+	import PercentPicker      from '../../../common/control/PercentPicker.html'
+	import ActionPopover      from '../../../common/shell/ActionPopover.html'
+	import AgeSuitability     from '../../../components/AgeSuitability.html'
+	import DetailedCube       from '../../../components/poll/DetailedCube.html'
+	import FactorRanking      from '../../../components/poll/FactorRanking.html'
+	import Outcomes           from '../../../components/poll/Outcomes.html'
+	import PollFab            from '../../../components/poll/PollFab.html'
+	import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.html'
+	import {setupCubeView}    from '../../../database'
+	import {setResizeCllBck}  from '../../../resizer'
+	import * as routes        from '../../../routes'
+	import store              from '../../../store'
 	// import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
 
 	let theCurrentVoteFactors = []
@@ -438,17 +440,17 @@
 				cubeView: false,
 				// cubeTransition: false,
 				currentVote: {
-					x: {
-						value: 0,
-						dir: 0
+					1: {
+						outcome: null,
+						value: 0
 					},
-					y: {
-						value: 0,
-						dir: 0
+					2: {
+						outcome: null,
+						value: 0
 					},
-					z: {
-						value: 0,
-						dir: 0
+					3: {
+						outcome: null,
+						value: 0
 					}
 				},
 				delta: 0,
@@ -655,8 +657,10 @@
 			pollKey          = '7U2Z2ItoJVTnpZwZdjrg'
 			pollVariationKey = 'NFKgyOxEfT8RlqBBwEf2'
 		}
+		page.set({
+			container
+		})
 		page.store.set({
-			container,
 			cube: true,
 			mode,
 			noOverflow: true
@@ -719,7 +723,7 @@
 		page
 	) {
 		const {container} = page.get()
-		const logic = await container.get(POLL_MAIN_LOGIC)
+		const logic       = await container.get(POLL_MAIN_LOGIC)
 
 		let currentVote = current.currentVote
 		if (logic.votesEqual(currentVote, current.vote)) {
@@ -844,7 +848,7 @@
 	) {
 		// page.set({confirm: false})
 		const {container} = page.get()
-		const voteDao = await container.get(VOTE_DAO)
+		const voteDao     = await container.get(VOTE_DAO)
 		try {
 			await voteDao.save(page.get().poll)
 			page.set({confirm: false})

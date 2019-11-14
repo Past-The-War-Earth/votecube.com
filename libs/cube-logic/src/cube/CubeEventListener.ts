@@ -151,17 +151,19 @@ export class CubeEventListener
 				})
 
 			})
-		('mousedown', this.safeOMdTs)
-		('touchstart', (
-			event
-		) => {
-			// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/
-			// Supporting_both_TouchEvent_and_MouseEvent
-			event.preventDefault()
-			this.safeOMdTs(event)
-		})
-		('mouseup', this.safeRmMmTm)
-		('touchend', this.safeRmMmTm)
+		('mousedown',
+			event => this.safeOMdTs(event))
+		('touchstart',
+			event => {
+				// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/
+				// Supporting_both_TouchEvent_and_MouseEvent
+				event.preventDefault()
+				this.safeOMdTs(event)
+			})
+		('mouseup',
+			_ => this.safeRmMmTm())
+		('touchend',
+			_ => this.safeRmMmTm())
 	}
 
 	clearCubeAdjustment(): void {
@@ -366,7 +368,11 @@ export class CubeEventListener
 
 			this.populateStartCoords(ev, cubeMovement.mouse.start)
 
-			this.dLM.ad('mousemove', this.oMmTm)('touchmove', this.oMmTm)
+			this.dLM
+				.ad('mousemove',
+					event => this.oMmTm(event))
+				('touchmove',
+					event => this.oMmTm(event))
 		})
 	}
 

@@ -1,5 +1,3 @@
-{#await load}
-{:then result}
 <section
 		id="viewportMin"
 >
@@ -44,7 +42,6 @@
 		{/if}
 	</figure>
 </section>
-{/await}
 <style>
 	#cubeMin {
 		height: 32px;
@@ -173,11 +170,6 @@
 		},
 		data() {
 			return {
-				load: new Promise((resolve) => {
-					setTimeout(() => {
-						resolve(initPage())
-					}, 1)
-				}),
 				loading: true,
 				positions: [],
 				rotating: false
@@ -185,36 +177,43 @@
 		},
 		methods: {},
 		oncreate() {
-			initPage.page = this
+			initPage(this).then()
 		},
 		ondestroy() {
-			stopPage().then()
+			stopPage(this).then()
 		}
 	}
 
-	async function initPage() {
-		const container                                               = DI.ui('CubeMiniature')
-		const [cubeEventListener, cubeLogic, logicUtils, mutationApi] = await container.get(
-			CUBE_EVENT_LISTENER, CUBE_LOGIC, LOGIC_UTILS, MUTATION_API)
+	async function initPage(
+		page
+	) {
+		const container = DI.ui('CubeMiniature')
+		const [
+			      cubeEventListener, cubeLogic, logicUtils, mutationApi
+		      ]         = await container.get(
+			CUBE_EVENT_LISTENER, CUBE_LOGIC, LOGIC_UTILS, MUTATION_API
+		)
 
 		cubeEventListener.setView('cubeMin')
 		await mutationApi.recompute()
 		setTimeout(() => {
-			this.set({loading: false, rotating: true})
+			page.set({loading: false, rotating: true})
 			setTimeout(() => {
-				this.set({rotating: false})
+				page.set({rotating: false})
 			}, 700)
 		}, 1)
 
-		initPage.page.set({
+		page.set({
 			container,
 			logicUtils,
 			positions: cubeLogic.getDefaultCubePositions()
 		})
 	}
 
-	async function stopPage() {
-		const {container}       = this.get()
+	async function stopPage(
+		page
+	) {
+		const {container}       = page.get()
 		const cubeEventListener = await container.get(CUBE_EVENT_LISTENER)
 		cubeEventListener.clearView('cubeMin')
 		DI.remove(container)

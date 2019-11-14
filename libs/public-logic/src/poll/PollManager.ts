@@ -122,7 +122,9 @@ export class PollManager
 		} else {
 			const cubeLogic = await container(this).get(CUBE_LOGIC)
 
-			logicUtils.overlay(cubeLogic.getPollFactorPositionDefault(), ui)
+			logicUtils.overlay({
+				factors: cubeLogic.getPollFactorPositionDefault()
+			}, ui)
 		}
 		if (oldUi) {
 			logicUtils.copyProperties(oldUi, ui, dbUtils.subPollProps)
