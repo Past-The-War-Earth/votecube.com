@@ -1,4 +1,4 @@
-import {ROUTES} from '@votecube/public-logic'
+import {navigateToPage} from '../routes'
 
 export const CREATE_POLL_TOP = 'CREATE_POLL_TOP'
 export const CREATE_FACTOR   = 'CREATE_FACTOR'
@@ -28,10 +28,7 @@ export function ensureChildForm(
 ) {
 	const parentForm = getForm(parentFormName)
 	if (!parentForm) {
-		const {container} = page.get()
-		container.get(ROUTES).then(
-			routes =>
-				routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound))
+		navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
 		return null
 	}
 
@@ -54,10 +51,7 @@ export function ensureTopForm(
 ) {
 	const topForm = getForm(topFormName)
 	if (!topForm) {
-		const {container} = page.get()
-		container.get(ROUTES).then(
-			routes =>
-				routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound))
+		navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
 		return null
 	}
 	ensureForm(topForm, page)
@@ -101,9 +95,7 @@ export function navigateOnValid(
 		return
 	}
 
-	container.get(ROUTES).then(
-		routes =>
-			routes.navigateToPage(navigateToRouteOnValid, paramMap))
+	navigateToPage(navigateToRouteOnValid, paramMap)
 }
 
 export var OPTIONS = {

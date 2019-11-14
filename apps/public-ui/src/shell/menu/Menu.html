@@ -82,7 +82,6 @@
 <script>
 	import {DI}        from '@airport/di'
 	import {AUTH}      from '@votecube/public-logic'
-	import {ROUTES}    from '@votecube/public-logic/src'
 	import * as routes from '../../routes'
 	import store       from '../../store.js'
 	import MenuItem    from './MenuItem.html'
@@ -110,13 +109,16 @@
 		},
 		methods: {
 			aboutUs() {
-				toPage('ABOUT', this).then()
+				routes.navigateToPage(routes.ABOUT)
+				this.store.toggleMainMenu()
 			},
 			feedback() {
-				toPage('FEEDBACK', this).then()
+				routes.navigateToPage(routes.FEEDBACK)
+				this.store.toggleMainMenu()
 			},
 			releasePlan() {
-				toPage('RELEASE_PLAN', this).then()
+				routes.navigateToPage(routes.RELEASE_PLAN)
+				this.store.toggleMainMenu()
 			},
 			// clickMenuLink(event) {
 			// if (DOM_API.e(menuElementIdSelector)
@@ -150,18 +152,6 @@
 		const container = DI.ui('Menu')
 
 		comp.set({container})
-	}
-
-	async function toPage(
-		pageKey,
-		comp
-	) {
-		const {container} = comp.get()
-
-		const routes = await container.get(ROUTES)
-
-		routes.navigateToPage(routes[pageKey])
-		this.store.toggleMainMenu()
 	}
 
 	async function doSignOut(

@@ -18,18 +18,9 @@ export interface IRouteParamMap {
 
 export interface IRoutes {
 
-	ABOUT: Route_Path
-	FEEDBACK: Route_Path
-	RELEASE_PLAN: Route_Path
-	FACTOR_INFO_MAIN: Route_Path
-	FACTOR_LIST: Route_Path
-	POLL_LIST: Route_Path
-	VARIATION_LIST: Route_Path
-	POLL_FORM: Route_Path
-	POLL_MAIN: Route_Path
-	POLL_LOCATIONS: Route_Path
-	POLL_TIME_FRAME: Route_Path
-	CARD_CLIMATE_CHANGE: Route_Path
+	configPages(
+		config: Array<[Route_Path, Route_RightMenu, Route_RightMenu]>
+	): void
 
 	getPageComponent(): Component
 
@@ -50,6 +41,8 @@ export interface IRoutes {
 		// topMenuMap: {
 		// 	[componentKey: string]: Component
 		// }
+		defaultRoutePath: Route_Path,
+		errorRoutePath: Route_Path
 	): void
 
 
@@ -67,18 +60,6 @@ export interface IRouteConfig {
 export class Routes
 	implements IRoutes {
 
-	ABOUT               = '/about'
-	FEEDBACK            = '/feedback'
-	RELEASE_PLAN        = '/releasePlan'
-	FACTOR_INFO_MAIN    = '/factor/info/Main/:mode'
-	FACTOR_LIST         = '/factor/List'
-	POLL_LIST           = '/poll/List'
-	VARIATION_LIST      = '/variation/List/:pollKey/:pollVariationKey'
-	POLL_FORM           = '/poll/Form/:mode'
-	POLL_MAIN           = '/poll/Main/:mode/:pollKey/:pollVariationKey'
-	POLL_LOCATIONS      = '/poll/Locations/:mode'
-	POLL_TIME_FRAME     = '/poll/TimeFrame/:mode'
-	CARD_CLIMATE_CHANGE = '/card/ClimateChange'
 
 	private appComp: Component
 
@@ -98,21 +79,21 @@ export class Routes
 
 	// private topMenuComp: Component
 
-	constructor() {
-		this.configPages([
-			[this.ABOUT, false, false],
-			[this.FEEDBACK, false, false],
-			[this.RELEASE_PLAN, false, false],
-			[this.CARD_CLIMATE_CHANGE, false, false],
-			[this.FACTOR_INFO_MAIN, false, false],
-			[this.FACTOR_LIST, false, true],
-			[this.POLL_LIST, false, true],
-			[this.VARIATION_LIST, false, true],
-			[this.POLL_FORM, true, false],
-			[this.POLL_MAIN, false, true],
-			[this.POLL_LOCATIONS, true, false],
-			[this.POLL_TIME_FRAME, true, false]
-		])
+	configPages(
+		config: Array<[Route_Path, Route_RightMenu, Route_RightMenu]>
+	): void {
+		this.pageConf = {}
+
+		for (const pathConfig of config) {
+			const key = pathConfig[0]
+
+			this.pageConf[key] = {
+				authenticated: pathConfig[1],
+				key,
+				rightMenu: pathConfig[2],
+				url: key
+			}
+		}
 	}
 
 	getPageComponent(): Component {
@@ -155,12 +136,14 @@ export class Routes
 		// topMenuMap: {
 		// 	[componentKey: string]: Component
 		// }
+		defaultRoutePath: Route_Path,
+		errorRoutePath: Route_Path
 	): void {
 
 		this.appComp = applicationComponent
 		this.setupPage(
-			this.pageConf[this.ABOUT],
-			pageMap[this.ABOUT],
+			this.pageConf[defaultRoutePath],
+			pageMap[defaultRoutePath],
 			// topMenuMap[this.ABOUT],
 			applicationComponent,
 			'/'
@@ -169,27 +152,12 @@ export class Routes
 		for (const pageKey in this.pageConf) {
 			this.setupPage(this.pageConf[pageKey], pageMap[pageKey],
 				// topMenuMap[pageKey],
-				applicationComponent)
+				applicationComponent, errorRoutePath)
 		}
 
 		page({
 			hashbang: true
 		})
-	}
-
-	private configPages(
-		config: Array<[Route_Path, Route_RightMenu, Route_RightMenu]>
-	): void {
-		for (const pathConfig of config) {
-			const key = pathConfig[0]
-
-			this.pageConf[key] = {
-				authenticated: pathConfig[1],
-				key,
-				rightMenu: pathConfig[2],
-				url: key
-			}
-		}
 	}
 
 	private setInProgressState(
@@ -234,6 +202,7 @@ export class Routes
 		PageComp: Component,
 		// TopMenuComp: Component,
 		appComp: Component,
+		errorRoutePath: Route_Path,
 		url = pageConfig.url
 	): void {
 		page(
@@ -298,7 +267,7 @@ export class Routes
 							// }
 							const {currentPage, currentUrl} = appComp.store.get()
 							if (!currentPage || currentPage.authenticated) {
-								this.navigateToPage(this.POLL_LIST)
+								this.navigateToPage(errorRoutePath)
 							} else if (currentUrl) {
 								page(currentUrl)
 							}

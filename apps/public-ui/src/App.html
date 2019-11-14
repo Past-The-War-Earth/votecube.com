@@ -83,36 +83,50 @@
 </style>
 
 <script>
-	import {DI}                  from '@airport/di'
-	import {AUTH}                from '@votecube/public-logic'
-	import {ROUTES}              from '@votecube/public-logic/src'
-	import TextToast             from './common/shell/TextToast.html'
-	import {init}                from './database'
-	import {loadUi}              from './libs/text/ui'
-	import AboutUs               from './pages/AboutUs.html'
-	import FactorList            from './pages/factor/search/FactorList.html'
-	import Feedback              from './pages/feedback/FeedbackForm.html'
+	import {DI}           from '@airport/di'
+	import {
+		AUTH,
+		ROUTES
+	}                     from '@votecube/public-logic'
+	import TextToast      from './common/shell/TextToast.html'
+	import {init}         from './database'
+	import {loadUi}       from './libs/text/ui'
+	import AboutUs        from './pages/AboutUs.html'
+	import FactorInfoMain from './pages/factor/info/Main.html'
+	import FactorList     from './pages/factor/search/FactorList.html'
+	import Feedback       from './pages/feedback/FeedbackForm.html'
 	// import PollInfoCommonTopMenu from '../../old-ui/src/pages/poll/info/Common.top.menu.html'
-	import PollInfoForm          from './pages/poll/info/PollForm.html'
-	import PollInfoMain          from './pages/poll/info/PollMain.html'
-	import PollLocations         from './pages/poll/Locations.html'
-	import PollList              from './pages/poll/search/PollList.html'
+	import PollInfoForm   from './pages/poll/info/PollForm.html'
+	import PollInfoMain   from './pages/poll/info/PollMain.html'
+	import PollLocations  from './pages/poll/Locations.html'
+	import PollList       from './pages/poll/search/PollList.html'
 	// import PollListTopMenu       from '../../old-ui/src/pages/poll/search/PollList.top.menu.html'
-	import PollTimeframe         from './pages/poll/Timeframe.html'
-	import VariationList         from './pages/poll/variation/VariationList.html'
-	import ReleasePlan           from './pages/ReleasePlan.html'
+	import PollTimeframe  from './pages/poll/Timeframe.html'
+	import VariationList  from './pages/poll/variation/VariationList.html'
+	import ReleasePlan    from './pages/ReleasePlan.html'
 	import {
 		scheduleToResize,
 		startResizeInterval
-	}                            from './resizer.js'
+	}                     from './resizer.js'
 	import {
+		ABOUT,
+		CARD_CLIMATE_CHANGE,
+		FACTOR_INFO_MAIN,
+		FACTOR_LIST,
+		FEEDBACK,
 		navigateToPage,
-		setupRoutes
-	}                            from './routes.js'
-	import Menu                  from './shell/menu/Menu.html'
-	import SignIn                from './shell/SignIn.html'
-	import TopBar                from './shell/top/TopBar.html'
-	import store                 from './store.js'
+		POLL_FORM,
+		POLL_LIST,
+		POLL_LOCATIONS,
+		POLL_MAIN,
+		POLL_TIME_FRAME,
+		RELEASE_PLAN,
+		VARIATION_LIST
+	}                     from './routes'
+	import Menu           from './shell/menu/Menu.html'
+	import SignIn         from './shell/SignIn.html'
+	import TopBar         from './shell/top/TopBar.html'
+	import store          from './store.js'
 
 	let appContainer = DI.ui('App')
 
@@ -187,27 +201,29 @@
 	) {
 		const routes = await appContainer.get(ROUTES)
 
-		pageMap    = {
-			[routes.ABOUT]: AboutUs,
-			[routes.FEEDBACK]: Feedback,
-			[routes.CARD_CLIMATE_CHANGE]: PollInfoMain,
-			[routes.FACTOR_LIST]: FactorList,
-			[routes.POLL_LIST]: PollList,
-			[routes.VARIATION_LIST]: VariationList,
-			[routes.POLL_FORM]: PollInfoForm,
-			[routes.POLL_MAIN]: PollInfoMain,
-			[routes.POLL_LOCATIONS]: PollLocations,
-			[routes.POLL_TIME_FRAME]: PollTimeframe,
-			[routes.RELEASE_PLAN]: ReleasePlan,
+		pageMap = {
+			[ABOUT]: AboutUs,
+			[FEEDBACK]: Feedback,
+			[CARD_CLIMATE_CHANGE]: PollInfoMain,
+			[FACTOR_INFO_MAIN]: FactorInfoMain,
+			[FACTOR_LIST]: FactorList,
+			[POLL_LIST]: PollList,
+			[VARIATION_LIST]: VariationList,
+			[POLL_FORM]: PollInfoForm,
+			[POLL_MAIN]: PollInfoMain,
+			[POLL_LOCATIONS]: PollLocations,
+			[POLL_TIME_FRAME]: PollTimeframe,
+			[RELEASE_PLAN]: ReleasePlan,
 		}
-/*		topMenuMap = {
-			[routes.POLL_MAIN]: PollInfoCommonTopMenu,
-			[routes.POLL_LIST]: PollListTopMenu
-		}*/
+		/*		topMenuMap = {
+					[routes.POLL_MAIN]: PollInfoCommonTopMenu,
+					[routes.POLL_LIST]: PollListTopMenu
+				}*/
 
 
-		setupRoutes(page, pageMap
-			// , topMenuMap
+		routes.setupRoutes(page, pageMap,
+			// topMenuMap,
+			ABOUT, POLL_LIST
 		)
 
 		startResizeInterval(page.store)
@@ -237,7 +253,7 @@
 			user => {
 				const {currentPage} = store.get()
 				if (!user && currentPage && currentPage.authenticated) {
-					navigateToPage(routes.POLL_LIST)
+					navigateToPage(POLL_LIST)
 				}
 				page.store.set({user, authChecked: true})
 			})
