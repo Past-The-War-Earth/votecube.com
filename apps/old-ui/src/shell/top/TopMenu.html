@@ -41,8 +41,8 @@
 </style>
 
 <script>
-	import * as routes from '../../routes'
-	import store       from '../../store.js'
+	import * as routes from '../../../../public-ui/src/routes'
+	import store       from '../../../../public-ui/src/store.js'
 
 	export default {
 		computed: {
@@ -51,9 +51,9 @@
 					? ''
 					: 'custom-menu-tucked'
 			},
-			TopMenuComp({$currentPage}) {
-				return routes.getTopMenuComponent()
-			},
+			// TopMenuComp({$currentPage}) {
+			// 	return routes.getTopMenuComponent()
+			// },
 			showTopMenu({$showTopMenu, $isDesktop, TopMenuComp}) {
 				return ($showTopMenu || $isDesktop) && TopMenuComp
 			},

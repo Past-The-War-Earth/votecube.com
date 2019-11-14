@@ -90,15 +90,14 @@
 	import {init}                from './database'
 	import {loadUi}              from './libs/text/ui'
 	import AboutUs               from './pages/AboutUs.html'
-	import FactorInfoMain        from './pages/factor/info/Main.html'
 	import FactorList            from './pages/factor/search/FactorList.html'
 	import Feedback              from './pages/feedback/FeedbackForm.html'
-	import PollInfoCommonTopMenu from './pages/poll/info/Common.top.menu.html'
+	// import PollInfoCommonTopMenu from '../../old-ui/src/pages/poll/info/Common.top.menu.html'
 	import PollInfoForm          from './pages/poll/info/PollForm.html'
 	import PollInfoMain          from './pages/poll/info/PollMain.html'
 	import PollLocations         from './pages/poll/Locations.html'
 	import PollList              from './pages/poll/search/PollList.html'
-	import PollListTopMenu       from './pages/poll/search/PollList.top.menu.html'
+	// import PollListTopMenu       from '../../old-ui/src/pages/poll/search/PollList.top.menu.html'
 	import PollTimeframe         from './pages/poll/Timeframe.html'
 	import VariationList         from './pages/poll/variation/VariationList.html'
 	import ReleasePlan           from './pages/ReleasePlan.html'
@@ -192,7 +191,6 @@
 			[routes.ABOUT]: AboutUs,
 			[routes.FEEDBACK]: Feedback,
 			[routes.CARD_CLIMATE_CHANGE]: PollInfoMain,
-			[routes.FACTOR_INFO_MAIN]: FactorInfoMain,
 			[routes.FACTOR_LIST]: FactorList,
 			[routes.POLL_LIST]: PollList,
 			[routes.VARIATION_LIST]: VariationList,
@@ -202,13 +200,15 @@
 			[routes.POLL_TIME_FRAME]: PollTimeframe,
 			[routes.RELEASE_PLAN]: ReleasePlan,
 		}
-		topMenuMap = {
+/*		topMenuMap = {
 			[routes.POLL_MAIN]: PollInfoCommonTopMenu,
 			[routes.POLL_LIST]: PollListTopMenu
-		}
+		}*/
 
 
-		setupRoutes(page, pageMap, topMenuMap)
+		setupRoutes(page, pageMap
+			// , topMenuMap
+		)
 
 		startResizeInterval(page.store)
 

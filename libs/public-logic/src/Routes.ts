@@ -33,7 +33,7 @@ export interface IRoutes {
 
 	getPageComponent(): Component
 
-	getTopMenuComponent(): Component
+	// getTopMenuComponent(): Component
 
 	navigateToPage(
 		pageKey: Route_Path,
@@ -47,9 +47,9 @@ export interface IRoutes {
 		pageMap: {
 			[pageKey: string]: Component
 		},
-		topMenuMap: {
-			[componentKey: string]: Component
-		}
+		// topMenuMap: {
+		// 	[componentKey: string]: Component
+		// }
 	): void
 
 
@@ -96,7 +96,7 @@ export class Routes
 		[key: string]: IRouteConfig
 	} = {}
 
-	private topMenuComp: Component
+	// private topMenuComp: Component
 
 	constructor() {
 		this.configPages([
@@ -119,9 +119,9 @@ export class Routes
 		return this.pageComp
 	}
 
-	getTopMenuComponent(): Component {
-		return this.topMenuComp
-	}
+	// getTopMenuComponent(): Component {
+	// 	return this.topMenuComp
+	// }
 
 	navigateToPage(
 		pageKey: Route_Path,
@@ -152,23 +152,24 @@ export class Routes
 		pageMap: {
 			[pageKey: string]: Component
 		},
-		topMenuMap: {
-			[componentKey: string]: Component
-		}
+		// topMenuMap: {
+		// 	[componentKey: string]: Component
+		// }
 	): void {
 
 		this.appComp = applicationComponent
 		this.setupPage(
 			this.pageConf[this.ABOUT],
 			pageMap[this.ABOUT],
-			topMenuMap[this.ABOUT],
+			// topMenuMap[this.ABOUT],
 			applicationComponent,
 			'/'
 		)
 
 		for (const pageKey in this.pageConf) {
 			this.setupPage(this.pageConf[pageKey], pageMap[pageKey],
-				topMenuMap[pageKey], applicationComponent)
+				// topMenuMap[pageKey],
+				applicationComponent)
 		}
 
 		page({
@@ -209,11 +210,11 @@ export class Routes
 		currentUrl: Route_Path,
 		routeParams: IRouteParamMap,
 		PageComp: Component,
-		TopMenuComp: Component,
+		// TopMenuComp: Component,
 		appComp: Component
 	): void {
-		this.pageComp    = PageComp
-		this.topMenuComp = TopMenuComp
+		this.pageComp = PageComp
+		// this.topMenuComp = TopMenuComp
 
 		// const state = appComp.store.get()
 
@@ -231,7 +232,7 @@ export class Routes
 	private setupPage(
 		pageConfig: IRouteConfig,
 		PageComp: Component,
-		TopMenuComp: Component,
+		// TopMenuComp: Component,
 		appComp: Component,
 		url = pageConfig.url
 	): void {
@@ -247,12 +248,16 @@ export class Routes
 				}
 
 				if (!pageConfig.authenticated || user) {
-					this.setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
+					this.setPageComp(pageConfig, nextUrl, params, PageComp,
+						// TopMenuComp,
+						appComp)
 					return
 				}
 				user = appComp.store.get().user
 				if (user) {
-					this.setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
+					this.setPageComp(pageConfig, nextUrl, params, PageComp,
+						// TopMenuComp,
+						appComp)
 					return
 				}
 
@@ -260,7 +265,9 @@ export class Routes
 				setTimeout(() => {
 					user = appComp.store.get().user
 					if (user) {
-						this.setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
+						this.setPageComp(pageConfig, nextUrl, params, PageComp,
+							// TopMenuComp,
+							appComp)
 						return
 					}
 					appComp.store.set({signIn: true})
@@ -268,7 +275,9 @@ export class Routes
 						if (changed.authChecked && current.user) {
 							storeListener.cancel()
 							appComp.store.set({signIn: false})
-							this.setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
+							this.setPageComp(pageConfig, nextUrl, params, PageComp,
+								// TopMenuComp,
+								appComp)
 							return
 						}
 						if (!changed.signIn || current.signIn) {
@@ -277,7 +286,9 @@ export class Routes
 						storeListener.cancel()
 						appComp.store.set({signIn: false})
 						if (current.user) {
-							this.setPageComp(pageConfig, nextUrl, params, PageComp, TopMenuComp, appComp)
+							this.setPageComp(pageConfig, nextUrl, params, PageComp,
+								// TopMenuComp,
+								appComp)
 						} else {
 							// const {lastPage, lastUrl} = appComp.store.get()
 							// if (!lastPage || lastPage.authenticated) {

@@ -1,7 +1,7 @@
-import * as routes from '../routes'
+import {ROUTES} from '@votecube/public-logic'
 
-export const CREATE_POLL_TOP  = routes.POLL_FORM
-export const CREATE_FACTOR = routes.FACTOR_INFO_MAIN
+export const CREATE_POLL_TOP = 'CREATE_POLL_TOP'
+export const CREATE_FACTOR   = 'CREATE_FACTOR'
 
 
 let forms = {}
@@ -24,11 +24,14 @@ export function ensureChildForm(
 	childFormName,
 	page,
 	navigateToRouteOnNotFound,
-	navigateParamsOnNotFound = routes.DEFAULT_ROUTE_PARAMS
+	navigateParamsOnNotFound
 ) {
 	const parentForm = getForm(parentFormName)
 	if (!parentForm) {
-		routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
+		const {container} = page.get()
+		container.get(ROUTES).then(
+			routes =>
+				routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound))
 		return null
 	}
 
@@ -47,11 +50,14 @@ export function ensureTopForm(
 	topFormName,
 	page,
 	navigateToRouteOnNotFound,
-	navigateParamsOnNotFound = routes.DEFAULT_ROUTE_PARAMS
+	navigateParamsOnNotFound
 ) {
 	const topForm = getForm(topFormName)
 	if (!topForm) {
-		routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
+		const {container} = page.get()
+		container.get(ROUTES).then(
+			routes =>
+				routes.navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound))
 		return null
 	}
 	ensureForm(topForm, page)
@@ -87,7 +93,7 @@ export function navigateOnValid(
 	navigateToRouteOnValid,
 	paramMap
 ) {
-	const {form} = page.get()
+	const {container, form} = page.get()
 
 	form.touch()
 
@@ -95,15 +101,9 @@ export function navigateOnValid(
 		return
 	}
 
-	routes.navigateToPage(navigateToRouteOnValid, paramMap)
-}
-
-export function log(
-	page
-) {
-	const {form} = page.get()
-
-	console.log(form.value)
+	container.get(ROUTES).then(
+		routes =>
+			routes.navigateToPage(navigateToRouteOnValid, paramMap))
 }
 
 export var OPTIONS = {
@@ -121,18 +121,18 @@ export var OPTIONS = {
 				if (activeOptionIndex + 1 < options.length) {
 					activeOptionIndex++
 				}
-				break;
+				break
 			case 'ArrowUp':
 				if (activeOptionIndex) {
 					activeOptionIndex--
 				}
-				break;
+				break
 			case 'Escape':
 				activeOptionIndex = 0
 				showOptions       = false
-				break;
+				break
 			case 'Enter':
-				const selectedOption = options[activeOptionIndex];
+				const selectedOption = options[activeOptionIndex]
 				activeOptionIndex    = 0
 				page.get().field.select(selectedOption)
 				if (multi) {
@@ -142,7 +142,7 @@ export var OPTIONS = {
 				}
 				showOptions = false
 				event.preventDefault()
-				break;
+				break
 		}
 		if (!showOptions) {
 			page.hideOptions()

@@ -13,6 +13,11 @@
       "projectFolder": "apps/public-ui",
       "shouldPublish": true
     },
+    {
+      "packageName": "@votecube/old-ui",
+      "projectFolder": "apps/old-ui",
+      "shouldPublish": true
+    },
     // "libs" folder (alphabetical order)
     {
       "packageName": "@votecube/ajax",
