@@ -31,7 +31,7 @@
 	>
 		<header>
 			<CharacterButton
-					character="{sortedOutcomes[0].ordinal}"
+					character="A"
 					fontSize="20"
 					fontX="12"
 					fontY="19"
@@ -43,7 +43,7 @@
 				class:final="final"
 				class:autosized="autosized"
 		>
-			{sortedOutcomes[0].outcome}
+			{poll.outcomes.A.name}
 			<!--
 			This is outcome A, this is what we should do if A outweighs B.
 			And some reasonably wordy details below to make sure that the outcomes
@@ -57,7 +57,7 @@
 	>
 		<header>
 			<CharacterButton
-					character="{sortedOutcomes[1].ordinal}"
+					character="B"
 					fontSize="20"
 					fontX="12"
 					fontY="19"
@@ -68,7 +68,7 @@
 		<main
 				class:final="final"
 		>
-			{sortedOutcomes[1].outcome}
+			{poll.outcomes.B.name}
 			<!--
 			This is outcome B, this is what we should do if B outweighs A.
 			And some reasonably wordy details below to make sure that the outcomes
@@ -171,16 +171,6 @@
 	export default {
 		components: {
 			CharacterButton,
-		},
-		computed: {
-			sortedOutcomes: ({poll}) => {
-				const sortedOutcomes = poll.outcomes.sort((
-					outcome1,
-					outcome2
-				) => outcome1.key > outcome2.key)
-
-				return sortedOutcomes
-			}
 		},
 		oncreate() {
 			setTimeout(() => {

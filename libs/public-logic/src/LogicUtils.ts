@@ -180,7 +180,7 @@ export class LogicUtils
 		to
 	): void {
 		for (const propertyName in from) {
-			if (to[propertyName]) {
+			if (to[propertyName] !== undefined) {
 				const fromProperty = from[propertyName]
 				if (fromProperty instanceof Object) {
 					this.overlay(fromProperty, to[propertyName])

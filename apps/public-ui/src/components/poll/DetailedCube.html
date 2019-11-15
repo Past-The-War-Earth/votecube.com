@@ -21,22 +21,21 @@
 					strokeWidth="0"
 					styles="{charButtonAlignment(cubeSide.outcome)}: 1px; position: absolute; top: 0px;"
 			></CharacterButton>
-			{/if}
 			{cubeSide.factor.name}
 		</header>
 		{#if positionMode}
 		<Positioner
-				on:moveRight="moveRight(position.axis, position.dir, cubeSideMap)"
-				on:moveDown="moveDown(position.axis, position.dir, cubeSideMap)"
-				on:moveLeft="moveLeft(position.axis, position.dir, cubeSideMap)"
-				on:moveUp="moveUp(position.axis, position.dir, cubeSideMap)"
-				on:switchDir="switchDir(position.axis, position.dir, cubeSideMap)"
+				on:moveRight="moveRight(cubeSide, cubeSideMap)"
+				on:moveDown="moveDown(cubeSide, cubeSideMap)"
+				on:moveLeft="moveLeft(cubeSide, cubeSideMap)"
+				on:moveUp="moveUp(cubeSide, cubeSideMap)"
+				on:switchDir="switchDir(cubeSide, cubeSideMap)"
 		></Positioner>
 		{/if}
 		<p
 				style="color: #{cubeSide.textColorRGB};"
 		>
-			{cubeSides.position.name}
+			{cubeSide.position.name}
 		</p>
 		{/if}
 	</div>
@@ -208,7 +207,6 @@
 		},
 		data() {
 			return {
-				cubeSideMap: {},
 				cubeSides: [],
 				factorPositionPlaces: [],
 				loading: true,
@@ -220,102 +218,65 @@
 			charButtonAlignment:
 				outcome =>
 					outcome === 'A' ? 'left' : 'right',
-			factorByAxis: (
-				poll,
-				axis
-			) =>
-				poll.factors.filter(
-					factor => factor.axis === axis)[0],
-			getColor: (
-				color
-			) => {
-				const {container} = this.get()
-				if (!container) {
-					return 'FFF'
-				}
-
-				return container.getSync(LOGIC_UTILS).getColor(color)
-			},
-			getTextColor: (
-				color,
-				logicUtils
-			) => {
-				if (!logicUtils) {
-					return '000'
-				}
-				return logicUtils.getTextColor(color)
-			},
-			positionByAxis: (
-				factor,
-				direction
-			) =>
-				factor.positions.filter(
-					position => position.dir === dir
-				)[0],
 		},
 		methods: {
 			moveDown(
-				axis,
-				dir,
+				cubeSide,
 				cubeSideMap
 			) {
-				move(this, cubeSideMap, axis, dir, [
+				move(this, cubeSideMap, cubeSide, [
 					['y', 1], // x+
 					['y', 1], // x-
 					['x', -1], // y+
 					['x', -1], // y-
 					['x', -1], // z+
 					['x', -1] // z-
-				])
+				]).then()
 			},
 			moveLeft(
-				axis,
-				dir,
+				cubeSide,
 				cubeSideMap
 			) {
-				move(this, cubeSideMap, axis, dir, [
+				move(this, cubeSideMap, cubeSide, [
 					['z', -1], // x+
 					['z', 1], // x-
 					['z', -1], // y+
 					['z', 1], // y-
 					['y', 1], // z+
 					['y', -1] // z-
-				])
+				]).then()
 			},
 			moveRight(
-				axis,
-				dir,
+				cubeSide,
 				cubeSideMap
 			) {
-				move(this, cubeSideMap, axis, dir, [
+				move(this, cubeSideMap, cubeSide, [
 					['z', 1], // x+
 					['z', -1], // x-
 					['z', 1], // y+
 					['z', -1], // y-
 					['y', -1], // z+
 					['y', 1] // z-
-				])
+				]).then()
 			},
-			moveUp(
-				axis,
-				dir,
+			switchDir(
+				cubeSide,
 				cubeSideMap
 			) {
-				move(this, cubeSideMap, axis, dir, [
+				switchPoles(this, cubeSideMap, cubeSide).then()
+			},
+			moveUp(
+				cubeSide,
+				cubeSideMap
+			) {
+				move(this, cubeSideMap, cubeSide, [
 					['y', -1], // x+
 					['y', -1], // x-
 					['x', 1], // y+
 					['x', 1], // y-
 					['x', 1], // z+
 					['x', 1] // z-
-				])
-			},
-			switchDir(
-				axis,
-				dir,
-				cubeSideMap
-			) {
-				switchPoles(this, cubeSideMap, axis, dir)
+				]).then()
 			},
 			/*			toggleView(
 							cubeView,
@@ -376,32 +337,19 @@
 			      )
 
 		cubeEventListener.setView('cube')
-
-		await mutationApi.recompute()
-		page.stateListener = this.on('state', ({changed, current, previous}) => {
-			if (changed.poll) {
-				container.get(DETAILED_CUBE_LOGIC).then(
-					detailedCubeLogic => {
-						const {
-							      cubeSideMap,
-							      cubeSides
-						      } = detailedCubeLogic.getCubeSideData(
-							current.poll,
-							container
-						)
-						this.set({
-							cubeSideMap,
-							cubeSides
-						})
-					})
+		page.stateListener = page.on('state', ({changed, current, previous}) => {
+			if (changed.poll && current.poll) {
+				getCubeSides(page).then()
 			}
 			if (current.vote) {
 				page.get().vote.changeMillis = 128
 				if (page.stateListener) {
-					this.stateListener.cancel()
+					page.stateListener.cancel()
 				}
 			}
 		})
+		await mutationApi.recompute()
+
 		setTimeout(() => {
 			page.set({loading: false, rotating: true})
 			setTimeout(() => {
@@ -425,25 +373,59 @@
 		DI.remove(container)
 	}
 
-	function move(
-		component,
-		cubeSideMap,
-		axis,
-		dir,
-		switchToDefinitions
+	async function getCubeSides(
+		page
 	) {
+		const {container}       = page.get()
+		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC)
 
-		component.fire('cubeAltered')
+		await doGetCubeSides(page, container, detailedCubeLogic)
 	}
 
-	function switchPoles(
+	async function move(
 		component,
 		cubeSideMap,
-		axis,
-		dir
+		cubeSide,
+		switchToDefinitions
 	) {
+		const {container} = component.get()
 
-		component.fire('cubeAltered')
+		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC)
+		detailedCubeLogic.move(cubeSideMap, cubeSide, switchToDefinitions)
+		const cubeSides = await doGetCubeSides(component, container, detailedCubeLogic)
+		component.fire('cubeAltered', cubeSides)
+	}
+
+	async function switchPoles(
+		component,
+		cubeSideMap,
+		cubeSide
+	) {
+		const {container} = component.get()
+
+		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC)
+		detailedCubeLogic.switchPoles(cubeSideMap, cubeSide)
+		const cubeSides = await doGetCubeSides(component, container, detailedCubeLogic)
+		component.fire('cubeAltered', cubeSides)
+	}
+
+	async function doGetCubeSides(
+		page,
+		container,
+		detailedCubeLogic
+	) {
+		const {poll} = page.get()
+		const {
+			      cubeSideMap,
+			      cubeSides
+		      }      = await detailedCubeLogic.getCubeSides(poll, container)
+
+		page.set({
+			cubeSideMap,
+			cubeSides
+		})
+
+		return cubeSides
 	}
 
 </script>

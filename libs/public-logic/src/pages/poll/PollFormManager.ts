@@ -45,7 +45,7 @@ export class PollFormManager
 					name: outcomes.A
 				},
 				B: {
-					name: outcomes.A
+					name: outcomes.B
 				}
 			},
 			theme: {
@@ -109,7 +109,7 @@ export class PollFormManager
 					name: factorForm.positions.A
 				},
 				B: {
-					name: factorForm.positions.A
+					name: factorForm.positions.B
 				}
 			}
 		}

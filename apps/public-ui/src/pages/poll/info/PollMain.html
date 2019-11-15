@@ -56,16 +56,15 @@
 	The chart miniature brings up the percentage view.
 	-->
 	<VoteComponentGraph
+			cubeSides="{cubeSides}"
 			cubeView="{effectiveCubeView}"
 			delta="{delta}"
-			factorsByAxis="{factorsByAxis}"
 			moveType="{moveType}"
 			on:toggleView="toggleView(cubeView, !cubeView)"
 			on:togglePercent="togglePercentPicker()"
 			on:toggleChart="showOutcomes(true)"
 			poll="{poll}"
 			positionMode="{positionMode}"
-			positionsByAxisAndDir="{positionsByAxisAndDir}"
 			tweenDelta="{tweenDelta}"
 			verticalLayout="{verticalLayout}"
 			vote="{vote}"
@@ -86,13 +85,13 @@
 			>
 				{#if effectiveCubeView}
 				<DetailedCube
+						cubeSideMap="{cubeSideMap}"
+						cubeSides="{cubeSides}"
 						cubeView="{effectiveCubeView}"
 						delta="{delta}"
-						factorsByAxis="{factorsByAxis}"
 						moveType="{moveType}"
-						on:cubeAltered="pollAltered()"
+						on:cubeAltered="pollAltered(event)"
 						poll="{poll}"
-						positionsByAxisAndDir="{positionsByAxisAndDir}"
 						positionMode="{positionMode}"
 						verticalLayout="{verticalLayout}"
 						vote="{vote}"
@@ -347,6 +346,7 @@
 	import {VOTE_DAO}         from '@votecube/public-db'
 	import {
 		CUBE_LOGIC,
+		DETAILED_CUBE_LOGIC,
 		LOGIC_UTILS,
 		POLL_MAIN_LOGIC,
 		POLL_MANAGER
@@ -399,28 +399,6 @@
 			dynamicVote: ({effectiveCubeView, currentVote, vote}) =>
 				effectiveCubeView ? vote : currentVote,
 			effectiveCubeView: ({cubeView, beforeCubeView}) => cubeView && !beforeCubeView,
-			factorsByAxis: ({moveDelta, poll}) => {
-				if (!poll) {
-					return null
-				}
-				const factors = poll.factors
-				return {
-					[factors[1].axis]: factors[1],
-					[factors[2].axis]: factors[2],
-					[factors[3].axis]: factors[3]
-				}
-			},
-			positionsByAxisAndDir({moveDelta, poll}) {
-				if (!poll) {
-					return null
-				}
-				const factors = poll.factors
-				return {
-					[factors[1].axis]: factorPositionsByDir(factors, 1),
-					[factors[2].axis]: factorPositionsByDir(factors, 2),
-					[factors[3].axis]: factorPositionsByDir(factors, 3)
-				}
-			},
 			scale: ({effectiveCubeView, zoomFactor}) => effectiveCubeView
 				? `transform: scale(${zoomFactor}, ${zoomFactor});`
 				: '',
@@ -537,9 +515,18 @@
 			) {
 				this.set({action, error: ''})
 			},
-			pollAltered() {
-				const {delta, moveDelta} = this.get()
-				this.set({delta: delta + 1, moveDelta: moveDelta + 1})
+			pollAltered(
+				newCubeSides
+			) {
+				const {cubeSides, delta, moveDelta} = this.get()
+				if (!newCubeSides) {
+					newCubeSides = cubeSides
+				}
+				this.set({
+					cubeSides: newCubeSides,
+					delta: delta + 1,
+					moveDelta: moveDelta + 1
+				})
 			},
 			pollAdjusted() {
 				this.pollAltered()
@@ -690,10 +677,21 @@
 			page.set({delta: page.get().delta + 1, percentMove: false})
 		}, container)
 
+		const [
+			      detailedCubeLogic,
+			      logicUtils
+		      ] = await container.get(DETAILED_CUBE_LOGIC, LOGIC_UTILS)
+
+		const {
+			      cubeSideMap,
+			      cubeSides
+		      } = await detailedCubeLogic.getCubeSides(poll, container)
+
 		await toggleView(!page.get().cubeView, page.get().cubeView, page)
 
-		const logicUtils = await container.get(LOGIC_UTILS)
 		page.set({
+			cubeSideMap,
+			cubeSides,
 			loaded: true,
 			logicUtils,
 			poll
@@ -705,14 +703,14 @@
 	) {
 		setResizeCllBck(null)
 
-		const {container} = this.get()
+		const {container} = page.get()
 
 		const [cubeEventListener, cubeLogic]
 			      = await container.get(CUBE_EVENT_LISTENER, CUBE_LOGIC)
 
-		cubeLogic.shutDownCubeListener(cubeEventListener, this)
-		this.stateListener.cancel()
-		this.store.set({
+		cubeLogic.shutDownCubeListener(cubeEventListener, page)
+		page.stateListener.cancel()
+		page.store.set({
 			cube: false,
 			noOverflow: false
 		})

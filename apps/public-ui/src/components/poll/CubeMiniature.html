@@ -5,13 +5,12 @@
 			id="cubeMin"
 			style="transition: transform {transformMillis}ms linear;"
 	>
-		{#if poll && factorsByAxis}
-		{#each cubeSides as dataOfCubeSide, i}
+		{#each cubeSides as cubeSide, i}
 		<div
 				class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 				id="sm{i}"
 				style="
-            background-color: #{dataOfCubeSide.color};
+            background-color: #{cubeSide.colorRGB};
               "
 		>
 			{#if !loading && !rotating}
@@ -21,7 +20,7 @@
 			<!--{/if}-->
 			<p>
 				<CharacterButton
-						character="{dataOfCubeSide.factor.outcome}"
+						character="{cubeSide.outcome}"
 						fontSize="20"
 						fontX="12"
 						fontY="19"
@@ -39,7 +38,6 @@
 			{/if}
 		</div>
 		{/each}
-		{/if}
 	</figure>
 </section>
 <style>

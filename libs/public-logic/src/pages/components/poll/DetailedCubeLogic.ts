@@ -16,7 +16,6 @@ import {
 	LOGIC_UTILS
 }                      from '../../../diTokens'
 import {ICubePosition} from '../../../poll/CubeLogic'
-import {Component}     from '../../../Routes'
 
 export interface ICubeSide
 	extends ICubePosition {
@@ -43,6 +42,8 @@ export interface ICubeSideMap {
 		'-1'?: ICubeSide
 	},
 }
+
+export type SwitchToDefinition = ['x' | 'y' | 'z', -1 | 1]
 
 interface ISwitchPositionMap {
 	x: {
@@ -79,6 +80,17 @@ export interface IDetailedCubeLogic {
 		cubeSideMap: ICubeSideMap
 		cubeSides: ICubeSide[]
 	}>
+
+	move(
+		cubeSideMap: ICubeSideMap,
+		cubeSide: ICubeSide,
+		switchToDefinitions
+	): void
+
+	switchPoles(
+		cubeSideMap: ICubeSideMap,
+		cubeSide: ICubeSide
+	): void
 
 }
 
@@ -132,21 +144,22 @@ export class DetailedCubeLogic
 
 	move(
 		cubeSideMap: ICubeSideMap,
-		axis: Factor_Axis,
-		dir: Position_Dir,
-		switchToDefinitions
-	) {
-		const switchPositions = this.getSwitchArray(axis, dir, switchToDefinitions)
+		cubeSide: ICubeSide,
+		switchToDefinitions: SwitchToDefinition[]
+	): void {
+		const switchPositions = this.getSwitchArray(cubeSide.axis, cubeSide.dir, switchToDefinitions)
 
+		this.moveFactorPair(switchPositions[0], cubeSideMap)
 		this.movePositionPair(switchPositions[0], cubeSideMap)
 		this.movePositionPair(switchPositions[1], cubeSideMap)
 	}
 
 	switchPoles(
 		cubeSideMap: ICubeSideMap,
-		axis: Factor_Axis,
-		dir: Position_Dir
-	) {
+		cubeSide: ICubeSide
+	): void {
+		const axis            = cubeSide.axis
+		const dir             = cubeSide.dir
 		const switchPositions = [{
 			axis,
 			dir
@@ -159,34 +172,18 @@ export class DetailedCubeLogic
 		const cubeSideFrom = cubeSideMap[switchPositions[0].axis][switchPositions[0].dir]
 		const cubeSideTo   = cubeSideMap[switchPositions[1].axis][switchPositions[1].dir]
 
-		const toDir               = cubeSideFrom.position.dir
+		const toDir               = cubeSideTo.position.dir
 		cubeSideTo.position.dir   = cubeSideFrom.position.dir
 		cubeSideFrom.position.dir = toDir
-	}
-
-	private movePositionPair(
-		switchPosition,
-		cubeSideMap: ICubeSideMap
-	) {
-		const cubeSideFrom = cubeSideMap[switchPosition.from.axis][switchPosition.from.dir]
-		const cubeSideTo   = cubeSideMap[switchPosition.to.axis][switchPosition.to.dir]
-
-		// const toDir  = cubeSideTo.dir
-		const toAxis = cubeSideTo.factor.axis
-
-		cubeSideTo.factor.axis = cubeSideFrom.factor.axis
-		// cubeSideTo.dir  = cubeSideFrom.dir
-
-		cubeSideFrom.factor.axis = toAxis
-		// cubeSideFrom.dir  = toDir
 	}
 
 	private getSwitchArray(
 		axis: Factor_Axis,
 		dir: Position_Dir,
-		switchToDefinitions
+		switchToDefinitions: SwitchToDefinition[]
 	): ISwitchRecord[] {
-		const switchPositionMap: ISwitchPositionMap = {
+		const switchPositionMap: ISwitchPositionMap
+			       = {
 			x: {
 				'-1': 1,
 				'1': 0,
@@ -200,7 +197,7 @@ export class DetailedCubeLogic
 				'1': 4,
 			}
 		}
-		const to                                    = switchToDefinitions[switchPositionMap[axis][dir]]
+		const to = switchToDefinitions[switchPositionMap[axis][dir]]
 
 		const [toAxis, toDir] = to
 		const oppositeDir     = dir === 1 ? -1 : 1
@@ -225,6 +222,30 @@ export class DetailedCubeLogic
 				dir: toOppositeDir
 			}
 		}]
+	}
+
+	private moveFactorPair(
+		switchPosition: ISwitchRecord,
+		cubeSideMap: ICubeSideMap
+	) {
+		const cubeSideFrom = cubeSideMap[switchPosition.from.axis][switchPosition.from.dir]
+		const cubeSideTo   = cubeSideMap[switchPosition.to.axis][switchPosition.to.dir]
+
+		const toAxis             = cubeSideTo.factor.axis
+		cubeSideTo.factor.axis   = cubeSideFrom.factor.axis
+		cubeSideFrom.factor.axis = toAxis
+	}
+
+	private movePositionPair(
+		switchPosition: ISwitchRecord,
+		cubeSideMap: ICubeSideMap
+	) {
+		const cubeSideFrom = cubeSideMap[switchPosition.from.axis][switchPosition.from.dir]
+		const cubeSideTo   = cubeSideMap[switchPosition.to.axis][switchPosition.to.dir]
+
+		const toDir               = cubeSideTo.position.dir
+		cubeSideTo.position.dir   = cubeSideFrom.position.dir
+		cubeSideFrom.position.dir = toDir
 	}
 
 }
