@@ -6,12 +6,12 @@
 			style="transition: transform {transformMillis}ms linear;"
 	>
 		{#if poll && factorsByAxis}
-		{#each positions as position, i}
+		{#each cubeSides as dataOfCubeSide, i}
 		<div
 				class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 				id="sm{i}"
 				style="
-            background-color: #{logicUtils.getColor(factorsByAxis[position.axis].color)};
+            background-color: #{dataOfCubeSide.color};
               "
 		>
 			{#if !loading && !rotating}
@@ -21,7 +21,7 @@
 			<!--{/if}-->
 			<p>
 				<CharacterButton
-						character="{positionsByAxisAndDir[position.axis][position.dir].outcome}"
+						character="{dataOfCubeSide.factor.outcome}"
 						fontSize="20"
 						fontX="12"
 						fontY="19"
@@ -171,7 +171,7 @@
 		data() {
 			return {
 				loading: true,
-				positions: [],
+				dataOfCubeSide: [],
 				rotating: false
 			}
 		},

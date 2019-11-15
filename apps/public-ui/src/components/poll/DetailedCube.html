@@ -2,59 +2,45 @@
 		id="cube"
 >
 	<!--			on:click="toggleView(cubeView, event)"-->
-	{#if poll && factorsByAxis}
-	{#each positions as position, i}
+	{#each cubeSides as cubeSide, i}
 	<div
 			class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
 			id="s{i}"
 			style="
-            background-color: #{getColor(factorsByAxis[position.axis].color, logicUtils)};
+            background-color: #{cubeSide.colorRGB};
               "
 	>
 		{#if !loading && !rotating}
 		<header>
-			{#if positionsByAxisAndDir[position.axis][position.dir].outcome === 'A'}
 			<CharacterButton
-					character="A"
+					character="{cubeSide.outcome}"
 					fontSize="23"
 					fontX="14.5"
 					fontY="23"
 					size="30"
 					strokeWidth="0"
-					styles="left: 1px; position: absolute; top: 0px;"
+					styles="{charButtonAlignment(cubeSide.outcome)}: 1px; position: absolute; top: 0px;"
 			></CharacterButton>
 			{/if}
-			{factorsByAxis[position.axis].name}
-			{#if positionsByAxisAndDir[position.axis][position.dir].outcome === 'B'}
-			<CharacterButton
-					character="B"
-					fontSize="23"
-					fontX="14.5"
-					fontY="23"
-					size="30"
-					strokeWidth="0"
-					styles="right: 1px; position: absolute; top: 0px;"
-			></CharacterButton>
-			{/if}
+			{cubeSide.factor.name}
 		</header>
 		{#if positionMode}
 		<Positioner
-				on:moveRight="moveRight(position.axis, position.dir, positionsByAxisAndDir)"
-				on:moveDown="moveDown(position.axis, position.dir, positionsByAxisAndDir)"
-				on:moveLeft="moveLeft(position.axis, position.dir, positionsByAxisAndDir)"
-				on:moveUp="moveUp(position.axis, position.dir, positionsByAxisAndDir)"
-				on:switchDir="switchDir(position.axis, position.dir, positionsByAxisAndDir)"
+				on:moveRight="moveRight(position.axis, position.dir, cubeSideMap)"
+				on:moveDown="moveDown(position.axis, position.dir, cubeSideMap)"
+				on:moveLeft="moveLeft(position.axis, position.dir, cubeSideMap)"
+				on:moveUp="moveUp(position.axis, position.dir, cubeSideMap)"
+				on:switchDir="switchDir(position.axis, position.dir, cubeSideMap)"
 		></Positioner>
 		{/if}
 		<p
-				style="color: #{getTextColor(factorsByAxis[position.axis].color, logicUtils)};"
+				style="color: #{cubeSide.textColorRGB};"
 		>
-			{positionsByAxisAndDir[position.axis][position.dir].name}
+			{cubeSides.position.name}
 		</p>
 		{/if}
 	</div>
 	{/each}
-	{/if}
 </figure>
 <style>
 
@@ -205,7 +191,10 @@
 		CUBE_EVENT_LISTENER,
 		MUTATION_API
 	}                      from '@votecube/cube-logic'
-	import {LOGIC_UTILS}   from '@votecube/public-logic'
+	import {
+		DETAILED_CUBE_LOGIC,
+		LOGIC_UTILS
+	}                      from '@votecube/public-logic'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import Positioner      from './create/Positioner.html'
 
@@ -219,20 +208,33 @@
 		},
 		data() {
 			return {
+				cubeSideMap: {},
+				cubeSides: [],
+				factorPositionPlaces: [],
 				loading: true,
 				positions: [],
 				rotating: false
 			}
 		},
 		helpers: {
+			charButtonAlignment:
+				outcome =>
+					outcome === 'A' ? 'left' : 'right',
+			factorByAxis: (
+				poll,
+				axis
+			) =>
+				poll.factors.filter(
+					factor => factor.axis === axis)[0],
 			getColor: (
-				color,
-				logicUtils
+				color
 			) => {
-				if (!logicUtils) {
+				const {container} = this.get()
+				if (!container) {
 					return 'FFF'
 				}
-				return logicUtils.getColor(color)
+
+				return container.getSync(LOGIC_UTILS).getColor(color)
 			},
 			getTextColor: (
 				color,
@@ -242,15 +244,22 @@
 					return '000'
 				}
 				return logicUtils.getTextColor(color)
-			}
+			},
+			positionByAxis: (
+				factor,
+				direction
+			) =>
+				factor.positions.filter(
+					position => position.dir === dir
+				)[0],
 		},
 		methods: {
 			moveDown(
 				axis,
 				dir,
-				positionsByAxisAndDir
+				cubeSideMap
 			) {
-				move(this, positionsByAxisAndDir, axis, dir, [
+				move(this, cubeSideMap, axis, dir, [
 					['y', 1], // x+
 					['y', 1], // x-
 					['x', -1], // y+
@@ -262,9 +271,9 @@
 			moveLeft(
 				axis,
 				dir,
-				positionsByAxisAndDir
+				cubeSideMap
 			) {
-				move(this, positionsByAxisAndDir, axis, dir, [
+				move(this, cubeSideMap, axis, dir, [
 					['z', -1], // x+
 					['z', 1], // x-
 					['z', -1], // y+
@@ -276,9 +285,9 @@
 			moveRight(
 				axis,
 				dir,
-				positionsByAxisAndDir
+				cubeSideMap
 			) {
-				move(this, positionsByAxisAndDir, axis, dir, [
+				move(this, cubeSideMap, axis, dir, [
 					['z', 1], // x+
 					['z', -1], // x-
 					['z', 1], // y+
@@ -290,9 +299,9 @@
 			moveUp(
 				axis,
 				dir,
-				positionsByAxisAndDir
+				cubeSideMap
 			) {
-				move(this, positionsByAxisAndDir, axis, dir, [
+				move(this, cubeSideMap, axis, dir, [
 					['y', -1], // x+
 					['y', -1], // x-
 					['x', 1], // y+
@@ -304,9 +313,9 @@
 			switchDir(
 				axis,
 				dir,
-				positionsByAxisAndDir
+				cubeSideMap
 			) {
-				switchPoles(this, positionsByAxisAndDir, axis, dir)
+				switchPoles(this, cubeSideMap, axis, dir)
 			},
 			/*			toggleView(
 							cubeView,
@@ -360,14 +369,32 @@
 	async function initPage(
 		page
 	) {
-		const container = DI.ui('DetailedCube')
+		const container                        = DI.ui('DetailedCube')
 		const [cubeEventListener, mutationApi] =
-			      await container.get(CUBE_EVENT_LISTENER, MUTATION_API)
+			      await container.get(
+				      CUBE_EVENT_LISTENER, MUTATION_API
+			      )
 
 		cubeEventListener.setView('cube')
 
 		await mutationApi.recompute()
 		page.stateListener = this.on('state', ({changed, current, previous}) => {
+			if (changed.poll) {
+				container.get(DETAILED_CUBE_LOGIC).then(
+					detailedCubeLogic => {
+						const {
+							      cubeSideMap,
+							      cubeSides
+						      } = detailedCubeLogic.getCubeSideData(
+							current.poll,
+							container
+						)
+						this.set({
+							cubeSideMap,
+							cubeSides
+						})
+					})
+			}
 			if (current.vote) {
 				page.get().vote.changeMillis = 128
 				if (page.stateListener) {
@@ -376,9 +403,9 @@
 			}
 		})
 		setTimeout(() => {
-			this.set({loading: false, rotating: true})
+			page.set({loading: false, rotating: true})
 			setTimeout(() => {
-				this.set({rotating: false})
+				page.set({rotating: false})
 			}, 700)
 		}, 1)
 
@@ -400,105 +427,23 @@
 
 	function move(
 		component,
-		positionsByAxisAndDir,
+		cubeSideMap,
 		axis,
 		dir,
 		switchToDefinitions
 	) {
-		let switchPositions = getSwitchArray(axis, dir, switchToDefinitions)
-
-		movePositionPair(switchPositions[0], positionsByAxisAndDir)
-		movePositionPair(switchPositions[1], positionsByAxisAndDir)
 
 		component.fire('cubeAltered')
-	}
-
-	function movePositionPair(
-		switchPosition,
-		positionsByAxisAndDir
-	) {
-		const positionFrom = positionsByAxisAndDir[switchPosition.from.axis][switchPosition.from.dir]
-		const positionTo   = positionsByAxisAndDir[switchPosition.to.axis][switchPosition.to.dir]
-
-		const toDir  = positionTo.dir
-		const toAxis = positionTo.axis
-
-		positionTo.axis = positionFrom.axis
-		positionTo.dir  = positionFrom.dir
-
-		positionFrom.axis = toAxis
-		positionFrom.dir  = toDir
 	}
 
 	function switchPoles(
 		component,
-		positionsByAxisAndDir,
+		cubeSideMap,
 		axis,
 		dir
 	) {
-		let switchPositions = [{
-			axis,
-			dir
-		},
-			{
-				axis,
-				dir: dir === 1 ? -1 : 1
-			}]
-
-		const positionFrom = positionsByAxisAndDir[switchPositions[0].axis][switchPositions[0].dir]
-		const positionTo   = positionsByAxisAndDir[switchPositions[1].axis][switchPositions[1].dir]
-
-		const toDir      = positionFrom.dir
-		positionTo.dir   = positionFrom.dir
-		positionFrom.dir = toDir
 
 		component.fire('cubeAltered')
-	}
-
-	function getSwitchArray(
-		axis,
-		dir,
-		switchToDefinitions
-	) {
-		const switchPositionMap = {
-			x: {
-				1: 0,
-				'-1': 1
-			},
-			y: {
-				1: 2,
-				'-1': 3
-			},
-			z: {
-				1: 4,
-				'-1': 5
-			}
-		}
-		const to                = switchToDefinitions[switchPositionMap[axis][dir]]
-
-		const [toAxis, toDir] = to
-		const oppositeDir     = dir == 1 ? -1 : 1
-		const toOppositeDir   = toDir == 1 ? -1 : 1
-
-		return [{
-			from: {
-				axis,
-				dir
-			},
-			to: {
-				axis: toAxis,
-				dir: toDir
-			}
-		}, {
-			from: {
-				axis,
-				dir: oppositeDir
-			},
-			to: {
-				axis: toAxis,
-				dir: toOppositeDir
-			}
-		}]
 	}
 
 </script>

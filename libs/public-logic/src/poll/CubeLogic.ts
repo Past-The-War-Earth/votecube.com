@@ -9,16 +9,20 @@ import {
 }                   from '@votecube/cube-logic'
 import {
 	Factor_Axis,
+	ICorePositionDefault,
 	IFactorPositionDefault,
 	IPollFactorPositionDefault,
+	IsData,
 	IVote,
 	Position_Dir
 }                   from '@votecube/model'
 import {CUBE_LOGIC} from '../diTokens'
 
 export interface ICubePosition {
+
 	axis: Factor_Axis
 	dir: Position_Dir
+
 }
 
 export interface ICubeLogic {

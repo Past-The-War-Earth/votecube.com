@@ -1,4 +1,5 @@
 export * from './helpers/animation'
+export * from './pages/components/poll/DetailedCubeLogic'
 export * from './pages/poll/info/FactorRankingLogic'
 export * from './pages/poll/info/PollFormLogic'
 export * from './pages/poll/info/PollMainLogic'
