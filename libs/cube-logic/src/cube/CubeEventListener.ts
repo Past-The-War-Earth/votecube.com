@@ -6,8 +6,7 @@ import {
 	Factor_Axis,
 	Factor_Number,
 	IVote,
-	IVoteFactor,
-	Position_Dir
+	IVoteFactor
 }                                    from '@votecube/model'
 import {
 	CUBE_DIRECTION,
@@ -202,18 +201,24 @@ export class CubeEventListener
 
 		const viewport = await container(this).get(VIEWPORT)
 		viewport.pd    = {
-			axisToFactorMapping: {
-				x: factorNumbers[0],
-				y: factorNumbers[1],
-				z: factorNumbers[2]
-			},
+			// axisToFactorMapping: {
+			// 	x: factorNumbers[0],
+			// 	y: factorNumbers[1],
+			// 	z: factorNumbers[2]
+			// },
 			factorToAxisMapping,
 			vote,
-			x: this.getUiVoteDimension(1, 'x', vote
+			x: this.getUiVoteDimension(1,
+				// 'x',
+				vote
 				// , 100
 			),
-			y: this.getUiVoteDimension(2, 'y', vote),
-			z: this.getUiVoteDimension(3, 'z', vote),
+			y: this.getUiVoteDimension(2,
+				// 'y',
+				vote),
+			z: this.getUiVoteDimension(3,
+				// 'z',
+				vote),
 		}
 
 		return !!vote
@@ -275,11 +280,11 @@ export class CubeEventListener
 
 	private getUiVoteDimension(
 		factorNumber: Factor_Number,
-		axis: Factor_Axis,
+		// axis: Factor_Axis,
 		vote: IVote,
 		// value: VoteFactor_Value = 0
 	): IUiVoteDimension {
-		let dir: Position_Dir = 0
+		// let dir: Position_Dir = 0
 
 		// if (!vote) {
 		// 	return {
@@ -290,18 +295,21 @@ export class CubeEventListener
 		// 	}
 		// }
 
-		const voteFactor = vote[factorNumber]
-		if (voteFactor.outcome === 'A') {
-			dir = 1
-		} else if (voteFactor.outcome === 'B') {
-			dir = -1
-		}
-		return {
-			axis,
-			dir,
-			valid: true,
-			value: voteFactor.value
-		}
+		const voteFactor = vote[factorNumber] as IUiVoteDimension
+		// if (voteFactor.outcome === 'A') {
+		// 	dir = 1
+		// } else if (voteFactor.outcome === 'B') {
+		// 	dir = -1
+		// }
+		// return {
+		// 	axis,
+		// 	dir,
+		// 	valid: true,
+		// 	value: voteFactor.value
+		// }
+		voteFactor.valid = true
+
+		return voteFactor
 	}
 
 	private moveViewport(
@@ -428,6 +436,7 @@ export class CubeEventListener
 		return this.populateCoords(ev, (ev as TouchEvent).touches, start)
 	}
 
+	/*
 	private populateVoteFactor(
 		axis: Factor_Axis,
 		uiVote: IUiVote
@@ -443,7 +452,7 @@ export class CubeEventListener
 		}
 		voteFactor.value = voteDimension.value
 	}
-
+*/
 	/**
 	 * Remove mousemove or touchmove
 	 */

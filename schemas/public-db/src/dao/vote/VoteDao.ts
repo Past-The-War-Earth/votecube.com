@@ -80,24 +80,30 @@ export class VoteDao
 	): IVote {
 		return {
 			// poll,
-			1: {
-				factorNumber: 1,
-				outcome: 'A',
-				value: 33
-			},
-			2: {
-				factorNumber: 2,
-				outcome: 'A',
-				value: 34
-			},
-			3: {
-				factorNumber: 3,
-				outcome: 'B',
-				value: 33
-			}
+			1: new Vote(1, 'A', 33),
+			2: new Vote(2, 'A', 34),
+			3: new Vote(3, 'B', 33)
 		}
 	}
 
+}
+
+class Vote {
+
+	constructor(
+		public factorNumber,
+		public _theOutcome,
+		public value
+	) {
+	}
+
+	get outcome() {
+		return this._theOutcome
+	}
+
+	set outcome(outcome) {
+		this._theOutcome = outcome
+	}
 }
 
 DI.set(VOTE_DAO, VoteDao)

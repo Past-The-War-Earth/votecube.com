@@ -3,6 +3,7 @@ import {
 	Factor_Axis,
 	Factor_Number,
 	IVote,
+	IVoteFactor,
 	Position_Dir,
 	VoteFactor_Value
 }                      from '@votecube/model'
@@ -44,11 +45,11 @@ export interface IMousePosition {
 
 export interface IUiVote {
 
-	axisToFactorMapping: {
-		x: Factor_Number
-		y: Factor_Number
-		z: Factor_Number
-	}
+	// axisToFactorMapping: {
+	// 	x: Factor_Number
+	// 	y: Factor_Number
+	// 	z: Factor_Number
+	// }
 	factorToAxisMapping: IFactorToAxisMapping
 	vote: IVote
 	x: IUiVoteDimension
@@ -65,11 +66,9 @@ export interface IFactorToAxisMapping {
 
 }
 
-export interface IUiVoteDimension {
-	axis?: Dimension
-	dir: Direction
+export interface IUiVoteDimension
+	extends IVoteFactor {
 	valid: boolean
-	value: PositionPercent
 }
 
 export type IValuesOutCallback =
