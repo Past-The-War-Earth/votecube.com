@@ -11,7 +11,7 @@ import {IMarked} from '@votecube/model'
 import {
 	DB_CONVERTER,
 	DB_UTILS
-}                from '../diTokens'
+}                from '../tokens'
 
 export interface IDbUtils {
 

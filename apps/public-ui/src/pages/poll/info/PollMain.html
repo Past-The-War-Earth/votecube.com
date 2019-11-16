@@ -761,17 +761,6 @@
 		cubeLogic.setCubeAdjustment(cubeEventListener, enableCubeAdjustment)
 	}
 
-	function factorPositionsByDir(
-		factors,
-		factorNumber
-	) {
-		const positions = factors[factorNumber].positions
-		return {
-			[positions.A.dir]: positions.A,
-			[positions.B.dir]: positions.B
-		}
-	}
-
 	async function toggleView(
 		currentlyInCubeView,
 		forCubeView,

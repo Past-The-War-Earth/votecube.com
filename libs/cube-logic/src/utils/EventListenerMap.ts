@@ -1,5 +1,5 @@
 import {DI}                 from '@airport/di'
-import {EVENT_LISTENER_MAP} from '../diTokens'
+import {EVENT_LISTENER_MAP} from '../tokens'
 
 export type IEventListener<E extends Event> =
 	(event: E) => void

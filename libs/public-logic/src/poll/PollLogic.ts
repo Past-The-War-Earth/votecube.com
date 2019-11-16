@@ -1,13 +1,13 @@
-import {container, DI}         from '@airport/di'
+import {container, DI} from '@airport/di'
 import {
 	IUser,
 	IVariationDoc
-}                   from '@votecube/model'
+}                      from '@votecube/model'
 import {
 	IPollDao,
 	POLL_DAO
-}                   from '@votecube/public-db'
-import {POLL_LOGIC} from '../diTokens'
+}                      from '@votecube/public-db'
+import {POLL_LOGIC}    from '../tokens'
 
 export interface IPollLogic {
 

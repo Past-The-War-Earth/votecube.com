@@ -1,5 +1,5 @@
 import {DI}           from '@airport/di'
-import {FORM_FACTORY} from './diTokens'
+import {FORM_FACTORY} from './tokens'
 import {
 	ColorField,
 	IColorField
@@ -12,7 +12,7 @@ import {
 	Field,
 	IField,
 	IFieldRules
-} from './field/Field'
+}                     from './field/Field'
 import {
 	FieldGroup,
 	IFieldGroup,

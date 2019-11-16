@@ -1,5 +1,5 @@
-import {container, DI}          from '@airport/di'
-import {IFieldGroup} from '@votecube/forms'
+import {container, DI} from '@airport/di'
+import {IFieldGroup}   from '@votecube/forms'
 import {
 	IUser,
 	IVariationData,
@@ -8,18 +8,18 @@ import {
 	IVote,
 	Poll_Key,
 	Variation_Key
-}                    from '@votecube/model'
+}                      from '@votecube/model'
 import {
 	DB_CONVERTER,
 	DB_UTILS,
 	POLL_DAO
-}                    from '@votecube/public-db'
+}                      from '@votecube/public-db'
 import {
 	CUBE_LOGIC,
 	LOGIC_UTILS,
 	POLL_FORM_MANAGER,
 	POLL_MANAGER
-}                    from '../diTokens'
+}                      from '../tokens'
 
 export interface IPageVote
 	extends IVote {

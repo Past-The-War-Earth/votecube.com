@@ -1,5 +1,5 @@
 import {DI}           from '@airport/di'
-import {SCHEMA}       from '../../diTokens'
+import {SCHEMA}       from '../../tokens'
 import {IVCFirestore} from './DocRef'
 import {
 	FactorsCollection,

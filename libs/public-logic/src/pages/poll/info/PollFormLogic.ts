@@ -1,4 +1,4 @@
-import {container, DI}               from '@airport/di'
+import {container, DI}    from '@airport/di'
 import {
 	FORM_FACTORY,
 	IFieldGroup,
@@ -7,7 +7,7 @@ import {
 import {
 	POLL_FORM_LOGIC,
 	POLL_FORM_MANAGER
-}                         from '../../../diTokens'
+}                         from '../../../tokens'
 import {IStoredVariation} from '../../../poll/PollManager'
 
 export interface IPollFormLogic {

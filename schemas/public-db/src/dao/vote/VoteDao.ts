@@ -3,7 +3,7 @@ import {
 	IVote,
 	Poll_Key
 }                 from '@votecube/model'
-import {VOTE_DAO} from '../../diTokens'
+import {VOTE_DAO} from '../../tokens'
 
 export interface IVoteDao {
 

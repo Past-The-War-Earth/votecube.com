@@ -14,6 +14,14 @@ class VCStore
 		this.set({topMenuShown})
 	}
 
+	/*
+	set(
+		object
+	) {
+		super.set(object)
+	}
+	*/
+
 	setTextToast(
 		text,
 		seconds = 3

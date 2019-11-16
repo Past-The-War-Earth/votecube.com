@@ -3,10 +3,8 @@ import {
 	DI
 }                                    from '@airport/di'
 import {
-	Factor_Axis,
 	Factor_Number,
-	IVote,
-	IVoteFactor
+	IVote
 }                                    from '@votecube/model'
 import {
 	CUBE_DIRECTION,
@@ -16,7 +14,7 @@ import {
 	EVENT_LISTENER_MAP,
 	MUTATION_API,
 	VIEWPORT
-}                                    from '../diTokens'
+}                                    from '../tokens'
 import {IPerElementEventListenerMap} from '../utils/EventListenerMap'
 import {
 	Bool,
@@ -39,7 +37,7 @@ export type DirectionVector = [MovementDirection, ChangeInPixels
 
 export interface ICubeEventListener {
 
-	addCubeAdjustment(): Promise<void>
+	addCubeAdjustment(): void
 
 	clearCubeAdjustment(): void
 
@@ -52,11 +50,11 @@ export interface ICubeEventListener {
 	setPositionData(
 		vote: IVote,
 		factorNumbers?: Factor_Number[]
-	): Promise<boolean>
+	): boolean
 
 	setPositionDataAndMove(
 		vote: IVote
-	): Promise<void>
+	): void
 
 	setView(
 		elementId: string
@@ -65,7 +63,7 @@ export interface ICubeEventListener {
 	setViewPort(
 		forCube: boolean,
 		cb?: IValuesOutCallback
-	): Promise<IMutationApi>
+	): IMutationApi
 
 	suspendInteraction(): void
 
@@ -80,7 +78,7 @@ export class CubeEventListener
 	private suspended = false
 	private TOUCH     = document.ontouchmove !== undefined
 
-	async addCubeAdjustment(): Promise<void> {
+	addCubeAdjustment(): void {
 		if (this.suspended) {
 			return
 		}
@@ -88,11 +86,9 @@ export class CubeEventListener
 		if (this.dLM) {
 			this.addCubeAdjustmentToELM(this.dLM)
 		} else {
-			container(this).get(EVENT_LISTENER_MAP).then(
-				eventListenerMap => {
-					this.dLM = eventListenerMap.ad(document)
-					this.addCubeAdjustmentToELM(this.dLM)
-				})
+			const eventListenerMap = container(this).getSync(EVENT_LISTENER_MAP)
+			this.dLM               = eventListenerMap.ad(document)
+			this.addCubeAdjustmentToELM(this.dLM)
 		}
 	}
 
@@ -101,53 +97,52 @@ export class CubeEventListener
 	): void {
 		eventListenerMap.ad('keydown',
 			ev => {
-				container(this).get(CUBE_UTILS, VIEWPORT).then(([cubeUtils, viewport]) => {
-					this.rmMmTm()
-					switch (ev.keyCode) {
-						case 37: // left
-							viewport.move(Bool.False, Move.None, Bool.True, Move.Down)
-							break
+				const [cubeUtils, viewport] = container(this).getSync(CUBE_UTILS, VIEWPORT)
+				this.rmMmTm()
+				switch (ev.keyCode) {
+					case 37: // left
+						viewport.move(Bool.False, Move.None, Bool.True, Move.Down)
+						break
 
-						case 38: // up
-							// prevent default
-							cubeUtils.pD(ev)
-							viewport.move(Bool.True, Move.Up)
-							break
+					case 38: // up
+						// prevent default
+						cubeUtils.pD(ev)
+						viewport.move(Bool.True, Move.Up)
+						break
 
-						case 39: // right
-							viewport.move(Bool.False, Move.None, Bool.True, Move.Up)
-							break
+					case 39: // right
+						viewport.move(Bool.False, Move.None, Bool.True, Move.Up)
+						break
 
-						case 40: // down
-							// prevent default
-							cubeUtils.pD(ev)
-							viewport.move(Bool.True, Move.Down)
-							break
+					case 40: // down
+						// prevent default
+						cubeUtils.pD(ev)
+						viewport.move(Bool.True, Move.Down)
+						break
 
-						case 27: // esc
-							viewport.reset()
-							break
-						// case 109:
-						// 	if (!viewport.el) {
-						// 		return
-						// 	}
-						// 	if (moveSpeed > 128) {
-						// 		moveSpeed /= 2
-						// 	}
-						// 	break
-						// case 107:
-						// 	if (!viewport.el) {
-						// 		return
-						// 	}
-						// 	if (moveSpeed < 4096) {
-						// 		moveSpeed *= 2
-						// 	}
-						// 	break
+					case 27: // esc
+						viewport.reset()
+						break
+					// case 109:
+					// 	if (!viewport.el) {
+					// 		return
+					// 	}
+					// 	if (moveSpeed > 128) {
+					// 		moveSpeed /= 2
+					// 	}
+					// 	break
+					// case 107:
+					// 	if (!viewport.el) {
+					// 		return
+					// 	}
+					// 	if (moveSpeed < 4096) {
+					// 		moveSpeed *= 2
+					// 	}
+					// 	break
 
-						default:
-							break
-					}
-				})
+					default:
+						break
+				}
 
 			})
 		('mousedown',
@@ -156,7 +151,10 @@ export class CubeEventListener
 			event => {
 				// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/
 				// Supporting_both_TouchEvent_and_MouseEvent
-				event.preventDefault()
+				try {
+					event.preventDefault()
+				} catch (_) {
+				}
 				this.safeOMdTs(event)
 			})
 		('mouseup',
@@ -176,20 +174,18 @@ export class CubeEventListener
 	clearView(
 		elementId: string
 	): void {
-		container(this).get(VIEWPORT).then(
-			viewport => {
-				delete viewport.el[elementId]
-			})
+		const viewport = container(this).getSync(VIEWPORT)
+		delete viewport.el[elementId]
 	}
 
 	resumeInteraction(): void {
 		this.suspended = false
 	}
 
-	async setPositionData(
+	setPositionData(
 		vote: IVote,
 		factorNumbers: Factor_Number[] = [1, 2, 3]
-	): Promise<boolean> {
+	): boolean {
 		const factorToAxisMapping: IFactorToAxisMapping = {
 			1: null,
 			2: null,
@@ -199,7 +195,7 @@ export class CubeEventListener
 		factorToAxisMapping[factorNumbers[1]]           = 'y'
 		factorToAxisMapping[factorNumbers[2]]           = 'z'
 
-		const viewport = await container(this).get(VIEWPORT)
+		const viewport = container(this).getSync(VIEWPORT)
 		viewport.pd    = {
 			// axisToFactorMapping: {
 			// 	x: factorNumbers[0],
@@ -224,11 +220,11 @@ export class CubeEventListener
 		return !!vote
 	}
 
-	async setPositionDataAndMove(
+	setPositionDataAndMove(
 		vote: IVote
-	): Promise<void> {
-		if (await this.setPositionData(vote)) {
-			const viewport = await container(this).get(VIEWPORT)
+	): void {
+		if (this.setPositionData(vote)) {
+			const viewport = container(this).getSync(VIEWPORT)
 			viewport.moveToDegree()
 		}
 	}
@@ -236,24 +232,23 @@ export class CubeEventListener
 	setView(
 		elementId: string
 	): void {
-		container(this).get(CUBE_UTILS, VIEWPORT).then(([cubeUtils, viewport]) => {
-			viewport.el[elementId] = cubeUtils.gQ('#' + elementId)
-		})
+		const [cubeUtils, viewport] = container(this).getSync(CUBE_UTILS, VIEWPORT)
+		viewport.el[elementId]      = cubeUtils.gQ('#' + elementId)
 	}
 
-	async setViewPort(
+	setViewPort(
 		forCube: boolean,
 		cb?: IValuesOutCallback
-	): Promise<IMutationApi> {
-		const viewport = await container(this).get(VIEWPORT)
+	): IMutationApi {
+		const viewport = container(this).getSync(VIEWPORT)
 
 		viewport.reset()
 		viewport.cb = (
 			uiVote: IUiVote
 		) => {
-			this.populateVoteFactor('x', uiVote)
-			this.populateVoteFactor('y', uiVote)
-			this.populateVoteFactor('z', uiVote)
+			// this.populateVoteFactor('x', uiVote)
+			// this.populateVoteFactor('y', uiVote)
+			// this.populateVoteFactor('z', uiVote)
 			cb(uiVote.vote)
 		}
 
@@ -269,7 +264,7 @@ export class CubeEventListener
 			return null
 		}
 
-		const mutationApi = await container(this).get(MUTATION_API)
+		const mutationApi = container(this).getSync(MUTATION_API)
 
 		return mutationApi
 	}
@@ -284,6 +279,9 @@ export class CubeEventListener
 		vote: IVote,
 		// value: VoteFactor_Value = 0
 	): IUiVoteDimension {
+		if (!vote) {
+			return null
+		}
 		// let dir: Position_Dir = 0
 
 		// if (!vote) {
@@ -316,37 +314,36 @@ export class CubeEventListener
 		event: IPosition, // event
 		viewport: IViewport
 	): void {
-		container(this).get(CUBE_DIRECTION, CUBE_MOVEMENT).then((
-			[
-				cubeDirection,
-				cubeMovement
-			]) => {
-			const mouseObject = cubeMovement.mouse
-			const startCoords = mouseObject.start
-			let lastCoords    = mouseObject.last
+		const [
+			      cubeDirection,
+			      cubeMovement
+		      ] = container(this).getSync(CUBE_DIRECTION, CUBE_MOVEMENT)
+
+		const mouseObject = cubeMovement.mouse
+		const startCoords = mouseObject.start
+		let lastCoords    = mouseObject.last
 
 
-			const now: number = new Date().getTime()
+		const now: number = new Date().getTime()
 
-			if (!cubeMovement.mouse.last) {
-				cubeMovement.mouse.last = lastCoords = cubeMovement.mouse.start
-				this.lastMove           = now
+		if (!cubeMovement.mouse.last) {
+			cubeMovement.mouse.last = lastCoords = cubeMovement.mouse.start
+			this.lastMove           = now
+		}
+
+		const {moveX, moveY, xBy, yBy} = cubeDirection.getMove(startCoords, event)
+
+		if (now - this.lastMove >= 8) {
+			startCoords.x = lastCoords.x
+			startCoords.y = lastCoords.y
+			if (moveX || moveY) {
+				viewport.move(moveX, xBy, moveY, yBy)
 			}
+			this.lastMove = now
+		}
 
-			const {moveX, moveY, xBy, yBy} = cubeDirection.getMove(startCoords, event)
-
-			if (now - this.lastMove >= 8) {
-				startCoords.x = lastCoords.x
-				startCoords.y = lastCoords.y
-				if (moveX || moveY) {
-					viewport.move(moveX, xBy, moveY, yBy)
-				}
-				this.lastMove = now
-			}
-
-			lastCoords.x = event.x
-			lastCoords.y = event.y
-		})
+		lastCoords.x = event.x
+		lastCoords.y = event.y
 	}
 
 	/**
@@ -355,33 +352,35 @@ export class CubeEventListener
 	private oMdTs(
 		ev: MouseEvent | TouchEvent, // Event
 	): void {
-		container(this).get(CUBE_MOVEMENT, CUBE_UTILS, VIEWPORT).then((
-			[
-				cubeMovement,
-				cubeUtils,
-				viewport
-			]) => {
+		const [
+			      cubeMovement,
+			      cubeUtils,
+			      viewport
+		      ] = container(this).getSync(CUBE_MOVEMENT, CUBE_UTILS, VIEWPORT)
 
-			if (!Object.keys(viewport.el).length) {
-				return
-			}
-			this.rmMmTm()
+		if (!Object.keys(viewport.el).length) {
+			return
+		}
+		this.rmMmTm()
 
-			delete cubeMovement.mouse.last
+		delete cubeMovement.mouse.last
 
-			// clicks on links, images, or videos
-			if (cubeUtils.iT(ev.target as Element, 'A')('IFRAME')()) {
-				return
-			}
+		// clicks on links, images, or videos
+		if (cubeUtils.iT(ev.target as Element, 'A')('IFRAME')()) {
+			return
+		}
 
-			this.populateStartCoords(ev, cubeMovement.mouse.start)
+		this.populateStartCoords(ev, cubeMovement.mouse.start)
 
-			this.dLM
-				.ad('mousemove',
-					event => this.oMmTm(event))
-				('touchmove',
-					event => this.oMmTm(event))
-		})
+		this.dLM
+			.ad('mousemove',
+				event => {
+					this.oMmTm(event)
+				})
+			('touchmove',
+				event => {
+					this.oMmTm(event)
+				})
 	}
 
 	/**
@@ -390,23 +389,25 @@ export class CubeEventListener
 	private oMmTm(
 		ev, // event
 	): void {
-		container(this).get(VIEWPORT).then(
-			viewport => {
-				if (!Object.keys(viewport.el).length) {
-					return
-				}
-				const touches = ev.touches
+		const viewport = container(this).getSync(VIEWPORT)
 
-				// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
-				if (!this.TOUCH || !(touches && touches.length > 1)) {
-					ev.preventDefault()
-					const point = touches ? touches[0] : ev
-					// Get touch co-ords
-					// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
-					// dispatch 'move-viewport' event
-					this.moveViewport({x: point.screenX, y: point.screenY}, viewport)
-				}
-			})
+		if (!Object.keys(viewport.el).length) {
+			return
+		}
+		const touches = ev.touches
+
+		// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
+		if (!this.TOUCH || !(touches && touches.length > 1)) {
+			try {
+				ev.preventDefault()
+			} catch (_) {
+			}
+			const point = touches ? touches[0] : ev
+			// Get touch co-ords
+			// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
+			// dispatch 'move-viewport' event
+			this.moveViewport({x: point.screenX, y: point.screenY}, viewport)
+		}
 	}
 
 	private populateCoords(
@@ -457,13 +458,11 @@ export class CubeEventListener
 	 * Remove mousemove or touchmove
 	 */
 	private rmMmTm(): void {
-		container(this).get(VIEWPORT).then(
-			viewport => {
-				if (!Object.keys(viewport.el).length) {
-					return
-				}
-				this.dLM.rm('mousemove')('touchmove')
-			})
+		const viewport = container(this).getSync(VIEWPORT)
+		if (!Object.keys(viewport.el).length) {
+			return
+		}
+		this.dLM.rm('mousemove')('touchmove')
 	}
 
 	private safeOMdTs(

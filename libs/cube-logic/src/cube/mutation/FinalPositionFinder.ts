@@ -1,18 +1,18 @@
 import {DI}                    from '@airport/di'
-import {FINAL_POSITION_FINDER} from '../../diTokens'
+import {FINAL_POSITION_FINDER} from '../../tokens'
 import {ICubeUtils}            from '../../utils/CubeUtils'
 import {
 	ICubeMoveMatrix,
 	MatrixIndex,
 	PositionValues,
 	ValueArrayPosition
-} from '../CubeMoveMatrix'
+}                              from '../CubeMoveMatrix'
 import {
 	Direction,
 	ICubeMovement,
 	IUiVoteDimension,
 	PositionPercent
-} from '../CubeMovement'
+}                              from '../CubeMovement'
 import {IViewport}             from '../Viewport'
 import {
 	DistanceFromClosestMatrixPosition,
@@ -116,7 +116,7 @@ export class FinalPositionFinder
 	private getDirectionVals(
 		voteDimension: IUiVoteDimension
 	): [PositionPercent, PositionPercent] {
-		return voteDimension.dir === 1
+		return voteDimension.outcome === 'A'
 			? [voteDimension.value, 0]
 			: [0, voteDimension.value]
 	}

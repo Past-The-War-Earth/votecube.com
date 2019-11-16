@@ -16,7 +16,7 @@ import {
 	MUTATION_API,
 	PERCENTAGE_POSITION_CHOOSER,
 	VIEWPORT
-} from '../../diTokens'
+}                                   from '../../tokens'
 import {
 	Direction,
 	PositionPercent
@@ -72,16 +72,15 @@ export class MutationApi
 			[percentagePositionChooser, viewport
 			]) => {
 			const dimension             = viewport.pd.factorToAxisMapping[factorNumber]
-			const direction             = outcome === 'A' ? 1 : -1
 			const dimensionPositionData = viewport.pd[dimension]
 			if (dimensionPositionData.value === 100
-				&& dimensionPositionData.dir === direction) {
+				&& dimensionPositionData.outcome === outcome) {
 				return
 			}
 			// let percentChange = this.getPercentChange()
 
 			this.moveToPercent(dimension, null,
-				percentagePositionChooser, viewport, percentChange, direction)
+				percentagePositionChooser, viewport, percentChange, outcome)
 		})
 	}
 
@@ -109,25 +108,25 @@ export class MutationApi
 
 		const dimension             = viewport.pd.factorToAxisMapping[factorNumber]
 		const dimensionPositionData = viewport.pd[dimension]
-		if (!dimensionPositionData.dir) {
-			dimensionPositionData.dir = 1
+		if (!dimensionPositionData.outcome) {
+			dimensionPositionData.outcome = 'A'
 		} else if (dimensionPositionData.value === 100) {
-			dimensionPositionData.dir = -dimensionPositionData.dir as Direction
+			dimensionPositionData.outcome = dimensionPositionData.outcome === 'A' ? 'B' : 'A'
 		}
 		switch (dimension) {
 			case 'x': {
-				viewport.pd.y.dir = 0
-				viewport.pd.z.dir = 0
+				viewport.pd.y.outcome = null
+				viewport.pd.z.outcome = null
 				break
 			}
 			case 'y': {
-				viewport.pd.x.dir = 0
-				viewport.pd.z.dir = 0
+				viewport.pd.x.outcome = null
+				viewport.pd.z.outcome = null
 				break
 			}
 			case 'z': {
-				viewport.pd.x.dir = 0
-				viewport.pd.y.dir = 0
+				viewport.pd.x.outcome = null
+				viewport.pd.y.outcome = null
 				break
 			}
 		}
@@ -157,7 +156,7 @@ export class MutationApi
 		percentagePositionChooser: IPercentagePositionChooser,
 		viewport: IViewport,
 		percentChange?: PercentChange,
-		direction?: Direction,
+		outcome?: Outcome_Ordinal,
 	): void {
 		// First see the order of recently moved dimensions
 		viewport.rmd = viewport.rmd.filter(
@@ -170,10 +169,10 @@ export class MutationApi
 
 		if (percentChange) {
 			percentagePositionChooser.changePositionPercentages(
-				dimension, percentChange, direction, viewport)
+				dimension, percentChange, outcome, viewport)
 		} else {
 			percentagePositionChooser.setPositionPercentages(
-				dimension, newPercent, viewport.pd[dimension].dir, viewport)
+				dimension, newPercent, viewport.pd[dimension].outcome, viewport)
 		}
 
 		this.recompute()

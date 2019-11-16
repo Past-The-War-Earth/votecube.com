@@ -1,5 +1,5 @@
 import {DI}                      from '@airport/di'
-import {DEGREE_POSITION_CHOOSER} from '../../diTokens'
+import {DEGREE_POSITION_CHOOSER} from '../../tokens'
 import {IViewport}               from '../Viewport'
 import {IFinalPosition}          from './types'
 

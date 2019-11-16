@@ -1,13 +1,13 @@
-import {DI}          from '@airport/di'
+import {DI}             from '@airport/di'
 import {
 	ICoreColor,
 	IsData,
 	ITweenVoteFactor,
 	IVote,
 	IVoteFactor
-}                    from '@votecube/model'
+}                       from '@votecube/model'
 import {wrapTransition} from 'svelte/shared'
-import {LOGIC_UTILS} from './diTokens'
+import {LOGIC_UTILS}    from './tokens'
 
 interface IVoteFactorNode {
 
@@ -216,7 +216,7 @@ export class LogicUtils
 		transitionFunction,
 		options
 	): void {
-		// setTimeout(() => {
+		setTimeout(() => {
 		const domElementToTransition = document.getElementById(elementId)
 		if (!domElementToTransition) {
 			return
@@ -224,7 +224,7 @@ export class LogicUtils
 		const figureIntro = wrapTransition(
 			component, domElementToTransition, transitionFunction, options, true)
 		figureIntro.run(1)
-		// })
+		})
 	}
 
 	private ensure2Digits(

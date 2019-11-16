@@ -1,7 +1,7 @@
 import {DI} from '@airport/di'
 import page from 'page'
 
-import {ROUTES} from './diTokens'
+import {ROUTES} from './tokens'
 
 export type Route_Path = string
 

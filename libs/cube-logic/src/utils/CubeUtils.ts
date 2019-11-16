@@ -1,5 +1,5 @@
 import {DI}         from '@airport/di'
-import {CUBE_UTILS} from '../diTokens'
+import {CUBE_UTILS} from '../tokens'
 
 export interface IIsKnownElementOfTag {
 	(): boolean

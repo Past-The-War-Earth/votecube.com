@@ -11,7 +11,7 @@ import {
 	IVoteFactor,
 	VoteFactor_Value
 }                        from '@votecube/model'
-import {POLL_MAIN_LOGIC} from '../../../diTokens'
+import {POLL_MAIN_LOGIC} from '../../../tokens'
 
 type FrameDuration = number
 type FrameNumber = number

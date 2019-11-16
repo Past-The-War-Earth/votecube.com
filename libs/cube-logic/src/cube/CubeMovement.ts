@@ -7,7 +7,7 @@ import {
 	Position_Dir,
 	VoteFactor_Value
 }                      from '@votecube/model'
-import {CUBE_MOVEMENT} from '../diTokens'
+import {CUBE_MOVEMENT} from '../tokens'
 import {
 	ICubeMoveMatrix,
 	MatrixIndex

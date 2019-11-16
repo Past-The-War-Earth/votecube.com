@@ -10,12 +10,12 @@ import {
 	Outcome_Ordinal,
 	Position_Dir
 }                      from '@votecube/model'
+import {ICubePosition} from '../../../poll/CubeLogic'
 import {
 	CUBE_LOGIC,
 	DETAILED_CUBE_LOGIC,
 	LOGIC_UTILS
-}                      from '../../../diTokens'
-import {ICubePosition} from '../../../poll/CubeLogic'
+}                      from '../../../tokens'
 
 export interface ICubeSide
 	extends ICubePosition {

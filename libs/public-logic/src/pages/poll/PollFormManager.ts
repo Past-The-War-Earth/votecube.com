@@ -10,7 +10,7 @@ import {
 	IVariationData,
 	IVariationDataOrDelta
 }                          from '@votecube/model'
-import {POLL_FORM_MANAGER} from '../../diTokens'
+import {POLL_FORM_MANAGER} from '../../tokens'
 
 export interface IPollFormManager {
 

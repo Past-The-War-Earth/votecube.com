@@ -6,9 +6,11 @@ import {
 	VoteFactor_Value
 }                             from '@votecube/model'
 import {fly}                  from 'svelte-transitions'
-import {FACTOR_RANKING_LOGIC} from '../../../diTokens'
 import {ILogicUtils}          from '../../../LogicUtils'
 import {IPageVote}            from '../../../poll/PollManager'
+import {FACTOR_RANKING_LOGIC} from '../../../tokens'
+
+export type AddOrRemove = 'add' | 'remove'
 
 export interface IFactorInfo {
 
@@ -41,7 +43,7 @@ export interface IFactorRankingLogic {
 	addOrRemoveAFactor(
 		voteFactors: IVoteFactor[],
 		index: number,
-		addOrRemove: number,
+		addOrRemove: AddOrRemove,
 		vote: IVote,
 		component,
 		store,
@@ -222,7 +224,7 @@ export class FactorRankingLogic
 	addOrRemoveAFactor(
 		voteFactors: IVoteFactor[],
 		index: number,
-		addOrRemove: number,
+		addOrRemove: AddOrRemove,
 		vote: IPageVote,
 		component,
 		store,
@@ -237,7 +239,7 @@ export class FactorRankingLogic
 		if (index === 0) {
 			if (
 				// Cannot add the first factor
-				addOrRemove > 0
+				addOrRemove === 'add'
 				// Cannot remove the first factor if there are no other factors
 				|| (!secondFactor.outcome && !thirdFactor.outcome)) {
 				return {
@@ -262,7 +264,7 @@ export class FactorRankingLogic
 
 		numMoved      = 1
 		const outcome = voteFactors[index].outcome
-		if (addOrRemove < 0) {
+		if (addOrRemove === 'remove') {
 			// remove
 			if (!outcome) {
 				// Don't remove if it's already removed
@@ -587,9 +589,9 @@ export class FactorRankingLogic
 			movedFactor2.value = movedFactor1.value
 		}
 
-		movedFactor1.value  = removedFactor.value
-		removedFactor.value = 0
-		removedFactor.dir   = 0
+		movedFactor1.value    = removedFactor.value
+		removedFactor.value   = 0
+		removedFactor.outcome = null
 
 		// page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
 

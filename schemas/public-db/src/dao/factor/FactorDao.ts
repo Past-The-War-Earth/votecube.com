@@ -1,6 +1,6 @@
 import {DI}         from '@airport/di'
 import {IFactorDoc} from '@votecube/model'
-import {FACTOR_DAO} from '../../diTokens'
+import {FACTOR_DAO} from '../../tokens'
 
 export interface IFactorDao {
 

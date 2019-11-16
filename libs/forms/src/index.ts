@@ -42,7 +42,7 @@ export {
 	IValidators,
 	IErrorsText
 }                                                 from './validator/Validator'
-export *                                          from './diTokens'
+export *                                          from './tokens'
 export *                                          from './FormFactory'
 
 export interface IConstants {

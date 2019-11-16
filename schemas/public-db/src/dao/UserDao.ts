@@ -2,11 +2,11 @@ import {container, DI} from '@airport/di'
 import {
 	IUser,
 	User_Name
-}           from '@votecube/model'
+}                      from '@votecube/model'
 import {
 	SCHEMA,
 	USER_DAO
-}           from '../diTokens'
+}                      from '../tokens'
 
 export type Password = string
 

@@ -1,11 +1,11 @@
 import {DI}                   from '@airport/di'
-import {MATRIX_VALUE_CHOOSER} from '../../diTokens'
+import {MATRIX_VALUE_CHOOSER} from '../../tokens'
 import {ICubeUtils}           from '../../utils/CubeUtils'
 import {
 	ICubeMoveMatrix,
 	PositionValues,
 	ValueArrayPosition
-} from '../CubeMoveMatrix'
+}                             from '../CubeMoveMatrix'
 import {
 	IUiVote,
 	IUiVoteDimension
@@ -38,7 +38,7 @@ export class MatrixValueChooser
 	): IMatrixPosition {
 		const x = viewport.pd.x
 		if (x.value === 100
-			&& x.dir === -1) {
+			&& x.outcome === 'B') {
 
 			return {
 				// FIXME: errored out in this position
@@ -163,7 +163,7 @@ export class MatrixValueChooser
 		zeroedPositions: boolean[]
 	) {
 		if (voteDimension.value) {
-			if (voteDimension.dir === 1) {
+			if (voteDimension.outcome === 'A') {
 				zeroedPositions[minusIndex] = true
 			} else {
 				zeroedPositions[plusIndex] = true

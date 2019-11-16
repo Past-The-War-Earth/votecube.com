@@ -9,14 +9,12 @@ import {
 }                   from '@votecube/cube-logic'
 import {
 	Factor_Axis,
-	ICorePositionDefault,
 	IFactorPositionDefault,
 	IPollFactorPositionDefault,
-	IsData,
 	IVote,
 	Position_Dir
 }                   from '@votecube/model'
-import {CUBE_LOGIC} from '../diTokens'
+import {CUBE_LOGIC} from '../tokens'
 
 export interface ICubePosition {
 
@@ -112,7 +110,7 @@ export class CubeLogic
 			viewCallback,
 		)
 
-		return (vote: IVote) => cubeEventListener.setPositionDataAndMove(vote).then()
+		return (vote: IVote) => cubeEventListener.setPositionDataAndMove(vote)
 		// startResizeInterval(page, viewCallback)
 	}
 
@@ -130,7 +128,7 @@ export class CubeLogic
 			},
 			null
 		)
-		cubeEventListener.setPositionData(null).then()
+		cubeEventListener.setPositionData(null)
 	}
 
 	setCubeAdjustment(
@@ -138,7 +136,7 @@ export class CubeLogic
 		enableCubeAdjustment: boolean
 	): void {
 		if (enableCubeAdjustment) {
-			cubeEventListener.addCubeAdjustment().then()
+			cubeEventListener.addCubeAdjustment()
 		} else {
 			cubeEventListener.clearCubeAdjustment()
 		}
@@ -149,10 +147,8 @@ export class CubeLogic
 		setMutationApi: (mutationApi: IMutationApi) => void,
 		callback: IValuesOutCallback
 	): void {
-		cubeEventListener.setViewPort(true, callback).then(
-			mutationApi => {
-				setMutationApi(mutationApi)
-			})
+		const mutationApi = cubeEventListener.setViewPort(true, callback)
+		setMutationApi(mutationApi)
 	}
 
 	private getFactorPositionDefault(

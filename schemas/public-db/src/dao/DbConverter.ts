@@ -4,7 +4,7 @@ import {
 	IVersioned,
 	Key
 }                     from '@votecube/model'
-import {DB_CONVERTER} from '../diTokens'
+import {DB_CONVERTER} from '../tokens'
 
 export interface IDbConverter {
 

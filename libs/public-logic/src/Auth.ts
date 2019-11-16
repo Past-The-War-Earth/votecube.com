@@ -1,18 +1,18 @@
-import {container, DI}   from '@airport/di'
+import {container, DI} from '@airport/di'
 import {
 	BehaviorSubject,
 	IObservable
-}             from '@airport/observe'
+}                      from '@airport/observe'
 import {
 	IUser,
 	User_Name
-}             from '@votecube/model'
+}                      from '@votecube/model'
 import {
 	Password,
 	USER_DAO
-}             from '@votecube/public-db'
-import {app}  from 'firebase'
-import {AUTH} from './diTokens'
+}                      from '@votecube/public-db'
+import {app}           from 'firebase'
+import {AUTH}          from './tokens'
 
 export interface IAuthError {
 

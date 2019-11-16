@@ -1,5 +1,5 @@
 import {DI}               from '@airport/di'
-import {CUBE_MOVE_MATRIX} from '../diTokens'
+import {CUBE_MOVE_MATRIX} from '../tokens'
 import {PositionPercent}  from './CubeMovement'
 
 export enum MoveIncrement {

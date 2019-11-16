@@ -39,7 +39,7 @@ export async function setupCubeView(
 
 	const poll = await pollManager.getVariation(pollKey, pollVariationKey)
 
-	await cubeEventListener.setPositionData(vote)
+	cubeEventListener.setPositionData(vote)
 	await mutationApi.recompute()
 	// const poll = vote.poll
 	// const originalPoll =

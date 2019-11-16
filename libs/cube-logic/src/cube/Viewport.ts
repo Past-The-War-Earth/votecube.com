@@ -1,19 +1,22 @@
 import {
 	container,
 	DI
-}                    from '@airport/di'
-import {Factor_Axis} from '@votecube/model'
+} from '@airport/di'
+import {
+	Factor_Axis,
+	Outcome_Ordinal
+} from '@votecube/model'
 import {
 	CUBE_MOVE_MATRIX,
 	CUBE_MOVEMENT,
 	VIEWPORT
-}                    from '../diTokens'
+} from '../tokens'
 import {
 	MoveIncrement,
 	PositionValues,
 	ValueArrayPosition,
 	ZoomIndex
-}                    from './CubeMoveMatrix'
+} from './CubeMoveMatrix'
 import {
 	Bool,
 	Direction,
@@ -21,7 +24,7 @@ import {
 	IUiVoteDimension,
 	IValuesThruCallback,
 	Move
-}                    from './CubeMovement'
+} from './CubeMovement'
 
 export interface IViewport {
 
@@ -145,17 +148,17 @@ export class Viewport
 				positionValues: PositionValues,
 				voteDimension: IUiVoteDimension
 			): void {
-				let dir: Direction = 1
-				let value          = positionValues[positivePosition]
+				let outcome: Outcome_Ordinal = 'A'
+				let value                    = positionValues[positivePosition]
 				if (positionValues[negativePosition]) {
-					dir   = -1
-					value = positionValues[negativePosition]
+					outcome = 'B'
+					value   = positionValues[negativePosition]
 				} else if (!value) {
-					dir = 0
+					outcome = null
 				}
-				voteDimension.dir   = dir
-				voteDimension.valid = true
-				voteDimension.value = value
+				voteDimension.outcome = outcome
+				voteDimension.valid   = true
+				voteDimension.value   = value
 			}
 
 			getDimensionState(0, 5, values, this.pd.x)

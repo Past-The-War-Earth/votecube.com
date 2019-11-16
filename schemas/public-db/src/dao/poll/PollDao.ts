@@ -1,4 +1,4 @@
-import {container, DI}        from '@airport/di'
+import {container, DI} from '@airport/di'
 import {
 	Factor_Key,
 	ICorePollFactorsFragment,
@@ -16,18 +16,18 @@ import {
 	Key,
 	Poll_Key,
 	Variation_Key
-}                  from '@votecube/model'
-import * as firebase from 'firebase/app'
+}                      from '@votecube/model'
+import * as firebase   from 'firebase/app'
 import {
 	DB_UTILS,
 	POLL_DAO,
 	SCHEMA
-}                  from '../../diTokens'
+}                      from '../../tokens'
 import {
 	ICollection,
 	IVCDocumentReference,
 	IVCTransaction
-}                  from '../../document/document'
+}                      from '../../document/document'
 
 // extends IBasePollDao
 export interface IPollDao {

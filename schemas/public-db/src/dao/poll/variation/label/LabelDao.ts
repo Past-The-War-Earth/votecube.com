@@ -1,5 +1,5 @@
 import {DI}        from '@airport/di'
-import {LABEL_DAO} from '../../../../diTokens'
+import {LABEL_DAO} from '../../../../tokens'
 
 export interface ILabelDao {
 

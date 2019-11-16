@@ -5,7 +5,6 @@ import {
 	ICorePoll,
 	ICorePositionPoll
 }                               from '../core/Poll'
-import {ICorePositionDefault}   from '../core/Position'
 import {IFactorPositionDefault} from './Factor'
 
 export interface IPollData

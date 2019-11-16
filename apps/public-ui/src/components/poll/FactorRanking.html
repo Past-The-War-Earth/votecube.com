@@ -1,10 +1,10 @@
 {#if poll}
 {#each voteFactors as voteFactor, i}
 <section
-		on:mousedown="moveStart(voteFactors, i, event, logic)"
-		on:mouseup="moveEnd(movingVoteFactor, vote, voteFactors, i, event, logic, container)"
-		on:touchend="moveEnd(movingVoteFactor, vote, voteFactors, i, event, logic, container)"
-		on:touchstart="touchStart(voteFactors, i, event)"
+		on:mousedown="moveStart(voteFactors, i, event, container)"
+		on:mouseup="moveEnd(movingVoteFactor, vote, voteFactors, i, event, container)"
+		on:touchend="moveEnd(movingVoteFactor, vote, voteFactors, i, event, container)"
+		on:touchstart="touchStart(voteFactors, i, event, container)"
 		id="factorPlace_{i}"
 >
 	{#if showPosition(voteFactor, movingVoteFactor, movingVoteFactorDelta)}
@@ -24,8 +24,8 @@
 		{#if sideMatch(voteFactor, 'A', switchingOutcome)}
 		<var
 				class="factor A
-					{factorHighlight(movingVoteFactor, i, movingVoteFactorDelta, logic)}"
-				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
+					{factorHighlight(movingVoteFactor, i, movingVoteFactorDelta, container)}"
+				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, container, delta)};"
 		>
 			<!--
 				id="factor_{i}_A"
@@ -44,7 +44,7 @@
 				{poll.factors[voteFactor.factorNumber].name}
 				{#if canRemove(voteFactors, i, delta)}
 				<MoveButton
-						on:selectStart="addOrRemove(-1, event)"
+						on:selectStart="addOrRemove('remove', event)"
 						classes="right"
 						size="19"
 						styles="left: 24px; position: absolute; top: -1.5px"
@@ -60,7 +60,7 @@
 				{/if}
 			</header>
 			<p
-					style="color: #{getTextColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
+					style="color: #{getTextColor(poll.factors[voteFactor.factorNumber].color, container, delta)};"
 			>
 				{poll.factors[voteFactor.factorNumber].positions.A.name}
 			</p>
@@ -72,8 +72,8 @@
 		-->
 		<var
 				class="factor B
-					{factorHighlight(movingVoteFactor, i, movingVoteFactorDelta, logic)}"
-				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
+					{factorHighlight(movingVoteFactor, i, movingVoteFactorDelta, container)}"
+				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, container, delta)};"
 		>
 			<!--
 				id="factor_{i}_B"
@@ -91,7 +91,7 @@
 				></CharacterButton>
 				{#if canRemove(voteFactors, i, delta)}
 				<MoveButton
-						on:selectStart="addOrRemove(-1, event)"
+						on:selectStart="addOrRemove('remove', event)"
 						classes="right"
 						size="19"
 						styles="left: 24px; position: absolute; top: -1.5px"
@@ -107,7 +107,7 @@
 				{/if}
 			</header>
 			<p
-					style="color: #{getTextColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
+					style="color: #{getTextColor(poll.factors[voteFactor.factorNumber].color, container, delta)};"
 			>
 				{poll.factors[voteFactor.factorNumber].positions.B.name}
 			</p>
@@ -120,7 +120,7 @@
 	>
 
 		<MoveButton
-				on:selectStart="addOrRemove(1, event)"
+				on:selectStart="addOrRemove('add', event)"
 				size="19"
 				styles="left: 32px; position: absolute; top: 42px"
 		></MoveButton>
@@ -281,13 +281,13 @@
 				movingVoteFactor,
 				index,
 				movingVoteFactorDelta,
-				logic
+				container
 			) {
-				if (!movingVoteFactor || index === movingVoteFactor.index || !logic) {
+				if (!movingVoteFactor || index === movingVoteFactor.index || !container) {
 					return ''
 				}
 
-				const factorInfo = logic.getFactorInfoAtCoords(
+				const factorInfo = container.getSync(FACTOR_RANKING_LOGIC).getFactorInfoAtCoords(
 					movingVoteFactor.originalX, movingVoteFactor.pageY, movingVoteFactor.index)
 
 				return factorInfo && factorInfo.factorNumber === index ? 'highlighted' : ''
@@ -334,21 +334,21 @@
 			// cubeTransition ? 0 : voteFactor.outcome === 'A' ? -200 : 200,
 			getColor: (
 				color,
-				logicUtils
+				container
 			) => {
-				if (!logicUtils) {
+				if (!container) {
 					return 'FFF'
 				}
-				return logicUtils.getColor(color)
+				return container.getSync(LOGIC_UTILS).getColor(color)
 			},
 			getTextColor: (
 				color,
-				logicUtils
+				container
 			) => {
-				if (!logicUtils) {
+				if (!container) {
 					return '000'
 				}
-				return logicUtils.getTextColor(color)
+				return container.getSync(LOGIC_UTILS).getTextColor(color)
 			},
 			isB: (
 				voteFactor
@@ -383,10 +383,9 @@
 				voteFactors,
 				index,
 				event,
-				logic,
 				container
 			) {
-				if (!logic) {
+				if (!container) {
 					return
 				}
 				try {
@@ -401,9 +400,12 @@
 						return
 					}
 
-					const usefulEvent = event.changedTouches && event.changedTouches[0]
+					const usefulEvent                      = event.changedTouches && event.changedTouches[0]
 						? event.changedTouches[0] : event
-					const factorInfo  = logic.getFactorInfoAtCoords(voteFactors[index].originalX, usefulEvent.pageY, index)
+					const [factorRankingLogic, logicUtils] =
+						      container.getSync(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
+					const factorInfo                       = factorRankingLogic
+						.getFactorInfoAtCoords(voteFactors[index].originalX, usefulEvent.pageY, index)
 					if (factorInfo && factorInfo.factorNumber >= 0) {
 						index = factorInfo.factorNumber
 					}
@@ -420,21 +422,15 @@
 					const upButtonClickMove = lastMoveStart.move
 					const addOrRemove       = lastMoveStart.addOrRemove
 
-					container.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS).then((
-						[
-							factorRankingLogic,
-							logicUtils
-						]) => {
-						if (!upButtonClickMove && originalIndex === index) {
-							singleFactorChange(absDx, absDy, addOrRemove, dx, dy, index,
-								originalIndex, upButtonClickMove, vote,
-								voteFactors, this, factorRankingLogic, logicUtils)
-						} else {
-							multiFactorChange(absDx, absDy, dy, index,
-								originalIndex, upButtonClickMove, vote,
-								voteFactors, this, factorRankingLogic, logicUtils)
-						}
-					})
+					if (!upButtonClickMove && originalIndex === index) {
+						singleFactorChange(absDx, absDy, addOrRemove, dx, dy, index,
+							originalIndex, upButtonClickMove, vote,
+							voteFactors, this, factorRankingLogic, logicUtils)
+					} else {
+						multiFactorChange(absDx, absDy, dy, index,
+							originalIndex, upButtonClickMove, vote,
+							voteFactors, this, factorRankingLogic, logicUtils)
+					}
 				} finally {
 					stopVoteFactorMovement(this, movingVoteFactor)
 				}
@@ -443,7 +439,7 @@
 				voteFactors,
 				index,
 				event,
-				logic
+				container
 			) {
 				let time               = new Date().getTime()
 				const movingVoteFactor = voteFactors[index]
@@ -451,7 +447,8 @@
 				const usefulEvent       = event.touches ? event.touches[0] : event
 				movingVoteFactor.index  = index
 				// Offset is only recorded once
-				movingVoteFactor.offset = logic.getInElementOffset(usefulEvent)
+				movingVoteFactor.offset = container.getSync(FACTOR_RANKING_LOGIC)
+					.getInElementOffset(usefulEvent)
 				positionMovingVoteFactor(movingVoteFactor, usefulEvent)
 				movingVoteFactor.originalX = movingVoteFactor.pageX
 				movingVoteFactor.originalY = movingVoteFactor.pageY
@@ -491,11 +488,12 @@
 			touchStart(
 				voteFactors,
 				index,
-				event
+				event,
+				container
 			) {
 				// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Supporting_both_TouchEvent_and_MouseEvent
 				event.preventDefault()
-				this.moveStart(voteFactors, index, event)
+				this.moveStart(voteFactors, index, event, container)
 			},
 			upStart(
 				index,
@@ -505,11 +503,10 @@
 				event.factorButtonMove  = true
 				event.factorButtonIndex = index - 1
 				setTimeout(() => {
-					container.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS).then(
-						([factorRankingLogic, logicUtils]) => {
-							factorRankingLogic.move(index - 1, {y: 100}, this, logicUtils)
-							factorRankingLogic.move(index, {y: -100}, this, logicUtils)
-						})
+					const [factorRankingLogic, logicUtils] =
+						      container.getSync(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
+					factorRankingLogic.move(index - 1, {y: 100}, this, logicUtils)
+					factorRankingLogic.move(index, {y: -100}, this, logicUtils)
 				}, 100)
 			}
 		},
@@ -529,10 +526,9 @@
 	async function initPage(
 		page
 	) {
-		const container           = DI.ui('FactorRanking')
-		const [logic, logicUtils] = await container.get(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
+		const container = DI.ui('FactorRanking')
 
-		page.set({container, logic, logicUtils})
+		page.set({container})
 	}
 
 	function singleFactorChange(
@@ -555,9 +551,13 @@
 		}
 		// Change to 1 factor only
 		else if (addOrRemove || absDx - 10 > absDy) {
+			if (!addOrRemove) {
+				addOrRemove = dx > 0 ? 'add' : 'remove'
+			}
 			handleMoveEffects(factorRankingLogic.addOrRemoveAFactor(
-				voteFactors, index, addOrRemove ? addOrRemove : dx, vote, page), page)
-			// if (addOrRemove === 1) {
+				voteFactors, index, addOrRemove,
+				vote, page, page.store, logicUtils), page)
+			// if (addOrRemove === 'add') {
 			// 	setTimeout(() => {
 			// 		move(index, {x: -200, duration: 700}, page)
 			// 	})
@@ -679,8 +679,7 @@
 			// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
 			// dispatch 'move-viewport' event
 			const page             = onFactorMove.page
-			const {container}        = page.get()
-			const movingVoteFactor = page.get().movingVoteFactor
+			const {container, movingVoteFactor}      = page.get()
 			positionMovingVoteFactor(movingVoteFactor, position)
 
 			// If the user is swiping in the factor
@@ -692,19 +691,15 @@
 				// stopping movement before adding factor to get the slide in animation
 				stopVoteFactorMovement(page, movingVoteFactor)
 				setTimeout(() => {
-
-					const {voteFactors, vote} = page.get()
+					const {voteFactors, vote}              = page.get()
 					// Proactively swipe in the factor
-					container.get([FACTOR_RANKING_LOGIC, LOGIC_UTILS]).then(([
-						                                                         factorRankingLogic,
-						                                                         logicUtils
-					                                                         ]) => {
-						handleMoveEffects(
-							factorRankingLogic.addOrRemoveAFactor(
-								voteFactors, movingVoteFactor.index, 1, vote,
-								page, page.store, logicUtils
-							), page)
-					})
+					const [factorRankingLogic, logicUtils] =
+						      container.getSync(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
+					handleMoveEffects(
+						factorRankingLogic.addOrRemoveAFactor(
+							voteFactors, movingVoteFactor.index, 1, vote,
+							page, page.store, logicUtils
+						), page)
 				})
 			}
 			incMovingDelta(page)

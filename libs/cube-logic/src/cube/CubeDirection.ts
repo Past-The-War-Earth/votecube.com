@@ -1,5 +1,5 @@
 import {DI}             from '@airport/di'
-import {CUBE_DIRECTION} from '../diTokens'
+import {CUBE_DIRECTION} from '../tokens'
 import {
 	DirectionVector,
 	MovementDirection
