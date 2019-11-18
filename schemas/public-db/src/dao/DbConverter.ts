@@ -17,23 +17,15 @@ export interface IDbConverter {
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
-		directProperties: any[],
-		excludeFtsProperties: string[]
-	): {
-		dbObject: Db
-		ftsProps: string[]
-	}
+		directProperties: any[]
+	): Db
 
 	toVersionedDb<K extends Key, Ui extends IVersioned<K>, Delta, Db extends IVersioned<K>>(
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
-		directProperties: any[],
-		excludeFtsProperties: string[]
-	): {
-		dbObject: Db
-		ftsProps: string[]
-	}
+		directProperties: any[]
+	): Db
 
 }
 
@@ -46,13 +38,18 @@ export class DbConverter
 	): Ui {
 		const uiObject: any = {}
 
-		for (const propertyName in dbObject) {
-			if (directProperties.indexOf(propertyName) > -1) {
-				uiObject[propertyName] = dbObject[propertyName]
-			} else {
-				uiObject[propertyName] = this.fromDbInternal(
-					dbObject[propertyName]
-				)
+		if ((dbObject as any).d || (dbObject as any).d === 0) {
+			return (dbObject as any).d
+		} else {
+			for (const propertyName in dbObject) {
+				if (directProperties.indexOf(propertyName) > -1) {
+					uiObject[propertyName] = dbObject[propertyName]
+				} else {
+					uiObject[propertyName] = this.fromDb(
+						dbObject[propertyName],
+						directProperties
+					)
+				}
 			}
 		}
 
@@ -63,53 +60,35 @@ export class DbConverter
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
-		directProperties: any[],
-		excludeFtsProperties: string[]
-	): {
-		dbObject: Db
-		ftsProps: string[]
-	} {
+		directProperties: any[]
+	): Db {
 		const create        = !originalDbObject
 		const dbObject: any = {}
-		const ftsProps      = []
 
 		for (const propertyName in uiObject) {
 			const value = uiObject[propertyName]
 			if (directProperties.indexOf(propertyName) > -1) {
 				dbObject[propertyName] = value
-				if (typeof value === 'string') {
-					ftsProps.push(value)
-				}
 			} else {
 				dbObject[propertyName] = this.toDbInternal(
 					value,
 					(deltas as any)[propertyName],
 					create ? null : (originalDbObject as any)[propertyName],
-					create, ftsProps, excludeFtsProperties)
+					create)
 			}
 		}
 
-		return {
-			dbObject,
-			ftsProps
-		}
+		return dbObject
 	}
 
 	toVersionedDb<K extends Key, Ui extends IVersioned<K>, Delta, Db extends IVersioned<K>>(
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
-		directProperties: any[],
-		excludeFtsProperties: string[]
-	): {
-		dbObject: Db,
-		ftsProps: string[]
-	} {
-		const {
-			      dbObject,
-			      ftsProps
-		      } = this.toDb(uiObject, deltas, originalDbObject,
-			directProperties, excludeFtsProperties)
+		directProperties: any[]
+	): Db {
+		const dbObject = this.toDb(uiObject, deltas, originalDbObject,
+			directProperties)
 
 		if (originalDbObject) {
 			dbObject.depth                        = originalDbObject.depth + 1
@@ -133,37 +112,14 @@ export class DbConverter
 			dbObject.depth  = 1
 		}
 
-		return {
-			dbObject,
-			ftsProps
-		}
-	}
-
-	private fromDbInternal<Db, Ui>(
-		dbObject: Db
-	): Ui {
-		const uiObject: any = {}
-
-		if ((dbObject as any).d) {
-			return (dbObject as any).d
-		} else {
-			for (const propertyName in dbObject) {
-				uiObject[propertyName] = this.fromDbInternal(
-					dbObject[propertyName]
-				)
-			}
-		}
-
-		return uiObject
+		return dbObject
 	}
 
 	private toDbInternal<Ui, Delta, Db>(
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
-		create: boolean,
-		ftsProps: string[],
-		excludeFtsProps: string[]
+		create: boolean
 	): Db {
 		const dbObject: any = {}
 
@@ -173,14 +129,10 @@ export class DbConverter
 					uiObject[propertyName],
 					(deltas as any)[propertyName],
 					create ? null : (originalDbObject as any)[propertyName],
-					create, ftsProps, excludeFtsProps)
+					create)
 			}
 		} else {
 			this.toDbObject(uiObject, deltas, originalDbObject as any, dbObject, create)
-			if (typeof uiObject === 'string'
-				&& excludeFtsProps.indexOf(uiObject) === -1) {
-				ftsProps.push(uiObject)
-			}
 		}
 
 		return dbObject

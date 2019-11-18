@@ -1,30 +1,31 @@
 import {
 	container,
 	DI
-}                          from '@airport/di'
-import {IFieldGroup}       from '@votecube/forms'
+}                    from '@airport/di'
+import {IFieldGroup} from '@votecube/forms'
 import {
+	IPollData,
+	IPollDoc,
 	IUser,
 	IVariationData,
 	IVariationDelta,
 	IVariationDoc,
 	IVote,
 	Poll_Key,
+	Theme_Id,
 	Variation_Key
-}                          from '@votecube/model'
+}                    from '@votecube/model'
 import {
 	DB_CONVERTER,
 	DB_UTILS,
 	POLL_DAO
-}                          from '@votecube/public-db'
-import * as elasticlunr    from 'elasticlunr'
-import {EXCLUDE_FTS_PROPS} from '../LogicUtils'
+}                    from '@votecube/public-db'
 import {
 	CUBE_LOGIC,
 	LOGIC_UTILS,
 	POLL_FORM_MANAGER,
 	POLL_MANAGER
-}                          from '../tokens'
+}                    from '../tokens'
 
 export interface IPageVote
 	extends IVote {
@@ -34,6 +35,8 @@ export interface IPageVote
 export interface IPollManager {
 
 	currentVariation: IStoredVariation
+
+	getAllPolls(): Promise<IPollData[]>
 
 	getVariation(
 		pollKey: Poll_Key,
@@ -71,6 +74,24 @@ export class PollManager
 
 	get currentVariation(): IStoredVariation {
 		return this.currVariation
+	}
+
+	async getAllPolls(): Promise<IPollData[]> {
+		const pollDao = await container(this).get(POLL_DAO)
+
+		const pollDocs = await pollDao.getAll()
+
+		return await this.convertPollDocs(pollDocs)
+	}
+
+	async getPollsForTheme(
+		themeId: Theme_Id
+	): Promise<IPollData[]> {
+		const pollDao = await container(this).get(POLL_DAO)
+
+		const pollDocs = await pollDao.getForTheme(themeId)
+
+		return await this.convertPollDocs(pollDocs)
 	}
 
 	async getVariation(
@@ -151,25 +172,8 @@ export class PollManager
 
 		const dbConverter = await container(this).get(DB_CONVERTER)
 
-		const {
-			      dbObject,
-			      ftsProps
-		      } = dbConverter.toVersionedDb(ui, delta,
-			this.currVariation.doc, dbUtils.subPollProps, EXCLUDE_FTS_PROPS)
-
-		const index = elasticlunr(function () {
-			this.addField('test' as unknown as never)
-			this.setRef('id' as unknown as never)
-		})
-
-		const fts = {}
-		for (const ftsProp of ftsProps) {
-			const propTokens = index.pipeline.run(elasticlunr.tokenizer(ftsProps[0]))
-			for (const token of propTokens) {
-				fts[token] = true
-			}
-		}
-		dbObject.fts = fts
+		const dbObject = dbConverter.toVersionedDb(ui, delta,
+			this.currVariation.doc, dbUtils.subPollProps)
 
 		const pollDao = await container(this).get(POLL_DAO)
 
@@ -182,6 +186,17 @@ export class PollManager
 			ui: null,
 			uiDelta: null,
 		}
+	}
+
+	private async convertPollDocs(
+		pollDocs: IPollDoc[]
+	): Promise<IPollData[]> {
+		const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
+
+		const pollData: IPollData[] = pollDocs.map(
+			pollDoc => dbConverter.fromDb(pollDoc, dbUtils.subPollProps))
+
+		return pollData
 	}
 
 }

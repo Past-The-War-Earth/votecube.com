@@ -203,7 +203,7 @@
 		password,
 		page
 	) {
-		const {container} = this.get()
+		const {container} = page.get()
 
 		const auth  = await container.get(AUTH)
 		const error = await auth.signIn(username, password)
@@ -233,7 +233,7 @@
 		password,
 		page
 	) {
-		const {container} = this.get()
+		const {container} = page.get()
 
 		const auth  = await container.get(AUTH)
 		const error = await auth.signUp(username, password)

@@ -16,8 +16,6 @@ interface IVoteFactorNode {
 
 }
 
-export const EXCLUDE_FTS_PROPS = ['x', 'y', 'z']
-
 export interface ILogicUtils {
 
 	copyProperties(

@@ -78,6 +78,7 @@
 </article>
 {:catch error}
 {error}
+{getError(error)}
 {/await}
 <style>
 
@@ -94,17 +95,16 @@
 
 </style>
 <script>
-	import {DI}                 from '@airport/di'
-	import {POLL_DAO}           from '@votecube/public-db'
-	import {fade}               from 'svelte-transitions'
-	import {fromPollListingDoc} from '../../../../../../schemas/relational-db/src/dao/fromConverter'
-	import CancelButton         from '../../../common/control/button/CancelButton.html'
-	import AutoComplete         from '../../../common/field/AutoComplete.html'
+	import {DI}           from '@airport/di'
+	import {POLL_MANAGER} from '@votecube/public-logic'
+	import {fade}         from 'svelte-transitions'
+	import CancelButton   from '../../../common/control/button/CancelButton.html'
+	import AutoComplete   from '../../../common/field/AutoComplete.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
-	import ActionPopover        from '../../../common/shell/ActionPopover.html'
-	import PollListFab          from '../../../components/poll/PollListFab.html'
-	import * as forms           from '../../../form/forms'
-	import {loadForms}          from '../../../libs/forms'
+	import ActionPopover  from '../../../common/shell/ActionPopover.html'
+	import PollListFab    from '../../../components/poll/PollListFab.html'
+	import * as forms     from '../../../form/forms'
+	import {loadForms}    from '../../../libs/forms'
 	import * as routes          from '../../../routes'
 	import store                from '../../../store'
 	import PollListItem         from './PollListItem.html'
@@ -126,6 +126,13 @@
 						resolve(initPage())
 					}, 1)
 				})
+			}
+		},
+		helpers: {
+			getError(
+				error
+			) {
+				console.log(error)
 			}
 		},
 		methods: {
@@ -167,14 +174,14 @@
 	}
 
 	async function initPage() {
-		const container  = DI.ui('PollList')
-		const pollDao = await container.get(POLL_DAO)
+		const container = DI.ui('PollList')
+		const pollManager   = await container.get(POLL_MANAGER)
 		const [
 			      formFactory,
 			      polls
-		      ]       = await Promise.all([
+		      ]         = await Promise.all([
 			loadForms(initPage.page.store),
-			findPolls(null, pollDao)
+			findPolls(null, pollManager)
 		])
 
 		const theme = formFactory.options([], [{
@@ -195,7 +202,7 @@
 		}])
 
 		theme.onChange((aTheme) => {
-			findPolls(aTheme, pollDao).then(
+			findPolls(aTheme, pollManager).then(
 				polls => {
 					initPage.page.set({polls})
 				})
@@ -215,15 +222,12 @@
 
 	async function findPolls(
 		theme,
-		pollDao
+		pollManager
 	) {
-		let dbDocs
 		if (!theme) {
-			dbDocs = await pollDao.getAll()
+			return pollManager.getAllPolls()
 		} else {
-			dbDocs = await pollDao.getForTheme(theme.id)
+			return pollManager.getPollsForTheme(theme.id)
 		}
-
-		return dbDocs.map(fromPollListingDoc)
 	}
 </script>

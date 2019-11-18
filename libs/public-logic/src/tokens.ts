@@ -7,7 +7,6 @@ import {IPollFormLogic}      from './pages/poll/info/PollFormLogic'
 import {IPollMainLogic}      from './pages/poll/info/PollMainLogic'
 import {IPollFormManager}    from './pages/poll/PollFormManager'
 import {ICubeLogic}          from './poll/CubeLogic'
-import {IPollLogic}          from './poll/PollLogic'
 import {IPollManager}        from './poll/PollManager'
 import {IRoutes}             from './Routes'
 
@@ -20,7 +19,6 @@ export const FACTOR_RANKING_LOGIC = publicLogic.token<IFactorRankingLogic>()
 export const LOGIC_UTILS          = publicLogic.token<ILogicUtils>()
 export const POLL_FORM_LOGIC      = publicLogic.token<IPollFormLogic>()
 export const POLL_FORM_MANAGER    = publicLogic.token<IPollFormManager>()
-export const POLL_LOGIC           = publicLogic.token<IPollLogic>()
 export const POLL_MAIN_LOGIC      = publicLogic.token<IPollMainLogic>()
 export const POLL_MANAGER         = publicLogic.token<IPollManager>()
 export const ROUTES               = publicLogic.token<IRoutes>()

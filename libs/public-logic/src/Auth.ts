@@ -1,18 +1,21 @@
-import {container, DI} from '@airport/di'
+import {
+	container,
+	DI
+}             from '@airport/di'
 import {
 	BehaviorSubject,
 	IObservable
-}                      from '@airport/observe'
+}             from '@airport/observe'
 import {
 	IUser,
 	User_Name
-}                      from '@votecube/model'
+}             from '@votecube/model'
 import {
 	Password,
 	USER_DAO
-}                      from '@votecube/public-db'
-import {app}           from 'firebase'
-import {AUTH}          from './tokens'
+}             from '@votecube/public-db'
+import {app}  from 'firebase'
+import {AUTH} from './tokens'
 
 export interface IAuthError {
 
@@ -194,9 +197,9 @@ export class Auth
 	private async encodePassword(
 		password: Password
 	): Promise<Password> {
-		const shaObj = await import('jssha/src/sha512')
+		const jsSHA = await import('jssha/src/sha512')
 
-		shaObj.default('SHA-512', 'TEXT')
+		const shaObj = new jsSHA('SHA-512', 'TEXT')
 		shaObj.update(password)
 
 		return shaObj.getHash('B64')

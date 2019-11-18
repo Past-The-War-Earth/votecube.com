@@ -6,12 +6,17 @@ export async function init() {
 }
 */
 
-import {DI}      from '@airport/di'
-import {IMarked} from '@votecube/model'
-import {
-	DB_CONVERTER,
-	DB_UTILS
-}                from '../tokens'
+import {DI}             from '@airport/di'
+import {IMarked}        from '@votecube/model'
+import * as elasticlunr from 'elasticlunr'
+import {DB_UTILS}       from '../tokens'
+
+export type FullTextSearchProperty = string
+export type ExcludeFullTextSearchProperty = string
+
+export interface IFullTextSearchObject {
+	[propertyName: string]: boolean
+}
 
 export interface IDbUtils {
 
@@ -28,10 +33,20 @@ export interface IDbUtils {
 		skipKeys?: string[]
 	): any
 
+	getFtsProps(
+		object: any,
+		excludeFtsProperties?: ExcludeFullTextSearchProperty[]
+	): IFullTextSearchObject
+
 }
 
 export class DbUtils
 	implements IDbUtils {
+
+	static EXCLUDE_FTS_PROPS = [
+		'createdAt', 'fts', 'key', 'userKey', 'x', 'y', 'z']
+
+	private theElIndex: elasticlunr.Index<any>
 
 	get addedProps(): string[] {
 		return [
@@ -47,7 +62,8 @@ export class DbUtils
 		return [
 			...this.addedProps,
 			...this.versionedProps,
-			'pollKey'
+			'pollKey',
+			'rootVariationKey'
 		]
 	}
 
@@ -58,6 +74,17 @@ export class DbUtils
 			'parentKey',
 			'path'
 		]
+	}
+
+	private get elIndex(): elasticlunr.Index<any> {
+		if (!this.theElIndex) {
+			this.theElIndex = elasticlunr(function () {
+				this.addField('test' as unknown as never)
+				this.setRef('id' as unknown as never)
+			})
+		}
+
+		return this.theElIndex
 	}
 
 	calculateWaterMarks(
@@ -125,6 +152,40 @@ export class DbUtils
 		return theCopy
 	}
 
+	getFtsProps(
+		object: any,
+		excludeFtsProperties: ExcludeFullTextSearchProperty[]
+			= DbUtils.EXCLUDE_FTS_PROPS
+	): IFullTextSearchObject {
+		const fts: IFullTextSearchObject = {}
+
+		this.doGetFtsProps(object, excludeFtsProperties, fts)
+
+		return fts
+	}
+
+	private doGetFtsProps(
+		object: any,
+		excludeFtsProperties: ExcludeFullTextSearchProperty[],
+		fts: IFullTextSearchObject
+	): void {
+		if (object instanceof Object) {
+			for (const propertyName in object) {
+				if (excludeFtsProperties.indexOf(propertyName) === -1) {
+					this.doGetFtsProps(object[propertyName], excludeFtsProperties, fts)
+				}
+			}
+		} else {
+			if (typeof object === 'string'
+				&& excludeFtsProperties.indexOf(object) === -1) {
+				const propTokens = this.elIndex.pipeline.run(elasticlunr.tokenizer(object))
+				for (const token of propTokens) {
+					fts[token] = true
+				}
+			}
+		}
+	}
+
 	private setHighChange(
 		aggregate: number,
 		data: number
@@ -166,5 +227,5 @@ export class DbUtils
 	}
 
 }
-DI.set(DB_UTILS, DbUtils)
 
+DI.set(DB_UTILS, DbUtils)

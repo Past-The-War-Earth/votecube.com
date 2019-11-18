@@ -31,6 +31,10 @@ import {
 	POLL_DAO,
 	SCHEMA
 }                    from '../../tokens'
+import {
+	IDbUtils,
+	IFullTextSearchObject
+}                    from '../DbUtils'
 
 // extends IBasePollDao
 export interface IPollDao {
@@ -154,31 +158,40 @@ export class PollDao
 		const variationOnly = !!variationIn.pollKey
 
 		const variation = await this.setupVariation(variationIn, user)
-
 		const poll      = await this.setupPoll(variation, user)
 
 		try {
-			const schema = await container(this).get(SCHEMA)
+			const [dbUtils, schema] = await container(this).get(DB_UTILS, SCHEMA)
 			await schema.db.runTransaction(async (transaction) => {
 				const {
 					      pollRef,
 					      variationRef
 				      } = variationOnly
 					? await this.getRefs(variation)
-					: await this.savePollAndGetRefs(poll, transaction)
+					: await this.prepPollAndGetRefs(poll)
 
 				variation.pollKey = poll.key
 				variation.key     = variationRef.id
-				await transaction.set(variationRef, variation)
 
 				const variationListing    = this.setupVariationListing(poll, variation)
 				const variationListingRef = schema.pollDrafts.pollVariationListings(pollRef)
 					.doc(variation.key)
+
+				const outcomeFactorsAndPositionsFts: IFullTextSearchObject =
+					      await this.addOutcomesFactorsAndPositions(
+						      poll, variationOnly, variation,
+						      user, transaction, dbUtils)
+
+				this.copyFtsProps(outcomeFactorsAndPositionsFts, poll.fts)
+				variation.fts        = poll.fts
+				variationListing.fts = poll.fts
+
+				await transaction.set(variationRef, variation)
 				await transaction.set(variationListingRef, variationListing)
 
-				await this.addOutcomesFactorsAndPositions(
-					poll, variationOnly, variation,
-					user, transaction)
+				if (!variationOnly) {
+					await transaction.set(pollRef, poll)
+				}
 
 				delete this.tempVariation
 			})
@@ -231,6 +244,23 @@ export class PollDao
 
 		const dbUtils = await container(this).get(DB_UTILS)
 
+		const poll = {
+			ageSuitability: dbUtils.copy(variation.ageSuitability),
+			createdAt: variation.createdAt,
+			factors,
+			fts: undefined,
+			key: undefined,
+			name: dbUtils.copy(variation.name),
+			outcomes: undefined,
+			rootVariationKey: variation.key,
+			theme: dbUtils.copy(variation.theme),
+			userKey: user.key
+		}
+
+		const fts = dbUtils.getFtsProps(poll)
+
+		const outcomes = dbUtils.copy(variation.outcomes)
+
 		for (const factorNumber in variation.factors) {
 			if (factorNumber === 'marks') {
 				continue
@@ -242,19 +272,10 @@ export class PollDao
 				name: dbUtils.copy(variationFactor.name)
 			}
 		}
+		poll.outcomes = outcomes
+		poll.fts      = fts
 
-		return {
-			ageSuitability: dbUtils.copy(variation.ageSuitability),
-			createdAt: variation.createdAt,
-			factors,
-			fts: undefined,
-			key: undefined,
-			name: dbUtils.copy(variation.name),
-			outcomes: dbUtils.copy(variation.outcomes),
-			rootVariationKey: variation.key,
-			theme: dbUtils.copy(variation.theme),
-			userKey: user.key
-		}
+		return poll
 	}
 
 	private setupVariationListing(
@@ -287,9 +308,8 @@ export class PollDao
 		}
 	}
 
-	private async savePollAndGetRefs(
-		poll: IPollDoc,
-		transaction: IVCTransaction,
+	private async prepPollAndGetRefs(
+		poll: IPollDoc
 	): Promise<{
 		pollRef: IVCDocumentReference<Poll_Key, IPollDoc>,
 		variationRef: IVCDocumentReference<Variation_Key, IVariationDoc, Poll_Key, IPollDoc>
@@ -301,7 +321,6 @@ export class PollDao
 		const variationRef = schema.pollDrafts.pollVariations(pollRef).doc()
 
 		poll.rootVariationKey = variationRef.id
-		await transaction.set(pollRef, poll)
 
 		return {
 			pollRef,
@@ -314,14 +333,29 @@ export class PollDao
 		pollExists: boolean,
 		variation: IVariationDoc,
 		user: IUser,
-		transaction: IVCTransaction
-	): Promise<void> {
-		await this.addOutcome(poll.outcomes.A, poll, pollExists, user, transaction)
-		await this.addOutcome(poll.outcomes.B, poll, pollExists, user, transaction)
+		transaction: IVCTransaction,
+		dbUtils: IDbUtils
+	): Promise<IFullTextSearchObject> {
+		const outcomeFactorsAndPositionsFts: IFullTextSearchObject = {}
+		const outcomeAfts                                          = await this.addOutcome(
+			poll.outcomes.A, poll, pollExists, user, transaction, dbUtils)
+		const outcomeBfts                                          = await this.addOutcome(
+			poll.outcomes.B, poll, pollExists, user, transaction, dbUtils)
 
-		await this.addFactor(variation.factors[1], poll, pollExists, user, transaction)
-		await this.addFactor(variation.factors[2], poll, pollExists, user, transaction)
-		await this.addFactor(variation.factors[3], poll, pollExists, user, transaction)
+		const factor1fts = await this.addFactor(
+			variation.factors[1], poll, pollExists, user, transaction, dbUtils)
+		const factor2fts = await this.addFactor(
+			variation.factors[2], poll, pollExists, user, transaction, dbUtils)
+		const factor3fts = await this.addFactor(
+			variation.factors[3], poll, pollExists, user, transaction, dbUtils)
+
+		this.copyFtsProps(outcomeAfts, outcomeFactorsAndPositionsFts)
+		this.copyFtsProps(outcomeBfts, outcomeFactorsAndPositionsFts)
+		this.copyFtsProps(factor1fts, outcomeFactorsAndPositionsFts)
+		this.copyFtsProps(factor2fts, outcomeFactorsAndPositionsFts)
+		this.copyFtsProps(factor3fts, outcomeFactorsAndPositionsFts)
+
+		return outcomeFactorsAndPositionsFts
 	}
 
 	private async addOutcome(
@@ -329,16 +363,23 @@ export class PollDao
 		poll: IPollDoc,
 		pollExists: boolean,
 		user: IUser,
-		transaction: IVCTransaction
-	): Promise<void> {
+		transaction: IVCTransaction,
+		dbUtils: IDbUtils
+	): Promise<IFullTextSearchObject> {
 		const outcomeExists = !!outcome.key
 		const schema        = await container(this).get(SCHEMA)
-		const outcomeRef    = await this.addResource(outcome, schema.outcomes,
-			user, transaction)
 
-		await this.addManyToManyResource(schema.outcomes.outcomePolls(outcomeRef),
+		const {
+			      fts,
+			      ref
+		      } = await this.addResource(outcome, schema.outcomes,
+			user, transaction, dbUtils)
+
+		await this.addManyToManyResource(schema.outcomes.outcomePolls(ref),
 			outcome, 'outcome', outcomeExists,
 			poll, pollExists, user, transaction)
+
+		return fts
 	}
 
 	private async addFactor(
@@ -346,24 +387,44 @@ export class PollDao
 		poll: IPollDoc,
 		pollExists: boolean,
 		user: IUser,
-		transaction: IVCTransaction
-	): Promise<void> {
+		transaction: IVCTransaction,
+		dbUtils: IDbUtils
+	): Promise<IFullTextSearchObject> {
 		const factorExists     = !!factor.key
 		const standAloneFactor = {...factor}
 		delete standAloneFactor.positions
 
-		const schema    = await container(this).get(SCHEMA)
-		const factorRef = await this.addResource(standAloneFactor, schema.factors,
-			user, transaction)
+		const schema = await container(this).get(SCHEMA)
+		const {
+			      fts,
+			      ref
+		      }      = await this.addResource(standAloneFactor, schema.factors,
+			user, transaction, dbUtils)
 
-		await this.addManyToManyResource(schema.factors.factorPolls(factorRef),
+		await this.addManyToManyResource(schema.factors.factorPolls(ref),
 			factor, 'factor', factorExists,
 			poll, pollExists, user, transaction)
 
-		await this.addPosition(factor.positions.A, factorRef, factor, factorExists,
-			poll, pollExists, user, transaction)
-		await this.addPosition(factor.positions.B, factorRef, factor, factorExists,
-			poll, pollExists, user, transaction)
+		const positionAFts = await this.addPosition(
+			factor.positions.A, ref, factor, factorExists,
+			poll, pollExists, user, transaction, dbUtils)
+		const positionBFts = await this.addPosition(
+			factor.positions.B, ref, factor, factorExists,
+			poll, pollExists, user, transaction, dbUtils)
+
+		this.copyFtsProps(positionAFts, fts)
+		this.copyFtsProps(positionBFts, fts)
+
+		return fts
+	}
+
+	private copyFtsProps(
+		from,
+		to
+	) {
+		for (const fromProperty in from) {
+			to[fromProperty] = true
+		}
 	}
 
 	private async addManyToManyResource<K extends Key, T extends IUserCreated<K>,
@@ -410,21 +471,27 @@ export class PollDao
 		poll: IPollDoc,
 		pollExists: boolean,
 		user: IUser,
-		transaction: IVCTransaction
-	): Promise<void> {
+		transaction: IVCTransaction,
+		dbUtils: IDbUtils
+	): Promise<IFullTextSearchObject> {
 		const positionExists = !!position.key
 
-		const schema      = await container(this).get(SCHEMA)
-		const positionRef = await this.addResource(position, schema.positions,
-			user, transaction)
+		const schema = await container(this).get(SCHEMA)
+		const {
+			      fts,
+			      ref
+		      }      = await this.addResource(position, schema.positions,
+			user, transaction, dbUtils)
 
-		await this.addManyToManyResource(schema.positions.positionPolls(positionRef),
+		await this.addManyToManyResource(schema.positions.positionPolls(ref),
 			position, 'position', positionExists,
 			poll, pollExists, user, transaction)
 
 		await this.addManyToManyResource(schema.factors.factorPositions(factorRef),
 			factor, 'factor', factorExists,
 			position, positionExists, user, transaction)
+
+		return fts
 	}
 
 	private async addResource<K extends Key, T extends IUserCreated<K>,
@@ -432,19 +499,38 @@ export class PollDao
 		resource: T,
 		collection: ICollection<K, T, PK, PT>,
 		user: IUser,
-		transaction: IVCTransaction
-	): Promise<IVCDocumentReference<K, T, PK, PT>> {
+		transaction: IVCTransaction,
+		dbUtils?: IDbUtils
+	): Promise<{
+		fts: IFullTextSearchObject,
+		ref: IVCDocumentReference<K, T, PK, PT>
+	}> {
 		if (resource.key) {
-			return collection.doc(resource.key)
+			return {
+				fts: (resource as any).fts,
+				ref: collection.doc(resource.key)
+			}
 		}
 
 		const resourceRef = collection.doc()
 		resource.key      = resourceRef.id as K
 		resource.userKey  = user.key
 
+		let fts
+		if (dbUtils) {
+			fts      = dbUtils.getFtsProps(resource)
+			resource = {
+				...resource,
+				fts
+			}
+		}
+
 		await transaction.set(resourceRef, resource)
 
-		return resourceRef
+		return {
+			fts,
+			ref: resourceRef
+		}
 	}
 
 	private async getOne<K extends Key, T extends IKeyed<K>,
