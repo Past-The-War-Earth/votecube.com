@@ -16,6 +16,8 @@ interface IVoteFactorNode {
 
 }
 
+export const EXCLUDE_FTS_PROPS = ['x', 'y', 'z']
+
 export interface ILogicUtils {
 
 	copyProperties(
@@ -217,13 +219,13 @@ export class LogicUtils
 		options
 	): void {
 		setTimeout(() => {
-		const domElementToTransition = document.getElementById(elementId)
-		if (!domElementToTransition) {
-			return
-		}
-		const figureIntro = wrapTransition(
-			component, domElementToTransition, transitionFunction, options, true)
-		figureIntro.run(1)
+			const domElementToTransition = document.getElementById(elementId)
+			if (!domElementToTransition) {
+				return
+			}
+			const figureIntro = wrapTransition(
+				component, domElementToTransition, transitionFunction, options, true)
+			figureIntro.run(1)
 		})
 	}
 

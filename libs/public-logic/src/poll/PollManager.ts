@@ -1,5 +1,8 @@
-import {container, DI} from '@airport/di'
-import {IFieldGroup}   from '@votecube/forms'
+import {
+	container,
+	DI
+}                          from '@airport/di'
+import {IFieldGroup}       from '@votecube/forms'
 import {
 	IUser,
 	IVariationData,
@@ -8,18 +11,20 @@ import {
 	IVote,
 	Poll_Key,
 	Variation_Key
-}                      from '@votecube/model'
+}                          from '@votecube/model'
 import {
 	DB_CONVERTER,
 	DB_UTILS,
 	POLL_DAO
-}                      from '@votecube/public-db'
+}                          from '@votecube/public-db'
+import * as elasticlunr    from 'elasticlunr'
+import {EXCLUDE_FTS_PROPS} from '../LogicUtils'
 import {
 	CUBE_LOGIC,
 	LOGIC_UTILS,
 	POLL_FORM_MANAGER,
 	POLL_MANAGER
-}                      from '../tokens'
+}                          from '../tokens'
 
 export interface IPageVote
 	extends IVote {
@@ -112,7 +117,7 @@ export class PollManager
 		const [pollFormManager, logicUtils, dbUtils] = await container(this).get(
 			POLL_FORM_MANAGER, LOGIC_UTILS, DB_UTILS)
 
-		const ui: IVariationData      = pollFormManager.fromForm(form.value)
+		const ui: IVariationData       = pollFormManager.fromForm(form.value)
 		const uiDelta: IVariationDelta = pollFormManager.fromForm(form.changeFlags)
 
 		const oldUi = this.currVariation.ui
@@ -137,7 +142,7 @@ export class PollManager
 		user: IUser
 	): Promise<void> {
 		const originalUi = this.currVariation.originalUi
-		const ui         = this.currVariation.originalUi
+		const ui         = this.currVariation.ui
 		const delta      = this.currVariation.uiDelta
 
 		const [dbUtils, logicUtils] = await container(this).get(DB_UTILS, LOGIC_UTILS)
@@ -146,12 +151,29 @@ export class PollManager
 
 		const dbConverter = await container(this).get(DB_CONVERTER)
 
-		const newDoc = dbConverter.toVersionedDb(ui, delta,
-			this.currVariation.doc, dbUtils.subPollProps)
+		const {
+			      dbObject,
+			      ftsProps
+		      } = dbConverter.toVersionedDb(ui, delta,
+			this.currVariation.doc, dbUtils.subPollProps, EXCLUDE_FTS_PROPS)
+
+		const index = elasticlunr(function () {
+			this.addField('test' as unknown as never)
+			this.setRef('id' as unknown as never)
+		})
+
+		const fts = {}
+		for (const ftsProp of ftsProps) {
+			const propTokens = index.pipeline.run(elasticlunr.tokenizer(ftsProps[0]))
+			for (const token of propTokens) {
+				fts[token] = true
+			}
+		}
+		dbObject.fts = fts
 
 		const pollDao = await container(this).get(POLL_DAO)
 
-		await pollDao.save(newDoc, user)
+		await pollDao.save(dbObject, user)
 
 		this.currVariation = {
 			doc: null,

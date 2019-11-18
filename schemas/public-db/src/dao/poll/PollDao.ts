@@ -1,4 +1,7 @@
-import {container, DI} from '@airport/di'
+import {
+	container,
+	DI
+}                    from '@airport/di'
 import {
 	Factor_Key,
 	ICorePollFactorsFragment,
@@ -16,18 +19,18 @@ import {
 	Key,
 	Poll_Key,
 	Variation_Key
-}                      from '@votecube/model'
-import * as firebase   from 'firebase/app'
-import {
-	DB_UTILS,
-	POLL_DAO,
-	SCHEMA
-}                      from '../../tokens'
+}                    from '@votecube/model'
+import * as firebase from 'firebase/app'
 import {
 	ICollection,
 	IVCDocumentReference,
 	IVCTransaction
-}                      from '../../document/document'
+}                    from '../../document/document'
+import {
+	DB_UTILS,
+	POLL_DAO,
+	SCHEMA
+}                    from '../../tokens'
 
 // extends IBasePollDao
 export interface IPollDao {
@@ -151,6 +154,7 @@ export class PollDao
 		const variationOnly = !!variationIn.pollKey
 
 		const variation = await this.setupVariation(variationIn, user)
+
 		const poll      = await this.setupPoll(variation, user)
 
 		try {
@@ -227,12 +231,12 @@ export class PollDao
 
 		const dbUtils = await container(this).get(DB_UTILS)
 
-		for (const factorName in variation.factors) {
-			if (factorName === 'marks') {
+		for (const factorNumber in variation.factors) {
+			if (factorNumber === 'marks') {
 				continue
 			}
-			const variationFactor = variation.factors[factorName]
-			factors[factorName]   = {
+			const variationFactor = variation.factors[factorNumber]
+			factors[factorNumber] = {
 				axis: dbUtils.copy(variationFactor.axis),
 				color: dbUtils.copy(variationFactor.color),
 				name: dbUtils.copy(variationFactor.name)

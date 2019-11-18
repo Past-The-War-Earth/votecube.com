@@ -36,6 +36,7 @@ export class DbUtils
 	get addedProps(): string[] {
 		return [
 			'createdAt',
+			'fts',
 			'key',
 			'marks',
 			'userKey'
