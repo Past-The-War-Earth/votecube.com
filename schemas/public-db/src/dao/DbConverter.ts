@@ -144,7 +144,11 @@ export class DbConverter
 				d = -(originalDbObject.d + 1)
 			}
 		} else {
-			d = originalDbObject.d + 1
+			if (originalDbObject.d < 0) {
+				d = 1
+			} else {
+				d = originalDbObject.d + 1
+			}
 		}
 
 		dbObject.v = uiValue
