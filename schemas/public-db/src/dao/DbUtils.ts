@@ -21,6 +21,7 @@ export interface IFullTextSearchObject {
 export interface IDbUtils {
 
 	addedProps: string[]
+	excludedProps: string[]
 	subPollProps: string[]
 	versionedProps: string[]
 
@@ -44,7 +45,7 @@ export class DbUtils
 	implements IDbUtils {
 
 	static EXCLUDE_FTS_PROPS = [
-		'createdAt', 'fts', 'key', 'userKey', 'x', 'y', 'z']
+		'createdAt', 'fts', 'key', 'rootVariationKey', 'userKey', 'x', 'y', 'z']
 
 	private theElIndex: elasticlunr.Index<any>
 
@@ -55,6 +56,13 @@ export class DbUtils
 			'key',
 			'marks',
 			'userKey'
+		]
+	}
+
+	get excludedProps(): string[] {
+		return [
+			'fts',
+			'marks'
 		]
 	}
 
@@ -93,11 +101,11 @@ export class DbUtils
 		const marks    = {
 			change: {
 				high: 0,
-				low: 0
+				low: Number.MIN_SAFE_INTEGER
 			},
 			same: {
 				high: 0,
-				low: 0
+				low: Number.MAX_SAFE_INTEGER
 			}
 		}
 		dbObject.marks = marks
@@ -124,6 +132,12 @@ export class DbUtils
 				marks.change.high = this.setHighChange(marks.change.high, childObject.marks.change.high)
 				marks.change.low  = this.setLowChange(marks.change.low, childObject.marks.change.low)
 			}
+		}
+		if (marks.change.low === Number.MIN_SAFE_INTEGER) {
+			marks.change.low = 0
+		}
+		if (marks.same.low === Number.MAX_SAFE_INTEGER) {
+			marks.same.low = 0
 		}
 	}
 

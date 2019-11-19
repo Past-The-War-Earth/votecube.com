@@ -3,8 +3,6 @@
 		class="parentContainer"
 ></div>
 -->
-{#await load}
-{:then result}
 <div
 		class="details {classes}"
 		on:click="fire('select', {event})"
@@ -84,7 +82,6 @@
 	></RightButton>
 </nav>
 {/if}
-{/await}
 <style>
 	figure {
 		border-radius: 3px;
@@ -194,11 +191,9 @@
 	}
 </style>
 <script>
-	import {DI}          from '@airport/di'
-	import {LOGIC_UTILS} from '@votecube/public-logic'
-	import RightButton   from '../../../common/control/button/RightButton.html'
-	import LinkIcon      from '../../../common/icon/LinkIcon.html'
-	import TargetIcon    from '../../../common/icon/TargetIcon.html'
+	import RightButton from '../../../common/control/button/RightButton.html'
+	import LinkIcon    from '../../../common/icon/LinkIcon.html'
+	import TargetIcon  from '../../../common/icon/TargetIcon.html'
 
 	export default {
 		components: {
@@ -208,36 +203,17 @@
 		},
 		computed: {
 			showLink: ({navList, variation}) =>
-				variation.variationKey === navList.variation.variationKey
+				variation.key === navList.variation.key
 				&& !navList.isTarget,
 			showTarget: ({navList, variation}) =>
-				variation.variationKey === navList.variation.variationKey
+				variation.key === navList.variation.key
 				&& navList.isTarget
 		},
 		data: () => ({
 			childMode: true,
-			classes: '',
-			load: new Promise(resolve => {
-				setTimeout(() => {
-					resolve(initPage())
-				}, 1)
-			})
+			classes: ''
 		}),
-		oncreate() {
-			initPage.page = this
-		},
-		ondestroy() {
-			const {container} = this.get()
-			DI.remove(container)
-		},
 		immutable: true
-	}
-
-	async function initPage() {
-		const container  = DI.ui('VariationListItem')
-		const logicUtils = await container.get(LOGIC_UTILS)
-
-		initPage.page.set({container, logicUtils})
 	}
 
 </script>

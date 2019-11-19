@@ -19,7 +19,7 @@ service cloud.firestore {
 
     // To be used in full text search for factor re-usability
     match /factors/{factorKey} {
-      allow get: if false;
+      allow get: if true;
       allow list: if true;
       allow create: if byUser();
       allow update: if false;
@@ -71,7 +71,7 @@ service cloud.firestore {
       // poll/pollOutcomes
 
       match /factorPolls/{pollKey} {
-        allow get: if false;
+        allow get: if true;
         allow list: if true;
         allow create: if byUser();
         allow update: if false;
@@ -81,7 +81,7 @@ service cloud.firestore {
       // Equivalent functionality can be enabled by adding
       // an "factorKeys" map to "variationListings"
       //  match /factorPollVariationListings/{variationKey} {
-      //    allow get: if false;
+      //    allow get: if true;
       //    allow list: if true;
       //    allow create: if byUser();
       //    allow update: if false;
@@ -96,7 +96,7 @@ service cloud.firestore {
       //
       // "factorPositions" records this relationship by
       match /factorPositions/{positionKey} {
-        allow get: if false;
+        allow get: if true;
         allow list: if true;
         allow create: if byUser();
         allow update: if false;
@@ -106,7 +106,7 @@ service cloud.firestore {
 
     // Global listing of Outcomes, for full text search and re-usability of outcomes
     match /outcomes/{outcomeKey} {
-      allow get: if false;
+      allow get: if true;
       allow list: if true;
       allow create: if byUser();
       allow update: if false;
@@ -122,7 +122,7 @@ service cloud.firestore {
 
       // Listing of Polls by Outcome (Many-to-Many)
       match /outcomePolls/{pollKey} {
-        allow get: if false;
+        allow get: if true;
         allow list: if true;
         allow create: if byUser();
         allow update: if false;
@@ -132,7 +132,7 @@ service cloud.firestore {
       // Equivalent functionality can be enabled by adding
       // an "outcomeKeys" map to variationListings
       //  match /outcomePollVariationListings/{variationKey} {
-      //    allow get: if false;
+      //    allow get: if true;
       //    allow list: if true;
       //    allow create: if byUser();
       //    allow update: if false;
@@ -150,7 +150,7 @@ service cloud.firestore {
 
     // The actual Poll records, with listing embedded
     match /pollDrafts/{pollKey} {
-      allow get: if false;
+      allow get: if true;
       allow list: if true;
       allow create: if byUser();
       allow update: if false;
@@ -201,7 +201,7 @@ service cloud.firestore {
 
     // Global listing of Positions, for full text search and re-usability
     match /positions/{positionKey} {
-      allow get: if false;
+      allow get: if true;
       allow list: if true;
       allow create: if byUser();
       allow update: if false;
@@ -217,7 +217,7 @@ service cloud.firestore {
 
       // The Polls using this Position (Many-to-Many)
       match /positionPolls/{pollKey} {
-        allow get: if false;
+        allow get: if true;
         allow list: if true;
         allow create: if byUser();
         allow update: if false;
@@ -227,7 +227,7 @@ service cloud.firestore {
       // Equivalent functionality can be enabled by adding
       // an "positionKeys" map to variationListings
       //  match /positionPollVariationListings/{variationKey} {
-      //    allow get: if false;
+      //    allow get: if true;
       //    allow list: if true;
       //    allow create: if byUser();
       //    allow update: if false;

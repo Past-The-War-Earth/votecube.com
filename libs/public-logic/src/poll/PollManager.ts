@@ -5,7 +5,6 @@ import {
 import {IFieldGroup} from '@votecube/forms'
 import {
 	IPollData,
-	IPollDoc,
 	IUser,
 	IVariationData,
 	IVariationDelta,
@@ -18,6 +17,8 @@ import {
 import {
 	DB_CONVERTER,
 	DB_UTILS,
+	IDbConverter,
+	IDbUtils,
 	POLL_DAO
 }                    from '@votecube/public-db'
 import {
@@ -38,7 +39,21 @@ export interface IPollManager {
 
 	getAllPolls(): Promise<IPollData[]>
 
+	getChildVariationListings(
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
+	): Promise<IVariationData[]>
+
+	getPollsForTheme(
+		themeId: Theme_Id
+	): Promise<IPollData[]>
+
 	getVariation(
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
+	): Promise<IVariationData>
+
+	getVariationListing(
 		pollKey: Poll_Key,
 		variationKey: Variation_Key
 	): Promise<IVariationData>
@@ -81,7 +96,19 @@ export class PollManager
 
 		const pollDocs = await pollDao.getAll()
 
-		return await this.convertPollDocs(pollDocs)
+		return await this.convertDocs(pollDocs)
+	}
+
+	async getChildVariationListings(
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
+	): Promise<IVariationData[]> {
+		const pollDao = await container(this).get(POLL_DAO)
+
+		const variationDocs =
+			      await pollDao.getChildVariationListings(pollKey, variationKey)
+
+		return await this.convertDocs(variationDocs)
 	}
 
 	async getPollsForTheme(
@@ -91,7 +118,7 @@ export class PollManager
 
 		const pollDocs = await pollDao.getForTheme(themeId)
 
-		return await this.convertPollDocs(pollDocs)
+		return await this.convertDocs(pollDocs)
 	}
 
 	async getVariation(
@@ -116,7 +143,7 @@ export class PollManager
 
 		const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
 
-		const ui: any = dbConverter.fromDb(doc, dbUtils.subPollProps)
+		const ui: any = dbConverter.fromDb(doc, dbUtils.subPollProps, dbUtils.excludedProps)
 
 		const originalUi = dbUtils.copy(ui)
 
@@ -127,6 +154,18 @@ export class PollManager
 		}
 
 		return ui
+	}
+
+	async getVariationListing(
+		pollKey: Poll_Key,
+		variationKey: Variation_Key
+	): Promise<IVariationData> {
+		const pollDao = await container(this).get(POLL_DAO)
+
+		const variationDoc =
+			      await pollDao.getVariationListing(pollKey, variationKey)
+
+		return await this.convertDoc(variationDoc)
 	}
 
 	async mergeForm(): Promise<void> {
@@ -188,15 +227,35 @@ export class PollManager
 		}
 	}
 
-	private async convertPollDocs(
-		pollDocs: IPollDoc[]
-	): Promise<IPollData[]> {
+	private async convertDocs<In, Out>(
+		docs: In[]
+	): Promise<Out[]> {
 		const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
 
-		const pollData: IPollData[] = pollDocs.map(
-			pollDoc => dbConverter.fromDb(pollDoc, dbUtils.subPollProps))
+		const data = docs.map(
+			doc => this.convertADoc<In, Out>(doc, dbConverter, dbUtils))
 
-		return pollData
+		return data
+	}
+
+	private async convertDoc<In, Out>(
+		doc: In
+	): Promise<Out> {
+		const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
+
+		const data = this.convertADoc<In, Out>(doc, dbConverter, dbUtils)
+
+		return data
+	}
+
+	private convertADoc<In, Out>(
+		doc: In,
+		dbConverter: IDbConverter,
+		dbUtils: IDbUtils
+	): Out {
+		const data: Out = dbConverter.fromDb(doc, dbUtils.subPollProps, dbUtils.excludedProps)
+
+		return data
 	}
 
 }

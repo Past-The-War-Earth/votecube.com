@@ -76,7 +76,9 @@ export class LogicUtils
 		properties: string[]
 	): void {
 		for (const property of properties) {
-			to[property] = from[property]
+			if (from[property] !== undefined) {
+				to[property] = from[property]
+			}
 		}
 	}
 
@@ -195,16 +197,18 @@ export class LogicUtils
 		from,
 		to,
 		delta,
-		excludeKeys: string[] = ['marks']
+		excludeKeys: string[] = ['createdAt', 'key', 'marks', 'path', 'userKey']
 	): void {
 		if (!from) {
 			return
 		}
 		for (const propertyName in from) {
+			if (excludeKeys.indexOf(propertyName) > -1) {
+				continue
+			}
 			if (from[propertyName] instanceof Object) {
 				this.setDeltas(from[propertyName], to[propertyName], delta[propertyName])
-			} else if (excludeKeys.indexOf(propertyName) < 0
-				&& to[propertyName] !== from[propertyName]) {
+			} else if (to[propertyName] !== from[propertyName]) {
 				delta[propertyName] = true
 			}
 		}

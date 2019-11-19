@@ -10,7 +10,8 @@ export interface IDbConverter {
 
 	fromDb<Db, Ui>(
 		dbObject: Db,
-		directProperties: any[]
+		directProperties: any[],
+		excludedProperties: any[]
 	): Ui
 
 	toDb<Ui, Delta, Db>(
@@ -34,20 +35,24 @@ export class DbConverter
 
 	fromDb<Db, Ui>(
 		dbObject: Db,
-		directProperties: any[]
+		directProperties: any[],
+		excludedProperties: any[]
 	): Ui {
 		const uiObject: any = {}
 
-		if ((dbObject as any).d || (dbObject as any).d === 0) {
-			return (dbObject as any).d
+		if ((dbObject as any).v || (dbObject as any).v === 0) {
+			return (dbObject as any).v
 		} else {
 			for (const propertyName in dbObject) {
-				if (directProperties.indexOf(propertyName) > -1) {
+				if (excludedProperties.indexOf(propertyName) > -1) {
+					continue
+				} else if (directProperties.indexOf(propertyName) > -1) {
 					uiObject[propertyName] = dbObject[propertyName]
 				} else {
 					uiObject[propertyName] = this.fromDb(
 						dbObject[propertyName],
-						directProperties
+						directProperties,
+						excludedProperties
 					)
 				}
 			}
@@ -60,22 +65,26 @@ export class DbConverter
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
-		directProperties: any[]
+		directProperties: any[],
+		create = !originalDbObject
 	): Db {
-		const create        = !originalDbObject
 		const dbObject: any = {}
 
-		for (const propertyName in uiObject) {
-			const value = uiObject[propertyName]
-			if (directProperties.indexOf(propertyName) > -1) {
-				dbObject[propertyName] = value
-			} else {
-				dbObject[propertyName] = this.toDbInternal(
-					value,
-					(deltas as any)[propertyName],
-					create ? null : (originalDbObject as any)[propertyName],
-					create)
+		if (uiObject instanceof Object) {
+			for (const propertyName in uiObject) {
+				const value = uiObject[propertyName]
+				if (directProperties.indexOf(propertyName) > -1) {
+					dbObject[propertyName] = value
+				} else {
+					dbObject[propertyName] = this.toDb(
+						value,
+						(deltas as any)[propertyName],
+						create ? null : (originalDbObject as any)[propertyName],
+						directProperties, create)
+				}
 			}
+		} else {
+			this.toDbObject(uiObject, deltas, originalDbObject as any, dbObject, create)
 		}
 
 		return dbObject
@@ -92,9 +101,10 @@ export class DbConverter
 
 		if (originalDbObject) {
 			dbObject.depth                        = originalDbObject.depth + 1
-			dbObject.path                         = [
-				...originalDbObject.path
-			]
+			dbObject.path                         = {
+				...originalDbObject.path,
+				length: originalDbObject.path.length + 1
+			}
 			dbObject.path[originalDbObject.depth] = {
 				createdAt: originalDbObject.createdAt,
 				key: originalDbObject.key,
@@ -108,31 +118,10 @@ export class DbConverter
 			}
 		} else {
 			dbObject.parent = null
-			dbObject.path   = []
-			dbObject.depth  = 1
-		}
-
-		return dbObject
-	}
-
-	private toDbInternal<Ui, Delta, Db>(
-		uiObject: Ui,
-		deltas: Delta,
-		originalDbObject: Db,
-		create: boolean
-	): Db {
-		const dbObject: any = {}
-
-		if (uiObject instanceof Object) {
-			for (const propertyName in uiObject) {
-				dbObject[propertyName] = this.toDbInternal(
-					uiObject[propertyName],
-					(deltas as any)[propertyName],
-					create ? null : (originalDbObject as any)[propertyName],
-					create)
+			dbObject.path   = {
+				length: 0
 			}
-		} else {
-			this.toDbObject(uiObject, deltas, originalDbObject as any, dbObject, create)
+			dbObject.depth  = 1
 		}
 
 		return dbObject

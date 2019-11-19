@@ -170,6 +170,7 @@ export class PollDao
 					? await this.getRefs(variation)
 					: await this.prepPollAndGetRefs(poll)
 
+				poll.key          = pollRef.id
 				variation.pollKey = poll.key
 				variation.key     = variationRef.id
 
@@ -224,7 +225,6 @@ export class PollDao
 			createdAt,
 			userKey: user.key
 		}
-		delete (variation as any).id
 
 		const dbUtils = await container(this).get(DB_UTILS)
 		dbUtils.calculateWaterMarks(variation)
@@ -373,7 +373,7 @@ export class PollDao
 			      fts,
 			      ref
 		      } = await this.addResource(outcome, schema.outcomes,
-			user, transaction, dbUtils)
+			user, transaction, [], dbUtils)
 
 		await this.addManyToManyResource(schema.outcomes.outcomePolls(ref),
 			outcome, 'outcome', outcomeExists,
@@ -390,16 +390,14 @@ export class PollDao
 		transaction: IVCTransaction,
 		dbUtils: IDbUtils
 	): Promise<IFullTextSearchObject> {
-		const factorExists     = !!factor.key
-		const standAloneFactor = {...factor}
-		delete standAloneFactor.positions
+		const factorExists = !!factor.key
 
 		const schema = await container(this).get(SCHEMA)
 		const {
 			      fts,
 			      ref
-		      }      = await this.addResource(standAloneFactor, schema.factors,
-			user, transaction, dbUtils)
+		      }      = await this.addResource(factor, schema.factors,
+			user, transaction, ['positions'], dbUtils)
 
 		await this.addManyToManyResource(schema.factors.factorPolls(ref),
 			factor, 'factor', factorExists,
@@ -481,7 +479,7 @@ export class PollDao
 			      fts,
 			      ref
 		      }      = await this.addResource(position, schema.positions,
-			user, transaction, dbUtils)
+			user, transaction, [], dbUtils)
 
 		await this.addManyToManyResource(schema.positions.positionPolls(ref),
 			position, 'position', positionExists,
@@ -500,14 +498,21 @@ export class PollDao
 		collection: ICollection<K, T, PK, PT>,
 		user: IUser,
 		transaction: IVCTransaction,
+		propertiesToDelete: string[] = [],
 		dbUtils?: IDbUtils
 	): Promise<{
 		fts: IFullTextSearchObject,
 		ref: IVCDocumentReference<K, T, PK, PT>
 	}> {
+
+		let fts
+		if (dbUtils) {
+			fts = dbUtils.getFtsProps(resource)
+		}
+
 		if (resource.key) {
 			return {
-				fts: (resource as any).fts,
+				fts,
 				ref: collection.doc(resource.key)
 			}
 		}
@@ -516,9 +521,14 @@ export class PollDao
 		resource.key      = resourceRef.id as K
 		resource.userKey  = user.key
 
-		let fts
+		resource = {
+			...resource
+		}
+		for (const propertyToDelete of propertiesToDelete) {
+			delete resource[propertyToDelete]
+		}
+
 		if (dbUtils) {
-			fts      = dbUtils.getFtsProps(resource)
 			resource = {
 				...resource,
 				fts

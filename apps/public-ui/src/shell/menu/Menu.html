@@ -160,11 +160,11 @@
 		const {container} = comp.get()
 		const auth = await container.get(AUTH)
 		await auth.signOut()
-		this.store.toggleMainMenu()
+		comp.store.toggleMainMenu()
 	}
 
 	function getEmInPx() {
-		var div          = document.getElementById('sizer')
+		const div          = document.getElementById('sizer')
 		div.style.height = '1em'
 		return div.offsetHeight
 	}

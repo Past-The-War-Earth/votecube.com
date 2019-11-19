@@ -12,6 +12,7 @@
 	<table>
 		{#each polls as poll}
 		<PollListItem
+				logicUtils="{logicUtils}"
 				mode="{mode}"
 				on:select="goTo(poll.key, poll.rootVariationKey)"
 				poll="{poll}"
@@ -95,19 +96,22 @@
 
 </style>
 <script>
-	import {DI}           from '@airport/di'
-	import {POLL_MANAGER} from '@votecube/public-logic'
-	import {fade}         from 'svelte-transitions'
-	import CancelButton   from '../../../common/control/button/CancelButton.html'
-	import AutoComplete   from '../../../common/field/AutoComplete.html'
+	import {DI}          from '@airport/di'
+	import {
+		LOGIC_UTILS,
+		POLL_MANAGER
+	}                    from '@votecube/public-logic'
+	import {fade}        from 'svelte-transitions'
+	import CancelButton  from '../../../common/control/button/CancelButton.html'
+	import AutoComplete  from '../../../common/field/AutoComplete.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
-	import ActionPopover  from '../../../common/shell/ActionPopover.html'
-	import PollListFab    from '../../../components/poll/PollListFab.html'
-	import * as forms     from '../../../form/forms'
-	import {loadForms}    from '../../../libs/forms'
-	import * as routes          from '../../../routes'
-	import store                from '../../../store'
-	import PollListItem         from './PollListItem.html'
+	import ActionPopover from '../../../common/shell/ActionPopover.html'
+	import PollListFab   from '../../../components/poll/PollListFab.html'
+	import * as forms    from '../../../form/forms'
+	import {loadForms}   from '../../../libs/forms'
+	import * as routes   from '../../../routes'
+	import store         from '../../../store'
+	import PollListItem  from './PollListItem.html'
 
 	export default {
 		components: {
@@ -174,12 +178,13 @@
 	}
 
 	async function initPage() {
-		const container = DI.ui('PollList')
-		const pollManager   = await container.get(POLL_MANAGER)
+		const container                 = DI.ui('PollList')
+		const [logicUtils, pollManager] =
+			      await container.get(LOGIC_UTILS, POLL_MANAGER)
 		const [
 			      formFactory,
 			      polls
-		      ]         = await Promise.all([
+		      ]                         = await Promise.all([
 			loadForms(initPage.page.store),
 			findPolls(null, pollManager)
 		])
@@ -212,7 +217,7 @@
 			theme
 		}, [], initPage.page.store.get().text.UI.Poll)
 
-		initPage.page.set({container, polls})
+		initPage.page.set({container, logicUtils, polls})
 		forms.ensureForm(filter, initPage.page)
 
 		initPage.page.store.set({

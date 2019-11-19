@@ -27,9 +27,10 @@
 	<VariationListItem
 			childMode="{false}"
 			classes="{switchToClasses(switching, switchedToKey, currentVariation)}"
+			logicUtils="{logicUtils}"
 			mode="{mode}"
 			navList="{navList}"
-			on:select="goTo(currentVariation.pollKey, currentVariation.variationKey)"
+			on:select="goTo(currentVariation.pollKey, currentVariation.key)"
 			variation="{currentVariation}"
 	></VariationListItem>
 	<div
@@ -38,10 +39,11 @@
 	{#each childVariations as variation}
 	<VariationListItem
 			classes="{switchToClasses(switching, switchedToKey, variation)}"
+			logicUtils="{logicUtils}"
 			mode="{mode}"
 			navList="{navList}"
 			on:moveDownHierarchy="moveDownHierarchy(childVariations, variation, navList)"
-			on:select="goTo(variation.pollKey, variation.variationKey)"
+			on:select="goTo(variation.pollKey, variation.key)"
 			variation="{variation}"
 	></VariationListItem>
 	{/each}
@@ -153,22 +155,22 @@
 
 </style>
 <script>
-	import {DI}                       from '@airport/di'
-	import {POLL_DAO}                 from '@votecube/public-db'
-	import {fade}                     from 'svelte-transitions'
-	import CancelButton
-	                                  from '../../../common/control/button/CancelButton.html'
-	import RightButton               from '../../../common/control/button/RightButton.html'
+	import {DI}              from '@airport/di'
+	import {
+		LOGIC_UTILS,
+		POLL_MANAGER
+	}                        from '@votecube/public-logic'
+	import {fade}            from 'svelte-transitions'
+	import CancelButton      from '../../../common/control/button/CancelButton.html'
+	import RightButton       from '../../../common/control/button/RightButton.html'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
-	import ActionPopover             from '../../../common/shell/ActionPopover.html'
-	import VariationListFab
-	                                 from '../../../components/poll/variation/VariationListFab.html'
-	import * as forms                from '../../../form/forms'
-	import {fromVariationListingDoc} from '../../../../../../schemas/relational-db/src/dao/fromConverter'
-	import {loadForms}               from '../../../libs/forms'
-	import * as routes               from '../../../routes'
-	import store                     from '../../../store'
-	import VariationListItem         from './VariationListItem.html'
+	import ActionPopover     from '../../../common/shell/ActionPopover.html'
+	import VariationListFab  from '../../../components/poll/variation/VariationListFab.html'
+	import * as forms        from '../../../form/forms'
+	import {loadForms}       from '../../../libs/forms'
+	import * as routes       from '../../../routes'
+	import store             from '../../../store'
+	import VariationListItem from './VariationListItem.html'
 
 	export default {
 		components: {
@@ -193,7 +195,7 @@
 				if (!switching) {
 					return ''
 				}
-				const switchedToItem = switchedToKey === currentVariation.variationKey
+				const switchedToItem = switchedToKey === currentVariation.key
 				if (switching === 1) {
 					return switchedToItem ? '' : 'closing'
 				} else if (switching === 2) {
@@ -255,7 +257,7 @@
 	}
 
 	async function initPage(page) {
-		const container  = DI.ui('VariationList')
+		const container = DI.ui('VariationList')
 
 		const {pollKey, pollVariationKey} = page.store.get().routeParams
 		let [
@@ -265,7 +267,8 @@
 		    ]                             = await getListingsAndOther(
 			pollKey,
 			pollVariationKey,
-			loadForms(page.store)
+			loadForms(page.store),
+			container
 		)
 
 		const filter = formFactory.group('List', {
@@ -280,7 +283,9 @@
 			variation: currentVariation,
 		}
 
-		page.set({childVariations, container, currentVariation, navList})
+		const logicUtils = await container.get(LOGIC_UTILS)
+
+		page.set({childVariations, container, currentVariation, logicUtils, navList})
 		forms.ensureForm(filter, page)
 
 		page.store.set({
@@ -291,23 +296,19 @@
 	async function getListingsAndOther(
 		pollKey,
 		pollVariationKey,
-		otherPromise
+		otherPromise,
+		container
 	) {
-		const {container} = this.get()
-
-		const pollDao = await container.get(POLL_DAO)
+		const pollManager = await container.get(POLL_MANAGER)
 		let [
 			    currentVariation,
 			    childVariations,
 			    otherResult
-		    ]         = await Promise.all([
-			pollDao.getVariationListing(pollKey, pollVariationKey),
-			pollDao.getChildVariationListings(pollKey, pollVariationKey),
+		    ]             = await Promise.all([
+			pollManager.getVariationListing(pollKey, pollVariationKey),
+			pollManager.getChildVariationListings(pollKey, pollVariationKey),
 			otherPromise,
 		])
-
-		currentVariation = fromVariationListingDoc(currentVariation)
-		childVariations  = childVariations.map(fromVariationListingDoc)
 
 		return [
 			currentVariation,
@@ -322,7 +323,7 @@
 		numChildren,
 		page
 	) {
-		page.set({switching: 1, switchedToKey: moveToVariation.variationKey})
+		page.set({switching: 1, switchedToKey: moveToVariation.key})
 
 		setTimeout(() => {
 			page.set({switching: 2})
@@ -341,7 +342,7 @@
 		numChildren,
 		page
 	) {
-		page.set({switching: 1, switchedToKey: moveToVariation.variationKey})
+		page.set({switching: 1, switchedToKey: moveToVariation.key})
 
 		setTimeout(() => {
 			page.set({switching: 2})
@@ -365,12 +366,13 @@
 			      childVariations,
 		      } = await getSwitchData(
 			moveToVariation.pollKey,
-			moveToVariation.variationKey,
-			numChildren
+			moveToVariation.key,
+			numChildren,
+			page
 		)
 
 		if ([0, 1].indexOf(navList.direction) > -1
-			&& navList.variation.variationKey !== moveToVariation.variationKey) {
+			&& navList.variation.key !== moveToVariation.key) {
 			navList = {
 				direction: 1,
 				isTarget: false,
@@ -378,7 +380,7 @@
 				variation: moveToVariation,
 			}
 		} else if (navList.direction === -1) {
-			if (navList.variation.variationKey === moveToVariation.variationKey) {
+			if (navList.variation.key === moveToVariation.key) {
 				navList = navList.previous
 			} else {
 				navList = {
@@ -405,7 +407,8 @@
 		      } = await getSwitchData(
 			moveToVariation.pollKey,
 			moveToVariation.parent.key,
-			numChildren
+			numChildren,
+			page
 		)
 
 		if (navList.direction === -1) {
@@ -416,7 +419,7 @@
 				variation: currentVariation,
 			}
 		} else if (navList.direction === 0
-			&& moveToVariation.variationKey !== navList.variation.variationKey) {
+			&& moveToVariation.key !== navList.variation.key) {
 			navList = {
 				direction: -1,
 				isTarget: false,
@@ -432,8 +435,9 @@
 
 	async function getSwitchData(
 		pollKey,
-		variationKey,
-		numChildren
+		key,
+		numChildren,
+		page
 	) {
 		let [
 			    currentVariation,
@@ -441,13 +445,14 @@
 			    _
 		    ] = await getListingsAndOther(
 			pollKey,
-			variationKey,
+			key,
 			new Promise(
 				resolve => {
 					setTimeout(() => {
 						resolve()
 					}, numChildren ? 1500 : 0)
-				})
+				}),
+			page.get().container
 		)
 
 		return {
