@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "@votecube/cloudfare-worker",
+  "version": "0.0.1",
+  "description": "A template for kick starting a Cloudflare Workers project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "russoturisto <russoturisto@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+	"@airport/di": "0.0.1",
+	"@airport/observe": "0.0.1",
+	"@votecube/model": "0.0.1",
+    "node-fetch": "^2.6.0",
+    "node-typescript": "^0.1.3"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.3",
+    "prettier": "^1.18.2"
+  }
+}

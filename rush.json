@@ -9,6 +9,11 @@
   "projects": [
     // "apps" folder (alphabetical order)
     {
+      "packageName": "@votecube/cloudfare-worker",
+      "projectFolder": "apps/cloudfare-worker",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@votecube/public-ui",
       "projectFolder": "apps/public-ui",
       "shouldPublish": true
