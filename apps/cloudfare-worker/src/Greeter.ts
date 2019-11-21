@@ -5,7 +5,7 @@ export class Greeter {
 		this.greeting = message;
 	}
 
-	public greet(): string {
+	greet(): string {
 		return `Bonjour, ${this.greeting}!`;
 	}
 }
