@@ -1,28 +1,28 @@
 <svelte:document
-				on:click="onDocumentClick(event)"
-				on:keydown="onDocumentKeydown(event)"
+		on:click="onDocumentClick(event)"
+		on:keydown="onDocumentKeydown(event)"
 ></svelte:document>
 {#if $forms}
 <div
-				class="multiSelect"
+		class="multiSelect"
 >
 	<label
-					class="field-label"
-					use:for="{id}"
+			class="field-label"
+			use:for="{id}"
 	>
 		{label}
 	</label>
 	<section
-					class="dropdownAnchor field fieldBox"
-					class:invalid="touched && errors.length"
-					class:modified="modified"
-					class:requiredInvalid="requiredInvalid"
-					class:requiredValid="requiredValid"
-					on:click="showOptions(this, event)"
-					ref:field
+			class="dropdownAnchor field fieldBox"
+			class:invalid="touched && errors.length"
+			class:modified="modified"
+			class:requiredInvalid="requiredInvalid"
+			class:requiredValid="requiredValid"
+			on:click="showOptions(this, event)"
+			ref:field
 	>
 		<div
-						class="selections"
+				class="selections"
 		>
 			<!--
 					<div
@@ -32,16 +32,16 @@
 -->
 			{#each selections as selection}
 			<section
-							class="selection"
+					class="selection"
 			>
 				<div
-								class="selection-contents"
+						class="selection-contents"
 				>
 					{selection.text}
 				</div>
 				<span
-								class="unselect"
-								on:click="unselect(selection, event)"
+						class="unselect"
+						on:click="unselect(selection, event)"
 				>
                         <s class="bar"></s>
                         <s class="bar"></s>
@@ -49,52 +49,52 @@
 			</section>
 			{/each}
 			<input
-							autocomplete="off"
-							bind:value="filter"
-							ref:filter
-							type="text"
-							use:id="{id}"
+					autocomplete="off"
+					bind:value="filter"
+					ref:filter
+					type="text"
+					use:id="{id}"
 			>
 			<!--
 	</div>
 	-->
 		</div>
 		<div
-						class="icons"
+				class="icons"
 		>
 			<div
-							class="multiRowIconsCenter"
+					class="multiRowIconsCenter"
 			>
 				{#if trackOriginal}
 				<UndoIcon
-								multiLine="y"
-								on:select="revert()"
+						multiLine="y"
+						on:select="revert()"
 				></UndoIcon>
 				{:else}
 				<ClearIcon
-								multiLine="y"
-								on:select="clear()"
+						multiLine="y"
+						on:select="clear()"
 				></ClearIcon>
 				{/if}
 				<InfoIcon
-								multiLine="y"
-								on:select="help()"
+						multiLine="y"
+						on:select="help()"
 				></InfoIcon>
 			</div>
 		</div>
 	</section>
 	{#if showOptions && options.length}
 	<ul
-					class="dropdown"
-					style="
+			class="dropdown"
+			style="
             top: {dropdownTopPx}px;
         "
 	>
 		{#each options as option, index}
 		<li
-						class="option"
-						class:activeOption="index === activeOptionIndex"
-						on:click="select(option)"
+				class="option"
+				class:activeOption="index === activeOptionIndex"
+				on:click="select(option)"
 		>
 			{option.text}
 		</li>
@@ -227,26 +227,38 @@
 </style>
 
 <script>
+	import store from '@votecube/public-logic/src/store'
 	import {OPTIONS} from '../../form/forms'
-	import store     from '../../store'
 	import {
 		removeWatch,
 		watchMultilineField
-	}                from '../../watch'
-	import ClearIcon from '../icon/ClearIcon.html'
-	import InfoIcon  from '../icon/InfoIcon.html'
-	import UndoIcon  from '../icon/UndoIcon.html'
+	} from '../../watch'
+	import ClearIcon from '../icon/ClearIcon.svelte'
+	import InfoIcon from '../icon/InfoIcon.svelte'
+	import UndoIcon from '../icon/UndoIcon.svelte'
+
+
+	// Svelte V3 conversion: is 'export' needed here
+	export function hideOptions() {
+		showOptions = false
+	}
 
 	export default {
 		actions: {
-			for(node, id) {
+			for(
+				node,
+				id
+			) {
 				if (id) {
-					node.id = id;
+					node.id = id
 				}
 			},
-			id(node, id) {
+			id(
+				node,
+				id
+			) {
 				if (id) {
-					node.id = id;
+					node.id = id
 				}
 			}
 		},
@@ -296,7 +308,7 @@
 				this.hideOptions()
 			},
 			onDocumentKeydown(event) {
-				OPTIONS.handleKeydown(this, true)
+				OPTIONS.handleKeydown(this, true, event)
 			},
 			revert() {
 				this.get().field.revert()
@@ -307,12 +319,18 @@
 				this.hideOptions()
 				this.set({filter: ''})
 			},
-			showOptions(element, event) {
-				OPTIONS.showFiltered(this, element
+			showOptions(
+				element,
+				event
+			) {
+				OPTIONS.showFiltered(this, element, event
 					// , true
 				)
 			},
-			unselect(option, event) {
+			unselect(
+				option,
+				event
+			) {
 				this.get().field.unselect(option)
 				event.stopPropagation()
 				this.set({filter: ''})

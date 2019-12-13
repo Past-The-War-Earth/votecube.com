@@ -1,3 +1,36 @@
+<style>
+	article {
+		padding: 0 10px 0 10px;
+		position: initial;
+		text-align: center;
+	}
+
+	h1 {
+		color: #A0A0A0;
+		font-size: 33px;
+		margin: 0;
+	}
+
+	h2 {
+		color: black;
+		font-weight: normal;
+		margin-top: 0px;
+	}
+
+	footer {
+		margin: 15px;
+	}
+
+	section header {
+		font-weight: bold;
+		margin: 5px;
+	}
+
+	section {
+		margin-top: 15px;
+	}
+</style>
+
 <article>
 
 	<figure>
@@ -123,35 +156,3 @@
 		<a href="mailto:info@votecube.com" class="text-primary">info@votecube.com</a>
 	</footer>
 </article>
-<style>
-	article {
-		padding: 0 10px 0 10px;
-		position: initial;
-		text-align: center;
-	}
-
-	h1 {
-		color: #A0A0A0;
-		font-size: 33px;
-		margin: 0;
-	}
-
-	h2 {
-		color: black;
-		font-weight: normal;
-		margin-top: 0px;
-	}
-
-	footer {
-		margin: 15px;
-	}
-
-	section header {
-		font-weight: bold;
-		margin: 5px;
-	}
-
-	section {
-		margin-top: 15px;
-	}
-</style>

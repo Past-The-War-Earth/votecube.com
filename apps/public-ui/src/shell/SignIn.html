@@ -85,13 +85,13 @@
 	import {DI}                           from '@airport/di'
 	import {AUTH}                         from '@votecube/public-logic'
 	import EnterButton                    from '../common/control/button/EnterButton.html'
-	import SaveButton                     from '../common/control/button/SaveButton.html'
+	import SaveButton                     from '../common/control/button/SaveButton.svelte'
 	// import * as forms                     from '../form/forms'
 	import Text                           from '../common/field/Text.html'
 	import ActionPopover                  from '../common/shell/ActionPopover.html'
 	import {loadForms}                    from '../libs/forms'
 	import {loadLocations as loadLocText} from '../libs/text/locations'
-	import store                          from '../store'
+	import store                          from '@votecube/public-logic/src/store'
 
 	export default {
 		components: {
@@ -148,7 +148,7 @@
 			      _
 		      ] = await Promise.all([
 			loadForms(page.store),
-			loadLocText(page.store, 'en-us')
+			loadLocText('en-us')
 		])
 
 		const {text} = page.store.get()

@@ -1,3 +1,11 @@
+<style>
+	article {
+		padding: 0 10px 0 10px;
+		position: initial;
+		text-align: center;
+	}
+</style>
+
 <article>
 	<h3>Alpha - voting</h3>
 
@@ -27,10 +35,3 @@
 		<li>Private polls</li>
 	</ul>
 </article>
-<style>
-	article {
-		padding: 0 10px 0 10px;
-		position: initial;
-		text-align: center;
-	}
-</style>

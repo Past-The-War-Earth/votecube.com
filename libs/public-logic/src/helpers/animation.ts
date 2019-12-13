@@ -1,4 +1,4 @@
-import {wrapTransition} from 'svelte/shared'
+import {create_bidirectional_transition} from 'svelte/internal'
 
 export function transition(
 	component,
@@ -11,8 +11,8 @@ export function transition(
 	if (!domElementToTransition) {
 		return
 	}
-	const figureIntro = wrapTransition(
-		component, domElementToTransition, transitionFunction, options, true)
+	const figureIntro = create_bidirectional_transition(
+		domElementToTransition, transitionFunction, options, true)
 	figureIntro.run(1)
 	// })
 }

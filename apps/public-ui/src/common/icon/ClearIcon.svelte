@@ -1,9 +1,13 @@
+<script>
+	export let multiLine = false
+</script>
+
 <i
-				class:fieldAid="!multiLine"
+				class:fieldAid="{!multiLine}"
 				style="
         vertical-align: top;
     "
-				on:click="click(event)"
+				on:click|stopPropagation
 >
 	<svg
 					height="33"
@@ -29,18 +33,3 @@
 		</g>
 	</svg>
 </i>
-<script>
-	export default {
-		data() {
-			return {
-				multiLine: false
-			}
-		},
-		methods: {
-			click(event) {
-				this.fire('select')
-				event.stopPropagation()
-			}
-		}
-	}
-</script>

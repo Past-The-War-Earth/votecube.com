@@ -405,7 +405,7 @@
 	}                      from 'svelte-transitions'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import ShieldButton    from '../../common/control/button/ShieldButton.html'
-	import store           from '../../store'
+	import store           from '@votecube/public-logic/src/store'
 	import CubeMiniature   from '../poll/CubeMiniature.html'
 
 	export default {
@@ -524,9 +524,9 @@
 				y: 26
 			}
 			setTimeout(() => {
-				logicUtils.transition(page, 'bar_' + 0, fly, options)
-				logicUtils.transition(page, 'bar_' + 1, fly, options)
-				logicUtils.transition(page, 'bar_' + 2, fly, {duration: 700, y: -56})
+				logicUtils.transition('bar_' + 0, fly, options)
+				logicUtils.transition('bar_' + 1, fly, options)
+				logicUtils.transition('bar_' + 2, fly, {duration: 700, y: -56})
 			})
 			return
 		}
@@ -544,8 +544,8 @@
 			})
 
 		setTimeout(() => {
-			logicUtils.transition(page, 'bar_' + moved[0], fly, options[0])
-			logicUtils.transition(page, 'bar_' + moved[1], fly, options[1])
+			logicUtils.transition('bar_' + moved[0], fly, options[0])
+			logicUtils.transition('bar_' + moved[1], fly, options[1])
 		})
 	}
 

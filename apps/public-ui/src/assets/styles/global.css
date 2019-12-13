@@ -792,7 +792,8 @@ body {
 	-webkit-overflow-scrolling: touch;
 }
 
-#menu a {
+#menu a,
+#menu div {
 	color: #999;
 	border: none;
 	white-space: normal;

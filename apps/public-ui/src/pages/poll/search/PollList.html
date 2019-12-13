@@ -103,14 +103,14 @@
 	}                    from '@votecube/public-logic'
 	import {fade}        from 'svelte-transitions'
 	import CancelButton  from '../../../common/control/button/CancelButton.html'
-	import AutoComplete  from '../../../common/field/AutoComplete.html'
+	import AutoComplete  from '../../../common/field/AutoComplete.svelte'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import ActionPopover from '../../../common/shell/ActionPopover.html'
 	import PollListFab   from '../../../components/poll/PollListFab.html'
 	import * as forms    from '../../../form/forms'
 	import {loadForms}   from '../../../libs/forms'
-	import * as routes   from '../../../routes'
-	import store         from '../../../store'
+	import * as routes   from '@votecube/public-logic/src/routes'
+	import store         from '@votecube/public-logic/src/store'
 	import PollListItem  from './PollListItem.html'
 
 	export default {

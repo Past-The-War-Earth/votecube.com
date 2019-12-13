@@ -5,7 +5,7 @@ import {
 	Outcome_Ordinal,
 	VoteFactor_Value
 }                             from '@votecube/model'
-import {fly}                  from 'svelte-transitions'
+import {fly}                  from 'svelte/transition'
 import {ILogicUtils}          from '../../../LogicUtils'
 import {IPageVote}            from '../../../poll/PollManager'
 import {FACTOR_RANKING_LOGIC} from '../../../tokens'
@@ -226,7 +226,6 @@ export class FactorRankingLogic
 		index: number,
 		addOrRemove: AddOrRemove,
 		vote: IPageVote,
-		component,
 		store,
 		logicUtils: ILogicUtils
 	): {
@@ -253,7 +252,6 @@ export class FactorRankingLogic
 
 			// Remove first factor
 			this.removeFirstFactor(voteFactors, vote, !!thirdFactor.outcome,
-				component,
 				store,
 				logicUtils)
 			return {
@@ -282,7 +280,7 @@ export class FactorRankingLogic
 					// voteFactors,
 					vote, secondFactor, thirdFactor,
 					null, 2, logicUtils)
-				this.moveUpOne(1, component, logicUtils)
+				this.moveUpOne(1, logicUtils)
 			} else {
 				this.setOutcome(voteFactors, index, null
 					// , page
@@ -327,11 +325,9 @@ export class FactorRankingLogic
 	move(
 		index: number,
 		options,
-		component,
 		logicUtils: ILogicUtils
 	): void {
 		logicUtils.transition(
-			component,
 			'factor_' + index,
 			fly,
 			options
@@ -361,7 +357,7 @@ export class FactorRankingLogic
 						logicUtils,
 						// page
 					)
-					this.moveUpOne(0, component, logicUtils)
+					this.moveUpOne(0, logicUtils)
 				} else {
 					this.onMove(2, [0, 2], store)
 					vote.changeMillis = 600
@@ -376,7 +372,7 @@ export class FactorRankingLogic
 						voteFactors[2],
 						0
 					)
-					this.moveUpTwo(0, component, logicUtils)
+					this.moveUpTwo(0, logicUtils)
 				}
 				return true
 			}
@@ -392,7 +388,7 @@ export class FactorRankingLogic
 					logicUtils,
 					// page
 				)
-				this.moveUpOne(1, component, logicUtils)
+				this.moveUpOne(1, logicUtils)
 				return true
 			}
 			// Started the move from 3rd Factor
@@ -431,7 +427,7 @@ export class FactorRankingLogic
 					logicUtils,
 					// page
 				)
-				this.moveDownOne(1, component, logicUtils)
+				this.moveDownOne(1, logicUtils)
 				return true
 			}
 			// Started the move from 3rd Factor
@@ -447,7 +443,7 @@ export class FactorRankingLogic
 						logicUtils,
 						// page
 					)
-					this.moveDownOne(2, component, logicUtils)
+					this.moveDownOne(2, logicUtils)
 				} else {
 					this.onMove(2, [2, 0], store)
 					vote.changeMillis = 600
@@ -462,7 +458,7 @@ export class FactorRankingLogic
 						voteFactors[2],
 						0
 					)
-					this.moveDownTwo(2, component, logicUtils)
+					this.moveDownTwo(2, logicUtils)
 				}
 				return true
 			}
@@ -609,7 +605,6 @@ export class FactorRankingLogic
 		voteFactors: IVoteFactor[],
 		vote: IVote,
 		move3: boolean,
-		component,
 		store,
 		logicUtils: ILogicUtils
 	): void {
@@ -624,9 +619,9 @@ export class FactorRankingLogic
 			vote, firstFactor, secondFactor,
 			move3 ? thirdFactor : null, 0, logicUtils)
 		if (move3) {
-			this.moveUpOne(1, component, logicUtils)
+			this.moveUpOne(1, logicUtils)
 		}
-		this.moveUpOne(0, component, logicUtils)
+		this.moveUpOne(0, logicUtils)
 	}
 
 	private setFactorOrder(
@@ -703,36 +698,32 @@ export class FactorRankingLogic
 
 	private moveDownOne(
 		index: number,
-		component,
 		logicUtils: ILogicUtils,
 		duration = 400
 	): void {
-		this.move(index, {y: -100, duration}, component, logicUtils)
+		this.move(index, {y: -100, duration}, logicUtils)
 	}
 
 	private moveDownTwo(
 		index,
-		component,
 		logicUtils: ILogicUtils
 	): void {
-		this.move(index, {y: -200, duration: 800}, component, logicUtils)
+		this.move(index, {y: -200, duration: 800}, logicUtils)
 	}
 
 	private moveUpOne(
 		index,
-		component,
 		logicUtils: ILogicUtils,
 		duration = 400
 	): void {
-		this.move(index, {y: 100, duration}, component, logicUtils)
+		this.move(index, {y: 100, duration}, logicUtils)
 	}
 
 	private moveUpTwo(
 		index,
-		component,
 		logicUtils: ILogicUtils
 	): void {
-		this.move(index, {y: 200, duration: 800}, component, logicUtils)
+		this.move(index, {y: 200, duration: 800}, logicUtils)
 	}
 
 	private factorsAt(

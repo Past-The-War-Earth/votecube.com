@@ -1,11 +1,9 @@
-import {APP_CONTAINER} from '../container'
+import {APP_CONTAINER, forms} from '@votecube/public-logic'
 
-export async function loadForms(
-	store
-) {
-	const forms = await import('@votecube/forms')
+export async function loadForms() {
+	const formsModule = await import('@votecube/forms')
 
-	store.set({forms})
+	forms.set(formsModule)
 
-	return await APP_CONTAINER.get(forms.FORM_FACTORY)
+	return await APP_CONTAINER.get(formsModule.FORM_FACTORY)
 }

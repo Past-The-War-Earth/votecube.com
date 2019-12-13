@@ -13,7 +13,15 @@ export interface IFieldError {
 }
 
 export interface IComponent {
-	set(object: any): void;
+	setDelta(newDelta: number): void;
+
+	setIsOriginal(newIsOriginal: boolean): void;
+
+	setIsValid(newIsValid: boolean): void;
+
+	setShowCalendar(newShowCalendar: boolean): void;
+
+	setShowOptions(newShowOptions: boolean): void;
 }
 
 export interface IFieldBase {
@@ -24,6 +32,7 @@ export interface IFieldBase {
 	group: IFieldGroup
 	hasValue: boolean
 	// inputValue: string
+	id: string
 	isRequired: boolean
 	name: string
 	optionText
@@ -107,6 +116,7 @@ export abstract class FieldBase
 	dirty                    = false
 	errors: IFieldError[]    = []
 	group: IFieldGroup
+	id = ''
 	lastValue: any
 	name: string
 	optionText
@@ -150,14 +160,14 @@ export abstract class FieldBase
 		return this.theValue
 	}
 
-	get changeFlags(): any {
-		return this.isOriginal() ? 0 : 1
-	}
-
 	set value(
 		newValue
 	) {
 		this.setValue(newValue)
+	}
+
+	get changeFlags(): any {
+		return this.isOriginal() ? 0 : 1
 	}
 
 	setRun(
@@ -186,7 +196,7 @@ export abstract class FieldBase
 					? getChange()
 					: addChange()
 			for (const page of this.components) {
-				page.set({delta})
+				page.setDelta(delta)
 			}
 		})
 	}

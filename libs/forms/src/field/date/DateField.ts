@@ -136,7 +136,7 @@ export class DateField
 	}
 
 	hidePopup(): void {
-		this.components[0].set({showCalendar: false})
+		this.components[0].setShowCalendar(false)
 	}
 
 	isOriginal(): boolean {

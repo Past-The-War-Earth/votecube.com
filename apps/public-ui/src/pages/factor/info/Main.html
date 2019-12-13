@@ -76,14 +76,14 @@
 </style>
 <script>
 	import CharacterButton from '../../../common/control/button/CharacterButton.html'
-	import SaveButton      from '../../../common/control/button/SaveButton.html'
+	import SaveButton      from '../../../common/control/button/SaveButton.svelte'
 	import ColorPicker     from '../../../common/field/ColorPicker.html'
 	import Text            from '../../../common/field/Text.html'
-	import TextArea        from '../../../common/field/TextArea.html'
+	import TextArea        from '../../../common/field/TextArea.svelte'
 	import * as formCache  from '../../../form/cache'
 	import * as forms      from '../../../form/forms'
-	import * as routes     from '../../../routes'
-	import store           from '../../../store'
+	import * as routes     from '@votecube/public-logic/src/routes'
+	import store           from '@votecube/public-logic/src/store'
 
 	export default {
 		components: {

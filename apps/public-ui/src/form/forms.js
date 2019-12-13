@@ -1,4 +1,4 @@
-import {navigateToPage} from '../routes'
+import {navigateToPage} from '@votecube/public-logic'
 
 export const CREATE_POLL_TOP = 'CREATE_POLL_TOP'
 export const CREATE_FACTOR   = 'CREATE_FACTOR'
@@ -101,36 +101,36 @@ export function navigateOnValid(
 export var OPTIONS = {
 	handleKeydown: (
 		page,
-		multi
+		multi,
+		event
 	) => {
-		let {activeOptionIndex, filter, options, showOptions} = page.get()
-		if (!showOptions) {
+		if (!page.showOptions) {
 			return
 		}
-		showOptions = true
+		let showOptions = true
 		switch (event.key) {
 			case 'ArrowDown':
-				if (activeOptionIndex + 1 < options.length) {
-					activeOptionIndex++
+				if (page.activeOptionIndex + 1 < page.options.length) {
+					page.activeOptionIndex = page.activeOptionIndex + 1
 				}
 				break
 			case 'ArrowUp':
-				if (activeOptionIndex) {
-					activeOptionIndex--
+				if (page.activeOptionIndex) {
+					page.activeOptionIndex = page.activeOptionIndex - 1
 				}
 				break
 			case 'Escape':
-				activeOptionIndex = 0
+				page.activeOptionIndex = 0
 				showOptions       = false
 				break
 			case 'Enter':
-				const selectedOption = options[activeOptionIndex]
-				activeOptionIndex    = 0
-				page.get().field.select(selectedOption)
+				const selectedOption = page.options[page.activeOptionIndex]
+				page.activeOptionIndex    = 0
+				page.field.select(selectedOption)
 				if (multi) {
-					filter = ''
+					page.filter = ''
 				} else {
-					filter = selectedOption.text
+					page.filter = selectedOption.text
 				}
 				showOptions = false
 				event.preventDefault()
@@ -139,28 +139,25 @@ export var OPTIONS = {
 		if (!showOptions) {
 			page.hideOptions()
 		}
-		page.set({activeOptionIndex, filter})
 	},
 	showFiltered: (
 		page,
 		element,
+		event
 		// focus
 	) => {
-		if (!page.get().showOptions) {
-			const {field} = page.get()
-			if (field.filteredOptions.length) {
+		if (!page.showOptions) {
+			if (page.field.filteredOptions.length) {
 				// if(focus) {
-				field.focus()
+				page.field.focus()
 				// }
-				page.set({
-					showOptions: true,
-					dropdownTopPx: element.offsetHeight + 6
-				})
+				page.dropdownTopPx = element.offsetHeight + 6
+				page.showOptions = true
 				event.stopPropagation()
 			}
 		}
 		// if(focus) {
-		page.refs.filter.focus()
+		page.filterInput.focus()
 		// }
 	}
 }

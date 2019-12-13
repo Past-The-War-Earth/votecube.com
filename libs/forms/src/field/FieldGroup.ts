@@ -35,7 +35,7 @@ export interface IFieldGroupingText {
 export interface IFieldGroup
 	extends IFieldBase {
 
-	error: IFieldError;
+	error: IFieldError
 	fields: IFieldMap
 	isRequired: boolean
 	text: IFieldGroupText
@@ -75,6 +75,7 @@ export class FieldGroup
 		for (const fieldName in fields) {
 			const field = fields[fieldName]
 			if (!(field instanceof FieldGroup)) {
+				field.id = name + '_' + fieldName
 				field.name = fieldName
 				field.text = this.text[fieldName]
 			}
@@ -287,7 +288,8 @@ export class FieldGroup
 			this.group.validate(false, false, this)
 		}
 		for (const page of this.components) {
-			page.set({isValid: this.valid, isOriginal: this.theIsOriginal})
+			page.setIsValid(this.valid)
+			page.setIsOriginal(this.theIsOriginal)
 		}
 	}
 

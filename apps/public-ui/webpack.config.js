@@ -1,13 +1,15 @@
-const webpack                 = require('webpack')
-const CopyPlugin = require('copy-webpack-plugin');
-const TerserJSPlugin          = require('terser-webpack-plugin')
+const CopyPlugin              = require('copy-webpack-plugin')
+const {CleanWebpackPlugin}    = require('clean-webpack-plugin')
+const HtmlWebpackPlugin       = require('html-webpack-plugin')
 const MiniCssExtractPlugin    = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const HtmlWebpackPlugin       = require('html-webpack-plugin')
-const {CleanWebpackPlugin}    = require('clean-webpack-plugin')
+const path                    = require('path')
+const TerserJSPlugin          = require('terser-webpack-plugin')
+const webpack                 = require('webpack')
 var ManifestPlugin            = require('webpack-manifest-plugin')
-const WebpackShellPlugin = require('webpack-shell-plugin');
-const devMode                 = process.env.NODE_ENV !== 'production'
+const WebpackShellPlugin      = require('webpack-shell-plugin')
+
+const devMode = process.env.NODE_ENV !== 'production'
 
 const manifestOpts = {
 	seed: {
@@ -29,7 +31,7 @@ const htmlOpts = {
 const mode = devMode ? 'development' : 'production'
 
 const staticHashNum = new Date().getTime()
-const staticHash = staticHashNum.toString(36)
+const staticHash    = staticHashNum.toString(36)
 
 function optimizeJson(
 	json
@@ -48,7 +50,10 @@ module.exports = {
 		bundle: ['./src/main.js']
 	},
 	resolve: {
-		extensions: ['.js', '.html'],
+		alias: {
+			svelte: path.resolve('node_modules', 'svelte')
+		},
+		extensions: ['.mjs', '.js', '.svelte'],
 		mainFields: ['svelte', 'browser', 'module', 'main']
 	},
 	output: {
@@ -63,36 +68,36 @@ module.exports = {
 			cacheGroups: {
 				jssha: {
 					test: (module) => {
-						const context = module.context;
+						const context = module.context
 						const targets = [
-							"jssha",
-						];
-						return context && context.indexOf("node_modules") >= 0 && targets.find(t => context.indexOf(/${t}/) > -1);
+							'jssha',
+						]
+						return context && context.indexOf('node_modules') >= 0 && targets.find(t => context.indexOf(/${t}/) > -1)
 					},
 					name: 'jssha',
 					chunks: 'all'
 				},
 				vendor: {
 					test: (module) => {
-						const context = module.context;
+						const context = module.context
 						const targets = [
-							"firebase",
-							"page",
-							"svelte",
-							"svelte-transitions",
-						];
-						return context && context.indexOf("node_modules") >= 0 && targets.find(t => context.indexOf(/${t}/) > -1);
+							'firebase',
+							'page',
+							'svelte',
+							'svelte-transitions',
+						]
+						return context && context.indexOf('node_modules') >= 0 && targets.find(t => context.indexOf(/${t}/) > -1)
 					},
 					name: 'vendor',
 					chunks: 'all'
 				},
 				votecube: {
 					test: (module) => {
-						const context = module.context;
+						const context = module.context
 						const targets = [
-							"@votecube",
-						];
-						return context && context.indexOf("node_modules") >= 0 && targets.find(t => context.indexOf(/${t}/) > -1);
+							'@votecube',
+						]
+						return context && context.indexOf('node_modules') >= 0 && targets.find(t => context.indexOf(/${t}/) > -1)
 					},
 					name: 'votecube',
 					chunks: 'all'
@@ -107,12 +112,12 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(html|svelte)$/,
+				test: /\.svelte$/,
 				use: {
 					loader: 'svelte-loader',
 					options: {
-						skipIntroByDefault: true,
-						nestedTransitions: true,
+						// skipIntroByDefault: true,
+						// nestedTransitions: true,
 						emitCss: true,
 						hotReload: true
 					}
@@ -139,16 +144,22 @@ module.exports = {
 			{
 				from: 'src/assets/text/en-us/*.json',
 				to: 'assets/text/en-us/[name].' + staticHash + '.[ext]',
-				transform(content, path) {
-					return optimizeJson(content);
+				transform(
+					content,
+					path
+				) {
+					return optimizeJson(content)
 				},
 				cache: true,
 			},
 			{
 				from: 'src/assets/data/*.json',
 				to: 'assets/data/[name].' + staticHash + '.[ext]',
-				transform(content, path) {
-					return optimizeJson(content);
+				transform(
+					content,
+					path
+				) {
+					return optimizeJson(content)
 				},
 				cache: true,
 			},

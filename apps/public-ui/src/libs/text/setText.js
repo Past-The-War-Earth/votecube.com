@@ -1,12 +1,11 @@
+import {text} from '@votecube/public-logic'
+import {get}  from 'svelte/store'
+
 export function setText(
-	store,
 	textString
 ) {
-	const text = JSON.parse(textString)
-	store.set({
-		text: {
-			...store.get().text,
-			...text
-		}
+	text.set({
+		...JSON.parse(textString),
+		...get(text)
 	})
 }

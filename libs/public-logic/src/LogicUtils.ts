@@ -6,7 +6,7 @@ import {
 	IVote,
 	IVoteFactor
 }                       from '@votecube/model'
-import {wrapTransition} from 'svelte/shared'
+import {create_bidirectional_transition} from 'svelte/internal'
 import {LOGIC_UTILS}    from './tokens'
 
 interface IVoteFactorNode {
@@ -59,7 +59,6 @@ export interface ILogicUtils {
 	): void
 
 	transition(
-		component,
 		elementId: string,
 		transitionFunction,
 		options
@@ -215,7 +214,6 @@ export class LogicUtils
 	}
 
 	transition(
-		component,
 		elementId: string,
 		transitionFunction,
 		options
@@ -225,8 +223,8 @@ export class LogicUtils
 			if (!domElementToTransition) {
 				return
 			}
-			const figureIntro = wrapTransition(
-				component, domElementToTransition, transitionFunction, options, true)
+			const figureIntro = create_bidirectional_transition(
+				domElementToTransition, transitionFunction, options, true)
 			figureIntro.run(1)
 		})
 	}

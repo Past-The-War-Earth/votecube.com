@@ -1,7 +1,16 @@
+<script>
+
+	export let classes = ''
+	export let fillColor = 'fff'
+	export let highlightColor = '000'
+	export let styles = ''
+
+</script>
+
 <svg
 		class="{classes}"
 		height="50"
-		on:click="fire('select')"
+		on:click
 		style="{styles}"
 		width="50"
 >
@@ -61,15 +70,3 @@
 		/>
 	</g>
 </svg>
-<script>
-	export default {
-		data() {
-			return {
-				classes: '',
-				fillColor: 'fff',
-				highlightColor: '000',
-				styles: ''
-			}
-		}
-	}
-</script>

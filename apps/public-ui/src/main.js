@@ -3,7 +3,7 @@ import * as firebase from 'firebase/app'
 
 import 'firebase/auth'
 import 'firebase/firestore'
-import App           from './App.html'
+import App from './App.svelte'
 
 import './assets/styles/global.css'
 import './assets/styles/votecube.css'
@@ -46,8 +46,8 @@ async function setupApp() {
 		}
 		*/
 
-		window.fb            = firebase.initializeApp(firebaseConfig)
-		window.db            = firebase.firestore()
+		window.fb = firebase.initializeApp(firebaseConfig)
+		window.db = firebase.firestore()
 		try {
 			await window.db.enablePersistence({synchronizeTabs: true})
 		} catch (error) {

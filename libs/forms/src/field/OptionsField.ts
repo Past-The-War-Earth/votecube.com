@@ -120,7 +120,7 @@ export class OptionsField
 	}
 
 	hidePopup(): void {
-		this.components[0].set({showOptions: false})
+		this.components[0].setShowOptions(false)
 	}
 
 	isOriginal(): boolean {

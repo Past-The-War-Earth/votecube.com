@@ -1,5 +1,5 @@
 import {POLL_MANAGER}  from '@votecube/public-logic'
-import {APP_CONTAINER} from '../container'
+import {APP_CONTAINER} from '@votecube/public-logic/src/container'
 import * as forms      from '../form/forms'
 
 export function getPollRouteParams(

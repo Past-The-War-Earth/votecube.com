@@ -37,8 +37,8 @@
 	import * as forms                     from '../../form/forms'
 	import {loadLocations}                from '../../libs/locations'
 	import {loadLocations as loadLocText} from '../../libs/text/locations'
-	import * as routes                    from '../../routes'
-	import store                          from '../../store'
+	import * as routes                    from '@votecube/public-logic/src/routes'
+	import store                          from '@votecube/public-logic/src/store'
 
 	export default {
 		components: {
@@ -69,7 +69,7 @@
 			}
 			Promise.all([
 				loadLocations(),
-				loadLocText(this.store, 'en-us')
+				loadLocText('en-us')
 			]).then(([
 				         locations,
 				         _

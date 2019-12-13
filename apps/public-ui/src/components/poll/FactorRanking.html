@@ -255,7 +255,7 @@
 	import {fly}           from 'svelte-transitions'
 	import CharacterButton from '../../common/control/button/CharacterButton.html'
 	import MoveButton      from '../../common/control/button/MoveButton.html'
-	import store           from '../../store'
+	import store           from '@votecube/public-logic/src/store'
 
 	export default {
 		components: {
@@ -556,7 +556,7 @@
 			}
 			handleMoveEffects(factorRankingLogic.addOrRemoveAFactor(
 				voteFactors, index, addOrRemove,
-				vote, page, page.store, logicUtils), page)
+				vote, page.store, logicUtils), page)
 			// if (addOrRemove === 'add') {
 			// 	setTimeout(() => {
 			// 		move(index, {x: -200, duration: 700}, page)
@@ -698,7 +698,7 @@
 					handleMoveEffects(
 						factorRankingLogic.addOrRemoveAFactor(
 							voteFactors, movingVoteFactor.index, 1, vote,
-							page, page.store, logicUtils
+							page.store, logicUtils
 						), page)
 				})
 			}
