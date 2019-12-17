@@ -77,6 +77,7 @@ function createTextToast(): ITextToastStore {
 }
 
 export let authChecked         = writable(false)
+export let cardMove            = writable<{ move: number, moved: number[] }>(null)
 export let checkSizeIntervalId = writable(-1)
 export let cube                = writable(false)
 export let currentPage         = writable<IRouteConfig>(null)
@@ -84,8 +85,10 @@ export let currentUrl          = writable<Route_Path>('')
 export let emInPx              = writable(0)
 export let forms               = writable(null)
 export let isDesktop           = writable(false)
+export let mode                = writable<string>(null)
 export let noOverflow          = writable(false)
 export let pageTitle           = writable('Votecube')
+export let popup               = writable<boolean>(false)
 export let portalHeight        = writable(0)
 export let resized             = writable(false)
 export let routeParams         = writable<IRouteParamMap>(null)

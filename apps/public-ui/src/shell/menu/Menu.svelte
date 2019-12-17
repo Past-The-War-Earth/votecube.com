@@ -10,6 +10,7 @@
 		POLL_LIST,
 		RELEASE_PLAN,
 		showMainMenu,
+		showSignIn,
 		user
 	}           from '@votecube/public-logic'
 	import {
@@ -60,7 +61,7 @@
 	}
 
 	function signIn() {
-		this.store.set({signIn: true})
+		showSignIn.set(true)
 		showMainMenu.toggle()
 	}
 
@@ -69,7 +70,7 @@
 			const auth = await container.get(AUTH)
 			await auth.signOut()
 			showMainMenu.toggle()
-		}).then()
+		})().then()
 	}
 </script>
 

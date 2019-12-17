@@ -8,6 +8,7 @@ import {
 import {fly}                  from 'svelte/transition'
 import {ILogicUtils}          from '../../../LogicUtils'
 import {IPageVote}            from '../../../poll/PollManager'
+import {cardMove}             from '../../../store'
 import {FACTOR_RANKING_LOGIC} from '../../../tokens'
 
 export type AddOrRemove = 'add' | 'remove'
@@ -45,8 +46,6 @@ export interface IFactorRankingLogic {
 		index: number,
 		addOrRemove: AddOrRemove,
 		vote: IVote,
-		component,
-		store,
 		logicUtils: ILogicUtils
 	): {
 		numMoved: number,
@@ -75,8 +74,6 @@ export interface IFactorRankingLogic {
 		vote: IVote,
 		originalIndex: number,
 		newIndex: number,
-		component,
-		store,
 		logicUtils: ILogicUtils
 	): boolean
 
@@ -85,8 +82,6 @@ export interface IFactorRankingLogic {
 		vote: IVote,
 		originalIndex: number,
 		newIndex: number,
-		component,
-		store,
 		logicUtils: ILogicUtils
 	): boolean
 
@@ -94,7 +89,6 @@ export interface IFactorRankingLogic {
 		voteFactors: IVoteFactor[],
 		index: number,
 		outcome: Outcome_Ordinal,
-		// page,
 		// adjustRanking = false
 	): void
 
@@ -226,7 +220,6 @@ export class FactorRankingLogic
 		index: number,
 		addOrRemove: AddOrRemove,
 		vote: IPageVote,
-		store,
 		logicUtils: ILogicUtils
 	): {
 		numMoved: number,
@@ -247,12 +240,11 @@ export class FactorRankingLogic
 				}
 			}
 			placeholder       = true
-			// scheduleFactorPlaceholder(page)
+			// scheduleFactorPlaceholder()
 			vote.changeMillis = 550
 
 			// Remove first factor
 			this.removeFirstFactor(voteFactors, vote, !!thirdFactor.outcome,
-				store,
 				logicUtils)
 			return {
 				numMoved: 1,
@@ -273,21 +265,17 @@ export class FactorRankingLogic
 			}
 			vote.changeMillis = 550
 			placeholder       = true
-			// scheduleFactorPlaceholder(page, index, direction)
+			// scheduleFactorPlaceholder(index, direction)
 			if (index === 1 && thirdFactor.outcome) {
-				this.onMove(1, [2, 1], store)
+				this.onMove(1, [2, 1])
 				this.swapOnRemove(
 					// voteFactors,
 					vote, secondFactor, thirdFactor,
 					null, 2, logicUtils)
 				this.moveUpOne(1, logicUtils)
 			} else {
-				this.setOutcome(voteFactors, index, null
-					// , page
-				)
-				this.adjustRanking(voteFactors, index, null
-					// , page
-				)
+				this.setOutcome(voteFactors, index, null)
+				this.adjustRanking(voteFactors, index, null)
 			}
 		} else {
 			// add
@@ -300,20 +288,12 @@ export class FactorRankingLogic
 			}
 			vote.changeMillis = 550
 			if (index === 2 && !secondFactor.outcome) {
-				this.setOutcome(voteFactors, 1, 'A'
-					// , page
-				)
-				this.adjustRanking(voteFactors, 1, 'A'
-					// , page, false
-				)
+				this.setOutcome(voteFactors, 1, 'A')
+				this.adjustRanking(voteFactors, 1, 'A')
 				numMoved = 2
 			}
-			this.setOutcome(voteFactors, index, 'A'
-				// , page
-			)
-			this.adjustRanking(voteFactors, index, 'A'
-				// , page
-			)
+			this.setOutcome(voteFactors, index, 'A')
+			this.adjustRanking(voteFactors, index, 'A')
 		}
 
 		return {
@@ -339,15 +319,13 @@ export class FactorRankingLogic
 		vote: IPageVote,
 		originalIndex: number,
 		newIndex: number,
-		component,
-		store,
 		logicUtils: ILogicUtils
 	): boolean {
 		switch (originalIndex) {
 			// Started the move from 1st Factor
 			case 0: {
 				if (newIndex === 1) {
-					this.onMove(1, [0, 1], store)
+					this.onMove(1, [0, 1])
 					vote.changeMillis = 200
 					this.setFactorOrder(
 						voteFactors,
@@ -355,11 +333,10 @@ export class FactorRankingLogic
 						-1,
 						vote,
 						logicUtils,
-						// page
 					)
 					this.moveUpOne(0, logicUtils)
 				} else {
-					this.onMove(2, [0, 2], store)
+					this.onMove(2, [0, 2])
 					vote.changeMillis = 600
 					this.setFactorOrder(
 						voteFactors,
@@ -367,7 +344,6 @@ export class FactorRankingLogic
 						-1,
 						vote,
 						logicUtils,
-						// page,
 						voteFactors[0],
 						voteFactors[2],
 						0
@@ -378,7 +354,7 @@ export class FactorRankingLogic
 			}
 			// Started the move from 2nd Factor
 			case 1: {
-				this.onMove(1, [1, 2], store)
+				this.onMove(1, [1, 2])
 				vote.changeMillis = 200
 				this.setFactorOrder(
 					voteFactors,
@@ -386,7 +362,6 @@ export class FactorRankingLogic
 					-1,
 					vote,
 					logicUtils,
-					// page
 				)
 				this.moveUpOne(1, logicUtils)
 				return true
@@ -405,8 +380,6 @@ export class FactorRankingLogic
 		vote: IPageVote,
 		originalIndex: number,
 		newIndex: number,
-		component,
-		store,
 		logicUtils: ILogicUtils
 	): boolean {
 		switch (originalIndex) {
@@ -417,7 +390,7 @@ export class FactorRankingLogic
 			// }
 			// Started the move from 2nd Factor
 			case 1: {
-				this.onMove(1, [1, 0], component)
+				this.onMove(1, [1, 0])
 				vote.changeMillis = 200
 				this.setFactorOrder(
 					voteFactors,
@@ -425,7 +398,6 @@ export class FactorRankingLogic
 					1,
 					vote,
 					logicUtils,
-					// page
 				)
 				this.moveDownOne(1, logicUtils)
 				return true
@@ -433,7 +405,7 @@ export class FactorRankingLogic
 			// Started the move from 3rd Factor
 			case 2: {
 				if (newIndex === 1) {
-					this.onMove(1, [2, 1], store)
+					this.onMove(1, [2, 1])
 					vote.changeMillis = 200
 					this.setFactorOrder(
 						voteFactors,
@@ -441,11 +413,10 @@ export class FactorRankingLogic
 						1,
 						vote,
 						logicUtils,
-						// page
 					)
 					this.moveDownOne(2, logicUtils)
 				} else {
-					this.onMove(2, [2, 0], store)
+					this.onMove(2, [2, 0])
 					vote.changeMillis = 600
 					this.setFactorOrder(
 						voteFactors,
@@ -453,7 +424,6 @@ export class FactorRankingLogic
 						1,
 						vote,
 						logicUtils,
-						// page,
 						voteFactors[0],
 						voteFactors[2],
 						0
@@ -470,12 +440,11 @@ export class FactorRankingLogic
 		voteFactors: IVoteFactor[],
 		index: number,
 		outcome: Outcome_Ordinal,
-		// page,
 		// adjustRanking = false
 	): void {
 		voteFactors[index].outcome = outcome
 		// if (adjustRanking) {
-		// 	page.fire('rankingAdjusted')
+		// 	dispatch('rankingAdjusted')
 		// }
 	}
 
@@ -483,7 +452,6 @@ export class FactorRankingLogic
 		voteFactors: IVoteFactor[],
 		index: number,
 		outcome: Outcome_Ordinal,
-		// page,
 		// doAdjust = true
 	): boolean {
 		const [
@@ -567,7 +535,7 @@ export class FactorRankingLogic
 
 		return true
 		// if (doAdjust) {
-		// 	page.fire('rankingAdjusted')
+		// 	dispatch('rankingAdjusted')
 		// }
 	}
 
@@ -578,7 +546,6 @@ export class FactorRankingLogic
 		movedFactor1,
 		movedFactor2,
 		adjustRankingIndex,
-		// page,
 		logicUtils: ILogicUtils
 	): void {
 		if (movedFactor2) {
@@ -605,13 +572,12 @@ export class FactorRankingLogic
 		voteFactors: IVoteFactor[],
 		vote: IVote,
 		move3: boolean,
-		store,
 		logicUtils: ILogicUtils
 	): void {
 		if (move3) {
-			this.onMove(1, [2, 1, 0], store)
+			this.onMove(1, [2, 1, 0])
 		} else {
-			this.onMove(1, [1, 0], store)
+			this.onMove(1, [1, 0])
 		}
 		const [firstFactor, secondFactor, thirdFactor] = voteFactors
 		this.swapOnRemove(
@@ -630,7 +596,6 @@ export class FactorRankingLogic
 		delta: number,
 		vote: IVote,
 		logicUtils: ILogicUtils,
-		// page,
 		oldHigherFactor?: IVoteFactor,
 		oldLowerFactor?: IVoteFactor,
 		deltaIndex?: number,
@@ -679,20 +644,16 @@ export class FactorRankingLogic
 		return this.adjustRanking(
 			logicUtils.getVoteFactorNodesInValueOrder(vote),
 			deltaIndex, oldHigherOutcome
-			// , page
 		)
 	}
 
 	private onMove(
 		move,
-		moved,
-		store
+		moved
 	): void {
-		store.set({
-			cardMove: {
-				move,
-				moved
-			}
+		cardMove.set({
+			move,
+			moved
 		})
 	}
 

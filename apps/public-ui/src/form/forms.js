@@ -45,7 +45,7 @@ export function ensureChildForm(
 
 export function ensureTopForm(
 	topFormName,
-	page,
+	formHandle,
 	navigateToRouteOnNotFound,
 	navigateParamsOnNotFound
 ) {
@@ -54,17 +54,18 @@ export function ensureTopForm(
 		navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
 		return null
 	}
-	ensureForm(topForm, page)
+	ensureForm(topForm, formHandle)
 
 	return topForm
 }
 
 export function ensureForm(
 	form,
-	page
+	formHandle
 ) {
-	form.addComponent(page)
-	page.set({form, isValid: form.valid, isOriginal: form.isOriginal()})
+	form.addComponent(formHandle)
+	formHandle.setIsOriginal(form.isOriginal())
+	formHandle.setIsValid(form.valid)
 }
 
 export function uncacheForm(
@@ -74,21 +75,18 @@ export function uncacheForm(
 }
 
 export function clearForm(
-	page
+	form
 ) {
-	const {form} = page.get()
 	if (form) {
 		form.clearComponents()
 	}
 }
 
 export function navigateOnValid(
-	page,
+	form,
 	navigateToRouteOnValid,
 	paramMap
 ) {
-	const {container, form} = page.get()
-
 	form.touch()
 
 	if (!form.valid) {

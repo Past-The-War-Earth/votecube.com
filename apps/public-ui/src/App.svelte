@@ -1,15 +1,4 @@
 <script>
-	import TextToast       from './common/shell/TextToast.svelte'
-	// import FactorInfoMain  from './pages/factor/info/Main.html'
-	// import FactorList      from './pages/factor/search/FactorList.html'
-	import Feedback        from './pages/feedback/FeedbackForm.svelte'
-	// import PollInfoForm    from './pages/poll/info/PollForm.html'
-	// import PollInfoMain    from './pages/poll/info/PollMain.html'
-	// import PollLocations   from './pages/poll/Locations.html'
-	// import PollList        from './pages/poll/search/PollList.html'
-	// import PollTimeframe   from './pages/poll/Timeframe.html'
-	// import VariationList   from './pages/poll/variation/VariationList.html'
-	import ReleasePlan     from './pages/ReleasePlan.svelte'
 	import {
 		ABOUT,
 		APP_CONTAINER,
@@ -43,14 +32,25 @@
 	import {
 		onDestroy,
 		onMount
-	}                  from 'svelte'
-	import {get}       from 'svelte/store'
+	}                   from 'svelte'
+	import {get}        from 'svelte/store'
+	import TextToast    from './common/shell/TextToast.svelte'
+	import FactorMain   from './pages/factor/info/FactorMain.svelte'
+	// import FactorList      from './pages/factor/search/FactorList.html'
+	import Feedback     from './pages/feedback/FeedbackForm.svelte'
+	import PollForm     from './pages/poll/info/PollForm.svelte'
+	import PollInfoMain from './pages/poll/info/PollMain.svelte'
+	// import PollLocations   from './pages/poll/Locations.html'
+	import PollList     from './pages/poll/search/PollList.svelte'
+	// import PollTimeframe   from './pages/poll/Timeframe.html'
+	// import VariationList   from './pages/poll/variation/VariationList.html'
+	import ReleasePlan  from './pages/ReleasePlan.svelte'
 	// import {init}   from './database'
-	import {loadUi}    from './libs/text/ui'
-	import AboutUs     from './pages/AboutUs.svelte'
-	import Menu            from './shell/menu/Menu.svelte'
-	// import SignIn          from './shell/SignIn.html'
-	import TopBar          from './shell/top/TopBar.svelte'
+	import {loadUi}     from './libs/text/ui'
+	import AboutUs      from './pages/AboutUs.svelte'
+	import Menu         from './shell/menu/Menu.svelte'
+	import SignIn       from './shell/SignIn.svelte'
+	import TopBar       from './shell/top/TopBar.svelte'
 
 	// let topMenuMap
 	let appShowMainMenu = showMainMenu
@@ -115,14 +115,14 @@
 
 		pageMap = {
 			[ABOUT]: AboutUs,
-			// [CARD_CLIMATE_CHANGE]: PollInfoMain,
-			// [FACTOR_INFO_MAIN]: FactorInfoMain,
+			[CARD_CLIMATE_CHANGE]: PollInfoMain,
+			[FACTOR_INFO_MAIN]: FactorMain,
 			// [FACTOR_LIST]: FactorList,
 			[FEEDBACK]: Feedback,
-			// [POLL_FORM]: PollInfoForm,
-			// [POLL_LIST]: PollList,
+			[POLL_FORM]: PollForm,
+			[POLL_LIST]: PollList,
 			// [POLL_LOCATIONS]: PollLocations,
-			// [POLL_MAIN]: PollInfoMain,
+			[POLL_MAIN]: PollInfoMain,
 			// [POLL_TIME_FRAME]: PollTimeframe,
 			[RELEASE_PLAN]: ReleasePlan,
 			// [VARIATION_LIST]: VariationList,
@@ -266,10 +266,8 @@
 		text="{$textToast.text}"
 ></TextToast>
 {/if}
-<!--
-{#if $signIn}
+{#if $showSignIn}
 <SignIn
-		on:closed="closeSignIn()"
+		on:closed="{closeSignIn}"
 ></SignIn>
 {/if}
--->

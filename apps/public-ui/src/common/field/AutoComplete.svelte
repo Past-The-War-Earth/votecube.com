@@ -80,16 +80,6 @@
 		}
 	}
 
-	onMount(() => {
-		field.setAsField(formHandle)
-		const value = field.value
-		if (value) {
-			filter = value.text
-		}
-	})
-
-	onDestroy(() => field.removeComponent(formHandle))
-
 	$: errors = v(field.errors, delta)
 	$: label = v(field.label, delta)
 	$: modified = v(!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
@@ -107,24 +97,6 @@
 
 	function v(val) {
 		return val
-	}
-
-	function _for(
-		node,
-		id
-	) {
-		if (id) {
-			node.id = id
-		}
-	}
-
-	function id(
-		node,
-		id
-	) {
-		if (id) {
-			node.id = id
-		}
 	}
 
 	function blur() {
@@ -272,7 +244,7 @@
 >
 	<label
 			class="field-label"
-			use:_for="{field.id}"
+			for="{field.id}"
 	>
 		{label}
 	</label>
@@ -291,12 +263,11 @@
 			<input
 					autocomplete="off"
 					bind:value="{filter}"
+					bind:this={filterInput}
 					id="{field.id}"
 					on:blur="{blur}"
 					on:input="{checkValue}"
-					bind:this={filterInput}
 					type="text"
-					use:id="{id}"
 			>
 		</div>
 		<div

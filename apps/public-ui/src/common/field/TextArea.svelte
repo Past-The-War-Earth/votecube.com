@@ -34,9 +34,6 @@
 		}
 	}
 
-	onMount(() => field.setAsField(formHandle))
-	onDestroy(() => field.removeComponent(formHandle))
-
 	$: charCount = f(() => {
 		const separator = mid || mini ? '/' : ' / '
 		return field.rules.maxLength
@@ -55,30 +52,15 @@
 	$: trackOriginal = v(field.rules.trackOriginal, delta)
 	$: value = v(field.value, delta)
 
+	onMount(() => field.setAsField(formHandle))
+	onDestroy(() => field.removeComponent(formHandle))
+
 	function f(func) {
 		return func()
 	}
 
 	function v(val) {
 		return val
-	}
-
-	function _for(
-		node,
-		id
-	) {
-		if (id) {
-			node.id = id
-		}
-	}
-
-	function maxlength(
-		node,
-		maxLength
-	) {
-		if (maxLength) {
-			node.maxLength = maxLength
-		}
 	}
 
 	function clear() {
@@ -206,7 +188,7 @@
 	{#if floatLabel}
 	<label
 			class="field-label"
-			use:_for="{field.id}"
+			for="{field.id}"
 	>
 		{label}
 	</label>
@@ -235,7 +217,7 @@
 					on:input="{onInput}"
 					placeholder="{placeholder}"
 					type="text"
-					use:maxlength="{field.rules.maxLength}"
+					maxlength="{field.rules.maxLength}"
 					rows="5"
 					value="{value}"
 			/>

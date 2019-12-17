@@ -1,7 +1,4 @@
-import {
-	container,
-	DI
-}                   from '@airport/di'
+import {DI}         from '@airport/di'
 import {
 	ICubeEventListener,
 	IMutationApi,
@@ -29,14 +26,8 @@ export interface ICubeLogic {
 
 	getPollFactorPositionDefault(): IPollFactorPositionDefault
 
-	loadCubeLogic(
-		page,
-		viewCallback: IValuesOutCallback
-	): Promise<(vote: IVote) => void>
-
 	shutDownCubeListener(
 		cubeEventListener: ICubeEventListener,
-		page
 	): void
 
 	setCubeAdjustment(
@@ -89,34 +80,8 @@ export class CubeLogic
 		}
 	}
 
-	async loadCubeLogic(
-		page,
-		viewCallback: IValuesOutCallback
-	): Promise<(vote: IVote) => void> {
-		const cubeLogic = await import('@votecube/cube-logic')
-
-		const cubeEventListener: ICubeEventListener = await container(this)
-			.get(cubeLogic.CUBE_EVENT_LISTENER)
-
-		// page.set({cubeListener})
-
-		this.setCubeViewPort(
-			cubeEventListener,
-			(
-				mutationApi
-			) => {
-				page.set({mutationApi})
-			},
-			viewCallback,
-		)
-
-		return (vote: IVote) => cubeEventListener.setPositionDataAndMove(vote)
-		// startResizeInterval(page, viewCallback)
-	}
-
 	shutDownCubeListener(
 		cubeEventListener: ICubeEventListener,
-		page
 	): void {
 		// stopResizeInterval(page)
 		this.setCubeViewPort(
@@ -124,7 +89,7 @@ export class CubeLogic
 			(
 				mutationApi
 			) => {
-				page.set({mutationApi})
+				// Nothing to do
 			},
 			null
 		)
