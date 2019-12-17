@@ -1,5 +1,6 @@
 <script>
 	import {DI}            from '@airport/di'
+	import {TOUCH}         from '@votecube/cube-logic'
 	import {
 		FACTOR_RANKING_LOGIC,
 		LOGIC_UTILS,
@@ -257,8 +258,8 @@
 		incMovingDelta()
 
 		if (!addOrRemove) {
-			document.addEventListener('mousemove', getFactorMove)
-			document.addEventListener('touchmove', getFactorMove)
+			document.addEventListener('mousemove', onFactorMove)
+			document.addEventListener('touchmove', onFactorMove)
 			voteFactors[index].moving = true
 		}
 		// console.log('moveStart: ' + index)
@@ -642,7 +643,7 @@
 	{#if showPosition(voteFactor, movingVoteFactor, movingVoteFactorDelta)}
 	<figure
 			class="factorFigure"
-			class:isB="{() => isB(voteFactor, delta)}"
+			class:isB="{isB(voteFactor, delta)}"
 			class:removingFactor="{removeCount && !voteFactor.outcome}"
 			factorNumber="{i}"
 			id="factor_{i}"

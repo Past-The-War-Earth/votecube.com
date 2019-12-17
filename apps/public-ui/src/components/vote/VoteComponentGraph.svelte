@@ -33,6 +33,7 @@
 	export let vote
 	export let voteFactors = []
 
+	let cardMoveUnsubscribe
 	let container
 	let logicUtils
 
@@ -76,48 +77,50 @@
 	onMount(async () => {
 		container  = DI.ui('VoteComponentGraph')
 		logicUtils = await container.get(LOGIC_UTILS)
+
+		cardMoveUnsubscribe = cardMove.subscribe((
+			cardMoveValue
+		) => {
+			if (!cardMoveValue || cubeView) {
+				return
+			}
+			const {move, moved} = cardMoveValue
+
+			if (moved.length === 3) {
+				const options = {
+					duration: 300,
+					y: 26
+				}
+				setTimeout(() => {
+					logicUtils.transition('bar_' + 0, fly, options)
+					logicUtils.transition('bar_' + 1, fly, options)
+					logicUtils.transition('bar_' + 2, fly, {duration: 700, y: -56})
+				})
+				return
+			}
+
+			let has0 = moved.indexOf(0) >= 0
+			let has1 = moved.indexOf(1) >= 0
+
+			const options = moved.map(
+				index => {
+					const y = getMoveY(index, has0, has1)
+					return {
+						duration: move === 1 ? 300 : 900,
+						y
+					}
+				})
+
+			setTimeout(() => {
+				logicUtils.transition('bar_' + moved[0], fly, options[0])
+				logicUtils.transition('bar_' + moved[1], fly, options[1])
+			})
+		})
 	})
 
 	onDestroy(async () => {
+		cardMoveUnsubscribe()
 		DI.remove(container)
-	})
-
-	beforeUpdate(() => {
-		const cardMoveValue = get(cardMove)
-		if (!cardMoveValue || cubeView) {
-			return
-		}
-		const {move, moved} = cardMoveValue
-
-		if (moved.length === 3) {
-			const options = {
-				duration: 300,
-				y: 26
-			}
-			setTimeout(() => {
-				logicUtils.transition('bar_' + 0, fly, options)
-				logicUtils.transition('bar_' + 1, fly, options)
-				logicUtils.transition('bar_' + 2, fly, {duration: 700, y: -56})
-			})
-			return
-		}
-
-		let has0 = moved.indexOf(0) >= 0
-		let has1 = moved.indexOf(1) >= 0
-
-		const options = moved.map(
-			index => {
-				const y = getMoveY(index, has0, has1)
-				return {
-					duration: move === 1 ? 300 : 900,
-					y
-				}
-			})
-
-		setTimeout(() => {
-			logicUtils.transition('bar_' + moved[0], fly, options[0])
-			logicUtils.transition('bar_' + moved[1], fly, options[1])
-		})
 	})
 
 	function f(func) {
@@ -175,6 +178,7 @@
 		voteFactor,
 		outcome
 	) {
+		return voteFactor.tweenOutcome === outcome
 	}
 
 	function showPosition(
@@ -428,7 +432,7 @@
 					delta="{delta}"
 					vote="{vote}"
 			></CubeMiniature>
-			{:else if cubeView && showPosition(voteFactor, delta)}
+			{:else if cubeView && showPosition(voteFactor, tweenDelta)}
 			<figure
 					style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, logicUtils, delta)};"
 					transition:fly="{{x: -50, duration: 700}}"
@@ -489,7 +493,7 @@
 				class="percent"
 				on:click="{(event) => dispatch('togglePercent', event)}"
 		>
-			{#if showPosition(voteFactor, delta)}
+			{#if showPosition(voteFactor, tweenDelta)}
 			<!--
 			<CharacterButton
 					character="{tweenOutcome(voteFactor)}"

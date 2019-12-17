@@ -650,8 +650,7 @@
 						verticalLayout="{verticalLayout}"
 						vote="{vote}"
 				></DetailedCube>
-				{/if}
-				{#if !effectiveCubeView}
+				{:else}
 <!--						verticalLayout="{verticalLayout}"-->
 				<FactorRanking
 						delta="{delta}"
@@ -716,7 +715,7 @@
 		</div>
 		<div slot="cancel">
 			<OutcomeButton
-					on:select="{() => showOutcomes(false)}"
+					on:click="{() => showOutcomes(false)}"
 			></OutcomeButton>
 		</div>
 	</ActionPopover>

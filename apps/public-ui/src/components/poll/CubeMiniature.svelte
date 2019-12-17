@@ -41,10 +41,10 @@
 		cubeEventListener.setView('cubeMin')
 		await mutationApi.recompute()
 		setTimeout(() => {
-			let loading  = false
-			let rotating = true
+			loading  = false
+			rotating = true
 			setTimeout(() => {
-				let rotating = false
+				rotating = false
 			}, 700)
 		}, 1)
 

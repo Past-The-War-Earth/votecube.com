@@ -40,7 +40,7 @@
 	$: rightHighlightColor = (getButtonColor(['A', null], voteFactor), moveDelta)
 	$: leftFillColor = (getButtonColor(['A'], voteFactor), moveDelta)
 	$: rightFillColor = (getButtonColor(['B'], voteFactor), moveDelta)
-	$: factorColor = v(voteFactor.outcome
+	$: factorColor = v(logicUtils && voteFactor.outcome
 		? '#' + logicUtils.getColor(poll.factors[voteFactor.factorNumber].color)
 		: 'initial', moveDelta)
 
@@ -83,7 +83,7 @@
 	*/
 
 	onDestroy(() => {
-		this.refreshListener.cancel()
+		// this.refreshListener.cancel()
 		DI.remove(container)
 	})
 

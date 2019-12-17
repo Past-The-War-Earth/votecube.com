@@ -69,6 +69,8 @@ export interface ICubeEventListener {
 
 }
 
+export const TOUCH = document.ontouchmove !== undefined
+
 export class CubeEventListener
 	implements ICubeEventListener {
 
@@ -76,7 +78,6 @@ export class CubeEventListener
 	private dLM: IPerElementEventListenerMap
 	private lastMove  = 0
 	private suspended = false
-	private TOUCH     = document.ontouchmove !== undefined
 
 	addCubeAdjustment(): void {
 		if (this.suspended) {
@@ -97,6 +98,9 @@ export class CubeEventListener
 	): void {
 		eventListenerMap.ad('keydown',
 			ev => {
+				if (this.suspended) {
+					return
+				}
 				const [cubeUtils, viewport] = container(this).getSync(CUBE_UTILS, VIEWPORT)
 				this.rmMmTm()
 				switch (ev.keyCode) {
@@ -397,7 +401,7 @@ export class CubeEventListener
 		const touches = ev.touches
 
 		// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
-		if (!this.TOUCH || !(touches && touches.length > 1)) {
+		if (!TOUCH || !(touches && touches.length > 1)) {
 			try {
 				ev.preventDefault()
 			} catch (_) {

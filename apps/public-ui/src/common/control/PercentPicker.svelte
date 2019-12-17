@@ -1,5 +1,5 @@
 <script>
-	import {popup}              from '@votecube/public-logic'
+	import {popup} from '@votecube/public-logic'
 	import {
 		createEventDispatcher,
 		onDestroy,
@@ -9,6 +9,7 @@
 	import CharacterButton      from './button/CharacterButton.svelte'
 	import LinearPositionPicker from './LinearPositionPicker.svelte'
 
+	export let delta
 	export let poll
 	export let voteFactors
 
@@ -16,12 +17,7 @@
 
 	const dispatch = createEventDispatcher()
 
-	$: moveDelta =  delta + pickerDelta
-
-	$: sortedOutcomes = poll.outcomes.sort((
-			outcome1,
-			outcome2
-		) => outcome1.key > outcome2.key)
+	$: moveDelta = delta + pickerDelta
 
 	onMount(() => {
 		popup.set(true)
@@ -30,6 +26,10 @@
 	onDestroy(() => {
 		popup.set(false)
 	})
+
+	function f(func) {
+		return func()
+	}
 
 	function move(
 		factorNumber,
@@ -161,7 +161,7 @@
 			<tr>
 				<td>
 					<CharacterButton
-							character="{sortedOutcomes[0].key}"
+							character="A"
 							fontSize="20"
 							fontX="12"
 							fontY="19"
@@ -172,7 +172,7 @@
 				<td></td>
 				<td>
 					<CharacterButton
-							character="{sortedOutcomes[1].key}"
+							character="B"
 							fontSize="20"
 							fontX="12"
 							fontY="19"

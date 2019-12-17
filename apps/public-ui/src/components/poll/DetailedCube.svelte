@@ -42,7 +42,7 @@
 	$: horizontalLayout = !verticalLayout
 
 	onMount(async () => {
-		container                              = DI.ui('DetailedCube')
+		ensureContainer()
 		const [cubeEventListener, mutationApi] =
 			      await container.get(
 				      CUBE_EVENT_LISTENER, MUTATION_API
@@ -72,6 +72,7 @@
 	})
 
 	beforeUpdate(() => {
+		ensureContainer()
 		changed.poll = poll !== previous.poll;
 		previous.poll = poll;
 		if (!voteSet) {
@@ -84,6 +85,12 @@
 			}
 		}
 	})
+
+	function ensureContainer() {
+		if(!container) {
+			container                              = DI.ui('DetailedCube')
+		}
+	}
 
 	function charButtonAlignment(outcome) {
 		return outcome === 'A' ? 'left' : 'right'
