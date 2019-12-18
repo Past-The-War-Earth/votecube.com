@@ -8,11 +8,10 @@
 	}                      from 'svelte'
 	import AddRemoveButton from './button/AddRemoveButton.svelte'
 
-	export let closed
+	export let opened    = false
 
 	let changed = {}
 	let hidden
-	let opened    = false
 	let openState = 0
 	let popupUnsubscribe
 	let previous = {}
@@ -34,10 +33,10 @@
 	})
 
 	beforeUpdate(() => {
-		changed.closed = closed !== previous.closed;
-		previous.closed = closed;
+		changed.opened = opened !== previous.opened;
+		previous.opened = opened;
 
-		if (changed.closed && closed) {
+		if (changed.opened && !opened) {
 			toggle(true)
 		}
 	})
@@ -52,15 +51,13 @@
 		return func()
 	}
 
-	function toggle(newOpened) {
-		if (newOpened === undefined) {
-			newOpened = this.get().opened
+	function toggle(oldOpened) {
+		if (oldOpened === undefined) {
+			oldOpened = opened
 		}
-		newOpened = !newOpened
-		dispatch('opened', newOpened)
+		opened = !oldOpened
 
-		opened = newOpened
-		if (newOpened) {
+		if (opened) {
 			openState = 1
 			setTimeout(() => {
 				openState = 2

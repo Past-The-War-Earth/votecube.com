@@ -21,19 +21,17 @@
 	export let mode
 
 	let alignmentMode = false
-	let closed        = false
-	let closing       = false
-	let expanded      = false
+	let opened      = false
 
 	const dispatch = createEventDispatcher()
 
 	$: previewMode = mode === 'build' || mode === 'alter'
 	$: editPollLabel = mode === 'build' ? 'Edit Poll' : 'Improve Poll'
 
-	function open(
+	function run(
 		action
 	) {
-		closed = true
+		opened = false
 		dispatch(action)
 	}
 
@@ -42,28 +40,11 @@
 		previewMode
 	) {
 		if (!previewMode) {
-			open('manuallyOverwrite')
+			run('manuallyOverwrite')
 			return
 		}
 		alignmentMode = !newAlignmentMode
-		open('position')
-	}
-
-	function setOpened(
-		opened
-	) {
-		setTimeout(() => {
-			closed = !opened
-			expanded = opened
-			if (!opened) {
-				closing = true
-				setTimeout(() => {
-					closing = false
-				}, 201)
-			} else {
-				closing = false
-			}
-		}, 1)
+		run('position')
 	}
 
 </script>
@@ -83,17 +64,15 @@
 </style>
 
 <Fab
-		on:opened="{setOpened}"
-		closed="{closed}"
+		bind:opened
 >
 	<div
 			slot="up5"
 	>
 		<DescribedButton
-				expanded="{expanded}"
-				closing="{closing}"
+				bind:opened
 				label="Set Age Suitability"
-				on:click="{() => open('ageSuitability')}"
+				on:click="{() => run('ageSuitability')}"
 		>
 			<ShieldButton
 			></ShieldButton>
@@ -103,10 +82,9 @@
 			slot="up4"
 	>
 		<DescribedButton
-				expanded="{expanded}"
-				closing="{closing}"
+				bind:opened
 				label="View Outcomes"
-				on:click="{() => open('outcomes')}"
+				on:click="{() => run('outcomes')}"
 		>
 			<OutcomeButton
 			></OutcomeButton>
@@ -116,8 +94,7 @@
 			slot="up3"
 	>
 		<DescribedButton
-				expanded="{expanded}"
-				closing="{closing}"
+				bind:opened
 				label="{previewMode ? (alignmentMode ? 'Hide Alignment' : 'Set Alignment') : 'Manually Override'}"
 				on:click="{() => position(alignmentMode, previewMode)}"
 		>
@@ -135,10 +112,9 @@
 			slot="up2"
 	>
 		<DescribedButton
-				expanded="{expanded}"
-				closing="{closing}"
+				bind:opened
 				label="{editPollLabel}"
-				on:click="{() => open('edit')}"
+				on:click="{() => run('edit')}"
 		>
 			<EditButton
 			></EditButton>
@@ -148,10 +124,9 @@
 			slot="up1"
 	>
 		<DescribedButton
-				expanded="{expanded}"
-				closing="{closing}"
+				bind:opened
 				label="{previewMode ? 'Build Poll' : 'Submit Vote'}"
-				on:click="{() => open(previewMode ? 'build' : 'confirmVote')}"
+				on:click="{() => run(previewMode ? 'build' : 'confirmVote')}"
 		>
 			{#if previewMode}
 			<BuildButton
@@ -167,7 +142,7 @@
 	>
 		<UndescribedButton>
 			<VariationTreeButton
-					on:click="{() => open('variations')}"
+					on:click="{() => run('variations')}"
 					styles="position: absolute; right: 0px; top: 0px;"
 			></VariationTreeButton>
 		</UndescribedButton>
@@ -177,7 +152,7 @@
 	>
 		<UndescribedButton>
 			<OpinionButton
-					on:click="{() => open('opinions')}"
+					on:click="{() => run('opinions')}"
 					styles="position: absolute; right: 0px; top: 0px;"
 			></OpinionButton>
 		</UndescribedButton>
@@ -187,7 +162,7 @@
 	>
 		<UndescribedButton>
 			<BellCurveButton
-					on:click="{() => open('stats')}"
+					on:click="{() => run('stats')}"
 					styles="position: absolute; right: 0px; top: 0px;"
 			></BellCurveButton>
 		</UndescribedButton>
@@ -197,7 +172,7 @@
 	>
 		<UndescribedButton>
 			<RankingsButton
-					on:click="{() => open('rankings')}"
+					on:click="{() => run('rankings')}"
 					styles="position: absolute; right: 0px; top: 0px;"
 			></RankingsButton>
 		</UndescribedButton>

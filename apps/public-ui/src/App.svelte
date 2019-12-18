@@ -28,13 +28,15 @@
 		textToast,
 		user,
 		VARIATION_LIST
-	}                  from '@votecube/public-logic'
+	}                   from '@votecube/public-logic'
 	import {
 		onDestroy,
 		onMount
 	}                   from 'svelte'
 	import {get}        from 'svelte/store'
 	import TextToast    from './common/shell/TextToast.svelte'
+	import {loadUi}     from './libs/text/ui'
+	import AboutUs      from './pages/AboutUs.svelte'
 	import FactorMain   from './pages/factor/info/FactorMain.svelte'
 	// import FactorList      from './pages/factor/search/FactorList.html'
 	import Feedback     from './pages/feedback/FeedbackForm.svelte'
@@ -45,16 +47,13 @@
 	// import PollTimeframe   from './pages/poll/Timeframe.html'
 	// import VariationList   from './pages/poll/variation/VariationList.html'
 	import ReleasePlan  from './pages/ReleasePlan.svelte'
-	// import {init}   from './database'
-	import {loadUi}     from './libs/text/ui'
-	import AboutUs      from './pages/AboutUs.svelte'
 	import Menu         from './shell/menu/Menu.svelte'
 	import SignIn       from './shell/SignIn.svelte'
 	import TopBar       from './shell/top/TopBar.svelte'
 
 	// let topMenuMap
 	let appShowMainMenu = showMainMenu
-	let appIsDesktop = isDesktop
+	let appIsDesktop    = isDesktop
 	let lastTextToast   = {}
 	let PageComp        = null
 	let pageMap
@@ -159,11 +158,8 @@
 				lastTextToast = value
 				showTextToast = true
 				setTimeout(() => {
-					let now = new Date().getTime()
-					if (now - lastTextToast.seconds * 1000 >= lastTextToast.time) {
-						showTextToast = false
-					}
-				}, textToast.seconds * 1000)
+					showTextToast = false
+				}, value.seconds * 1000)
 			})
 
 		const [auth, _] = await Promise.all([
@@ -228,46 +224,46 @@
 </style>
 
 <svelte:window on:resize={handleResize}/>
-<article
-		class="{activeClass} wrapper"
-		class:noOverflow="{$noOverflow}"
-		class:cube="{$cube}"
-		id="layout"
->
-	<!-- Menu toggle -->
-	<TopBar></TopBar>
-	{#if showLogo}
-	<div>
-		VOTECUBE
-	</div>
-	{/if}
+	<article
+			class="{activeClass} wrapper"
+			class:noOverflow="{$noOverflow}"
+			class:cube="{$cube}"
+			id="layout"
+	>
+		<!-- Menu toggle -->
+		<TopBar></TopBar>
+		{#if showLogo}
+		<div>
+			VOTECUBE
+		</div>
+		{/if}
 
-	<nav
-			class="menu-link {activeClass}"
-			id="menuLink"
-			on:click="{toggleMenu}"
-	>
-		<!--Hamburger icon -->
-		<span></span>
-	</nav>
-	<Menu
-			active="{$showMainMenu}"
-			on:selected="{selectMenu}"
-	></Menu>
-	<section
-			id="main"
-			on:click="{clickMain}"
-	>
-		<svelte:component this="{PageComp}"/>
-	</section>
-</article>
-{#if showTextToast}
-<TextToast
-		text="{$textToast.text}"
-></TextToast>
-{/if}
-{#if $showSignIn}
-<SignIn
-		on:closed="{closeSignIn}"
-></SignIn>
-{/if}
+		<nav
+				class="menu-link {activeClass}"
+				id="menuLink"
+				on:click="{toggleMenu}"
+		>
+			<!--Hamburger icon -->
+			<span></span>
+		</nav>
+		<Menu
+				active="{$showMainMenu}"
+				on:selected="{selectMenu}"
+		></Menu>
+		<section
+				id="main"
+				on:click="{clickMain}"
+		>
+			<svelte:component this="{PageComp}"/>
+		</section>
+	</article>
+	{#if showTextToast}
+	<TextToast
+			text="{$textToast.text}"
+	></TextToast>
+	{/if}
+	{#if $showSignIn}
+	<SignIn
+			on:closed="{closeSignIn}"
+	></SignIn>
+	{/if}

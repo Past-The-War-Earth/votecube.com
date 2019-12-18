@@ -9,40 +9,21 @@
 
 	export let entityNames
 
-	let closed     = false
-	let closing    = false
-	let expanded   = false
 	let factorMode = true
+	let opened      = false
 
 	const dispatch = createEventDispatcher()
 
-	function open(
+	function run(
 		action
 	) {
-		closed = true
+		opened = false
 		dispatch(action)
-	}
-
-	function setOpened(
-		opened
-	) {
-		setTimeout(() => {
-			closed   = !opened
-			expanded = opened
-			if (!opened) {
-				closing = true
-				setTimeout(() => {
-					closing = false
-				}, 201)
-			} else {
-				closing = false
-			}
-		}, 1)
 	}
 
 	function toggleFactorMode() {
 		factorMode = !factorMode
-		this.open(factorMode ? 'factors' : 'outcomes')
+		run(factorMode ? 'factors' : 'outcomes')
 	}
 
 </script>
@@ -56,17 +37,15 @@
 </style>
 
 <Fab
-		on:opened="{setOpened}"
-		closed="{closed}"
+		bind:opened
 >
 	<div
 			slot="up3"
 	>
 		<DescribedButton
-				expanded="{expanded}"
-				closing="{closing}"
+				bind:opened
 				label="Sort {entityNames}"
-				on:click="{() => open('sort')}"
+				on:click="{() => run('sort')}"
 		>
 			<SortButton
 			></SortButton>
@@ -76,10 +55,9 @@
 			slot="up2"
 	>
 		<DescribedButton
-				expanded="{expanded}"
-				closing="{closing}"
+				bind:opened
 				label="Filter {entityNames}"
-				on:click="{() => open('filter')}"
+				on:click="{() => run('filter')}"
 		>
 			<FilterButton
 			></FilterButton>
@@ -89,8 +67,7 @@
 			slot="up1"
 	>
 		<DescribedButton
-				expanded="{expanded}"
-				closing="{closing}"
+				bind:opened
 				label="{factorMode ? 'Show Factors' : 'Show Outcomes'}"
 				on:click="{() => toggleFactorMode()}"
 		>

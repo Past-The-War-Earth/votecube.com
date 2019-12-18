@@ -3,7 +3,8 @@
 	import {LOGIC_UTILS} from '@votecube/public-logic'
 	import {
 		createEventDispatcher,
-		onDestroy
+		onDestroy,
+		onMount
 	}                    from 'svelte'
 	import LeftButton    from './button/LeftButton.svelte'
 	import RightButton   from './button/RightButton.svelte'
@@ -17,11 +18,6 @@
 	let interval
 	let lastNumIncs
 	let lastVoteFactor
-	let load = new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(initPage())
-		}, 1)
-	})
 	let logicUtils
 	let numIncs
 	let numReIncs
@@ -37,9 +33,9 @@
 	$: leftStrokeWidth = v(getStrokeWidth('A', voteFactor), moveDelta)
 	$: rightStrokeWidth = v(getStrokeWidth('B', voteFactor), moveDelta)
 	$: leftHighlightColor = v(getButtonColor(['B', null], voteFactor), moveDelta)
-	$: rightHighlightColor = (getButtonColor(['A', null], voteFactor), moveDelta)
-	$: leftFillColor = (getButtonColor(['A'], voteFactor), moveDelta)
-	$: rightFillColor = (getButtonColor(['B'], voteFactor), moveDelta)
+	$: rightHighlightColor = v(getButtonColor(['A', null], voteFactor), moveDelta)
+	$: leftFillColor = v(getButtonColor(['A'], voteFactor), moveDelta)
+	$: rightFillColor = v(getButtonColor(['B'], voteFactor), moveDelta)
 	$: factorColor = v(logicUtils && voteFactor.outcome
 		? '#' + logicUtils.getColor(poll.factors[voteFactor.factorNumber].color)
 		: 'initial', moveDelta)
@@ -74,13 +70,10 @@
 		event.preventDefault()
 		onPress(outcome)
 	}
-/*
-	onMount(() => {
-		this.refreshListener = this.on('refresh', () => {
-			updateValue()
-		})
+	onMount(async () => {
+		container  = DI.ui('LinearPositionPicker')
+		logicUtils = await container.get(LOGIC_UTILS)
 	})
-	*/
 
 	onDestroy(() => {
 		// this.refreshListener.cancel()
@@ -104,7 +97,7 @@
 			percentChange
 		})
 		if (!numIncs) {
-			clearIntrvl(page)
+			clearIntrvl()
 			numReIncs = numReIncs - 1
 			if (!numReIncs) {
 				return
@@ -161,8 +154,7 @@
 
 	function getButtonColor(
 		matchingOutcomes,
-		voteFactor,
-		poll
+		voteFactor
 	) {
 		return matchingOutcomes.indexOf(voteFactor.outcome) > -1
 			? '000'
@@ -183,7 +175,7 @@
 		lastVoteFactor = voteFactor
 
 		dispatch('move', {
-			newOutcome,
+			outcome: newOutcome,
 			percentChange
 		})
 
@@ -250,9 +242,6 @@
 
 </style>
 
-{#await load}
-<!-- -->
-{:then result}
 <tr>
 	<td>
 		<div
@@ -308,4 +297,3 @@
 		</div>
 	</td>
 </tr>
-{/await}

@@ -1,29 +1,41 @@
 <script>
 	import { beforeUpdate } from 'svelte';
 
-	export let closed
-	export let closing
 	export let displayed = false
 	export let displayedHandle
-	export let expanded  = false
+	export let opened  = false
 	export let label     = ''
 
 	let changed = {}
+	let closing
+	let openedInternal = false
 	let previous = {
-		expanded: false
+		opened: false
 	}
 
 	// [svelte-upgrade warning]
 	// beforeUpdate and afterUpdate handlers behave
 	// differently to their v2 counterparts
 	beforeUpdate(() => {
-		changed.closed = closed !== previous.closed;
-		changed.expanded = expanded !== previous.expanded;
-		previous.closed = closed;
-		previous.expanded = expanded;
+		changed.opened = opened !== previous.opened;
+		previous.opened = opened;
 
-		if (changed.expanded || changed.closing) {
-			let newDisplayed = expanded
+
+		if (changed.opened) {
+			setTimeout(() => {
+				if (!opened) {
+					closing = true
+					setTimeout(() => {
+						closing = false
+					}, 201)
+				} else {
+					closing = false
+				}
+			}, 1)
+			setTimeout(() => {
+				openedInternal = opened
+			})
+			let newDisplayed = opened
 			if (closing) {
 				newDisplayed = false
 			}
@@ -50,7 +62,7 @@
 		top: 0px;
 	}
 
-	div:first-child.expanded {
+	div:first-child.opened {
 		width: 250px;
 	}
 
@@ -96,7 +108,7 @@
 	<div
 			class="upClose"
 			class:closing="{closing}"
-			class:expanded="{expanded}"
+			class:opened="{openedInternal}"
 	>
 		{#if displayed}
 		<span>

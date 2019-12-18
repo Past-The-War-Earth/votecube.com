@@ -89,11 +89,11 @@
 	<div slot="actions">
 		{#if saving}
 		<BuildButton
-				on:select="{save}"
+				on:click="{save}"
 		></BuildButton>
 		{:else}
 		<SaveButton
-				on:select="{save}"
+				on:click="{save}"
 		></SaveButton>
 		{/if}
 	</div>

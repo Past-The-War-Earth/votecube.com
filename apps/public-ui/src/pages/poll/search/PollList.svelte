@@ -1,12 +1,11 @@
 <script>
-	import {DI}          from '@airport/di'
+	import {DI}        from '@airport/di'
 	import {
 		LOGIC_UTILS,
 		navigateToPage,
 		pageTitle,
 		POLL_MAIN,
 		POLL_MANAGER,
-		RELEASE_PLAN,
 		text
 	}                    from '@votecube/public-logic'
 	import {
@@ -51,6 +50,11 @@
 		}
 	}
 
+	onMount(async () => {
+		container                          = DI.ui('PollList')
+		logicUtils = await container.get(LOGIC_UTILS)
+	})
+
 	onDestroy(() => {
 		forms.clearForm(form)
 		DI.remove(container)
@@ -60,6 +64,8 @@
 		error
 	) {
 		console.log(error)
+
+		return error
 	}
 
 	function goTo(
@@ -77,7 +83,6 @@
 		theAction
 	) {
 		action = theAction
-		error  = ''
 	}
 
 	function showFactors() {
@@ -89,10 +94,7 @@
 	}
 
 	async function initPage() {
-		container                          = DI.ui('PollList')
-		const [theLogicUtils, pollManager] =
-			      await container.get(LOGIC_UTILS, POLL_MANAGER)
-		logicUtils                         = theLogicUtils
+		const pollManager = await container.get(POLL_MANAGER)
 		const [
 			      formFactory,
 			      originalPolls
@@ -234,7 +236,7 @@
 	-->
 		<div slot="cancel">
 			<CancelButton
-					on:select="{() => setAction('none')}"
+					on:click="{() => setAction('none')}"
 			></CancelButton>
 		</div>
 	</ActionPopover>
@@ -243,6 +245,5 @@
 	{/if}
 </article>
 {:catch error}
-{error}
 {getError(error)}
 {/await}

@@ -161,7 +161,7 @@
 				}
 				*/
 				delta       = delta + 1
-				percentMode = false
+// 				percentMode = false
 			}
 		)
 
@@ -291,7 +291,6 @@
 	}
 
 	function onAgeSuitabilitySave(
-		delta,
 		saving
 	) {
 		if (saving) {
@@ -336,9 +335,9 @@
 		container.get(MUTATION_API).then(
 			mutationApi => {
 				mutationApi.move(
-					event.factorNumber,
-					event.outcome,
-					event.percentChange
+					event.detail.factorNumber,
+					event.detail.outcome,
+					event.detail.percentChange
 				)
 			})
 	}
@@ -349,7 +348,7 @@
 		percentMode = true
 		container.get(MUTATION_API).then(
 			mutationApi => {
-				mutationApi.moveToValue(event.factorNumber, event.value)
+				mutationApi.moveToValue(event.detail.factorNumber, event.detail.value)
 			})
 	}
 
@@ -368,7 +367,7 @@
 	function togglePercentPicker() {
 		let newPercentMode = !percentMode
 		setCubeAdjustment(!percentMode).then(() => {
-			if (percentMode) {
+			if (newPercentMode) {
 				cubeView = true
 			}
 			percentMode = newPercentMode
@@ -694,7 +693,7 @@
 	<AgeSuitability
 			saving="{saving}"
 			on:cancel="{() => showAgeSuitability(false)}"
-			on:save="{() => onAgeSuitabilitySave(delta, saving)}"
+			on:save="{() => onAgeSuitabilitySave(saving)}"
 			poll="{poll}"
 	></AgeSuitability>
 	{/if}
@@ -799,7 +798,7 @@
 -->
 		<div slot="cancel">
 			<CancelButton
-					on:select="{closeConfirm}"
+					on:click="{closeConfirm}"
 			></CancelButton>
 		</div>
 	</ActionPopover>
@@ -837,7 +836,7 @@
 			</div>
 			<div slot="actions">
 				<AlterButton
-						on:select="alter($routeParams)"
+						on:click="alter($routeParams)"
 				></AlterButton>
 			</div>
 		</ActionPopover>

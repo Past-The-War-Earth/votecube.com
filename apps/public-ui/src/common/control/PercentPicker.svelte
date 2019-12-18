@@ -50,7 +50,7 @@
 	) {
 		dispatch('moveToValue', {
 			factorNumber,
-			value
+			value: value.detail
 		})
 		update()
 	}
@@ -142,13 +142,13 @@
 	<div>
 		<nav
 				class="left"
-				on:click="{dispatch('close')}"
+				on:click="{() => dispatch('close')}"
 		>
 			╳
 		</nav>
 		<nav
 				class="right"
-				on:click="{dispatch('close')}"
+				on:click="{() => dispatch('close')}"
 		>
 			╳
 		</nav>
@@ -222,7 +222,7 @@
 			{#each voteFactors as voteFactor, i}
 			<LinearPositionPicker
 					moveDelta="{moveDelta}"
-					on:move="{(event) => move(voteFactor.factorNumber, event.outcome, event.percentChange)}"
+					on:move="{(event) => move(voteFactor.factorNumber, event.detail.outcome, event.detail.percentChange)}"
 					on:moveToValue="{(event) => moveToValue(voteFactor.factorNumber, event)}"
 					on:update="{update}"
 					poll="{poll}"
