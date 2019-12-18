@@ -44,7 +44,7 @@
 	$: requiredValid = v(
 		!modified && field.validatorMap.required && !errors.length, delta)
 	$: touched = v(field.touched, delta)
-	$: trackOriginal = (field.rules.trackOriginal, delta)
+	$: trackOriginal = v(field.rules.trackOriginal, delta)
 	$: value = v(field.value, delta)
 
 	onMount(() => field.setAsField(formHandle))
@@ -168,15 +168,15 @@
 		>
 			<div>
 				<InfoIcon
-						on:select="{help}"
+						on:click="{help}"
 				></InfoIcon>
 				{#if trackOriginal}
 				<UndoIcon
-						on:select="{revert}"
+						on:click="{revert}"
 				></UndoIcon>
 				{:else}
 				<ClearIcon
-						on:select="{clear}"
+						on:click="{clear}"
 				></ClearIcon>
 				{/if}
 			</div>

@@ -94,6 +94,9 @@
 		!modified && field.validatorMap.required && !errors.length, delta)
 	$: touched = v(field.touched, delta)
 	$: trackOriginal = v(field.rules.trackOriginal, delta)
+	
+	onMount(() => field.setAsField(formHandle))
+	onDestroy(() => field.removeComponent(formHandle))
 
 	function v(val) {
 		return val
