@@ -1,3 +1,9 @@
+<script>
+
+	export let styles
+
+</script>
+
 <svg
 		height="17"
 		style="{styles}"

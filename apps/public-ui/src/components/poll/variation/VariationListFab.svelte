@@ -1,14 +1,15 @@
 <script>
 	import {createEventDispatcher} from 'svelte'
-	import DescribedButton         from '../../common/control/button/DescribedButton.svelte'
-	import FactorButton            from '../../common/control/button/FactorButton.svelte'
-	import FilterButton            from '../../common/control/button/FilterButton.svelte'
-	import OutcomeButton           from '../../common/control/button/OutcomeButton.svelte'
-	import SortButton              from '../../common/control/button/SortButton.svelte'
-	import Fab                     from '../../common/control/Fab.svelte'
+
+	import DescribedButton from '../../../common/control/button/DescribedButton.svelte'
+	import FactorButton    from '../../../common/control/button/FactorButton.svelte'
+	import FilterButton    from '../../../common/control/button/FilterButton.svelte'
+	import OutcomeButton   from '../../../common/control/button/OutcomeButton.svelte'
+	import SortButton      from '../../../common/control/button/SortButton.svelte'
+	import Fab             from '../../../common/control/Fab.svelte'
 
 	let factorMode = true
-	let opened      = false
+	let opened     = false
 
 	const dispatch = createEventDispatcher()
 
@@ -42,7 +43,7 @@
 	>
 		<DescribedButton
 				bind:opened
-				label="Sort Polls"
+				label="Sort Variations"
 				on:click="{() => run('sort')}"
 		>
 			<SortButton
@@ -54,7 +55,7 @@
 	>
 		<DescribedButton
 				bind:opened
-				label="Filter Polls"
+				label="Filter Variations"
 				on:click="{() => run('filter')}"
 		>
 			<FilterButton
@@ -67,7 +68,7 @@
 		<DescribedButton
 				bind:opened
 				label="{factorMode ? 'Show Factors' : 'Show Outcomes'}"
-				on:click="{() => toggleFactorMode()}"
+				on:click="{toggleFactorMode}"
 		>
 			{#if factorMode}
 			<OutcomeButton

@@ -45,7 +45,7 @@
 	// import PollLocations   from './pages/poll/Locations.html'
 	import PollList     from './pages/poll/search/PollList.svelte'
 	// import PollTimeframe   from './pages/poll/Timeframe.html'
-	// import VariationList   from './pages/poll/variation/VariationList.html'
+	import VariationList   from './pages/poll/variation/VariationList.svelte'
 	import ReleasePlan  from './pages/ReleasePlan.svelte'
 	import Menu         from './shell/menu/Menu.svelte'
 	import SignIn       from './shell/SignIn.svelte'
@@ -124,7 +124,7 @@
 			[POLL_MAIN]: PollInfoMain,
 			// [POLL_TIME_FRAME]: PollTimeframe,
 			[RELEASE_PLAN]: ReleasePlan,
-			// [VARIATION_LIST]: VariationList,
+			[VARIATION_LIST]: VariationList,
 		}
 		/*		topMenuMap = {
 					[routes.POLL_MAIN]: PollInfoCommonTopMenu,

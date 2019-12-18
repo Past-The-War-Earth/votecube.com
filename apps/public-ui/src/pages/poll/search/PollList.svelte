@@ -187,7 +187,6 @@
 		{/each}
 	</table>
 	<PollListFab
-			entityNames="Polls"
 			on:factors="{showFactors}"
 			on:sort="{() => setAction('sort')}"
 			on:filter="{() => setAction('filter')}"
