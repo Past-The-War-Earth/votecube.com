@@ -8,29 +8,30 @@
 	// props
 	export let items           = []
 	export let additionalItems = []
-	export let stubItem
 	export let height          = '100%'
 	export let itemHeight      = undefined
-
-	let foo
+	export let preloading
 
 	// read-only, but visible to consumers via bind:start
 	export let start = 0
 	export let end   = 0
 
+
 	// local state
 	let height_map      = []
 	let rows
 	let viewport
+	let visible         = []
 	let contents
 	let viewport_height = 0
-	let visible
 	let mounted
 
-	let internalItems
-	let top    = 0
-	let bottom = 0
+	let internalItems = []
+	let top           = 0
+	let bottom        = 0
 	let average_height
+
+	let moreRecord
 
 	let appending = false
 
@@ -40,29 +41,34 @@
 
 	$: {
 		appending     = false
+		start         = 0
+		end           = items.length - 1
 		internalItems = [
-			...items,
-			stubItem
+			...items
 		]
 	}
 
 	function appendItems(additionalItems) {
-		appending     = true
+		appending = true
+		internalItems.pop()
 		internalItems = [
-			...items,
-			...additionalItems,
-			stubItem
+			...internalItems,
+			...additionalItems
 		]
 	}
 
 	$: {
-		if (appending) {
-			handle_scroll()
-		} else {
-			// whenever `items` changes externally, invalidate the current heightmap
-			if (mounted) refresh(internalItems, viewport_height, itemHeight)
+		let isSSR = false
+		preloading.subscribe(value => isSSR = value)()
+		if (isSSR === false) {
+			if (appending) {
+				handle_scroll()
+			} else {
+				// whenever `items` changes externally, invalidate the current heightmap
+				if (mounted) refresh(internalItems, viewport_height, itemHeight)
+			}
+			appending = false
 		}
-		appending = false
 	}
 
 	$: visible = internalItems.slice(start, end).map((
@@ -100,10 +106,7 @@
 		}
 
 		end = i
-
-		if (end === internalItems.length - 1) {
-			dispatch('more')
-		}
+		ensureData()
 
 		const remaining = internalItems.length - end
 		average_height  = (top + content_height) / end
@@ -146,10 +149,7 @@
 		}
 
 		end = i
-
-		if (end === internalItems.length - 1) {
-			dispatch('more')
-		}
+		ensureData()
 
 		const remaining = internalItems.length - end
 		average_height  = y / end
@@ -178,6 +178,16 @@
 		// TODO if we overestimated the space these
 		// rows would occupy we may need to add some
 		// more. maybe we can just call handle_scroll again?
+	}
+
+	function ensureData() {
+		if (end >= internalItems.length - 2) {
+			let lastRecord = internalItems[internalItems.length - 2]
+			if (moreRecord !== lastRecord) {
+				moreRecord = lastRecord
+				dispatch('more', internalItems[internalItems.length - 2])
+			}
+		}
 	}
 
 	// trigger initial refresh

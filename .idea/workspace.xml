@@ -2,60 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/opinion/OpinionForm.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/opinion/OpinionList.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/opinion/OpinionListItem" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/fixtures/example.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/integration/spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/plugins/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/support/commands.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/support/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/rollup.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/client.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/Nav.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/_error.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/_layout.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/about.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/[slug].json.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/[slug].svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/_posts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/index.json.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/index.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/[pollId]/[pollName].json.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/[pollId]/[pollName].svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/_posts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/index.json.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/index.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/index.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/[pollId]/[pollName].svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/create.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/index.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/service-worker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/shared/deserializer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/template.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/global.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/great-success.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/logo-192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/logo-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/.eslintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/ProgressiveList.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/rollup.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/votecube-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/votecube-ui.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/shared/dataApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/public-ui/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/common/config/rush/shrinkwrap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/rush.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/shared/deserializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/shared/deserializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/svelte-progressive-list/ProgressiveList.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/ProgressiveList.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +26,13 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
@@ -107,6 +65,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -120,15 +79,15 @@
     <property name="ts.external.directory.path" value="C:\Users\Papa\vc\ts\votecube-ui\libs\db\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\public-ui\src\pages\poll\opinion" />
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui" />
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\libs\cube-logic" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
     </key>
   </component>
   <component name="RunManager">
@@ -251,7 +210,8 @@
     <MESSAGE value="precise cube rotation, 15 degree increments" />
     <MESSAGE value="cube rotation demo" />
     <MESSAGE value="visible surface percentage code" />
-    <option name="LAST_COMMIT_MESSAGE" value="visible surface percentage code" />
+    <MESSAGE value="Initial checkin for SSR + performance optimized UI." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial checkin for SSR + performance optimized UI." />
   </component>
   <component name="WindowStateProjectService">
     <state x="187" y="-1049" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579037231033">
@@ -266,6 +226,18 @@
       <screen x="-1919" y="-1188" width="1920" height="1080" />
     </state>
     <state x="-1233" y="-920" key="#sapper/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037252217" />
+    <state x="715" y="229" key="#xdebugger.evaluate" timestamp="1579105984422">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="715" y="229" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1579105984422" />
+    <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1579046408912">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    </state>
+    <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579046408912" />
+    <state width="379" height="466" key="DebuggerActiveHint" timestamp="1579096165500">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="379" height="466" key="DebuggerActiveHint/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579096165500" />
     <state x="-1233" y="-965" key="FileChooserDialogImpl" timestamp="1579037196454">
       <screen x="-1919" y="-1188" width="1920" height="1080" />
     </state>
@@ -273,21 +245,181 @@
     <state x="-1233" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037196454" />
     <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578848148679" />
     <state x="687" y="-857" key="FileChooserDialogImpl/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579030485607" />
-    <state width="1899" height="302" key="GridCell.Tab.0.bottom" timestamp="1579037628894">
-      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    <state width="1899" height="302" key="GridCell.Tab.0.bottom" timestamp="1579124842575">
+      <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
-    <state width="1899" height="302" key="GridCell.Tab.0.center" timestamp="1579037628894">
-      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    <state width="1899" height="372" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
+    <state width="1899" height="356" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="302" key="GridCell.Tab.0.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
+    <state width="1899" height="302" key="GridCell.Tab.0.center" timestamp="1579124842574">
+      <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
-    <state width="1899" height="302" key="GridCell.Tab.0.left" timestamp="1579037628893">
-      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    <state width="1899" height="372" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
+    <state width="1899" height="356" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="302" key="GridCell.Tab.0.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
+    <state width="1899" height="302" key="GridCell.Tab.0.left" timestamp="1579124842574">
+      <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628893" />
-    <state width="1899" height="302" key="GridCell.Tab.0.right" timestamp="1579037628894">
-      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    <state width="1899" height="372" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
+    <state width="1899" height="356" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="302" key="GridCell.Tab.0.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
+    <state width="1899" height="302" key="GridCell.Tab.0.right" timestamp="1579124842575">
+      <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
+    <state width="1899" height="372" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
+    <state width="1899" height="356" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="302" key="GridCell.Tab.0.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
+    <state width="1899" height="356" key="GridCell.Tab.1.bottom" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.1.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580578" />
+    <state width="1899" height="356" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="356" key="GridCell.Tab.1.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state width="1899" height="356" key="GridCell.Tab.1.center" timestamp="1579124842566">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.1.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
+    <state width="1899" height="356" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="356" key="GridCell.Tab.1.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842566" />
+    <state width="1899" height="356" key="GridCell.Tab.1.left" timestamp="1579124842566">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.1.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
+    <state width="1899" height="356" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="356" key="GridCell.Tab.1.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842566" />
+    <state width="1899" height="356" key="GridCell.Tab.1.right" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.1.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
+    <state width="1899" height="356" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="356" key="GridCell.Tab.1.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state width="1899" height="356" key="GridCell.Tab.2.bottom" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.2.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580579" />
+    <state width="1899" height="356" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124347" />
+    <state width="1899" height="356" key="GridCell.Tab.2.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state width="1899" height="356" key="GridCell.Tab.2.center" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.2.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580578" />
+    <state width="1899" height="356" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="356" key="GridCell.Tab.2.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state width="1899" height="356" key="GridCell.Tab.2.left" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.2.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580578" />
+    <state width="1899" height="356" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="356" key="GridCell.Tab.2.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state width="1899" height="356" key="GridCell.Tab.2.right" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.2.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580578" />
+    <state width="1899" height="356" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124346" />
+    <state width="1899" height="356" key="GridCell.Tab.2.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state width="1899" height="356" key="GridCell.Tab.3.bottom" timestamp="1579124842568">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.3.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580579" />
+    <state width="1899" height="356" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124347" />
+    <state width="1899" height="356" key="GridCell.Tab.3.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842568" />
+    <state width="1899" height="356" key="GridCell.Tab.3.center" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.3.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580579" />
+    <state width="1899" height="356" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124347" />
+    <state width="1899" height="356" key="GridCell.Tab.3.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state width="1899" height="356" key="GridCell.Tab.3.left" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.3.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580579" />
+    <state width="1899" height="356" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124347" />
+    <state width="1899" height="356" key="GridCell.Tab.3.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state width="1899" height="356" key="GridCell.Tab.3.right" timestamp="1579124842567">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="372" key="GridCell.Tab.3.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580579" />
+    <state width="1899" height="356" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124347" />
+    <state width="1899" height="356" key="GridCell.Tab.3.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
+    <state x="553" y="-803" key="Vcs.Push.Dialog.v2" timestamp="1579046413270">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579046413270" />
+    <state x="668" y="-784" width="654" height="507" key="find.popup" timestamp="1579129472131">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state x="668" y="-784" width="654" height="488" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579096979238" />
+    <state x="667" y="285" width="654" height="488" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1579105505740" />
+    <state x="668" y="-784" width="654" height="507" key="find.popup/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579129472131" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/common/temp/node_modules/.registry.npmjs.org/sapper/0.27.9/svelte@3.17.1/node_modules/sapper/dist/cli.js</url>
+          <line>494</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/common/temp/node_modules/.registry.npmjs.org/sapper/0.27.9/svelte@3.17.1/node_modules/sapper/dist/export.js</url>
+          <line>1403</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/node_modules/sapper/runtime/server.mjs</url>
+          <line>1894</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/node_modules/sapper/runtime/server.mjs</url>
+          <line>1960</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/node_modules/sapper/runtime/server.mjs</url>
+          <line>2130</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/src/node_modules/@sapper/server.mjs</url>
+          <line>1903</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/src/node_modules/@sapper/server.mjs</url>
+          <line>1912</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/src/node_modules/@sapper/server.mjs</url>
+          <line>1922</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/src/node_modules/@sapper/server.mjs</url>
+          <line>1927</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/src/node_modules/@sapper/server.mjs</url>
+          <line>1946</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/src/node_modules/@sapper/server.mjs</url>
+          <line>1955</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-ui/src/node_modules/@sapper/server.mjs</url>
+          <line>1960</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

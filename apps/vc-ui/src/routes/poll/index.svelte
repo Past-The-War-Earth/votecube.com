@@ -1,84 +1,47 @@
 <script context="module">
-	import {readIdPairRecord} from '../../shared/deserializer'
+	import {retrievePolls} from '../../shared/dataApi'
+	import {readIdRecords} from '../../shared/deserializer'
 
 	export async function preload({params, query}) {
-		const response = await this.fetch(`../list/polls/recent`)
+		const response = await this.fetch(`/list/polls/recent`)
 
 		if (response.status === 200) {
-			const pollIdsArrayBuffer = await response.arrayBuffer()
+			const pollIds = readIdRecords(await response.arrayBuffer())
 
-			let polls   = []
-			let pollIds = []
-
-			let numPollsToRetrieve = 10
-			let pollPromises       = []
-
-			// If there are polls
-			if (pollIdsArrayBuffer) {
-				const uint8Array    = new Uint8Array(pollIdsArrayBuffer)
-				let haveMoreRecords = uint8Array.byteLength
-				let currentIndex    = 0
-				while (haveMoreRecords) {
-					const {
-						      id1,
-						      id2,
-						      nextRecordIndex
-					      } = readIdPairRecord(
-						uint8Array,
-						currentIndex
-					)
-					pollIds.push(id1)
-					if (numPollsToRetrieve) {
-						numPollsToRetrieve--
-						pollPromises.push(this.fetch(`../get/poll/${id1}`))
-					}
-					if (id2) {
-						pollIds.push(id2)
-						if (numPollsToRetrieve) {
-							numPollsToRetrieve--
-							pollPromises.push(this.fetch(`../get/poll/${id2}`))
-						}
-					}
-
-					haveMoreRecords = nextRecordIndex < uint8Array.byteLength
-					currentIndex    = nextRecordIndex
-				}
-
-				if (pollPromises.length) {
-					const pollResponses = await Promise.all(pollPromises)
-
-					for (const pollResponse of pollResponses) {
-						polls.push(await pollResponse.json())
-					}
-				}
-			}
-
-			console.log(polls)
+			const {nextIndex, records} = await retrievePolls(pollIds, 0, 10, this)
 
 			return {
+				nextIndex,
 				pollIds,
-				polls
+				polls: records
 			}
 		} else {
-			console.log('error')
 			this.error(response.status, response.text())
 		}
 	}
-
 </script>
 
 <script>
 	import ProgressiveList from '@votecube/svelte-progressive-list'
+	import {stores}        from '@sapper/app'
 
-	export let polls    = []
-	export let pollIds  = []
-	export let stubItem = {
-		title: '',
-		contents: ''
-	}
+	const {preloading} = stores()
+
+	export let nextIndex        = 0
+	export let morePolls        = []
+	export let polls            = []
+	export let pollIds          = []
 
 	function loadMorePolls() {
-		console.log('loading more polls...')
+		doLoadMorePolls().then()
+	}
+
+	async function doLoadMorePolls() {
+		const results = await retrievePolls(pollIds, nextIndex, 10, window)
+		nextIndex     = results.nextIndex
+		if (results.records.length) {
+			morePolls = results.records
+		}
 	}
 </script>
 <style>
@@ -101,7 +64,8 @@
 >
     <ProgressiveList
             items="{polls}"
-            {stubItem}
+            additionalItems="{morePolls}"
+            {preloading}
             let:item
             on:more="{loadMorePolls}"
     >

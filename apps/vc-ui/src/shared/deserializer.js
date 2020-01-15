@@ -27,18 +27,52 @@ export function readIdAndCreateEsRecord(
 	}
 }
 
-export function readIdPairRecord(
+export function readIdRecords(
+	idsArrayBuffer
+) {
+	if (!idsArrayBuffer) {
+		return []
+	}
+
+	const uint8Array    = new Uint8Array(idsArrayBuffer)
+	let haveMoreRecords = uint8Array.byteLength
+	let currentIndex    = 0
+
+	const ids = []
+
+	while (haveMoreRecords) {
+		const {
+			      id1,
+			      id2,
+			      nextRecordIndex
+		      } = readIdPairRecord(
+			uint8Array,
+			currentIndex
+		)
+		ids.push(id1)
+		if (id2) {
+			ids.push(id2)
+		}
+
+		haveMoreRecords = nextRecordIndex < uint8Array.byteLength
+		currentIndex    = nextRecordIndex
+	}
+
+	return ids
+}
+
+function readIdPairRecord(
 	uint8Array,
 	index
 ) {
 	const byteMask = uint8Array[index]
 
 	const singleRecord = byteMask & 64
-	const numId1Bytes  = byteMask % 8 + 1
+	const numId1Bytes  = (byteMask % 64 >> 3) + 1
 
 	if (singleRecord) {
 		const id1ByteIndex    = index + 1
-		const nextRecordIndex    = id1ByteIndex + numId1Bytes
+		const nextRecordIndex = id1ByteIndex + numId1Bytes
 
 		const id1 = readId(id1ByteIndex, nextRecordIndex, uint8Array)
 
@@ -48,7 +82,7 @@ export function readIdPairRecord(
 		}
 	}
 
-	const numId2Bytes = (byteMask % 64 >> 3) + 1
+	const numId2Bytes = byteMask % 8 + 1
 	return read2Ids(index, numId1Bytes, numId2Bytes, uint8Array)
 }
 
