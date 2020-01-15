@@ -3,6 +3,20 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/old-ui/marketing" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/public-ui/build" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/__sapper__" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/cypress" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/static" />
+      <excludeFolder url="file://$MODULE_DIR$/common" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/ajax/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/cube-logic/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/db/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/db/scratch" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/model/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/public-logic/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/schemas/public-db/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/schemas/relational-db/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>

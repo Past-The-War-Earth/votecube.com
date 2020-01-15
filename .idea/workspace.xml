@@ -2,26 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/opinion/OpinionForm.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/opinion/OpinionList.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/opinion/OpinionListItem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/fixtures/example.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/integration/spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/plugins/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/support/commands.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/cypress/support/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/rollup.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/client.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/Nav.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/_error.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/_layout.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/about.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/[slug].json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/[slug].svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/_posts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/index.json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/blog/index.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/[pollId]/[pollName].json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/[pollId]/[pollName].svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/_posts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/index.json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/forum/index.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/index.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/[pollId]/[pollName].svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/create.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/index.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/service-worker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/shared/deserializer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/template.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/global.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/great-success.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/logo-192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/logo-512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/static/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/ProgressiveList.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/votecube-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/votecube-ui.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/common/config/rush/shrinkwrap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/rush.json" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>dE</find>
-      <find>detail</find>
-      <find>.start</find>
-      <find>64</find>
-      <find>fsevents</find>
-    </findStrings>
-    <dirStrings>
-      <dir>C:\Users\Papa\WebstormProjects\votecube-ui\js</dir>
-    </dirStrings>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
@@ -34,41 +87,68 @@
       </set>
     </option>
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="JCDHJzHX" />
+  </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/apps/public-ui/package.json" />
+    <dismissed value="$PROJECT_DIR$/apps/vc-ui/package.json" />
     <dismissed value="$PROJECT_DIR$/libs/cube-logic/package.json" />
+    <dismissed value="$PROJECT_DIR$/libs/svelte-progressive-list/package.json" />
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="1Q3OPj0ZRXoZLBCPXGjVpm0mhbx" />
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../highway/libs/runway-service-road" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/vc-ui/node_modules/sapper/sapper" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="C:\Users\Papa\WebstormProjects\votecube-ui\node_modules\typescript\lib" />
+    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="ts.external.directory.path" value="C:\Users\Papa\vc\ts\votecube-ui\libs\db\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\public-ui\src\pages\poll\opinion" />
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui" />
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\libs\cube-logic" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
+    </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="RunManager">
+    <configuration name="sapper" type="NodeJSConfigurationType" application-parameters="dev" nameIsGenerated="true" path-to-js-file="node_modules/sapper/sapper" working-dir="$PROJECT_DIR$/apps/vc-ui">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -149,15 +229,6 @@
     <option name="localTasksCounter" value="8" />
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -181,5 +252,42 @@
     <MESSAGE value="cube rotation demo" />
     <MESSAGE value="visible surface percentage code" />
     <option name="LAST_COMMIT_MESSAGE" value="visible surface percentage code" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="187" y="-1049" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579037231033">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state x="187" y="-1049" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037231033" />
+    <state x="506" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577656546640">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="506" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1577656546640" />
+    <state x="-1233" y="-920" key="#sapper" timestamp="1579037252217">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    </state>
+    <state x="-1233" y="-920" key="#sapper/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037252217" />
+    <state x="-1233" y="-965" key="FileChooserDialogImpl" timestamp="1579037196454">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    </state>
+    <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1577599135519" />
+    <state x="-1233" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037196454" />
+    <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578848148679" />
+    <state x="687" y="-857" key="FileChooserDialogImpl/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579030485607" />
+    <state width="1899" height="302" key="GridCell.Tab.0.bottom" timestamp="1579037628894">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
+    <state width="1899" height="302" key="GridCell.Tab.0.center" timestamp="1579037628894">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
+    <state width="1899" height="302" key="GridCell.Tab.0.left" timestamp="1579037628893">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628893" />
+    <state width="1899" height="302" key="GridCell.Tab.0.right" timestamp="1579037628894">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
   </component>
 </project>

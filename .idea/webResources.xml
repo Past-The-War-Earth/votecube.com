@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebResourcesPaths">
+    <contentEntries>
+      <entry url="file://$PROJECT_DIR$">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/schemas/public-db/src" />
+            <path value="file://$PROJECT_DIR$/schemas/relational-db/src" />
+            <path value="file://$PROJECT_DIR$/libs/public-logic/src" />
+            <path value="file://$PROJECT_DIR$/libs/model/src" />
+            <path value="file://$PROJECT_DIR$/libs/forms/src" />
+            <path value="file://$PROJECT_DIR$/libs/db/src" />
+            <path value="file://$PROJECT_DIR$/libs/cube-logic/src" />
+            <path value="file://$PROJECT_DIR$/libs/ajax/src" />
+            <path value="file://$PROJECT_DIR$/apps/public-ui/src" />
+            <path value="file://$PROJECT_DIR$/apps/old-ui/src" />
+            <path value="file://$PROJECT_DIR$/apps/cloudfare-worker/src" />
+            <path value="file://$PROJECT_DIR$/apps/vc-ui/src" />
+          </resourceRoots>
+        </entryData>
+      </entry>
+    </contentEntries>
+  </component>
+</project>

@@ -23,6 +23,11 @@
       "projectFolder": "apps/old-ui",
       "shouldPublish": true
     },
+    {
+      "packageName": "@votecube/vc-ui",
+      "projectFolder": "apps/vc-ui",
+      "shouldPublish": true
+    },
     // "libs" folder (alphabetical order)
     {
       "packageName": "@votecube/ajax",
@@ -52,6 +57,11 @@
     {
       "packageName": "@votecube/public-logic",
       "projectFolder": "libs/public-logic",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@votecube/svelte-progressive-list",
+      "projectFolder": "libs/svelte-progressive-list",
       "shouldPublish": true
     },
     // "schemas" folder (alphabetical order)

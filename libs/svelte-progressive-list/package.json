@@ -1,0 +1,34 @@
+{
+  "name": "@votecube/svelte-progressive-list",
+  "version": "0.0.1",
+  "description": "A <ProgressiveList> component for Svelte apps",
+  "main": "ProgressiveList.svelte",
+  "svelte": "ProgressiveList.svelte",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -cw",
+    "help": "rollup --help",
+    "prepublishOnly": "npm test",
+    "test": "node test/runner.js",
+    "test:browser": "npm run build && serve test/public",
+    "pretest": "npm run build"
+  },
+  "devDependencies": {
+    "port-authority": "^1.0.5",
+    "puppeteer": "^1.9.0",
+    "rollup": "^1.1.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-svelte": "^5.0.1",
+    "sirv": "^0.2.2",
+    "svelte": "^3.0.0-beta.2",
+    "tap-diff": "^0.1.1",
+    "tap-dot": "^2.0.0",
+    "tape-modern": "^1.1.1"
+  },
+  "files": [
+    "src",
+    "index.mjs",
+    "index.js"
+  ]
+}
