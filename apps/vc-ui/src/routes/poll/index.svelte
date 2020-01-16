@@ -27,10 +27,10 @@
 
 	const {preloading} = stores()
 
-	export let nextIndex        = 0
-	export let morePolls        = []
-	export let polls            = []
-	export let pollIds          = []
+	export let nextIndex = 0
+	export let morePolls = []
+	export let polls     = []
+	export let pollIds   = []
 
 	function loadMorePolls() {
 		doLoadMorePolls().then()
@@ -43,11 +43,23 @@
 			morePolls = results.records
 		}
 	}
+
+	function onItemClick(item) {
+		console.log(item)
+	}
+
+	function itemLink(item) {
+		const pollId   = item.id.toString(36)
+		const urlTitle = item.title.toLowerCase().replace(' ', '_').substr(0, 40)
+		return `poll/${pollId}/${urlTitle}`
+	}
 </script>
 <style>
     .item {
-        min-height: 220px;
+        display: block;
         max-height: 200px;
+        min-height: 220px;
+        text-decoration: none;
     }
 </style>
 
@@ -69,11 +81,13 @@
             let:item
             on:more="{loadMorePolls}"
     >
-        <div
+        <a
                 class="item"
+                href="{itemLink(item)}"
+                rel="prefetch"
         >
             <header>{item.title}</header>
             <p>{item.contents}</p>
-        </div>
+        </a>
     </ProgressiveList>
 </div>

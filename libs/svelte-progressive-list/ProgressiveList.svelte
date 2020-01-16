@@ -42,7 +42,7 @@
 	$: {
 		appending     = false
 		start         = 0
-		end           = items.length - 1
+		end           = items.length
 		internalItems = [
 			...items
 		]
