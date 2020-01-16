@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/[pollId]/[pollName].svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/[pollId]/[pollName].svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/create.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/create.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/svelte-progressive-list/ProgressiveList.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/ProgressiveList.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/shared/dataApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/shared/dataApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/shared/deserializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/shared/deserializer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +213,8 @@
     <MESSAGE value="visible surface percentage code" />
     <MESSAGE value="Initial checkin for SSR + performance optimized UI." />
     <MESSAGE value="Added SSR and Progressive data loading on scrolling into ProgressiveList.  Bug fixes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added SSR and Progressive data loading on scrolling into ProgressiveList.  Bug fixes." />
+    <MESSAGE value="Linked in poll detail page.  Fixed SSR not showing last item in ProgressiveList.svelte." />
+    <option name="LAST_COMMIT_MESSAGE" value="Linked in poll detail page.  Fixed SSR not showing last item in ProgressiveList.svelte." />
   </component>
   <component name="WindowStateProjectService">
     <state x="187" y="-1049" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579037231033">
@@ -229,10 +233,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="229" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1579105984422" />
-    <state x="1" y="-1080" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1579130909180">
-      <screen x="1" y="-1080" width="1920" height="1080" />
+    <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1579183061137">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
     </state>
-    <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579046408912" />
+    <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579183061137" />
     <state x="1" y="-1080" key="CommitChangelistDialog2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130909180" />
     <state width="379" height="466" key="DebuggerActiveHint" timestamp="1579096165500">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -345,17 +349,21 @@
     <state width="1899" height="372" key="GridCell.Tab.3.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580579" />
     <state width="1899" height="356" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579106124347" />
     <state width="1899" height="356" key="GridCell.Tab.3.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842567" />
-    <state x="553" y="-803" key="Vcs.Push.Dialog.v2" timestamp="1579130913034">
+    <state x="553" y="-803" key="Vcs.Push.Dialog.v2" timestamp="1579183070903">
       <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
-    <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579046413270" />
+    <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579183070903" />
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130913034" />
-    <state x="668" y="-784" width="654" height="507" key="find.popup" timestamp="1579131494384">
+    <state x="668" y="-784" width="654" height="488" key="find.popup" timestamp="1579205575036">
       <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
-    <state x="668" y="-784" width="654" height="488" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579096979238" />
+    <state x="668" y="-784" width="654" height="488" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579205575036" />
     <state x="667" y="285" width="654" height="488" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1579105505740" />
     <state x="668" y="-784" width="654" height="507" key="find.popup/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579131494384" />
+    <state x="624" y="-845" width="672" height="678" key="search.everywhere.popup" timestamp="1579190321262">
+      <screen x="1" y="-1080" width="1920" height="1080" />
+    </state>
+    <state x="624" y="-845" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579190321262" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

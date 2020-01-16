@@ -13,17 +13,12 @@
 	}
 
 	function createPoll() {
-		console.log('Hello createPoll')
-		console.log(`Title: ${title}`)
-		console.log(`Value: ${contents}`)
-
 		const poll = {
 			title,
 			contents
 		}
 
 		const xhr = new XMLHttpRequest()
-		// xhr.open('PUT', 'http://localhost:8445/add/poll', true)
 		xhr.open('PUT', '/put/poll', true)
 		xhr.responseType = 'arraybuffer'
 

@@ -1,3 +1,33 @@
+export function readIdAndCreateEsRecords(
+	idAndCreateEsArrayBuffer
+) {
+	if (!idAndCreateEsArrayBuffer) {
+		return []
+	}
+
+	const uint8Array    = new Uint8Array(idAndCreateEsArrayBuffer)
+	let haveMoreRecords = uint8Array.byteLength
+	let currentIndex    = 0
+
+	const records = []
+
+	while (haveMoreRecords) {
+		const {
+			      record,
+			      nextRecordIndex
+		      } = readIdAndCreateEsRecord(
+			uint8Array,
+			currentIndex
+		)
+		records.push(record)
+
+		haveMoreRecords = nextRecordIndex < uint8Array.byteLength
+		currentIndex    = nextRecordIndex
+	}
+
+	return records
+}
+
 export function readIdAndCreateEsRecord(
 	uint8Array,
 	index

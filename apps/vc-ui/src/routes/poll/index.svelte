@@ -27,10 +27,10 @@
 
 	const {preloading} = stores()
 
-	export let nextIndex = 0
 	export let morePolls = []
-	export let polls     = []
+	export let nextIndex = 0
 	export let pollIds   = []
+	export let polls     = []
 
 	function loadMorePolls() {
 		doLoadMorePolls().then()
