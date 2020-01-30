@@ -1,31 +1,44 @@
 <script context="module">
-	import {retrieveOpinions}         from '../../../shared/dataApi'
-	import {readIdAndCreateEsRecords} from '../../../shared/deserializer'
+	import {retrieveRootOpinions} from '../../../shared/dataApi'
+	import {readRootOpinionIds}   from '../../../shared/deserializer'
 
 	export async function preload(
 		{params, query}
 	) {
-		let pollId     = parseInt(params.pollId, 36)
-		const response = await this.fetch(`/get/poll/${pollId}`)
+		let pollId                 = parseInt(params.pollId, 36)
+		const responses            = await Promise.all([
+			this.fetch(`/get/poll/${pollId}`),
+			this.fetch(`/list/rootOpinions/${pollId}`),
+		])
+		let pollResponse           = responses[0]
+		let rootOpinionIdsResponse = responses[1]
+
+		if (pollResponse.status !== 200) {
+			this.error(pollResponse.status, pollResponse.text())
+			return
+		} else if (rootOpinionIdsResponse.status !== 200) {
+			this.error(rootOpinionIdsResponse.status, rootOpinionIdsResponse.text())
+			return
+		}
+
+		const rootOpinionIds = readRootOpinionIds(await rootOpinionIdsResponse.arrayBuffer())
 
 		let opinionsResult = {
 			records: [],
 			nextIndex: 0
 		}
 		if (isSSR()) {
-			opinionsResult = await loadOpinions(pollId, this)
+			opinionsResult = await loadRootOpinions(rootOpinionIds, this)
 		}
 
-		if (response.status === 200) {
-			const poll = await response.json()
-			return {
-				nextIndex: opinionsResult.nextIndex,
-				opinions: opinionsResult.records,
-				poll,
-				pollId
-			}
-		} else {
-			this.error(response.status, response.text())
+		const poll = await pollResponse.json()
+		return {
+			nextIndex: opinionsResult.nextIndex,
+			// TODO: implement nested opinions
+			opinions: opinionsResult.records.map(rootOpinionList => rootOpinionList[0]),
+			poll,
+			pollId,
+			rootOpinionIds
 		}
 	}
 
@@ -38,32 +51,15 @@
 		return false
 	}
 
-	async function loadOpinions(
-		pollId,
+	async function loadRootOpinions(
+		rootOpinionIds,
 		ctx
 	) {
-		const threadData   = await Promise.all([
-			ctx.fetch(`/get/thread/${pollId}`),
-			ctx.fetch(`/list/opinions/${pollId}/0/0`)
-		])
-		let threadFragment = await threadData[0].text()
+		const opinionsResult = await retrieveRootOpinions(rootOpinionIds, 0, 10, ctx)
 
-		let previousOpinions = []
-		if (threadFragment.length) {
-			previousOpinions = JSON.parse(`[${threadFragment}]`)
-		}
-
-		const opinionIds = readIdAndCreateEsRecords(await threadData[1].arrayBuffer())
-
-		const opinionsResult = await retrieveOpinions(opinionIds, 0, 10, ctx, pollId)
-
-		// for (const opinion of opinions.records) {
-		// 	console.log(opinion)
-		// }
 		return {
-			nextIndex: opinionsResult.nextIndex,
-			opinionIds,
-			records: [...previousOpinions, ...opinionsResult.records]
+			...opinionsResult,
+			rootOpinionIds,
 		}
 	}
 </script>
@@ -74,10 +70,10 @@
 	import {onMount}                 from 'svelte'
 	import {readIdAndCreateEsRecord} from '../../../shared/deserializer'
 
-	export let moreOpinions = []
-	export let nextIndex    = 0
-	export let opinionIds   = []
-	export let opinions     = []
+	export let moreOpinions   = []
+	export let nextIndex      = 0
+	export let rootOpinionIds = []
+	export let opinions       = []
 	export let poll
 	export let pollId
 
@@ -90,9 +86,10 @@
 		if (isSSR()) {
 			return
 		}
-		const opinionsResult = await loadOpinions(pollId, window)
-		opinionIds           = opinionsResult.opinionIds
-		opinions             = opinionsResult.records
+		const opinionsResult = await loadRootOpinions(pollId, window)
+		rootOpinionIds       = opinionsResult.opinionIds
+		// TODO: implement nested opinions
+		opinions             = opinionsResult.records.map(rootOpinionList => rootOpinionList[0])
 		nextIndex            = opinionsResult.nextIndex
 	}
 
@@ -136,7 +133,7 @@
 	}
 
 	async function doLoadMoreOpinions() {
-		const results = await retrieveOpinions(opinionIds, nextIndex, 10, window, pollId)
+		const results = await retrieveRootOpinions(rootOpinionIds, nextIndex, 10, window, pollId)
 		nextIndex     = results.nextIndex
 		if (results.records.length) {
 			moreOpinions = results.records

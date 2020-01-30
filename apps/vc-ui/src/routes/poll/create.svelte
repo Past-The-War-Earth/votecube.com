@@ -19,7 +19,7 @@
 		}
 
 		const xhr = new XMLHttpRequest()
-		xhr.open('PUT', '/put/poll', true)
+		xhr.open('PUT', '/put/poll/1/1', true)
 		xhr.responseType = 'arraybuffer'
 
 		xhr.onload = function (_) {

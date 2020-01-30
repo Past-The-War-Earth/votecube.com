@@ -1,16 +1,15 @@
-export async function retrieveOpinions(
+export async function retrieveRootOpinions(
 	ids,
 	startingIndex,
 	numToRetrieve,
 	ctx,
-	pollId
 ) {
 	return await retrieveRecords(
 		ids,
 		startingIndex,
 		numToRetrieve,
 		ctx,
-		(id) => `/get/opinion/${pollId}/${getDate(id.createEs)}/${id.createEs}/${id.id}`
+		(id) => `/get/rootOpinion/${id.id}/${id.version}`
 	)
 }
 
