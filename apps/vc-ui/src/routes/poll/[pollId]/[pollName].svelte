@@ -99,11 +99,12 @@
 
 	function addOpinion() {
 		let opinion = {
-			text: newOpinion
+			text: newOpinion,
+			pollId,
 		}
 
 		const xhr = new XMLHttpRequest()
-		xhr.open('PUT', '/put/opinion/' + poll.id, true)
+		xhr.open('PUT', '/put/opinion/1/1', true)
 		xhr.responseType = 'arraybuffer'
 
 		xhr.onload = function (_) {
