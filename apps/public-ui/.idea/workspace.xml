@@ -2,61 +2,125 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="additional layout adjustments for desktop and text fixes">
-      <change afterPath="$PROJECT_DIR$/../../libs/db/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/vc-ui.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/webResources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/AgeSuitability.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/Fab.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/LinearPositionPicker.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/PercentPicker.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/AddRemoveButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/AlignmentButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/AlterButton.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/BellCurveButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/BuildButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/CancelButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/CharacterButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/DescribedButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/EditButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/EnterButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/FactorButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/FactorInfoButton.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/FilterButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/LeftButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/ManualOverwriteButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/MoveButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/OpinionButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/OutcomeButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/PreviewButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/RankingsButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/RightButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/SaveButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/ShieldButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/SortButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/SwitchPositionButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/UndescribedButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/VariationTreeButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/VoteButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/AutoComplete.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Block.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/ColorPicker.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/DatePicker.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/IconBlock.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/MultiSelect.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Radio.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Select.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Text.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/TextArea.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Toggle.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/ArrowLeftIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/ArrowRightIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/CalendarIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/ClearIcon.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/InfoIcon.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/LinkIcon.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/LocationIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/TargetIcon.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/TimeIcon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/UndoIcon.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/shell/ActionPopover.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/shell/Popover.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/shell/TextToast.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/factor/SelectionBlock.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/CubeMiniature.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/DetailedCube.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/FactorRanking.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/Outcomes.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/PollFab.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/PollListFab.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/create/Positioner.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/variation/VariationListFab.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/SignIn.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/menu/Menu.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/menu/MenuItem.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/top/TopBar.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/top/TopBarHeader.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/vote/VoteComponentGraph.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/vote/VoteComponentSummary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/colors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/database.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/form/cache.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/form/forms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/forms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/helpers/ajax.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/helpers/cube.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/helpers/hash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/helpers/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/locations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/colors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/locations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/setText.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/watch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/styles/global.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/src/styles/votecube.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/static/data/colors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/static/data/locations.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/static/text/en-us/colors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/static/text/en-us/locations.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vc-ui/static/text/en-us/ui.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/poll/info/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/poll/info/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/Factor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/Factor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/FactorPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/FactorPosition.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/Position.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/Position.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/core/ModelSerializer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/core/ModelSerializer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Continent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Continent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Country.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Country.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/County.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/County.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollContinent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollContinent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollCountry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollCountry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollCounty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollCounty.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollState.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollTown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/PollTown.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/State.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Town.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/location/Town.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/Label.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/Label.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/Poll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/Poll.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/PollFactorPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/PollFactorPosition.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/PollLabel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/model/poll/PollLabel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/ajax/src/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/ajax/src/tokens.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/cube-logic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/db/src/Database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/db/src/Database.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/db/src/dao/PollDao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/db/src/dao/PollDao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/dao/poll/PollDao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/dao/poll/PollDao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Factor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Factor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/FactorPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/FactorPosition.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Position.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Position.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Theme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Continent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Continent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Country.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Country.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/County.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/County.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/State.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Town.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Town.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/poll/PollType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/poll/PollType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/vote/VoteFactorType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/vote/VoteFactorType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/baseDaos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/baseDaos.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/baseDuos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/baseDuos.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcontinent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcontinent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcountry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcountry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcounty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcounty.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qstate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qstate.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qtown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qtown.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/poll/qpolltype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/poll/qpolltype.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/qSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/qSchema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/qtheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/qtheme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/vote/qvotefactortype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/vote/qvotefactortype.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/hash.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/hash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/Nav.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/_layout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/[pollId]/[pollName].svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/[pollId]/[pollName].svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/create.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/create.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/shared/dataApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/shared/dataApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/shared/deserializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/shared/deserializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/static/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/static/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/static/great-success.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,77 +153,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>bottomRight</find>
-      <find>isDesk</find>
-      <find>&lt;ActionPopover</find>
-      <find>main {</find>
-      <find>width</find>
-      <find>activeClass</find>
-      <find>directionText</find>
-      <find>21%</find>
-      <find>20%</find>
-      <find>bottom-dimension</find>
-      <find>mainMenuOffset</find>
-      <find>selectMenu</find>
-      <find>dimension is required</find>
-      <find>Bottom</find>
-      <find>Top</find>
-      <find>dimension</find>
-      <find>top</find>
-      <find>Dimension</find>
-      <find>Direction</find>
-      <find>Geography</find>
-      <find>Location</find>
-      <find>Select Location</find>
-      <find>Label</find>
-      <find>label</find>
-      <find>timeframe</find>
-      <find>Timeframe</find>
-      <find>Search Polls</find>
-      <find>state</find>
-      <find>negative</find>
-      <find>continent</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>OptionsField</replace>
-      <replace>textToastShown</replace>
-      <replace>000</replace>
-      <replace>&quot;parent&quot;</replace>
-      <replace>selectLocations</replace>
-      <replace>&quot;id&quot;</replace>
-      <replace>filtered</replace>
-      <replace>Timeframe</replace>
-      <replace>(1</replace>
-      <replace>&quot;parentId&quot;</replace>
-      <replace>dir</replace>
-      <replace>dir: -1</replace>
-      <replace>colors</replace>
-      <replace>]\n},</replace>
-      <replace>&quot;color&quot;:</replace>
-      <replace>&quot;name&quot;: &quot;$1&quot;</replace>
-      <replace>-1)</replace>
-      <replace>&quot;</replace>
-      <replace>dimension</replace>
-      <replace>pollDimDir</replace>
-      <replace>delta</replace>
-      <replace>poll</replace>
-      <replace>{highlightColor}</replace>
-      <replace>Down</replace>
-      <replace>Up</replace>
-      <replace>Poll Issue</replace>
-      <replace>Position</replace>
-      <replace>Factor</replace>
-      <replace>Geography</replace>
-      <replace>Tag</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/src</dir>
-      <dir>C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\public</dir>
-      <dir>C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src</dir>
-    </dirStrings>
-  </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -180,6 +173,9 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="lAFupTHh" />
+  </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
@@ -187,14 +183,21 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="GO_FMT" value="true" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../schemas/public-db" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
@@ -204,7 +207,7 @@
     <property name="node.js.path.for.package.jscs" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="C:/Users/Papa/WebstormProjects/votecube-ui/apps/public-ui/node_modules/eslint" />
+    <property name="node.js.selected.package.eslint" value="$USER_HOME$/WebstormProjects/votecube-ui/apps/public-ui/node_modules/eslint" />
     <property name="node.js.selected.package.jscs" value="" />
     <property name="node.js.selected.package.standard" value="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\node_modules\eslint" />
     <property name="node.js.selected.package.tslint" value="" />
@@ -215,13 +218,6 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\GoLand 2018.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src\common\control\button" />
-      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\public" />
-      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src\common\field" />
-      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui" />
-      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\triangleExample" />
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src\pages\direction\info" />
@@ -229,18 +225,13 @@
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src\pages\dimension\info" />
       <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src\pages\dimension\search" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src\common\control\button" />
+      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\public" />
+      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src\common\field" />
+      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui" />
+      <recent name="C:\Users\Papa\WebstormProjects\votecube-ui\apps\public-ui\src" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -633,7 +624,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -668,5 +661,11 @@
     <MESSAGE value="layout adjustments for desktop" />
     <MESSAGE value="additional layout adjustments for desktop and text fixes" />
     <option name="LAST_COMMIT_MESSAGE" value="additional layout adjustments for desktop and text fixes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1252" y="-892" width="586" height="488" key="find.popup" timestamp="1582745624574">
+      <screen x="-1919" y="-1188" width="1920" height="1080" />
+    </state>
+    <state x="-1252" y="-892" width="586" height="488" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1582745624574" />
   </component>
 </project>

@@ -1,0 +1,338 @@
+<figure
+		id="chart"
+		class:leftFigure="horizontalPage"
+		class:topFigure="verticalPage"
+		class:confirmFigure="!isPage"
+		class:pageFigure="isPage"
+>
+	<table
+			class="chart-contents"
+	>
+		{#each voteDims as voteDim, i}
+		{#if showPosition(voteDim)}
+		<tr id="plus">
+			<td>
+				<div
+						style="
+        background-color: #{getColor(delta, poll, voteDim.axis)};
+        width: {voteDim.value}%;
+            "
+				>
+				</div>
+			</td>
+			<td>
+				<div
+						style="
+        background-color: #{getColor(delta, poll, voteDim.axis)};
+        width: {voteDim.value}%;
+            "
+				>
+				</div>
+			</td>
+		</tr>
+		{/if}
+		{/each}
+	</table>
+</figure>
+<table
+		class="info"
+		class:bottomInfo="verticalPage"
+		class:confirmTable="!isPage"
+		class:pageTable="isPage"
+		class:rightInfo="horizontalPage"
+>
+
+	{#each voteDims as voteDim, i}
+	<tr>
+		<td>
+			<FactorInfoButton
+					factorNumber='{1}'
+					bind:mode
+					delta="{delta}"
+					on:toggle="fire('toggleX')"
+					poll="{poll}"
+					position="left"
+					voteDim="{voteDim}"
+			></FactorInfoButton>
+		</td>
+		<td
+				class="positionText"
+		>
+			{dirText(voteDim, mode, poll, vote, delta)}
+		</td>
+	<tr>
+	</tr>
+	<td>
+		<FactorInfoButton
+				factorNumber='{2}'
+				bind:mode
+				delta="{delta}"
+				float="left"
+				on:toggle="fire('toggleY')"
+				poll="{poll}"
+				position="left"
+				voteDim="{voteDim}"
+		></FactorInfoButton>
+	</td>
+	<td
+			class="positionText"
+	>
+		{dirText(voteDim, mode, poll, vote, delta)}
+	</td>
+	<tr>
+		<td>
+			<FactorInfoButton
+					factorNumber='{3}'
+					bind:mode
+					delta="{delta}"
+					float="left"
+					on:toggle="fire('toggleZ')"
+					poll="{poll}"
+					position="left"
+					voteDim="{voteDim}"
+			></FactorInfoButton>
+		</td>
+		<td
+				class="positionText"
+		>
+			{dirText(voteDim, mode, poll, vote, delta)}
+		</td>
+	</tr>
+	{/each}
+</table>
+
+<style>
+	@media (min-width: 62em) {
+		.topFigure {
+			width: 54% !important;
+		}
+
+		.bottomInfo {
+			width: 54% !important;
+		}
+
+		.positionText {
+			font-size: calc(1.3vw + 1.3vh) !important;
+		}
+
+		.confirmTable .positionText {
+			font-size: calc(0.8vw + 0.8vh) !important;
+		}
+	}
+
+	figure.confirmFigure div {
+		margin: 3px;
+	}
+
+	figure.pageFigure div {
+		margin: 10px;
+	}
+
+	.bottomInfo {
+		bottom: 5px;
+		position: fixed;
+		width: 100%;
+	}
+
+	.chart-contents {
+		width: 100%;
+	}
+
+	.confirmFigure,
+	.confirmTable {
+		margin: 0 23%;
+	}
+
+	.confirmFigure td,
+	.confirmTable td {
+		padding: 2px;
+		vertical-align: middle;
+	}
+
+	.confirmTable .positionText {
+		font-size: calc(1.2vw + 1.2vh);
+	}
+
+	.positionText {
+		font-size: calc(1.8vw + 1.8vh);
+	}
+
+	.info {
+	}
+
+	.info td:first-child {
+		width: 60px;
+	}
+
+	.leftFigure {
+		position: fixed;
+		left: 5px;
+		top: 45px;
+		width: calc(40% - 10px)
+	}
+
+	.pageFigure {
+		margin: 0.8em;
+	}
+
+	.pageFigure td,
+	.pageTable td {
+		padding: 5px;
+		vertical-align: middle;
+	}
+
+	.rightInfo {
+		position: fixed;
+		right: 5px;
+		top: 45px;
+		width: calc(60% - 10px);
+	}
+
+	.topFigure {
+		position: fixed;
+		top: 28px;
+		width: 100%;
+	}
+
+	#plus td {
+		border-bottom: 1px solid black;
+		vertical-align: bottom;
+	}
+
+	#minus td {
+		vertical-align: top;
+	}
+
+	#plus div {
+		margin-bottom: 0px;
+	}
+
+	#minus div {
+		margin-top: 0px;
+	}
+
+</style>
+
+<script>
+	import FactorInfoButton from '../../common/control/button/FactorInfoButton.html'
+	import {
+		getColor,
+		getSideText
+	}                       from '../../helpers/cube'
+
+	export default {
+		components: {
+			FactorInfoButton
+		},
+		computed: {
+			horizontalPage: ({
+				                 mode,
+				                 verticalLayout
+			                 }) => {
+				return mode == 'page' && !verticalLayout
+			},
+/*			maxValue: ({poll, delta, vote}) => {
+				if (!vote) {
+					return 0
+				}
+
+				const positiveValues = []
+				const negativeValues = []
+
+				addToVals(poll, vote.x, positiveValues, negativeValues)
+				addToVals(poll, vote.y, positiveValues, negativeValues)
+				addToVals(poll, vote.z, positiveValues, negativeValues)
+
+				const maxPositiveValue = getMaxVal(positiveValues)
+				const maxNegativeValue = getMaxVal(negativeValues)
+
+				return maxPositiveValue + maxNegativeValue
+			},*/
+			isPage: ({mode}) => mode == 'page',
+			verticalPage: ({
+				               mode,
+				               verticalLayout
+			               }) => {
+				return mode == 'page' && verticalLayout
+			}
+		},
+		helpers: {
+			getColor,
+/*			dirWidth: (
+				voteDim,
+				maxBarSize,
+				maxValue,
+				vote,
+				delta,
+			) =>
+				vote ?
+					barHeight(vote[voteDim.axis], voteDim.dir, maxBarSize, maxValue)
+					: 0,*/
+			dirText: (
+				voteDim,
+				mode,
+				poll,
+				vote,
+				delta
+			) =>
+				vote ?
+					positionText(delta, mode, poll, vote[voteDim.axis])
+					: ''
+		}
+	}
+
+/*
+	function barWidth(
+		voteFactor,
+		position,
+		maxBarSize,
+		maxValue
+	) {
+		return voteFactor
+		&& voteFactor.dir === position
+			? voteFactor.value * maxBarSize / (maxValue * 1.2)
+			: 0
+	}
+*/
+
+	function positionText(
+		delta,
+		mode,
+		poll,
+		voteFactor
+	) {
+		return getSideText(delta, mode, poll, voteFactor.axis, voteFactor.dir)
+	}
+
+/*
+	function addToVals(
+		poll,
+		voteFactor,
+		positiveValues,
+		negativeValues
+	) {
+		if (voteFactor.dir === 1) {
+			positiveValues.push(voteFactor.value)
+		} else {
+			negativeValues.push(voteFactor.value)
+		}
+	}
+*/
+
+/*
+	function getMaxVal(
+		values
+	) {
+		let maximumValue = 0
+
+		for (const value of values) {
+			if (value > maximumValue) {
+				maximumValue = value
+			}
+		}
+
+		return maximumValue
+	}
+*/
+
+</script>

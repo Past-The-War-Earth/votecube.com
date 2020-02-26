@@ -1,3 +1,14 @@
+# Customizations
+
+In node_modules\sapper\runtime\server.mjs
+
+set:
+
+fetch: (url, opts) => {
+    const parsed = new Url.URL(url, `http://127.0.0.1:8444`);
+
+This changes src\node_modules\@sapper\server.mjs, which actually runs
+
 # sapper-template
 
 The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.

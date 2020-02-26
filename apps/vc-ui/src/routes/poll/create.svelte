@@ -14,12 +14,13 @@
 
 	function createPoll() {
 		const poll = {
+			contents,
 			title,
-			contents
+			userId: 1,
 		}
 
 		const xhr = new XMLHttpRequest()
-		xhr.open('PUT', '/put/poll/1/1', true)
+		xhr.open('PUT', '/add/poll/1/1', true)
 		xhr.responseType = 'arraybuffer'
 
 		xhr.onload = function (_) {
@@ -32,15 +33,15 @@
 						bytes,
 						0
 					)
-                    /*
-					console.log('')
-					console.log(`id:       ${record.id}`)
-					console.log(`createEs: ${record.createEs}`)
-					let byteOutput = ''
-					for (let i = 0; i < bytes.byteLength; i++) {
-						byteOutput += `${bytes[i]} `
-					}
-					console.log(byteOutput)
+					/*
+                    console.log('')
+                    console.log(`id:       ${record.id}`)
+                    console.log(`createEs: ${record.createEs}`)
+                    let byteOutput = ''
+                    for (let i = 0; i < bytes.byteLength; i++) {
+                        byteOutput += `${bytes[i]} `
+                    }
+                    console.log(byteOutput)
                     */
 				}
 			}

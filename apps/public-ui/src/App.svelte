@@ -5,14 +5,12 @@
 		AUTH,
 		authChecked,
 		CARD_CLIMATE_CHANGE,
-		cube,
 		currentPage,
 		FACTOR_INFO_MAIN,
 		FACTOR_LIST,
 		FEEDBACK,
 		isDesktop,
 		navigateToPage,
-		noOverflow,
 		POLL_FORM,
 		POLL_LIST,
 		POLL_LOCATIONS,
@@ -28,28 +26,26 @@
 		textToast,
 		user,
 		VARIATION_LIST
-	}                   from '@votecube/public-logic'
+	}                    from '@votecube/public-logic'
 	import {
 		onDestroy,
 		onMount
-	}                   from 'svelte'
-	import {get}        from 'svelte/store'
-	import TextToast    from './common/shell/TextToast.svelte'
-	import {loadUi}     from './libs/text/ui'
-	import AboutUs      from './pages/AboutUs.svelte'
-	import FactorMain   from './pages/factor/info/FactorMain.svelte'
+	}                    from 'svelte'
+	import {get}         from 'svelte/store'
+	import {loadUi}      from './libs/text/ui'
+    import Menu          from './shell/top/Menu.svelte'
+    import TopBar        from './shell/top/TopBar.svelte'
+	import AboutUs       from './pages/AboutUs.svelte'
+	import FactorMain    from './pages/factor/info/FactorMain.svelte'
 	// import FactorList      from './pages/factor/search/FactorList.html'
-	import Feedback     from './pages/feedback/FeedbackForm.svelte'
-	import PollForm     from './pages/poll/info/PollForm.svelte'
-	import PollInfoMain from './pages/poll/info/PollMain.svelte'
+	import Feedback      from './pages/feedback/FeedbackForm.svelte'
+	import PollForm      from './pages/poll/info/PollForm.svelte'
+	import PollInfoMain  from './pages/poll/info/PollMain.svelte'
 	// import PollLocations   from './pages/poll/Locations.html'
-	import PollList     from './pages/poll/search/PollList.svelte'
+	import PollList      from './pages/poll/search/PollList.svelte'
 	// import PollTimeframe   from './pages/poll/Timeframe.html'
-	import VariationList   from './pages/poll/variation/VariationList.svelte'
-	import ReleasePlan  from './pages/ReleasePlan.svelte'
-	import Menu         from './shell/menu/Menu.svelte'
-	import SignIn       from './shell/SignIn.svelte'
-	import TopBar       from './shell/top/TopBar.svelte'
+	import VariationList from './pages/poll/variation/VariationList.svelte'
+	import ReleasePlan   from './pages/ReleasePlan.svelte'
 
 	// let topMenuMap
 	let appShowMainMenu = showMainMenu
@@ -189,81 +185,81 @@
 </script>
 
 <style>
-	@media (min-width: 62em) {
-		#main {
-			margin: 1em 23%;
-			width: 54%;
-		}
-	}
+    @media (min-width: 62em) {
+        #main {
+            margin: 1em 23%;
+            width: 54%;
+        }
+    }
 
-	div {
-		color: white;
-		background: #191818;
-		height: 44px;
-		line-height: 44px;
-		position: fixed;
-		text-align: center;
-		top: 0px;
-		vertical-align: middle;
-		width: 160px;
-		z-index: 1200;
-	}
+    div {
+        color: white;
+        background: #191818;
+        height: 44px;
+        line-height: 44px;
+        position: fixed;
+        text-align: center;
+        top: 0px;
+        vertical-align: middle;
+        width: 160px;
+        z-index: 1200;
+    }
 
-	article {
-		overflow-y: auto;
-		overflow-x: hidden;
-	}
+    article {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-	article.noOverflow {
-		overflow: initial;
-	}
+    article.noOverflow {
+        overflow: initial;
+    }
 
-	nav {
-		z-index: 1100;
-	}
+    nav {
+        z-index: 1100;
+    }
 </style>
 
 <svelte:window on:resize={handleResize}/>
-	<article
-			class="{activeClass} wrapper"
-			class:noOverflow="{$noOverflow}"
-			class:cube="{$cube}"
-			id="layout"
-	>
-		<!-- Menu toggle -->
-		<TopBar></TopBar>
-		{#if showLogo}
-		<div>
-			VOTECUBE
-		</div>
-		{/if}
+<article
+        class="{activeClass} wrapper"
+        class:noOverflow="{$noOverflow}"
+        class:cube="{$cube}"
+        id="layout"
+>
+    <!-- Menu toggle -->
+    <TopBar></TopBar>
+    {#if showLogo}
+    <div>
+        VOTECUBE
+    </div>
+    {/if}
 
-		<nav
-				class="menu-link {activeClass}"
-				id="menuLink"
-				on:click="{toggleMenu}"
-		>
-			<!--Hamburger icon -->
-			<span></span>
-		</nav>
-		<Menu
-				active="{$showMainMenu}"
-				on:selected="{selectMenu}"
-		></Menu>
-		<section
-				id="main"
-				on:click="{clickMain}"
-		>
-			<svelte:component this="{PageComp}"/>
-		</section>
-	</article>
-	{#if showTextToast}
-	<TextToast
-			text="{$textToast.text}"
-	></TextToast>
-	{/if}
-	{#if $showSignIn}
-	<SignIn
-			on:closed="{closeSignIn}"
-	></SignIn>
-	{/if}
+    <nav
+            class="menu-link {activeClass}"
+            id="menuLink"
+            on:click="{toggleMenu}"
+    >
+        <!--Hamburger icon -->
+        <span></span>
+    </nav>
+    <Menu
+            active="{$showMainMenu}"
+            on:selected="{selectMenu}"
+    ></Menu>
+    <section
+            id="main"
+            on:click="{clickMain}"
+    >
+        <svelte:component this="{PageComp}"/>
+    </section>
+</article>
+{#if showTextToast}
+<TextToast
+        text="{$textToast.text}"
+></TextToast>
+{/if}
+{#if $showSignIn}
+<SignIn
+        on:closed="{closeSignIn}"
+></SignIn>
+{/if}

@@ -1,0 +1,120 @@
+{#await load}
+{:then result}
+<var
+		on:click="fire('toggle')"
+		class:pageInfo="isPage"
+		class:confirmInfo="!isPage"
+		style="
+        background-color: #{logicUtils.getColor(poll.factors[factorNumber].color)};
+        border-bottom-color: #{bottomBorderColor};
+        border-top-color: #{topBorderColor};
+        float: {float};
+        margin: {margin};
+    "
+>
+	{percentValue}%
+</var>
+{/await}
+<style>
+	var {
+		border-bottom: 5px solid;
+		border-radius: 3px;
+		border-top: 5px solid;
+		color: black;
+		display: block;
+		font-style: normal;
+		text-align: center;
+	}
+
+	.pageInfo {
+		font-size: 1.2em;
+		height: 50px;
+		line-height: 46px;
+		width: 50px;
+	}
+
+	.confirmInfo {
+		font-size: 1em;
+		height: 42px;
+		line-height: 38px;
+		width: 42px;
+	}
+
+</style>
+
+<script>
+	import {DI} from '@airport/di'
+	import {LOGIC_UTILS} from '@votecube/public-logic'
+
+	export default {
+		computed: {
+			bottomBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, voteFactor}) =>
+				borderColor(cubeView, delta, poll, factorNumber, voteFactor, 'B', logicUtils),
+			float: ({factorNumber, position, $verticalLayout}) =>
+				$verticalLayout && factorNumber === 1 && position != 'left'
+					? 'right' : 'initial',
+			isPage: ({mode}) => mode == 'page',
+			margin: ({factorNumber, position, $verticalLayout}) =>
+				$verticalLayout && factorNumber === 2 && position != 'left'
+					? 'auto' : 'initial',
+			topBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, voteFactor}) =>
+				borderColor(cubeView, delta, poll, factorNumber, voteFactor, 'A', logicUtils),
+			percentValue: ({cubeView, delta, voteFactor}) =>
+				getValue(cubeView ? voteFactor.value : voteFactor.tweenValue)
+		},
+		data() {
+			return {
+				load: new Promise(resolve => {
+					setTimeout(() => {
+						resolve(initPage())
+					}, 1)
+				})
+			}
+		},
+		oncreate() {
+			initPage.page = this
+		},
+		ondestroy() {
+			const {container} = this.get()
+			DI.remove(container)
+		}
+	}
+
+	async function initPage() {
+		const container  = DI.ui('FactorInfoButton')
+		const logicUtils = await container.get(LOGIC_UTILS)
+
+		initPage.page.set({container, logicUtils})
+	}
+
+	function borderColor(
+		cubeView,
+		delta,
+		poll,
+		factorNumber,
+		voteFactor,
+		outcome,
+		logicUtils
+	) {
+		if (!voteFactor) {
+			return '000'
+		} else if (cubeView) {
+			if (voteFactor.outcome === outcome) {
+				return '000'
+			}
+		} else {
+			if (voteFactor.tweenOutcome === outcome) {
+				return '000'
+			}
+		}
+
+		return logicUtils.getColor(poll.factors[factorNumber].color)
+	}
+
+	function getValue(
+		value
+	) {
+		return value === undefined ? '' : value
+	}
+
+</script>

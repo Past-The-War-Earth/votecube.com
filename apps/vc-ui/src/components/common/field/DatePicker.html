@@ -1,0 +1,394 @@
+<svelte:document
+				on:click="onDocumentClick(event)"
+></svelte:document>
+{#if $forms && $text}
+<div
+				class="date-picker"
+>
+	<label
+					class="field-label"
+					use:for="{id}"
+	>
+		{label}
+	</label>
+	<section
+					class="field"
+					class:invalid="touched && errors.length"
+					class:modified="modified"
+					class:requiredInvalid="requiredInvalid"
+					class:requiredValid="requiredValid"
+	>
+		<!-- FIXME: add support for other date formats -->
+		<input
+						autocomplete="off"
+						class="month"
+						maxlength="2"
+						on:blur="checkFocus()"
+						on:focus="setFocus()"
+						on:input="onFragmentInput('month', this)"
+						on:keydown="onFragmentKeydown('month', event)"
+						placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.month}"
+						type="text"
+						use:id="{id}"
+						value="{month}"
+		>
+		<span
+						class="separator"
+		>
+            {$text.UI.Common.Field.Datepicker.dateInput.separator}
+        </span>
+		<input
+						autocomplete="off"
+						class="date"
+						maxlength="2"
+						on:blur="checkFocus()"
+						on:focus="setFocus()"
+						on:input="onFragmentInput('date', this)"
+						on:keydown="onFragmentKeydown('date', event)"
+						placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.date}"
+						type="text"
+						use:id="{id}"
+						value="{date}"
+		>
+		<span
+						class="separator"
+		>
+            {$text.UI.Common.Field.Datepicker.dateInput.separator}
+        </span>
+		<input
+						autocomplete="off"
+						class="year"
+						maxlength="4"
+						on:blur="checkFocus()"
+						on:focus="setFocus()"
+						on:input="onFragmentInput('year', this)"
+						on:keydown="onFragmentKeydown('year', event)"
+						placeholder="{$text.UI.Common.Field.Datepicker.dateInput.placeholder.year}"
+						type="text"
+						use:id="{id}"
+						value="{year}"
+		>
+		<InfoIcon
+						on:select="help()"
+		></InfoIcon>
+		<CalendarIcon
+						on:select="showCalendar(event.element, event.event)"
+		></CalendarIcon>
+		{#if trackOriginal}
+		<UndoIcon
+						on:select="revert()"
+		></UndoIcon>
+		{:else}
+		<ClearIcon
+						on:select="clear()"
+		></ClearIcon>
+		{/if}
+	</section>
+	{#if showCalendar}
+	<div
+					class="dropdown"
+					on:click="onCalendarClick(event)"
+	>
+		<table
+						class="header"
+		>
+			<tr>
+				<td
+								style="
+                        font-weight: bold;
+                        width: calc(100% - 60px);
+                    "
+				>
+					{calendarTitle}
+				</td>
+				<td
+								class="monthMove"
+								on:click="toPrevMonth()"
+				>
+					<ArrowLeftIcon></ArrowLeftIcon>
+				</td>
+				<td
+								class="monthMove"
+								on:click="toNextMonth()"
+				>
+					<ArrowRightIcon></ArrowRightIcon>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr
+							class="header-field"
+							style="border-bottom: 1px solid #aaa; color: #aaa;"
+			>
+				{#each $text.UI.Common.Field.Datepicker.weekDayOrder as weekDayIndex}
+				<td>
+					{$text.UI.Common.Field.Datepicker.shortWeekDay[weekDayIndex]}
+				</td>
+				{/each}
+			</tr>
+			<tr>
+				<td
+								colspan="7"
+				></td>
+			</tr>
+			{#each weeks as week, weekIndex}
+			<tr class="week{weekIndex}">
+				{#each week as date, dayIndex}
+				<td
+								class="calDate day{dayIndex}"
+								class:selectedDate="field.isSelected(date, weekIndex)"
+								class:today="field.isToday(date, weekIndex)"
+								flags="{field.cellFlags(date, weekIndex)}"
+								on:click="selectDate(date, weekIndex, this)"
+				>
+					{date}
+				</td>
+				{/each}
+			</tr>
+			{/each}
+		</table>
+	</div>
+	{/if}
+	{#if touched}
+	{#each errors as error}
+	<span class="pure-form-message error">
+        {error.message}
+    </span>
+	{/each}
+	{/if}
+</div>
+{/if}
+
+<style>
+
+	input[type="text"] {
+		border: 0;
+		box-shadow: none;
+		color: #222;
+		display: inline-block;
+		/*font-weight: 600;*/
+		margin: 0;
+		padding: 8px 0 6px;
+		text-align: center;
+		vertical-align: text-bottom;
+	}
+
+	table {
+		width: 294px;
+	}
+
+	td {
+		height: 35px;
+		margin: auto;
+		text-align: center;
+		width: 14.28%;
+	}
+
+	td[colspan="7"] {
+		height: 3px;
+	}
+
+	td[flags~="Mtrue"] {
+		font-weight: bold;
+	}
+
+	td[flags~="Rfalse"] {
+		color: #ddd;
+	}
+
+	.date {
+		width: 18px;
+	}
+
+	.date-picker {
+		position: relative;
+	}
+
+	.field {
+		padding-left: 5px;
+	}
+
+	.header {
+		height: 30px;
+		border: 0;
+	}
+
+	.header td {
+		padding-top: 7px;
+	}
+
+	.month {
+		width: 18px;
+	}
+
+
+	.dropdown {
+		border: 1px solid #ccc;
+		border-right: none;
+		border-top: none;
+		margin: 0 5px 5px 5px;
+		padding: 3px;
+		width: 300px;
+	}
+
+	.selectedDate {
+		background-color: black;
+		border-radius: 3px;
+		color: white;
+	}
+
+	.separator {
+		display: inline-block;
+		margin-bottom: 6px;
+		vertical-align: text-bottom;
+	}
+
+	.today {
+		border: 1px solid #ccc;
+		border-radius: 3px;
+	}
+
+	input.year {
+		text-align: left;
+		width: 42px;
+	}
+
+</style>
+
+<script>
+	import store          from '@votecube/public-logic/src/store.js'
+	import ArrowLeftIcon  from '../icon/ArrowLeftIcon.html'
+	import ArrowRightIcon from '../icon/ArrowRightIcon.html'
+	import CalendarIcon   from '../icon/CalendarIcon.html'
+	import ClearIcon      from '../icon/ClearIcon.svelte'
+	import InfoIcon       from '../icon/InfoIcon.svelte'
+	import UndoIcon       from '../icon/UndoIcon.svelte'
+
+	export default {
+		actions: {
+			for(node, id) {
+				if (id) {
+					node.id = id;
+				}
+			},
+			id(node, id) {
+				if (id) {
+					node.id = id;
+				}
+			}
+		},
+		components: {
+			ArrowLeftIcon,
+			ArrowRightIcon,
+			CalendarIcon,
+			ClearIcon,
+			InfoIcon,
+			UndoIcon
+		},
+		computed: {
+			date: ({delta, field}) => field.fragments.date,
+			errors: ({delta, field}) => field.errors,
+			label: ({delta, field}) => field.label,
+			modified: ({delta, errors, field}) =>
+				!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
+			month: ({delta, field}) => field.fragments.month,
+			calendarTitle: ({delta, field, $text}) => {
+				return `${$text.UI.Common.Field.Datepicker.month[field.calendar.month]} ${field.calendar.year}`
+			},
+			requiredInvalid: ({delta, errors, field}) =>
+				field.validatorMap.required && errors.length,
+			requiredValid: ({delta, errors, field, modified}) =>
+				!modified && field.validatorMap.required && !errors.length,
+			touched: ({delta, field}) => field.touched,
+			trackOriginal: ({delta, field}) => field.rules.trackOriginal,
+			weeks: ({delta, field}) => field.calendar.weeks,
+			year: ({delta, field}) => field.fragments.year
+		},
+		data() {
+			return {
+				focused: false
+			}
+		},
+		immutable: true,
+		methods: {
+			checkFocus() {
+				this.set({focused: false})
+				setTimeout(() => {
+					const {field, focused} = this.get()
+					if (field && !focused) {
+						field.onBlur()
+					}
+				})
+			},
+			clear() {
+				this.get().field.clear()
+			},
+			help() {
+				const text = this.get().field.text
+				this.store.setTextToast(text.info, text.infoSeconds)
+			},
+			onDocumentClick(event) {
+				this.get().field.reset()
+				this.set({showCalendar: false})
+			},
+			onFragmentKeydown(
+				fragmentType,
+				event
+			) {
+				this.get().field.fragments.onKeydown(fragmentType, event)
+			},
+			onCalendarClick(event) {
+				event.stopPropagation()
+			},
+			selectDate(date, weekIndex, element) {
+				if (element.getAttribute('flags').indexOf('Rtrue') < 0) {
+					return
+				}
+				this.get().field.setDateOfMonth(date, weekIndex)
+				this.set({showCalendar: false})
+			},
+			setFocus() {
+				this.set({focused: true})
+			},
+			onFragmentInput(
+				fragmentType,
+				element
+			) {
+				this.get().field.fragments.onInput(fragmentType, element)
+			},
+			revert() {
+				this.get().field.revert()
+			},
+			showCalendar(element, event) {
+				const {field, showCalendar} = this.get()
+				if (!showCalendar) {
+					this.set({
+						showCalendar: true,
+						dropdownPxFromTop: element.parentElement.offsetHeight
+					})
+					field.showPopup();
+					event.stopPropagation()
+				}
+			},
+			toNextMonth() {
+				this.get().field.calendar.toNextMonth()
+			},
+			toPrevMonth() {
+				this.get().field.calendar.toPrevMonth()
+			},
+			unselect(option, event) {
+				this.get().field.unselect(option)
+				event.stopPropagation()
+				this.set({filter: ''})
+			}
+		},
+		oncreate() {
+			this.get().field.setAsField(this)
+		},
+		ondestroy() {
+			this.get().field.removeComponent(this)
+		},
+		store: () => store
+	}
+
+</script>

@@ -5,7 +5,10 @@
 	export async function preload(
 		{params, query}
 	) {
-		let pollId                 = parseInt(params.pollId, 36)
+		let pollId = parseInt(params.pollId, 36)
+
+		console.log(`Get poll: /get/poll/${pollId}`)
+
 		const responses            = await Promise.all([
 			this.fetch(`/get/poll/${pollId}`),
 			this.fetch(`/list/rootOpinions/${pollId}`),
@@ -101,10 +104,11 @@
 		let opinion = {
 			text: newOpinion,
 			pollId,
+            userId: 1,
 		}
 
 		const xhr = new XMLHttpRequest()
-		xhr.open('PUT', '/put/opinion/1/1', true)
+		xhr.open('PUT', '/add/opinion/1/1', true)
 		xhr.responseType = 'arraybuffer'
 
 		xhr.onload = function (_) {
