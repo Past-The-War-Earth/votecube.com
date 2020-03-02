@@ -1,6 +1,6 @@
 <script context="module">
-	import {retrievePolls} from '../../shared/dataApi'
-	import {readIdRecords} from '../../shared/deserializer'
+	import {retrievePolls} from '../../libs/shared/dataApi'
+	import {readIdRecords} from '../../libs/shared/deserializer'
 
 	export async function preload({params, query}) {
 		const response = await this.fetch(`/list/polls/recent`)

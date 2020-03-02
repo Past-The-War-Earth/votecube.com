@@ -16,18 +16,18 @@ import { Actor } from '../ddl/user/actor';
 import { QActor } from './user/qactor';
 import { Application } from '../ddl/user/application';
 import { QApplication } from './user/qapplication';
+import { ChosenPollRevision } from '../ddl/poll/revision/chosenpollrevision';
+import { QChosenPollRevision } from './poll/revision/qchosenpollrevision';
+import { ChosenPollRevisionType } from '../ddl/poll/revision/chosenpollrevisiontype';
+import { QChosenPollRevisionType } from './poll/revision/qchosenpollrevisiontype';
 import { ChosenPollTranslation } from '../ddl/poll/translation/chosenpolltranslation';
 import { QChosenPollTranslation } from './poll/translation/qchosenpolltranslation';
 import { ChosenPollTranslationType } from '../ddl/poll/translation/chosenpolltranslationtype';
 import { QChosenPollTranslationType } from './poll/translation/qchosenpolltranslationtype';
-import { ChosenPollVariation } from '../ddl/poll/variation/chosenpollvariation';
-import { QChosenPollVariation } from './poll/variation/qchosenpollvariation';
-import { ChosenPollVariationType } from '../ddl/poll/variation/chosenpollvariationtype';
-import { QChosenPollVariationType } from './poll/variation/qchosenpollvariationtype';
-import { ChosenVoteVariation } from '../ddl/vote/chosenvotevariation';
-import { QChosenVoteVariation } from './vote/qchosenvotevariation';
-import { ChosenVoteVariationType } from '../ddl/vote/chosenvotevariationtype';
-import { QChosenVoteVariationType } from './vote/qchosenvotevariationtype';
+import { ChosenVoteRevision } from '../ddl/vote/chosenvoterevision';
+import { QChosenVoteRevision } from './vote/qchosenvoterevision';
+import { ChosenVoteRevisionType } from '../ddl/vote/chosenvoterevisiontype';
+import { QChosenVoteRevisionType } from './vote/qchosenvoterevisiontype';
 import { Continent } from '../ddl/location/continent';
 import { QContinent } from './location/qcontinent';
 import { Country } from '../ddl/location/country';
@@ -55,59 +55,37 @@ import { QFactorOpinionVersionRatingCount } from './opinion/count/qfactoropinion
 import { FactorOpinionVersionTranslation } from '../ddl/opinion/translation/factoropinionversiontranslation';
 import { QFactorOpinionVersionTranslation } from './opinion/translation/qfactoropinionversiontranslation';
 import { FactorPosition } from '../ddl/factor/position/factorposition';
-import { QFactorPosition }              from './factor/position/qfactorposition';
-import { FactorSkinVariation }          from '../ddl/factor/factorskinvariation';
-import { QFactorSkinVariation }         from './factor/qfactorskinvariation';
-import { FactorVariation }              from '../ddl/factor/factorvariation';
-import { QFactorVariation }             from './factor/qfactorvariation';
-import { FactorVariationTranslation }   from '../ddl/factor/factorvariationtranslation';
-import { QFactorVariationTranslation }  from './factor/qfactorvariationtranslation';
-import { ImmutableActorRow }            from '../ddl/infrastructure/row/ImmutableActorRow';
-import { QImmutableActorRow }           from './infrastructure/qimmutableactorrow';
-import { ImmutableRow }                 from '../ddl/infrastructure/row/ImmutableRow';
-import { QImmutableRow }                from './infrastructure/qimmutablerow';
-import { Label }                        from '../ddl/poll/variation/label/label';
-import { QLabel }                       from './poll/variation/label/qlabel';
-import { LabelTranslation }             from '../ddl/poll/variation/label/labeltranslation';
-import { QLabelTranslation }            from './poll/variation/label/qlabeltranslation';
-import { LabelTranslationRating }       from '../ddl/poll/variation/label/labeltranslationrating';
-import { QLabelTranslationRating }      from './poll/variation/label/qlabeltranslationrating';
-import { LabelTranslationRatingCount }  from '../ddl/poll/variation/label/labeltranslationratingcount';
-import { QLabelTranslationRatingCount } from './poll/variation/label/qlabeltranslationratingcount';
-import { Language }                     from '../ddl/infrastructure/language';
-import { QLanguage }                    from './infrastructure/qlanguage';
-import { MutableActorRow }              from '../ddl/infrastructure/row/MutableActorRow';
-import { QMutableActorRow }             from './infrastructure/qmutableactorrow';
-import { MutableRow }                   from '../ddl/infrastructure/row/MutableRow';
-import { QMutableRow }                  from './infrastructure/qmutablerow';
-import { Poll }                         from '../ddl/poll/poll';
-import { QPoll }                        from './poll/qpoll';
-import { PollFactorPositionVariation }  from '../ddl/poll/variation/structure/pollfactorpositionvariation';
-import { QPollFactorPositionVariation } from './poll/variation/structure/qpollfactorpositionvariation';
-import { PollFactorSkinVariation }      from '../ddl/poll/variation/structure/pollfactorskinvariation';
-import { QPollFactorSkinVariation }     from './poll/variation/structure/qpollfactorskinvariation';
-import { PollFactorVariation } from '../ddl/poll/variation/structure/pollfactorvariation';
-import { QPollFactorVariation } from './poll/variation/structure/qpollfactorvariation';
-import { PollLTFContinent } from '../ddl/poll/locationtimeframe/location/pollltfcontinent';
-import { QPollLTFContinent } from './poll/locationtimeframe/location/qpollltfcontinent';
-import { PollLTFCountry } from '../ddl/poll/locationtimeframe/location/pollltfcountry';
-import { QPollLTFCountry } from './poll/locationtimeframe/location/qpollltfcountry';
-import { PollLTFCounty } from '../ddl/poll/locationtimeframe/location/pollltfcounty';
-import { QPollLTFCounty } from './poll/locationtimeframe/location/qpollltfcounty';
-import { PollLTFOpinionCount } from '../ddl/poll/locationtimeframe/count/pollltfopinioncount';
-import { QPollLTFOpinionCount } from './poll/locationtimeframe/count/qpollltfopinioncount';
-import { PollLTFOpinionRatingCount } from '../ddl/poll/locationtimeframe/count/pollltfopinionratingcount';
-import { QPollLTFOpinionRatingCount } from './poll/locationtimeframe/count/qpollltfopinionratingcount';
-import { PollLTFRatingCount } from '../ddl/poll/locationtimeframe/count/pollltfratingcount';
-import { QPollLTFRatingCount } from './poll/locationtimeframe/count/qpollltfratingcount';
-import { PollLTFState } from '../ddl/poll/locationtimeframe/location/pollltfstate';
-import { QPollLTFState } from './poll/locationtimeframe/location/qpollltfstate';
-import { PollLTFTown } from '../ddl/poll/locationtimeframe/location/pollltftown';
-import { QPollLTFTown } from './poll/locationtimeframe/location/qpollltftown';
-import { PollLTFVoteCount } from '../ddl/poll/locationtimeframe/count/pollltfvotecount';
-import { QPollLTFVoteCount } from './poll/locationtimeframe/count/qpollltfvotecount';
-import { PollLocationTimeFrame } from '../ddl/poll/locationtimeframe/polllocationtimeframe';
-import { QPollLocationTimeFrame } from './poll/locationtimeframe/qpolllocationtimeframe';
+import { QFactorPosition } from './factor/position/qfactorposition';
+import { FactorSkin } from '../ddl/factor/factorskin';
+import { QFactorSkin } from './factor/qfactorskin';
+import { FactorTranslation } from '../ddl/factor/factortranslation';
+import { QFactorTranslation } from './factor/qfactortranslation';
+import { ImmutableActorRow } from '../ddl/infrastructure/row/immutableactorrow';
+import { QImmutableActorRow } from './infrastructure/row/qimmutableactorrow';
+import { ImmutableRow } from '../ddl/infrastructure/row/immutablerow';
+import { QImmutableRow } from './infrastructure/row/qimmutablerow';
+import { Label } from '../ddl/poll/revision/label/label';
+import { QLabel } from './poll/revision/label/qlabel';
+import { LabelTranslation } from '../ddl/poll/revision/label/labeltranslation';
+import { QLabelTranslation } from './poll/revision/label/qlabeltranslation';
+import { LabelTranslationRating } from '../ddl/poll/revision/label/labeltranslationrating';
+import { QLabelTranslationRating } from './poll/revision/label/qlabeltranslationrating';
+import { LabelTranslationRatingCount } from '../ddl/poll/revision/label/labeltranslationratingcount';
+import { QLabelTranslationRatingCount } from './poll/revision/label/qlabeltranslationratingcount';
+import { Language } from '../ddl/infrastructure/language';
+import { QLanguage } from './infrastructure/qlanguage';
+import { MutableActorRow } from '../ddl/infrastructure/row/mutableactorrow';
+import { QMutableActorRow } from './infrastructure/row/qmutableactorrow';
+import { MutableRow } from '../ddl/infrastructure/row/mutablerow';
+import { QMutableRow } from './infrastructure/row/qmutablerow';
+import { Poll } from '../ddl/poll/poll';
+import { QPoll } from './poll/qpoll';
+import { PollFactorPositionRevision } from '../ddl/poll/revision/structure/pollfactorpositionrevision';
+import { QPollFactorPositionRevision } from './poll/revision/structure/qpollfactorpositionrevision';
+import { PollFactorRevision } from '../ddl/poll/revision/structure/pollfactorrevision';
+import { QPollFactorRevision } from './poll/revision/structure/qpollfactorrevision';
+import { PollFactorSkinRevision } from '../ddl/poll/revision/structure/pollfactorskinrevision';
+import { QPollFactorSkinRevision } from './poll/revision/structure/qpollfactorskinrevision';
 import { PollOpinion } from '../ddl/opinion/pollopinion';
 import { QPollOpinion } from './opinion/qpollopinion';
 import { PollOpinionRatingCount } from '../ddl/opinion/count/pollopinionratingcount';
@@ -124,38 +102,58 @@ import { PollOpinionsCount } from '../ddl/poll/count/pollopinionscount';
 import { QPollOpinionsCount } from './poll/count/qpollopinionscount';
 import { PollOpinionsRatingCount } from '../ddl/poll/count/pollopinionsratingcount';
 import { QPollOpinionsRatingCount } from './poll/count/qpollopinionsratingcount';
-import { PollPositionVariation } from '../ddl/poll/variation/structure/pollpositionvariation';
-import { QPollPositionVariation } from './poll/variation/structure/qpollpositionvariation';
+import { PollPositionRevision } from '../ddl/poll/revision/structure/pollpositionrevision';
+import { QPollPositionRevision } from './poll/revision/structure/qpollpositionrevision';
 import { PollRatingCount } from '../ddl/poll/count/pollratingcount';
 import { QPollRatingCount } from './poll/count/qpollratingcount';
+import { PollRevision } from '../ddl/poll/revision/pollrevision';
+import { QPollRevision } from './poll/revision/qpollrevision';
+import { PollRevisionFactorTranslation } from '../ddl/poll/revision/translation/pollrevisionfactortranslation';
+import { QPollRevisionFactorTranslation } from './poll/revision/translation/qpollrevisionfactortranslation';
+import { PollRevisionLabel } from '../ddl/poll/revision/pollrevisionlabel';
+import { QPollRevisionLabel } from './poll/revision/qpollrevisionlabel';
+import { PollRevisionOpinionCount } from '../ddl/poll/revision/count/pollrevisionopinioncount';
+import { QPollRevisionOpinionCount } from './poll/revision/count/qpollrevisionopinioncount';
+import { PollRevisionOpinionRatingCount } from '../ddl/poll/revision/count/pollrevisionopinionratingcount';
+import { QPollRevisionOpinionRatingCount } from './poll/revision/count/qpollrevisionopinionratingcount';
+import { PollRevisionPositionTranslation } from '../ddl/poll/revision/translation/pollrevisionpositiontranslation';
+import { QPollRevisionPositionTranslation } from './poll/revision/translation/qpollrevisionpositiontranslation';
+import { PollRevisionRatingCount } from '../ddl/poll/revision/count/pollrevisionratingcount';
+import { QPollRevisionRatingCount } from './poll/revision/count/qpollrevisionratingcount';
+import { PollRevisionTranslation } from '../ddl/poll/revision/translation/pollrevisiontranslation';
+import { QPollRevisionTranslation } from './poll/revision/translation/qpollrevisiontranslation';
+import { PollRevisionTranslationOpinionCount } from '../ddl/poll/revision/translation/count/pollrevisiontranslationopinioncount';
+import { QPollRevisionTranslationOpinionCount } from './poll/revision/translation/count/qpollrevisiontranslationopinioncount';
+import { PollRevisionTranslationOpinionRatingCount } from '../ddl/poll/revision/translation/count/pollrevisiontranslationopinionratingcount';
+import { QPollRevisionTranslationOpinionRatingCount } from './poll/revision/translation/count/qpollrevisiontranslationopinionratingcount';
+import { PollRevisionTranslationRatingCount } from '../ddl/poll/revision/translation/count/pollrevisiontranslationratingcount';
+import { QPollRevisionTranslationRatingCount } from './poll/revision/translation/count/qpollrevisiontranslationratingcount';
+import { PollRevisionTranslationVoteCount } from '../ddl/poll/revision/translation/count/pollrevisiontranslationvotecount';
+import { QPollRevisionTranslationVoteCount } from './poll/revision/translation/count/qpollrevisiontranslationvotecount';
+import { PollRevisionVoteCount } from '../ddl/poll/revision/count/pollrevisionvotecount';
+import { QPollRevisionVoteCount } from './poll/revision/count/qpollrevisionvotecount';
+import { PollRun } from '../ddl/poll/run/pollrun';
+import { QPollRun } from './poll/run/qpollrun';
+import { PollRunContinent } from '../ddl/poll/run/location/pollruncontinent';
+import { QPollRunContinent } from './poll/run/location/qpollruncontinent';
+import { PollRunCountry } from '../ddl/poll/run/location/pollruncountry';
+import { QPollRunCountry } from './poll/run/location/qpollruncountry';
+import { PollRunCounty } from '../ddl/poll/run/location/pollruncounty';
+import { QPollRunCounty } from './poll/run/location/qpollruncounty';
+import { PollRunOpinionCount } from '../ddl/poll/run/count/pollrunopinioncount';
+import { QPollRunOpinionCount } from './poll/run/count/qpollrunopinioncount';
+import { PollRunOpinionRatingCount } from '../ddl/poll/run/count/pollrunopinionratingcount';
+import { QPollRunOpinionRatingCount } from './poll/run/count/qpollrunopinionratingcount';
+import { PollRunRatingCount } from '../ddl/poll/run/count/pollrunratingcount';
+import { QPollRunRatingCount } from './poll/run/count/qpollrunratingcount';
+import { PollRunState } from '../ddl/poll/run/location/pollrunstate';
+import { QPollRunState } from './poll/run/location/qpollrunstate';
+import { PollRunTown } from '../ddl/poll/run/location/pollruntown';
+import { QPollRunTown } from './poll/run/location/qpollruntown';
+import { PollRunVoteCount } from '../ddl/poll/run/count/pollrunvotecount';
+import { QPollRunVoteCount } from './poll/run/count/qpollrunvotecount';
 import { PollType } from '../ddl/poll/polltype';
 import { QPollType } from './poll/qpolltype';
-import { PollVariation } from '../ddl/poll/variation/pollvariation';
-import { QPollVariation } from './poll/variation/qpollvariation';
-import { PollVariationFactorTranslation } from '../ddl/poll/variation/translation/pollvariationfactortranslation';
-import { QPollVariationFactorTranslation } from './poll/variation/translation/qpollvariationfactortranslation';
-import { PollVariationLabel } from '../ddl/poll/variation/pollvariationlabel';
-import { QPollVariationLabel } from './poll/variation/qpollvariationlabel';
-import { PollVariationOpinionCount } from '../ddl/poll/variation/count/pollvariationopinioncount';
-import { QPollVariationOpinionCount } from './poll/variation/count/qpollvariationopinioncount';
-import { PollVariationOpinionRatingCount } from '../ddl/poll/variation/count/pollvariationopinionratingcount';
-import { QPollVariationOpinionRatingCount } from './poll/variation/count/qpollvariationopinionratingcount';
-import { PollVariationPositionTranslation } from '../ddl/poll/variation/translation/pollvariationpositiontranslation';
-import { QPollVariationPositionTranslation } from './poll/variation/translation/qpollvariationpositiontranslation';
-import { PollVariationRatingCount } from '../ddl/poll/variation/count/pollvariationratingcount';
-import { QPollVariationRatingCount } from './poll/variation/count/qpollvariationratingcount';
-import { PollVariationTranslation } from '../ddl/poll/variation/translation/pollvariationtranslation';
-import { QPollVariationTranslation } from './poll/variation/translation/qpollvariationtranslation';
-import { PollVariationTranslationOpinionCount } from '../ddl/poll/variation/translation/count/pollvariationtranslationopinioncount';
-import { QPollVariationTranslationOpinionCount } from './poll/variation/translation/count/qpollvariationtranslationopinioncount';
-import { PollVariationTranslationOpinionRatingCount } from '../ddl/poll/variation/translation/count/pollvariationtranslationopinionratingcount';
-import { QPollVariationTranslationOpinionRatingCount } from './poll/variation/translation/count/qpollvariationtranslationopinionratingcount';
-import { PollVariationTranslationRatingCount } from '../ddl/poll/variation/translation/count/pollvariationtranslationratingcount';
-import { QPollVariationTranslationRatingCount } from './poll/variation/translation/count/qpollvariationtranslationratingcount';
-import { PollVariationTranslationVoteCount } from '../ddl/poll/variation/translation/count/pollvariationtranslationvotecount';
-import { QPollVariationTranslationVoteCount } from './poll/variation/translation/count/qpollvariationtranslationvotecount';
-import { PollVariationVoteCount } from '../ddl/poll/variation/count/pollvariationvotecount';
-import { QPollVariationVoteCount } from './poll/variation/count/qpollvariationvotecount';
 import { PollVoteCount } from '../ddl/poll/count/pollvotecount';
 import { QPollVoteCount } from './poll/count/qpollvotecount';
 import { Position } from '../ddl/factor/position/position';
@@ -168,10 +166,8 @@ import { PositionOpinionVersionRatingCount } from '../ddl/opinion/count/position
 import { QPositionOpinionVersionRatingCount } from './opinion/count/qpositionopinionversionratingcount';
 import { PositionOpinionVersionTranslation } from '../ddl/opinion/translation/positionopinionversiontranslation';
 import { QPositionOpinionVersionTranslation } from './opinion/translation/qpositionopinionversiontranslation';
-import { PositionVariation } from '../ddl/factor/position/positionvariation';
-import { QPositionVariation } from './factor/position/qpositionvariation';
-import { PositionVariationTranslation } from '../ddl/factor/position/positionvariationtranslation';
-import { QPositionVariationTranslation } from './factor/position/qpositionvariationtranslation';
+import { PositionTranslation } from '../ddl/factor/position/positiontranslation';
+import { QPositionTranslation } from './factor/position/qpositiontranslation';
 import { Rating } from '../ddl/infrastructure/rating/rating';
 import { QRating } from './infrastructure/rating/qrating';
 import { RatingReason } from '../ddl/infrastructure/rating/ratingreason';
@@ -180,46 +176,46 @@ import { RatingReasonTranslation } from '../ddl/infrastructure/rating/ratingreas
 import { QRatingReasonTranslation } from './infrastructure/rating/qratingreasontranslation';
 import { RatingSetting } from '../ddl/infrastructure/rating/ratingsetting';
 import { QRatingSetting } from './infrastructure/rating/qratingsetting';
-import { RatingTranslation }            from '../ddl/infrastructure/rating/ratingtranslation';
-import { QRatingTranslation }           from './infrastructure/rating/qratingtranslation';
-import { RatingType }                   from '../ddl/infrastructure/rating/ratingtype';
-import { QRatingType }                  from './infrastructure/rating/qratingtype';
-import { State }                        from '../ddl/location/state';
-import { QState }                       from './location/qstate';
-import { StateTown }                    from '../ddl/location/statetown';
-import { QStateTown }                   from './location/qstatetown';
-import { SystemGeneratedRow }           from '../ddl/infrastructure/row/SystemGeneratedRow';
-import { QSystemGeneratedRow }          from './infrastructure/qsystemgeneratedrow';
-import { Theme }                        from '../ddl/poll/theme';
-import { QTheme }                       from './poll/qtheme';
-import { Town }                         from '../ddl/location/town';
-import { QTown }                        from './location/qtown';
-import { TranslationType }              from '../ddl/infrastructure/translationtype';
-import { QTranslationType }             from './infrastructure/qtranslationtype';
-import { UserAccount }                  from '../ddl/user/useraccount';
-import { QUserAccount }                 from './user/quseraccount';
-import { UserPoll }                     from '../ddl/poll/user/userpoll';
+import { RatingTranslation } from '../ddl/infrastructure/rating/ratingtranslation';
+import { QRatingTranslation } from './infrastructure/rating/qratingtranslation';
+import { RatingType } from '../ddl/infrastructure/rating/ratingtype';
+import { QRatingType } from './infrastructure/rating/qratingtype';
+import { State } from '../ddl/location/state';
+import { QState } from './location/qstate';
+import { StateTown } from '../ddl/location/statetown';
+import { QStateTown } from './location/qstatetown';
+import { SystemGeneratedRow } from '../ddl/infrastructure/row/systemgeneratedrow';
+import { QSystemGeneratedRow } from './infrastructure/row/qsystemgeneratedrow';
+import { Theme } from '../ddl/poll/theme';
+import { QTheme } from './poll/qtheme';
+import { Town } from '../ddl/location/town';
+import { QTown } from './location/qtown';
+import { TranslationType } from '../ddl/infrastructure/translationtype';
+import { QTranslationType } from './infrastructure/qtranslationtype';
+import { UserAccount } from '../ddl/user/useraccount';
+import { QUserAccount } from './user/quseraccount';
+import { UserPoll } from '../ddl/poll/user/userpoll';
 import { QUserPoll } from './poll/user/quserpoll';
 import { UserPollRating } from '../ddl/poll/user/userpollrating';
 import { QUserPollRating } from './poll/user/quserpollrating';
-import { UserPollVariation } from '../ddl/poll/user/userpollvariation';
-import { QUserPollVariation } from './poll/user/quserpollvariation';
-import { UserPollVariationRating } from '../ddl/poll/user/userpollvariationrating';
-import { QUserPollVariationRating } from './poll/user/quserpollvariationrating';
-import { UserPollVariationTranslation } from '../ddl/poll/user/userpollvariationtranslation';
-import { QUserPollVariationTranslation } from './poll/user/quserpollvariationtranslation';
-import { UserPollVariationTranslationRating } from '../ddl/poll/user/userpollvariationtranslationrating';
-import { QUserPollVariationTranslationRating } from './poll/user/quserpollvariationtranslationrating';
+import { UserPollRevision } from '../ddl/poll/user/userpollrevision';
+import { QUserPollRevision } from './poll/user/quserpollrevision';
+import { UserPollRevisionRating } from '../ddl/poll/user/userpollrevisionrating';
+import { QUserPollRevisionRating } from './poll/user/quserpollrevisionrating';
+import { UserPollRevisionTranslation } from '../ddl/poll/user/userpollrevisiontranslation';
+import { QUserPollRevisionTranslation } from './poll/user/quserpollrevisiontranslation';
+import { UserPollRevisionTranslationRating } from '../ddl/poll/user/userpollrevisiontranslationrating';
+import { QUserPollRevisionTranslationRating } from './poll/user/quserpollrevisiontranslationrating';
 import { Vote } from '../ddl/vote/vote';
 import { QVote } from './vote/qvote';
 import { VoteFactor } from '../ddl/vote/votefactor';
 import { QVoteFactor } from './vote/qvotefactor';
 import { VoteFactorType } from '../ddl/vote/votefactortype';
 import { QVoteFactorType } from './vote/qvotefactortype';
+import { VoteRevision } from '../ddl/vote/voterevision';
+import { QVoteRevision } from './vote/qvoterevision';
 import { VoteType } from '../ddl/vote/votetype';
 import { QVoteType } from './vote/qvotetype';
-import { VoteVariation } from '../ddl/vote/votevariation';
-import { QVoteVariation } from './vote/qvotevariation';
 
 export interface LocalQSchema extends AirportQSchema {
 
@@ -227,12 +223,12 @@ export interface LocalQSchema extends AirportQSchema {
 
 	Actor: QActor;
 	Application: QApplication;
+	ChosenPollRevision: QChosenPollRevision;
+	ChosenPollRevisionType: QChosenPollRevisionType;
 	ChosenPollTranslation: QChosenPollTranslation;
 	ChosenPollTranslationType: QChosenPollTranslationType;
-	ChosenPollVariation: QChosenPollVariation;
-	ChosenPollVariationType: QChosenPollVariationType;
-	ChosenVoteVariation: QChosenVoteVariation;
-	ChosenVoteVariationType: QChosenVoteVariationType;
+	ChosenVoteRevision: QChosenVoteRevision;
+	ChosenVoteRevisionType: QChosenVoteRevisionType;
 	Continent: QContinent;
 	Country: QCountry;
 	CountryTown: QCountryTown;
@@ -247,9 +243,8 @@ export interface LocalQSchema extends AirportQSchema {
 	FactorOpinionVersionRatingCount: QFactorOpinionVersionRatingCount;
 	FactorOpinionVersionTranslation: QFactorOpinionVersionTranslation;
 	FactorPosition: QFactorPosition;
-	FactorSkinVariation: QFactorSkinVariation;
-	FactorVariation: QFactorVariation;
-	FactorVariationTranslation: QFactorVariationTranslation;
+	FactorSkin: QFactorSkin;
+	FactorTranslation: QFactorTranslation;
 	ImmutableActorRow: QImmutableActorRow;
 	ImmutableRow: QImmutableRow;
 	Label: QLabel;
@@ -260,19 +255,9 @@ export interface LocalQSchema extends AirportQSchema {
 	MutableActorRow: QMutableActorRow;
 	MutableRow: QMutableRow;
 	Poll: QPoll;
-	PollFactorPositionVariation: QPollFactorPositionVariation;
-	PollFactorSkinVariation: QPollFactorSkinVariation;
-	PollFactorVariation: QPollFactorVariation;
-	PollLTFContinent: QPollLTFContinent;
-	PollLTFCountry: QPollLTFCountry;
-	PollLTFCounty: QPollLTFCounty;
-	PollLTFOpinionCount: QPollLTFOpinionCount;
-	PollLTFOpinionRatingCount: QPollLTFOpinionRatingCount;
-	PollLTFRatingCount: QPollLTFRatingCount;
-	PollLTFState: QPollLTFState;
-	PollLTFTown: QPollLTFTown;
-	PollLTFVoteCount: QPollLTFVoteCount;
-	PollLocationTimeFrame: QPollLocationTimeFrame;
+	PollFactorPositionRevision: QPollFactorPositionRevision;
+	PollFactorRevision: QPollFactorRevision;
+	PollFactorSkinRevision: QPollFactorSkinRevision;
 	PollOpinion: QPollOpinion;
 	PollOpinionRatingCount: QPollOpinionRatingCount;
 	PollOpinionVersion: QPollOpinionVersion;
@@ -281,30 +266,39 @@ export interface LocalQSchema extends AirportQSchema {
 	PollOpinionVersionTranslation: QPollOpinionVersionTranslation;
 	PollOpinionsCount: QPollOpinionsCount;
 	PollOpinionsRatingCount: QPollOpinionsRatingCount;
-	PollPositionVariation: QPollPositionVariation;
+	PollPositionRevision: QPollPositionRevision;
 	PollRatingCount: QPollRatingCount;
+	PollRevision: QPollRevision;
+	PollRevisionFactorTranslation: QPollRevisionFactorTranslation;
+	PollRevisionLabel: QPollRevisionLabel;
+	PollRevisionOpinionCount: QPollRevisionOpinionCount;
+	PollRevisionOpinionRatingCount: QPollRevisionOpinionRatingCount;
+	PollRevisionPositionTranslation: QPollRevisionPositionTranslation;
+	PollRevisionRatingCount: QPollRevisionRatingCount;
+	PollRevisionTranslation: QPollRevisionTranslation;
+	PollRevisionTranslationOpinionCount: QPollRevisionTranslationOpinionCount;
+	PollRevisionTranslationOpinionRatingCount: QPollRevisionTranslationOpinionRatingCount;
+	PollRevisionTranslationRatingCount: QPollRevisionTranslationRatingCount;
+	PollRevisionTranslationVoteCount: QPollRevisionTranslationVoteCount;
+	PollRevisionVoteCount: QPollRevisionVoteCount;
+	PollRun: QPollRun;
+	PollRunContinent: QPollRunContinent;
+	PollRunCountry: QPollRunCountry;
+	PollRunCounty: QPollRunCounty;
+	PollRunOpinionCount: QPollRunOpinionCount;
+	PollRunOpinionRatingCount: QPollRunOpinionRatingCount;
+	PollRunRatingCount: QPollRunRatingCount;
+	PollRunState: QPollRunState;
+	PollRunTown: QPollRunTown;
+	PollRunVoteCount: QPollRunVoteCount;
 	PollType: QPollType;
-	PollVariation: QPollVariation;
-	PollVariationFactorTranslation: QPollVariationFactorTranslation;
-	PollVariationLabel: QPollVariationLabel;
-	PollVariationOpinionCount: QPollVariationOpinionCount;
-	PollVariationOpinionRatingCount: QPollVariationOpinionRatingCount;
-	PollVariationPositionTranslation: QPollVariationPositionTranslation;
-	PollVariationRatingCount: QPollVariationRatingCount;
-	PollVariationTranslation: QPollVariationTranslation;
-	PollVariationTranslationOpinionCount: QPollVariationTranslationOpinionCount;
-	PollVariationTranslationOpinionRatingCount: QPollVariationTranslationOpinionRatingCount;
-	PollVariationTranslationRatingCount: QPollVariationTranslationRatingCount;
-	PollVariationTranslationVoteCount: QPollVariationTranslationVoteCount;
-	PollVariationVoteCount: QPollVariationVoteCount;
 	PollVoteCount: QPollVoteCount;
 	Position: QPosition;
 	PositionOpinionVersion: QPositionOpinionVersion;
 	PositionOpinionVersionRating: QPositionOpinionVersionRating;
 	PositionOpinionVersionRatingCount: QPositionOpinionVersionRatingCount;
 	PositionOpinionVersionTranslation: QPositionOpinionVersionTranslation;
-	PositionVariation: QPositionVariation;
-	PositionVariationTranslation: QPositionVariationTranslation;
+	PositionTranslation: QPositionTranslation;
 	Rating: QRating;
 	RatingReason: QRatingReason;
 	RatingReasonTranslation: QRatingReasonTranslation;
@@ -320,27 +314,27 @@ export interface LocalQSchema extends AirportQSchema {
 	UserAccount: QUserAccount;
 	UserPoll: QUserPoll;
 	UserPollRating: QUserPollRating;
-	UserPollVariation: QUserPollVariation;
-	UserPollVariationRating: QUserPollVariationRating;
-	UserPollVariationTranslation: QUserPollVariationTranslation;
-	UserPollVariationTranslationRating: QUserPollVariationTranslationRating;
+	UserPollRevision: QUserPollRevision;
+	UserPollRevisionRating: QUserPollRevisionRating;
+	UserPollRevisionTranslation: QUserPollRevisionTranslation;
+	UserPollRevisionTranslationRating: QUserPollRevisionTranslationRating;
 	Vote: QVote;
 	VoteFactor: QVoteFactor;
 	VoteFactorType: QVoteFactorType;
+	VoteRevision: QVoteRevision;
 	VoteType: QVoteType;
-	VoteVariation: QVoteVariation;
 
 }
 
 const __constructors__ = {
 	Actor: Actor,
 	Application: Application,
+	ChosenPollRevision: ChosenPollRevision,
+	ChosenPollRevisionType: ChosenPollRevisionType,
 	ChosenPollTranslation: ChosenPollTranslation,
 	ChosenPollTranslationType: ChosenPollTranslationType,
-	ChosenPollVariation: ChosenPollVariation,
-	ChosenPollVariationType: ChosenPollVariationType,
-	ChosenVoteVariation: ChosenVoteVariation,
-	ChosenVoteVariationType: ChosenVoteVariationType,
+	ChosenVoteRevision: ChosenVoteRevision,
+	ChosenVoteRevisionType: ChosenVoteRevisionType,
 	Continent: Continent,
 	Country: Country,
 	CountryTown: CountryTown,
@@ -355,9 +349,8 @@ const __constructors__ = {
 	FactorOpinionVersionRatingCount: FactorOpinionVersionRatingCount,
 	FactorOpinionVersionTranslation: FactorOpinionVersionTranslation,
 	FactorPosition: FactorPosition,
-	FactorSkinVariation: FactorSkinVariation,
-	FactorVariation: FactorVariation,
-	FactorVariationTranslation: FactorVariationTranslation,
+	FactorSkin: FactorSkin,
+	FactorTranslation: FactorTranslation,
 	ImmutableActorRow: ImmutableActorRow,
 	ImmutableRow: ImmutableRow,
 	Label: Label,
@@ -368,19 +361,9 @@ const __constructors__ = {
 	MutableActorRow: MutableActorRow,
 	MutableRow: MutableRow,
 	Poll: Poll,
-	PollFactorPositionVariation: PollFactorPositionVariation,
-	PollFactorSkinVariation: PollFactorSkinVariation,
-	PollFactorVariation: PollFactorVariation,
-	PollLTFContinent: PollLTFContinent,
-	PollLTFCountry: PollLTFCountry,
-	PollLTFCounty: PollLTFCounty,
-	PollLTFOpinionCount: PollLTFOpinionCount,
-	PollLTFOpinionRatingCount: PollLTFOpinionRatingCount,
-	PollLTFRatingCount: PollLTFRatingCount,
-	PollLTFState: PollLTFState,
-	PollLTFTown: PollLTFTown,
-	PollLTFVoteCount: PollLTFVoteCount,
-	PollLocationTimeFrame: PollLocationTimeFrame,
+	PollFactorPositionRevision: PollFactorPositionRevision,
+	PollFactorRevision: PollFactorRevision,
+	PollFactorSkinRevision: PollFactorSkinRevision,
 	PollOpinion: PollOpinion,
 	PollOpinionRatingCount: PollOpinionRatingCount,
 	PollOpinionVersion: PollOpinionVersion,
@@ -389,30 +372,39 @@ const __constructors__ = {
 	PollOpinionVersionTranslation: PollOpinionVersionTranslation,
 	PollOpinionsCount: PollOpinionsCount,
 	PollOpinionsRatingCount: PollOpinionsRatingCount,
-	PollPositionVariation: PollPositionVariation,
+	PollPositionRevision: PollPositionRevision,
 	PollRatingCount: PollRatingCount,
+	PollRevision: PollRevision,
+	PollRevisionFactorTranslation: PollRevisionFactorTranslation,
+	PollRevisionLabel: PollRevisionLabel,
+	PollRevisionOpinionCount: PollRevisionOpinionCount,
+	PollRevisionOpinionRatingCount: PollRevisionOpinionRatingCount,
+	PollRevisionPositionTranslation: PollRevisionPositionTranslation,
+	PollRevisionRatingCount: PollRevisionRatingCount,
+	PollRevisionTranslation: PollRevisionTranslation,
+	PollRevisionTranslationOpinionCount: PollRevisionTranslationOpinionCount,
+	PollRevisionTranslationOpinionRatingCount: PollRevisionTranslationOpinionRatingCount,
+	PollRevisionTranslationRatingCount: PollRevisionTranslationRatingCount,
+	PollRevisionTranslationVoteCount: PollRevisionTranslationVoteCount,
+	PollRevisionVoteCount: PollRevisionVoteCount,
+	PollRun: PollRun,
+	PollRunContinent: PollRunContinent,
+	PollRunCountry: PollRunCountry,
+	PollRunCounty: PollRunCounty,
+	PollRunOpinionCount: PollRunOpinionCount,
+	PollRunOpinionRatingCount: PollRunOpinionRatingCount,
+	PollRunRatingCount: PollRunRatingCount,
+	PollRunState: PollRunState,
+	PollRunTown: PollRunTown,
+	PollRunVoteCount: PollRunVoteCount,
 	PollType: PollType,
-	PollVariation: PollVariation,
-	PollVariationFactorTranslation: PollVariationFactorTranslation,
-	PollVariationLabel: PollVariationLabel,
-	PollVariationOpinionCount: PollVariationOpinionCount,
-	PollVariationOpinionRatingCount: PollVariationOpinionRatingCount,
-	PollVariationPositionTranslation: PollVariationPositionTranslation,
-	PollVariationRatingCount: PollVariationRatingCount,
-	PollVariationTranslation: PollVariationTranslation,
-	PollVariationTranslationOpinionCount: PollVariationTranslationOpinionCount,
-	PollVariationTranslationOpinionRatingCount: PollVariationTranslationOpinionRatingCount,
-	PollVariationTranslationRatingCount: PollVariationTranslationRatingCount,
-	PollVariationTranslationVoteCount: PollVariationTranslationVoteCount,
-	PollVariationVoteCount: PollVariationVoteCount,
 	PollVoteCount: PollVoteCount,
 	Position: Position,
 	PositionOpinionVersion: PositionOpinionVersion,
 	PositionOpinionVersionRating: PositionOpinionVersionRating,
 	PositionOpinionVersionRatingCount: PositionOpinionVersionRatingCount,
 	PositionOpinionVersionTranslation: PositionOpinionVersionTranslation,
-	PositionVariation: PositionVariation,
-	PositionVariationTranslation: PositionVariationTranslation,
+	PositionTranslation: PositionTranslation,
 	Rating: Rating,
 	RatingReason: RatingReason,
 	RatingReasonTranslation: RatingReasonTranslation,
@@ -428,21 +420,21 @@ const __constructors__ = {
 	UserAccount: UserAccount,
 	UserPoll: UserPoll,
 	UserPollRating: UserPollRating,
-	UserPollVariation: UserPollVariation,
-	UserPollVariationRating: UserPollVariationRating,
-	UserPollVariationTranslation: UserPollVariationTranslation,
-	UserPollVariationTranslationRating: UserPollVariationTranslationRating,
+	UserPollRevision: UserPollRevision,
+	UserPollRevisionRating: UserPollRevisionRating,
+	UserPollRevisionTranslation: UserPollRevisionTranslation,
+	UserPollRevisionTranslationRating: UserPollRevisionTranslationRating,
 	Vote: Vote,
 	VoteFactor: VoteFactor,
 	VoteFactorType: VoteFactorType,
-	VoteType: VoteType,
-	VoteVariation: VoteVariation
+	VoteRevision: VoteRevision,
+	VoteType: VoteType
 };
 
 export const Q_SCHEMA: LocalQSchema = <any>{
 	__constructors__,
   domain: 'public',
-  name: '@votecube/public-db'
+  name: '@votecube/relational-db'
 };
 export const Q: LocalQSchema = Q_SCHEMA
 
@@ -458,7 +450,7 @@ export function duoDiSet(
 	return ddS(Q.__dbSchema__, dbEntityId)
 }
 
-DI.get(AIR_DB).then((
+DI.db().get(AIR_DB).then((
 	airDb
 ) => {
 	airDb.QM[getSchemaName(Q_SCHEMA)] = Q

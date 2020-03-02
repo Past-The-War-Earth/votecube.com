@@ -106,19 +106,19 @@
 		const db          = window.db
 		const feedbackRef = db.collection('feedback').doc()
 
-		let userKey
+		let userId
 
 		const userInfo = get(user)
 
 		if (userInfo) {
-			userKey = userInfo.key
+			userId = userInfo.id
 		} else {
-			userKey = null
+			userId = null
 		}
 		try {
 			await feedbackRef.set({
 				...formValue,
-				userKey
+				userId
 			})
 			return true
 		} catch (error) {

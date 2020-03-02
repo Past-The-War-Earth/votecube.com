@@ -1,6 +1,6 @@
 import {
-	IKeyed,
-	Key
+	IIdentified,
+	Id
 }                   from '@votecube/model'
 import {Collection} from './Collection'
 import {
@@ -8,7 +8,7 @@ import {
 	ISchema
 }                   from './common'
 
-export class RootCollection<K extends Key, T extends IKeyed<K>>
+export class RootCollection<K extends Id, T extends IIdentified<K>>
 	extends Collection<K, T> {
 
 	constructor(

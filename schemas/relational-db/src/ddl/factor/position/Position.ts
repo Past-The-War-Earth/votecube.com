@@ -7,14 +7,17 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                     from '@airport/air-control'
-import {CascadeType}                  from '@airport/ground-control'
-import {Position_Id}                  from '../../../types/factor/position/Position'
-import {ImmutableActorRow}            from '../../infrastructure/row/ImmutableActorRow'
-import {FactorPosition}               from './FactorPosition'
-import {PositionVariation}            from './PositionVariation'
-import {PositionVariationTranslation} from './PositionVariationTranslation'
+}                            from '@airport/air-control'
+import {CascadeType}         from '@airport/ground-control'
+import {Position_Id}         from '../../../types/factor/position/Position'
+import {ImmutableActorRow} from '../../infrastructure/row/ImmutableActorRow'
+import {PollRevision}      from '../../poll/revision/PollRevision'
+import {FactorPosition}    from './FactorPosition'
+import {PositionTranslation} from './PositionTranslation'
 
+/**
+ * This is the generic position records (not related to any poll).
+ */
 @Entity()
 @Table({name: 'POSITIONS'})
 export class Position
@@ -26,11 +29,15 @@ export class Position
 	id: Position_Id
 
 	@ManyToOne()
+	@JoinColumn({name: 'POLL_REVISION_ID'})
+	createdAtPollRevision: PollRevision
+
+	@ManyToOne()
 	@JoinColumn({
-		name: 'PARENT_POSITION_VARIATION_TRANSLATION_ID',
-		referencedColumnName: 'POSITION_VARIATION_TRANSLATION_ID'
+		name: 'PARENT_POSITION_TRANSLATION_ID',
+		referencedColumnName: 'POSITION_TRANSLATION_ID'
 	})
-	parentTranslation: PositionVariationTranslation
+	parentTranslation: PositionTranslation
 
 	@ManyToOne()
 	@JoinColumn({
@@ -46,6 +53,6 @@ export class Position
 	factorPositions: FactorPosition[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'position'})
-	variations: PositionVariation[]
+	translations: PositionTranslation[]
 
 }

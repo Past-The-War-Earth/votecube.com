@@ -45,7 +45,7 @@ export class DbUtils
 	implements IDbUtils {
 
 	static EXCLUDE_FTS_PROPS = [
-		'createdAt', 'fts', 'key', 'rootVariationKey', 'userKey', 'x', 'y', 'z']
+		'createdAt', 'fts', 'id', 'rootVariationId', 'userId', 'x', 'y', 'z']
 
 	private theElIndex: elasticlunr.Index<any>
 
@@ -55,7 +55,7 @@ export class DbUtils
 			'fts',
 			'key',
 			'marks',
-			'userKey'
+			'userId'
 		]
 	}
 
@@ -70,8 +70,8 @@ export class DbUtils
 		return [
 			...this.addedProps,
 			...this.versionedProps,
-			'pollKey',
-			'rootVariationKey'
+			'pollId',
+			'rootVariationId'
 		]
 	}
 
@@ -84,9 +84,11 @@ export class DbUtils
 		]
 	}
 
-	private get elIndex(): elasticlunr.Index<any> {
+	private async getElIndex( //
+	): Promise<elasticlunr.Index<any>> {
 		if (!this.theElIndex) {
-			this.theElIndex = elasticlunr(function () {
+			const elunr     = await import('elasticlunr')
+			this.theElIndex = elunr(function () {
 				this.addField('test' as unknown as never)
 				this.setRef('id' as unknown as never)
 			})
@@ -166,33 +168,34 @@ export class DbUtils
 		return theCopy
 	}
 
-	getFtsProps(
+	async getFtsProps(
 		object: any,
 		excludeFtsProperties: ExcludeFullTextSearchProperty[]
 			= DbUtils.EXCLUDE_FTS_PROPS
-	): IFullTextSearchObject {
+	): Promise<IFullTextSearchObject> {
 		const fts: IFullTextSearchObject = {}
 
-		this.doGetFtsProps(object, excludeFtsProperties, fts)
+		await this.doGetFtsProps(object, excludeFtsProperties, fts)
 
 		return fts
 	}
 
-	private doGetFtsProps(
+	private async doGetFtsProps(
 		object: any,
 		excludeFtsProperties: ExcludeFullTextSearchProperty[],
 		fts: IFullTextSearchObject
-	): void {
+	): Promise<void> {
 		if (object instanceof Object) {
 			for (const propertyName in object) {
 				if (excludeFtsProperties.indexOf(propertyName) === -1) {
-					this.doGetFtsProps(object[propertyName], excludeFtsProperties, fts)
+					await this.doGetFtsProps(object[propertyName], excludeFtsProperties, fts)
 				}
 			}
 		} else {
 			if (typeof object === 'string'
 				&& excludeFtsProperties.indexOf(object) === -1) {
-				const propTokens = this.elIndex.pipeline.run(elasticlunr.tokenizer(object))
+				const elIndex    = await this.getElIndex()
+				const propTokens = elIndex.pipeline.run(elasticlunr.tokenizer(object))
 				for (const token of propTokens) {
 					fts[token] = true
 				}

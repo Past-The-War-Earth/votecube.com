@@ -6,7 +6,7 @@ import {
 	IsData,
 	IsDelta,
 	IsDoc,
-	Key
+	Id
 }                   from './common'
 import {
 	ICoreAgeSuitabilityTracked,
@@ -22,7 +22,7 @@ import {
 }                   from './Outcome'
 import {IVersioned} from './PathFragment'
 import {
-	Poll_Key,
+	Poll_Id,
 	Poll_Name
 }                   from './Poll'
 import {
@@ -30,13 +30,13 @@ import {
 	ICoreThemeFromForm
 }                   from './Theme'
 
-export type Variation_Key = Key
+export type Variation_Id = Id
 
 export interface ICoreVariation<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,
 	        ICoreVariationFromForm<Doc>,
 	        IFullTextSearch,
-	        IVersioned<Variation_Key> {
+	        IVersioned<Variation_Id> {
 
 	factors: {
 		1: ICoreMarkedFactor<Doc>
@@ -50,7 +50,7 @@ export interface ICoreVariation<Doc extends DocStatus>
 		B: ICoreOutcome<Doc> & IMarked
 		marks: IMarks
 	}
-	pollKey: Poll_Key
+	pollId: Poll_Id
 	theme: ICoreTheme<Doc>
 
 }

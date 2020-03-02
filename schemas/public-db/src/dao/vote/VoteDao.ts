@@ -1,19 +1,19 @@
 import {DI}       from '@airport/di'
 import {
 	IVote,
-	Poll_Key
+	Poll_Id
 }                 from '@votecube/model'
 import {VOTE_DAO} from '../../tokens'
 
 export interface IVoteDao {
 
 	findMyVoteForPoll(
-		pollKey: Poll_Key
+		pollId: Poll_Id
 	): Promise<IVote>
 
 	//
 	// findVoteForPoll(
-	// 	pollKey: Poll_Key,
+	// 	pollId: Poll_Id,
 	// 	email: string
 	// ): Promise<IVoteDso>
 	//
@@ -27,7 +27,7 @@ export class VoteDao
 	implements IVoteDao {
 
 	async findMyVoteForPoll(
-		pollKey: Poll_Key
+		pollId: Poll_Id
 	): Promise<IVote> {
 		// 	// const pollDao = await DI.get(POLL_DAO)
 		//
@@ -44,7 +44,7 @@ export class VoteDao
 
 	//
 	// async findVoteForPoll(
-	// 	pollId: Poll_Key,
+	// 	pollId: Poll_Id,
 	// 	email: string
 	// ): Promise<IVoteDso> {
 	// 	return null

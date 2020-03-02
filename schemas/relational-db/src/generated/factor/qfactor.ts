@@ -30,17 +30,27 @@ import {
 	QImmutableActorRowQId,
 	QImmutableActorRowQRelation,
 	QImmutableActorRow,
-} from '../infrastructure/qimmutableactorrow';
+} from '../infrastructure/row/qimmutableactorrow';
 import {
-	FactorVariationTranslationECascadeGraph,
-	FactorVariationTranslationEId,
-	FactorVariationTranslationEOptionalId,
-	FactorVariationTranslationEUpdateProperties,
-	FactorVariationTranslationESelect,
-	QFactorVariationTranslation,
-	QFactorVariationTranslationQId,
-	QFactorVariationTranslationQRelation,
-} from './qfactorvariationtranslation';
+	PollRevisionECascadeGraph,
+	PollRevisionEId,
+	PollRevisionEOptionalId,
+	PollRevisionEUpdateProperties,
+	PollRevisionESelect,
+	QPollRevision,
+	QPollRevisionQId,
+	QPollRevisionQRelation,
+} from '../poll/revision/qpollrevision';
+import {
+	FactorTranslationECascadeGraph,
+	FactorTranslationEId,
+	FactorTranslationEOptionalId,
+	FactorTranslationEUpdateProperties,
+	FactorTranslationESelect,
+	QFactorTranslation,
+	QFactorTranslationQId,
+	QFactorTranslationQRelation,
+} from './qfactortranslation';
 import {
 	FactorPositionECascadeGraph,
 	FactorPositionEId,
@@ -52,25 +62,15 @@ import {
 	QFactorPositionQRelation,
 } from './position/qfactorposition';
 import {
-	FactorVariationECascadeGraph,
-	FactorVariationEId,
-	FactorVariationEOptionalId,
-	FactorVariationEUpdateProperties,
-	FactorVariationESelect,
-	QFactorVariation,
-	QFactorVariationQId,
-	QFactorVariationQRelation,
-} from './qfactorvariation';
-import {
-	FactorSkinVariationECascadeGraph,
-	FactorSkinVariationEId,
-	FactorSkinVariationEOptionalId,
-	FactorSkinVariationEUpdateProperties,
-	FactorSkinVariationESelect,
-	QFactorSkinVariation,
-	QFactorSkinVariationQId,
-	QFactorSkinVariationQRelation,
-} from './qfactorskinvariation';
+	FactorSkinECascadeGraph,
+	FactorSkinEId,
+	FactorSkinEOptionalId,
+	FactorSkinEUpdateProperties,
+	FactorSkinESelect,
+	QFactorSkin,
+	QFactorSkinQId,
+	QFactorSkinQRelation,
+} from './qfactorskin';
 
 
 declare function require(moduleName: string): any;
@@ -90,12 +90,12 @@ export interface FactorESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	parentTranslation?: FactorVariationTranslationESelect;
+	createdAtPollRevision?: PollRevisionESelect;
+	parentTranslation?: FactorTranslationESelect;
 	parent?: FactorESelect;
 	children?: FactorESelect;
 	factorPositions?: FactorPositionESelect;
-	variations?: FactorVariationESelect;
-	skins?: FactorSkinVariationESelect;
+	skins?: FactorSkinESelect;
 
 }
 
@@ -130,7 +130,8 @@ export interface FactorEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	parentTranslation?: FactorVariationTranslationEOptionalId;
+	createdAtPollRevision?: PollRevisionEOptionalId;
+	parentTranslation?: FactorTranslationEOptionalId;
 	parent?: FactorEOptionalId;
 
 }
@@ -143,8 +144,7 @@ export interface FactorECascadeGraph
 	// Cascading Relations
 	children?: FactorECascadeGraph;
 	factorPositions?: FactorPositionECascadeGraph;
-	variations?: FactorVariationECascadeGraph;
-	skins?: FactorSkinVariationECascadeGraph;
+	skins?: FactorSkinECascadeGraph;
 
 }
 
@@ -156,7 +156,8 @@ export interface FactorEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
-	PARENT_FACTOR_VARIATION_TRANSLATION_ID?: number | IQNumberField;
+	POLL_REVISION_ID?: number | IQNumberField;
+	PARENT_FACTOR_TRANSLATION_ID?: number | IQNumberField;
 	PARENT_FACTOR_ID?: number | IQNumberField;
 
 }
@@ -195,12 +196,12 @@ export interface QFactor extends QImmutableActorRow
 	// Non-Id Fields
 
 	// Non-Id Relations
-	parentTranslation: QFactorVariationTranslationQRelation;
+	createdAtPollRevision: QPollRevisionQRelation;
+	parentTranslation: QFactorTranslationQRelation;
 	parent: QFactorQRelation;
 	children: IQOneToManyRelation<QFactor>;
 	factorPositions: IQOneToManyRelation<QFactorPosition>;
-	variations: IQOneToManyRelation<QFactorVariation>;
-	skins: IQOneToManyRelation<QFactorSkinVariation>;
+	skins: IQOneToManyRelation<QFactorSkin>;
 
 }
 

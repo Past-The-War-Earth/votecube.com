@@ -1,7 +1,7 @@
 export const MAPPED_SUPERCLASS = [
 	{
 		"type": "ImmutableRow",
-		"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/immutablerow.ts",
+		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
 		"parentClassName": null,
 		"isSuperclass": true,
 		"ids": [],
@@ -48,12 +48,12 @@ export const MAPPED_SUPERCLASS = [
 								"sourceName": "CreatedAt"
 							}
 						},
-						"path": "../common"
+						"path": "../../../types/common"
 					}
 				},
 				"importMapByModulePath": {
 					"@airport/air-control": null,
-					"../common": null
+					"../../../types/common": null
 				}
 			},
 			"properties": [
@@ -89,11 +89,11 @@ export const MAPPED_SUPERCLASS = [
 			]
 		},
 		"implementedInterfaceNames": [],
-		"project": "@votecube/public-db"
+		"project": "@votecube/relational-db"
 	},
 	{
 		"type": "SystemGeneratedRow",
-		"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/systemgeneratedrow.ts",
+		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/systemgeneratedrow.ts",
 		"parentClassName": "ImmutableRow",
 		"location": "./ImmutableRow",
 		"isSuperclass": true,
@@ -155,7 +155,7 @@ export const MAPPED_SUPERCLASS = [
 		"implementedInterfaceNames": [],
 		"parentEntity": {
 			"type": "ImmutableRow",
-			"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/immutablerow.ts",
+			"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
 			"parentClassName": null,
 			"isSuperclass": true,
 			"ids": [],
@@ -202,12 +202,12 @@ export const MAPPED_SUPERCLASS = [
 									"sourceName": "CreatedAt"
 								}
 							},
-							"path": "../common"
+							"path": "../../../types/common"
 						}
 					},
 					"importMapByModulePath": {
 						"@airport/air-control": null,
-						"../common": null
+						"../../../types/common": null
 					}
 				},
 				"properties": [
@@ -243,13 +243,13 @@ export const MAPPED_SUPERCLASS = [
 				]
 			},
 			"implementedInterfaceNames": [],
-			"project": "@votecube/public-db"
+			"project": "@votecube/relational-db"
 		},
-		"project": "@votecube/public-db"
+		"project": "@votecube/relational-db"
 	},
 	{
 		"type": "ImmutableActorRow",
-		"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/immutableactorrow.ts",
+		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutableactorrow.ts",
 		"parentClassName": "ImmutableRow",
 		"location": "./ImmutableRow",
 		"isSuperclass": true,
@@ -269,10 +269,15 @@ export const MAPPED_SUPERCLASS = [
 			"type": "typeof ImmutableActorRow",
 			"fileImports": {
 				"importMapByObjectAsName": {
-					"JoinColumn": {
+					"Column": {
 						"fileImports": null,
 						"isLocal": false,
 						"objectMapByAsName": {
+							"Column": {
+								"asName": "Column",
+								"moduleImport": null,
+								"sourceName": "Column"
+							},
 							"JoinColumn": {
 								"asName": "JoinColumn",
 								"moduleImport": null,
@@ -291,6 +296,7 @@ export const MAPPED_SUPERCLASS = [
 						},
 						"path": "@airport/air-control"
 					},
+					"JoinColumn": null,
 					"ManyToOne": null,
 					"MappedSuperclass": null,
 					"Actor": {
@@ -303,7 +309,7 @@ export const MAPPED_SUPERCLASS = [
 								"sourceName": "Actor"
 							}
 						},
-						"path": "../user/Actor"
+						"path": "../../user/Actor"
 					},
 					"ImmutableRow": {
 						"fileImports": null,
@@ -320,7 +326,7 @@ export const MAPPED_SUPERCLASS = [
 				},
 				"importMapByModulePath": {
 					"@airport/air-control": null,
-					"../user/Actor": null,
+					"../../user/Actor": null,
 					"./ImmutableRow": null
 				}
 			},
@@ -351,9 +357,9 @@ export const MAPPED_SUPERCLASS = [
 					"nonArrayType": "Actor",
 					"entity": {
 						"type": "Actor",
-						"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/user/actor.ts",
+						"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/actor.ts",
 						"parentClassName": "SystemGeneratedRow",
-						"location": "../infrastructure/SystemGeneratedRow",
+						"location": "../infrastructure/row/SystemGeneratedRow",
 						"isSuperclass": false,
 						"ids": [
 							{
@@ -464,6 +470,24 @@ export const MAPPED_SUPERCLASS = [
 									"JoinColumn": null,
 									"ManyToOne": null,
 									"Table": null,
+									"Actor_Hash": {
+										"fileImports": null,
+										"isLocal": true,
+										"objectMapByAsName": {
+											"Actor_Hash": {
+												"asName": "Actor_Hash",
+												"moduleImport": null,
+												"sourceName": "Actor_Hash"
+											},
+											"Actor_Id": {
+												"asName": "Actor_Id",
+												"moduleImport": null,
+												"sourceName": "Actor_Id"
+											}
+										},
+										"path": "../../types/user/Actor"
+									},
+									"Actor_Id": null,
 									"SystemGeneratedRow": {
 										"fileImports": null,
 										"isLocal": true,
@@ -474,7 +498,7 @@ export const MAPPED_SUPERCLASS = [
 												"sourceName": "SystemGeneratedRow"
 											}
 										},
-										"path": "../infrastructure/SystemGeneratedRow"
+										"path": "../infrastructure/row/SystemGeneratedRow"
 									},
 									"Application": {
 										"fileImports": null,
@@ -515,7 +539,8 @@ export const MAPPED_SUPERCLASS = [
 								},
 								"importMapByModulePath": {
 									"@airport/air-control": null,
-									"../infrastructure/SystemGeneratedRow": null,
+									"../../types/user/Actor": null,
+									"../infrastructure/row/SystemGeneratedRow": null,
 									"./Application": null,
 									"./Device": null,
 									"./UserAccount": null
@@ -605,9 +630,9 @@ export const MAPPED_SUPERCLASS = [
 									"nonArrayType": "UserAccount",
 									"entity": {
 										"type": "UserAccount",
-										"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/user/useraccount.ts",
+										"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/useraccount.ts",
 										"parentClassName": "SystemGeneratedRow",
-										"location": "../infrastructure/SystemGeneratedRow",
+										"location": "../infrastructure/row/SystemGeneratedRow",
 										"isSuperclass": false,
 										"ids": [
 											{
@@ -700,6 +725,48 @@ export const MAPPED_SUPERCLASS = [
 													"GeneratedValue": null,
 													"Id": null,
 													"Table": null,
+													"UserAccount_BirthDate": {
+														"fileImports": null,
+														"isLocal": true,
+														"objectMapByAsName": {
+															"UserAccount_BirthDate": {
+																"asName": "UserAccount_BirthDate",
+																"moduleImport": null,
+																"sourceName": "UserAccount_BirthDate"
+															},
+															"UserAccount_FirstName": {
+																"asName": "UserAccount_FirstName",
+																"moduleImport": null,
+																"sourceName": "UserAccount_FirstName"
+															},
+															"UserAccount_Id": {
+																"asName": "UserAccount_Id",
+																"moduleImport": null,
+																"sourceName": "UserAccount_Id"
+															},
+															"UserAccount_LastName": {
+																"asName": "UserAccount_LastName",
+																"moduleImport": null,
+																"sourceName": "UserAccount_LastName"
+															},
+															"UserAccount_MiddleName": {
+																"asName": "UserAccount_MiddleName",
+																"moduleImport": null,
+																"sourceName": "UserAccount_MiddleName"
+															},
+															"UserAccount_UserName": {
+																"asName": "UserAccount_UserName",
+																"moduleImport": null,
+																"sourceName": "UserAccount_UserName"
+															}
+														},
+														"path": "../../types/user/UserAccount"
+													},
+													"UserAccount_FirstName": null,
+													"UserAccount_Id": null,
+													"UserAccount_LastName": null,
+													"UserAccount_MiddleName": null,
+													"UserAccount_UserName": null,
 													"SystemGeneratedRow": {
 														"fileImports": null,
 														"isLocal": true,
@@ -710,12 +777,13 @@ export const MAPPED_SUPERCLASS = [
 																"sourceName": "SystemGeneratedRow"
 															}
 														},
-														"path": "../infrastructure/SystemGeneratedRow"
+														"path": "../infrastructure/row/SystemGeneratedRow"
 													}
 												},
 												"importMapByModulePath": {
 													"@airport/air-control": null,
-													"../infrastructure/SystemGeneratedRow": null
+													"../../types/user/UserAccount": null,
+													"../infrastructure/row/SystemGeneratedRow": null
 												}
 											},
 											"properties": [
@@ -874,7 +942,7 @@ export const MAPPED_SUPERCLASS = [
 										"implementedInterfaceNames": [],
 										"parentEntity": {
 											"type": "SystemGeneratedRow",
-											"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/systemgeneratedrow.ts",
+											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/systemgeneratedrow.ts",
 											"parentClassName": "ImmutableRow",
 											"location": "./ImmutableRow",
 											"isSuperclass": true,
@@ -936,7 +1004,7 @@ export const MAPPED_SUPERCLASS = [
 											"implementedInterfaceNames": [],
 											"parentEntity": {
 												"type": "ImmutableRow",
-												"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/immutablerow.ts",
+												"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
 												"parentClassName": null,
 												"isSuperclass": true,
 												"ids": [],
@@ -983,12 +1051,12 @@ export const MAPPED_SUPERCLASS = [
 																		"sourceName": "CreatedAt"
 																	}
 																},
-																"path": "../common"
+																"path": "../../../types/common"
 															}
 														},
 														"importMapByModulePath": {
 															"@airport/air-control": null,
-															"../common": null
+															"../../../types/common": null
 														}
 													},
 													"properties": [
@@ -1024,9 +1092,9 @@ export const MAPPED_SUPERCLASS = [
 													]
 												},
 												"implementedInterfaceNames": [],
-												"project": "@votecube/public-db"
+												"project": "@votecube/relational-db"
 											},
-											"project": "@votecube/public-db"
+											"project": "@votecube/relational-db"
 										}
 									},
 									"index": 2
@@ -1057,9 +1125,9 @@ export const MAPPED_SUPERCLASS = [
 									"nonArrayType": "Device",
 									"entity": {
 										"type": "Device",
-										"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/user/device.ts",
+										"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/device.ts",
 										"parentClassName": "SystemGeneratedRow",
-										"location": "../infrastructure/SystemGeneratedRow",
+										"location": "../infrastructure/row/SystemGeneratedRow",
 										"isSuperclass": false,
 										"ids": [
 											{
@@ -1158,6 +1226,24 @@ export const MAPPED_SUPERCLASS = [
 													"GeneratedValue": null,
 													"Id": null,
 													"Table": null,
+													"Device_Hash": {
+														"fileImports": null,
+														"isLocal": true,
+														"objectMapByAsName": {
+															"Device_Hash": {
+																"asName": "Device_Hash",
+																"moduleImport": null,
+																"sourceName": "Device_Hash"
+															},
+															"Device_Id": {
+																"asName": "Device_Id",
+																"moduleImport": null,
+																"sourceName": "Device_Id"
+															}
+														},
+														"path": "../../types/user/Device"
+													},
+													"Device_Id": null,
 													"SystemGeneratedRow": {
 														"fileImports": null,
 														"isLocal": true,
@@ -1168,12 +1254,13 @@ export const MAPPED_SUPERCLASS = [
 																"sourceName": "SystemGeneratedRow"
 															}
 														},
-														"path": "../infrastructure/SystemGeneratedRow"
+														"path": "../infrastructure/row/SystemGeneratedRow"
 													}
 												},
 												"importMapByModulePath": {
 													"@airport/air-control": null,
-													"../infrastructure/SystemGeneratedRow": null
+													"../../types/user/Device": null,
+													"../infrastructure/row/SystemGeneratedRow": null
 												}
 											},
 											"properties": [
@@ -1274,9 +1361,9 @@ export const MAPPED_SUPERCLASS = [
 									"nonArrayType": "Application",
 									"entity": {
 										"type": "Application",
-										"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/user/application.ts",
+										"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/application.ts",
 										"parentClassName": "SystemGeneratedRow",
-										"location": "../infrastructure/SystemGeneratedRow",
+										"location": "../infrastructure/row/SystemGeneratedRow",
 										"isSuperclass": false,
 										"ids": [
 											{
@@ -1381,6 +1468,30 @@ export const MAPPED_SUPERCLASS = [
 													"GeneratedValue": null,
 													"Id": null,
 													"Table": null,
+													"Application_Host": {
+														"fileImports": null,
+														"isLocal": true,
+														"objectMapByAsName": {
+															"Application_Host": {
+																"asName": "Application_Host",
+																"moduleImport": null,
+																"sourceName": "Application_Host"
+															},
+															"Application_Id": {
+																"asName": "Application_Id",
+																"moduleImport": null,
+																"sourceName": "Application_Id"
+															},
+															"Application_Port": {
+																"asName": "Application_Port",
+																"moduleImport": null,
+																"sourceName": "Application_Port"
+															}
+														},
+														"path": "../../types/user/Application"
+													},
+													"Application_Id": null,
+													"Application_Port": null,
 													"SystemGeneratedRow": {
 														"fileImports": null,
 														"isLocal": true,
@@ -1391,12 +1502,13 @@ export const MAPPED_SUPERCLASS = [
 																"sourceName": "SystemGeneratedRow"
 															}
 														},
-														"path": "../infrastructure/SystemGeneratedRow"
+														"path": "../infrastructure/row/SystemGeneratedRow"
 													}
 												},
 												"importMapByModulePath": {
 													"@airport/air-control": null,
-													"../infrastructure/SystemGeneratedRow": null
+													"../../types/user/Application": null,
+													"../infrastructure/row/SystemGeneratedRow": null
 												}
 											},
 											"properties": [
@@ -1523,11 +1635,11 @@ export const MAPPED_SUPERCLASS = [
 		},
 		"implementedInterfaceNames": [],
 		"parentEntity": null,
-		"project": "@votecube/public-db"
+		"project": "@votecube/relational-db"
 	},
 	{
 		"type": "MutableActorRow",
-		"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/mutableactorrow.ts",
+		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/mutableactorrow.ts",
 		"parentClassName": "ImmutableActorRow",
 		"location": "./ImmutableActorRow",
 		"isSuperclass": true,
@@ -1575,7 +1687,7 @@ export const MAPPED_SUPERCLASS = [
 								"sourceName": "UpdatedAt"
 							}
 						},
-						"path": "../common"
+						"path": "../../../types/common"
 					},
 					"ImmutableActorRow": {
 						"fileImports": null,
@@ -1592,7 +1704,7 @@ export const MAPPED_SUPERCLASS = [
 				},
 				"importMapByModulePath": {
 					"@airport/air-control": null,
-					"../common": null,
+					"../../../types/common": null,
 					"./ImmutableActorRow": null
 				}
 			},
@@ -1631,7 +1743,7 @@ export const MAPPED_SUPERCLASS = [
 		"implementedInterfaceNames": [],
 		"parentEntity": {
 			"type": "ImmutableActorRow",
-			"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/immutableactorrow.ts",
+			"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutableactorrow.ts",
 			"parentClassName": "ImmutableRow",
 			"location": "./ImmutableRow",
 			"isSuperclass": true,
@@ -1651,10 +1763,15 @@ export const MAPPED_SUPERCLASS = [
 				"type": "typeof ImmutableActorRow",
 				"fileImports": {
 					"importMapByObjectAsName": {
-						"JoinColumn": {
+						"Column": {
 							"fileImports": null,
 							"isLocal": false,
 							"objectMapByAsName": {
+								"Column": {
+									"asName": "Column",
+									"moduleImport": null,
+									"sourceName": "Column"
+								},
 								"JoinColumn": {
 									"asName": "JoinColumn",
 									"moduleImport": null,
@@ -1673,6 +1790,7 @@ export const MAPPED_SUPERCLASS = [
 							},
 							"path": "@airport/air-control"
 						},
+						"JoinColumn": null,
 						"ManyToOne": null,
 						"MappedSuperclass": null,
 						"Actor": {
@@ -1685,7 +1803,7 @@ export const MAPPED_SUPERCLASS = [
 									"sourceName": "Actor"
 								}
 							},
-							"path": "../user/Actor"
+							"path": "../../user/Actor"
 						},
 						"ImmutableRow": {
 							"fileImports": null,
@@ -1702,7 +1820,7 @@ export const MAPPED_SUPERCLASS = [
 					},
 					"importMapByModulePath": {
 						"@airport/air-control": null,
-						"../user/Actor": null,
+						"../../user/Actor": null,
 						"./ImmutableRow": null
 					}
 				},
@@ -1733,9 +1851,9 @@ export const MAPPED_SUPERCLASS = [
 						"nonArrayType": "Actor",
 						"entity": {
 							"type": "Actor",
-							"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/user/actor.ts",
+							"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/actor.ts",
 							"parentClassName": "SystemGeneratedRow",
-							"location": "../infrastructure/SystemGeneratedRow",
+							"location": "../infrastructure/row/SystemGeneratedRow",
 							"isSuperclass": false,
 							"ids": [
 								{
@@ -1846,6 +1964,24 @@ export const MAPPED_SUPERCLASS = [
 										"JoinColumn": null,
 										"ManyToOne": null,
 										"Table": null,
+										"Actor_Hash": {
+											"fileImports": null,
+											"isLocal": true,
+											"objectMapByAsName": {
+												"Actor_Hash": {
+													"asName": "Actor_Hash",
+													"moduleImport": null,
+													"sourceName": "Actor_Hash"
+												},
+												"Actor_Id": {
+													"asName": "Actor_Id",
+													"moduleImport": null,
+													"sourceName": "Actor_Id"
+												}
+											},
+											"path": "../../types/user/Actor"
+										},
+										"Actor_Id": null,
 										"SystemGeneratedRow": {
 											"fileImports": null,
 											"isLocal": true,
@@ -1856,7 +1992,7 @@ export const MAPPED_SUPERCLASS = [
 													"sourceName": "SystemGeneratedRow"
 												}
 											},
-											"path": "../infrastructure/SystemGeneratedRow"
+											"path": "../infrastructure/row/SystemGeneratedRow"
 										},
 										"Application": {
 											"fileImports": null,
@@ -1897,7 +2033,8 @@ export const MAPPED_SUPERCLASS = [
 									},
 									"importMapByModulePath": {
 										"@airport/air-control": null,
-										"../infrastructure/SystemGeneratedRow": null,
+										"../../types/user/Actor": null,
+										"../infrastructure/row/SystemGeneratedRow": null,
 										"./Application": null,
 										"./Device": null,
 										"./UserAccount": null
@@ -1987,9 +2124,9 @@ export const MAPPED_SUPERCLASS = [
 										"nonArrayType": "UserAccount",
 										"entity": {
 											"type": "UserAccount",
-											"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/user/useraccount.ts",
+											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/useraccount.ts",
 											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/SystemGeneratedRow",
+											"location": "../infrastructure/row/SystemGeneratedRow",
 											"isSuperclass": false,
 											"ids": [
 												{
@@ -2082,6 +2219,48 @@ export const MAPPED_SUPERCLASS = [
 														"GeneratedValue": null,
 														"Id": null,
 														"Table": null,
+														"UserAccount_BirthDate": {
+															"fileImports": null,
+															"isLocal": true,
+															"objectMapByAsName": {
+																"UserAccount_BirthDate": {
+																	"asName": "UserAccount_BirthDate",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_BirthDate"
+																},
+																"UserAccount_FirstName": {
+																	"asName": "UserAccount_FirstName",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_FirstName"
+																},
+																"UserAccount_Id": {
+																	"asName": "UserAccount_Id",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_Id"
+																},
+																"UserAccount_LastName": {
+																	"asName": "UserAccount_LastName",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_LastName"
+																},
+																"UserAccount_MiddleName": {
+																	"asName": "UserAccount_MiddleName",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_MiddleName"
+																},
+																"UserAccount_UserName": {
+																	"asName": "UserAccount_UserName",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_UserName"
+																}
+															},
+															"path": "../../types/user/UserAccount"
+														},
+														"UserAccount_FirstName": null,
+														"UserAccount_Id": null,
+														"UserAccount_LastName": null,
+														"UserAccount_MiddleName": null,
+														"UserAccount_UserName": null,
 														"SystemGeneratedRow": {
 															"fileImports": null,
 															"isLocal": true,
@@ -2092,12 +2271,13 @@ export const MAPPED_SUPERCLASS = [
 																	"sourceName": "SystemGeneratedRow"
 																}
 															},
-															"path": "../infrastructure/SystemGeneratedRow"
+															"path": "../infrastructure/row/SystemGeneratedRow"
 														}
 													},
 													"importMapByModulePath": {
 														"@airport/air-control": null,
-														"../infrastructure/SystemGeneratedRow": null
+														"../../types/user/UserAccount": null,
+														"../infrastructure/row/SystemGeneratedRow": null
 													}
 												},
 												"properties": [
@@ -2256,7 +2436,7 @@ export const MAPPED_SUPERCLASS = [
 											"implementedInterfaceNames": [],
 											"parentEntity": {
 												"type": "SystemGeneratedRow",
-												"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/systemgeneratedrow.ts",
+												"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/systemgeneratedrow.ts",
 												"parentClassName": "ImmutableRow",
 												"location": "./ImmutableRow",
 												"isSuperclass": true,
@@ -2318,7 +2498,7 @@ export const MAPPED_SUPERCLASS = [
 												"implementedInterfaceNames": [],
 												"parentEntity": {
 													"type": "ImmutableRow",
-													"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/immutablerow.ts",
+													"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
 													"parentClassName": null,
 													"isSuperclass": true,
 													"ids": [],
@@ -2365,12 +2545,12 @@ export const MAPPED_SUPERCLASS = [
 																			"sourceName": "CreatedAt"
 																		}
 																	},
-																	"path": "../common"
+																	"path": "../../../types/common"
 																}
 															},
 															"importMapByModulePath": {
 																"@airport/air-control": null,
-																"../common": null
+																"../../../types/common": null
 															}
 														},
 														"properties": [
@@ -2406,9 +2586,9 @@ export const MAPPED_SUPERCLASS = [
 														]
 													},
 													"implementedInterfaceNames": [],
-													"project": "@votecube/public-db"
+													"project": "@votecube/relational-db"
 												},
-												"project": "@votecube/public-db"
+												"project": "@votecube/relational-db"
 											}
 										},
 										"index": 2
@@ -2439,9 +2619,9 @@ export const MAPPED_SUPERCLASS = [
 										"nonArrayType": "Device",
 										"entity": {
 											"type": "Device",
-											"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/user/device.ts",
+											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/device.ts",
 											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/SystemGeneratedRow",
+											"location": "../infrastructure/row/SystemGeneratedRow",
 											"isSuperclass": false,
 											"ids": [
 												{
@@ -2540,6 +2720,24 @@ export const MAPPED_SUPERCLASS = [
 														"GeneratedValue": null,
 														"Id": null,
 														"Table": null,
+														"Device_Hash": {
+															"fileImports": null,
+															"isLocal": true,
+															"objectMapByAsName": {
+																"Device_Hash": {
+																	"asName": "Device_Hash",
+																	"moduleImport": null,
+																	"sourceName": "Device_Hash"
+																},
+																"Device_Id": {
+																	"asName": "Device_Id",
+																	"moduleImport": null,
+																	"sourceName": "Device_Id"
+																}
+															},
+															"path": "../../types/user/Device"
+														},
+														"Device_Id": null,
 														"SystemGeneratedRow": {
 															"fileImports": null,
 															"isLocal": true,
@@ -2550,12 +2748,13 @@ export const MAPPED_SUPERCLASS = [
 																	"sourceName": "SystemGeneratedRow"
 																}
 															},
-															"path": "../infrastructure/SystemGeneratedRow"
+															"path": "../infrastructure/row/SystemGeneratedRow"
 														}
 													},
 													"importMapByModulePath": {
 														"@airport/air-control": null,
-														"../infrastructure/SystemGeneratedRow": null
+														"../../types/user/Device": null,
+														"../infrastructure/row/SystemGeneratedRow": null
 													}
 												},
 												"properties": [
@@ -2656,9 +2855,9 @@ export const MAPPED_SUPERCLASS = [
 										"nonArrayType": "Application",
 										"entity": {
 											"type": "Application",
-											"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/user/application.ts",
+											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/application.ts",
 											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/SystemGeneratedRow",
+											"location": "../infrastructure/row/SystemGeneratedRow",
 											"isSuperclass": false,
 											"ids": [
 												{
@@ -2763,6 +2962,30 @@ export const MAPPED_SUPERCLASS = [
 														"GeneratedValue": null,
 														"Id": null,
 														"Table": null,
+														"Application_Host": {
+															"fileImports": null,
+															"isLocal": true,
+															"objectMapByAsName": {
+																"Application_Host": {
+																	"asName": "Application_Host",
+																	"moduleImport": null,
+																	"sourceName": "Application_Host"
+																},
+																"Application_Id": {
+																	"asName": "Application_Id",
+																	"moduleImport": null,
+																	"sourceName": "Application_Id"
+																},
+																"Application_Port": {
+																	"asName": "Application_Port",
+																	"moduleImport": null,
+																	"sourceName": "Application_Port"
+																}
+															},
+															"path": "../../types/user/Application"
+														},
+														"Application_Id": null,
+														"Application_Port": null,
 														"SystemGeneratedRow": {
 															"fileImports": null,
 															"isLocal": true,
@@ -2773,12 +2996,13 @@ export const MAPPED_SUPERCLASS = [
 																	"sourceName": "SystemGeneratedRow"
 																}
 															},
-															"path": "../infrastructure/SystemGeneratedRow"
+															"path": "../infrastructure/row/SystemGeneratedRow"
 														}
 													},
 													"importMapByModulePath": {
 														"@airport/air-control": null,
-														"../infrastructure/SystemGeneratedRow": null
+														"../../types/user/Application": null,
+														"../infrastructure/row/SystemGeneratedRow": null
 													}
 												},
 												"properties": [
@@ -2905,13 +3129,13 @@ export const MAPPED_SUPERCLASS = [
 			},
 			"implementedInterfaceNames": [],
 			"parentEntity": null,
-			"project": "@votecube/public-db"
+			"project": "@votecube/relational-db"
 		},
-		"project": "@votecube/public-db"
+		"project": "@votecube/relational-db"
 	},
 	{
 		"type": "MutableRow",
-		"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/mutablerow.ts",
+		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/mutablerow.ts",
 		"parentClassName": "ImmutableRow",
 		"location": "./ImmutableRow",
 		"isSuperclass": true,
@@ -2959,7 +3183,7 @@ export const MAPPED_SUPERCLASS = [
 								"sourceName": "UpdatedAt"
 							}
 						},
-						"path": "../common"
+						"path": "../../../types/common"
 					},
 					"ImmutableRow": {
 						"fileImports": null,
@@ -2976,7 +3200,7 @@ export const MAPPED_SUPERCLASS = [
 				},
 				"importMapByModulePath": {
 					"@airport/air-control": null,
-					"../common": null,
+					"../../../types/common": null,
 					"./ImmutableRow": null
 				}
 			},
@@ -3015,7 +3239,7 @@ export const MAPPED_SUPERCLASS = [
 		"implementedInterfaceNames": [],
 		"parentEntity": {
 			"type": "ImmutableRow",
-			"path": "c:/users/papa/dac/votecube-ui/schemas/public-db/src/ddl/infrastructure/immutablerow.ts",
+			"path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
 			"parentClassName": null,
 			"isSuperclass": true,
 			"ids": [],
@@ -3062,12 +3286,12 @@ export const MAPPED_SUPERCLASS = [
 									"sourceName": "CreatedAt"
 								}
 							},
-							"path": "../common"
+							"path": "../../../types/common"
 						}
 					},
 					"importMapByModulePath": {
 						"@airport/air-control": null,
-						"../common": null
+						"../../../types/common": null
 					}
 				},
 				"properties": [
@@ -3103,8 +3327,8 @@ export const MAPPED_SUPERCLASS = [
 				]
 			},
 			"implementedInterfaceNames": [],
-			"project": "@votecube/public-db"
+			"project": "@votecube/relational-db"
 		},
-		"project": "@votecube/public-db"
+		"project": "@votecube/relational-db"
 	}
 ];

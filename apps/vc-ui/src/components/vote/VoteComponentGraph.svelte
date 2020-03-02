@@ -17,8 +17,8 @@
 		fade,
 		fly
 	}                      from 'svelte/transition'
-	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
-	import ShieldButton    from '../../common/control/button/ShieldButton.svelte'
+	import CharacterButton from '../common/control/button/CharacterButton.svelte'
+	import ShieldButton    from '../common/control/button/ShieldButton.svelte'
 	import CubeMiniature   from '../poll/CubeMiniature.svelte'
 
 	export let classes

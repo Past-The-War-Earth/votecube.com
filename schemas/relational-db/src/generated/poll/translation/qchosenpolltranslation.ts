@@ -30,7 +30,7 @@ import {
 	QSystemGeneratedRowQId,
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
-} from '../../infrastructure/qsystemgeneratedrow';
+} from '../../infrastructure/row/qsystemgeneratedrow';
 import {
 	PollECascadeGraph,
 	PollEId,
@@ -42,15 +42,15 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	PollVariationECascadeGraph,
-	PollVariationEId,
-	PollVariationEOptionalId,
-	PollVariationEUpdateProperties,
-	PollVariationESelect,
-	QPollVariation,
-	QPollVariationQId,
-	QPollVariationQRelation,
-} from '../variation/qpollvariation';
+	PollRevisionECascadeGraph,
+	PollRevisionEId,
+	PollRevisionEOptionalId,
+	PollRevisionEUpdateProperties,
+	PollRevisionESelect,
+	QPollRevision,
+	QPollRevisionQId,
+	QPollRevisionQRelation,
+} from '../revision/qpollrevision';
 import {
 	LanguageECascadeGraph,
 	LanguageEId,
@@ -72,15 +72,15 @@ import {
 	QChosenPollTranslationTypeQRelation,
 } from './qchosenpolltranslationtype';
 import {
-	PollVariationTranslationECascadeGraph,
-	PollVariationTranslationEId,
-	PollVariationTranslationEOptionalId,
-	PollVariationTranslationEUpdateProperties,
-	PollVariationTranslationESelect,
-	QPollVariationTranslation,
-	QPollVariationTranslationQId,
-	QPollVariationTranslationQRelation,
-} from '../variation/translation/qpollvariationtranslation';
+	PollRevisionTranslationECascadeGraph,
+	PollRevisionTranslationEId,
+	PollRevisionTranslationEOptionalId,
+	PollRevisionTranslationEUpdateProperties,
+	PollRevisionTranslationESelect,
+	QPollRevisionTranslation,
+	QPollRevisionTranslationQId,
+	QPollRevisionTranslationQRelation,
+} from '../revision/translation/qpollrevisiontranslation';
 
 
 declare function require(moduleName: string): any;
@@ -101,10 +101,10 @@ export interface ChosenPollTranslationESelect
 
   // Non-Id relations (including OneToMany's)
 	poll?: PollESelect;
-	pollVariation?: PollVariationESelect;
+	pollRevision?: PollRevisionESelect;
 	language?: LanguageESelect;
 	type?: ChosenPollTranslationTypeESelect;
-	variationTranslation?: PollVariationTranslationESelect;
+	revisionTranslation?: PollRevisionTranslationESelect;
 
 }
 
@@ -140,7 +140,7 @@ export interface ChosenPollTranslationEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	poll?: PollEOptionalId;
-	pollVariation?: PollVariationEOptionalId;
+	pollRevision?: PollRevisionEOptionalId;
 	language?: LanguageEOptionalId;
 	type?: ChosenPollTranslationTypeEOptionalId;
 
@@ -152,7 +152,7 @@ export interface ChosenPollTranslationEUpdateProperties
 export interface ChosenPollTranslationECascadeGraph
 	extends SystemGeneratedRowECascadeGraph {
 	// Cascading Relations
-	variationTranslation?: PollVariationTranslationECascadeGraph;
+	revisionTranslation?: PollRevisionTranslationECascadeGraph;
 
 }
 
@@ -164,7 +164,7 @@ export interface ChosenPollTranslationEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	POLL_ID?: number | IQNumberField;
-	POLL_VARIATION_ID?: number | IQNumberField;
+	POLL_REVISION_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;
 	CHOSEN_POLL_TRANSLATION_TYPE_ID?: number | IQNumberField;
 
@@ -205,10 +205,10 @@ export interface QChosenPollTranslation extends QSystemGeneratedRow
 
 	// Non-Id Relations
 	poll: QPollQRelation;
-	pollVariation: QPollVariationQRelation;
+	pollRevision: QPollRevisionQRelation;
 	language: QLanguageQRelation;
 	type: QChosenPollTranslationTypeQRelation;
-	variationTranslation: IQOneToManyRelation<QPollVariationTranslation>;
+	revisionTranslation: IQOneToManyRelation<QPollRevisionTranslation>;
 
 }
 

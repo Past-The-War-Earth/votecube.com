@@ -1,15 +1,15 @@
 import {
 	IImmutableActorRow,
-} from '../../infrastructure/immutableactorrow';
+} from '../../infrastructure/row/immutableactorrow';
 import {
-	IPositionVariationTranslation,
-} from './positionvariationtranslation';
+	IPollRevision,
+} from '../../poll/revision/pollrevision';
+import {
+	IPositionTranslation,
+} from './positiontranslation';
 import {
 	IFactorPosition,
 } from './factorposition';
-import {
-	IPositionVariation,
-} from './positionvariation';
 
 
 
@@ -27,11 +27,12 @@ export interface IPosition extends IImmutableActorRow {
 	// Non-Id Properties
 
 	// Non-Id Relations
-	parentTranslation?: IPositionVariationTranslation;
+	createdAtPollRevision?: IPollRevision;
+	parentTranslation?: IPositionTranslation;
 	parent?: IPosition;
 	children?: IPosition[];
 	factorPositions?: IFactorPosition[];
-	variations?: IPositionVariation[];
+	translations?: IPositionTranslation[];
 
 	// Transient Properties
 

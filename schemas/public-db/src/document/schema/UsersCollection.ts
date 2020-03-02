@@ -1,7 +1,7 @@
 import {
 	ICred,
 	IUser,
-	User_Key
+	User_Id
 }                             from '@votecube/model'
 import {
 	ICollection,
@@ -11,16 +11,16 @@ import {IVCDocumentReference} from './DocRef'
 import {RootCollection}       from './RootCollection'
 
 export interface IUsersCollection
-	extends ICollection<User_Key, IUser> {
+	extends ICollection<User_Id, IUser> {
 
 	creds(
-		keyOrReference: User_Key | IVCDocumentReference<User_Key, IUser>
-	): ICollection<User_Key, ICred, User_Key, IUser>
+		keyOrReference: User_Id | IVCDocumentReference<User_Id, IUser>
+	): ICollection<User_Id, ICred, User_Id, IUser>
 
 }
 
 export class UsersCollection
-	extends RootCollection<User_Key, IUser>
+	extends RootCollection<User_Id, IUser>
 	implements IUsersCollection {
 
 	constructor(
@@ -30,8 +30,8 @@ export class UsersCollection
 	}
 
 	creds(
-		keyOrReference: User_Key | IVCDocumentReference<User_Key, IUser>
-	): ICollection<User_Key, ICred, User_Key, IUser> {
+		keyOrReference: User_Id | IVCDocumentReference<User_Id, IUser>
+	): ICollection<User_Id, ICred, User_Id, IUser> {
 		return this.child(keyOrReference, 'creds')
 	}
 

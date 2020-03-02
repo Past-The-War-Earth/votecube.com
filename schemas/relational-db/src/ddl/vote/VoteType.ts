@@ -17,7 +17,7 @@ import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
  * since they can see the poll) but track it differently.
  *
  * The only currently supported vote type is "Eligible",
- * meaning made in the specified LocationTimeFrame by a
+ * meaning made in the specified Run by a
  * user that belongs to that Location
  */
 @Entity()

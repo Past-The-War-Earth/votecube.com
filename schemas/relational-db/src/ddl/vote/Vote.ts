@@ -14,9 +14,9 @@ import {Vote_Id}             from '../../types/vote/Vote'
 import {ImmutableActorRow}   from '../infrastructure/row/ImmutableActorRow'
 import {Poll}                from '../poll/Poll'
 import {Actor}               from '../user/Actor'
-import {ChosenVoteVariation} from './ChosenVoteVariation'
+import {ChosenVoteRevision} from './ChosenVoteRevision'
 import {VoteType}            from './VoteType'
-import {VoteVariation}       from './VoteVariation'
+import {VoteRevision}       from './VoteRevision'
 
 @Entity()
 @Table({name: 'VOTES'})
@@ -45,9 +45,9 @@ export class Vote
 	poll: Poll
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
-	chosenVariations: ChosenVoteVariation[]
+	chosenRevisions: ChosenVoteRevision[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
-	variations: VoteVariation[]
+	revisions: VoteRevision[]
 
 }

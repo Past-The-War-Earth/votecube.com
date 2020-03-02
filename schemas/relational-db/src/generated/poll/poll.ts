@@ -1,6 +1,6 @@
 import {
 	IImmutableActorRow,
-} from '../infrastructure/immutableactorrow';
+} from '../infrastructure/row/immutableactorrow';
 import {
 	ITheme,
 } from './theme';
@@ -17,14 +17,14 @@ import {
 	IChosenPollTranslation,
 } from './translation/chosenpolltranslation';
 import {
-	IChosenPollVariation,
-} from './variation/chosenpollvariation';
+	IChosenPollRevision,
+} from './revision/chosenpollrevision';
 import {
-	IPollLocationTimeFrame,
-} from './locationtimeframe/polllocationtimeframe';
+	IPollRun,
+} from './run/pollrun';
 import {
-	IPollVariation,
-} from './variation/pollvariation';
+	IPollRevision,
+} from './revision/pollrevision';
 import {
 	IPollOpinionsCount,
 } from './count/pollopinionscount';
@@ -49,6 +49,7 @@ export interface IPoll extends IImmutableActorRow {
 
 	// Non-Id Properties
 	id?: number;
+	ageSuitability?: number;
 
 	// Non-Id Relations
 	theme?: ITheme;
@@ -58,9 +59,9 @@ export interface IPoll extends IImmutableActorRow {
 	ratings?: IUserPollRating[];
 	ratingCounts?: IPollRatingCount[];
 	chosenPollTranslations?: IChosenPollTranslation[];
-	chosenVariations?: IChosenPollVariation[];
-	locationTimeFrames?: IPollLocationTimeFrame[];
-	allPollVariations?: IPollVariation[];
+	chosenRevisions?: IChosenPollRevision[];
+	runs?: IPollRun[];
+	allPollRevisions?: IPollRevision[];
 	opinionCounts?: IPollOpinionsCount[];
 	opinionRatingCounts?: IPollOpinionsRatingCount[];
 	voteCounts?: IPollVoteCount[];

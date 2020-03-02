@@ -1,6 +1,6 @@
 import {
 	IMutableActorRow,
-} from '../../infrastructure/mutableactorrow';
+} from '../../infrastructure/row/mutableactorrow';
 import {
 	IUserPoll,
 } from './userpoll';

@@ -39,7 +39,7 @@
 	let mode       = 'factors'
 	let navList
 	let switching
-	let switchedToKey
+	let switchedToId
 
 	let formHandle = {
 		setDelta(newDelta) {
@@ -56,10 +56,10 @@
 	onMount(async () => {
 		container = DI.ui('VariationList')
 
-		const {pollKey, pollVariationKey} = get(routeParams)
+		const {pollId, pollVariationId} = get(routeParams)
 		let results                       = await getListingsAndOther(
-			pollKey,
-			pollVariationKey,
+			pollId,
+			pollVariationId,
 			loadForms(),
 			container
 		)
@@ -93,13 +93,13 @@
 
 	function switchToClasses(
 		switching,
-		switchedToKey,
+		switchedToId,
 		currentVariation
 	) {
 		if (!switching) {
 			return ''
 		}
-		const switchedToItem = switchedToKey === currentVariation.key
+		const switchedToItem = switchedToId === currentVariation.id
 		if (switching === 1) {
 			return switchedToItem ? '' : 'closing'
 		} else if (switching === 2) {
@@ -108,14 +108,14 @@
 	}
 
 	function goTo(
-		pollKey,
-		pollVariationKey
+			pollId,
+			pollVariationId
 	) {
 		// FIXME: need a new mode, something like 'view' - since you can't vote on a variation
 		navigateToPage(POLL_MAIN, {
 			mode: 'vote',
-			pollKey,
-			pollVariationKey,
+			pollId,
+			pollVariationId,
 		})
 	}
 
@@ -155,8 +155,8 @@
 	}
 
 	async function getListingsAndOther(
-		pollKey,
-		pollVariationKey,
+		pollId,
+		pollVariationId,
 		otherPromise,
 		container
 	) {
@@ -166,8 +166,8 @@
 			    childVariations,
 			    otherResult
 		    ]             = await Promise.all([
-			pollManager.getVariationListing(pollKey, pollVariationKey),
-			pollManager.getChildVariationListings(pollKey, pollVariationKey),
+			pollManager.getVariationListing(pollId, pollVariationId),
+			pollManager.getChildVariationListings(pollId, pollVariationId),
 			otherPromise,
 		])
 
@@ -183,8 +183,8 @@
 		navList,
 		numChildren
 	) {
-		switching     = 1
-		switchedToKey = moveToVariation.key
+		switching    = 1
+		switchedToId = moveToVariation.id
 
 		setTimeout(() => {
 			switching = 2
@@ -201,8 +201,8 @@
 		navList,
 		numChildren
 	) {
-		switching     = 1
-		switchedToKey = moveToVariation.key
+		switching    = 1
+		switchedToId = moveToVariation.Id
 
 		setTimeout(() => {
 			switching = 2
@@ -223,13 +223,13 @@
 			      currentVariation,
 			      childVariations,
 		      } = await getSwitchData(
-			moveToVariation.pollKey,
-			moveToVariation.key,
+			moveToVariation.pollId,
+			moveToVariation.id,
 			numChildren
 		)
 
 		if ([0, 1].indexOf(navList.direction) > -1
-			&& navList.variation.key !== moveToVariation.key) {
+			&& navList.variation.id !== moveToVariation.id) {
 			navList = {
 				direction: 1,
 				isTarget: false,
@@ -237,7 +237,7 @@
 				variation: moveToVariation,
 			}
 		} else if (navList.direction === -1) {
-			if (navList.variation.key === moveToVariation.key) {
+			if (navList.variation.id === moveToVariation.id) {
 				navList = navList.previous
 			} else {
 				navList = {
@@ -261,8 +261,8 @@
 			      currentVariation,
 			      childVariations,
 		      } = await getSwitchData(
-			moveToVariation.pollKey,
-			moveToVariation.parent.key,
+			moveToVariation.pollId,
+			moveToVariation.parent.id,
 			numChildren
 		)
 
@@ -274,7 +274,7 @@
 				variation: currentVariation,
 			}
 		} else if (navList.direction === 0
-			&& moveToVariation.key !== navList.variation.key) {
+			&& moveToVariation.id !== navList.variation.id) {
 			navList = {
 				direction: -1,
 				isTarget: false,
@@ -289,8 +289,8 @@
 	}
 
 	async function getSwitchData(
-		pollKey,
-		key,
+		pollId,
+		id,
 		numChildren
 	) {
 		let [
@@ -298,8 +298,8 @@
 			    childVariations,
 			    _
 		    ] = await getListingsAndOther(
-			pollKey,
-			key,
+			pollId,
+			id,
 			new Promise(
 				resolve => {
 					setTimeout(() => {
@@ -404,11 +404,11 @@
 	{/if}
 	<VariationListItem
 			childMode="{false}"
-			classes="{switchToClasses(switching, switchedToKey, currentVariation)}"
+			classes="{switchToClasses(switching, switchedToId, currentVariation)}"
 			logicUtils="{logicUtils}"
 			mode="{mode}"
 			navList="{navList}"
-			on:click="{() => goTo(currentVariation.pollKey, currentVariation.key)}"
+			on:click="{() => goTo(currentVariation.pollId, currentVariation.id)}"
 			variation="{currentVariation}"
 	></VariationListItem>
 	<div
@@ -416,12 +416,12 @@
 	></div>
 	{#each childVariations as variation}
 	<VariationListItem
-			classes="{switchToClasses(switching, switchedToKey, variation)}"
+			classes="{switchToClasses(switching, switchedToId, variation)}"
 			logicUtils="{logicUtils}"
 			mode="{mode}"
 			navList="{navList}"
 			on:moveDownHierarchy="{() => moveDownHierarchy(childVariations, variation, navList)}"
-			on:click="{() => goTo(variation.pollKey, variation.key)}"
+			on:click="{() => goTo(variation.pollId, variation.id)}"
 			variation="{variation}"
 	></VariationListItem>
 	{/each}

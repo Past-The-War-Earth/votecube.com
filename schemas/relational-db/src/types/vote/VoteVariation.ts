@@ -1,1 +1,1 @@
-export type VoteVariation_Id = number
+export type VoteRevision_Id = number

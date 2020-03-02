@@ -1,5 +1,5 @@
 <script>
-	import {readIdAndCreateEsRecord} from '../../shared/deserializer'
+	import {readIdAndCreateEsRecord} from '../../libs/shared/deserializer'
 
 	let title    = ''
 	let contents = ''

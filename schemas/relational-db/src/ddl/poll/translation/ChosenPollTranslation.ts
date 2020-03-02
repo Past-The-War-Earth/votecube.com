@@ -12,13 +12,13 @@ import {CascadeType}               from '@airport/ground-control'
 import {ChosenPollTranslation_Id}  from '../../../types/poll/translation/ChosenPollTranslation'
 import {Language}                  from '../../infrastructure/Language'
 import {SystemGeneratedRow}        from '../../infrastructure/row/SystemGeneratedRow'
-import {Poll}                      from '../Poll'
-import {PollVariation}             from '../variation/PollVariation'
-import {PollVariationTranslation}  from '../variation/translation/PollVariationTranslation'
+import {Poll}                    from '../Poll'
+import {PollRevision}            from '../revision/PollRevision'
+import {PollRevisionTranslation} from '../revision/translation/PollRevisionTranslation'
 import {ChosenPollTranslationType} from './ChosenPollTranslationType'
 
 /**
- * This the computed translation (based on most pinned poll variation).
+ * This the computed translation (based on most pinned poll revision).
  * Note that you can have multiple translations active at the same time,
  * even within the same language (like standard and a funny or cynical
  * translation).
@@ -34,18 +34,18 @@ export class ChosenPollTranslation
 	id: ChosenPollTranslation_Id
 
 	/**
-	 * Nullable because may be chosen for a Variation and not the whole Poll.
+	 * Nullable because may be chosen for a Revision and not the whole Poll.
 	 */
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID'})
 	poll: Poll
 
 	/**
-	 * Nullable because may be chosen for the whole Poll and no Variations.
+	 * Nullable because may be chosen for the whole Poll and no Revisions.
 	 */
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_VARIATION_ID'})
-	pollVariation: PollVariation
+	@JoinColumn({name: 'POLL_REVISION_ID'})
+	pollRevision: PollRevision
 
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})
@@ -56,7 +56,7 @@ export class ChosenPollTranslation
 	type: ChosenPollTranslationType
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollTranslation'})
-	variationTranslation: PollVariationTranslation[]
+	revisionTranslation: PollRevisionTranslation[]
 
 
 }

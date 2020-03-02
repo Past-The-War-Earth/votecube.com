@@ -6,7 +6,7 @@ import {
 	IsData,
 	IsDelta,
 	IsDoc,
-	Key
+	Id
 }                     from './common'
 import {
 	ICoreAgeSuitabilityTracked,
@@ -19,7 +19,7 @@ import {
 import {IUserCreated} from './User'
 
 export type Factor_Axis = 'x' | 'y' | 'z'
-export type Factor_Key = Key
+export type Factor_Id = Id
 export type Factor_Name = string
 export type Factor_Number = 1 | 2 | 3
 
@@ -62,7 +62,7 @@ export interface ICoreMarkedFactor<Doc extends DocStatus>
 
 export interface ICoreFactorBase<Doc extends DocStatus>
 	extends IFullTextSearch,
-	        IUserCreated<Factor_Key> {
+	        IUserCreated<Factor_Id> {
 
 	axis: Doc extends IsDoc ? IDocumentValue<Factor_Axis>
 		: Doc extends IsDelta ? boolean : Factor_Axis

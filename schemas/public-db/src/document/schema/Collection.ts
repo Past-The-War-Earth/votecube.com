@@ -1,6 +1,6 @@
 import {
-	IKeyed,
-	Key
+	IIdentified,
+	Id
 }                        from '@votecube/model'
 import {ChildCollection} from './ChildCollection'
 import {
@@ -13,8 +13,8 @@ import {
 }                        from './DocRef'
 
 
-export class Collection<K extends Key, T extends IKeyed<K>,
-	PK extends Key | null = null, PT extends IKeyed<PK> | null = null>
+export class Collection<K extends Id, T extends IIdentified<K>,
+	PK extends Id | null = null, PT extends IIdentified<PK> | null = null>
 	implements ICollection<K, T, PK, PT> {
 
 	reference: IVCCollectionReference<K, T, PK, PT>
@@ -24,7 +24,7 @@ export class Collection<K extends Key, T extends IKeyed<K>,
 	) {
 	}
 
-	child<CK extends Key, CT extends IKeyed<CK>>(
+	child<CK extends Id, CT extends IIdentified<CK>>(
 		keyOrReference: K | IVCDocumentReference<K, T, PK, PT>,
 		name: CollectionName,
 		ChildCollectionConstructor?: new (

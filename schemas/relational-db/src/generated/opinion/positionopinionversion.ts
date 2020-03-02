@@ -2,8 +2,8 @@ import {
 	IFactorOpinionVersion,
 } from './factoropinionversion';
 import {
-	IPollPositionVariation,
-} from '../poll/variation/structure/pollpositionvariation';
+	IPollPositionRevision,
+} from '../poll/revision/structure/pollpositionrevision';
 import {
 	ILanguage,
 } from '../infrastructure/language';
@@ -34,7 +34,7 @@ export interface IPositionOpinionVersion {
 
 	// Non-Id Relations
 	factorOpinionVersion?: IFactorOpinionVersion;
-	pollPositionVariation?: IPollPositionVariation;
+	pollPositionRevision?: IPollPositionRevision;
 	language?: ILanguage;
 	ratings?: IPositionOpinionVersionRating[];
 	translations?: IPositionOpinionVersionTranslation[];

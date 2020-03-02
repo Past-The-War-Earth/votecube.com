@@ -3,10 +3,10 @@
 		createEventDispatcher,
 		onMount
 	} from 'svelte'
-	import BuildButton   from '../common/control/button/BuildButton.svelte'
-	import SaveButton    from '../common/control/button/SaveButton.svelte'
-	import Radio         from '../common/field/Radio.svelte'
-	import ActionPopover from '../common/shell/ActionPopover.svelte'
+	import BuildButton   from './common/control/button/BuildButton.svelte'
+	import SaveButton    from './common/control/button/SaveButton.svelte'
+	import Radio         from './common/field/Radio.svelte'
+	import ActionPopover from './common/shell/ActionPopover.svelte'
 
 	ActionPopover
 	BuildButton

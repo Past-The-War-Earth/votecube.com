@@ -2,14 +2,14 @@ import {DocStatus}     from './common'
 import {IVersioned}    from './PathFragment'
 import {
 	ICorePoll,
-	Poll_Key
+	Poll_Id
 }                      from './Poll'
-import {Variation_Key} from './Variation'
+import {Variation_Id} from './Variation'
 
 export interface ICoreVariationListing<Doc extends DocStatus>
-	extends ICorePoll<Doc, Variation_Key>,
-	        IVersioned<Variation_Key> {
+	extends ICorePoll<Doc, Variation_Id>,
+	        IVersioned<Variation_Id> {
 
-	pollKey: Poll_Key
+	pollId: Poll_Id
 
 }

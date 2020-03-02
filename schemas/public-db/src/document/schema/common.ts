@@ -1,6 +1,6 @@
 import {
-	IKeyed,
-	Key
+	IIdentified,
+	Id
 } from '@votecube/model'
 import {
 	IVCCollectionReference,
@@ -16,8 +16,8 @@ export interface ISchema {
 
 export type CollectionName = string
 
-export interface ICollection<K extends Key, T extends IKeyed<K>,
-	PK extends Key | null = null, PT extends IKeyed<PK> | null = null> {
+export interface ICollection<K extends Id, T extends IIdentified<K>,
+	PK extends Id | null = null, PT extends IIdentified<PK> | null = null> {
 
 	name: CollectionName
 
@@ -27,7 +27,7 @@ export interface ICollection<K extends Key, T extends IKeyed<K>,
 		key?: K
 	): IVCDocumentReference<K, T, PK, PT>
 
-	child<CK extends Key, CT extends IKeyed<CK>>(
+	child<CK extends Id, CT extends IIdentified<CK>>(
 		keyOrReference: K | IVCDocumentReference<K, T, PK, PT>,
 		name: CollectionName,
 		constructor?

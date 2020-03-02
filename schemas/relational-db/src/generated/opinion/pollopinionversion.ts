@@ -1,21 +1,21 @@
 import {
 	IImmutableRow,
-} from '../infrastructure/immutablerow';
+} from '../infrastructure/row/immutablerow';
 import {
 	IPollOpinion,
 } from './pollopinion';
 import {
-	IPollVariation,
-} from '../poll/variation/pollvariation';
+	IPollRevision,
+} from '../poll/revision/pollrevision';
 import {
-	IVoteVariation,
-} from '../vote/votevariation';
+	IVoteRevision,
+} from '../vote/voterevision';
 import {
 	ILanguage,
 } from '../infrastructure/language';
 import {
-	IPollLocationTimeFrame,
-} from '../poll/locationtimeframe/polllocationtimeframe';
+	IPollRun,
+} from '../poll/run/pollrun';
 import {
 	IPollOpinionVersionRating,
 } from './user/pollopinionversionrating';
@@ -46,10 +46,10 @@ export interface IPollOpinionVersion extends IImmutableRow {
 
 	// Non-Id Relations
 	pollOpinion?: IPollOpinion;
-	pollVariation?: IPollVariation;
-	voteVariation?: IVoteVariation;
+	pollRevision?: IPollRevision;
+	voteRevision?: IVoteRevision;
 	language?: ILanguage;
-	locationTimeFrame?: IPollLocationTimeFrame;
+	run?: IPollRun;
 	parent?: IPollOpinionVersion;
 	children?: IPollOpinionVersion[];
 	ratings?: IPollOpinionVersionRating[];

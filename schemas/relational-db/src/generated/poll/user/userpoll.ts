@@ -1,15 +1,15 @@
 import {
 	IMutableActorRow,
-} from '../../infrastructure/mutableactorrow';
+} from '../../infrastructure/row/mutableactorrow';
 import {
 	IPoll,
 } from '../poll';
 import {
-	IPollVariation,
-} from '../variation/pollvariation';
+	IPollRevision,
+} from '../revision/pollrevision';
 import {
-	IUserPollVariation,
-} from './userpollvariation';
+	IUserPollRevision,
+} from './userpollrevision';
 import {
 	IUserPollRating,
 } from './userpollrating';
@@ -32,8 +32,8 @@ export interface IUserPoll extends IMutableActorRow {
 
 	// Non-Id Relations
 	poll?: IPoll;
-	pinnedVariation?: IPollVariation;
-	userPollVariations?: IUserPollVariation[];
+	pinnedRevision?: IPollRevision;
+	userPollRevisions?: IUserPollRevision[];
 	ratings?: IUserPollRating[];
 
 	// Transient Properties

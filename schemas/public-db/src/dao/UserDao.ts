@@ -31,17 +31,17 @@ export class UserDao
 		const schema = await container(this).get(SCHEMA)
 
 		await schema.db.runTransaction(async (transaction) => {
-			const userRef = schema.users.doc(user.key)
-			const credRef = schema.users.creds(userRef).doc(user.key)
+			const userRef = schema.users.doc(user.id)
+			const credRef = schema.users.creds(userRef).doc(user.id)
 
 			await userRef.set({
-				key: user.key,
+				id: user.id,
 				name: username
 			})
 			await credRef.set({
 				hash: password,
-				key: user.key,
-				userKey: user.key
+				id: user.id,
+				userId: user.id
 			})
 		})
 	}

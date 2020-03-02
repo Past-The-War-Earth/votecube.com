@@ -82,7 +82,7 @@
 	function selectMenu(
 		menuItem
 	) {
-		// navigateToPage(menuItem.key, menuItem.params)
+		// navigateToPage(menuItem.id, menuItem.params)
 		showMainMenu.toggle()
 	}
 

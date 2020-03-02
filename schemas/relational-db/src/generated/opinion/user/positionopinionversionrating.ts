@@ -1,6 +1,6 @@
 import {
 	IImmutableActorRow,
-} from '../../infrastructure/immutableactorrow';
+} from '../../infrastructure/row/immutableactorrow';
 import {
 	IPositionOpinionVersion,
 } from '../positionopinionversion';

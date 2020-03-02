@@ -1,2 +1,0 @@
-export type PollVariationTranslationRatingCount_Id = number
-export type PollVariationTranslationRatingCount_Count = number

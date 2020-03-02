@@ -17,7 +17,7 @@ import {UserPoll}          from './UserPoll'
 
 /**
  * User ratings for a particular Poll  (likely computed from
- * UserPollVariationRating).
+ * UserPollRevisionRating).
  *
  * Rating counts are aggregated by a batch job.  The batch job needs to know
  * the current Rating and is it a change in rating (of the same type) and
@@ -35,7 +35,7 @@ export class UserPollRating
 
 	/*
 	 * No need for is current - there should always be
-	 * one record per User/PollVariation/Rating
+	 * one record per User/PollRevision/Rating
 	@Column({name: 'USER_POLL_RATING_IS_CURRENT'})
 	isCurrent: UserPollRating_IsCurrent
 	 */
@@ -54,7 +54,7 @@ export class UserPollRating
 
 
 	/*
-	* There is only one record per User/PollVariation/Rating at this level
+	* There is only one record per User/PollRevision/Rating at this level
 	* inheritance is present at Translation level
 	@ManyToOne()
 	@JoinColumn({

@@ -75,7 +75,7 @@ export class DbObjectBuilder {
 	doSet(
 		paths,
 		callback,
-		fromKey?
+		fromId?
 	) {
 		const {
 			      nestedFrom,

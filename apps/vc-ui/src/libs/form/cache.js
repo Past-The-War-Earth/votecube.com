@@ -2,7 +2,7 @@ import {
 	APP_CONTAINER,
 	POLL_MANAGER
 }                 from '@votecube/public-logic'
-import * as forms from '../form/forms'
+import * as forms from './forms'
 
 export async function savePollForm(
 	interFormNavigation

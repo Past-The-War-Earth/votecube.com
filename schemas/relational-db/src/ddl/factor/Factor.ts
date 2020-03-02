@@ -7,14 +7,14 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                   from '@airport/air-control'
-import {CascadeType}                from '@airport/ground-control'
-import {Factor_Id}                  from '../../types/factor/Factor'
-import {ImmutableActorRow}          from '../infrastructure/row/ImmutableActorRow'
-import {FactorSkinVariation}        from './FactorSkinVariation'
-import {FactorVariation}            from './FactorVariation'
-import {FactorVariationTranslation} from './FactorVariationTranslation'
-import {FactorPosition}             from './position/FactorPosition'
+}                          from '@airport/air-control'
+import {CascadeType}       from '@airport/ground-control'
+import {Factor_Id}         from '../../types/factor/Factor'
+import {ImmutableActorRow} from '../infrastructure/row/ImmutableActorRow'
+import {PollRevision}      from '../poll/revision/PollRevision'
+import {FactorSkin}        from './FactorSkin'
+import {FactorTranslation} from './FactorTranslation'
+import {FactorPosition}    from './position/FactorPosition'
 
 @Entity()
 @Table({name: 'FACTORS'})
@@ -27,11 +27,15 @@ export class Factor
 	id: Factor_Id
 
 	@ManyToOne()
+	@JoinColumn({name: 'POLL_REVISION_ID'})
+	createdAtPollRevision: PollRevision
+
+	@ManyToOne()
 	@JoinColumn({
-		name: 'PARENT_FACTOR_VARIATION_TRANSLATION_ID',
-		referencedColumnName: 'FACTOR_VARIATION_TRANSLATION_ID'
+		name: 'PARENT_FACTOR_TRANSLATION_ID',
+		referencedColumnName: 'FACTOR_TRANSLATION_ID'
 	})
-	parentTranslation: FactorVariationTranslation
+	parentTranslation: FactorTranslation
 
 	@ManyToOne()
 	@JoinColumn({name: 'PARENT_FACTOR_ID', referencedColumnName: 'FACTOR_ID'})
@@ -44,9 +48,6 @@ export class Factor
 	factorPositions: FactorPosition[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
-	variations: FactorVariation[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
-	skins: FactorSkinVariation[]
+	skins: FactorSkin[]
 
 }

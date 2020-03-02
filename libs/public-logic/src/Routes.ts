@@ -1,5 +1,5 @@
 import {DI}  from '@airport/di'
-import page  from 'page'
+// import page  from 'page'
 import {get} from 'svelte/store'
 import {
 	currentPage,
@@ -54,7 +54,6 @@ export interface IRoutes {
 		errorRoutePath: Route_Path
 	): void
 
-
 }
 
 export interface IRouteConfig {
@@ -68,7 +67,6 @@ export interface IRouteConfig {
 
 export class Routes
 	implements IRoutes {
-
 
 	private appComp: Component
 
@@ -120,7 +118,9 @@ export class Routes
 		const nextPage = this.pageConf[pageKey]
 		this.setInProgressState(paramMap, nextPage.url)
 
-		page(this.inProgressUrl)
+		// FIXME: transition navigation to saper
+		// page(this.inProgressUrl)
+
 		// let currentPage,
 		//     currentUrl
 		// if (appComp.store) {

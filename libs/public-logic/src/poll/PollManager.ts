@@ -5,15 +5,17 @@ import {
 import {IFieldGroup} from '@votecube/forms'
 import {
 	IPollData,
+	IUiPollVariation,
+	IUiPollVariationDelta,
 	IUser,
 	IVariationData,
 	IVariationDelta,
 	IVariationDoc,
 	IVote,
-	Poll_Key,
+	Poll_Id,
 	Theme_Id,
-	Variation_Key
-}                    from '@votecube/model'
+	Variation_Id
+} from '@votecube/model'
 import {
 	DB_CONVERTER,
 	DB_UTILS,
@@ -40,8 +42,8 @@ export interface IPollManager {
 	getAllPolls(): Promise<IPollData[]>
 
 	getChildVariationListings(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationData[]>
 
 	getPollsForTheme(
@@ -49,13 +51,13 @@ export interface IPollManager {
 	): Promise<IPollData[]>
 
 	getVariation(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationData>
 
 	getVariationListing(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationData>
 
 	mergeForm(): Promise<void>
@@ -70,9 +72,9 @@ export interface IStoredVariation {
 
 	doc: IVariationDoc
 	form?: IFieldGroup
-	originalUi: IVariationData
-	ui: IVariationData
-	uiDelta?: IVariationDelta
+	originalUi: IUiPollVariation
+	ui: IUiPollVariation
+	uiDelta?: IUiPollVariationDelta
 
 }
 
@@ -100,13 +102,13 @@ export class PollManager
 	}
 
 	async getChildVariationListings(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationData[]> {
 		const pollDao = await container(this).get(POLL_DAO)
 
 		const variationDocs =
-			      await pollDao.getChildVariationListings(pollKey, variationKey)
+			      await pollDao.getChildVariationListings(pollId, variationId)
 
 		return await this.convertDocs(variationDocs)
 	}
@@ -122,24 +124,24 @@ export class PollManager
 	}
 
 	async getVariation(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationData> {
-		if (!pollKey) {
+		if (!pollId) {
 			this.currVariation.doc = null
 
 			return this.currVariation.ui
 		}
 
 		if (this.currVariation.ui
-			&& this.currVariation.ui.pollKey === pollKey
-			&& this.currVariation.ui.key === variationKey) {
+			&& this.currVariation.ui.pollId === pollId
+			&& this.currVariation.ui.id === variationId) {
 			return this.currVariation.ui
 		}
 
 		const pollDao = await container(this).get(POLL_DAO)
 
-		const doc = await pollDao.getVariation(pollKey, variationKey)
+		const doc = await pollDao.getVariation(pollId, variationId)
 
 		const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
 
@@ -157,13 +159,13 @@ export class PollManager
 	}
 
 	async getVariationListing(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationData> {
 		const pollDao = await container(this).get(POLL_DAO)
 
 		const variationDoc =
-			      await pollDao.getVariationListing(pollKey, variationKey)
+			      await pollDao.getVariationListing(pollId, variationId)
 
 		return await this.convertDoc(variationDoc)
 	}

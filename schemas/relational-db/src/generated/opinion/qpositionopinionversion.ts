@@ -32,15 +32,15 @@ import {
 	QFactorOpinionVersionQRelation,
 } from './qfactoropinionversion';
 import {
-	PollPositionVariationECascadeGraph,
-	PollPositionVariationEId,
-	PollPositionVariationEOptionalId,
-	PollPositionVariationEUpdateProperties,
-	PollPositionVariationESelect,
-	QPollPositionVariation,
-	QPollPositionVariationQId,
-	QPollPositionVariationQRelation,
-} from '../poll/variation/structure/qpollpositionvariation';
+	PollPositionRevisionECascadeGraph,
+	PollPositionRevisionEId,
+	PollPositionRevisionEOptionalId,
+	PollPositionRevisionEUpdateProperties,
+	PollPositionRevisionESelect,
+	QPollPositionRevision,
+	QPollPositionRevisionQId,
+	QPollPositionRevisionQRelation,
+} from '../poll/revision/structure/qpollpositionrevision';
 import {
 	LanguageECascadeGraph,
 	LanguageEId,
@@ -101,7 +101,7 @@ export interface PositionOpinionVersionESelect
 
   // Non-Id relations (including OneToMany's)
 	factorOpinionVersion?: FactorOpinionVersionESelect;
-	pollPositionVariation?: PollPositionVariationESelect;
+	pollPositionRevision?: PollPositionRevisionESelect;
 	language?: LanguageESelect;
 	ratings?: PositionOpinionVersionRatingESelect;
 	translations?: PositionOpinionVersionTranslationESelect;
@@ -141,7 +141,7 @@ export interface PositionOpinionVersionEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	factorOpinionVersion?: FactorOpinionVersionEOptionalId;
-	pollPositionVariation?: PollPositionVariationEOptionalId;
+	pollPositionRevision?: PollPositionRevisionEOptionalId;
 	language?: LanguageEOptionalId;
 
 }
@@ -165,7 +165,7 @@ export interface PositionOpinionVersionEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	FACTOR_OPINION_VERSION_ID?: number | IQNumberField;
-	POLL_POSITION_VARIATION_ID?: number | IQNumberField;
+	POLL_POSITION_REVISION_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;
 
 }
@@ -205,7 +205,7 @@ export interface QPositionOpinionVersion extends IQEntity
 
 	// Non-Id Relations
 	factorOpinionVersion: QFactorOpinionVersionQRelation;
-	pollPositionVariation: QPollPositionVariationQRelation;
+	pollPositionRevision: QPollPositionRevisionQRelation;
 	language: QLanguageQRelation;
 	ratings: IQOneToManyRelation<QPositionOpinionVersionRating>;
 	translations: IQOneToManyRelation<QPositionOpinionVersionTranslation>;

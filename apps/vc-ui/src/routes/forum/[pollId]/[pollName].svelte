@@ -1,5 +1,5 @@
 <script context="module">
-	import {readIdAndCreateEsRecord} from '../../../shared/deserializer'
+	import {readIdAndCreateEsRecord} from '../../../libs/shared/deserializer'
 
 	export async function preload({params, query}) {
 		// the `slug` parameter is available because

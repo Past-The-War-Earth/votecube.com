@@ -1,10 +1,10 @@
 import {
-	Factor_Key,
+	Factor_Id,
 	IFactorDoc,
 	IFactorPollDoc,
 	IFactorPositionDoc,
-	Poll_Key,
-	Position_Key
+	Poll_Id,
+	Position_Id
 }                             from '@votecube/model'
 import {
 	ICollection,
@@ -14,20 +14,20 @@ import {IVCDocumentReference} from './DocRef'
 import {RootCollection}       from './RootCollection'
 
 export interface IFactorsCollection
-	extends ICollection<Factor_Key, IFactorDoc> {
+	extends ICollection<Factor_Id, IFactorDoc> {
 
 	factorPolls(
-		keyOrReference: Factor_Key | IVCDocumentReference<Factor_Key, IFactorDoc>
-	): ICollection<Poll_Key, IFactorPollDoc, Factor_Key, IFactorDoc>
+		keyOrReference: Factor_Id | IVCDocumentReference<Factor_Id, IFactorDoc>
+	): ICollection<Poll_Id, IFactorPollDoc, Factor_Id, IFactorDoc>
 
 	factorPositions(
-		keyOrReference: Factor_Key | IVCDocumentReference<Factor_Key, IFactorDoc>
-	): ICollection<Position_Key, IFactorPositionDoc, Factor_Key, IFactorDoc>
+		keyOrReference: Factor_Id | IVCDocumentReference<Factor_Id, IFactorDoc>
+	): ICollection<Position_Id, IFactorPositionDoc, Factor_Id, IFactorDoc>
 
 }
 
 export class FactorsCollection
-	extends RootCollection<Factor_Key, IFactorDoc>
+	extends RootCollection<Factor_Id, IFactorDoc>
 	implements IFactorsCollection {
 
 	constructor(
@@ -37,14 +37,14 @@ export class FactorsCollection
 	}
 
 	factorPolls(
-		keyOrReference: Factor_Key | IVCDocumentReference<Factor_Key, IFactorDoc>
-	): ICollection<Poll_Key, IFactorPollDoc, Factor_Key, IFactorDoc> {
+		keyOrReference: Factor_Id | IVCDocumentReference<Factor_Id, IFactorDoc>
+	): ICollection<Poll_Id, IFactorPollDoc, Factor_Id, IFactorDoc> {
 		return this.child(keyOrReference, 'factorPolls')
 	}
 
 	factorPositions(
-		keyOrReference: Factor_Key | IVCDocumentReference<Factor_Key, IFactorDoc>
-	): ICollection<Position_Key, IFactorPositionDoc, Factor_Key, IFactorDoc> {
+		keyOrReference: Factor_Id | IVCDocumentReference<Factor_Id, IFactorDoc>
+	): ICollection<Position_Id, IFactorPositionDoc, Factor_Id, IFactorDoc> {
 		return this.child(keyOrReference, 'factorPositions')
 	}
 

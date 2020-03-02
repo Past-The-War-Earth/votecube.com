@@ -30,7 +30,7 @@ import {
 	QImmutableRowQId,
 	QImmutableRowQRelation,
 	QImmutableRow,
-} from '../infrastructure/qimmutablerow';
+} from '../infrastructure/row/qimmutablerow';
 import {
 	PollOpinionECascadeGraph,
 	PollOpinionEId,
@@ -42,25 +42,25 @@ import {
 	QPollOpinionQRelation,
 } from './qpollopinion';
 import {
-	PollVariationECascadeGraph,
-	PollVariationEId,
-	PollVariationEOptionalId,
-	PollVariationEUpdateProperties,
-	PollVariationESelect,
-	QPollVariation,
-	QPollVariationQId,
-	QPollVariationQRelation,
-} from '../poll/variation/qpollvariation';
+	PollRevisionECascadeGraph,
+	PollRevisionEId,
+	PollRevisionEOptionalId,
+	PollRevisionEUpdateProperties,
+	PollRevisionESelect,
+	QPollRevision,
+	QPollRevisionQId,
+	QPollRevisionQRelation,
+} from '../poll/revision/qpollrevision';
 import {
-	VoteVariationECascadeGraph,
-	VoteVariationEId,
-	VoteVariationEOptionalId,
-	VoteVariationEUpdateProperties,
-	VoteVariationESelect,
-	QVoteVariation,
-	QVoteVariationQId,
-	QVoteVariationQRelation,
-} from '../vote/qvotevariation';
+	VoteRevisionECascadeGraph,
+	VoteRevisionEId,
+	VoteRevisionEOptionalId,
+	VoteRevisionEUpdateProperties,
+	VoteRevisionESelect,
+	QVoteRevision,
+	QVoteRevisionQId,
+	QVoteRevisionQRelation,
+} from '../vote/qvoterevision';
 import {
 	LanguageECascadeGraph,
 	LanguageEId,
@@ -72,15 +72,15 @@ import {
 	QLanguageQRelation,
 } from '../infrastructure/qlanguage';
 import {
-	PollLocationTimeFrameECascadeGraph,
-	PollLocationTimeFrameEId,
-	PollLocationTimeFrameEOptionalId,
-	PollLocationTimeFrameEUpdateProperties,
-	PollLocationTimeFrameESelect,
-	QPollLocationTimeFrame,
-	QPollLocationTimeFrameQId,
-	QPollLocationTimeFrameQRelation,
-} from '../poll/locationtimeframe/qpolllocationtimeframe';
+	PollRunECascadeGraph,
+	PollRunEId,
+	PollRunEOptionalId,
+	PollRunEUpdateProperties,
+	PollRunESelect,
+	QPollRun,
+	QPollRunQId,
+	QPollRunQRelation,
+} from '../poll/run/qpollrun';
 import {
 	PollOpinionVersionRatingECascadeGraph,
 	PollOpinionVersionRatingEId,
@@ -141,10 +141,10 @@ export interface PollOpinionVersionESelect
 
   // Non-Id relations (including OneToMany's)
 	pollOpinion?: PollOpinionESelect;
-	pollVariation?: PollVariationESelect;
-	voteVariation?: VoteVariationESelect;
+	pollRevision?: PollRevisionESelect;
+	voteRevision?: VoteRevisionESelect;
 	language?: LanguageESelect;
-	locationTimeFrame?: PollLocationTimeFrameESelect;
+	run?: PollRunESelect;
 	parent?: PollOpinionVersionESelect;
 	children?: PollOpinionVersionESelect;
 	ratings?: PollOpinionVersionRatingESelect;
@@ -186,10 +186,10 @@ export interface PollOpinionVersionEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	pollOpinion?: PollOpinionEOptionalId;
-	pollVariation?: PollVariationEOptionalId;
-	voteVariation?: VoteVariationEOptionalId;
+	pollRevision?: PollRevisionEOptionalId;
+	voteRevision?: VoteRevisionEOptionalId;
 	language?: LanguageEOptionalId;
-	locationTimeFrame?: PollLocationTimeFrameEOptionalId;
+	run?: PollRunEOptionalId;
 	parent?: PollOpinionVersionEOptionalId;
 
 }
@@ -216,10 +216,10 @@ export interface PollOpinionVersionEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	POLL_OPINION_ID?: number | IQNumberField;
-	POLL_VARIATION_ID?: number | IQNumberField;
-	VOTE_VARIATION_ID?: number | IQNumberField;
+	POLL_REVISION_ID?: number | IQNumberField;
+	VOTE_REVISION_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;
-	POLL_LOCATION_TIME_FRAME_ID?: number | IQNumberField;
+	POLL_RUN_ID?: number | IQNumberField;
 	PARENT_POLL_OPINION_VERSION_ID?: number | IQNumberField;
 
 }
@@ -259,10 +259,10 @@ export interface QPollOpinionVersion extends QImmutableRow
 
 	// Non-Id Relations
 	pollOpinion: QPollOpinionQRelation;
-	pollVariation: QPollVariationQRelation;
-	voteVariation: QVoteVariationQRelation;
+	pollRevision: QPollRevisionQRelation;
+	voteRevision: QVoteRevisionQRelation;
 	language: QLanguageQRelation;
-	locationTimeFrame: QPollLocationTimeFrameQRelation;
+	run: QPollRunQRelation;
 	parent: QPollOpinionVersionQRelation;
 	children: IQOneToManyRelation<QPollOpinionVersion>;
 	ratings: IQOneToManyRelation<QPollOpinionVersionRating>;

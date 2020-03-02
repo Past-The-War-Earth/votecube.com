@@ -1,18 +1,18 @@
 import {
 	IImmutableActorRow,
-} from '../infrastructure/immutableactorrow';
+} from '../infrastructure/row/immutableactorrow';
 import {
-	IFactorVariationTranslation,
-} from './factorvariationtranslation';
+	IPollRevision,
+} from '../poll/revision/pollrevision';
+import {
+	IFactorTranslation,
+} from './factortranslation';
 import {
 	IFactorPosition,
 } from './position/factorposition';
 import {
-	IFactorVariation,
-} from './factorvariation';
-import {
-	IFactorSkinVariation,
-} from './factorskinvariation';
+	IFactorSkin,
+} from './factorskin';
 
 
 
@@ -21,7 +21,7 @@ import {
 //////////////////////////////
 
 export interface IFactor extends IImmutableActorRow {
-
+	
 	// Id Properties
 	id: number;
 
@@ -30,15 +30,17 @@ export interface IFactor extends IImmutableActorRow {
 	// Non-Id Properties
 
 	// Non-Id Relations
-	parentTranslation?: IFactorVariationTranslation;
+	createdAtPollRevision?: IPollRevision;
+	parentTranslation?: IFactorTranslation;
 	parent?: IFactor;
 	children?: IFactor[];
 	factorPositions?: IFactorPosition[];
-	variations?: IFactorVariation[];
-	skins?: IFactorSkinVariation[];
+	skins?: IFactorSkin[];
 
 	// Transient Properties
 
 	// Public Methods
-
+	
 }
+
+

@@ -2,7 +2,7 @@ import {DI}           from '@airport/di'
 import {
 	IDocumentValue,
 	IVersioned,
-	Key
+	Id
 }                     from '@votecube/model'
 import {DB_CONVERTER} from '../tokens'
 
@@ -21,7 +21,7 @@ export interface IDbConverter {
 		directProperties: any[]
 	): Db
 
-	toVersionedDb<K extends Key, Ui extends IVersioned<K>, Delta, Db extends IVersioned<K>>(
+	toVersionedDb<K extends Id, Ui extends IVersioned<K>, Delta, Db extends IVersioned<K>>(
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
@@ -90,7 +90,7 @@ export class DbConverter
 		return dbObject
 	}
 
-	toVersionedDb<K extends Key, Ui extends IVersioned<K>, Delta, Db extends IVersioned<K>>(
+	toVersionedDb<K extends Id, Ui extends IVersioned<K>, Delta, Db extends IVersioned<K>>(
 		uiObject: Ui,
 		deltas: Delta,
 		originalDbObject: Db,
@@ -108,13 +108,13 @@ export class DbConverter
 			dbObject.path[originalDbObject.depth] = {
 				createdAt: originalDbObject.createdAt,
 				key: originalDbObject.key,
-				userKey: originalDbObject.userKey
+				userId: originalDbObject.userId
 			}
 			dbObject.parent                       = {
 				createdAt: originalDbObject.createdAt,
 				depth: originalDbObject.depth,
 				key: originalDbObject.key,
-				userKey: originalDbObject.userKey
+				userId: originalDbObject.userId
 			}
 		} else {
 			dbObject.parent = null

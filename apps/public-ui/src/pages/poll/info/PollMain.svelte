@@ -126,12 +126,12 @@
 		cardMove.set(null)
 		container = DI.ui('PollMain')
 
-		let {pollKey, pollVariationKey} = get(routeParams)
+		let {pollId, pollVariationId} = get(routeParams)
 
 		resize()
 		if (window.location.href.indexOf('card/ClimateChange') > 0) {
-			pollKey = '7U2Z2ItoJVTnpZwZdjrg'
-			pollVariationKey = 'NFKgyOxEfT8RlqBBwEf2'
+			pollId          = '7U2Z2ItoJVTnpZwZdjrg'
+			pollVariationId = 'NFKgyOxEfT8RlqBBwEf2'
 		}
 		cube.set(true)
 		noOverflow.set(true)
@@ -165,7 +165,7 @@
 			}
 		)
 
-		const cubeViewResult = await setupCubeView(pollKey, pollVariationKey,
+		const cubeViewResult = await setupCubeView(pollId, pollVariationId,
 			cubeLogic, cubeEventListener, container)
 
 		poll        = cubeViewResult.poll
@@ -286,8 +286,8 @@
 	}
 
 	function goToVariations() {
-		const {pollKey, pollVariationKey} = get(routeParams)
-		navigateToPage(VARIATION_LIST, {pollKey, pollVariationKey})
+		const {pollId, pollVariationId} = get(routeParams)
+		navigateToPage(VARIATION_LIST, {pollId, pollVariationId})
 	}
 
 	function onAgeSuitabilitySave(

@@ -1,31 +1,31 @@
 import {
-	IKeyed,
+	IIdentified,
 	ITimestamp,
-	Key
+	Id
 } from './common'
 
-export type User_Key = Key
+export type User_Id = Id
 export type User_Name = string
 
 export interface IUser
-	extends IKeyed<User_Key> {
+	extends IIdentified<User_Id> {
 
 	name: User_Name
 
 }
 
-export interface IUserCreated<K extends Key>
-	extends IKeyed<K> {
+export interface IUserCreated<K extends Id>
+	extends IIdentified<K> {
 
 	createdAt: ITimestamp
-	userKey: User_Key
+	userId: User_Id
 
 }
 
 export interface ICred
-	extends IKeyed<User_Key> {
+	extends IIdentified<User_Id> {
 
 	hash: string
-	userKey: User_Key
+	userId: User_Id
 
 }

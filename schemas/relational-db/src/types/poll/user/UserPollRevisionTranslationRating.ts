@@ -1,0 +1,2 @@
+export type UserPollRevisionTranslationRating_Id = number
+export type UserPollRevisionTranslationRating_IsCurrent = boolean

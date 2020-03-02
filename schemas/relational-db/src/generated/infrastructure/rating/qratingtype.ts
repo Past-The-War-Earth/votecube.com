@@ -30,7 +30,7 @@ import {
 	QSystemGeneratedRowQId,
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
-} from '../qsystemgeneratedrow';
+} from '../row/qsystemgeneratedrow';
 
 
 declare function require(moduleName: string): any;

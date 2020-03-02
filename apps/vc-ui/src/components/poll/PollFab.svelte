@@ -1,22 +1,22 @@
 <script>
 	import {createEventDispatcher} from 'svelte'
 
-	import AlignmentButton   from '../../common/control/button/AlignmentButton.svelte'
-	import BellCurveButton   from '../../common/control/button/BellCurveButton.svelte'
-	import BuildButton       from '../../common/control/button/BuildButton.svelte'
-	import DescribedButton   from '../../common/control/button/DescribedButton.svelte'
-	import EditButton        from '../../common/control/button/EditButton.svelte'
+	import AlignmentButton   from '../common/control/button/AlignmentButton.svelte'
+	import BellCurveButton   from '../common/control/button/BellCurveButton.svelte'
+	import BuildButton       from '../common/control/button/BuildButton.svelte'
+	import DescribedButton   from '../common/control/button/DescribedButton.svelte'
+	import EditButton        from '../common/control/button/EditButton.svelte'
 	import ManualOverwriteButton
-	                         from '../../common/control/button/ManualOverwriteButton.svelte'
-	import OpinionButton     from '../../common/control/button/OpinionButton.svelte'
-	import OutcomeButton     from '../../common/control/button/OutcomeButton.svelte'
-	import RankingsButton    from '../../common/control/button/RankingsButton.svelte'
-	import ShieldButton      from '../../common/control/button/ShieldButton.svelte'
-	import UndescribedButton from '../../common/control/button/UndescribedButton.svelte'
+	                         from '../common/control/button/ManualOverwriteButton.svelte'
+	import OpinionButton     from '../common/control/button/OpinionButton.svelte'
+	import OutcomeButton     from '../common/control/button/OutcomeButton.svelte'
+	import RankingsButton    from '../common/control/button/RankingsButton.svelte'
+	import ShieldButton      from '../common/control/button/ShieldButton.svelte'
+	import UndescribedButton from '../common/control/button/UndescribedButton.svelte'
 	import VariationTreeButton
-	                         from '../../common/control/button/VariationTreeButton.svelte'
-	import VoteButton        from '../../common/control/button/VoteButton.svelte'
-	import Fab               from '../../common/control/Fab.svelte'
+	                         from '../common/control/button/VariationTreeButton.svelte'
+	import VoteButton        from '../common/control/button/VoteButton.svelte'
+	import Fab               from '../common/control/Fab.svelte'
 
 	export let mode
 

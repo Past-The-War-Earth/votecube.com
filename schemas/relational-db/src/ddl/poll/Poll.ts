@@ -8,28 +8,32 @@ import {
 	Table
 }                                from '@airport/air-control'
 import {CascadeType}             from '@airport/ground-control'
+import {AgeSuitability}          from '../../types/common'
 import {Poll_Id}                 from '../../types/poll/Poll'
-import {ImmutableActorDocument}  from '../infrastructure/document/ImmutableActorDocument'
+import {ImmutableActorRow}       from '../infrastructure/row/ImmutableActorRow'
 import {PollOpinionsCount}       from './count/PollOpinionsCount'
 import {PollOpinionsRatingCount} from './count/PollOpinionsRatingCount'
 import {PollRatingCount}         from './count/PollRatingCount'
 import {PollVoteCount}           from './count/PollVoteCount'
-import {PollLocationTimeFrame}   from './locationTimeFrame/PollLocationTimeFrame'
+import {PollRun}                 from './run/PollRun'
 import {PollType}                from './PollType'
 import {Theme}                   from './Theme'
 import {ChosenPollTranslation}   from './translation/ChosenPollTranslation'
 import {UserPollRating}          from './user/UserPollRating'
-import {ChosenPollVariation}     from './variation/ChosenPollVariation'
-import {PollVariation}           from './variation/PollVariation'
+import {ChosenPollRevision}      from './revision/ChosenPollRevision'
+import {PollRevision}       from './revision/PollRevision'
 
 @Entity()
 @Table({name: 'POLLS'})
 export class Poll
-	extends ImmutableActorDocument {
+	extends ImmutableActorRow {
 
 	@GeneratedValue()
 	@Column({name: 'POLL_ID'})
 	id: Poll_Id
+
+	@Column({name: 'AGE_SUITABILITY', nullable: false})
+	ageSuitability: AgeSuitability
 
 	@ManyToOne()
 	@JoinColumn({name: 'THEME_ID', nullable: false})
@@ -59,13 +63,13 @@ export class Poll
 	chosenPollTranslations: ChosenPollTranslation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	chosenVariations: ChosenPollVariation[]
+	chosenRevisions: ChosenPollRevision[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	locationTimeFrames: PollLocationTimeFrame[]
+	runs: PollRun[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	allPollVariations: PollVariation[]
+	allPollRevisions: PollRevision[]
 
 	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'poll'})
 	opinionCounts: PollOpinionsCount[]

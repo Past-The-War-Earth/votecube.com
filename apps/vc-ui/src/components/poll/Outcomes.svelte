@@ -1,6 +1,6 @@
 <script>
 	import {onMount}       from 'svelte'
-	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
+	import CharacterButton from '../common/control/button/CharacterButton.svelte'
 
 	export let final
 	export let poll

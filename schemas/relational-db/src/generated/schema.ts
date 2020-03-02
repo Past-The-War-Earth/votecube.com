@@ -1,7 +1,7 @@
 export const SCHEMA = {
 	"domain": "public",
 	"index": null,
-	"name": "@votecube/public-db",
+	"name": "@votecube/relational-db",
 	"sinceVersion": 1,
 	"versions": [
 		{
@@ -882,7 +882,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneRelationIndex": 11,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -950,7 +950,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						}
 					],
@@ -2882,7 +2882,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneRelationIndex": 12,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -2981,7 +2981,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -3052,7 +3052,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -3155,7 +3155,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -3226,7 +3226,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneRelationIndex": 13,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -3294,337 +3294,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "POLL_VOTE_COUNTS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "CHOSEN_POLL_VARIATION_TYPE_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CODE",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 5
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 1
-						}
-					],
-					"index": 23,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "ChosenPollVariationType",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": true,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": false,
-							"name": "code",
-							"sinceVersion": 1
-						}
-					],
-					"relations": [],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "CHOSEN_POLL_VARIATION_TYPES",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "CHOSEN_POLL_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
-									"oneRelationIndex": 8,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_VARIATION_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 23,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "CHOSEN_POLL_VARIATION_TYPE_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 3,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneRelationIndex": 2,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 1
-						}
-					],
-					"index": 24,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "ChosenPollVariation",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": true,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"name": "poll",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "pollVariation",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "type",
-							"relationRef": {
-								"index": 2
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
-							"isId": false,
-							"name": "locationTimeFrame",
-							"relationRef": {
-								"index": 3
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 2
-							},
-							"relationTableIndex": 54,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 23,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 5
-							},
-							"relationTableIndex": 30,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "CHOSEN_POLL_VARIATIONS",
 						"indexes": []
 					}
 				},
@@ -3673,13 +3349,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneRelationIndex": 4,
+									"oneTableIndex": 28,
+									"oneRelationIndex": 3,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -3695,10 +3371,10 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 25,
+					"index": 23,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollLTFContinent",
+					"name": "PollRunContinent",
 					"properties": [
 						{
 							"columnRef": {
@@ -3721,7 +3397,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 1
 							},
@@ -3746,7 +3422,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						}
 					],
@@ -3801,13 +3477,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneRelationIndex": 5,
+									"oneTableIndex": 28,
+									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -3823,10 +3499,10 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 26,
+					"index": 24,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollLTFCountry",
+					"name": "PollRunCountry",
 					"properties": [
 						{
 							"columnRef": {
@@ -3849,7 +3525,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 1
 							},
@@ -3874,7 +3550,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						}
 					],
@@ -3929,13 +3605,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneRelationIndex": 7,
+									"oneTableIndex": 28,
+									"oneRelationIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -3951,10 +3627,10 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 27,
+					"index": 25,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollLTFCounty",
+					"name": "PollRunCounty",
 					"properties": [
 						{
 							"columnRef": {
@@ -3977,7 +3653,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 1
 							},
@@ -4002,7 +3678,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						}
 					],
@@ -4057,13 +3733,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneRelationIndex": 6,
+									"oneTableIndex": 28,
+									"oneRelationIndex": 5,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -4079,10 +3755,10 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 28,
+					"index": 26,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollLTFState",
+					"name": "PollRunState",
 					"properties": [
 						{
 							"columnRef": {
@@ -4105,7 +3781,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 1
 							},
@@ -4130,7 +3806,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						}
 					],
@@ -4185,13 +3861,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneRelationIndex": 8,
+									"oneTableIndex": 28,
+									"oneRelationIndex": 7,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -4207,10 +3883,10 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 29,
+					"index": 27,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollLTFTown",
+					"name": "PollRunTown",
 					"properties": [
 						{
 							"columnRef": {
@@ -4233,7 +3909,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 1
 							},
@@ -4258,7 +3934,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						}
 					],
@@ -4310,7 +3986,7 @@ export const SCHEMA = {
 							"index": 2,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -4355,13 +4031,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
-									"oneRelationIndex": 9,
+									"oneTableIndex": 85,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -4377,10 +4052,10 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 30,
+					"index": 28,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollLocationTimeFrame",
+					"name": "PollRun",
 					"properties": [
 						{
 							"columnRef": {
@@ -4430,7 +4105,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "poll",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -4439,7 +4114,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "chosenVariations",
+							"name": "createdAtRevisions",
 							"relationRef": {
 								"index": 2
 							},
@@ -4448,7 +4123,7 @@ export const SCHEMA = {
 						{
 							"index": 7,
 							"isId": false,
-							"name": "createdAtVariations",
+							"name": "pollContinents",
 							"relationRef": {
 								"index": 3
 							},
@@ -4457,7 +4132,7 @@ export const SCHEMA = {
 						{
 							"index": 8,
 							"isId": false,
-							"name": "pollContinents",
+							"name": "pollCountries",
 							"relationRef": {
 								"index": 4
 							},
@@ -4466,7 +4141,7 @@ export const SCHEMA = {
 						{
 							"index": 9,
 							"isId": false,
-							"name": "pollCountries",
+							"name": "pollStates",
 							"relationRef": {
 								"index": 5
 							},
@@ -4475,7 +4150,7 @@ export const SCHEMA = {
 						{
 							"index": 10,
 							"isId": false,
-							"name": "pollStates",
+							"name": "pollCounties",
 							"relationRef": {
 								"index": 6
 							},
@@ -4484,27 +4159,9 @@ export const SCHEMA = {
 						{
 							"index": 11,
 							"isId": false,
-							"name": "pollCounties",
-							"relationRef": {
-								"index": 7
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 12,
-							"isId": false,
 							"name": "pollTowns",
 							"relationRef": {
-								"index": 8
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 13,
-							"isId": false,
-							"name": "pollVariations",
-							"relationRef": {
-								"index": 9
+								"index": 7
 							},
 							"sinceVersion": 1
 						}
@@ -4527,7 +4184,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -4535,13 +4192,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "locationTimeFrame"
+								"mappedBy": "createdAtRun"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 24,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -4549,13 +4206,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "createdAtLocationTimeFrame"
+								"mappedBy": "run"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 23,
 							"sinceVersion": 1
 						},
 						{
@@ -4563,13 +4220,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "locationTimeFrame"
+								"mappedBy": "run"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 25,
+							"relationTableIndex": 24,
 							"sinceVersion": 1
 						},
 						{
@@ -4577,7 +4234,7 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "locationTimeFrame"
+								"mappedBy": "run"
 							},
 							"relationType": 0,
 							"propertyRef": {
@@ -4591,13 +4248,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "locationTimeFrame"
+								"mappedBy": "run"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 10
 							},
-							"relationTableIndex": 28,
+							"relationTableIndex": 25,
 							"sinceVersion": 1
 						},
 						{
@@ -4605,7 +4262,7 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "locationTimeFrame"
+								"mappedBy": "run"
 							},
 							"relationType": 0,
 							"propertyRef": {
@@ -4613,39 +4270,11 @@ export const SCHEMA = {
 							},
 							"relationTableIndex": 27,
 							"sinceVersion": 1
-						},
-						{
-							"index": 8,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "locationTimeFrame"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 12
-							},
-							"relationTableIndex": 29,
-							"sinceVersion": 1
-						},
-						{
-							"index": 9,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 0,
-								"mappedBy": "locationTimeFrame"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 13
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_LOCATION_TIME_FRAMES",
+						"name": "POLL_RUNS",
 						"indexes": []
 					}
 				},
@@ -4699,7 +4328,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 31,
+					"index": 29,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollType",
@@ -4789,7 +4418,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 32,
+					"index": 30,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Theme",
@@ -4865,7 +4494,7 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 33,
+					"index": 31,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "TranslationType",
@@ -4969,7 +4598,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 35,
+									"oneTableIndex": 33,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -4992,7 +4621,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -5036,7 +4665,7 @@ export const SCHEMA = {
 							"index": 3
 						}
 					],
-					"index": 34,
+					"index": 32,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "UserPollRating",
@@ -5123,7 +4752,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 35,
+							"relationTableIndex": 33,
 							"sinceVersion": 1
 						},
 						{
@@ -5133,7 +4762,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -5240,7 +4869,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -5262,12 +4891,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -5283,7 +4912,7 @@ export const SCHEMA = {
 							"index": 3
 						}
 					],
-					"index": 35,
+					"index": 33,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "UserPoll",
@@ -5345,7 +4974,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "pinnedVariation",
+							"name": "pinnedRevision",
 							"relationRef": {
 								"index": 2
 							},
@@ -5354,7 +4983,7 @@ export const SCHEMA = {
 						{
 							"index": 7,
 							"isId": false,
-							"name": "userPollVariations",
+							"name": "userPollRevisions",
 							"relationRef": {
 								"index": 3
 							},
@@ -5388,7 +5017,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -5398,7 +5027,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -5412,7 +5041,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 37,
+							"relationTableIndex": 35,
 							"sinceVersion": 1
 						},
 						{
@@ -5426,7 +5055,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 34,
+							"relationTableIndex": 32,
 							"sinceVersion": 1
 						}
 					],
@@ -5492,7 +5121,7 @@ export const SCHEMA = {
 							"index": 3,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "USER_POLL_VARIATION_RATING_ID",
+							"name": "USER_POLL_REVISION_RATING_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -5509,13 +5138,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 37,
+									"oneTableIndex": 35,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
 								}
 							],
-							"name": "USER_POLL_VARIATION_ID",
+							"name": "USER_POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -5532,13 +5161,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -5576,10 +5205,10 @@ export const SCHEMA = {
 							"index": 3
 						}
 					],
-					"index": 36,
+					"index": 34,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "UserPollVariationRating",
+					"name": "UserPollRevisionRating",
 					"properties": [
 						{
 							"columnRef": {
@@ -5620,7 +5249,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "userPollVariation",
+							"name": "userPollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -5629,7 +5258,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 2
 							},
@@ -5663,7 +5292,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 37,
+							"relationTableIndex": 35,
 							"sinceVersion": 1
 						},
 						{
@@ -5673,7 +5302,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -5689,7 +5318,7 @@ export const SCHEMA = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "USER_POLL_VARIATION_RATINGS",
+						"name": "USER_POLL_REVISION_RATINGS",
 						"indexes": []
 					}
 				},
@@ -5749,7 +5378,7 @@ export const SCHEMA = {
 							"index": 3,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "USER_POLL_VARIATION_ID",
+							"name": "USER_POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -5766,7 +5395,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 35,
+									"oneTableIndex": 33,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -5789,12 +5418,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -5810,10 +5439,10 @@ export const SCHEMA = {
 							"index": 3
 						}
 					],
-					"index": 37,
+					"index": 35,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "UserPollVariation",
+					"name": "UserPollRevision",
 					"properties": [
 						{
 							"columnRef": {
@@ -5863,7 +5492,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "variation",
+							"name": "revision",
 							"relationRef": {
 								"index": 2
 							},
@@ -5906,7 +5535,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 35,
+							"relationTableIndex": 33,
 							"sinceVersion": 1
 						},
 						{
@@ -5916,7 +5545,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -5924,13 +5553,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "userPollVariation"
+								"mappedBy": "userPollRevision"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 38,
+							"relationTableIndex": 36,
 							"sinceVersion": 1
 						},
 						{
@@ -5938,19 +5567,19 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "userPollVariation"
+								"mappedBy": "userPollRevision"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 36,
+							"relationTableIndex": 34,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "USER_POLL_VARIATIONS",
+						"name": "USER_POLL_REVISIONS",
 						"indexes": []
 					}
 				},
@@ -6010,7 +5639,7 @@ export const SCHEMA = {
 							"index": 3,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "USER_POLL_VARIATION_TRANSLATION_ID",
+							"name": "USER_POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6027,13 +5656,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 37,
+									"oneTableIndex": 35,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
 								}
 							],
-							"name": "USER_POLL_VARIATION_ID",
+							"name": "USER_POLL_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -6050,12 +5679,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
+									"oneTableIndex": 47,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6071,10 +5700,10 @@ export const SCHEMA = {
 							"index": 3
 						}
 					],
-					"index": 38,
+					"index": 36,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "UserPollVariationTranslation",
+					"name": "UserPollRevisionTranslation",
 					"properties": [
 						{
 							"columnRef": {
@@ -6115,7 +5744,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "userPollVariation",
+							"name": "userPollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -6124,7 +5753,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "variationTranslation",
+							"name": "revisionTranslation",
 							"relationRef": {
 								"index": 2
 							},
@@ -6158,7 +5787,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 37,
+							"relationTableIndex": 35,
 							"sinceVersion": 1
 						},
 						{
@@ -6168,7 +5797,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -6176,19 +5805,19 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "userPollVariationTranslation"
+								"mappedBy": "userPollRevisionTranslation"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 39,
+							"relationTableIndex": 37,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "USER_POLL_VARIATION_TRANSLATIONS",
+						"name": "USER_POLL_REVISION_TRANSLATIONS",
 						"indexes": []
 					}
 				},
@@ -6234,7 +5863,7 @@ export const SCHEMA = {
 							"index": 2,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "USER_POLL_VARIATION_TRANSLATION_RATING_ID",
+							"name": "USER_POLL_REVISION_TRANSLATION_RATING_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6248,7 +5877,7 @@ export const SCHEMA = {
 							"index": 3,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "USER_POLL_VARIATION_TRANSLATION_RATING_IS_CURRENT",
+							"name": "USER_POLL_REVISION_TRANSLATION_RATING_IS_CURRENT",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6265,13 +5894,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 38,
+									"oneTableIndex": 36,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
 								}
 							],
-							"name": "USER_POLL_VARIATION_TRANSLATION_ID",
+							"name": "USER_POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6288,12 +5917,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
+									"oneTableIndex": 47,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6310,12 +5939,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 28,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6354,13 +5983,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 5,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 39,
+									"oneTableIndex": 37,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_USER_POLL_VARIATION_TRANSLATION_RATING_ID",
+							"name": "PARENT_USER_POLL_REVISION_TRANSLATION_RATING_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6376,10 +6005,10 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 39,
+					"index": 37,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "UserPollVariationTranslationRating",
+					"name": "UserPollRevisionTranslationRating",
 					"properties": [
 						{
 							"columnRef": {
@@ -6420,7 +6049,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "userPollVariationTranslation",
+							"name": "userPollRevisionTranslation",
 							"relationRef": {
 								"index": 1
 							},
@@ -6429,7 +6058,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "pollVariationTranslation",
+							"name": "pollRevisionTranslation",
 							"relationRef": {
 								"index": 2
 							},
@@ -6438,7 +6067,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 3
 							},
@@ -6490,7 +6119,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 38,
+							"relationTableIndex": 36,
 							"sinceVersion": 1
 						},
 						{
@@ -6500,7 +6129,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -6510,7 +6139,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						},
 						{
@@ -6530,7 +6159,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 39,
+							"relationTableIndex": 37,
 							"sinceVersion": 1
 						},
 						{
@@ -6544,13 +6173,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 39,
+							"relationTableIndex": 37,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "USER_POLL_VARIATION_TRANSLATION_RATINGS",
+						"name": "USER_POLL_REVISION_TRANSLATION_RATINGS",
 						"indexes": []
 					}
 				},
@@ -6574,7 +6203,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_TRANSLATION_OPINION_COUNT_ID",
+							"name": "POLL_REVISION_TRANSLATION_OPINION_COUNT_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6605,17 +6234,338 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
+									"oneTableIndex": 47,
 									"oneRelationIndex": 11,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [],
+					"index": 38,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "PollRevisionTranslationOpinionCount",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": false,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": false,
+							"name": "count",
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"name": "pollRevisionTranslation",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 3
+							},
+							"relationTableIndex": 47,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "POLL_REVISION_TRANSLATION_OPINION_COUNTS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "POLL_REVISION_TRANSLATION_OPINION_RATING_COUNT_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "COUNT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 47,
+									"oneRelationIndex": 12,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_REVISION_TRANSLATION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 19,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "RATING_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [],
+					"index": 39,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "PollRevisionTranslationOpinionRatingCount",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": false,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": false,
+							"name": "count",
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"name": "pollRevisionTranslation",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"name": "rating",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 3
+							},
+							"relationTableIndex": 47,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 4
+							},
+							"relationTableIndex": 19,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "POLL_REVISION_TRANSLATION_OPINION_RATING_COUNTS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "POLL_REVISION_TRANSLATION_RATING_COUNT_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "COUNT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 47,
+									"oneRelationIndex": 8,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_REVISION_TRANSLATION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 19,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "RATING_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
 								}
 							],
 							"sinceVersion": 1,
@@ -6626,7 +6576,7 @@ export const SCHEMA = {
 					"index": 40,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollVariationTranslationOpinionCount",
+					"name": "PollRevisionTranslationRatingCount",
 					"properties": [
 						{
 							"columnRef": {
@@ -6658,9 +6608,18 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "pollVariationTranslation",
+							"name": "pollRevisionTranslation",
 							"relationRef": {
 								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"name": "rating",
+							"relationRef": {
+								"index": 1
 							},
 							"sinceVersion": 1
 						}
@@ -6673,13 +6632,23 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 4
+							},
+							"relationTableIndex": 19,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_VARIATION_TRANSLATION_OPINION_COUNTS",
+						"name": "POLL_REVISION_TRANSLATION_RATING_COUNTS",
 						"indexes": []
 					}
 				},
@@ -6703,7 +6672,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_TRANSLATION_OPINION_RATING_COUNT_ID",
+							"name": "POLL_REVISION_TRANSLATION_VOTE_COUNT_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -6734,39 +6703,17 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
-									"oneRelationIndex": 12,
+									"oneTableIndex": 47,
+									"oneRelationIndex": 13,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 19,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "RATING_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
 								}
 							],
 							"sinceVersion": 1,
@@ -6777,7 +6724,7 @@ export const SCHEMA = {
 					"index": 41,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollVariationTranslationOpinionRatingCount",
+					"name": "PollRevisionTranslationVoteCount",
 					"properties": [
 						{
 							"columnRef": {
@@ -6809,325 +6756,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "pollVariationTranslation",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "rating",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 51,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 19,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POLL_VARIATION_TRANSLATION_OPINION_RATING_COUNTS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_TRANSLATION_RATING_COUNT_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "COUNT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
-									"oneRelationIndex": 8,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 19,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "RATING_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [],
-					"index": 42,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PollVariationTranslationRatingCount",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": false,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": false,
-							"name": "count",
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "pollVariationTranslation",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "rating",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 51,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 19,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POLL_VARIATION_TRANSLATION_RATING_COUNTS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_TRANSLATION_VOTE_COUNT_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "COUNT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
-									"oneRelationIndex": 13,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [],
-					"index": 43,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PollVariationTranslationVoteCount",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": false,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": false,
-							"name": "count",
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "pollVariationTranslation",
+							"name": "pollRevisionTranslation",
 							"relationRef": {
 								"index": 0
 							},
@@ -7142,13 +6771,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_VARIATION_TRANSLATION_VOTE_COUNTS",
+						"name": "POLL_REVISION_TRANSLATION_VOTE_COUNTS",
 						"indexes": []
 					}
 				},
@@ -7194,264 +6823,7 @@ export const SCHEMA = {
 							"index": 2,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "FACTOR_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 88,
-									"oneRelationIndex": 5,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "FACTOR_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 3,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 44,
-									"oneRelationIndex": 4,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "PARENT_FACTOR_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 2
-						}
-					],
-					"index": 44,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "FactorVariation",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"name": "actor",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": true,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "pollVariation",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "factor",
-							"relationRef": {
-								"index": 2
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
-							"isId": false,
-							"name": "parent",
-							"relationRef": {
-								"index": 3
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 6,
-							"isId": false,
-							"name": "children",
-							"relationRef": {
-								"index": 4
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 1
-							},
-							"relationTableIndex": 5,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 88,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 5
-							},
-							"relationTableIndex": 44,
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "parent"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 6
-							},
-							"relationTableIndex": 44,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "FACTOR_VARIATIONS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 5,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "ACTOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "FACTOR_VARIATION_TRANSLATION_ID",
+							"name": "FACTOR_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -7496,12 +6868,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 44,
+									"oneTableIndex": 86,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "FACTOR_VARIATION_ID",
+							"name": "FACTOR_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -7540,13 +6912,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 45,
+									"oneTableIndex": 42,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_FACTOR_VARIATION_TRANSLATION_ID",
+							"name": "PARENT_FACTOR_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -7562,10 +6934,10 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 45,
+					"index": 42,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "FactorVariationTranslation",
+					"name": "FactorTranslation",
 					"properties": [
 						{
 							"columnRef": {
@@ -7615,7 +6987,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "factorVariation",
+							"name": "factor",
 							"relationRef": {
 								"index": 1
 							},
@@ -7676,7 +7048,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 44,
+							"relationTableIndex": 86,
 							"sinceVersion": 1
 						},
 						{
@@ -7696,7 +7068,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 45,
+							"relationTableIndex": 42,
 							"sinceVersion": 1
 						},
 						{
@@ -7710,7 +7082,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 45,
+							"relationTableIndex": 42,
 							"sinceVersion": 1
 						},
 						{
@@ -7724,13 +7096,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 88,
+							"relationTableIndex": 86,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "FACTOR_VARIATION_TRANSLATIONS",
+						"name": "FACTOR_TRANSLATIONS",
 						"indexes": []
 					}
 				},
@@ -7743,13 +7115,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
+									"oneTableIndex": 47,
 									"oneRelationIndex": 9,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -7766,12 +7138,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 45,
+									"oneTableIndex": 42,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "FACTOR_VARIATION_TRANSLATION_ID",
+							"name": "FACTOR_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -7790,15 +7162,15 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 46,
+					"index": 43,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollVariationFactorTranslation",
+					"name": "PollRevisionFactorTranslation",
 					"properties": [
 						{
 							"index": 0,
 							"isId": true,
-							"name": "pollVariationTranslation",
+							"name": "pollRevisionTranslation",
 							"relationRef": {
 								"index": 0
 							},
@@ -7807,7 +7179,7 @@ export const SCHEMA = {
 						{
 							"index": 1,
 							"isId": true,
-							"name": "factorVariationTranslation",
+							"name": "factorTranslation",
 							"relationRef": {
 								"index": 1
 							},
@@ -7822,7 +7194,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 0
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -7832,13 +7204,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 45,
+							"relationTableIndex": 42,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_VARIATION_FACTOR_TRANSLATIONS",
+						"name": "POLL_REVISION_FACTOR_TRANSLATIONS",
 						"indexes": []
 					}
 				},
@@ -7901,12 +7273,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 85,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_POSITION_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -7923,8 +7295,30 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 47,
-									"oneRelationIndex": 3,
+									"oneTableIndex": 45,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "PARENT_POSITION_TRANSLATION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 5,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 3,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 44,
+									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -7933,7 +7327,7 @@ export const SCHEMA = {
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 4
+									"index": 5
 								}
 							],
 							"sinceVersion": 1,
@@ -7945,7 +7339,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 47,
+					"index": 44,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Position",
@@ -7980,7 +7374,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "parentTranslation",
+							"name": "createdAtPollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -7989,7 +7383,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "parent",
+							"name": "parentTranslation",
 							"relationRef": {
 								"index": 2
 							},
@@ -7998,7 +7392,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "children",
+							"name": "parent",
 							"relationRef": {
 								"index": 3
 							},
@@ -8007,7 +7401,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "factorPositions",
+							"name": "children",
 							"relationRef": {
 								"index": 4
 							},
@@ -8016,9 +7410,18 @@ export const SCHEMA = {
 						{
 							"index": 7,
 							"isId": false,
-							"name": "variations",
+							"name": "factorPositions",
 							"relationRef": {
 								"index": 5
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 8,
+							"isId": false,
+							"name": "translations",
+							"relationRef": {
+								"index": 6
 							},
 							"sinceVersion": 1
 						}
@@ -8041,7 +7444,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -8051,21 +7454,17 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 47,
+							"relationTableIndex": 45,
 							"sinceVersion": 1
 						},
 						{
 							"index": 3,
 							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "parent"
-							},
-							"relationType": 0,
+							"relationType": 1,
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 47,
+							"relationTableIndex": 44,
 							"sinceVersion": 1
 						},
 						{
@@ -8073,13 +7472,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "position"
+								"mappedBy": "parent"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 89,
+							"relationTableIndex": 44,
 							"sinceVersion": 1
 						},
 						{
@@ -8093,7 +7492,21 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 48,
+							"relationTableIndex": 87,
+							"sinceVersion": 1
+						},
+						{
+							"index": 6,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "position"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 8
+							},
+							"relationTableIndex": 45,
 							"sinceVersion": 1
 						}
 					],
@@ -8145,264 +7558,7 @@ export const SCHEMA = {
 							"index": 2,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POSITION_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 47,
-									"oneRelationIndex": 5,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POSITION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 3,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 48,
-									"oneRelationIndex": 4,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "PARENT_POSITION_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 2
-						}
-					],
-					"index": 48,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PositionVariation",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"name": "actor",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": true,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "createdAtPollVariation",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "position",
-							"relationRef": {
-								"index": 2
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
-							"isId": false,
-							"name": "parent",
-							"relationRef": {
-								"index": 3
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 6,
-							"isId": false,
-							"name": "children",
-							"relationRef": {
-								"index": 4
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 1
-							},
-							"relationTableIndex": 5,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 47,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 5
-							},
-							"relationTableIndex": 48,
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "parent"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 6
-							},
-							"relationTableIndex": 48,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POSITION_VARIATIONS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 5,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "ACTOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POSITION_VARIATION_TRANSLATION_ID",
+							"name": "POSITION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8433,12 +7589,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 48,
+									"oneTableIndex": 44,
+									"oneRelationIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POSITION_VARIATION_ID",
+							"name": "POSITION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8477,13 +7634,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 45,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_POSITION_VARIATION_TRANSLATION_ID",
+							"name": "PARENT_POSITION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8499,10 +7656,10 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 49,
+					"index": 45,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PositionVariationTranslation",
+					"name": "PositionTranslation",
 					"properties": [
 						{
 							"columnRef": {
@@ -8543,7 +7700,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "positionVariation",
+							"name": "position",
 							"relationRef": {
 								"index": 1
 							},
@@ -8595,7 +7752,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 48,
+							"relationTableIndex": 44,
 							"sinceVersion": 1
 						},
 						{
@@ -8615,7 +7772,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 45,
 							"sinceVersion": 1
 						},
 						{
@@ -8629,13 +7786,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 45,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POSITION_VARIATION_TRANSLATIONS",
+						"name": "POSITION_TRANSLATIONS",
 						"indexes": []
 					}
 				},
@@ -8648,13 +7805,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
+									"oneTableIndex": 47,
 									"oneRelationIndex": 10,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8671,12 +7828,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 45,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POSITION_VARIATION_TRANSLATION_ID",
+							"name": "POSITION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8695,15 +7852,15 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 50,
+					"index": 46,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollVariationPositionTranslation",
+					"name": "PollRevisionPositionTranslation",
 					"properties": [
 						{
 							"index": 0,
 							"isId": true,
-							"name": "pollVariationTranslation",
+							"name": "pollRevisionTranslation",
 							"relationRef": {
 								"index": 0
 							},
@@ -8712,7 +7869,7 @@ export const SCHEMA = {
 						{
 							"index": 1,
 							"isId": true,
-							"name": "positionVariationTranslation",
+							"name": "positionTranslation",
 							"relationRef": {
 								"index": 1
 							},
@@ -8727,7 +7884,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 0
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -8737,13 +7894,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 45,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_VARIATION_POSITION_TRANSLATIONS",
+						"name": "POLL_REVISION_POSITION_TRANSLATIONS",
 						"indexes": []
 					}
 				},
@@ -8789,7 +7946,7 @@ export const SCHEMA = {
 							"index": 2,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8834,13 +7991,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneRelationIndex": 13,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8879,7 +8036,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 33,
+									"oneTableIndex": 31,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -8901,12 +8058,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 28,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8923,13 +8080,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 5,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
+									"oneTableIndex": 47,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_POLL_VARIATION_TRANSLATION_ID",
+							"name": "PARENT_POLL_REVISION_TRANSLATION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -8945,10 +8102,10 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 51,
+					"index": 47,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollVariationTranslation",
+					"name": "PollRevisionTranslation",
 					"properties": [
 						{
 							"columnRef": {
@@ -8980,7 +8137,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -9025,7 +8182,7 @@ export const SCHEMA = {
 						{
 							"index": 8,
 							"isId": false,
-							"name": "createdAtLocationTimeFrame",
+							"name": "createdAtRun",
 							"relationRef": {
 								"index": 4
 							},
@@ -9131,7 +8288,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -9151,7 +8308,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 33,
+							"relationTableIndex": 31,
 							"sinceVersion": 1
 						},
 						{
@@ -9161,7 +8318,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						},
 						{
@@ -9171,7 +8328,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -9185,7 +8342,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 10
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -9199,7 +8356,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 39,
+							"relationTableIndex": 37,
 							"sinceVersion": 1
 						},
 						{
@@ -9207,13 +8364,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 0,
-								"mappedBy": "pollVariationTranslation"
+								"mappedBy": "pollRevisionTranslation"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 12
 							},
-							"relationTableIndex": 42,
+							"relationTableIndex": 40,
 							"sinceVersion": 1
 						},
 						{
@@ -9221,13 +8378,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 0,
-								"mappedBy": "pollVariationTranslation"
+								"mappedBy": "pollRevisionTranslation"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 13
 							},
-							"relationTableIndex": 46,
+							"relationTableIndex": 43,
 							"sinceVersion": 1
 						},
 						{
@@ -9235,13 +8392,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 0,
-								"mappedBy": "pollVariationTranslation"
+								"mappedBy": "pollRevisionTranslation"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 14
 							},
-							"relationTableIndex": 50,
+							"relationTableIndex": 46,
 							"sinceVersion": 1
 						},
 						{
@@ -9249,13 +8406,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 0,
-								"mappedBy": "pollVariationTranslation"
+								"mappedBy": "pollRevisionTranslation"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 15
 							},
-							"relationTableIndex": 40,
+							"relationTableIndex": 38,
 							"sinceVersion": 1
 						},
 						{
@@ -9263,13 +8420,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 0,
-								"mappedBy": "pollVariationTranslation"
+								"mappedBy": "pollRevisionTranslation"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 16
 							},
-							"relationTableIndex": 41,
+							"relationTableIndex": 39,
 							"sinceVersion": 1
 						},
 						{
@@ -9277,19 +8434,19 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 0,
-								"mappedBy": "pollVariationTranslation"
+								"mappedBy": "pollRevisionTranslation"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 17
 							},
-							"relationTableIndex": 43,
+							"relationTableIndex": 41,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_VARIATION_TRANSLATIONS",
+						"name": "POLL_REVISION_TRANSLATIONS",
 						"indexes": []
 					}
 				},
@@ -9343,7 +8500,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 52,
+					"index": 48,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "ChosenPollTranslationType",
@@ -9420,7 +8577,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneRelationIndex": 7,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -9443,13 +8600,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneRelationIndex": 12,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -9488,7 +8645,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 52,
+									"oneTableIndex": 48,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -9509,7 +8666,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 53,
+					"index": 49,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "ChosenPollTranslation",
@@ -9544,7 +8701,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -9571,7 +8728,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "variationTranslation",
+							"name": "revisionTranslation",
 							"relationRef": {
 								"index": 4
 							},
@@ -9586,7 +8743,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -9596,7 +8753,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -9616,7 +8773,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 52,
+							"relationTableIndex": 48,
 							"sinceVersion": 1
 						},
 						{
@@ -9630,13 +8787,253 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "CHOSEN_POLL_TRANSLATIONS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "CHOSEN_POLL_REVISION_TYPE_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CODE",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 5
+						}
+					],
+					"idColumnRefs": [
+						{
+							"index": 1
+						}
+					],
+					"index": 50,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "ChosenPollRevisionType",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": true,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": false,
+							"name": "code",
+							"sinceVersion": 1
+						}
+					],
+					"relations": [],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "CHOSEN_POLL_REVISION_TYPES",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "CHOSEN_POLL_REVISION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 85,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_REVISION_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 50,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "CHOSEN_POLL_REVISION_TYPE_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [
+						{
+							"index": 1
+						}
+					],
+					"index": 51,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "ChosenPollRevision",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": true,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"index": 2,
+							"isId": false,
+							"name": "pollRevision",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"name": "type",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 2
+							},
+							"relationTableIndex": 85,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 3
+							},
+							"relationTableIndex": 50,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "CHOSEN_POLL_REVISIONS",
 						"indexes": []
 					}
 				},
@@ -9695,16 +9092,8 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 32,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "THEME_ID",
+							"manyRelationColumnRefs": [],
+							"name": "AGE_SUITABILITY",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -9719,14 +9108,14 @@ export const SCHEMA = {
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
-									"manyRelationIndex": 2,
+									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 31,
+									"oneTableIndex": 30,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_TYPE_ID",
+							"name": "THEME_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -9741,9 +9130,31 @@ export const SCHEMA = {
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 29,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_TYPE_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 5
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 6,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -9753,7 +9164,7 @@ export const SCHEMA = {
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 5
+									"index": 6
 								}
 							],
 							"sinceVersion": 1,
@@ -9761,7 +9172,7 @@ export const SCHEMA = {
 						}
 					],
 					"idColumnRefs": [],
-					"index": 54,
+					"index": 52,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Poll",
@@ -9794,7 +9205,16 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
+							"columnRef": {
+								"index": 3
+							},
 							"index": 3,
+							"isId": false,
+							"name": "ageSuitability",
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
 							"isId": false,
 							"name": "theme",
 							"relationRef": {
@@ -9803,7 +9223,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 4,
+							"index": 5,
 							"isId": false,
 							"name": "type",
 							"relationRef": {
@@ -9812,7 +9232,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 5,
+							"index": 6,
 							"isId": false,
 							"name": "parent",
 							"relationRef": {
@@ -9821,7 +9241,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 6,
+							"index": 7,
 							"isId": false,
 							"name": "children",
 							"relationRef": {
@@ -9830,7 +9250,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 7,
+							"index": 8,
 							"isId": false,
 							"name": "ratings",
 							"relationRef": {
@@ -9839,7 +9259,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 8,
+							"index": 9,
 							"isId": false,
 							"name": "ratingCounts",
 							"relationRef": {
@@ -9848,7 +9268,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 9,
+							"index": 10,
 							"isId": false,
 							"name": "chosenPollTranslations",
 							"relationRef": {
@@ -9857,34 +9277,34 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 10,
+							"index": 11,
 							"isId": false,
-							"name": "chosenVariations",
+							"name": "chosenRevisions",
 							"relationRef": {
 								"index": 8
 							},
 							"sinceVersion": 1
 						},
 						{
-							"index": 11,
+							"index": 12,
 							"isId": false,
-							"name": "locationTimeFrames",
+							"name": "runs",
 							"relationRef": {
 								"index": 9
 							},
 							"sinceVersion": 1
 						},
 						{
-							"index": 12,
+							"index": 13,
 							"isId": false,
-							"name": "allPollVariations",
+							"name": "allPollRevisions",
 							"relationRef": {
 								"index": 10
 							},
 							"sinceVersion": 1
 						},
 						{
-							"index": 13,
+							"index": 14,
 							"isId": false,
 							"name": "opinionCounts",
 							"relationRef": {
@@ -9893,7 +9313,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 14,
+							"index": 15,
 							"isId": false,
 							"name": "opinionRatingCounts",
 							"relationRef": {
@@ -9902,7 +9322,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 15,
+							"index": 16,
 							"isId": false,
 							"name": "voteCounts",
 							"relationRef": {
@@ -9927,9 +9347,9 @@ export const SCHEMA = {
 							"isId": false,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 3
+								"index": 4
 							},
-							"relationTableIndex": 32,
+							"relationTableIndex": 30,
 							"sinceVersion": 1
 						},
 						{
@@ -9937,9 +9357,9 @@ export const SCHEMA = {
 							"isId": false,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 4
+								"index": 5
 							},
-							"relationTableIndex": 31,
+							"relationTableIndex": 29,
 							"sinceVersion": 1
 						},
 						{
@@ -9947,9 +9367,9 @@ export const SCHEMA = {
 							"isId": false,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 5
+								"index": 6
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -9960,9 +9380,9 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 6
+								"index": 7
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -9974,9 +9394,9 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 7
+								"index": 8
 							},
-							"relationTableIndex": 34,
+							"relationTableIndex": 32,
 							"sinceVersion": 1
 						},
 						{
@@ -9988,7 +9408,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 8
+								"index": 9
 							},
 							"relationTableIndex": 21,
 							"sinceVersion": 1
@@ -10002,9 +9422,9 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 9
+								"index": 10
 							},
-							"relationTableIndex": 53,
+							"relationTableIndex": 49,
 							"sinceVersion": 1
 						},
 						{
@@ -10016,9 +9436,9 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 10
+								"index": 11
 							},
-							"relationTableIndex": 24,
+							"relationTableIndex": 51,
 							"sinceVersion": 1
 						},
 						{
@@ -10030,9 +9450,9 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 11
+								"index": 12
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						},
 						{
@@ -10044,9 +9464,9 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 12
+								"index": 13
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -10058,7 +9478,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 13
+								"index": 14
 							},
 							"relationTableIndex": 6,
 							"sinceVersion": 1
@@ -10072,7 +9492,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 14
+								"index": 15
 							},
 							"relationTableIndex": 20,
 							"sinceVersion": 1
@@ -10086,7 +9506,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 15
+								"index": 16
 							},
 							"relationTableIndex": 22,
 							"sinceVersion": 1
@@ -10149,7 +9569,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 78,
+									"oneTableIndex": 76,
 									"oneRelationIndex": 7,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -10193,7 +9613,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 55,
+					"index": 53,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollOpinionRatingCount",
@@ -10252,7 +9672,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 78,
+							"relationTableIndex": 76,
 							"sinceVersion": 1
 						},
 						{
@@ -10292,7 +9712,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "CHOSEN_VOTE_VARIATION_TYPE_ID",
+							"name": "CHOSEN_VOTE_REVISION_TYPE_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -10322,10 +9742,10 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 56,
+					"index": 54,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "ChosenVoteVariationType",
+					"name": "ChosenVoteRevisionType",
 					"properties": [
 						{
 							"columnRef": {
@@ -10358,7 +9778,7 @@ export const SCHEMA = {
 					"relations": [],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "CHOSEN_VOTE_VARIATION_TYPE_TYPES",
+						"name": "CHOSEN_VOTE_REVISION_TYPE_TYPES",
 						"indexes": []
 					}
 				},
@@ -10382,7 +9802,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "CHOSEN_VOTE_VARIATION_ID",
+							"name": "CHOSEN_VOTE_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -10399,7 +9819,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 59,
+									"oneTableIndex": 57,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -10422,12 +9842,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 56,
+									"oneTableIndex": 54,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
 							],
-							"name": "CHOSEN_VOTE_VARIATION_TYPE_ID",
+							"name": "CHOSEN_VOTE_REVISION_TYPE_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -10443,10 +9863,10 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 57,
+					"index": 55,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "ChosenVoteVariation",
+					"name": "ChosenVoteRevision",
 					"properties": [
 						{
 							"columnRef": {
@@ -10493,7 +9913,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 59,
+							"relationTableIndex": 57,
 							"sinceVersion": 1
 						},
 						{
@@ -10503,13 +9923,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 56,
+							"relationTableIndex": 54,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "CHOSEN_VOTE_VARIATIONS",
+						"name": "CHOSEN_VOTE_REVISIONS",
 						"indexes": []
 					}
 				},
@@ -10577,7 +9997,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 58,
+					"index": 56,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteType",
@@ -10709,7 +10129,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -10730,7 +10150,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 59,
+					"index": 57,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Vote",
@@ -10792,7 +10212,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "chosenVariations",
+							"name": "chosenRevisions",
 							"relationRef": {
 								"index": 3
 							},
@@ -10801,7 +10221,7 @@ export const SCHEMA = {
 						{
 							"index": 7,
 							"isId": false,
-							"name": "variations",
+							"name": "revisions",
 							"relationRef": {
 								"index": 4
 							},
@@ -10836,7 +10256,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -10850,7 +10270,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 57,
+							"relationTableIndex": 55,
 							"sinceVersion": 1
 						},
 						{
@@ -10864,7 +10284,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 63,
+							"relationTableIndex": 61,
 							"sinceVersion": 1
 						}
 					],
@@ -10894,7 +10314,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_FACTOR_POSITION_VARIATION_ID",
+							"name": "POLL_FACTOR_POSITION_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -10939,13 +10359,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneRelationIndex": 8,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -10962,7 +10382,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 89,
+									"oneTableIndex": 87,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -10984,13 +10404,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 60,
+									"oneTableIndex": 58,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_POLL_FACTOR_POSITION_VARIATION_ID",
+							"name": "PARENT_POLL_FACTOR_POSITION_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -11006,10 +10426,10 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 60,
+					"index": 58,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollFactorPositionVariation",
+					"name": "PollFactorPositionRevision",
 					"properties": [
 						{
 							"columnRef": {
@@ -11050,7 +10470,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 0
 							},
@@ -11092,7 +10512,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -11102,7 +10522,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 89,
+							"relationTableIndex": 87,
 							"sinceVersion": 1
 						},
 						{
@@ -11112,7 +10532,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 60,
+							"relationTableIndex": 58,
 							"sinceVersion": 1
 						},
 						{
@@ -11126,13 +10546,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 60,
+							"relationTableIndex": 58,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_FACTOR_POSITION_VARIATIONS",
+						"name": "POLL_FACTOR_POSITION_REVISIONS",
 						"indexes": []
 					}
 				},
@@ -11186,7 +10606,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 61,
+					"index": 59,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteFactorType",
@@ -11263,13 +10683,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 63,
+									"oneTableIndex": 61,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "VOTE_VARIATION_ID",
+							"name": "VOTE_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -11286,12 +10706,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 60,
+									"oneTableIndex": 58,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_FACTOR_POSITION_VARIATION_ID",
+							"name": "POLL_FACTOR_POSITION_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -11308,7 +10728,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 61,
+									"oneTableIndex": 59,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -11329,7 +10749,7 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 62,
+					"index": 60,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteFactor",
@@ -11346,7 +10766,7 @@ export const SCHEMA = {
 						{
 							"index": 1,
 							"isId": false,
-							"name": "voteVariation",
+							"name": "voteRevision",
 							"relationRef": {
 								"index": 0
 							},
@@ -11388,7 +10808,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 63,
+							"relationTableIndex": 61,
 							"sinceVersion": 1
 						},
 						{
@@ -11398,7 +10818,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 60,
+							"relationTableIndex": 58,
 							"sinceVersion": 1
 						},
 						{
@@ -11408,7 +10828,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 61,
+							"relationTableIndex": 59,
 							"sinceVersion": 1
 						}
 					],
@@ -11460,7 +10880,7 @@ export const SCHEMA = {
 							"index": 2,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "VOTE_VARIATION_ID",
+							"name": "VOTE_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -11477,12 +10897,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -11499,7 +10919,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 59,
+									"oneTableIndex": 57,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -11522,12 +10942,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 51,
+									"oneTableIndex": 47,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_TRANSLATION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -11544,12 +10964,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 28,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -11565,10 +10985,10 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 63,
+					"index": 61,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "VoteVariation",
+					"name": "VoteRevision",
 					"properties": [
 						{
 							"columnRef": {
@@ -11600,7 +11020,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "variation",
+							"name": "revision",
 							"relationRef": {
 								"index": 1
 							},
@@ -11618,7 +11038,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "variationTranslation",
+							"name": "revisionTranslation",
 							"relationRef": {
 								"index": 3
 							},
@@ -11627,7 +11047,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 4
 							},
@@ -11661,7 +11081,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -11671,7 +11091,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 59,
+							"relationTableIndex": 57,
 							"sinceVersion": 1
 						},
 						{
@@ -11681,7 +11101,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 51,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -11691,7 +11111,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						},
 						{
@@ -11699,19 +11119,19 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "voteVariation"
+								"mappedBy": "voteRevision"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 62,
+							"relationTableIndex": 60,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "VOTE_VARIATIONS",
+						"name": "VOTE_REVISIONS",
 						"indexes": []
 					}
 				},
@@ -11766,7 +11186,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 77,
+									"oneTableIndex": 75,
 									"oneRelationIndex": 10,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -11810,7 +11230,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 64,
+					"index": 62,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollOpinionVersionRatingCount",
@@ -11869,7 +11289,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -11909,7 +11329,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_FACTOR_VARIATION_ID",
+							"name": "POLL_FACTOR_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -11926,13 +11346,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneRelationIndex": 9,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -11949,12 +11369,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 44,
+									"oneTableIndex": 86,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "FACTOR_VARIATION_ID",
+							"name": "FACTOR_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -11971,13 +11391,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 65,
+									"oneTableIndex": 63,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_POLL_FACTOR_VARIATION_ID",
+							"name": "PARENT_POLL_FACTOR_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -11993,10 +11413,10 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 65,
+					"index": 63,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollFactorVariation",
+					"name": "PollFactorRevision",
 					"properties": [
 						{
 							"columnRef": {
@@ -12019,7 +11439,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 0
 							},
@@ -12028,7 +11448,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "factorVariation",
+							"name": "factor",
 							"relationRef": {
 								"index": 1
 							},
@@ -12061,7 +11481,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -12071,7 +11491,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 44,
+							"relationTableIndex": 86,
 							"sinceVersion": 1
 						},
 						{
@@ -12081,7 +11501,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 65,
+							"relationTableIndex": 63,
 							"sinceVersion": 1
 						},
 						{
@@ -12095,13 +11515,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 65,
+							"relationTableIndex": 63,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_FACTOR_VARIATIONS",
+						"name": "POLL_FACTOR_REVISIONS",
 						"indexes": []
 					}
 				},
@@ -12156,7 +11576,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 74,
+									"oneTableIndex": 72,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -12200,7 +11620,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 66,
+					"index": 64,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "FactorOpinionVersionRatingCount",
@@ -12259,7 +11679,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 74,
+							"relationTableIndex": 72,
 							"sinceVersion": 1
 						},
 						{
@@ -12299,7 +11719,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_POSITION_VARIATION_ID",
+							"name": "POLL_POSITION_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -12316,13 +11736,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneRelationIndex": 11,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -12339,12 +11759,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 48,
+									"oneTableIndex": 44,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POSITION_VARIATION_ID",
+							"name": "POSITION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -12361,13 +11781,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 67,
+									"oneTableIndex": 65,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_POLL_POSITION_VARIATION_ID",
+							"name": "PARENT_POLL_POSITION_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -12383,10 +11803,10 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 67,
+					"index": 65,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollPositionVariation",
+					"name": "PollPositionRevision",
 					"properties": [
 						{
 							"columnRef": {
@@ -12409,7 +11829,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 0
 							},
@@ -12418,7 +11838,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "positionVariation",
+							"name": "position",
 							"relationRef": {
 								"index": 1
 							},
@@ -12451,7 +11871,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -12461,7 +11881,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 48,
+							"relationTableIndex": 44,
 							"sinceVersion": 1
 						},
 						{
@@ -12471,7 +11891,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 67,
+							"relationTableIndex": 65,
 							"sinceVersion": 1
 						},
 						{
@@ -12485,13 +11905,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 67,
+							"relationTableIndex": 65,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_POSITION_VARIATIONS",
+						"name": "POLL_POSITION_REVISIONS",
 						"indexes": []
 					}
 				},
@@ -12546,7 +11966,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 71,
+									"oneTableIndex": 69,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -12590,7 +12010,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 68,
+					"index": 66,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PositionOpinionVersionRatingCount",
@@ -12649,7 +12069,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 71,
+							"relationTableIndex": 69,
 							"sinceVersion": 1
 						},
 						{
@@ -12748,7 +12168,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 71,
+									"oneTableIndex": 69,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -12792,7 +12212,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 69,
+					"index": 67,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PositionOpinionVersionTranslation",
@@ -12869,7 +12289,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 71,
+							"relationTableIndex": 69,
 							"sinceVersion": 1
 						},
 						{
@@ -12962,7 +12382,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 71,
+									"oneTableIndex": 69,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -13007,7 +12427,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 70,
+									"oneTableIndex": 68,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -13029,7 +12449,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 70,
+					"index": 68,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PositionOpinionVersionRating",
@@ -13125,7 +12545,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 71,
+							"relationTableIndex": 69,
 							"sinceVersion": 1
 						},
 						{
@@ -13145,7 +12565,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 70,
+							"relationTableIndex": 68,
 							"sinceVersion": 1
 						},
 						{
@@ -13159,7 +12579,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 70,
+							"relationTableIndex": 68,
 							"sinceVersion": 1
 						}
 					],
@@ -13192,7 +12612,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 74,
+									"oneTableIndex": 72,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -13215,12 +12635,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 67,
+									"oneTableIndex": 65,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_POSITION_VARIATION_ID",
+							"name": "POLL_POSITION_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -13258,7 +12678,7 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 71,
+					"index": 69,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PositionOpinionVersion",
@@ -13284,7 +12704,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "pollPositionVariation",
+							"name": "pollPositionRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -13335,7 +12755,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 74,
+							"relationTableIndex": 72,
 							"sinceVersion": 1
 						},
 						{
@@ -13345,7 +12765,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 67,
+							"relationTableIndex": 65,
 							"sinceVersion": 1
 						},
 						{
@@ -13369,7 +12789,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 70,
+							"relationTableIndex": 68,
 							"sinceVersion": 1
 						},
 						{
@@ -13383,7 +12803,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 69,
+							"relationTableIndex": 67,
 							"sinceVersion": 1
 						},
 						{
@@ -13397,7 +12817,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 68,
+							"relationTableIndex": 66,
 							"sinceVersion": 1
 						}
 					],
@@ -13486,7 +12906,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 74,
+									"oneTableIndex": 72,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -13530,7 +12950,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 72,
+					"index": 70,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "FactorOpinionVersionTranslation",
@@ -13607,7 +13027,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 74,
+							"relationTableIndex": 72,
 							"sinceVersion": 1
 						},
 						{
@@ -13700,7 +13120,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 74,
+									"oneTableIndex": 72,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -13745,7 +13165,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 73,
+									"oneTableIndex": 71,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -13767,7 +13187,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 73,
+					"index": 71,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "FactorOpinionVersionRating",
@@ -13863,7 +13283,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 74,
+							"relationTableIndex": 72,
 							"sinceVersion": 1
 						},
 						{
@@ -13883,7 +13303,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 73,
+							"relationTableIndex": 71,
 							"sinceVersion": 1
 						},
 						{
@@ -13897,7 +13317,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 73,
+							"relationTableIndex": 71,
 							"sinceVersion": 1
 						}
 					],
@@ -13930,7 +13350,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 77,
+									"oneTableIndex": 75,
 									"oneRelationIndex": 9,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -13953,12 +13373,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 65,
+									"oneTableIndex": 63,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_FACTOR_VARIATION_ID",
+							"name": "POLL_FACTOR_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -13996,7 +13416,7 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 74,
+					"index": 72,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "FactorOpinionVersion",
@@ -14022,7 +13442,7 @@ export const SCHEMA = {
 						{
 							"index": 2,
 							"isId": false,
-							"name": "pollFactorVariation",
+							"name": "pollFactorRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -14082,7 +13502,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -14092,7 +13512,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 65,
+							"relationTableIndex": 63,
 							"sinceVersion": 1
 						},
 						{
@@ -14116,7 +13536,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 73,
+							"relationTableIndex": 71,
 							"sinceVersion": 1
 						},
 						{
@@ -14130,7 +13550,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 72,
+							"relationTableIndex": 70,
 							"sinceVersion": 1
 						},
 						{
@@ -14144,7 +13564,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 71,
+							"relationTableIndex": 69,
 							"sinceVersion": 1
 						},
 						{
@@ -14158,7 +13578,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 66,
+							"relationTableIndex": 64,
 							"sinceVersion": 1
 						}
 					],
@@ -14247,7 +13667,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 77,
+									"oneTableIndex": 75,
 									"oneRelationIndex": 8,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -14291,7 +13711,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 75,
+					"index": 73,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollOpinionVersionTranslation",
@@ -14368,7 +13788,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -14461,7 +13881,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 77,
+									"oneTableIndex": 75,
 									"oneRelationIndex": 7,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -14506,7 +13926,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 76,
+									"oneTableIndex": 74,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -14528,7 +13948,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 76,
+					"index": 74,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollOpinionVersionRating",
@@ -14624,7 +14044,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -14644,7 +14064,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 76,
+							"relationTableIndex": 74,
 							"sinceVersion": 1
 						},
 						{
@@ -14658,7 +14078,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 76,
+							"relationTableIndex": 74,
 							"sinceVersion": 1
 						}
 					],
@@ -14705,7 +14125,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 78,
+									"oneTableIndex": 76,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -14728,12 +14148,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -14750,12 +14170,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 63,
+									"oneTableIndex": 61,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "VOTE_VARIATION_ID",
+							"name": "VOTE_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -14794,12 +14214,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 28,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -14816,7 +14236,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 5,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 77,
+									"oneTableIndex": 75,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -14838,7 +14258,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 77,
+					"index": 75,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollOpinionVersion",
@@ -14873,7 +14293,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -14882,7 +14302,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "voteVariation",
+							"name": "voteRevision",
 							"relationRef": {
 								"index": 2
 							},
@@ -14900,7 +14320,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 4
 							},
@@ -14969,7 +14389,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 78,
+							"relationTableIndex": 76,
 							"sinceVersion": 1
 						},
 						{
@@ -14979,7 +14399,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -14989,7 +14409,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 63,
+							"relationTableIndex": 61,
 							"sinceVersion": 1
 						},
 						{
@@ -15009,7 +14429,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						},
 						{
@@ -15019,7 +14439,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -15033,7 +14453,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -15047,7 +14467,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 76,
+							"relationTableIndex": 74,
 							"sinceVersion": 1
 						},
 						{
@@ -15061,7 +14481,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 10
 							},
-							"relationTableIndex": 75,
+							"relationTableIndex": 73,
 							"sinceVersion": 1
 						},
 						{
@@ -15075,7 +14495,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 74,
+							"relationTableIndex": 72,
 							"sinceVersion": 1
 						},
 						{
@@ -15089,7 +14509,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 12
 							},
-							"relationTableIndex": 64,
+							"relationTableIndex": 62,
 							"sinceVersion": 1
 						}
 					],
@@ -15186,7 +14606,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
+									"oneTableIndex": 52,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -15208,7 +14628,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 77,
+									"oneTableIndex": 75,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -15230,7 +14650,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 77,
+									"oneTableIndex": 75,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -15252,7 +14672,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 78,
+									"oneTableIndex": 76,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -15274,7 +14694,7 @@ export const SCHEMA = {
 							"index": 3
 						}
 					],
-					"index": 78,
+					"index": 76,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollOpinion",
@@ -15406,7 +14826,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 54,
+							"relationTableIndex": 52,
 							"sinceVersion": 1
 						},
 						{
@@ -15416,7 +14836,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -15426,7 +14846,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -15436,7 +14856,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 78,
+							"relationTableIndex": 76,
 							"sinceVersion": 1
 						},
 						{
@@ -15450,7 +14870,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 78,
+							"relationTableIndex": 76,
 							"sinceVersion": 1
 						},
 						{
@@ -15464,7 +14884,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 10
 							},
-							"relationTableIndex": 77,
+							"relationTableIndex": 75,
 							"sinceVersion": 1
 						},
 						{
@@ -15478,7 +14898,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 55,
+							"relationTableIndex": 53,
 							"sinceVersion": 1
 						}
 					],
@@ -15508,7 +14928,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_OPINION_COUNT_ID",
+							"name": "POLL_REVISION_OPINION_COUNT_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -15539,17 +14959,338 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneRelationIndex": 15,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [],
+					"index": 77,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "PollRevisionOpinionCount",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": false,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": false,
+							"name": "count",
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"name": "pollRevision",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 3
+							},
+							"relationTableIndex": 85,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "POLL_REVISION_OPINION_COUNTS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "POLL_REVISION_OPINION_RATING_COUNT_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "COUNT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 85,
+									"oneRelationIndex": 16,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_REVISION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 19,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "RATING_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [],
+					"index": 78,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "PollRevisionOpinionRatingCount",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": false,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": false,
+							"name": "count",
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"name": "pollRevision",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"name": "rating",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 3
+							},
+							"relationTableIndex": 85,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 4
+							},
+							"relationTableIndex": 19,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "POLL_REVISION_OPINION_RATING_COUNTS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "POLL_REVISION_RATING_COUNT_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "COUNT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 85,
+									"oneRelationIndex": 6,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_REVISION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 19,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "RATING_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
 								}
 							],
 							"sinceVersion": 1,
@@ -15560,7 +15301,7 @@ export const SCHEMA = {
 					"index": 79,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollVariationOpinionCount",
+					"name": "PollRevisionRatingCount",
 					"properties": [
 						{
 							"columnRef": {
@@ -15592,9 +15333,18 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"name": "rating",
+							"relationRef": {
+								"index": 1
 							},
 							"sinceVersion": 1
 						}
@@ -15607,13 +15357,23 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 4
+							},
+							"relationTableIndex": 19,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_VARIATION_OPINION_COUNTS",
+						"name": "POLL_REVISION_RATING_COUNTS",
 						"indexes": []
 					}
 				},
@@ -15637,7 +15397,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_OPINION_RATING_COUNT_ID",
+							"name": "POLL_REVISION_VOTE_COUNT_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -15668,39 +15428,17 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
-									"oneRelationIndex": 16,
+									"oneTableIndex": 85,
+									"oneRelationIndex": 17,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 19,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "RATING_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
 								}
 							],
 							"sinceVersion": 1,
@@ -15711,7 +15449,7 @@ export const SCHEMA = {
 					"index": 80,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollVariationOpinionRatingCount",
+					"name": "PollRevisionVoteCount",
 					"properties": [
 						{
 							"columnRef": {
@@ -15743,325 +15481,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "pollVariation",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "rating",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 19,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POLL_VARIATION_OPINION_RATING_COUNTS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_RATING_COUNT_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "COUNT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
-									"oneRelationIndex": 6,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 19,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "RATING_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [],
-					"index": 81,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PollVariationRatingCount",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": false,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": false,
-							"name": "count",
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "pollVariation",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "rating",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 19,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POLL_VARIATION_RATING_COUNTS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_VOTE_COUNT_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "COUNT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
-									"oneRelationIndex": 17,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [],
-					"index": 82,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PollVariationVoteCount",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": false,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": false,
-							"name": "count",
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 0
 							},
@@ -16076,13 +15496,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_VARIATION_VOTE_COUNTS",
+						"name": "POLL_REVISION_VOTE_COUNTS",
 						"indexes": []
 					}
 				},
@@ -16154,7 +15574,7 @@ export const SCHEMA = {
 						}
 					],
 					"idColumnRefs": [],
-					"index": 83,
+					"index": 81,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Label",
@@ -16256,7 +15676,7 @@ export const SCHEMA = {
 							"index": 2,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_LABEL_ID",
+							"name": "POLL_REVISION_LABEL_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -16273,7 +15693,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 83,
+									"oneTableIndex": 81,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -16295,13 +15715,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneRelationIndex": 7,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -16318,12 +15738,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 28,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -16335,10 +15755,10 @@ export const SCHEMA = {
 						}
 					],
 					"idColumnRefs": [],
-					"index": 84,
+					"index": 82,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollVariationLabel",
+					"name": "PollRevisionLabel",
 					"properties": [
 						{
 							"columnRef": {
@@ -16379,7 +15799,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 2
 							},
@@ -16388,7 +15808,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 3
 							},
@@ -16412,853 +15832,34 @@ export const SCHEMA = {
 							"relationType": 1,
 							"propertyRef": {
 								"index": 3
-							},
-							"relationTableIndex": 83,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 5
-							},
-							"relationTableIndex": 30,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POLL_VARIATION_LABELS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_FACTOR_SKIN_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
-									"oneRelationIndex": 10,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 87,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "FACTOR_SKIN_VARIATION_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 85,
-									"oneRelationIndex": 3,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "PARENT_POLL_FACTOR_SKIN_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 1
-						}
-					],
-					"index": 85,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PollFactorSkinVariation",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": true,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"name": "pollVariation",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "factorSkinVariation",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "parent",
-							"relationRef": {
-								"index": 2
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
-							"isId": false,
-							"name": "children",
-							"relationRef": {
-								"index": 3
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 2
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 87,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 85,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "parent"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 5
-							},
-							"relationTableIndex": 85,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POLL_FACTOR_SKIN_VARIATIONS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 5,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "ACTOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "BACKGROUND_COLOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "TEXT_COLOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 54,
-									"oneRelationIndex": 10,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 6,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneRelationIndex": 3,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 6
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 7,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 3,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
-									"oneRelationIndex": 4,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "PARENT_POLL_VARIATION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 7
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 2
-						}
-					],
-					"index": 86,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PollVariation",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"name": "actor",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": true,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 3
-							},
-							"index": 3,
-							"isId": false,
-							"name": "backgroundColor",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 4
-							},
-							"index": 4,
-							"isId": false,
-							"name": "textColor",
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
-							"isId": false,
-							"name": "poll",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 6,
-							"isId": false,
-							"name": "createdAtLocationTimeFrame",
-							"relationRef": {
-								"index": 2
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 7,
-							"isId": false,
-							"name": "parent",
-							"relationRef": {
-								"index": 3
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 8,
-							"isId": false,
-							"name": "children",
-							"relationRef": {
-								"index": 4
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 9,
-							"isId": false,
-							"name": "ratings",
-							"relationRef": {
-								"index": 5
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 10,
-							"isId": false,
-							"name": "ratingCounts",
-							"relationRef": {
-								"index": 6
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 11,
-							"isId": false,
-							"name": "variationLabels",
-							"relationRef": {
-								"index": 7
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 12,
-							"isId": false,
-							"name": "pollFactorPositionVariations",
-							"relationRef": {
-								"index": 8
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 13,
-							"isId": false,
-							"name": "factors",
-							"relationRef": {
-								"index": 9
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 14,
-							"isId": false,
-							"name": "factorSkins",
-							"relationRef": {
-								"index": 10
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 15,
-							"isId": false,
-							"name": "positions",
-							"relationRef": {
-								"index": 11
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 16,
-							"isId": false,
-							"name": "chosenTranslations",
-							"relationRef": {
-								"index": 12
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 17,
-							"isId": false,
-							"name": "allTranslations",
-							"relationRef": {
-								"index": 13
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 18,
-							"isId": false,
-							"name": "opinions",
-							"relationRef": {
-								"index": 14
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 19,
-							"isId": false,
-							"name": "opinionCounts",
-							"relationRef": {
-								"index": 15
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 20,
-							"isId": false,
-							"name": "opinionRatingCounts",
-							"relationRef": {
-								"index": 16
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 21,
-							"isId": false,
-							"name": "voteCounts",
-							"relationRef": {
-								"index": 17
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 1
-							},
-							"relationTableIndex": 5,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 5
-							},
-							"relationTableIndex": 54,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 6
-							},
-							"relationTableIndex": 30,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 7
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "parent"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 8
-							},
-							"relationTableIndex": 86,
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 9
-							},
-							"relationTableIndex": 36,
-							"sinceVersion": 1
-						},
-						{
-							"index": 6,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 0,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 10
 							},
 							"relationTableIndex": 81,
 							"sinceVersion": 1
 						},
 						{
-							"index": 7,
+							"index": 2,
 							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
+							"relationType": 1,
 							"propertyRef": {
-								"index": 11
-							},
-							"relationTableIndex": 84,
-							"sinceVersion": 1
-						},
-						{
-							"index": 8,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 12
-							},
-							"relationTableIndex": 60,
-							"sinceVersion": 1
-						},
-						{
-							"index": 9,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 13
-							},
-							"relationTableIndex": 65,
-							"sinceVersion": 1
-						},
-						{
-							"index": 10,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 14
+								"index": 4
 							},
 							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
-							"index": 11,
+							"index": 3,
 							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
+							"relationType": 1,
 							"propertyRef": {
-								"index": 15
+								"index": 5
 							},
-							"relationTableIndex": 67,
-							"sinceVersion": 1
-						},
-						{
-							"index": 12,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 16
-							},
-							"relationTableIndex": 53,
-							"sinceVersion": 1
-						},
-						{
-							"index": 13,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 17
-							},
-							"relationTableIndex": 51,
-							"sinceVersion": 1
-						},
-						{
-							"index": 14,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 18
-							},
-							"relationTableIndex": 78,
-							"sinceVersion": 1
-						},
-						{
-							"index": 15,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 0,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 19
-							},
-							"relationTableIndex": 79,
-							"sinceVersion": 1
-						},
-						{
-							"index": 16,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 0,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 20
-							},
-							"relationTableIndex": 80,
-							"sinceVersion": 1
-						},
-						{
-							"index": 17,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 0,
-								"mappedBy": "pollVariation"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 21
-							},
-							"relationTableIndex": 82,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_VARIATIONS",
+						"name": "POLL_REVISION_LABELS",
 						"indexes": []
 					}
 				},
@@ -17304,7 +15905,7 @@ export const SCHEMA = {
 							"index": 2,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "FACTOR_SKIN_VARIATION_ID",
+							"name": "FACTOR_SKIN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -17349,12 +15950,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 86,
+									"oneTableIndex": 85,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_VARIATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -17371,7 +15972,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 88,
+									"oneTableIndex": 86,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -17394,13 +15995,13 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 87,
+									"oneTableIndex": 83,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_FACTOR_SKIN_VARIATION_ID",
+							"name": "PARENT_FACTOR_SKIN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -17416,10 +16017,10 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 87,
+					"index": 83,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "FactorSkinVariation",
+					"name": "FactorSkin",
 					"properties": [
 						{
 							"columnRef": {
@@ -17469,7 +16070,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "pollVariation",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -17521,7 +16122,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 86,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -17531,7 +16132,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 88,
+							"relationTableIndex": 86,
 							"sinceVersion": 1
 						},
 						{
@@ -17541,7 +16142,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 87,
+							"relationTableIndex": 83,
 							"sinceVersion": 1
 						},
 						{
@@ -17555,13 +16156,809 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 87,
+							"relationTableIndex": 83,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "FACTOR_SKIN_VARIATIONS",
+						"name": "FACTOR_SKINS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "POLL_FACTOR_SKIN_REVISION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 85,
+									"oneRelationIndex": 10,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_REVISION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 83,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "FACTOR_SKIN_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 84,
+									"oneRelationIndex": 3,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "PARENT_POLL_FACTOR_SKIN_REVISION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [
+						{
+							"index": 1
+						}
+					],
+					"index": 84,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "PollFactorSkinRevision",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": true,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"index": 2,
+							"isId": false,
+							"name": "pollRevision",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"name": "factorSkin",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"name": "parent",
+							"relationRef": {
+								"index": 2
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 5,
+							"isId": false,
+							"name": "children",
+							"relationRef": {
+								"index": 3
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 2
+							},
+							"relationTableIndex": 85,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 3
+							},
+							"relationTableIndex": 83,
+							"sinceVersion": 1
+						},
+						{
+							"index": 2,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 4
+							},
+							"relationTableIndex": 84,
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "parent"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 5
+							},
+							"relationTableIndex": 84,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "POLL_FACTOR_SKIN_REVISIONS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 5,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "ACTOR_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "POLL_REVISION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "AGE_SUITABILITY",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 52,
+									"oneRelationIndex": 10,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 5,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 28,
+									"oneRelationIndex": 2,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_RUN_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 5
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 6,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 3,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 85,
+									"oneRelationIndex": 4,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "PARENT_POLL_REVISION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 6
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [
+						{
+							"index": 2
+						}
+					],
+					"index": 85,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "PollRevision",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"name": "actor",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": true,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 3
+							},
+							"index": 3,
+							"isId": false,
+							"name": "ageSuitability",
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"name": "poll",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 5,
+							"isId": false,
+							"name": "createdAtRun",
+							"relationRef": {
+								"index": 2
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 6,
+							"isId": false,
+							"name": "parent",
+							"relationRef": {
+								"index": 3
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 7,
+							"isId": false,
+							"name": "children",
+							"relationRef": {
+								"index": 4
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 8,
+							"isId": false,
+							"name": "ratings",
+							"relationRef": {
+								"index": 5
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 9,
+							"isId": false,
+							"name": "ratingCounts",
+							"relationRef": {
+								"index": 6
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 10,
+							"isId": false,
+							"name": "revisionLabels",
+							"relationRef": {
+								"index": 7
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 11,
+							"isId": false,
+							"name": "pollFactorPositionRevisions",
+							"relationRef": {
+								"index": 8
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 12,
+							"isId": false,
+							"name": "factors",
+							"relationRef": {
+								"index": 9
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 13,
+							"isId": false,
+							"name": "factorSkins",
+							"relationRef": {
+								"index": 10
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 14,
+							"isId": false,
+							"name": "positions",
+							"relationRef": {
+								"index": 11
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 15,
+							"isId": false,
+							"name": "chosenTranslations",
+							"relationRef": {
+								"index": 12
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 16,
+							"isId": false,
+							"name": "allTranslations",
+							"relationRef": {
+								"index": 13
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 17,
+							"isId": false,
+							"name": "opinions",
+							"relationRef": {
+								"index": 14
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 18,
+							"isId": false,
+							"name": "opinionCounts",
+							"relationRef": {
+								"index": 15
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 19,
+							"isId": false,
+							"name": "opinionRatingCounts",
+							"relationRef": {
+								"index": 16
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 20,
+							"isId": false,
+							"name": "voteCounts",
+							"relationRef": {
+								"index": 17
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 1
+							},
+							"relationTableIndex": 5,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 4
+							},
+							"relationTableIndex": 52,
+							"sinceVersion": 1
+						},
+						{
+							"index": 2,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 5
+							},
+							"relationTableIndex": 28,
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 6
+							},
+							"relationTableIndex": 85,
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "parent"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 7
+							},
+							"relationTableIndex": 85,
+							"sinceVersion": 1
+						},
+						{
+							"index": 5,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 8
+							},
+							"relationTableIndex": 34,
+							"sinceVersion": 1
+						},
+						{
+							"index": 6,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 0,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 9
+							},
+							"relationTableIndex": 79,
+							"sinceVersion": 1
+						},
+						{
+							"index": 7,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 10
+							},
+							"relationTableIndex": 82,
+							"sinceVersion": 1
+						},
+						{
+							"index": 8,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 11
+							},
+							"relationTableIndex": 58,
+							"sinceVersion": 1
+						},
+						{
+							"index": 9,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 12
+							},
+							"relationTableIndex": 63,
+							"sinceVersion": 1
+						},
+						{
+							"index": 10,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 13
+							},
+							"relationTableIndex": 84,
+							"sinceVersion": 1
+						},
+						{
+							"index": 11,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 14
+							},
+							"relationTableIndex": 65,
+							"sinceVersion": 1
+						},
+						{
+							"index": 12,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 15
+							},
+							"relationTableIndex": 49,
+							"sinceVersion": 1
+						},
+						{
+							"index": 13,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 16
+							},
+							"relationTableIndex": 47,
+							"sinceVersion": 1
+						},
+						{
+							"index": 14,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 17
+							},
+							"relationTableIndex": 76,
+							"sinceVersion": 1
+						},
+						{
+							"index": 15,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 0,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 18
+							},
+							"relationTableIndex": 77,
+							"sinceVersion": 1
+						},
+						{
+							"index": 16,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 0,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 19
+							},
+							"relationTableIndex": 78,
+							"sinceVersion": 1
+						},
+						{
+							"index": 17,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 0,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 20
+							},
+							"relationTableIndex": 80,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "POLL_REVISIONS",
 						"indexes": []
 					}
 				},
@@ -17624,13 +17021,12 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 45,
-									"oneRelationIndex": 5,
+									"oneTableIndex": 85,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "PARENT_FACTOR_VARIATION_TRANSLATION_ID",
+							"name": "POLL_REVISION_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -17647,8 +17043,31 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 88,
-									"oneRelationIndex": 3,
+									"oneTableIndex": 42,
+									"oneRelationIndex": 5,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "PARENT_FACTOR_TRANSLATION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 5,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 3,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 86,
+									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -17657,7 +17076,7 @@ export const SCHEMA = {
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 4
+									"index": 5
 								}
 							],
 							"sinceVersion": 1,
@@ -17669,7 +17088,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 88,
+					"index": 86,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Factor",
@@ -17704,7 +17123,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "parentTranslation",
+							"name": "createdAtPollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -17713,7 +17132,7 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isId": false,
-							"name": "parent",
+							"name": "parentTranslation",
 							"relationRef": {
 								"index": 2
 							},
@@ -17722,7 +17141,7 @@ export const SCHEMA = {
 						{
 							"index": 5,
 							"isId": false,
-							"name": "children",
+							"name": "parent",
 							"relationRef": {
 								"index": 3
 							},
@@ -17731,7 +17150,7 @@ export const SCHEMA = {
 						{
 							"index": 6,
 							"isId": false,
-							"name": "factorPositions",
+							"name": "children",
 							"relationRef": {
 								"index": 4
 							},
@@ -17740,7 +17159,7 @@ export const SCHEMA = {
 						{
 							"index": 7,
 							"isId": false,
-							"name": "variations",
+							"name": "factorPositions",
 							"relationRef": {
 								"index": 5
 							},
@@ -17774,7 +17193,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 45,
+							"relationTableIndex": 85,
 							"sinceVersion": 1
 						},
 						{
@@ -17784,21 +17203,17 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 88,
+							"relationTableIndex": 42,
 							"sinceVersion": 1
 						},
 						{
 							"index": 3,
 							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "parent"
-							},
-							"relationType": 0,
+							"relationType": 1,
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 88,
+							"relationTableIndex": 86,
 							"sinceVersion": 1
 						},
 						{
@@ -17806,13 +17221,13 @@ export const SCHEMA = {
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "factor"
+								"mappedBy": "parent"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 89,
+							"relationTableIndex": 86,
 							"sinceVersion": 1
 						},
 						{
@@ -17826,7 +17241,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 44,
+							"relationTableIndex": 87,
 							"sinceVersion": 1
 						},
 						{
@@ -17840,7 +17255,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 87,
+							"relationTableIndex": 83,
 							"sinceVersion": 1
 						}
 					],
@@ -17909,8 +17324,8 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 88,
-									"oneRelationIndex": 4,
+									"oneTableIndex": 86,
+									"oneRelationIndex": 5,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -17932,8 +17347,8 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 47,
-									"oneRelationIndex": 4,
+									"oneTableIndex": 44,
+									"oneRelationIndex": 5,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -17954,7 +17369,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 89,
+					"index": 87,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "FactorPosition",
@@ -18023,7 +17438,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 88,
+							"relationTableIndex": 86,
 							"sinceVersion": 1
 						},
 						{
@@ -18033,7 +17448,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 47,
+							"relationTableIndex": 44,
 							"sinceVersion": 1
 						}
 					],
@@ -18108,7 +17523,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 91,
+									"oneTableIndex": 89,
 									"oneRelationIndex": 0,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -18152,7 +17567,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 90,
+					"index": 88,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "RatingReasonTranslation",
@@ -18220,7 +17635,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 91,
+							"relationTableIndex": 89,
 							"sinceVersion": 1
 						},
 						{
@@ -18276,7 +17691,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 91,
+					"index": 89,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "RatingReason",
@@ -18321,7 +17736,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 90,
+							"relationTableIndex": 88,
 							"sinceVersion": 1
 						}
 					],
@@ -18351,7 +17766,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_LTF_OPINION_COUNT_ID",
+							"name": "POLL_RUN_OPINION_COUNT_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -18382,16 +17797,335 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 28,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [],
+					"index": 90,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "PollRunOpinionCount",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": false,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": false,
+							"name": "count",
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"name": "run",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 3
+							},
+							"relationTableIndex": 28,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "POLL_RUN_OPINION_COUNTS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "POLL_RUN_OPINION_RATING_COUNT_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "COUNT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 28,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_RUN_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 19,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "RATING_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [],
+					"index": 91,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "PollRunOpinionRatingCount",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": false,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": false,
+							"name": "count",
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"name": "run",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"name": "rating",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 3
+							},
+							"relationTableIndex": 28,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 4
+							},
+							"relationTableIndex": 19,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "POLL_RUN_OPINION_RATING_COUNTS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "POLL_RUN_RATING_COUNT_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "COUNT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 28,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POLL_RUN_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 19,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "RATING_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 4
 								}
 							],
 							"sinceVersion": 1,
@@ -18402,7 +18136,7 @@ export const SCHEMA = {
 					"index": 92,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollLTFOpinionCount",
+					"name": "PollRunRatingCount",
 					"properties": [
 						{
 							"columnRef": {
@@ -18434,9 +18168,18 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
+							"isId": false,
+							"name": "rating",
+							"relationRef": {
+								"index": 1
 							},
 							"sinceVersion": 1
 						}
@@ -18449,13 +18192,23 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 4
+							},
+							"relationTableIndex": 19,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_LTF_OPINION_COUNTS",
+						"name": "POLL_RUN_RATING_COUNTS",
 						"indexes": []
 					}
 				},
@@ -18479,7 +18232,7 @@ export const SCHEMA = {
 							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
-							"name": "POLL_LTF_OPINION_RATING_COUNT_ID",
+							"name": "POLL_RUN_VOTE_COUNT_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -18510,38 +18263,16 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 28,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
+							"name": "POLL_RUN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 19,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "RATING_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
 								}
 							],
 							"sinceVersion": 1,
@@ -18552,7 +18283,7 @@ export const SCHEMA = {
 					"index": 93,
 					"isLocal": true,
 					"isRepositoryEntity": false,
-					"name": "PollLTFOpinionRatingCount",
+					"name": "PollRunVoteCount",
 					"properties": [
 						{
 							"columnRef": {
@@ -18584,323 +18315,7 @@ export const SCHEMA = {
 						{
 							"index": 3,
 							"isId": false,
-							"name": "locationTimeFrame",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "rating",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 30,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 19,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POLL_LTF_OPINION_RATING_COUNTS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_LTF_RATING_COUNT_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "COUNT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 19,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "RATING_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [],
-					"index": 94,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PollLTFRatingCount",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": false,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": false,
-							"name": "count",
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "locationTimeFrame",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"name": "rating",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 3
-							},
-							"relationTableIndex": 30,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 4
-							},
-							"relationTableIndex": 19,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "POLL_LTF_RATING_COUNTS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_LTF_VOTE_COUNT_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "COUNT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_LOCATION_TIME_FRAME_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [],
-					"index": 95,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "PollLTFVoteCount",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": false,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": false,
-							"name": "count",
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"name": "locationTimeFrame",
+							"name": "run",
 							"relationRef": {
 								"index": 0
 							},
@@ -18915,13 +18330,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POLL_LTF_VOTE_COUNTS",
+						"name": "POLL_RUN_VOTE_COUNTS",
 						"indexes": []
 					}
 				},
@@ -18976,7 +18391,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 97,
+									"oneTableIndex": 95,
 									"oneRelationIndex": 0,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -19016,7 +18431,7 @@ export const SCHEMA = {
 						}
 					],
 					"idColumnRefs": [],
-					"index": 96,
+					"index": 94,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "LabelTranslationRatingCount",
@@ -19075,7 +18490,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 97,
+							"relationTableIndex": 95,
 							"sinceVersion": 1
 						},
 						{
@@ -19141,7 +18556,7 @@ export const SCHEMA = {
 						}
 					],
 					"idColumnRefs": [],
-					"index": 97,
+					"index": 95,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "LabelTranslation",
@@ -19195,7 +18610,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 96,
+							"relationTableIndex": 94,
 							"sinceVersion": 1
 						}
 					],
@@ -19278,7 +18693,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 97,
+									"oneTableIndex": 95,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -19322,7 +18737,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 98,
+									"oneTableIndex": 96,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -19344,7 +18759,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 98,
+					"index": 96,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "LabelTranslationRating",
@@ -19440,7 +18855,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 97,
+							"relationTableIndex": 95,
 							"sinceVersion": 1
 						},
 						{
@@ -19460,7 +18875,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 98,
+							"relationTableIndex": 96,
 							"sinceVersion": 1
 						},
 						{
@@ -19474,7 +18889,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 98,
+							"relationTableIndex": 96,
 							"sinceVersion": 1
 						}
 					],

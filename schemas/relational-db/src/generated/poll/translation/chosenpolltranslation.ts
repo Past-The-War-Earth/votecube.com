@@ -1,12 +1,12 @@
 import {
 	ISystemGeneratedRow,
-} from '../../infrastructure/systemgeneratedrow';
+} from '../../infrastructure/row/systemgeneratedrow';
 import {
 	IPoll,
 } from '../poll';
 import {
-	IPollVariation,
-} from '../variation/pollvariation';
+	IPollRevision,
+} from '../revision/pollrevision';
 import {
 	ILanguage,
 } from '../../infrastructure/language';
@@ -14,8 +14,8 @@ import {
 	IChosenPollTranslationType,
 } from './chosenpolltranslationtype';
 import {
-	IPollVariationTranslation,
-} from '../variation/translation/pollvariationtranslation';
+	IPollRevisionTranslation,
+} from '../revision/translation/pollrevisiontranslation';
 
 
 
@@ -34,10 +34,10 @@ export interface IChosenPollTranslation extends ISystemGeneratedRow {
 
 	// Non-Id Relations
 	poll?: IPoll;
-	pollVariation?: IPollVariation;
+	pollRevision?: IPollRevision;
 	language?: ILanguage;
 	type?: IChosenPollTranslationType;
-	variationTranslation?: IPollVariationTranslation[];
+	revisionTranslation?: IPollRevisionTranslation[];
 
 	// Transient Properties
 

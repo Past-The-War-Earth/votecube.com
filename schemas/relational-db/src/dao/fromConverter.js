@@ -66,7 +66,7 @@ export function fromPollListingDoc(
 	}
 
 	const uiObject            = fromListingDoc(dbObject)
-	uiObject.rootVariationKey = dbObject.rootVariationKey
+	uiObject.rootVariationId = dbObject.rootVariationId
 
 	return uiObject
 }
@@ -93,7 +93,7 @@ export function copyVariationProperties(
 	uiObject.depth   = dbObject.depth
 	uiObject.parent  = dbObject.parent
 	uiObject.path    = dbObject.path
-	uiObject.pollKey = dbObject.pollKey
+	uiObject.pollId = dbObject.pollId
 }
 
 export function copyDbProperties(
@@ -102,7 +102,7 @@ export function copyDbProperties(
 ) {
 	uiObject.createdAt = dbObject.createdAt
 	uiObject.key       = dbObject.key
-	uiObject.userKey   = dbObject.userKey
+	uiObject.userId   = dbObject.userId
 }
 
 function fromListingDoc(

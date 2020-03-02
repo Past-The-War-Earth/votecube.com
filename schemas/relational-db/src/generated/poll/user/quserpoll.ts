@@ -30,7 +30,7 @@ import {
 	QMutableActorRowQId,
 	QMutableActorRowQRelation,
 	QMutableActorRow,
-} from '../../infrastructure/qmutableactorrow';
+} from '../../infrastructure/row/qmutableactorrow';
 import {
 	PollECascadeGraph,
 	PollEId,
@@ -42,25 +42,25 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	PollVariationECascadeGraph,
-	PollVariationEId,
-	PollVariationEOptionalId,
-	PollVariationEUpdateProperties,
-	PollVariationESelect,
-	QPollVariation,
-	QPollVariationQId,
-	QPollVariationQRelation,
-} from '../variation/qpollvariation';
+	PollRevisionECascadeGraph,
+	PollRevisionEId,
+	PollRevisionEOptionalId,
+	PollRevisionEUpdateProperties,
+	PollRevisionESelect,
+	QPollRevision,
+	QPollRevisionQId,
+	QPollRevisionQRelation,
+} from '../revision/qpollrevision';
 import {
-	UserPollVariationECascadeGraph,
-	UserPollVariationEId,
-	UserPollVariationEOptionalId,
-	UserPollVariationEUpdateProperties,
-	UserPollVariationESelect,
-	QUserPollVariation,
-	QUserPollVariationQId,
-	QUserPollVariationQRelation,
-} from './quserpollvariation';
+	UserPollRevisionECascadeGraph,
+	UserPollRevisionEId,
+	UserPollRevisionEOptionalId,
+	UserPollRevisionEUpdateProperties,
+	UserPollRevisionESelect,
+	QUserPollRevision,
+	QUserPollRevisionQId,
+	QUserPollRevisionQRelation,
+} from './quserpollrevision';
 import {
 	UserPollRatingECascadeGraph,
 	UserPollRatingEId,
@@ -92,8 +92,8 @@ export interface UserPollESelect
 
   // Non-Id relations (including OneToMany's)
 	poll?: PollESelect;
-	pinnedVariation?: PollVariationESelect;
-	userPollVariations?: UserPollVariationESelect;
+	pinnedRevision?: PollRevisionESelect;
+	userPollRevisions?: UserPollRevisionESelect;
 	ratings?: UserPollRatingESelect;
 
 }
@@ -131,7 +131,7 @@ export interface UserPollEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	poll?: PollEOptionalId;
-	pinnedVariation?: PollVariationEOptionalId;
+	pinnedRevision?: PollRevisionEOptionalId;
 
 }
 
@@ -141,7 +141,7 @@ export interface UserPollEUpdateProperties
 export interface UserPollECascadeGraph
 	extends MutableActorRowECascadeGraph {
 	// Cascading Relations
-	userPollVariations?: UserPollVariationECascadeGraph;
+	userPollRevisions?: UserPollRevisionECascadeGraph;
 	ratings?: UserPollRatingECascadeGraph;
 
 }
@@ -157,7 +157,7 @@ export interface UserPollEUpdateColumns
 	UPDATED_AT?: Date | IQDateField;
 	USER_POLL_PINNED_EXPLICITLY?: boolean | IQBooleanField;
 	POLL_ID?: number | IQNumberField;
-	POLL_VARIATION_ID?: number | IQNumberField;
+	POLL_REVISION_ID?: number | IQNumberField;
 
 }
 
@@ -197,8 +197,8 @@ export interface QUserPoll extends QMutableActorRow
 
 	// Non-Id Relations
 	poll: QPollQRelation;
-	pinnedVariation: QPollVariationQRelation;
-	userPollVariations: IQOneToManyRelation<QUserPollVariation>;
+	pinnedRevision: QPollRevisionQRelation;
+	userPollRevisions: IQOneToManyRelation<QUserPollRevision>;
 	ratings: IQOneToManyRelation<QUserPollRating>;
 
 }

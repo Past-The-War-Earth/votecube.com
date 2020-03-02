@@ -32,15 +32,15 @@ import {
 	QPollOpinionVersionQRelation,
 } from './qpollopinionversion';
 import {
-	PollFactorVariationECascadeGraph,
-	PollFactorVariationEId,
-	PollFactorVariationEOptionalId,
-	PollFactorVariationEUpdateProperties,
-	PollFactorVariationESelect,
-	QPollFactorVariation,
-	QPollFactorVariationQId,
-	QPollFactorVariationQRelation,
-} from '../poll/variation/structure/qpollfactorvariation';
+	PollFactorRevisionECascadeGraph,
+	PollFactorRevisionEId,
+	PollFactorRevisionEOptionalId,
+	PollFactorRevisionEUpdateProperties,
+	PollFactorRevisionESelect,
+	QPollFactorRevision,
+	QPollFactorRevisionQId,
+	QPollFactorRevisionQRelation,
+} from '../poll/revision/structure/qpollfactorrevision';
 import {
 	LanguageECascadeGraph,
 	LanguageEId,
@@ -111,7 +111,7 @@ export interface FactorOpinionVersionESelect
 
   // Non-Id relations (including OneToMany's)
 	pollOpinionVersion?: PollOpinionVersionESelect;
-	pollFactorVariation?: PollFactorVariationESelect;
+	pollFactorRevision?: PollFactorRevisionESelect;
 	language?: LanguageESelect;
 	ratings?: FactorOpinionVersionRatingESelect;
 	translations?: FactorOpinionVersionTranslationESelect;
@@ -152,7 +152,7 @@ export interface FactorOpinionVersionEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	pollOpinionVersion?: PollOpinionVersionEOptionalId;
-	pollFactorVariation?: PollFactorVariationEOptionalId;
+	pollFactorRevision?: PollFactorRevisionEOptionalId;
 	language?: LanguageEOptionalId;
 
 }
@@ -177,7 +177,7 @@ export interface FactorOpinionVersionEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	POLL_OPINION_VERSION_ID?: number | IQNumberField;
-	POLL_FACTOR_VARIATION_ID?: number | IQNumberField;
+	POLL_FACTOR_REVISION_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;
 
 }
@@ -217,7 +217,7 @@ export interface QFactorOpinionVersion extends IQEntity
 
 	// Non-Id Relations
 	pollOpinionVersion: QPollOpinionVersionQRelation;
-	pollFactorVariation: QPollFactorVariationQRelation;
+	pollFactorRevision: QPollFactorRevisionQRelation;
 	language: QLanguageQRelation;
 	ratings: IQOneToManyRelation<QFactorOpinionVersionRating>;
 	translations: IQOneToManyRelation<QFactorOpinionVersionTranslation>;

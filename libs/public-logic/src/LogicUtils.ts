@@ -196,7 +196,7 @@ export class LogicUtils
 		from,
 		to,
 		delta,
-		excludeKeys: string[] = ['createdAt', 'key', 'marks', 'path', 'userKey']
+		excludeKeys: string[] = ['createdAt', 'id', 'marks', 'path', 'userId']
 	): void {
 		if (!from) {
 			return

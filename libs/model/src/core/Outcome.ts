@@ -4,7 +4,7 @@ import {
 	IsData,
 	IsDelta,
 	IsDoc,
-	Key
+	Id
 } from './common'
 import {
 	ICoreAgeSuitabilityTracked,
@@ -12,7 +12,7 @@ import {
 }                     from './DocumentValue'
 import {IUserCreated} from './User'
 
-export type Outcome_Key = Key
+export type Outcome_Id = Id
 export type Outcome_Name = string
 export type Outcome_Ordinal = 'A' | 'B'
 
@@ -20,7 +20,7 @@ export interface ICoreOutcome<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,
 	        ICoreOutcomeFromForm<Doc>,
 	        IFullTextSearch,
-	        IUserCreated<Outcome_Key> {
+	        IUserCreated<Outcome_Id> {
 
 	name: Doc extends IsDoc ? IDocumentValue<Outcome_Name> :
 		Doc extends IsDelta ? boolean : Outcome_Name

@@ -18,8 +18,8 @@ export async function init() {
 }
 
 export async function setupCubeView(
-	pollKey,
-	pollVariationKey,
+	pollId,
+	pollVariationId,
 	cubeLogic,
 	cubeEventListener,
 	container
@@ -29,14 +29,14 @@ export async function setupCubeView(
 	      ] = await container.get(
 		MUTATION_API, POLL_MANAGER, VOTE_DAO)
 
-	const vote = await voteDao.findMyVoteForPoll(pollKey)
+	const vote = await voteDao.findMyVoteForPoll(pollId)
 
 	// if (!vote) {
 	// 	navigateToPage(POLL_FORM)
 	// 	return
 	// }
 
-	const poll = await pollManager.getVariation(pollKey, pollVariationKey)
+	const poll = await pollManager.getVariation(pollId, pollVariationId)
 
 	cubeEventListener.setPositionData(vote)
 	await mutationApi.recompute()

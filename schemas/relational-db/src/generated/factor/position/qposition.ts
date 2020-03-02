@@ -30,17 +30,27 @@ import {
 	QImmutableActorRowQId,
 	QImmutableActorRowQRelation,
 	QImmutableActorRow,
-} from '../../infrastructure/qimmutableactorrow';
+} from '../../infrastructure/row/qimmutableactorrow';
 import {
-	PositionVariationTranslationECascadeGraph,
-	PositionVariationTranslationEId,
-	PositionVariationTranslationEOptionalId,
-	PositionVariationTranslationEUpdateProperties,
-	PositionVariationTranslationESelect,
-	QPositionVariationTranslation,
-	QPositionVariationTranslationQId,
-	QPositionVariationTranslationQRelation,
-} from './qpositionvariationtranslation';
+	PollRevisionECascadeGraph,
+	PollRevisionEId,
+	PollRevisionEOptionalId,
+	PollRevisionEUpdateProperties,
+	PollRevisionESelect,
+	QPollRevision,
+	QPollRevisionQId,
+	QPollRevisionQRelation,
+} from '../../poll/revision/qpollrevision';
+import {
+	PositionTranslationECascadeGraph,
+	PositionTranslationEId,
+	PositionTranslationEOptionalId,
+	PositionTranslationEUpdateProperties,
+	PositionTranslationESelect,
+	QPositionTranslation,
+	QPositionTranslationQId,
+	QPositionTranslationQRelation,
+} from './qpositiontranslation';
 import {
 	FactorPositionECascadeGraph,
 	FactorPositionEId,
@@ -51,16 +61,6 @@ import {
 	QFactorPositionQId,
 	QFactorPositionQRelation,
 } from './qfactorposition';
-import {
-	PositionVariationECascadeGraph,
-	PositionVariationEId,
-	PositionVariationEOptionalId,
-	PositionVariationEUpdateProperties,
-	PositionVariationESelect,
-	QPositionVariation,
-	QPositionVariationQId,
-	QPositionVariationQRelation,
-} from './qpositionvariation';
 
 
 declare function require(moduleName: string): any;
@@ -80,11 +80,12 @@ export interface PositionESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	parentTranslation?: PositionVariationTranslationESelect;
+	createdAtPollRevision?: PollRevisionESelect;
+	parentTranslation?: PositionTranslationESelect;
 	parent?: PositionESelect;
 	children?: PositionESelect;
 	factorPositions?: FactorPositionESelect;
-	variations?: PositionVariationESelect;
+	translations?: PositionTranslationESelect;
 
 }
 
@@ -119,7 +120,8 @@ export interface PositionEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	parentTranslation?: PositionVariationTranslationEOptionalId;
+	createdAtPollRevision?: PollRevisionEOptionalId;
+	parentTranslation?: PositionTranslationEOptionalId;
 	parent?: PositionEOptionalId;
 
 }
@@ -132,7 +134,7 @@ export interface PositionECascadeGraph
 	// Cascading Relations
 	children?: PositionECascadeGraph;
 	factorPositions?: FactorPositionECascadeGraph;
-	variations?: PositionVariationECascadeGraph;
+	translations?: PositionTranslationECascadeGraph;
 
 }
 
@@ -144,7 +146,8 @@ export interface PositionEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
-	PARENT_POSITION_VARIATION_TRANSLATION_ID?: number | IQNumberField;
+	POLL_REVISION_ID?: number | IQNumberField;
+	PARENT_POSITION_TRANSLATION_ID?: number | IQNumberField;
 	PARENT_POSITION_ID?: number | IQNumberField;
 
 }
@@ -183,11 +186,12 @@ export interface QPosition extends QImmutableActorRow
 	// Non-Id Fields
 
 	// Non-Id Relations
-	parentTranslation: QPositionVariationTranslationQRelation;
+	createdAtPollRevision: QPollRevisionQRelation;
+	parentTranslation: QPositionTranslationQRelation;
 	parent: QPositionQRelation;
 	children: IQOneToManyRelation<QPosition>;
 	factorPositions: IQOneToManyRelation<QFactorPosition>;
-	variations: IQOneToManyRelation<QPositionVariation>;
+	translations: IQOneToManyRelation<QPositionTranslation>;
 
 }
 

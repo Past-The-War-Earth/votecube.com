@@ -30,7 +30,7 @@ import {
 	QImmutableActorRowQId,
 	QImmutableActorRowQRelation,
 	QImmutableActorRow,
-} from '../infrastructure/qimmutableactorrow';
+} from '../infrastructure/row/qimmutableactorrow';
 import {
 	ActorECascadeGraph,
 	ActorEId,
@@ -52,25 +52,25 @@ import {
 	QPollQRelation,
 } from '../poll/qpoll';
 import {
-	ChosenVoteVariationECascadeGraph,
-	ChosenVoteVariationEId,
-	ChosenVoteVariationEOptionalId,
-	ChosenVoteVariationEUpdateProperties,
-	ChosenVoteVariationESelect,
-	QChosenVoteVariation,
-	QChosenVoteVariationQId,
-	QChosenVoteVariationQRelation,
-} from './qchosenvotevariation';
+	ChosenVoteRevisionECascadeGraph,
+	ChosenVoteRevisionEId,
+	ChosenVoteRevisionEOptionalId,
+	ChosenVoteRevisionEUpdateProperties,
+	ChosenVoteRevisionESelect,
+	QChosenVoteRevision,
+	QChosenVoteRevisionQId,
+	QChosenVoteRevisionQRelation,
+} from './qchosenvoterevision';
 import {
-	VoteVariationECascadeGraph,
-	VoteVariationEId,
-	VoteVariationEOptionalId,
-	VoteVariationEUpdateProperties,
-	VoteVariationESelect,
-	QVoteVariation,
-	QVoteVariationQId,
-	QVoteVariationQRelation,
-} from './qvotevariation';
+	VoteRevisionECascadeGraph,
+	VoteRevisionEId,
+	VoteRevisionEOptionalId,
+	VoteRevisionEUpdateProperties,
+	VoteRevisionESelect,
+	QVoteRevision,
+	QVoteRevisionQId,
+	QVoteRevisionQRelation,
+} from './qvoterevision';
 
 
 declare function require(moduleName: string): any;
@@ -93,8 +93,8 @@ export interface VoteESelect
   // Non-Id relations (including OneToMany's)
 	actor?: ActorESelect;
 	poll?: PollESelect;
-	chosenVariations?: ChosenVoteVariationESelect;
-	variations?: VoteVariationESelect;
+	chosenRevisions?: ChosenVoteRevisionESelect;
+	revisions?: VoteRevisionESelect;
 
 }
 
@@ -141,8 +141,8 @@ export interface VoteEUpdateProperties
 export interface VoteECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
-	chosenVariations?: ChosenVoteVariationECascadeGraph;
-	variations?: VoteVariationECascadeGraph;
+	chosenRevisions?: ChosenVoteRevisionECascadeGraph;
+	revisions?: VoteRevisionECascadeGraph;
 
 }
 
@@ -196,8 +196,8 @@ export interface QVote extends QImmutableActorRow
 	// Non-Id Relations
 	actor: QActorQRelation;
 	poll: QPollQRelation;
-	chosenVariations: IQOneToManyRelation<QChosenVoteVariation>;
-	variations: IQOneToManyRelation<QVoteVariation>;
+	chosenRevisions: IQOneToManyRelation<QChosenVoteRevision>;
+	revisions: IQOneToManyRelation<QVoteRevision>;
 
 }
 

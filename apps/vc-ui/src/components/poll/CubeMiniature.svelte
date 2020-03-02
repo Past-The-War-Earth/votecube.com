@@ -13,7 +13,7 @@
 		onDestroy,
 		onMount
 	}                      from 'svelte'
-	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
+	import CharacterButton from '../common/control/button/CharacterButton.svelte'
 
 	export let cubeSides
 	export let delta

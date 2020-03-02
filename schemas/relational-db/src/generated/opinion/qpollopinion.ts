@@ -30,7 +30,7 @@ import {
 	QMutableActorRowQId,
 	QMutableActorRowQRelation,
 	QMutableActorRow,
-} from '../infrastructure/qmutableactorrow';
+} from '../infrastructure/row/qmutableactorrow';
 import {
 	PollECascadeGraph,
 	PollEId,

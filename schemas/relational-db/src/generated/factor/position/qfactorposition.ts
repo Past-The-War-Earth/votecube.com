@@ -30,7 +30,7 @@ import {
 	QImmutableActorRowQId,
 	QImmutableActorRowQRelation,
 	QImmutableActorRow,
-} from '../../infrastructure/qimmutableactorrow';
+} from '../../infrastructure/row/qimmutableactorrow';
 import {
 	FactorECascadeGraph,
 	FactorEId,

@@ -1,0 +1,2 @@
+export type PollRevisionTranslationOpinionCount_Id = number
+export type PollRevisionTranslationOpinionCount_Count = number

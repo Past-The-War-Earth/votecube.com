@@ -1,5 +1,5 @@
-import {get}     from '../../common/ajax'
-import {HASH}    from '../../helpers/hash'
+import {get}     from '../helpers/ajax'
+import {HASH}    from '../helpers/hash'
 import {setText} from './setText'
 
 export var loadUi = async (

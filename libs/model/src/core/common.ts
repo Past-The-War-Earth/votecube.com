@@ -1,4 +1,4 @@
-export type Key = string
+export type Id = number
 
 export type AgeSuitability = number
 
@@ -13,16 +13,16 @@ export type IsFromForm = true
 export type IsNotFromForm = false
 export type FromForm = IsFromForm | IsNotFromForm
 
-export interface IKeyed<K extends Key> {
+export interface IIdentified<K extends Id> {
 
-	key: K
+	id: K
 
 }
 
 export type Doc_Depth = number
 
 /*
-export interface IParent<K extends Key> {
+export interface IParent<K extends Id> {
 
 	depth: Doc_Depth
 	key: K

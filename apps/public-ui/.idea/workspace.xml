@@ -2,124 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="additional layout adjustments for desktop and text fixes">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/vc-ui.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/.idea/webResources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/AgeSuitability.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/Fab.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/LinearPositionPicker.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/PercentPicker.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/AddRemoveButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/AlignmentButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/AlterButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/BellCurveButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/BuildButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/CancelButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/CharacterButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/DescribedButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/EditButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/EnterButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/FactorButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/FactorInfoButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/FilterButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/LeftButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/ManualOverwriteButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/MoveButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/OpinionButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/OutcomeButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/PreviewButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/RankingsButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/RightButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/SaveButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/ShieldButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/SortButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/SwitchPositionButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/UndescribedButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/VariationTreeButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/control/button/VoteButton.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/AutoComplete.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Block.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/ColorPicker.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/DatePicker.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/IconBlock.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/MultiSelect.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Radio.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Select.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Text.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/TextArea.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/field/Toggle.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/ArrowLeftIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/ArrowRightIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/CalendarIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/ClearIcon.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/InfoIcon.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/LinkIcon.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/LocationIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/TargetIcon.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/TimeIcon.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/icon/UndoIcon.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/shell/ActionPopover.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/shell/Popover.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/common/shell/TextToast.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/factor/SelectionBlock.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/CubeMiniature.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/DetailedCube.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/FactorRanking.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/Outcomes.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/PollFab.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/PollListFab.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/create/Positioner.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/variation/VariationListFab.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/SignIn.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/menu/Menu.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/menu/MenuItem.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/top/TopBar.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/shell/top/TopBarHeader.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/vote/VoteComponentGraph.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/components/vote/VoteComponentSummary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/colors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/database.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/form/cache.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/form/forms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/forms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/helpers/ajax.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/helpers/cube.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/helpers/hash.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/helpers/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/locations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/colors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/locations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/setText.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/ui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/libs/watch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/styles/global.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/src/styles/votecube.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/static/data/colors.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/static/data/locations.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/static/text/en-us/colors.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/static/text/en-us/locations.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vc-ui/static/text/en-us/ui.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../schemas/public-db/src/conveter/PollVariationConveter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/hash.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/hash.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vc-ui/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vc-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/Nav.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/AgeSuitability.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/components/AgeSuitability.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/poll/CubeMiniature.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/CubeMiniature.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/poll/DetailedCube.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/DetailedCube.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/poll/FactorRanking.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/FactorRanking.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/poll/Outcomes.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/Outcomes.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/poll/PollFab.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/PollFab.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/poll/PollListFab.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/components/poll/PollListFab.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/components/vote/VoteComponentGraph.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/components/vote/VoteComponentGraph.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/libs/colors.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/colors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/libs/form/cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/form/cache.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/libs/locations.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/locations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/libs/text/colors.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/colors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/libs/text/locations.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/locations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/libs/text/ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/text/ui.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/_layout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/forum/[pollId]/[pollName].svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/forum/[pollId]/[pollName].svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/[pollId]/[pollName].svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/[pollId]/[pollName].svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/create.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/create.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vc-ui/src/shared/dataApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/shared/dataApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vc-ui/src/shared/deserializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/libs/shared/deserializer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vc-ui/static/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/static/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vc-ui/static/great-success.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/config/rush/shrinkwrap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libs/public-logic/src/Routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/public-logic/src/Routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/dao/DbUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/dao/DbUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/dao/poll/PollDao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/dao/poll/PollDao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tsconfig.core.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../tsconfig.core.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

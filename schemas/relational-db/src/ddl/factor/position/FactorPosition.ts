@@ -13,12 +13,7 @@ import {Factor}            from '../Factor'
 import {Position}          from './Position'
 
 /**
- * This is done at Factor + Position level (vs FactorVariation & PositionVariation)
- * because the underlying relationship between Factor and Position does not change
- * with variations.
- *
- * Essentially this just says which positions belong to which factors.  Which
- * variations is determined at PollVariation level (not PollFactorPositionVariation)
+ * Which positions belong to which factors.
  */
 @Entity()
 @Table({name: 'FACTOR_POSITIONS'})

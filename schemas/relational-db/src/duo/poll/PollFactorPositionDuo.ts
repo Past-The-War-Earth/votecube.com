@@ -1,5 +1,5 @@
 import {DI}                       from '@airport/di'
-import {POLL_FACTOR_POSITION_DUO} from '../../diTokens'
+import {POLL_FACTOR_POSITION_DUO} from '../../tokens'
 import {
 	BasePollFactorPositionDuo,
 	IBasePollFactorPositionDuo

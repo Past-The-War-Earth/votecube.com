@@ -1,6 +1,6 @@
 import {
 	ISystemGeneratedRow,
-} from '../infrastructure/systemgeneratedrow';
+} from '../infrastructure/row/systemgeneratedrow';
 import {
 	ICounty,
 } from './county';

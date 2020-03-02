@@ -1,6 +1,6 @@
 import {
 	ISystemGeneratedRow,
-} from '../systemgeneratedrow';
+} from '../row/systemgeneratedrow';
 
 
 

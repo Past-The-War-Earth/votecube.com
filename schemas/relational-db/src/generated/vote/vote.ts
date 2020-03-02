@@ -1,6 +1,6 @@
 import {
 	IImmutableActorRow,
-} from '../infrastructure/immutableactorrow';
+} from '../infrastructure/row/immutableactorrow';
 import {
 	IActor,
 } from '../user/actor';
@@ -8,11 +8,11 @@ import {
 	IPoll,
 } from '../poll/poll';
 import {
-	IChosenVoteVariation,
-} from './chosenvotevariation';
+	IChosenVoteRevision,
+} from './chosenvoterevision';
 import {
-	IVoteVariation,
-} from './votevariation';
+	IVoteRevision,
+} from './voterevision';
 
 
 
@@ -33,8 +33,8 @@ export interface IVote extends IImmutableActorRow {
 	// Non-Id Relations
 	actor?: IActor;
 	poll?: IPoll;
-	chosenVariations?: IChosenVoteVariation[];
-	variations?: IVoteVariation[];
+	chosenRevisions?: IChosenVoteRevision[];
+	revisions?: IVoteRevision[];
 
 	// Transient Properties
 

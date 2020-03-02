@@ -7,12 +7,14 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                                    from '@airport/air-control'
-import {VoteFactor_Value}            from '@votecube/model'
-import {VoteFactor_Id}               from '../../types/vote/VoteFactor'
-import {PollFactorPositionVariation} from '../poll/variation/structure/PollFactorPositionVariation'
-import {VoteFactorType}              from './VoteFactorType'
-import {VoteVariation}               from './VoteVariation'
+}                                   from '@airport/air-control'
+import {
+	VoteFactor_Id,
+	VoteFactor_Value
+}                                   from '../../types/vote/VoteFactor'
+import {PollFactorPositionRevision} from '../poll/revision/structure/PollFactorPositionRevision'
+import {VoteFactorType}             from './VoteFactorType'
+import {VoteRevision}               from './VoteRevision'
 
 @Entity()
 @Table({name: 'VOTE_FACTORS'})
@@ -24,16 +26,16 @@ export class VoteFactor {
 	id: VoteFactor_Id
 
 	@ManyToOne()
-	@JoinColumn({name: 'VOTE_VARIATION_ID', nullable: false})
-	voteVariation: VoteVariation
+	@JoinColumn({name: 'VOTE_REVISION_ID', nullable: false})
+	voteRevision: VoteRevision
 
 	@Column({name: 'SHARE', nullable: false})
 	@DbString()
 	share: VoteFactor_Value
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_FACTOR_POSITION_VARIATION_ID', nullable: false})
-	pollFactorPos: PollFactorPositionVariation
+	@JoinColumn({name: 'POLL_FACTOR_POSITION_REVISION_ID', nullable: false})
+	pollFactorPos: PollFactorPositionRevision
 
 	@ManyToOne()
 	@JoinColumn({name: 'VOTE_FACTOR_TYPE_ID', nullable: false})

@@ -30,7 +30,7 @@ import {
 	QSystemGeneratedRowQId,
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
-} from '../qsystemgeneratedrow';
+} from '../row/qsystemgeneratedrow';
 import {
 	RatingReasonTranslationECascadeGraph,
 	RatingReasonTranslationEId,

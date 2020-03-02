@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@types/elasticlunr": "^0.9.x",
-    "tslint": "^5.14.0",
-    "typescript": "^3.3.3333"
+    "tslint": "^5.20.1",
+    "typescript": "^3.8.2"
   }
 }

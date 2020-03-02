@@ -26,15 +26,13 @@
 		textToast,
 		user,
 		VARIATION_LIST
-	}                    from '@votecube/public-logic'
+	}               from '@votecube/public-logic'
 	import {
 		onDestroy,
 		onMount
-	}                    from 'svelte'
-	import {get}         from 'svelte/store'
-	import {loadUi}      from './libs/text/ui'
-	import Menu          from '../components/shell/menu/Menu.svelte'
-	import TopBar        from '../components/shell/top/TopBar.svelte'
+	}               from 'svelte'
+	import {get}    from 'svelte/store'
+	import {loadUi} from '../libs/text/ui'
 	/*
 	import AboutUs       from './pages/AboutUs.svelte'
 	import FactorMain    from './pages/factor/info/FactorMain.svelte'
@@ -76,13 +74,13 @@
 	}
 
 	function handleResize(
-			event
+		event
 	) {
 		scheduleToResize()
 	}
 
 	function selectMenu(
-			menuItem
+		menuItem
 	) {
 		// navigateToPage(menuItem.key, menuItem.params)
 		showMainMenu.toggle()
@@ -96,13 +94,13 @@
 	}
 
 	function setPageComp(
-			pageComp
+		pageComp
 	) {
 		PageComp = pageComp
 	}
 
 	function setViewType(
-			view
+		view
 	) {
 		navigateToPage(view.type, view.params)
 	}
@@ -147,20 +145,20 @@
 		])
 
 		routes.setupRoutes(pageMap,
-				setPageComp,
-				ABOUT, POLL_LIST
+			setPageComp,
+			ABOUT, POLL_LIST
 		)
 
 		startResizeInterval()
 
 		textToastUnsubscribe = textToast.subscribe(
-				value => {
-					lastTextToast = value
-					showTextToast = true
-					setTimeout(() => {
-						showTextToast = false
-					}, value.seconds * 1000)
-				})
+			value => {
+				lastTextToast = value
+				showTextToast = true
+				setTimeout(() => {
+					showTextToast = false
+				}, value.seconds * 1000)
+			})
 
 		const [auth, _] = await Promise.all([
 			APP_CONTAINER.get(AUTH),
@@ -172,15 +170,15 @@
 		const userChanges$ = await auth.reactToUser()
 
 		userChanges$.subscribe(
-				authUser => {
-					const theCurrentPage = get(currentPage)
-					if (!authUser && theCurrentPage && theCurrentPage.authenticated) {
-						navigateToPage(POLL_LIST)
-					}
+			authUser => {
+				const theCurrentPage = get(currentPage)
+				if (!authUser && theCurrentPage && theCurrentPage.authenticated) {
+					navigateToPage(POLL_LIST)
+				}
 
-					user.set(authUser)
-					authChecked.set(true)
-				})
+				user.set(authUser)
+				authChecked.set(true)
+			})
 	})
 
 	onDestroy(() => {
@@ -189,82 +187,82 @@
 </script>
 
 <style>
-	@media (min-width: 62em) {
-		#main {
-			margin: 1em 23%;
-			width: 54%;
-		}
-	}
+    @media (min-width: 62em) {
+        #main {
+            margin: 1em 23%;
+            width: 54%;
+        }
+    }
 
-	div {
-		color: white;
-		background: #191818;
-		height: 44px;
-		line-height: 44px;
-		position: fixed;
-		text-align: center;
-		top: 0px;
-		vertical-align: middle;
-		width: 160px;
-		z-index: 1200;
-	}
+    div {
+        color: white;
+        background: #191818;
+        height: 44px;
+        line-height: 44px;
+        position: fixed;
+        text-align: center;
+        top: 0px;
+        vertical-align: middle;
+        width: 160px;
+        z-index: 1200;
+    }
 
-	article {
-		overflow-y: auto;
-		overflow-x: hidden;
-	}
+    article {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-	article.noOverflow {
-		overflow: initial;
-	}
+    article.noOverflow {
+        overflow: initial;
+    }
 
-	nav {
-		z-index: 1100;
-	}
+    nav {
+        z-index: 1100;
+    }
 </style>
 
 <svelte:window on:resize={handleResize}/>
-	<article
-			class="{activeClass} wrapper"
-			class:noOverflow="{$noOverflow}"
-			class:cube="{$cube}"
-			id="layout"
-	>
-		<!-- Menu toggle -->
-		<TopBar></TopBar>
-		{#if showLogo}
-		<div>
-			VOTECUBE
-		</div>
-		{/if}
+<article
+        class="{activeClass} wrapper"
+        class:noOverflow="{$noOverflow}"
+        class:cube="{$cube}"
+        id="layout"
+>
+    <!-- Menu toggle -->
+    <TopBar></TopBar>
+    {#if showLogo}
+    <div>
+        VOTECUBE
+    </div>
+    {/if}
 
-		<nav
-				class="menu-link {activeClass}"
-				id="menuLink"
-				on:click="{toggleMenu}"
-		>
-			<!--Hamburger icon -->
-			<span></span>
-		</nav>
-		<Menu
-				active="{$showMainMenu}"
-				on:selected="{selectMenu}"
-		></Menu>
-		<section
-				id="main"
-				on:click="{clickMain}"
-		>
-			<slot></slot>
-{{/*			<svelte:component this="{PageComp}"/>*/}}
-		</section>
-	</article>
-	{#if showTextToast}
-	<TextToast
-			text="{$textToast.text}"
-	></TextToast>
-	{/if}
-	{#if $showSignIn}
-	<SignIn
-			on:closed="{closeSignIn}"
-	></SignIn>
-	{/if}
+    <nav
+            class="menu-link {activeClass}"
+            id="menuLink"
+            on:click="{toggleMenu}"
+    >
+        <!--Hamburger icon -->
+        <span></span>
+    </nav>
+    <Menu
+            active="{$showMainMenu}"
+            on:selected="{selectMenu}"
+    ></Menu>
+    <section
+            id="main"
+            on:click="{clickMain}"
+    >
+        <slot></slot>
+        {{/*			<svelte:component this="{PageComp}"/>*/}}
+    </section>
+</article>
+{#if showTextToast}
+<TextToast
+        text="{$textToast.text}"
+></TextToast>
+{/if}
+{#if $showSignIn}
+<SignIn
+        on:closed="{closeSignIn}"
+></SignIn>
+{/if}

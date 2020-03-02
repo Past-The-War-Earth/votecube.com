@@ -19,10 +19,10 @@
 
 	const dispatch = createEventDispatcher()
 
-	$: showLink = variation.key === navList.variation.key
+	$: showLink = variation.id === navList.variation.id
 		&& !navList.isTarget
 
-	$: showTarget = variation.key === navList.variation.key
+	$: showTarget = variation.id === navList.variation.id
 		&& navList.isTarget
 
 </script>

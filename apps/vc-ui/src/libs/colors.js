@@ -1,5 +1,5 @@
-import {get}                         from '../common/ajax'
-import {HASH}                        from '../helpers/hash'
+import {get}                         from './helpers/ajax'
+import {HASH}                        from './helpers/hash'
 import {loadColors as loadColorText} from './text/colors'
 
 var rawColors

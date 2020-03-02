@@ -22,25 +22,25 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	VoteVariationECascadeGraph,
-	VoteVariationEId,
-	VoteVariationEOptionalId,
-	VoteVariationEUpdateProperties,
-	VoteVariationESelect,
-	QVoteVariation,
-	QVoteVariationQId,
-	QVoteVariationQRelation,
-} from './qvotevariation';
+	VoteRevisionECascadeGraph,
+	VoteRevisionEId,
+	VoteRevisionEOptionalId,
+	VoteRevisionEUpdateProperties,
+	VoteRevisionESelect,
+	QVoteRevision,
+	QVoteRevisionQId,
+	QVoteRevisionQRelation,
+} from './qvoterevision';
 import {
-	PollFactorPositionVariationECascadeGraph,
-	PollFactorPositionVariationEId,
-	PollFactorPositionVariationEOptionalId,
-	PollFactorPositionVariationEUpdateProperties,
-	PollFactorPositionVariationESelect,
-	QPollFactorPositionVariation,
-	QPollFactorPositionVariationQId,
-	QPollFactorPositionVariationQRelation,
-} from '../poll/variation/structure/qpollfactorpositionvariation';
+	PollFactorPositionRevisionECascadeGraph,
+	PollFactorPositionRevisionEId,
+	PollFactorPositionRevisionEOptionalId,
+	PollFactorPositionRevisionEUpdateProperties,
+	PollFactorPositionRevisionESelect,
+	QPollFactorPositionRevision,
+	QPollFactorPositionRevisionQId,
+	QPollFactorPositionRevisionQRelation,
+} from '../poll/revision/structure/qpollfactorpositionrevision';
 import {
 	VoteFactorTypeECascadeGraph,
 	VoteFactorTypeEId,
@@ -71,8 +71,8 @@ export interface VoteFactorESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	voteVariation?: VoteVariationESelect;
-	pollFactorPos?: PollFactorPositionVariationESelect;
+	voteRevision?: VoteRevisionESelect;
+	pollFactorPos?: PollFactorPositionRevisionESelect;
 	type?: VoteFactorTypeESelect;
 
 }
@@ -109,8 +109,8 @@ export interface VoteFactorEUpdateProperties
 	share?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	voteVariation?: VoteVariationEOptionalId;
-	pollFactorPos?: PollFactorPositionVariationEOptionalId;
+	voteRevision?: VoteRevisionEOptionalId;
+	pollFactorPos?: PollFactorPositionRevisionEOptionalId;
 	type?: VoteFactorTypeEOptionalId;
 
 }
@@ -131,8 +131,8 @@ export interface VoteFactorEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	SHARE?: string | IQStringField;
-	VOTE_VARIATION_ID?: number | IQNumberField;
-	POLL_FACTOR_POSITION_VARIATION_ID?: number | IQNumberField;
+	VOTE_REVISION_ID?: number | IQNumberField;
+	POLL_FACTOR_POSITION_REVISION_ID?: number | IQNumberField;
 	VOTE_FACTOR_TYPE_ID?: number | IQNumberField;
 
 }
@@ -172,8 +172,8 @@ export interface QVoteFactor extends IQEntity
 	share: IQStringField;
 
 	// Non-Id Relations
-	voteVariation: QVoteVariationQRelation;
-	pollFactorPos: QPollFactorPositionVariationQRelation;
+	voteRevision: QVoteRevisionQRelation;
+	pollFactorPos: QPollFactorPositionRevisionQRelation;
 	type: QVoteFactorTypeQRelation;
 
 }

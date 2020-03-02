@@ -19,7 +19,7 @@ import {PollOpinionRatingCount} from './count/PollOpinionRatingCount'
 import {PollOpinionVersion}     from './PollOpinionVersion'
 
 /**
- * This the computed translation (based on most pinned factor variation).
+ * This the computed translation (based on most pinned factor revision).
  *
  * This record is mutable, it's only got IDs so that's OK.
  */

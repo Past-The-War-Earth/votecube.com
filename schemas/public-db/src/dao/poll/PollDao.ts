@@ -3,23 +3,24 @@ import {
 	DI
 }                    from '@airport/di'
 import {
-	Factor_Key,
+	Factor_Id,
 	ICorePollFactorsFragment,
 	IFactorDoc,
-	IKeyed,
+	IIdentified,
 	IOutcomeDoc,
 	IPollDoc,
 	IPositionDoc,
 	IsDoc,
 	ITimestamp,
+	IUiPollVariation,
 	IUser,
 	IUserCreated,
 	IVariationDoc,
 	IVariationListingDoc,
-	Key,
-	Poll_Key,
-	Variation_Key
-}                    from '@votecube/model'
+	Id,
+	Poll_Id,
+	Variation_Id
+} from '@votecube/model'
 import * as firebase from 'firebase/app'
 import {
 	ICollection,
@@ -49,8 +50,8 @@ export interface IPollDao {
 	getAll(): Promise<IPollDoc[]>
 
 	getChildVariationListings(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationListingDoc[]>
 
 	getForTheme(
@@ -58,13 +59,13 @@ export interface IPollDao {
 	): Promise<IPollDoc[]>
 
 	getVariation(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationDoc>
 
 	getVariationListing(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationListingDoc>
 
 	save(
@@ -109,22 +110,22 @@ export class PollDao
 	}
 
 	async getVariation(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationDoc> {
 		const schema = await container(this).get(SCHEMA)
 		return await this.getOne(
-			schema.pollDrafts.pollVariations(pollKey).doc(variationKey)
+			schema.pollDrafts.pollVariations(pollId).doc(variationId)
 		)
 	}
 
 	async getVariationListing(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationListingDoc> {
 		const schema = await container(this).get(SCHEMA)
-		const result = await schema.pollDrafts.pollVariationListings(pollKey)
-			.reference.where('key', '==', variationKey)
+		const result = await schema.pollDrafts.pollVariationListings(pollId)
+			.reference.where('id', '==', variationId)
 			.get()
 
 		const records = result.docs.map(
@@ -138,12 +139,12 @@ export class PollDao
 	}
 
 	async getChildVariationListings(
-		pollKey: Poll_Key,
-		variationKey: Variation_Key
+		pollId: Poll_Id,
+		variationId: Variation_Id
 	): Promise<IVariationListingDoc[]> {
 		const schema = await container(this).get(SCHEMA)
-		const result = await schema.pollDrafts.pollVariationListings(pollKey)
-			.reference.where('parent.key', '==', variationKey)
+		const result = await schema.pollDrafts.pollVariationListings(pollId)
+			.reference.where('parent.id', '==', variationId)
 			.orderBy('createdAt.m', 'desc')
 			.get()
 
@@ -152,10 +153,10 @@ export class PollDao
 	}
 
 	async save(
-		variationIn: IVariationDoc,
+		variationIn: IUiPollVariation,
 		user: IUser,
 	): Promise<IPollDoc> {
-		const variationOnly = !!variationIn.pollKey
+		const variationOnly = !!variationIn.pollId
 
 		const variation = await this.setupVariation(variationIn, user)
 		const poll      = await this.setupPoll(variation, user)
@@ -170,13 +171,13 @@ export class PollDao
 					? await this.getRefs(variation)
 					: await this.prepPollAndGetRefs(poll)
 
-				poll.key          = pollRef.id
-				variation.pollKey = poll.key
-				variation.key     = variationRef.id
+				poll.id          = pollRef.id
+				variation.pollId = poll.id
+				variation.id     = variationRef.id
 
 				const variationListing    = this.setupVariationListing(poll, variation)
 				const variationListingRef = schema.pollDrafts.pollVariationListings(pollRef)
-					.doc(variation.key)
+					.doc(variation.id)
 
 				const outcomeFactorsAndPositionsFts: IFullTextSearchObject =
 					      await this.addOutcomesFactorsAndPositions(
@@ -223,7 +224,7 @@ export class PollDao
 		const variation: IVariationDoc = {
 			...variationIn,
 			createdAt,
-			userKey: user.key
+			userId: user.id
 		}
 
 		const dbUtils = await container(this).get(DB_UTILS)
@@ -249,15 +250,15 @@ export class PollDao
 			createdAt: variation.createdAt,
 			factors,
 			fts: undefined,
-			key: undefined,
+			id: undefined,
 			name: dbUtils.copy(variation.name),
 			outcomes: undefined,
-			rootVariationKey: variation.key,
+			rootVariationId: variation.id,
 			theme: dbUtils.copy(variation.theme),
-			userKey: user.key
+			userId: user.id
 		}
 
-		const fts = dbUtils.getFtsProps(poll)
+		const fts = await dbUtils.getFtsProps(poll)
 
 		const outcomes = dbUtils.copy(variation.outcomes)
 
@@ -285,21 +286,21 @@ export class PollDao
 		return {
 			...poll,
 			depth: variation.depth,
-			key: variation.key,
+			id: variation.id,
 			parent: variation.parent,
 			path: variation.path,
-			pollKey: variation.pollKey
+			pollId: variation.pollId
 		}
 	}
 
 	private async getRefs(
 		variation: IVariationDoc
 	): Promise<{
-		pollRef: IVCDocumentReference<Poll_Key, IPollDoc>,
-		variationRef: IVCDocumentReference<Variation_Key, IVariationDoc, Poll_Key, IPollDoc>
+		pollRef: IVCDocumentReference<Poll_Id, IPollDoc>,
+		variationRef: IVCDocumentReference<Variation_Id, IVariationDoc, Poll_Id, IPollDoc>
 	}> {
 		const schema       = await container(this).get(SCHEMA)
-		const pollRef      = schema.pollDrafts.doc(variation.pollKey)
+		const pollRef      = schema.pollDrafts.doc(variation.pollId)
 		const variationRef = schema.pollDrafts.pollVariations(pollRef).reference.doc()
 
 		return {
@@ -311,16 +312,16 @@ export class PollDao
 	private async prepPollAndGetRefs(
 		poll: IPollDoc
 	): Promise<{
-		pollRef: IVCDocumentReference<Poll_Key, IPollDoc>,
-		variationRef: IVCDocumentReference<Variation_Key, IVariationDoc, Poll_Key, IPollDoc>
+		pollRef: IVCDocumentReference<Poll_Id, IPollDoc>,
+		variationRef: IVCDocumentReference<Variation_Id, IVariationDoc, Poll_Id, IPollDoc>
 	}> {
 		const schema  = await container(this).get(SCHEMA)
 		const pollRef = schema.pollDrafts.doc()
-		poll.key      = pollRef.id
+		poll.id      = pollRef.id
 
 		const variationRef = schema.pollDrafts.pollVariations(pollRef).doc()
 
-		poll.rootVariationKey = variationRef.id
+		poll.rootVariationId = variationRef.id
 
 		return {
 			pollRef,
@@ -366,7 +367,7 @@ export class PollDao
 		transaction: IVCTransaction,
 		dbUtils: IDbUtils
 	): Promise<IFullTextSearchObject> {
-		const outcomeExists = !!outcome.key
+		const outcomeExists = !!outcome.id
 		const schema        = await container(this).get(SCHEMA)
 
 		const {
@@ -390,7 +391,7 @@ export class PollDao
 		transaction: IVCTransaction,
 		dbUtils: IDbUtils
 	): Promise<IFullTextSearchObject> {
-		const factorExists = !!factor.key
+		const factorExists = !!factor.id
 
 		const schema = await container(this).get(SCHEMA)
 		const {
@@ -425,8 +426,8 @@ export class PollDao
 		}
 	}
 
-	private async addManyToManyResource<K extends Key, T extends IUserCreated<K>,
-		PK extends Key, PT extends IKeyed<PK>>(
+	private async addManyToManyResource<K extends Id, T extends IUserCreated<K>,
+		PK extends Id, PT extends IIdentified<PK>>(
 		collection: ICollection<K, T, PK, PT>,
 		parent: IUserCreated<any>,
 		parentName: string,
@@ -436,7 +437,7 @@ export class PollDao
 		user: IUser,
 		transaction: IVCTransaction
 	): Promise<void> {
-		const manyToManyRef = collection.doc(child.key)
+		const manyToManyRef = collection.doc(child.id)
 
 		// If both factor and this poll existed before, check if this poll is already listed under
 		// this factor
@@ -455,7 +456,7 @@ export class PollDao
 
 		const manyToMany = {
 			...child,
-			[parentName + 'Key']: parent.key
+			[parentName + 'Id']: parent.id
 		}
 		// manyToManyRef =
 		await this.addResource(manyToMany, collection, user, transaction)
@@ -463,7 +464,7 @@ export class PollDao
 
 	private async addPosition(
 		position: IPositionDoc,
-		factorRef: IVCDocumentReference<Factor_Key, IFactorDoc>,
+		factorRef: IVCDocumentReference<Factor_Id, IFactorDoc>,
 		factor: IFactorDoc,
 		factorExists: boolean,
 		poll: IPollDoc,
@@ -472,7 +473,7 @@ export class PollDao
 		transaction: IVCTransaction,
 		dbUtils: IDbUtils
 	): Promise<IFullTextSearchObject> {
-		const positionExists = !!position.key
+		const positionExists = !!position.id
 
 		const schema = await container(this).get(SCHEMA)
 		const {
@@ -492,8 +493,8 @@ export class PollDao
 		return fts
 	}
 
-	private async addResource<K extends Key, T extends IUserCreated<K>,
-		PK extends Key, PT extends IKeyed<PK>>(
+	private async addResource<K extends Id, T extends IUserCreated<K>,
+		PK extends Id, PT extends IIdentified<PK>>(
 		resource: T,
 		collection: ICollection<K, T, PK, PT>,
 		user: IUser,
@@ -507,19 +508,19 @@ export class PollDao
 
 		let fts
 		if (dbUtils) {
-			fts = dbUtils.getFtsProps(resource)
+			fts = await dbUtils.getFtsProps(resource)
 		}
 
-		if (resource.key) {
+		if (resource.id) {
 			return {
 				fts,
-				ref: collection.doc(resource.key)
+				ref: collection.doc(resource.id)
 			}
 		}
 
 		const resourceRef = collection.doc()
-		resource.key      = resourceRef.id as K
-		resource.userKey  = user.key
+		resource.id      = resourceRef.id as K
+		resource.userId  = user.id
 
 		resource = {
 			...resource
@@ -543,8 +544,8 @@ export class PollDao
 		}
 	}
 
-	private async getOne<K extends Key, T extends IKeyed<K>,
-		PK extends Key, PT extends IKeyed<PK>>(
+	private async getOne<K extends Id, T extends IIdentified<K>,
+		PK extends Id, PT extends IIdentified<PK>>(
 		docRef: IVCDocumentReference<K, T, PK, PT>
 	): Promise<T | null> {
 		const doc = await docRef.get()

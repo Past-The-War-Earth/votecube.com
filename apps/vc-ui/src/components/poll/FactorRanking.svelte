@@ -12,8 +12,8 @@
 		onMount
 	}                      from 'svelte'
 	import {fly}           from 'svelte/transition'
-	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
-	import MoveButton      from '../../common/control/button/MoveButton.svelte'
+	import CharacterButton from '../common/control/button/CharacterButton.svelte'
+	import MoveButton      from '../common/control/button/MoveButton.svelte'
 
 	export let delta
 	export let poll

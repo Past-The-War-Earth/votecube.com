@@ -11,7 +11,7 @@ import {
 import {CascadeType}                     from '@airport/ground-control'
 import {FactorOpinionVersion_Id}         from '../../types/opinion/FactorOpinionVersion'
 import {Language}                        from '../infrastructure/Language'
-import {PollFactorVariation}             from '../poll/variation/structure/PollFactorVariation'
+import {PollFactorRevision}              from '../poll/revision/structure/PollFactorRevision'
 import {FactorOpinionVersionRatingCount} from './count/FactorOpinionVersionRatingCount'
 import {PollOpinionVersion}              from './PollOpinionVersion'
 import {PositionOpinionVersion}          from './PositionOpinionVersion'
@@ -37,8 +37,8 @@ export class FactorOpinionVersion {
 	pollOpinionVersion: PollOpinionVersion
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_FACTOR_VARIATION_ID', nullable: false})
-	pollFactorVariation: PollFactorVariation
+	@JoinColumn({name: 'POLL_FACTOR_REVISION_ID', nullable: false})
+	pollFactorRevision: PollFactorRevision
 
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})

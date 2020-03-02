@@ -11,12 +11,12 @@ import {
 import {CascadeType}                   from '@airport/ground-control'
 import {PollOpinionVersion_Id}         from '../../types/opinion/PollOpinionVersion'
 import {
-	PollLocationTimeFrame,
-}                                      from '../poll/locationTimeFrame/PollLocationTimeFrame'
+	PollRun,
+}                                      from '../poll/run/PollRun'
 import {ImmutableRow}                  from '../infrastructure/row/ImmutableRow'
-import {Language}                      from '../infrastructure/Language'
-import {PollVariation}                 from '../poll/variation/PollVariation'
-import {VoteVariation}                 from '../vote/VoteVariation'
+import {Language}      from '../infrastructure/Language'
+import {PollRevision}  from '../poll/revision/PollRevision'
+import {VoteRevision} from '../vote/VoteRevision'
 import {PollOpinionVersionRatingCount} from './count/PollOpinionVersionRatingCount'
 import {FactorOpinionVersion}          from './FactorOpinionVersion'
 import {PollOpinion}                   from './PollOpinion'
@@ -24,7 +24,7 @@ import {PollOpinionVersionTranslation} from './translation/PollOpinionVersionTra
 import {PollOpinionVersionRating}      from './user/PollOpinionVersionRating'
 
 /**
- * This the computed translation (based on most pinned factor variation).
+ * This the computed translation (based on most pinned factor revision).
  *
  * This record is mutable, it's only got IDs so that's OK.
  *
@@ -47,20 +47,20 @@ export class PollOpinionVersion
 	pollOpinion: PollOpinion
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_VARIATION_ID', nullable: false})
-	pollVariation: PollVariation
+	@JoinColumn({name: 'POLL_REVISION_ID', nullable: false})
+	pollRevision: PollRevision
 
 	@ManyToOne()
-	@JoinColumn({name: 'VOTE_VARIATION_ID', nullable: false})
-	voteVariation: VoteVariation
+	@JoinColumn({name: 'VOTE_REVISION_ID', nullable: false})
+	voteRevision: VoteRevision
 
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})
 	language: Language
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_LOCATION_TIME_FRAME_ID'})
-	locationTimeFrame: PollLocationTimeFrame
+	@JoinColumn({name: 'POLL_RUN_ID'})
+	run: PollRun
 
 	@ManyToOne()
 	@JoinColumn({

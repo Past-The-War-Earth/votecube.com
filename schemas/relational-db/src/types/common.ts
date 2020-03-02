@@ -5,4 +5,4 @@ export type TextColor = Color
 export type CreatedAt = Date
 export type UpdatedAt = Date
 
-export type DocumentId = string
+export type AgeSuitability = number
