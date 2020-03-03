@@ -1,0 +1,1 @@
+//# sourceMappingURL=qratingtranslation.js.map

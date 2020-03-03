@@ -1,0 +1,1 @@
+//# sourceMappingURL=qfactorposition.js.map

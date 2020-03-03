@@ -1,0 +1,1 @@
+//# sourceMappingURL=VoteFactor.js.map

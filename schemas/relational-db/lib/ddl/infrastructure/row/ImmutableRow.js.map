@@ -1,0 +1,1 @@
+{"version":3,"file":"ImmutableRow.js","sourceRoot":"","sources":["../../../../src/ddl/infrastructure/row/ImmutableRow.ts"],"names":[],"mappings":";;;;;;AAAA,OAAO,EACN,MAAM,EACN,gBAAgB,EAChB,MAAuB,sBAAsB,CAAA;AAI9C,IAAsB,YAAY,GAAlC,MAAsB,YAAY;CAKjC,CAAA;AAFA;IADC,MAAM,CAAC,EAAC,IAAI,EAAE,YAAY,EAAC,CAAC;+CACT;AAHC,YAAY;IADjC,gBAAgB,EAAE;GACG,YAAY,CAKjC;SALqB,YAAY"}

@@ -251,6 +251,32 @@ import {
 	QLanguage
 } from './infrastructure/qlanguage'
 import {
+	IOutcomeVersion
+} from './poll/revision/outcomeversion'
+import {
+	OutcomeVersionESelect,
+	OutcomeVersionECreateColumns,
+	OutcomeVersionECreateProperties,
+	OutcomeVersionEUpdateColumns,
+	OutcomeVersionEUpdateProperties,
+	OutcomeVersionEId,
+	OutcomeVersionECascadeGraph,
+	QOutcomeVersion
+} from './poll/revision/qoutcomeversion'
+import {
+	IOutcomeVersionTranslation
+} from './poll/revision/translation/outcomeversiontranslation'
+import {
+	OutcomeVersionTranslationESelect,
+	OutcomeVersionTranslationECreateColumns,
+	OutcomeVersionTranslationECreateProperties,
+	OutcomeVersionTranslationEUpdateColumns,
+	OutcomeVersionTranslationEUpdateProperties,
+	OutcomeVersionTranslationEId,
+	OutcomeVersionTranslationECascadeGraph,
+	QOutcomeVersionTranslation
+} from './poll/revision/translation/qoutcomeversiontranslation'
+import {
 	IPoll
 } from './poll/poll'
 import {
@@ -1052,11 +1078,11 @@ export class BaseFactorDao
 	implements IBaseFactorDao {
 
 	static diSet(): boolean {
-		return duoDiSet(59)
+		return duoDiSet(60)
 	}
 	
 	constructor() {
-		super(59)
+		super(60)
 	}
 }
 
@@ -1124,11 +1150,11 @@ export class BaseFactorPositionDao
 	implements IBaseFactorPositionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(60)
+		return duoDiSet(61)
 	}
 	
 	constructor() {
-		super(60)
+		super(61)
 	}
 }
 
@@ -1142,11 +1168,11 @@ export class BaseFactorSkinDao
 	implements IBaseFactorSkinDao {
 
 	static diSet(): boolean {
-		return duoDiSet(58)
+		return duoDiSet(59)
 	}
 	
 	constructor() {
-		super(58)
+		super(59)
 	}
 }
 
@@ -1187,6 +1213,42 @@ export class BaseLanguageDao
 }
 
 
+export interface IBaseOutcomeVersionDao
+  extends IDao<IOutcomeVersion, OutcomeVersionESelect, OutcomeVersionECreateProperties, OutcomeVersionEUpdateColumns, OutcomeVersionEUpdateProperties, OutcomeVersionEId, OutcomeVersionECascadeGraph, QOutcomeVersion> {
+}
+
+export class BaseOutcomeVersionDao
+  extends SQDIDao<IOutcomeVersion, OutcomeVersionESelect, OutcomeVersionECreateProperties, OutcomeVersionEUpdateColumns, OutcomeVersionEUpdateProperties, OutcomeVersionEId, OutcomeVersionECascadeGraph, QOutcomeVersion>
+	implements IBaseOutcomeVersionDao {
+
+	static diSet(): boolean {
+		return duoDiSet(57)
+	}
+	
+	constructor() {
+		super(57)
+	}
+}
+
+
+export interface IBaseOutcomeVersionTranslationDao
+  extends IDao<IOutcomeVersionTranslation, OutcomeVersionTranslationESelect, OutcomeVersionTranslationECreateProperties, OutcomeVersionTranslationEUpdateColumns, OutcomeVersionTranslationEUpdateProperties, OutcomeVersionTranslationEId, OutcomeVersionTranslationECascadeGraph, QOutcomeVersionTranslation> {
+}
+
+export class BaseOutcomeVersionTranslationDao
+  extends SQDIDao<IOutcomeVersionTranslation, OutcomeVersionTranslationESelect, OutcomeVersionTranslationECreateProperties, OutcomeVersionTranslationEUpdateColumns, OutcomeVersionTranslationEUpdateProperties, OutcomeVersionTranslationEId, OutcomeVersionTranslationECascadeGraph, QOutcomeVersionTranslation>
+	implements IBaseOutcomeVersionTranslationDao {
+
+	static diSet(): boolean {
+		return duoDiSet(64)
+	}
+	
+	constructor() {
+		super(64)
+	}
+}
+
+
 export interface IBasePollDao
   extends IDao<IPoll, PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, PollECascadeGraph, QPoll> {
 }
@@ -1214,11 +1276,11 @@ export class BasePollRevisionDao
 	implements IBasePollRevisionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(57)
+		return duoDiSet(58)
 	}
 	
 	constructor() {
-		super(57)
+		super(58)
 	}
 }
 
@@ -1610,11 +1672,11 @@ export class BaseRatingReasonDao
 	implements IBaseRatingReasonDao {
 
 	static diSet(): boolean {
-		return duoDiSet(62)
+		return duoDiSet(63)
 	}
 	
 	constructor() {
-		super(62)
+		super(63)
 	}
 }
 
@@ -1628,11 +1690,11 @@ export class BaseRatingReasonTranslationDao
 	implements IBaseRatingReasonTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(61)
+		return duoDiSet(62)
 	}
 	
 	constructor() {
-		super(61)
+		super(62)
 	}
 }
 

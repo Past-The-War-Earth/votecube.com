@@ -1,0 +1,1 @@
+//# sourceMappingURL=designpattern.js.map

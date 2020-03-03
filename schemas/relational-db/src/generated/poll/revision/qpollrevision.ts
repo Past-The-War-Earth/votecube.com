@@ -52,6 +52,16 @@ import {
 	QPollRunQRelation,
 } from '../run/qpollrun';
 import {
+	OutcomeVersionECascadeGraph,
+	OutcomeVersionEId,
+	OutcomeVersionEOptionalId,
+	OutcomeVersionEUpdateProperties,
+	OutcomeVersionESelect,
+	QOutcomeVersion,
+	QOutcomeVersionQId,
+	QOutcomeVersionQRelation,
+} from './qoutcomeversion';
+import {
 	UserPollRevisionRatingECascadeGraph,
 	UserPollRevisionRatingEId,
 	UserPollRevisionRatingEOptionalId,
@@ -113,6 +123,8 @@ export interface PollRevisionESelect
   // Non-Id relations (including OneToMany's)
 	poll?: PollESelect;
 	createdAtRun?: PollRunESelect;
+	outcomeVersionA?: OutcomeVersionESelect;
+	outcomeVersionB?: OutcomeVersionESelect;
 	parent?: PollRevisionESelect;
 	children?: PollRevisionESelect;
 	ratings?: UserPollRevisionRatingESelect;
@@ -156,6 +168,8 @@ export interface PollRevisionEUpdateProperties
 	// Non-Id Relations - ids only & no OneToMany's
 	poll?: PollEOptionalId;
 	createdAtRun?: PollRunEOptionalId;
+	outcomeVersionA?: OutcomeVersionEOptionalId;
+	outcomeVersionB?: OutcomeVersionEOptionalId;
 	parent?: PollRevisionEOptionalId;
 
 }
@@ -185,6 +199,8 @@ export interface PollRevisionEUpdateColumns
 	AGE_SUITABILITY?: number | IQNumberField;
 	POLL_ID?: number | IQNumberField;
 	POLL_RUN_ID?: number | IQNumberField;
+	OUTCOME_A_VERSION_ID?: number | IQNumberField;
+	OUTCOME_B_VERSION_ID?: number | IQNumberField;
 	PARENT_POLL_REVISION_ID?: number | IQNumberField;
 
 }
@@ -226,6 +242,8 @@ export interface QPollRevision extends QImmutableActorRow
 	// Non-Id Relations
 	poll: QPollQRelation;
 	createdAtRun: QPollRunQRelation;
+	outcomeVersionA: QOutcomeVersionQRelation;
+	outcomeVersionB: QOutcomeVersionQRelation;
 	parent: QPollRevisionQRelation;
 	children: IQOneToManyRelation<QPollRevision>;
 	ratings: IQOneToManyRelation<QUserPollRevisionRating>;

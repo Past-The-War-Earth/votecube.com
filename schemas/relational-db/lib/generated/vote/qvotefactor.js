@@ -1,0 +1,1 @@
+//# sourceMappingURL=qvotefactor.js.map

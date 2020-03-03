@@ -1,0 +1,16 @@
+import { IDbConverter } from './dao/DbConverter';
+import { IDbUtils } from './dao/DbUtils';
+import { IFactorDao } from './dao/factor/FactorDao';
+import { IPollDao } from './dao/poll/PollDao';
+import { ILabelDao } from './dao/poll/variation/label/LabelDao';
+import { IUserDao } from './dao/UserDao';
+import { IVoteDao } from './dao/vote/VoteDao';
+import { IVotecubeSchema } from './document/schema/Schema';
+export declare const DB_CONVERTER: import("@airport/di").IDiToken<IDbConverter>;
+export declare const DB_UTILS: import("@airport/di").IDiToken<IDbUtils>;
+export declare const FACTOR_DAO: import("@airport/di").IDiToken<IFactorDao>;
+export declare const LABEL_DAO: import("@airport/di").IDiToken<ILabelDao>;
+export declare const POLL_DAO: import("@airport/di").IDiToken<IPollDao>;
+export declare const SCHEMA: import("@airport/di").IDiToken<IVotecubeSchema>;
+export declare const USER_DAO: import("@airport/di").IDiToken<IUserDao>;
+export declare const VOTE_DAO: import("@airport/di").IDiToken<IVoteDao>;
