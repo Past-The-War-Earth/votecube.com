@@ -8,18 +8,16 @@ import {
 import {
 	IFactor,
 	IFactorPosition,
+	ILanguage,
 	IPoll,
 	IPollRevision,
-	IPollRevisionTranslation,
-	IPosition
-}                                from '@votecube/relational-db'
-import {
-	ILanguage,
 	IPollRevisionFactorTranslation,
 	IPollRevisionPositionTranslation,
+	IPollRevisionTranslation,
+	IPosition,
 	ITranslationType,
 	IUserPollRevisionTranslationRating
-} from '@votecube/relational-db/lib/src'
+}                                from '@votecube/relational-db'
 import {POLL_REVISION_CONVERTER} from '../tokens'
 
 export interface IPollRevisionConverter {
@@ -71,18 +69,18 @@ export class PollRevisionConverter
 		const uiPollRevisionTranslation: IPollRevisionTranslation = {
 			id: null,
 			name: revisionDoc.name,
-		description?: string;
+			description? x: string
 
 		// Non-Id Relations
-		pollRevision?: IPollRevision;
-		language?: ILanguage;
-		type?: ITranslationType;
-		parent?: IPollRevisionTranslation;
-		children?: IPollRevisionTranslation[];
-		ratings?: IUserPollRevisionTranslationRating[];
-		factorTranslations?: IPollRevisionFactorTranslation[];
-		positionTranslations?: IPollRevisionPositionTranslation[];
-		}
+		pollRevision ? : IPollRevision
+		language ? : ILanguage
+		type ? : ITranslationType
+		parent ? : IPollRevisionTranslation
+		children ? : IPollRevisionTranslation[]
+		ratings ? : IUserPollRevisionTranslationRating[]
+		factorTranslations ? : IPollRevisionFactorTranslation[]
+		positionTranslations ? : IPollRevisionPositionTranslation[]
+	}
 
 		return uiPollRevision
 	}

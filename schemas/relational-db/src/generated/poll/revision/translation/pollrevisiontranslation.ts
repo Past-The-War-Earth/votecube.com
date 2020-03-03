@@ -35,7 +35,6 @@ export interface IPollRevisionTranslation extends IImmutableActorRow {
 
 	// Non-Id Properties
 	name?: string;
-	description?: string;
 
 	// Non-Id Relations
 	pollRevision?: IPollRevision;

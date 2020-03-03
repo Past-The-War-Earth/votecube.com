@@ -7,7 +7,6 @@ import { LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../inf
  */
 export interface FactorTranslationESelect extends ImmutableActorRowESelect, FactorTranslationEOptionalId {
     name?: string | IQStringField;
-    description?: string | IQStringField;
     factor?: FactorESelect;
     language?: LanguageESelect;
     parent?: FactorTranslationESelect;
@@ -31,7 +30,6 @@ export interface FactorTranslationEOptionalId {
  */
 export interface FactorTranslationEUpdateProperties extends ImmutableActorRowEUpdateProperties {
     name?: string | IQStringField;
-    description?: string | IQStringField;
     factor?: FactorEOptionalId;
     language?: LanguageEOptionalId;
     parent?: FactorTranslationEOptionalId;
@@ -50,7 +48,6 @@ export interface FactorTranslationEUpdateColumns extends ImmutableActorRowEUpdat
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
     FACTOR_NAME?: string | IQStringField;
-    FACTOR_DESCRIPTION?: string | IQStringField;
     FACTOR_ID?: number | IQNumberField;
     LANGUAGE_ID?: number | IQNumberField;
     PARENT_FACTOR_TRANSLATION_ID?: number | IQNumberField;
@@ -71,7 +68,6 @@ export interface FactorTranslationECreateColumns extends FactorTranslationEId, F
 export interface QFactorTranslation extends QImmutableActorRow {
     id: IQNumberField;
     name: IQStringField;
-    description: IQStringField;
     factor: QFactorQRelation;
     language: QLanguageQRelation;
     parent: QFactorTranslationQRelation;

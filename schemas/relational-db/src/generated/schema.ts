@@ -4611,20 +4611,6 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "FACTOR_DESCRIPTION",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 5
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
 									"manyRelationIndex": 1,
@@ -4638,14 +4624,14 @@ export const SCHEMA = {
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 5
+									"index": 4
 								}
 							],
 							"sinceVersion": 1,
 							"type": 4
 						},
 						{
-							"index": 6,
+							"index": 5,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
@@ -4660,14 +4646,14 @@ export const SCHEMA = {
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 6
+									"index": 5
 								}
 							],
 							"sinceVersion": 1,
 							"type": 4
 						},
 						{
-							"index": 7,
+							"index": 6,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
@@ -4683,7 +4669,7 @@ export const SCHEMA = {
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 7
+									"index": 6
 								}
 							],
 							"sinceVersion": 1,
@@ -4737,16 +4723,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"columnRef": {
-								"index": 4
-							},
 							"index": 4,
-							"isId": false,
-							"name": "description",
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
 							"isId": false,
 							"name": "factor",
 							"relationRef": {
@@ -4755,7 +4732,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 6,
+							"index": 5,
 							"isId": false,
 							"name": "language",
 							"relationRef": {
@@ -4764,7 +4741,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 7,
+							"index": 6,
 							"isId": false,
 							"name": "parent",
 							"relationRef": {
@@ -4773,7 +4750,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 8,
+							"index": 7,
 							"isId": false,
 							"name": "children",
 							"relationRef": {
@@ -4782,7 +4759,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 9,
+							"index": 8,
 							"isId": false,
 							"name": "childFactors",
 							"relationRef": {
@@ -4807,7 +4784,7 @@ export const SCHEMA = {
 							"isId": false,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 5
+								"index": 4
 							},
 							"relationTableIndex": 60,
 							"sinceVersion": 1
@@ -4817,7 +4794,7 @@ export const SCHEMA = {
 							"isId": false,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 6
+								"index": 5
 							},
 							"relationTableIndex": 23,
 							"sinceVersion": 1
@@ -4827,7 +4804,7 @@ export const SCHEMA = {
 							"isId": false,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 7
+								"index": 6
 							},
 							"relationTableIndex": 30,
 							"sinceVersion": 1
@@ -4841,7 +4818,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 8
+								"index": 7
 							},
 							"relationTableIndex": 30,
 							"sinceVersion": 1
@@ -4855,7 +4832,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 9
+								"index": 8
 							},
 							"relationTableIndex": 60,
 							"sinceVersion": 1
@@ -5734,20 +5711,6 @@ export const SCHEMA = {
 						{
 							"index": 4,
 							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "POLL_DESCRIPTION",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 6
-								}
-							],
-							"sinceVersion": 1,
-							"type": 5
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
 									"manyRelationIndex": 1,
@@ -5769,7 +5732,7 @@ export const SCHEMA = {
 							"type": 4
 						},
 						{
-							"index": 6,
+							"index": 5,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
@@ -5791,7 +5754,7 @@ export const SCHEMA = {
 							"type": 4
 						},
 						{
-							"index": 7,
+							"index": 6,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
@@ -5806,14 +5769,14 @@ export const SCHEMA = {
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 7
+									"index": 6
 								}
 							],
 							"sinceVersion": 1,
 							"type": 4
 						},
 						{
-							"index": 8,
+							"index": 7,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
@@ -5829,7 +5792,7 @@ export const SCHEMA = {
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 8
+									"index": 7
 								}
 							],
 							"sinceVersion": 1,
@@ -5901,16 +5864,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"columnRef": {
-								"index": 4
-							},
 							"index": 6,
-							"isId": false,
-							"name": "description",
-							"sinceVersion": 1
-						},
-						{
-							"index": 7,
 							"isId": false,
 							"name": "type",
 							"relationRef": {
@@ -5919,7 +5873,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 8,
+							"index": 7,
 							"isId": false,
 							"name": "parent",
 							"relationRef": {
@@ -5928,7 +5882,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 9,
+							"index": 8,
 							"isId": false,
 							"name": "children",
 							"relationRef": {
@@ -5937,7 +5891,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 10,
+							"index": 9,
 							"isId": false,
 							"name": "ratings",
 							"relationRef": {
@@ -5946,7 +5900,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 11,
+							"index": 10,
 							"isId": false,
 							"name": "factorTranslations",
 							"relationRef": {
@@ -5955,7 +5909,7 @@ export const SCHEMA = {
 							"sinceVersion": 1
 						},
 						{
-							"index": 12,
+							"index": 11,
 							"isId": false,
 							"name": "positionTranslations",
 							"relationRef": {
@@ -6000,7 +5954,7 @@ export const SCHEMA = {
 							"isId": false,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 7
+								"index": 6
 							},
 							"relationTableIndex": 28,
 							"sinceVersion": 1
@@ -6010,7 +5964,7 @@ export const SCHEMA = {
 							"isId": false,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 8
+								"index": 7
 							},
 							"relationTableIndex": 35,
 							"sinceVersion": 1
@@ -6024,7 +5978,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 9
+								"index": 8
 							},
 							"relationTableIndex": 35,
 							"sinceVersion": 1
@@ -6038,7 +5992,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 10
+								"index": 9
 							},
 							"relationTableIndex": 29,
 							"sinceVersion": 1
@@ -6052,7 +6006,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 11
+								"index": 10
 							},
 							"relationTableIndex": 31,
 							"sinceVersion": 1
@@ -6066,7 +6020,7 @@ export const SCHEMA = {
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 12
+								"index": 11
 							},
 							"relationTableIndex": 34,
 							"sinceVersion": 1

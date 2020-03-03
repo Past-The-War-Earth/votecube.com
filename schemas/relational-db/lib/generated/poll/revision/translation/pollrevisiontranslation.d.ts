@@ -8,7 +8,6 @@ import { IPollRevisionPositionTranslation } from './pollrevisionpositiontranslat
 export interface IPollRevisionTranslation extends IImmutableActorRow {
     id: number;
     name?: string;
-    description?: string;
     pollRevision?: IPollRevision;
     language?: ILanguage;
     type?: ITranslationType;

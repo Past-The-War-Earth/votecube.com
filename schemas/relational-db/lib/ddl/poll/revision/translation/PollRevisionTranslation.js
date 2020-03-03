@@ -30,9 +30,6 @@ __decorate([
     Column({ name: 'POLL_NAME' })
 ], PollRevisionTranslation.prototype, "name", void 0);
 __decorate([
-    Column({ name: 'POLL_DESCRIPTION' })
-], PollRevisionTranslation.prototype, "description", void 0);
-__decorate([
     ManyToOne(),
     JoinColumn({ name: 'TRANSLATION_TYPE_ID' })
 ], PollRevisionTranslation.prototype, "type", void 0);

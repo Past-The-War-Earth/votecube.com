@@ -107,7 +107,6 @@ export interface PollRevisionTranslationESelect
     extends ImmutableActorRowESelect, PollRevisionTranslationEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
-	description?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -153,7 +152,6 @@ export interface PollRevisionTranslationEUpdateProperties
 	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
-	description?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	pollRevision?: PollRevisionEOptionalId;
@@ -185,7 +183,6 @@ export interface PollRevisionTranslationEUpdateColumns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
 	POLL_NAME?: string | IQStringField;
-	POLL_DESCRIPTION?: string | IQStringField;
 	POLL_REVISION_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;
 	TRANSLATION_TYPE_ID?: number | IQNumberField;
@@ -226,7 +223,6 @@ export interface QPollRevisionTranslation extends QImmutableActorRow
 
 	// Non-Id Fields
 	name: IQStringField;
-	description: IQStringField;
 
 	// Non-Id Relations
 	pollRevision: QPollRevisionQRelation;

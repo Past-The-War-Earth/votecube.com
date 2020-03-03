@@ -1,4 +1,4 @@
-import { PollRevisionTranslation_Description, PollRevisionTranslation_Id, PollRevisionTranslation_Name } from '../../../../types/poll/revision/translation/PollRevisionTranslation';
+import { PollRevisionTranslation_Id, PollRevisionTranslation_Name } from '../../../../types/poll/revision/translation/PollRevisionTranslation';
 import { Language } from '../../../infrastructure/Language';
 import { ImmutableActorRow } from '../../../infrastructure/row/ImmutableActorRow';
 import { TranslationType } from '../../../infrastructure/TranslationType';
@@ -15,7 +15,6 @@ export declare class PollRevisionTranslation extends ImmutableActorRow {
     pollRevision: PollRevision;
     language: Language;
     name: PollRevisionTranslation_Name;
-    description: PollRevisionTranslation_Description;
     type: TranslationType;
     parent: PollRevisionTranslation;
     children: PollRevisionTranslation[];

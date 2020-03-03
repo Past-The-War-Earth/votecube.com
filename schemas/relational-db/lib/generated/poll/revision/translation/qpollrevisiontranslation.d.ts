@@ -11,7 +11,6 @@ import { PollRevisionPositionTranslationECascadeGraph, PollRevisionPositionTrans
  */
 export interface PollRevisionTranslationESelect extends ImmutableActorRowESelect, PollRevisionTranslationEOptionalId {
     name?: string | IQStringField;
-    description?: string | IQStringField;
     pollRevision?: PollRevisionESelect;
     language?: LanguageESelect;
     type?: TranslationTypeESelect;
@@ -38,7 +37,6 @@ export interface PollRevisionTranslationEOptionalId {
  */
 export interface PollRevisionTranslationEUpdateProperties extends ImmutableActorRowEUpdateProperties {
     name?: string | IQStringField;
-    description?: string | IQStringField;
     pollRevision?: PollRevisionEOptionalId;
     language?: LanguageEOptionalId;
     type?: TranslationTypeEOptionalId;
@@ -60,7 +58,6 @@ export interface PollRevisionTranslationEUpdateColumns extends ImmutableActorRow
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
     POLL_NAME?: string | IQStringField;
-    POLL_DESCRIPTION?: string | IQStringField;
     POLL_REVISION_ID?: number | IQNumberField;
     LANGUAGE_ID?: number | IQNumberField;
     TRANSLATION_TYPE_ID?: number | IQNumberField;
@@ -82,7 +79,6 @@ export interface PollRevisionTranslationECreateColumns extends PollRevisionTrans
 export interface QPollRevisionTranslation extends QImmutableActorRow {
     id: IQNumberField;
     name: IQStringField;
-    description: IQStringField;
     pollRevision: QPollRevisionQRelation;
     language: QLanguageQRelation;
     type: QTranslationTypeQRelation;

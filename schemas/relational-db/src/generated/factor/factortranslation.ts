@@ -23,7 +23,6 @@ export interface IFactorTranslation extends IImmutableActorRow {
 
 	// Non-Id Properties
 	name?: string;
-	description?: string;
 
 	// Non-Id Relations
 	factor?: IFactor;

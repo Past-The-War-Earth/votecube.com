@@ -67,7 +67,6 @@ export interface FactorTranslationESelect
     extends ImmutableActorRowESelect, FactorTranslationEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
-	description?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -110,7 +109,6 @@ export interface FactorTranslationEUpdateProperties
 	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
-	description?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	factor?: FactorEOptionalId;
@@ -139,7 +137,6 @@ export interface FactorTranslationEUpdateColumns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
 	FACTOR_NAME?: string | IQStringField;
-	FACTOR_DESCRIPTION?: string | IQStringField;
 	FACTOR_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;
 	PARENT_FACTOR_TRANSLATION_ID?: number | IQNumberField;
@@ -179,7 +176,6 @@ export interface QFactorTranslation extends QImmutableActorRow
 
 	// Non-Id Fields
 	name: IQStringField;
-	description: IQStringField;
 
 	// Non-Id Relations
 	factor: QFactorQRelation;

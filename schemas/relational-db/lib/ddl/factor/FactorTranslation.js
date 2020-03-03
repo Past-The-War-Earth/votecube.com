@@ -18,9 +18,6 @@ __decorate([
     Column({ name: 'FACTOR_NAME' })
 ], FactorTranslation.prototype, "name", void 0);
 __decorate([
-    Column({ name: 'FACTOR_DESCRIPTION' })
-], FactorTranslation.prototype, "description", void 0);
-__decorate([
     ManyToOne(),
     JoinColumn({ name: 'FACTOR_ID' })
 ], FactorTranslation.prototype, "factor", void 0);

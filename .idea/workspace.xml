@@ -1,30 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="Simplifying and adjusting relational model and related models.">
-      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/OutcomeVersion.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/OutcomeVersion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/OutcomeVersion.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/OutcomeVersion.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/OutcomeVersionTranslation.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/relational-db/src/types/poll/revision/OutcomeVersion.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/relational-db/src/types/poll/revision/translation/OutcomeVersionTranslation.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/public-logic/src/converter/PollRevisionConveter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/converter/PollRevisionConveter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/ddl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/ddl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/PollRevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/PollRevision.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/baseDaos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/baseDaos.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/baseDuos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/baseDuos.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/interfaces.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/pollrevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/pollrevision.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qpollrevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qpollrevision.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/qInterfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/qInterfaces.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/qSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/qSchema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/types/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/factor/FactorTranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/factor/FactorTranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/PollRevisionTranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/PollRevisionTranslation.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,7 +241,8 @@
     <MESSAGE value="Bug fixes." />
     <MESSAGE value="Started migrating from Firebase to Vespa + ScyllaDB + CRDB." />
     <MESSAGE value="Simplifying and adjusting relational model and related models." />
-    <option name="LAST_COMMIT_MESSAGE" value="Simplifying and adjusting relational model and related models." />
+    <MESSAGE value="Added Outcomes and lib files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Outcomes and lib files." />
   </component>
   <component name="WindowStateProjectService">
     <state x="566" y="-873" key="#Updates" timestamp="1580326375485">
@@ -290,12 +272,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="229" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1579105984422" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1583268489489">
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1583268684903">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@0.0.1920.1040" timestamp="1582741181313" />
     <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209055925" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583268489489" />
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583268684903" />
     <state x="1" y="-1080" key="CommitChangelistDialog2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130909180" />
     <state width="379" height="466" key="DebuggerActiveHint" timestamp="1579096165500">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -314,37 +296,37 @@
     <state x="2607" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582822760189" />
     <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578848148679" />
     <state x="687" y="-857" key="FileChooserDialogImpl/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579030485607" />
-    <state width="1899" height="288" key="GridCell.Tab.0.bottom" timestamp="1583267764483">
+    <state width="1899" height="288" key="GridCell.Tab.0.bottom" timestamp="1583272355389">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974625" />
-    <state width="1899" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583267764483" />
+    <state width="1899" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583272355389" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
-    <state width="1899" height="288" key="GridCell.Tab.0.center" timestamp="1583267764482">
+    <state width="1899" height="288" key="GridCell.Tab.0.center" timestamp="1583272355389">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583267764482" />
+    <state width="1899" height="288" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583272355389" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="288" key="GridCell.Tab.0.left" timestamp="1583267764482">
+    <state width="1899" height="288" key="GridCell.Tab.0.left" timestamp="1583272355389">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628893" />
     <state width="1899" height="372" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583267764482" />
+    <state width="1899" height="288" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583272355389" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="288" key="GridCell.Tab.0.right" timestamp="1583267764482">
+    <state width="1899" height="288" key="GridCell.Tab.0.right" timestamp="1583272355389">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583267764482" />
+    <state width="1899" height="288" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583272355389" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
     <state width="1899" height="356" key="GridCell.Tab.1.bottom" timestamp="1579124842567">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -423,16 +405,20 @@
     </state>
     <state x="141" y="35" width="1418" height="971" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582848282161" />
     <state x="477" y="-890" key="SettingsEditor/1.-1080.1920.1040/1921.-1188.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1040" timestamp="1580326540443" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1583264178668">
+    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1583268695299">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209060849" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583264178668" />
+    <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583268695299" />
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130913034" />
     <state x="93" y="-988" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582741386494">
       <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
     <state x="93" y="-988" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582741386494" />
+    <state x="802" y="256" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1583268654319">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="802" y="256" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583268654319" />
     <state x="667" y="285" width="710" height="546" key="find.popup" timestamp="1583263700711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -441,11 +427,11 @@
     <state x="667" y="285" width="710" height="546" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583263700711" />
     <state x="668" y="-795" width="654" height="488" key="find.popup/1.-1080.1920.1040/0.0.1920.1040/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1040" timestamp="1582904756409" />
     <state x="668" y="-784" width="654" height="507" key="find.popup/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579131494384" />
-    <state x="623" y="226" width="672" height="653" key="search.everywhere.popup" timestamp="1583263591822">
+    <state x="623" y="226" width="672" height="653" key="search.everywhere.popup" timestamp="1583271987760">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="-845" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582923456086" />
-    <state x="623" y="226" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583263591822" />
+    <state x="623" y="226" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583271987760" />
     <state x="624" y="-854" width="672" height="653" key="search.everywhere.popup/1.-1080.1920.1040/0.0.1920.1040/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1040" timestamp="1582904063093" />
   </component>
   <component name="XDebuggerManager">

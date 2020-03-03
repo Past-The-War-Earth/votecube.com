@@ -47,9 +47,6 @@ export class PollRevisionTranslation
 	@Column({name: 'POLL_NAME'})
 	name: PollRevisionTranslation_Name
 
-	@Column({name: 'POLL_DESCRIPTION'})
-	description: PollRevisionTranslation_Description
-
 	@ManyToOne()
 	@JoinColumn({name: 'TRANSLATION_TYPE_ID'})
 	type: TranslationType

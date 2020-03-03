@@ -31,9 +31,6 @@ export class FactorTranslation
 	@Column({name: 'FACTOR_NAME'})
 	name: FactorTranslation_Name
 
-	@Column({name: 'FACTOR_DESCRIPTION'})
-	description: FactorTranslation_Description
-
 	@ManyToOne()
 	@JoinColumn({name: 'FACTOR_ID'})
 	factor: Factor
