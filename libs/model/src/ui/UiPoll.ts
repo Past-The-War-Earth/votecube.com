@@ -1,23 +1,21 @@
-import {IUserCreated} from '../core/User'
-import {Position_Id}  from '../core/Position'
-import {Outcome_Id}   from '../core/Outcome'
-import {Factor_Id}    from '../core/Factor'
 import {
-	IsDelta,
-	Id
-}                    from '../core/common'
+	Id,
+	IsDelta
+}                                 from '../core/common'
+import {Factor_Id}                from '../core/Factor'
+import {Outcome_Id}               from '../core/Outcome'
 import {
 	Poll_Id,
 	Poll_Name
-}                     from '../core/Poll'
-import {Variation_Id} from '../core/Variation'
-import {UiDocStatus}   from './common'
+}                                 from '../core/Poll'
+import {PollRevision_Id}          from '../core/PollRevision'
+import {Position_Id}              from '../core/Position'
+import {IUserCreated}             from '../core/User'
+import {UiDocStatus}              from './common'
 import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
 import {IUiFactorBase}            from './UiFactor'
-import {IUiOutcome}   from './UiOutcome'
-import {
-	IUiTheme
-}                     from './UiTheme'
+import {IUiOutcome}               from './UiOutcome'
+import {IUiTheme}                 from './UiTheme'
 
 export interface IUiPoll<Doc extends UiDocStatus, K extends Id = Poll_Id>
 	extends IUiAgeSuitabilityTracked<Doc>,
@@ -26,7 +24,7 @@ export interface IUiPoll<Doc extends UiDocStatus, K extends Id = Poll_Id>
 	factors: IUiPollFactorsFragment<Doc>
 	name: Doc extends IsDelta ? boolean : Poll_Name
 	outcomes: IUiPollOutcomesFragment<Doc>
-	rootVariationId: Variation_Id
+	rootRevisionId: PollRevision_Id
 	theme: IUiTheme<Doc>
 
 }

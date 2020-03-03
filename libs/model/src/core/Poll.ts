@@ -20,7 +20,7 @@ import {
 import {Position_Id} from './Position'
 import {ICoreTheme}  from './Theme'
 import {IUserCreated}  from './User'
-import {Variation_Id} from './Variation'
+import {PollRevision_Id} from './PollRevision'
 
 export type Poll_Id = Id
 export type Poll_Name = string
@@ -34,7 +34,7 @@ export interface ICorePoll<Doc extends DocStatus, K extends Id = Poll_Id>
 	name: Doc extends IsDoc ? IDocumentValue<Poll_Name> :
 		Doc extends IsDelta ? boolean : Poll_Name
 	outcomes: ICorePollOutcomesFragment<Doc>
-	rootVariationId: Variation_Id
+	rootRevisionId: PollRevision_Id
 	theme: ICoreTheme<Doc>
 
 }

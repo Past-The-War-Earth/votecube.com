@@ -1,6 +1,6 @@
 import {system}                  from '@airport/di'
 import {IAuth}                   from './Auth'
-import {IPollVariationConverter} from './converter/PollRevisionConveter'
+import {IPollRevisionConverter} from './converter/PollRevisionConveter'
 import {ILogicUtils}             from './LogicUtils'
 import {IDetailedCubeLogic}      from './pages/components/poll/DetailedCubeLogic'
 import {IFactorRankingLogic}     from './pages/poll/info/FactorRankingLogic'
@@ -22,5 +22,5 @@ export const POLL_FORM_LOGIC          = publicLogic.token<IPollFormLogic>()
 export const POLL_FORM_MANAGER        = publicLogic.token<IPollFormManager>()
 export const POLL_MAIN_LOGIC          = publicLogic.token<IPollMainLogic>()
 export const POLL_MANAGER             = publicLogic.token<IPollManager>()
-export const POLL_VARIATION_CONVERTER = publicLogic.token<IPollVariationConverter>()
+export const POLL_REVISION_CONVERTER = publicLogic.token<IPollRevisionConverter>()
 export const ROUTES                   = publicLogic.token<IRoutes>()

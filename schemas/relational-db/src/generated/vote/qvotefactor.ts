@@ -32,15 +32,15 @@ import {
 	QVoteRevisionQRelation,
 } from './qvoterevision';
 import {
-	PollFactorPositionRevisionECascadeGraph,
-	PollFactorPositionRevisionEId,
-	PollFactorPositionRevisionEOptionalId,
-	PollFactorPositionRevisionEUpdateProperties,
-	PollFactorPositionRevisionESelect,
-	QPollFactorPositionRevision,
-	QPollFactorPositionRevisionQId,
-	QPollFactorPositionRevisionQRelation,
-} from '../poll/revision/structure/qpollfactorpositionrevision';
+	PollRevisionFactorPositionECascadeGraph,
+	PollRevisionFactorPositionEId,
+	PollRevisionFactorPositionEOptionalId,
+	PollRevisionFactorPositionEUpdateProperties,
+	PollRevisionFactorPositionESelect,
+	QPollRevisionFactorPosition,
+	QPollRevisionFactorPositionQId,
+	QPollRevisionFactorPositionQRelation,
+} from '../poll/revision/qpollrevisionfactorposition';
 import {
 	VoteFactorTypeECascadeGraph,
 	VoteFactorTypeEId,
@@ -72,7 +72,7 @@ export interface VoteFactorESelect
 
   // Non-Id relations (including OneToMany's)
 	voteRevision?: VoteRevisionESelect;
-	pollFactorPos?: PollFactorPositionRevisionESelect;
+	pollFactorPos?: PollRevisionFactorPositionESelect;
 	type?: VoteFactorTypeESelect;
 
 }
@@ -110,7 +110,7 @@ export interface VoteFactorEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	voteRevision?: VoteRevisionEOptionalId;
-	pollFactorPos?: PollFactorPositionRevisionEOptionalId;
+	pollFactorPos?: PollRevisionFactorPositionEOptionalId;
 	type?: VoteFactorTypeEOptionalId;
 
 }
@@ -132,7 +132,7 @@ export interface VoteFactorEUpdateColumns
 	// Non-Id Columns
 	SHARE?: string | IQStringField;
 	VOTE_REVISION_ID?: number | IQNumberField;
-	POLL_FACTOR_POSITION_REVISION_ID?: number | IQNumberField;
+	POLL_REVISION_FACTOR_POSITION_ID?: number | IQNumberField;
 	VOTE_FACTOR_TYPE_ID?: number | IQNumberField;
 
 }
@@ -173,7 +173,7 @@ export interface QVoteFactor extends IQEntity
 
 	// Non-Id Relations
 	voteRevision: QVoteRevisionQRelation;
-	pollFactorPos: QPollFactorPositionRevisionQRelation;
+	pollFactorPos: QPollRevisionFactorPositionQRelation;
 	type: QVoteFactorTypeQRelation;
 
 }

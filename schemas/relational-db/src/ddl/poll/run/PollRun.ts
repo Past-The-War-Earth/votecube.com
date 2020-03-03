@@ -42,11 +42,6 @@ export class PollRun
 	@JoinColumn({name: 'POLL_REVISION_ID'})
 	pollRevision: PollRevision
 
-	/*
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'run'})
-	chosenRevisions: ChosenPollRevision[]
-*/
-
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'createdAtRun'})
 	createdAtRevisions: PollRevision[]
 

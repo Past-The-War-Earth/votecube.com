@@ -1,0 +1,4 @@
+export type PollRevisionOpinionVersionTranslation_Id = number
+export type PollRevisionOpinionVersionTranslation_Title = string
+export type PollRevisionOpinionVersionTranslation_Text = string
+export type PollRevisionOpinionVersionTranslation_IsOriginal = boolean

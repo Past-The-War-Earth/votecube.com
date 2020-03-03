@@ -62,75 +62,15 @@ import {
 	QUserPollRevisionRatingQRelation,
 } from '../user/quserpollrevisionrating';
 import {
-	PollRevisionRatingCountECascadeGraph,
-	PollRevisionRatingCountEId,
-	PollRevisionRatingCountEOptionalId,
-	PollRevisionRatingCountEUpdateProperties,
-	PollRevisionRatingCountESelect,
-	QPollRevisionRatingCount,
-	QPollRevisionRatingCountQId,
-	QPollRevisionRatingCountQRelation,
-} from './count/qpollrevisionratingcount';
-import {
-	PollRevisionLabelECascadeGraph,
-	PollRevisionLabelEId,
-	PollRevisionLabelEOptionalId,
-	PollRevisionLabelEUpdateProperties,
-	PollRevisionLabelESelect,
-	QPollRevisionLabel,
-	QPollRevisionLabelQId,
-	QPollRevisionLabelQRelation,
-} from './qpollrevisionlabel';
-import {
-	PollFactorPositionRevisionECascadeGraph,
-	PollFactorPositionRevisionEId,
-	PollFactorPositionRevisionEOptionalId,
-	PollFactorPositionRevisionEUpdateProperties,
-	PollFactorPositionRevisionESelect,
-	QPollFactorPositionRevision,
-	QPollFactorPositionRevisionQId,
-	QPollFactorPositionRevisionQRelation,
-} from './structure/qpollfactorpositionrevision';
-import {
-	PollFactorRevisionECascadeGraph,
-	PollFactorRevisionEId,
-	PollFactorRevisionEOptionalId,
-	PollFactorRevisionEUpdateProperties,
-	PollFactorRevisionESelect,
-	QPollFactorRevision,
-	QPollFactorRevisionQId,
-	QPollFactorRevisionQRelation,
-} from './structure/qpollfactorrevision';
-import {
-	PollFactorSkinRevisionECascadeGraph,
-	PollFactorSkinRevisionEId,
-	PollFactorSkinRevisionEOptionalId,
-	PollFactorSkinRevisionEUpdateProperties,
-	PollFactorSkinRevisionESelect,
-	QPollFactorSkinRevision,
-	QPollFactorSkinRevisionQId,
-	QPollFactorSkinRevisionQRelation,
-} from './structure/qpollfactorskinrevision';
-import {
-	PollPositionRevisionECascadeGraph,
-	PollPositionRevisionEId,
-	PollPositionRevisionEOptionalId,
-	PollPositionRevisionEUpdateProperties,
-	PollPositionRevisionESelect,
-	QPollPositionRevision,
-	QPollPositionRevisionQId,
-	QPollPositionRevisionQRelation,
-} from './structure/qpollpositionrevision';
-import {
-	ChosenPollTranslationECascadeGraph,
-	ChosenPollTranslationEId,
-	ChosenPollTranslationEOptionalId,
-	ChosenPollTranslationEUpdateProperties,
-	ChosenPollTranslationESelect,
-	QChosenPollTranslation,
-	QChosenPollTranslationQId,
-	QChosenPollTranslationQRelation,
-} from '../translation/qchosenpolltranslation';
+	PollRevisionFactorPositionECascadeGraph,
+	PollRevisionFactorPositionEId,
+	PollRevisionFactorPositionEOptionalId,
+	PollRevisionFactorPositionEUpdateProperties,
+	PollRevisionFactorPositionESelect,
+	QPollRevisionFactorPosition,
+	QPollRevisionFactorPositionQId,
+	QPollRevisionFactorPositionQRelation,
+} from './qpollrevisionfactorposition';
 import {
 	PollRevisionTranslationECascadeGraph,
 	PollRevisionTranslationEId,
@@ -142,45 +82,15 @@ import {
 	QPollRevisionTranslationQRelation,
 } from './translation/qpollrevisiontranslation';
 import {
-	PollOpinionECascadeGraph,
-	PollOpinionEId,
-	PollOpinionEOptionalId,
-	PollOpinionEUpdateProperties,
-	PollOpinionESelect,
-	QPollOpinion,
-	QPollOpinionQId,
-	QPollOpinionQRelation,
-} from '../../opinion/qpollopinion';
-import {
-	PollRevisionOpinionCountECascadeGraph,
-	PollRevisionOpinionCountEId,
-	PollRevisionOpinionCountEOptionalId,
-	PollRevisionOpinionCountEUpdateProperties,
-	PollRevisionOpinionCountESelect,
-	QPollRevisionOpinionCount,
-	QPollRevisionOpinionCountQId,
-	QPollRevisionOpinionCountQRelation,
-} from './count/qpollrevisionopinioncount';
-import {
-	PollRevisionOpinionRatingCountECascadeGraph,
-	PollRevisionOpinionRatingCountEId,
-	PollRevisionOpinionRatingCountEOptionalId,
-	PollRevisionOpinionRatingCountEUpdateProperties,
-	PollRevisionOpinionRatingCountESelect,
-	QPollRevisionOpinionRatingCount,
-	QPollRevisionOpinionRatingCountQId,
-	QPollRevisionOpinionRatingCountQRelation,
-} from './count/qpollrevisionopinionratingcount';
-import {
-	PollRevisionVoteCountECascadeGraph,
-	PollRevisionVoteCountEId,
-	PollRevisionVoteCountEOptionalId,
-	PollRevisionVoteCountEUpdateProperties,
-	PollRevisionVoteCountESelect,
-	QPollRevisionVoteCount,
-	QPollRevisionVoteCountQId,
-	QPollRevisionVoteCountQRelation,
-} from './count/qpollrevisionvotecount';
+	PollRevisionOpinionECascadeGraph,
+	PollRevisionOpinionEId,
+	PollRevisionOpinionEOptionalId,
+	PollRevisionOpinionEUpdateProperties,
+	PollRevisionOpinionESelect,
+	QPollRevisionOpinion,
+	QPollRevisionOpinionQId,
+	QPollRevisionOpinionQRelation,
+} from '../../opinion/qpollrevisionopinion';
 
 
 declare function require(moduleName: string): any;
@@ -206,18 +116,9 @@ export interface PollRevisionESelect
 	parent?: PollRevisionESelect;
 	children?: PollRevisionESelect;
 	ratings?: UserPollRevisionRatingESelect;
-	ratingCounts?: PollRevisionRatingCountESelect;
-	revisionLabels?: PollRevisionLabelESelect;
-	pollFactorPositionRevisions?: PollFactorPositionRevisionESelect;
-	factors?: PollFactorRevisionESelect;
-	factorSkins?: PollFactorSkinRevisionESelect;
-	positions?: PollPositionRevisionESelect;
-	chosenTranslations?: ChosenPollTranslationESelect;
+	factorPositions?: PollRevisionFactorPositionESelect;
 	allTranslations?: PollRevisionTranslationESelect;
-	opinions?: PollOpinionESelect;
-	opinionCounts?: PollRevisionOpinionCountESelect;
-	opinionRatingCounts?: PollRevisionOpinionRatingCountESelect;
-	voteCounts?: PollRevisionVoteCountESelect;
+	opinions?: PollRevisionOpinionESelect;
 
 }
 
@@ -267,18 +168,9 @@ export interface PollRevisionECascadeGraph
 	// Cascading Relations
 	children?: PollRevisionECascadeGraph;
 	ratings?: UserPollRevisionRatingECascadeGraph;
-	ratingCounts?: PollRevisionRatingCountECascadeGraph;
-	revisionLabels?: PollRevisionLabelECascadeGraph;
-	pollFactorPositionRevisions?: PollFactorPositionRevisionECascadeGraph;
-	factors?: PollFactorRevisionECascadeGraph;
-	factorSkins?: PollFactorSkinRevisionECascadeGraph;
-	positions?: PollPositionRevisionECascadeGraph;
-	chosenTranslations?: ChosenPollTranslationECascadeGraph;
+	factorPositions?: PollRevisionFactorPositionECascadeGraph;
 	allTranslations?: PollRevisionTranslationECascadeGraph;
-	opinions?: PollOpinionECascadeGraph;
-	opinionCounts?: PollRevisionOpinionCountECascadeGraph;
-	opinionRatingCounts?: PollRevisionOpinionRatingCountECascadeGraph;
-	voteCounts?: PollRevisionVoteCountECascadeGraph;
+	opinions?: PollRevisionOpinionECascadeGraph;
 
 }
 
@@ -337,18 +229,9 @@ export interface QPollRevision extends QImmutableActorRow
 	parent: QPollRevisionQRelation;
 	children: IQOneToManyRelation<QPollRevision>;
 	ratings: IQOneToManyRelation<QUserPollRevisionRating>;
-	ratingCounts: IQOneToManyRelation<QPollRevisionRatingCount>;
-	revisionLabels: IQOneToManyRelation<QPollRevisionLabel>;
-	pollFactorPositionRevisions: IQOneToManyRelation<QPollFactorPositionRevision>;
-	factors: IQOneToManyRelation<QPollFactorRevision>;
-	factorSkins: IQOneToManyRelation<QPollFactorSkinRevision>;
-	positions: IQOneToManyRelation<QPollPositionRevision>;
-	chosenTranslations: IQOneToManyRelation<QChosenPollTranslation>;
+	factorPositions: IQOneToManyRelation<QPollRevisionFactorPosition>;
 	allTranslations: IQOneToManyRelation<QPollRevisionTranslation>;
-	opinions: IQOneToManyRelation<QPollOpinion>;
-	opinionCounts: IQOneToManyRelation<QPollRevisionOpinionCount>;
-	opinionRatingCounts: IQOneToManyRelation<QPollRevisionOpinionRatingCount>;
-	voteCounts: IQOneToManyRelation<QPollRevisionVoteCount>;
+	opinions: IQOneToManyRelation<QPollRevisionOpinion>;
 
 }
 

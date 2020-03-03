@@ -1,1 +1,1 @@
-export * from './poll/PollFactorPositionDuo'
+export * from './poll/PollRevisionFactorPositionDuo'

@@ -11,41 +11,14 @@ import {
 	IUserPollRevisionRating,
 } from '../user/userpollrevisionrating';
 import {
-	IPollRevisionRatingCount,
-} from './count/pollrevisionratingcount';
-import {
-	IPollRevisionLabel,
-} from './pollrevisionlabel';
-import {
-	IPollFactorPositionRevision,
-} from './structure/pollfactorpositionrevision';
-import {
-	IPollFactorRevision,
-} from './structure/pollfactorrevision';
-import {
-	IPollFactorSkinRevision,
-} from './structure/pollfactorskinrevision';
-import {
-	IPollPositionRevision,
-} from './structure/pollpositionrevision';
-import {
-	IChosenPollTranslation,
-} from '../translation/chosenpolltranslation';
+	IPollRevisionFactorPosition,
+} from './pollrevisionfactorposition';
 import {
 	IPollRevisionTranslation,
 } from './translation/pollrevisiontranslation';
 import {
-	IPollOpinion,
-} from '../../opinion/pollopinion';
-import {
-	IPollRevisionOpinionCount,
-} from './count/pollrevisionopinioncount';
-import {
-	IPollRevisionOpinionRatingCount,
-} from './count/pollrevisionopinionratingcount';
-import {
-	IPollRevisionVoteCount,
-} from './count/pollrevisionvotecount';
+	IPollRevisionOpinion,
+} from '../../opinion/pollrevisionopinion';
 
 
 
@@ -69,18 +42,9 @@ export interface IPollRevision extends IImmutableActorRow {
 	parent?: IPollRevision;
 	children?: IPollRevision[];
 	ratings?: IUserPollRevisionRating[];
-	ratingCounts?: IPollRevisionRatingCount[];
-	revisionLabels?: IPollRevisionLabel[];
-	pollFactorPositionRevisions?: IPollFactorPositionRevision[];
-	factors?: IPollFactorRevision[];
-	factorSkins?: IPollFactorSkinRevision[];
-	positions?: IPollPositionRevision[];
-	chosenTranslations?: IChosenPollTranslation[];
+	factorPositions?: IPollRevisionFactorPosition[];
 	allTranslations?: IPollRevisionTranslation[];
-	opinions?: IPollOpinion[];
-	opinionCounts?: IPollRevisionOpinionCount[];
-	opinionRatingCounts?: IPollRevisionOpinionRatingCount[];
-	voteCounts?: IPollRevisionVoteCount[];
+	opinions?: IPollRevisionOpinion[];
 
 	// Transient Properties
 

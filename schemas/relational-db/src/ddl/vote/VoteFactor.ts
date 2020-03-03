@@ -12,7 +12,7 @@ import {
 	VoteFactor_Id,
 	VoteFactor_Value
 }                                   from '../../types/vote/VoteFactor'
-import {PollFactorPositionRevision} from '../poll/revision/structure/PollFactorPositionRevision'
+import {PollRevisionFactorPosition} from '../poll/revision/PollRevisionFactorPosition'
 import {VoteFactorType}             from './VoteFactorType'
 import {VoteRevision}               from './VoteRevision'
 
@@ -34,8 +34,8 @@ export class VoteFactor {
 	share: VoteFactor_Value
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_FACTOR_POSITION_REVISION_ID', nullable: false})
-	pollFactorPos: PollFactorPositionRevision
+	@JoinColumn({name: 'POLL_REVISION_FACTOR_POSITION_ID', nullable: false})
+	pollFactorPos: PollRevisionFactorPosition
 
 	@ManyToOne()
 	@JoinColumn({name: 'VOTE_FACTOR_TYPE_ID', nullable: false})

@@ -52,16 +52,6 @@ import {
 	QPollQRelation,
 } from '../poll/qpoll';
 import {
-	ChosenVoteRevisionECascadeGraph,
-	ChosenVoteRevisionEId,
-	ChosenVoteRevisionEOptionalId,
-	ChosenVoteRevisionEUpdateProperties,
-	ChosenVoteRevisionESelect,
-	QChosenVoteRevision,
-	QChosenVoteRevisionQId,
-	QChosenVoteRevisionQRelation,
-} from './qchosenvoterevision';
-import {
 	VoteRevisionECascadeGraph,
 	VoteRevisionEId,
 	VoteRevisionEOptionalId,
@@ -93,7 +83,6 @@ export interface VoteESelect
   // Non-Id relations (including OneToMany's)
 	actor?: ActorESelect;
 	poll?: PollESelect;
-	chosenRevisions?: ChosenVoteRevisionESelect;
 	revisions?: VoteRevisionESelect;
 
 }
@@ -141,7 +130,6 @@ export interface VoteEUpdateProperties
 export interface VoteECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
-	chosenRevisions?: ChosenVoteRevisionECascadeGraph;
 	revisions?: VoteRevisionECascadeGraph;
 
 }
@@ -196,7 +184,6 @@ export interface QVote extends QImmutableActorRow
 	// Non-Id Relations
 	actor: QActorQRelation;
 	poll: QPollQRelation;
-	chosenRevisions: IQOneToManyRelation<QChosenVoteRevision>;
 	revisions: IQOneToManyRelation<QVoteRevision>;
 
 }

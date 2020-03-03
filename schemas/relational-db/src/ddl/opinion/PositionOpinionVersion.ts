@@ -10,9 +10,6 @@ import {
 }                                           from '@airport/air-control'
 import {CascadeType}                        from '@airport/ground-control'
 import {PositionOpinionVersion_Id}          from '../../types/opinion/PositionOpinionVersion'
-import {Language}                          from '../infrastructure/Language'
-import {PollPositionRevision}              from '../poll/revision/structure/PollPositionRevision'
-import {PositionOpinionVersionRatingCount} from './count/PositionOpinionVersionRatingCount'
 import {FactorOpinionVersion}               from './FactorOpinionVersion'
 import {PositionOpinionVersionTranslation,} from './translation/PositionOpinionVersionTranslation'
 import {PositionOpinionVersionRating}       from './user/PositionOpinionVersionRating'
@@ -35,21 +32,10 @@ export class PositionOpinionVersion {
 	})
 	factorOpinionVersion: FactorOpinionVersion
 
-	@ManyToOne()
-	@JoinColumn({name: 'POLL_POSITION_REVISION_ID', nullable: false})
-	pollPositionRevision: PollPositionRevision
-
-	@ManyToOne()
-	@JoinColumn({name: 'LANGUAGE_ID'})
-	language: Language
-
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'positionOpinionVersion'})
 	ratings: PositionOpinionVersionRating[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'positionOpinionVersion'})
 	translations: PositionOpinionVersionTranslation[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'positionOpinionVersion'})
-	ratingCounts: PositionOpinionVersionRatingCount[]
 
 }

@@ -8,9 +8,6 @@ import {
 	IPoll,
 } from '../poll/poll';
 import {
-	IChosenVoteRevision,
-} from './chosenvoterevision';
-import {
 	IVoteRevision,
 } from './voterevision';
 
@@ -33,7 +30,6 @@ export interface IVote extends IImmutableActorRow {
 	// Non-Id Relations
 	actor?: IActor;
 	poll?: IPoll;
-	chosenRevisions?: IChosenVoteRevision[];
 	revisions?: IVoteRevision[];
 
 	// Transient Properties

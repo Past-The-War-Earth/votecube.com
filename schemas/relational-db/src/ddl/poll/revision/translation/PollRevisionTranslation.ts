@@ -17,13 +17,8 @@ import {
 import {Language}                                   from '../../../infrastructure/Language'
 import {ImmutableActorRow}                          from '../../../infrastructure/row/ImmutableActorRow'
 import {TranslationType}                            from '../../../infrastructure/TranslationType'
-import {PollRun}             from '../../run/PollRun'
 import {UserPollRevisionTranslationRating} from '../../user/UserPollRevisionTranslationRating'
 import {PollRevision}                               from '../PollRevision'
-import {PollRevisionTranslationOpinionCount}       from './count/PollRevisionTranslationOpinionCount'
-import {PollRevisionTranslationOpinionRatingCount} from './count/PollRevisionTranslationOpinionRatingCount'
-import {PollRevisionTranslationRatingCount} from './count/PollRevisionTranslationRatingCount'
-import {PollRevisionTranslationVoteCount}   from './count/PollRevisionTranslationVoteCount'
 import {PollRevisionFactorTranslation}      from './PollRevisionFactorTranslation'
 import {PollRevisionPositionTranslation}   from './PollRevisionPositionTranslation'
 
@@ -60,10 +55,6 @@ export class PollRevisionTranslation
 	type: TranslationType
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_RUN_ID'})
-	createdAtRun: PollRun
-
-	@ManyToOne()
 	@JoinColumn({
 		name: 'PARENT_POLL_REVISION_TRANSLATION_ID',
 		referencedColumnName: 'POLL_REVISION_TRANSLATION_ID'
@@ -77,21 +68,9 @@ export class PollRevisionTranslation
 	ratings: UserPollRevisionTranslationRating[]
 
 	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation'})
-	ratingCounts: PollRevisionTranslationRatingCount[]
+	factorTranslations: PollRevisionFactorTranslation[]
 
 	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation'})
-	factors: PollRevisionFactorTranslation[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation'})
-	positions: PollRevisionPositionTranslation[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation'})
-	opinionCounts: PollRevisionTranslationOpinionCount[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation'})
-	opinionRatingCounts: PollRevisionTranslationOpinionRatingCount[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation'})
-	voteCounts: PollRevisionTranslationVoteCount[]
+	positionTranslations: PollRevisionPositionTranslation[]
 
 }

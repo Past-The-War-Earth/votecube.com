@@ -2,8 +2,8 @@ import {
 	IVoteRevision,
 } from './voterevision';
 import {
-	IPollFactorPositionRevision,
-} from '../poll/revision/structure/pollfactorpositionrevision';
+	IPollRevisionFactorPosition,
+} from '../poll/revision/pollrevisionfactorposition';
 import {
 	IVoteFactorType,
 } from './votefactortype';
@@ -26,7 +26,7 @@ export interface IVoteFactor {
 
 	// Non-Id Relations
 	voteRevision?: IVoteRevision;
-	pollFactorPos?: IPollFactorPositionRevision;
+	pollFactorPos?: IPollRevisionFactorPosition;
 	type?: IVoteFactorType;
 
 	// Transient Properties

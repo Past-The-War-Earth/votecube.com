@@ -1,73 +1,112 @@
-import {DI}                       from '@airport/di'
-import {IUiPollVariation}         from '@votecube/model'
+import {DI}                      from '@airport/di'
 import {
-	IChosenPollTranslation,
+	IsData,
+	IUiFactor,
+	IUiPollRevision,
+	IUiPosition
+}                                from '@votecube/model'
+import {
+	IFactor,
+	IFactorPosition,
 	IPoll,
-	IPollFactorPositionVariation,
-	IPollFactorSkinVariation,
-	IPollFactorVariation,
-	IPollLocationTimeFrame,
-	IPollOpinion,
-	IPollPositionVariation,
-	IPollVariation,
-	IPollVariationLabel,
-	IPollVariationOpinionCount,
-	IPollVariationOpinionRatingCount,
-	IPollVariationRatingCount,
-	IPollVariationTranslation,
-	IPollVariationVoteCount,
-	IUserPollVariationRating
-}                                 from '@votecube/relational-db'
-import {POLL_VARIATION_CONVERTER} from '../tokens'
+	IPollRevision,
+	IPosition
+}                                from '@votecube/relational-db'
+import {POLL_REVISION_CONVERTER} from '../tokens'
 
-export interface IPollVariationConverter {
+export interface IPollRevisionConverter {
 
 	dbToUi(
-		variationDb: IPollVariation
-	): IUiPollVariation
+		RevisionDb: IPollRevision
+	): IUiPollRevision
 
 	uiToDb(
-		variationDoc: IUiPollVariation
-	): IPollVariation
+		RevisionDoc: IUiPollRevision
+	): IPollRevision
 
 }
 
-export class PollVariationConverter
-	implements IPollVariationConverter {
+export class PollRevisionConverter
+	implements IPollRevisionConverter {
 
 	dbToUi(
-		variationDb: IPollVariation
-	): IUiPollVariation {
+		revisionDb: IPollRevision
+	): IUiPollRevision {
 
 	}
 
 	uiToDb(
-		variationDoc: IUiPollVariation
-	): IPollVariation {
-		const uiPollVariation: IPollVariation = {
-			id: variationDoc.id,
+		revisionDoc: IUiPollRevision
+	): IPollRevision {
+
+		const poll: IPoll = {
+			id: revisionDoc.pollId
+		}
+
+		const parentRevision: IPollRevision = {
+			id: revisionDoc.parent.id
+		}
+
+
+
+		const uiPollRevision: IPollRevision = {
+			id: revisionDoc.id,
 			// Non-Id Relations
-			poll: IPoll,
-		createdAtLocationTimeFrame: IPollLocationTimeFrame
-		parent ? : IPollVariation
-		children ? : IPollVariation[]
-		ratings ? : IUserPollVariationRating[]
-		ratingCounts ? : IPollVariationRatingCount[]
-		variationLabels ? : IPollVariationLabel[]
-		pollFactorPositionVariations ? : IPollFactorPositionVariation[]
-		factors ? : IPollFactorVariation[]
-		factorSkins ? : IPollFactorSkinVariation[]
-		positions ? : IPollPositionVariation[]
-		chosenTranslations ? : IChosenPollTranslation[]
-		allTranslations ? : IPollVariationTranslation[]
-		opinions ? : IPollOpinion[]
-		opinionCounts ? : IPollVariationOpinionCount[]
-		opinionRatingCounts ? : IPollVariationOpinionRatingCount[]
-		voteCounts ? : IPollVariationVoteCount[]
+			poll: poll,
+			createdAtRun: null,
+			parent: parentRevision,
+			children: null,
+			ratings: null,
+			factorPositions: null,
+			factorSkins: null,
+			chosenTranslations: null,
+			allTranslations: null,
+			opinions: null,
+		}
+
+		return uiPollRevision
 	}
 
+	getDbFactor(
+		uiFactor: IUiFactor<IsData>
+	): IFactor {
+		const factorPositions: IFactorPosition = []
+
+		factorPositions.push(
+			this.getDbPosition(uiFactor.positions.A)
+		)
+		factorPositions.push(
+			this.getDbPosition(uiFactor.positions.B)
+		)
+
+		const dbFactor: IFactor = {
+			id: uiFactor.id,
+			factorPositions,
+		}
+
+		return dbFactor
+	}
+
+	getDbPosition(
+		uiPosition: IUiPosition<IsData>,
+	): IFactorPosition {
+		const position: IPosition = {
+			id: uiPosition.id,
+			translations:[{
+				// TODO: add language
+				language: 'EN_US',
+				description: uiPosition.name,
+			}]
+		}
+
+		const factorPosition: IFactorPosition = {
+			id: uiPosition.factorPositionId,
+			position,
+		}
+
+		return factorPosition
 	}
 
 }
 
-DI.set(POLL_VARIATION_CONVERTER, PollVariationConverter)
+DI.set(POLL_REVISION_CONVERTER, PollRevisionConverter)

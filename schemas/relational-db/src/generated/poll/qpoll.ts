@@ -62,36 +62,6 @@ import {
 	QUserPollRatingQRelation,
 } from './user/quserpollrating';
 import {
-	PollRatingCountECascadeGraph,
-	PollRatingCountEId,
-	PollRatingCountEOptionalId,
-	PollRatingCountEUpdateProperties,
-	PollRatingCountESelect,
-	QPollRatingCount,
-	QPollRatingCountQId,
-	QPollRatingCountQRelation,
-} from './count/qpollratingcount';
-import {
-	ChosenPollTranslationECascadeGraph,
-	ChosenPollTranslationEId,
-	ChosenPollTranslationEOptionalId,
-	ChosenPollTranslationEUpdateProperties,
-	ChosenPollTranslationESelect,
-	QChosenPollTranslation,
-	QChosenPollTranslationQId,
-	QChosenPollTranslationQRelation,
-} from './translation/qchosenpolltranslation';
-import {
-	ChosenPollRevisionECascadeGraph,
-	ChosenPollRevisionEId,
-	ChosenPollRevisionEOptionalId,
-	ChosenPollRevisionEUpdateProperties,
-	ChosenPollRevisionESelect,
-	QChosenPollRevision,
-	QChosenPollRevisionQId,
-	QChosenPollRevisionQRelation,
-} from './revision/qchosenpollrevision';
-import {
 	PollRunECascadeGraph,
 	PollRunEId,
 	PollRunEOptionalId,
@@ -111,36 +81,6 @@ import {
 	QPollRevisionQId,
 	QPollRevisionQRelation,
 } from './revision/qpollrevision';
-import {
-	PollOpinionsCountECascadeGraph,
-	PollOpinionsCountEId,
-	PollOpinionsCountEOptionalId,
-	PollOpinionsCountEUpdateProperties,
-	PollOpinionsCountESelect,
-	QPollOpinionsCount,
-	QPollOpinionsCountQId,
-	QPollOpinionsCountQRelation,
-} from './count/qpollopinionscount';
-import {
-	PollOpinionsRatingCountECascadeGraph,
-	PollOpinionsRatingCountEId,
-	PollOpinionsRatingCountEOptionalId,
-	PollOpinionsRatingCountEUpdateProperties,
-	PollOpinionsRatingCountESelect,
-	QPollOpinionsRatingCount,
-	QPollOpinionsRatingCountQId,
-	QPollOpinionsRatingCountQRelation,
-} from './count/qpollopinionsratingcount';
-import {
-	PollVoteCountECascadeGraph,
-	PollVoteCountEId,
-	PollVoteCountEOptionalId,
-	PollVoteCountEUpdateProperties,
-	PollVoteCountESelect,
-	QPollVoteCount,
-	QPollVoteCountQId,
-	QPollVoteCountQRelation,
-} from './count/qpollvotecount';
 
 
 declare function require(moduleName: string): any;
@@ -167,14 +107,8 @@ export interface PollESelect
 	parent?: PollESelect;
 	children?: PollESelect;
 	ratings?: UserPollRatingESelect;
-	ratingCounts?: PollRatingCountESelect;
-	chosenPollTranslations?: ChosenPollTranslationESelect;
-	chosenRevisions?: ChosenPollRevisionESelect;
 	runs?: PollRunESelect;
-	allPollRevisions?: PollRevisionESelect;
-	opinionCounts?: PollOpinionsCountESelect;
-	opinionRatingCounts?: PollOpinionsRatingCountESelect;
-	voteCounts?: PollVoteCountESelect;
+	revisions?: PollRevisionESelect;
 
 }
 
@@ -223,14 +157,8 @@ export interface PollECascadeGraph
 	// Cascading Relations
 	children?: PollECascadeGraph;
 	ratings?: UserPollRatingECascadeGraph;
-	ratingCounts?: PollRatingCountECascadeGraph;
-	chosenPollTranslations?: ChosenPollTranslationECascadeGraph;
-	chosenRevisions?: ChosenPollRevisionECascadeGraph;
 	runs?: PollRunECascadeGraph;
-	allPollRevisions?: PollRevisionECascadeGraph;
-	opinionCounts?: PollOpinionsCountECascadeGraph;
-	opinionRatingCounts?: PollOpinionsRatingCountECascadeGraph;
-	voteCounts?: PollVoteCountECascadeGraph;
+	revisions?: PollRevisionECascadeGraph;
 
 }
 
@@ -290,14 +218,8 @@ export interface QPoll extends QImmutableActorRow
 	parent: QPollQRelation;
 	children: IQOneToManyRelation<QPoll>;
 	ratings: IQOneToManyRelation<QUserPollRating>;
-	ratingCounts: IQOneToManyRelation<QPollRatingCount>;
-	chosenPollTranslations: IQOneToManyRelation<QChosenPollTranslation>;
-	chosenRevisions: IQOneToManyRelation<QChosenPollRevision>;
 	runs: IQOneToManyRelation<QPollRun>;
-	allPollRevisions: IQOneToManyRelation<QPollRevision>;
-	opinionCounts: IQOneToManyRelation<QPollOpinionsCount>;
-	opinionRatingCounts: IQOneToManyRelation<QPollOpinionsRatingCount>;
-	voteCounts: IQOneToManyRelation<QPollVoteCount>;
+	revisions: IQOneToManyRelation<QPollRevision>;
 
 }
 

@@ -133,9 +133,9 @@ export interface PositionOpinionVersionTranslationEUpdateColumns
 	extends SystemGeneratedRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
-	FACTOR_OPINION_VERSION_TRANSLATION_IS_ORIGINAL?: boolean | IQBooleanField;
-	POSITION_OPINION_VERSION_TRANSLATION_TITLE?: string | IQStringField;
-	POSITION_OPINION_VERSION_TRANSLATION_TEXT?: string | IQStringField;
+	IS_ORIGINAL?: boolean | IQBooleanField;
+	TITLE?: string | IQStringField;
+	TEXT?: string | IQStringField;
 	POSITION_OPINION_VERSION_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;
 

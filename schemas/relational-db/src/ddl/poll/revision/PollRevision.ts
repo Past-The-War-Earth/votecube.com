@@ -12,21 +12,12 @@ import {CascadeType}                    from '@airport/ground-control'
 import {AgeSuitability}                 from '../../../types/common'
 import {PollRevision_Id}                from '../../../types/poll/revision/PollRevision'
 import {ImmutableActorRow}              from '../../infrastructure/row/ImmutableActorRow'
-import {PollOpinion}                    from '../../opinion/PollOpinion'
-import {PollRun}                        from '../run/PollRun'
+import {PollRevisionOpinion}                    from '../../opinion/PollRevisionOpinion'
 import {Poll}                           from '../Poll'
-import {ChosenPollTranslation}          from '../translation/ChosenPollTranslation'
+import {PollRun}                        from '../run/PollRun'
 import {UserPollRevisionRating}         from '../user/UserPollRevisionRating'
-import {PollRevisionOpinionCount}       from './count/PollRevisionOpinionCount'
-import {PollRevisionOpinionRatingCount} from './count/PollRevisionOpinionRatingCount'
-import {PollRevisionRatingCount}        from './count/PollRevisionRatingCount'
-import {PollRevisionVoteCount}          from './count/PollRevisionVoteCount'
-import {PollRevisionLabel}              from './PollRevisionLabel'
-import {PollFactorPositionRevision} from './structure/PollFactorPositionRevision'
-import {PollFactorSkinRevision}     from './structure/PollFactorSkinRevision'
-import {PollFactorRevision}      from './structure/PollFactorRevision'
-import {PollPositionRevision}    from './structure/PollPositionRevision'
-import {PollRevisionTranslation} from './translation/PollRevisionTranslation'
+import {PollRevisionFactorPosition}     from './PollRevisionFactorPosition'
+import {PollRevisionTranslation}        from './translation/PollRevisionTranslation'
 
 /**
  * Different revisions of a given poll.
@@ -65,40 +56,13 @@ export class PollRevision
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
 	ratings: UserPollRevisionRating[]
 
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevision'})
-	ratingCounts: PollRevisionRatingCount[]
-
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
-	revisionLabels: PollRevisionLabel[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
-	pollFactorPositionRevisions: PollFactorPositionRevision[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
-	factors: PollFactorRevision[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
-	factorSkins: PollFactorSkinRevision[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
-	positions: PollPositionRevision[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
-	chosenTranslations: ChosenPollTranslation[]
+	factorPositions: PollRevisionFactorPosition[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
 	allTranslations: PollRevisionTranslation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
-	opinions: PollOpinion[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevision'})
-	opinionCounts: PollRevisionOpinionCount[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevision'})
-	opinionRatingCounts: PollRevisionOpinionRatingCount[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevision'})
-	voteCounts: PollRevisionVoteCount[]
+	opinions: PollRevisionOpinion[]
 
 }

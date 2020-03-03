@@ -11,29 +11,14 @@ import {
 	ITranslationType,
 } from '../../../infrastructure/translationtype';
 import {
-	IPollRun,
-} from '../../run/pollrun';
-import {
 	IUserPollRevisionTranslationRating,
 } from '../../user/userpollrevisiontranslationrating';
-import {
-	IPollRevisionTranslationRatingCount,
-} from './count/pollrevisiontranslationratingcount';
 import {
 	IPollRevisionFactorTranslation,
 } from './pollrevisionfactortranslation';
 import {
 	IPollRevisionPositionTranslation,
 } from './pollrevisionpositiontranslation';
-import {
-	IPollRevisionTranslationOpinionCount,
-} from './count/pollrevisiontranslationopinioncount';
-import {
-	IPollRevisionTranslationOpinionRatingCount,
-} from './count/pollrevisiontranslationopinionratingcount';
-import {
-	IPollRevisionTranslationVoteCount,
-} from './count/pollrevisiontranslationvotecount';
 
 
 
@@ -56,16 +41,11 @@ export interface IPollRevisionTranslation extends IImmutableActorRow {
 	pollRevision?: IPollRevision;
 	language?: ILanguage;
 	type?: ITranslationType;
-	createdAtRun?: IPollRun;
 	parent?: IPollRevisionTranslation;
 	children?: IPollRevisionTranslation[];
 	ratings?: IUserPollRevisionTranslationRating[];
-	ratingCounts?: IPollRevisionTranslationRatingCount[];
-	factors?: IPollRevisionFactorTranslation[];
-	positions?: IPollRevisionPositionTranslation[];
-	opinionCounts?: IPollRevisionTranslationOpinionCount[];
-	opinionRatingCounts?: IPollRevisionTranslationOpinionRatingCount[];
-	voteCounts?: IPollRevisionTranslationVoteCount[];
+	factorTranslations?: IPollRevisionFactorTranslation[];
+	positionTranslations?: IPollRevisionPositionTranslation[];
 
 	// Transient Properties
 

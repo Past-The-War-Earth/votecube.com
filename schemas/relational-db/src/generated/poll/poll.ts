@@ -11,29 +11,11 @@ import {
 	IUserPollRating,
 } from './user/userpollrating';
 import {
-	IPollRatingCount,
-} from './count/pollratingcount';
-import {
-	IChosenPollTranslation,
-} from './translation/chosenpolltranslation';
-import {
-	IChosenPollRevision,
-} from './revision/chosenpollrevision';
-import {
 	IPollRun,
 } from './run/pollrun';
 import {
 	IPollRevision,
 } from './revision/pollrevision';
-import {
-	IPollOpinionsCount,
-} from './count/pollopinionscount';
-import {
-	IPollOpinionsRatingCount,
-} from './count/pollopinionsratingcount';
-import {
-	IPollVoteCount,
-} from './count/pollvotecount';
 
 
 
@@ -57,14 +39,8 @@ export interface IPoll extends IImmutableActorRow {
 	parent?: IPoll;
 	children?: IPoll[];
 	ratings?: IUserPollRating[];
-	ratingCounts?: IPollRatingCount[];
-	chosenPollTranslations?: IChosenPollTranslation[];
-	chosenRevisions?: IChosenPollRevision[];
 	runs?: IPollRun[];
-	allPollRevisions?: IPollRevision[];
-	opinionCounts?: IPollOpinionsCount[];
-	opinionRatingCounts?: IPollOpinionsRatingCount[];
-	voteCounts?: IPollVoteCount[];
+	revisions?: IPollRevision[];
 
 	// Transient Properties
 

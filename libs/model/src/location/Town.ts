@@ -1,7 +1,5 @@
-import {Id}      from '../old/model'
+import {Town_Id} from '@votecube/relational-db'
 import {ICounty} from './County'
-
-export type Town_Id = Id
 
 export const TOWNS = 'TOWNS'
 

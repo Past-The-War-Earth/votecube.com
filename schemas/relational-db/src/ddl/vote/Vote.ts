@@ -14,7 +14,6 @@ import {Vote_Id}             from '../../types/vote/Vote'
 import {ImmutableActorRow}   from '../infrastructure/row/ImmutableActorRow'
 import {Poll}                from '../poll/Poll'
 import {Actor}               from '../user/Actor'
-import {ChosenVoteRevision} from './ChosenVoteRevision'
 import {VoteType}            from './VoteType'
 import {VoteRevision}       from './VoteRevision'
 
@@ -43,9 +42,6 @@ export class Vote
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID', nullable: false})
 	poll: Poll
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
-	chosenRevisions: ChosenVoteRevision[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
 	revisions: VoteRevision[]

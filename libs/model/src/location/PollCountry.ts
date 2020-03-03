@@ -1,15 +1,13 @@
-import {Id}            from '../old/model'
-import {IPreparedPoll} from '../poll/PreparedPoll'
-import {ICountry}      from './Country'
-
-export type PollCountry_Id = Id
+import {PollRunCountry_Id} from '@votecube/relational-db'
+import {IPreparedPoll}     from '../poll/PreparedPoll'
+import {ICountry}          from './Country'
 
 export const POLL_COUNTRIES = 'POLL_COUNTRIES'
 
 export interface IPollCountry {
 
 	country: ICountry
-	id: PollCountry_Id
+	id: PollRunCountry_Id
 	poll: IPreparedPoll
 
 }

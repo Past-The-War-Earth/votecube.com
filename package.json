@@ -8,5 +8,6 @@
   "bugs": {
     "url": "https://github.com/diapco/votecube-ui/issues"
   },
-  "homepage": "https://github.com/diapco/votecube-ui#readme"
+  "homepage": "https://github.com/diapco/votecube-ui#readme",
+  "type": "module"
 }

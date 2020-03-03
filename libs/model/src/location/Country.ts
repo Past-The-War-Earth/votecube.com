@@ -1,7 +1,5 @@
-import {Id}         from '../old/model'
+import {Country_Id} from '@votecube/relational-db'
 import {IContinent} from './Continent'
-
-export type Country_Id = Id
 
 export const COUNTRIES = 'COUNTRIES'
 

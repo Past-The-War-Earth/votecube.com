@@ -33,13 +33,13 @@ export class PositionOpinionVersionTranslation
 	/**
 	 * All translations should come from the original version.
 	 */
-	@Column({name: 'FACTOR_OPINION_VERSION_TRANSLATION_IS_ORIGINAL', nullable: false})
+	@Column({name: 'IS_ORIGINAL', nullable: false})
 	original: PositionOpinionVersionTranslation_IsOriginal
 
-	@Column({name: 'POSITION_OPINION_VERSION_TRANSLATION_TITLE', nullable: false})
+	@Column({name: 'TITLE', nullable: false})
 	title: PositionOpinionVersionTranslation_Title
 
-	@Column({name: 'POSITION_OPINION_VERSION_TRANSLATION_TEXT', nullable: false})
+	@Column({name: 'TEXT', nullable: false})
 	text: PositionOpinionVersionTranslation_Text
 
 	@ManyToOne()

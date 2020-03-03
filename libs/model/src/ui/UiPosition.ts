@@ -1,10 +1,11 @@
-import {IsDelta}   from '../core/common'
-import {Factor_Id} from '../core/Factor'
+import {FactorPosition_Id}        from '@votecube/relational-db'
+import {IsDelta}                  from '../core/common'
+import {Factor_Id}                from '../core/Factor'
 import {
 	Position_Dir,
 	Position_Id,
 	Position_Name,
-}                  from '../core/Position'
+}                                 from '../core/Position'
 import {IUserCreated}             from '../core/User'
 import {UiDocStatus}              from './common'
 import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
@@ -14,6 +15,9 @@ export interface IUiPosition<Doc extends UiDocStatus>
 	        IUiPositionDefault<Doc>,
 	        IUiPositionFromForm<Doc>,
 	        IUserCreated<Position_Id> {
+
+	factorPositionId: FactorPosition_Id
+
 }
 
 export interface IUiFactorPosition<Doc extends UiDocStatus>
