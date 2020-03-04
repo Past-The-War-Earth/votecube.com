@@ -1,16 +1,14 @@
 import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-control';
 import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../infrastructure/row/qimmutableactorrow';
-import { ActorEOptionalId, ActorESelect, QActorQRelation } from '../user/qactor';
-import { PollEOptionalId, PollESelect, QPollQRelation } from '../poll/qpoll';
-import { VoteRevisionECascadeGraph, VoteRevisionESelect, QVoteRevision } from './qvoterevision';
+import { PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../poll/run/qpollrun';
+import { VoteVersionECascadeGraph, VoteVersionESelect, QVoteVersion } from './qvoteversion';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface VoteESelect extends ImmutableActorRowESelect, VoteEOptionalId {
     type?: number | IQNumberField;
-    actor?: ActorESelect;
-    poll?: PollESelect;
-    revisions?: VoteRevisionESelect;
+    run?: PollRunESelect;
+    revisions?: VoteVersionESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -29,14 +27,13 @@ export interface VoteEOptionalId {
  */
 export interface VoteEUpdateProperties extends ImmutableActorRowEUpdateProperties {
     type?: number | IQNumberField;
-    actor?: ActorEOptionalId;
-    poll?: PollEOptionalId;
+    run?: PollRunEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface VoteECascadeGraph extends ImmutableActorRowECascadeGraph {
-    revisions?: VoteRevisionECascadeGraph;
+    revisions?: VoteVersionECascadeGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -45,7 +42,7 @@ export interface VoteEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
     VOTE_TYPE_ID?: number | IQNumberField;
-    POLL_ID?: number | IQNumberField;
+    POLL_RUN_ID?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -63,9 +60,8 @@ export interface VoteECreateColumns extends VoteEId, VoteEUpdateColumns {
 export interface QVote extends QImmutableActorRow {
     id: IQNumberField;
     type: IQNumberField;
-    actor: QActorQRelation;
-    poll: QPollQRelation;
-    revisions: IQOneToManyRelation<QVoteRevision>;
+    run: QPollRunQRelation;
+    revisions: IQOneToManyRelation<QVoteVersion>;
 }
 export interface QVoteQId extends QImmutableActorRowQId {
     id: IQNumberField;

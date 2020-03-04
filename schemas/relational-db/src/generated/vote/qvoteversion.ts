@@ -32,16 +32,6 @@ import {
 	QImmutableActorRow,
 } from '../infrastructure/row/qimmutableactorrow';
 import {
-	PollRevisionECascadeGraph,
-	PollRevisionEId,
-	PollRevisionEOptionalId,
-	PollRevisionEUpdateProperties,
-	PollRevisionESelect,
-	QPollRevision,
-	QPollRevisionQId,
-	QPollRevisionQRelation,
-} from '../poll/revision/qpollrevision';
-import {
 	VoteECascadeGraph,
 	VoteEId,
 	VoteEOptionalId,
@@ -51,26 +41,6 @@ import {
 	QVoteQId,
 	QVoteQRelation,
 } from './qvote';
-import {
-	PollRevisionTranslationECascadeGraph,
-	PollRevisionTranslationEId,
-	PollRevisionTranslationEOptionalId,
-	PollRevisionTranslationEUpdateProperties,
-	PollRevisionTranslationESelect,
-	QPollRevisionTranslation,
-	QPollRevisionTranslationQId,
-	QPollRevisionTranslationQRelation,
-} from '../poll/revision/translation/qpollrevisiontranslation';
-import {
-	PollRunECascadeGraph,
-	PollRunEId,
-	PollRunEOptionalId,
-	PollRunEUpdateProperties,
-	PollRunESelect,
-	QPollRun,
-	QPollRunQId,
-	QPollRunQRelation,
-} from '../poll/run/qpollrun';
 import {
 	VoteFactorECascadeGraph,
 	VoteFactorEId,
@@ -93,17 +63,14 @@ declare function require(moduleName: string): any;
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface VoteRevisionESelect
-    extends ImmutableActorRowESelect, VoteRevisionEOptionalId {
+export interface VoteVersionESelect
+    extends ImmutableActorRowESelect, VoteVersionEOptionalId {
 	// Non-Id Properties
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	revision?: PollRevisionESelect;
 	vote?: VoteESelect;
-	revisionTranslation?: PollRevisionTranslationESelect;
-	run?: PollRunESelect;
 	factors?: VoteFactorESelect;
 
 }
@@ -111,7 +78,7 @@ export interface VoteRevisionESelect
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface VoteRevisionEId
+export interface VoteVersionEId
     extends ImmutableActorRowEId {
 	// Id Properties
 	id: number | IQNumberField;
@@ -123,7 +90,7 @@ export interface VoteRevisionEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface VoteRevisionEOptionalId {
+export interface VoteVersionEOptionalId {
 	// Id Properties
 	id?: number | IQNumberField;
 
@@ -134,22 +101,19 @@ export interface VoteRevisionEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface VoteRevisionEUpdateProperties
+export interface VoteVersionEUpdateProperties
 	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	revision?: PollRevisionEOptionalId;
 	vote?: VoteEOptionalId;
-	revisionTranslation?: PollRevisionTranslationEOptionalId;
-	run?: PollRunEOptionalId;
 
 }
 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface VoteRevisionECascadeGraph
+export interface VoteVersionECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
 	factors?: VoteFactorECascadeGraph;
@@ -159,30 +123,27 @@ export interface VoteRevisionECascadeGraph
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface VoteRevisionEUpdateColumns
+export interface VoteVersionEUpdateColumns
 	extends ImmutableActorRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
-	POLL_REVISION_ID?: number | IQNumberField;
 	VOTE_ID?: number | IQNumberField;
-	POLL_REVISION_TRANSLATION_ID?: number | IQNumberField;
-	POLL_RUN_ID?: number | IQNumberField;
 
 }
 
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface VoteRevisionECreateProperties
-extends Partial<VoteRevisionEId>, VoteRevisionEUpdateProperties {
+export interface VoteVersionECreateProperties
+extends Partial<VoteVersionEId>, VoteVersionEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface VoteRevisionECreateColumns
-extends VoteRevisionEId, VoteRevisionEUpdateColumns {
+export interface VoteVersionECreateColumns
+extends VoteVersionEId, VoteVersionEUpdateColumns {
 }
 
 
@@ -195,7 +156,7 @@ extends VoteRevisionEId, VoteRevisionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVoteRevision extends QImmutableActorRow
+export interface QVoteVersion extends QImmutableActorRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -205,17 +166,14 @@ export interface QVoteRevision extends QImmutableActorRow
 	// Non-Id Fields
 
 	// Non-Id Relations
-	revision: QPollRevisionQRelation;
 	vote: QVoteQRelation;
-	revisionTranslation: QPollRevisionTranslationQRelation;
-	run: QPollRunQRelation;
 	factors: IQOneToManyRelation<QVoteFactor>;
 
 }
 
 
 // Entity Id Interface
-export interface QVoteRevisionQId extends QImmutableActorRowQId
+export interface QVoteVersionQId extends QImmutableActorRowQId
 {
 	
 	// Id Fields
@@ -227,7 +185,7 @@ export interface QVoteRevisionQId extends QImmutableActorRowQId
 }
 
 // Entity Relation Interface
-export interface QVoteRevisionQRelation
-	extends QImmutableActorRowQRelation<QVoteRevision>, QVoteRevisionQId {
+export interface QVoteVersionQRelation
+	extends QImmutableActorRowQRelation<QVoteVersion>, QVoteVersionQId {
 }
 

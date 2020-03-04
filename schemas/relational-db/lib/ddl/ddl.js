@@ -57,6 +57,6 @@ export * from './user/UserAccount';
 export * from './vote/Vote';
 export * from './vote/VoteFactor';
 export * from './vote/VoteFactorType';
-export * from './vote/VoteRevision';
+export * from './vote/VoteVersion';
 export * from './vote/VoteType';
 //# sourceMappingURL=ddl.js.map

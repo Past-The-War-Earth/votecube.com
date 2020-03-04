@@ -2,14 +2,11 @@ import {
 	IImmutableActorRow,
 } from '../infrastructure/row/immutableactorrow';
 import {
-	IActor,
-} from '../user/actor';
+	IPollRun,
+} from '../poll/run/pollrun';
 import {
-	IPoll,
-} from '../poll/poll';
-import {
-	IVoteRevision,
-} from './voterevision';
+	IVoteVersion,
+} from './voteversion';
 
 
 
@@ -28,9 +25,8 @@ export interface IVote extends IImmutableActorRow {
 	type?: number;
 
 	// Non-Id Relations
-	actor?: IActor;
-	poll?: IPoll;
-	revisions?: IVoteRevision[];
+	run?: IPollRun;
+	revisions?: IVoteVersion[];
 
 	// Transient Properties
 

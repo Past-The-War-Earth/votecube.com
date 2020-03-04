@@ -50,4 +50,5 @@ export * from './vote/Vote';
 export * from './vote/VoteFactor';
 export * from './vote/VoteFactorType';
 export * from './vote/VoteType';
+export * from './vote/VoteVersion';
 export * from './common';

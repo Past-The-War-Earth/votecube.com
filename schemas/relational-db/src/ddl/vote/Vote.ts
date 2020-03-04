@@ -8,14 +8,13 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                            from '@airport/air-control'
-import {CascadeType}         from '@airport/ground-control'
-import {Vote_Id}             from '../../types/vote/Vote'
-import {ImmutableActorRow}   from '../infrastructure/row/ImmutableActorRow'
-import {Poll}                from '../poll/Poll'
-import {Actor}               from '../user/Actor'
-import {VoteType}            from './VoteType'
-import {VoteRevision}       from './VoteRevision'
+}                          from '@airport/air-control'
+import {CascadeType}       from '@airport/ground-control'
+import {PollRun}           from '../poll/run/PollRun'
+import {Vote_Id}           from '../../types/vote/Vote'
+import {ImmutableActorRow} from '../infrastructure/row/ImmutableActorRow'
+import {VoteVersion}       from './VoteVersion'
+import {VoteType}          from './VoteType'
 
 @Entity()
 @Table({name: 'VOTES'})
@@ -27,10 +26,6 @@ export class Vote
 	@Column({name: 'VOTE_ID'})
 	id: Vote_Id
 
-	@ManyToOne()
-	@JoinColumn({name: 'ACTOR_ID', nullable: false})
-	actor: Actor
-
 	/**
 	 * Reserved for future use - let people not the the target group vote too (
 	 * since they can see the poll) but track it differently
@@ -40,10 +35,10 @@ export class Vote
 	type: VoteType
 
 	@ManyToOne()
-	@JoinColumn({name: 'POLL_ID', nullable: false})
-	poll: Poll
+	@JoinColumn({name: 'POLL_RUN_ID', nullable: false})
+	run: PollRun
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
-	revisions: VoteRevision[]
+	revisions: VoteVersion[]
 
 }

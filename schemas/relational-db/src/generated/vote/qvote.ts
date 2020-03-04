@@ -32,35 +32,25 @@ import {
 	QImmutableActorRow,
 } from '../infrastructure/row/qimmutableactorrow';
 import {
-	ActorECascadeGraph,
-	ActorEId,
-	ActorEOptionalId,
-	ActorEUpdateProperties,
-	ActorESelect,
-	QActor,
-	QActorQId,
-	QActorQRelation,
-} from '../user/qactor';
+	PollRunECascadeGraph,
+	PollRunEId,
+	PollRunEOptionalId,
+	PollRunEUpdateProperties,
+	PollRunESelect,
+	QPollRun,
+	QPollRunQId,
+	QPollRunQRelation,
+} from '../poll/run/qpollrun';
 import {
-	PollECascadeGraph,
-	PollEId,
-	PollEOptionalId,
-	PollEUpdateProperties,
-	PollESelect,
-	QPoll,
-	QPollQId,
-	QPollQRelation,
-} from '../poll/qpoll';
-import {
-	VoteRevisionECascadeGraph,
-	VoteRevisionEId,
-	VoteRevisionEOptionalId,
-	VoteRevisionEUpdateProperties,
-	VoteRevisionESelect,
-	QVoteRevision,
-	QVoteRevisionQId,
-	QVoteRevisionQRelation,
-} from './qvoterevision';
+	VoteVersionECascadeGraph,
+	VoteVersionEId,
+	VoteVersionEOptionalId,
+	VoteVersionEUpdateProperties,
+	VoteVersionESelect,
+	QVoteVersion,
+	QVoteVersionQId,
+	QVoteVersionQRelation,
+} from './qvoteversion';
 
 
 declare function require(moduleName: string): any;
@@ -81,9 +71,8 @@ export interface VoteESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	actor?: ActorESelect;
-	poll?: PollESelect;
-	revisions?: VoteRevisionESelect;
+	run?: PollRunESelect;
+	revisions?: VoteVersionESelect;
 
 }
 
@@ -119,8 +108,7 @@ export interface VoteEUpdateProperties
 	type?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	actor?: ActorEOptionalId;
-	poll?: PollEOptionalId;
+	run?: PollRunEOptionalId;
 
 }
 
@@ -130,7 +118,7 @@ export interface VoteEUpdateProperties
 export interface VoteECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
-	revisions?: VoteRevisionECascadeGraph;
+	revisions?: VoteVersionECascadeGraph;
 
 }
 
@@ -143,7 +131,7 @@ export interface VoteEUpdateColumns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
 	VOTE_TYPE_ID?: number | IQNumberField;
-	POLL_ID?: number | IQNumberField;
+	POLL_RUN_ID?: number | IQNumberField;
 
 }
 
@@ -182,9 +170,8 @@ export interface QVote extends QImmutableActorRow
 	type: IQNumberField;
 
 	// Non-Id Relations
-	actor: QActorQRelation;
-	poll: QPollQRelation;
-	revisions: IQOneToManyRelation<QVoteRevision>;
+	run: QPollRunQRelation;
+	revisions: IQOneToManyRelation<QVoteVersion>;
 
 }
 

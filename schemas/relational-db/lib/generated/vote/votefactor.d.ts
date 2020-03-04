@@ -1,10 +1,10 @@
-import { IVoteRevision } from './voterevision';
+import { IVoteVersion } from './voteversion';
 import { IPollRevisionFactorPosition } from '../poll/revision/pollrevisionfactorposition';
 import { IVoteFactorType } from './votefactortype';
 export interface IVoteFactor {
     id: number;
     share?: string;
-    voteRevision?: IVoteRevision;
+    voteRevision?: IVoteVersion;
     pollFactorPos?: IPollRevisionFactorPosition;
     type?: IVoteFactorType;
 }

@@ -1,5 +1,5 @@
 import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntityUpdateProperties, IEntitySelectProperties, IQNumberField, IQStringField, IQEntity, IQRelation } from '@airport/air-control';
-import { VoteRevisionEOptionalId, VoteRevisionESelect, QVoteRevisionQRelation } from './qvoterevision';
+import { VoteVersionEOptionalId, VoteVersionESelect, QVoteVersionQRelation } from './qvoteversion';
 import { PollRevisionFactorPositionEOptionalId, PollRevisionFactorPositionESelect, QPollRevisionFactorPositionQRelation } from '../poll/revision/qpollrevisionfactorposition';
 import { VoteFactorTypeEOptionalId, VoteFactorTypeESelect, QVoteFactorTypeQRelation } from './qvotefactortype';
 /**
@@ -7,7 +7,7 @@ import { VoteFactorTypeEOptionalId, VoteFactorTypeESelect, QVoteFactorTypeQRelat
  */
 export interface VoteFactorESelect extends IEntitySelectProperties, VoteFactorEOptionalId {
     share?: string | IQStringField;
-    voteRevision?: VoteRevisionESelect;
+    voteRevision?: VoteVersionESelect;
     pollFactorPos?: PollRevisionFactorPositionESelect;
     type?: VoteFactorTypeESelect;
 }
@@ -28,7 +28,7 @@ export interface VoteFactorEOptionalId {
  */
 export interface VoteFactorEUpdateProperties extends IEntityUpdateProperties {
     share?: string | IQStringField;
-    voteRevision?: VoteRevisionEOptionalId;
+    voteRevision?: VoteVersionEOptionalId;
     pollFactorPos?: PollRevisionFactorPositionEOptionalId;
     type?: VoteFactorTypeEOptionalId;
 }
@@ -42,7 +42,7 @@ export interface VoteFactorECascadeGraph extends IEntityCascadeGraph {
  */
 export interface VoteFactorEUpdateColumns extends IEntityUpdateColumns {
     SHARE?: string | IQStringField;
-    VOTE_REVISION_ID?: number | IQNumberField;
+    VOTE_VERSION_ID?: number | IQNumberField;
     POLL_REVISION_FACTOR_POSITION_ID?: number | IQNumberField;
     VOTE_FACTOR_TYPE_ID?: number | IQNumberField;
 }
@@ -62,7 +62,7 @@ export interface VoteFactorECreateColumns extends VoteFactorEId, VoteFactorEUpda
 export interface QVoteFactor extends IQEntity {
     id: IQNumberField;
     share: IQStringField;
-    voteRevision: QVoteRevisionQRelation;
+    voteRevision: QVoteVersionQRelation;
     pollFactorPos: QPollRevisionFactorPositionQRelation;
     type: QVoteFactorTypeQRelation;
 }

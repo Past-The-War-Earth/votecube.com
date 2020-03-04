@@ -1,11 +1,9 @@
 import { IImmutableActorRow } from '../infrastructure/row/immutableactorrow';
-import { IActor } from '../user/actor';
-import { IPoll } from '../poll/poll';
-import { IVoteRevision } from './voterevision';
+import { IPollRun } from '../poll/run/pollrun';
+import { IVoteVersion } from './voteversion';
 export interface IVote extends IImmutableActorRow {
     id: number;
     type?: number;
-    actor?: IActor;
-    poll?: IPoll;
-    revisions?: IVoteRevision[];
+    run?: IPollRun;
+    revisions?: IVoteVersion[];
 }

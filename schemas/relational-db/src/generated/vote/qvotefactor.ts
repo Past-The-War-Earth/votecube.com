@@ -22,15 +22,15 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	VoteRevisionECascadeGraph,
-	VoteRevisionEId,
-	VoteRevisionEOptionalId,
-	VoteRevisionEUpdateProperties,
-	VoteRevisionESelect,
-	QVoteRevision,
-	QVoteRevisionQId,
-	QVoteRevisionQRelation,
-} from './qvoterevision';
+	VoteVersionECascadeGraph,
+	VoteVersionEId,
+	VoteVersionEOptionalId,
+	VoteVersionEUpdateProperties,
+	VoteVersionESelect,
+	QVoteVersion,
+	QVoteVersionQId,
+	QVoteVersionQRelation,
+} from './qvoteversion';
 import {
 	PollRevisionFactorPositionECascadeGraph,
 	PollRevisionFactorPositionEId,
@@ -71,7 +71,7 @@ export interface VoteFactorESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	voteRevision?: VoteRevisionESelect;
+	voteRevision?: VoteVersionESelect;
 	pollFactorPos?: PollRevisionFactorPositionESelect;
 	type?: VoteFactorTypeESelect;
 
@@ -109,7 +109,7 @@ export interface VoteFactorEUpdateProperties
 	share?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	voteRevision?: VoteRevisionEOptionalId;
+	voteRevision?: VoteVersionEOptionalId;
 	pollFactorPos?: PollRevisionFactorPositionEOptionalId;
 	type?: VoteFactorTypeEOptionalId;
 
@@ -131,7 +131,7 @@ export interface VoteFactorEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
 	SHARE?: string | IQStringField;
-	VOTE_REVISION_ID?: number | IQNumberField;
+	VOTE_VERSION_ID?: number | IQNumberField;
 	POLL_REVISION_FACTOR_POSITION_ID?: number | IQNumberField;
 	VOTE_FACTOR_TYPE_ID?: number | IQNumberField;
 
@@ -172,7 +172,7 @@ export interface QVoteFactor extends IQEntity
 	share: IQStringField;
 
 	// Non-Id Relations
-	voteRevision: QVoteRevisionQRelation;
+	voteRevision: QVoteVersionQRelation;
 	pollFactorPos: QPollRevisionFactorPositionQRelation;
 	type: QVoteFactorTypeQRelation;
 

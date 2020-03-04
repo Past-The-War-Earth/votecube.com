@@ -59,8 +59,8 @@ import { QUserAccount } from './user/quseraccount';
 import { QVote } from './vote/qvote';
 import { QVoteFactor } from './vote/qvotefactor';
 import { QVoteFactorType } from './vote/qvotefactortype';
-import { QVoteRevision } from './vote/qvoterevision';
 import { QVoteType } from './vote/qvotetype';
+import { QVoteVersion } from './vote/qvoteversion';
 export interface LocalQSchema extends AirportQSchema {
     db: DbSchema;
     Actor: QActor;
@@ -122,8 +122,8 @@ export interface LocalQSchema extends AirportQSchema {
     Vote: QVote;
     VoteFactor: QVoteFactor;
     VoteFactorType: QVoteFactorType;
-    VoteRevision: QVoteRevision;
     VoteType: QVoteType;
+    VoteVersion: QVoteVersion;
 }
 export declare const Q_SCHEMA: LocalQSchema;
 export declare const Q: LocalQSchema;

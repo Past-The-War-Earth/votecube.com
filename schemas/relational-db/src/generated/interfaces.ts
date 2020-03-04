@@ -57,5 +57,5 @@ export * from './user/useraccount';
 export * from './vote/vote';
 export * from './vote/votefactor';
 export * from './vote/votefactortype';
-export * from './vote/voterevision';
 export * from './vote/votetype';
+export * from './vote/voteversion';

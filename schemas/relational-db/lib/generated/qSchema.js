@@ -61,8 +61,8 @@ import { UserAccount } from '../ddl/user/useraccount';
 import { Vote } from '../ddl/vote/vote';
 import { VoteFactor } from '../ddl/vote/votefactor';
 import { VoteFactorType } from '../ddl/vote/votefactortype';
-import { VoteRevision } from '../ddl/vote/voterevision';
 import { VoteType } from '../ddl/vote/votetype';
+import { VoteVersion } from '../ddl/vote/voteversion';
 const __constructors__ = {
     Actor: Actor,
     Application: Application,
@@ -123,8 +123,8 @@ const __constructors__ = {
     Vote: Vote,
     VoteFactor: VoteFactor,
     VoteFactorType: VoteFactorType,
-    VoteRevision: VoteRevision,
-    VoteType: VoteType
+    VoteType: VoteType,
+    VoteVersion: VoteVersion
 };
 export const Q_SCHEMA = {
     __constructors__,

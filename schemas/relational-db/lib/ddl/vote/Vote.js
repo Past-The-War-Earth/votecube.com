@@ -15,17 +15,13 @@ __decorate([
     Column({ name: 'VOTE_ID' })
 ], Vote.prototype, "id", void 0);
 __decorate([
-    ManyToOne(),
-    JoinColumn({ name: 'ACTOR_ID', nullable: false })
-], Vote.prototype, "actor", void 0);
-__decorate([
     Column({ name: 'VOTE_TYPE_ID' }),
     DbNumber()
 ], Vote.prototype, "type", void 0);
 __decorate([
     ManyToOne(),
-    JoinColumn({ name: 'POLL_ID', nullable: false })
-], Vote.prototype, "poll", void 0);
+    JoinColumn({ name: 'POLL_RUN_ID', nullable: false })
+], Vote.prototype, "run", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'vote' })
 ], Vote.prototype, "revisions", void 0);

@@ -14,7 +14,7 @@ __decorate([
 ], VoteFactor.prototype, "id", void 0);
 __decorate([
     ManyToOne(),
-    JoinColumn({ name: 'VOTE_REVISION_ID', nullable: false })
+    JoinColumn({ name: 'VOTE_VERSION_ID', nullable: false })
 ], VoteFactor.prototype, "voteRevision", void 0);
 __decorate([
     Column({ name: 'SHARE', nullable: false }),

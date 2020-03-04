@@ -57,5 +57,5 @@ export * from './user/quseraccount';
 export * from './vote/qvote';
 export * from './vote/qvotefactor';
 export * from './vote/qvotefactortype';
-export * from './vote/qvoterevision';
 export * from './vote/qvotetype';
+export * from './vote/qvoteversion';

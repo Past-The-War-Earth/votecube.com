@@ -7,35 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
 import { ImmutableActorRow } from '../infrastructure/row/ImmutableActorRow';
-let VoteRevision = class VoteRevision extends ImmutableActorRow {
+let VoteVersion = class VoteVersion extends ImmutableActorRow {
 };
 __decorate([
     GeneratedValue(),
     Id(),
-    Column({ name: 'VOTE_REVISION_ID' })
-], VoteRevision.prototype, "id", void 0);
-__decorate([
-    ManyToOne(),
-    JoinColumn({ name: 'POLL_REVISION_ID', nullable: false })
-], VoteRevision.prototype, "revision", void 0);
+    Column({ name: 'VOTE_VERSION_ID' })
+], VoteVersion.prototype, "id", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({ name: 'VOTE_ID', nullable: false })
-], VoteRevision.prototype, "vote", void 0);
-__decorate([
-    ManyToOne(),
-    JoinColumn({ name: 'POLL_REVISION_TRANSLATION_ID', nullable: false })
-], VoteRevision.prototype, "revisionTranslation", void 0);
-__decorate([
-    ManyToOne(),
-    JoinColumn({ name: 'POLL_RUN_ID', nullable: false })
-], VoteRevision.prototype, "run", void 0);
+], VoteVersion.prototype, "vote", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'voteRevision' })
-], VoteRevision.prototype, "factors", void 0);
-VoteRevision = __decorate([
+], VoteVersion.prototype, "factors", void 0);
+VoteVersion = __decorate([
     Entity(),
-    Table({ name: 'VOTE_REVISIONS' })
-], VoteRevision);
-export { VoteRevision };
-//# sourceMappingURL=VoteRevision.js.map
+    Table({ name: 'VOTE_VERSIONS' })
+], VoteVersion);
+export { VoteVersion };
+//# sourceMappingURL=VoteVersion.js.map

@@ -1,6 +1,6 @@
 import {
-	IVoteRevision,
-} from './voterevision';
+	IVoteVersion,
+} from './voteversion';
 import {
 	IPollRevisionFactorPosition,
 } from '../poll/revision/pollrevisionfactorposition';
@@ -25,7 +25,7 @@ export interface IVoteFactor {
 	share?: string;
 
 	// Non-Id Relations
-	voteRevision?: IVoteRevision;
+	voteRevision?: IVoteVersion;
 	pollFactorPos?: IPollRevisionFactorPosition;
 	type?: IVoteFactorType;
 

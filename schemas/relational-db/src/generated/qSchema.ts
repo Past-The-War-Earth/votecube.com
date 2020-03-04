@@ -130,10 +130,10 @@ import { VoteFactor } from '../ddl/vote/votefactor';
 import { QVoteFactor } from './vote/qvotefactor';
 import { VoteFactorType } from '../ddl/vote/votefactortype';
 import { QVoteFactorType } from './vote/qvotefactortype';
-import { VoteRevision } from '../ddl/vote/voterevision';
-import { QVoteRevision } from './vote/qvoterevision';
 import { VoteType } from '../ddl/vote/votetype';
 import { QVoteType } from './vote/qvotetype';
+import { VoteVersion } from '../ddl/vote/voteversion';
+import { QVoteVersion } from './vote/qvoteversion';
 
 export interface LocalQSchema extends AirportQSchema {
 
@@ -198,8 +198,8 @@ export interface LocalQSchema extends AirportQSchema {
 	Vote: QVote;
 	VoteFactor: QVoteFactor;
 	VoteFactorType: QVoteFactorType;
-	VoteRevision: QVoteRevision;
 	VoteType: QVoteType;
+	VoteVersion: QVoteVersion;
 
 }
 
@@ -263,8 +263,8 @@ const __constructors__ = {
 	Vote: Vote,
 	VoteFactor: VoteFactor,
 	VoteFactorType: VoteFactorType,
-	VoteRevision: VoteRevision,
-	VoteType: VoteType
+	VoteType: VoteType,
+	VoteVersion: VoteVersion
 };
 
 export const Q_SCHEMA: LocalQSchema = <any>{

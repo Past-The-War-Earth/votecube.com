@@ -719,19 +719,6 @@ import {
 	QVoteFactorType
 } from './vote/qvotefactortype'
 import {
-	IVoteRevision
-} from './vote/voterevision'
-import {
-	VoteRevisionESelect,
-	VoteRevisionECreateColumns,
-	VoteRevisionECreateProperties,
-	VoteRevisionEUpdateColumns,
-	VoteRevisionEUpdateProperties,
-	VoteRevisionEId,
-	VoteRevisionECascadeGraph,
-	QVoteRevision
-} from './vote/qvoterevision'
-import {
 	IVoteType
 } from './vote/votetype'
 import {
@@ -744,6 +731,19 @@ import {
 	VoteTypeECascadeGraph,
 	QVoteType
 } from './vote/qvotetype'
+import {
+	IVoteVersion
+} from './vote/voteversion'
+import {
+	VoteVersionESelect,
+	VoteVersionECreateColumns,
+	VoteVersionECreateProperties,
+	VoteVersionEUpdateColumns,
+	VoteVersionEUpdateProperties,
+	VoteVersionEId,
+	VoteVersionECascadeGraph,
+	QVoteVersion
+} from './vote/qvoteversion'
 
 
 // Schema Q object Dependency Injection readiness detection Dao
@@ -979,11 +979,11 @@ export class BaseFactorOpinionVersionDao
 	implements IBaseFactorOpinionVersionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(37)
+		return duoDiSet(28)
 	}
 	
 	constructor() {
-		super(37)
+		super(28)
 	}
 }
 
@@ -997,11 +997,11 @@ export class BaseFactorOpinionVersionTranslationDao
 	implements IBaseFactorOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(36)
+		return duoDiSet(27)
 	}
 	
 	constructor() {
-		super(36)
+		super(27)
 	}
 }
 
@@ -1069,11 +1069,11 @@ export class BaseLanguageDao
 	implements IBaseLanguageDao {
 
 	static diSet(): boolean {
-		return duoDiSet(24)
+		return duoDiSet(26)
 	}
 	
 	constructor() {
-		super(24)
+		super(26)
 	}
 }
 
@@ -1087,11 +1087,11 @@ export class BaseOutcomeDao
 	implements IBaseOutcomeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(39)
+		return duoDiSet(31)
 	}
 	
 	constructor() {
-		super(39)
+		super(31)
 	}
 }
 
@@ -1105,11 +1105,11 @@ export class BaseOutcomeOpinionVersionDao
 	implements IBaseOutcomeOpinionVersionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(41)
+		return duoDiSet(33)
 	}
 	
 	constructor() {
-		super(41)
+		super(33)
 	}
 }
 
@@ -1123,11 +1123,11 @@ export class BaseOutcomeOpinionVersionTranslationDao
 	implements IBaseOutcomeOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(40)
+		return duoDiSet(32)
 	}
 	
 	constructor() {
-		super(40)
+		super(32)
 	}
 }
 
@@ -1141,11 +1141,11 @@ export class BaseOutcomeTranslationDao
 	implements IBaseOutcomeTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(38)
+		return duoDiSet(30)
 	}
 	
 	constructor() {
-		super(38)
+		super(30)
 	}
 }
 
@@ -1159,11 +1159,11 @@ export class BasePollDao
 	implements IBasePollDao {
 
 	static diSet(): boolean {
-		return duoDiSet(22)
+		return duoDiSet(45)
 	}
 	
 	constructor() {
-		super(22)
+		super(45)
 	}
 }
 
@@ -1195,11 +1195,11 @@ export class BasePollRevisionFactorPositionDao
 	implements IBasePollRevisionFactorPositionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(31)
+		return duoDiSet(20)
 	}
 	
 	constructor() {
-		super(31)
+		super(20)
 	}
 }
 
@@ -1213,11 +1213,11 @@ export class BasePollRevisionOpinionDao
 	implements IBasePollRevisionOpinionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(47)
+		return duoDiSet(42)
 	}
 	
 	constructor() {
-		super(47)
+		super(42)
 	}
 }
 
@@ -1231,11 +1231,11 @@ export class BasePollRevisionOpinionRatingDao
 	implements IBasePollRevisionOpinionRatingDao {
 
 	static diSet(): boolean {
-		return duoDiSet(46)
+		return duoDiSet(41)
 	}
 	
 	constructor() {
-		super(46)
+		super(41)
 	}
 }
 
@@ -1249,11 +1249,11 @@ export class BasePollRevisionOpinionVersionDao
 	implements IBasePollRevisionOpinionVersionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(43)
+		return duoDiSet(35)
 	}
 	
 	constructor() {
-		super(43)
+		super(35)
 	}
 }
 
@@ -1267,11 +1267,11 @@ export class BasePollRevisionOpinionVersionTranslationDao
 	implements IBasePollRevisionOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(42)
+		return duoDiSet(34)
 	}
 	
 	constructor() {
-		super(42)
+		super(34)
 	}
 }
 
@@ -1285,11 +1285,11 @@ export class BasePollRevisionRatingDao
 	implements IBasePollRevisionRatingDao {
 
 	static diSet(): boolean {
-		return duoDiSet(48)
+		return duoDiSet(46)
 	}
 	
 	constructor() {
-		super(48)
+		super(46)
 	}
 }
 
@@ -1303,11 +1303,11 @@ export class BasePollRevisionTranslationDao
 	implements IBasePollRevisionTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(30)
+		return duoDiSet(48)
 	}
 	
 	constructor() {
-		super(30)
+		super(48)
 	}
 }
 
@@ -1321,11 +1321,11 @@ export class BasePollRevisionTranslationRatingDao
 	implements IBasePollRevisionTranslationRatingDao {
 
 	static diSet(): boolean {
-		return duoDiSet(29)
+		return duoDiSet(47)
 	}
 	
 	constructor() {
-		super(29)
+		super(47)
 	}
 }
 
@@ -1447,11 +1447,11 @@ export class BasePollTypeDao
 	implements IBasePollTypeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(20)
+		return duoDiSet(43)
 	}
 	
 	constructor() {
-		super(20)
+		super(43)
 	}
 }
 
@@ -1483,11 +1483,11 @@ export class BasePositionOpinionVersionDao
 	implements IBasePositionOpinionVersionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(45)
+		return duoDiSet(37)
 	}
 	
 	constructor() {
-		super(45)
+		super(37)
 	}
 }
 
@@ -1501,11 +1501,11 @@ export class BasePositionOpinionVersionTranslationDao
 	implements IBasePositionOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(44)
+		return duoDiSet(36)
 	}
 	
 	constructor() {
-		super(44)
+		super(36)
 	}
 }
 
@@ -1537,11 +1537,11 @@ export class BaseRatingDao
 	implements IBaseRatingDao {
 
 	static diSet(): boolean {
-		return duoDiSet(28)
+		return duoDiSet(40)
 	}
 	
 	constructor() {
-		super(28)
+		super(40)
 	}
 }
 
@@ -1555,11 +1555,11 @@ export class BaseRatingSettingDao
 	implements IBaseRatingSettingDao {
 
 	static diSet(): boolean {
-		return duoDiSet(26)
+		return duoDiSet(38)
 	}
 	
 	constructor() {
-		super(26)
+		super(38)
 	}
 }
 
@@ -1573,11 +1573,11 @@ export class BaseRatingTypeDao
 	implements IBaseRatingTypeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(27)
+		return duoDiSet(39)
 	}
 	
 	constructor() {
-		super(27)
+		super(39)
 	}
 }
 
@@ -1627,11 +1627,11 @@ export class BaseThemeDao
 	implements IBaseThemeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(21)
+		return duoDiSet(44)
 	}
 	
 	constructor() {
-		super(21)
+		super(44)
 	}
 }
 
@@ -1663,11 +1663,11 @@ export class BaseTranslationTypeDao
 	implements IBaseTranslationTypeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(25)
+		return duoDiSet(29)
 	}
 	
 	constructor() {
-		super(25)
+		super(29)
 	}
 }
 
@@ -1699,11 +1699,11 @@ export class BaseVoteDao
 	implements IBaseVoteDao {
 
 	static diSet(): boolean {
-		return duoDiSet(35)
+		return duoDiSet(25)
 	}
 	
 	constructor() {
-		super(35)
+		super(25)
 	}
 }
 
@@ -1717,11 +1717,11 @@ export class BaseVoteFactorDao
 	implements IBaseVoteFactorDao {
 
 	static diSet(): boolean {
-		return duoDiSet(33)
+		return duoDiSet(22)
 	}
 	
 	constructor() {
-		super(33)
+		super(22)
 	}
 }
 
@@ -1735,29 +1735,11 @@ export class BaseVoteFactorTypeDao
 	implements IBaseVoteFactorTypeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(32)
+		return duoDiSet(21)
 	}
 	
 	constructor() {
-		super(32)
-	}
-}
-
-
-export interface IBaseVoteRevisionDao
-  extends IDao<IVoteRevision, VoteRevisionESelect, VoteRevisionECreateProperties, VoteRevisionEUpdateColumns, VoteRevisionEUpdateProperties, VoteRevisionEId, VoteRevisionECascadeGraph, QVoteRevision> {
-}
-
-export class BaseVoteRevisionDao
-  extends SQDIDao<IVoteRevision, VoteRevisionESelect, VoteRevisionECreateProperties, VoteRevisionEUpdateColumns, VoteRevisionEUpdateProperties, VoteRevisionEId, VoteRevisionECascadeGraph, QVoteRevision>
-	implements IBaseVoteRevisionDao {
-
-	static diSet(): boolean {
-		return duoDiSet(34)
-	}
-	
-	constructor() {
-		super(34)
+		super(21)
 	}
 }
 
@@ -1769,6 +1751,24 @@ export interface IBaseVoteTypeDao
 export class BaseVoteTypeDao
   extends SQDIDao<IVoteType, VoteTypeESelect, VoteTypeECreateProperties, VoteTypeEUpdateColumns, VoteTypeEUpdateProperties, VoteTypeEId, VoteTypeECascadeGraph, QVoteType>
 	implements IBaseVoteTypeDao {
+
+	static diSet(): boolean {
+		return duoDiSet(24)
+	}
+	
+	constructor() {
+		super(24)
+	}
+}
+
+
+export interface IBaseVoteVersionDao
+  extends IDao<IVoteVersion, VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionECascadeGraph, QVoteVersion> {
+}
+
+export class BaseVoteVersionDao
+  extends SQDIDao<IVoteVersion, VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionECascadeGraph, QVoteVersion>
+	implements IBaseVoteVersionDao {
 
 	static diSet(): boolean {
 		return duoDiSet(23)

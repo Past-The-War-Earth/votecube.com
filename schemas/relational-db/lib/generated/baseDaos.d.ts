@@ -109,10 +109,10 @@ import { IVoteFactor } from './vote/votefactor';
 import { VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, VoteFactorECascadeGraph, QVoteFactor } from './vote/qvotefactor';
 import { IVoteFactorType } from './vote/votefactortype';
 import { VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateColumns, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, VoteFactorTypeECascadeGraph, QVoteFactorType } from './vote/qvotefactortype';
-import { IVoteRevision } from './vote/voterevision';
-import { VoteRevisionESelect, VoteRevisionECreateProperties, VoteRevisionEUpdateColumns, VoteRevisionEUpdateProperties, VoteRevisionEId, VoteRevisionECascadeGraph, QVoteRevision } from './vote/qvoterevision';
 import { IVoteType } from './vote/votetype';
 import { VoteTypeESelect, VoteTypeECreateProperties, VoteTypeEUpdateColumns, VoteTypeEUpdateProperties, VoteTypeEId, VoteTypeECascadeGraph, QVoteType } from './vote/qvotetype';
+import { IVoteVersion } from './vote/voteversion';
+import { VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionECascadeGraph, QVoteVersion } from './vote/qvoteversion';
 export declare class SQDIDao<Entity, EntitySelect extends IEntitySelectProperties, EntityCreate extends IEntityCreateProperties, EntityUpdateColumns extends IEntityUpdateColumns, EntityUpdateProperties extends IEntityUpdateProperties, EntityId extends IEntityIdProperties, EntityCascadeGraph extends IEntityCascadeGraph, IQE extends IQEntity> extends Dao<Entity, EntitySelect, EntityCreate, EntityUpdateColumns, EntityUpdateProperties, EntityId, EntityCascadeGraph, IQE> {
     constructor(dbEntityId: DbEntityId);
 }
@@ -440,15 +440,15 @@ export declare class BaseVoteFactorTypeDao extends SQDIDao<IVoteFactorType, Vote
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseVoteRevisionDao extends IDao<IVoteRevision, VoteRevisionESelect, VoteRevisionECreateProperties, VoteRevisionEUpdateColumns, VoteRevisionEUpdateProperties, VoteRevisionEId, VoteRevisionECascadeGraph, QVoteRevision> {
-}
-export declare class BaseVoteRevisionDao extends SQDIDao<IVoteRevision, VoteRevisionESelect, VoteRevisionECreateProperties, VoteRevisionEUpdateColumns, VoteRevisionEUpdateProperties, VoteRevisionEId, VoteRevisionECascadeGraph, QVoteRevision> implements IBaseVoteRevisionDao {
-    static diSet(): boolean;
-    constructor();
-}
 export interface IBaseVoteTypeDao extends IDao<IVoteType, VoteTypeESelect, VoteTypeECreateProperties, VoteTypeEUpdateColumns, VoteTypeEUpdateProperties, VoteTypeEId, VoteTypeECascadeGraph, QVoteType> {
 }
 export declare class BaseVoteTypeDao extends SQDIDao<IVoteType, VoteTypeESelect, VoteTypeECreateProperties, VoteTypeEUpdateColumns, VoteTypeEUpdateProperties, VoteTypeEId, VoteTypeECascadeGraph, QVoteType> implements IBaseVoteTypeDao {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseVoteVersionDao extends IDao<IVoteVersion, VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionECascadeGraph, QVoteVersion> {
+}
+export declare class BaseVoteVersionDao extends SQDIDao<IVoteVersion, VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionECascadeGraph, QVoteVersion> implements IBaseVoteVersionDao {
     static diSet(): boolean;
     constructor();
 }
