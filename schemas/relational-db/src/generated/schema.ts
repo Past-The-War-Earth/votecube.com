@@ -1556,28 +1556,6 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 10,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "TOWN_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
 									"oneTableIndex": 12,
 									"oneRelationIndex": 2,
 									"oneColumnIndex": 1,
@@ -1593,11 +1571,36 @@ export const SCHEMA = {
 							],
 							"sinceVersion": 1,
 							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 10,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "TOWN_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
 						}
 					],
 					"idColumnRefs": [
 						{
 							"index": 1
+						},
+						{
+							"index": 2
 						}
 					],
 					"index": 11,
@@ -1616,10 +1619,10 @@ export const SCHEMA = {
 						},
 						{
 							"index": 1,
-							"isId": false,
+							"isId": true,
 							"name": "country",
 							"relationRef": {
-								"index": 1
+								"index": 0
 							},
 							"sinceVersion": 1
 						},
@@ -1628,7 +1631,7 @@ export const SCHEMA = {
 							"isId": true,
 							"name": "town",
 							"relationRef": {
-								"index": 0
+								"index": 1
 							},
 							"sinceVersion": 1
 						}
@@ -1639,19 +1642,19 @@ export const SCHEMA = {
 							"isId": true,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 2
+								"index": 1
 							},
-							"relationTableIndex": 10,
+							"relationTableIndex": 12,
 							"sinceVersion": 1
 						},
 						{
 							"index": 1,
-							"isId": false,
+							"isId": true,
 							"relationType": 1,
 							"propertyRef": {
-								"index": 1
+								"index": 2
 							},
-							"relationTableIndex": 12,
+							"relationTableIndex": 10,
 							"sinceVersion": 1
 						}
 					],

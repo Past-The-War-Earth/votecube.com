@@ -12,6 +12,7 @@ import { SystemGeneratedRow } from '../infrastructure/row/SystemGeneratedRow';
 let CountryTown = class CountryTown extends SystemGeneratedRow {
 };
 __decorate([
+    Id(),
     ManyToOne(),
     JoinColumn({ name: 'COUNTRY_ID', nullable: false })
 ], CountryTown.prototype, "country", void 0);

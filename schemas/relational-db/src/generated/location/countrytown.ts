@@ -2,11 +2,11 @@ import {
 	ISystemGeneratedRow,
 } from '../infrastructure/row/systemgeneratedrow';
 import {
-	ITown,
-} from './town';
-import {
 	ICountry,
 } from './country';
+import {
+	ITown,
+} from './town';
 
 
 
@@ -19,12 +19,12 @@ export interface ICountryTown extends ISystemGeneratedRow {
 	// Id Properties
 
 	// Id Relations
+	country: ICountry;
 	town: ITown;
 
 	// Non-Id Properties
 
 	// Non-Id Relations
-	country?: ICountry;
 
 	// Transient Properties
 

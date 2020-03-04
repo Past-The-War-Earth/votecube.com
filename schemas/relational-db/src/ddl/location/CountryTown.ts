@@ -19,7 +19,7 @@ import {Town}               from './Town'
 export class CountryTown
 	extends SystemGeneratedRow {
 
-
+	@Id()
 	@ManyToOne()
 	@JoinColumn({name: 'COUNTRY_ID', nullable: false})
 	country: Country

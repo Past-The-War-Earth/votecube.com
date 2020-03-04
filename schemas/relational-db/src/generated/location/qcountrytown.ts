@@ -32,16 +32,6 @@ import {
 	QSystemGeneratedRow,
 } from '../infrastructure/row/qsystemgeneratedrow';
 import {
-	TownECascadeGraph,
-	TownEId,
-	TownEOptionalId,
-	TownEUpdateProperties,
-	TownESelect,
-	QTown,
-	QTownQId,
-	QTownQRelation,
-} from './qtown';
-import {
 	CountryECascadeGraph,
 	CountryEId,
 	CountryEOptionalId,
@@ -51,6 +41,16 @@ import {
 	QCountryQId,
 	QCountryQRelation,
 } from './qcountry';
+import {
+	TownECascadeGraph,
+	TownEId,
+	TownEOptionalId,
+	TownEUpdateProperties,
+	TownESelect,
+	QTown,
+	QTownQId,
+	QTownQRelation,
+} from './qtown';
 
 
 declare function require(moduleName: string): any;
@@ -68,10 +68,10 @@ export interface CountryTownESelect
 	// Non-Id Properties
 
 	// Id Relations - full property interfaces
+	country?: CountryESelect;
 	town?: TownESelect;
 
   // Non-Id relations (including OneToMany's)
-	country?: CountryESelect;
 
 }
 
@@ -83,6 +83,7 @@ export interface CountryTownEId
 	// Id Properties
 
 	// Id Relations - Ids only
+	country: CountryEId;
 	town: TownEId;
 
 }
@@ -94,6 +95,7 @@ export interface CountryTownEOptionalId {
 	// Id Properties
 
 	// Id Relations - Ids only
+	country?: CountryEOptionalId;
 	town?: TownEOptionalId;
 
 }
@@ -106,7 +108,6 @@ export interface CountryTownEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	country?: CountryEOptionalId;
 
 }
 
@@ -126,7 +127,6 @@ export interface CountryTownEUpdateColumns
 	extends SystemGeneratedRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
-	COUNTRY_ID?: number | IQNumberField;
 
 }
 
@@ -159,12 +159,12 @@ export interface QCountryTown extends QSystemGeneratedRow
 	// Id Fields
 
 	// Id Relations
+	country: QCountryQRelation;
 	town: QTownQRelation;
 
 	// Non-Id Fields
 
 	// Non-Id Relations
-	country: QCountryQRelation;
 
 }
 
@@ -176,6 +176,7 @@ export interface QCountryTownQId extends QSystemGeneratedRowQId
 	// Id Fields
 
 	// Id Relations
+	country: QCountryQId;
 	town: QTownQId;
 
 

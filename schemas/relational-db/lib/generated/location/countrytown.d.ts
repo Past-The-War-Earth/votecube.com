@@ -1,7 +1,7 @@
 import { ISystemGeneratedRow } from '../infrastructure/row/systemgeneratedrow';
-import { ITown } from './town';
 import { ICountry } from './country';
+import { ITown } from './town';
 export interface ICountryTown extends ISystemGeneratedRow {
+    country: ICountry;
     town: ITown;
-    country?: ICountry;
 }
