@@ -49,10 +49,7 @@ import { QPositionOpinionVersionRating } from './opinion/user/qpositionopinionve
 import { QPositionOpinionVersionTranslation } from './opinion/translation/qpositionopinionversiontranslation';
 import { QPositionTranslation } from './factor/position/qpositiontranslation';
 import { QRating } from './infrastructure/rating/qrating';
-import { QRatingReason } from './infrastructure/rating/qratingreason';
-import { QRatingReasonTranslation } from './infrastructure/rating/qratingreasontranslation';
 import { QRatingSetting } from './infrastructure/rating/qratingsetting';
-import { QRatingTranslation } from './infrastructure/rating/qratingtranslation';
 import { QRatingType } from './infrastructure/rating/qratingtype';
 import { QState } from './location/qstate';
 import { QStateTown } from './location/qstatetown';
@@ -117,10 +114,7 @@ export interface LocalQSchema extends AirportQSchema {
     PositionOpinionVersionTranslation: QPositionOpinionVersionTranslation;
     PositionTranslation: QPositionTranslation;
     Rating: QRating;
-    RatingReason: QRatingReason;
-    RatingReasonTranslation: QRatingReasonTranslation;
     RatingSetting: QRatingSetting;
-    RatingTranslation: QRatingTranslation;
     RatingType: QRatingType;
     State: QState;
     StateTown: QStateTown;

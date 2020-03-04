@@ -51,10 +51,7 @@ import { PositionOpinionVersionRating } from '../ddl/opinion/user/positionopinio
 import { PositionOpinionVersionTranslation } from '../ddl/opinion/translation/positionopinionversiontranslation';
 import { PositionTranslation } from '../ddl/factor/position/positiontranslation';
 import { Rating } from '../ddl/infrastructure/rating/rating';
-import { RatingReason } from '../ddl/infrastructure/rating/ratingreason';
-import { RatingReasonTranslation } from '../ddl/infrastructure/rating/ratingreasontranslation';
 import { RatingSetting } from '../ddl/infrastructure/rating/ratingsetting';
-import { RatingTranslation } from '../ddl/infrastructure/rating/ratingtranslation';
 import { RatingType } from '../ddl/infrastructure/rating/ratingtype';
 import { State } from '../ddl/location/state';
 import { StateTown } from '../ddl/location/statetown';
@@ -118,10 +115,7 @@ const __constructors__ = {
     PositionOpinionVersionTranslation: PositionOpinionVersionTranslation,
     PositionTranslation: PositionTranslation,
     Rating: Rating,
-    RatingReason: RatingReason,
-    RatingReasonTranslation: RatingReasonTranslation,
     RatingSetting: RatingSetting,
-    RatingTranslation: RatingTranslation,
     RatingType: RatingType,
     State: State,
     StateTown: StateTown,

@@ -51,16 +51,6 @@ import {
 	QRatingSettingQId,
 	QRatingSettingQRelation,
 } from './qratingsetting';
-import {
-	RatingTranslationECascadeGraph,
-	RatingTranslationEId,
-	RatingTranslationEOptionalId,
-	RatingTranslationEUpdateProperties,
-	RatingTranslationESelect,
-	QRatingTranslation,
-	QRatingTranslationQId,
-	QRatingTranslationQRelation,
-} from './qratingtranslation';
 
 
 declare function require(moduleName: string): any;
@@ -83,7 +73,6 @@ export interface RatingESelect
   // Non-Id relations (including OneToMany's)
 	type?: RatingTypeESelect;
 	settings?: RatingSettingESelect;
-	translations?: RatingTranslationESelect;
 
 }
 
@@ -130,7 +119,6 @@ export interface RatingECascadeGraph
 	extends SystemGeneratedRowECascadeGraph {
 	// Cascading Relations
 	settings?: RatingSettingECascadeGraph;
-	translations?: RatingTranslationECascadeGraph;
 
 }
 
@@ -183,7 +171,6 @@ export interface QRating extends QSystemGeneratedRow
 	// Non-Id Relations
 	type: QRatingTypeQRelation;
 	settings: IQOneToManyRelation<QRatingSetting>;
-	translations: IQOneToManyRelation<QRatingTranslation>;
 
 }
 

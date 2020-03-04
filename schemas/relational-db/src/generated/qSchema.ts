@@ -110,14 +110,8 @@ import { PositionTranslation } from '../ddl/factor/position/positiontranslation'
 import { QPositionTranslation } from './factor/position/qpositiontranslation';
 import { Rating } from '../ddl/infrastructure/rating/rating';
 import { QRating } from './infrastructure/rating/qrating';
-import { RatingReason } from '../ddl/infrastructure/rating/ratingreason';
-import { QRatingReason } from './infrastructure/rating/qratingreason';
-import { RatingReasonTranslation } from '../ddl/infrastructure/rating/ratingreasontranslation';
-import { QRatingReasonTranslation } from './infrastructure/rating/qratingreasontranslation';
 import { RatingSetting } from '../ddl/infrastructure/rating/ratingsetting';
 import { QRatingSetting } from './infrastructure/rating/qratingsetting';
-import { RatingTranslation } from '../ddl/infrastructure/rating/ratingtranslation';
-import { QRatingTranslation } from './infrastructure/rating/qratingtranslation';
 import { RatingType } from '../ddl/infrastructure/rating/ratingtype';
 import { QRatingType } from './infrastructure/rating/qratingtype';
 import { State } from '../ddl/location/state';
@@ -198,10 +192,7 @@ export interface LocalQSchema extends AirportQSchema {
 	PositionOpinionVersionTranslation: QPositionOpinionVersionTranslation;
 	PositionTranslation: QPositionTranslation;
 	Rating: QRating;
-	RatingReason: QRatingReason;
-	RatingReasonTranslation: QRatingReasonTranslation;
 	RatingSetting: QRatingSetting;
-	RatingTranslation: QRatingTranslation;
 	RatingType: QRatingType;
 	State: QState;
 	StateTown: QStateTown;
@@ -268,10 +259,7 @@ const __constructors__ = {
 	PositionOpinionVersionTranslation: PositionOpinionVersionTranslation,
 	PositionTranslation: PositionTranslation,
 	Rating: Rating,
-	RatingReason: RatingReason,
-	RatingReasonTranslation: RatingReasonTranslation,
 	RatingSetting: RatingSetting,
-	RatingTranslation: RatingTranslation,
 	RatingType: RatingType,
 	State: State,
 	StateTown: StateTown,

@@ -602,32 +602,6 @@ import {
 	QRating
 } from './infrastructure/rating/qrating'
 import {
-	IRatingReason
-} from './infrastructure/rating/ratingreason'
-import {
-	RatingReasonESelect,
-	RatingReasonECreateColumns,
-	RatingReasonECreateProperties,
-	RatingReasonEUpdateColumns,
-	RatingReasonEUpdateProperties,
-	RatingReasonEId,
-	RatingReasonECascadeGraph,
-	QRatingReason
-} from './infrastructure/rating/qratingreason'
-import {
-	IRatingReasonTranslation
-} from './infrastructure/rating/ratingreasontranslation'
-import {
-	RatingReasonTranslationESelect,
-	RatingReasonTranslationECreateColumns,
-	RatingReasonTranslationECreateProperties,
-	RatingReasonTranslationEUpdateColumns,
-	RatingReasonTranslationEUpdateProperties,
-	RatingReasonTranslationEId,
-	RatingReasonTranslationECascadeGraph,
-	QRatingReasonTranslation
-} from './infrastructure/rating/qratingreasontranslation'
-import {
 	IRatingSetting
 } from './infrastructure/rating/ratingsetting'
 import {
@@ -640,19 +614,6 @@ import {
 	RatingSettingECascadeGraph,
 	QRatingSetting
 } from './infrastructure/rating/qratingsetting'
-import {
-	IRatingTranslation
-} from './infrastructure/rating/ratingtranslation'
-import {
-	RatingTranslationESelect,
-	RatingTranslationECreateColumns,
-	RatingTranslationECreateProperties,
-	RatingTranslationEUpdateColumns,
-	RatingTranslationEUpdateProperties,
-	RatingTranslationEId,
-	RatingTranslationECascadeGraph,
-	QRatingTranslation
-} from './infrastructure/rating/qratingtranslation'
 import {
 	IRatingType
 } from './infrastructure/rating/ratingtype'
@@ -1026,11 +987,11 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(53)
+		return duoDiSet(52)
 	}
 	
 	constructor() {
-		super(53)
+		super(52)
 	}
 }
 
@@ -1044,11 +1005,11 @@ export class BaseFactorOpinionVersionDuo
 	implements IBaseFactorOpinionVersionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(42)
+		return duoDiSet(41)
 	}
 	
 	constructor() {
-		super(42)
+		super(41)
 	}
 }
 
@@ -1062,11 +1023,11 @@ export class BaseFactorOpinionVersionRatingDuo
 	implements IBaseFactorOpinionVersionRatingDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(41)
+		return duoDiSet(40)
 	}
 	
 	constructor() {
-		super(41)
+		super(40)
 	}
 }
 
@@ -1080,11 +1041,11 @@ export class BaseFactorOpinionVersionTranslationDuo
 	implements IBaseFactorOpinionVersionTranslationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(40)
+		return duoDiSet(39)
 	}
 	
 	constructor() {
-		super(40)
+		super(39)
 	}
 }
 
@@ -1098,11 +1059,11 @@ export class BaseFactorPositionDuo
 	implements IBaseFactorPositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(56)
+		return duoDiSet(55)
 	}
 	
 	constructor() {
-		super(56)
+		super(55)
 	}
 }
 
@@ -1116,11 +1077,11 @@ export class BaseFactorSkinDuo
 	implements IBaseFactorSkinDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(51)
+		return duoDiSet(50)
 	}
 	
 	constructor() {
-		super(51)
+		super(50)
 	}
 }
 
@@ -1134,11 +1095,11 @@ export class BaseFactorTranslationDuo
 	implements IBaseFactorTranslationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(52)
+		return duoDiSet(51)
 	}
 	
 	constructor() {
-		super(52)
+		super(51)
 	}
 }
 
@@ -1170,11 +1131,11 @@ export class BaseOutcomeDuo
 	implements IBaseOutcomeDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(49)
+		return duoDiSet(48)
 	}
 	
 	constructor() {
-		super(49)
+		super(48)
 	}
 }
 
@@ -1188,11 +1149,11 @@ export class BaseOutcomeOpinionVersionDuo
 	implements IBaseOutcomeOpinionVersionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(59)
+		return duoDiSet(56)
 	}
 	
 	constructor() {
-		super(59)
+		super(56)
 	}
 }
 
@@ -1206,11 +1167,11 @@ export class BaseOutcomeOpinionVersionTranslationDuo
 	implements IBaseOutcomeOpinionVersionTranslationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(60)
+		return duoDiSet(57)
 	}
 	
 	constructor() {
-		super(60)
+		super(57)
 	}
 }
 
@@ -1224,11 +1185,11 @@ export class BaseOutcomeTranslationDuo
 	implements IBaseOutcomeTranslationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(48)
+		return duoDiSet(47)
 	}
 	
 	constructor() {
-		super(48)
+		super(47)
 	}
 }
 
@@ -1260,11 +1221,11 @@ export class BasePollRevisionDuo
 	implements IBasePollRevisionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(50)
+		return duoDiSet(49)
 	}
 	
 	constructor() {
-		super(50)
+		super(49)
 	}
 }
 
@@ -1278,11 +1239,11 @@ export class BasePollRevisionFactorPositionDuo
 	implements IBasePollRevisionFactorPositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(32)
+		return duoDiSet(31)
 	}
 	
 	constructor() {
-		super(32)
+		super(31)
 	}
 }
 
@@ -1296,11 +1257,11 @@ export class BasePollRevisionOpinionDuo
 	implements IBasePollRevisionOpinionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(46)
+		return duoDiSet(45)
 	}
 	
 	constructor() {
-		super(46)
+		super(45)
 	}
 }
 
@@ -1314,11 +1275,11 @@ export class BasePollRevisionOpinionVersionDuo
 	implements IBasePollRevisionOpinionVersionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(45)
+		return duoDiSet(44)
 	}
 	
 	constructor() {
-		super(45)
+		super(44)
 	}
 }
 
@@ -1332,11 +1293,11 @@ export class BasePollRevisionOpinionVersionRatingDuo
 	implements IBasePollRevisionOpinionVersionRatingDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(44)
+		return duoDiSet(43)
 	}
 	
 	constructor() {
-		super(44)
+		super(43)
 	}
 }
 
@@ -1350,11 +1311,11 @@ export class BasePollRevisionOpinionVersionTranslationDuo
 	implements IBasePollRevisionOpinionVersionTranslationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(43)
+		return duoDiSet(42)
 	}
 	
 	constructor() {
-		super(43)
+		super(42)
 	}
 }
 
@@ -1368,11 +1329,11 @@ export class BasePollRevisionRatingDuo
 	implements IBasePollRevisionRatingDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(47)
+		return duoDiSet(46)
 	}
 	
 	constructor() {
-		super(47)
+		super(46)
 	}
 }
 
@@ -1386,11 +1347,11 @@ export class BasePollRevisionTranslationDuo
 	implements IBasePollRevisionTranslationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(31)
+		return duoDiSet(30)
 	}
 	
 	constructor() {
-		super(31)
+		super(30)
 	}
 }
 
@@ -1404,11 +1365,11 @@ export class BasePollRevisionTranslationRatingDuo
 	implements IBasePollRevisionTranslationRatingDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(30)
+		return duoDiSet(29)
 	}
 	
 	constructor() {
-		super(30)
+		super(29)
 	}
 }
 
@@ -1548,11 +1509,11 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(55)
+		return duoDiSet(54)
 	}
 	
 	constructor() {
-		super(55)
+		super(54)
 	}
 }
 
@@ -1566,11 +1527,11 @@ export class BasePositionOpinionVersionDuo
 	implements IBasePositionOpinionVersionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(39)
+		return duoDiSet(38)
 	}
 	
 	constructor() {
-		super(39)
+		super(38)
 	}
 }
 
@@ -1584,11 +1545,11 @@ export class BasePositionOpinionVersionRatingDuo
 	implements IBasePositionOpinionVersionRatingDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(38)
+		return duoDiSet(37)
 	}
 	
 	constructor() {
-		super(38)
+		super(37)
 	}
 }
 
@@ -1602,11 +1563,11 @@ export class BasePositionOpinionVersionTranslationDuo
 	implements IBasePositionOpinionVersionTranslationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(37)
+		return duoDiSet(36)
 	}
 	
 	constructor() {
-		super(37)
+		super(36)
 	}
 }
 
@@ -1620,11 +1581,11 @@ export class BasePositionTranslationDuo
 	implements IBasePositionTranslationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(54)
+		return duoDiSet(53)
 	}
 	
 	constructor() {
-		super(54)
+		super(53)
 	}
 }
 
@@ -1638,47 +1599,11 @@ export class BaseRatingDuo
 	implements IBaseRatingDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(29)
+		return duoDiSet(28)
 	}
 	
 	constructor() {
-		super(29)
-	}
-}
-
-
-export interface IBaseRatingReasonDuo
-  extends IDuo<IRatingReason, RatingReasonESelect, RatingReasonECreateProperties, RatingReasonEUpdateColumns, RatingReasonEUpdateProperties, RatingReasonEId, RatingReasonECascadeGraph, QRatingReason> {
-}
-
-export class BaseRatingReasonDuo
-  extends SQDIDuo<IRatingReason, RatingReasonESelect, RatingReasonECreateProperties, RatingReasonEUpdateColumns, RatingReasonEUpdateProperties, RatingReasonEId, RatingReasonECascadeGraph, QRatingReason>
-	implements IBaseRatingReasonDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(58)
-	}
-	
-	constructor() {
-		super(58)
-	}
-}
-
-
-export interface IBaseRatingReasonTranslationDuo
-  extends IDuo<IRatingReasonTranslation, RatingReasonTranslationESelect, RatingReasonTranslationECreateProperties, RatingReasonTranslationEUpdateColumns, RatingReasonTranslationEUpdateProperties, RatingReasonTranslationEId, RatingReasonTranslationECascadeGraph, QRatingReasonTranslation> {
-}
-
-export class BaseRatingReasonTranslationDuo
-  extends SQDIDuo<IRatingReasonTranslation, RatingReasonTranslationESelect, RatingReasonTranslationECreateProperties, RatingReasonTranslationEUpdateColumns, RatingReasonTranslationEUpdateProperties, RatingReasonTranslationEId, RatingReasonTranslationECascadeGraph, QRatingReasonTranslation>
-	implements IBaseRatingReasonTranslationDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(57)
-	}
-	
-	constructor() {
-		super(57)
+		super(28)
 	}
 }
 
@@ -1701,24 +1626,6 @@ export class BaseRatingSettingDuo
 }
 
 
-export interface IBaseRatingTranslationDuo
-  extends IDuo<IRatingTranslation, RatingTranslationESelect, RatingTranslationECreateProperties, RatingTranslationEUpdateColumns, RatingTranslationEUpdateProperties, RatingTranslationEId, RatingTranslationECascadeGraph, QRatingTranslation> {
-}
-
-export class BaseRatingTranslationDuo
-  extends SQDIDuo<IRatingTranslation, RatingTranslationESelect, RatingTranslationECreateProperties, RatingTranslationEUpdateColumns, RatingTranslationEUpdateProperties, RatingTranslationEId, RatingTranslationECascadeGraph, QRatingTranslation>
-	implements IBaseRatingTranslationDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(27)
-	}
-	
-	constructor() {
-		super(27)
-	}
-}
-
-
 export interface IBaseRatingTypeDuo
   extends IDuo<IRatingType, RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeECascadeGraph, QRatingType> {
 }
@@ -1728,11 +1635,11 @@ export class BaseRatingTypeDuo
 	implements IBaseRatingTypeDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(28)
+		return duoDiSet(27)
 	}
 	
 	constructor() {
-		super(28)
+		super(27)
 	}
 }
 
@@ -1854,11 +1761,11 @@ export class BaseVoteDuo
 	implements IBaseVoteDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(36)
+		return duoDiSet(35)
 	}
 	
 	constructor() {
-		super(36)
+		super(35)
 	}
 }
 
@@ -1872,11 +1779,11 @@ export class BaseVoteFactorDuo
 	implements IBaseVoteFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(34)
+		return duoDiSet(33)
 	}
 	
 	constructor() {
-		super(34)
+		super(33)
 	}
 }
 
@@ -1890,11 +1797,11 @@ export class BaseVoteFactorTypeDuo
 	implements IBaseVoteFactorTypeDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(33)
+		return duoDiSet(32)
 	}
 	
 	constructor() {
-		super(33)
+		super(32)
 	}
 }
 
@@ -1908,11 +1815,11 @@ export class BaseVoteRevisionDuo
 	implements IBaseVoteRevisionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(35)
+		return duoDiSet(34)
 	}
 	
 	constructor() {
-		super(35)
+		super(34)
 	}
 }
 

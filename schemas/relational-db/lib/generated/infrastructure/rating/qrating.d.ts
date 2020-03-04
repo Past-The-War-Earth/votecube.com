@@ -2,7 +2,6 @@ import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '
 import { SystemGeneratedRowECascadeGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../row/qsystemgeneratedrow';
 import { RatingTypeEOptionalId, RatingTypeESelect, QRatingTypeQRelation } from './qratingtype';
 import { RatingSettingECascadeGraph, RatingSettingESelect, QRatingSetting } from './qratingsetting';
-import { RatingTranslationECascadeGraph, RatingTranslationESelect, QRatingTranslation } from './qratingtranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -10,7 +9,6 @@ export interface RatingESelect extends SystemGeneratedRowESelect, RatingEOptiona
     cssClass?: string | IQStringField;
     type?: RatingTypeESelect;
     settings?: RatingSettingESelect;
-    translations?: RatingTranslationESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -36,7 +34,6 @@ export interface RatingEUpdateProperties extends SystemGeneratedRowEUpdateProper
  */
 export interface RatingECascadeGraph extends SystemGeneratedRowECascadeGraph {
     settings?: RatingSettingECascadeGraph;
-    translations?: RatingTranslationECascadeGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -64,7 +61,6 @@ export interface QRating extends QSystemGeneratedRow {
     cssClass: IQStringField;
     type: QRatingTypeQRelation;
     settings: IQOneToManyRelation<QRatingSetting>;
-    translations: IQOneToManyRelation<QRatingTranslation>;
 }
 export interface QRatingQId extends QSystemGeneratedRowQId {
     id: IQNumberField;

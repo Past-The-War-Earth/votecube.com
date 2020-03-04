@@ -15,7 +15,6 @@ import {
 } from '../../../types/infrastructure/rating/Rating'
 import {SystemGeneratedRow} from '../row/SystemGeneratedRow'
 import {RatingSetting}      from './RatingSetting'
-import {RatingTranslation}  from './RatingTranslation'
 import {RatingType}         from './RatingType'
 
 /**
@@ -46,8 +45,5 @@ export class Rating
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'rating'})
 	settings: RatingSetting[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'rating'})
-	translations: RatingTranslation[]
 
 }

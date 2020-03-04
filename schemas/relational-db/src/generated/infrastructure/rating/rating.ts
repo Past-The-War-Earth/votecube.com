@@ -7,9 +7,6 @@ import {
 import {
 	IRatingSetting,
 } from './ratingsetting';
-import {
-	IRatingTranslation,
-} from './ratingtranslation';
 
 
 
@@ -30,7 +27,6 @@ export interface IRating extends ISystemGeneratedRow {
 	// Non-Id Relations
 	type?: IRatingType;
 	settings?: IRatingSetting[];
-	translations?: IRatingTranslation[];
 
 	// Transient Properties
 

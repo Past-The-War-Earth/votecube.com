@@ -1,7 +1,6 @@
 import { Rating_CssClass, Rating_Id } from '../../../types/infrastructure/rating/Rating';
 import { SystemGeneratedRow } from '../row/SystemGeneratedRow';
 import { RatingSetting } from './RatingSetting';
-import { RatingTranslation } from './RatingTranslation';
 import { RatingType } from './RatingType';
 /**
  * Note suitability settings will either have a dedicated UI (like in age suitability),
@@ -15,5 +14,4 @@ export declare class Rating extends SystemGeneratedRow {
     cssClass: Rating_CssClass;
     type: RatingType;
     settings: RatingSetting[];
-    translations: RatingTranslation[];
 }

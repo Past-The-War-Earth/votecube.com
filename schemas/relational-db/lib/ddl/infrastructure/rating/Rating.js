@@ -31,9 +31,6 @@ __decorate([
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'rating' })
 ], Rating.prototype, "settings", void 0);
-__decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'rating' })
-], Rating.prototype, "translations", void 0);
 Rating = __decorate([
     Entity(),
     Table({ name: 'RATINGS' })

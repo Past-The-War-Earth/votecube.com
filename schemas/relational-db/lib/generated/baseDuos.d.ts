@@ -91,14 +91,8 @@ import { IPositionTranslation } from './factor/position/positiontranslation';
 import { PositionTranslationESelect, PositionTranslationECreateProperties, PositionTranslationEUpdateColumns, PositionTranslationEUpdateProperties, PositionTranslationEId, PositionTranslationECascadeGraph, QPositionTranslation } from './factor/position/qpositiontranslation';
 import { IRating } from './infrastructure/rating/rating';
 import { RatingESelect, RatingECreateProperties, RatingEUpdateColumns, RatingEUpdateProperties, RatingEId, RatingECascadeGraph, QRating } from './infrastructure/rating/qrating';
-import { IRatingReason } from './infrastructure/rating/ratingreason';
-import { RatingReasonESelect, RatingReasonECreateProperties, RatingReasonEUpdateColumns, RatingReasonEUpdateProperties, RatingReasonEId, RatingReasonECascadeGraph, QRatingReason } from './infrastructure/rating/qratingreason';
-import { IRatingReasonTranslation } from './infrastructure/rating/ratingreasontranslation';
-import { RatingReasonTranslationESelect, RatingReasonTranslationECreateProperties, RatingReasonTranslationEUpdateColumns, RatingReasonTranslationEUpdateProperties, RatingReasonTranslationEId, RatingReasonTranslationECascadeGraph, QRatingReasonTranslation } from './infrastructure/rating/qratingreasontranslation';
 import { IRatingSetting } from './infrastructure/rating/ratingsetting';
 import { RatingSettingESelect, RatingSettingECreateProperties, RatingSettingEUpdateColumns, RatingSettingEUpdateProperties, RatingSettingEId, RatingSettingECascadeGraph, QRatingSetting } from './infrastructure/rating/qratingsetting';
-import { IRatingTranslation } from './infrastructure/rating/ratingtranslation';
-import { RatingTranslationESelect, RatingTranslationECreateProperties, RatingTranslationEUpdateColumns, RatingTranslationEUpdateProperties, RatingTranslationEId, RatingTranslationECascadeGraph, QRatingTranslation } from './infrastructure/rating/qratingtranslation';
 import { IRatingType } from './infrastructure/rating/ratingtype';
 import { RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeECascadeGraph, QRatingType } from './infrastructure/rating/qratingtype';
 import { IState } from './location/state';
@@ -396,27 +390,9 @@ export declare class BaseRatingDuo extends SQDIDuo<IRating, RatingESelect, Ratin
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseRatingReasonDuo extends IDuo<IRatingReason, RatingReasonESelect, RatingReasonECreateProperties, RatingReasonEUpdateColumns, RatingReasonEUpdateProperties, RatingReasonEId, RatingReasonECascadeGraph, QRatingReason> {
-}
-export declare class BaseRatingReasonDuo extends SQDIDuo<IRatingReason, RatingReasonESelect, RatingReasonECreateProperties, RatingReasonEUpdateColumns, RatingReasonEUpdateProperties, RatingReasonEId, RatingReasonECascadeGraph, QRatingReason> implements IBaseRatingReasonDuo {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseRatingReasonTranslationDuo extends IDuo<IRatingReasonTranslation, RatingReasonTranslationESelect, RatingReasonTranslationECreateProperties, RatingReasonTranslationEUpdateColumns, RatingReasonTranslationEUpdateProperties, RatingReasonTranslationEId, RatingReasonTranslationECascadeGraph, QRatingReasonTranslation> {
-}
-export declare class BaseRatingReasonTranslationDuo extends SQDIDuo<IRatingReasonTranslation, RatingReasonTranslationESelect, RatingReasonTranslationECreateProperties, RatingReasonTranslationEUpdateColumns, RatingReasonTranslationEUpdateProperties, RatingReasonTranslationEId, RatingReasonTranslationECascadeGraph, QRatingReasonTranslation> implements IBaseRatingReasonTranslationDuo {
-    static diSet(): boolean;
-    constructor();
-}
 export interface IBaseRatingSettingDuo extends IDuo<IRatingSetting, RatingSettingESelect, RatingSettingECreateProperties, RatingSettingEUpdateColumns, RatingSettingEUpdateProperties, RatingSettingEId, RatingSettingECascadeGraph, QRatingSetting> {
 }
 export declare class BaseRatingSettingDuo extends SQDIDuo<IRatingSetting, RatingSettingESelect, RatingSettingECreateProperties, RatingSettingEUpdateColumns, RatingSettingEUpdateProperties, RatingSettingEId, RatingSettingECascadeGraph, QRatingSetting> implements IBaseRatingSettingDuo {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseRatingTranslationDuo extends IDuo<IRatingTranslation, RatingTranslationESelect, RatingTranslationECreateProperties, RatingTranslationEUpdateColumns, RatingTranslationEUpdateProperties, RatingTranslationEId, RatingTranslationECascadeGraph, QRatingTranslation> {
-}
-export declare class BaseRatingTranslationDuo extends SQDIDuo<IRatingTranslation, RatingTranslationESelect, RatingTranslationECreateProperties, RatingTranslationEUpdateColumns, RatingTranslationEUpdateProperties, RatingTranslationEId, RatingTranslationECascadeGraph, QRatingTranslation> implements IBaseRatingTranslationDuo {
     static diSet(): boolean;
     constructor();
 }
