@@ -10,7 +10,7 @@ import { Outcome } from '../Outcome';
 export declare class OutcomeTranslation extends ImmutableActorRow {
     id: OutcomeTranslation_Id;
     name: OutcomeTranslation_Name;
-    outcomeVersion: Outcome;
+    outcome: Outcome;
     language: Language;
     type: TranslationType;
     parent: OutcomeTranslation;

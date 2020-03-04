@@ -138,7 +138,8 @@ export interface PollRevisionFactorPositionEUpdateColumns
 	FACTOR_COORDINATE_AXIS?: string | IQStringField;
 	POSITION_ORIENTATION?: number | IQNumberField;
 	POLL_REVISION_ID?: number | IQNumberField;
-	FACTOR_POSITION_ID?: number | IQNumberField;
+	FACTOR_ID?: number | IQNumberField;
+	POSITION_ID?: number | IQNumberField;
 	PARENT_POLL_REVISION_FACTOR_POSITION_ID?: number | IQNumberField;
 
 }

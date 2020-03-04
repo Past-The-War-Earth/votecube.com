@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Column, DbNumber, DbString, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
+import { Column, DbNumber, DbString, Entity, GeneratedValue, Id, JoinColumn, JoinColumns, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
 import { ImmutableRow } from '../../infrastructure/row/ImmutableRow';
 let PollRevisionFactorPosition = class PollRevisionFactorPosition extends ImmutableRow {
@@ -28,7 +28,11 @@ __decorate([
 ], PollRevisionFactorPosition.prototype, "pollRevision", void 0);
 __decorate([
     ManyToOne(),
-    JoinColumn({ name: 'FACTOR_POSITION_ID', nullable: false })
+    JoinColumns([{
+            name: 'FACTOR_ID', nullable: false
+        }, {
+            name: 'POSITION_ID', nullable: false
+        }])
 ], PollRevisionFactorPosition.prototype, "factorPosition", void 0);
 __decorate([
     ManyToOne(),

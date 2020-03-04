@@ -1,11 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="Artifact cleanup.">
+    <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/PollRevisionTranslationRating.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/pollrevisiontranslationrating.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/pollrevisiontranslationrating.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/qpollrevisiontranslationrating.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/qpollrevisiontranslationrating.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/qpollrevisiontranslationrating.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/public-logic/src/converter/PollRevisionConveter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/converter/PollRevisionConveter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/Outcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/Outcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionFactorTranslation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionFactorTranslation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionFactorTranslation.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionPositionTranslation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionPositionTranslation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionPositionTranslation.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionRating.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionRating.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionTranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionTranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionTranslationRating.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/PollRevisionTranslationRating.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionTranslationRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/PollRevisionTranslationRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/user/UserPollRevisionTranslationRating.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/factorposition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/factorposition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qfactorposition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qfactorposition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/interfaces.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/interfaces.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevisionfactorposition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevisionfactorposition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/outcometranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/outcometranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisionfactortranslation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisionfactortranslation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisionfactortranslation.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisionpositiontranslation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisionpositiontranslation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisionpositiontranslation.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qoutcometranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qoutcometranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisionfactortranslation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisionfactortranslation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisionfactortranslation.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisionpositiontranslation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisionpositiontranslation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisionpositiontranslation.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/quserpollrevisiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/quserpollrevisiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/quserpollrevisiontranslationrating.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/quserpollrevisiontranslationrating.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/quserpollrevisiontranslationrating.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/userpollrevisiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/userpollrevisiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/userpollrevisiontranslationrating.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/pollrevisiontranslationrating.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/userpollrevisiontranslationrating.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/user/userpollrevisiontranslationrating.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qInterfaces.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qInterfaces.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/FactorPosition.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/FactorPosition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/FactorPosition.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/types.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/ddl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/ddl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/factor/position/FactorPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/factor/position/FactorPosition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/PollRevisionFactorPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/PollRevisionFactorPosition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/OutcomeTranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/OutcomeTranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/PollRevisionFactorTranslation.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/PollRevisionPositionTranslation.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/PollRevisionTranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/PollRevisionTranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/user/UserPollRevisionRating.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/user/UserPollRevisionRating.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/user/UserPollRevisionTranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/user/UserPollRevisionTranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/user/UserPollRevisionTranslationRating.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/user/PollRevisionTranslationRating.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/baseDaos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/baseDaos.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/baseDuos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/baseDuos.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/factor/position/factorposition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/factor/position/factorposition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/factor/position/qfactorposition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/factor/position/qfactorposition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qpollrevisionfactorposition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qpollrevisionfactorposition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/outcometranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/outcometranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/pollrevisionfactortranslation.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/pollrevisionpositiontranslation.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/pollrevisiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/pollrevisiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/qoutcometranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/qoutcometranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/qpollrevisionfactortranslation.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/qpollrevisionpositiontranslation.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/qpollrevisiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/translation/qpollrevisiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/user/quserpollrevisiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/user/quserpollrevisiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/user/quserpollrevisiontranslationrating.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/user/qpollrevisiontranslationrating.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/user/userpollrevisiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/user/userpollrevisiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/user/userpollrevisiontranslationrating.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/user/pollrevisiontranslationrating.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/qInterfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/qInterfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/qSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/qSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/types/factor/position/FactorPosition.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/types/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,14 +347,14 @@
     <MESSAGE value="Linked in poll detail page.  Fixed SSR not showing last item in ProgressiveList.svelte." />
     <MESSAGE value="Added opinion creation and retrieval." />
     <MESSAGE value="Started adjusting to latest ScyllaDB schema version." />
-    <MESSAGE value="Bug fixes." />
     <MESSAGE value="Started migrating from Firebase to Vespa + ScyllaDB + CRDB." />
     <MESSAGE value="Simplifying and adjusting relational model and related models." />
     <MESSAGE value="Added Outcomes and lib files." />
     <MESSAGE value="Removed PollRevision and Factor descriptions (names are sufficient for now)." />
     <MESSAGE value="Added outcome Opinion. Renaming." />
     <MESSAGE value="Artifact cleanup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Artifact cleanup." />
+    <MESSAGE value="Bug fixes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes." />
   </component>
   <component name="WindowStateProjectService">
     <state x="566" y="-873" key="#Updates" timestamp="1580326375485">
@@ -275,12 +384,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="229" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1579105984422" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1583283358597">
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1583283995766">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@0.0.1920.1040" timestamp="1582741181313" />
     <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209055925" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583283358597" />
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583283995766" />
     <state x="1" y="-1080" key="CommitChangelistDialog2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130909180" />
     <state width="379" height="466" key="DebuggerActiveHint" timestamp="1579096165500">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -299,37 +408,37 @@
     <state x="2607" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582822760189" />
     <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578848148679" />
     <state x="687" y="-857" key="FileChooserDialogImpl/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579030485607" />
-    <state width="1899" height="288" key="GridCell.Tab.0.bottom" timestamp="1583283935225">
+    <state width="1899" height="288" key="GridCell.Tab.0.bottom" timestamp="1583299721930">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974625" />
-    <state width="1899" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583283935225" />
+    <state width="1899" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583299721930" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
-    <state width="1899" height="288" key="GridCell.Tab.0.center" timestamp="1583283935224">
+    <state width="1899" height="288" key="GridCell.Tab.0.center" timestamp="1583299721929">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583283935224" />
+    <state width="1899" height="288" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583299721929" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="288" key="GridCell.Tab.0.left" timestamp="1583283935224">
+    <state width="1899" height="288" key="GridCell.Tab.0.left" timestamp="1583299721929">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628893" />
     <state width="1899" height="372" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583283935224" />
+    <state width="1899" height="288" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583299721929" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="288" key="GridCell.Tab.0.right" timestamp="1583283935224">
+    <state width="1899" height="288" key="GridCell.Tab.0.right" timestamp="1583299721930">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583283935224" />
+    <state width="1899" height="288" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583299721930" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
     <state width="1899" height="356" key="GridCell.Tab.1.bottom" timestamp="1579124842567">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -408,11 +517,11 @@
     </state>
     <state x="141" y="35" width="1418" height="971" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582848282161" />
     <state x="477" y="-890" key="SettingsEditor/1.-1080.1920.1040/1921.-1188.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1040" timestamp="1580326540443" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1583283334635">
+    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1583284000728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209060849" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583283334635" />
+    <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583284000728" />
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130913034" />
     <state x="93" y="-988" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582741386494">
       <screen x="1" y="-1080" width="1920" height="1080" />

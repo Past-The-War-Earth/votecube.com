@@ -1,7 +1,7 @@
 import { IQDateField, IQNumberField } from '@airport/air-control';
 import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../../infrastructure/row/qimmutableactorrow';
-import { FactorEOptionalId, FactorESelect, QFactorQRelation } from '../qfactor';
-import { PositionEOptionalId, PositionESelect, QPositionQRelation } from './qposition';
+import { FactorEId, FactorEOptionalId, FactorESelect, QFactorQId, QFactorQRelation } from '../qfactor';
+import { PositionEId, PositionEOptionalId, PositionESelect, QPositionQId, QPositionQRelation } from './qposition';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -13,20 +13,20 @@ export interface FactorPositionESelect extends ImmutableActorRowESelect, FactorP
  * DELETE - Ids fields and relations only (required).
  */
 export interface FactorPositionEId extends ImmutableActorRowEId {
-    id: number | IQNumberField;
+    factor: FactorEId;
+    position: PositionEId;
 }
 /**
  * Ids fields and relations only (optional).
  */
 export interface FactorPositionEOptionalId {
-    id?: number | IQNumberField;
+    factor?: FactorEOptionalId;
+    position?: PositionEOptionalId;
 }
 /**
  * UPDATE - non-id fields and relations (optional).
  */
 export interface FactorPositionEUpdateProperties extends ImmutableActorRowEUpdateProperties {
-    factor?: FactorEOptionalId;
-    position?: PositionEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
@@ -39,8 +39,6 @@ export interface FactorPositionECascadeGraph extends ImmutableActorRowECascadeGr
 export interface FactorPositionEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
-    FACTOR_ID?: number | IQNumberField;
-    POSITION_ID?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -56,12 +54,12 @@ export interface FactorPositionECreateColumns extends FactorPositionEId, FactorP
  * Query Entity Query Definition (used for Q.EntityName).
  */
 export interface QFactorPosition extends QImmutableActorRow {
-    id: IQNumberField;
     factor: QFactorQRelation;
     position: QPositionQRelation;
 }
 export interface QFactorPositionQId extends QImmutableActorRowQId {
-    id: IQNumberField;
+    factor: QFactorQId;
+    position: QPositionQId;
 }
 export interface QFactorPositionQRelation extends QImmutableActorRowQRelation<QFactorPosition>, QFactorPositionQId {
 }

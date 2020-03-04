@@ -8,7 +8,7 @@ import { TranslationTypeEOptionalId, TranslationTypeESelect, QTranslationTypeQRe
  */
 export interface OutcomeTranslationESelect extends ImmutableActorRowESelect, OutcomeTranslationEOptionalId {
     name?: string | IQStringField;
-    outcomeVersion?: OutcomeESelect;
+    outcome?: OutcomeESelect;
     language?: LanguageESelect;
     type?: TranslationTypeESelect;
     parent?: OutcomeTranslationESelect;
@@ -31,7 +31,7 @@ export interface OutcomeTranslationEOptionalId {
  */
 export interface OutcomeTranslationEUpdateProperties extends ImmutableActorRowEUpdateProperties {
     name?: string | IQStringField;
-    outcomeVersion?: OutcomeEOptionalId;
+    outcome?: OutcomeEOptionalId;
     language?: LanguageEOptionalId;
     type?: TranslationTypeEOptionalId;
     parent?: OutcomeTranslationEOptionalId;
@@ -70,7 +70,7 @@ export interface OutcomeTranslationECreateColumns extends OutcomeTranslationEId,
 export interface QOutcomeTranslation extends QImmutableActorRow {
     id: IQNumberField;
     name: IQStringField;
-    outcomeVersion: QOutcomeQRelation;
+    outcome: QOutcomeQRelation;
     language: QLanguageQRelation;
     type: QTranslationTypeQRelation;
     parent: QOutcomeTranslationQRelation;

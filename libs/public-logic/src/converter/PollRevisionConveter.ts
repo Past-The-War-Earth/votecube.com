@@ -69,7 +69,7 @@ export class PollRevisionConverter
 		const uiPollRevisionTranslation: IPollRevisionTranslation = {
 			id: null,
 			name: revisionDoc.name,
-			description? x: string
+			description: string
 
 		// Non-Id Relations
 		pollRevision ? : IPollRevision

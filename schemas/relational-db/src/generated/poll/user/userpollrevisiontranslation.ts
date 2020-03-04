@@ -8,8 +8,8 @@ import {
 	IPollRevisionTranslation,
 } from '../revision/translation/pollrevisiontranslation';
 import {
-	IUserPollRevisionTranslationRating,
-} from './userpollrevisiontranslationrating';
+	IPollRevisionTranslationRating,
+} from './pollrevisiontranslationrating';
 
 
 
@@ -29,7 +29,7 @@ export interface IUserPollRevisionTranslation extends IMutableActorRow {
 	// Non-Id Relations
 	userPollRevision?: IUserPollRevision;
 	revisionTranslation?: IPollRevisionTranslation;
-	ratings?: IUserPollRevisionTranslationRating[];
+	ratings?: IPollRevisionTranslationRating[];
 
 	// Transient Properties
 

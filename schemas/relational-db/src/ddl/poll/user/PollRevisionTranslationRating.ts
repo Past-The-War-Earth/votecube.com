@@ -27,26 +27,23 @@ import {UserPollRevisionTranslation} from './UserPollRevisionTranslation'
  * from what rating it was changed (so that it can decrement).
  */
 @Entity()
-@Table({name: 'USER_POLL_REVISION_TRANSLATION_RATINGS'})
-export class UserPollRevisionTranslationRating
+@Table({name: 'POLL_REVISION_TRANSLATION_RATINGS'})
+export class PollRevisionTranslationRating
 	extends ImmutableActorRow {
 
 	@Id()
 	@GeneratedValue()
-	@Column({name: 'USER_POLL_REVISION_TRANSLATION_RATING_ID'})
+	@Column({name: 'POLL_REVISION_TRANSLATION_RATING_ID'})
 	id: UserPollRevisionTranslationRating_Id
 
-	@Column({name: 'USER_POLL_REVISION_TRANSLATION_RATING_IS_CURRENT'})
+	@Column({name: 'IS_CURRENT'})
 	isCurrent: UserPollRevisionTranslationRating_IsCurrent
 
 	@ManyToOne()
 	@JoinColumn({name: 'USER_POLL_REVISION_TRANSLATION_ID'})
 	userPollRevisionTranslation: UserPollRevisionTranslation
 
-	@ManyToOne()
-	@JoinColumn({name: 'POLL_REVISION_TRANSLATION_ID'})
-	pollRevisionTranslation: PollRevisionTranslation
-
+	// NOTE: optional
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_RUN_ID'})
 	run: PollRun
@@ -57,12 +54,12 @@ export class UserPollRevisionTranslationRating
 
 	@ManyToOne()
 	@JoinColumn({
-		name: 'PARENT_USER_POLL_REVISION_TRANSLATION_RATING_ID',
-		referencedColumnName: 'USER_POLL_REVISION_TRANSLATION_RATING_ID'
+		name: 'PARENT_POLL_REVISION_TRANSLATION_RATING_ID',
+		referencedColumnName: 'POLL_REVISION_TRANSLATION_RATING_ID'
 	})
-	parent: UserPollRevisionTranslationRating
+	parent: PollRevisionTranslationRating
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
-	child: UserPollRevisionTranslationRating[]
+	child: PollRevisionTranslationRating[]
 
 }

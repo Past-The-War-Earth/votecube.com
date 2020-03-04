@@ -9,7 +9,7 @@ import { MutableActorRow } from '../../infrastructure/row/MutableActorRow';
 // export type UserPollRevisionRating_IsCurrent = boolean
 /**
  * User ratings for a particular Poll Revision (likely computed from
- * UserPollRevisionTranslationRating).
+ * PollRevisionTranslationRating).
  *
  * Rating counts are aggregated by a batch job.  The batch job needs to know
  * the current Rating and is it a change in rating (of the same type) and

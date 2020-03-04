@@ -12,8 +12,8 @@ import {CascadeType}                        from '@airport/ground-control'
 import {UserPollRevisionTranslation_Id}    from '../../../types/poll/user/UserPollRevisionTranslation'
 import {MutableActorRow}         from '../../infrastructure/row/MutableActorRow'
 import {PollRevisionTranslation}            from '../revision/translation/PollRevisionTranslation'
-import {UserPollRevision}                  from './UserPollRevision'
-import {UserPollRevisionTranslationRating} from './UserPollRevisionTranslationRating'
+import {UserPollRevision}              from './UserPollRevision'
+import {PollRevisionTranslationRating} from './PollRevisionTranslationRating'
 
 /**
  * User records for a particular User Poll RevisionTranslation.
@@ -40,6 +40,6 @@ export class UserPollRevisionTranslation
 	revisionTranslation: PollRevisionTranslation
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'userPollRevisionTranslation'})
-	ratings: UserPollRevisionTranslationRating[]
+	ratings: PollRevisionTranslationRating[]
 
 }

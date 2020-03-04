@@ -31,13 +31,12 @@ import { OutcomeTranslation } from '../ddl/poll/revision/translation/outcometran
 import { Poll } from '../ddl/poll/poll';
 import { PollRevision } from '../ddl/poll/revision/pollrevision';
 import { PollRevisionFactorPosition } from '../ddl/poll/revision/pollrevisionfactorposition';
-import { PollRevisionFactorTranslation } from '../ddl/poll/revision/translation/pollrevisionfactortranslation';
 import { PollRevisionOpinion } from '../ddl/opinion/pollrevisionopinion';
 import { PollRevisionOpinionVersion } from '../ddl/opinion/pollrevisionopinionversion';
 import { PollRevisionOpinionVersionRating } from '../ddl/opinion/user/pollrevisionopinionversionrating';
 import { PollRevisionOpinionVersionTranslation } from '../ddl/opinion/translation/pollrevisionopinionversiontranslation';
-import { PollRevisionPositionTranslation } from '../ddl/poll/revision/translation/pollrevisionpositiontranslation';
 import { PollRevisionTranslation } from '../ddl/poll/revision/translation/pollrevisiontranslation';
+import { PollRevisionTranslationRating } from '../ddl/poll/user/pollrevisiontranslationrating';
 import { PollRun } from '../ddl/poll/run/pollrun';
 import { PollRunContinent } from '../ddl/poll/run/location/pollruncontinent';
 import { PollRunCountry } from '../ddl/poll/run/location/pollruncountry';
@@ -68,7 +67,6 @@ import { UserPollRating } from '../ddl/poll/user/userpollrating';
 import { UserPollRevision } from '../ddl/poll/user/userpollrevision';
 import { UserPollRevisionRating } from '../ddl/poll/user/userpollrevisionrating';
 import { UserPollRevisionTranslation } from '../ddl/poll/user/userpollrevisiontranslation';
-import { UserPollRevisionTranslationRating } from '../ddl/poll/user/userpollrevisiontranslationrating';
 import { Vote } from '../ddl/vote/vote';
 import { VoteFactor } from '../ddl/vote/votefactor';
 import { VoteFactorType } from '../ddl/vote/votefactortype';
@@ -104,13 +102,12 @@ const __constructors__ = {
     Poll: Poll,
     PollRevision: PollRevision,
     PollRevisionFactorPosition: PollRevisionFactorPosition,
-    PollRevisionFactorTranslation: PollRevisionFactorTranslation,
     PollRevisionOpinion: PollRevisionOpinion,
     PollRevisionOpinionVersion: PollRevisionOpinionVersion,
     PollRevisionOpinionVersionRating: PollRevisionOpinionVersionRating,
     PollRevisionOpinionVersionTranslation: PollRevisionOpinionVersionTranslation,
-    PollRevisionPositionTranslation: PollRevisionPositionTranslation,
     PollRevisionTranslation: PollRevisionTranslation,
+    PollRevisionTranslationRating: PollRevisionTranslationRating,
     PollRun: PollRun,
     PollRunContinent: PollRunContinent,
     PollRunCountry: PollRunCountry,
@@ -141,7 +138,6 @@ const __constructors__ = {
     UserPollRevision: UserPollRevision,
     UserPollRevisionRating: UserPollRevisionRating,
     UserPollRevisionTranslation: UserPollRevisionTranslation,
-    UserPollRevisionTranslationRating: UserPollRevisionTranslationRating,
     Vote: Vote,
     VoteFactor: VoteFactor,
     VoteFactorType: VoteFactorType,

@@ -70,8 +70,6 @@ import { PollRevision } from '../ddl/poll/revision/pollrevision';
 import { QPollRevision } from './poll/revision/qpollrevision';
 import { PollRevisionFactorPosition } from '../ddl/poll/revision/pollrevisionfactorposition';
 import { QPollRevisionFactorPosition } from './poll/revision/qpollrevisionfactorposition';
-import { PollRevisionFactorTranslation } from '../ddl/poll/revision/translation/pollrevisionfactortranslation';
-import { QPollRevisionFactorTranslation } from './poll/revision/translation/qpollrevisionfactortranslation';
 import { PollRevisionOpinion } from '../ddl/opinion/pollrevisionopinion';
 import { QPollRevisionOpinion } from './opinion/qpollrevisionopinion';
 import { PollRevisionOpinionVersion } from '../ddl/opinion/pollrevisionopinionversion';
@@ -80,10 +78,10 @@ import { PollRevisionOpinionVersionRating } from '../ddl/opinion/user/pollrevisi
 import { QPollRevisionOpinionVersionRating } from './opinion/user/qpollrevisionopinionversionrating';
 import { PollRevisionOpinionVersionTranslation } from '../ddl/opinion/translation/pollrevisionopinionversiontranslation';
 import { QPollRevisionOpinionVersionTranslation } from './opinion/translation/qpollrevisionopinionversiontranslation';
-import { PollRevisionPositionTranslation } from '../ddl/poll/revision/translation/pollrevisionpositiontranslation';
-import { QPollRevisionPositionTranslation } from './poll/revision/translation/qpollrevisionpositiontranslation';
 import { PollRevisionTranslation } from '../ddl/poll/revision/translation/pollrevisiontranslation';
 import { QPollRevisionTranslation } from './poll/revision/translation/qpollrevisiontranslation';
+import { PollRevisionTranslationRating } from '../ddl/poll/user/pollrevisiontranslationrating';
+import { QPollRevisionTranslationRating } from './poll/user/qpollrevisiontranslationrating';
 import { PollRun } from '../ddl/poll/run/pollrun';
 import { QPollRun } from './poll/run/qpollrun';
 import { PollRunContinent } from '../ddl/poll/run/location/pollruncontinent';
@@ -144,8 +142,6 @@ import { UserPollRevisionRating } from '../ddl/poll/user/userpollrevisionrating'
 import { QUserPollRevisionRating } from './poll/user/quserpollrevisionrating';
 import { UserPollRevisionTranslation } from '../ddl/poll/user/userpollrevisiontranslation';
 import { QUserPollRevisionTranslation } from './poll/user/quserpollrevisiontranslation';
-import { UserPollRevisionTranslationRating } from '../ddl/poll/user/userpollrevisiontranslationrating';
-import { QUserPollRevisionTranslationRating } from './poll/user/quserpollrevisiontranslationrating';
 import { Vote } from '../ddl/vote/vote';
 import { QVote } from './vote/qvote';
 import { VoteFactor } from '../ddl/vote/votefactor';
@@ -190,13 +186,12 @@ export interface LocalQSchema extends AirportQSchema {
 	Poll: QPoll;
 	PollRevision: QPollRevision;
 	PollRevisionFactorPosition: QPollRevisionFactorPosition;
-	PollRevisionFactorTranslation: QPollRevisionFactorTranslation;
 	PollRevisionOpinion: QPollRevisionOpinion;
 	PollRevisionOpinionVersion: QPollRevisionOpinionVersion;
 	PollRevisionOpinionVersionRating: QPollRevisionOpinionVersionRating;
 	PollRevisionOpinionVersionTranslation: QPollRevisionOpinionVersionTranslation;
-	PollRevisionPositionTranslation: QPollRevisionPositionTranslation;
 	PollRevisionTranslation: QPollRevisionTranslation;
+	PollRevisionTranslationRating: QPollRevisionTranslationRating;
 	PollRun: QPollRun;
 	PollRunContinent: QPollRunContinent;
 	PollRunCountry: QPollRunCountry;
@@ -227,7 +222,6 @@ export interface LocalQSchema extends AirportQSchema {
 	UserPollRevision: QUserPollRevision;
 	UserPollRevisionRating: QUserPollRevisionRating;
 	UserPollRevisionTranslation: QUserPollRevisionTranslation;
-	UserPollRevisionTranslationRating: QUserPollRevisionTranslationRating;
 	Vote: QVote;
 	VoteFactor: QVoteFactor;
 	VoteFactorType: QVoteFactorType;
@@ -266,13 +260,12 @@ const __constructors__ = {
 	Poll: Poll,
 	PollRevision: PollRevision,
 	PollRevisionFactorPosition: PollRevisionFactorPosition,
-	PollRevisionFactorTranslation: PollRevisionFactorTranslation,
 	PollRevisionOpinion: PollRevisionOpinion,
 	PollRevisionOpinionVersion: PollRevisionOpinionVersion,
 	PollRevisionOpinionVersionRating: PollRevisionOpinionVersionRating,
 	PollRevisionOpinionVersionTranslation: PollRevisionOpinionVersionTranslation,
-	PollRevisionPositionTranslation: PollRevisionPositionTranslation,
 	PollRevisionTranslation: PollRevisionTranslation,
+	PollRevisionTranslationRating: PollRevisionTranslationRating,
 	PollRun: PollRun,
 	PollRunContinent: PollRunContinent,
 	PollRunCountry: PollRunCountry,
@@ -303,7 +296,6 @@ const __constructors__ = {
 	UserPollRevision: UserPollRevision,
 	UserPollRevisionRating: UserPollRevisionRating,
 	UserPollRevisionTranslation: UserPollRevisionTranslation,
-	UserPollRevisionTranslationRating: UserPollRevisionTranslationRating,
 	Vote: Vote,
 	VoteFactor: VoteFactor,
 	VoteFactorType: VoteFactorType,

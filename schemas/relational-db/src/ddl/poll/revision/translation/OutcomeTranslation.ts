@@ -37,7 +37,7 @@ export class OutcomeTranslation
 
 	@ManyToOne()
 	@JoinColumn({name: 'OUTCOME_ID'})
-	outcomeVersion: Outcome
+	outcome: Outcome
 
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})
@@ -56,5 +56,7 @@ export class OutcomeTranslation
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
 	children: OutcomeTranslation[]
+
+
 
 }

@@ -46,12 +46,6 @@ __decorate([
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'translation' })
 ], PollRevisionTranslation.prototype, "ratings", void 0);
-__decorate([
-    OneToMany({ cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation' })
-], PollRevisionTranslation.prototype, "factorTranslations", void 0);
-__decorate([
-    OneToMany({ cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation' })
-], PollRevisionTranslation.prototype, "positionTranslations", void 0);
 PollRevisionTranslation = __decorate([
     Entity(),
     Table({ name: 'POLL_REVISION_TRANSLATIONS' })

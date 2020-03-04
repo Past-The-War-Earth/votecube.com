@@ -6,6 +6,7 @@ import {
 	GeneratedValue,
 	Id,
 	JoinColumn,
+	JoinColumns,
 	ManyToOne,
 	OneToMany,
 	Table
@@ -51,7 +52,11 @@ export class PollRevisionFactorPosition
 	 * revisions is determined at PollRevision level (not PollFactorPositionRevision)
 	 */
 	@ManyToOne()
-	@JoinColumn({name: 'FACTOR_POSITION_ID', nullable: false})
+	@JoinColumns([{
+		name: 'FACTOR_ID', nullable: false
+	}, {
+		name: 'POSITION_ID', nullable: false
+	}])
 	factorPosition: FactorPosition
 
 	@ManyToOne()

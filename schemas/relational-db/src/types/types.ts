@@ -1,6 +1,5 @@
 export * from './factor/position/DesignPattern'
 export * from './factor/position/Emoji'
-export * from './factor/position/FactorPosition'
 export * from './factor/position/Position'
 export * from './factor/position/PositionTranslation'
 export * from './factor/Factor'

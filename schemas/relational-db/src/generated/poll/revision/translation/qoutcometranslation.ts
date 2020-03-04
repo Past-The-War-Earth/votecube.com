@@ -81,7 +81,7 @@ export interface OutcomeTranslationESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	outcomeVersion?: OutcomeESelect;
+	outcome?: OutcomeESelect;
 	language?: LanguageESelect;
 	type?: TranslationTypeESelect;
 	parent?: OutcomeTranslationESelect;
@@ -121,7 +121,7 @@ export interface OutcomeTranslationEUpdateProperties
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	outcomeVersion?: OutcomeEOptionalId;
+	outcome?: OutcomeEOptionalId;
 	language?: LanguageEOptionalId;
 	type?: TranslationTypeEOptionalId;
 	parent?: OutcomeTranslationEOptionalId;
@@ -189,7 +189,7 @@ export interface QOutcomeTranslation extends QImmutableActorRow
 	name: IQStringField;
 
 	// Non-Id Relations
-	outcomeVersion: QOutcomeQRelation;
+	outcome: QOutcomeQRelation;
 	language: QLanguageQRelation;
 	type: QTranslationTypeQRelation;
 	parent: QOutcomeTranslationQRelation;

@@ -28,7 +28,7 @@ export interface IOutcomeTranslation extends IImmutableActorRow {
 	name?: string;
 
 	// Non-Id Relations
-	outcomeVersion?: IOutcome;
+	outcome?: IOutcome;
 	language?: ILanguage;
 	type?: ITranslationType;
 	parent?: IOutcomeTranslation;

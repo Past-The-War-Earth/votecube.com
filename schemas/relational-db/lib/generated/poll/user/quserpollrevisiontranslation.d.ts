@@ -2,14 +2,14 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { MutableActorRowECascadeGraph, MutableActorRowEId, MutableActorRowEUpdateColumns, MutableActorRowEUpdateProperties, MutableActorRowESelect, QMutableActorRowQId, QMutableActorRowQRelation, QMutableActorRow } from '../../infrastructure/row/qmutableactorrow';
 import { UserPollRevisionEOptionalId, UserPollRevisionESelect, QUserPollRevisionQRelation } from './quserpollrevision';
 import { PollRevisionTranslationEOptionalId, PollRevisionTranslationESelect, QPollRevisionTranslationQRelation } from '../revision/translation/qpollrevisiontranslation';
-import { UserPollRevisionTranslationRatingECascadeGraph, UserPollRevisionTranslationRatingESelect, QUserPollRevisionTranslationRating } from './quserpollrevisiontranslationrating';
+import { PollRevisionTranslationRatingECascadeGraph, PollRevisionTranslationRatingESelect, QPollRevisionTranslationRating } from './qpollrevisiontranslationrating';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface UserPollRevisionTranslationESelect extends MutableActorRowESelect, UserPollRevisionTranslationEOptionalId {
     userPollRevision?: UserPollRevisionESelect;
     revisionTranslation?: PollRevisionTranslationESelect;
-    ratings?: UserPollRevisionTranslationRatingESelect;
+    ratings?: PollRevisionTranslationRatingESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -34,7 +34,7 @@ export interface UserPollRevisionTranslationEUpdateProperties extends MutableAct
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface UserPollRevisionTranslationECascadeGraph extends MutableActorRowECascadeGraph {
-    ratings?: UserPollRevisionTranslationRatingECascadeGraph;
+    ratings?: PollRevisionTranslationRatingECascadeGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -63,7 +63,7 @@ export interface QUserPollRevisionTranslation extends QMutableActorRow {
     id: IQNumberField;
     userPollRevision: QUserPollRevisionQRelation;
     revisionTranslation: QPollRevisionTranslationQRelation;
-    ratings: IQOneToManyRelation<QUserPollRevisionTranslationRating>;
+    ratings: IQOneToManyRelation<QPollRevisionTranslationRating>;
 }
 export interface QUserPollRevisionTranslationQId extends QMutableActorRowQId {
     id: IQNumberField;

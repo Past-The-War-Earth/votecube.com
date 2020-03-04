@@ -42,16 +42,6 @@ import {
 	QUserPollRevisionTranslationQRelation,
 } from './quserpollrevisiontranslation';
 import {
-	PollRevisionTranslationECascadeGraph,
-	PollRevisionTranslationEId,
-	PollRevisionTranslationEOptionalId,
-	PollRevisionTranslationEUpdateProperties,
-	PollRevisionTranslationESelect,
-	QPollRevisionTranslation,
-	QPollRevisionTranslationQId,
-	QPollRevisionTranslationQRelation,
-} from '../revision/translation/qpollrevisiontranslation';
-import {
 	PollRunECascadeGraph,
 	PollRunEId,
 	PollRunEOptionalId,
@@ -83,8 +73,8 @@ declare function require(moduleName: string): any;
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface UserPollRevisionTranslationRatingESelect
-    extends ImmutableActorRowESelect, UserPollRevisionTranslationRatingEOptionalId {
+export interface PollRevisionTranslationRatingESelect
+    extends ImmutableActorRowESelect, PollRevisionTranslationRatingEOptionalId {
 	// Non-Id Properties
 	isCurrent?: boolean | IQBooleanField;
 
@@ -92,18 +82,17 @@ export interface UserPollRevisionTranslationRatingESelect
 
   // Non-Id relations (including OneToMany's)
 	userPollRevisionTranslation?: UserPollRevisionTranslationESelect;
-	pollRevisionTranslation?: PollRevisionTranslationESelect;
 	run?: PollRunESelect;
 	rating?: RatingESelect;
-	parent?: UserPollRevisionTranslationRatingESelect;
-	child?: UserPollRevisionTranslationRatingESelect;
+	parent?: PollRevisionTranslationRatingESelect;
+	child?: PollRevisionTranslationRatingESelect;
 
 }
 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface UserPollRevisionTranslationRatingEId
+export interface PollRevisionTranslationRatingEId
     extends ImmutableActorRowEId {
 	// Id Properties
 	id: number | IQNumberField;
@@ -115,7 +104,7 @@ export interface UserPollRevisionTranslationRatingEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface UserPollRevisionTranslationRatingEOptionalId {
+export interface PollRevisionTranslationRatingEOptionalId {
 	// Id Properties
 	id?: number | IQNumberField;
 
@@ -126,59 +115,57 @@ export interface UserPollRevisionTranslationRatingEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface UserPollRevisionTranslationRatingEUpdateProperties
+export interface PollRevisionTranslationRatingEUpdateProperties
 	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
 	isCurrent?: boolean | IQBooleanField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	userPollRevisionTranslation?: UserPollRevisionTranslationEOptionalId;
-	pollRevisionTranslation?: PollRevisionTranslationEOptionalId;
 	run?: PollRunEOptionalId;
 	rating?: RatingEOptionalId;
-	parent?: UserPollRevisionTranslationRatingEOptionalId;
+	parent?: PollRevisionTranslationRatingEOptionalId;
 
 }
 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface UserPollRevisionTranslationRatingECascadeGraph
+export interface PollRevisionTranslationRatingECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
-	child?: UserPollRevisionTranslationRatingECascadeGraph;
+	child?: PollRevisionTranslationRatingECascadeGraph;
 
 }
 
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface UserPollRevisionTranslationRatingEUpdateColumns
+export interface PollRevisionTranslationRatingEUpdateColumns
 	extends ImmutableActorRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
-	USER_POLL_REVISION_TRANSLATION_RATING_IS_CURRENT?: boolean | IQBooleanField;
+	IS_CURRENT?: boolean | IQBooleanField;
 	USER_POLL_REVISION_TRANSLATION_ID?: number | IQNumberField;
-	POLL_REVISION_TRANSLATION_ID?: number | IQNumberField;
 	POLL_RUN_ID?: number | IQNumberField;
 	RATING_ID?: number | IQNumberField;
-	PARENT_USER_POLL_REVISION_TRANSLATION_RATING_ID?: number | IQNumberField;
+	PARENT_POLL_REVISION_TRANSLATION_RATING_ID?: number | IQNumberField;
 
 }
 
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface UserPollRevisionTranslationRatingECreateProperties
-extends Partial<UserPollRevisionTranslationRatingEId>, UserPollRevisionTranslationRatingEUpdateProperties {
+export interface PollRevisionTranslationRatingECreateProperties
+extends Partial<PollRevisionTranslationRatingEId>, PollRevisionTranslationRatingEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface UserPollRevisionTranslationRatingECreateColumns
-extends UserPollRevisionTranslationRatingEId, UserPollRevisionTranslationRatingEUpdateColumns {
+export interface PollRevisionTranslationRatingECreateColumns
+extends PollRevisionTranslationRatingEId, PollRevisionTranslationRatingEUpdateColumns {
 }
 
 
@@ -191,7 +178,7 @@ extends UserPollRevisionTranslationRatingEId, UserPollRevisionTranslationRatingE
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QUserPollRevisionTranslationRating extends QImmutableActorRow
+export interface QPollRevisionTranslationRating extends QImmutableActorRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -203,17 +190,16 @@ export interface QUserPollRevisionTranslationRating extends QImmutableActorRow
 
 	// Non-Id Relations
 	userPollRevisionTranslation: QUserPollRevisionTranslationQRelation;
-	pollRevisionTranslation: QPollRevisionTranslationQRelation;
 	run: QPollRunQRelation;
 	rating: QRatingQRelation;
-	parent: QUserPollRevisionTranslationRatingQRelation;
-	child: IQOneToManyRelation<QUserPollRevisionTranslationRating>;
+	parent: QPollRevisionTranslationRatingQRelation;
+	child: IQOneToManyRelation<QPollRevisionTranslationRating>;
 
 }
 
 
 // Entity Id Interface
-export interface QUserPollRevisionTranslationRatingQId extends QImmutableActorRowQId
+export interface QPollRevisionTranslationRatingQId extends QImmutableActorRowQId
 {
 	
 	// Id Fields
@@ -225,7 +211,7 @@ export interface QUserPollRevisionTranslationRatingQId extends QImmutableActorRo
 }
 
 // Entity Relation Interface
-export interface QUserPollRevisionTranslationRatingQRelation
-	extends QImmutableActorRowQRelation<QUserPollRevisionTranslationRating>, QUserPollRevisionTranslationRatingQId {
+export interface QPollRevisionTranslationRatingQRelation
+	extends QImmutableActorRowQRelation<QPollRevisionTranslationRating>, QPollRevisionTranslationRatingQId {
 }
 

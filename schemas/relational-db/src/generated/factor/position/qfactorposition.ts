@@ -68,10 +68,10 @@ export interface FactorPositionESelect
 	// Non-Id Properties
 
 	// Id Relations - full property interfaces
-
-  // Non-Id relations (including OneToMany's)
 	factor?: FactorESelect;
 	position?: PositionESelect;
+
+  // Non-Id relations (including OneToMany's)
 
 }
 
@@ -81,9 +81,10 @@ export interface FactorPositionESelect
 export interface FactorPositionEId
     extends ImmutableActorRowEId {
 	// Id Properties
-	id: number | IQNumberField;
 
 	// Id Relations - Ids only
+	factor: FactorEId;
+	position: PositionEId;
 
 }
 
@@ -92,9 +93,10 @@ export interface FactorPositionEId
  */
 export interface FactorPositionEOptionalId {
 	// Id Properties
-	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
+	factor?: FactorEOptionalId;
+	position?: PositionEOptionalId;
 
 }
 
@@ -106,8 +108,6 @@ export interface FactorPositionEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	factor?: FactorEOptionalId;
-	position?: PositionEOptionalId;
 
 }
 
@@ -128,8 +128,6 @@ export interface FactorPositionEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
-	FACTOR_ID?: number | IQNumberField;
-	POSITION_ID?: number | IQNumberField;
 
 }
 
@@ -160,15 +158,14 @@ extends FactorPositionEId, FactorPositionEUpdateColumns {
 export interface QFactorPosition extends QImmutableActorRow
 {
 	// Id Fields
-	id: IQNumberField;
 
 	// Id Relations
+	factor: QFactorQRelation;
+	position: QPositionQRelation;
 
 	// Non-Id Fields
 
 	// Non-Id Relations
-	factor: QFactorQRelation;
-	position: QPositionQRelation;
 
 }
 
@@ -178,9 +175,10 @@ export interface QFactorPositionQId extends QImmutableActorRowQId
 {
 	
 	// Id Fields
-	id: IQNumberField;
 
 	// Id Relations
+	factor: QFactorQId;
+	position: QPositionQId;
 
 
 }

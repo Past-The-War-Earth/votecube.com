@@ -17,15 +17,14 @@ import {
 export interface IFactorPosition extends IImmutableActorRow {
 	
 	// Id Properties
-	id: number;
 
 	// Id Relations
+	factor: IFactor;
+	position: IPosition;
 
 	// Non-Id Properties
 
 	// Non-Id Relations
-	factor?: IFactor;
-	position?: IPosition;
 
 	// Transient Properties
 

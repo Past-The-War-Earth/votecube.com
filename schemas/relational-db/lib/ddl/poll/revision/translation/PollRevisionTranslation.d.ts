@@ -2,10 +2,8 @@ import { PollRevisionTranslation_Id, PollRevisionTranslation_Name } from '../../
 import { Language } from '../../../infrastructure/Language';
 import { ImmutableActorRow } from '../../../infrastructure/row/ImmutableActorRow';
 import { TranslationType } from '../../../infrastructure/TranslationType';
-import { UserPollRevisionTranslationRating } from '../../user/UserPollRevisionTranslationRating';
+import { PollRevisionTranslationRating } from '../../user/PollRevisionTranslationRating';
 import { PollRevision } from '../PollRevision';
-import { PollRevisionFactorTranslation } from './PollRevisionFactorTranslation';
-import { PollRevisionPositionTranslation } from './PollRevisionPositionTranslation';
 /**
  * This the translation of a given poll revision.
  *
@@ -18,7 +16,5 @@ export declare class PollRevisionTranslation extends ImmutableActorRow {
     type: TranslationType;
     parent: PollRevisionTranslation;
     children: PollRevisionTranslation[];
-    ratings: UserPollRevisionTranslationRating[];
-    factorTranslations: PollRevisionFactorTranslation[];
-    positionTranslations: PollRevisionPositionTranslation[];
+    ratings: PollRevisionTranslationRating[];
 }

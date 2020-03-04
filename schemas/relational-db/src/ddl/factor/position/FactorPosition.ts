@@ -7,7 +7,6 @@ import {
 	ManyToOne,
 	Table
 }                          from '@airport/air-control'
-import {FactorPosition_Id} from '../../../types/factor/position/FactorPosition'
 import {ImmutableActorRow} from '../../infrastructure/row/ImmutableActorRow'
 import {Factor}            from '../Factor'
 import {Position}          from './Position'
@@ -20,15 +19,12 @@ import {Position}          from './Position'
 export class FactorPosition
 	extends ImmutableActorRow {
 
-	@GeneratedValue()
 	@Id()
-	@Column({name: 'FACTOR_POSITION_ID'})
-	id: FactorPosition_Id
-
 	@ManyToOne()
 	@JoinColumn({name: 'FACTOR_ID'})
 	factor: Factor
 
+	@Id()
 	@ManyToOne()
 	@JoinColumn({name: 'POSITION_ID'})
 	position: Position

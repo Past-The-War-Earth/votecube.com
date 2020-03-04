@@ -2,9 +2,7 @@ import { IImmutableActorRow } from '../../../infrastructure/row/immutableactorro
 import { IPollRevision } from '../pollrevision';
 import { ILanguage } from '../../../infrastructure/language';
 import { ITranslationType } from '../../../infrastructure/translationtype';
-import { IUserPollRevisionTranslationRating } from '../../user/userpollrevisiontranslationrating';
-import { IPollRevisionFactorTranslation } from './pollrevisionfactortranslation';
-import { IPollRevisionPositionTranslation } from './pollrevisionpositiontranslation';
+import { IPollRevisionTranslationRating } from '../../user/pollrevisiontranslationrating';
 export interface IPollRevisionTranslation extends IImmutableActorRow {
     id: number;
     name?: string;
@@ -13,7 +11,5 @@ export interface IPollRevisionTranslation extends IImmutableActorRow {
     type?: ITranslationType;
     parent?: IPollRevisionTranslation;
     children?: IPollRevisionTranslation[];
-    ratings?: IUserPollRevisionTranslationRating[];
-    factorTranslations?: IPollRevisionFactorTranslation[];
-    positionTranslations?: IPollRevisionPositionTranslation[];
+    ratings?: IPollRevisionTranslationRating[];
 }

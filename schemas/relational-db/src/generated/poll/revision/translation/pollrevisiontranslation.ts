@@ -11,14 +11,8 @@ import {
 	ITranslationType,
 } from '../../../infrastructure/translationtype';
 import {
-	IUserPollRevisionTranslationRating,
-} from '../../user/userpollrevisiontranslationrating';
-import {
-	IPollRevisionFactorTranslation,
-} from './pollrevisionfactortranslation';
-import {
-	IPollRevisionPositionTranslation,
-} from './pollrevisionpositiontranslation';
+	IPollRevisionTranslationRating,
+} from '../../user/pollrevisiontranslationrating';
 
 
 
@@ -42,9 +36,7 @@ export interface IPollRevisionTranslation extends IImmutableActorRow {
 	type?: ITranslationType;
 	parent?: IPollRevisionTranslation;
 	children?: IPollRevisionTranslation[];
-	ratings?: IUserPollRevisionTranslationRating[];
-	factorTranslations?: IPollRevisionFactorTranslation[];
-	positionTranslations?: IPollRevisionPositionTranslation[];
+	ratings?: IPollRevisionTranslationRating[];
 
 	// Transient Properties
 

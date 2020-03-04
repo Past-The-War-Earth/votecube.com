@@ -14,45 +14,41 @@ import { ImmutableActorRow } from '../../infrastructure/row/ImmutableActorRow';
  * the current Rating and is it a change in rating (of the same type) and
  * from what rating it was changed (so that it can decrement).
  */
-let UserPollRevisionTranslationRating = class UserPollRevisionTranslationRating extends ImmutableActorRow {
+let PollRevisionTranslationRating = class PollRevisionTranslationRating extends ImmutableActorRow {
 };
 __decorate([
     Id(),
     GeneratedValue(),
-    Column({ name: 'USER_POLL_REVISION_TRANSLATION_RATING_ID' })
-], UserPollRevisionTranslationRating.prototype, "id", void 0);
+    Column({ name: 'POLL_REVISION_TRANSLATION_RATING_ID' })
+], PollRevisionTranslationRating.prototype, "id", void 0);
 __decorate([
-    Column({ name: 'USER_POLL_REVISION_TRANSLATION_RATING_IS_CURRENT' })
-], UserPollRevisionTranslationRating.prototype, "isCurrent", void 0);
+    Column({ name: 'IS_CURRENT' })
+], PollRevisionTranslationRating.prototype, "isCurrent", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({ name: 'USER_POLL_REVISION_TRANSLATION_ID' })
-], UserPollRevisionTranslationRating.prototype, "userPollRevisionTranslation", void 0);
-__decorate([
-    ManyToOne(),
-    JoinColumn({ name: 'POLL_REVISION_TRANSLATION_ID' })
-], UserPollRevisionTranslationRating.prototype, "pollRevisionTranslation", void 0);
+], PollRevisionTranslationRating.prototype, "userPollRevisionTranslation", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({ name: 'POLL_RUN_ID' })
-], UserPollRevisionTranslationRating.prototype, "run", void 0);
+], PollRevisionTranslationRating.prototype, "run", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({ name: 'RATING_ID' })
-], UserPollRevisionTranslationRating.prototype, "rating", void 0);
+], PollRevisionTranslationRating.prototype, "rating", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({
-        name: 'PARENT_USER_POLL_REVISION_TRANSLATION_RATING_ID',
-        referencedColumnName: 'USER_POLL_REVISION_TRANSLATION_RATING_ID'
+        name: 'PARENT_POLL_REVISION_TRANSLATION_RATING_ID',
+        referencedColumnName: 'POLL_REVISION_TRANSLATION_RATING_ID'
     })
-], UserPollRevisionTranslationRating.prototype, "parent", void 0);
+], PollRevisionTranslationRating.prototype, "parent", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
-], UserPollRevisionTranslationRating.prototype, "child", void 0);
-UserPollRevisionTranslationRating = __decorate([
+], PollRevisionTranslationRating.prototype, "child", void 0);
+PollRevisionTranslationRating = __decorate([
     Entity(),
-    Table({ name: 'USER_POLL_REVISION_TRANSLATION_RATINGS' })
-], UserPollRevisionTranslationRating);
-export { UserPollRevisionTranslationRating };
-//# sourceMappingURL=UserPollRevisionTranslationRating.js.map
+    Table({ name: 'POLL_REVISION_TRANSLATION_RATINGS' })
+], PollRevisionTranslationRating);
+export { PollRevisionTranslationRating };
+//# sourceMappingURL=PollRevisionTranslationRating.js.map

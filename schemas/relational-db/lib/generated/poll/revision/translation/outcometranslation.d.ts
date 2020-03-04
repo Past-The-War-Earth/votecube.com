@@ -5,7 +5,7 @@ import { ITranslationType } from '../../../infrastructure/translationtype';
 export interface IOutcomeTranslation extends IImmutableActorRow {
     id: number;
     name?: string;
-    outcomeVersion?: IOutcome;
+    outcome?: IOutcome;
     language?: ILanguage;
     type?: ITranslationType;
     parent?: IOutcomeTranslation;

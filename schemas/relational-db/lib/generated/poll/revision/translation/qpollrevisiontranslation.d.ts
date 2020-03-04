@@ -3,9 +3,7 @@ import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRow
 import { PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../qpollrevision';
 import { LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../../infrastructure/qlanguage';
 import { TranslationTypeEOptionalId, TranslationTypeESelect, QTranslationTypeQRelation } from '../../../infrastructure/qtranslationtype';
-import { UserPollRevisionTranslationRatingECascadeGraph, UserPollRevisionTranslationRatingESelect, QUserPollRevisionTranslationRating } from '../../user/quserpollrevisiontranslationrating';
-import { PollRevisionFactorTranslationECascadeGraph, PollRevisionFactorTranslationESelect, QPollRevisionFactorTranslation } from './qpollrevisionfactortranslation';
-import { PollRevisionPositionTranslationECascadeGraph, PollRevisionPositionTranslationESelect, QPollRevisionPositionTranslation } from './qpollrevisionpositiontranslation';
+import { PollRevisionTranslationRatingECascadeGraph, PollRevisionTranslationRatingESelect, QPollRevisionTranslationRating } from '../../user/qpollrevisiontranslationrating';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -16,9 +14,7 @@ export interface PollRevisionTranslationESelect extends ImmutableActorRowESelect
     type?: TranslationTypeESelect;
     parent?: PollRevisionTranslationESelect;
     children?: PollRevisionTranslationESelect;
-    ratings?: UserPollRevisionTranslationRatingESelect;
-    factorTranslations?: PollRevisionFactorTranslationESelect;
-    positionTranslations?: PollRevisionPositionTranslationESelect;
+    ratings?: PollRevisionTranslationRatingESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -47,9 +43,7 @@ export interface PollRevisionTranslationEUpdateProperties extends ImmutableActor
  */
 export interface PollRevisionTranslationECascadeGraph extends ImmutableActorRowECascadeGraph {
     children?: PollRevisionTranslationECascadeGraph;
-    ratings?: UserPollRevisionTranslationRatingECascadeGraph;
-    factorTranslations?: PollRevisionFactorTranslationECascadeGraph;
-    positionTranslations?: PollRevisionPositionTranslationECascadeGraph;
+    ratings?: PollRevisionTranslationRatingECascadeGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -84,9 +78,7 @@ export interface QPollRevisionTranslation extends QImmutableActorRow {
     type: QTranslationTypeQRelation;
     parent: QPollRevisionTranslationQRelation;
     children: IQOneToManyRelation<QPollRevisionTranslation>;
-    ratings: IQOneToManyRelation<QUserPollRevisionTranslationRating>;
-    factorTranslations: IQOneToManyRelation<QPollRevisionFactorTranslation>;
-    positionTranslations: IQOneToManyRelation<QPollRevisionPositionTranslation>;
+    ratings: IQOneToManyRelation<QPollRevisionTranslationRating>;
 }
 export interface QPollRevisionTranslationQId extends QImmutableActorRowQId {
     id: IQNumberField;

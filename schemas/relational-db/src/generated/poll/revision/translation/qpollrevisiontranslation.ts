@@ -62,35 +62,15 @@ import {
 	QTranslationTypeQRelation,
 } from '../../../infrastructure/qtranslationtype';
 import {
-	UserPollRevisionTranslationRatingECascadeGraph,
-	UserPollRevisionTranslationRatingEId,
-	UserPollRevisionTranslationRatingEOptionalId,
-	UserPollRevisionTranslationRatingEUpdateProperties,
-	UserPollRevisionTranslationRatingESelect,
-	QUserPollRevisionTranslationRating,
-	QUserPollRevisionTranslationRatingQId,
-	QUserPollRevisionTranslationRatingQRelation,
-} from '../../user/quserpollrevisiontranslationrating';
-import {
-	PollRevisionFactorTranslationECascadeGraph,
-	PollRevisionFactorTranslationEId,
-	PollRevisionFactorTranslationEOptionalId,
-	PollRevisionFactorTranslationEUpdateProperties,
-	PollRevisionFactorTranslationESelect,
-	QPollRevisionFactorTranslation,
-	QPollRevisionFactorTranslationQId,
-	QPollRevisionFactorTranslationQRelation,
-} from './qpollrevisionfactortranslation';
-import {
-	PollRevisionPositionTranslationECascadeGraph,
-	PollRevisionPositionTranslationEId,
-	PollRevisionPositionTranslationEOptionalId,
-	PollRevisionPositionTranslationEUpdateProperties,
-	PollRevisionPositionTranslationESelect,
-	QPollRevisionPositionTranslation,
-	QPollRevisionPositionTranslationQId,
-	QPollRevisionPositionTranslationQRelation,
-} from './qpollrevisionpositiontranslation';
+	PollRevisionTranslationRatingECascadeGraph,
+	PollRevisionTranslationRatingEId,
+	PollRevisionTranslationRatingEOptionalId,
+	PollRevisionTranslationRatingEUpdateProperties,
+	PollRevisionTranslationRatingESelect,
+	QPollRevisionTranslationRating,
+	QPollRevisionTranslationRatingQId,
+	QPollRevisionTranslationRatingQRelation,
+} from '../../user/qpollrevisiontranslationrating';
 
 
 declare function require(moduleName: string): any;
@@ -116,9 +96,7 @@ export interface PollRevisionTranslationESelect
 	type?: TranslationTypeESelect;
 	parent?: PollRevisionTranslationESelect;
 	children?: PollRevisionTranslationESelect;
-	ratings?: UserPollRevisionTranslationRatingESelect;
-	factorTranslations?: PollRevisionFactorTranslationESelect;
-	positionTranslations?: PollRevisionPositionTranslationESelect;
+	ratings?: PollRevisionTranslationRatingESelect;
 
 }
 
@@ -168,9 +146,7 @@ export interface PollRevisionTranslationECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
 	children?: PollRevisionTranslationECascadeGraph;
-	ratings?: UserPollRevisionTranslationRatingECascadeGraph;
-	factorTranslations?: PollRevisionFactorTranslationECascadeGraph;
-	positionTranslations?: PollRevisionPositionTranslationECascadeGraph;
+	ratings?: PollRevisionTranslationRatingECascadeGraph;
 
 }
 
@@ -230,9 +206,7 @@ export interface QPollRevisionTranslation extends QImmutableActorRow
 	type: QTranslationTypeQRelation;
 	parent: QPollRevisionTranslationQRelation;
 	children: IQOneToManyRelation<QPollRevisionTranslation>;
-	ratings: IQOneToManyRelation<QUserPollRevisionTranslationRating>;
-	factorTranslations: IQOneToManyRelation<QPollRevisionFactorTranslation>;
-	positionTranslations: IQOneToManyRelation<QPollRevisionPositionTranslation>;
+	ratings: IQOneToManyRelation<QPollRevisionTranslationRating>;
 
 }
 

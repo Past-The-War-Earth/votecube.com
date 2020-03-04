@@ -7,19 +7,17 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                                   from '@airport/air-control'
-import {CascadeType}                                from '@airport/ground-control'
+}                                          from '@airport/air-control'
+import {CascadeType}                       from '@airport/ground-control'
 import {
 	PollRevisionTranslation_Id,
 	PollRevisionTranslation_Name
-}                                                   from '../../../../types/poll/revision/translation/PollRevisionTranslation'
-import {Language}                                   from '../../../infrastructure/Language'
-import {ImmutableActorRow}                          from '../../../infrastructure/row/ImmutableActorRow'
-import {TranslationType}                            from '../../../infrastructure/TranslationType'
-import {UserPollRevisionTranslationRating} from '../../user/UserPollRevisionTranslationRating'
-import {PollRevision}                               from '../PollRevision'
-import {PollRevisionFactorTranslation}      from './PollRevisionFactorTranslation'
-import {PollRevisionPositionTranslation}   from './PollRevisionPositionTranslation'
+}                                          from '../../../../types/poll/revision/translation/PollRevisionTranslation'
+import {Language}                          from '../../../infrastructure/Language'
+import {ImmutableActorRow}                 from '../../../infrastructure/row/ImmutableActorRow'
+import {TranslationType}               from '../../../infrastructure/TranslationType'
+import {PollRevisionTranslationRating} from '../../user/PollRevisionTranslationRating'
+import {PollRevision}                  from '../PollRevision'
 
 /**
  * This the translation of a given poll revision.
@@ -61,12 +59,6 @@ export class PollRevisionTranslation
 	children: PollRevisionTranslation[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'translation'})
-	ratings: UserPollRevisionTranslationRating[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation'})
-	factorTranslations: PollRevisionFactorTranslation[]
-
-	@OneToMany({cascade: CascadeType.NONE, mappedBy: 'pollRevisionTranslation'})
-	positionTranslations: PollRevisionPositionTranslation[]
+	ratings: PollRevisionTranslationRating[]
 
 }

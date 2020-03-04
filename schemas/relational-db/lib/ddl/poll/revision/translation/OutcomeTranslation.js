@@ -24,7 +24,7 @@ __decorate([
 __decorate([
     ManyToOne(),
     JoinColumn({ name: 'OUTCOME_ID' })
-], OutcomeTranslation.prototype, "outcomeVersion", void 0);
+], OutcomeTranslation.prototype, "outcome", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({ name: 'LANGUAGE_ID' })

@@ -52,15 +52,15 @@ import {
 	QPollRevisionTranslationQRelation,
 } from '../revision/translation/qpollrevisiontranslation';
 import {
-	UserPollRevisionTranslationRatingECascadeGraph,
-	UserPollRevisionTranslationRatingEId,
-	UserPollRevisionTranslationRatingEOptionalId,
-	UserPollRevisionTranslationRatingEUpdateProperties,
-	UserPollRevisionTranslationRatingESelect,
-	QUserPollRevisionTranslationRating,
-	QUserPollRevisionTranslationRatingQId,
-	QUserPollRevisionTranslationRatingQRelation,
-} from './quserpollrevisiontranslationrating';
+	PollRevisionTranslationRatingECascadeGraph,
+	PollRevisionTranslationRatingEId,
+	PollRevisionTranslationRatingEOptionalId,
+	PollRevisionTranslationRatingEUpdateProperties,
+	PollRevisionTranslationRatingESelect,
+	QPollRevisionTranslationRating,
+	QPollRevisionTranslationRatingQId,
+	QPollRevisionTranslationRatingQRelation,
+} from './qpollrevisiontranslationrating';
 
 
 declare function require(moduleName: string): any;
@@ -82,7 +82,7 @@ export interface UserPollRevisionTranslationESelect
   // Non-Id relations (including OneToMany's)
 	userPollRevision?: UserPollRevisionESelect;
 	revisionTranslation?: PollRevisionTranslationESelect;
-	ratings?: UserPollRevisionTranslationRatingESelect;
+	ratings?: PollRevisionTranslationRatingESelect;
 
 }
 
@@ -128,7 +128,7 @@ export interface UserPollRevisionTranslationEUpdateProperties
 export interface UserPollRevisionTranslationECascadeGraph
 	extends MutableActorRowECascadeGraph {
 	// Cascading Relations
-	ratings?: UserPollRevisionTranslationRatingECascadeGraph;
+	ratings?: PollRevisionTranslationRatingECascadeGraph;
 
 }
 
@@ -182,7 +182,7 @@ export interface QUserPollRevisionTranslation extends QMutableActorRow
 	// Non-Id Relations
 	userPollRevision: QUserPollRevisionQRelation;
 	revisionTranslation: QPollRevisionTranslationQRelation;
-	ratings: IQOneToManyRelation<QUserPollRevisionTranslationRating>;
+	ratings: IQOneToManyRelation<QPollRevisionTranslationRating>;
 
 }
 

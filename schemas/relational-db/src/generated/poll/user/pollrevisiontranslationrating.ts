@@ -5,9 +5,6 @@ import {
 	IUserPollRevisionTranslation,
 } from './userpollrevisiontranslation';
 import {
-	IPollRevisionTranslation,
-} from '../revision/translation/pollrevisiontranslation';
-import {
 	IPollRun,
 } from '../run/pollrun';
 import {
@@ -20,7 +17,7 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IUserPollRevisionTranslationRating extends IImmutableActorRow {
+export interface IPollRevisionTranslationRating extends IImmutableActorRow {
 	
 	// Id Properties
 	id: number;
@@ -32,11 +29,10 @@ export interface IUserPollRevisionTranslationRating extends IImmutableActorRow {
 
 	// Non-Id Relations
 	userPollRevisionTranslation?: IUserPollRevisionTranslation;
-	pollRevisionTranslation?: IPollRevisionTranslation;
 	run?: IPollRun;
 	rating?: IRating;
-	parent?: IUserPollRevisionTranslationRating;
-	child?: IUserPollRevisionTranslationRating[];
+	parent?: IPollRevisionTranslationRating;
+	child?: IPollRevisionTranslationRating[];
 
 	// Transient Properties
 
