@@ -48,6 +48,7 @@ export interface PositionECascadeGraph extends ImmutableActorRowECascadeGraph {
 export interface PositionEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
+    USER_ACCOUNT_ID?: number | IQNumberField;
     POLL_REVISION_ID?: number | IQNumberField;
     PARENT_POSITION_TRANSLATION_ID?: number | IQNumberField;
     PARENT_POSITION_ID?: number | IQNumberField;

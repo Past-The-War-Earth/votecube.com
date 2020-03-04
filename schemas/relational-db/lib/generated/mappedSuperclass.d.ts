@@ -31,8 +31,6 @@ export declare const MAPPED_SUPERCLASS: ({
                             moduleImport: any;
                             sourceName: string;
                         };
-                        JoinColumn?: undefined;
-                        ManyToOne?: undefined;
                     };
                     path: string;
                 };
@@ -53,6 +51,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 JoinColumn?: undefined;
                 ManyToOne?: undefined;
                 Actor?: undefined;
+                UserAccount?: undefined;
                 UpdatedAt?: undefined;
                 ImmutableActorRow?: undefined;
             };
@@ -61,6 +60,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 "../../../types/common": any;
                 "./ImmutableRow"?: undefined;
                 "../../user/Actor"?: undefined;
+                "../../user/UserAccount"?: undefined;
                 "./ImmutableActorRow"?: undefined;
             };
         };
@@ -141,6 +141,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 JoinColumn?: undefined;
                 ManyToOne?: undefined;
                 Actor?: undefined;
+                UserAccount?: undefined;
                 UpdatedAt?: undefined;
                 ImmutableActorRow?: undefined;
             };
@@ -149,6 +150,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 "./ImmutableRow": any;
                 "../../../types/common"?: undefined;
                 "../../user/Actor"?: undefined;
+                "../../user/UserAccount"?: undefined;
                 "./ImmutableActorRow"?: undefined;
             };
         };
@@ -193,8 +195,6 @@ export declare const MAPPED_SUPERCLASS: ({
                                 moduleImport: any;
                                 sourceName: string;
                             };
-                            JoinColumn?: undefined;
-                            ManyToOne?: undefined;
                         };
                         path: string;
                     };
@@ -214,12 +214,14 @@ export declare const MAPPED_SUPERCLASS: ({
                     JoinColumn?: undefined;
                     ManyToOne?: undefined;
                     Actor?: undefined;
+                    UserAccount?: undefined;
                     ImmutableRow?: undefined;
                 };
                 importMapByModulePath: {
                     "@airport/air-control": any;
                     "../../../types/common": any;
                     "../../user/Actor"?: undefined;
+                    "../../user/UserAccount"?: undefined;
                     "./ImmutableRow"?: undefined;
                 };
             };
@@ -273,15 +275,10 @@ export declare const MAPPED_SUPERCLASS: ({
         type: string;
         fileImports: {
             importMapByObjectAsName: {
-                Column: {
+                JoinColumn: {
                     fileImports: any;
                     isLocal: boolean;
                     objectMapByAsName: {
-                        Column: {
-                            asName: string;
-                            moduleImport: any;
-                            sourceName: string;
-                        };
                         JoinColumn: {
                             asName: string;
                             moduleImport: any;
@@ -300,7 +297,6 @@ export declare const MAPPED_SUPERCLASS: ({
                     };
                     path: string;
                 };
-                JoinColumn: any;
                 ManyToOne: any;
                 MappedSuperclass: any;
                 Actor: {
@@ -308,6 +304,18 @@ export declare const MAPPED_SUPERCLASS: ({
                     isLocal: boolean;
                     objectMapByAsName: {
                         Actor: {
+                            asName: string;
+                            moduleImport: any;
+                            sourceName: string;
+                        };
+                    };
+                    path: string;
+                };
+                UserAccount: {
+                    fileImports: any;
+                    isLocal: boolean;
+                    objectMapByAsName: {
+                        UserAccount: {
                             asName: string;
                             moduleImport: any;
                             sourceName: string;
@@ -327,6 +335,7 @@ export declare const MAPPED_SUPERCLASS: ({
                     };
                     path: string;
                 };
+                Column?: undefined;
                 CreatedAt?: undefined;
                 UpdatedAt?: undefined;
                 ImmutableActorRow?: undefined;
@@ -334,6 +343,7 @@ export declare const MAPPED_SUPERCLASS: ({
             importMapByModulePath: {
                 "@airport/air-control": any;
                 "../../user/Actor": any;
+                "../../user/UserAccount": any;
                 "./ImmutableRow": any;
                 "../../../types/common"?: undefined;
                 "./ImmutableActorRow"?: undefined;
@@ -344,7 +354,6 @@ export declare const MAPPED_SUPERCLASS: ({
                 name: string;
                 values: {
                     name: string;
-                    nullable: boolean;
                 }[];
             }[];
             isGenerated: boolean;
@@ -1364,8 +1373,6 @@ export declare const MAPPED_SUPERCLASS: ({
                             moduleImport: any;
                             sourceName: string;
                         };
-                        JoinColumn?: undefined;
-                        ManyToOne?: undefined;
                     };
                     path: string;
                 };
@@ -1399,6 +1406,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 JoinColumn?: undefined;
                 ManyToOne?: undefined;
                 Actor?: undefined;
+                UserAccount?: undefined;
             };
             importMapByModulePath: {
                 "@airport/air-control": any;
@@ -1406,6 +1414,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 "./ImmutableActorRow": any;
                 "./ImmutableRow"?: undefined;
                 "../../user/Actor"?: undefined;
+                "../../user/UserAccount"?: undefined;
             };
         };
         properties: {
@@ -1453,15 +1462,10 @@ export declare const MAPPED_SUPERCLASS: ({
             type: string;
             fileImports: {
                 importMapByObjectAsName: {
-                    Column: {
+                    JoinColumn: {
                         fileImports: any;
                         isLocal: boolean;
                         objectMapByAsName: {
-                            Column: {
-                                asName: string;
-                                moduleImport: any;
-                                sourceName: string;
-                            };
                             JoinColumn: {
                                 asName: string;
                                 moduleImport: any;
@@ -1480,7 +1484,6 @@ export declare const MAPPED_SUPERCLASS: ({
                         };
                         path: string;
                     };
-                    JoinColumn: any;
                     ManyToOne: any;
                     MappedSuperclass: any;
                     Actor: {
@@ -1488,6 +1491,18 @@ export declare const MAPPED_SUPERCLASS: ({
                         isLocal: boolean;
                         objectMapByAsName: {
                             Actor: {
+                                asName: string;
+                                moduleImport: any;
+                                sourceName: string;
+                            };
+                        };
+                        path: string;
+                    };
+                    UserAccount: {
+                        fileImports: any;
+                        isLocal: boolean;
+                        objectMapByAsName: {
+                            UserAccount: {
                                 asName: string;
                                 moduleImport: any;
                                 sourceName: string;
@@ -1507,11 +1522,13 @@ export declare const MAPPED_SUPERCLASS: ({
                         };
                         path: string;
                     };
+                    Column?: undefined;
                     CreatedAt?: undefined;
                 };
                 importMapByModulePath: {
                     "@airport/air-control": any;
                     "../../user/Actor": any;
+                    "../../user/UserAccount": any;
                     "./ImmutableRow": any;
                     "../../../types/common"?: undefined;
                 };
@@ -1521,7 +1538,6 @@ export declare const MAPPED_SUPERCLASS: ({
                     name: string;
                     values: {
                         name: string;
-                        nullable: boolean;
                     }[];
                 }[];
                 isGenerated: boolean;
@@ -2543,8 +2559,6 @@ export declare const MAPPED_SUPERCLASS: ({
                             moduleImport: any;
                             sourceName: string;
                         };
-                        JoinColumn?: undefined;
-                        ManyToOne?: undefined;
                     };
                     path: string;
                 };
@@ -2577,6 +2591,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 JoinColumn?: undefined;
                 ManyToOne?: undefined;
                 Actor?: undefined;
+                UserAccount?: undefined;
                 ImmutableActorRow?: undefined;
             };
             importMapByModulePath: {
@@ -2584,6 +2599,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 "../../../types/common": any;
                 "./ImmutableRow": any;
                 "../../user/Actor"?: undefined;
+                "../../user/UserAccount"?: undefined;
                 "./ImmutableActorRow"?: undefined;
             };
         };
@@ -2645,8 +2661,6 @@ export declare const MAPPED_SUPERCLASS: ({
                                 moduleImport: any;
                                 sourceName: string;
                             };
-                            JoinColumn?: undefined;
-                            ManyToOne?: undefined;
                         };
                         path: string;
                     };
@@ -2666,12 +2680,14 @@ export declare const MAPPED_SUPERCLASS: ({
                     JoinColumn?: undefined;
                     ManyToOne?: undefined;
                     Actor?: undefined;
+                    UserAccount?: undefined;
                     ImmutableRow?: undefined;
                 };
                 importMapByModulePath: {
                     "@airport/air-control": any;
                     "../../../types/common": any;
                     "../../user/Actor"?: undefined;
+                    "../../user/UserAccount"?: undefined;
                     "./ImmutableRow"?: undefined;
                 };
             };

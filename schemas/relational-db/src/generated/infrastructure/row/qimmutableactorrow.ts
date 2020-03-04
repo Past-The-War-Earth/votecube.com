@@ -41,6 +41,16 @@ import {
 	QActorQId,
 	QActorQRelation,
 } from '../../user/qactor';
+import {
+	UserAccountECascadeGraph,
+	UserAccountEId,
+	UserAccountEOptionalId,
+	UserAccountEUpdateProperties,
+	UserAccountESelect,
+	QUserAccount,
+	QUserAccountQId,
+	QUserAccountQRelation,
+} from '../../user/quseraccount';
 
 
 declare function require(moduleName: string): any;
@@ -61,6 +71,7 @@ export interface ImmutableActorRowESelect
 
   // Non-Id relations (including OneToMany's)
 	actor?: ActorESelect;
+	userAccount?: UserAccountESelect;
 
 }
 
@@ -94,6 +105,7 @@ export interface ImmutableActorRowEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	actor?: ActorEOptionalId;
+	userAccount?: UserAccountEOptionalId;
 
 }
 
@@ -149,6 +161,7 @@ export interface QImmutableActorRow extends QImmutableRow
 
 	// Non-Id Relations
 	actor: QActorQRelation;
+	userAccount: QUserAccountQRelation;
 
 }
 

@@ -41,6 +41,7 @@ export interface SkinECascadeGraph extends ImmutableActorRowECascadeGraph {
 export interface SkinEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
+    USER_ACCOUNT_ID?: number | IQNumberField;
     BACKGROUND_COLOR_ID?: number | IQNumberField;
     TEXT_COLOR_ID?: number | IQNumberField;
     PARENT_SKIN_ID?: number | IQNumberField;

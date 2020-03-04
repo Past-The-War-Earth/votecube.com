@@ -1,11 +1,13 @@
 import { IQEntity } from '@airport/air-control';
 import { ImmutableRowECascadeGraph, ImmutableRowEId, ImmutableRowEUpdateColumns, ImmutableRowEUpdateProperties, ImmutableRowESelect, QImmutableRowQId, QImmutableRowQRelation, QImmutableRow } from './qimmutablerow';
 import { ActorEOptionalId, ActorESelect, QActorQRelation } from '../../user/qactor';
+import { UserAccountEOptionalId, UserAccountESelect, QUserAccountQRelation } from '../../user/quseraccount';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface ImmutableActorRowESelect extends ImmutableRowESelect, ImmutableActorRowEOptionalId {
     actor?: ActorESelect;
+    userAccount?: UserAccountESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -22,6 +24,7 @@ export interface ImmutableActorRowEOptionalId {
  */
 export interface ImmutableActorRowEUpdateProperties extends ImmutableRowEUpdateProperties {
     actor?: ActorEOptionalId;
+    userAccount?: UserAccountEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
@@ -48,6 +51,7 @@ export interface ImmutableActorRowECreateColumns extends ImmutableActorRowEId, I
  */
 export interface QImmutableActorRow extends QImmutableRow {
     actor: QActorQRelation;
+    userAccount: QUserAccountQRelation;
 }
 export interface QImmutableActorRowQId extends QImmutableRowQId {
 }

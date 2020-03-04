@@ -136,6 +136,7 @@ export interface FactorTranslationEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
+	USER_ACCOUNT_ID?: number | IQNumberField;
 	FACTOR_NAME?: string | IQStringField;
 	FACTOR_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;

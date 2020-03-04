@@ -39,6 +39,7 @@ export interface FactorPositionECascadeGraph extends ImmutableActorRowECascadeGr
 export interface FactorPositionEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
+    USER_ACCOUNT_ID?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).

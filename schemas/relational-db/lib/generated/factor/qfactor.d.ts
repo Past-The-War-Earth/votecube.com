@@ -46,6 +46,7 @@ export interface FactorECascadeGraph extends ImmutableActorRowECascadeGraph {
 export interface FactorEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
+    USER_ACCOUNT_ID?: number | IQNumberField;
     POLL_REVISION_ID?: number | IQNumberField;
     PARENT_FACTOR_TRANSLATION_ID?: number | IQNumberField;
     PARENT_FACTOR_ID?: number | IQNumberField;

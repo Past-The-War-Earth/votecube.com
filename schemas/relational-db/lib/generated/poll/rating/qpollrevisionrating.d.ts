@@ -41,6 +41,7 @@ export interface PollRevisionRatingECascadeGraph extends MutableActorRowECascade
 export interface PollRevisionRatingEUpdateColumns extends MutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
+    USER_ACCOUNT_ID?: number | IQNumberField;
     UPDATED_AT?: Date | IQDateField;
     VALUE?: number | IQNumberField;
     POLL_REVISION_ID?: number | IQNumberField;

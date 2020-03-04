@@ -130,6 +130,7 @@ export interface PollRevisionRatingEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
+	USER_ACCOUNT_ID?: number | IQNumberField;
 	UPDATED_AT?: Date | IQDateField;
 	VALUE?: number | IQNumberField;
 	POLL_REVISION_ID?: number | IQNumberField;

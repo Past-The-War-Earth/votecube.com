@@ -128,6 +128,7 @@ export interface FactorPositionEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
+	USER_ACCOUNT_ID?: number | IQNumberField;
 
 }
 

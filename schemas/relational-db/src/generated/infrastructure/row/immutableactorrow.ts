@@ -4,6 +4,9 @@ import {
 import {
 	IActor,
 } from '../../user/actor';
+import {
+	IUserAccount,
+} from '../../user/useraccount';
 
 
 
@@ -21,6 +24,7 @@ export interface IImmutableActorRow extends IImmutableRow {
 
 	// Non-Id Relations
 	actor?: IActor;
+	userAccount?: IUserAccount;
 
 	// Transient Properties
 

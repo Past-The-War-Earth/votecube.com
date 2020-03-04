@@ -269,15 +269,10 @@ export const MAPPED_SUPERCLASS = [
 			"type": "typeof ImmutableActorRow",
 			"fileImports": {
 				"importMapByObjectAsName": {
-					"Column": {
+					"JoinColumn": {
 						"fileImports": null,
 						"isLocal": false,
 						"objectMapByAsName": {
-							"Column": {
-								"asName": "Column",
-								"moduleImport": null,
-								"sourceName": "Column"
-							},
 							"JoinColumn": {
 								"asName": "JoinColumn",
 								"moduleImport": null,
@@ -296,7 +291,6 @@ export const MAPPED_SUPERCLASS = [
 						},
 						"path": "@airport/air-control"
 					},
-					"JoinColumn": null,
 					"ManyToOne": null,
 					"MappedSuperclass": null,
 					"Actor": {
@@ -310,6 +304,18 @@ export const MAPPED_SUPERCLASS = [
 							}
 						},
 						"path": "../../user/Actor"
+					},
+					"UserAccount": {
+						"fileImports": null,
+						"isLocal": true,
+						"objectMapByAsName": {
+							"UserAccount": {
+								"asName": "UserAccount",
+								"moduleImport": null,
+								"sourceName": "UserAccount"
+							}
+						},
+						"path": "../../user/UserAccount"
 					},
 					"ImmutableRow": {
 						"fileImports": null,
@@ -327,6 +333,7 @@ export const MAPPED_SUPERCLASS = [
 				"importMapByModulePath": {
 					"@airport/air-control": null,
 					"../../user/Actor": null,
+					"../../user/UserAccount": null,
 					"./ImmutableRow": null
 				}
 			},
@@ -341,8 +348,7 @@ export const MAPPED_SUPERCLASS = [
 							"name": "JoinColumn",
 							"values": [
 								{
-									"name": "ACTOR_ID",
-									"nullable": false
+									"name": "ACTOR_ID"
 								}
 							]
 						}
@@ -1623,6 +1629,32 @@ export const MAPPED_SUPERCLASS = [
 						"parentEntity": null
 					},
 					"index": 0
+				},
+				{
+					"decorators": [
+						{
+							"name": "ManyToOne",
+							"values": []
+						},
+						{
+							"name": "JoinColumn",
+							"values": [
+								{
+									"name": "USER_ACCOUNT_ID"
+								}
+							]
+						}
+					],
+					"isGenerated": false,
+					"isId": false,
+					"isMappedSuperclass": false,
+					"isTransient": false,
+					"name": "userAccount",
+					"type": "UserAccount",
+					"ownerEntity": null,
+					"nonArrayType": "UserAccount",
+					"entity": null,
+					"index": 1
 				}
 			],
 			"methodSignatures": [],
@@ -1763,15 +1795,10 @@ export const MAPPED_SUPERCLASS = [
 				"type": "typeof ImmutableActorRow",
 				"fileImports": {
 					"importMapByObjectAsName": {
-						"Column": {
+						"JoinColumn": {
 							"fileImports": null,
 							"isLocal": false,
 							"objectMapByAsName": {
-								"Column": {
-									"asName": "Column",
-									"moduleImport": null,
-									"sourceName": "Column"
-								},
 								"JoinColumn": {
 									"asName": "JoinColumn",
 									"moduleImport": null,
@@ -1790,7 +1817,6 @@ export const MAPPED_SUPERCLASS = [
 							},
 							"path": "@airport/air-control"
 						},
-						"JoinColumn": null,
 						"ManyToOne": null,
 						"MappedSuperclass": null,
 						"Actor": {
@@ -1804,6 +1830,18 @@ export const MAPPED_SUPERCLASS = [
 								}
 							},
 							"path": "../../user/Actor"
+						},
+						"UserAccount": {
+							"fileImports": null,
+							"isLocal": true,
+							"objectMapByAsName": {
+								"UserAccount": {
+									"asName": "UserAccount",
+									"moduleImport": null,
+									"sourceName": "UserAccount"
+								}
+							},
+							"path": "../../user/UserAccount"
 						},
 						"ImmutableRow": {
 							"fileImports": null,
@@ -1821,6 +1859,7 @@ export const MAPPED_SUPERCLASS = [
 					"importMapByModulePath": {
 						"@airport/air-control": null,
 						"../../user/Actor": null,
+						"../../user/UserAccount": null,
 						"./ImmutableRow": null
 					}
 				},
@@ -1835,8 +1874,7 @@ export const MAPPED_SUPERCLASS = [
 								"name": "JoinColumn",
 								"values": [
 									{
-										"name": "ACTOR_ID",
-										"nullable": false
+										"name": "ACTOR_ID"
 									}
 								]
 							}
@@ -3117,6 +3155,32 @@ export const MAPPED_SUPERCLASS = [
 							"parentEntity": null
 						},
 						"index": 0
+					},
+					{
+						"decorators": [
+							{
+								"name": "ManyToOne",
+								"values": []
+							},
+							{
+								"name": "JoinColumn",
+								"values": [
+									{
+										"name": "USER_ACCOUNT_ID"
+									}
+								]
+							}
+						],
+						"isGenerated": false,
+						"isId": false,
+						"isMappedSuperclass": false,
+						"isTransient": false,
+						"name": "userAccount",
+						"type": "UserAccount",
+						"ownerEntity": null,
+						"nonArrayType": "UserAccount",
+						"entity": null,
+						"index": 1
 					}
 				],
 				"methodSignatures": [],

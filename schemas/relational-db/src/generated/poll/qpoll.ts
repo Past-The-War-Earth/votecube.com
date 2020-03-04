@@ -158,6 +158,7 @@ export interface PollEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
+	USER_ACCOUNT_ID?: number | IQNumberField;
 	POLL_ID?: number | IQNumberField;
 	AGE_SUITABILITY?: number | IQNumberField;
 	THEME_ID?: number | IQNumberField;
