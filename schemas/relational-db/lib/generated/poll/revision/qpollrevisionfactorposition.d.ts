@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-control';
 import { ImmutableRowECascadeGraph, ImmutableRowEId, ImmutableRowEUpdateColumns, ImmutableRowEUpdateProperties, ImmutableRowESelect, QImmutableRowQId, QImmutableRowQRelation, QImmutableRow } from '../../infrastructure/row/qimmutablerow';
+import { SkinEOptionalId, SkinESelect, QSkinQRelation } from '../../factor/qskin';
 import { PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from './qpollrevision';
 import { FactorPositionEOptionalId, FactorPositionESelect, QFactorPositionQRelation } from '../../factor/position/qfactorposition';
 /**
@@ -8,6 +9,7 @@ import { FactorPositionEOptionalId, FactorPositionESelect, QFactorPositionQRelat
 export interface PollRevisionFactorPositionESelect extends ImmutableRowESelect, PollRevisionFactorPositionEOptionalId {
     axis?: string | IQStringField;
     dir?: number | IQNumberField;
+    skin?: SkinESelect;
     pollRevision?: PollRevisionESelect;
     factorPosition?: FactorPositionESelect;
     parent?: PollRevisionFactorPositionESelect;
@@ -31,6 +33,7 @@ export interface PollRevisionFactorPositionEOptionalId {
 export interface PollRevisionFactorPositionEUpdateProperties extends ImmutableRowEUpdateProperties {
     axis?: string | IQStringField;
     dir?: number | IQNumberField;
+    skin?: SkinEOptionalId;
     pollRevision?: PollRevisionEOptionalId;
     factorPosition?: FactorPositionEOptionalId;
     parent?: PollRevisionFactorPositionEOptionalId;
@@ -48,6 +51,7 @@ export interface PollRevisionFactorPositionEUpdateColumns extends ImmutableRowEU
     CREATED_AT?: Date | IQDateField;
     FACTOR_COORDINATE_AXIS?: string | IQStringField;
     POSITION_ORIENTATION?: number | IQNumberField;
+    SKIN_ID?: number | IQNumberField;
     POLL_REVISION_ID?: number | IQNumberField;
     FACTOR_ID?: number | IQNumberField;
     POSITION_ID?: number | IQNumberField;
@@ -70,6 +74,7 @@ export interface QPollRevisionFactorPosition extends QImmutableRow {
     id: IQNumberField;
     axis: IQStringField;
     dir: IQNumberField;
+    skin: QSkinQRelation;
     pollRevision: QPollRevisionQRelation;
     factorPosition: QFactorPositionQRelation;
     parent: QPollRevisionFactorPositionQRelation;

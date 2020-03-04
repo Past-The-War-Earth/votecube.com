@@ -2,6 +2,9 @@ import {
 	IImmutableRow,
 } from '../../infrastructure/row/immutablerow';
 import {
+	ISkin,
+} from '../../factor/skin';
+import {
 	IPollRevision,
 } from './pollrevision';
 import {
@@ -26,6 +29,7 @@ export interface IPollRevisionFactorPosition extends IImmutableRow {
 	dir?: number;
 
 	// Non-Id Relations
+	skin?: ISkin;
 	pollRevision?: IPollRevision;
 	factorPosition?: IFactorPosition;
 	parent?: IPollRevisionFactorPosition;

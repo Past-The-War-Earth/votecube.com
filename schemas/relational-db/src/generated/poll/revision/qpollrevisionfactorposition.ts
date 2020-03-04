@@ -32,6 +32,16 @@ import {
 	QImmutableRow,
 } from '../../infrastructure/row/qimmutablerow';
 import {
+	SkinECascadeGraph,
+	SkinEId,
+	SkinEOptionalId,
+	SkinEUpdateProperties,
+	SkinESelect,
+	QSkin,
+	QSkinQId,
+	QSkinQRelation,
+} from '../../factor/qskin';
+import {
 	PollRevisionECascadeGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
@@ -72,6 +82,7 @@ export interface PollRevisionFactorPositionESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
+	skin?: SkinESelect;
 	pollRevision?: PollRevisionESelect;
 	factorPosition?: FactorPositionESelect;
 	parent?: PollRevisionFactorPositionESelect;
@@ -112,6 +123,7 @@ export interface PollRevisionFactorPositionEUpdateProperties
 	dir?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
+	skin?: SkinEOptionalId;
 	pollRevision?: PollRevisionEOptionalId;
 	factorPosition?: FactorPositionEOptionalId;
 	parent?: PollRevisionFactorPositionEOptionalId;
@@ -137,6 +149,7 @@ export interface PollRevisionFactorPositionEUpdateColumns
 	CREATED_AT?: Date | IQDateField;
 	FACTOR_COORDINATE_AXIS?: string | IQStringField;
 	POSITION_ORIENTATION?: number | IQNumberField;
+	SKIN_ID?: number | IQNumberField;
 	POLL_REVISION_ID?: number | IQNumberField;
 	FACTOR_ID?: number | IQNumberField;
 	POSITION_ID?: number | IQNumberField;
@@ -180,6 +193,7 @@ export interface QPollRevisionFactorPosition extends QImmutableRow
 	dir: IQNumberField;
 
 	// Non-Id Relations
+	skin: QSkinQRelation;
 	pollRevision: QPollRevisionQRelation;
 	factorPosition: QFactorPositionQRelation;
 	parent: QPollRevisionFactorPositionQRelation;

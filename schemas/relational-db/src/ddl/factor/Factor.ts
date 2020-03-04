@@ -12,7 +12,6 @@ import {CascadeType}       from '@airport/ground-control'
 import {Factor_Id}         from '../../types/factor/Factor'
 import {ImmutableActorRow} from '../infrastructure/row/ImmutableActorRow'
 import {PollRevision}      from '../poll/revision/PollRevision'
-import {FactorSkin}        from './FactorSkin'
 import {FactorTranslation} from './FactorTranslation'
 import {FactorPosition}    from './position/FactorPosition'
 
@@ -46,8 +45,5 @@ export class Factor
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
 	factorPositions: FactorPosition[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
-	skins: FactorSkin[]
 
 }

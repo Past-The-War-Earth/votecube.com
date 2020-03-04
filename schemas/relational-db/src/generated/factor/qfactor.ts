@@ -61,16 +61,6 @@ import {
 	QFactorPositionQId,
 	QFactorPositionQRelation,
 } from './position/qfactorposition';
-import {
-	FactorSkinECascadeGraph,
-	FactorSkinEId,
-	FactorSkinEOptionalId,
-	FactorSkinEUpdateProperties,
-	FactorSkinESelect,
-	QFactorSkin,
-	QFactorSkinQId,
-	QFactorSkinQRelation,
-} from './qfactorskin';
 
 
 declare function require(moduleName: string): any;
@@ -95,7 +85,6 @@ export interface FactorESelect
 	parent?: FactorESelect;
 	children?: FactorESelect;
 	factorPositions?: FactorPositionESelect;
-	skins?: FactorSkinESelect;
 
 }
 
@@ -144,7 +133,6 @@ export interface FactorECascadeGraph
 	// Cascading Relations
 	children?: FactorECascadeGraph;
 	factorPositions?: FactorPositionECascadeGraph;
-	skins?: FactorSkinECascadeGraph;
 
 }
 
@@ -201,7 +189,6 @@ export interface QFactor extends QImmutableActorRow
 	parent: QFactorQRelation;
 	children: IQOneToManyRelation<QFactor>;
 	factorPositions: IQOneToManyRelation<QFactorPosition>;
-	skins: IQOneToManyRelation<QFactorSkin>;
 
 }
 

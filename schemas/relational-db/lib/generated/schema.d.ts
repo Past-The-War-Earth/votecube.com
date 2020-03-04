@@ -85,7 +85,6 @@ export declare const SCHEMA: {
                     manyRelationIndex: number;
                     oneSchemaIndex: any;
                     oneTableIndex: number;
-                    oneRelationIndex: number;
                     oneColumnIndex: number;
                     sinceVersion: number;
                 }[];
@@ -103,6 +102,7 @@ export declare const SCHEMA: {
                     manyRelationIndex: number;
                     oneSchemaIndex: any;
                     oneTableIndex: number;
+                    oneRelationIndex: number;
                     oneColumnIndex: number;
                     sinceVersion: number;
                 }[];

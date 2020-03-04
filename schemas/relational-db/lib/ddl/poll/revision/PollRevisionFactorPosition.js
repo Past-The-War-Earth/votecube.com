@@ -24,6 +24,10 @@ __decorate([
 ], PollRevisionFactorPosition.prototype, "dir", void 0);
 __decorate([
     ManyToOne(),
+    JoinColumn({ name: 'SKIN_ID' })
+], PollRevisionFactorPosition.prototype, "skin", void 0);
+__decorate([
+    ManyToOne(),
     JoinColumn({ name: 'POLL_REVISION_ID' })
 ], PollRevisionFactorPosition.prototype, "pollRevision", void 0);
 __decorate([

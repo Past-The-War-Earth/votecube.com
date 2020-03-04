@@ -40,8 +40,6 @@ import { FactorOpinionVersionTranslation } from '../ddl/opinion/translation/fact
 import { QFactorOpinionVersionTranslation } from './opinion/translation/qfactoropinionversiontranslation';
 import { FactorPosition } from '../ddl/factor/position/factorposition';
 import { QFactorPosition } from './factor/position/qfactorposition';
-import { FactorSkin } from '../ddl/factor/factorskin';
-import { QFactorSkin } from './factor/qfactorskin';
 import { FactorTranslation } from '../ddl/factor/factortranslation';
 import { QFactorTranslation } from './factor/qfactortranslation';
 import { ImmutableActorRow } from '../ddl/infrastructure/row/immutableactorrow';
@@ -110,6 +108,8 @@ import { RatingSetting } from '../ddl/infrastructure/rating/ratingsetting';
 import { QRatingSetting } from './infrastructure/rating/qratingsetting';
 import { RatingType } from '../ddl/infrastructure/rating/ratingtype';
 import { QRatingType } from './infrastructure/rating/qratingtype';
+import { Skin } from '../ddl/factor/skin';
+import { QSkin } from './factor/qskin';
 import { State } from '../ddl/location/state';
 import { QState } from './location/qstate';
 import { StateTown } from '../ddl/location/statetown';
@@ -153,7 +153,6 @@ export interface LocalQSchema extends AirportQSchema {
 	FactorOpinionVersion: QFactorOpinionVersion;
 	FactorOpinionVersionTranslation: QFactorOpinionVersionTranslation;
 	FactorPosition: QFactorPosition;
-	FactorSkin: QFactorSkin;
 	FactorTranslation: QFactorTranslation;
 	ImmutableActorRow: QImmutableActorRow;
 	ImmutableRow: QImmutableRow;
@@ -188,6 +187,7 @@ export interface LocalQSchema extends AirportQSchema {
 	Rating: QRating;
 	RatingSetting: QRatingSetting;
 	RatingType: QRatingType;
+	Skin: QSkin;
 	State: QState;
 	StateTown: QStateTown;
 	SystemGeneratedRow: QSystemGeneratedRow;
@@ -218,7 +218,6 @@ const __constructors__ = {
 	FactorOpinionVersion: FactorOpinionVersion,
 	FactorOpinionVersionTranslation: FactorOpinionVersionTranslation,
 	FactorPosition: FactorPosition,
-	FactorSkin: FactorSkin,
 	FactorTranslation: FactorTranslation,
 	ImmutableActorRow: ImmutableActorRow,
 	ImmutableRow: ImmutableRow,
@@ -253,6 +252,7 @@ const __constructors__ = {
 	Rating: Rating,
 	RatingSetting: RatingSetting,
 	RatingType: RatingType,
+	Skin: Skin,
 	State: State,
 	StateTown: StateTown,
 	SystemGeneratedRow: SystemGeneratedRow,

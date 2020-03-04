@@ -1,12 +1,6 @@
 import {
 	IImmutableActorRow,
 } from '../infrastructure/row/immutableactorrow';
-import {
-	IPollRevision,
-} from '../poll/revision/pollrevision';
-import {
-	IFactor,
-} from './factor';
 
 
 
@@ -14,7 +8,7 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IFactorSkin extends IImmutableActorRow {
+export interface ISkin extends IImmutableActorRow {
 	
 	// Id Properties
 	id: number;
@@ -26,10 +20,8 @@ export interface IFactorSkin extends IImmutableActorRow {
 	textColor?: number;
 
 	// Non-Id Relations
-	pollRevision?: IPollRevision;
-	factor?: IFactor;
-	parent?: IFactorSkin;
-	children?: IFactorSkin[];
+	parent?: ISkin;
+	children?: ISkin[];
 
 	// Transient Properties
 

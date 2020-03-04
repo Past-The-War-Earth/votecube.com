@@ -31,26 +31,6 @@ import {
 	QImmutableActorRowQRelation,
 	QImmutableActorRow,
 } from '../infrastructure/row/qimmutableactorrow';
-import {
-	PollRevisionECascadeGraph,
-	PollRevisionEId,
-	PollRevisionEOptionalId,
-	PollRevisionEUpdateProperties,
-	PollRevisionESelect,
-	QPollRevision,
-	QPollRevisionQId,
-	QPollRevisionQRelation,
-} from '../poll/revision/qpollrevision';
-import {
-	FactorECascadeGraph,
-	FactorEId,
-	FactorEOptionalId,
-	FactorEUpdateProperties,
-	FactorESelect,
-	QFactor,
-	QFactorQId,
-	QFactorQRelation,
-} from './qfactor';
 
 
 declare function require(moduleName: string): any;
@@ -63,8 +43,8 @@ declare function require(moduleName: string): any;
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface FactorSkinESelect
-    extends ImmutableActorRowESelect, FactorSkinEOptionalId {
+export interface SkinESelect
+    extends ImmutableActorRowESelect, SkinEOptionalId {
 	// Non-Id Properties
 	backgroundColor?: number | IQNumberField;
 	textColor?: number | IQNumberField;
@@ -72,17 +52,15 @@ export interface FactorSkinESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	pollRevision?: PollRevisionESelect;
-	factor?: FactorESelect;
-	parent?: FactorSkinESelect;
-	children?: FactorSkinESelect;
+	parent?: SkinESelect;
+	children?: SkinESelect;
 
 }
 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface FactorSkinEId
+export interface SkinEId
     extends ImmutableActorRowEId {
 	// Id Properties
 	id: number | IQNumberField;
@@ -94,7 +72,7 @@ export interface FactorSkinEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface FactorSkinEOptionalId {
+export interface SkinEOptionalId {
 	// Id Properties
 	id?: number | IQNumberField;
 
@@ -105,57 +83,53 @@ export interface FactorSkinEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface FactorSkinEUpdateProperties
+export interface SkinEUpdateProperties
 	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
 	backgroundColor?: number | IQNumberField;
 	textColor?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	pollRevision?: PollRevisionEOptionalId;
-	factor?: FactorEOptionalId;
-	parent?: FactorSkinEOptionalId;
+	parent?: SkinEOptionalId;
 
 }
 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface FactorSkinECascadeGraph
+export interface SkinECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
-	children?: FactorSkinECascadeGraph;
+	children?: SkinECascadeGraph;
 
 }
 
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface FactorSkinEUpdateColumns
+export interface SkinEUpdateColumns
 	extends ImmutableActorRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
 	BACKGROUND_COLOR_ID?: number | IQNumberField;
 	TEXT_COLOR_ID?: number | IQNumberField;
-	POLL_REVISION_ID?: number | IQNumberField;
-	FACTOR_ID?: number | IQNumberField;
-	PARENT_FACTOR_SKIN_ID?: number | IQNumberField;
+	PARENT_SKIN_ID?: number | IQNumberField;
 
 }
 
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface FactorSkinECreateProperties
-extends Partial<FactorSkinEId>, FactorSkinEUpdateProperties {
+export interface SkinECreateProperties
+extends Partial<SkinEId>, SkinEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface FactorSkinECreateColumns
-extends FactorSkinEId, FactorSkinEUpdateColumns {
+export interface SkinECreateColumns
+extends SkinEId, SkinEUpdateColumns {
 }
 
 
@@ -168,7 +142,7 @@ extends FactorSkinEId, FactorSkinEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorSkin extends QImmutableActorRow
+export interface QSkin extends QImmutableActorRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -180,16 +154,14 @@ export interface QFactorSkin extends QImmutableActorRow
 	textColor: IQNumberField;
 
 	// Non-Id Relations
-	pollRevision: QPollRevisionQRelation;
-	factor: QFactorQRelation;
-	parent: QFactorSkinQRelation;
-	children: IQOneToManyRelation<QFactorSkin>;
+	parent: QSkinQRelation;
+	children: IQOneToManyRelation<QSkin>;
 
 }
 
 
 // Entity Id Interface
-export interface QFactorSkinQId extends QImmutableActorRowQId
+export interface QSkinQId extends QImmutableActorRowQId
 {
 	
 	// Id Fields
@@ -201,7 +173,7 @@ export interface QFactorSkinQId extends QImmutableActorRowQId
 }
 
 // Entity Relation Interface
-export interface QFactorSkinQRelation
-	extends QImmutableActorRowQRelation<QFactorSkin>, QFactorSkinQId {
+export interface QSkinQRelation
+	extends QImmutableActorRowQRelation<QSkin>, QSkinQId {
 }
 

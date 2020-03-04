@@ -29,8 +29,6 @@ import { IFactorOpinionVersionTranslation } from './opinion/translation/factorop
 import { FactorOpinionVersionTranslationESelect, FactorOpinionVersionTranslationECreateProperties, FactorOpinionVersionTranslationEUpdateColumns, FactorOpinionVersionTranslationEUpdateProperties, FactorOpinionVersionTranslationEId, FactorOpinionVersionTranslationECascadeGraph, QFactorOpinionVersionTranslation } from './opinion/translation/qfactoropinionversiontranslation';
 import { IFactorPosition } from './factor/position/factorposition';
 import { FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionECascadeGraph, QFactorPosition } from './factor/position/qfactorposition';
-import { IFactorSkin } from './factor/factorskin';
-import { FactorSkinESelect, FactorSkinECreateProperties, FactorSkinEUpdateColumns, FactorSkinEUpdateProperties, FactorSkinEId, FactorSkinECascadeGraph, QFactorSkin } from './factor/qfactorskin';
 import { IFactorTranslation } from './factor/factortranslation';
 import { FactorTranslationESelect, FactorTranslationECreateProperties, FactorTranslationEUpdateColumns, FactorTranslationEUpdateProperties, FactorTranslationEId, FactorTranslationECascadeGraph, QFactorTranslation } from './factor/qfactortranslation';
 import { ILanguage } from './infrastructure/language';
@@ -91,6 +89,8 @@ import { IRatingSetting } from './infrastructure/rating/ratingsetting';
 import { RatingSettingESelect, RatingSettingECreateProperties, RatingSettingEUpdateColumns, RatingSettingEUpdateProperties, RatingSettingEId, RatingSettingECascadeGraph, QRatingSetting } from './infrastructure/rating/qratingsetting';
 import { IRatingType } from './infrastructure/rating/ratingtype';
 import { RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeECascadeGraph, QRatingType } from './infrastructure/rating/qratingtype';
+import { ISkin } from './factor/skin';
+import { SkinESelect, SkinECreateProperties, SkinEUpdateColumns, SkinEUpdateProperties, SkinEId, SkinECascadeGraph, QSkin } from './factor/qskin';
 import { IState } from './location/state';
 import { StateESelect, StateECreateProperties, StateEUpdateColumns, StateEUpdateProperties, StateEId, StateECascadeGraph, QState } from './location/qstate';
 import { IStateTown } from './location/statetown';
@@ -197,12 +197,6 @@ export declare class BaseFactorOpinionVersionTranslationDuo extends SQDIDuo<IFac
 export interface IBaseFactorPositionDuo extends IDuo<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionECascadeGraph, QFactorPosition> {
 }
 export declare class BaseFactorPositionDuo extends SQDIDuo<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionECascadeGraph, QFactorPosition> implements IBaseFactorPositionDuo {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseFactorSkinDuo extends IDuo<IFactorSkin, FactorSkinESelect, FactorSkinECreateProperties, FactorSkinEUpdateColumns, FactorSkinEUpdateProperties, FactorSkinEId, FactorSkinECascadeGraph, QFactorSkin> {
-}
-export declare class BaseFactorSkinDuo extends SQDIDuo<IFactorSkin, FactorSkinESelect, FactorSkinECreateProperties, FactorSkinEUpdateColumns, FactorSkinEUpdateProperties, FactorSkinEId, FactorSkinECascadeGraph, QFactorSkin> implements IBaseFactorSkinDuo {
     static diSet(): boolean;
     constructor();
 }
@@ -383,6 +377,12 @@ export declare class BaseRatingSettingDuo extends SQDIDuo<IRatingSetting, Rating
 export interface IBaseRatingTypeDuo extends IDuo<IRatingType, RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeECascadeGraph, QRatingType> {
 }
 export declare class BaseRatingTypeDuo extends SQDIDuo<IRatingType, RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeECascadeGraph, QRatingType> implements IBaseRatingTypeDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseSkinDuo extends IDuo<ISkin, SkinESelect, SkinECreateProperties, SkinEUpdateColumns, SkinEUpdateProperties, SkinEId, SkinECascadeGraph, QSkin> {
+}
+export declare class BaseSkinDuo extends SQDIDuo<ISkin, SkinESelect, SkinECreateProperties, SkinEUpdateColumns, SkinEUpdateProperties, SkinEId, SkinECascadeGraph, QSkin> implements IBaseSkinDuo {
     static diSet(): boolean;
     constructor();
 }

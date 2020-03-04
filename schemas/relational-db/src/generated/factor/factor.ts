@@ -10,9 +10,6 @@ import {
 import {
 	IFactorPosition,
 } from './position/factorposition';
-import {
-	IFactorSkin,
-} from './factorskin';
 
 
 
@@ -35,7 +32,6 @@ export interface IFactor extends IImmutableActorRow {
 	parent?: IFactor;
 	children?: IFactor[];
 	factorPositions?: IFactorPosition[];
-	skins?: IFactorSkin[];
 
 	// Transient Properties
 

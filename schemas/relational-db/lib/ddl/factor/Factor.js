@@ -35,9 +35,6 @@ __decorate([
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'factor' })
 ], Factor.prototype, "factorPositions", void 0);
-__decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'factor' })
-], Factor.prototype, "skins", void 0);
 Factor = __decorate([
     Entity(),
     Table({ name: 'FACTORS' })

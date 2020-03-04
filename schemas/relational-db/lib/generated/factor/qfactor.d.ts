@@ -3,7 +3,6 @@ import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRow
 import { PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../poll/revision/qpollrevision';
 import { FactorTranslationEOptionalId, FactorTranslationESelect, QFactorTranslationQRelation } from './qfactortranslation';
 import { FactorPositionECascadeGraph, FactorPositionESelect, QFactorPosition } from './position/qfactorposition';
-import { FactorSkinECascadeGraph, FactorSkinESelect, QFactorSkin } from './qfactorskin';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -13,7 +12,6 @@ export interface FactorESelect extends ImmutableActorRowESelect, FactorEOptional
     parent?: FactorESelect;
     children?: FactorESelect;
     factorPositions?: FactorPositionESelect;
-    skins?: FactorSkinESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -41,7 +39,6 @@ export interface FactorEUpdateProperties extends ImmutableActorRowEUpdatePropert
 export interface FactorECascadeGraph extends ImmutableActorRowECascadeGraph {
     children?: FactorECascadeGraph;
     factorPositions?: FactorPositionECascadeGraph;
-    skins?: FactorSkinECascadeGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -73,7 +70,6 @@ export interface QFactor extends QImmutableActorRow {
     parent: QFactorQRelation;
     children: IQOneToManyRelation<QFactor>;
     factorPositions: IQOneToManyRelation<QFactorPosition>;
-    skins: IQOneToManyRelation<QFactorSkin>;
 }
 export interface QFactorQId extends QImmutableActorRowQId {
     id: IQNumberField;

@@ -18,6 +18,7 @@ import {
 	PollRevisionFactorPosition_Id
 }                       from '../../../types/poll/revision/PollRevisionFactorPosition'
 import {FactorPosition} from '../../factor/position/FactorPosition'
+import {Skin}           from '../../factor/Skin'
 import {ImmutableRow}   from '../../infrastructure/row/ImmutableRow'
 import {PollRevision}   from './PollRevision'
 
@@ -38,6 +39,10 @@ export class PollRevisionFactorPosition
 	@Column({name: 'POSITION_ORIENTATION', nullable: false})
 	@DbNumber()
 	dir: PollRevisionFactorPosition_Dir
+
+	@ManyToOne()
+	@JoinColumn({name: 'SKIN_ID'})
+	skin: Skin
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_REVISION_ID'})

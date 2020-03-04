@@ -16,7 +16,6 @@ import { Factor } from '../ddl/factor/factor';
 import { FactorOpinionVersion } from '../ddl/opinion/factoropinionversion';
 import { FactorOpinionVersionTranslation } from '../ddl/opinion/translation/factoropinionversiontranslation';
 import { FactorPosition } from '../ddl/factor/position/factorposition';
-import { FactorSkin } from '../ddl/factor/factorskin';
 import { FactorTranslation } from '../ddl/factor/factortranslation';
 import { ImmutableActorRow } from '../ddl/infrastructure/row/immutableactorrow';
 import { ImmutableRow } from '../ddl/infrastructure/row/immutablerow';
@@ -51,6 +50,7 @@ import { PositionTranslation } from '../ddl/factor/position/positiontranslation'
 import { Rating } from '../ddl/infrastructure/rating/rating';
 import { RatingSetting } from '../ddl/infrastructure/rating/ratingsetting';
 import { RatingType } from '../ddl/infrastructure/rating/ratingtype';
+import { Skin } from '../ddl/factor/skin';
 import { State } from '../ddl/location/state';
 import { StateTown } from '../ddl/location/statetown';
 import { SystemGeneratedRow } from '../ddl/infrastructure/row/systemgeneratedrow';
@@ -78,7 +78,6 @@ const __constructors__ = {
     FactorOpinionVersion: FactorOpinionVersion,
     FactorOpinionVersionTranslation: FactorOpinionVersionTranslation,
     FactorPosition: FactorPosition,
-    FactorSkin: FactorSkin,
     FactorTranslation: FactorTranslation,
     ImmutableActorRow: ImmutableActorRow,
     ImmutableRow: ImmutableRow,
@@ -113,6 +112,7 @@ const __constructors__ = {
     Rating: Rating,
     RatingSetting: RatingSetting,
     RatingType: RatingType,
+    Skin: Skin,
     State: State,
     StateTown: StateTown,
     SystemGeneratedRow: SystemGeneratedRow,

@@ -7,40 +7,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
 import { ImmutableActorRow } from '../infrastructure/row/ImmutableActorRow';
-let FactorSkin = class FactorSkin extends ImmutableActorRow {
+let Skin = class Skin extends ImmutableActorRow {
 };
 __decorate([
     Id(),
     GeneratedValue(),
-    Column({ name: 'FACTOR_SKIN_ID' })
-], FactorSkin.prototype, "id", void 0);
+    Column({ name: 'SKIN_ID' })
+], Skin.prototype, "id", void 0);
 __decorate([
     Column({ name: 'BACKGROUND_COLOR_ID', nullable: false })
-], FactorSkin.prototype, "backgroundColor", void 0);
+], Skin.prototype, "backgroundColor", void 0);
 __decorate([
     Column({ name: 'TEXT_COLOR_ID', nullable: false })
-], FactorSkin.prototype, "textColor", void 0);
-__decorate([
-    ManyToOne(),
-    JoinColumn({ name: 'POLL_REVISION_ID' })
-], FactorSkin.prototype, "pollRevision", void 0);
-__decorate([
-    ManyToOne(),
-    JoinColumn({ name: 'FACTOR_ID' })
-], FactorSkin.prototype, "factor", void 0);
+], Skin.prototype, "textColor", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({
-        name: 'PARENT_FACTOR_SKIN_ID',
-        referencedColumnName: 'FACTOR_SKIN_ID'
+        name: 'PARENT_SKIN_ID',
+        referencedColumnName: 'SKIN_ID'
     })
-], FactorSkin.prototype, "parent", void 0);
+], Skin.prototype, "parent", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
-], FactorSkin.prototype, "children", void 0);
-FactorSkin = __decorate([
+], Skin.prototype, "children", void 0);
+Skin = __decorate([
     Entity(),
-    Table({ name: 'FACTOR_SKINS' })
-], FactorSkin);
-export { FactorSkin };
-//# sourceMappingURL=FactorSkin.js.map
+    Table({ name: 'SKINS' })
+], Skin);
+export { Skin };
+//# sourceMappingURL=Skin.js.map

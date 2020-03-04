@@ -2680,7 +2680,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 50,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -2833,7 +2833,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -2847,7 +2847,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -2945,6 +2945,226 @@
 						},
 						{
 							"index": 1,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 5,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "ACTOR_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "SKIN_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "BACKGROUND_COLOR_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "TEXT_COLOR_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 5,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 20,
+									"oneRelationIndex": 2,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "PARENT_SKIN_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 5
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						}
+					],
+					"idColumnRefs": [
+						{
+							"index": 2
+						}
+					],
+					"index": 20,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "Skin",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"name": "actor",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": true,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 3
+							},
+							"index": 3,
+							"isId": false,
+							"name": "backgroundColor",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 4
+							},
+							"index": 4,
+							"isId": false,
+							"name": "textColor",
+							"sinceVersion": 1
+						},
+						{
+							"index": 5,
+							"isId": false,
+							"name": "parent",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 6,
+							"isId": false,
+							"name": "children",
+							"relationRef": {
+								"index": 2
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 1
+							},
+							"relationTableIndex": 5,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 5
+							},
+							"relationTableIndex": 20,
+							"sinceVersion": 1
+						},
+						{
+							"index": 2,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "parent"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 6
+							},
+							"relationTableIndex": 20,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "SKINS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
 							"isGenerated": true,
 							"manyRelationColumnRefs": [],
 							"name": "POLL_REVISION_FACTOR_POSITION_ID",
@@ -2992,13 +3212,12 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
-									"oneRelationIndex": 8,
+									"oneTableIndex": 20,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POLL_REVISION_ID",
+							"name": "SKIN_ID",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -3015,13 +3234,14 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 55,
+									"oneTableIndex": 50,
+									"oneRelationIndex": 8,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "FACTOR_ID",
-							"notNull": true,
+							"name": "POLL_REVISION_ID",
+							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 5
@@ -3035,18 +3255,18 @@
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
-									"manyRelationIndex": 1,
+									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
 									"oneTableIndex": 55,
-									"oneColumnIndex": 3,
+									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
 							],
-							"name": "POSITION_ID",
+							"name": "FACTOR_ID",
 							"notNull": true,
 							"propertyRefs": [
 								{
-									"index": 5
+									"index": 6
 								}
 							],
 							"sinceVersion": 1,
@@ -3059,8 +3279,30 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 20,
-									"oneRelationIndex": 3,
+									"oneTableIndex": 55,
+									"oneColumnIndex": 3,
+									"sinceVersion": 1
+								}
+							],
+							"name": "POSITION_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 6
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 8,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 3,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 21,
+									"oneRelationIndex": 4,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -3069,7 +3311,7 @@
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 6
+									"index": 7
 								}
 							],
 							"sinceVersion": 1,
@@ -3081,7 +3323,7 @@
 							"index": 1
 						}
 					],
-					"index": 20,
+					"index": 21,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionFactorPosition",
@@ -3125,7 +3367,7 @@
 						{
 							"index": 4,
 							"isId": false,
-							"name": "pollRevision",
+							"name": "skin",
 							"relationRef": {
 								"index": 0
 							},
@@ -3134,7 +3376,7 @@
 						{
 							"index": 5,
 							"isId": false,
-							"name": "factorPosition",
+							"name": "pollRevision",
 							"relationRef": {
 								"index": 1
 							},
@@ -3143,7 +3385,7 @@
 						{
 							"index": 6,
 							"isId": false,
-							"name": "parent",
+							"name": "factorPosition",
 							"relationRef": {
 								"index": 2
 							},
@@ -3152,9 +3394,18 @@
 						{
 							"index": 7,
 							"isId": false,
-							"name": "children",
+							"name": "parent",
 							"relationRef": {
 								"index": 3
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 8,
+							"isId": false,
+							"name": "children",
+							"relationRef": {
+								"index": 4
 							},
 							"sinceVersion": 1
 						}
@@ -3167,7 +3418,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 20,
 							"sinceVersion": 1
 						},
 						{
@@ -3177,7 +3428,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 55,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -3187,11 +3438,21 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 20,
+							"relationTableIndex": 55,
 							"sinceVersion": 1
 						},
 						{
 							"index": 3,
+							"isId": false,
+							"relationType": 1,
+							"propertyRef": {
+								"index": 7
+							},
+							"relationTableIndex": 21,
+							"sinceVersion": 1
+						},
+						{
+							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
@@ -3199,9 +3460,9 @@
 							},
 							"relationType": 0,
 							"propertyRef": {
-								"index": 7
+								"index": 8
 							},
-							"relationTableIndex": 20,
+							"relationTableIndex": 21,
 							"sinceVersion": 1
 						}
 					],
@@ -3261,7 +3522,7 @@
 							"index": 1
 						}
 					],
-					"index": 21,
+					"index": 22,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteFactorType",
@@ -3338,7 +3599,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 23,
+									"oneTableIndex": 24,
 									"oneRelationIndex": 2,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -3361,7 +3622,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 20,
+									"oneTableIndex": 21,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -3383,7 +3644,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 21,
+									"oneTableIndex": 22,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -3404,7 +3665,7 @@
 							"index": 0
 						}
 					],
-					"index": 22,
+					"index": 23,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteFactor",
@@ -3463,7 +3724,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 23,
+							"relationTableIndex": 24,
 							"sinceVersion": 1
 						},
 						{
@@ -3473,7 +3734,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 20,
+							"relationTableIndex": 21,
 							"sinceVersion": 1
 						},
 						{
@@ -3483,7 +3744,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 21,
+							"relationTableIndex": 22,
 							"sinceVersion": 1
 						}
 					],
@@ -3552,7 +3813,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 25,
+									"oneTableIndex": 26,
 									"oneRelationIndex": 2,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -3574,7 +3835,7 @@
 							"index": 2
 						}
 					],
-					"index": 23,
+					"index": 24,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteVersion",
@@ -3643,7 +3904,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 25,
+							"relationTableIndex": 26,
 							"sinceVersion": 1
 						},
 						{
@@ -3657,7 +3918,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 22,
+							"relationTableIndex": 23,
 							"sinceVersion": 1
 						}
 					],
@@ -3731,7 +3992,7 @@
 							"index": 1
 						}
 					],
-					"index": 24,
+					"index": 25,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteType",
@@ -3874,7 +4135,7 @@
 							"index": 2
 						}
 					],
-					"index": 25,
+					"index": 26,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Vote",
@@ -3966,7 +4227,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 23,
+							"relationTableIndex": 24,
 							"sinceVersion": 1
 						}
 					],
@@ -4012,7 +4273,7 @@
 							"index": 0
 						}
 					],
-					"index": 26,
+					"index": 27,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Language",
@@ -4122,7 +4383,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 28,
+									"oneTableIndex": 29,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -4145,7 +4406,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 26,
+									"oneTableIndex": 27,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -4166,7 +4427,7 @@
 							"index": 1
 						}
 					],
-					"index": 27,
+					"index": 28,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "FactorOpinionVersionTranslation",
@@ -4243,7 +4504,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 28,
+							"relationTableIndex": 29,
 							"sinceVersion": 1
 						},
 						{
@@ -4253,7 +4514,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 26,
+							"relationTableIndex": 27,
 							"sinceVersion": 1
 						}
 					],
@@ -4286,7 +4547,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 42,
+									"oneTableIndex": 43,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -4331,7 +4592,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 28,
+									"oneTableIndex": 29,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -4353,7 +4614,7 @@
 							"index": 0
 						}
 					],
-					"index": 28,
+					"index": 29,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "FactorOpinionVersion",
@@ -4421,7 +4682,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 42,
+							"relationTableIndex": 43,
 							"sinceVersion": 1
 						},
 						{
@@ -4441,7 +4702,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 28,
+							"relationTableIndex": 29,
 							"sinceVersion": 1
 						},
 						{
@@ -4455,7 +4716,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 28,
+							"relationTableIndex": 29,
 							"sinceVersion": 1
 						},
 						{
@@ -4469,7 +4730,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 27,
+							"relationTableIndex": 28,
 							"sinceVersion": 1
 						}
 					],
@@ -4515,7 +4776,7 @@
 							"index": 0
 						}
 					],
-					"index": 29,
+					"index": 30,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "TranslationType",
@@ -4619,7 +4880,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 31,
+									"oneTableIndex": 32,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -4641,7 +4902,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 26,
+									"oneTableIndex": 27,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -4663,7 +4924,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 29,
+									"oneTableIndex": 30,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -4685,7 +4946,7 @@
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 31,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -4707,7 +4968,7 @@
 							"index": 2
 						}
 					],
-					"index": 30,
+					"index": 31,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "OutcomeTranslation",
@@ -4812,7 +5073,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 31,
+							"relationTableIndex": 32,
 							"sinceVersion": 1
 						},
 						{
@@ -4822,7 +5083,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 26,
+							"relationTableIndex": 27,
 							"sinceVersion": 1
 						},
 						{
@@ -4832,7 +5093,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 29,
+							"relationTableIndex": 30,
 							"sinceVersion": 1
 						},
 						{
@@ -4842,7 +5103,7 @@
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 31,
 							"sinceVersion": 1
 						},
 						{
@@ -4856,7 +5117,7 @@
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 31,
 							"sinceVersion": 1
 						}
 					],
@@ -4889,7 +5150,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 30,
+									"oneTableIndex": 31,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -4911,7 +5172,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 31,
+									"oneTableIndex": 32,
 									"oneRelationIndex": 2,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -4933,7 +5194,7 @@
 							"index": 0
 						}
 					],
-					"index": 31,
+					"index": 32,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Outcome",
@@ -5001,7 +5262,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 30,
+							"relationTableIndex": 31,
 							"sinceVersion": 1
 						},
 						{
@@ -5011,7 +5272,7 @@
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 31,
+							"relationTableIndex": 32,
 							"sinceVersion": 1
 						},
 						{
@@ -5025,7 +5286,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 31,
+							"relationTableIndex": 32,
 							"sinceVersion": 1
 						},
 						{
@@ -5039,7 +5300,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -5053,7 +5314,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						}
 					],
@@ -5142,7 +5403,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 33,
+									"oneTableIndex": 34,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -5165,7 +5426,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 26,
+									"oneTableIndex": 27,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -5186,7 +5447,7 @@
 							"index": 1
 						}
 					],
-					"index": 32,
+					"index": 33,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "OutcomeOpinionVersionTranslation",
@@ -5263,7 +5524,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 33,
+							"relationTableIndex": 34,
 							"sinceVersion": 1
 						},
 						{
@@ -5273,7 +5534,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 26,
+							"relationTableIndex": 27,
 							"sinceVersion": 1
 						}
 					],
@@ -5306,7 +5567,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 42,
+									"oneTableIndex": 43,
 									"oneRelationIndex": 7,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -5329,7 +5590,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 31,
+									"oneTableIndex": 32,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -5351,7 +5612,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 33,
+									"oneTableIndex": 34,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -5373,7 +5634,7 @@
 							"index": 0
 						}
 					],
-					"index": 33,
+					"index": 34,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "OutcomeOpinionVersion",
@@ -5441,7 +5702,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 42,
+							"relationTableIndex": 43,
 							"sinceVersion": 1
 						},
 						{
@@ -5451,7 +5712,7 @@
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 31,
+							"relationTableIndex": 32,
 							"sinceVersion": 1
 						},
 						{
@@ -5461,7 +5722,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 33,
+							"relationTableIndex": 34,
 							"sinceVersion": 1
 						},
 						{
@@ -5475,7 +5736,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 33,
+							"relationTableIndex": 34,
 							"sinceVersion": 1
 						},
 						{
@@ -5489,7 +5750,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 32,
+							"relationTableIndex": 33,
 							"sinceVersion": 1
 						}
 					],
@@ -5578,7 +5839,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 35,
+									"oneTableIndex": 36,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -5600,7 +5861,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 26,
+									"oneTableIndex": 27,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -5621,7 +5882,7 @@
 							"index": 1
 						}
 					],
-					"index": 34,
+					"index": 35,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionOpinionVersionTranslation",
@@ -5698,7 +5959,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 35,
+							"relationTableIndex": 36,
 							"sinceVersion": 1
 						},
 						{
@@ -5708,7 +5969,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 26,
+							"relationTableIndex": 27,
 							"sinceVersion": 1
 						}
 					],
@@ -5755,7 +6016,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 42,
+									"oneTableIndex": 43,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -5778,7 +6039,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 35,
+									"oneTableIndex": 36,
 									"oneRelationIndex": 2,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -5800,7 +6061,7 @@
 							"index": 1
 						}
 					],
-					"index": 35,
+					"index": 36,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionOpinionVersion",
@@ -5868,7 +6129,7 @@
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 42,
+							"relationTableIndex": 43,
 							"sinceVersion": 1
 						},
 						{
@@ -5878,7 +6139,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 35,
+							"relationTableIndex": 36,
 							"sinceVersion": 1
 						},
 						{
@@ -5892,7 +6153,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 35,
+							"relationTableIndex": 36,
 							"sinceVersion": 1
 						},
 						{
@@ -5906,7 +6167,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 34,
+							"relationTableIndex": 35,
 							"sinceVersion": 1
 						}
 					],
@@ -5995,7 +6256,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 37,
+									"oneTableIndex": 38,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -6018,7 +6279,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 26,
+									"oneTableIndex": 27,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -6039,7 +6300,7 @@
 							"index": 1
 						}
 					],
-					"index": 36,
+					"index": 37,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PositionOpinionVersionTranslation",
@@ -6116,7 +6377,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 37,
+							"relationTableIndex": 38,
 							"sinceVersion": 1
 						},
 						{
@@ -6126,7 +6387,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 26,
+							"relationTableIndex": 27,
 							"sinceVersion": 1
 						}
 					],
@@ -6159,7 +6420,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 42,
+									"oneTableIndex": 43,
 									"oneRelationIndex": 8,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -6182,7 +6443,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 20,
+									"oneTableIndex": 21,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -6204,7 +6465,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 37,
+									"oneTableIndex": 38,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -6226,7 +6487,7 @@
 							"index": 0
 						}
 					],
-					"index": 37,
+					"index": 38,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PositionOpinionVersion",
@@ -6294,7 +6555,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 42,
+							"relationTableIndex": 43,
 							"sinceVersion": 1
 						},
 						{
@@ -6304,7 +6565,7 @@
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 20,
+							"relationTableIndex": 21,
 							"sinceVersion": 1
 						},
 						{
@@ -6314,7 +6575,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 37,
+							"relationTableIndex": 38,
 							"sinceVersion": 1
 						},
 						{
@@ -6328,7 +6589,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 37,
+							"relationTableIndex": 38,
 							"sinceVersion": 1
 						},
 						{
@@ -6342,7 +6603,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 36,
+							"relationTableIndex": 37,
 							"sinceVersion": 1
 						}
 					],
@@ -6439,7 +6700,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 40,
+									"oneTableIndex": 41,
 									"oneRelationIndex": 1,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -6461,7 +6722,7 @@
 							"index": 1
 						}
 					],
-					"index": 38,
+					"index": 39,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "RatingSetting",
@@ -6539,7 +6800,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 40,
+							"relationTableIndex": 41,
 							"sinceVersion": 1
 						}
 					],
@@ -6613,7 +6874,7 @@
 							"index": 1
 						}
 					],
-					"index": 39,
+					"index": 40,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "RatingType",
@@ -6713,7 +6974,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 39,
+									"oneTableIndex": 40,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -6734,7 +6995,7 @@
 							"index": 1
 						}
 					],
-					"index": 40,
+					"index": 41,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Rating",
@@ -6793,7 +7054,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 39,
+							"relationTableIndex": 40,
 							"sinceVersion": 1
 						},
 						{
@@ -6807,7 +7068,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 38,
+							"relationTableIndex": 39,
 							"sinceVersion": 1
 						}
 					],
@@ -6876,7 +7137,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 42,
+									"oneTableIndex": 43,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 3,
 									"sinceVersion": 1
@@ -6899,7 +7160,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 40,
+									"oneTableIndex": 41,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -6920,7 +7181,7 @@
 							"index": 2
 						}
 					],
-					"index": 41,
+					"index": 42,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionOpinionRating",
@@ -6989,7 +7250,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 42,
+							"relationTableIndex": 43,
 							"sinceVersion": 1
 						},
 						{
@@ -6999,7 +7260,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 40,
+							"relationTableIndex": 41,
 							"sinceVersion": 1
 						}
 					],
@@ -7082,7 +7343,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 50,
 									"oneRelationIndex": 10,
 									"oneColumnIndex": 4,
 									"sinceVersion": 1
@@ -7127,7 +7388,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 25,
+									"oneTableIndex": 26,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -7148,7 +7409,7 @@
 							"index": 3
 						}
 					],
-					"index": 42,
+					"index": 43,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionOpinion",
@@ -7280,7 +7541,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -7300,7 +7561,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 25,
+							"relationTableIndex": 26,
 							"sinceVersion": 1
 						},
 						{
@@ -7314,7 +7575,7 @@
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 41,
+							"relationTableIndex": 42,
 							"sinceVersion": 1
 						},
 						{
@@ -7328,7 +7589,7 @@
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 35,
+							"relationTableIndex": 36,
 							"sinceVersion": 1
 						},
 						{
@@ -7342,7 +7603,7 @@
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 28,
+							"relationTableIndex": 29,
 							"sinceVersion": 1
 						},
 						{
@@ -7356,7 +7617,7 @@
 							"propertyRef": {
 								"index": 10
 							},
-							"relationTableIndex": 33,
+							"relationTableIndex": 34,
 							"sinceVersion": 1
 						},
 						{
@@ -7370,7 +7631,7 @@
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 37,
+							"relationTableIndex": 38,
 							"sinceVersion": 1
 						}
 					],
@@ -7430,7 +7691,7 @@
 							"index": 1
 						}
 					],
-					"index": 43,
+					"index": 44,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollType",
@@ -7520,7 +7781,7 @@
 							"index": 1
 						}
 					],
-					"index": 44,
+					"index": 45,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Theme",
@@ -7633,7 +7894,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 44,
+									"oneTableIndex": 45,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -7655,7 +7916,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 43,
+									"oneTableIndex": 44,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -7677,7 +7938,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 45,
+									"oneTableIndex": 46,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -7695,7 +7956,7 @@
 						}
 					],
 					"idColumnRefs": [],
-					"index": 45,
+					"index": 46,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Poll",
@@ -7809,7 +8070,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 44,
+							"relationTableIndex": 45,
 							"sinceVersion": 1
 						},
 						{
@@ -7819,7 +8080,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 43,
+							"relationTableIndex": 44,
 							"sinceVersion": 1
 						},
 						{
@@ -7829,7 +8090,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 45,
+							"relationTableIndex": 46,
 							"sinceVersion": 1
 						},
 						{
@@ -7842,7 +8103,7 @@
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 45,
+							"relationTableIndex": 46,
 							"sinceVersion": 1
 						},
 						{
@@ -7870,7 +8131,7 @@
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						}
 					],
@@ -7967,7 +8228,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 50,
 									"oneRelationIndex": 7,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -7990,7 +8251,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 40,
+									"oneTableIndex": 41,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -8011,7 +8272,7 @@
 							"index": 3
 						}
 					],
-					"index": 46,
+					"index": 47,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionRating",
@@ -8098,7 +8359,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -8108,7 +8369,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 40,
+							"relationTableIndex": 41,
 							"sinceVersion": 1
 						}
 					],
@@ -8213,7 +8474,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 40,
+									"oneTableIndex": 41,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -8235,7 +8496,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 47,
+									"oneTableIndex": 48,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -8257,7 +8518,7 @@
 							"index": 2
 						}
 					],
-					"index": 47,
+					"index": 48,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionTranslationRating",
@@ -8363,7 +8624,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 40,
+							"relationTableIndex": 41,
 							"sinceVersion": 1
 						},
 						{
@@ -8373,7 +8634,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 47,
+							"relationTableIndex": 48,
 							"sinceVersion": 1
 						},
 						{
@@ -8387,7 +8648,7 @@
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 47,
+							"relationTableIndex": 48,
 							"sinceVersion": 1
 						}
 					],
@@ -8470,7 +8731,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 50,
 									"oneRelationIndex": 9,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -8493,7 +8754,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 26,
+									"oneTableIndex": 27,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -8515,7 +8776,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 29,
+									"oneTableIndex": 30,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -8537,7 +8798,7 @@
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 48,
+									"oneTableIndex": 49,
 									"oneRelationIndex": 5,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -8559,7 +8820,7 @@
 							"index": 2
 						}
 					],
-					"index": 48,
+					"index": 49,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionTranslation",
@@ -8673,7 +8934,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -8683,7 +8944,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 26,
+							"relationTableIndex": 27,
 							"sinceVersion": 1
 						},
 						{
@@ -8693,7 +8954,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 29,
+							"relationTableIndex": 30,
 							"sinceVersion": 1
 						},
 						{
@@ -8703,7 +8964,7 @@
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 48,
+							"relationTableIndex": 49,
 							"sinceVersion": 1
 						},
 						{
@@ -8717,7 +8978,7 @@
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 48,
+							"relationTableIndex": 49,
 							"sinceVersion": 1
 						},
 						{
@@ -8731,7 +8992,7 @@
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 47,
+							"relationTableIndex": 48,
 							"sinceVersion": 1
 						}
 					],
@@ -8814,7 +9075,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 45,
+									"oneTableIndex": 46,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -8860,7 +9121,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 31,
+									"oneTableIndex": 32,
 									"oneRelationIndex": 3,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -8883,7 +9144,7 @@
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 31,
+									"oneTableIndex": 32,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
@@ -8906,7 +9167,7 @@
 								{
 									"manyRelationIndex": 5,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 50,
 									"oneRelationIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -8928,7 +9189,7 @@
 							"index": 2
 						}
 					],
-					"index": 49,
+					"index": 50,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevision",
@@ -9078,7 +9339,7 @@
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 45,
+							"relationTableIndex": 46,
 							"sinceVersion": 1
 						},
 						{
@@ -9098,7 +9359,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 31,
+							"relationTableIndex": 32,
 							"sinceVersion": 1
 						},
 						{
@@ -9108,7 +9369,7 @@
 							"propertyRef": {
 								"index": 7
 							},
-							"relationTableIndex": 31,
+							"relationTableIndex": 32,
 							"sinceVersion": 1
 						},
 						{
@@ -9118,7 +9379,7 @@
 							"propertyRef": {
 								"index": 8
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -9132,7 +9393,7 @@
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -9146,7 +9407,7 @@
 							"propertyRef": {
 								"index": 10
 							},
-							"relationTableIndex": 46,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -9160,7 +9421,7 @@
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 20,
+							"relationTableIndex": 21,
 							"sinceVersion": 1
 						},
 						{
@@ -9174,7 +9435,7 @@
 							"propertyRef": {
 								"index": 12
 							},
-							"relationTableIndex": 48,
+							"relationTableIndex": 49,
 							"sinceVersion": 1
 						},
 						{
@@ -9188,316 +9449,13 @@
 							"propertyRef": {
 								"index": 13
 							},
-							"relationTableIndex": 42,
+							"relationTableIndex": 43,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "POLL_REVISIONS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 5,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "ACTOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "FACTOR_SKIN_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "BACKGROUND_COLOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "TEXT_COLOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "POLL_REVISION_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 6,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 52,
-									"oneRelationIndex": 6,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "FACTOR_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 6
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 7,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 3,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 50,
-									"oneRelationIndex": 4,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "PARENT_FACTOR_SKIN_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 7
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 2
-						}
-					],
-					"index": 50,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "FactorSkin",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"name": "actor",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": true,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 3
-							},
-							"index": 3,
-							"isId": false,
-							"name": "backgroundColor",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 4
-							},
-							"index": 4,
-							"isId": false,
-							"name": "textColor",
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
-							"isId": false,
-							"name": "pollRevision",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 6,
-							"isId": false,
-							"name": "factor",
-							"relationRef": {
-								"index": 2
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 7,
-							"isId": false,
-							"name": "parent",
-							"relationRef": {
-								"index": 3
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 8,
-							"isId": false,
-							"name": "children",
-							"relationRef": {
-								"index": 4
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 1
-							},
-							"relationTableIndex": 5,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 5
-							},
-							"relationTableIndex": 49,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 6
-							},
-							"relationTableIndex": 52,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"relationType": 1,
-							"propertyRef": {
-								"index": 7
-							},
-							"relationTableIndex": 50,
-							"sinceVersion": 1
-						},
-						{
-							"index": 4,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "parent"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 8
-							},
-							"relationTableIndex": 50,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "FACTOR_SKINS",
 						"indexes": []
 					}
 				},
@@ -9596,7 +9554,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 26,
+									"oneTableIndex": 27,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -9755,7 +9713,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 26,
+							"relationTableIndex": 27,
 							"sinceVersion": 1
 						},
 						{
@@ -9862,7 +9820,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 50,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -10005,15 +9963,6 @@
 								"index": 5
 							},
 							"sinceVersion": 1
-						},
-						{
-							"index": 8,
-							"isId": false,
-							"name": "skins",
-							"relationRef": {
-								"index": 6
-							},
-							"sinceVersion": 1
 						}
 					],
 					"relations": [
@@ -10034,7 +9983,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -10083,20 +10032,6 @@
 								"index": 7
 							},
 							"relationTableIndex": 55,
-							"sinceVersion": 1
-						},
-						{
-							"index": 6,
-							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "factor"
-							},
-							"relationType": 0,
-							"propertyRef": {
-								"index": 8
-							},
-							"relationTableIndex": 50,
 							"sinceVersion": 1
 						}
 					],
@@ -10202,7 +10137,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 26,
+									"oneTableIndex": 27,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -10352,7 +10287,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 26,
+							"relationTableIndex": 27,
 							"sinceVersion": 1
 						},
 						{
@@ -10445,7 +10380,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 49,
+									"oneTableIndex": 50,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -10616,7 +10551,7 @@
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
