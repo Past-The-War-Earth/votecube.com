@@ -16,7 +16,7 @@ import {PollRevisionOpinion}        from '../../opinion/PollRevisionOpinion'
 import {Poll}                       from '../Poll'
 import {PollRun}                    from '../run/PollRun'
 import {UserPollRevisionRating}     from '../user/UserPollRevisionRating'
-import {OutcomeVersion}             from './OutcomeVersion'
+import {Outcome}                    from './Outcome'
 import {PollRevisionFactorPosition} from './PollRevisionFactorPosition'
 import {PollRevisionTranslation}    from './translation/PollRevisionTranslation'
 
@@ -47,16 +47,16 @@ export class PollRevision
 	@ManyToOne()
 	@JoinColumn({
 		name: 'OUTCOME_A_VERSION_ID',
-		referencedColumnName: 'OUTCOME_VERSION_ID'
+		referencedColumnName: 'OUTCOME_ID'
 	})
-	outcomeVersionA: OutcomeVersion
+	outcomeVersionA: Outcome
 
 	@ManyToOne()
 	@JoinColumn({
 		name: 'OUTCOME_B_VERSION_ID',
-		referencedColumnName: 'OUTCOME_VERSION_ID'
+		referencedColumnName: 'OUTCOME_ID'
 	})
-	outcomeVersionB: OutcomeVersion
+	outcomeVersionB: Outcome
 
 	@ManyToOne()
 	@JoinColumn({

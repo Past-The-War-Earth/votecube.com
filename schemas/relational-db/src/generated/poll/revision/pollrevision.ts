@@ -8,8 +8,8 @@ import {
 	IPollRun,
 } from '../run/pollrun';
 import {
-	IOutcomeVersion,
-} from './outcomeversion';
+	IOutcome,
+} from './outcome';
 import {
 	IUserPollRevisionRating,
 } from '../user/userpollrevisionrating';
@@ -42,8 +42,8 @@ export interface IPollRevision extends IImmutableActorRow {
 	// Non-Id Relations
 	poll?: IPoll;
 	createdAtRun?: IPollRun;
-	outcomeVersionA?: IOutcomeVersion;
-	outcomeVersionB?: IOutcomeVersion;
+	outcomeVersionA?: IOutcome;
+	outcomeVersionB?: IOutcome;
 	parent?: IPollRevision;
 	children?: IPollRevision[];
 	ratings?: IUserPollRevisionRating[];

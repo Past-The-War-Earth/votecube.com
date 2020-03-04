@@ -5,7 +5,7 @@ import { PollRevisionOpinion } from '../../opinion/PollRevisionOpinion';
 import { Poll } from '../Poll';
 import { PollRun } from '../run/PollRun';
 import { UserPollRevisionRating } from '../user/UserPollRevisionRating';
-import { OutcomeVersion } from './OutcomeVersion';
+import { Outcome } from './Outcome';
 import { PollRevisionFactorPosition } from './PollRevisionFactorPosition';
 import { PollRevisionTranslation } from './translation/PollRevisionTranslation';
 /**
@@ -16,8 +16,8 @@ export declare class PollRevision extends ImmutableActorRow {
     ageSuitability: AgeSuitability;
     poll: Poll;
     createdAtRun: PollRun;
-    outcomeVersionA: OutcomeVersion;
-    outcomeVersionB: OutcomeVersion;
+    outcomeVersionA: Outcome;
+    outcomeVersionB: Outcome;
     parent: PollRevision;
     children: PollRevision[];
     ratings: UserPollRevisionRating[];

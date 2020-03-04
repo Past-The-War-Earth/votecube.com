@@ -10,34 +10,34 @@ import {
 }                          from '@airport/air-control'
 import {CascadeType}       from '@airport/ground-control'
 import {
-	OutcomeVersionTranslation_Id,
-	OutcomeVersionTranslation_Name
-}                          from '../../../../types/poll/revision/translation/OutcomeVersionTranslation'
+	OutcomeTranslation_Id,
+	OutcomeTranslation_Name
+}                          from '../../../../types/poll/revision/translation/OutcomeTranslation'
 import {Language}          from '../../../infrastructure/Language'
 import {ImmutableActorRow} from '../../../infrastructure/row/ImmutableActorRow'
-import {TranslationType}   from '../../../infrastructure/TranslationType'
-import {OutcomeVersion}    from '../OutcomeVersion'
+import {TranslationType} from '../../../infrastructure/TranslationType'
+import {Outcome}         from '../Outcome'
 
 /**
  * This the translation of a given poll revision.
  *
  */
 @Entity()
-@Table({name: 'OUTCOME_VERSION_TRANSLATIONS'})
-export class OutcomeVersionTranslation
+@Table({name: 'OUTCOME_TRANSLATIONS'})
+export class OutcomeTranslation
 	extends ImmutableActorRow {
 
 	@Id()
 	@GeneratedValue()
-	@Column({name: 'OUTCOME_VERSION_TRANSLATION_ID'})
-	id: OutcomeVersionTranslation_Id
+	@Column({name: 'OUTCOME_TRANSLATION_ID'})
+	id: OutcomeTranslation_Id
 
 	@Column({name: 'NAME'})
-	name: OutcomeVersionTranslation_Name
+	name: OutcomeTranslation_Name
 
 	@ManyToOne()
-	@JoinColumn({name: 'OUTCOME_VERSION_ID'})
-	outcomeVersion: OutcomeVersion
+	@JoinColumn({name: 'OUTCOME_ID'})
+	outcomeVersion: Outcome
 
 	@ManyToOne()
 	@JoinColumn({name: 'LANGUAGE_ID'})
@@ -49,12 +49,12 @@ export class OutcomeVersionTranslation
 
 	@ManyToOne()
 	@JoinColumn({
-		name: 'PARENT_OUTCOME_VERSION_TRANSLATION_ID',
-		referencedColumnName: 'OUTCOME_VERSION_TRANSLATION_ID'
+		name: 'PARENT_OUTCOME_TRANSLATION_ID',
+		referencedColumnName: 'OUTCOME_TRANSLATION_ID'
 	})
-	parent: OutcomeVersionTranslation
+	parent: OutcomeTranslation
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
-	children: OutcomeVersionTranslation[]
+	children: OutcomeTranslation[]
 
 }

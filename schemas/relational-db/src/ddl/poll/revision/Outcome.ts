@@ -8,28 +8,28 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
-import {OutcomeVersion_Id} from '../../../types/poll/revision/OutcomeVersion'
-import {PollRevision}      from './PollRevision'
+import {CascadeType}  from '@airport/ground-control'
+import {Outcome_Id}   from '../../../types/poll/revision/Outcome'
+import {PollRevision} from './PollRevision'
 
 @Entity()
-@Table({name: 'OUTCOME_VERSIONS'})
-export class OutcomeVersion {
+@Table({name: 'OUTCOMES'})
+export class Outcome {
 
 	@Id()
 	@GeneratedValue()
-	@Column({name: 'OUTCOME_VERSION_ID'})
-	id: OutcomeVersion_Id
+	@Column({name: 'OUTCOME_ID'})
+	id: Outcome_Id
 
 	@ManyToOne()
 	@JoinColumn({
-		name: 'PARENT_OUTCOME_VERSION_ID',
-		referencedColumnName: 'OUTCOME_VERSION_ID'
+		name: 'PARENT_OUTCOME_ID',
+		referencedColumnName: 'OUTCOME_ID'
 	})
-	parent: OutcomeVersion
+	parent: Outcome
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
-	children: OutcomeVersion[]
+	children: Outcome[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'outcomeVersionA'})
 	pollRevisionsA: PollRevision[]

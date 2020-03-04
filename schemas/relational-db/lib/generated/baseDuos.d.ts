@@ -37,10 +37,14 @@ import { IFactorTranslation } from './factor/factortranslation';
 import { FactorTranslationESelect, FactorTranslationECreateProperties, FactorTranslationEUpdateColumns, FactorTranslationEUpdateProperties, FactorTranslationEId, FactorTranslationECascadeGraph, QFactorTranslation } from './factor/qfactortranslation';
 import { ILanguage } from './infrastructure/language';
 import { LanguageESelect, LanguageECreateProperties, LanguageEUpdateColumns, LanguageEUpdateProperties, LanguageEId, LanguageECascadeGraph, QLanguage } from './infrastructure/qlanguage';
-import { IOutcomeVersion } from './poll/revision/outcomeversion';
-import { OutcomeVersionESelect, OutcomeVersionECreateProperties, OutcomeVersionEUpdateColumns, OutcomeVersionEUpdateProperties, OutcomeVersionEId, OutcomeVersionECascadeGraph, QOutcomeVersion } from './poll/revision/qoutcomeversion';
-import { IOutcomeVersionTranslation } from './poll/revision/translation/outcomeversiontranslation';
-import { OutcomeVersionTranslationESelect, OutcomeVersionTranslationECreateProperties, OutcomeVersionTranslationEUpdateColumns, OutcomeVersionTranslationEUpdateProperties, OutcomeVersionTranslationEId, OutcomeVersionTranslationECascadeGraph, QOutcomeVersionTranslation } from './poll/revision/translation/qoutcomeversiontranslation';
+import { IOutcome } from './poll/revision/outcome';
+import { OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeECascadeGraph, QOutcome } from './poll/revision/qoutcome';
+import { IOutcomeOpinionVersion } from './opinion/outcomeopinionversion';
+import { OutcomeOpinionVersionESelect, OutcomeOpinionVersionECreateProperties, OutcomeOpinionVersionEUpdateColumns, OutcomeOpinionVersionEUpdateProperties, OutcomeOpinionVersionEId, OutcomeOpinionVersionECascadeGraph, QOutcomeOpinionVersion } from './opinion/qoutcomeopinionversion';
+import { IOutcomeOpinionVersionTranslation } from './opinion/translation/outcomeopinionversiontranslation';
+import { OutcomeOpinionVersionTranslationESelect, OutcomeOpinionVersionTranslationECreateProperties, OutcomeOpinionVersionTranslationEUpdateColumns, OutcomeOpinionVersionTranslationEUpdateProperties, OutcomeOpinionVersionTranslationEId, OutcomeOpinionVersionTranslationECascadeGraph, QOutcomeOpinionVersionTranslation } from './opinion/translation/qoutcomeopinionversiontranslation';
+import { IOutcomeTranslation } from './poll/revision/translation/outcometranslation';
+import { OutcomeTranslationESelect, OutcomeTranslationECreateProperties, OutcomeTranslationEUpdateColumns, OutcomeTranslationEUpdateProperties, OutcomeTranslationEId, OutcomeTranslationECascadeGraph, QOutcomeTranslation } from './poll/revision/translation/qoutcometranslation';
 import { IPoll } from './poll/poll';
 import { PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, PollECascadeGraph, QPoll } from './poll/qpoll';
 import { IPollRevision } from './poll/revision/pollrevision';
@@ -242,15 +246,27 @@ export declare class BaseLanguageDuo extends SQDIDuo<ILanguage, LanguageESelect,
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseOutcomeVersionDuo extends IDuo<IOutcomeVersion, OutcomeVersionESelect, OutcomeVersionECreateProperties, OutcomeVersionEUpdateColumns, OutcomeVersionEUpdateProperties, OutcomeVersionEId, OutcomeVersionECascadeGraph, QOutcomeVersion> {
+export interface IBaseOutcomeDuo extends IDuo<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeECascadeGraph, QOutcome> {
 }
-export declare class BaseOutcomeVersionDuo extends SQDIDuo<IOutcomeVersion, OutcomeVersionESelect, OutcomeVersionECreateProperties, OutcomeVersionEUpdateColumns, OutcomeVersionEUpdateProperties, OutcomeVersionEId, OutcomeVersionECascadeGraph, QOutcomeVersion> implements IBaseOutcomeVersionDuo {
+export declare class BaseOutcomeDuo extends SQDIDuo<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeECascadeGraph, QOutcome> implements IBaseOutcomeDuo {
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseOutcomeVersionTranslationDuo extends IDuo<IOutcomeVersionTranslation, OutcomeVersionTranslationESelect, OutcomeVersionTranslationECreateProperties, OutcomeVersionTranslationEUpdateColumns, OutcomeVersionTranslationEUpdateProperties, OutcomeVersionTranslationEId, OutcomeVersionTranslationECascadeGraph, QOutcomeVersionTranslation> {
+export interface IBaseOutcomeOpinionVersionDuo extends IDuo<IOutcomeOpinionVersion, OutcomeOpinionVersionESelect, OutcomeOpinionVersionECreateProperties, OutcomeOpinionVersionEUpdateColumns, OutcomeOpinionVersionEUpdateProperties, OutcomeOpinionVersionEId, OutcomeOpinionVersionECascadeGraph, QOutcomeOpinionVersion> {
 }
-export declare class BaseOutcomeVersionTranslationDuo extends SQDIDuo<IOutcomeVersionTranslation, OutcomeVersionTranslationESelect, OutcomeVersionTranslationECreateProperties, OutcomeVersionTranslationEUpdateColumns, OutcomeVersionTranslationEUpdateProperties, OutcomeVersionTranslationEId, OutcomeVersionTranslationECascadeGraph, QOutcomeVersionTranslation> implements IBaseOutcomeVersionTranslationDuo {
+export declare class BaseOutcomeOpinionVersionDuo extends SQDIDuo<IOutcomeOpinionVersion, OutcomeOpinionVersionESelect, OutcomeOpinionVersionECreateProperties, OutcomeOpinionVersionEUpdateColumns, OutcomeOpinionVersionEUpdateProperties, OutcomeOpinionVersionEId, OutcomeOpinionVersionECascadeGraph, QOutcomeOpinionVersion> implements IBaseOutcomeOpinionVersionDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseOutcomeOpinionVersionTranslationDuo extends IDuo<IOutcomeOpinionVersionTranslation, OutcomeOpinionVersionTranslationESelect, OutcomeOpinionVersionTranslationECreateProperties, OutcomeOpinionVersionTranslationEUpdateColumns, OutcomeOpinionVersionTranslationEUpdateProperties, OutcomeOpinionVersionTranslationEId, OutcomeOpinionVersionTranslationECascadeGraph, QOutcomeOpinionVersionTranslation> {
+}
+export declare class BaseOutcomeOpinionVersionTranslationDuo extends SQDIDuo<IOutcomeOpinionVersionTranslation, OutcomeOpinionVersionTranslationESelect, OutcomeOpinionVersionTranslationECreateProperties, OutcomeOpinionVersionTranslationEUpdateColumns, OutcomeOpinionVersionTranslationEUpdateProperties, OutcomeOpinionVersionTranslationEId, OutcomeOpinionVersionTranslationECascadeGraph, QOutcomeOpinionVersionTranslation> implements IBaseOutcomeOpinionVersionTranslationDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseOutcomeTranslationDuo extends IDuo<IOutcomeTranslation, OutcomeTranslationESelect, OutcomeTranslationECreateProperties, OutcomeTranslationEUpdateColumns, OutcomeTranslationEUpdateProperties, OutcomeTranslationEId, OutcomeTranslationECascadeGraph, QOutcomeTranslation> {
+}
+export declare class BaseOutcomeTranslationDuo extends SQDIDuo<IOutcomeTranslation, OutcomeTranslationESelect, OutcomeTranslationECreateProperties, OutcomeTranslationEUpdateColumns, OutcomeTranslationEUpdateProperties, OutcomeTranslationEId, OutcomeTranslationECascadeGraph, QOutcomeTranslation> implements IBaseOutcomeTranslationDuo {
     static diSet(): boolean;
     constructor();
 }

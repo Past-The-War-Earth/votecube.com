@@ -66,7 +66,7 @@ declare function require(moduleName: string): any;
 export interface PositionTranslationESelect
     extends ImmutableActorRowESelect, PositionTranslationEOptionalId {
 	// Non-Id Properties
-	description?: string | IQStringField;
+	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -107,7 +107,7 @@ export interface PositionTranslationEOptionalId {
 export interface PositionTranslationEUpdateProperties
 	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
-	description?: string | IQStringField;
+	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	position?: PositionEOptionalId;
@@ -134,7 +134,7 @@ export interface PositionTranslationEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
-	POSITION_DESCRIPTION?: string | IQStringField;
+	POSITION_NAME?: string | IQStringField;
 	POSITION_ID?: number | IQNumberField;
 	LANGUAGE_ID?: number | IQNumberField;
 	PARENT_POSITION_TRANSLATION_ID?: number | IQNumberField;
@@ -173,7 +173,7 @@ export interface QPositionTranslation extends QImmutableActorRow
 	// Id Relations
 
 	// Non-Id Fields
-	description: IQStringField;
+	name: IQStringField;
 
 	// Non-Id Relations
 	position: QPositionQRelation;

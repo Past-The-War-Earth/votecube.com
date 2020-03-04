@@ -1,2 +1,2 @@
 export type PositionTranslation_Id = number
-export type PositionTranslation_Description = string
+export type PositionTranslation_Name = string

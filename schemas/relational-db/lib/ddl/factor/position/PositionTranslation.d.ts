@@ -1,10 +1,10 @@
-import { PositionTranslation_Description, PositionTranslation_Id } from '../../../types/factor/position/PositionTranslation';
+import { PositionTranslation_Name, PositionTranslation_Id } from '../../../types/factor/position/PositionTranslation';
 import { Language } from '../../infrastructure/Language';
 import { ImmutableActorRow } from '../../infrastructure/row/ImmutableActorRow';
 import { Position } from './Position';
 export declare class PositionTranslation extends ImmutableActorRow {
     id: PositionTranslation_Id;
-    description: PositionTranslation_Description;
+    name: PositionTranslation_Name;
     position: Position;
     language: Language;
     parent: PositionTranslation;

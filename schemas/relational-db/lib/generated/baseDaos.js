@@ -150,7 +150,7 @@ export class BaseLanguageDao extends SQDIDao {
         super(23);
     }
 }
-export class BaseOutcomeVersionDao extends SQDIDao {
+export class BaseOutcomeDao extends SQDIDao {
     static diSet() {
         return duoDiSet(57);
     }
@@ -158,12 +158,28 @@ export class BaseOutcomeVersionDao extends SQDIDao {
         super(57);
     }
 }
-export class BaseOutcomeVersionTranslationDao extends SQDIDao {
+export class BaseOutcomeOpinionVersionDao extends SQDIDao {
     static diSet() {
         return duoDiSet(64);
     }
     constructor() {
         super(64);
+    }
+}
+export class BaseOutcomeOpinionVersionTranslationDao extends SQDIDao {
+    static diSet() {
+        return duoDiSet(65);
+    }
+    constructor() {
+        super(65);
+    }
+}
+export class BaseOutcomeTranslationDao extends SQDIDao {
+    static diSet() {
+        return duoDiSet(66);
+    }
+    constructor() {
+        super(66);
     }
 }
 export class BasePollDao extends SQDIDao {

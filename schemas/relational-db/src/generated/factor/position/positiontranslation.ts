@@ -22,7 +22,7 @@ export interface IPositionTranslation extends IImmutableActorRow {
 	// Id Relations
 
 	// Non-Id Properties
-	description?: string;
+	name?: string;
 
 	// Non-Id Relations
 	position?: IPosition;

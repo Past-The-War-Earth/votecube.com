@@ -10,7 +10,7 @@ import {
 }                          from '@airport/air-control'
 import {CascadeType}       from '@airport/ground-control'
 import {
-	PositionTranslation_Description,
+	PositionTranslation_Name,
 	PositionTranslation_Id
 }                          from '../../../types/factor/position/PositionTranslation'
 import {Language}          from '../../infrastructure/Language'
@@ -28,8 +28,8 @@ export class PositionTranslation
 	@Column({name: 'POSITION_TRANSLATION_ID'})
 	id: PositionTranslation_Id
 
-	@Column({name: 'POSITION_DESCRIPTION'})
-	description: PositionTranslation_Description
+	@Column({name: 'POSITION_NAME'})
+	name: PositionTranslation_Name
 
 	@ManyToOne()
 	@JoinColumn({name: 'POSITION_ID'})

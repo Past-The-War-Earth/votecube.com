@@ -150,7 +150,7 @@ export class BaseLanguageDuo extends SQDIDuo {
         super(23);
     }
 }
-export class BaseOutcomeVersionDuo extends SQDIDuo {
+export class BaseOutcomeDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(57);
     }
@@ -158,12 +158,28 @@ export class BaseOutcomeVersionDuo extends SQDIDuo {
         super(57);
     }
 }
-export class BaseOutcomeVersionTranslationDuo extends SQDIDuo {
+export class BaseOutcomeOpinionVersionDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(64);
     }
     constructor() {
         super(64);
+    }
+}
+export class BaseOutcomeOpinionVersionTranslationDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(65);
+    }
+    constructor() {
+        super(65);
+    }
+}
+export class BaseOutcomeTranslationDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(66);
+    }
+    constructor() {
+        super(66);
     }
 }
 export class BasePollDuo extends SQDIDuo {

@@ -6,7 +6,7 @@ import { LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../
  * SELECT - All fields and relations (optional).
  */
 export interface PositionTranslationESelect extends ImmutableActorRowESelect, PositionTranslationEOptionalId {
-    description?: string | IQStringField;
+    name?: string | IQStringField;
     position?: PositionESelect;
     language?: LanguageESelect;
     parent?: PositionTranslationESelect;
@@ -28,7 +28,7 @@ export interface PositionTranslationEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PositionTranslationEUpdateProperties extends ImmutableActorRowEUpdateProperties {
-    description?: string | IQStringField;
+    name?: string | IQStringField;
     position?: PositionEOptionalId;
     language?: LanguageEOptionalId;
     parent?: PositionTranslationEOptionalId;
@@ -45,7 +45,7 @@ export interface PositionTranslationECascadeGraph extends ImmutableActorRowECasc
 export interface PositionTranslationEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
-    POSITION_DESCRIPTION?: string | IQStringField;
+    POSITION_NAME?: string | IQStringField;
     POSITION_ID?: number | IQNumberField;
     LANGUAGE_ID?: number | IQNumberField;
     PARENT_POSITION_TRANSLATION_ID?: number | IQNumberField;
@@ -65,7 +65,7 @@ export interface PositionTranslationECreateColumns extends PositionTranslationEI
  */
 export interface QPositionTranslation extends QImmutableActorRow {
     id: IQNumberField;
-    description: IQStringField;
+    name: IQStringField;
     position: QPositionQRelation;
     language: QLanguageQRelation;
     parent: QPositionTranslationQRelation;

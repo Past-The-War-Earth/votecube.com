@@ -24,8 +24,10 @@ import { ImmutableRow } from '../ddl/infrastructure/row/immutablerow';
 import { Language } from '../ddl/infrastructure/language';
 import { MutableActorRow } from '../ddl/infrastructure/row/mutableactorrow';
 import { MutableRow } from '../ddl/infrastructure/row/mutablerow';
-import { OutcomeVersion } from '../ddl/poll/revision/outcomeversion';
-import { OutcomeVersionTranslation } from '../ddl/poll/revision/translation/outcomeversiontranslation';
+import { Outcome } from '../ddl/poll/revision/outcome';
+import { OutcomeOpinionVersion } from '../ddl/opinion/outcomeopinionversion';
+import { OutcomeOpinionVersionTranslation } from '../ddl/opinion/translation/outcomeopinionversiontranslation';
+import { OutcomeTranslation } from '../ddl/poll/revision/translation/outcometranslation';
 import { Poll } from '../ddl/poll/poll';
 import { PollRevision } from '../ddl/poll/revision/pollrevision';
 import { PollRevisionFactorPosition } from '../ddl/poll/revision/pollrevisionfactorposition';
@@ -95,8 +97,10 @@ const __constructors__ = {
     Language: Language,
     MutableActorRow: MutableActorRow,
     MutableRow: MutableRow,
-    OutcomeVersion: OutcomeVersion,
-    OutcomeVersionTranslation: OutcomeVersionTranslation,
+    Outcome: Outcome,
+    OutcomeOpinionVersion: OutcomeOpinionVersion,
+    OutcomeOpinionVersionTranslation: OutcomeOpinionVersionTranslation,
+    OutcomeTranslation: OutcomeTranslation,
     Poll: Poll,
     PollRevision: PollRevision,
     PollRevisionFactorPosition: PollRevisionFactorPosition,

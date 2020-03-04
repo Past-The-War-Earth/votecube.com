@@ -32,14 +32,14 @@ __decorate([
     ManyToOne(),
     JoinColumn({
         name: 'OUTCOME_A_VERSION_ID',
-        referencedColumnName: 'OUTCOME_VERSION_ID'
+        referencedColumnName: 'OUTCOME_ID'
     })
 ], PollRevision.prototype, "outcomeVersionA", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({
         name: 'OUTCOME_B_VERSION_ID',
-        referencedColumnName: 'OUTCOME_VERSION_ID'
+        referencedColumnName: 'OUTCOME_ID'
     })
 ], PollRevision.prototype, "outcomeVersionB", void 0);
 __decorate([

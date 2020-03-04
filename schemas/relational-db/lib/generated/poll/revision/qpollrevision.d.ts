@@ -2,7 +2,7 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../../infrastructure/row/qimmutableactorrow';
 import { PollEOptionalId, PollESelect, QPollQRelation } from '../qpoll';
 import { PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../run/qpollrun';
-import { OutcomeVersionEOptionalId, OutcomeVersionESelect, QOutcomeVersionQRelation } from './qoutcomeversion';
+import { OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from './qoutcome';
 import { UserPollRevisionRatingECascadeGraph, UserPollRevisionRatingESelect, QUserPollRevisionRating } from '../user/quserpollrevisionrating';
 import { PollRevisionFactorPositionECascadeGraph, PollRevisionFactorPositionESelect, QPollRevisionFactorPosition } from './qpollrevisionfactorposition';
 import { PollRevisionTranslationECascadeGraph, PollRevisionTranslationESelect, QPollRevisionTranslation } from './translation/qpollrevisiontranslation';
@@ -14,8 +14,8 @@ export interface PollRevisionESelect extends ImmutableActorRowESelect, PollRevis
     ageSuitability?: number | IQNumberField;
     poll?: PollESelect;
     createdAtRun?: PollRunESelect;
-    outcomeVersionA?: OutcomeVersionESelect;
-    outcomeVersionB?: OutcomeVersionESelect;
+    outcomeVersionA?: OutcomeESelect;
+    outcomeVersionB?: OutcomeESelect;
     parent?: PollRevisionESelect;
     children?: PollRevisionESelect;
     ratings?: UserPollRevisionRatingESelect;
@@ -42,8 +42,8 @@ export interface PollRevisionEUpdateProperties extends ImmutableActorRowEUpdateP
     ageSuitability?: number | IQNumberField;
     poll?: PollEOptionalId;
     createdAtRun?: PollRunEOptionalId;
-    outcomeVersionA?: OutcomeVersionEOptionalId;
-    outcomeVersionB?: OutcomeVersionEOptionalId;
+    outcomeVersionA?: OutcomeEOptionalId;
+    outcomeVersionB?: OutcomeEOptionalId;
     parent?: PollRevisionEOptionalId;
 }
 /**
@@ -87,8 +87,8 @@ export interface QPollRevision extends QImmutableActorRow {
     ageSuitability: IQNumberField;
     poll: QPollQRelation;
     createdAtRun: QPollRunQRelation;
-    outcomeVersionA: QOutcomeVersionQRelation;
-    outcomeVersionB: QOutcomeVersionQRelation;
+    outcomeVersionA: QOutcomeQRelation;
+    outcomeVersionB: QOutcomeQRelation;
     parent: QPollRevisionQRelation;
     children: IQOneToManyRelation<QPollRevision>;
     ratings: IQOneToManyRelation<QUserPollRevisionRating>;

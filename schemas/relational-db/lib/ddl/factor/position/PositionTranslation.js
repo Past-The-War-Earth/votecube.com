@@ -15,8 +15,8 @@ __decorate([
     Column({ name: 'POSITION_TRANSLATION_ID' })
 ], PositionTranslation.prototype, "id", void 0);
 __decorate([
-    Column({ name: 'POSITION_DESCRIPTION' })
-], PositionTranslation.prototype, "description", void 0);
+    Column({ name: 'POSITION_NAME' })
+], PositionTranslation.prototype, "name", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({ name: 'POSITION_ID' })

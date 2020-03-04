@@ -52,15 +52,15 @@ import {
 	QPollRunQRelation,
 } from '../run/qpollrun';
 import {
-	OutcomeVersionECascadeGraph,
-	OutcomeVersionEId,
-	OutcomeVersionEOptionalId,
-	OutcomeVersionEUpdateProperties,
-	OutcomeVersionESelect,
-	QOutcomeVersion,
-	QOutcomeVersionQId,
-	QOutcomeVersionQRelation,
-} from './qoutcomeversion';
+	OutcomeECascadeGraph,
+	OutcomeEId,
+	OutcomeEOptionalId,
+	OutcomeEUpdateProperties,
+	OutcomeESelect,
+	QOutcome,
+	QOutcomeQId,
+	QOutcomeQRelation,
+} from './qoutcome';
 import {
 	UserPollRevisionRatingECascadeGraph,
 	UserPollRevisionRatingEId,
@@ -123,8 +123,8 @@ export interface PollRevisionESelect
   // Non-Id relations (including OneToMany's)
 	poll?: PollESelect;
 	createdAtRun?: PollRunESelect;
-	outcomeVersionA?: OutcomeVersionESelect;
-	outcomeVersionB?: OutcomeVersionESelect;
+	outcomeVersionA?: OutcomeESelect;
+	outcomeVersionB?: OutcomeESelect;
 	parent?: PollRevisionESelect;
 	children?: PollRevisionESelect;
 	ratings?: UserPollRevisionRatingESelect;
@@ -168,8 +168,8 @@ export interface PollRevisionEUpdateProperties
 	// Non-Id Relations - ids only & no OneToMany's
 	poll?: PollEOptionalId;
 	createdAtRun?: PollRunEOptionalId;
-	outcomeVersionA?: OutcomeVersionEOptionalId;
-	outcomeVersionB?: OutcomeVersionEOptionalId;
+	outcomeVersionA?: OutcomeEOptionalId;
+	outcomeVersionB?: OutcomeEOptionalId;
 	parent?: PollRevisionEOptionalId;
 
 }
@@ -242,8 +242,8 @@ export interface QPollRevision extends QImmutableActorRow
 	// Non-Id Relations
 	poll: QPollQRelation;
 	createdAtRun: QPollRunQRelation;
-	outcomeVersionA: QOutcomeVersionQRelation;
-	outcomeVersionB: QOutcomeVersionQRelation;
+	outcomeVersionA: QOutcomeQRelation;
+	outcomeVersionB: QOutcomeQRelation;
 	parent: QPollRevisionQRelation;
 	children: IQOneToManyRelation<QPollRevision>;
 	ratings: IQOneToManyRelation<QUserPollRevisionRating>;

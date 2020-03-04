@@ -8,13 +8,12 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType} from '@airport/ground-control'
+import {CascadeType}       from '@airport/ground-control'
 import {
-	FactorTranslation_Description,
 	FactorTranslation_Id,
 	FactorTranslation_Name
-}                    from '../../types/factor/FactorTranslation'
-import {Language}    from '../infrastructure/Language'
+}                          from '../../types/factor/FactorTranslation'
+import {Language}          from '../infrastructure/Language'
 import {ImmutableActorRow} from '../infrastructure/row/ImmutableActorRow'
 import {Factor}            from './Factor'
 

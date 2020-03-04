@@ -1,7 +1,7 @@
 import { IImmutableActorRow } from '../../infrastructure/row/immutableactorrow';
 import { IPoll } from '../poll';
 import { IPollRun } from '../run/pollrun';
-import { IOutcomeVersion } from './outcomeversion';
+import { IOutcome } from './outcome';
 import { IUserPollRevisionRating } from '../user/userpollrevisionrating';
 import { IPollRevisionFactorPosition } from './pollrevisionfactorposition';
 import { IPollRevisionTranslation } from './translation/pollrevisiontranslation';
@@ -11,8 +11,8 @@ export interface IPollRevision extends IImmutableActorRow {
     ageSuitability?: number;
     poll?: IPoll;
     createdAtRun?: IPollRun;
-    outcomeVersionA?: IOutcomeVersion;
-    outcomeVersionB?: IOutcomeVersion;
+    outcomeVersionA?: IOutcome;
+    outcomeVersionB?: IOutcome;
     parent?: IPollRevision;
     children?: IPollRevision[];
     ratings?: IUserPollRevisionRating[];

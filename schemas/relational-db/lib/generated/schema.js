@@ -5310,7 +5310,7 @@ export const SCHEMA = {
                             "index": 3,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [],
-                            "name": "POSITION_DESCRIPTION",
+                            "name": "POSITION_NAME",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -5432,7 +5432,7 @@ export const SCHEMA = {
                             },
                             "index": 3,
                             "isId": false,
-                            "name": "description",
+                            "name": "name",
                             "sinceVersion": 1
                         },
                         {
@@ -10990,7 +10990,7 @@ export const SCHEMA = {
                             "index": 0,
                             "isGenerated": true,
                             "manyRelationColumnRefs": [],
-                            "name": "OUTCOME_VERSION_ID",
+                            "name": "OUTCOME_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -11013,7 +11013,7 @@ export const SCHEMA = {
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "PARENT_OUTCOME_VERSION_ID",
+                            "name": "PARENT_OUTCOME_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -11032,7 +11032,7 @@ export const SCHEMA = {
                     "index": 57,
                     "isLocal": true,
                     "isRepositoryEntity": false,
-                    "name": "OutcomeVersion",
+                    "name": "Outcome",
                     "properties": [
                         {
                             "columnRef": {
@@ -11136,7 +11136,7 @@ export const SCHEMA = {
                     ],
                     "sinceVersion": 1,
                     "tableConfig": {
-                        "name": "OUTCOME_VERSIONS",
+                        "name": "OUTCOMES",
                         "indexes": []
                     }
                 },
@@ -12688,6 +12688,335 @@ export const SCHEMA = {
                     "columns": [
                         {
                             "index": 0,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "OUTCOME_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 55,
+                                    "oneColumnIndex": 1,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "POLL_REVISION_OPINION_VERSION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "index": 64,
+                    "isLocal": true,
+                    "isRepositoryEntity": false,
+                    "name": "OutcomeOpinionVersion",
+                    "properties": [
+                        {
+                            "columnRef": {
+                                "index": 0
+                            },
+                            "index": 0,
+                            "isId": true,
+                            "name": "id",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "name": "pollRevisionOpinionVersion",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "name": "translations",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 1
+                            },
+                            "relationTableIndex": 55,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "outcomeOpinionVersion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 2
+                            },
+                            "relationTableIndex": 65,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "OUTCOME_OPINION_VERSIONS",
+                        "indexes": []
+                    }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "CREATED_AT",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 2
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "OUTCOME_OPINION_VERSION_TRANSLATION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "IS_ORIGINAL",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 1
+                        },
+                        {
+                            "index": 3,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "TITLE",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 3
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 5
+                        },
+                        {
+                            "index": 4,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "TEXT",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 4
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 5
+                        },
+                        {
+                            "index": 5,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 64,
+                                    "oneRelationIndex": 1,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "OUTCOME_OPINION_VERSION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 5
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 6,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 23,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "LANGUAGE_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 6
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "index": 65,
+                    "isLocal": true,
+                    "isRepositoryEntity": false,
+                    "name": "OutcomeOpinionVersionTranslation",
+                    "properties": [
+                        {
+                            "columnRef": {
+                                "index": 0
+                            },
+                            "index": 0,
+                            "isId": false,
+                            "name": "createdAt",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 1
+                            },
+                            "index": 1,
+                            "isId": true,
+                            "name": "id",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 2
+                            },
+                            "index": 2,
+                            "isId": false,
+                            "name": "original",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 3
+                            },
+                            "index": 3,
+                            "isId": false,
+                            "name": "title",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 4
+                            },
+                            "index": 4,
+                            "isId": false,
+                            "name": "text",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "name": "outcomeOpinionVersion",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 6,
+                            "isId": false,
+                            "name": "language",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 5
+                            },
+                            "relationTableIndex": 64,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 6
+                            },
+                            "relationTableIndex": 23,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "OUTCOME_OPINION_VERSION_TRANSLATIONS",
+                        "indexes": []
+                    }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [],
                             "name": "CREATED_AT",
@@ -12726,7 +13055,7 @@ export const SCHEMA = {
                             "index": 2,
                             "isGenerated": true,
                             "manyRelationColumnRefs": [],
-                            "name": "OUTCOME_VERSION_TRANSLATION_ID",
+                            "name": "OUTCOME_TRANSLATION_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -12762,7 +13091,7 @@ export const SCHEMA = {
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "OUTCOME_VERSION_ID",
+                            "name": "OUTCOME_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -12823,13 +13152,13 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 64,
+                                    "oneTableIndex": 66,
                                     "oneRelationIndex": 5,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "PARENT_OUTCOME_VERSION_TRANSLATION_ID",
+                            "name": "PARENT_OUTCOME_TRANSLATION_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -12845,10 +13174,10 @@ export const SCHEMA = {
                             "index": 2
                         }
                     ],
-                    "index": 64,
+                    "index": 66,
                     "isLocal": true,
                     "isRepositoryEntity": false,
-                    "name": "OutcomeVersionTranslation",
+                    "name": "OutcomeTranslation",
                     "properties": [
                         {
                             "columnRef": {
@@ -12980,7 +13309,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 7
                             },
-                            "relationTableIndex": 64,
+                            "relationTableIndex": 66,
                             "sinceVersion": 1
                         },
                         {
@@ -12994,13 +13323,13 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 8
                             },
-                            "relationTableIndex": 64,
+                            "relationTableIndex": 66,
                             "sinceVersion": 1
                         }
                     ],
                     "sinceVersion": 1,
                     "tableConfig": {
-                        "name": "OUTCOME_VERSION_TRANSLATIONS",
+                        "name": "OUTCOME_TRANSLATIONS",
                         "indexes": []
                     }
                 }

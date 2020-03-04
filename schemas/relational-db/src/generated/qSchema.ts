@@ -56,10 +56,14 @@ import { MutableActorRow } from '../ddl/infrastructure/row/mutableactorrow';
 import { QMutableActorRow } from './infrastructure/row/qmutableactorrow';
 import { MutableRow } from '../ddl/infrastructure/row/mutablerow';
 import { QMutableRow } from './infrastructure/row/qmutablerow';
-import { OutcomeVersion } from '../ddl/poll/revision/outcomeversion';
-import { QOutcomeVersion } from './poll/revision/qoutcomeversion';
-import { OutcomeVersionTranslation } from '../ddl/poll/revision/translation/outcomeversiontranslation';
-import { QOutcomeVersionTranslation } from './poll/revision/translation/qoutcomeversiontranslation';
+import { Outcome } from '../ddl/poll/revision/outcome';
+import { QOutcome } from './poll/revision/qoutcome';
+import { OutcomeOpinionVersion } from '../ddl/opinion/outcomeopinionversion';
+import { QOutcomeOpinionVersion } from './opinion/qoutcomeopinionversion';
+import { OutcomeOpinionVersionTranslation } from '../ddl/opinion/translation/outcomeopinionversiontranslation';
+import { QOutcomeOpinionVersionTranslation } from './opinion/translation/qoutcomeopinionversiontranslation';
+import { OutcomeTranslation } from '../ddl/poll/revision/translation/outcometranslation';
+import { QOutcomeTranslation } from './poll/revision/translation/qoutcometranslation';
 import { Poll } from '../ddl/poll/poll';
 import { QPoll } from './poll/qpoll';
 import { PollRevision } from '../ddl/poll/revision/pollrevision';
@@ -179,8 +183,10 @@ export interface LocalQSchema extends AirportQSchema {
 	Language: QLanguage;
 	MutableActorRow: QMutableActorRow;
 	MutableRow: QMutableRow;
-	OutcomeVersion: QOutcomeVersion;
-	OutcomeVersionTranslation: QOutcomeVersionTranslation;
+	Outcome: QOutcome;
+	OutcomeOpinionVersion: QOutcomeOpinionVersion;
+	OutcomeOpinionVersionTranslation: QOutcomeOpinionVersionTranslation;
+	OutcomeTranslation: QOutcomeTranslation;
 	Poll: QPoll;
 	PollRevision: QPollRevision;
 	PollRevisionFactorPosition: QPollRevisionFactorPosition;
@@ -253,8 +259,10 @@ const __constructors__ = {
 	Language: Language,
 	MutableActorRow: MutableActorRow,
 	MutableRow: MutableRow,
-	OutcomeVersion: OutcomeVersion,
-	OutcomeVersionTranslation: OutcomeVersionTranslation,
+	Outcome: Outcome,
+	OutcomeOpinionVersion: OutcomeOpinionVersion,
+	OutcomeOpinionVersionTranslation: OutcomeOpinionVersionTranslation,
+	OutcomeTranslation: OutcomeTranslation,
 	Poll: Poll,
 	PollRevision: PollRevision,
 	PollRevisionFactorPosition: PollRevisionFactorPosition,
