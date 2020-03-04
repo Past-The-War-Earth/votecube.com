@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="" />
+    <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="Artifact cleanup.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/public-logic/src/converter/PollRevisionConveter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/converter/PollRevisionConveter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/Outcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/Outcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/PollRevisionTranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/translation/PollRevisionTranslation.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -239,7 +244,8 @@
     <MESSAGE value="Added Outcomes and lib files." />
     <MESSAGE value="Removed PollRevision and Factor descriptions (names are sufficient for now)." />
     <MESSAGE value="Added outcome Opinion. Renaming." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added outcome Opinion. Renaming." />
+    <MESSAGE value="Artifact cleanup." />
+    <option name="LAST_COMMIT_MESSAGE" value="Artifact cleanup." />
   </component>
   <component name="WindowStateProjectService">
     <state x="566" y="-873" key="#Updates" timestamp="1580326375485">
@@ -269,12 +275,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="229" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1579105984422" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1583283167572">
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1583283358597">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@0.0.1920.1040" timestamp="1582741181313" />
     <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209055925" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583283167572" />
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583283358597" />
     <state x="1" y="-1080" key="CommitChangelistDialog2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130909180" />
     <state width="379" height="466" key="DebuggerActiveHint" timestamp="1579096165500">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -293,37 +299,37 @@
     <state x="2607" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582822760189" />
     <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578848148679" />
     <state x="687" y="-857" key="FileChooserDialogImpl/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579030485607" />
-    <state width="1899" height="288" key="GridCell.Tab.0.bottom" timestamp="1583283255169">
+    <state width="1899" height="288" key="GridCell.Tab.0.bottom" timestamp="1583283935225">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974625" />
-    <state width="1899" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583283255169" />
+    <state width="1899" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583283935225" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
-    <state width="1899" height="288" key="GridCell.Tab.0.center" timestamp="1583283255169">
+    <state width="1899" height="288" key="GridCell.Tab.0.center" timestamp="1583283935224">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583283255169" />
+    <state width="1899" height="288" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583283935224" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="288" key="GridCell.Tab.0.left" timestamp="1583283255168">
+    <state width="1899" height="288" key="GridCell.Tab.0.left" timestamp="1583283935224">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628893" />
     <state width="1899" height="372" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583283255168" />
+    <state width="1899" height="288" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583283935224" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="288" key="GridCell.Tab.0.right" timestamp="1583283255169">
+    <state width="1899" height="288" key="GridCell.Tab.0.right" timestamp="1583283935224">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583283255169" />
+    <state width="1899" height="288" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583283935224" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
     <state width="1899" height="356" key="GridCell.Tab.1.bottom" timestamp="1579124842567">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -402,11 +408,11 @@
     </state>
     <state x="141" y="35" width="1418" height="971" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582848282161" />
     <state x="477" y="-890" key="SettingsEditor/1.-1080.1920.1040/1921.-1188.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1040" timestamp="1580326540443" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1583283129881">
+    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1583283334635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209060849" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583283129881" />
+    <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583283334635" />
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130913034" />
     <state x="93" y="-988" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582741386494">
       <screen x="1" y="-1080" width="1920" height="1080" />

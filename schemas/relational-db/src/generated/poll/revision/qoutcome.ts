@@ -22,6 +22,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	OutcomeTranslationECascadeGraph,
+	OutcomeTranslationEId,
+	OutcomeTranslationEOptionalId,
+	OutcomeTranslationEUpdateProperties,
+	OutcomeTranslationESelect,
+	QOutcomeTranslation,
+	QOutcomeTranslationQId,
+	QOutcomeTranslationQRelation,
+} from './translation/qoutcometranslation';
+import {
 	PollRevisionECascadeGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
@@ -50,6 +60,7 @@ export interface OutcomeESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
+	parentTranslation?: OutcomeTranslationESelect;
 	parent?: OutcomeESelect;
 	children?: OutcomeESelect;
 	pollRevisionsA?: PollRevisionESelect;
@@ -88,6 +99,7 @@ export interface OutcomeEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
+	parentTranslation?: OutcomeTranslationEOptionalId;
 	parent?: OutcomeEOptionalId;
 
 }
@@ -110,6 +122,7 @@ export interface OutcomeECascadeGraph
 export interface OutcomeEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
+	PARENT_OUTCOME_TRANSLATION_ID?: number | IQNumberField;
 	PARENT_OUTCOME_ID?: number | IQNumberField;
 
 }
@@ -148,6 +161,7 @@ export interface QOutcome extends IQEntity
 	// Non-Id Fields
 
 	// Non-Id Relations
+	parentTranslation: QOutcomeTranslationQRelation;
 	parent: QOutcomeQRelation;
 	children: IQOneToManyRelation<QOutcome>;
 	pollRevisionsA: IQOneToManyRelation<QPollRevision>;

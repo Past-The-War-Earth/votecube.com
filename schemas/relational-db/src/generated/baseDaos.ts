@@ -1104,11 +1104,11 @@ export class BaseFactorDao
 	implements IBaseFactorDao {
 
 	static diSet(): boolean {
-		return duoDiSet(60)
+		return duoDiSet(61)
 	}
 	
 	constructor() {
-		super(60)
+		super(61)
 	}
 }
 
@@ -1176,11 +1176,11 @@ export class BaseFactorPositionDao
 	implements IBaseFactorPositionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(61)
+		return duoDiSet(62)
 	}
 	
 	constructor() {
-		super(61)
+		super(62)
 	}
 }
 
@@ -1194,11 +1194,11 @@ export class BaseFactorSkinDao
 	implements IBaseFactorSkinDao {
 
 	static diSet(): boolean {
-		return duoDiSet(59)
+		return duoDiSet(60)
 	}
 	
 	constructor() {
-		super(59)
+		super(60)
 	}
 }
 
@@ -1248,11 +1248,11 @@ export class BaseOutcomeDao
 	implements IBaseOutcomeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(57)
+		return duoDiSet(58)
 	}
 	
 	constructor() {
-		super(57)
+		super(58)
 	}
 }
 
@@ -1266,11 +1266,11 @@ export class BaseOutcomeOpinionVersionDao
 	implements IBaseOutcomeOpinionVersionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(64)
+		return duoDiSet(65)
 	}
 	
 	constructor() {
-		super(64)
+		super(65)
 	}
 }
 
@@ -1284,11 +1284,11 @@ export class BaseOutcomeOpinionVersionTranslationDao
 	implements IBaseOutcomeOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(65)
+		return duoDiSet(66)
 	}
 	
 	constructor() {
-		super(65)
+		super(66)
 	}
 }
 
@@ -1302,11 +1302,11 @@ export class BaseOutcomeTranslationDao
 	implements IBaseOutcomeTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(66)
+		return duoDiSet(57)
 	}
 	
 	constructor() {
-		super(66)
+		super(57)
 	}
 }
 
@@ -1338,11 +1338,11 @@ export class BasePollRevisionDao
 	implements IBasePollRevisionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(58)
+		return duoDiSet(59)
 	}
 	
 	constructor() {
-		super(58)
+		super(59)
 	}
 }
 
@@ -1734,11 +1734,11 @@ export class BaseRatingReasonDao
 	implements IBaseRatingReasonDao {
 
 	static diSet(): boolean {
-		return duoDiSet(63)
+		return duoDiSet(64)
 	}
 	
 	constructor() {
-		super(63)
+		super(64)
 	}
 }
 
@@ -1752,11 +1752,11 @@ export class BaseRatingReasonTranslationDao
 	implements IBaseRatingReasonTranslationDao {
 
 	static diSet(): boolean {
-		return duoDiSet(62)
+		return duoDiSet(63)
 	}
 	
 	constructor() {
-		super(62)
+		super(63)
 	}
 }
 

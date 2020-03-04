@@ -7,10 +7,11 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                          from '@airport/air-control'
-import {CascadeType}  from '@airport/ground-control'
-import {Outcome_Id}   from '../../../types/poll/revision/Outcome'
-import {PollRevision} from './PollRevision'
+}                           from '@airport/air-control'
+import {CascadeType}        from '@airport/ground-control'
+import {Outcome_Id}         from '../../../types/poll/revision/Outcome'
+import {PollRevision}       from './PollRevision'
+import {OutcomeTranslation} from './translation/OutcomeTranslation'
 
 @Entity()
 @Table({name: 'OUTCOMES'})
@@ -20,6 +21,13 @@ export class Outcome {
 	@GeneratedValue()
 	@Column({name: 'OUTCOME_ID'})
 	id: Outcome_Id
+
+	@ManyToOne()
+	@JoinColumn({
+		name: 'PARENT_OUTCOME_TRANSLATION_ID',
+		referencedColumnName: 'OUTCOME_TRANSLATION_ID'
+	})
+	parentTranslation: OutcomeTranslation
 
 	@ManyToOne()
 	@JoinColumn({

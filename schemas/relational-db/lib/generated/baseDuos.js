@@ -88,10 +88,10 @@ export class BaseEmojiDuo extends SQDIDuo {
 }
 export class BaseFactorDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(60);
+        return duoDiSet(61);
     }
     constructor() {
-        super(60);
+        super(61);
     }
 }
 export class BaseFactorOpinionVersionDuo extends SQDIDuo {
@@ -120,18 +120,18 @@ export class BaseFactorOpinionVersionTranslationDuo extends SQDIDuo {
 }
 export class BaseFactorPositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(61);
+        return duoDiSet(62);
     }
     constructor() {
-        super(61);
+        super(62);
     }
 }
 export class BaseFactorSkinDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(59);
+        return duoDiSet(60);
     }
     constructor() {
-        super(59);
+        super(60);
     }
 }
 export class BaseFactorTranslationDuo extends SQDIDuo {
@@ -152,21 +152,13 @@ export class BaseLanguageDuo extends SQDIDuo {
 }
 export class BaseOutcomeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(57);
+        return duoDiSet(58);
     }
     constructor() {
-        super(57);
+        super(58);
     }
 }
 export class BaseOutcomeOpinionVersionDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(64);
-    }
-    constructor() {
-        super(64);
-    }
-}
-export class BaseOutcomeOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(65);
     }
@@ -174,12 +166,20 @@ export class BaseOutcomeOpinionVersionTranslationDuo extends SQDIDuo {
         super(65);
     }
 }
-export class BaseOutcomeTranslationDuo extends SQDIDuo {
+export class BaseOutcomeOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(66);
     }
     constructor() {
         super(66);
+    }
+}
+export class BaseOutcomeTranslationDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(57);
+    }
+    constructor() {
+        super(57);
     }
 }
 export class BasePollDuo extends SQDIDuo {
@@ -192,10 +192,10 @@ export class BasePollDuo extends SQDIDuo {
 }
 export class BasePollRevisionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(58);
+        return duoDiSet(59);
     }
     constructor() {
-        super(58);
+        super(59);
     }
 }
 export class BasePollRevisionFactorPositionDuo extends SQDIDuo {
@@ -368,18 +368,18 @@ export class BaseRatingDuo extends SQDIDuo {
 }
 export class BaseRatingReasonDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(63);
+        return duoDiSet(64);
     }
     constructor() {
-        super(63);
+        super(64);
     }
 }
 export class BaseRatingReasonTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(62);
+        return duoDiSet(63);
     }
     constructor() {
-        super(62);
+        super(63);
     }
 }
 export class BaseRatingSettingDuo extends SQDIDuo {

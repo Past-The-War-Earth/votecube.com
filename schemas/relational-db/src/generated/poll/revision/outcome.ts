@@ -1,4 +1,7 @@
 import {
+	IOutcomeTranslation,
+} from './translation/outcometranslation';
+import {
 	IPollRevision,
 } from './pollrevision';
 
@@ -18,6 +21,7 @@ export interface IOutcome {
 	// Non-Id Properties
 
 	// Non-Id Relations
+	parentTranslation?: IOutcomeTranslation;
 	parent?: IOutcome;
 	children?: IOutcome[];
 	pollRevisionsA?: IPollRevision[];

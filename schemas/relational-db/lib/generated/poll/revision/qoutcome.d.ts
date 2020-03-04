@@ -1,9 +1,11 @@
 import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntityUpdateProperties, IEntitySelectProperties, IQNumberField, IQOneToManyRelation, IQEntity, IQRelation } from '@airport/air-control';
+import { OutcomeTranslationEOptionalId, OutcomeTranslationESelect, QOutcomeTranslationQRelation } from './translation/qoutcometranslation';
 import { PollRevisionECascadeGraph, PollRevisionESelect, QPollRevision } from './qpollrevision';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface OutcomeESelect extends IEntitySelectProperties, OutcomeEOptionalId {
+    parentTranslation?: OutcomeTranslationESelect;
     parent?: OutcomeESelect;
     children?: OutcomeESelect;
     pollRevisionsA?: PollRevisionESelect;
@@ -25,6 +27,7 @@ export interface OutcomeEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface OutcomeEUpdateProperties extends IEntityUpdateProperties {
+    parentTranslation?: OutcomeTranslationEOptionalId;
     parent?: OutcomeEOptionalId;
 }
 /**
@@ -39,6 +42,7 @@ export interface OutcomeECascadeGraph extends IEntityCascadeGraph {
  * UPDATE - non-id columns (optional).
  */
 export interface OutcomeEUpdateColumns extends IEntityUpdateColumns {
+    PARENT_OUTCOME_TRANSLATION_ID?: number | IQNumberField;
     PARENT_OUTCOME_ID?: number | IQNumberField;
 }
 /**
@@ -56,6 +60,7 @@ export interface OutcomeECreateColumns extends OutcomeEId, OutcomeEUpdateColumns
  */
 export interface QOutcome extends IQEntity {
     id: IQNumberField;
+    parentTranslation: QOutcomeTranslationQRelation;
     parent: QOutcomeQRelation;
     children: IQOneToManyRelation<QOutcome>;
     pollRevisionsA: IQOneToManyRelation<QPollRevision>;

@@ -10,7 +10,6 @@ import {
 }                                                   from '@airport/air-control'
 import {CascadeType}                                from '@airport/ground-control'
 import {
-	PollRevisionTranslation_Description,
 	PollRevisionTranslation_Id,
 	PollRevisionTranslation_Name
 }                                                   from '../../../../types/poll/revision/translation/PollRevisionTranslation'

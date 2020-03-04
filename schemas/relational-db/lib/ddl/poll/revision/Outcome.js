@@ -16,6 +16,13 @@ __decorate([
 __decorate([
     ManyToOne(),
     JoinColumn({
+        name: 'PARENT_OUTCOME_TRANSLATION_ID',
+        referencedColumnName: 'OUTCOME_TRANSLATION_ID'
+    })
+], Outcome.prototype, "parentTranslation", void 0);
+__decorate([
+    ManyToOne(),
+    JoinColumn({
         name: 'PARENT_OUTCOME_ID',
         referencedColumnName: 'OUTCOME_ID'
     })
