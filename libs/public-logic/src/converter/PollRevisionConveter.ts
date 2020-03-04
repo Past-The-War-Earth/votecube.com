@@ -74,7 +74,7 @@ export class PollRevisionConverter
 		// Non-Id Relations
 		pollRevision ? : IPollRevision
 		language ? : ILanguage
-		type ? : ITranslationType
+		type ? : ITranslationTNype
 		parent ? : IPollRevisionTranslation
 		children ? : IPollRevisionTranslation[]
 		ratings ? : IUserPollRevisionTranslationRating[]
