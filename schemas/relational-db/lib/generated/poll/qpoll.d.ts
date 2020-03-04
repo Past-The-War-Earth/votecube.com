@@ -2,7 +2,6 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../infrastructure/row/qimmutableactorrow';
 import { ThemeEOptionalId, ThemeESelect, QThemeQRelation } from './qtheme';
 import { PollTypeEOptionalId, PollTypeESelect, QPollTypeQRelation } from './qpolltype';
-import { UserPollRatingECascadeGraph, UserPollRatingESelect, QUserPollRating } from './user/quserpollrating';
 import { PollRunECascadeGraph, PollRunESelect, QPollRun } from './run/qpollrun';
 import { PollRevisionECascadeGraph, PollRevisionESelect, QPollRevision } from './revision/qpollrevision';
 /**
@@ -15,7 +14,6 @@ export interface PollESelect extends ImmutableActorRowESelect, PollEOptionalId {
     type?: PollTypeESelect;
     parent?: PollESelect;
     children?: PollESelect;
-    ratings?: UserPollRatingESelect;
     runs?: PollRunESelect;
     revisions?: PollRevisionESelect;
 }
@@ -44,7 +42,6 @@ export interface PollEUpdateProperties extends ImmutableActorRowEUpdatePropertie
  */
 export interface PollECascadeGraph extends ImmutableActorRowECascadeGraph {
     children?: PollECascadeGraph;
-    ratings?: UserPollRatingECascadeGraph;
     runs?: PollRunECascadeGraph;
     revisions?: PollRevisionECascadeGraph;
 }
@@ -80,7 +77,6 @@ export interface QPoll extends QImmutableActorRow {
     type: QPollTypeQRelation;
     parent: QPollQRelation;
     children: IQOneToManyRelation<QPoll>;
-    ratings: IQOneToManyRelation<QUserPollRating>;
     runs: IQOneToManyRelation<QPollRun>;
     revisions: IQOneToManyRelation<QPollRevision>;
 }

@@ -35,8 +35,9 @@ import { PollRevisionOpinion } from '../ddl/opinion/pollrevisionopinion';
 import { PollRevisionOpinionVersion } from '../ddl/opinion/pollrevisionopinionversion';
 import { PollRevisionOpinionVersionRating } from '../ddl/opinion/user/pollrevisionopinionversionrating';
 import { PollRevisionOpinionVersionTranslation } from '../ddl/opinion/translation/pollrevisionopinionversiontranslation';
+import { PollRevisionRating } from '../ddl/poll/rating/pollrevisionrating';
 import { PollRevisionTranslation } from '../ddl/poll/revision/translation/pollrevisiontranslation';
-import { PollRevisionTranslationRating } from '../ddl/poll/user/pollrevisiontranslationrating';
+import { PollRevisionTranslationRating } from '../ddl/poll/rating/pollrevisiontranslationrating';
 import { PollRun } from '../ddl/poll/run/pollrun';
 import { PollRunContinent } from '../ddl/poll/run/location/pollruncontinent';
 import { PollRunCountry } from '../ddl/poll/run/location/pollruncountry';
@@ -62,11 +63,6 @@ import { Theme } from '../ddl/poll/theme';
 import { Town } from '../ddl/location/town';
 import { TranslationType } from '../ddl/infrastructure/translationtype';
 import { UserAccount } from '../ddl/user/useraccount';
-import { UserPoll } from '../ddl/poll/user/userpoll';
-import { UserPollRating } from '../ddl/poll/user/userpollrating';
-import { UserPollRevision } from '../ddl/poll/user/userpollrevision';
-import { UserPollRevisionRating } from '../ddl/poll/user/userpollrevisionrating';
-import { UserPollRevisionTranslation } from '../ddl/poll/user/userpollrevisiontranslation';
 import { Vote } from '../ddl/vote/vote';
 import { VoteFactor } from '../ddl/vote/votefactor';
 import { VoteFactorType } from '../ddl/vote/votefactortype';
@@ -106,6 +102,7 @@ const __constructors__ = {
     PollRevisionOpinionVersion: PollRevisionOpinionVersion,
     PollRevisionOpinionVersionRating: PollRevisionOpinionVersionRating,
     PollRevisionOpinionVersionTranslation: PollRevisionOpinionVersionTranslation,
+    PollRevisionRating: PollRevisionRating,
     PollRevisionTranslation: PollRevisionTranslation,
     PollRevisionTranslationRating: PollRevisionTranslationRating,
     PollRun: PollRun,
@@ -133,11 +130,6 @@ const __constructors__ = {
     Town: Town,
     TranslationType: TranslationType,
     UserAccount: UserAccount,
-    UserPoll: UserPoll,
-    UserPollRating: UserPollRating,
-    UserPollRevision: UserPollRevision,
-    UserPollRevisionRating: UserPollRevisionRating,
-    UserPollRevisionTranslation: UserPollRevisionTranslation,
     Vote: Vote,
     VoteFactor: VoteFactor,
     VoteFactorType: VoteFactorType,

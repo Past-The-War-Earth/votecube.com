@@ -12,7 +12,7 @@ import {
 } from '../../../infrastructure/translationtype';
 import {
 	IPollRevisionTranslationRating,
-} from '../../user/pollrevisiontranslationrating';
+} from '../../rating/pollrevisiontranslationrating';
 
 
 

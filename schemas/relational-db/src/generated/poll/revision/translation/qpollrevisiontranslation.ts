@@ -70,7 +70,7 @@ import {
 	QPollRevisionTranslationRating,
 	QPollRevisionTranslationRatingQId,
 	QPollRevisionTranslationRatingQRelation,
-} from '../../user/qpollrevisiontranslationrating';
+} from '../../rating/qpollrevisiontranslationrating';
 
 
 declare function require(moduleName: string): any;

@@ -1,1 +1,0 @@
-//# sourceMappingURL=quserpollrating.js.map

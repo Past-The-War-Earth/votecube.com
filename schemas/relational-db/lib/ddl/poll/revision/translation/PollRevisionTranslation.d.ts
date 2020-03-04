@@ -2,7 +2,7 @@ import { PollRevisionTranslation_Id, PollRevisionTranslation_Name } from '../../
 import { Language } from '../../../infrastructure/Language';
 import { ImmutableActorRow } from '../../../infrastructure/row/ImmutableActorRow';
 import { TranslationType } from '../../../infrastructure/TranslationType';
-import { PollRevisionTranslationRating } from '../../user/PollRevisionTranslationRating';
+import { PollRevisionTranslationRating } from '../../rating/PollRevisionTranslationRating';
 import { PollRevision } from '../PollRevision';
 /**
  * This the translation of a given poll revision.

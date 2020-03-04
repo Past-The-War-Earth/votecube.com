@@ -14,8 +14,8 @@ import {PollRevision_Id}            from '../../../types/poll/revision/PollRevis
 import {ImmutableActorRow}          from '../../infrastructure/row/ImmutableActorRow'
 import {PollRevisionOpinion}        from '../../opinion/PollRevisionOpinion'
 import {Poll}                       from '../Poll'
+import {PollRevisionRating}         from '../rating/PollRevisionRating'
 import {PollRun}                    from '../run/PollRun'
-import {UserPollRevisionRating}     from '../user/UserPollRevisionRating'
 import {Outcome}                    from './Outcome'
 import {PollRevisionFactorPosition} from './PollRevisionFactorPosition'
 import {PollRevisionTranslation}    from './translation/PollRevisionTranslation'
@@ -69,7 +69,7 @@ export class PollRevision
 	children: PollRevision[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
-	ratings: UserPollRevisionRating[]
+	ratings: PollRevisionRating[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
 	factorPositions: PollRevisionFactorPosition[]

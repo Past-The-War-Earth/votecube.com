@@ -3,7 +3,7 @@ import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRow
 import { PollEOptionalId, PollESelect, QPollQRelation } from '../qpoll';
 import { PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../run/qpollrun';
 import { OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from './qoutcome';
-import { UserPollRevisionRatingECascadeGraph, UserPollRevisionRatingESelect, QUserPollRevisionRating } from '../user/quserpollrevisionrating';
+import { PollRevisionRatingECascadeGraph, PollRevisionRatingESelect, QPollRevisionRating } from '../rating/qpollrevisionrating';
 import { PollRevisionFactorPositionECascadeGraph, PollRevisionFactorPositionESelect, QPollRevisionFactorPosition } from './qpollrevisionfactorposition';
 import { PollRevisionTranslationECascadeGraph, PollRevisionTranslationESelect, QPollRevisionTranslation } from './translation/qpollrevisiontranslation';
 import { PollRevisionOpinionECascadeGraph, PollRevisionOpinionESelect, QPollRevisionOpinion } from '../../opinion/qpollrevisionopinion';
@@ -18,7 +18,7 @@ export interface PollRevisionESelect extends ImmutableActorRowESelect, PollRevis
     outcomeVersionB?: OutcomeESelect;
     parent?: PollRevisionESelect;
     children?: PollRevisionESelect;
-    ratings?: UserPollRevisionRatingESelect;
+    ratings?: PollRevisionRatingESelect;
     factorPositions?: PollRevisionFactorPositionESelect;
     allTranslations?: PollRevisionTranslationESelect;
     opinions?: PollRevisionOpinionESelect;
@@ -51,7 +51,7 @@ export interface PollRevisionEUpdateProperties extends ImmutableActorRowEUpdateP
  */
 export interface PollRevisionECascadeGraph extends ImmutableActorRowECascadeGraph {
     children?: PollRevisionECascadeGraph;
-    ratings?: UserPollRevisionRatingECascadeGraph;
+    ratings?: PollRevisionRatingECascadeGraph;
     factorPositions?: PollRevisionFactorPositionECascadeGraph;
     allTranslations?: PollRevisionTranslationECascadeGraph;
     opinions?: PollRevisionOpinionECascadeGraph;
@@ -91,7 +91,7 @@ export interface QPollRevision extends QImmutableActorRow {
     outcomeVersionB: QOutcomeQRelation;
     parent: QPollRevisionQRelation;
     children: IQOneToManyRelation<QPollRevision>;
-    ratings: IQOneToManyRelation<QUserPollRevisionRating>;
+    ratings: IQOneToManyRelation<QPollRevisionRating>;
     factorPositions: IQOneToManyRelation<QPollRevisionFactorPosition>;
     allTranslations: IQOneToManyRelation<QPollRevisionTranslation>;
     opinions: IQOneToManyRelation<QPollRevisionOpinion>;

@@ -114,9 +114,7 @@ export declare const SCHEMA: {
                 sinceVersion: number;
                 type: number;
             })[];
-            idColumnRefs: {
-                index: number;
-            }[];
+            idColumnRefs: any[];
             index: number;
             isLocal: boolean;
             isRepositoryEntity: boolean;
@@ -150,6 +148,19 @@ export declare const SCHEMA: {
                 relationTableIndex: number;
                 sinceVersion: number;
                 oneToManyElems?: undefined;
+            } | {
+                index: number;
+                isId: boolean;
+                oneToManyElems: {
+                    mappedBy: string;
+                    cascade?: undefined;
+                };
+                relationType: number;
+                propertyRef: {
+                    index: number;
+                };
+                relationTableIndex: number;
+                sinceVersion: number;
             } | {
                 index: number;
                 isId: boolean;
@@ -206,7 +217,9 @@ export declare const SCHEMA: {
                 sinceVersion: number;
                 type: number;
             })[];
-            idColumnRefs: any[];
+            idColumnRefs: {
+                index: number;
+            }[];
             index: number;
             isLocal: boolean;
             isRepositoryEntity: boolean;
@@ -240,19 +253,6 @@ export declare const SCHEMA: {
                 relationTableIndex: number;
                 sinceVersion: number;
                 oneToManyElems?: undefined;
-            } | {
-                index: number;
-                isId: boolean;
-                oneToManyElems: {
-                    mappedBy: string;
-                    cascade?: undefined;
-                };
-                relationType: number;
-                propertyRef: {
-                    index: number;
-                };
-                relationTableIndex: number;
-                sinceVersion: number;
             } | {
                 index: number;
                 isId: boolean;

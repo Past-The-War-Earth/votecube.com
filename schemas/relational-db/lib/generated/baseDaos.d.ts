@@ -59,10 +59,12 @@ import { IPollRevisionOpinionVersionRating } from './opinion/user/pollrevisionop
 import { PollRevisionOpinionVersionRatingESelect, PollRevisionOpinionVersionRatingECreateProperties, PollRevisionOpinionVersionRatingEUpdateColumns, PollRevisionOpinionVersionRatingEUpdateProperties, PollRevisionOpinionVersionRatingEId, PollRevisionOpinionVersionRatingECascadeGraph, QPollRevisionOpinionVersionRating } from './opinion/user/qpollrevisionopinionversionrating';
 import { IPollRevisionOpinionVersionTranslation } from './opinion/translation/pollrevisionopinionversiontranslation';
 import { PollRevisionOpinionVersionTranslationESelect, PollRevisionOpinionVersionTranslationECreateProperties, PollRevisionOpinionVersionTranslationEUpdateColumns, PollRevisionOpinionVersionTranslationEUpdateProperties, PollRevisionOpinionVersionTranslationEId, PollRevisionOpinionVersionTranslationECascadeGraph, QPollRevisionOpinionVersionTranslation } from './opinion/translation/qpollrevisionopinionversiontranslation';
+import { IPollRevisionRating } from './poll/rating/pollrevisionrating';
+import { PollRevisionRatingESelect, PollRevisionRatingECreateProperties, PollRevisionRatingEUpdateColumns, PollRevisionRatingEUpdateProperties, PollRevisionRatingEId, PollRevisionRatingECascadeGraph, QPollRevisionRating } from './poll/rating/qpollrevisionrating';
 import { IPollRevisionTranslation } from './poll/revision/translation/pollrevisiontranslation';
 import { PollRevisionTranslationESelect, PollRevisionTranslationECreateProperties, PollRevisionTranslationEUpdateColumns, PollRevisionTranslationEUpdateProperties, PollRevisionTranslationEId, PollRevisionTranslationECascadeGraph, QPollRevisionTranslation } from './poll/revision/translation/qpollrevisiontranslation';
-import { IPollRevisionTranslationRating } from './poll/user/pollrevisiontranslationrating';
-import { PollRevisionTranslationRatingESelect, PollRevisionTranslationRatingECreateProperties, PollRevisionTranslationRatingEUpdateColumns, PollRevisionTranslationRatingEUpdateProperties, PollRevisionTranslationRatingEId, PollRevisionTranslationRatingECascadeGraph, QPollRevisionTranslationRating } from './poll/user/qpollrevisiontranslationrating';
+import { IPollRevisionTranslationRating } from './poll/rating/pollrevisiontranslationrating';
+import { PollRevisionTranslationRatingESelect, PollRevisionTranslationRatingECreateProperties, PollRevisionTranslationRatingEUpdateColumns, PollRevisionTranslationRatingEUpdateProperties, PollRevisionTranslationRatingEId, PollRevisionTranslationRatingECascadeGraph, QPollRevisionTranslationRating } from './poll/rating/qpollrevisiontranslationrating';
 import { IPollRun } from './poll/run/pollrun';
 import { PollRunESelect, PollRunECreateProperties, PollRunEUpdateColumns, PollRunEUpdateProperties, PollRunEId, PollRunECascadeGraph, QPollRun } from './poll/run/qpollrun';
 import { IPollRunContinent } from './poll/run/location/pollruncontinent';
@@ -111,16 +113,6 @@ import { ITranslationType } from './infrastructure/translationtype';
 import { TranslationTypeESelect, TranslationTypeECreateProperties, TranslationTypeEUpdateColumns, TranslationTypeEUpdateProperties, TranslationTypeEId, TranslationTypeECascadeGraph, QTranslationType } from './infrastructure/qtranslationtype';
 import { IUserAccount } from './user/useraccount';
 import { UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountECascadeGraph, QUserAccount } from './user/quseraccount';
-import { IUserPoll } from './poll/user/userpoll';
-import { UserPollESelect, UserPollECreateProperties, UserPollEUpdateColumns, UserPollEUpdateProperties, UserPollEId, UserPollECascadeGraph, QUserPoll } from './poll/user/quserpoll';
-import { IUserPollRating } from './poll/user/userpollrating';
-import { UserPollRatingESelect, UserPollRatingECreateProperties, UserPollRatingEUpdateColumns, UserPollRatingEUpdateProperties, UserPollRatingEId, UserPollRatingECascadeGraph, QUserPollRating } from './poll/user/quserpollrating';
-import { IUserPollRevision } from './poll/user/userpollrevision';
-import { UserPollRevisionESelect, UserPollRevisionECreateProperties, UserPollRevisionEUpdateColumns, UserPollRevisionEUpdateProperties, UserPollRevisionEId, UserPollRevisionECascadeGraph, QUserPollRevision } from './poll/user/quserpollrevision';
-import { IUserPollRevisionRating } from './poll/user/userpollrevisionrating';
-import { UserPollRevisionRatingESelect, UserPollRevisionRatingECreateProperties, UserPollRevisionRatingEUpdateColumns, UserPollRevisionRatingEUpdateProperties, UserPollRevisionRatingEId, UserPollRevisionRatingECascadeGraph, QUserPollRevisionRating } from './poll/user/quserpollrevisionrating';
-import { IUserPollRevisionTranslation } from './poll/user/userpollrevisiontranslation';
-import { UserPollRevisionTranslationESelect, UserPollRevisionTranslationECreateProperties, UserPollRevisionTranslationEUpdateColumns, UserPollRevisionTranslationEUpdateProperties, UserPollRevisionTranslationEId, UserPollRevisionTranslationECascadeGraph, QUserPollRevisionTranslation } from './poll/user/quserpollrevisiontranslation';
 import { IVote } from './vote/vote';
 import { VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, VoteECascadeGraph, QVote } from './vote/qvote';
 import { IVoteFactor } from './vote/votefactor';
@@ -308,6 +300,12 @@ export declare class BasePollRevisionOpinionVersionTranslationDao extends SQDIDa
     static diSet(): boolean;
     constructor();
 }
+export interface IBasePollRevisionRatingDao extends IDao<IPollRevisionRating, PollRevisionRatingESelect, PollRevisionRatingECreateProperties, PollRevisionRatingEUpdateColumns, PollRevisionRatingEUpdateProperties, PollRevisionRatingEId, PollRevisionRatingECascadeGraph, QPollRevisionRating> {
+}
+export declare class BasePollRevisionRatingDao extends SQDIDao<IPollRevisionRating, PollRevisionRatingESelect, PollRevisionRatingECreateProperties, PollRevisionRatingEUpdateColumns, PollRevisionRatingEUpdateProperties, PollRevisionRatingEId, PollRevisionRatingECascadeGraph, QPollRevisionRating> implements IBasePollRevisionRatingDao {
+    static diSet(): boolean;
+    constructor();
+}
 export interface IBasePollRevisionTranslationDao extends IDao<IPollRevisionTranslation, PollRevisionTranslationESelect, PollRevisionTranslationECreateProperties, PollRevisionTranslationEUpdateColumns, PollRevisionTranslationEUpdateProperties, PollRevisionTranslationEId, PollRevisionTranslationECascadeGraph, QPollRevisionTranslation> {
 }
 export declare class BasePollRevisionTranslationDao extends SQDIDao<IPollRevisionTranslation, PollRevisionTranslationESelect, PollRevisionTranslationECreateProperties, PollRevisionTranslationEUpdateColumns, PollRevisionTranslationEUpdateProperties, PollRevisionTranslationEId, PollRevisionTranslationECascadeGraph, QPollRevisionTranslation> implements IBasePollRevisionTranslationDao {
@@ -461,36 +459,6 @@ export declare class BaseTranslationTypeDao extends SQDIDao<ITranslationType, Tr
 export interface IBaseUserAccountDao extends IDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountECascadeGraph, QUserAccount> {
 }
 export declare class BaseUserAccountDao extends SQDIDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountECascadeGraph, QUserAccount> implements IBaseUserAccountDao {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseUserPollDao extends IDao<IUserPoll, UserPollESelect, UserPollECreateProperties, UserPollEUpdateColumns, UserPollEUpdateProperties, UserPollEId, UserPollECascadeGraph, QUserPoll> {
-}
-export declare class BaseUserPollDao extends SQDIDao<IUserPoll, UserPollESelect, UserPollECreateProperties, UserPollEUpdateColumns, UserPollEUpdateProperties, UserPollEId, UserPollECascadeGraph, QUserPoll> implements IBaseUserPollDao {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseUserPollRatingDao extends IDao<IUserPollRating, UserPollRatingESelect, UserPollRatingECreateProperties, UserPollRatingEUpdateColumns, UserPollRatingEUpdateProperties, UserPollRatingEId, UserPollRatingECascadeGraph, QUserPollRating> {
-}
-export declare class BaseUserPollRatingDao extends SQDIDao<IUserPollRating, UserPollRatingESelect, UserPollRatingECreateProperties, UserPollRatingEUpdateColumns, UserPollRatingEUpdateProperties, UserPollRatingEId, UserPollRatingECascadeGraph, QUserPollRating> implements IBaseUserPollRatingDao {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseUserPollRevisionDao extends IDao<IUserPollRevision, UserPollRevisionESelect, UserPollRevisionECreateProperties, UserPollRevisionEUpdateColumns, UserPollRevisionEUpdateProperties, UserPollRevisionEId, UserPollRevisionECascadeGraph, QUserPollRevision> {
-}
-export declare class BaseUserPollRevisionDao extends SQDIDao<IUserPollRevision, UserPollRevisionESelect, UserPollRevisionECreateProperties, UserPollRevisionEUpdateColumns, UserPollRevisionEUpdateProperties, UserPollRevisionEId, UserPollRevisionECascadeGraph, QUserPollRevision> implements IBaseUserPollRevisionDao {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseUserPollRevisionRatingDao extends IDao<IUserPollRevisionRating, UserPollRevisionRatingESelect, UserPollRevisionRatingECreateProperties, UserPollRevisionRatingEUpdateColumns, UserPollRevisionRatingEUpdateProperties, UserPollRevisionRatingEId, UserPollRevisionRatingECascadeGraph, QUserPollRevisionRating> {
-}
-export declare class BaseUserPollRevisionRatingDao extends SQDIDao<IUserPollRevisionRating, UserPollRevisionRatingESelect, UserPollRevisionRatingECreateProperties, UserPollRevisionRatingEUpdateColumns, UserPollRevisionRatingEUpdateProperties, UserPollRevisionRatingEId, UserPollRevisionRatingECascadeGraph, QUserPollRevisionRating> implements IBaseUserPollRevisionRatingDao {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseUserPollRevisionTranslationDao extends IDao<IUserPollRevisionTranslation, UserPollRevisionTranslationESelect, UserPollRevisionTranslationECreateProperties, UserPollRevisionTranslationEUpdateColumns, UserPollRevisionTranslationEUpdateProperties, UserPollRevisionTranslationEId, UserPollRevisionTranslationECascadeGraph, QUserPollRevisionTranslation> {
-}
-export declare class BaseUserPollRevisionTranslationDao extends SQDIDao<IUserPollRevisionTranslation, UserPollRevisionTranslationESelect, UserPollRevisionTranslationECreateProperties, UserPollRevisionTranslationEUpdateColumns, UserPollRevisionTranslationEUpdateProperties, UserPollRevisionTranslationEId, UserPollRevisionTranslationECascadeGraph, QUserPollRevisionTranslation> implements IBaseUserPollRevisionTranslationDao {
     static diSet(): boolean;
     constructor();
 }

@@ -8,9 +8,6 @@ import {
 	IPollType,
 } from './polltype';
 import {
-	IUserPollRating,
-} from './user/userpollrating';
-import {
 	IPollRun,
 } from './run/pollrun';
 import {
@@ -38,7 +35,6 @@ export interface IPoll extends IImmutableActorRow {
 	type?: IPollType;
 	parent?: IPoll;
 	children?: IPoll[];
-	ratings?: IUserPollRating[];
 	runs?: IPollRun[];
 	revisions?: IPollRevision[];
 

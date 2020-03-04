@@ -2,7 +2,7 @@ import { IImmutableActorRow } from '../../../infrastructure/row/immutableactorro
 import { IPollRevision } from '../pollrevision';
 import { ILanguage } from '../../../infrastructure/language';
 import { ITranslationType } from '../../../infrastructure/translationtype';
-import { IPollRevisionTranslationRating } from '../../user/pollrevisiontranslationrating';
+import { IPollRevisionTranslationRating } from '../../rating/pollrevisiontranslationrating';
 export interface IPollRevisionTranslation extends IImmutableActorRow {
     id: number;
     name?: string;

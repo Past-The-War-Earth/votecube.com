@@ -3,7 +3,7 @@ import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRow
 import { PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../qpollrevision';
 import { LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../../infrastructure/qlanguage';
 import { TranslationTypeEOptionalId, TranslationTypeESelect, QTranslationTypeQRelation } from '../../../infrastructure/qtranslationtype';
-import { PollRevisionTranslationRatingECascadeGraph, PollRevisionTranslationRatingESelect, QPollRevisionTranslationRating } from '../../user/qpollrevisiontranslationrating';
+import { PollRevisionTranslationRatingECascadeGraph, PollRevisionTranslationRatingESelect, QPollRevisionTranslationRating } from '../../rating/qpollrevisiontranslationrating';
 /**
  * SELECT - All fields and relations (optional).
  */

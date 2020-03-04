@@ -52,16 +52,6 @@ import {
 	QPollTypeQRelation,
 } from './qpolltype';
 import {
-	UserPollRatingECascadeGraph,
-	UserPollRatingEId,
-	UserPollRatingEOptionalId,
-	UserPollRatingEUpdateProperties,
-	UserPollRatingESelect,
-	QUserPollRating,
-	QUserPollRatingQId,
-	QUserPollRatingQRelation,
-} from './user/quserpollrating';
-import {
 	PollRunECascadeGraph,
 	PollRunEId,
 	PollRunEOptionalId,
@@ -106,7 +96,6 @@ export interface PollESelect
 	type?: PollTypeESelect;
 	parent?: PollESelect;
 	children?: PollESelect;
-	ratings?: UserPollRatingESelect;
 	runs?: PollRunESelect;
 	revisions?: PollRevisionESelect;
 
@@ -156,7 +145,6 @@ export interface PollECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
 	children?: PollECascadeGraph;
-	ratings?: UserPollRatingECascadeGraph;
 	runs?: PollRunECascadeGraph;
 	revisions?: PollRevisionECascadeGraph;
 
@@ -217,7 +205,6 @@ export interface QPoll extends QImmutableActorRow
 	type: QPollTypeQRelation;
 	parent: QPollQRelation;
 	children: IQOneToManyRelation<QPoll>;
-	ratings: IQOneToManyRelation<QUserPollRating>;
 	runs: IQOneToManyRelation<QPollRun>;
 	revisions: IQOneToManyRelation<QPollRevision>;
 

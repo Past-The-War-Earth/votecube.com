@@ -14,7 +14,6 @@ import {ImmutableActorRow}       from '../infrastructure/row/ImmutableActorRow'
 import {PollRun}                 from './run/PollRun'
 import {PollType}                from './PollType'
 import {Theme}                   from './Theme'
-import {UserPollRating}          from './user/UserPollRating'
 import {PollRevision}       from './revision/PollRevision'
 
 @Entity()
@@ -46,9 +45,6 @@ export class Poll
 
 	@OneToMany({mappedBy: 'parent'})
 	children: Poll[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
-	ratings: UserPollRating[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
 	runs: PollRun[]

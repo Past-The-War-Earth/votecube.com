@@ -36,9 +36,6 @@ __decorate([
 ], Poll.prototype, "children", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'poll' })
-], Poll.prototype, "ratings", void 0);
-__decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'poll' })
 ], Poll.prototype, "runs", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'poll' })

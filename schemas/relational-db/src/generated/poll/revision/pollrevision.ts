@@ -11,8 +11,8 @@ import {
 	IOutcome,
 } from './outcome';
 import {
-	IUserPollRevisionRating,
-} from '../user/userpollrevisionrating';
+	IPollRevisionRating,
+} from '../rating/pollrevisionrating';
 import {
 	IPollRevisionFactorPosition,
 } from './pollrevisionfactorposition';
@@ -46,7 +46,7 @@ export interface IPollRevision extends IImmutableActorRow {
 	outcomeVersionB?: IOutcome;
 	parent?: IPollRevision;
 	children?: IPollRevision[];
-	ratings?: IUserPollRevisionRating[];
+	ratings?: IPollRevisionRating[];
 	factorPositions?: IPollRevisionFactorPosition[];
 	allTranslations?: IPollRevisionTranslation[];
 	opinions?: IPollRevisionOpinion[];

@@ -62,15 +62,15 @@ import {
 	QOutcomeQRelation,
 } from './qoutcome';
 import {
-	UserPollRevisionRatingECascadeGraph,
-	UserPollRevisionRatingEId,
-	UserPollRevisionRatingEOptionalId,
-	UserPollRevisionRatingEUpdateProperties,
-	UserPollRevisionRatingESelect,
-	QUserPollRevisionRating,
-	QUserPollRevisionRatingQId,
-	QUserPollRevisionRatingQRelation,
-} from '../user/quserpollrevisionrating';
+	PollRevisionRatingECascadeGraph,
+	PollRevisionRatingEId,
+	PollRevisionRatingEOptionalId,
+	PollRevisionRatingEUpdateProperties,
+	PollRevisionRatingESelect,
+	QPollRevisionRating,
+	QPollRevisionRatingQId,
+	QPollRevisionRatingQRelation,
+} from '../rating/qpollrevisionrating';
 import {
 	PollRevisionFactorPositionECascadeGraph,
 	PollRevisionFactorPositionEId,
@@ -127,7 +127,7 @@ export interface PollRevisionESelect
 	outcomeVersionB?: OutcomeESelect;
 	parent?: PollRevisionESelect;
 	children?: PollRevisionESelect;
-	ratings?: UserPollRevisionRatingESelect;
+	ratings?: PollRevisionRatingESelect;
 	factorPositions?: PollRevisionFactorPositionESelect;
 	allTranslations?: PollRevisionTranslationESelect;
 	opinions?: PollRevisionOpinionESelect;
@@ -181,7 +181,7 @@ export interface PollRevisionECascadeGraph
 	extends ImmutableActorRowECascadeGraph {
 	// Cascading Relations
 	children?: PollRevisionECascadeGraph;
-	ratings?: UserPollRevisionRatingECascadeGraph;
+	ratings?: PollRevisionRatingECascadeGraph;
 	factorPositions?: PollRevisionFactorPositionECascadeGraph;
 	allTranslations?: PollRevisionTranslationECascadeGraph;
 	opinions?: PollRevisionOpinionECascadeGraph;
@@ -246,7 +246,7 @@ export interface QPollRevision extends QImmutableActorRow
 	outcomeVersionB: QOutcomeQRelation;
 	parent: QPollRevisionQRelation;
 	children: IQOneToManyRelation<QPollRevision>;
-	ratings: IQOneToManyRelation<QUserPollRevisionRating>;
+	ratings: IQOneToManyRelation<QPollRevisionRating>;
 	factorPositions: IQOneToManyRelation<QPollRevisionFactorPosition>;
 	allTranslations: IQOneToManyRelation<QPollRevisionTranslation>;
 	opinions: IQOneToManyRelation<QPollRevisionOpinion>;

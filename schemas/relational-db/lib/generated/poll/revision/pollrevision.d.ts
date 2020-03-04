@@ -2,7 +2,7 @@ import { IImmutableActorRow } from '../../infrastructure/row/immutableactorrow';
 import { IPoll } from '../poll';
 import { IPollRun } from '../run/pollrun';
 import { IOutcome } from './outcome';
-import { IUserPollRevisionRating } from '../user/userpollrevisionrating';
+import { IPollRevisionRating } from '../rating/pollrevisionrating';
 import { IPollRevisionFactorPosition } from './pollrevisionfactorposition';
 import { IPollRevisionTranslation } from './translation/pollrevisiontranslation';
 import { IPollRevisionOpinion } from '../../opinion/pollrevisionopinion';
@@ -15,7 +15,7 @@ export interface IPollRevision extends IImmutableActorRow {
     outcomeVersionB?: IOutcome;
     parent?: IPollRevision;
     children?: IPollRevision[];
-    ratings?: IUserPollRevisionRating[];
+    ratings?: IPollRevisionRating[];
     factorPositions?: IPollRevisionFactorPosition[];
     allTranslations?: IPollRevisionTranslation[];
     opinions?: IPollRevisionOpinion[];

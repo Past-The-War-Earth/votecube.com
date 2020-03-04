@@ -78,10 +78,12 @@ import { PollRevisionOpinionVersionRating } from '../ddl/opinion/user/pollrevisi
 import { QPollRevisionOpinionVersionRating } from './opinion/user/qpollrevisionopinionversionrating';
 import { PollRevisionOpinionVersionTranslation } from '../ddl/opinion/translation/pollrevisionopinionversiontranslation';
 import { QPollRevisionOpinionVersionTranslation } from './opinion/translation/qpollrevisionopinionversiontranslation';
+import { PollRevisionRating } from '../ddl/poll/rating/pollrevisionrating';
+import { QPollRevisionRating } from './poll/rating/qpollrevisionrating';
 import { PollRevisionTranslation } from '../ddl/poll/revision/translation/pollrevisiontranslation';
 import { QPollRevisionTranslation } from './poll/revision/translation/qpollrevisiontranslation';
-import { PollRevisionTranslationRating } from '../ddl/poll/user/pollrevisiontranslationrating';
-import { QPollRevisionTranslationRating } from './poll/user/qpollrevisiontranslationrating';
+import { PollRevisionTranslationRating } from '../ddl/poll/rating/pollrevisiontranslationrating';
+import { QPollRevisionTranslationRating } from './poll/rating/qpollrevisiontranslationrating';
 import { PollRun } from '../ddl/poll/run/pollrun';
 import { QPollRun } from './poll/run/qpollrun';
 import { PollRunContinent } from '../ddl/poll/run/location/pollruncontinent';
@@ -132,16 +134,6 @@ import { TranslationType } from '../ddl/infrastructure/translationtype';
 import { QTranslationType } from './infrastructure/qtranslationtype';
 import { UserAccount } from '../ddl/user/useraccount';
 import { QUserAccount } from './user/quseraccount';
-import { UserPoll } from '../ddl/poll/user/userpoll';
-import { QUserPoll } from './poll/user/quserpoll';
-import { UserPollRating } from '../ddl/poll/user/userpollrating';
-import { QUserPollRating } from './poll/user/quserpollrating';
-import { UserPollRevision } from '../ddl/poll/user/userpollrevision';
-import { QUserPollRevision } from './poll/user/quserpollrevision';
-import { UserPollRevisionRating } from '../ddl/poll/user/userpollrevisionrating';
-import { QUserPollRevisionRating } from './poll/user/quserpollrevisionrating';
-import { UserPollRevisionTranslation } from '../ddl/poll/user/userpollrevisiontranslation';
-import { QUserPollRevisionTranslation } from './poll/user/quserpollrevisiontranslation';
 import { Vote } from '../ddl/vote/vote';
 import { QVote } from './vote/qvote';
 import { VoteFactor } from '../ddl/vote/votefactor';
@@ -190,6 +182,7 @@ export interface LocalQSchema extends AirportQSchema {
 	PollRevisionOpinionVersion: QPollRevisionOpinionVersion;
 	PollRevisionOpinionVersionRating: QPollRevisionOpinionVersionRating;
 	PollRevisionOpinionVersionTranslation: QPollRevisionOpinionVersionTranslation;
+	PollRevisionRating: QPollRevisionRating;
 	PollRevisionTranslation: QPollRevisionTranslation;
 	PollRevisionTranslationRating: QPollRevisionTranslationRating;
 	PollRun: QPollRun;
@@ -217,11 +210,6 @@ export interface LocalQSchema extends AirportQSchema {
 	Town: QTown;
 	TranslationType: QTranslationType;
 	UserAccount: QUserAccount;
-	UserPoll: QUserPoll;
-	UserPollRating: QUserPollRating;
-	UserPollRevision: QUserPollRevision;
-	UserPollRevisionRating: QUserPollRevisionRating;
-	UserPollRevisionTranslation: QUserPollRevisionTranslation;
 	Vote: QVote;
 	VoteFactor: QVoteFactor;
 	VoteFactorType: QVoteFactorType;
@@ -264,6 +252,7 @@ const __constructors__ = {
 	PollRevisionOpinionVersion: PollRevisionOpinionVersion,
 	PollRevisionOpinionVersionRating: PollRevisionOpinionVersionRating,
 	PollRevisionOpinionVersionTranslation: PollRevisionOpinionVersionTranslation,
+	PollRevisionRating: PollRevisionRating,
 	PollRevisionTranslation: PollRevisionTranslation,
 	PollRevisionTranslationRating: PollRevisionTranslationRating,
 	PollRun: PollRun,
@@ -291,11 +280,6 @@ const __constructors__ = {
 	Town: Town,
 	TranslationType: TranslationType,
 	UserAccount: UserAccount,
-	UserPoll: UserPoll,
-	UserPollRating: UserPollRating,
-	UserPollRevision: UserPollRevision,
-	UserPollRevisionRating: UserPollRevisionRating,
-	UserPollRevisionTranslation: UserPollRevisionTranslation,
 	Vote: Vote,
 	VoteFactor: VoteFactor,
 	VoteFactorType: VoteFactorType,

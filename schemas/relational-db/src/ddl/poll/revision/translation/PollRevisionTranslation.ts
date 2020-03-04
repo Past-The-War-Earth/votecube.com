@@ -16,7 +16,7 @@ import {
 import {Language}                          from '../../../infrastructure/Language'
 import {ImmutableActorRow}                 from '../../../infrastructure/row/ImmutableActorRow'
 import {TranslationType}               from '../../../infrastructure/TranslationType'
-import {PollRevisionTranslationRating} from '../../user/PollRevisionTranslationRating'
+import {PollRevisionTranslationRating} from '../../rating/PollRevisionTranslationRating'
 import {PollRevision}                  from '../PollRevision'
 
 /**
