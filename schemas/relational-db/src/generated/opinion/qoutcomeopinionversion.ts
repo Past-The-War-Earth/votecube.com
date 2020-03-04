@@ -22,15 +22,25 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	PollRevisionOpinionVersionECascadeGraph,
-	PollRevisionOpinionVersionEId,
-	PollRevisionOpinionVersionEOptionalId,
-	PollRevisionOpinionVersionEUpdateProperties,
-	PollRevisionOpinionVersionESelect,
-	QPollRevisionOpinionVersion,
-	QPollRevisionOpinionVersionQId,
-	QPollRevisionOpinionVersionQRelation,
-} from './qpollrevisionopinionversion';
+	PollRevisionOpinionECascadeGraph,
+	PollRevisionOpinionEId,
+	PollRevisionOpinionEOptionalId,
+	PollRevisionOpinionEUpdateProperties,
+	PollRevisionOpinionESelect,
+	QPollRevisionOpinion,
+	QPollRevisionOpinionQId,
+	QPollRevisionOpinionQRelation,
+} from './qpollrevisionopinion';
+import {
+	OutcomeECascadeGraph,
+	OutcomeEId,
+	OutcomeEOptionalId,
+	OutcomeEUpdateProperties,
+	OutcomeESelect,
+	QOutcome,
+	QOutcomeQId,
+	QOutcomeQRelation,
+} from '../poll/revision/qoutcome';
 import {
 	OutcomeOpinionVersionTranslationECascadeGraph,
 	OutcomeOpinionVersionTranslationEId,
@@ -60,7 +70,10 @@ export interface OutcomeOpinionVersionESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	pollRevisionOpinionVersion?: PollRevisionOpinionVersionESelect;
+	pollRevisionOpinion?: PollRevisionOpinionESelect;
+	outcome?: OutcomeESelect;
+	parent?: OutcomeOpinionVersionESelect;
+	children?: OutcomeOpinionVersionESelect;
 	translations?: OutcomeOpinionVersionTranslationESelect;
 
 }
@@ -96,7 +109,9 @@ export interface OutcomeOpinionVersionEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	pollRevisionOpinionVersion?: PollRevisionOpinionVersionEOptionalId;
+	pollRevisionOpinion?: PollRevisionOpinionEOptionalId;
+	outcome?: OutcomeEOptionalId;
+	parent?: OutcomeOpinionVersionEOptionalId;
 
 }
 
@@ -106,6 +121,7 @@ export interface OutcomeOpinionVersionEUpdateProperties
 export interface OutcomeOpinionVersionECascadeGraph
 	extends IEntityCascadeGraph {
 	// Cascading Relations
+	children?: OutcomeOpinionVersionECascadeGraph;
 	translations?: OutcomeOpinionVersionTranslationECascadeGraph;
 
 }
@@ -116,7 +132,9 @@ export interface OutcomeOpinionVersionECascadeGraph
 export interface OutcomeOpinionVersionEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
-	POLL_REVISION_OPINION_VERSION_ID?: number | IQNumberField;
+	POLL_REVISION_OPINION_ID?: number | IQNumberField;
+	OUTCOME_ID?: number | IQNumberField;
+	PARENT_OUTCOME_OPINION_VERSION_ID?: number | IQNumberField;
 
 }
 
@@ -154,7 +172,10 @@ export interface QOutcomeOpinionVersion extends IQEntity
 	// Non-Id Fields
 
 	// Non-Id Relations
-	pollRevisionOpinionVersion: QPollRevisionOpinionVersionQRelation;
+	pollRevisionOpinion: QPollRevisionOpinionQRelation;
+	outcome: QOutcomeQRelation;
+	parent: QOutcomeOpinionVersionQRelation;
+	children: IQOneToManyRelation<QOutcomeOpinionVersion>;
 	translations: IQOneToManyRelation<QOutcomeOpinionVersionTranslation>;
 
 }

@@ -11,8 +11,20 @@ import {
 	IVote,
 } from '../vote/vote';
 import {
+	IPollRevisionOpinionRating,
+} from './rating/pollrevisionopinionrating';
+import {
 	IPollRevisionOpinionVersion,
 } from './pollrevisionopinionversion';
+import {
+	IFactorOpinionVersion,
+} from './factoropinionversion';
+import {
+	IOutcomeOpinionVersion,
+} from './outcomeopinionversion';
+import {
+	IPositionOpinionVersion,
+} from './positionopinionversion';
 
 
 
@@ -33,7 +45,11 @@ export interface IPollRevisionOpinion extends IMutableActorRow {
 	pollRevision?: IPollRevision;
 	run?: IPollRun;
 	vote?: IVote;
+	ratings?: IPollRevisionOpinionRating[];
 	versions?: IPollRevisionOpinionVersion[];
+	factors?: IFactorOpinionVersion[];
+	outcomes?: IOutcomeOpinionVersion[];
+	positions?: IPositionOpinionVersion[];
 
 	// Transient Properties
 

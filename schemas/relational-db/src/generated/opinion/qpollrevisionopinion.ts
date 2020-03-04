@@ -62,6 +62,16 @@ import {
 	QVoteQRelation,
 } from '../vote/qvote';
 import {
+	PollRevisionOpinionRatingECascadeGraph,
+	PollRevisionOpinionRatingEId,
+	PollRevisionOpinionRatingEOptionalId,
+	PollRevisionOpinionRatingEUpdateProperties,
+	PollRevisionOpinionRatingESelect,
+	QPollRevisionOpinionRating,
+	QPollRevisionOpinionRatingQId,
+	QPollRevisionOpinionRatingQRelation,
+} from './rating/qpollrevisionopinionrating';
+import {
 	PollRevisionOpinionVersionECascadeGraph,
 	PollRevisionOpinionVersionEId,
 	PollRevisionOpinionVersionEOptionalId,
@@ -71,6 +81,36 @@ import {
 	QPollRevisionOpinionVersionQId,
 	QPollRevisionOpinionVersionQRelation,
 } from './qpollrevisionopinionversion';
+import {
+	FactorOpinionVersionECascadeGraph,
+	FactorOpinionVersionEId,
+	FactorOpinionVersionEOptionalId,
+	FactorOpinionVersionEUpdateProperties,
+	FactorOpinionVersionESelect,
+	QFactorOpinionVersion,
+	QFactorOpinionVersionQId,
+	QFactorOpinionVersionQRelation,
+} from './qfactoropinionversion';
+import {
+	OutcomeOpinionVersionECascadeGraph,
+	OutcomeOpinionVersionEId,
+	OutcomeOpinionVersionEOptionalId,
+	OutcomeOpinionVersionEUpdateProperties,
+	OutcomeOpinionVersionESelect,
+	QOutcomeOpinionVersion,
+	QOutcomeOpinionVersionQId,
+	QOutcomeOpinionVersionQRelation,
+} from './qoutcomeopinionversion';
+import {
+	PositionOpinionVersionECascadeGraph,
+	PositionOpinionVersionEId,
+	PositionOpinionVersionEOptionalId,
+	PositionOpinionVersionEUpdateProperties,
+	PositionOpinionVersionESelect,
+	QPositionOpinionVersion,
+	QPositionOpinionVersionQId,
+	QPositionOpinionVersionQRelation,
+} from './qpositionopinionversion';
 
 
 declare function require(moduleName: string): any;
@@ -93,7 +133,11 @@ export interface PollRevisionOpinionESelect
 	pollRevision?: PollRevisionESelect;
 	run?: PollRunESelect;
 	vote?: VoteESelect;
+	ratings?: PollRevisionOpinionRatingESelect;
 	versions?: PollRevisionOpinionVersionESelect;
+	factors?: FactorOpinionVersionESelect;
+	outcomes?: OutcomeOpinionVersionESelect;
+	positions?: PositionOpinionVersionESelect;
 
 }
 
@@ -140,7 +184,11 @@ export interface PollRevisionOpinionEUpdateProperties
 export interface PollRevisionOpinionECascadeGraph
 	extends MutableActorRowECascadeGraph {
 	// Cascading Relations
+	ratings?: PollRevisionOpinionRatingECascadeGraph;
 	versions?: PollRevisionOpinionVersionECascadeGraph;
+	factors?: FactorOpinionVersionECascadeGraph;
+	outcomes?: OutcomeOpinionVersionECascadeGraph;
+	positions?: PositionOpinionVersionECascadeGraph;
 
 }
 
@@ -196,7 +244,11 @@ export interface QPollRevisionOpinion extends QMutableActorRow
 	pollRevision: QPollRevisionQRelation;
 	run: QPollRunQRelation;
 	vote: QVoteQRelation;
+	ratings: IQOneToManyRelation<QPollRevisionOpinionRating>;
 	versions: IQOneToManyRelation<QPollRevisionOpinionVersion>;
+	factors: IQOneToManyRelation<QFactorOpinionVersion>;
+	outcomes: IQOneToManyRelation<QOutcomeOpinionVersion>;
+	positions: IQOneToManyRelation<QPositionOpinionVersion>;
 
 }
 

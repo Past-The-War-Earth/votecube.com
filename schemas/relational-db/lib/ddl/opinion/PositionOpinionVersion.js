@@ -19,12 +19,25 @@ __decorate([
 __decorate([
     ManyToOne(),
     JoinColumn({
-        name: 'FACTOR_OPINION_VERSION_ID', nullable: false
+        name: 'POLL_REVISION_OPINION_ID', nullable: false
     })
-], PositionOpinionVersion.prototype, "factorOpinionVersion", void 0);
+], PositionOpinionVersion.prototype, "pollRevisionOpinion", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'positionOpinionVersion' })
-], PositionOpinionVersion.prototype, "ratings", void 0);
+    ManyToOne(),
+    JoinColumn({
+        name: 'POLL_REVISION_FACTOR_POSITION_ID', nullable: false
+    })
+], PositionOpinionVersion.prototype, "factorPosition", void 0);
+__decorate([
+    ManyToOne(),
+    JoinColumn({
+        name: 'PARENT_POSITION_OPINION_VERSION_ID',
+        referencedColumnName: 'POSITION_OPINION_VERSION_ID'
+    })
+], PositionOpinionVersion.prototype, "parent", void 0);
+__decorate([
+    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+], PositionOpinionVersion.prototype, "children", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'positionOpinionVersion' })
 ], PositionOpinionVersion.prototype, "translations", void 0);

@@ -1,15 +1,12 @@
 import {
-	IPollRevisionOpinionVersion,
-} from './pollrevisionopinionversion';
+	IPollRevisionOpinion,
+} from './pollrevisionopinion';
 import {
-	IFactorOpinionVersionRating,
-} from './user/factoropinionversionrating';
+	IFactor,
+} from '../factor/factor';
 import {
 	IFactorOpinionVersionTranslation,
 } from './translation/factoropinionversiontranslation';
-import {
-	IPositionOpinionVersion,
-} from './positionopinionversion';
 
 
 
@@ -27,10 +24,11 @@ export interface IFactorOpinionVersion {
 	// Non-Id Properties
 
 	// Non-Id Relations
-	pollRevisionOpinionVersion?: IPollRevisionOpinionVersion;
-	ratings?: IFactorOpinionVersionRating[];
+	pollRevisionOpinion?: IPollRevisionOpinion;
+	factor?: IFactor;
+	parent?: IFactorOpinionVersion;
+	children?: IFactorOpinionVersion[];
 	translations?: IFactorOpinionVersionTranslation[];
-	positionOpinionVersions?: IPositionOpinionVersion[];
 
 	// Transient Properties
 

@@ -14,7 +14,6 @@ import { Device } from '../ddl/user/device';
 import { Emoji } from '../ddl/factor/position/emoji';
 import { Factor } from '../ddl/factor/factor';
 import { FactorOpinionVersion } from '../ddl/opinion/factoropinionversion';
-import { FactorOpinionVersionRating } from '../ddl/opinion/user/factoropinionversionrating';
 import { FactorOpinionVersionTranslation } from '../ddl/opinion/translation/factoropinionversiontranslation';
 import { FactorPosition } from '../ddl/factor/position/factorposition';
 import { FactorSkin } from '../ddl/factor/factorskin';
@@ -32,8 +31,8 @@ import { Poll } from '../ddl/poll/poll';
 import { PollRevision } from '../ddl/poll/revision/pollrevision';
 import { PollRevisionFactorPosition } from '../ddl/poll/revision/pollrevisionfactorposition';
 import { PollRevisionOpinion } from '../ddl/opinion/pollrevisionopinion';
+import { PollRevisionOpinionRating } from '../ddl/opinion/rating/pollrevisionopinionrating';
 import { PollRevisionOpinionVersion } from '../ddl/opinion/pollrevisionopinionversion';
-import { PollRevisionOpinionVersionRating } from '../ddl/opinion/user/pollrevisionopinionversionrating';
 import { PollRevisionOpinionVersionTranslation } from '../ddl/opinion/translation/pollrevisionopinionversiontranslation';
 import { PollRevisionRating } from '../ddl/poll/rating/pollrevisionrating';
 import { PollRevisionTranslation } from '../ddl/poll/revision/translation/pollrevisiontranslation';
@@ -47,7 +46,6 @@ import { PollRunTown } from '../ddl/poll/run/location/pollruntown';
 import { PollType } from '../ddl/poll/polltype';
 import { Position } from '../ddl/factor/position/position';
 import { PositionOpinionVersion } from '../ddl/opinion/positionopinionversion';
-import { PositionOpinionVersionRating } from '../ddl/opinion/user/positionopinionversionrating';
 import { PositionOpinionVersionTranslation } from '../ddl/opinion/translation/positionopinionversiontranslation';
 import { PositionTranslation } from '../ddl/factor/position/positiontranslation';
 import { Rating } from '../ddl/infrastructure/rating/rating';
@@ -78,7 +76,6 @@ const __constructors__ = {
     Emoji: Emoji,
     Factor: Factor,
     FactorOpinionVersion: FactorOpinionVersion,
-    FactorOpinionVersionRating: FactorOpinionVersionRating,
     FactorOpinionVersionTranslation: FactorOpinionVersionTranslation,
     FactorPosition: FactorPosition,
     FactorSkin: FactorSkin,
@@ -96,8 +93,8 @@ const __constructors__ = {
     PollRevision: PollRevision,
     PollRevisionFactorPosition: PollRevisionFactorPosition,
     PollRevisionOpinion: PollRevisionOpinion,
+    PollRevisionOpinionRating: PollRevisionOpinionRating,
     PollRevisionOpinionVersion: PollRevisionOpinionVersion,
-    PollRevisionOpinionVersionRating: PollRevisionOpinionVersionRating,
     PollRevisionOpinionVersionTranslation: PollRevisionOpinionVersionTranslation,
     PollRevisionRating: PollRevisionRating,
     PollRevisionTranslation: PollRevisionTranslation,
@@ -111,7 +108,6 @@ const __constructors__ = {
     PollType: PollType,
     Position: Position,
     PositionOpinionVersion: PositionOpinionVersion,
-    PositionOpinionVersionRating: PositionOpinionVersionRating,
     PositionOpinionVersionTranslation: PositionOpinionVersionTranslation,
     PositionTranslation: PositionTranslation,
     Rating: Rating,

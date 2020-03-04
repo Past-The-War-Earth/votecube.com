@@ -96,26 +96,18 @@ export class BaseFactorDuo extends SQDIDuo {
 }
 export class BaseFactorOpinionVersionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(41);
+        return duoDiSet(37);
     }
     constructor() {
-        super(41);
-    }
-}
-export class BaseFactorOpinionVersionRatingDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(40);
-    }
-    constructor() {
-        super(40);
+        super(37);
     }
 }
 export class BaseFactorOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(39);
+        return duoDiSet(36);
     }
     constructor() {
-        super(39);
+        super(36);
     }
 }
 export class BaseFactorPositionDuo extends SQDIDuo {
@@ -152,34 +144,34 @@ export class BaseLanguageDuo extends SQDIDuo {
 }
 export class BaseOutcomeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(48);
+        return duoDiSet(39);
     }
     constructor() {
-        super(48);
+        super(39);
     }
 }
 export class BaseOutcomeOpinionVersionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(56);
+        return duoDiSet(41);
     }
     constructor() {
-        super(56);
+        super(41);
     }
 }
 export class BaseOutcomeOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(57);
+        return duoDiSet(40);
     }
     constructor() {
-        super(57);
+        super(40);
     }
 }
 export class BaseOutcomeTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(47);
+        return duoDiSet(38);
     }
     constructor() {
-        super(47);
+        super(38);
     }
 }
 export class BasePollDuo extends SQDIDuo {
@@ -208,21 +200,21 @@ export class BasePollRevisionFactorPositionDuo extends SQDIDuo {
 }
 export class BasePollRevisionOpinionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(45);
+        return duoDiSet(47);
     }
     constructor() {
-        super(45);
+        super(47);
+    }
+}
+export class BasePollRevisionOpinionRatingDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(46);
+    }
+    constructor() {
+        super(46);
     }
 }
 export class BasePollRevisionOpinionVersionDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(44);
-    }
-    constructor() {
-        super(44);
-    }
-}
-export class BasePollRevisionOpinionVersionRatingDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(43);
     }
@@ -240,10 +232,10 @@ export class BasePollRevisionOpinionVersionTranslationDuo extends SQDIDuo {
 }
 export class BasePollRevisionRatingDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(46);
+        return duoDiSet(48);
     }
     constructor() {
-        super(46);
+        super(48);
     }
 }
 export class BasePollRevisionTranslationDuo extends SQDIDuo {
@@ -328,26 +320,18 @@ export class BasePositionDuo extends SQDIDuo {
 }
 export class BasePositionOpinionVersionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(38);
+        return duoDiSet(45);
     }
     constructor() {
-        super(38);
-    }
-}
-export class BasePositionOpinionVersionRatingDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(37);
-    }
-    constructor() {
-        super(37);
+        super(45);
     }
 }
 export class BasePositionOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(36);
+        return duoDiSet(44);
     }
     constructor() {
-        super(36);
+        super(44);
     }
 }
 export class BasePositionTranslationDuo extends SQDIDuo {

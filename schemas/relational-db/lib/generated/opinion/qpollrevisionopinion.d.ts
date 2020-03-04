@@ -3,7 +3,11 @@ import { MutableActorRowECascadeGraph, MutableActorRowEId, MutableActorRowEUpdat
 import { PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../poll/revision/qpollrevision';
 import { PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../poll/run/qpollrun';
 import { VoteEOptionalId, VoteESelect, QVoteQRelation } from '../vote/qvote';
+import { PollRevisionOpinionRatingECascadeGraph, PollRevisionOpinionRatingESelect, QPollRevisionOpinionRating } from './rating/qpollrevisionopinionrating';
 import { PollRevisionOpinionVersionECascadeGraph, PollRevisionOpinionVersionESelect, QPollRevisionOpinionVersion } from './qpollrevisionopinionversion';
+import { FactorOpinionVersionECascadeGraph, FactorOpinionVersionESelect, QFactorOpinionVersion } from './qfactoropinionversion';
+import { OutcomeOpinionVersionECascadeGraph, OutcomeOpinionVersionESelect, QOutcomeOpinionVersion } from './qoutcomeopinionversion';
+import { PositionOpinionVersionECascadeGraph, PositionOpinionVersionESelect, QPositionOpinionVersion } from './qpositionopinionversion';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -11,7 +15,11 @@ export interface PollRevisionOpinionESelect extends MutableActorRowESelect, Poll
     pollRevision?: PollRevisionESelect;
     run?: PollRunESelect;
     vote?: VoteESelect;
+    ratings?: PollRevisionOpinionRatingESelect;
     versions?: PollRevisionOpinionVersionESelect;
+    factors?: FactorOpinionVersionESelect;
+    outcomes?: OutcomeOpinionVersionESelect;
+    positions?: PositionOpinionVersionESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -37,7 +45,11 @@ export interface PollRevisionOpinionEUpdateProperties extends MutableActorRowEUp
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRevisionOpinionECascadeGraph extends MutableActorRowECascadeGraph {
+    ratings?: PollRevisionOpinionRatingECascadeGraph;
     versions?: PollRevisionOpinionVersionECascadeGraph;
+    factors?: FactorOpinionVersionECascadeGraph;
+    outcomes?: OutcomeOpinionVersionECascadeGraph;
+    positions?: PositionOpinionVersionECascadeGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -68,7 +80,11 @@ export interface QPollRevisionOpinion extends QMutableActorRow {
     pollRevision: QPollRevisionQRelation;
     run: QPollRunQRelation;
     vote: QVoteQRelation;
+    ratings: IQOneToManyRelation<QPollRevisionOpinionRating>;
     versions: IQOneToManyRelation<QPollRevisionOpinionVersion>;
+    factors: IQOneToManyRelation<QFactorOpinionVersion>;
+    outcomes: IQOneToManyRelation<QOutcomeOpinionVersion>;
+    positions: IQOneToManyRelation<QPositionOpinionVersion>;
 }
 export interface QPollRevisionOpinionQId extends QMutableActorRowQId {
     id: IQNumberField;

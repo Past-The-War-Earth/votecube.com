@@ -36,8 +36,6 @@ import { Factor } from '../ddl/factor/factor';
 import { QFactor } from './factor/qfactor';
 import { FactorOpinionVersion } from '../ddl/opinion/factoropinionversion';
 import { QFactorOpinionVersion } from './opinion/qfactoropinionversion';
-import { FactorOpinionVersionRating } from '../ddl/opinion/user/factoropinionversionrating';
-import { QFactorOpinionVersionRating } from './opinion/user/qfactoropinionversionrating';
 import { FactorOpinionVersionTranslation } from '../ddl/opinion/translation/factoropinionversiontranslation';
 import { QFactorOpinionVersionTranslation } from './opinion/translation/qfactoropinionversiontranslation';
 import { FactorPosition } from '../ddl/factor/position/factorposition';
@@ -72,10 +70,10 @@ import { PollRevisionFactorPosition } from '../ddl/poll/revision/pollrevisionfac
 import { QPollRevisionFactorPosition } from './poll/revision/qpollrevisionfactorposition';
 import { PollRevisionOpinion } from '../ddl/opinion/pollrevisionopinion';
 import { QPollRevisionOpinion } from './opinion/qpollrevisionopinion';
+import { PollRevisionOpinionRating } from '../ddl/opinion/rating/pollrevisionopinionrating';
+import { QPollRevisionOpinionRating } from './opinion/rating/qpollrevisionopinionrating';
 import { PollRevisionOpinionVersion } from '../ddl/opinion/pollrevisionopinionversion';
 import { QPollRevisionOpinionVersion } from './opinion/qpollrevisionopinionversion';
-import { PollRevisionOpinionVersionRating } from '../ddl/opinion/user/pollrevisionopinionversionrating';
-import { QPollRevisionOpinionVersionRating } from './opinion/user/qpollrevisionopinionversionrating';
 import { PollRevisionOpinionVersionTranslation } from '../ddl/opinion/translation/pollrevisionopinionversiontranslation';
 import { QPollRevisionOpinionVersionTranslation } from './opinion/translation/qpollrevisionopinionversiontranslation';
 import { PollRevisionRating } from '../ddl/poll/rating/pollrevisionrating';
@@ -102,8 +100,6 @@ import { Position } from '../ddl/factor/position/position';
 import { QPosition } from './factor/position/qposition';
 import { PositionOpinionVersion } from '../ddl/opinion/positionopinionversion';
 import { QPositionOpinionVersion } from './opinion/qpositionopinionversion';
-import { PositionOpinionVersionRating } from '../ddl/opinion/user/positionopinionversionrating';
-import { QPositionOpinionVersionRating } from './opinion/user/qpositionopinionversionrating';
 import { PositionOpinionVersionTranslation } from '../ddl/opinion/translation/positionopinionversiontranslation';
 import { QPositionOpinionVersionTranslation } from './opinion/translation/qpositionopinionversiontranslation';
 import { PositionTranslation } from '../ddl/factor/position/positiontranslation';
@@ -155,7 +151,6 @@ export interface LocalQSchema extends AirportQSchema {
 	Emoji: QEmoji;
 	Factor: QFactor;
 	FactorOpinionVersion: QFactorOpinionVersion;
-	FactorOpinionVersionRating: QFactorOpinionVersionRating;
 	FactorOpinionVersionTranslation: QFactorOpinionVersionTranslation;
 	FactorPosition: QFactorPosition;
 	FactorSkin: QFactorSkin;
@@ -173,8 +168,8 @@ export interface LocalQSchema extends AirportQSchema {
 	PollRevision: QPollRevision;
 	PollRevisionFactorPosition: QPollRevisionFactorPosition;
 	PollRevisionOpinion: QPollRevisionOpinion;
+	PollRevisionOpinionRating: QPollRevisionOpinionRating;
 	PollRevisionOpinionVersion: QPollRevisionOpinionVersion;
-	PollRevisionOpinionVersionRating: QPollRevisionOpinionVersionRating;
 	PollRevisionOpinionVersionTranslation: QPollRevisionOpinionVersionTranslation;
 	PollRevisionRating: QPollRevisionRating;
 	PollRevisionTranslation: QPollRevisionTranslation;
@@ -188,7 +183,6 @@ export interface LocalQSchema extends AirportQSchema {
 	PollType: QPollType;
 	Position: QPosition;
 	PositionOpinionVersion: QPositionOpinionVersion;
-	PositionOpinionVersionRating: QPositionOpinionVersionRating;
 	PositionOpinionVersionTranslation: QPositionOpinionVersionTranslation;
 	PositionTranslation: QPositionTranslation;
 	Rating: QRating;
@@ -222,7 +216,6 @@ const __constructors__ = {
 	Emoji: Emoji,
 	Factor: Factor,
 	FactorOpinionVersion: FactorOpinionVersion,
-	FactorOpinionVersionRating: FactorOpinionVersionRating,
 	FactorOpinionVersionTranslation: FactorOpinionVersionTranslation,
 	FactorPosition: FactorPosition,
 	FactorSkin: FactorSkin,
@@ -240,8 +233,8 @@ const __constructors__ = {
 	PollRevision: PollRevision,
 	PollRevisionFactorPosition: PollRevisionFactorPosition,
 	PollRevisionOpinion: PollRevisionOpinion,
+	PollRevisionOpinionRating: PollRevisionOpinionRating,
 	PollRevisionOpinionVersion: PollRevisionOpinionVersion,
-	PollRevisionOpinionVersionRating: PollRevisionOpinionVersionRating,
 	PollRevisionOpinionVersionTranslation: PollRevisionOpinionVersionTranslation,
 	PollRevisionRating: PollRevisionRating,
 	PollRevisionTranslation: PollRevisionTranslation,
@@ -255,7 +248,6 @@ const __constructors__ = {
 	PollType: PollType,
 	Position: Position,
 	PositionOpinionVersion: PositionOpinionVersion,
-	PositionOpinionVersionRating: PositionOpinionVersionRating,
 	PositionOpinionVersionTranslation: PositionOpinionVersionTranslation,
 	PositionTranslation: PositionTranslation,
 	Rating: Rating,

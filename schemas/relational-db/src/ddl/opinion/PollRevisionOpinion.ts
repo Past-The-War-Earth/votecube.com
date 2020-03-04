@@ -14,7 +14,11 @@ import {MutableActorRow}            from '../infrastructure/row/MutableActorRow'
 import {PollRevision}               from '../poll/revision/PollRevision'
 import {PollRun}                    from '../poll/run/PollRun'
 import {Vote}                       from '../vote/Vote'
+import {FactorOpinionVersion}       from './FactorOpinionVersion'
+import {OutcomeOpinionVersion}      from './OutcomeOpinionVersion'
 import {PollRevisionOpinionVersion} from './PollRevisionOpinionVersion'
+import {PositionOpinionVersion}     from './PositionOpinionVersion'
+import {PollRevisionOpinionRating}  from './rating/PollRevisionOpinionRating'
 
 @Entity()
 @Table({name: 'POLL_REVISION_OPINIONS'})
@@ -41,6 +45,18 @@ export class PollRevisionOpinion
 	vote: Vote
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	ratings: PollRevisionOpinionRating[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
 	versions: PollRevisionOpinionVersion[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	factors: FactorOpinionVersion[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	outcomes: OutcomeOpinionVersion[]
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	positions: PositionOpinionVersion[]
 
 }

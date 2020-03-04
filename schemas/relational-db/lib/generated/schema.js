@@ -5867,639 +5867,6 @@ export const SCHEMA = {
                             "index": 1,
                             "isGenerated": true,
                             "manyRelationColumnRefs": [],
-                            "name": "POSITION_OPINION_VERSION_TRANSLATION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 2,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "IS_ORIGINAL",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 2
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 1
-                        },
-                        {
-                            "index": 3,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "TITLE",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 3
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 5
-                        },
-                        {
-                            "index": 4,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "TEXT",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 4
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 5
-                        },
-                        {
-                            "index": 5,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 38,
-                                    "oneRelationIndex": 2,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "POSITION_OPINION_VERSION_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 5
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 6,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 1,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 24,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "LANGUAGE_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 6
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 1
-                        }
-                    ],
-                    "index": 36,
-                    "isLocal": true,
-                    "isRepositoryEntity": false,
-                    "name": "PositionOpinionVersionTranslation",
-                    "properties": [
-                        {
-                            "columnRef": {
-                                "index": 0
-                            },
-                            "index": 0,
-                            "isId": false,
-                            "name": "createdAt",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 1
-                            },
-                            "index": 1,
-                            "isId": true,
-                            "name": "id",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 2
-                            },
-                            "index": 2,
-                            "isId": false,
-                            "name": "original",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 3
-                            },
-                            "index": 3,
-                            "isId": false,
-                            "name": "title",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 4
-                            },
-                            "index": 4,
-                            "isId": false,
-                            "name": "text",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "name": "positionOpinionVersion",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 6,
-                            "isId": false,
-                            "name": "language",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 5
-                            },
-                            "relationTableIndex": 38,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 6
-                            },
-                            "relationTableIndex": 24,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "POSITION_OPINION_VERSION_TRANSLATIONS",
-                        "indexes": []
-                    }
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "CREATED_AT",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 2
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 5,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "ACTOR_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 2,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
-                            "name": "POSITION_OPINION_VERSION_RATING_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 2
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 3,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "POSITION_OPINION_VERSION_RATING_IS_CURRENT",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 3
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 1
-                        },
-                        {
-                            "index": 4,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 1,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 38,
-                                    "oneRelationIndex": 1,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "POSITION_OPINION_VERSION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 4
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 5,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 2,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 28,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "RATING_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 5
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 6,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 3,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 37,
-                                    "oneRelationIndex": 4,
-                                    "oneColumnIndex": 2,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "PARENT_POSITION_OPINION_VERSION_RATING_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 6
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 2
-                        }
-                    ],
-                    "index": 37,
-                    "isLocal": true,
-                    "isRepositoryEntity": false,
-                    "name": "PositionOpinionVersionRating",
-                    "properties": [
-                        {
-                            "columnRef": {
-                                "index": 0
-                            },
-                            "index": 0,
-                            "isId": false,
-                            "name": "createdAt",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "name": "actor",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 2
-                            },
-                            "index": 2,
-                            "isId": true,
-                            "name": "id",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 3
-                            },
-                            "index": 3,
-                            "isId": false,
-                            "name": "isCurrent",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "name": "positionOpinionVersion",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "name": "rating",
-                            "relationRef": {
-                                "index": 2
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 6,
-                            "isId": false,
-                            "name": "parent",
-                            "relationRef": {
-                                "index": 3
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 7,
-                            "isId": false,
-                            "name": "child",
-                            "relationRef": {
-                                "index": 4
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 1
-                            },
-                            "relationTableIndex": 5,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 4
-                            },
-                            "relationTableIndex": 38,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 5
-                            },
-                            "relationTableIndex": 28,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 6
-                            },
-                            "relationTableIndex": 37,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "parent"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 7
-                            },
-                            "relationTableIndex": 37,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "POSITION_OPINION_VERSION_RATINGS",
-                        "indexes": []
-                    }
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
-                            "name": "POSITION_OPINION_VERSION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 41,
-                                    "oneRelationIndex": 3,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "FACTOR_OPINION_VERSION_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 0
-                        }
-                    ],
-                    "index": 38,
-                    "isLocal": true,
-                    "isRepositoryEntity": false,
-                    "name": "PositionOpinionVersion",
-                    "properties": [
-                        {
-                            "columnRef": {
-                                "index": 0
-                            },
-                            "index": 0,
-                            "isId": true,
-                            "name": "id",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "name": "factorOpinionVersion",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "name": "ratings",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "name": "translations",
-                            "relationRef": {
-                                "index": 2
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 1
-                            },
-                            "relationTableIndex": 41,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "positionOpinionVersion"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 2
-                            },
-                            "relationTableIndex": 37,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "positionOpinionVersion"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 3
-                            },
-                            "relationTableIndex": 36,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "POSITION_OPINION_VERSIONS",
-                        "indexes": []
-                    }
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "CREATED_AT",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 2
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
                             "name": "FACTOR_OPINION_VERSION_TRANSLATION_ID",
                             "notNull": false,
                             "propertyRefs": [
@@ -6559,8 +5926,8 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 0,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 41,
-                                    "oneRelationIndex": 2,
+                                    "oneTableIndex": 37,
+                                    "oneRelationIndex": 4,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
@@ -6603,7 +5970,7 @@ export const SCHEMA = {
                             "index": 1
                         }
                     ],
-                    "index": 39,
+                    "index": 36,
                     "isLocal": true,
                     "isRepositoryEntity": false,
                     "name": "FactorOpinionVersionTranslation",
@@ -6680,7 +6047,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 5
                             },
-                            "relationTableIndex": 41,
+                            "relationTableIndex": 37,
                             "sinceVersion": 1
                         },
                         {
@@ -6697,6 +6064,222 @@ export const SCHEMA = {
                     "sinceVersion": 1,
                     "tableConfig": {
                         "name": "FACTOR_OPINION_VERSION_TRANSLATIONS",
+                        "indexes": []
+                    }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "FACTOR_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 47,
+                                    "oneRelationIndex": 6,
+                                    "oneColumnIndex": 3,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "POLL_REVISION_OPINION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 52,
+                                    "oneColumnIndex": 2,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "FACTOR_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 3,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 2,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 37,
+                                    "oneRelationIndex": 3,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "PARENT_FACTOR_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 3
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "index": 37,
+                    "isLocal": true,
+                    "isRepositoryEntity": false,
+                    "name": "FactorOpinionVersion",
+                    "properties": [
+                        {
+                            "columnRef": {
+                                "index": 0
+                            },
+                            "index": 0,
+                            "isId": true,
+                            "name": "id",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "name": "pollRevisionOpinion",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "name": "factor",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "name": "parent",
+                            "relationRef": {
+                                "index": 2
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "name": "children",
+                            "relationRef": {
+                                "index": 3
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "name": "translations",
+                            "relationRef": {
+                                "index": 4
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 1
+                            },
+                            "relationTableIndex": 47,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 2
+                            },
+                            "relationTableIndex": 52,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 3
+                            },
+                            "relationTableIndex": 37,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "parent"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 4
+                            },
+                            "relationTableIndex": 37,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "factorOpinionVersion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 5
+                            },
+                            "relationTableIndex": 36,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "FACTOR_OPINION_VERSIONS",
                         "indexes": []
                     }
                 },
@@ -6742,7 +6325,7 @@ export const SCHEMA = {
                             "index": 2,
                             "isGenerated": true,
                             "manyRelationColumnRefs": [],
-                            "name": "FACTOR_OPINION_VERSION_RATING_ID",
+                            "name": "OUTCOME_TRANSLATION_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -6756,7 +6339,7 @@ export const SCHEMA = {
                             "index": 3,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [],
-                            "name": "FACTOR_OPINION_VERSION_RATING_IS_CURRENT",
+                            "name": "NAME",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -6764,7 +6347,7 @@ export const SCHEMA = {
                                 }
                             ],
                             "sinceVersion": 1,
-                            "type": 1
+                            "type": 5
                         },
                         {
                             "index": 4,
@@ -6773,13 +6356,12 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 1,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 41,
-                                    "oneRelationIndex": 1,
+                                    "oneTableIndex": 39,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "FACTOR_OPINION_VERSION_ID",
+                            "name": "OUTCOME_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -6796,12 +6378,12 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 2,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 28,
-                                    "oneColumnIndex": 1,
+                                    "oneTableIndex": 24,
+                                    "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "RATING_ID",
+                            "name": "LANGUAGE_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -6818,17 +6400,39 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 3,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 40,
-                                    "oneRelationIndex": 4,
-                                    "oneColumnIndex": 2,
+                                    "oneTableIndex": 25,
+                                    "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "PARENT_FACTOR_OPINION_VERSION_RATING_ID",
+                            "name": "TRANSLATION_TYPE_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
                                     "index": 6
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 7,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 4,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 38,
+                                    "oneRelationIndex": 5,
+                                    "oneColumnIndex": 2,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "PARENT_OUTCOME_TRANSLATION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 7
                                 }
                             ],
                             "sinceVersion": 1,
@@ -6840,10 +6444,10 @@ export const SCHEMA = {
                             "index": 2
                         }
                     ],
-                    "index": 40,
+                    "index": 38,
                     "isLocal": true,
                     "isRepositoryEntity": false,
-                    "name": "FactorOpinionVersionRating",
+                    "name": "OutcomeTranslation",
                     "properties": [
                         {
                             "columnRef": {
@@ -6878,13 +6482,13 @@ export const SCHEMA = {
                             },
                             "index": 3,
                             "isId": false,
-                            "name": "isCurrent",
+                            "name": "name",
                             "sinceVersion": 1
                         },
                         {
                             "index": 4,
                             "isId": false,
-                            "name": "factorOpinionVersion",
+                            "name": "outcome",
                             "relationRef": {
                                 "index": 1
                             },
@@ -6893,7 +6497,7 @@ export const SCHEMA = {
                         {
                             "index": 5,
                             "isId": false,
-                            "name": "rating",
+                            "name": "language",
                             "relationRef": {
                                 "index": 2
                             },
@@ -6902,7 +6506,7 @@ export const SCHEMA = {
                         {
                             "index": 6,
                             "isId": false,
-                            "name": "parent",
+                            "name": "type",
                             "relationRef": {
                                 "index": 3
                             },
@@ -6911,9 +6515,18 @@ export const SCHEMA = {
                         {
                             "index": 7,
                             "isId": false,
-                            "name": "child",
+                            "name": "parent",
                             "relationRef": {
                                 "index": 4
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 8,
+                            "isId": false,
+                            "name": "children",
+                            "relationRef": {
+                                "index": 5
                             },
                             "sinceVersion": 1
                         }
@@ -6936,7 +6549,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 4
                             },
-                            "relationTableIndex": 41,
+                            "relationTableIndex": 39,
                             "sinceVersion": 1
                         },
                         {
@@ -6946,7 +6559,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 5
                             },
-                            "relationTableIndex": 28,
+                            "relationTableIndex": 24,
                             "sinceVersion": 1
                         },
                         {
@@ -6956,11 +6569,21 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 6
                             },
-                            "relationTableIndex": 40,
+                            "relationTableIndex": 25,
                             "sinceVersion": 1
                         },
                         {
                             "index": 4,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 7
+                            },
+                            "relationTableIndex": 38,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
                             "isId": false,
                             "oneToManyElems": {
                                 "cascade": 1,
@@ -6968,15 +6591,15 @@ export const SCHEMA = {
                             },
                             "relationType": 0,
                             "propertyRef": {
-                                "index": 7
+                                "index": 8
                             },
-                            "relationTableIndex": 40,
+                            "relationTableIndex": 38,
                             "sinceVersion": 1
                         }
                     ],
                     "sinceVersion": 1,
                     "tableConfig": {
-                        "name": "FACTOR_OPINION_VERSION_RATINGS",
+                        "name": "OUTCOME_TRANSLATIONS",
                         "indexes": []
                     }
                 },
@@ -6986,7 +6609,7 @@ export const SCHEMA = {
                             "index": 0,
                             "isGenerated": true,
                             "manyRelationColumnRefs": [],
-                            "name": "FACTOR_OPINION_VERSION_ID",
+                            "name": "OUTCOME_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -7003,16 +6626,479 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 0,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 44,
-                                    "oneColumnIndex": 1,
+                                    "oneTableIndex": 38,
+                                    "oneColumnIndex": 2,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "POLL_REVISION_OPINION_VERSION_ID",
+                            "name": "PARENT_OUTCOME_TRANSLATION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 39,
+                                    "oneRelationIndex": 2,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "PARENT_OUTCOME_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "index": 39,
+                    "isLocal": true,
+                    "isRepositoryEntity": false,
+                    "name": "Outcome",
+                    "properties": [
+                        {
+                            "columnRef": {
+                                "index": 0
+                            },
+                            "index": 0,
+                            "isId": true,
+                            "name": "id",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "name": "parentTranslation",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "name": "parent",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "name": "children",
+                            "relationRef": {
+                                "index": 2
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "name": "pollRevisionsA",
+                            "relationRef": {
+                                "index": 3
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "name": "pollRevisionsB",
+                            "relationRef": {
+                                "index": 4
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 1
+                            },
+                            "relationTableIndex": 38,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 2
+                            },
+                            "relationTableIndex": 39,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "parent"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 3
+                            },
+                            "relationTableIndex": 39,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "outcomeVersionA"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 4
+                            },
+                            "relationTableIndex": 49,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "outcomeVersionB"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 5
+                            },
+                            "relationTableIndex": 49,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "OUTCOMES",
+                        "indexes": []
+                    }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "CREATED_AT",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 2
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "OUTCOME_OPINION_VERSION_TRANSLATION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "IS_ORIGINAL",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 1
+                        },
+                        {
+                            "index": 3,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "TITLE",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 3
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 5
+                        },
+                        {
+                            "index": 4,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "TEXT",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 4
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 5
+                        },
+                        {
+                            "index": 5,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 41,
+                                    "oneRelationIndex": 4,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "OUTCOME_OPINION_VERSION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 5
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 6,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 24,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "LANGUAGE_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 6
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "index": 40,
+                    "isLocal": true,
+                    "isRepositoryEntity": false,
+                    "name": "OutcomeOpinionVersionTranslation",
+                    "properties": [
+                        {
+                            "columnRef": {
+                                "index": 0
+                            },
+                            "index": 0,
+                            "isId": false,
+                            "name": "createdAt",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 1
+                            },
+                            "index": 1,
+                            "isId": true,
+                            "name": "id",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 2
+                            },
+                            "index": 2,
+                            "isId": false,
+                            "name": "original",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 3
+                            },
+                            "index": 3,
+                            "isId": false,
+                            "name": "title",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 4
+                            },
+                            "index": 4,
+                            "isId": false,
+                            "name": "text",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "name": "outcomeOpinionVersion",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 6,
+                            "isId": false,
+                            "name": "language",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 5
+                            },
+                            "relationTableIndex": 41,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 6
+                            },
+                            "relationTableIndex": 24,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "OUTCOME_OPINION_VERSION_TRANSLATIONS",
+                        "indexes": []
+                    }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "OUTCOME_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 47,
+                                    "oneRelationIndex": 7,
+                                    "oneColumnIndex": 3,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "POLL_REVISION_OPINION_ID",
                             "notNull": true,
                             "propertyRefs": [
                                 {
                                     "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 39,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "OUTCOME_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 3,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 2,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 41,
+                                    "oneRelationIndex": 3,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "PARENT_OUTCOME_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 3
                                 }
                             ],
                             "sinceVersion": 1,
@@ -7027,7 +7113,7 @@ export const SCHEMA = {
                     "index": 41,
                     "isLocal": true,
                     "isRepositoryEntity": false,
-                    "name": "FactorOpinionVersion",
+                    "name": "OutcomeOpinionVersion",
                     "properties": [
                         {
                             "columnRef": {
@@ -7041,7 +7127,7 @@ export const SCHEMA = {
                         {
                             "index": 1,
                             "isId": false,
-                            "name": "pollRevisionOpinionVersion",
+                            "name": "pollRevisionOpinion",
                             "relationRef": {
                                 "index": 0
                             },
@@ -7050,7 +7136,7 @@ export const SCHEMA = {
                         {
                             "index": 2,
                             "isId": false,
-                            "name": "ratings",
+                            "name": "outcome",
                             "relationRef": {
                                 "index": 1
                             },
@@ -7059,7 +7145,7 @@ export const SCHEMA = {
                         {
                             "index": 3,
                             "isId": false,
-                            "name": "translations",
+                            "name": "parent",
                             "relationRef": {
                                 "index": 2
                             },
@@ -7068,9 +7154,18 @@ export const SCHEMA = {
                         {
                             "index": 4,
                             "isId": false,
-                            "name": "positionOpinionVersions",
+                            "name": "children",
                             "relationRef": {
                                 "index": 3
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "name": "translations",
+                            "relationRef": {
+                                "index": 4
                             },
                             "sinceVersion": 1
                         }
@@ -7083,35 +7178,27 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 1
                             },
-                            "relationTableIndex": 44,
+                            "relationTableIndex": 47,
                             "sinceVersion": 1
                         },
                         {
                             "index": 1,
                             "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "factorOpinionVersion"
-                            },
-                            "relationType": 0,
+                            "relationType": 1,
                             "propertyRef": {
                                 "index": 2
                             },
-                            "relationTableIndex": 40,
+                            "relationTableIndex": 39,
                             "sinceVersion": 1
                         },
                         {
                             "index": 2,
                             "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "factorOpinionVersion"
-                            },
-                            "relationType": 0,
+                            "relationType": 1,
                             "propertyRef": {
                                 "index": 3
                             },
-                            "relationTableIndex": 39,
+                            "relationTableIndex": 41,
                             "sinceVersion": 1
                         },
                         {
@@ -7119,19 +7206,33 @@ export const SCHEMA = {
                             "isId": false,
                             "oneToManyElems": {
                                 "cascade": 1,
-                                "mappedBy": "factorOpinionVersion"
+                                "mappedBy": "parent"
                             },
                             "relationType": 0,
                             "propertyRef": {
                                 "index": 4
                             },
-                            "relationTableIndex": 38,
+                            "relationTableIndex": 41,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "outcomeOpinionVersion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 5
+                            },
+                            "relationTableIndex": 40,
                             "sinceVersion": 1
                         }
                     ],
                     "sinceVersion": 1,
                     "tableConfig": {
-                        "name": "FACTOR_OPINION_VERSIONS",
+                        "name": "OUTCOME_OPINION_VERSIONS",
                         "indexes": []
                     }
                 },
@@ -7214,7 +7315,7 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 0,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 44,
+                                    "oneTableIndex": 43,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
                                 }
@@ -7334,7 +7435,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 5
                             },
-                            "relationTableIndex": 44,
+                            "relationTableIndex": 43,
                             "sinceVersion": 1
                         },
                         {
@@ -7351,6 +7452,640 @@ export const SCHEMA = {
                     "sinceVersion": 1,
                     "tableConfig": {
                         "name": "POLL_REVISION_OPINION_VERSION_TRANSLATIONS",
+                        "indexes": []
+                    }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "CREATED_AT",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 2
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "POLL_REVISION_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 47,
+                                    "oneRelationIndex": 5,
+                                    "oneColumnIndex": 3,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "POLL_REVISION_OPINION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 3,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 43,
+                                    "oneRelationIndex": 2,
+                                    "oneColumnIndex": 1,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "PARENT_POLL_REVISION_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 3
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "index": 43,
+                    "isLocal": true,
+                    "isRepositoryEntity": false,
+                    "name": "PollRevisionOpinionVersion",
+                    "properties": [
+                        {
+                            "columnRef": {
+                                "index": 0
+                            },
+                            "index": 0,
+                            "isId": false,
+                            "name": "createdAt",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 1
+                            },
+                            "index": 1,
+                            "isId": true,
+                            "name": "id",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "name": "pollRevisionOpinion",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "name": "parent",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "name": "children",
+                            "relationRef": {
+                                "index": 2
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "name": "translations",
+                            "relationRef": {
+                                "index": 3
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 2
+                            },
+                            "relationTableIndex": 47,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 3
+                            },
+                            "relationTableIndex": 43,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "parent"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 4
+                            },
+                            "relationTableIndex": 43,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "pollOpinionVersion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 5
+                            },
+                            "relationTableIndex": 42,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "POLL_REVISION_OPINION_VERSIONS",
+                        "indexes": []
+                    }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "CREATED_AT",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 2
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "POSITION_OPINION_VERSION_TRANSLATION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "IS_ORIGINAL",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 1
+                        },
+                        {
+                            "index": 3,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "TITLE",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 3
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 5
+                        },
+                        {
+                            "index": 4,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "TEXT",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 4
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 5
+                        },
+                        {
+                            "index": 5,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 45,
+                                    "oneRelationIndex": 4,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "POSITION_OPINION_VERSION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 5
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 6,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 24,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "LANGUAGE_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 6
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "index": 44,
+                    "isLocal": true,
+                    "isRepositoryEntity": false,
+                    "name": "PositionOpinionVersionTranslation",
+                    "properties": [
+                        {
+                            "columnRef": {
+                                "index": 0
+                            },
+                            "index": 0,
+                            "isId": false,
+                            "name": "createdAt",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 1
+                            },
+                            "index": 1,
+                            "isId": true,
+                            "name": "id",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 2
+                            },
+                            "index": 2,
+                            "isId": false,
+                            "name": "original",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 3
+                            },
+                            "index": 3,
+                            "isId": false,
+                            "name": "title",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 4
+                            },
+                            "index": 4,
+                            "isId": false,
+                            "name": "text",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "name": "positionOpinionVersion",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 6,
+                            "isId": false,
+                            "name": "language",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 5
+                            },
+                            "relationTableIndex": 45,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 6
+                            },
+                            "relationTableIndex": 24,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "POSITION_OPINION_VERSION_TRANSLATIONS",
+                        "indexes": []
+                    }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "POSITION_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 47,
+                                    "oneRelationIndex": 8,
+                                    "oneColumnIndex": 3,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "POLL_REVISION_OPINION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 31,
+                                    "oneColumnIndex": 1,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "POLL_REVISION_FACTOR_POSITION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        },
+                        {
+                            "index": 3,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 2,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 45,
+                                    "oneRelationIndex": 3,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "PARENT_POSITION_OPINION_VERSION_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 3
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": 4
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "index": 45,
+                    "isLocal": true,
+                    "isRepositoryEntity": false,
+                    "name": "PositionOpinionVersion",
+                    "properties": [
+                        {
+                            "columnRef": {
+                                "index": 0
+                            },
+                            "index": 0,
+                            "isId": true,
+                            "name": "id",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "name": "pollRevisionOpinion",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "name": "factorPosition",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "name": "parent",
+                            "relationRef": {
+                                "index": 2
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "name": "children",
+                            "relationRef": {
+                                "index": 3
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "name": "translations",
+                            "relationRef": {
+                                "index": 4
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 1
+                            },
+                            "relationTableIndex": 47,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 2
+                            },
+                            "relationTableIndex": 31,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "relationType": 1,
+                            "propertyRef": {
+                                "index": 3
+                            },
+                            "relationTableIndex": 45,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "parent"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 4
+                            },
+                            "relationTableIndex": 45,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "positionOpinionVersion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 5
+                            },
+                            "relationTableIndex": 44,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "POSITION_OPINION_VERSIONS",
                         "indexes": []
                     }
                 },
@@ -7396,7 +8131,7 @@ export const SCHEMA = {
                             "index": 2,
                             "isGenerated": true,
                             "manyRelationColumnRefs": [],
-                            "name": "POLL_REVISION_OPINION_VERSION_RATING_ID",
+                            "name": "POLL_REVISION_OPINION_RATING_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -7409,8 +8144,17 @@ export const SCHEMA = {
                         {
                             "index": 3,
                             "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "IS_CURRENT",
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneSchemaIndex": null,
+                                    "oneTableIndex": 47,
+                                    "oneRelationIndex": 4,
+                                    "oneColumnIndex": 3,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "POLL_REVISION_OPINION_ID",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -7418,32 +8162,10 @@ export const SCHEMA = {
                                 }
                             ],
                             "sinceVersion": 1,
-                            "type": 1
-                        },
-                        {
-                            "index": 4,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 1,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 44,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "POLL_REVISION_OPINION_VERSION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 4
-                                }
-                            ],
-                            "sinceVersion": 1,
                             "type": 4
                         },
                         {
-                            "index": 5,
+                            "index": 4,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
@@ -7458,30 +8180,7 @@ export const SCHEMA = {
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 5
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 6,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 3,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 43,
-                                    "oneRelationIndex": 4,
-                                    "oneColumnIndex": 2,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "PARENT_POLL_REVISION_OPINION_VERSION_RATING_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 6
+                                    "index": 4
                                 }
                             ],
                             "sinceVersion": 1,
@@ -7493,10 +8192,10 @@ export const SCHEMA = {
                             "index": 2
                         }
                     ],
-                    "index": 43,
+                    "index": 46,
                     "isLocal": true,
                     "isRepositoryEntity": false,
-                    "name": "PollRevisionOpinionVersionRating",
+                    "name": "PollRevisionOpinionRating",
                     "properties": [
                         {
                             "columnRef": {
@@ -7526,47 +8225,20 @@ export const SCHEMA = {
                             "sinceVersion": 1
                         },
                         {
-                            "columnRef": {
-                                "index": 3
-                            },
                             "index": 3,
                             "isId": false,
-                            "name": "isCurrent",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "name": "pollRevisionOpinionVersion",
+                            "name": "pollRevisionOpinion",
                             "relationRef": {
                                 "index": 1
                             },
                             "sinceVersion": 1
                         },
                         {
-                            "index": 5,
+                            "index": 4,
                             "isId": false,
                             "name": "rating",
                             "relationRef": {
                                 "index": 2
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 6,
-                            "isId": false,
-                            "name": "parent",
-                            "relationRef": {
-                                "index": 3
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 7,
-                            "isId": false,
-                            "name": "child",
-                            "relationRef": {
-                                "index": 4
                             },
                             "sinceVersion": 1
                         }
@@ -7587,9 +8259,9 @@ export const SCHEMA = {
                             "isId": false,
                             "relationType": 1,
                             "propertyRef": {
-                                "index": 4
+                                "index": 3
                             },
-                            "relationTableIndex": 44,
+                            "relationTableIndex": 47,
                             "sinceVersion": 1
                         },
                         {
@@ -7597,365 +8269,15 @@ export const SCHEMA = {
                             "isId": false,
                             "relationType": 1,
                             "propertyRef": {
-                                "index": 5
+                                "index": 4
                             },
                             "relationTableIndex": 28,
                             "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 6
-                            },
-                            "relationTableIndex": 43,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "parent"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 7
-                            },
-                            "relationTableIndex": 43,
-                            "sinceVersion": 1
                         }
                     ],
                     "sinceVersion": 1,
                     "tableConfig": {
-                        "name": "POLL_REVISION_OPINION_VERSION_RATINGS",
-                        "indexes": []
-                    }
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "CREATED_AT",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 2
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
-                            "name": "POLL_REVISION_OPINION_VERSION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 2,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 45,
-                                    "oneRelationIndex": 4,
-                                    "oneColumnIndex": 3,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "POLL_REVISION_OPINION_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 2
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 3,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 1,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 34,
-                                    "oneColumnIndex": 2,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "VOTE_REVISION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 3
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 4,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 2,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 24,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "LANGUAGE_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 4
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 5,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 3,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 44,
-                                    "oneRelationIndex": 4,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "PARENT_POLL_REVISION_OPINION_VERSION_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 5
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 1
-                        }
-                    ],
-                    "index": 44,
-                    "isLocal": true,
-                    "isRepositoryEntity": false,
-                    "name": "PollRevisionOpinionVersion",
-                    "properties": [
-                        {
-                            "columnRef": {
-                                "index": 0
-                            },
-                            "index": 0,
-                            "isId": false,
-                            "name": "createdAt",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 1
-                            },
-                            "index": 1,
-                            "isId": true,
-                            "name": "id",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "name": "pollRevisionOpinion",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "name": "voteRevision",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "name": "language",
-                            "relationRef": {
-                                "index": 2
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "name": "parent",
-                            "relationRef": {
-                                "index": 3
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 6,
-                            "isId": false,
-                            "name": "children",
-                            "relationRef": {
-                                "index": 4
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 7,
-                            "isId": false,
-                            "name": "ratings",
-                            "relationRef": {
-                                "index": 5
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 8,
-                            "isId": false,
-                            "name": "translations",
-                            "relationRef": {
-                                "index": 6
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 9,
-                            "isId": false,
-                            "name": "factors",
-                            "relationRef": {
-                                "index": 7
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 2
-                            },
-                            "relationTableIndex": 45,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 3
-                            },
-                            "relationTableIndex": 34,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 4
-                            },
-                            "relationTableIndex": 24,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 5
-                            },
-                            "relationTableIndex": 44,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "parent"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 6
-                            },
-                            "relationTableIndex": 44,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "pollOpinionVersion"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 7
-                            },
-                            "relationTableIndex": 43,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 6,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "pollOpinionVersion"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 8
-                            },
-                            "relationTableIndex": 42,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 7,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "pollOpinionVersion"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 9
-                            },
-                            "relationTableIndex": 41,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "POLL_REVISION_OPINION_VERSIONS",
+                        "name": "POLL_REVISION_OPINION_RATINGS",
                         "indexes": []
                     }
                 },
@@ -8098,7 +8420,7 @@ export const SCHEMA = {
                             "index": 3
                         }
                     ],
-                    "index": 45,
+                    "index": 47,
                     "isLocal": true,
                     "isRepositoryEntity": false,
                     "name": "PollRevisionOpinion",
@@ -8169,9 +8491,45 @@ export const SCHEMA = {
                         {
                             "index": 7,
                             "isId": false,
-                            "name": "versions",
+                            "name": "ratings",
                             "relationRef": {
                                 "index": 4
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 8,
+                            "isId": false,
+                            "name": "versions",
+                            "relationRef": {
+                                "index": 5
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 9,
+                            "isId": false,
+                            "name": "factors",
+                            "relationRef": {
+                                "index": 6
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 10,
+                            "isId": false,
+                            "name": "outcomes",
+                            "relationRef": {
+                                "index": 7
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 11,
+                            "isId": false,
+                            "name": "positions",
+                            "relationRef": {
+                                "index": 8
                             },
                             "sinceVersion": 1
                         }
@@ -8228,7 +8586,63 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 7
                             },
-                            "relationTableIndex": 44,
+                            "relationTableIndex": 46,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "pollRevisionOpinion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 8
+                            },
+                            "relationTableIndex": 43,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 6,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "pollRevisionOpinion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 9
+                            },
+                            "relationTableIndex": 37,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 7,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "pollRevisionOpinion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 10
+                            },
+                            "relationTableIndex": 41,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 8,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "cascade": 1,
+                                "mappedBy": "pollRevisionOpinion"
+                            },
+                            "relationType": 0,
+                            "propertyRef": {
+                                "index": 11
+                            },
+                            "relationTableIndex": 45,
                             "sinceVersion": 1
                         }
                     ],
@@ -8369,7 +8783,7 @@ export const SCHEMA = {
                             "index": 3
                         }
                     ],
-                    "index": 46,
+                    "index": 48,
                     "isLocal": true,
                     "isRepositoryEntity": false,
                     "name": "PollRevisionRating",
@@ -8518,523 +8932,6 @@ export const SCHEMA = {
                             "index": 2,
                             "isGenerated": true,
                             "manyRelationColumnRefs": [],
-                            "name": "OUTCOME_TRANSLATION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 2
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 3,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "NAME",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 3
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 5
-                        },
-                        {
-                            "index": 4,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 1,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 48,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "OUTCOME_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 4
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 5,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 2,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 24,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "LANGUAGE_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 5
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 6,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 3,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 25,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "TRANSLATION_TYPE_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 6
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 7,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 4,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 47,
-                                    "oneRelationIndex": 5,
-                                    "oneColumnIndex": 2,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "PARENT_OUTCOME_TRANSLATION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 7
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 2
-                        }
-                    ],
-                    "index": 47,
-                    "isLocal": true,
-                    "isRepositoryEntity": false,
-                    "name": "OutcomeTranslation",
-                    "properties": [
-                        {
-                            "columnRef": {
-                                "index": 0
-                            },
-                            "index": 0,
-                            "isId": false,
-                            "name": "createdAt",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "name": "actor",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 2
-                            },
-                            "index": 2,
-                            "isId": true,
-                            "name": "id",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 3
-                            },
-                            "index": 3,
-                            "isId": false,
-                            "name": "name",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "name": "outcome",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "name": "language",
-                            "relationRef": {
-                                "index": 2
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 6,
-                            "isId": false,
-                            "name": "type",
-                            "relationRef": {
-                                "index": 3
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 7,
-                            "isId": false,
-                            "name": "parent",
-                            "relationRef": {
-                                "index": 4
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 8,
-                            "isId": false,
-                            "name": "children",
-                            "relationRef": {
-                                "index": 5
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 1
-                            },
-                            "relationTableIndex": 5,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 4
-                            },
-                            "relationTableIndex": 48,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 5
-                            },
-                            "relationTableIndex": 24,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 6
-                            },
-                            "relationTableIndex": 25,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 7
-                            },
-                            "relationTableIndex": 47,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "parent"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 8
-                            },
-                            "relationTableIndex": 47,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "OUTCOME_TRANSLATIONS",
-                        "indexes": []
-                    }
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
-                            "name": "OUTCOME_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 47,
-                                    "oneColumnIndex": 2,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "PARENT_OUTCOME_TRANSLATION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 2,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 1,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 48,
-                                    "oneRelationIndex": 2,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "PARENT_OUTCOME_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 2
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 0
-                        }
-                    ],
-                    "index": 48,
-                    "isLocal": true,
-                    "isRepositoryEntity": false,
-                    "name": "Outcome",
-                    "properties": [
-                        {
-                            "columnRef": {
-                                "index": 0
-                            },
-                            "index": 0,
-                            "isId": true,
-                            "name": "id",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "name": "parentTranslation",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "name": "parent",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "name": "children",
-                            "relationRef": {
-                                "index": 2
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "name": "pollRevisionsA",
-                            "relationRef": {
-                                "index": 3
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "name": "pollRevisionsB",
-                            "relationRef": {
-                                "index": 4
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 1
-                            },
-                            "relationTableIndex": 47,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 2
-                            },
-                            "relationTableIndex": 48,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "parent"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 3
-                            },
-                            "relationTableIndex": 48,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "outcomeVersionA"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 4
-                            },
-                            "relationTableIndex": 49,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "outcomeVersionB"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 5
-                            },
-                            "relationTableIndex": 49,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "OUTCOMES",
-                        "indexes": []
-                    }
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "CREATED_AT",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 2
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 5,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "ACTOR_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 2,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
                             "name": "POLL_REVISION_ID",
                             "notNull": false,
                             "propertyRefs": [
@@ -9112,7 +9009,7 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 3,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 48,
+                                    "oneTableIndex": 39,
                                     "oneRelationIndex": 3,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
@@ -9135,7 +9032,7 @@ export const SCHEMA = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneSchemaIndex": null,
-                                    "oneTableIndex": 48,
+                                    "oneTableIndex": 39,
                                     "oneRelationIndex": 4,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
@@ -9350,7 +9247,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 6
                             },
-                            "relationTableIndex": 48,
+                            "relationTableIndex": 39,
                             "sinceVersion": 1
                         },
                         {
@@ -9360,7 +9257,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 7
                             },
-                            "relationTableIndex": 48,
+                            "relationTableIndex": 39,
                             "sinceVersion": 1
                         },
                         {
@@ -9398,7 +9295,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 10
                             },
-                            "relationTableIndex": 46,
+                            "relationTableIndex": 48,
                             "sinceVersion": 1
                         },
                         {
@@ -9440,7 +9337,7 @@ export const SCHEMA = {
                             "propertyRef": {
                                 "index": 13
                             },
-                            "relationTableIndex": 45,
+                            "relationTableIndex": 47,
                             "sinceVersion": 1
                         }
                     ],
@@ -11110,335 +11007,6 @@ export const SCHEMA = {
                     "sinceVersion": 1,
                     "tableConfig": {
                         "name": "FACTOR_POSITIONS",
-                        "indexes": []
-                    }
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
-                            "name": "OUTCOME_OPINION_VERSION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 44,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "POLL_REVISION_OPINION_VERSION_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 0
-                        }
-                    ],
-                    "index": 56,
-                    "isLocal": true,
-                    "isRepositoryEntity": false,
-                    "name": "OutcomeOpinionVersion",
-                    "properties": [
-                        {
-                            "columnRef": {
-                                "index": 0
-                            },
-                            "index": 0,
-                            "isId": true,
-                            "name": "id",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "name": "pollRevisionOpinionVersion",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "name": "translations",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 1
-                            },
-                            "relationTableIndex": 44,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "oneToManyElems": {
-                                "cascade": 1,
-                                "mappedBy": "outcomeOpinionVersion"
-                            },
-                            "relationType": 0,
-                            "propertyRef": {
-                                "index": 2
-                            },
-                            "relationTableIndex": 57,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "OUTCOME_OPINION_VERSIONS",
-                        "indexes": []
-                    }
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "CREATED_AT",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 2
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
-                            "name": "OUTCOME_OPINION_VERSION_TRANSLATION_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 2,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "IS_ORIGINAL",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 2
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 1
-                        },
-                        {
-                            "index": 3,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "TITLE",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 3
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 5
-                        },
-                        {
-                            "index": 4,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "TEXT",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 4
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 5
-                        },
-                        {
-                            "index": 5,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 56,
-                                    "oneRelationIndex": 1,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "OUTCOME_OPINION_VERSION_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 5
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        },
-                        {
-                            "index": 6,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 1,
-                                    "oneSchemaIndex": null,
-                                    "oneTableIndex": 24,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "LANGUAGE_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 6
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": 4
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 1
-                        }
-                    ],
-                    "index": 57,
-                    "isLocal": true,
-                    "isRepositoryEntity": false,
-                    "name": "OutcomeOpinionVersionTranslation",
-                    "properties": [
-                        {
-                            "columnRef": {
-                                "index": 0
-                            },
-                            "index": 0,
-                            "isId": false,
-                            "name": "createdAt",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 1
-                            },
-                            "index": 1,
-                            "isId": true,
-                            "name": "id",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 2
-                            },
-                            "index": 2,
-                            "isId": false,
-                            "name": "original",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 3
-                            },
-                            "index": 3,
-                            "isId": false,
-                            "name": "title",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 4
-                            },
-                            "index": 4,
-                            "isId": false,
-                            "name": "text",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "name": "outcomeOpinionVersion",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 6,
-                            "isId": false,
-                            "name": "language",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 5
-                            },
-                            "relationTableIndex": 56,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": false,
-                            "relationType": 1,
-                            "propertyRef": {
-                                "index": 6
-                            },
-                            "relationTableIndex": 24,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "OUTCOME_OPINION_VERSION_TRANSLATIONS",
                         "indexes": []
                     }
                 }

@@ -16,9 +16,25 @@ __decorate([
 __decorate([
     ManyToOne(),
     JoinColumn({
-        name: 'POLL_REVISION_OPINION_VERSION_ID', nullable: false
+        name: 'POLL_REVISION_OPINION_ID', nullable: false
     })
-], OutcomeOpinionVersion.prototype, "pollRevisionOpinionVersion", void 0);
+], OutcomeOpinionVersion.prototype, "pollRevisionOpinion", void 0);
+__decorate([
+    ManyToOne(),
+    JoinColumn({
+        name: 'OUTCOME_ID', nullable: false
+    })
+], OutcomeOpinionVersion.prototype, "outcome", void 0);
+__decorate([
+    ManyToOne(),
+    JoinColumn({
+        name: 'PARENT_OUTCOME_OPINION_VERSION_ID',
+        referencedColumnName: 'OUTCOME_OPINION_VERSION_ID'
+    })
+], OutcomeOpinionVersion.prototype, "parent", void 0);
+__decorate([
+    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+], OutcomeOpinionVersion.prototype, "children", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'outcomeOpinionVersion' })
 ], OutcomeOpinionVersion.prototype, "translations", void 0);

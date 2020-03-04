@@ -19,18 +19,28 @@ __decorate([
 __decorate([
     ManyToOne(),
     JoinColumn({
-        name: 'POLL_REVISION_OPINION_VERSION_ID', nullable: false
+        name: 'POLL_REVISION_OPINION_ID', nullable: false
     })
-], FactorOpinionVersion.prototype, "pollRevisionOpinionVersion", void 0);
+], FactorOpinionVersion.prototype, "pollRevisionOpinion", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'factorOpinionVersion' })
-], FactorOpinionVersion.prototype, "ratings", void 0);
+    ManyToOne(),
+    JoinColumn({
+        name: 'FACTOR_ID', nullable: false
+    })
+], FactorOpinionVersion.prototype, "factor", void 0);
+__decorate([
+    ManyToOne(),
+    JoinColumn({
+        name: 'PARENT_FACTOR_OPINION_VERSION_ID',
+        referencedColumnName: 'FACTOR_OPINION_VERSION_ID'
+    })
+], FactorOpinionVersion.prototype, "parent", void 0);
+__decorate([
+    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+], FactorOpinionVersion.prototype, "children", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'factorOpinionVersion' })
 ], FactorOpinionVersion.prototype, "translations", void 0);
-__decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'factorOpinionVersion' })
-], FactorOpinionVersion.prototype, "positionOpinionVersions", void 0);
 FactorOpinionVersion = __decorate([
     Entity(),
     Table({ name: 'FACTOR_OPINION_VERSIONS' })

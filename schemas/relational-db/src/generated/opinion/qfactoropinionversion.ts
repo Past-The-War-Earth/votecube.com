@@ -22,25 +22,25 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	PollRevisionOpinionVersionECascadeGraph,
-	PollRevisionOpinionVersionEId,
-	PollRevisionOpinionVersionEOptionalId,
-	PollRevisionOpinionVersionEUpdateProperties,
-	PollRevisionOpinionVersionESelect,
-	QPollRevisionOpinionVersion,
-	QPollRevisionOpinionVersionQId,
-	QPollRevisionOpinionVersionQRelation,
-} from './qpollrevisionopinionversion';
+	PollRevisionOpinionECascadeGraph,
+	PollRevisionOpinionEId,
+	PollRevisionOpinionEOptionalId,
+	PollRevisionOpinionEUpdateProperties,
+	PollRevisionOpinionESelect,
+	QPollRevisionOpinion,
+	QPollRevisionOpinionQId,
+	QPollRevisionOpinionQRelation,
+} from './qpollrevisionopinion';
 import {
-	FactorOpinionVersionRatingECascadeGraph,
-	FactorOpinionVersionRatingEId,
-	FactorOpinionVersionRatingEOptionalId,
-	FactorOpinionVersionRatingEUpdateProperties,
-	FactorOpinionVersionRatingESelect,
-	QFactorOpinionVersionRating,
-	QFactorOpinionVersionRatingQId,
-	QFactorOpinionVersionRatingQRelation,
-} from './user/qfactoropinionversionrating';
+	FactorECascadeGraph,
+	FactorEId,
+	FactorEOptionalId,
+	FactorEUpdateProperties,
+	FactorESelect,
+	QFactor,
+	QFactorQId,
+	QFactorQRelation,
+} from '../factor/qfactor';
 import {
 	FactorOpinionVersionTranslationECascadeGraph,
 	FactorOpinionVersionTranslationEId,
@@ -51,16 +51,6 @@ import {
 	QFactorOpinionVersionTranslationQId,
 	QFactorOpinionVersionTranslationQRelation,
 } from './translation/qfactoropinionversiontranslation';
-import {
-	PositionOpinionVersionECascadeGraph,
-	PositionOpinionVersionEId,
-	PositionOpinionVersionEOptionalId,
-	PositionOpinionVersionEUpdateProperties,
-	PositionOpinionVersionESelect,
-	QPositionOpinionVersion,
-	QPositionOpinionVersionQId,
-	QPositionOpinionVersionQRelation,
-} from './qpositionopinionversion';
 
 
 declare function require(moduleName: string): any;
@@ -80,10 +70,11 @@ export interface FactorOpinionVersionESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	pollRevisionOpinionVersion?: PollRevisionOpinionVersionESelect;
-	ratings?: FactorOpinionVersionRatingESelect;
+	pollRevisionOpinion?: PollRevisionOpinionESelect;
+	factor?: FactorESelect;
+	parent?: FactorOpinionVersionESelect;
+	children?: FactorOpinionVersionESelect;
 	translations?: FactorOpinionVersionTranslationESelect;
-	positionOpinionVersions?: PositionOpinionVersionESelect;
 
 }
 
@@ -118,7 +109,9 @@ export interface FactorOpinionVersionEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	pollRevisionOpinionVersion?: PollRevisionOpinionVersionEOptionalId;
+	pollRevisionOpinion?: PollRevisionOpinionEOptionalId;
+	factor?: FactorEOptionalId;
+	parent?: FactorOpinionVersionEOptionalId;
 
 }
 
@@ -128,9 +121,8 @@ export interface FactorOpinionVersionEUpdateProperties
 export interface FactorOpinionVersionECascadeGraph
 	extends IEntityCascadeGraph {
 	// Cascading Relations
-	ratings?: FactorOpinionVersionRatingECascadeGraph;
+	children?: FactorOpinionVersionECascadeGraph;
 	translations?: FactorOpinionVersionTranslationECascadeGraph;
-	positionOpinionVersions?: PositionOpinionVersionECascadeGraph;
 
 }
 
@@ -140,7 +132,9 @@ export interface FactorOpinionVersionECascadeGraph
 export interface FactorOpinionVersionEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
-	POLL_REVISION_OPINION_VERSION_ID?: number | IQNumberField;
+	POLL_REVISION_OPINION_ID?: number | IQNumberField;
+	FACTOR_ID?: number | IQNumberField;
+	PARENT_FACTOR_OPINION_VERSION_ID?: number | IQNumberField;
 
 }
 
@@ -178,10 +172,11 @@ export interface QFactorOpinionVersion extends IQEntity
 	// Non-Id Fields
 
 	// Non-Id Relations
-	pollRevisionOpinionVersion: QPollRevisionOpinionVersionQRelation;
-	ratings: IQOneToManyRelation<QFactorOpinionVersionRating>;
+	pollRevisionOpinion: QPollRevisionOpinionQRelation;
+	factor: QFactorQRelation;
+	parent: QFactorOpinionVersionQRelation;
+	children: IQOneToManyRelation<QFactorOpinionVersion>;
 	translations: IQOneToManyRelation<QFactorOpinionVersionTranslation>;
-	positionOpinionVersions: IQOneToManyRelation<QPositionOpinionVersion>;
 
 }
 

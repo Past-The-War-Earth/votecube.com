@@ -27,17 +27,8 @@ __decorate([
 ], PollRevisionOpinionVersion.prototype, "pollRevisionOpinion", void 0);
 __decorate([
     ManyToOne(),
-    JoinColumn({ name: 'VOTE_REVISION_ID' })
-], PollRevisionOpinionVersion.prototype, "voteRevision", void 0);
-__decorate([
-    ManyToOne(),
-    JoinColumn({ name: 'LANGUAGE_ID' })
-], PollRevisionOpinionVersion.prototype, "language", void 0);
-__decorate([
-    ManyToOne(),
     JoinColumn({
         name: 'PARENT_POLL_REVISION_OPINION_VERSION_ID',
-        nullable: false,
         referencedColumnName: 'POLL_REVISION_OPINION_VERSION_ID'
     })
 ], PollRevisionOpinionVersion.prototype, "parent", void 0);
@@ -46,13 +37,7 @@ __decorate([
 ], PollRevisionOpinionVersion.prototype, "children", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollOpinionVersion' })
-], PollRevisionOpinionVersion.prototype, "ratings", void 0);
-__decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollOpinionVersion' })
 ], PollRevisionOpinionVersion.prototype, "translations", void 0);
-__decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollOpinionVersion' })
-], PollRevisionOpinionVersion.prototype, "factors", void 0);
 PollRevisionOpinionVersion = __decorate([
     Entity(),
     Table({ name: 'POLL_REVISION_OPINION_VERSIONS' })

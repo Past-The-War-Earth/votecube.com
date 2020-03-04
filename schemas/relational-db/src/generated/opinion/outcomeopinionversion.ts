@@ -1,6 +1,9 @@
 import {
-	IPollRevisionOpinionVersion,
-} from './pollrevisionopinionversion';
+	IPollRevisionOpinion,
+} from './pollrevisionopinion';
+import {
+	IOutcome,
+} from '../poll/revision/outcome';
 import {
 	IOutcomeOpinionVersionTranslation,
 } from './translation/outcomeopinionversiontranslation';
@@ -21,7 +24,10 @@ export interface IOutcomeOpinionVersion {
 	// Non-Id Properties
 
 	// Non-Id Relations
-	pollRevisionOpinionVersion?: IPollRevisionOpinionVersion;
+	pollRevisionOpinion?: IPollRevisionOpinion;
+	outcome?: IOutcome;
+	parent?: IOutcomeOpinionVersion;
+	children?: IOutcomeOpinionVersion[];
 	translations?: IOutcomeOpinionVersionTranslation[];
 
 	// Transient Properties

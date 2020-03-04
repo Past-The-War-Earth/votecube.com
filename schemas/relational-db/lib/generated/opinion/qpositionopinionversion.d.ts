@@ -1,13 +1,15 @@
 import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntityUpdateProperties, IEntitySelectProperties, IQNumberField, IQOneToManyRelation, IQEntity, IQRelation } from '@airport/air-control';
-import { FactorOpinionVersionEOptionalId, FactorOpinionVersionESelect, QFactorOpinionVersionQRelation } from './qfactoropinionversion';
-import { PositionOpinionVersionRatingECascadeGraph, PositionOpinionVersionRatingESelect, QPositionOpinionVersionRating } from './user/qpositionopinionversionrating';
+import { PollRevisionOpinionEOptionalId, PollRevisionOpinionESelect, QPollRevisionOpinionQRelation } from './qpollrevisionopinion';
+import { PollRevisionFactorPositionEOptionalId, PollRevisionFactorPositionESelect, QPollRevisionFactorPositionQRelation } from '../poll/revision/qpollrevisionfactorposition';
 import { PositionOpinionVersionTranslationECascadeGraph, PositionOpinionVersionTranslationESelect, QPositionOpinionVersionTranslation } from './translation/qpositionopinionversiontranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface PositionOpinionVersionESelect extends IEntitySelectProperties, PositionOpinionVersionEOptionalId {
-    factorOpinionVersion?: FactorOpinionVersionESelect;
-    ratings?: PositionOpinionVersionRatingESelect;
+    pollRevisionOpinion?: PollRevisionOpinionESelect;
+    factorPosition?: PollRevisionFactorPositionESelect;
+    parent?: PositionOpinionVersionESelect;
+    children?: PositionOpinionVersionESelect;
     translations?: PositionOpinionVersionTranslationESelect;
 }
 /**
@@ -26,20 +28,24 @@ export interface PositionOpinionVersionEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PositionOpinionVersionEUpdateProperties extends IEntityUpdateProperties {
-    factorOpinionVersion?: FactorOpinionVersionEOptionalId;
+    pollRevisionOpinion?: PollRevisionOpinionEOptionalId;
+    factorPosition?: PollRevisionFactorPositionEOptionalId;
+    parent?: PositionOpinionVersionEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PositionOpinionVersionECascadeGraph extends IEntityCascadeGraph {
-    ratings?: PositionOpinionVersionRatingECascadeGraph;
+    children?: PositionOpinionVersionECascadeGraph;
     translations?: PositionOpinionVersionTranslationECascadeGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
  */
 export interface PositionOpinionVersionEUpdateColumns extends IEntityUpdateColumns {
-    FACTOR_OPINION_VERSION_ID?: number | IQNumberField;
+    POLL_REVISION_OPINION_ID?: number | IQNumberField;
+    POLL_REVISION_FACTOR_POSITION_ID?: number | IQNumberField;
+    PARENT_POSITION_OPINION_VERSION_ID?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -56,8 +62,10 @@ export interface PositionOpinionVersionECreateColumns extends PositionOpinionVer
  */
 export interface QPositionOpinionVersion extends IQEntity {
     id: IQNumberField;
-    factorOpinionVersion: QFactorOpinionVersionQRelation;
-    ratings: IQOneToManyRelation<QPositionOpinionVersionRating>;
+    pollRevisionOpinion: QPollRevisionOpinionQRelation;
+    factorPosition: QPollRevisionFactorPositionQRelation;
+    parent: QPositionOpinionVersionQRelation;
+    children: IQOneToManyRelation<QPositionOpinionVersion>;
     translations: IQOneToManyRelation<QPositionOpinionVersionTranslation>;
 }
 export interface QPositionOpinionVersionQId {

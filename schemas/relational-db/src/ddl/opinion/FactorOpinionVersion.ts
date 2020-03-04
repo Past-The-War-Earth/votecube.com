@@ -10,10 +10,9 @@ import {
 }                                        from '@airport/air-control'
 import {CascadeType}                     from '@airport/ground-control'
 import {FactorOpinionVersion_Id}         from '../../types/opinion/FactorOpinionVersion'
-import {PollRevisionOpinionVersion}      from './PollRevisionOpinionVersion'
-import {PositionOpinionVersion}          from './PositionOpinionVersion'
+import {Factor}                          from '../factor/Factor'
+import {PollRevisionOpinion}             from './PollRevisionOpinion'
 import {FactorOpinionVersionTranslation} from './translation/FactorOpinionVersionTranslation'
-import {FactorOpinionVersionRating}      from './user/FactorOpinionVersionRating'
 
 /**
  * Belongs to PollOpinionVersion - does not need user or creation tracking.
@@ -29,17 +28,27 @@ export class FactorOpinionVersion {
 
 	@ManyToOne()
 	@JoinColumn({
-		name: 'POLL_REVISION_OPINION_VERSION_ID', nullable: false
+		name: 'POLL_REVISION_OPINION_ID', nullable: false
 	})
-	pollRevisionOpinionVersion: PollRevisionOpinionVersion
+	pollRevisionOpinion: PollRevisionOpinion
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factorOpinionVersion'})
-	ratings: FactorOpinionVersionRating[]
+	@ManyToOne()
+	@JoinColumn({
+		name: 'FACTOR_ID', nullable: false
+	})
+	factor: Factor
+
+	@ManyToOne()
+	@JoinColumn({
+		name: 'PARENT_FACTOR_OPINION_VERSION_ID',
+		referencedColumnName: 'FACTOR_OPINION_VERSION_ID'
+	})
+	parent: FactorOpinionVersion
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	children: FactorOpinionVersion[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factorOpinionVersion'})
 	translations: FactorOpinionVersionTranslation[]
-
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factorOpinionVersion'})
-	positionOpinionVersions: PositionOpinionVersion[]
 
 }

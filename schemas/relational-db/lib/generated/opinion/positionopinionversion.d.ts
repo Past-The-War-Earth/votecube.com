@@ -1,9 +1,11 @@
-import { IFactorOpinionVersion } from './factoropinionversion';
-import { IPositionOpinionVersionRating } from './user/positionopinionversionrating';
+import { IPollRevisionOpinion } from './pollrevisionopinion';
+import { IPollRevisionFactorPosition } from '../poll/revision/pollrevisionfactorposition';
 import { IPositionOpinionVersionTranslation } from './translation/positionopinionversiontranslation';
 export interface IPositionOpinionVersion {
     id: number;
-    factorOpinionVersion?: IFactorOpinionVersion;
-    ratings?: IPositionOpinionVersionRating[];
+    pollRevisionOpinion?: IPollRevisionOpinion;
+    factorPosition?: IPollRevisionFactorPosition;
+    parent?: IPositionOpinionVersion;
+    children?: IPositionOpinionVersion[];
     translations?: IPositionOpinionVersionTranslation[];
 }

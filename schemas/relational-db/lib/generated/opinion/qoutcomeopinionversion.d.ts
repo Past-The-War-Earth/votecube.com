@@ -1,11 +1,15 @@
 import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntityUpdateProperties, IEntitySelectProperties, IQNumberField, IQOneToManyRelation, IQEntity, IQRelation } from '@airport/air-control';
-import { PollRevisionOpinionVersionEOptionalId, PollRevisionOpinionVersionESelect, QPollRevisionOpinionVersionQRelation } from './qpollrevisionopinionversion';
+import { PollRevisionOpinionEOptionalId, PollRevisionOpinionESelect, QPollRevisionOpinionQRelation } from './qpollrevisionopinion';
+import { OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from '../poll/revision/qoutcome';
 import { OutcomeOpinionVersionTranslationECascadeGraph, OutcomeOpinionVersionTranslationESelect, QOutcomeOpinionVersionTranslation } from './translation/qoutcomeopinionversiontranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface OutcomeOpinionVersionESelect extends IEntitySelectProperties, OutcomeOpinionVersionEOptionalId {
-    pollRevisionOpinionVersion?: PollRevisionOpinionVersionESelect;
+    pollRevisionOpinion?: PollRevisionOpinionESelect;
+    outcome?: OutcomeESelect;
+    parent?: OutcomeOpinionVersionESelect;
+    children?: OutcomeOpinionVersionESelect;
     translations?: OutcomeOpinionVersionTranslationESelect;
 }
 /**
@@ -24,19 +28,24 @@ export interface OutcomeOpinionVersionEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface OutcomeOpinionVersionEUpdateProperties extends IEntityUpdateProperties {
-    pollRevisionOpinionVersion?: PollRevisionOpinionVersionEOptionalId;
+    pollRevisionOpinion?: PollRevisionOpinionEOptionalId;
+    outcome?: OutcomeEOptionalId;
+    parent?: OutcomeOpinionVersionEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface OutcomeOpinionVersionECascadeGraph extends IEntityCascadeGraph {
+    children?: OutcomeOpinionVersionECascadeGraph;
     translations?: OutcomeOpinionVersionTranslationECascadeGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
  */
 export interface OutcomeOpinionVersionEUpdateColumns extends IEntityUpdateColumns {
-    POLL_REVISION_OPINION_VERSION_ID?: number | IQNumberField;
+    POLL_REVISION_OPINION_ID?: number | IQNumberField;
+    OUTCOME_ID?: number | IQNumberField;
+    PARENT_OUTCOME_OPINION_VERSION_ID?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -53,7 +62,10 @@ export interface OutcomeOpinionVersionECreateColumns extends OutcomeOpinionVersi
  */
 export interface QOutcomeOpinionVersion extends IQEntity {
     id: IQNumberField;
-    pollRevisionOpinionVersion: QPollRevisionOpinionVersionQRelation;
+    pollRevisionOpinion: QPollRevisionOpinionQRelation;
+    outcome: QOutcomeQRelation;
+    parent: QOutcomeOpinionVersionQRelation;
+    children: IQOneToManyRelation<QOutcomeOpinionVersion>;
     translations: IQOneToManyRelation<QOutcomeOpinionVersionTranslation>;
 }
 export interface QOutcomeOpinionVersionQId {

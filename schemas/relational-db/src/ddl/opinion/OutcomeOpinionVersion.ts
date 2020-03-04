@@ -10,7 +10,8 @@ import {
 }                                         from '@airport/air-control'
 import {CascadeType}                      from '@airport/ground-control'
 import {OutcomeOpinionVersion_Id}         from '../../types/opinion/OutcomeOpinionVersion'
-import {PollRevisionOpinionVersion}       from './PollRevisionOpinionVersion'
+import {Outcome}                          from '../poll/revision/Outcome'
+import {PollRevisionOpinion}              from './PollRevisionOpinion'
 import {OutcomeOpinionVersionTranslation} from './translation/OutcomeOpinionVersionTranslation'
 
 @Entity()
@@ -24,9 +25,25 @@ export class OutcomeOpinionVersion {
 
 	@ManyToOne()
 	@JoinColumn({
-		name: 'POLL_REVISION_OPINION_VERSION_ID', nullable: false
+		name: 'POLL_REVISION_OPINION_ID', nullable: false
 	})
-	pollRevisionOpinionVersion: PollRevisionOpinionVersion
+	pollRevisionOpinion: PollRevisionOpinion
+
+	@ManyToOne()
+	@JoinColumn({
+		name: 'OUTCOME_ID', nullable: false
+	})
+	outcome: Outcome
+
+	@ManyToOne()
+	@JoinColumn({
+		name: 'PARENT_OUTCOME_OPINION_VERSION_ID',
+		referencedColumnName: 'OUTCOME_OPINION_VERSION_ID'
+	})
+	parent: OutcomeOpinionVersion
+
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	children: OutcomeOpinionVersion[]
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'outcomeOpinionVersion'})
 	translations: OutcomeOpinionVersionTranslation[]

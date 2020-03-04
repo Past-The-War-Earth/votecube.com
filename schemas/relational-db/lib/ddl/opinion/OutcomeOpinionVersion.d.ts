@@ -1,8 +1,12 @@
 import { OutcomeOpinionVersion_Id } from '../../types/opinion/OutcomeOpinionVersion';
-import { PollRevisionOpinionVersion } from './PollRevisionOpinionVersion';
+import { Outcome } from '../poll/revision/Outcome';
+import { PollRevisionOpinion } from './PollRevisionOpinion';
 import { OutcomeOpinionVersionTranslation } from './translation/OutcomeOpinionVersionTranslation';
 export declare class OutcomeOpinionVersion {
     id: OutcomeOpinionVersion_Id;
-    pollRevisionOpinionVersion: PollRevisionOpinionVersion;
+    pollRevisionOpinion: PollRevisionOpinion;
+    outcome: Outcome;
+    parent: OutcomeOpinionVersion;
+    children: OutcomeOpinionVersion[];
     translations: OutcomeOpinionVersionTranslation[];
 }

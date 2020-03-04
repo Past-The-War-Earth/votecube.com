@@ -28,7 +28,19 @@ __decorate([
 ], PollRevisionOpinion.prototype, "vote", void 0);
 __decorate([
     OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+], PollRevisionOpinion.prototype, "ratings", void 0);
+__decorate([
+    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
 ], PollRevisionOpinion.prototype, "versions", void 0);
+__decorate([
+    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+], PollRevisionOpinion.prototype, "factors", void 0);
+__decorate([
+    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+], PollRevisionOpinion.prototype, "outcomes", void 0);
+__decorate([
+    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+], PollRevisionOpinion.prototype, "positions", void 0);
 PollRevisionOpinion = __decorate([
     Entity(),
     Table({ name: 'POLL_REVISION_OPINIONS' })
