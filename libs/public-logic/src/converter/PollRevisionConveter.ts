@@ -1,6 +1,6 @@
 import {DI}                      from '@airport/di'
 import {
-	Id,
+	Factor_Number,
 	IParent,
 	IsData,
 	IUiFactor,
@@ -8,9 +8,9 @@ import {
 	IUiPollRevision,
 	IUiPosition,
 	IUiTheme,
-	Poll_Id
 }                                from '@votecube/model'
 import {
+	Id,
 	IFactor,
 	IFactorPosition,
 	IFactorTranslation,
@@ -19,8 +19,10 @@ import {
 	IPollRevision,
 	IPollRevisionFactorPosition,
 	IPollRevisionTranslation,
-	IPosition
-}                                from '@votecube/relational-db'
+	IPosition,
+	ITheme,
+	Outcome_Ordinal
+} from '@votecube/relational-db'
 import {POLL_REVISION_CONVERTER} from '../tokens'
 
 export interface IPollRevisionConverter {
@@ -49,29 +51,52 @@ export class PollRevisionConverter
 			}
 		}
 
-		let outcomeA: IUiOutcome<IsData>
-		let outcomeB: IUiOutcome<IsData>
-
 		return {
 			ageSuitability: revisionDb.ageSuitability,
+			createdAt: null, // TODO: wire
 			depth: revisionDb.depth,
 			id: revisionDb.id,
-			parent,
 			factors: {
-				'1': IUiFactor < Doc >,
-				'2': IUiFactor < Doc >,
-				'3': IUiFactor<Doc>
+				'1': this.getUiFactor(1, revisionDb.factorPositions),
+				'2': this.getUiFactor(1, revisionDb.factorPositions),
+				'3': this.getUiFactor(1, revisionDb.factorPositions)
 			},
 			name: revisionDb.allTranslations[0].name,
 			outcomes: {
-				A: {
-					id:
-				},
-				B: IUiOutcome<Doc>
+				A: this.getUiOutcome(revisionDb.outcomeVersionA),
+				B: this.getUiOutcome(revisionDb.outcomeVersionB)
 			},
-			pollId: Poll_Id,
-			theme: IUiTheme<Doc>
+			parent,
+			path: null, // TODO: wire
+			pollId: revisionDb.poll.id,
+			theme: this.getUiTheme(revisionDb.poll.theme),
+			userId: null // TODO: wire
 		}
+	}
+
+	getUiFactor(
+		factorNumber: Factor_Number,
+		factorPositions: IPollRevisionFactorPosition[]
+	): IUiFactor<IsData> {
+		// TODO: implement
+
+		return null
+	}
+
+	getUiOutcome(
+		outcome: IOutcome
+	): IUiOutcome<IsData> {
+		// TODO: implement
+
+		return null
+	}
+
+	getUiTheme(
+		theme: ITheme
+	): IUiTheme<IsData> {
+		// TODO: implement
+
+		return null
 	}
 
 	uiToDb(
@@ -99,22 +124,28 @@ export class PollRevisionConverter
 			outcomeVersionB: this.getDbOutcome(revisionDoc.outcomes.B, 'B'),
 			poll,
 			factorPositions: [this.getDbPollFactorPosition(
-				revisionDoc.factors['1'],
+				revisionDoc.factors[1],
+				1,
 				'A'
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors['1'],
+				revisionDoc.factors[1],
+				1,
 				'B'
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors['2'],
+				revisionDoc.factors[2],
+				2,
 				'A'
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors['2'],
+				revisionDoc.factors[2],
+				2,
 				'B'
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors['3'],
+				revisionDoc.factors[3],
+				3,
 				'A'
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors['3'],
+				revisionDoc.factors[3],
+				3,
 				'B'
 			)],
 			allTranslations: [uiPollRevisionTranslation]
@@ -142,10 +173,10 @@ export class PollRevisionConverter
 
 	getDbPollFactorPosition(
 		uiFactor: IUiFactor<IsData>,
-		factorKey: 1 | 2 | 3,
-		positionKey: 'A' | 'B'
+		factorNumber: Factor_Number,
+		outcomeOrdinal: Outcome_Ordinal
 	): IPollRevisionFactorPosition {
-		const uiPosition = uiFactor.positions[positionKey]
+		const uiPosition = uiFactor.positions[outcomeOrdinal]
 		if (uiPosition.pollFactorPositionId) {
 			return {
 				id: uiPosition.pollFactorPositionId
@@ -161,7 +192,7 @@ export class PollRevisionConverter
 		}
 
 		let factor: IFactor = null
-		if (positionKey == 'A') {
+		if (outcomeOrdinal == 'A') {
 			factor = this.getDbFactor(uiFactor)
 		}
 
@@ -176,7 +207,9 @@ export class PollRevisionConverter
 			id: null,
 			axis: uiFactor.axis,
 			dir: uiPosition.dir,
+			factorNumber,
 			factorPosition,
+			outcomeOrdinal,
 			parent: factorPositionParent,
 		}
 	}
