@@ -1,5 +1,5 @@
 import { AgeSuitability } from '../../../types/common';
-import { PollRevision_Id } from '../../../types/poll/revision/PollRevision';
+import { PollRevision_Depth, PollRevision_Id } from '../../../types/poll/revision/PollRevision';
 import { ImmutableActorRow } from '../../infrastructure/row/ImmutableActorRow';
 import { PollRevisionOpinion } from '../../opinion/PollRevisionOpinion';
 import { Poll } from '../Poll';
@@ -14,6 +14,7 @@ import { PollRevisionTranslation } from './translation/PollRevisionTranslation';
 export declare class PollRevision extends ImmutableActorRow {
     id: PollRevision_Id;
     ageSuitability: AgeSuitability;
+    depth: PollRevision_Depth;
     poll: Poll;
     createdAtRun: PollRun;
     outcomeVersionA: Outcome;

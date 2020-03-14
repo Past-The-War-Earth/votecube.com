@@ -1,22 +1,25 @@
 import {DI}                      from '@airport/di'
 import {
+	Id,
+	IParent,
 	IsData,
 	IUiFactor,
+	IUiOutcome,
 	IUiPollRevision,
-	IUiPosition
+	IUiPosition,
+	IUiTheme,
+	Poll_Id
 }                                from '@votecube/model'
 import {
 	IFactor,
 	IFactorPosition,
-	ILanguage,
+	IFactorTranslation,
+	IOutcome,
 	IPoll,
 	IPollRevision,
-	IPollRevisionFactorTranslation,
-	IPollRevisionPositionTranslation,
+	IPollRevisionFactorPosition,
 	IPollRevisionTranslation,
-	IPosition,
-	ITranslationType,
-	IUserPollRevisionTranslationRating
+	IPosition
 }                                from '@votecube/relational-db'
 import {POLL_REVISION_CONVERTER} from '../tokens'
 
@@ -38,13 +41,42 @@ export class PollRevisionConverter
 	dbToUi(
 		revisionDb: IPollRevision
 	): IUiPollRevision {
+		let parent: IParent<Id> = null
 
+		if (revisionDb.parent) {
+			parent = {
+				id: revisionDb.parent.id
+			}
+		}
+
+		let outcomeA: IUiOutcome<IsData>
+		let outcomeB: IUiOutcome<IsData>
+
+		return {
+			ageSuitability: revisionDb.ageSuitability,
+			depth: revisionDb.depth,
+			id: revisionDb.id,
+			parent,
+			factors: {
+				'1': IUiFactor < Doc >,
+				'2': IUiFactor < Doc >,
+				'3': IUiFactor<Doc>
+			},
+			name: revisionDb.allTranslations[0].name,
+			outcomes: {
+				A: {
+					id:
+				},
+				B: IUiOutcome<Doc>
+			},
+			pollId: Poll_Id,
+			theme: IUiTheme<Doc>
+		}
 	}
 
 	uiToDb(
 		revisionDoc: IUiPollRevision
 	): IPollRevision {
-
 		const poll: IPoll = {
 			id: revisionDoc.pollId
 		}
@@ -53,76 +85,146 @@ export class PollRevisionConverter
 			id: revisionDoc.parent.id
 		}
 
-		const uiPollRevision: IPollRevision = {
-			id: revisionDoc.id,
-			// Non-Id Relations
-			poll: poll,
-			createdAtRun: null,
-			parent: parentRevision,
-			children: null,
-			ratings: null,
-			factorPositions: null,
-			allTranslations: null,
-			opinions: null,
-		}
-
 		const uiPollRevisionTranslation: IPollRevisionTranslation = {
 			id: null,
 			name: revisionDoc.name,
-			description: string
+		}
 
-		// Non-Id Relations
-		pollRevision ? : IPollRevision
-		language: 'EN_US',
-		type ? : ITranslationTNype
-		parent ? : IPollRevisionTranslation
-		children ? : IPollRevisionTranslation[]
-		ratings ? : IUserPollRevisionTranslationRating[]
-		factorTranslations ? : IPollRevisionFactorTranslation[]
-		positionTranslations ? : IPollRevisionPositionTranslation[]
-	}
+		const uiPollRevision: IPollRevision = {
+			// Non-Id Relations
+			ageSuitability: revisionDoc.ageSuitability,
+			id: revisionDoc.id,
+			parent: parentRevision,
+			outcomeVersionA: this.getDbOutcome(revisionDoc.outcomes.A, 'A'),
+			outcomeVersionB: this.getDbOutcome(revisionDoc.outcomes.B, 'B'),
+			poll,
+			factorPositions: [this.getDbPollFactorPosition(
+				revisionDoc.factors['1'],
+				'A'
+			), this.getDbPollFactorPosition(
+				revisionDoc.factors['1'],
+				'B'
+			), this.getDbPollFactorPosition(
+				revisionDoc.factors['2'],
+				'A'
+			), this.getDbPollFactorPosition(
+				revisionDoc.factors['2'],
+				'B'
+			), this.getDbPollFactorPosition(
+				revisionDoc.factors['3'],
+				'A'
+			), this.getDbPollFactorPosition(
+				revisionDoc.factors['3'],
+				'B'
+			)],
+			allTranslations: [uiPollRevisionTranslation]
+		}
 
 		return uiPollRevision
+	}
+
+	getDbOutcome(
+		uiOutcome: IUiOutcome<IsData>,
+		key: 'A' | 'B'
+	): IOutcome {
+		if (uiOutcome.id) {
+			return {
+				id: uiOutcome.id
+			}
+		}
+
+		return {
+			id: null,
+			key,
+			name: uiOutcome.name
+		}
+	}
+
+	getDbPollFactorPosition(
+		uiFactor: IUiFactor<IsData>,
+		factorKey: 1 | 2 | 3,
+		positionKey: 'A' | 'B'
+	): IPollRevisionFactorPosition {
+		const uiPosition = uiFactor.positions[positionKey]
+		if (uiPosition.pollFactorPositionId) {
+			return {
+				id: uiPosition.pollFactorPositionId
+			}
+		}
+
+		let factorPositionParent: IPollRevisionFactorPosition = null
+
+		if (uiPosition.pollFactorPositionParentId) {
+			factorPositionParent = {
+				id: uiPosition.pollFactorPositionParentId
+			}
+		}
+
+		let factor: IFactor = null
+		if (positionKey == 'A') {
+			factor = this.getDbFactor(uiFactor)
+		}
+
+		const position: IPosition = this.getDbPosition(uiPosition)
+
+		let factorPosition: IFactorPosition = {
+			factor,
+			position,
+		}
+
+		return {
+			id: null,
+			axis: uiFactor.axis,
+			dir: uiPosition.dir,
+			factorPosition,
+			parent: factorPositionParent,
+		}
 	}
 
 	getDbFactor(
 		uiFactor: IUiFactor<IsData>
 	): IFactor {
-		const factorPositions: IFactorPosition = []
-
-		factorPositions.push(
-			this.getDbPosition(uiFactor.positions.A)
-		)
-		factorPositions.push(
-			this.getDbPosition(uiFactor.positions.B)
-		)
-
-		const dbFactor: IFactor = {
-			id: uiFactor.id,
-			factorPositions,
+		if (uiFactor.id) {
+			return {
+				id: uiFactor.id
+			}
 		}
 
-		return dbFactor
+		let parentFactor: IFactor = null
+
+		if (uiFactor.parentId != null) {
+			parentFactor = {
+				id: uiFactor.parentId
+			}
+		}
+
+		let parentTranslation: IFactorTranslation = {
+			id: null,
+			name: uiFactor.name,
+		}
+
+		return {
+			id: null,
+			parent: parentFactor,
+			parentTranslation
+		}
 	}
 
 	getDbPosition(
 		uiPosition: IUiPosition<IsData>,
-	): IFactorPosition {
-		const position: IPosition = {
-			id: uiPosition.id,
+	): IPosition {
+		if (uiPosition.id) {
+			return {
+				id: uiPosition.id
+			}
+		}
+		return {
+			id: null,
 			translations: [{
-				// TODO: add language
-				language: 'EN_US',
-				description: uiPosition.name,
+				id: null,
+				name: uiPosition.name,
 			}]
 		}
-
-		const factorPosition: IFactorPosition = {
-			id: uiPosition.factorPositionId,
-			position,
-		}
-
-		return factorPosition
 	}
 
 }

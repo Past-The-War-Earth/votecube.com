@@ -1,7 +1,7 @@
 import {
 	Theme_Id,
 	Theme_Name
-} from '../core/core'
+} from '@votecube/relational-db'
 
 export interface IThemeForm {
 	id: Theme_Id

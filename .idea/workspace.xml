@@ -2,8 +2,85 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/infrastructure/row/ImmutableActorRow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/infrastructure/row/ImmutableActorRow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Factor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Factor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PathFragment.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PathFragment.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/Label.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/Label.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/Label.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/PollLabel.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/PollLabel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/PollLabel.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiFactor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiFactor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPosition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPosition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/VoteFactor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/VoteFactor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/Color.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/Color.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/DocumentValue.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/DocumentValue.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/Factor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/Factor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/Outcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/Outcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/PathFragment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/PathFragment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/Poll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/Poll.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/PollRevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/PollRevision.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/PollRevisionListing.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/PollRevisionListing.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/Position.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/Position.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/Theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/Theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/core/core.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/core/core.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/data/Theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/data/Theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/delta/AgeSuitability.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/delta/AgeSuitability.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/form/Factor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/form/Factor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/form/Poll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/form/Poll.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/form/Theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/form/Theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/poll/Label.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/poll/PollLabel.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/poll/PreparedPoll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/poll/PreparedPoll.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/ui/UiDocumentValue.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/ui/UiDocumentValue.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/ui/UiFactor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/ui/UiFactor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/ui/UiOutcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/ui/UiOutcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/ui/UiPoll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/ui/UiPoll.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/ui/UiPollRevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/ui/UiPollRevision.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/ui/UiPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/ui/UiPosition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/src/ui/UiTheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/src/ui/UiTheme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/public-logic/src/converter/PollRevisionConveter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/converter/PollRevisionConveter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/rush.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/outcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/outcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/pollrevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/pollrevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/pollrevisionfactorposition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/pollrevisionfactorposition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qoutcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qoutcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevisionfactorposition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevisionfactorposition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/common.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/common.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/Outcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/Outcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevisionFactorPosition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevisionFactorPosition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/Outcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/Outcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/PollRevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/PollRevision.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/PollRevisionFactorPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/ddl/poll/revision/PollRevisionFactorPosition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/outcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/outcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/pollrevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/pollrevision.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/pollrevisionfactorposition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/pollrevisionfactorposition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qoutcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qoutcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qpollrevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qpollrevision.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qpollrevisionfactorposition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/poll/revision/qpollrevisionfactorposition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/generated/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/types/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/types/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/types/poll/revision/Outcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/types/poll/revision/Outcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/types/poll/revision/PollRevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/types/poll/revision/PollRevision.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/types/poll/revision/PollRevisionFactorPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/types/poll/revision/PollRevisionFactorPosition.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,25 +148,25 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/schemas/relational-db/src/ddl/opinion/translation" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
-    <property name="ts.external.directory.path" value="C:\Users\Papa\vc\ts\votecube-ui\libs\cube-logic\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\Papa\vc\ts\votecube-ui\libs\ajax\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\types\poll\revision" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\ddl\poll\revision" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\public-logic\src\converter" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\ddl\opinion\translation" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\model\src\ui" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\public-ui\src\pages\poll\opinion" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\types\poll\revision" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\ddl\poll\revision" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\public-logic\src\converter" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.relational-db">
@@ -144,6 +221,8 @@
       <workItem from="1545008702563" duration="1681000" />
       <workItem from="1545010743251" duration="1716000" />
       <workItem from="1568082796899" duration="43000" />
+      <workItem from="1584046356494" duration="7969000" />
+      <workItem from="1584119924229" duration="10998000" />
     </task>
     <task id="LOCAL-00001" summary="percise cube rotation">
       <created>1542566898548</created>
@@ -248,7 +327,8 @@
     <MESSAGE value="Refactored opinions." />
     <MESSAGE value="Refactored vote schema." />
     <MESSAGE value="Bug fix." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix." />
+    <MESSAGE value="Added support for centralized User Accounts (along with presently supported decentralized Actors)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for centralized User Accounts (along with presently supported decentralized Actors)." />
   </component>
   <component name="WindowStateProjectService">
     <state x="566" y="-873" key="#Updates" timestamp="1580326375485">
@@ -278,12 +358,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="229" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1579105984422" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1583359345171">
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1583359649845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@0.0.1920.1040" timestamp="1582741181313" />
     <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209055925" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583359345171" />
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583359649845" />
     <state x="1" y="-1080" key="CommitChangelistDialog2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130909180" />
     <state width="379" height="466" key="DebuggerActiveHint" timestamp="1579096165500">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -293,46 +373,46 @@
       <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
     <state x="93" y="-988" width="1736" height="896" key="DiffContextDialog/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582741386494" />
-    <state x="2607" y="-965" key="FileChooserDialogImpl" timestamp="1582822760189">
-      <screen x="1921" y="-1188" width="1920" height="1080" />
+    <state x="686" y="215" key="FileChooserDialogImpl" timestamp="1583435123905">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1577599135519" />
     <state x="-1233" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037196454" />
     <state x="687" y="-857" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582743606736" />
     <state x="2607" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582822760189" />
-    <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578848148679" />
+    <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583435123905" />
     <state x="687" y="-857" key="FileChooserDialogImpl/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579030485607" />
-    <state width="1899" height="288" key="GridCell.Tab.0.bottom" timestamp="1583359577882">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1584156890888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974625" />
-    <state width="1899" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583359577882" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584156890888" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
-    <state width="1899" height="288" key="GridCell.Tab.0.center" timestamp="1583359577881">
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1584156890888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583359577881" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584156890888" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="288" key="GridCell.Tab.0.left" timestamp="1583359577881">
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1584156890888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628893" />
     <state width="1899" height="372" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583359577881" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584156890888" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="288" key="GridCell.Tab.0.right" timestamp="1583359577881">
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1584156890888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
-    <state width="1899" height="288" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583359577881" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584156890888" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
     <state width="1899" height="356" key="GridCell.Tab.1.bottom" timestamp="1579124842567">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -411,11 +491,11 @@
     </state>
     <state x="141" y="35" width="1418" height="971" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582848282161" />
     <state x="477" y="-890" key="SettingsEditor/1.-1080.1920.1040/1921.-1188.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1040" timestamp="1580326540443" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1583359351560">
+    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1583359654714">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209060849" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583359351560" />
+    <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583359654714" />
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130913034" />
     <state x="93" y="-988" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582741386494">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -425,19 +505,23 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="802" y="256" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583268654319" />
-    <state x="667" y="285" width="710" height="546" key="find.popup" timestamp="1583336171288">
+    <state x="667" y="285" width="710" height="546" key="find.popup" timestamp="1584157226902">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="668" y="-784" width="710" height="546" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582922610758" />
     <state x="2588" y="-892" width="654" height="488" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974562" />
-    <state x="667" y="285" width="710" height="546" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583336171288" />
+    <state x="667" y="285" width="710" height="546" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584157226902" />
     <state x="668" y="-795" width="654" height="488" key="find.popup/1.-1080.1920.1040/0.0.1920.1040/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1040" timestamp="1582904756409" />
     <state x="668" y="-784" width="654" height="507" key="find.popup/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579131494384" />
-    <state x="623" y="226" width="672" height="653" key="search.everywhere.popup" timestamp="1583354838558">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1584127315873">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584127315873" />
+    <state x="623" y="226" width="672" height="653" key="search.everywhere.popup" timestamp="1584158415242">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="-845" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582923456086" />
-    <state x="623" y="226" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583354838558" />
+    <state x="623" y="226" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584158415242" />
     <state x="624" y="-854" width="672" height="653" key="search.everywhere.popup/1.-1080.1920.1040/0.0.1920.1040/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1040" timestamp="1582904063093" />
   </component>
   <component name="XDebuggerManager">
@@ -506,7 +590,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/libs/model/src/data/PollRevision.ts</url>
           <line>6</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>

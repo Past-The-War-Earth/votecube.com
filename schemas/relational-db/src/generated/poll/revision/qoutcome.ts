@@ -56,6 +56,8 @@ declare function require(moduleName: string): any;
 export interface OutcomeESelect
     extends IEntitySelectProperties, OutcomeEOptionalId {
 	// Non-Id Properties
+	key?: string | IQStringField;
+	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -97,6 +99,8 @@ export interface OutcomeEOptionalId {
 export interface OutcomeEUpdateProperties
 	extends IEntityUpdateProperties {
 	// Non-Id Properties
+	key?: string | IQStringField;
+	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	parentTranslation?: OutcomeTranslationEOptionalId;
@@ -122,6 +126,8 @@ export interface OutcomeECascadeGraph
 export interface OutcomeEUpdateColumns
 	extends IEntityUpdateColumns {
 	// Non-Id Columns
+	KEY?: string | IQStringField;
+	NAME?: string | IQStringField;
 	PARENT_OUTCOME_TRANSLATION_ID?: number | IQNumberField;
 	PARENT_OUTCOME_ID?: number | IQNumberField;
 
@@ -159,6 +165,8 @@ export interface QOutcome extends IQEntity
 	// Id Relations
 
 	// Non-Id Fields
+	key: IQStringField;
+	name: IQStringField;
 
 	// Non-Id Relations
 	parentTranslation: QOutcomeTranslationQRelation;

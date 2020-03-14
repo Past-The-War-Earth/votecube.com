@@ -38,6 +38,7 @@ export interface IPollRevision extends IImmutableActorRow {
 
 	// Non-Id Properties
 	ageSuitability?: number;
+	depth?: number;
 
 	// Non-Id Relations
 	poll?: IPoll;

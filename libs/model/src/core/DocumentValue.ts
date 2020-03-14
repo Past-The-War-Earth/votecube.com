@@ -1,9 +1,9 @@
+import {AgeSuitability} from '@votecube/relational-db'
 import {
-	AgeSuitability,
 	DocStatus,
 	IsDelta,
 	IsDoc
-} from './common'
+}                       from './common'
 
 export type DocumentValue_Delta = number
 

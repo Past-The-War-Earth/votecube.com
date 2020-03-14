@@ -12,6 +12,7 @@ import { PollRevisionOpinionECascadeGraph, PollRevisionOpinionESelect, QPollRevi
  */
 export interface PollRevisionESelect extends ImmutableActorRowESelect, PollRevisionEOptionalId {
     ageSuitability?: number | IQNumberField;
+    depth?: number | IQNumberField;
     poll?: PollESelect;
     createdAtRun?: PollRunESelect;
     outcomeVersionA?: OutcomeESelect;
@@ -40,6 +41,7 @@ export interface PollRevisionEOptionalId {
  */
 export interface PollRevisionEUpdateProperties extends ImmutableActorRowEUpdateProperties {
     ageSuitability?: number | IQNumberField;
+    depth?: number | IQNumberField;
     poll?: PollEOptionalId;
     createdAtRun?: PollRunEOptionalId;
     outcomeVersionA?: OutcomeEOptionalId;
@@ -64,6 +66,7 @@ export interface PollRevisionEUpdateColumns extends ImmutableActorRowEUpdateColu
     ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
     AGE_SUITABILITY?: number | IQNumberField;
+    DEPTH?: number | IQNumberField;
     POLL_ID?: number | IQNumberField;
     POLL_RUN_ID?: number | IQNumberField;
     OUTCOME_A_VERSION_ID?: number | IQNumberField;
@@ -86,6 +89,7 @@ export interface PollRevisionECreateColumns extends PollRevisionEId, PollRevisio
 export interface QPollRevision extends QImmutableActorRow {
     id: IQNumberField;
     ageSuitability: IQNumberField;
+    depth: IQNumberField;
     poll: QPollQRelation;
     createdAtRun: QPollRunQRelation;
     outcomeVersionA: QOutcomeQRelation;

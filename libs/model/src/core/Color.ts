@@ -1,3 +1,4 @@
+import {Color}          from '@votecube/relational-db'
 import {
 	DocStatus,
 	IsDelta,
@@ -5,7 +6,7 @@ import {
 }                       from './common'
 import {IDocumentValue} from './DocumentValue'
 
-export type Color_Value = number
+export type Color_Value = Color
 
 export interface ICoreColor<Doc extends DocStatus> {
 

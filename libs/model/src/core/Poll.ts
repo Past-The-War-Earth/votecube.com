@@ -1,29 +1,26 @@
 import {
+	Factor_Id,
+	Id,
+	Outcome_Id,
+	Poll_Id,
+	PollRevision_Id,
+	PollRevisionTranslation_Name,
+	Position_Id
+}                        from '@votecube/relational-db'
+import {
 	DocStatus,
 	IFullTextSearch,
 	IsDelta,
-	IsDoc,
-	Id
-}                      from './common'
+	IsDoc
+}                        from './common'
 import {
 	ICoreAgeSuitabilityTracked,
 	IDocumentValue
-}                      from './DocumentValue'
-import {
-	Factor_Id,
-	ICoreFactorBase
-}                      from './Factor'
-import {
-	ICoreOutcome,
-	Outcome_Id
-}                    from './Outcome'
-import {Position_Id} from './Position'
-import {ICoreTheme}  from './Theme'
-import {IUserCreated}  from './User'
-import {PollRevision_Id} from './PollRevision'
-
-export type Poll_Id = Id
-export type Poll_Name = string
+}                        from './DocumentValue'
+import {ICoreFactorBase} from './Factor'
+import {ICoreOutcome,}   from './Outcome'
+import {ICoreTheme}      from './Theme'
+import {IUserCreated}    from './User'
 
 export interface ICorePoll<Doc extends DocStatus, K extends Id = Poll_Id>
 	extends ICoreAgeSuitabilityTracked<Doc>,
@@ -31,8 +28,8 @@ export interface ICorePoll<Doc extends DocStatus, K extends Id = Poll_Id>
 	        IUserCreated<K> {
 
 	factors: ICorePollFactorsFragment<Doc>
-	name: Doc extends IsDoc ? IDocumentValue<Poll_Name> :
-		Doc extends IsDelta ? boolean : Poll_Name
+	name: Doc extends IsDoc ? IDocumentValue<PollRevisionTranslation_Name> :
+		Doc extends IsDelta ? boolean : PollRevisionTranslation_Name
 	outcomes: ICorePollOutcomesFragment<Doc>
 	rootRevisionId: PollRevision_Id
 	theme: ICoreTheme<Doc>

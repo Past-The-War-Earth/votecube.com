@@ -1,5 +1,4 @@
-export declare type Id = number;
-export declare type AgeSuitability = number;
+import { Id } from '@votecube/relational-db';
 export declare type IsData = 'data';
 export declare type IsDelta = 'delta';
 export declare type IsDoc = 'doc';

@@ -10,7 +10,10 @@ import {
 }                                   from '@airport/air-control'
 import {CascadeType}                from '@airport/ground-control'
 import {AgeSuitability}             from '../../../types/common'
-import {PollRevision_Id}            from '../../../types/poll/revision/PollRevision'
+import {
+	PollRevision_Depth,
+	PollRevision_Id
+}                                   from '../../../types/poll/revision/PollRevision'
 import {ImmutableActorRow}          from '../../infrastructure/row/ImmutableActorRow'
 import {PollRevisionOpinion}        from '../../opinion/PollRevisionOpinion'
 import {Poll}                       from '../Poll'
@@ -35,6 +38,9 @@ export class PollRevision
 
 	@Column({name: 'AGE_SUITABILITY', nullable: false})
 	ageSuitability: AgeSuitability
+
+	@Column({name: 'DEPTH'})
+	depth: PollRevision_Depth
 
 	@ManyToOne()
 	@JoinColumn({name: 'POLL_ID'})

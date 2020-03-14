@@ -19,6 +19,8 @@ export interface IOutcome {
 	// Id Relations
 
 	// Non-Id Properties
+	key?: string;
+	name?: string;
 
 	// Non-Id Relations
 	parentTranslation?: IOutcomeTranslation;

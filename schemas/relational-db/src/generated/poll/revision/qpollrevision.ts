@@ -117,6 +117,7 @@ export interface PollRevisionESelect
     extends ImmutableActorRowESelect, PollRevisionEOptionalId {
 	// Non-Id Properties
 	ageSuitability?: number | IQNumberField;
+	depth?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -164,6 +165,7 @@ export interface PollRevisionEUpdateProperties
 	extends ImmutableActorRowEUpdateProperties {
 	// Non-Id Properties
 	ageSuitability?: number | IQNumberField;
+	depth?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	poll?: PollEOptionalId;
@@ -198,6 +200,7 @@ export interface PollRevisionEUpdateColumns
 	ACTOR_ID?: number | IQNumberField;
 	USER_ACCOUNT_ID?: number | IQNumberField;
 	AGE_SUITABILITY?: number | IQNumberField;
+	DEPTH?: number | IQNumberField;
 	POLL_ID?: number | IQNumberField;
 	POLL_RUN_ID?: number | IQNumberField;
 	OUTCOME_A_VERSION_ID?: number | IQNumberField;
@@ -239,6 +242,7 @@ export interface QPollRevision extends QImmutableActorRow
 
 	// Non-Id Fields
 	ageSuitability: IQNumberField;
+	depth: IQNumberField;
 
 	// Non-Id Relations
 	poll: QPollQRelation;

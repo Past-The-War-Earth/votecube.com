@@ -1,3 +1,4 @@
+export type Id = number
 export type Color = number
 
 export type BackgroundColor = Color

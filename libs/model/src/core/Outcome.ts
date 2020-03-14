@@ -1,20 +1,18 @@
 import {
+	Outcome_Id,
+	Outcome_Name
+}                     from '@votecube/relational-db'
+import {
 	DocStatus,
 	IFullTextSearch,
-	IsData,
 	IsDelta,
-	IsDoc,
-	Id
-} from './common'
+	IsDoc
+}                     from './common'
 import {
 	ICoreAgeSuitabilityTracked,
 	IDocumentValue
 }                     from './DocumentValue'
 import {IUserCreated} from './User'
-
-export type Outcome_Id = Id
-export type Outcome_Name = string
-export type Outcome_Ordinal = 'A' | 'B'
 
 export interface ICoreOutcome<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,

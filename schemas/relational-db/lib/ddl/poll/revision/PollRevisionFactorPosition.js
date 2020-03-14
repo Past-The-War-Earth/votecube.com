@@ -23,6 +23,14 @@ __decorate([
     DbNumber()
 ], PollRevisionFactorPosition.prototype, "dir", void 0);
 __decorate([
+    Column({ name: 'FACTOR_NUMBER', nullable: false }),
+    DbNumber()
+], PollRevisionFactorPosition.prototype, "factorNumber", void 0);
+__decorate([
+    Column({ name: 'OUTCOME_ORDINAL', nullable: false }),
+    DbString()
+], PollRevisionFactorPosition.prototype, "outcomeOrdinal", void 0);
+__decorate([
     ManyToOne(),
     JoinColumn({ name: 'SKIN_ID' })
 ], PollRevisionFactorPosition.prototype, "skin", void 0);

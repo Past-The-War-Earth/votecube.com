@@ -1,10 +1,6 @@
-import {
-	AgeSuitability,
-	IsDelta
-} from '../core/core'
-import {
-	UiDocStatus
-} from './common'
+import {AgeSuitability} from '@votecube/relational-db'
+import {IsDelta}        from '../core/core'
+import {UiDocStatus}    from './common'
 
 export interface IUiAgeSuitabilityTracked<Doc extends UiDocStatus> {
 

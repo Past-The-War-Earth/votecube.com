@@ -1,8 +1,9 @@
+import {
+	Theme_Id,
+	Theme_Name
+}                                   from '@votecube/relational-db'
 import {DocStatus}                  from './common'
 import {ICoreAgeSuitabilityTracked} from './DocumentValue'
-
-export type Theme_Id = number
-export type Theme_Name = string
 
 export interface ICoreTheme<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,

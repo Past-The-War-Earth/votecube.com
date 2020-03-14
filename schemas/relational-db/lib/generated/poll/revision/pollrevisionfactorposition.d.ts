@@ -6,6 +6,8 @@ export interface IPollRevisionFactorPosition extends IImmutableRow {
     id: number;
     axis?: string;
     dir?: number;
+    factorNumber?: number;
+    outcomeOrdinal?: string;
     skin?: ISkin;
     pollRevision?: IPollRevision;
     factorPosition?: IFactorPosition;

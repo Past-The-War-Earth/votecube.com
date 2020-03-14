@@ -27,6 +27,8 @@ export interface IPollRevisionFactorPosition extends IImmutableRow {
 	// Non-Id Properties
 	axis?: string;
 	dir?: number;
+	factorNumber?: number;
+	outcomeOrdinal?: string;
 
 	// Non-Id Relations
 	skin?: ISkin;

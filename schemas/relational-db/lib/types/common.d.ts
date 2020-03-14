@@ -1,3 +1,4 @@
+export declare type Id = number;
 export declare type Color = number;
 export declare type BackgroundColor = Color;
 export declare type TextColor = Color;

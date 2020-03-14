@@ -1,7 +1,4 @@
-export type Id = number
-
-export type AgeSuitability = number
-
+import {Id} from '@votecube/relational-db'
 
 export type IsData = 'data'
 export type IsDelta = 'delta'

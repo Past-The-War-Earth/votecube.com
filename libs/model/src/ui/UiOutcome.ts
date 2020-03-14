@@ -1,10 +1,11 @@
-import {IUserCreated}              from '../core/User'
 import {
-	IsDelta
-}                                 from '../core/common'
-import {Outcome_Id, Outcome_Name} from '../core/Outcome'
+	Outcome_Id,
+	Outcome_Name
+}                                 from '@votecube/relational-db'
+import {IsDelta}                  from '../core/common'
+import {IUserCreated}             from '../core/User'
 import {UiDocStatus}              from './common'
-import {IUiAgeSuitabilityTracked}  from './UiDocumentValue'
+import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
 
 export interface IUiOutcome<Doc extends UiDocStatus>
 	extends IUiAgeSuitabilityTracked<Doc>,

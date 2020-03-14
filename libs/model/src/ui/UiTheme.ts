@@ -1,7 +1,7 @@
 import {
 	Theme_Id,
 	Theme_Name
-}                                 from '../core/Theme'
+}                                 from '@votecube/relational-db'
 import {UiDocStatus}              from './common'
 import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
 

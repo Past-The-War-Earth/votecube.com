@@ -1,10 +1,11 @@
-import { Factor_Name, ICoreColor, IsData, Position_Name } from '../core/core';
+import { FactorTranslation_Name, PositionTranslation_Name } from '@votecube/relational-db';
+import { ICoreColor, IsData } from '../core/core';
 export interface IFactorForm {
     color: ICoreColor<IsData>;
-    name: Factor_Name;
+    name: FactorTranslation_Name;
     positions: IFactorPositionsForm;
 }
 export interface IFactorPositionsForm {
-    A: Position_Name;
-    B: Position_Name;
+    A: PositionTranslation_Name;
+    B: PositionTranslation_Name;
 }

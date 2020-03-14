@@ -21,6 +21,9 @@ __decorate([
     Column({ name: 'AGE_SUITABILITY', nullable: false })
 ], PollRevision.prototype, "ageSuitability", void 0);
 __decorate([
+    Column({ name: 'DEPTH' })
+], PollRevision.prototype, "depth", void 0);
+__decorate([
     ManyToOne(),
     JoinColumn({ name: 'POLL_ID' })
 ], PollRevision.prototype, "poll", void 0);

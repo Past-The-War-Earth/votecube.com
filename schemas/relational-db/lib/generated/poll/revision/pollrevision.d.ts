@@ -9,6 +9,7 @@ import { IPollRevisionOpinion } from '../../opinion/pollrevisionopinion';
 export interface IPollRevision extends IImmutableActorRow {
     id: number;
     ageSuitability?: number;
+    depth?: number;
     poll?: IPoll;
     createdAtRun?: IPollRun;
     outcomeVersionA?: IOutcome;

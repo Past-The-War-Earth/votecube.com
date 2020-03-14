@@ -1,3 +1,9 @@
+import {
+	Factor_Id,
+	FactorTranslation_Name,
+	PollRevisionFactorPosition_Axis,
+	PollRevisionFactorPosition_FactorNumber
+} from '@votecube/relational-db'
 import {ICoreColor}   from './Color'
 import {
 	DocStatus,
@@ -6,7 +12,6 @@ import {
 	IsData,
 	IsDelta,
 	IsDoc,
-	Id
 }                     from './common'
 import {
 	ICoreAgeSuitabilityTracked,
@@ -18,10 +23,8 @@ import {
 }                     from './Position'
 import {IUserCreated} from './User'
 
-export type Factor_Axis = 'x' | 'y' | 'z'
-export type Factor_Id = Id
-export type Factor_Name = string
-export type Factor_Number = 1 | 2 | 3
+export type Factor_Axis = PollRevisionFactorPosition_Axis
+export type Factor_Number = PollRevisionFactorPosition_FactorNumber
 
 export interface ICoreFactor<Doc extends DocStatus>
 	extends ICoreFactorBase<Doc>,
@@ -37,8 +40,8 @@ export interface ICoreFactor<Doc extends DocStatus>
 export interface ICoreFactorFromForm<Doc extends DocStatus = IsData> {
 
 	color: ICoreColor<Doc>
-	name: Doc extends IsDoc ? IDocumentValue<Factor_Name>
-		: Doc extends IsDelta ? boolean : Factor_Name
+	name: Doc extends IsDoc ? IDocumentValue<FactorTranslation_Name>
+		: Doc extends IsDelta ? boolean : FactorTranslation_Name
 	positions: {
 		A: ICorePositionFromForm<Doc>
 		B: ICorePositionFromForm<Doc>
@@ -66,7 +69,7 @@ export interface ICoreFactorBase<Doc extends DocStatus>
 
 	axis: Doc extends IsDoc ? IDocumentValue<Factor_Axis>
 		: Doc extends IsDelta ? boolean : Factor_Axis
-	name: Doc extends IsDoc ? IDocumentValue<Factor_Name>
-		: Doc extends IsDelta ? boolean : Factor_Name
+	name: Doc extends IsDoc ? IDocumentValue<FactorTranslation_Name>
+		: Doc extends IsDelta ? boolean : FactorTranslation_Name
 
 }

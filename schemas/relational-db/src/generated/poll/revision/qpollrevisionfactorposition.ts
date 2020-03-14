@@ -78,6 +78,8 @@ export interface PollRevisionFactorPositionESelect
 	// Non-Id Properties
 	axis?: string | IQStringField;
 	dir?: number | IQNumberField;
+	factorNumber?: number | IQNumberField;
+	outcomeOrdinal?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -121,6 +123,8 @@ export interface PollRevisionFactorPositionEUpdateProperties
 	// Non-Id Properties
 	axis?: string | IQStringField;
 	dir?: number | IQNumberField;
+	factorNumber?: number | IQNumberField;
+	outcomeOrdinal?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	skin?: SkinEOptionalId;
@@ -149,6 +153,8 @@ export interface PollRevisionFactorPositionEUpdateColumns
 	CREATED_AT?: Date | IQDateField;
 	FACTOR_COORDINATE_AXIS?: string | IQStringField;
 	POSITION_ORIENTATION?: number | IQNumberField;
+	FACTOR_NUMBER?: number | IQNumberField;
+	OUTCOME_ORDINAL?: string | IQStringField;
 	SKIN_ID?: number | IQNumberField;
 	POLL_REVISION_ID?: number | IQNumberField;
 	FACTOR_ID?: number | IQNumberField;
@@ -191,6 +197,8 @@ export interface QPollRevisionFactorPosition extends QImmutableRow
 	// Non-Id Fields
 	axis: IQStringField;
 	dir: IQNumberField;
+	factorNumber: IQNumberField;
+	outcomeOrdinal: IQStringField;
 
 	// Non-Id Relations
 	skin: QSkinQRelation;

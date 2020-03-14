@@ -1,4 +1,5 @@
-import { AgeSuitability, DocStatus, IsDelta, IsDoc } from './common';
+import { AgeSuitability } from '@votecube/relational-db';
+import { DocStatus, IsDelta, IsDoc } from './common';
 export declare type DocumentValue_Delta = number;
 export interface IDocumentValue<T> {
     v: T;

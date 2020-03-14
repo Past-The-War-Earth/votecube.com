@@ -1,7 +1,6 @@
 import {
 	ICoreAgeSuitabilityTracked,
-	IsDelta,
-	IsDoc
+	IsDelta
 } from '../core/core'
 
 interface IAgeSuitabilityTrackedDelta

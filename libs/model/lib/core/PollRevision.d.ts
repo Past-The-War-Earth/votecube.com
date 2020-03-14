@@ -1,11 +1,10 @@
-import { DocStatus, IFullTextSearch, IMarked, IMarks, IsData, IsDelta, IsDoc, Id } from './common';
+import { Poll_Id, PollRevision_Id, PollRevisionTranslation_Name } from '@votecube/relational-db';
+import { DocStatus, IFullTextSearch, IMarked, IMarks, IsData, IsDelta, IsDoc } from './common';
 import { ICoreAgeSuitabilityTracked, IDocumentValue } from './DocumentValue';
 import { ICoreFactorFromForm, ICoreMarkedFactor } from './Factor';
 import { ICoreOutcome, ICoreOutcomeFromForm } from './Outcome';
 import { IVersioned } from './PathFragment';
-import { Poll_Id, Poll_Name } from './Poll';
 import { ICoreTheme, ICoreThemeFromForm } from './Theme';
-export declare type PollRevision_Id = Id;
 export interface ICoreRevision<Doc extends DocStatus> extends ICoreAgeSuitabilityTracked<Doc>, ICoreRevisionFromForm<Doc>, IFullTextSearch, IVersioned<PollRevision_Id> {
     factors: {
         1: ICoreMarkedFactor<Doc>;
@@ -28,7 +27,7 @@ export interface ICoreRevisionFromForm<Doc extends DocStatus = IsData> {
         2: ICoreFactorFromForm<Doc>;
         3: ICoreFactorFromForm<Doc>;
     };
-    name: Doc extends IsDoc ? IDocumentValue<Poll_Name> : Doc extends IsDelta ? boolean : Poll_Name;
+    name: Doc extends IsDoc ? IDocumentValue<PollRevisionTranslation_Name> : Doc extends IsDelta ? boolean : PollRevisionTranslation_Name;
     outcomes: {
         A: ICoreOutcomeFromForm<Doc>;
         B: ICoreOutcomeFromForm<Doc>;

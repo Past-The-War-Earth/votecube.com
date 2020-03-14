@@ -1,12 +1,9 @@
+import {Poll_Id}        from '@votecube/relational-db'
 import {IPollContinent} from '../location/PollContinent'
 import {IPollCountry}   from '../location/PollCountry'
 import {IPollCounty}    from '../location/PollCounty'
 import {IPollState}     from '../location/PollState'
 import {IPollTown}      from '../location/PollTown'
-import {Id}             from '../old/model'
-import {IPollLabel}     from './PollLabel'
-
-export type Poll_Id = Id
 
 export const POLLS = 'POLLS'
 
@@ -32,7 +29,6 @@ export interface IPreparedPoll
 	pollsCounties: IPollCounty[]
 	pollsCountries: IPollCountry[]
 	pollsFactorPositions: any[] // IPollFactorPosition[]
-	pollsLabels: IPollLabel[];
 	pollsStates: IPollState[]
 	pollsTowns: IPollTown[]
 	startDate: Date,

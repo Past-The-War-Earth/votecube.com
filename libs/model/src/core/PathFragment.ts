@@ -1,6 +1,7 @@
+import {Id}           from '@votecube/relational-db'
 import {
 	Doc_Depth,
-	Id
+	IIdentified
 }                     from './common'
 import {IUserCreated} from './User'
 
@@ -15,8 +16,8 @@ export interface IPath<K extends Id> {
 }
 
 export interface IParent<K extends Id>
-	extends IPathFragment<K> {
-	depth: Doc_Depth
+	extends IIdentified<K> {
+	// depth?: Doc_Depth
 }
 
 export interface IVersioned<K extends Id>

@@ -1,9 +1,9 @@
-import { Outcome_Name, Poll_Name } from '../core/core';
+import { Outcome_Name, PollRevisionTranslation_Name } from '@votecube/relational-db';
 import { IFactorForm } from './Factor';
 import { IThemeForm } from './Theme';
 export interface IPollForm {
     factors: IPollFactorsForm;
-    name: Poll_Name;
+    name: PollRevisionTranslation_Name;
     outcomes: IPollOutcomesForm;
     theme: IThemeForm;
 }
