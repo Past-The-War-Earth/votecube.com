@@ -1,5 +1,5 @@
 import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-control';
-import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../../infrastructure/row/qimmutableactorrow';
+import { AgeSuitableRowECascadeGraph, AgeSuitableRowEId, AgeSuitableRowEUpdateColumns, AgeSuitableRowEUpdateProperties, AgeSuitableRowESelect, QAgeSuitableRowQId, QAgeSuitableRowQRelation, QAgeSuitableRow } from '../../infrastructure/row/qagesuitablerow';
 import { PollEOptionalId, PollESelect, QPollQRelation } from '../qpoll';
 import { PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../run/qpollrun';
 import { OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from './qoutcome';
@@ -10,8 +10,7 @@ import { PollRevisionOpinionECascadeGraph, PollRevisionOpinionESelect, QPollRevi
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface PollRevisionESelect extends ImmutableActorRowESelect, PollRevisionEOptionalId {
-    ageSuitability?: number | IQNumberField;
+export interface PollRevisionESelect extends AgeSuitableRowESelect, PollRevisionEOptionalId {
     depth?: number | IQNumberField;
     poll?: PollESelect;
     createdAtRun?: PollRunESelect;
@@ -27,7 +26,7 @@ export interface PollRevisionESelect extends ImmutableActorRowESelect, PollRevis
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface PollRevisionEId extends ImmutableActorRowEId {
+export interface PollRevisionEId extends AgeSuitableRowEId {
     id: number | IQNumberField;
 }
 /**
@@ -39,8 +38,7 @@ export interface PollRevisionEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface PollRevisionEUpdateProperties extends ImmutableActorRowEUpdateProperties {
-    ageSuitability?: number | IQNumberField;
+export interface PollRevisionEUpdateProperties extends AgeSuitableRowEUpdateProperties {
     depth?: number | IQNumberField;
     poll?: PollEOptionalId;
     createdAtRun?: PollRunEOptionalId;
@@ -51,7 +49,7 @@ export interface PollRevisionEUpdateProperties extends ImmutableActorRowEUpdateP
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionECascadeGraph extends ImmutableActorRowECascadeGraph {
+export interface PollRevisionECascadeGraph extends AgeSuitableRowECascadeGraph {
     children?: PollRevisionECascadeGraph;
     ratings?: PollRevisionRatingECascadeGraph;
     factorPositions?: PollRevisionFactorPositionECascadeGraph;
@@ -61,7 +59,7 @@ export interface PollRevisionECascadeGraph extends ImmutableActorRowECascadeGrap
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface PollRevisionEUpdateColumns extends ImmutableActorRowEUpdateColumns {
+export interface PollRevisionEUpdateColumns extends AgeSuitableRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
@@ -86,9 +84,8 @@ export interface PollRevisionECreateColumns extends PollRevisionEId, PollRevisio
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevision extends QImmutableActorRow {
+export interface QPollRevision extends QAgeSuitableRow {
     id: IQNumberField;
-    ageSuitability: IQNumberField;
     depth: IQNumberField;
     poll: QPollQRelation;
     createdAtRun: QPollRunQRelation;
@@ -101,8 +98,8 @@ export interface QPollRevision extends QImmutableActorRow {
     allTranslations: IQOneToManyRelation<QPollRevisionTranslation>;
     opinions: IQOneToManyRelation<QPollRevisionOpinion>;
 }
-export interface QPollRevisionQId extends QImmutableActorRowQId {
+export interface QPollRevisionQId extends QAgeSuitableRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionQRelation extends QImmutableActorRowQRelation<QPollRevision>, QPollRevisionQId {
+export interface QPollRevisionQRelation extends QAgeSuitableRowQRelation<QPollRevision>, QPollRevisionQId {
 }

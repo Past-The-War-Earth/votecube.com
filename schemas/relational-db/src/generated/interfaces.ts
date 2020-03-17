@@ -10,6 +10,7 @@ export * from './infrastructure/language';
 export * from './infrastructure/rating/rating';
 export * from './infrastructure/rating/ratingsetting';
 export * from './infrastructure/rating/ratingtype';
+export * from './infrastructure/row/agesuitablerow';
 export * from './infrastructure/row/immutableactorrow';
 export * from './infrastructure/row/immutablerow';
 export * from './infrastructure/row/mutableactorrow';

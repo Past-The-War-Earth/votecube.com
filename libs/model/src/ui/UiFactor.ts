@@ -2,26 +2,20 @@ import {
 	Factor_Id,
 	FactorTranslation_Id,
 	FactorTranslation_Name
-} from '@votecube/relational-db'
-import {IUserCreated} from '../core/User'
-import {
-	Factor_Axis,
-}                             from '../core/Factor'
+}                                 from '@votecube/relational-db'
 import {
 	IsData,
 	IsDelta
-}                             from '../core/common'
-import {
-	IUiColor
-}                     from './UiColor'
-import {
-	UiDocStatus
-}                                 from './common'
+}                                 from '../core/common'
+import {Factor_Axis,}             from '../core/Factor'
+import {UiDocStatus}              from './common'
+import {IUiColor}                 from './UiColor'
 import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
 import {
 	IUiPosition,
 	IUiPositionFromForm
 }                                 from './UiPosition'
+import {IUiUserCreated}           from './UiUser'
 
 export interface IUiFactor<Doc extends UiDocStatus>
 	extends IUiFactorBase<Doc>,
@@ -60,7 +54,7 @@ export interface IUiFactor<Doc extends UiDocStatus>
 }
 
 export interface IUiFactorBase<Doc extends UiDocStatus>
-	extends IUserCreated<Factor_Id> {
+	extends IUiUserCreated<Factor_Id> {
 
 	axis: Doc extends IsDelta ? boolean : Factor_Axis
 	name: Doc extends IsDelta ? boolean : FactorTranslation_Name

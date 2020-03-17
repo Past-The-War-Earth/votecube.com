@@ -27,6 +27,15 @@ __decorate([
     DbNumber()
 ], PollRevisionFactorPosition.prototype, "factorNumber", void 0);
 __decorate([
+    Column({ name: 'COLOR_BLUE', nullable: false })
+], PollRevisionFactorPosition.prototype, "blue", void 0);
+__decorate([
+    Column({ name: 'COLOR_GREEN', nullable: false })
+], PollRevisionFactorPosition.prototype, "green", void 0);
+__decorate([
+    Column({ name: 'COLOR_RED', nullable: false })
+], PollRevisionFactorPosition.prototype, "red", void 0);
+__decorate([
     Column({ name: 'OUTCOME_ORDINAL', nullable: false }),
     DbString()
 ], PollRevisionFactorPosition.prototype, "outcomeOrdinal", void 0);

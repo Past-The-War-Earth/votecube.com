@@ -1,10 +1,9 @@
-import { Outcome_Id, Outcome_Ordinal, Outcome_Name } from '../../../types/poll/revision/Outcome';
+import { Outcome_Id } from '../../../types/poll/revision/Outcome';
+import { AgeSuitableRow } from '../../infrastructure/row/AgeSuitableRow';
 import { PollRevision } from './PollRevision';
 import { OutcomeTranslation } from './translation/OutcomeTranslation';
-export declare class Outcome {
+export declare class Outcome extends AgeSuitableRow {
     id: Outcome_Id;
-    key: Outcome_Ordinal;
-    name: Outcome_Name;
     parentTranslation: OutcomeTranslation;
     parent: Outcome;
     children: Outcome[];

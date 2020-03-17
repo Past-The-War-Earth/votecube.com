@@ -1,11 +1,10 @@
-import { IImmutableActorRow } from '../infrastructure/row/immutableactorrow';
+import { IAgeSuitableRow } from '../infrastructure/row/agesuitablerow';
 import { ITheme } from './theme';
 import { IPollType } from './polltype';
 import { IPollRun } from './run/pollrun';
 import { IPollRevision } from './revision/pollrevision';
-export interface IPoll extends IImmutableActorRow {
+export interface IPoll extends IAgeSuitableRow {
     id?: number;
-    ageSuitability?: number;
     theme?: ITheme;
     type?: IPollType;
     parent?: IPoll;

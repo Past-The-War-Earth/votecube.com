@@ -17,6 +17,7 @@ export interface ITheme extends ISystemGeneratedRow {
 
 	// Non-Id Properties
 	name?: string;
+	ageSuitability?: number;
 
 	// Non-Id Relations
 

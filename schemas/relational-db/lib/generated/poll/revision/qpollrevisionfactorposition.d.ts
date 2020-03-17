@@ -10,6 +10,9 @@ export interface PollRevisionFactorPositionESelect extends ImmutableRowESelect, 
     axis?: string | IQStringField;
     dir?: number | IQNumberField;
     factorNumber?: number | IQNumberField;
+    blue?: number | IQNumberField;
+    green?: number | IQNumberField;
+    red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
     skin?: SkinESelect;
     pollRevision?: PollRevisionESelect;
@@ -36,6 +39,9 @@ export interface PollRevisionFactorPositionEUpdateProperties extends ImmutableRo
     axis?: string | IQStringField;
     dir?: number | IQNumberField;
     factorNumber?: number | IQNumberField;
+    blue?: number | IQNumberField;
+    green?: number | IQNumberField;
+    red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
     skin?: SkinEOptionalId;
     pollRevision?: PollRevisionEOptionalId;
@@ -56,6 +62,9 @@ export interface PollRevisionFactorPositionEUpdateColumns extends ImmutableRowEU
     FACTOR_COORDINATE_AXIS?: string | IQStringField;
     POSITION_ORIENTATION?: number | IQNumberField;
     FACTOR_NUMBER?: number | IQNumberField;
+    COLOR_BLUE?: number | IQNumberField;
+    COLOR_GREEN?: number | IQNumberField;
+    COLOR_RED?: number | IQNumberField;
     OUTCOME_ORDINAL?: string | IQStringField;
     SKIN_ID?: number | IQNumberField;
     POLL_REVISION_ID?: number | IQNumberField;
@@ -81,6 +90,9 @@ export interface QPollRevisionFactorPosition extends QImmutableRow {
     axis: IQStringField;
     dir: IQNumberField;
     factorNumber: IQNumberField;
+    blue: IQNumberField;
+    green: IQNumberField;
+    red: IQNumberField;
     outcomeOrdinal: IQStringField;
     skin: QSkinQRelation;
     pollRevision: QPollRevisionQRelation;

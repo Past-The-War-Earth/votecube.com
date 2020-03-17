@@ -47,6 +47,7 @@ export interface ThemeESelect
     extends SystemGeneratedRowESelect, ThemeEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
+	ageSuitability?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -84,6 +85,7 @@ export interface ThemeEUpdateProperties
 	extends SystemGeneratedRowEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
+	ageSuitability?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 
@@ -106,6 +108,7 @@ export interface ThemeEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	NAME?: string | IQStringField;
+	AGE_SUITABILITY?: number | IQNumberField;
 
 }
 
@@ -142,6 +145,7 @@ export interface QTheme extends QSystemGeneratedRow
 
 	// Non-Id Fields
 	name: IQStringField;
+	ageSuitability: IQNumberField;
 
 	// Non-Id Relations
 

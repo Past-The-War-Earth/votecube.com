@@ -1,8 +1,8 @@
-import { IImmutableActorRow } from '../../infrastructure/row/immutableactorrow';
+import { IAgeSuitableRow } from '../../infrastructure/row/agesuitablerow';
 import { IPollRevision } from '../../poll/revision/pollrevision';
 import { IPositionTranslation } from './positiontranslation';
 import { IFactorPosition } from './factorposition';
-export interface IPosition extends IImmutableActorRow {
+export interface IPosition extends IAgeSuitableRow {
     id: number;
     createdAtPollRevision?: IPollRevision;
     parentTranslation?: IPositionTranslation;

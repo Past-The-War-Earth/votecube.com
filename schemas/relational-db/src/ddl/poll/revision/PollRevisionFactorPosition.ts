@@ -14,11 +14,12 @@ import {
 import {CascadeType}    from '@airport/ground-control'
 import {
 	PollRevisionFactorPosition_Axis,
+	PollRevisionFactorPosition_Color,
 	PollRevisionFactorPosition_Dir,
 	PollRevisionFactorPosition_FactorNumber,
 	PollRevisionFactorPosition_Id,
 	PollRevisionFactorPosition_OutcomeOrdinal
-} from '../../../types/poll/revision/PollRevisionFactorPosition'
+}                       from '../../../types/poll/revision/PollRevisionFactorPosition'
 import {FactorPosition} from '../../factor/position/FactorPosition'
 import {Skin}           from '../../factor/Skin'
 import {ImmutableRow}   from '../../infrastructure/row/ImmutableRow'
@@ -45,6 +46,15 @@ export class PollRevisionFactorPosition
 	@Column({name: 'FACTOR_NUMBER', nullable: false})
 	@DbNumber()
 	factorNumber: PollRevisionFactorPosition_FactorNumber
+
+	@Column({name: 'COLOR_BLUE', nullable: false})
+	blue: PollRevisionFactorPosition_Color
+
+	@Column({name: 'COLOR_GREEN', nullable: false})
+	green: PollRevisionFactorPosition_Color
+
+	@Column({name: 'COLOR_RED', nullable: false})
+	red: PollRevisionFactorPosition_Color
 
 	@Column({name: 'OUTCOME_ORDINAL', nullable: false})
 	@DbString()

@@ -6,11 +6,12 @@ import {IsDelta}                  from '../core/common'
 import {IUserCreated}             from '../core/User'
 import {UiDocStatus}              from './common'
 import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
+import {IUiUserCreated}           from './UiUser'
 
 export interface IUiOutcome<Doc extends UiDocStatus>
 	extends IUiAgeSuitabilityTracked<Doc>,
 	        IUiOutcomeFromForm<Doc>,
-	        IUserCreated<Outcome_Id> {
+	        IUiUserCreated<Outcome_Id> {
 
 	name: Doc extends IsDelta ? boolean : Outcome_Name
 

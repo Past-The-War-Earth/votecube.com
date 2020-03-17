@@ -6,11 +6,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
-import { ImmutableActorRow } from '../../infrastructure/row/ImmutableActorRow';
+import { AgeSuitableRow } from '../../infrastructure/row/AgeSuitableRow';
 /**
  * This is the generic position records (not related to any poll).
  */
-let Position = class Position extends ImmutableActorRow {
+let Position = class Position extends AgeSuitableRow {
 };
 __decorate([
     GeneratedValue(),

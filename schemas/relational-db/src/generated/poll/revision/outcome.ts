@@ -1,4 +1,7 @@
 import {
+	IAgeSuitableRow,
+} from '../../infrastructure/row/agesuitablerow';
+import {
 	IOutcomeTranslation,
 } from './translation/outcometranslation';
 import {
@@ -11,7 +14,7 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IOutcome {
+export interface IOutcome extends IAgeSuitableRow {
 	
 	// Id Properties
 	id: number;
@@ -19,8 +22,6 @@ export interface IOutcome {
 	// Id Relations
 
 	// Non-Id Properties
-	key?: string;
-	name?: string;
 
 	// Non-Id Relations
 	parentTranslation?: IOutcomeTranslation;

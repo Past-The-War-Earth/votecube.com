@@ -1,4 +1,4 @@
-import { PollRevisionFactorPosition_Axis, PollRevisionFactorPosition_Dir, PollRevisionFactorPosition_FactorNumber, PollRevisionFactorPosition_Id, PollRevisionFactorPosition_OutcomeOrdinal } from '../../../types/poll/revision/PollRevisionFactorPosition';
+import { PollRevisionFactorPosition_Axis, PollRevisionFactorPosition_Color, PollRevisionFactorPosition_Dir, PollRevisionFactorPosition_FactorNumber, PollRevisionFactorPosition_Id, PollRevisionFactorPosition_OutcomeOrdinal } from '../../../types/poll/revision/PollRevisionFactorPosition';
 import { FactorPosition } from '../../factor/position/FactorPosition';
 import { Skin } from '../../factor/Skin';
 import { ImmutableRow } from '../../infrastructure/row/ImmutableRow';
@@ -8,6 +8,9 @@ export declare class PollRevisionFactorPosition extends ImmutableRow {
     axis: PollRevisionFactorPosition_Axis;
     dir: PollRevisionFactorPosition_Dir;
     factorNumber: PollRevisionFactorPosition_FactorNumber;
+    blue: PollRevisionFactorPosition_Color;
+    green: PollRevisionFactorPosition_Color;
+    red: PollRevisionFactorPosition_Color;
     outcomeOrdinal: PollRevisionFactorPosition_OutcomeOrdinal;
     skin: Skin;
     pollRevision: PollRevision;

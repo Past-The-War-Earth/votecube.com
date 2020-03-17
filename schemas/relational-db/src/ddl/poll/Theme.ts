@@ -5,6 +5,7 @@ import {
 	Id,
 	Table
 }                           from '@airport/air-control'
+import {AgeSuitability}     from '../../types/common'
 import {
 	Theme_Id,
 	Theme_Name
@@ -23,5 +24,8 @@ export class Theme
 
 	@Column({name: 'NAME', nullable: false})
 	name: Theme_Name
+
+	@Column({name: 'AGE_SUITABILITY', nullable: false})
+	ageSuitability: AgeSuitability
 
 }

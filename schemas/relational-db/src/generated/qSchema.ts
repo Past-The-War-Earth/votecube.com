@@ -14,6 +14,8 @@ import {
 }                      from '@airport/ground-control';
 import { Actor } from '../ddl/user/actor';
 import { QActor } from './user/qactor';
+import { AgeSuitableRow } from '../ddl/infrastructure/row/agesuitablerow';
+import { QAgeSuitableRow } from './infrastructure/row/qagesuitablerow';
 import { Application } from '../ddl/user/application';
 import { QApplication } from './user/qapplication';
 import { Continent } from '../ddl/location/continent';
@@ -140,6 +142,7 @@ export interface LocalQSchema extends AirportQSchema {
   db: DbSchema;
 
 	Actor: QActor;
+	AgeSuitableRow: QAgeSuitableRow;
 	Application: QApplication;
 	Continent: QContinent;
 	Country: QCountry;
@@ -205,6 +208,7 @@ export interface LocalQSchema extends AirportQSchema {
 
 const __constructors__ = {
 	Actor: Actor,
+	AgeSuitableRow: AgeSuitableRow,
 	Application: Application,
 	Continent: Continent,
 	Country: Country,

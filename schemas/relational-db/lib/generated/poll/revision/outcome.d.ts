@@ -1,9 +1,8 @@
+import { IAgeSuitableRow } from '../../infrastructure/row/agesuitablerow';
 import { IOutcomeTranslation } from './translation/outcometranslation';
 import { IPollRevision } from './pollrevision';
-export interface IOutcome {
+export interface IOutcome extends IAgeSuitableRow {
     id: number;
-    key?: string;
-    name?: string;
     parentTranslation?: IOutcomeTranslation;
     parent?: IOutcome;
     children?: IOutcome[];

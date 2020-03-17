@@ -22,6 +22,16 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
+	AgeSuitableRowECascadeGraph,
+	AgeSuitableRowEId,
+	AgeSuitableRowEUpdateColumns,
+	AgeSuitableRowEUpdateProperties,
+	AgeSuitableRowESelect,
+	QAgeSuitableRowQId,
+	QAgeSuitableRowQRelation,
+	QAgeSuitableRow,
+} from '../../infrastructure/row/qagesuitablerow';
+import {
 	OutcomeTranslationECascadeGraph,
 	OutcomeTranslationEId,
 	OutcomeTranslationEOptionalId,
@@ -54,10 +64,8 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface OutcomeESelect
-    extends IEntitySelectProperties, OutcomeEOptionalId {
+    extends AgeSuitableRowESelect, OutcomeEOptionalId {
 	// Non-Id Properties
-	key?: string | IQStringField;
-	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -74,7 +82,7 @@ export interface OutcomeESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface OutcomeEId
-    extends IEntityIdProperties {
+    extends AgeSuitableRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -97,10 +105,8 @@ export interface OutcomeEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface OutcomeEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends AgeSuitableRowEUpdateProperties {
 	// Non-Id Properties
-	key?: string | IQStringField;
-	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	parentTranslation?: OutcomeTranslationEOptionalId;
@@ -112,7 +118,7 @@ export interface OutcomeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface OutcomeECascadeGraph
-	extends IEntityCascadeGraph {
+	extends AgeSuitableRowECascadeGraph {
 	// Cascading Relations
 	children?: OutcomeECascadeGraph;
 	pollRevisionsA?: PollRevisionECascadeGraph;
@@ -124,10 +130,12 @@ export interface OutcomeECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface OutcomeEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends AgeSuitableRowEUpdateColumns {
 	// Non-Id Columns
-	KEY?: string | IQStringField;
-	NAME?: string | IQStringField;
+	CREATED_AT?: Date | IQDateField;
+	ACTOR_ID?: number | IQNumberField;
+	USER_ACCOUNT_ID?: number | IQNumberField;
+	AGE_SUITABILITY?: number | IQNumberField;
 	PARENT_OUTCOME_TRANSLATION_ID?: number | IQNumberField;
 	PARENT_OUTCOME_ID?: number | IQNumberField;
 
@@ -157,7 +165,7 @@ extends OutcomeEId, OutcomeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcome extends IQEntity
+export interface QOutcome extends QAgeSuitableRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -165,8 +173,6 @@ export interface QOutcome extends IQEntity
 	// Id Relations
 
 	// Non-Id Fields
-	key: IQStringField;
-	name: IQStringField;
 
 	// Non-Id Relations
 	parentTranslation: QOutcomeTranslationQRelation;
@@ -179,7 +185,7 @@ export interface QOutcome extends IQEntity
 
 
 // Entity Id Interface
-export interface QOutcomeQId
+export interface QOutcomeQId extends QAgeSuitableRowQId
 {
 	
 	// Id Fields
@@ -192,6 +198,6 @@ export interface QOutcomeQId
 
 // Entity Relation Interface
 export interface QOutcomeQRelation
-	extends IQRelation<QOutcome>, QOutcomeQId {
+	extends QAgeSuitableRowQRelation<QOutcome>, QOutcomeQId {
 }
 

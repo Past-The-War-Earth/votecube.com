@@ -22,15 +22,15 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
-	ImmutableActorRowEId,
-	ImmutableActorRowEUpdateColumns,
-	ImmutableActorRowEUpdateProperties,
-	ImmutableActorRowESelect,
-	QImmutableActorRowQId,
-	QImmutableActorRowQRelation,
-	QImmutableActorRow,
-} from '../../infrastructure/row/qimmutableactorrow';
+	AgeSuitableRowECascadeGraph,
+	AgeSuitableRowEId,
+	AgeSuitableRowEUpdateColumns,
+	AgeSuitableRowEUpdateProperties,
+	AgeSuitableRowESelect,
+	QAgeSuitableRowQId,
+	QAgeSuitableRowQRelation,
+	QAgeSuitableRow,
+} from '../../infrastructure/row/qagesuitablerow';
 import {
 	PollRevisionECascadeGraph,
 	PollRevisionEId,
@@ -74,7 +74,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface PositionESelect
-    extends ImmutableActorRowESelect, PositionEOptionalId {
+    extends AgeSuitableRowESelect, PositionEOptionalId {
 	// Non-Id Properties
 
 	// Id Relations - full property interfaces
@@ -93,7 +93,7 @@ export interface PositionESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PositionEId
-    extends ImmutableActorRowEId {
+    extends AgeSuitableRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -116,7 +116,7 @@ export interface PositionEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PositionEUpdateProperties
-	extends ImmutableActorRowEUpdateProperties {
+	extends AgeSuitableRowEUpdateProperties {
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -130,7 +130,7 @@ export interface PositionEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PositionECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
+	extends AgeSuitableRowECascadeGraph {
 	// Cascading Relations
 	children?: PositionECascadeGraph;
 	factorPositions?: FactorPositionECascadeGraph;
@@ -142,11 +142,12 @@ export interface PositionECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface PositionEUpdateColumns
-	extends ImmutableActorRowEUpdateColumns {
+	extends AgeSuitableRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
 	USER_ACCOUNT_ID?: number | IQNumberField;
+	AGE_SUITABILITY?: number | IQNumberField;
 	POLL_REVISION_ID?: number | IQNumberField;
 	PARENT_POSITION_TRANSLATION_ID?: number | IQNumberField;
 	PARENT_POSITION_ID?: number | IQNumberField;
@@ -177,7 +178,7 @@ extends PositionEId, PositionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPosition extends QImmutableActorRow
+export interface QPosition extends QAgeSuitableRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -198,7 +199,7 @@ export interface QPosition extends QImmutableActorRow
 
 
 // Entity Id Interface
-export interface QPositionQId extends QImmutableActorRowQId
+export interface QPositionQId extends QAgeSuitableRowQId
 {
 	
 	// Id Fields
@@ -211,6 +212,6 @@ export interface QPositionQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QPositionQRelation
-	extends QImmutableActorRowQRelation<QPosition>, QPositionQId {
+	extends QAgeSuitableRowQRelation<QPosition>, QPositionQId {
 }
 

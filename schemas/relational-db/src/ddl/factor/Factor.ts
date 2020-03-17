@@ -10,7 +10,7 @@ import {
 }                          from '@airport/air-control'
 import {CascadeType}       from '@airport/ground-control'
 import {Factor_Id}         from '../../types/factor/Factor'
-import {ImmutableActorRow} from '../infrastructure/row/ImmutableActorRow'
+import {AgeSuitableRow} from '../infrastructure/row/AgeSuitableRow'
 import {PollRevision}      from '../poll/revision/PollRevision'
 import {FactorTranslation} from './FactorTranslation'
 import {FactorPosition}    from './position/FactorPosition'
@@ -18,7 +18,7 @@ import {FactorPosition}    from './position/FactorPosition'
 @Entity()
 @Table({name: 'FACTORS'})
 export class Factor
-	extends ImmutableActorRow {
+	extends AgeSuitableRow {
 
 	@GeneratedValue()
 	@Id()

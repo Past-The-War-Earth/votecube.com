@@ -16,6 +16,9 @@ __decorate([
 __decorate([
     Column({ name: 'NAME', nullable: false })
 ], Theme.prototype, "name", void 0);
+__decorate([
+    Column({ name: 'AGE_SUITABILITY', nullable: false })
+], Theme.prototype, "ageSuitability", void 0);
 Theme = __decorate([
     Entity(),
     Table({ name: 'THEMES' })

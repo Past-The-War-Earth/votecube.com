@@ -22,15 +22,15 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
-	ImmutableActorRowEId,
-	ImmutableActorRowEUpdateColumns,
-	ImmutableActorRowEUpdateProperties,
-	ImmutableActorRowESelect,
-	QImmutableActorRowQId,
-	QImmutableActorRowQRelation,
-	QImmutableActorRow,
-} from '../../infrastructure/row/qimmutableactorrow';
+	AgeSuitableRowECascadeGraph,
+	AgeSuitableRowEId,
+	AgeSuitableRowEUpdateColumns,
+	AgeSuitableRowEUpdateProperties,
+	AgeSuitableRowESelect,
+	QAgeSuitableRowQId,
+	QAgeSuitableRowQRelation,
+	QAgeSuitableRow,
+} from '../../infrastructure/row/qagesuitablerow';
 import {
 	PollECascadeGraph,
 	PollEId,
@@ -114,9 +114,8 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface PollRevisionESelect
-    extends ImmutableActorRowESelect, PollRevisionEOptionalId {
+    extends AgeSuitableRowESelect, PollRevisionEOptionalId {
 	// Non-Id Properties
-	ageSuitability?: number | IQNumberField;
 	depth?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
@@ -139,7 +138,7 @@ export interface PollRevisionESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollRevisionEId
-    extends ImmutableActorRowEId {
+    extends AgeSuitableRowEId {
 	// Id Properties
 	id: number | IQNumberField;
 
@@ -162,9 +161,8 @@ export interface PollRevisionEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollRevisionEUpdateProperties
-	extends ImmutableActorRowEUpdateProperties {
+	extends AgeSuitableRowEUpdateProperties {
 	// Non-Id Properties
-	ageSuitability?: number | IQNumberField;
 	depth?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -180,7 +178,7 @@ export interface PollRevisionEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRevisionECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
+	extends AgeSuitableRowECascadeGraph {
 	// Cascading Relations
 	children?: PollRevisionECascadeGraph;
 	ratings?: PollRevisionRatingECascadeGraph;
@@ -194,7 +192,7 @@ export interface PollRevisionECascadeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface PollRevisionEUpdateColumns
-	extends ImmutableActorRowEUpdateColumns {
+	extends AgeSuitableRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	ACTOR_ID?: number | IQNumberField;
@@ -233,7 +231,7 @@ extends PollRevisionEId, PollRevisionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevision extends QImmutableActorRow
+export interface QPollRevision extends QAgeSuitableRow
 {
 	// Id Fields
 	id: IQNumberField;
@@ -241,7 +239,6 @@ export interface QPollRevision extends QImmutableActorRow
 	// Id Relations
 
 	// Non-Id Fields
-	ageSuitability: IQNumberField;
 	depth: IQNumberField;
 
 	// Non-Id Relations
@@ -260,7 +257,7 @@ export interface QPollRevision extends QImmutableActorRow
 
 
 // Entity Id Interface
-export interface QPollRevisionQId extends QImmutableActorRowQId
+export interface QPollRevisionQId extends QAgeSuitableRowQId
 {
 	
 	// Id Fields
@@ -273,6 +270,6 @@ export interface QPollRevisionQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QPollRevisionQRelation
-	extends QImmutableActorRowQRelation<QPollRevision>, QPollRevisionQId {
+	extends QAgeSuitableRowQRelation<QPollRevision>, QPollRevisionQId {
 }
 

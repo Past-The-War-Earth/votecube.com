@@ -1,6 +1,6 @@
 import {
-	IImmutableActorRow,
-} from '../infrastructure/row/immutableactorrow';
+	IAgeSuitableRow,
+} from '../infrastructure/row/agesuitablerow';
 import {
 	ITheme,
 } from './theme';
@@ -20,7 +20,7 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPoll extends IImmutableActorRow {
+export interface IPoll extends IAgeSuitableRow {
 	
 	// Id Properties
 
@@ -28,7 +28,6 @@ export interface IPoll extends IImmutableActorRow {
 
 	// Non-Id Properties
 	id?: number;
-	ageSuitability?: number;
 
 	// Non-Id Relations
 	theme?: ITheme;

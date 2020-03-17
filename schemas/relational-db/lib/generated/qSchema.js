@@ -3,6 +3,7 @@ import { diSet as dS, duoDiSet as ddS } from '@airport/check-in';
 import { DI } from '@airport/di';
 import { getSchemaName } from '@airport/ground-control';
 import { Actor } from '../ddl/user/actor';
+import { AgeSuitableRow } from '../ddl/infrastructure/row/agesuitablerow';
 import { Application } from '../ddl/user/application';
 import { Continent } from '../ddl/location/continent';
 import { Country } from '../ddl/location/country';
@@ -65,6 +66,7 @@ import { VoteType } from '../ddl/vote/votetype';
 import { VoteVersion } from '../ddl/vote/voteversion';
 const __constructors__ = {
     Actor: Actor,
+    AgeSuitableRow: AgeSuitableRow,
     Application: Application,
     Continent: Continent,
     Country: Country,

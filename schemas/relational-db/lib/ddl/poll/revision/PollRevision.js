@@ -6,20 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
-import { ImmutableActorRow } from '../../infrastructure/row/ImmutableActorRow';
+import { AgeSuitableRow } from '../../infrastructure/row/AgeSuitableRow';
 /**
  * Different revisions of a given poll.
  */
-let PollRevision = class PollRevision extends ImmutableActorRow {
+let PollRevision = class PollRevision extends AgeSuitableRow {
 };
 __decorate([
     Id(),
     GeneratedValue(),
     Column({ name: 'POLL_REVISION_ID' })
 ], PollRevision.prototype, "id", void 0);
-__decorate([
-    Column({ name: 'AGE_SUITABILITY', nullable: false })
-], PollRevision.prototype, "ageSuitability", void 0);
 __decorate([
     Column({ name: 'DEPTH' })
 ], PollRevision.prototype, "depth", void 0);

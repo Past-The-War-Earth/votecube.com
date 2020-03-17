@@ -8,6 +8,7 @@ import {
 	IUiPollRevision,
 	IUiPosition,
 	IUiTheme,
+	Position_Dir,
 }                                from '@votecube/model'
 import {
 	Id,
@@ -22,17 +23,17 @@ import {
 	IPosition,
 	ITheme,
 	Outcome_Ordinal
-} from '@votecube/relational-db'
+}                                from '@votecube/relational-db'
 import {POLL_REVISION_CONVERTER} from '../tokens'
 
 export interface IPollRevisionConverter {
 
 	dbToUi(
-		RevisionDb: IPollRevision
+		revisionDb: IPollRevision
 	): IUiPollRevision
 
 	uiToDb(
-		RevisionDoc: IUiPollRevision
+		revisionDoc: IUiPollRevision
 	): IPollRevision
 
 }
@@ -53,13 +54,13 @@ export class PollRevisionConverter
 
 		return {
 			ageSuitability: revisionDb.ageSuitability,
-			createdAt: null, // TODO: wire
+			createdAt: revisionDb.createdAt,
 			depth: revisionDb.depth,
 			id: revisionDb.id,
 			factors: {
 				'1': this.getUiFactor(1, revisionDb.factorPositions),
-				'2': this.getUiFactor(1, revisionDb.factorPositions),
-				'3': this.getUiFactor(1, revisionDb.factorPositions)
+				'2': this.getUiFactor(2, revisionDb.factorPositions),
+				'3': this.getUiFactor(3, revisionDb.factorPositions)
 			},
 			name: revisionDb.allTranslations[0].name,
 			outcomes: {
@@ -67,10 +68,9 @@ export class PollRevisionConverter
 				B: this.getUiOutcome(revisionDb.outcomeVersionB)
 			},
 			parent,
-			path: null, // TODO: wire
 			pollId: revisionDb.poll.id,
 			theme: this.getUiTheme(revisionDb.poll.theme),
-			userId: null // TODO: wire
+			userId: revisionDb.userAccount.id
 		}
 	}
 
@@ -78,17 +78,72 @@ export class PollRevisionConverter
 		factorNumber: Factor_Number,
 		factorPositions: IPollRevisionFactorPosition[]
 	): IUiFactor<IsData> {
-		// TODO: implement
+		const matchingFactorPositions = factorPositions.filter(factorPosition =>
+			factorPosition.factorNumber === factorNumber)
 
-		return null
+		let dbFactorPositionA: IPollRevisionFactorPosition
+		let dbFactorPositionB: IPollRevisionFactorPosition
+
+		if (matchingFactorPositions[0].outcomeOrdinal === 'A') {
+			dbFactorPositionA = matchingFactorPositions[0]
+			dbFactorPositionB = matchingFactorPositions[1]
+		} else {
+			dbFactorPositionA = matchingFactorPositions[1]
+			dbFactorPositionB = matchingFactorPositions[0]
+		}
+
+		const dbFactor = dbFactorPositionA.factorPosition.factor
+
+
+		return {
+			ageSuitability: dbFactor.ageSuitability,
+			axis: dbFactorPositionA.axis as 'x' | 'y' | 'z',
+			color: {
+				blue: dbFactorPositionA.blue,
+				green: dbFactorPositionA.green,
+				red: dbFactorPositionA.red,
+			},
+			createdAt: dbFactor.createdAt,
+			id: dbFactor.id,
+			name: dbFactor.parentTranslation.name,
+			parentId: dbFactor.parent ? dbFactor.parent.id : null,
+			positions: {
+				A: this.getUiPosition(dbFactorPositionA),
+				B: this.getUiPosition(dbFactorPositionB),
+			},
+			translationId: dbFactor.parentTranslation.id,
+			userId: dbFactor.userAccount.id,
+		}
+	}
+
+	getUiPosition(
+		prFactorPosition: IPollRevisionFactorPosition
+	): IUiPosition<IsData> {
+		const position = prFactorPosition.factorPosition.position
+
+		return {
+			ageSuitability: position.ageSuitability,
+			createdAt: position.createdAt,
+			dir: prFactorPosition.dir as Position_Dir,
+			id: position.id,
+			name: position.parentTranslation.name,
+			pollFactorPositionId: prFactorPosition.id,
+			pollFactorPositionParentId: prFactorPosition.parent ? prFactorPosition.parent.id : null,
+			positionParentId: position.parent ? position.parent.id : null,
+			userId: position.userAccount.id,
+		}
 	}
 
 	getUiOutcome(
 		outcome: IOutcome
 	): IUiOutcome<IsData> {
-		// TODO: implement
-
-		return null
+		return {
+			ageSuitability: outcome.ageSuitability,
+			createdAt: outcome.createdAt,
+			id: outcome.id,
+			name: outcome.parentTranslation.name,
+			userId: outcome.userAccount.id,
+		}
 	}
 
 	getUiTheme(
@@ -96,7 +151,11 @@ export class PollRevisionConverter
 	): IUiTheme<IsData> {
 		// TODO: implement
 
-		return null
+		return {
+			id: theme.id,
+			ageSuitability: theme.ageSuitability,
+			name: theme.name,
+		}
 	}
 
 	uiToDb(
@@ -120,8 +179,8 @@ export class PollRevisionConverter
 			ageSuitability: revisionDoc.ageSuitability,
 			id: revisionDoc.id,
 			parent: parentRevision,
-			outcomeVersionA: this.getDbOutcome(revisionDoc.outcomes.A, 'A'),
-			outcomeVersionB: this.getDbOutcome(revisionDoc.outcomes.B, 'B'),
+			outcomeVersionA: this.getDbOutcome(revisionDoc.outcomes.A),
+			outcomeVersionB: this.getDbOutcome(revisionDoc.outcomes.B),
 			poll,
 			factorPositions: [this.getDbPollFactorPosition(
 				revisionDoc.factors[1],
@@ -155,8 +214,7 @@ export class PollRevisionConverter
 	}
 
 	getDbOutcome(
-		uiOutcome: IUiOutcome<IsData>,
-		key: 'A' | 'B'
+		uiOutcome: IUiOutcome<IsData>
 	): IOutcome {
 		if (uiOutcome.id) {
 			return {
@@ -165,9 +223,12 @@ export class PollRevisionConverter
 		}
 
 		return {
+			ageSuitability: uiOutcome.ageSuitability,
 			id: null,
-			key,
-			name: uiOutcome.name
+			parentTranslation: {
+				id: null,
+				name: uiOutcome.name
+			}
 		}
 	}
 

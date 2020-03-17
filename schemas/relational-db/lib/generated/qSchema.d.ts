@@ -1,6 +1,7 @@
 import { QSchema as AirportQSchema } from '@airport/air-control';
 import { DbSchema, EntityId } from '@airport/ground-control';
 import { QActor } from './user/qactor';
+import { QAgeSuitableRow } from './infrastructure/row/qagesuitablerow';
 import { QApplication } from './user/qapplication';
 import { QContinent } from './location/qcontinent';
 import { QCountry } from './location/qcountry';
@@ -64,6 +65,7 @@ import { QVoteVersion } from './vote/qvoteversion';
 export interface LocalQSchema extends AirportQSchema {
     db: DbSchema;
     Actor: QActor;
+    AgeSuitableRow: QAgeSuitableRow;
     Application: QApplication;
     Continent: QContinent;
     Country: QCountry;

@@ -8,9 +8,8 @@ import {
 	Table
 }                                from '@airport/air-control'
 import {CascadeType}             from '@airport/ground-control'
-import {AgeSuitability}          from '../../types/common'
 import {Poll_Id}                 from '../../types/poll/Poll'
-import {ImmutableActorRow}       from '../infrastructure/row/ImmutableActorRow'
+import {AgeSuitableRow}       from '../infrastructure/row/AgeSuitableRow'
 import {PollRun}                 from './run/PollRun'
 import {PollType}                from './PollType'
 import {Theme}                   from './Theme'
@@ -19,14 +18,11 @@ import {PollRevision}       from './revision/PollRevision'
 @Entity()
 @Table({name: 'POLLS'})
 export class Poll
-	extends ImmutableActorRow {
+	extends AgeSuitableRow {
 
 	@GeneratedValue()
 	@Column({name: 'POLL_ID'})
 	id: Poll_Id
-
-	@Column({name: 'AGE_SUITABILITY', nullable: false})
-	ageSuitability: AgeSuitability
 
 	@ManyToOne()
 	@JoinColumn({name: 'THEME_ID', nullable: false})

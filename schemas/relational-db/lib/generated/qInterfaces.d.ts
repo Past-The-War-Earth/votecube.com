@@ -11,6 +11,7 @@ export * from './infrastructure/qtranslationtype';
 export * from './infrastructure/rating/qrating';
 export * from './infrastructure/rating/qratingsetting';
 export * from './infrastructure/rating/qratingtype';
+export * from './infrastructure/row/qagesuitablerow';
 export * from './infrastructure/row/qimmutableactorrow';
 export * from './infrastructure/row/qimmutablerow';
 export * from './infrastructure/row/qmutableactorrow';

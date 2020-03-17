@@ -2,12 +2,11 @@ import {
 	Poll_Id,
 	PollRevision_Id,
 	PollRevisionTranslation_Name
-} from '@votecube/relational-db'
+}                                 from '@votecube/relational-db'
 import {
 	IsData,
 	IsDelta
 }                                 from '../core/common'
-import {IVersioned}               from '../core/PathFragment'
 import {UiDocStatus}              from './common'
 import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
 import {
@@ -18,6 +17,7 @@ import {
 	IUiOutcome,
 	IUiOutcomeFromForm
 }                                 from './UiOutcome'
+import {IUiVersioned}             from './UiPathFragment'
 import {
 	IUiTheme,
 	IUiThemeFromForm
@@ -34,7 +34,7 @@ export interface IUiPollRevisionDelta
 export interface IUiPollRevisionCore<Doc extends UiDocStatus>
 	extends IUiAgeSuitabilityTracked<Doc>,
 	        IUiRevisionFromForm<Doc>,
-	        IVersioned<PollRevision_Id> {
+	        IUiVersioned<PollRevision_Id> {
 
 	factors: {
 		1: IUiFactor<Doc>

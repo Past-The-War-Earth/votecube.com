@@ -10,7 +10,7 @@ import {
 }                            from '@airport/air-control'
 import {CascadeType}         from '@airport/ground-control'
 import {Position_Id}         from '../../../types/factor/position/Position'
-import {ImmutableActorRow} from '../../infrastructure/row/ImmutableActorRow'
+import {AgeSuitableRow} from '../../infrastructure/row/AgeSuitableRow'
 import {PollRevision}      from '../../poll/revision/PollRevision'
 import {FactorPosition}    from './FactorPosition'
 import {PositionTranslation} from './PositionTranslation'
@@ -21,7 +21,7 @@ import {PositionTranslation} from './PositionTranslation'
 @Entity()
 @Table({name: 'POSITIONS'})
 export class Position
-	extends ImmutableActorRow {
+	extends AgeSuitableRow {
 
 	@GeneratedValue()
 	@Id()

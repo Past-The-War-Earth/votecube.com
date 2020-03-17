@@ -6,16 +6,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Column, Entity, GeneratedValue, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
-import { ImmutableActorRow } from '../infrastructure/row/ImmutableActorRow';
-let Poll = class Poll extends ImmutableActorRow {
+import { AgeSuitableRow } from '../infrastructure/row/AgeSuitableRow';
+let Poll = class Poll extends AgeSuitableRow {
 };
 __decorate([
     GeneratedValue(),
     Column({ name: 'POLL_ID' })
 ], Poll.prototype, "id", void 0);
-__decorate([
-    Column({ name: 'AGE_SUITABILITY', nullable: false })
-], Poll.prototype, "ageSuitability", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({ name: 'THEME_ID', nullable: false })

@@ -9,12 +9,11 @@ import {
 	Table
 }                                   from '@airport/air-control'
 import {CascadeType}                from '@airport/ground-control'
-import {AgeSuitability}             from '../../../types/common'
 import {
 	PollRevision_Depth,
 	PollRevision_Id
 }                                   from '../../../types/poll/revision/PollRevision'
-import {ImmutableActorRow}          from '../../infrastructure/row/ImmutableActorRow'
+import {AgeSuitableRow}          from '../../infrastructure/row/AgeSuitableRow'
 import {PollRevisionOpinion}        from '../../opinion/PollRevisionOpinion'
 import {Poll}                       from '../Poll'
 import {PollRevisionRating}         from '../rating/PollRevisionRating'
@@ -29,15 +28,12 @@ import {PollRevisionTranslation}    from './translation/PollRevisionTranslation'
 @Entity()
 @Table({name: 'POLL_REVISIONS'})
 export class PollRevision
-	extends ImmutableActorRow {
+	extends AgeSuitableRow {
 
 	@Id()
 	@GeneratedValue()
 	@Column({name: 'POLL_REVISION_ID'})
 	id: PollRevision_Id
-
-	@Column({name: 'AGE_SUITABILITY', nullable: false})
-	ageSuitability: AgeSuitability
 
 	@Column({name: 'DEPTH'})
 	depth: PollRevision_Depth

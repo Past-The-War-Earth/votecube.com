@@ -1,12 +1,12 @@
 import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-control';
-import { ImmutableActorRowECascadeGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../../infrastructure/row/qimmutableactorrow';
+import { AgeSuitableRowECascadeGraph, AgeSuitableRowEId, AgeSuitableRowEUpdateColumns, AgeSuitableRowEUpdateProperties, AgeSuitableRowESelect, QAgeSuitableRowQId, QAgeSuitableRowQRelation, QAgeSuitableRow } from '../../infrastructure/row/qagesuitablerow';
 import { PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../../poll/revision/qpollrevision';
 import { PositionTranslationECascadeGraph, PositionTranslationEOptionalId, PositionTranslationESelect, QPositionTranslation, QPositionTranslationQRelation } from './qpositiontranslation';
 import { FactorPositionECascadeGraph, FactorPositionESelect, QFactorPosition } from './qfactorposition';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface PositionESelect extends ImmutableActorRowESelect, PositionEOptionalId {
+export interface PositionESelect extends AgeSuitableRowESelect, PositionEOptionalId {
     createdAtPollRevision?: PollRevisionESelect;
     parentTranslation?: PositionTranslationESelect;
     parent?: PositionESelect;
@@ -17,7 +17,7 @@ export interface PositionESelect extends ImmutableActorRowESelect, PositionEOpti
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface PositionEId extends ImmutableActorRowEId {
+export interface PositionEId extends AgeSuitableRowEId {
     id: number | IQNumberField;
 }
 /**
@@ -29,7 +29,7 @@ export interface PositionEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface PositionEUpdateProperties extends ImmutableActorRowEUpdateProperties {
+export interface PositionEUpdateProperties extends AgeSuitableRowEUpdateProperties {
     createdAtPollRevision?: PollRevisionEOptionalId;
     parentTranslation?: PositionTranslationEOptionalId;
     parent?: PositionEOptionalId;
@@ -37,7 +37,7 @@ export interface PositionEUpdateProperties extends ImmutableActorRowEUpdatePrope
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PositionECascadeGraph extends ImmutableActorRowECascadeGraph {
+export interface PositionECascadeGraph extends AgeSuitableRowECascadeGraph {
     children?: PositionECascadeGraph;
     factorPositions?: FactorPositionECascadeGraph;
     translations?: PositionTranslationECascadeGraph;
@@ -45,10 +45,11 @@ export interface PositionECascadeGraph extends ImmutableActorRowECascadeGraph {
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface PositionEUpdateColumns extends ImmutableActorRowEUpdateColumns {
+export interface PositionEUpdateColumns extends AgeSuitableRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
+    AGE_SUITABILITY?: number | IQNumberField;
     POLL_REVISION_ID?: number | IQNumberField;
     PARENT_POSITION_TRANSLATION_ID?: number | IQNumberField;
     PARENT_POSITION_ID?: number | IQNumberField;
@@ -66,7 +67,7 @@ export interface PositionECreateColumns extends PositionEId, PositionEUpdateColu
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPosition extends QImmutableActorRow {
+export interface QPosition extends QAgeSuitableRow {
     id: IQNumberField;
     createdAtPollRevision: QPollRevisionQRelation;
     parentTranslation: QPositionTranslationQRelation;
@@ -75,8 +76,8 @@ export interface QPosition extends QImmutableActorRow {
     factorPositions: IQOneToManyRelation<QFactorPosition>;
     translations: IQOneToManyRelation<QPositionTranslation>;
 }
-export interface QPositionQId extends QImmutableActorRowQId {
+export interface QPositionQId extends QAgeSuitableRowQId {
     id: IQNumberField;
 }
-export interface QPositionQRelation extends QImmutableActorRowQRelation<QPosition>, QPositionQId {
+export interface QPositionQRelation extends QAgeSuitableRowQRelation<QPosition>, QPositionQId {
 }

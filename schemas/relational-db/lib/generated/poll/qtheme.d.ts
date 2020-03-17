@@ -5,6 +5,7 @@ import { SystemGeneratedRowECascadeGraph, SystemGeneratedRowEId, SystemGenerated
  */
 export interface ThemeESelect extends SystemGeneratedRowESelect, ThemeEOptionalId {
     name?: string | IQStringField;
+    ageSuitability?: number | IQNumberField;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -23,6 +24,7 @@ export interface ThemeEOptionalId {
  */
 export interface ThemeEUpdateProperties extends SystemGeneratedRowEUpdateProperties {
     name?: string | IQStringField;
+    ageSuitability?: number | IQNumberField;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
@@ -35,6 +37,7 @@ export interface ThemeECascadeGraph extends SystemGeneratedRowECascadeGraph {
 export interface ThemeEUpdateColumns extends SystemGeneratedRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     NAME?: string | IQStringField;
+    AGE_SUITABILITY?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -52,6 +55,7 @@ export interface ThemeECreateColumns extends ThemeEId, ThemeEUpdateColumns {
 export interface QTheme extends QSystemGeneratedRow {
     id: IQNumberField;
     name: IQStringField;
+    ageSuitability: IQNumberField;
 }
 export interface QThemeQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
