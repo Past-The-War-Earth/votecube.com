@@ -43,7 +43,6 @@
 	let appShowMainMenu = showMainMenu
 	let appIsDesktop    = isDesktop
 	let lastTextToast   = {}
-	let PageComp        = null
 	let pageMap
 	let showTextToast   = false
 	let textToastUnsubscribe = textToast.subscribe(
@@ -90,12 +89,6 @@
 			return
 		}
 		showMainMenu.toggle()
-	}
-
-	function setPageComp(
-		pageComp
-	) {
-		PageComp = pageComp
 	}
 
 	function setViewType(
@@ -159,17 +152,17 @@
 
 		const userChanges$ = await auth.reactToUser()
 
-		userChanges$.subscribe(
-			authUser => {
-				const theCurrentPage = get(currentPage)
-				if (!authUser && theCurrentPage && theCurrentPage.authenticated) {
-				    alert('Navigate to POLL_LIST')
-					// navigateToPage(POLL_LIST)
-				}
-
-				user.set(authUser)
-				authChecked.set(true)
-			})
+		// userChanges$.subscribe(
+		// 	authUser => {
+		// 		const theCurrentPage = get(currentPage)
+		// 		if (!authUser && theCurrentPage && theCurrentPage.authenticated) {
+		// 		    alert('Navigate to POLL_LIST')
+		// 			// navigateToPage(POLL_LIST)
+		// 		}
+        //
+		// 		user.set(authUser)
+		// 		authChecked.set(true)
+		// 	})
 	})
 
 	onDestroy(() => {
@@ -244,7 +237,6 @@
             on:click="{clickMain}"
     >
         <slot></slot>
-        {{/*			<svelte:component this="{PageComp}"/>*/}}
     </section>
 </article>
 {#if showTextToast}

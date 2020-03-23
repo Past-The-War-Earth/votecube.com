@@ -1,11 +1,12 @@
 import {get}     from '../helpers/ajax'
-import {HASH}    from '../helpers/hash'
+// import {HASH}    from '../helpers/hash'
 import {setText} from './setText'
 
 export var loadLocations = async (
 	locale
 ) => {
-	const text = await get(`./assets/text/${locale}/locations${HASH}.json`)
+	// const text = await get(`./assets/text/${locale}/locations${HASH}.json`)
+	const text = await get(`./text/${locale}/locations.json`)
 
 	return setText(text)
 }
