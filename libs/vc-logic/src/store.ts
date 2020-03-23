@@ -5,11 +5,6 @@ import {
 	Readable,
 	writable
 }              from 'svelte/store'
-import {
-	IRouteConfig,
-	IRouteParamMap,
-	Route_Path
-}              from './Routes'
 
 export interface ITextToast {
 
@@ -80,8 +75,9 @@ export let authChecked         = writable(false)
 export let cardMove            = writable<{ move: number, moved: number[] }>(null)
 export let checkSizeIntervalId = writable(-1)
 export let cube                = writable(false)
-export let currentPage         = writable<IRouteConfig>(null)
-export let currentUrl          = writable<Route_Path>('')
+export let currentPage         = writable<any>(null)
+// export let currentPage         = writable<IRouteConfig>(null)
+// export let currentUrl          = writable<Route_Path>('')
 export let emInPx              = writable(0)
 export let forms               = writable(null)
 export let isDesktop           = writable(false)
@@ -91,7 +87,7 @@ export let pageTitle           = writable('Votecube')
 export let popup               = writable<boolean>(false)
 export let portalHeight        = writable(0)
 export let resized             = writable(false)
-export let routeParams         = writable<IRouteParamMap>(null)
+export let routeParams         = writable<{[key:string]:string}>(null)
 export let showConfirm         = writable(false)
 export let showMainMenu        = createShowMainMenu()
 export let showSignIn          = writable(false)
@@ -132,8 +128,8 @@ export interface ISignedInStateChanged {
 export interface ISignedInStateCurrent {
 
 	authChecked: boolean
-	currentPage: IRouteConfig
-	currentUrl: string
+	// currentPage: IRouteConfig
+	// currentUrl: string
 	showSignIn: boolean
 	user: IUser
 
@@ -147,7 +143,7 @@ export interface ISignedInState {
 export let signedInState = derived<any, ISignedInState>([
 	authChecked,
 	currentPage,
-	currentUrl,
+	// currentUrl,
 	showSignIn,
 	user
 ], ([

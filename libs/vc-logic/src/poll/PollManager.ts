@@ -5,10 +5,10 @@ import {
 	IsData,
 	IUiPoll,
 	IUiPollRevision,
+	IVote,
 }                     from '@votecube/model'
 import {
 	IUserAccount,
-	IVote,
 	Poll_Id,
 	PollRevision_Id,
 	Theme_Id
@@ -17,7 +17,7 @@ import {POLL_MANAGER} from '../tokens'
 
 export interface IPageVote
 	extends IVote {
-	changeMillis: number
+	changeMillis?: number
 }
 
 export interface IPollManager {

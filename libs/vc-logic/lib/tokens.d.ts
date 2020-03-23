@@ -8,7 +8,6 @@ import { IPollMainLogic } from './pages/poll/info/PollMainLogic';
 import { IPollFormManager } from './pages/poll/PollFormManager';
 import { ICubeLogic } from './poll/CubeLogic';
 import { IPollManager } from './poll/PollManager';
-import { IRoutes } from './Routes';
 export declare const AUTH: import("@airport/di").IDiToken<IAuth>;
 export declare const CUBE_LOGIC: import("@airport/di").IDiToken<ICubeLogic>;
 export declare const DETAILED_CUBE_LOGIC: import("@airport/di").IDiToken<IDetailedCubeLogic>;
@@ -19,4 +18,3 @@ export declare const POLL_FORM_MANAGER: import("@airport/di").IDiToken<IPollForm
 export declare const POLL_MAIN_LOGIC: import("@airport/di").IDiToken<IPollMainLogic>;
 export declare const POLL_MANAGER: import("@airport/di").IDiToken<IPollManager>;
 export declare const POLL_REVISION_CONVERTER: import("@airport/di").IDiToken<IPollRevisionConverter>;
-export declare const ROUTES: import("@airport/di").IDiToken<IRoutes>;

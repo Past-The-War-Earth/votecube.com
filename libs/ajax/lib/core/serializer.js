@@ -1,17 +1,23 @@
-export function addString(str, bytes, cursor) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function addString(str, bytes, cursor) {
     const strBytes = strToUtf8Bytes(str);
     addBigArray(bytes, strBytes, cursor);
 }
-export function addNum(num, bytes, cursor) {
+exports.addString = addString;
+function addNum(num, bytes, cursor) {
     const numBytes = naturalNumToBytes(num);
     addArray(bytes, numBytes, cursor);
 }
-export function addDate(date, bytes, cursor) {
+exports.addNum = addNum;
+function addDate(date, bytes, cursor) {
     addNum(date.getTime(), bytes, cursor);
 }
-export function addBool(bool, bytes, cursor) {
+exports.addDate = addDate;
+function addBool(bool, bytes, cursor) {
     bytes[cursor.pos++] = bool ? 1 : 0;
 }
+exports.addBool = addBool;
 function addBigArray(bytes, bigArray, cursor) {
     const bigArrayLengthBytes = naturalNumToBytes(bigArray.length);
     if (bigArrayLengthBytes.length) {

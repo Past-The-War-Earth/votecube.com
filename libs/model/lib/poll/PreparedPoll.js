@@ -1,5 +1,7 @@
-export const POLLS = 'POLLS';
-export const POLL_COLS = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.POLLS = 'POLLS';
+exports.POLL_COLS = [
     ['createdAt', 'ca'],
     ['endDate', 'ed'],
     ['id', 'pid', 1],

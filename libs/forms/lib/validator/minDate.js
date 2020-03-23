@@ -1,4 +1,6 @@
-export function minDate(date // UTC only
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function minDate(date // UTC only
 ) {
     const minDateOfMonth = date.getUTCDate();
     const minMonth = date.getUTCMonth();
@@ -22,4 +24,5 @@ export function minDate(date // UTC only
     validator.type = 'min';
     return validator;
 }
+exports.minDate = minDate;
 //# sourceMappingURL=minDate.js.map

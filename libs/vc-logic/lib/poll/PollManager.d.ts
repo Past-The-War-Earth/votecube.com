@@ -1,8 +1,8 @@
 import { IFieldGroup } from '@votecube/forms';
-import { IPollRevisionDelta, IsData, IUiPoll, IUiPollRevision } from '@votecube/model';
-import { IUserAccount, IVote, Poll_Id, PollRevision_Id, Theme_Id } from '@votecube/relational-db';
+import { IPollRevisionDelta, IsData, IUiPoll, IUiPollRevision, IVote } from '@votecube/model';
+import { IUserAccount, Poll_Id, PollRevision_Id, Theme_Id } from '@votecube/relational-db';
 export interface IPageVote extends IVote {
-    changeMillis: number;
+    changeMillis?: number;
 }
 export interface IPollManager {
     currentVariation: IStoredVariation;

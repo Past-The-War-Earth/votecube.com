@@ -1,4 +1,6 @@
-export const SCHEMA = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SCHEMA = {
     "domain": "public",
     "index": null,
     "name": "@votecube/relational-db",

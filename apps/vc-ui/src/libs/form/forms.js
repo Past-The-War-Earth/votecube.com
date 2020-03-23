@@ -1,4 +1,4 @@
-import {navigateToPage} from '@votecube/vc-logic'
+// import {navigateToPage} from '@votecube/vc-logic'
 
 export const CREATE_POLL_TOP = 'CREATE_POLL_TOP'
 export const CREATE_FACTOR   = 'CREATE_FACTOR'
@@ -28,7 +28,8 @@ export function ensureChildForm(
 ) {
 	const parentForm = getForm(parentFormName)
 	if (!parentForm) {
-		navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
+		alert('navigateToPage')
+		// navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
 		return null
 	}
 
@@ -51,7 +52,8 @@ export function ensureTopForm(
 ) {
 	const topForm = getForm(topFormName)
 	if (!topForm) {
-		navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
+		alert('navigateToPage')
+		// navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
 		return null
 	}
 	ensureForm(topForm, formHandle)
@@ -93,7 +95,8 @@ export function navigateOnValid(
 		return
 	}
 
-	navigateToPage(navigateToRouteOnValid, paramMap)
+	alert('navigateToPage')
+	// navigateToPage(navigateToRouteOnValid, paramMap)
 }
 
 export var OPTIONS = {

@@ -1,457 +1,516 @@
-import { Duo } from '@airport/check-in';
-import { Q, duoDiSet } from './qSchema';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const check_in_1 = require("@airport/check-in");
+const qSchema_1 = require("./qSchema");
 // Schema Q object Dependency Injection readiness detection Duo
-export class SQDIDuo extends Duo {
+class SQDIDuo extends check_in_1.Duo {
     constructor(dbEntityId) {
-        super(dbEntityId, Q);
+        super(dbEntityId, qSchema_1.Q);
     }
 }
-export class BaseActorDuo extends SQDIDuo {
+exports.SQDIDuo = SQDIDuo;
+class BaseActorDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(5);
+        return qSchema_1.duoDiSet(5);
     }
     constructor() {
         super(5);
     }
 }
-export class BaseApplicationDuo extends SQDIDuo {
+exports.BaseActorDuo = BaseActorDuo;
+class BaseApplicationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(2);
+        return qSchema_1.duoDiSet(2);
     }
     constructor() {
         super(2);
     }
 }
-export class BaseContinentDuo extends SQDIDuo {
+exports.BaseApplicationDuo = BaseApplicationDuo;
+class BaseContinentDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(13);
+        return qSchema_1.duoDiSet(13);
     }
     constructor() {
         super(13);
     }
 }
-export class BaseCountryDuo extends SQDIDuo {
+exports.BaseContinentDuo = BaseContinentDuo;
+class BaseCountryDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(12);
+        return qSchema_1.duoDiSet(12);
     }
     constructor() {
         super(12);
     }
 }
-export class BaseCountryTownDuo extends SQDIDuo {
+exports.BaseCountryDuo = BaseCountryDuo;
+class BaseCountryTownDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(11);
+        return qSchema_1.duoDiSet(11);
     }
     constructor() {
         super(11);
     }
 }
-export class BaseCountyDuo extends SQDIDuo {
+exports.BaseCountryTownDuo = BaseCountryTownDuo;
+class BaseCountyDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(9);
+        return qSchema_1.duoDiSet(9);
     }
     constructor() {
         super(9);
     }
 }
-export class BaseCountyTownDuo extends SQDIDuo {
+exports.BaseCountyDuo = BaseCountyDuo;
+class BaseCountyTownDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(6);
+        return qSchema_1.duoDiSet(6);
     }
     constructor() {
         super(6);
     }
 }
-export class BaseDesignPatternDuo extends SQDIDuo {
+exports.BaseCountyTownDuo = BaseCountyTownDuo;
+class BaseDesignPatternDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(0);
+        return qSchema_1.duoDiSet(0);
     }
     constructor() {
         super(0);
     }
 }
-export class BaseDeviceDuo extends SQDIDuo {
+exports.BaseDesignPatternDuo = BaseDesignPatternDuo;
+class BaseDeviceDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(3);
+        return qSchema_1.duoDiSet(3);
     }
     constructor() {
         super(3);
     }
 }
-export class BaseEmojiDuo extends SQDIDuo {
+exports.BaseDeviceDuo = BaseDeviceDuo;
+class BaseEmojiDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(1);
+        return qSchema_1.duoDiSet(1);
     }
     constructor() {
         super(1);
     }
 }
-export class BaseFactorDuo extends SQDIDuo {
+exports.BaseEmojiDuo = BaseEmojiDuo;
+class BaseFactorDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(52);
+        return qSchema_1.duoDiSet(52);
     }
     constructor() {
         super(52);
     }
 }
-export class BaseFactorOpinionVersionDuo extends SQDIDuo {
+exports.BaseFactorDuo = BaseFactorDuo;
+class BaseFactorOpinionVersionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(29);
+        return qSchema_1.duoDiSet(29);
     }
     constructor() {
         super(29);
     }
 }
-export class BaseFactorOpinionVersionTranslationDuo extends SQDIDuo {
+exports.BaseFactorOpinionVersionDuo = BaseFactorOpinionVersionDuo;
+class BaseFactorOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(28);
+        return qSchema_1.duoDiSet(28);
     }
     constructor() {
         super(28);
     }
 }
-export class BaseFactorPositionDuo extends SQDIDuo {
+exports.BaseFactorOpinionVersionTranslationDuo = BaseFactorOpinionVersionTranslationDuo;
+class BaseFactorPositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(55);
+        return qSchema_1.duoDiSet(55);
     }
     constructor() {
         super(55);
     }
 }
-export class BaseFactorTranslationDuo extends SQDIDuo {
+exports.BaseFactorPositionDuo = BaseFactorPositionDuo;
+class BaseFactorTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(51);
+        return qSchema_1.duoDiSet(51);
     }
     constructor() {
         super(51);
     }
 }
-export class BaseLanguageDuo extends SQDIDuo {
+exports.BaseFactorTranslationDuo = BaseFactorTranslationDuo;
+class BaseLanguageDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(27);
+        return qSchema_1.duoDiSet(27);
     }
     constructor() {
         super(27);
     }
 }
-export class BaseOutcomeDuo extends SQDIDuo {
+exports.BaseLanguageDuo = BaseLanguageDuo;
+class BaseOutcomeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(32);
+        return qSchema_1.duoDiSet(32);
     }
     constructor() {
         super(32);
     }
 }
-export class BaseOutcomeOpinionVersionDuo extends SQDIDuo {
+exports.BaseOutcomeDuo = BaseOutcomeDuo;
+class BaseOutcomeOpinionVersionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(34);
+        return qSchema_1.duoDiSet(34);
     }
     constructor() {
         super(34);
     }
 }
-export class BaseOutcomeOpinionVersionTranslationDuo extends SQDIDuo {
+exports.BaseOutcomeOpinionVersionDuo = BaseOutcomeOpinionVersionDuo;
+class BaseOutcomeOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(33);
+        return qSchema_1.duoDiSet(33);
     }
     constructor() {
         super(33);
     }
 }
-export class BaseOutcomeTranslationDuo extends SQDIDuo {
+exports.BaseOutcomeOpinionVersionTranslationDuo = BaseOutcomeOpinionVersionTranslationDuo;
+class BaseOutcomeTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(31);
+        return qSchema_1.duoDiSet(31);
     }
     constructor() {
         super(31);
     }
 }
-export class BasePollDuo extends SQDIDuo {
+exports.BaseOutcomeTranslationDuo = BaseOutcomeTranslationDuo;
+class BasePollDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(46);
+        return qSchema_1.duoDiSet(46);
     }
     constructor() {
         super(46);
     }
 }
-export class BasePollRevisionDuo extends SQDIDuo {
+exports.BasePollDuo = BasePollDuo;
+class BasePollRevisionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(50);
+        return qSchema_1.duoDiSet(50);
     }
     constructor() {
         super(50);
     }
 }
-export class BasePollRevisionFactorPositionDuo extends SQDIDuo {
+exports.BasePollRevisionDuo = BasePollRevisionDuo;
+class BasePollRevisionFactorPositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(21);
+        return qSchema_1.duoDiSet(21);
     }
     constructor() {
         super(21);
     }
 }
-export class BasePollRevisionOpinionDuo extends SQDIDuo {
+exports.BasePollRevisionFactorPositionDuo = BasePollRevisionFactorPositionDuo;
+class BasePollRevisionOpinionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(43);
+        return qSchema_1.duoDiSet(43);
     }
     constructor() {
         super(43);
     }
 }
-export class BasePollRevisionOpinionRatingDuo extends SQDIDuo {
+exports.BasePollRevisionOpinionDuo = BasePollRevisionOpinionDuo;
+class BasePollRevisionOpinionRatingDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(42);
+        return qSchema_1.duoDiSet(42);
     }
     constructor() {
         super(42);
     }
 }
-export class BasePollRevisionOpinionVersionDuo extends SQDIDuo {
+exports.BasePollRevisionOpinionRatingDuo = BasePollRevisionOpinionRatingDuo;
+class BasePollRevisionOpinionVersionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(36);
+        return qSchema_1.duoDiSet(36);
     }
     constructor() {
         super(36);
     }
 }
-export class BasePollRevisionOpinionVersionTranslationDuo extends SQDIDuo {
+exports.BasePollRevisionOpinionVersionDuo = BasePollRevisionOpinionVersionDuo;
+class BasePollRevisionOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(35);
+        return qSchema_1.duoDiSet(35);
     }
     constructor() {
         super(35);
     }
 }
-export class BasePollRevisionRatingDuo extends SQDIDuo {
+exports.BasePollRevisionOpinionVersionTranslationDuo = BasePollRevisionOpinionVersionTranslationDuo;
+class BasePollRevisionRatingDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(47);
+        return qSchema_1.duoDiSet(47);
     }
     constructor() {
         super(47);
     }
 }
-export class BasePollRevisionTranslationDuo extends SQDIDuo {
+exports.BasePollRevisionRatingDuo = BasePollRevisionRatingDuo;
+class BasePollRevisionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(49);
+        return qSchema_1.duoDiSet(49);
     }
     constructor() {
         super(49);
     }
 }
-export class BasePollRevisionTranslationRatingDuo extends SQDIDuo {
+exports.BasePollRevisionTranslationDuo = BasePollRevisionTranslationDuo;
+class BasePollRevisionTranslationRatingDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(48);
+        return qSchema_1.duoDiSet(48);
     }
     constructor() {
         super(48);
     }
 }
-export class BasePollRunDuo extends SQDIDuo {
+exports.BasePollRevisionTranslationRatingDuo = BasePollRevisionTranslationRatingDuo;
+class BasePollRunDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(19);
+        return qSchema_1.duoDiSet(19);
     }
     constructor() {
         super(19);
     }
 }
-export class BasePollRunContinentDuo extends SQDIDuo {
+exports.BasePollRunDuo = BasePollRunDuo;
+class BasePollRunContinentDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(14);
+        return qSchema_1.duoDiSet(14);
     }
     constructor() {
         super(14);
     }
 }
-export class BasePollRunCountryDuo extends SQDIDuo {
+exports.BasePollRunContinentDuo = BasePollRunContinentDuo;
+class BasePollRunCountryDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(15);
+        return qSchema_1.duoDiSet(15);
     }
     constructor() {
         super(15);
     }
 }
-export class BasePollRunCountyDuo extends SQDIDuo {
+exports.BasePollRunCountryDuo = BasePollRunCountryDuo;
+class BasePollRunCountyDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(16);
+        return qSchema_1.duoDiSet(16);
     }
     constructor() {
         super(16);
     }
 }
-export class BasePollRunStateDuo extends SQDIDuo {
+exports.BasePollRunCountyDuo = BasePollRunCountyDuo;
+class BasePollRunStateDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(17);
+        return qSchema_1.duoDiSet(17);
     }
     constructor() {
         super(17);
     }
 }
-export class BasePollRunTownDuo extends SQDIDuo {
+exports.BasePollRunStateDuo = BasePollRunStateDuo;
+class BasePollRunTownDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(18);
+        return qSchema_1.duoDiSet(18);
     }
     constructor() {
         super(18);
     }
 }
-export class BasePollTypeDuo extends SQDIDuo {
+exports.BasePollRunTownDuo = BasePollRunTownDuo;
+class BasePollTypeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(44);
+        return qSchema_1.duoDiSet(44);
     }
     constructor() {
         super(44);
     }
 }
-export class BasePositionDuo extends SQDIDuo {
+exports.BasePollTypeDuo = BasePollTypeDuo;
+class BasePositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(54);
+        return qSchema_1.duoDiSet(54);
     }
     constructor() {
         super(54);
     }
 }
-export class BasePositionOpinionVersionDuo extends SQDIDuo {
+exports.BasePositionDuo = BasePositionDuo;
+class BasePositionOpinionVersionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(38);
+        return qSchema_1.duoDiSet(38);
     }
     constructor() {
         super(38);
     }
 }
-export class BasePositionOpinionVersionTranslationDuo extends SQDIDuo {
+exports.BasePositionOpinionVersionDuo = BasePositionOpinionVersionDuo;
+class BasePositionOpinionVersionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(37);
+        return qSchema_1.duoDiSet(37);
     }
     constructor() {
         super(37);
     }
 }
-export class BasePositionTranslationDuo extends SQDIDuo {
+exports.BasePositionOpinionVersionTranslationDuo = BasePositionOpinionVersionTranslationDuo;
+class BasePositionTranslationDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(53);
+        return qSchema_1.duoDiSet(53);
     }
     constructor() {
         super(53);
     }
 }
-export class BaseRatingDuo extends SQDIDuo {
+exports.BasePositionTranslationDuo = BasePositionTranslationDuo;
+class BaseRatingDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(41);
+        return qSchema_1.duoDiSet(41);
     }
     constructor() {
         super(41);
     }
 }
-export class BaseRatingSettingDuo extends SQDIDuo {
+exports.BaseRatingDuo = BaseRatingDuo;
+class BaseRatingSettingDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(39);
+        return qSchema_1.duoDiSet(39);
     }
     constructor() {
         super(39);
     }
 }
-export class BaseRatingTypeDuo extends SQDIDuo {
+exports.BaseRatingSettingDuo = BaseRatingSettingDuo;
+class BaseRatingTypeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(40);
+        return qSchema_1.duoDiSet(40);
     }
     constructor() {
         super(40);
     }
 }
-export class BaseSkinDuo extends SQDIDuo {
+exports.BaseRatingTypeDuo = BaseRatingTypeDuo;
+class BaseSkinDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(20);
+        return qSchema_1.duoDiSet(20);
     }
     constructor() {
         super(20);
     }
 }
-export class BaseStateDuo extends SQDIDuo {
+exports.BaseSkinDuo = BaseSkinDuo;
+class BaseStateDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(8);
+        return qSchema_1.duoDiSet(8);
     }
     constructor() {
         super(8);
     }
 }
-export class BaseStateTownDuo extends SQDIDuo {
+exports.BaseStateDuo = BaseStateDuo;
+class BaseStateTownDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(7);
+        return qSchema_1.duoDiSet(7);
     }
     constructor() {
         super(7);
     }
 }
-export class BaseThemeDuo extends SQDIDuo {
+exports.BaseStateTownDuo = BaseStateTownDuo;
+class BaseThemeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(45);
+        return qSchema_1.duoDiSet(45);
     }
     constructor() {
         super(45);
     }
 }
-export class BaseTownDuo extends SQDIDuo {
+exports.BaseThemeDuo = BaseThemeDuo;
+class BaseTownDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(10);
+        return qSchema_1.duoDiSet(10);
     }
     constructor() {
         super(10);
     }
 }
-export class BaseTranslationTypeDuo extends SQDIDuo {
+exports.BaseTownDuo = BaseTownDuo;
+class BaseTranslationTypeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(30);
+        return qSchema_1.duoDiSet(30);
     }
     constructor() {
         super(30);
     }
 }
-export class BaseUserAccountDuo extends SQDIDuo {
+exports.BaseTranslationTypeDuo = BaseTranslationTypeDuo;
+class BaseUserAccountDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(4);
+        return qSchema_1.duoDiSet(4);
     }
     constructor() {
         super(4);
     }
 }
-export class BaseVoteDuo extends SQDIDuo {
+exports.BaseUserAccountDuo = BaseUserAccountDuo;
+class BaseVoteDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(26);
+        return qSchema_1.duoDiSet(26);
     }
     constructor() {
         super(26);
     }
 }
-export class BaseVoteFactorDuo extends SQDIDuo {
+exports.BaseVoteDuo = BaseVoteDuo;
+class BaseVoteFactorDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(23);
+        return qSchema_1.duoDiSet(23);
     }
     constructor() {
         super(23);
     }
 }
-export class BaseVoteFactorTypeDuo extends SQDIDuo {
+exports.BaseVoteFactorDuo = BaseVoteFactorDuo;
+class BaseVoteFactorTypeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(22);
+        return qSchema_1.duoDiSet(22);
     }
     constructor() {
         super(22);
     }
 }
-export class BaseVoteTypeDuo extends SQDIDuo {
+exports.BaseVoteFactorTypeDuo = BaseVoteFactorTypeDuo;
+class BaseVoteTypeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(25);
+        return qSchema_1.duoDiSet(25);
     }
     constructor() {
         super(25);
     }
 }
-export class BaseVoteVersionDuo extends SQDIDuo {
+exports.BaseVoteTypeDuo = BaseVoteTypeDuo;
+class BaseVoteVersionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(24);
+        return qSchema_1.duoDiSet(24);
     }
     constructor() {
         super(24);
     }
 }
+exports.BaseVoteVersionDuo = BaseVoteVersionDuo;
 //# sourceMappingURL=baseDuos.js.map

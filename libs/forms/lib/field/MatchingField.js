@@ -1,5 +1,7 @@
-import { Field } from './Field';
-export class MatchingField extends Field {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Field_1 = require("./Field");
+class MatchingField extends Field_1.Field {
     constructor() {
         super(...arguments);
         this.theMatches = null;
@@ -12,4 +14,5 @@ export class MatchingField extends Field {
         this.detect();
     }
 }
+exports.MatchingField = MatchingField;
 //# sourceMappingURL=MatchingField.js.map

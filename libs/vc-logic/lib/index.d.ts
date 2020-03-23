@@ -10,7 +10,5 @@ export * from './Auth';
 export * from './container';
 export * from './LogicUtils';
 export * from './resizer';
-export * from './Routes';
-export * from './routing';
 export * from './store';
 export * from './tokens';

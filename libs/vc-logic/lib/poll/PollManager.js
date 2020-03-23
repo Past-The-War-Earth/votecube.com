@@ -1,6 +1,8 @@
-import { DI } from '@airport/di';
-import { POLL_MANAGER } from '../tokens';
-export class PollManager {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../tokens");
+class PollManager {
     constructor() {
         this.currVariation = {
             // doc: null,
@@ -167,5 +169,6 @@ export class PollManager {
         // }
     }
 }
-DI.set(POLL_MANAGER, PollManager);
+exports.PollManager = PollManager;
+di_1.DI.set(tokens_1.POLL_MANAGER, PollManager);
 //# sourceMappingURL=PollManager.js.map

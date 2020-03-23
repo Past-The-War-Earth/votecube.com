@@ -1,7 +1,6 @@
 {
   "main": "lib/index.js",
   "name": "@votecube/model",
-  "type": "module",
   "typings": "lib/index",
   "version": "0.0.1",
   "dependencies": {

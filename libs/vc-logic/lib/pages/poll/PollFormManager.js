@@ -1,6 +1,8 @@
-import { DI } from '@airport/di';
-import { POLL_FORM_MANAGER } from '../../tokens';
-export class PollFormManager {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../../tokens");
+class PollFormManager {
     fromForm(form) {
         const outcomes = form.outcomes;
         const formThemeValue = form.theme;
@@ -75,5 +77,6 @@ export class PollFormManager {
         };
     }
 }
-DI.set(POLL_FORM_MANAGER, PollFormManager);
+exports.PollFormManager = PollFormManager;
+di_1.DI.set(tokens_1.POLL_FORM_MANAGER, PollFormManager);
 //# sourceMappingURL=PollFormManager.js.map

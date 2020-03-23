@@ -1,4 +1,6 @@
-export class DateSelection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class DateSelection {
     constructor() {
         this.impl = {
             date: null,
@@ -23,4 +25,5 @@ export class DateSelection {
         };
     }
 }
+exports.DateSelection = DateSelection;
 //# sourceMappingURL=DateSelection.js.map

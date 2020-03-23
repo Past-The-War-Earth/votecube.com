@@ -1,7 +1,9 @@
-import { DI } from '@airport/di';
-import { Subject } from '@airport/observe';
-import { POLL_MAIN_LOGIC } from '../../../tokens';
-export class PollMainLogic {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const observe_1 = require("@airport/observe");
+const tokens_1 = require("../../../tokens");
+class PollMainLogic {
     votesEqual(lastVote, vote) {
         return lastVote && vote
             && lastVote[1].outcome === vote[1].outcome
@@ -19,7 +21,7 @@ export class PollMainLogic {
         };
     }
     scheduleFactorTweens(oldVote, newVote, durationMillis) {
-        const subject = new Subject();
+        const subject = new observe_1.Subject();
         // const durationMillis    = 15000
         // const durationMillis    = 300
         const numFrames = Math.ceil(durationMillis / 17);
@@ -128,5 +130,6 @@ export class PollMainLogic {
         };
     }
 }
-DI.set(POLL_MAIN_LOGIC, PollMainLogic);
+exports.PollMainLogic = PollMainLogic;
+di_1.DI.set(tokens_1.POLL_MAIN_LOGIC, PollMainLogic);
 //# sourceMappingURL=PollMainLogic.js.map

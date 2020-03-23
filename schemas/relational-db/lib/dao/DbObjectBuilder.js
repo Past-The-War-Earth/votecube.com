@@ -1,4 +1,6 @@
-export class DbObjectBuilder {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class DbObjectBuilder {
     constructor(from, fromDeltas, toOriginal, to = {}) {
         this.currentDescriptor = {
             from: [],
@@ -110,4 +112,5 @@ export class DbObjectBuilder {
         dbObject.d = d;
     }
 }
+exports.DbObjectBuilder = DbObjectBuilder;
 //# sourceMappingURL=DbObjectBuilder.js.map

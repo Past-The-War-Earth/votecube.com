@@ -1,4 +1,6 @@
-export function greaterThanOrEquals(relatedField // UTC only
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function greaterThanOrEquals(relatedField // UTC only
 ) {
     const validator = ((field) => {
         const relatedNumValue = relatedField.numValue;
@@ -13,4 +15,5 @@ export function greaterThanOrEquals(relatedField // UTC only
     validator.type = 'greaterThanOrEquals';
     return validator;
 }
+exports.greaterThanOrEquals = greaterThanOrEquals;
 //# sourceMappingURL=greaterThanOrEquals.js.map

@@ -1,5 +1,7 @@
-import { DateSelection } from './DateSelection';
-export class DateCalendar extends DateSelection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const DateSelection_1 = require("./DateSelection");
+class DateCalendar extends DateSelection_1.DateSelection {
     constructor(field) {
         super();
         this.field = field;
@@ -71,4 +73,5 @@ export class DateCalendar extends DateSelection {
         this.field.detect();
     }
 }
+exports.DateCalendar = DateCalendar;
 //# sourceMappingURL=DateCalendar.js.map

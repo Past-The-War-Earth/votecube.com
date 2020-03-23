@@ -1,15 +1,9 @@
 <script>
     import {DI}            from '@airport/di'
     import {
-        FACTOR_INFO_MAIN,
-        navigateToPage,
         pageTitle,
         POLL_FORM_LOGIC,
-        POLL_LIST,
-        POLL_LOCATIONS,
-        POLL_MAIN,
         POLL_MANAGER,
-        POLL_TIME_FRAME,
         routeParams,
         text
     }                      from '@votecube/vc-logic'
@@ -135,21 +129,24 @@ return !form.fields.locations.isOriginal()
     ) {
         interFormNavigation = true
         forms.setForm(forms.CREATE_FACTOR, factorForm)
-        navigateToPage(FACTOR_INFO_MAIN, $routeParams)
+        alert('navigateToPage')
+        // navigateToPage(FACTOR_INFO_MAIN, $routeParams)
     }
 
     function selectLocations(
         $routeParams
     ) {
         // this.set({keepPollId: $routeParams.pollId})
-        navigateToPage(POLL_LOCATIONS, $routeParams)
+        alert('navigateToPage')
+        // navigateToPage(POLL_LOCATIONS, $routeParams)
     }
 
     function selectTimeframe(
         $routeParams
     ) {
         // this.set({keepPollId: $routeParams.pollId})
-        navigateToPage(POLL_TIME_FRAME, $routeParams)
+        alert('navigateToPage')
+        // navigateToPage(POLL_TIME_FRAME, $routeParams)
     }
 
     function submit(
@@ -190,7 +187,8 @@ return !form.fields.locations.isOriginal()
 
                 const currentVariation = pollManager.currentVariation
                 if (!currentVariation.ui && mode !== 'build') {
-                    navigateToPage(POLL_LIST)
+                    alert('navigateToPage')
+                    // navigateToPage(POLL_LIST)
                     return
                 }
 
@@ -244,7 +242,8 @@ return !form.fields.locations.isOriginal()
             return
         }
 
-        forms.navigateOnValid(form, POLL_MAIN, $routeParams)
+        alert('forms.navigateOnValid')
+        // forms.navigateOnValid(form, POLL_MAIN, $routeParams)
     }
 
 </script>

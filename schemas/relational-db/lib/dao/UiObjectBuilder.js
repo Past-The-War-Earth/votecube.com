@@ -1,4 +1,6 @@
-export class UiObjectBuilder {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class UiObjectBuilder {
     constructor(from, to = {}) {
         this.currentDescriptor = {
             from: [],
@@ -124,4 +126,5 @@ export class UiObjectBuilder {
         uiObject[uiKey] = dbObject.v;
     }
 }
+exports.UiObjectBuilder = UiObjectBuilder;
 //# sourceMappingURL=UiObjectBuilder.js.map

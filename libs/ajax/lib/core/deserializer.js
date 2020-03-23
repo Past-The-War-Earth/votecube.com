@@ -1,4 +1,6 @@
-export function bytesToNaturalNum(bytes, cursor, length) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function bytesToNaturalNum(bytes, cursor, length) {
     let value = 0;
     for (let i = length - 1; i >= 0; i--) {
         value = (value * 256) + bytes[cursor.pos + i];
@@ -6,12 +8,13 @@ export function bytesToNaturalNum(bytes, cursor, length) {
     cursor.pos += length;
     return value;
 }
+exports.bytesToNaturalNum = bytesToNaturalNum;
 const charCache = new Array(128); // Preallocate the cache for the common single byte chars
 const charFromCodePt = String.fromCodePoint || String.fromCharCode;
 /**
  * https://stackoverflow.com/questions/8936984/uint8array-to-string-in-javascript
  */
-export function utf8BytesToStr(bytes, length) {
+function utf8BytesToStr(bytes, length) {
     let byte1, codePt;
     const result = [];
     for (let i = 0; i < length;) {
@@ -52,4 +55,5 @@ export function utf8BytesToStr(bytes, length) {
     }
     return result.join('');
 }
+exports.utf8BytesToStr = utf8BytesToStr;
 //# sourceMappingURL=deserializer.js.map

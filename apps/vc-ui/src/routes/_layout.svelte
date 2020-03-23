@@ -1,25 +1,12 @@
 <script>
 	import {
-		ABOUT,
 		APP_CONTAINER,
 		AUTH,
 		authChecked,
-		CARD_CLIMATE_CHANGE,
         cube,
 		currentPage,
-		FACTOR_INFO_MAIN,
-		FACTOR_LIST,
-		FEEDBACK,
 		isDesktop,
-		navigateToPage,
         noOverflow,
-		POLL_FORM,
-		POLL_LIST,
-		POLL_LOCATIONS,
-		POLL_MAIN,
-		POLL_TIME_FRAME,
-		RELEASE_PLAN,
-		ROUTES,
 		scheduleToResize,
 		showConfirm,
 		showMainMenu,
@@ -27,7 +14,6 @@
 		startResizeInterval,
 		textToast,
 		user,
-		VARIATION_LIST
 	}               from '@votecube/vc-logic'
 	import {
 		onDestroy,
@@ -60,7 +46,14 @@
 	let PageComp        = null
 	let pageMap
 	let showTextToast   = false
-	let textToastUnsubscribe
+	let textToastUnsubscribe = textToast.subscribe(
+        value => {
+            lastTextToast = value
+            showTextToast = true
+            setTimeout(() => {
+                showTextToast = false
+            }, value.seconds * 1000)
+        })
 
 	$: activeClass = $appShowMainMenu ? 'active' : ''
 
@@ -112,7 +105,7 @@
 	}
 
 	onMount(async () => {
-		const routes = await APP_CONTAINER.get(ROUTES)
+		// const routes = await APP_CONTAINER.get(ROUTES)
 
 		/*
 		pageMap = {
@@ -134,7 +127,7 @@
 					[routes.POLL_MAIN]: PollInfoCommonTopMenu,
 					[routes.POLL_LIST]: PollListTopMenu
 				}*/
-
+/*
 		routes.configPages([
 			[ABOUT, false, false],
 			[CARD_CLIMATE_CHANGE, false, false],
@@ -154,17 +147,8 @@
 			setPageComp,
 			ABOUT, POLL_LIST
 		)
-
+*/
 		startResizeInterval()
-
-		textToastUnsubscribe = textToast.subscribe(
-			value => {
-				lastTextToast = value
-				showTextToast = true
-				setTimeout(() => {
-					showTextToast = false
-				}, value.seconds * 1000)
-			})
 
 		const [auth, _] = await Promise.all([
 			APP_CONTAINER.get(AUTH),
@@ -179,7 +163,8 @@
 			authUser => {
 				const theCurrentPage = get(currentPage)
 				if (!authUser && theCurrentPage && theCurrentPage.authenticated) {
-					navigateToPage(POLL_LIST)
+				    alert('Navigate to POLL_LIST')
+					// navigateToPage(POLL_LIST)
 				}
 
 				user.set(authUser)

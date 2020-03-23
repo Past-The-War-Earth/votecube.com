@@ -1,4 +1,6 @@
-export function minLength(minimumLength) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function minLength(minimumLength) {
     const validator = ((field) => {
         this.name = 'minLength';
         if (field.value
@@ -11,4 +13,5 @@ export function minLength(minimumLength) {
     validator.type = 'minLength';
     return validator;
 }
+exports.minLength = minLength;
 //# sourceMappingURL=minLength.js.map

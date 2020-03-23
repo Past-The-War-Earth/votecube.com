@@ -1,4 +1,5 @@
-import { IVote, IVoteFactor, Outcome_Ordinal } from '@votecube/model';
+import { IVote, IVoteFactor } from '@votecube/model';
+import { Outcome_Ordinal } from '@votecube/relational-db';
 import { ILogicUtils } from '../../../LogicUtils';
 import { IPageVote } from '../../../poll/PollManager';
 export declare type AddOrRemove = 'add' | 'remove';

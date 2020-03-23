@@ -1,8 +1,8 @@
-import { 
-// container,
-DI } from '@airport/di';
-import { AUTH } from './tokens';
-export class Auth {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("./tokens");
+class Auth {
     getUser() {
         /*
         if (!dbUser) {
@@ -127,11 +127,12 @@ export class Auth {
         return null;
     }
     async encodePassword(password) {
-        const jsSHA = await import('jssha/src/sha512');
+        const jsSHA = await Promise.resolve().then(() => require('jssha/src/sha512'));
         const shaObj = new jsSHA('SHA-512', 'TEXT');
         shaObj.update(password);
         return shaObj.getHash('B64');
     }
 }
-DI.set(AUTH, Auth);
+exports.Auth = Auth;
+di_1.DI.set(tokens_1.AUTH, Auth);
 //# sourceMappingURL=Auth.js.map

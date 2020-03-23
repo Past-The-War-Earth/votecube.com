@@ -1,14 +1,8 @@
 <script>
 	import {DI} from '@airport/di'
 	import {
-		ABOUT,
 		AUTH,
 		emInPx,
-		FEEDBACK,
-		navigateToPage,
-		POLL_FORM,
-		POLL_LIST,
-		RELEASE_PLAN,
 		showMainMenu,
 		showSignIn,
 		user
@@ -25,21 +19,21 @@
 	const dispatch = createEventDispatcher()
 
 	let menuItems = [{
-		key: POLL_LIST,
+		key: 'POLL_LIST',
 		name: 'Polls'
 	}, {
 		auth: true,
-		key: POLL_FORM,
-		path: POLL_FORM.replace(':mode', 'build'),
+		key: 'POLL_FORM',
+		// path: POLL_FORM.replace(':mode', 'build'),
 		name: 'Create Poll',
 	}, {
-		key: ABOUT,
+		key: 'ABOUT',
 		name: 'About Us'
 	}, {
-		key: RELEASE_PLAN,
+		key: 'RELEASE_PLAN',
 		name: 'Release Plan'
 	}, {
-		key: FEEDBACK,
+		key: 'FEEDBACK',
 		name: 'Feedback'
 	}]
 

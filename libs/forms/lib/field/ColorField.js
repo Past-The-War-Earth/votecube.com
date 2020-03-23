@@ -1,5 +1,7 @@
-import { Field } from './Field';
-export class ColorField extends Field {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Field_1 = require("./Field");
+class ColorField extends Field_1.Field {
     get changeFlags() {
         if (!this.originalValue) {
             return {
@@ -15,4 +17,5 @@ export class ColorField extends Field {
         };
     }
 }
+exports.ColorField = ColorField;
 //# sourceMappingURL=ColorField.js.map

@@ -1,6 +1,8 @@
-import { addChange, getChange } from '../changeTracker';
-import { FieldBase } from './FieldBase';
-export class FieldGroup extends FieldBase {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const changeTracker_1 = require("../changeTracker");
+const FieldBase_1 = require("./FieldBase");
+class FieldGroup extends FieldBase_1.FieldBase {
     constructor(name, fields = {}, validators, text, textName) {
         super(validators);
         this.fields = fields;
@@ -107,10 +109,10 @@ export class FieldGroup extends FieldBase {
         let change;
         if (!fromChild) {
             if (!fromParent) {
-                change = addChange();
+                change = changeTracker_1.addChange();
             }
             else {
-                change = getChange();
+                change = changeTracker_1.getChange();
             }
         }
         if (!fromChild) {
@@ -179,4 +181,5 @@ export class FieldGroup extends FieldBase {
         }
     }
 }
+exports.FieldGroup = FieldGroup;
 //# sourceMappingURL=FieldGroup.js.map

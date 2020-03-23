@@ -1,14 +1,14 @@
 import {DI}                from '@airport/di'
 import {
-	ICoreFactor,
 	ICoreFactorFromForm,
-	ICoreVariationFromForm,
+	ICoreRevisionFromForm,
 	IFactorForm,
 	IPollForm,
+	IPollRevisionDataOrDelta,
 	IsData,
 	IsDelta,
-	IVariationData,
-	IVariationDataOrDelta
+	IUiFactor,
+	IUiPollRevision
 }                          from '@votecube/model'
 import {POLL_FORM_MANAGER} from '../../tokens'
 
@@ -16,10 +16,10 @@ export interface IPollFormManager {
 
 	fromForm<DataOrDelta extends IsData | IsDelta>(
 		form: IPollForm
-	): IVariationDataOrDelta<DataOrDelta>
+	): IPollRevisionDataOrDelta<DataOrDelta>
 
 	toForm(
-		data: IVariationData
+		data: IUiPollRevision
 	): IPollForm
 
 }
@@ -29,11 +29,11 @@ export class PollFormManager
 
 	fromForm<DataOrDelta extends IsData | IsDelta>(
 		form: IPollForm
-	): IVariationDataOrDelta<DataOrDelta> {
+	): IPollRevisionDataOrDelta<DataOrDelta> {
 		const outcomes       = form.outcomes
 		const formThemeValue = form.theme
 
-		const variationFromForm: ICoreVariationFromForm = {
+		const variationFromForm: ICoreRevisionFromForm = {
 			factors: {
 				1: this.toPollFactorFromForm(form.factors[1]),
 				2: this.toPollFactorFromForm(form.factors[2]),
@@ -54,11 +54,11 @@ export class PollFormManager
 			}
 		}
 
-		return variationFromForm as IVariationDataOrDelta<DataOrDelta>
+		return variationFromForm as IPollRevisionDataOrDelta<DataOrDelta>
 	}
 
 	toForm(
-		data: IVariationData
+		data: IUiPollRevision
 	): IPollForm {
 		const themeData = data.theme
 		const theme     = {
@@ -82,7 +82,7 @@ export class PollFormManager
 	}
 
 	private toPollFactorForm(
-		factorData: ICoreFactor<IsData>
+		factorData: IUiFactor<IsData>
 	): IFactorForm {
 		return {
 			color: factorData.color,

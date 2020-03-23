@@ -4,8 +4,10 @@ import {
 } from '@airport/di'
 import {
 	Factor_Axis,
-	Outcome_Ordinal
 } from '@votecube/model'
+import {
+	Outcome_Ordinal,
+} from '@votecube/relational-db'
 import {
 	CUBE_MOVE_MATRIX,
 	CUBE_MOVEMENT,

@@ -2,49 +2,581 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/form.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/votecube-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/votecube-ui.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webResources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webResources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/vc-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/Fab.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/Fab.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/LinearPositionPicker.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/LinearPositionPicker.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/PercentPicker.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/PercentPicker.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/button/FactorInfoButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/button/FactorInfoButton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/AutoComplete.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/AutoComplete.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/Block.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/Block.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/ColorPicker.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/ColorPicker.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/DatePicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/DatePicker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/IconBlock.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/IconBlock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/MultiSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/MultiSelect.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/Select.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/Select.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/Text.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/Text.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/TextArea.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/TextArea.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/shell/Popover.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/shell/Popover.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/shell/TextToast.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/shell/TextToast.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/factor/SelectionBlock.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/factor/SelectionBlock.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/CubeMiniature.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/CubeMiniature.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/DetailedCube.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/DetailedCube.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/FactorRanking.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/FactorRanking.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/SignIn.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/SignIn.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/rollup.config.js.orig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/menu/Menu.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/menu/Menu.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/menu/MenuItem.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/menu/MenuItem.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/top/TopBar.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/top/TopBar.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/top/TopBarHeader.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/shell/top/TopBarHeader.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/vote/VoteComponentGraph.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/vote/VoteComponentGraph.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/libs/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/libs/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/libs/form/cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/libs/form/cache.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/libs/form/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/libs/form/forms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/libs/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/libs/forms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/libs/text/setText.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/libs/text/setText.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/_layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/config/rush/shrinkwrap.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/scripts/install-run-rush.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/scripts/install-run-rush.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/scripts/install-run.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/scripts/install-run.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/cube-logic/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/cube-logic/src/cube/mutation/MutationApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/src/cube/mutation/MutationApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/cube-logic/src/cube/mutation/PercentagePositionChooser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/src/cube/mutation/PercentagePositionChooser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/rush.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/form.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/form.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/Cursor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/Cursor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/In.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/In.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/In.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/In.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/Out.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/Out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/Out.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/Out.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/deserializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/deserializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/deserializer.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/deserializer.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/serializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/serializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/core/serializer.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/core/serializer.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/Factor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/Factor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/FactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/FactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/FactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/FactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/Position.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/Position.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/core/Mode.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/core/Mode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/core/Mode.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/core/Mode.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/core/ModelSerializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/core/ModelSerializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/core/ModelSerializer.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/core/ModelSerializer.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/core/Type.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/core/Type.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/core/Type.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/core/Type.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/Continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/Continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/Continent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/Continent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/Country.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/Country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/Country.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/Country.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/County.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/County.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/County.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/County.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollContinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollContinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollContinent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollContinent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollCountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollCountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollCountry.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollCountry.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollCounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollCounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollCounty.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollCounty.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollState.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollState.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollState.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/PollTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/State.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/State.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/State.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/State.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/Town.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/Town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/location/Town.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/location/Town.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/poll/Label.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/poll/Label.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/poll/Label.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/poll/Label.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/poll/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/poll/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/poll/Poll.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/poll/Poll.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/poll/PollFactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/poll/PollFactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/poll/PollFactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/poll/PollFactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/poll/PollLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/poll/PollLabel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/model/poll/PollLabel.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/model/poll/PollLabel.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/tokens.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/tokens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/lib/tokens.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/lib/tokens.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/Viewport.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/Viewport.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/src/cube/Viewport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/src/cube/Viewport.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/FormFactory.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/FormFactory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/FormFactory.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/FormFactory.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/changeTracker.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/changeTracker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/changeTracker.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/changeTracker.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/ColorField.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/ColorField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/ColorField.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/ColorField.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/Field.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/Field.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/Field.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/Field.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/FieldBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/FieldBase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/FieldBase.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/FieldBase.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/FieldGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/FieldGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/FieldGroup.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/FieldGroup.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/MatchingField.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/MatchingField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/MatchingField.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/MatchingField.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/OptionsField.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/OptionsField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/OptionsField.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/OptionsField.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/DateCalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/DateCalendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/DateCalendar.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/DateCalendar.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/DateField.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/DateField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/DateField.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/DateField.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/DateFragments.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/DateFragments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/DateFragments.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/DateFragments.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/DateSelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/DateSelection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/DateSelection.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/DateSelection.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/field/date/types.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/field/date/types.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/tokens.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/tokens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/tokens.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/tokens.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/Validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/Validator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/Validator.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/Validator.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/custom.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/custom.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/greaterThanOrEquals.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/greaterThanOrEquals.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/greaterThanOrEquals.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/greaterThanOrEquals.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/minDate.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/minDate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/minDate.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/minDate.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/minLength.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/minLength.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/minLength.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/minLength.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/minTomorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/minTomorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/minTomorrow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/minTomorrow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/required.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/required.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/lib/validator/required.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/lib/validator/required.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/Vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/Vote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/VoteFactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/VoteFactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Color.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/DocumentValue.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/DocumentValue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PathFragment.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PathFragment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PollRevisionListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PollRevisionListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/AgeSuitability.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/AgeSuitability.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/PollRevisionListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/PollRevisionListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/AgeSuitability.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/AgeSuitability.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/PollRevisionListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/PollRevisionListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/delta.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/delta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/AgeSuitability.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/AgeSuitability.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/PollRevisionListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/PollRevisionListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/doc.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/doc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Continent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Continent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Country.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Country.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Country.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/County.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/County.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/County.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/County.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollState.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollState.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollState.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/State.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/State.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/State.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/State.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Town.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Town.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Town.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/old/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/old/model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiColor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiDocumentValue.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiDocumentValue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiFactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiFactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiOutcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiOutcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPathFragment.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPathFragment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPoll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPoll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiTheme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiTheme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/ui.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/Auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/Auth.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/Auth.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/LogicUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/LogicUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/LogicUtils.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/LogicUtils.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/container.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/container.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/container.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/converter/PollRevisionConveter.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/converter/PollRevisionConveter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/converter/PollRevisionConveter.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/converter/PollRevisionConveter.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/helpers/animation.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/helpers/animation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/helpers/animation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/helpers/animation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/components/poll/DetailedCubeLogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/components/poll/DetailedCubeLogic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/components/poll/DetailedCubeLogic.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/components/poll/DetailedCubeLogic.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/PollFormManager.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/PollFormManager.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/PollFormManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/PollFormManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/PollFormManager.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/PollFormManager.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/FactorRankingLogic.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/FactorRankingLogic.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/FactorRankingLogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/FactorRankingLogic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/FactorRankingLogic.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/FactorRankingLogic.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/PollFormLogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/PollFormLogic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/PollFormLogic.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/PollFormLogic.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/PollMainLogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/PollMainLogic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/PollMainLogic.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/pages/poll/info/PollMainLogic.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/poll/CubeLogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/poll/CubeLogic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/poll/CubeLogic.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/poll/CubeLogic.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/poll/PollManager.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/poll/PollManager.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/poll/PollManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/poll/PollManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/poll/PollManager.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/poll/PollManager.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/resizer.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/resizer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/resizer.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/resizer.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/store.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/store.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/store.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/store.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/tokens.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/tokens.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/tokens.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/tokens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/lib/tokens.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/lib/tokens.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/Routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/pages/poll/PollFormManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/pages/poll/PollFormManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/pages/poll/info/FactorRankingLogic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/pages/poll/info/FactorRankingLogic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/poll/PollManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/poll/PollManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/routing.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/tokens.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/dao/DbObjectBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/dao/DbObjectBuilder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/dao/DbObjectBuilder.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/dao/DbObjectBuilder.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/dao/UiObjectBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/dao/UiObjectBuilder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/dao/UiObjectBuilder.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/dao/UiObjectBuilder.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/ddl.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/Factor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/Factor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/FactorTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/FactorTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/FactorTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/FactorTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/Skin.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/Skin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/Skin.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/Skin.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/DesignPattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/DesignPattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/DesignPattern.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/DesignPattern.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/Emoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/Emoji.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/Emoji.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/Emoji.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/FactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/Position.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/Position.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/PositionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/PositionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/PositionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/factor/position/PositionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/Language.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/Language.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/Language.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/Language.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/TranslationType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/TranslationType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/TranslationType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/TranslationType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/Rating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/Rating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/Rating.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/Rating.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/RatingSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/RatingSetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/RatingSetting.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/RatingSetting.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/RatingType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/RatingType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/RatingType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/rating/RatingType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/AgeSuitableRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/AgeSuitableRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/AgeSuitableRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/AgeSuitableRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/ImmutableActorRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/ImmutableActorRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/ImmutableActorRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/ImmutableActorRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/ImmutableRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/ImmutableRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/ImmutableRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/ImmutableRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/MutableActorRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/MutableActorRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/MutableActorRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/MutableActorRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/MutableRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/MutableRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/MutableRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/MutableRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/SystemGeneratedRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/SystemGeneratedRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/SystemGeneratedRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/infrastructure/row/SystemGeneratedRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Continent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Continent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Country.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Country.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Country.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/CountryTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/CountryTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/CountryTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/CountryTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/County.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/County.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/County.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/County.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/CountyTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/CountyTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/CountyTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/CountyTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/State.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/State.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/State.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/State.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/StateTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/StateTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/StateTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/StateTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Town.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Town.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/location/Town.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/FactorOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/FactorOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/FactorOpinionVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/FactorOpinionVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/OutcomeOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/OutcomeOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/OutcomeOpinionVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/OutcomeOpinionVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PollRevisionOpinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PollRevisionOpinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PollRevisionOpinion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PollRevisionOpinion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PollRevisionOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PollRevisionOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PollRevisionOpinionVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PollRevisionOpinionVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PositionOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PositionOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PositionOpinionVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/PositionOpinionVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/rating/PollRevisionOpinionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/rating/PollRevisionOpinionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/rating/PollRevisionOpinionRating.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/rating/PollRevisionOpinionRating.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/FactorOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/FactorOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/FactorOpinionVersionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/FactorOpinionVersionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/OutcomeOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/OutcomeOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/OutcomeOpinionVersionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/OutcomeOpinionVersionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/PollRevisionOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/PollRevisionOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/PollRevisionOpinionVersionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/PollRevisionOpinionVersionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/PositionOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/PositionOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/PositionOpinionVersionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/opinion/translation/PositionOpinionVersionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/Poll.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/Poll.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/PollType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/PollType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/PollType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/PollType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/Theme.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/Theme.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/rating/PollRevisionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/rating/PollRevisionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/rating/PollRevisionRating.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/rating/PollRevisionRating.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/rating/PollRevisionTranslationRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/rating/PollRevisionTranslationRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/rating/PollRevisionTranslationRating.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/rating/PollRevisionTranslationRating.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/Outcome.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevision.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/PollRevisionFactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/OutcomeTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/revision/translation/PollRevisionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/PollRun.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/PollRun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/PollRun.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/PollRun.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunContinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunContinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunContinent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunContinent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunCountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunCountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunCountry.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunCountry.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunCounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunCounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunCounty.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunCounty.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunState.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunState.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunState.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/poll/run/location/PollRunTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Actor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Actor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Actor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Actor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Application.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Application.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Application.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Device.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Device.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/Device.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/UserAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/UserAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/UserAccount.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/user/UserAccount.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/Vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/Vote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/Vote.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/Vote.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteFactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteFactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteFactor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteFactor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteFactorType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteFactorType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteFactorType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteFactorType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/ddl/vote/VoteVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/duo/duo.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/duo/duo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/duo/duo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/duo/duo.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/duo/poll/PollRevisionFactorPositionDuo.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/duo/poll/PollRevisionFactorPositionDuo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/duo/poll/PollRevisionFactorPositionDuo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/duo/poll/PollRevisionFactorPositionDuo.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDaos.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/baseDuos.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/factortranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/factortranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/designpattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/designpattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/emoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/emoji.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/factorposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/factorposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/position.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/positiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/positiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qdesignpattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qdesignpattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qemoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qemoji.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qfactorposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qfactorposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qpositiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/position/qpositiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/qfactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/qfactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/qfactortranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/qfactortranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/qskin.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/qskin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/skin.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/factor/skin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/generated.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/generated.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/generated.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/generated.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/language.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/language.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/language.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/language.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/qlanguage.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/qlanguage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/qtranslationtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/qtranslationtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/qrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/qrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/qratingsetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/qratingsetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/qratingtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/qratingtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/rating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/rating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/ratingsetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/ratingsetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/ratingtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/rating/ratingtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/agesuitablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/agesuitablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/immutableactorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/immutableactorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/immutablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/immutablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/immutablerow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/immutablerow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/mutableactorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/mutableactorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/mutablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/mutablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qagesuitablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qagesuitablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qimmutableactorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qimmutableactorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qimmutablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qimmutablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qmutableactorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qmutableactorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qmutablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qmutablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qsystemgeneratedrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/qsystemgeneratedrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/systemgeneratedrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/row/systemgeneratedrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/translationtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/translationtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/translationtype.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/infrastructure/translationtype.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/interfaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/interfaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/country.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/countrytown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/countrytown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/county.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/county.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/countytown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/countytown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcontinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcontinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcountrytown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcountrytown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcountytown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qcountytown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qstate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qstatetown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qstatetown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qtown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/qtown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/state.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/statetown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/statetown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/town.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/location/town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/mappedSuperclass.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/mappedSuperclass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/mappedSuperclass.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/mappedSuperclass.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/factoropinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/factoropinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/outcomeopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/outcomeopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/pollrevisionopinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/pollrevisionopinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/pollrevisionopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/pollrevisionopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/positionopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/positionopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qfactoropinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qfactoropinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qoutcomeopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qoutcomeopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qpollrevisionopinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qpollrevisionopinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qpollrevisionopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qpollrevisionopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qpositionopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/qpositionopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/rating/pollrevisionopinionrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/rating/pollrevisionopinionrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/rating/qpollrevisionopinionrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/rating/qpollrevisionopinionrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/factoropinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/factoropinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/outcomeopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/outcomeopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/pollrevisionopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/pollrevisionopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/positionopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/positionopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/qfactoropinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/qfactoropinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/qoutcomeopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/qoutcomeopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/qpollrevisionopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/qpollrevisionopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/qpositionopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/opinion/translation/qpositionopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/polltype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/polltype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/qpoll.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/qpoll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/qpolltype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/qpolltype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/qtheme.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/qtheme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/rating/pollrevisionrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/rating/pollrevisionrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/rating/pollrevisiontranslationrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/rating/pollrevisiontranslationrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/rating/qpollrevisionrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/rating/qpollrevisionrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/rating/qpollrevisiontranslationrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/rating/qpollrevisiontranslationrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/pollrevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/pollrevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/pollrevisionfactorposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/pollrevisionfactorposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qoutcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qoutcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevisionfactorposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/qpollrevisionfactorposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/outcometranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/outcometranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/pollrevisiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qoutcometranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qoutcometranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/revision/translation/qpollrevisiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollruncontinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollruncontinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollruncountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollruncountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollruncounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollruncounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollrunstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollrunstate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollruntown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/pollruntown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollruncontinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollruncontinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollruncountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollruncountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollruncounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollruncounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollrunstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollrunstate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollruntown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/location/qpollruntown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/pollrun.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/pollrun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/qpollrun.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/run/qpollrun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/poll/theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qInterfaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qInterfaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/qSchema.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/schema.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/actor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/actor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/qactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/qactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/qapplication.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/qapplication.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/qdevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/qdevice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/quseraccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/quseraccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/useraccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/user/useraccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvote.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvotefactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvotefactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvotefactortype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvotefactortype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvotetype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvotetype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvoteversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/qvoteversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/vote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/votefactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/votefactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/votefactortype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/votefactortype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/votetype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/votetype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/voteversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/generated/vote/voteversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/tokens.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/tokens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/tokens.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/tokens.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/FactorTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/FactorTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/Skin.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/Skin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/DesignPattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/DesignPattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/Emoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/Emoji.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/PositionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/factor/position/PositionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/Language.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/Language.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/TranslationType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/TranslationType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/rating/Rating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/rating/Rating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/rating/RatingSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/rating/RatingSetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/rating/RatingType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/infrastructure/rating/RatingType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/Continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/Continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/Country.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/Country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/County.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/County.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/State.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/State.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/Town.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/location/Town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/FactorOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/FactorOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/OutcomeOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/OutcomeOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/PollRevisionOpinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/PollRevisionOpinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/PollRevisionOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/PollRevisionOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/PositionOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/PositionOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/rating/PollRevisionOpinionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/rating/PollRevisionOpinionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/translation/FactorOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/translation/FactorOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/translation/OutcomeOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/translation/OutcomeOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/translation/PollRevisionOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/translation/PollRevisionOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/translation/PositionOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/opinion/translation/PositionOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/PollType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/PollType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/rating/PollRevisionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/rating/PollRevisionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/rating/PollRevisionTranslationRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/rating/PollRevisionTranslationRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevisionFactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevisionFactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevisionLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/PollRevisionLabel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/translation/OutcomeTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/translation/OutcomeTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/translation/PollRevisionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/revision/translation/PollRevisionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/PollRun.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/PollRun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunContinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunContinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunCountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunCountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunCounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunCounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunState.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/poll/run/location/PollRunTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/user/Actor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/user/Actor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/user/Application.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/user/Application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/user/Device.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/user/Device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/user/UserAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/user/UserAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/Vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/Vote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/VoteFactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/VoteFactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/VoteFactorType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/VoteFactorType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/VoteType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/VoteType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/VoteVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/lib/types/vote/VoteVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.core.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.core.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,25 +644,25 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../highway" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sapper-webpack/src/service-worker.js" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Users\Papa\vc\ts\votecube-ui\libs\ajax\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\model\src\ui" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\ddl\opinion\translation" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\public-ui\src\pages\poll\opinion" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\types\poll\revision" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\ddl\poll\revision" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\public-logic\src\converter" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\model\src\ui" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\ddl\opinion\translation" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\public-ui\src\pages\poll\opinion" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.relational-db">
@@ -193,7 +725,10 @@
       <workItem from="1584900825145" duration="4786000" />
       <workItem from="1584912526597" duration="4691000" />
       <workItem from="1584927584764" duration="30000" />
-      <workItem from="1584927942304" duration="260000" />
+      <workItem from="1584927942304" duration="7384000" />
+      <workItem from="1584981642293" duration="1883000" />
+      <workItem from="1584987583175" duration="1757000" />
+      <workItem from="1584989878292" duration="1803000" />
     </task>
     <task id="LOCAL-00001" summary="percise cube rotation">
       <created>1542566898548</created>
@@ -265,7 +800,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584450160896</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Migrating from public-ui and public-logic to vc-ui and vc-logic.">
+      <created>1584928351774</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1584928351774</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +839,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="precise cube rotation" />
     <MESSAGE value="precise cube rotation, 15 degree increments" />
     <MESSAGE value="cube rotation demo" />
     <MESSAGE value="visible surface percentage code" />
@@ -322,7 +863,8 @@
     <MESSAGE value="Initial To-DB converter for PollRevision." />
     <MESSAGE value="Stubbed out To-UI converter for PollRevision." />
     <MESSAGE value="First path of To-UI converter for PollRevision." />
-    <option name="LAST_COMMIT_MESSAGE" value="First path of To-UI converter for PollRevision." />
+    <MESSAGE value="Migrating from public-ui and public-logic to vc-ui and vc-logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrating from public-ui and public-logic to vc-ui and vc-logic." />
   </component>
   <component name="WindowStateProjectService">
     <state x="566" y="-873" key="#Updates" timestamp="1580326375485">
@@ -352,12 +894,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="229" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1579105984422" />
-    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1584450157445">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2" timestamp="1584928349235">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@0.0.1920.1040" timestamp="1582741181313" />
     <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209055925" />
     <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584450157445" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1584928349235" />
     <state x="1" y="-1080" key="CommitChangelistDialog2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130909180" />
     <state width="379" height="466" key="DebuggerActiveHint" timestamp="1579096165500">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -367,14 +910,15 @@
       <screen x="1" y="-1080" width="1920" height="1080" />
     </state>
     <state x="93" y="-988" width="1736" height="896" key="DiffContextDialog/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582741386494" />
-    <state x="686" y="215" key="FileChooserDialogImpl" timestamp="1584814373788">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="686" y="223" key="FileChooserDialogImpl" timestamp="1584990365310">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1577599135519" />
     <state x="-1233" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037196454" />
     <state x="687" y="-857" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582743606736" />
     <state x="2607" y="-965" key="FileChooserDialogImpl/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582822760189" />
     <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1584814373788" />
+    <state x="686" y="223" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1584990365310" />
     <state x="687" y="-857" key="FileChooserDialogImpl/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579030485607" />
     <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1584443353028">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -486,40 +1030,41 @@
     <state x="141" y="35" width="1418" height="971" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584812511149" />
     <state x="141" y="36" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1584910793652" />
     <state x="477" y="-890" key="SettingsEditor/1.-1080.1920.1040/1921.-1188.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1040" timestamp="1580326540443" />
-    <state x="552" y="267" key="Vcs.Push.Dialog.v2" timestamp="1584450162891">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="552" y="277" key="Vcs.Push.Dialog.v2" timestamp="1584928353719">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209060849" />
     <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584450162891" />
+    <state x="552" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1584928353719" />
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130913034" />
-    <state x="92" y="92" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1584911258331">
+    <state x="92" y="92" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1584978414395">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="93" y="-988" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582741386494" />
-    <state x="92" y="92" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584911258331" />
+    <state x="92" y="92" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584978414395" />
     <state x="802" y="256" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1583268654319">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="802" y="256" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583268654319" />
-    <state x="667" y="296" width="710" height="567" key="find.popup" timestamp="1584913370703">
+    <state x="667" y="296" width="710" height="567" key="find.popup" timestamp="1584991368403">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="668" y="-784" width="710" height="546" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582922610758" />
     <state x="2588" y="-892" width="654" height="488" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974562" />
     <state x="667" y="285" width="710" height="546" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584442992228" />
-    <state x="667" y="296" width="710" height="567" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1584913370703" />
+    <state x="667" y="296" width="710" height="567" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1584991368403" />
     <state x="668" y="-795" width="654" height="488" key="find.popup/1.-1080.1920.1040/0.0.1920.1040/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1040" timestamp="1582904756409" />
     <state x="668" y="-784" width="654" height="507" key="find.popup/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579131494384" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1584127315873">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584127315873" />
-    <state x="623" y="235" width="672" height="679" key="search.everywhere.popup" timestamp="1584927489260">
+    <state x="623" y="235" width="672" height="679" key="search.everywhere.popup" timestamp="1584991339830">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="624" y="-845" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582923456086" />
     <state x="623" y="226" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584443198001" />
-    <state x="623" y="235" width="672" height="679" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1584927489260" />
+    <state x="623" y="235" width="672" height="679" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1584991339830" />
     <state x="624" y="-854" width="672" height="653" key="search.everywhere.popup/1.-1080.1920.1040/0.0.1920.1040/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1040" timestamp="1582904063093" />
   </component>
   <component name="XDebuggerManager">

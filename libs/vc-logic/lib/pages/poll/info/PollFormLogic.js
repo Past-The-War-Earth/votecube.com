@@ -1,8 +1,10 @@
-import { container, DI } from '@airport/di';
-import { POLL_FORM_LOGIC, POLL_FORM_MANAGER } from '../../../tokens';
-export class PollFormLogic {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../../../tokens");
+class PollFormLogic {
     async getPollForm(currentVariation, trackOriginal, touch, text, formFactory) {
-        const pollFormManager = await container(this).get(POLL_FORM_MANAGER);
+        const pollFormManager = await di_1.container(this).get(tokens_1.POLL_FORM_MANAGER);
         const form = await this.createPollForm(
         // labels,
         // locations,
@@ -207,5 +209,6 @@ export class PollFormLogic {
         }, formValidators, uiText.Factor);
     }
 }
-DI.set(POLL_FORM_LOGIC, PollFormLogic);
+exports.PollFormLogic = PollFormLogic;
+di_1.DI.set(tokens_1.POLL_FORM_LOGIC, PollFormLogic);
 //# sourceMappingURL=PollFormLogic.js.map

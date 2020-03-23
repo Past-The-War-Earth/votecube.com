@@ -1,8 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 let changeCount = 0;
-export function addChange() {
+function addChange() {
     return ++changeCount;
 }
-export function getChange() {
+exports.addChange = addChange;
+function getChange() {
     return changeCount;
 }
+exports.getChange = getChange;
 //# sourceMappingURL=changeTracker.js.map

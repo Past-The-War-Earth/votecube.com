@@ -9,7 +9,6 @@ import {IPollMainLogic}          from './pages/poll/info/PollMainLogic'
 import {IPollFormManager}        from './pages/poll/PollFormManager'
 import {ICubeLogic}              from './poll/CubeLogic'
 import {IPollManager}            from './poll/PollManager'
-import {IRoutes}                 from './Routes'
 
 const publicLogic = system('votecube-ui').lib('public-logic')
 
@@ -23,4 +22,3 @@ export const POLL_FORM_MANAGER        = publicLogic.token<IPollFormManager>()
 export const POLL_MAIN_LOGIC          = publicLogic.token<IPollMainLogic>()
 export const POLL_MANAGER             = publicLogic.token<IPollManager>()
 export const POLL_REVISION_CONVERTER = publicLogic.token<IPollRevisionConverter>()
-export const ROUTES                   = publicLogic.token<IRoutes>()

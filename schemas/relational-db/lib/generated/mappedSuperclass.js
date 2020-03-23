@@ -1,4 +1,6 @@
-export const MAPPED_SUPERCLASS = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MAPPED_SUPERCLASS = [
     {
         "type": "ImmutableRow",
         "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",

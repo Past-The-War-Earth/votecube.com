@@ -1,12 +1,14 @@
-import { FieldBase, validate } from './FieldBase';
-export var LabelRule;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const FieldBase_1 = require("./FieldBase");
+var LabelRule;
 (function (LabelRule) {
     LabelRule[LabelRule["BOTH"] = 0] = "BOTH";
     LabelRule[LabelRule["IN"] = 1] = "IN";
     LabelRule[LabelRule["NONE"] = 2] = "NONE";
     LabelRule[LabelRule["OVER"] = 3] = "OVER";
-})(LabelRule || (LabelRule = {}));
-export class Field extends FieldBase {
+})(LabelRule = exports.LabelRule || (exports.LabelRule = {}));
+class Field extends FieldBase_1.FieldBase {
     constructor(validators = [], rules) {
         super(validators);
         this.rules = {
@@ -86,7 +88,7 @@ export class Field extends FieldBase {
         if (!this.shouldValidate(external)) {
             return;
         }
-        validate(this);
+        FieldBase_1.validate(this);
         this.updateValidity(fromParentGroup);
     }
     updateValidity(fromParentGroup) {
@@ -102,4 +104,5 @@ export class Field extends FieldBase {
         return this.isSame(this.theValue, this.originalValue);
     }
 }
+exports.Field = Field;
 //# sourceMappingURL=Field.js.map
