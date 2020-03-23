@@ -5,7 +5,8 @@
   "version": "0.0.1",
   "dependencies": {
     "@airport/di": "0.0.1",
-    "@votecube/model": "0.0.1"
+    "@votecube/model": "0.0.1",
+    "@votecube/relational-db": "0.0.1"
   },
   "devDependencies": {
     "tslint": "^5.20.1",

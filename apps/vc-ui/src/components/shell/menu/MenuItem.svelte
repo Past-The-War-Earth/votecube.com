@@ -1,6 +1,6 @@
 <script>
 	import {createEventDispatcher} from 'svelte'
-	import {currentPage, user} from '@votecube/public-logic'
+	import {currentPage, user} from '@votecube/vc-logic'
 
 	export let menuItem
 

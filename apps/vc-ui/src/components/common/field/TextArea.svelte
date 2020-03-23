@@ -4,7 +4,7 @@
 	import {
 		forms,
 		textToast
-	} from '@votecube/public-logic'
+	} from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

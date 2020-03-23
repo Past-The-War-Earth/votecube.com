@@ -1,7 +1,7 @@
 <script>
 
 	import {DI}            from '@airport/di'
-	import {LOGIC_UTILS}   from '@votecube/public-logic'
+	import {LOGIC_UTILS}   from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

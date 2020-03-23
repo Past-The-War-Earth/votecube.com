@@ -1,4 +1,4 @@
-import { Outcome_Ordinal } from '@votecube/model';
+import { Outcome_Ordinal } from '@votecube/relational-db';
 import { PositionPercent } from '../CubeMovement';
 import { Dimension, IViewport } from '../Viewport';
 import { PercentChange } from './types';

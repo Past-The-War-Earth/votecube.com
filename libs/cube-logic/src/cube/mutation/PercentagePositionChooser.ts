@@ -1,5 +1,5 @@
 import {DI}                          from '@airport/di'
-import {Outcome_Ordinal}             from '@votecube/model'
+import {Outcome_Ordinal}             from '@votecube/relational-db'
 import {PERCENTAGE_POSITION_CHOOSER} from '../../tokens'
 import {
 	Direction,

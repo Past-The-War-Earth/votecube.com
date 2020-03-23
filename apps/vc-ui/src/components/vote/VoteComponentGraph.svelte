@@ -3,7 +3,7 @@
 	import {
 		cardMove,
 		LOGIC_UTILS
-	}   from '@votecube/public-logic'
+	}   from '@votecube/vc-logic'
 	import {
 		createEventDispatcher,
 		beforeUpdate,

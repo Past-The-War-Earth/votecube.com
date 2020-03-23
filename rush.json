@@ -64,6 +64,11 @@
       "projectFolder": "libs/svelte-progressive-list",
       "shouldPublish": true
     },
+    {
+      "packageName": "@votecube/vc-logic",
+      "projectFolder": "libs/vc-logic",
+      "shouldPublish": true
+    },
     // "schemas" folder (alphabetical order)
     {
       "packageName": "@votecube/public-db",

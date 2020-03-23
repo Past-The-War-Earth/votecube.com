@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@airport/di": "0.0.1",
-    "@votecube/public-db": "0.0.1",
-    "@votecube/public-logic": "0.0.1",
+    "@votecube/relational-db": "0.0.1",
+    "@votecube/vc-logic": "0.0.1",
     "@votecube/cube-logic": "0.0.1",
     "@votecube/forms": "0.0.1",
     "compression": "^1.7.1",

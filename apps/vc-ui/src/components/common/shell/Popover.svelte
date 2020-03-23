@@ -2,7 +2,7 @@
 	import {
 		isDesktop,
 		popup
-	}             from '@votecube/public-logic'
+	}             from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

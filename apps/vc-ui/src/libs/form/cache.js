@@ -1,7 +1,7 @@
 import {
 	APP_CONTAINER,
 	POLL_MANAGER
-}                 from '@votecube/public-logic'
+}                 from '@votecube/vc-logic'
 import * as forms from './forms'
 
 export async function savePollForm(

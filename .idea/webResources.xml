@@ -17,6 +17,7 @@
             <path value="file://$PROJECT_DIR$/apps/old-ui/src" />
             <path value="file://$PROJECT_DIR$/apps/cloudfare-worker/src" />
             <path value="file://$PROJECT_DIR$/apps/vc-ui/src" />
+            <path value="file://$PROJECT_DIR$/libs/vc-logic/src" />
           </resourceRoots>
         </entryData>
       </entry>

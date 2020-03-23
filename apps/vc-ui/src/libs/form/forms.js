@@ -1,4 +1,4 @@
-import {navigateToPage} from '@votecube/public-logic'
+import {navigateToPage} from '@votecube/vc-logic'
 
 export const CREATE_POLL_TOP = 'CREATE_POLL_TOP'
 export const CREATE_FACTOR   = 'CREATE_FACTOR'

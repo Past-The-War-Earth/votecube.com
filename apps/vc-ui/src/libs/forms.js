@@ -1,4 +1,4 @@
-import {APP_CONTAINER, forms} from '@votecube/public-logic'
+import {APP_CONTAINER, forms} from '@votecube/vc-logic'
 
 export async function loadForms() {
 	const formsModule = await import('@votecube/forms')

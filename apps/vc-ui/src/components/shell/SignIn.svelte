@@ -3,7 +3,7 @@
 	import {
 		AUTH,
 		text
-	}                         from '@votecube/public-logic'
+	}                         from '@votecube/vc-logic'
 	import {
 		createEventDispatcher,
 		onDestroy,
@@ -15,8 +15,8 @@
 	// import * as forms                     from '../form/forms'
 	import Text                           from '../common/field/Text.svelte'
 	import ActionPopover                  from '../common/shell/ActionPopover.svelte'
-	import {loadForms}                    from '../libs/forms'
-	import {loadLocations as loadLocText} from '../libs/text/locations'
+	import {loadForms}                    from '../../libs/forms'
+	import {loadLocations as loadLocText} from '../../libs/text/locations'
 
 	let container
 	let error

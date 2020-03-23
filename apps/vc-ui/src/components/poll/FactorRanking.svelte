@@ -5,7 +5,7 @@
 		FACTOR_RANKING_LOGIC,
 		LOGIC_UTILS,
 		windowWidth
-	}                      from '@votecube/public-logic'
+	}                      from '@votecube/vc-logic'
 	import {
 		createEventDispatcher,
 		onDestroy,

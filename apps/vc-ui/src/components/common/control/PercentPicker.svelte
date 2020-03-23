@@ -1,5 +1,5 @@
 <script>
-	import {popup} from '@votecube/public-logic'
+	import {popup} from '@votecube/vc-logic'
 	import {
 		createEventDispatcher,
 		onDestroy,

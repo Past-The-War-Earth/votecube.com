@@ -1,4 +1,5 @@
-import { Factor_Number, Outcome_Ordinal } from '@votecube/model';
+import { Factor_Number } from '@votecube/model';
+import { Outcome_Ordinal } from '@votecube/relational-db';
 import { PositionPercent } from '../CubeMovement';
 import { PercentChange } from './types';
 export interface IMutationApi {
