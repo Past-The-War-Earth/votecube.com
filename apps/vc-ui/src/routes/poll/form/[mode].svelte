@@ -1,10 +1,19 @@
+<script context="module">
+    import {routeParams} from "@votecube/vc-logic";
+
+    export async function preload(
+        {params, query}
+    ) {
+        routeParams.set(params)
+    }
+</script>
 <script>
     import {DI}            from '@airport/di'
+    import { goto } from '@sapper/app'
     import {
         pageTitle,
         POLL_FORM_LOGIC,
         POLL_MANAGER,
-        routeParams,
         text
     }                      from '@votecube/vc-logic'
     import {
@@ -12,16 +21,16 @@
         onMount
     }                      from 'svelte'
     import {get}           from 'svelte/store'
-    import CharacterButton from '../../components/common/control/button/CharacterButton.svelte'
-    import PreviewButton   from '../../components/common/control/button/PreviewButton.svelte'
-    import AutoComplete    from '../../components/common/field/AutoComplete.svelte'
-    import Text            from '../../components/common/field/Text.svelte'
-    import TextArea        from '../../components/common/field/TextArea.svelte'
-    import ActionPopover   from '../../components/common/shell/ActionPopover.svelte'
-    import SelectionBlock  from '../../components/factor/SelectionBlock.svelte'
-    import {savePollForm}  from '../../libs/form/cache'
-    import * as forms      from '../../libs/form/forms'
-    import {loadForms}     from '../../libs/forms'
+    import CharacterButton from '../../../components/common/control/button/CharacterButton.svelte'
+    import PreviewButton   from '../../../components/common/control/button/PreviewButton.svelte'
+    import AutoComplete    from '../../../components/common/field/AutoComplete.svelte'
+    import Text            from '../../../components/common/field/Text.svelte'
+    import TextArea        from '../../../components/common/field/TextArea.svelte'
+    import ActionPopover   from '../../../components/common/shell/ActionPopover.svelte'
+    import SelectionBlock  from '../../../components/factor/SelectionBlock.svelte'
+    import {savePollForm}  from '../../../libs/form/cache'
+    import * as forms      from '../../../libs/form/forms'
+    import {loadForms}     from '../../../libs/forms'
 
     let container
     let delta          = 0
@@ -129,7 +138,7 @@ return !form.fields.locations.isOriginal()
     ) {
         interFormNavigation = true
         forms.setForm(forms.CREATE_FACTOR, factorForm)
-        alert('navigateToPage')
+        goto(`poll/form/${$routeParams.mode}/factor`)
         // navigateToPage(FACTOR_INFO_MAIN, $routeParams)
     }
 
@@ -242,8 +251,7 @@ return !form.fields.locations.isOriginal()
             return
         }
 
-        alert('forms.navigateOnValid')
-        // forms.navigateOnValid(form, POLL_MAIN, $routeParams)
+        forms.navigateOnValid(form, `poll/form/${$routeParams.mode}/factor`)
     }
 
 </script>

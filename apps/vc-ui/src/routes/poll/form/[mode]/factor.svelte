@@ -1,0 +1,145 @@
+<script>
+    import {
+        pageTitle,
+        routeParams
+    }                      from '@votecube/vc-logic'
+    import {
+        onDestroy,
+        onMount
+    }                      from 'svelte'
+    import CharacterButton from '../../../../components/common/control/button/CharacterButton.svelte'
+    import SaveButton      from '../../../../components/common/control/button/SaveButton.svelte'
+    import ColorPicker     from '../../../../components/common/field/ColorPicker'
+    import Text            from '../../../../components/common/field/Text.svelte'
+    import TextArea        from '../../../../components/common/field/TextArea.svelte'
+    import {savePollForm}  from '../../../../libs/form/cache'
+    import {
+        CREATE_FACTOR,
+        ensureTopForm,
+        navigateOnValid
+    }                      from '../../../../libs/form/forms'
+
+    let delta      = 0
+    let form
+    let interFormNavigation
+    let isOriginal = true
+    let isValid    = false
+
+    let formHandle = {
+        setDelta(newDelta) {
+            delta = newDelta
+        },
+        setIsValid(newIsValid) {
+            isValid = newIsValid
+        },
+        setIsOriginal(newIsOriginal) {
+            isOriginal = newIsOriginal
+        }
+    }
+
+    $: color = form
+        ? form.fields.color
+        : null
+    $: submitHighlight = isValid
+        ? '0b0'
+        : 'b00'
+
+    onMount(async () => {
+        form = ensureTopForm(
+            CREATE_FACTOR,
+            formHandle, 'poll/form/build')
+        pageTitle.set('Factor Info')
+    })
+
+    onDestroy(() => {
+        savePollForm(interFormNavigation).then()
+
+        form && form.clearComponents()
+    })
+
+    function select(
+        $routeParams
+    ) {
+        interFormNavigation = true
+        navigateOnValid(form, `poll/form/${$routeParams.mode}`)
+    }
+
+</script>
+
+<style>
+
+    .A, .B {
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .B {
+        margin-left: 0.4em;
+    }
+
+    .positions {
+        display: flex;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+</style>
+
+{#if form}
+<form>
+    <div class="pure-control-group">
+        <Text
+                field="{form.fields.name}"
+        ></Text>
+    </div>
+    <div
+            class="positions"
+    >
+        <div
+                class="A"
+        >
+            <CharacterButton
+                    character="A"
+                    fontSize="20"
+                    fontX="12"
+                    fontY="19"
+                    size="24"
+                    strokeWidth="1"
+            ></CharacterButton>
+            <TextArea
+                    field="{form.fields.positions.fields.A}"
+                    mid="{true}"
+            ></TextArea>
+        </div>
+        <div
+                class="B"
+        >
+            <CharacterButton
+                    character="B"
+                    fontSize="20"
+                    fontX="12"
+                    fontY="19"
+                    size="24"
+                    strokeWidth="1"
+            ></CharacterButton>
+            <TextArea
+                    field="{form.fields.positions.fields.B}"
+                    mid="{true}"
+            ></TextArea>
+        </div>
+    </div>
+    <div class="pure-control-group">
+        <ColorPicker
+                field="{form.fields.color}"
+        ></ColorPicker>
+    </div>
+
+    <nav class="pure-controls">
+        <SaveButton
+                classes="submitButton"
+                highlightColor="{submitHighlight}"
+                on:click="{() => select($routeParams)}"
+        ></SaveButton>
+    </nav>
+</form>
+{/if}

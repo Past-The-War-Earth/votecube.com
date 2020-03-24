@@ -39,6 +39,8 @@
 	// import FactorList      from './pages/factor/search/FactorList.html'
 	// import PollTimeframe   from './pages/poll/Timeframe.html'
 
+    export let segment = null
+
 	// let topMenuMap
 	let appShowMainMenu = showMainMenu
 	let appIsDesktop    = isDesktop

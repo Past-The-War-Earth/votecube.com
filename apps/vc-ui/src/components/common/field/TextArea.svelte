@@ -13,12 +13,12 @@
 	import InfoIcon  from '../icon/InfoIcon.svelte'
 	import UndoIcon  from '../icon/UndoIcon.svelte'
 
-	export let field
+	export let field = null
+	export let floatLabel  = true
 	export let mid  = false
 	export let mini = false
 
 	let delta       = 0
-	let floatLabel  = true
 	let isOriginal               = true
 	let isValid                  = false
 

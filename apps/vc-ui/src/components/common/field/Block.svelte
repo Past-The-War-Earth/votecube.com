@@ -8,9 +8,9 @@
 		onMount
 	} from 'svelte'
 
-	export let fieldGroup
+	export let customError = null
+	export let fieldGroup = null
 
-	let customError
 	let delta      = 0
 	let isOriginal = true
 	let isValid    = false

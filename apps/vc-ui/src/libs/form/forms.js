@@ -1,4 +1,5 @@
 // import {navigateToPage} from '@votecube/vc-logic'
+import { goto } from '@sapper/app'
 
 export const CREATE_POLL_TOP = 'CREATE_POLL_TOP'
 export const CREATE_FACTOR   = 'CREATE_FACTOR'
@@ -48,12 +49,11 @@ export function ensureTopForm(
 	topFormName,
 	formHandle,
 	navigateToRouteOnNotFound,
-	navigateParamsOnNotFound
 ) {
 	const topForm = getForm(topFormName)
 	if (!topForm) {
-		alert('navigateToPage')
-		// navigateToPage(navigateToRouteOnNotFound, navigateParamsOnNotFound)
+		goto(navigateToRouteOnNotFound)
+
 		return null
 	}
 	ensureForm(topForm, formHandle)
@@ -86,8 +86,7 @@ export function clearForm(
 
 export function navigateOnValid(
 	form,
-	navigateToRouteOnValid,
-	paramMap
+	url
 ) {
 	form.touch()
 
@@ -95,7 +94,7 @@ export function navigateOnValid(
 		return
 	}
 
-	alert('navigateToPage')
+	goto(url)
 	// navigateToPage(navigateToRouteOnValid, paramMap)
 }
 

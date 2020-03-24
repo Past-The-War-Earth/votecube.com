@@ -1,6 +1,6 @@
 <script>
 
-	export let character
+	export let character = null
 	export let classes        = ''
 	export let fillColor      = 'fff'
 	export let fontSize       = 45
@@ -9,7 +9,7 @@
 	export let highlightColor = '000'
 	export let size           = 50
 	export let strokeWidth    = 3
-	export let styles
+	export let styles = null
 
 </script>
 
