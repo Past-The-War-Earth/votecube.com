@@ -15,14 +15,14 @@
 	export let logicUtils
 	export let mode
 	export let navList
-	export let variation
+	export let revision
 
 	const dispatch = createEventDispatcher()
 
-	$: showLink = variation.id === navList.variation.id
+	$: showLink = revision.id === navList.revision.id
 		&& !navList.isTarget
 
-	$: showTarget = variation.id === navList.variation.id
+	$: showTarget = revision.id === navList.revision.id
 		&& navList.isTarget
 
 </script>
@@ -162,15 +162,15 @@
 		<figure>
 			<div
 					class="surface s1"
-					style="background-color: #{logicUtils.getColor(variation.factors[1].color)};"
+					style="background-color: #{logicUtils.getColor(revision.factors[1].color)};"
 			></div>
 			<div
 					class="surface s2"
-					style="background-color: #{logicUtils.getColor(variation.factors[3].color)};"
+					style="background-color: #{logicUtils.getColor(revision.factors[3].color)};"
 			></div>
 			<div
 					class="surface s5"
-					style="background-color: #{logicUtils.getColor(variation.factors[2].color)};"
+					style="background-color: #{logicUtils.getColor(revision.factors[2].color)};"
 			></div>
 		</figure>
 	</div>
@@ -181,18 +181,18 @@
 				class="pollName"
 				class:outcomes="{mode === 'outcomes'}"
 		>
-			{variation.name}
+			{revision.name}
 		</div>
 
 		{#if mode === 'factors'}
 		<var>
-			{variation.factors[1].name}
+			{revision.factors[1].name}
 		</var>
 		<var>
-			{variation.factors[2].name}
+			{revision.factors[2].name}
 		</var>
 		<var>
-			{variation.factors[3].name}
+			{revision.factors[3].name}
 		</var>
 		{:else}
 
@@ -200,12 +200,12 @@
 			<var
 					class="A"
 			>
-				{variation.outcomes.A.name}
+				{revision.outcomes.A.name}
 			</var>
 			<var
 					class="B"
 			>
-				{variation.outcomes.B.name}
+				{revision.outcomes.B.name}
 			</var>
 		</section>
 		{/if}

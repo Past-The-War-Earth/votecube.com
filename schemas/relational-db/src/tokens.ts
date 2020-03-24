@@ -1,7 +1,7 @@
 import {system}                  from '@airport/di'
 // import {IFactorDao}               from './dao/factor/FactorDao'
 // import {IPollDao}                 from './dao/poll/PollDao'
-// import {ILabelDao}                from './dao/poll/variation/label/LabelDao'
+// import {ILabelDao}                from './dao/poll/revision/label/LabelDao'
 // import {IVoteDao}                 from './dao/vote/VoteDao'
 import {IPollFactorPositionRevisionDuo} from './duo/poll/PollRevisionFactorPositionDuo'
 import {IBasePollRunContinentDuo}       from './generated/baseDuos'

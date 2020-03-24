@@ -70,12 +70,12 @@
 
 	function goTo(
 			pollId,
-			pollVariationId
+			pollRevisionId
 	) {
 		navigateToPage(POLL_MAIN, {
 			mode: 'vote',
 			pollId,
-			pollVariationId,
+			pollRevisionId,
 		})
 	}
 
@@ -181,7 +181,7 @@
 		<PollListItem
 				logicUtils="{logicUtils}"
 				mode="{mode}"
-				on:click="{() => goTo(poll.id, poll.rootVariationId)}"
+				on:click="{() => goTo(poll.id, poll.rootRevisionId)}"
 				poll="{poll}"
 		></PollListItem>
 		{/each}

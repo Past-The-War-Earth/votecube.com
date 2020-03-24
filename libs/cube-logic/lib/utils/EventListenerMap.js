@@ -1,6 +1,8 @@
-import { DI } from '@airport/di';
-import { EVENT_LISTENER_MAP } from '../tokens';
-export class EventListenerMap {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../tokens");
+class EventListenerMap {
     constructor() {
         this.tM = new Map(); // Target element Map
     }
@@ -84,5 +86,6 @@ export class EventListenerMap {
         };
     }
 }
-DI.set(EVENT_LISTENER_MAP, EventListenerMap);
+exports.EventListenerMap = EventListenerMap;
+di_1.DI.set(tokens_1.EVENT_LISTENER_MAP, EventListenerMap);
 //# sourceMappingURL=EventListenerMap.js.map

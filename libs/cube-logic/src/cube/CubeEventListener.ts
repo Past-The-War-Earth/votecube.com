@@ -69,7 +69,7 @@ export interface ICubeEventListener {
 
 }
 
-export const TOUCH = document.ontouchmove !== undefined
+// export const TOUCH = document.ontouchmove !== undefined
 
 export class CubeEventListener
 	implements ICubeEventListener {
@@ -401,7 +401,7 @@ export class CubeEventListener
 		const touches = ev.touches
 
 		// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
-		if (!TOUCH || !(touches && touches.length > 1)) {
+		if (!document.ontouchmove !== undefined || !(touches && touches.length > 1)) {
 			try {
 				ev.preventDefault()
 			} catch (_) {

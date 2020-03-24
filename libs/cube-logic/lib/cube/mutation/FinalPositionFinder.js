@@ -1,6 +1,8 @@
-import { DI } from '@airport/di';
-import { FINAL_POSITION_FINDER } from '../../tokens';
-export class FinalPositionFinder {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../../tokens");
+class FinalPositionFinder {
     findFinalPosition(closestMatrixPosition, viewport, cubeUtils, cubeMoveMatrix, cubeMovement) {
         const positionData = viewport.pd;
         const [xPos, xNeg] = this.getDirectionVals(positionData.x);
@@ -282,5 +284,6 @@ export class FinalPositionFinder {
         return direction;
     }
 }
-DI.set(FINAL_POSITION_FINDER, FinalPositionFinder);
+exports.FinalPositionFinder = FinalPositionFinder;
+di_1.DI.set(tokens_1.FINAL_POSITION_FINDER, FinalPositionFinder);
 //# sourceMappingURL=FinalPositionFinder.js.map

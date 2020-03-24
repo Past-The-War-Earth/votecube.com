@@ -7,6 +7,8 @@
         onDestroy,
         onMount
     }                      from 'svelte'
+
+    import {get}           from 'svelte/store'
     import CharacterButton from '../../../../components/common/control/button/CharacterButton.svelte'
     import SaveButton      from '../../../../components/common/control/button/SaveButton.svelte'
     import ColorPicker     from '../../../../components/common/field/ColorPicker'
@@ -45,9 +47,10 @@
         : 'b00'
 
     onMount(async () => {
+        const params = get(routeParams)
         form = ensureTopForm(
             CREATE_FACTOR,
-            formHandle, 'poll/form/build')
+            formHandle, `${params.mode}/poll/${params.pollId}/info`)
         pageTitle.set('Factor Info')
     })
 
@@ -61,7 +64,7 @@
         $routeParams
     ) {
         interFormNavigation = true
-        navigateOnValid(form, `poll/form/${$routeParams.mode}`)
+        navigateOnValid(form, `${$routeParams.mode}/poll/${$routeParams.pollId}/info`)
     }
 
 </script>

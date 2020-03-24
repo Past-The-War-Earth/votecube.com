@@ -1,8 +1,10 @@
-import { container, DI } from '@airport/di';
-import { CUBE_DIRECTION, CUBE_EVENT_LISTENER, CUBE_MOVEMENT, CUBE_UTILS, EVENT_LISTENER_MAP, MUTATION_API, VIEWPORT } from '../tokens';
-import { Bool, Move } from './CubeMovement';
-export const TOUCH = document.ontouchmove !== undefined;
-export class CubeEventListener {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../tokens");
+const CubeMovement_1 = require("./CubeMovement");
+// export const TOUCH = document.ontouchmove !== undefined
+class CubeEventListener {
     constructor() {
         this.lastMove = 0;
         this.suspended = false;
@@ -16,7 +18,7 @@ export class CubeEventListener {
             this.addCubeAdjustmentToELM(this.dLM);
         }
         else {
-            const eventListenerMap = container(this).getSync(EVENT_LISTENER_MAP);
+            const eventListenerMap = di_1.container(this).getSync(tokens_1.EVENT_LISTENER_MAP);
             this.dLM = eventListenerMap.ad(document);
             this.addCubeAdjustmentToELM(this.dLM);
         }
@@ -26,24 +28,24 @@ export class CubeEventListener {
             if (this.suspended) {
                 return;
             }
-            const [cubeUtils, viewport] = container(this).getSync(CUBE_UTILS, VIEWPORT);
+            const [cubeUtils, viewport] = di_1.container(this).getSync(tokens_1.CUBE_UTILS, tokens_1.VIEWPORT);
             this.rmMmTm();
             switch (ev.keyCode) {
                 case 37: // left
-                    viewport.move(Bool.False, Move.None, Bool.True, Move.Down);
+                    viewport.move(CubeMovement_1.Bool.False, CubeMovement_1.Move.None, CubeMovement_1.Bool.True, CubeMovement_1.Move.Down);
                     break;
                 case 38: // up
                     // prevent default
                     cubeUtils.pD(ev);
-                    viewport.move(Bool.True, Move.Up);
+                    viewport.move(CubeMovement_1.Bool.True, CubeMovement_1.Move.Up);
                     break;
                 case 39: // right
-                    viewport.move(Bool.False, Move.None, Bool.True, Move.Up);
+                    viewport.move(CubeMovement_1.Bool.False, CubeMovement_1.Move.None, CubeMovement_1.Bool.True, CubeMovement_1.Move.Up);
                     break;
                 case 40: // down
                     // prevent default
                     cubeUtils.pD(ev);
-                    viewport.move(Bool.True, Move.Down);
+                    viewport.move(CubeMovement_1.Bool.True, CubeMovement_1.Move.Down);
                     break;
                 case 27: // esc
                     viewport.reset();
@@ -82,7 +84,7 @@ export class CubeEventListener {
         this.dLM.rm('keydown')('mousedown')('touchstart')('mouseup')('touchend');
     }
     clearView(elementId) {
-        const viewport = container(this).getSync(VIEWPORT);
+        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
         delete viewport.el[elementId];
     }
     resumeInteraction() {
@@ -97,7 +99,7 @@ export class CubeEventListener {
         factorToAxisMapping[factorNumbers[0]] = 'x';
         factorToAxisMapping[factorNumbers[1]] = 'y';
         factorToAxisMapping[factorNumbers[2]] = 'z';
-        const viewport = container(this).getSync(VIEWPORT);
+        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
         viewport.pd = {
             // axisToFactorMapping: {
             // 	x: factorNumbers[0],
@@ -122,16 +124,16 @@ export class CubeEventListener {
     }
     setPositionDataAndMove(vote) {
         if (this.setPositionData(vote)) {
-            const viewport = container(this).getSync(VIEWPORT);
+            const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
             viewport.moveToDegree();
         }
     }
     setView(elementId) {
-        const [cubeUtils, viewport] = container(this).getSync(CUBE_UTILS, VIEWPORT);
+        const [cubeUtils, viewport] = di_1.container(this).getSync(tokens_1.CUBE_UTILS, tokens_1.VIEWPORT);
         viewport.el[elementId] = cubeUtils.gQ('#' + elementId);
     }
     setViewPort(forCube, cb) {
-        const viewport = container(this).getSync(VIEWPORT);
+        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
         viewport.reset();
         viewport.cb = (uiVote) => {
             // this.populateVoteFactor('x', uiVote)
@@ -150,7 +152,7 @@ export class CubeEventListener {
         if (!cb) {
             return null;
         }
-        const mutationApi = container(this).getSync(MUTATION_API);
+        const mutationApi = di_1.container(this).getSync(tokens_1.MUTATION_API);
         return mutationApi;
     }
     suspendInteraction() {
@@ -188,7 +190,7 @@ export class CubeEventListener {
     }
     moveViewport(event, // event
     viewport) {
-        const [cubeDirection, cubeMovement] = container(this).getSync(CUBE_DIRECTION, CUBE_MOVEMENT);
+        const [cubeDirection, cubeMovement] = di_1.container(this).getSync(tokens_1.CUBE_DIRECTION, tokens_1.CUBE_MOVEMENT);
         const mouseObject = cubeMovement.mouse;
         const startCoords = mouseObject.start;
         let lastCoords = mouseObject.last;
@@ -213,7 +215,7 @@ export class CubeEventListener {
      * On mousedown or touchstart
      */
     oMdTs(ev) {
-        const [cubeMovement, cubeUtils, viewport] = container(this).getSync(CUBE_MOVEMENT, CUBE_UTILS, VIEWPORT);
+        const [cubeMovement, cubeUtils, viewport] = di_1.container(this).getSync(tokens_1.CUBE_MOVEMENT, tokens_1.CUBE_UTILS, tokens_1.VIEWPORT);
         if (!Object.keys(viewport.el).length) {
             return;
         }
@@ -235,13 +237,13 @@ export class CubeEventListener {
      * On mousemove or touchmove
      */
     oMmTm(ev) {
-        const viewport = container(this).getSync(VIEWPORT);
+        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
         if (!Object.keys(viewport.el).length) {
             return;
         }
         const touches = ev.touches;
         // Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
-        if (!TOUCH || !(touches && touches.length > 1)) {
+        if (!document.ontouchmove !== undefined || !(touches && touches.length > 1)) {
             try {
                 ev.preventDefault();
             }
@@ -292,7 +294,7 @@ export class CubeEventListener {
      * Remove mousemove or touchmove
      */
     rmMmTm() {
-        const viewport = container(this).getSync(VIEWPORT);
+        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
         if (!Object.keys(viewport.el).length) {
             return;
         }
@@ -311,5 +313,6 @@ export class CubeEventListener {
         this.rmMmTm();
     }
 }
-DI.set(CUBE_EVENT_LISTENER, CubeEventListener);
+exports.CubeEventListener = CubeEventListener;
+di_1.DI.set(tokens_1.CUBE_EVENT_LISTENER, CubeEventListener);
 //# sourceMappingURL=CubeEventListener.js.map

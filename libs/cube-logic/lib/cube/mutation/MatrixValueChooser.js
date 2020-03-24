@@ -1,7 +1,9 @@
-import { DI } from '@airport/di';
-import { MATRIX_VALUE_CHOOSER } from '../../tokens';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../../tokens");
 const MAX_DIST = 12;
-export class MatrixValueChooser {
+class MatrixValueChooser {
     getClosestMatrixPosition(viewport, cubeUtils, cubeMoveMatrix) {
         const x = viewport.pd.x;
         if (x.value === 100
@@ -132,5 +134,6 @@ export class MatrixValueChooser {
             : negativeDistance);
     }
 }
-DI.set(MATRIX_VALUE_CHOOSER, MatrixValueChooser);
+exports.MatrixValueChooser = MatrixValueChooser;
+di_1.DI.set(tokens_1.MATRIX_VALUE_CHOOSER, MatrixValueChooser);
 //# sourceMappingURL=MatrixValueChooser.js.map

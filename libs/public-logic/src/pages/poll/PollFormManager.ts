@@ -2,13 +2,13 @@ import {DI}                from '@airport/di'
 import {
 	ICoreFactor,
 	ICoreFactorFromForm,
-	ICoreVariationFromForm,
+	ICoreRevisionFromForm,
 	IFactorForm,
 	IPollForm,
 	IsData,
 	IsDelta,
-	IVariationData,
-	IVariationDataOrDelta
+	IRevisionData,
+	IRevisionDataOrDelta
 }                          from '@votecube/model'
 import {POLL_FORM_MANAGER} from '../../tokens'
 
@@ -16,10 +16,10 @@ export interface IPollFormManager {
 
 	fromForm<DataOrDelta extends IsData | IsDelta>(
 		form: IPollForm
-	): IVariationDataOrDelta<DataOrDelta>
+	): IRevisionDataOrDelta<DataOrDelta>
 
 	toForm(
-		data: IVariationData
+		data: IRevisionData
 	): IPollForm
 
 }
@@ -29,11 +29,11 @@ export class PollFormManager
 
 	fromForm<DataOrDelta extends IsData | IsDelta>(
 		form: IPollForm
-	): IVariationDataOrDelta<DataOrDelta> {
+	): IRevisionDataOrDelta<DataOrDelta> {
 		const outcomes       = form.outcomes
 		const formThemeValue = form.theme
 
-		const variationFromForm: ICoreVariationFromForm = {
+		const revisionFromForm: ICoreRevisionFromForm = {
 			factors: {
 				1: this.toPollFactorFromForm(form.factors[1]),
 				2: this.toPollFactorFromForm(form.factors[2]),
@@ -54,11 +54,11 @@ export class PollFormManager
 			}
 		}
 
-		return variationFromForm as IVariationDataOrDelta<DataOrDelta>
+		return revisionFromForm as IRevisionDataOrDelta<DataOrDelta>
 	}
 
 	toForm(
-		data: IVariationData
+		data: IRevisionData
 	): IPollForm {
 		const themeData = data.theme
 		const theme     = {

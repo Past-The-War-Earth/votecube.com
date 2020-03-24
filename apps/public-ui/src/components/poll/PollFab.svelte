@@ -13,8 +13,8 @@
 	import RankingsButton    from '../../common/control/button/RankingsButton.svelte'
 	import ShieldButton      from '../../common/control/button/ShieldButton.svelte'
 	import UndescribedButton from '../../common/control/button/UndescribedButton.svelte'
-	import VariationTreeButton
-	                         from '../../common/control/button/VariationTreeButton.svelte'
+	import RevisionTreeButton
+	                         from '../../common/control/button/RevisionTreeButton.svelte'
 	import VoteButton        from '../../common/control/button/VoteButton.svelte'
 	import Fab               from '../../common/control/Fab.svelte'
 
@@ -141,10 +141,10 @@
 			slot="left1"
 	>
 		<UndescribedButton>
-			<VariationTreeButton
-					on:click="{() => run('variations')}"
+			<RevisionTreeButton
+					on:click="{() => run('revisions')}"
 					styles="position: absolute; right: 0px; top: 0px;"
-			></VariationTreeButton>
+			></RevisionTreeButton>
 		</UndescribedButton>
 	</div>
 	<div

@@ -6,7 +6,7 @@ import {
 	Factor_Axis,
 	IFactorData,
 	IPositionData,
-	IVariationData,
+	IRevisionData,
 	Outcome_Ordinal,
 	Position_Dir
 }                      from '@votecube/model'
@@ -74,7 +74,7 @@ interface ISwitchRecord {
 export interface IDetailedCubeLogic {
 
 	getCubeSides(
-		variation: IVariationData,
+		revision: IRevisionData,
 		container: IChildContainer
 	): Promise<{
 		cubeSideMap: ICubeSideMap
@@ -98,7 +98,7 @@ export class DetailedCubeLogic
 	implements IDetailedCubeLogic {
 
 	async getCubeSides(
-		variation: IVariationData,
+		revision: IRevisionData,
 		container: IChildContainer
 	): Promise<{
 		cubeSideMap: ICubeSideMap
@@ -120,8 +120,8 @@ export class DetailedCubeLogic
 				= cubeSide
 		}
 
-		for (const factorNumber in variation.factors) {
-			const factor: IFactorData = variation.factors[factorNumber]
+		for (const factorNumber in revision.factors) {
+			const factor: IFactorData = revision.factors[factorNumber]
 
 			for (const outcome in factor.positions) {
 				const position: IPositionData = factor.positions[outcome]

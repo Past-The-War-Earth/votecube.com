@@ -1,9 +1,9 @@
 import {
 	IPollDoc,
-	IVariationDoc,
-	IVariationListingDoc,
+	IRevisionDoc,
+	IRevisionListingDoc,
 	Poll_Id,
-	Variation_Id
+	Revision_Id
 }                             from '@votecube/model'
 import {
 	ICollection,
@@ -15,13 +15,13 @@ import {RootCollection}       from './RootCollection'
 export interface IPollDraftsCollection
 	extends ICollection<Poll_Id, IPollDoc> {
 
-	pollVariationListings(
+	pollRevisionListings(
 		keyOrReference: Poll_Id | IVCDocumentReference<Poll_Id, IPollDoc>
-	): ICollection<Variation_Id, IVariationListingDoc, Poll_Id, IPollDoc>
+	): ICollection<Revision_Id, IRevisionListingDoc, Poll_Id, IPollDoc>
 
-	pollVariations(
+	pollRevisions(
 		keyOrReference: Poll_Id | IVCDocumentReference<Poll_Id, IPollDoc>
-	): ICollection<Variation_Id, IVariationDoc, Poll_Id, IPollDoc>
+	): ICollection<Revision_Id, IRevisionDoc, Poll_Id, IPollDoc>
 
 }
 
@@ -35,16 +35,16 @@ export class PollDraftsCollection
 		super('pollDrafts', schema)
 	}
 
-	pollVariationListings(
+	pollRevisionListings(
 		keyOrReference: Poll_Id | IVCDocumentReference<Poll_Id, IPollDoc>
-	): ICollection<Variation_Id, IVariationListingDoc, Poll_Id, IPollDoc> {
-		return this.child(keyOrReference, 'pollVariationListings')
+	): ICollection<Revision_Id, IRevisionListingDoc, Poll_Id, IPollDoc> {
+		return this.child(keyOrReference, 'pollRevisionListings')
 	}
 
-	pollVariations(
+	pollRevisions(
 		keyOrReference: Poll_Id | IVCDocumentReference<Poll_Id, IPollDoc>
-	): ICollection<Variation_Id, IVariationDoc, Poll_Id, IPollDoc> {
-		return this.child(keyOrReference, 'pollVariations')
+	): ICollection<Revision_Id, IRevisionDoc, Poll_Id, IPollDoc> {
+		return this.child(keyOrReference, 'pollRevisions')
 	}
 
 }

@@ -8,12 +8,12 @@ import {
 	POLL_FORM_LOGIC,
 	POLL_FORM_MANAGER
 }                         from '../../../tokens'
-import {IStoredVariation} from '../../../poll/PollManager'
+import {IStoredRevision} from '../../../poll/PollManager'
 
 export interface IPollFormLogic {
 
 	getPollForm(
-		currentVariation: IStoredVariation,
+		currentRevision: IStoredRevision,
 		trackOriginal: boolean,
 		touch: boolean,
 		text,
@@ -26,7 +26,7 @@ export class PollFormLogic
 	implements IPollFormLogic {
 
 	async getPollForm(
-		currentVariation: IStoredVariation,
+		currentRevision: IStoredRevision,
 		trackOriginal: boolean,
 		touch: boolean,
 		text,
@@ -43,14 +43,14 @@ export class PollFormLogic
 		form.setTrackOriginal(trackOriginal)
 		form.validate()
 
-		currentVariation.form = form
+		currentRevision.form = form
 
 		// form.fields.locations.optionText = text.LOCATIONS
-		if (currentVariation.ui) {
+		if (currentRevision.ui) {
 			form.setValue(
-				pollFormManager.toForm(currentVariation.ui),
+				pollFormManager.toForm(currentRevision.ui),
 				true
-				// !currentVariation.ui.draft
+				// !currentRevision.ui.draft
 			)
 			form.validate()
 			if (touch) {

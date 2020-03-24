@@ -1,17 +1,19 @@
-import { DI } from '@airport/di';
-import { CUBE_MOVEMENT } from '../tokens';
-export var Bool;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../tokens");
+var Bool;
 (function (Bool) {
     Bool[Bool["False"] = 0] = "False";
     Bool[Bool["True"] = 1] = "True";
-})(Bool || (Bool = {}));
-export var Move;
+})(Bool = exports.Bool || (exports.Bool = {}));
+var Move;
 (function (Move) {
     Move[Move["Down"] = -1] = "Down";
     Move[Move["None"] = 0] = "None";
     Move[Move["Up"] = 1] = "Up";
-})(Move || (Move = {}));
-export class CubeMovement {
+})(Move = exports.Move || (exports.Move = {}));
+class CubeMovement {
     constructor() {
         this.mouse = {
             start: { x: undefined, y: undefined }
@@ -80,5 +82,6 @@ export class CubeMovement {
         return (normalizedMatrixIndex % numberOfMatrixDivisions);
     }
 }
-DI.set(CUBE_MOVEMENT, CubeMovement);
+exports.CubeMovement = CubeMovement;
+di_1.DI.set(tokens_1.CUBE_MOVEMENT, CubeMovement);
 //# sourceMappingURL=CubeMovement.js.map

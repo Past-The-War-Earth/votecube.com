@@ -1,12 +1,14 @@
-import { DI } from '@airport/di';
-import { CUBE_MOVE_MATRIX } from '../tokens';
-export var MoveIncrement;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../tokens");
+var MoveIncrement;
 (function (MoveIncrement) {
     MoveIncrement[MoveIncrement["FORTY_FIVE"] = 45] = "FORTY_FIVE";
     MoveIncrement[MoveIncrement["FIFTEEN"] = 15] = "FIFTEEN";
     MoveIncrement[MoveIncrement["FIVE"] = 5] = "FIVE";
-})(MoveIncrement || (MoveIncrement = {}));
-export class CubeMoveMatrix {
+})(MoveIncrement = exports.MoveIncrement || (exports.MoveIncrement = {}));
+class CubeMoveMatrix {
     constructor() {
         this.MOVE_INCREMENTS = [
             MoveIncrement.FORTY_FIVE,
@@ -130,5 +132,6 @@ export class CubeMoveMatrix {
         }
     }
 }
-DI.set(CUBE_MOVE_MATRIX, CubeMoveMatrix);
+exports.CubeMoveMatrix = CubeMoveMatrix;
+di_1.DI.set(tokens_1.CUBE_MOVE_MATRIX, CubeMoveMatrix);
 //# sourceMappingURL=CubeMoveMatrix.js.map

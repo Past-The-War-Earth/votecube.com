@@ -2,16 +2,81 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/form/[mode].svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/form/[mode]/factor.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/[mode]/poll/[pollId]/[pollName].svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/release_plan.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/button/CharacterButton.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/button/CharacterButton.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/AutoComplete.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/AutoComplete.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/Block.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/Block.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/TextArea.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/field/TextArea.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/old-ui/src/pages/poll/variation/VariationList.top.menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/old-ui/src/pages/poll/revision/RevisionList.top.menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/common/control/button/VariationTreeButton.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/common/control/button/RevisionTreeButton.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/components/poll/PollFab.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/components/poll/PollFab.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/components/poll/variation/VariationListFab.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/components/poll/revision/RevisionListFab.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/pages/feedback/FeedbackList.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/feedback/FeedbackList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/info/PollForm.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/info/PollForm.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/info/PollMain.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/info/PollMain.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/opinion/OpinionList.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/opinion/OpinionList.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/search/PollList.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/search/PollList.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/variation/VariationList.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/revision/RevisionList.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/variation/VariationListItem.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/src/pages/poll/revision/RevisionListItem.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/button/VariationTreeButton.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/common/control/button/RevisionTreeButton.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/PollFab.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/PollFab.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/variation/VariationListFab.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/components/poll/revision/RevisionListFab.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/libs/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/libs/database.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/libs/form/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/libs/form/forms.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/_layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/form.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/[pollId]/[pollName].svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/[mode]/poll/[pollId]/prototype.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/create.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/[mode]/poll/create.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/form/[mode].svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/[mode]/poll/[pollId]/info.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/form/[mode]/factor.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/[mode]/poll/[pollId]/factor.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/src/routes/poll/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/src/routes/[mode]/poll/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeDirection.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeDirection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeDirection.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeDirection.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeEventListener.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeEventListener.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeEventListener.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeEventListener.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeEventListener.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeEventListener.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeMoveMatrix.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeMoveMatrix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeMoveMatrix.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeMoveMatrix.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeMovement.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeMovement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeMovement.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/CubeMovement.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/Viewport.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/Viewport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/Viewport.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/Viewport.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/DegreePositionChooser.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/DegreePositionChooser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/DegreePositionChooser.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/DegreePositionChooser.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/FinalPositionFinder.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/FinalPositionFinder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/FinalPositionFinder.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/FinalPositionFinder.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/MatrixValueChooser.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/MatrixValueChooser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/MatrixValueChooser.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/MatrixValueChooser.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/MutationApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/MutationApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/MutationApi.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/MutationApi.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/PercentagePositionChooser.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/PercentagePositionChooser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/PercentagePositionChooser.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/PercentagePositionChooser.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/cube/mutation/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/tokens.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/tokens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/tokens.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/tokens.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/utils/CubeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/utils/CubeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/utils/CubeUtils.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/utils/CubeUtils.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/utils/EventListenerMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/utils/EventListenerMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/lib/utils/EventListenerMap.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/lib/utils/EventListenerMap.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/src/cube/CubeEventListener.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/src/cube/CubeEventListener.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/public-logic/src/pages/components/poll/DetailedCubeLogic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/pages/components/poll/DetailedCubeLogic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/public-logic/src/pages/poll/PollFormManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/pages/poll/PollFormManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/public-logic/src/pages/poll/info/PollFormLogic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/pages/poll/info/PollFormLogic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/public-logic/src/poll/PollManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/poll/PollManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/public-logic/src/routing.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/src/routing.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/pages/poll/PollFormManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/pages/poll/PollFormManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/pages/poll/info/PollFormLogic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/pages/poll/info/PollFormLogic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/src/poll/PollManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/src/poll/PollManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/public-db/src/dao/DbUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/public-db/src/dao/DbUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/public-db/src/dao/dao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/public-db/src/dao/dao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/public-db/src/dao/poll/PollDao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/public-db/src/dao/poll/PollDao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/public-db/src/dao/poll/variation/label/LabelDao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/public-db/src/dao/poll/revision/label/LabelDao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/public-db/src/document/schema/PollDraftsCollection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/public-db/src/document/schema/PollDraftsCollection.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/public-db/src/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/public-db/src/tokens.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/dao/fromConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/dao/fromConverter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/dao/toConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/dao/toConverter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/relational-db/src/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/relational-db/src/tokens.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +144,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/vc-ui/__sapper__/build" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/vc-ui/src/routes" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -87,17 +152,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui\src\routes" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui\__sapper__\build" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\model\src\ui" />
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\ddl\opinion\translation" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\types\poll\revision" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\schemas\relational-db\src\ddl\poll\revision" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\public-logic\src\converter" />
-      <recent name="C:\Users\Papa\vc\ts\votecube-ui\libs\svelte-progressive-list" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui\src\routes\[mode]\poll\[pollId]" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui\src\routes\[mode]\poll" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui\src\routes\[mode]\poll\[pollId]\form" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui\src\routes\[mode]" />
+      <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui\src\routes\poll\[pollId]" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.relational-db">
@@ -163,7 +229,7 @@
       <workItem from="1584927942304" duration="7384000" />
       <workItem from="1584981642293" duration="1883000" />
       <workItem from="1584987583175" duration="1757000" />
-      <workItem from="1584989878292" duration="17408000" />
+      <workItem from="1584989878292" duration="28925000" />
     </task>
     <task id="LOCAL-00001" summary="percise cube rotation">
       <created>1542566898548</created>
@@ -263,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585001400740</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Migrating from public-ui and public-logic to vc-ui and vc-logic.">
+      <created>1585020919967</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1585020919967</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,13 +423,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="229" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1579105984422" />
-    <state x="0" y="0" width="1920" height="1079" key="CommitChangelistDialog2" timestamp="1585001399638">
+    <state x="0" y="0" width="1920" height="1079" key="CommitChangelistDialog2" timestamp="1585020918906">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@0.0.1920.1040" timestamp="1582741181313" />
     <state x="-1919" y="-1188" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209055925" />
     <state x="0" y="0" width="1920" height="1036" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584450157445" />
-    <state x="0" y="0" width="1920" height="1079" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1585001399638" />
+    <state x="0" y="0" width="1920" height="1079" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1585020918906" />
     <state x="1" y="-1080" key="CommitChangelistDialog2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130909180" />
     <state width="379" height="466" key="DebuggerActiveHint" timestamp="1579096165500">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -376,37 +449,41 @@
     <state x="686" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1584814373788" />
     <state x="686" y="223" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1584990365310" />
     <state x="687" y="-857" key="FileChooserDialogImpl/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579030485607" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1584443353028">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="294" key="GridCell.Tab.0.bottom" timestamp="1585089096506">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974625" />
     <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584443353028" />
+    <state width="1899" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1585089096506" />
     <state width="1899" height="302" key="GridCell.Tab.0.bottom/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1584443353028">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="294" key="GridCell.Tab.0.center" timestamp="1585089096506">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
     <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584443353028" />
+    <state width="1899" height="294" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1585089096506" />
     <state width="1899" height="302" key="GridCell.Tab.0.center/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1584443353028">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="294" key="GridCell.Tab.0.left" timestamp="1585089096506">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628893" />
     <state width="1899" height="372" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580576" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
     <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584443353028" />
+    <state width="1899" height="294" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1585089096506" />
     <state width="1899" height="302" key="GridCell.Tab.0.left/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842574" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1584443353028">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="294" key="GridCell.Tab.0.right" timestamp="1585089096506">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@-1919.-1188.1920.1080" timestamp="1579037628894" />
     <state width="1899" height="372" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579097580577" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974624" />
     <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584443353028" />
+    <state width="1899" height="294" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1585089096506" />
     <state width="1899" height="302" key="GridCell.Tab.0.right/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579124842575" />
     <state width="1899" height="356" key="GridCell.Tab.1.bottom" timestamp="1579124842567">
       <screen x="1" y="-1080" width="1920" height="1080" />
@@ -486,12 +563,12 @@
     <state x="141" y="35" width="1418" height="971" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584812511149" />
     <state x="141" y="36" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1584910793652" />
     <state x="477" y="-890" key="SettingsEditor/1.-1080.1920.1040/1921.-1188.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1040" timestamp="1580326540443" />
-    <state x="552" y="277" key="Vcs.Push.Dialog.v2" timestamp="1585001403779">
+    <state x="552" y="277" key="Vcs.Push.Dialog.v2" timestamp="1585020922257">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579209060849" />
     <state x="552" y="267" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584450162891" />
-    <state x="552" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1585001403779" />
+    <state x="552" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1585020922257" />
     <state x="553" y="-803" key="Vcs.Push.Dialog.v2/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579130913034" />
     <state x="92" y="92" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1584978414395">
       <screen x="0" y="0" width="1920" height="1080" />
@@ -502,13 +579,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="802" y="256" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583268654319" />
-    <state x="667" y="296" width="710" height="567" key="find.popup" timestamp="1585020212770">
+    <state x="667" y="296" width="710" height="567" key="find.popup" timestamp="1585088800440">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="668" y="-784" width="710" height="546" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582922610758" />
     <state x="2588" y="-892" width="654" height="488" key="find.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1921.-1188.1920.1080" timestamp="1582926974562" />
     <state x="667" y="285" width="710" height="546" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584442992228" />
-    <state x="667" y="296" width="710" height="567" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1585020212770" />
+    <state x="667" y="296" width="710" height="567" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1585088800440" />
     <state x="668" y="-795" width="654" height="488" key="find.popup/1.-1080.1920.1040/0.0.1920.1040/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1040" timestamp="1582904756409" />
     <state x="668" y="-784" width="654" height="507" key="find.popup/1921.-1188.1920.1040/1.-1080.1920.1080/0.0.1920.1040/-1919.-1188.1920.1080@1.-1080.1920.1080" timestamp="1579131494384" />
     <state x="616" y="249" key="run.anything.popup" timestamp="1585005944730">
@@ -516,12 +593,12 @@
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584127315873" />
     <state x="616" y="249" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1585005944730" />
-    <state x="623" y="235" width="672" height="679" key="search.everywhere.popup" timestamp="1585018350085">
+    <state x="623" y="235" width="672" height="679" key="search.everywhere.popup" timestamp="1585089197060">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="624" y="-845" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1.-1080.1920.1080/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1080" timestamp="1582923456086" />
     <state x="623" y="226" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584443198001" />
-    <state x="623" y="235" width="672" height="679" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1585018350085" />
+    <state x="623" y="235" width="672" height="679" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1585089197060" />
     <state x="624" y="-854" width="672" height="653" key="search.everywhere.popup/1.-1080.1920.1040/0.0.1920.1040/-1919.-1188.1920.1080/1921.-1188.1920.1080@1.-1080.1920.1040" timestamp="1582904063093" />
   </component>
   <component name="XDebuggerManager">

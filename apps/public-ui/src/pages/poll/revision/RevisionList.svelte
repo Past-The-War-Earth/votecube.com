@@ -20,16 +20,16 @@
 	import RightButton       from '../../../common/control/button/RightButton.svelte'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import ActionPopover     from '../../../common/shell/ActionPopover.svelte'
-	import VariationListFab
-	                         from '../../../components/poll/variation/VariationListFab.svelte'
+	import RevisionListFab
+	                         from '../../../components/poll/revision/RevisionListFab.svelte'
 	import * as forms        from '../../../form/forms'
 	import {loadForms}       from '../../../libs/forms'
-	import VariationListItem from './VariationListItem.svelte'
+	import RevisionListItem from './RevisionListItem.svelte'
 
 	let action
-	let childVariations
+	let childRevisions
 	let container
-	let currentVariation
+	let currentRevision
 	let delta      = 0
 	let error      = ''
 	let form
@@ -54,18 +54,18 @@
 	}
 
 	onMount(async () => {
-		container = DI.ui('VariationList')
+		container = DI.ui('RevisionList')
 
-		const {pollId, pollVariationId} = get(routeParams)
+		const {pollId, pollRevisionId} = get(routeParams)
 		let results                       = await getListingsAndOther(
 			pollId,
-			pollVariationId,
+			pollRevisionId,
 			loadForms(),
 			container
 		)
 
-		currentVariation = results[0]
-		childVariations  = results[1]
+		currentRevision = results[0]
+		childRevisions  = results[1]
 		let formFactory  = results[2]
 
 		form = formFactory.group('List', {
@@ -77,14 +77,14 @@
 			direction: 0,
 			isTarget: true,
 			previous: null,
-			variation: currentVariation,
+			revision: currentRevision,
 		}
 
 		logicUtils = await container.get(LOGIC_UTILS)
 
 		forms.ensureForm(form, formHandle)
 
-		pageTitle.set('Poll Variations')
+		pageTitle.set('Poll Revisions')
 	})
 
 	onDestroy(() => {
@@ -94,12 +94,12 @@
 	function switchToClasses(
 		switching,
 		switchedToId,
-		currentVariation
+		currentRevision
 	) {
 		if (!switching) {
 			return ''
 		}
-		const switchedToItem = switchedToId === currentVariation.id
+		const switchedToItem = switchedToId === currentRevision.id
 		if (switching === 1) {
 			return switchedToItem ? '' : 'closing'
 		} else if (switching === 2) {
@@ -109,13 +109,13 @@
 
 	function goTo(
 			pollId,
-			pollVariationId
+			pollRevisionId
 	) {
-		// FIXME: need a new mode, something like 'view' - since you can't vote on a variation
+		// FIXME: need a new mode, something like 'view' - since you can't vote on a revision
 		navigateToPage(POLL_MAIN, {
 			mode: 'vote',
 			pollId,
-			pollVariationId,
+			pollRevisionId,
 		})
 	}
 
@@ -124,19 +124,19 @@
 	}
 
 	function moveDownHierarchy(
-		childVariations,
-		moveToVariation,
+		childRevisions,
+		moveToRevision,
 		navList
 	) {
-		doMoveDown(moveToVariation, navList, childVariations.length)
+		doMoveDown(moveToRevision, navList, childRevisions.length)
 	}
 
 	function moveUpHierarchy(
-		childVariations,
-		moveToVariation,
+		childRevisions,
+		moveToRevision,
 		navList,
 	) {
-		doMoveUp(moveToVariation, navList, childVariations.length)
+		doMoveUp(moveToRevision, navList, childRevisions.length)
 	}
 
 	function setAction(
@@ -156,40 +156,40 @@
 
 	async function getListingsAndOther(
 		pollId,
-		pollVariationId,
+		pollRevisionId,
 		otherPromise,
 		container
 	) {
 		const pollManager = await container.get(POLL_MANAGER)
 		let [
-			    currentVariation,
-			    childVariations,
+			    currentRevision,
+			    childRevisions,
 			    otherResult
 		    ]             = await Promise.all([
-			pollManager.getVariationListing(pollId, pollVariationId),
-			pollManager.getChildVariationListings(pollId, pollVariationId),
+			pollManager.getRevisionListing(pollId, pollRevisionId),
+			pollManager.getChildRevisionListings(pollId, pollRevisionId),
 			otherPromise,
 		])
 
 		return [
-			currentVariation,
-			childVariations,
+			currentRevision,
+			childRevisions,
 			otherResult
 		]
 	}
 
 	function doMoveDown(
-		moveToVariation,
+		moveToRevision,
 		navList,
 		numChildren
 	) {
 		switching    = 1
-		switchedToId = moveToVariation.id
+		switchedToId = moveToRevision.id
 
 		setTimeout(() => {
 			switching = 2
 			getDataAndMoveDown(
-				moveToVariation,
+				moveToRevision,
 				navList,
 				numChildren
 			).then()
@@ -197,17 +197,17 @@
 	}
 
 	function doMoveUp(
-		moveToVariation,
+		moveToRevision,
 		navList,
 		numChildren
 	) {
 		switching    = 1
-		switchedToId = moveToVariation.Id
+		switchedToId = moveToRevision.Id
 
 		setTimeout(() => {
 			switching = 2
 			getDataAndMoveUp(
-				moveToVariation,
+				moveToRevision,
 				navList,
 				numChildren
 			).then()
@@ -215,54 +215,54 @@
 	}
 
 	async function getDataAndMoveDown(
-		moveToVariation,
+		moveToRevision,
 		navList,
 		numChildren
 	) {
 		const {
-			      currentVariation,
-			      childVariations,
+			      currentRevision,
+			      childRevisions,
 		      } = await getSwitchData(
-			moveToVariation.pollId,
-			moveToVariation.id,
+			moveToRevision.pollId,
+			moveToRevision.id,
 			numChildren
 		)
 
 		if ([0, 1].indexOf(navList.direction) > -1
-			&& navList.variation.id !== moveToVariation.id) {
+			&& navList.revision.id !== moveToRevision.id) {
 			navList = {
 				direction: 1,
 				isTarget: false,
 				previous: navList,
-				variation: moveToVariation,
+				revision: moveToRevision,
 			}
 		} else if (navList.direction === -1) {
-			if (navList.variation.id === moveToVariation.id) {
+			if (navList.revision.id === moveToRevision.id) {
 				navList = navList.previous
 			} else {
 				navList = {
 					direction: 1,
 					isTarget: false,
 					previous: navList,
-					variation: moveToVariation,
+					revision: moveToRevision,
 				}
 			}
 		}
 
-		finishSwitching(childVariations, currentVariation, navList)
+		finishSwitching(childRevisions, currentRevision, navList)
 	}
 
 	async function getDataAndMoveUp(
-		moveToVariation,
+		moveToRevision,
 		navList,
 		numChildren
 	) {
 		const {
-			      currentVariation,
-			      childVariations,
+			      currentRevision,
+			      childRevisions,
 		      } = await getSwitchData(
-			moveToVariation.pollId,
-			moveToVariation.parent.id,
+			moveToRevision.pollId,
+			moveToRevision.parent.id,
 			numChildren
 		)
 
@@ -271,21 +271,21 @@
 				direction: -1,
 				isTarget: false,
 				previous: navList,
-				variation: currentVariation,
+				revision: currentRevision,
 			}
 		} else if (navList.direction === 0
-			&& moveToVariation.id !== navList.variation.id) {
+			&& moveToRevision.id !== navList.revision.id) {
 			navList = {
 				direction: -1,
 				isTarget: false,
 				previous: navList,
-				variation: moveToVariation,
+				revision: moveToRevision,
 			}
 		} else if (navList.direction === 1) {
 			navList = navList.previous
 		}
 
-		finishSwitching(childVariations, currentVariation, navList)
+		finishSwitching(childRevisions, currentRevision, navList)
 	}
 
 	async function getSwitchData(
@@ -294,8 +294,8 @@
 		numChildren
 	) {
 		let [
-			    currentVariation,
-			    childVariations,
+			    currentRevision,
+			    childRevisions,
 			    _
 		    ] = await getListingsAndOther(
 			pollId,
@@ -310,25 +310,25 @@
 		)
 
 		return {
-			currentVariation,
-			childVariations,
+			currentRevision,
+			childRevisions,
 		}
 	}
 
 	function finishSwitching(
-		newChildVariations,
-		newCurrentVariation,
+		newChildRevisions,
+		newCurrentRevision,
 		newNavList
 	) {
-		childVariations  = newChildVariations
-		currentVariation = newCurrentVariation
+		childRevisions  = newChildRevisions
+		currentRevision = newCurrentRevision
 		navList          = newNavList
 
 		setTimeout(() => {
 			switching = 1
 			setTimeout(() => {
 				switching = 0
-			}, childVariations.length ? 1500 : 0)
+			}, childRevisions.length ? 1500 : 0)
 		}, 10)
 	}
 
@@ -368,7 +368,7 @@
 		max-width: 100%;
 	}
 
-	.noChildVariations {
+	.noChildRevisions {
 		padding: 15px;
 		text-align: center;
 		width: 100%;
@@ -379,7 +379,7 @@
 <article
 		transition:fade="{{duration: 700}}"
 >
-	{#if logicUtils && currentVariation && form}
+	{#if logicUtils && currentRevision && form}
 	<!--
 	<form>
 		<Text
@@ -388,56 +388,56 @@
 	</form>
 	-->
 
-	{#if currentVariation.depth - 1}
+	{#if currentRevision.depth - 1}
 	<nav>
 		<div>
 			<RightButton
 					styles="transform: rotate(-90deg);"
-					on:click="{() => moveUpHierarchy(childVariations, currentVariation, navList)}"
+					on:click="{() => moveUpHierarchy(childRevisions, currentRevision, navList)}"
 					size="25"
 			></RightButton>
 		</div>
 		<var>
-			&nbsp;&nbsp;{currentVariation.depth - 1}
+			&nbsp;&nbsp;{currentRevision.depth - 1}
 		</var>
 	</nav>
 	{/if}
-	<VariationListItem
+	<RevisionListItem
 			childMode="{false}"
-			classes="{switchToClasses(switching, switchedToId, currentVariation)}"
+			classes="{switchToClasses(switching, switchedToId, currentRevision)}"
 			logicUtils="{logicUtils}"
 			mode="{mode}"
 			navList="{navList}"
-			on:click="{() => goTo(currentVariation.pollId, currentVariation.id)}"
-			variation="{currentVariation}"
-	></VariationListItem>
+			on:click="{() => goTo(currentRevision.pollId, currentRevision.id)}"
+			revision="{currentRevision}"
+	></RevisionListItem>
 	<div
 			class="divider"
 	></div>
-	{#each childVariations as variation}
-	<VariationListItem
-			classes="{switchToClasses(switching, switchedToId, variation)}"
+	{#each childRevisions as revision}
+	<RevisionListItem
+			classes="{switchToClasses(switching, switchedToId, revision)}"
 			logicUtils="{logicUtils}"
 			mode="{mode}"
 			navList="{navList}"
-			on:moveDownHierarchy="{() => moveDownHierarchy(childVariations, variation, navList)}"
-			on:click="{() => goTo(variation.pollId, variation.id)}"
-			variation="{variation}"
-	></VariationListItem>
+			on:moveDownHierarchy="{() => moveDownHierarchy(childRevisions, revision, navList)}"
+			on:click="{() => goTo(revision.pollId, revision.id)}"
+			revision="{revision}"
+	></RevisionListItem>
 	{/each}
-	{#if !childVariations.length}
+	{#if !childRevisions.length}
 	<div
-			class="noChildVariations"
+			class="noChildRevisions"
 	>
-		No child variations exist yet.
+		No child revisions exist yet.
 	</div>
 	{/if}
-	<VariationListFab
+	<RevisionListFab
 			on:factors="{showFactors}"
 			on:sort="{() => setAction('sort')}"
 			on:filter="{() => setAction('filter')}"
 			on:outcomes="{showOutcomes}"
-	></VariationListFab>
+	></RevisionListFab>
 	<!--
 	<VirtualList items={factors} component={ListItem} />
 	-->

@@ -1,6 +1,8 @@
-import { DI } from '@airport/di';
-import { CUBE_DIRECTION } from '../tokens';
-export class CubeDirection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../tokens");
+class CubeDirection {
     getMove(startCoords, endCoords) {
         let dx, dy, vx, vy, moveX = 0, xBy = 0, moveY = 0, yBy = 0;
         // directionChanged = 0
@@ -65,5 +67,6 @@ export class CubeDirection {
         ];
     }
 }
-DI.set(CUBE_DIRECTION, CubeDirection);
+exports.CubeDirection = CubeDirection;
+di_1.DI.set(tokens_1.CUBE_DIRECTION, CubeDirection);
 //# sourceMappingURL=CubeDirection.js.map

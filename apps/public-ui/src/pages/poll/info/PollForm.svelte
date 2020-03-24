@@ -188,8 +188,8 @@ return !form.fields.locations.isOriginal()
 			try {
 				const pollManager = await container.get(POLL_MANAGER)
 
-				const currentVariation = pollManager.currentVariation
-				if (!currentVariation.ui && mode !== 'build') {
+				const currentRevision = pollManager.currentRevision
+				if (!currentRevision.ui && mode !== 'build') {
 					navigateToPage(POLL_LIST)
 					return
 				}
@@ -197,7 +197,7 @@ return !form.fields.locations.isOriginal()
 				const pollFormLogic = await container.get(POLL_FORM_LOGIC)
 
 				form = await pollFormLogic.getPollForm(
-					currentVariation,
+					currentRevision,
 					mode === 'alter',
 					mode !== 'create',
 					theText,
@@ -230,7 +230,7 @@ return !form.fields.locations.isOriginal()
 	) {
 		const pollManager = await container.get(POLL_MANAGER)
 
-		const form = pollManager.currentVariation.form
+		const form = pollManager.currentRevision.form
 		form.touch()
 
 		if (!form.valid) {

@@ -21,16 +21,16 @@
         onMount
     }                      from 'svelte'
     import {get}           from 'svelte/store'
-    import CharacterButton from '../../../components/common/control/button/CharacterButton.svelte'
-    import PreviewButton   from '../../../components/common/control/button/PreviewButton.svelte'
-    import AutoComplete    from '../../../components/common/field/AutoComplete.svelte'
-    import Text            from '../../../components/common/field/Text.svelte'
-    import TextArea        from '../../../components/common/field/TextArea.svelte'
-    import ActionPopover   from '../../../components/common/shell/ActionPopover.svelte'
-    import SelectionBlock  from '../../../components/factor/SelectionBlock.svelte'
-    import {savePollForm}  from '../../../libs/form/cache'
-    import * as forms      from '../../../libs/form/forms'
-    import {loadForms}     from '../../../libs/forms'
+    import CharacterButton from '../../../../components/common/control/button/CharacterButton.svelte'
+    import PreviewButton   from '../../../../components/common/control/button/PreviewButton.svelte'
+    import AutoComplete    from '../../../../components/common/field/AutoComplete.svelte'
+    import Text            from '../../../../components/common/field/Text.svelte'
+    import TextArea        from '../../../../components/common/field/TextArea.svelte'
+    import ActionPopover   from '../../../../components/common/shell/ActionPopover.svelte'
+    import SelectionBlock  from '../../../../components/factor/SelectionBlock.svelte'
+    import {savePollForm}  from '../../../../libs/form/cache'
+    import * as forms      from '../../../../libs/form/forms'
+    import {loadForms}     from '../../../../libs/forms'
 
     let container
     let delta          = 0
@@ -138,7 +138,7 @@ return !form.fields.locations.isOriginal()
     ) {
         interFormNavigation = true
         forms.setForm(forms.CREATE_FACTOR, factorForm)
-        goto(`poll/form/${$routeParams.mode}/factor`)
+        goto(`${$routeParams.mode}/poll/${$routeParams.pollId}/factor`)
         // navigateToPage(FACTOR_INFO_MAIN, $routeParams)
     }
 
@@ -194,8 +194,8 @@ return !form.fields.locations.isOriginal()
             try {
                 const pollManager = await container.get(POLL_MANAGER)
 
-                const currentVariation = pollManager.currentVariation
-                if (!currentVariation.ui && mode !== 'build') {
+                const currentRevision = pollManager.currentRevision
+                if (!currentRevision.ui && mode !== 'build') {
                     alert('navigateToPage')
                     // navigateToPage(POLL_LIST)
                     return
@@ -204,7 +204,7 @@ return !form.fields.locations.isOriginal()
                 const pollFormLogic = await container.get(POLL_FORM_LOGIC)
 
                 form = await pollFormLogic.getPollForm(
-                    currentVariation,
+                    currentRevision,
                     mode === 'alter',
                     mode !== 'create',
                     theText,
@@ -237,7 +237,7 @@ return !form.fields.locations.isOriginal()
     ) {
         const pollManager = await container.get(POLL_MANAGER)
 
-        const form = pollManager.currentVariation.form
+        const form = pollManager.currentRevision.form
         form.touch()
 
         if (!form.valid) {
@@ -251,7 +251,7 @@ return !form.fields.locations.isOriginal()
             return
         }
 
-        forms.navigateOnValid(form, `poll/form/${$routeParams.mode}/factor`)
+        forms.navigateOnValid(form, `${$routeParams.mode}/poll/${$routeParams.pollId}/new`)
     }
 
 </script>

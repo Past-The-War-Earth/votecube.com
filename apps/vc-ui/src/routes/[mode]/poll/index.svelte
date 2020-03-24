@@ -1,6 +1,6 @@
 <script context="module">
-	import {retrievePolls} from '../../libs/shared/dataApi'
-	import {readIdRecords} from '../../libs/shared/deserializer'
+	import {retrievePolls} from '../../../libs/shared/dataApi'
+	import {readIdRecords} from '../../../libs/shared/deserializer'
 
 	export async function preload({params, query}) {
 		const response = await this.fetch(`/list/polls/recent`)
@@ -51,7 +51,8 @@
 	function itemLink(item) {
 		const pollId   = item.id.toString(36)
 		const urlTitle = item.title.toLowerCase().replace(' ', '_').substr(0, 40)
-		return `poll/${pollId}/${urlTitle}`
+		// return `poll/${pollId}/${urlTitle}`
+        return ''
 	}
 </script>
 <style>

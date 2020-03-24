@@ -45,7 +45,7 @@ export class DbUtils
 	implements IDbUtils {
 
 	static EXCLUDE_FTS_PROPS = [
-		'createdAt', 'fts', 'id', 'rootVariationId', 'userId', 'x', 'y', 'z']
+		'createdAt', 'fts', 'id', 'rootRevisionId', 'userId', 'x', 'y', 'z']
 
 	private theElIndex: elasticlunr.Index<any>
 
@@ -71,7 +71,7 @@ export class DbUtils
 			...this.addedProps,
 			...this.versionedProps,
 			'pollId',
-			'rootVariationId'
+			'rootRevisionId'
 		]
 	}
 

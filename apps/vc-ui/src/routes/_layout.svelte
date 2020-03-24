@@ -32,14 +32,14 @@
 	import PollForm      from './pages/poll/info/PollForm.svelte'
 	import PollInfoMain  from './pages/poll/info/PollMain.svelte'
 	import PollList      from './pages/poll/search/PollList.svelte'
-	import VariationList from './pages/poll/variation/VariationList.svelte'
+	import RevisionList from './pages/poll/revision/RevisionList.svelte'
 	import ReleasePlan   from './pages/ReleasePlan.svelte'
 	*/
 	// import PollLocations   from './pages/poll/Locations.html'
 	// import FactorList      from './pages/factor/search/FactorList.html'
 	// import PollTimeframe   from './pages/poll/Timeframe.html'
 
-    export let segment = null
+    export const segment = null
 
 	// let topMenuMap
 	let appShowMainMenu = showMainMenu
@@ -115,7 +115,7 @@
 			[POLL_MAIN]: PollInfoMain,
 			// [POLL_TIME_FRAME]: PollTimeframe,
 			[RELEASE_PLAN]: ReleasePlan,
-			[VARIATION_LIST]: VariationList,
+			[VARIATION_LIST]: RevisionList,
 		}
 		*/
 		/*		topMenuMap = {

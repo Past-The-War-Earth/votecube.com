@@ -126,12 +126,12 @@
 		cardMove.set(null)
 		container = DI.ui('PollMain')
 
-		let {pollId, pollVariationId} = get(routeParams)
+		let {pollId, pollRevisionId} = get(routeParams)
 
 		resize()
 		if (window.location.href.indexOf('card/ClimateChange') > 0) {
 			pollId          = '7U2Z2ItoJVTnpZwZdjrg'
-			pollVariationId = 'NFKgyOxEfT8RlqBBwEf2'
+			pollRevisionId = 'NFKgyOxEfT8RlqBBwEf2'
 		}
 		cube.set(true)
 		noOverflow.set(true)
@@ -165,7 +165,7 @@
 			}
 		)
 
-		const cubeViewResult = await setupCubeView(pollId, pollVariationId,
+		const cubeViewResult = await setupCubeView(pollId, pollRevisionId,
 			cubeLogic, cubeEventListener, container)
 
 		poll        = cubeViewResult.poll
@@ -285,9 +285,9 @@
 		navigateToPage(RELEASE_PLAN)
 	}
 
-	function goToVariations() {
-		const {pollId, pollVariationId} = get(routeParams)
-		navigateToPage(VARIATION_LIST, {pollId, pollVariationId})
+	function goToRevisions() {
+		const {pollId, pollRevisionId} = get(routeParams)
+		navigateToPage(VARIATION_LIST, {pollId, pollRevisionId})
 	}
 
 	function onAgeSuitabilitySave(
@@ -478,7 +478,7 @@
 		savingMessage     = 'Saving ...'
 		const pollManager = await container.get(POLL_MANAGER)
 		try {
-			await pollManager.saveCurrentVariation($user)
+			await pollManager.saveCurrentRevision($user)
 			confirm = false
 			navigateToPage(POLL_LIST)
 		} catch (theError) {
@@ -685,7 +685,7 @@
 			on:position="{togglePositionMode}"
 			on:rankings="{() => setAction('rankings')}"
 			on:stats="{() => setAction('stats')}"
-			on:variations="{goToVariations}"
+			on:revisions="{goToRevisions}"
 			mode="{$mode}"
 	>
 	</PollFab>

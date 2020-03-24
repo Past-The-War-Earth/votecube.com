@@ -1,6 +1,6 @@
 <script context="module">
-	import {retrieveRootOpinions} from '../../../libs/shared/dataApi'
-	import {readRootOpinionIds}   from '../../../libs/shared/deserializer'
+	import {retrieveRootOpinions} from '../../../../libs/shared/dataApi'
+	import {readRootOpinionIds}   from '../../../../libs/shared/deserializer'
 
 	export async function preload(
 		{params, query}
@@ -71,7 +71,7 @@
 	import {stores}                  from '@sapper/app'
 	import ProgressiveList           from '@votecube/svelte-progressive-list'
 	import {onMount}                 from 'svelte'
-	import {readIdAndCreateEsRecord} from '../../../libs/shared/deserializer'
+	import {readIdAndCreateEsRecord} from '../../../../libs/shared/deserializer'
 
 	export let moreOpinions   = []
 	export let nextIndex      = 0

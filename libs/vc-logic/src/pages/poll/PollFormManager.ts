@@ -33,7 +33,7 @@ export class PollFormManager
 		const outcomes       = form.outcomes
 		const formThemeValue = form.theme
 
-		const variationFromForm: ICoreRevisionFromForm = {
+		const revisionFromForm: ICoreRevisionFromForm = {
 			factors: {
 				1: this.toPollFactorFromForm(form.factors[1]),
 				2: this.toPollFactorFromForm(form.factors[2]),
@@ -54,7 +54,7 @@ export class PollFormManager
 			}
 		}
 
-		return variationFromForm as IPollRevisionDataOrDelta<DataOrDelta>
+		return revisionFromForm as IPollRevisionDataOrDelta<DataOrDelta>
 	}
 
 	toForm(

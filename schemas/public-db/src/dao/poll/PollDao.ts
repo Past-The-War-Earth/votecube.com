@@ -12,14 +12,14 @@ import {
 	IPositionDoc,
 	IsDoc,
 	ITimestamp,
-	IUiPollVariation,
+	IUiPollRevision,
 	IUser,
 	IUserCreated,
-	IVariationDoc,
-	IVariationListingDoc,
+	IRevisionDoc,
+	IRevisionListingDoc,
 	Id,
 	Poll_Id,
-	Variation_Id
+	Revision_Id
 } from '@votecube/model'
 import * as firebase from 'firebase/app'
 import {
@@ -44,32 +44,32 @@ export interface IPollDao {
 	// ): Promise<IPoll>
 
 	addTemp(
-		poll: IVariationDoc
+		poll: IRevisionDoc
 	): void
 
 	getAll(): Promise<IPollDoc[]>
 
-	getChildVariationListings(
+	getChildRevisionListings(
 		pollId: Poll_Id,
-		variationId: Variation_Id
-	): Promise<IVariationListingDoc[]>
+		revisionId: Revision_Id
+	): Promise<IRevisionListingDoc[]>
 
 	getForTheme(
 		themeId: number
 	): Promise<IPollDoc[]>
 
-	getVariation(
+	getRevision(
 		pollId: Poll_Id,
-		variationId: Variation_Id
-	): Promise<IVariationDoc>
+		revisionId: Revision_Id
+	): Promise<IRevisionDoc>
 
-	getVariationListing(
+	getRevisionListing(
 		pollId: Poll_Id,
-		variationId: Variation_Id
-	): Promise<IVariationListingDoc>
+		revisionId: Revision_Id
+	): Promise<IRevisionListingDoc>
 
 	save(
-		variation: IVariationDoc,
+		revision: IRevisionDoc,
 		user: IUser
 	): Promise<IPollDoc>
 
@@ -79,13 +79,13 @@ export class PollDao
 	// extends BasePollDao
 	implements IPollDao {
 
-	tempVariation: IVariationDoc
+	tempRevision: IRevisionDoc
 
 
 	async addTemp(
-		poll: IVariationDoc
+		poll: IRevisionDoc
 	): Promise<void> {
-		this.tempVariation = poll
+		this.tempRevision = poll
 	}
 
 	async getAll(): Promise<IPollDoc[]> {
@@ -109,23 +109,23 @@ export class PollDao
 			doc => doc.data())
 	}
 
-	async getVariation(
+	async getRevision(
 		pollId: Poll_Id,
-		variationId: Variation_Id
-	): Promise<IVariationDoc> {
+		revisionId: Revision_Id
+	): Promise<IRevisionDoc> {
 		const schema = await container(this).get(SCHEMA)
 		return await this.getOne(
-			schema.pollDrafts.pollVariations(pollId).doc(variationId)
+			schema.pollDrafts.pollRevisions(pollId).doc(revisionId)
 		)
 	}
 
-	async getVariationListing(
+	async getRevisionListing(
 		pollId: Poll_Id,
-		variationId: Variation_Id
-	): Promise<IVariationListingDoc> {
+		revisionId: Revision_Id
+	): Promise<IRevisionListingDoc> {
 		const schema = await container(this).get(SCHEMA)
-		const result = await schema.pollDrafts.pollVariationListings(pollId)
-			.reference.where('id', '==', variationId)
+		const result = await schema.pollDrafts.pollRevisionListings(pollId)
+			.reference.where('id', '==', revisionId)
 			.get()
 
 		const records = result.docs.map(
@@ -138,13 +138,13 @@ export class PollDao
 		return records[0]
 	}
 
-	async getChildVariationListings(
+	async getChildRevisionListings(
 		pollId: Poll_Id,
-		variationId: Variation_Id
-	): Promise<IVariationListingDoc[]> {
+		revisionId: Revision_Id
+	): Promise<IRevisionListingDoc[]> {
 		const schema = await container(this).get(SCHEMA)
-		const result = await schema.pollDrafts.pollVariationListings(pollId)
-			.reference.where('parent.id', '==', variationId)
+		const result = await schema.pollDrafts.pollRevisionListings(pollId)
+			.reference.where('parent.id', '==', revisionId)
 			.orderBy('createdAt.m', 'desc')
 			.get()
 
@@ -153,49 +153,49 @@ export class PollDao
 	}
 
 	async save(
-		variationIn: IUiPollVariation,
+		revisionIn: IUiPollRevision,
 		user: IUser,
 	): Promise<IPollDoc> {
-		const variationOnly = !!variationIn.pollId
+		const revisionOnly = !!revisionIn.pollId
 
-		const variation = await this.setupVariation(variationIn, user)
-		const poll      = await this.setupPoll(variation, user)
+		const revision = await this.setupRevision(revisionIn, user)
+		const poll      = await this.setupPoll(revision, user)
 
 		try {
 			const [dbUtils, schema] = await container(this).get(DB_UTILS, SCHEMA)
 			await schema.db.runTransaction(async (transaction) => {
 				const {
 					      pollRef,
-					      variationRef
-				      } = variationOnly
-					? await this.getRefs(variation)
+					      revisionRef
+				      } = revisionOnly
+					? await this.getRefs(revision)
 					: await this.prepPollAndGetRefs(poll)
 
 				poll.id          = pollRef.id
-				variation.pollId = poll.id
-				variation.id     = variationRef.id
+				revision.pollId = poll.id
+				revision.id     = revisionRef.id
 
-				const variationListing    = this.setupVariationListing(poll, variation)
-				const variationListingRef = schema.pollDrafts.pollVariationListings(pollRef)
-					.doc(variation.id)
+				const revisionListing    = this.setupRevisionListing(poll, revision)
+				const revisionListingRef = schema.pollDrafts.pollRevisionListings(pollRef)
+					.doc(revision.id)
 
 				const outcomeFactorsAndPositionsFts: IFullTextSearchObject =
 					      await this.addOutcomesFactorsAndPositions(
-						      poll, variationOnly, variation,
+						      poll, revisionOnly, revision,
 						      user, transaction, dbUtils)
 
 				this.copyFtsProps(outcomeFactorsAndPositionsFts, poll.fts)
-				variation.fts        = poll.fts
-				variationListing.fts = poll.fts
+				revision.fts        = poll.fts
+				revisionListing.fts = poll.fts
 
-				await transaction.set(variationRef, variation)
-				await transaction.set(variationListingRef, variationListing)
+				await transaction.set(revisionRef, revision)
+				await transaction.set(revisionListingRef, revisionListing)
 
-				if (!variationOnly) {
+				if (!revisionOnly) {
 					await transaction.set(pollRef, poll)
 				}
 
-				delete this.tempVariation
+				delete this.tempRevision
 			})
 		} catch (error) {
 			alert(error)
@@ -206,10 +206,10 @@ export class PollDao
 		return poll
 	}
 
-	private async setupVariation(
-		variationIn: IVariationDoc,
+	private async setupRevision(
+		revisionIn: IRevisionDoc,
 		user: IUser
-	): Promise<IVariationDoc> {
+	): Promise<IRevisionDoc> {
 		const date       = new Date()
 		const dateString = date.toString()
 		const timezone   = dateString.split('(')[1].split(')')[0]
@@ -221,20 +221,20 @@ export class PollDao
 			z: timezone
 		}
 
-		const variation: IVariationDoc = {
-			...variationIn,
+		const revision: IRevisionDoc = {
+			...revisionIn,
 			createdAt,
 			userId: user.id
 		}
 
 		const dbUtils = await container(this).get(DB_UTILS)
-		dbUtils.calculateWaterMarks(variation)
+		dbUtils.calculateWaterMarks(revision)
 
-		return variation
+		return revision
 	}
 
 	private async setupPoll(
-		variation: IVariationDoc,
+		revision: IRevisionDoc,
 		user: IUser
 	): Promise<IPollDoc> {
 		const factors: ICorePollFactorsFragment<IsDoc> = {
@@ -246,31 +246,31 @@ export class PollDao
 		const dbUtils = await container(this).get(DB_UTILS)
 
 		const poll = {
-			ageSuitability: dbUtils.copy(variation.ageSuitability),
-			createdAt: variation.createdAt,
+			ageSuitability: dbUtils.copy(revision.ageSuitability),
+			createdAt: revision.createdAt,
 			factors,
 			fts: undefined,
 			id: undefined,
-			name: dbUtils.copy(variation.name),
+			name: dbUtils.copy(revision.name),
 			outcomes: undefined,
-			rootVariationId: variation.id,
-			theme: dbUtils.copy(variation.theme),
+			rootRevisionId: revision.id,
+			theme: dbUtils.copy(revision.theme),
 			userId: user.id
 		}
 
 		const fts = await dbUtils.getFtsProps(poll)
 
-		const outcomes = dbUtils.copy(variation.outcomes)
+		const outcomes = dbUtils.copy(revision.outcomes)
 
-		for (const factorNumber in variation.factors) {
+		for (const factorNumber in revision.factors) {
 			if (factorNumber === 'marks') {
 				continue
 			}
-			const variationFactor = variation.factors[factorNumber]
+			const revisionFactor = revision.factors[factorNumber]
 			factors[factorNumber] = {
-				axis: dbUtils.copy(variationFactor.axis),
-				color: dbUtils.copy(variationFactor.color),
-				name: dbUtils.copy(variationFactor.name)
+				axis: dbUtils.copy(revisionFactor.axis),
+				color: dbUtils.copy(revisionFactor.color),
+				name: dbUtils.copy(revisionFactor.name)
 			}
 		}
 		poll.outcomes = outcomes
@@ -279,33 +279,33 @@ export class PollDao
 		return poll
 	}
 
-	private setupVariationListing(
+	private setupRevisionListing(
 		poll: IPollDoc,
-		variation: IVariationDoc
-	): IVariationListingDoc {
+		revision: IRevisionDoc
+	): IRevisionListingDoc {
 		return {
 			...poll,
-			depth: variation.depth,
-			id: variation.id,
-			parent: variation.parent,
-			path: variation.path,
-			pollId: variation.pollId
+			depth: revision.depth,
+			id: revision.id,
+			parent: revision.parent,
+			path: revision.path,
+			pollId: revision.pollId
 		}
 	}
 
 	private async getRefs(
-		variation: IVariationDoc
+		revision: IRevisionDoc
 	): Promise<{
 		pollRef: IVCDocumentReference<Poll_Id, IPollDoc>,
-		variationRef: IVCDocumentReference<Variation_Id, IVariationDoc, Poll_Id, IPollDoc>
+		revisionRef: IVCDocumentReference<Revision_Id, IRevisionDoc, Poll_Id, IPollDoc>
 	}> {
 		const schema       = await container(this).get(SCHEMA)
-		const pollRef      = schema.pollDrafts.doc(variation.pollId)
-		const variationRef = schema.pollDrafts.pollVariations(pollRef).reference.doc()
+		const pollRef      = schema.pollDrafts.doc(revision.pollId)
+		const revisionRef = schema.pollDrafts.pollRevisions(pollRef).reference.doc()
 
 		return {
 			pollRef,
-			variationRef
+			revisionRef
 		}
 	}
 
@@ -313,26 +313,26 @@ export class PollDao
 		poll: IPollDoc
 	): Promise<{
 		pollRef: IVCDocumentReference<Poll_Id, IPollDoc>,
-		variationRef: IVCDocumentReference<Variation_Id, IVariationDoc, Poll_Id, IPollDoc>
+		revisionRef: IVCDocumentReference<Revision_Id, IRevisionDoc, Poll_Id, IPollDoc>
 	}> {
 		const schema  = await container(this).get(SCHEMA)
 		const pollRef = schema.pollDrafts.doc()
 		poll.id      = pollRef.id
 
-		const variationRef = schema.pollDrafts.pollVariations(pollRef).doc()
+		const revisionRef = schema.pollDrafts.pollRevisions(pollRef).doc()
 
-		poll.rootVariationId = variationRef.id
+		poll.rootRevisionId = revisionRef.id
 
 		return {
 			pollRef,
-			variationRef
+			revisionRef
 		}
 	}
 
 	private async addOutcomesFactorsAndPositions(
 		poll: IPollDoc,
 		pollExists: boolean,
-		variation: IVariationDoc,
+		revision: IRevisionDoc,
 		user: IUser,
 		transaction: IVCTransaction,
 		dbUtils: IDbUtils
@@ -344,11 +344,11 @@ export class PollDao
 			poll.outcomes.B, poll, pollExists, user, transaction, dbUtils)
 
 		const factor1fts = await this.addFactor(
-			variation.factors[1], poll, pollExists, user, transaction, dbUtils)
+			revision.factors[1], poll, pollExists, user, transaction, dbUtils)
 		const factor2fts = await this.addFactor(
-			variation.factors[2], poll, pollExists, user, transaction, dbUtils)
+			revision.factors[2], poll, pollExists, user, transaction, dbUtils)
 		const factor3fts = await this.addFactor(
-			variation.factors[3], poll, pollExists, user, transaction, dbUtils)
+			revision.factors[3], poll, pollExists, user, transaction, dbUtils)
 
 		this.copyFtsProps(outcomeAfts, outcomeFactorsAndPositionsFts)
 		this.copyFtsProps(outcomeBfts, outcomeFactorsAndPositionsFts)

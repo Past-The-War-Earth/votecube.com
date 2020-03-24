@@ -2,22 +2,22 @@ import {DbObjectBuilder}          from '@votecube/public-db'
 import {convertCommonFactorProps} from './commonConverter'
 
 
-export function toVariationDoc(
+export function toRevisionDoc(
 	dto,
 	deltas,
 	originalDbObject
 ) {
-	const variation = new DbObjectBuilder(dto, deltas, originalDbObject)
+	const revision = new DbObjectBuilder(dto, deltas, originalDbObject)
 
-	variation.from(['ageSuitability']).to(['ageSuitability', 'age']).set()
-	variation.fromTo(['name']).set()
+	revision.from(['ageSuitability']).to(['ageSuitability', 'age']).set()
+	revision.fromTo(['name']).set()
 
-	variation.fromTo(['outcomes']).setEach((
+	revision.fromTo(['outcomes']).setEach((
 		outcome,
 		ui
 	) => outcome.from(['outcome']).to([ui.data.ordinal, 'name']).set())
 
-	variation.from(['pollFactorPositions']).to(['factors']).setEach((
+	revision.from(['pollFactorPositions']).to(['factors']).setEach((
 		pollFp,
 		uiPfp
 	) => pollFp.from([]).to([uiPfp.data.factorIndex]).set((
@@ -37,7 +37,7 @@ export function toVariationDoc(
 		})
 	}))
 
-	variation.fromTo(['theme']).set((
+	revision.fromTo(['theme']).set((
 		theme,
 		ui
 	) => {
@@ -45,7 +45,7 @@ export function toVariationDoc(
 		theme.fromTo(['name']).set()
 	})
 
-	const dbObject = variation.toObj
+	const dbObject = revision.toObj
 
 	if (originalDbObject) {
 		dbObject.depth                        = originalDbObject.depth + 1

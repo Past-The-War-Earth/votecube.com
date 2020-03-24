@@ -16,7 +16,6 @@ export interface ICubeEventListener {
     setViewPort(forCube: boolean, cb?: IValuesOutCallback): IMutationApi;
     suspendInteraction(): void;
 }
-export declare const TOUCH: boolean;
 export declare class CubeEventListener implements ICubeEventListener {
     private dLM;
     private lastMove;

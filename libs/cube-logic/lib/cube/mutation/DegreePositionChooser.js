@@ -1,6 +1,8 @@
-import { DI } from '@airport/di';
-import { DEGREE_POSITION_CHOOSER } from '../../tokens';
-export class DegreePositionChooser {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../../tokens");
+class DegreePositionChooser {
     setFinalDegrees(finalPosition, viewport) {
         viewport.x = this.getDimDegrees(viewport.x, finalPosition.x);
         viewport.y = this.getDimDegrees(viewport.y, finalPosition.y);
@@ -17,5 +19,6 @@ export class DegreePositionChooser {
         return rotationMultiplier * 360 + newDegreeChange;
     }
 }
-DI.set(DEGREE_POSITION_CHOOSER, DegreePositionChooser);
+exports.DegreePositionChooser = DegreePositionChooser;
+di_1.DI.set(tokens_1.DEGREE_POSITION_CHOOSER, DegreePositionChooser);
 //# sourceMappingURL=DegreePositionChooser.js.map

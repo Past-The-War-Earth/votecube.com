@@ -1,19 +1,19 @@
 import {UiObjectBuilder}          from '@votecube/public-db'
 import {convertCommonFactorProps} from './commonConverter'
 
-export function fromVariationDoc(
+export function fromRevisionDoc(
 	dbObject
 ) {
 	if (!dbObject) {
 		return null
 	}
 
-	const variation = new UiObjectBuilder(dbObject)
+	const revision = new UiObjectBuilder(dbObject)
 
-	variation.from(['ageSuitability', 'age']).to(['ageSuitability']).set()
-	variation.fromTo(['name']).set()
+	revision.from(['ageSuitability', 'age']).to(['ageSuitability']).set()
+	revision.fromTo(['name']).set()
 
-	variation.fromTo(['outcomes']).setEach((
+	revision.fromTo(['outcomes']).setEach((
 		outcome,
 		db,
 		outcomeKey
@@ -23,18 +23,18 @@ export function fromVariationDoc(
 		outcome.from(['key']).to(['key']).set(outcomeKey)
 	})
 
-	variation.from(['factors']).to([]).setEach((
-		variationToFactor,
+	revision.from(['factors']).to([]).setEach((
+		revisionToFactor,
 		dbFactor,
 		factorIndex
 	) => {
-		variationToFactor.from(['positions']).to(['pollFactorPositions']).setEach((
+		revisionToFactor.from(['positions']).to(['pollFactorPositions']).setEach((
 			pollFp,
 			db,
 			positionOutcome
 		) => {
 			convertCommonFactorProps(pollFp, dbFactor)
-			pollFp.from([variationToFactor]).to(['outcome']).set(positionOutcome)
+			pollFp.from([revisionToFactor]).to(['outcome']).set(positionOutcome)
 			pollFp.from(['name']).to(['factorPosition', 'position', 'name']).set()
 			pollFp.from([]).to(['factorIndex']).set(factorIndex)
 			pollFp.from([dbFactor, 'name']).to(['factorPosition', 'factor', 'name']).set()
@@ -42,7 +42,7 @@ export function fromVariationDoc(
 		})
 	})
 
-	variation.fromTo(['theme']).set((
+	revision.fromTo(['theme']).set((
 		theme,
 		ui
 	) => {
@@ -50,9 +50,9 @@ export function fromVariationDoc(
 		theme.fromTo(['name']).set()
 	})
 
-	const uiObject = variation.toObj
+	const uiObject = revision.toObj
 
-	copyVariationProperties(dbObject, uiObject)
+	copyRevisionProperties(dbObject, uiObject)
 	copyDbProperties(dbObject, uiObject)
 
 	return uiObject
@@ -66,12 +66,12 @@ export function fromPollListingDoc(
 	}
 
 	const uiObject            = fromListingDoc(dbObject)
-	uiObject.rootVariationId = dbObject.rootVariationId
+	uiObject.rootRevisionId = dbObject.rootRevisionId
 
 	return uiObject
 }
 
-export function fromVariationListingDoc(
+export function fromRevisionListingDoc(
 	dbObject
 ) {
 	if (!dbObject) {
@@ -80,13 +80,13 @@ export function fromVariationListingDoc(
 
 	const uiObject = fromListingDoc(dbObject)
 
-	copyVariationProperties(dbObject, uiObject)
-	uiObject.variationKey = dbObject.variationKey
+	copyRevisionProperties(dbObject, uiObject)
+	uiObject.revisionKey = dbObject.revisionKey
 
 	return uiObject
 }
 
-export function copyVariationProperties(
+export function copyRevisionProperties(
 	dbObject,
 	uiObject
 ) {
@@ -108,11 +108,11 @@ export function copyDbProperties(
 function fromListingDoc(
 	dbObject
 ) {
-	const variation = new UiObjectBuilder(dbObject)
+	const revision = new UiObjectBuilder(dbObject)
 
-	variation.fromTo(['ageSuitability', 'age']).set()
+	revision.fromTo(['ageSuitability', 'age']).set()
 
-	variation.fromTo(['factors']).setEach((
+	revision.fromTo(['factors']).setEach((
 		factor,
 		db,
 		factorIndex
@@ -131,9 +131,9 @@ function fromListingDoc(
 		indexOffset: 1
 	})
 
-	variation.fromTo(['name']).set()
+	revision.fromTo(['name']).set()
 
-	variation.fromTo(['outcomes']).setEach((
+	revision.fromTo(['outcomes']).setEach((
 		outcome,
 		db,
 		outcomeKey
@@ -145,7 +145,7 @@ function fromListingDoc(
 		keys: ['A', 'B']
 	})
 
-	variation.fromTo(['theme']).set((
+	revision.fromTo(['theme']).set((
 		theme,
 		ui
 	) => {
@@ -153,7 +153,7 @@ function fromListingDoc(
 		theme.fromTo(['name']).set()
 	})
 
-	const uiObject = variation.toObj
+	const uiObject = revision.toObj
 
 	copyDbProperties(dbObject, uiObject)
 

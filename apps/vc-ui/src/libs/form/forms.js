@@ -95,7 +95,6 @@ export function navigateOnValid(
 	}
 
 	goto(url)
-	// navigateToPage(navigateToRouteOnValid, paramMap)
 }
 
 export var OPTIONS = {

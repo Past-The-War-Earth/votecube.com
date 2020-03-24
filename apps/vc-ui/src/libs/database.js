@@ -11,7 +11,7 @@ export async function init() {
 
 export async function setupCubeView(
     pollId,
-    pollVariationId,
+    pollRevisionId,
     cubeLogic,
     cubeEventListener,
     container
@@ -45,7 +45,7 @@ export async function setupCubeView(
     // 	return
     // }
 
-    const poll = await pollManager.getVariation(pollId, pollVariationId)
+    const poll = await pollManager.getRevision(pollId, pollRevisionId)
 
     cubeEventListener.setPositionData(vote)
     await mutationApi.recompute()

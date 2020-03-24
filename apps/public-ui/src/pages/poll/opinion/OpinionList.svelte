@@ -11,7 +11,7 @@
         {#each polls as poll}
         <FeedbackListItem
                 mode="{mode}"
-                on:select="goTo(poll.id, poll.rootVariationId)"
+                on:select="goTo(poll.id, poll.rootRevisionId)"
                 poll="{poll}"
         ></FeedbackListItem>
         {/each}
