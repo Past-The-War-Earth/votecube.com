@@ -11,8 +11,9 @@ import {
 	UserAccount_Id,
 	UserAccount_LastName,
 	UserAccount_MiddleName,
+	UserAccount_PasswordHash,
 	UserAccount_UserName
-}                           from '../../types/user/UserAccount'
+} from '../../types/user/UserAccount'
 import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
@@ -27,6 +28,9 @@ export class UserAccount
 
 	@Column({name: 'USER_NAME', nullable: false})
 	userName: UserAccount_UserName
+
+	@Column({name: 'PASSWORD_HASH', nullable: false})
+	passwordHash: UserAccount_PasswordHash
 
 	@Column({name: 'FIRST_NAME', nullable: false})
 	firstName: UserAccount_FirstName

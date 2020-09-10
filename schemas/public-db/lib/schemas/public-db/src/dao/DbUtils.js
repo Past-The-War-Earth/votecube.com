@@ -1,3 +1,4 @@
+"use strict";
 /*
 export async function init() {
     await DI.get(AIR_DB)
@@ -5,10 +6,11 @@ export async function init() {
     await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, SCHEMA)
 }
 */
-import { DI } from '@airport/di';
-import * as elasticlunr from 'elasticlunr';
-import { DB_UTILS } from '../tokens';
-export class DbUtils {
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const elasticlunr = require("elasticlunr");
+const tokens_1 = require("../tokens");
+class DbUtils {
     get addedProps() {
         return [
             'createdAt',
@@ -29,7 +31,7 @@ export class DbUtils {
             ...this.addedProps,
             ...this.versionedProps,
             'pollId',
-            'rootVariationId'
+            'rootRevisionId'
         ];
     }
     get versionedProps() {
@@ -43,7 +45,7 @@ export class DbUtils {
     async getElIndex( //
     ) {
         if (!this.theElIndex) {
-            const elunr = await import('elasticlunr');
+            const elunr = await Promise.resolve().then(() => require('elasticlunr'));
             this.theElIndex = elunr(function () {
                 this.addField('test');
                 this.setRef('id');
@@ -163,8 +165,9 @@ export class DbUtils {
         return object.hasOwnProperty('v');
     }
 }
+exports.DbUtils = DbUtils;
 DbUtils.EXCLUDE_FTS_PROPS = [
-    'createdAt', 'fts', 'id', 'rootVariationId', 'userId', 'x', 'y', 'z'
+    'createdAt', 'fts', 'id', 'rootRevisionId', 'userId', 'x', 'y', 'z'
 ];
-DI.set(DB_UTILS, DbUtils);
+di_1.DI.set(tokens_1.DB_UTILS, DbUtils);
 //# sourceMappingURL=DbUtils.js.map

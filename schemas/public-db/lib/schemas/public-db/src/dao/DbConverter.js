@@ -1,6 +1,8 @@
-import { DI } from '@airport/di';
-import { DB_CONVERTER } from '../tokens';
-export class DbConverter {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../tokens");
+class DbConverter {
     fromDb(dbObject, directProperties, excludedProperties) {
         const uiObject = {};
         if (dbObject.v || dbObject.v === 0) {
@@ -90,5 +92,6 @@ export class DbConverter {
         dbObject.d = d;
     }
 }
-DI.set(DB_CONVERTER, DbConverter);
+exports.DbConverter = DbConverter;
+di_1.DI.set(tokens_1.DB_CONVERTER, DbConverter);
 //# sourceMappingURL=DbConverter.js.map

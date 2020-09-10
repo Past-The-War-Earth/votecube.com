@@ -1,6 +1,8 @@
-import { DI } from '@airport/di';
-import { VOTE_DAO } from '../../tokens';
-export class VoteDao {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../../tokens");
+class VoteDao {
     async findMyVoteForPoll(pollId) {
         // 	// const pollDao = await DI.get(POLL_DAO)
         //
@@ -58,6 +60,7 @@ export class VoteDao {
         };
     }
 }
+exports.VoteDao = VoteDao;
 class Vote {
     constructor(factorNumber, _theOutcome, value) {
         this.factorNumber = factorNumber;
@@ -71,5 +74,5 @@ class Vote {
         this._theOutcome = outcome;
     }
 }
-DI.set(VOTE_DAO, VoteDao);
+di_1.DI.set(tokens_1.VOTE_DAO, VoteDao);
 //# sourceMappingURL=VoteDao.js.map

@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	AgeSuitableRowECascadeGraph,
+	AgeSuitableRowGraph,
 	AgeSuitableRowEId,
 	AgeSuitableRowEUpdateColumns,
 	AgeSuitableRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QAgeSuitableRow,
 } from '../infrastructure/row/qagesuitablerow';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionQRelation,
 } from '../poll/revision/qpollrevision';
 import {
-	FactorTranslationECascadeGraph,
+	FactorTranslationGraph,
 	FactorTranslationEId,
 	FactorTranslationEOptionalId,
 	FactorTranslationEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QFactorTranslationQRelation,
 } from './qfactortranslation';
 import {
-	FactorPositionECascadeGraph,
+	FactorPositionGraph,
 	FactorPositionEId,
 	FactorPositionEOptionalId,
 	FactorPositionEUpdateProperties,
@@ -85,6 +85,7 @@ export interface FactorESelect
 	parent?: FactorESelect;
 	children?: FactorESelect;
 	factorPositions?: FactorPositionESelect;
+	translations?: FactorTranslationESelect;
 
 }
 
@@ -128,11 +129,19 @@ export interface FactorEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface FactorECascadeGraph
-	extends AgeSuitableRowECascadeGraph {
-	// Cascading Relations
-	children?: FactorECascadeGraph;
-	factorPositions?: FactorPositionECascadeGraph;
+export interface FactorGraph
+	extends AgeSuitableRowESelect, FactorEOptionalId, AgeSuitableRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	createdAtPollRevision?: PollRevisionGraph;
+	parentTranslation?: FactorTranslationGraph;
+	parent?: FactorGraph;
+	children?: FactorGraph[];
+	factorPositions?: FactorPositionGraph[];
+	translations?: FactorTranslationGraph[];
 
 }
 
@@ -191,6 +200,7 @@ export interface QFactor extends QAgeSuitableRow
 	parent: QFactorQRelation;
 	children: IQOneToManyRelation<QFactor>;
 	factorPositions: IQOneToManyRelation<QFactorPosition>;
+	translations: IQOneToManyRelation<QFactorTranslation>;
 
 }
 

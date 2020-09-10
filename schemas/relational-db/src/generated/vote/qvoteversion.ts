@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
 	ImmutableActorRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QImmutableActorRow,
 } from '../infrastructure/row/qimmutableactorrow';
 import {
-	VoteECascadeGraph,
+	VoteGraph,
 	VoteEId,
 	VoteEOptionalId,
 	VoteEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QVoteQRelation,
 } from './qvote';
 import {
-	VoteFactorECascadeGraph,
+	VoteFactorGraph,
 	VoteFactorEId,
 	VoteFactorEOptionalId,
 	VoteFactorEUpdateProperties,
@@ -113,10 +113,15 @@ export interface VoteVersionEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface VoteVersionECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
-	// Cascading Relations
-	factors?: VoteFactorECascadeGraph;
+export interface VoteVersionGraph
+	extends ImmutableActorRowESelect, VoteVersionEOptionalId, ImmutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	vote?: VoteGraph;
+	factors?: VoteFactorGraph[];
 
 }
 

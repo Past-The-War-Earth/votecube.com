@@ -3,24 +3,25 @@ import {
 	DI
 }                    from '@airport/di'
 import {
-	Factor_Id,
 	ICorePollFactorsFragment,
 	IFactorDoc,
 	IIdentified,
 	IOutcomeDoc,
 	IPollDoc,
+	IPollRevisionDoc,
+	IPollRevisionListingDoc,
 	IPositionDoc,
 	IsDoc,
 	ITimestamp,
 	IUiPollRevision,
 	IUser,
-	IUserCreated,
-	IRevisionDoc,
-	IRevisionListingDoc,
-	Id,
-	Poll_Id,
-	Revision_Id
+	IUserCreated
 } from '@votecube/model'
+import {
+	Factor_Id,
+	Poll_Id,
+	PollRevision_Id
+} from '@votecube/relational-db'
 import * as firebase from 'firebase/app'
 import {
 	ICollection,
@@ -44,15 +45,15 @@ export interface IPollDao {
 	// ): Promise<IPoll>
 
 	addTemp(
-		poll: IRevisionDoc
+		poll: IPollRevisionDoc
 	): void
 
 	getAll(): Promise<IPollDoc[]>
 
 	getChildRevisionListings(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionListingDoc[]>
+		revisionId: PollRevision_Id
+	): Promise<IPollRevisionListingDoc[]>
 
 	getForTheme(
 		themeId: number
@@ -60,16 +61,16 @@ export interface IPollDao {
 
 	getRevision(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionDoc>
+		revisionId: PollRevision_Id
+	): Promise<IPollRevisionDoc>
 
 	getRevisionListing(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionListingDoc>
+		revisionId: PollRevision_Id
+	): Promise<IPollRevisionListingDoc>
 
 	save(
-		revision: IRevisionDoc,
+		revision: IUiPollRevision,
 		user: IUser
 	): Promise<IPollDoc>
 
@@ -79,11 +80,11 @@ export class PollDao
 	// extends BasePollDao
 	implements IPollDao {
 
-	tempRevision: IRevisionDoc
+	tempRevision: IPollRevisionDoc
 
 
 	async addTemp(
-		poll: IRevisionDoc
+		poll: IPollRevisionDoc
 	): Promise<void> {
 		this.tempRevision = poll
 	}
@@ -111,8 +112,8 @@ export class PollDao
 
 	async getRevision(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionDoc> {
+		revisionId: PollRevision_Id
+	): Promise<IPollRevisionDoc> {
 		const schema = await container(this).get(SCHEMA)
 		return await this.getOne(
 			schema.pollDrafts.pollRevisions(pollId).doc(revisionId)
@@ -121,8 +122,8 @@ export class PollDao
 
 	async getRevisionListing(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionListingDoc> {
+		revisionId: PollRevision_Id
+	): Promise<IPollRevisionListingDoc> {
 		const schema = await container(this).get(SCHEMA)
 		const result = await schema.pollDrafts.pollRevisionListings(pollId)
 			.reference.where('id', '==', revisionId)
@@ -140,8 +141,8 @@ export class PollDao
 
 	async getChildRevisionListings(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionListingDoc[]> {
+		revisionId: PollRevision_Id
+	): Promise<IPollRevisionListingDoc[]> {
 		const schema = await container(this).get(SCHEMA)
 		const result = await schema.pollDrafts.pollRevisionListings(pollId)
 			.reference.where('parent.id', '==', revisionId)
@@ -207,9 +208,9 @@ export class PollDao
 	}
 
 	private async setupRevision(
-		revisionIn: IRevisionDoc,
+		revisionIn: IPollRevisionDoc,
 		user: IUser
-	): Promise<IRevisionDoc> {
+	): Promise<IPollRevisionDoc> {
 		const date       = new Date()
 		const dateString = date.toString()
 		const timezone   = dateString.split('(')[1].split(')')[0]
@@ -221,7 +222,7 @@ export class PollDao
 			z: timezone
 		}
 
-		const revision: IRevisionDoc = {
+		const revision: IPollRevisionDoc = {
 			...revisionIn,
 			createdAt,
 			userId: user.id
@@ -234,7 +235,7 @@ export class PollDao
 	}
 
 	private async setupPoll(
-		revision: IRevisionDoc,
+		revision: IPollRevisionDoc,
 		user: IUser
 	): Promise<IPollDoc> {
 		const factors: ICorePollFactorsFragment<IsDoc> = {
@@ -281,8 +282,8 @@ export class PollDao
 
 	private setupRevisionListing(
 		poll: IPollDoc,
-		revision: IRevisionDoc
-	): IRevisionListingDoc {
+		revision: IPollRevisionDoc
+	): IPollRevisionListingDoc {
 		return {
 			...poll,
 			depth: revision.depth,
@@ -294,10 +295,10 @@ export class PollDao
 	}
 
 	private async getRefs(
-		revision: IRevisionDoc
+		revision: IPollRevisionDoc
 	): Promise<{
 		pollRef: IVCDocumentReference<Poll_Id, IPollDoc>,
-		revisionRef: IVCDocumentReference<Revision_Id, IRevisionDoc, Poll_Id, IPollDoc>
+		revisionRef: IVCDocumentReference<PollRevision_Id, IPollRevisionDoc, Poll_Id, IPollDoc>
 	}> {
 		const schema       = await container(this).get(SCHEMA)
 		const pollRef      = schema.pollDrafts.doc(revision.pollId)
@@ -313,7 +314,7 @@ export class PollDao
 		poll: IPollDoc
 	): Promise<{
 		pollRef: IVCDocumentReference<Poll_Id, IPollDoc>,
-		revisionRef: IVCDocumentReference<Revision_Id, IRevisionDoc, Poll_Id, IPollDoc>
+		revisionRef: IVCDocumentReference<PollRevision_Id, IPollRevisionDoc, Poll_Id, IPollDoc>
 	}> {
 		const schema  = await container(this).get(SCHEMA)
 		const pollRef = schema.pollDrafts.doc()
@@ -332,7 +333,7 @@ export class PollDao
 	private async addOutcomesFactorsAndPositions(
 		poll: IPollDoc,
 		pollExists: boolean,
-		revision: IRevisionDoc,
+		revision: IPollRevisionDoc,
 		user: IUser,
 		transaction: IVCTransaction,
 		dbUtils: IDbUtils

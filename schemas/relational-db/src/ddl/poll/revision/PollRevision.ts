@@ -13,7 +13,7 @@ import {
 	PollRevision_Depth,
 	PollRevision_Id
 }                                   from '../../../types/poll/revision/PollRevision'
-import {AgeSuitableRow}          from '../../infrastructure/row/AgeSuitableRow'
+import {AgeSuitableRow}             from '../../infrastructure/row/AgeSuitableRow'
 import {PollRevisionOpinion}        from '../../opinion/PollRevisionOpinion'
 import {Poll}                       from '../Poll'
 import {PollRevisionRating}         from '../rating/PollRevisionRating'
@@ -66,6 +66,13 @@ export class PollRevision
 		referencedColumnName: 'POLL_REVISION_ID'
 	})
 	parent: PollRevision
+
+	@ManyToOne()
+	@JoinColumn({
+		name: 'PARENT_POLL_REVISION_TRANSLATION_ID',
+		referencedColumnName: 'POLL_REVISION_TRANSLATION_ID'
+	})
+	parentTranslation: PollRevisionTranslation
 
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
 	children: PollRevision[]

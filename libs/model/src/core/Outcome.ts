@@ -18,7 +18,7 @@ export interface ICoreOutcome<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,
 	        ICoreOutcomeFromForm<Doc>,
 	        IFullTextSearch,
-	        IUserCreated<Outcome_Id> {
+	        IUserCreated {
 
 	name: Doc extends IsDoc ? IDocumentValue<Outcome_Name> :
 		Doc extends IsDelta ? boolean : Outcome_Name

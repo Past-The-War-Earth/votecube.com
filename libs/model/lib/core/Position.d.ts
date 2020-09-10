@@ -1,9 +1,10 @@
-import { Factor_Id, PollRevisionFactorPosition_Dir, Position_Id, PositionTranslation_Name } from '@votecube/relational-db';
-import { DocStatus, IFullTextSearch, IsDelta, IsDoc } from './common';
+import { Factor_Id, PollRevisionFactorPosition_Dir, PositionTranslation_Name } from '@votecube/relational-db';
+import { DocStatus, IFullTextSearch, IsDelta, IsDoc, Key } from './common';
 import { ICoreAgeSuitabilityTracked, IDocumentValue } from './DocumentValue';
 import { IUserCreated } from './User';
+export declare type Position_Key = Key;
 export declare type Position_Dir = PollRevisionFactorPosition_Dir | 0;
-export interface ICorePosition<Doc extends DocStatus> extends ICoreAgeSuitabilityTracked<Doc>, ICorePositionDefault<Doc>, ICorePositionFromForm<Doc>, IFullTextSearch, IUserCreated<Position_Id> {
+export interface ICorePosition<Doc extends DocStatus> extends ICoreAgeSuitabilityTracked<Doc>, ICorePositionDefault<Doc>, ICorePositionFromForm<Doc>, IFullTextSearch, IUserCreated {
 }
 export interface ICoreFactorPosition<Doc extends DocStatus> extends ICorePosition<Doc> {
     factorId: Factor_Id;

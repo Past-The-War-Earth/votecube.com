@@ -1,39 +1,37 @@
 import {DI}                from '@airport/di'
 import {
-	ICoreFactor,
-	ICoreFactorFromForm,
-	ICoreRevisionFromForm,
 	IFactorForm,
 	IPollForm,
-	IsData,
-	IsDelta,
-	IRevisionData,
-	IRevisionDataOrDelta
+	IUiFactor,
+	IUiFactorFromForm,
+	IUiPollRevisionCore,
+	IUiRevisionFromForm,
+	UiDocStatus
 }                          from '@votecube/model'
 import {POLL_FORM_MANAGER} from '../../tokens'
 
 export interface IPollFormManager {
 
-	fromForm<DataOrDelta extends IsData | IsDelta>(
-		form: IPollForm
-	): IRevisionDataOrDelta<DataOrDelta>
+	fromForm<Doc extends UiDocStatus>(
+		form: IPollForm<Doc>
+	): IUiPollRevisionCore<Doc>
 
-	toForm(
-		data: IRevisionData
-	): IPollForm
+	toForm<Doc extends UiDocStatus>(
+		data: IUiPollRevisionCore<Doc>
+	): IPollForm<Doc>
 
 }
 
 export class PollFormManager
 	implements IPollFormManager {
 
-	fromForm<DataOrDelta extends IsData | IsDelta>(
-		form: IPollForm
-	): IRevisionDataOrDelta<DataOrDelta> {
+	fromForm<Doc extends UiDocStatus>(
+		form: IPollForm<Doc>
+	): IUiPollRevisionCore<Doc> {
 		const outcomes       = form.outcomes
 		const formThemeValue = form.theme
 
-		const revisionFromForm: ICoreRevisionFromForm = {
+		const revisionFromForm: IUiRevisionFromForm<Doc> = {
 			factors: {
 				1: this.toPollFactorFromForm(form.factors[1]),
 				2: this.toPollFactorFromForm(form.factors[2]),
@@ -50,16 +48,16 @@ export class PollFormManager
 			},
 			theme: {
 				id: formThemeValue ? formThemeValue.id : null,
-				name: formThemeValue ? formThemeValue.text : ''
+				name: formThemeValue ? formThemeValue.text : null
 			}
 		}
 
-		return revisionFromForm as IRevisionDataOrDelta<DataOrDelta>
+		return revisionFromForm as IUiPollRevisionCore<Doc>
 	}
 
-	toForm(
-		data: IRevisionData
-	): IPollForm {
+	toForm<Doc extends UiDocStatus>(
+		data: IUiPollRevisionCore<Doc>
+	): IPollForm<Doc> {
 		const themeData = data.theme
 		const theme     = {
 			id: themeData.id,
@@ -81,9 +79,9 @@ export class PollFormManager
 		}
 	}
 
-	private toPollFactorForm(
-		factorData: ICoreFactor<IsData>
-	): IFactorForm {
+	private toPollFactorForm<Doc extends UiDocStatus>(
+		factorData: IUiFactor<Doc>
+	): IFactorForm<Doc> {
 		return {
 			color: factorData.color,
 			name: factorData.name,
@@ -94,14 +92,17 @@ export class PollFormManager
 		}
 	}
 
-	private toPollFactorFromForm(
-		factorForm: IFactorForm
-	): ICoreFactorFromForm {
+	private toPollFactorFromForm<Doc extends UiDocStatus>(
+		factorForm: IFactorForm<Doc>
+	): IUiFactorFromForm<Doc> {
+		const blue  = factorForm.color.blue
+		const green = factorForm.color.green
+		const red   = factorForm.color.red
 		return {
 			color: {
-				blue: parseInt(factorForm.color.blue as any),
-				green: parseInt(factorForm.color.green as any),
-				red: parseInt(factorForm.color.red as any),
+				blue: typeof blue === 'boolean' ? blue : parseInt(blue as any) as any,
+				green: typeof green === 'boolean' ? green : parseInt(green as any) as any,
+				red: typeof red === 'boolean' ? red : parseInt(red as any) as any,
 			},
 			name: factorForm.name,
 			positions: {

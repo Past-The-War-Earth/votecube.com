@@ -4,73 +4,68 @@ import {
 }                    from '@airport/di'
 import {IFieldGroup} from '@votecube/forms'
 import {
-	IPollData,
+	IsData,
+	IUiPoll,
 	IUiPollRevision,
 	IUiPollRevisionDelta,
-	IUser,
-	IRevisionData,
-	IRevisionDelta,
-	IRevisionDoc,
 	IVote,
-	Poll_Id,
-	Theme_Id,
-	Revision_Id
-} from '@votecube/model'
+}                    from '@votecube/model'
 import {
-	DB_CONVERTER,
-	DB_UTILS,
-	IDbConverter,
-	IDbUtils,
-	POLL_DAO
-}                    from '@votecube/public-db'
+	IUserAccount,
+	POLL_DAO,
+	Poll_Id,
+	PollRevision_Id,
+	Theme_Id
+}                    from '@votecube/relational-db'
 import {
 	CUBE_LOGIC,
 	LOGIC_UTILS,
 	POLL_FORM_MANAGER,
-	POLL_MANAGER
+	POLL_MANAGER,
+	POLL_REVISION_CONVERTER
 }                    from '../tokens'
 
 export interface IPageVote
 	extends IVote {
-	changeMillis: number
+	changeMillis?: number
 }
 
 export interface IPollManager {
 
 	currentRevision: IStoredRevision
 
-	getAllPolls(): Promise<IPollData[]>
+	getAllPolls(): Promise<IUiPoll<IsData>[]>
 
 	getChildRevisionListings(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionData[]>
+		revisionId: PollRevision_Id
+	): Promise<IUiPollRevision[]>
 
 	getPollsForTheme(
 		themeId: Theme_Id
-	): Promise<IPollData[]>
+	): Promise<IUiPoll<IsData>[]>
 
 	getRevision(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionData>
+		pollRevisionId: PollRevision_Id
+	): Promise<IUiPollRevision>
 
 	getRevisionListing(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionData>
+		pollRevisionId: PollRevision_Id
+	): Promise<IUiPollRevision>
 
 	mergeForm(): Promise<void>
 
 	saveCurrentRevision(
-		user: IUser
+		userAccount: IUserAccount
 	): Promise<void>
 
 }
 
 export interface IStoredRevision {
 
-	doc: IRevisionDoc
+	// doc: IRevisionDoc
 	form?: IFieldGroup
 	originalUi: IUiPollRevision
 	ui: IUiPollRevision
@@ -82,7 +77,7 @@ export class PollManager
 	implements IPollManager {
 
 	private currRevision: IStoredRevision = {
-		doc: null,
+		// doc: null,
 		form: null,
 		originalUi: null,
 		ui: null,
@@ -93,81 +88,90 @@ export class PollManager
 		return this.currRevision
 	}
 
-	async getAllPolls(): Promise<IPollData[]> {
-		const pollDao = await container(this).get(POLL_DAO)
+	async getAllPolls(): Promise<IUiPoll<IsData>[]> {
+		// const pollDao = await container(this).get(POLL_DAO)
+		//
+		// const pollDocs = await pollDao.getAll()
+		//
+		// return await this.convertDocs(pollDocs)
 
-		const pollDocs = await pollDao.getAll()
-
-		return await this.convertDocs(pollDocs)
+		return []
 	}
 
 	async getChildRevisionListings(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionData[]> {
-		const pollDao = await container(this).get(POLL_DAO)
+		revisionId: PollRevision_Id
+	): Promise<IUiPollRevision[]> {
+		// const pollDao = await container(this).get(POLL_DAO)
+		//
+		// const revisionDocs =
+		// 	      await pollDao.getChildRevisionListings(pollId, revisionId)
+		//
+		// return await this.convertDocs(revisionDocs)
 
-		const revisionDocs =
-			      await pollDao.getChildRevisionListings(pollId, revisionId)
-
-		return await this.convertDocs(revisionDocs)
+		return []
 	}
 
 	async getPollsForTheme(
 		themeId: Theme_Id
-	): Promise<IPollData[]> {
-		const pollDao = await container(this).get(POLL_DAO)
+	): Promise<IUiPoll<IsData>[]> {
+		// const pollDao = await container(this).get(POLL_DAO)
+		//
+		// const pollDocs = await pollDao.getForTheme(themeId)
+		//
+		// return await this.convertDocs(pollDocs)
 
-		const pollDocs = await pollDao.getForTheme(themeId)
-
-		return await this.convertDocs(pollDocs)
+		return []
 	}
 
 	async getRevision(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionData> {
+		pollRevisionId: PollRevision_Id
+	): Promise<IUiPollRevision> {
 		if (!pollId) {
-			this.currRevision.doc = null
-
+			// this.currRevision.doc = null
 			return this.currRevision.ui
 		}
 
 		if (this.currRevision.ui
 			&& this.currRevision.ui.pollId === pollId
-			&& this.currRevision.ui.id === revisionId) {
+			&& this.currRevision.ui.id === pollRevisionId) {
 			return this.currRevision.ui
 		}
 
-		const pollDao = await container(this).get(POLL_DAO)
+		return null
 
-		const doc = await pollDao.getRevision(pollId, revisionId)
-
-		const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
-
-		const ui: any = dbConverter.fromDb(doc, dbUtils.subPollProps, dbUtils.excludedProps)
-
-		const originalUi = dbUtils.copy(ui)
-
-		this.currRevision = {
-			doc,
-			originalUi,
-			ui
-		}
-
-		return ui
+		// const pollDao = await container(this).get(POLL_DAO)
+		//
+		// const doc = await pollDao.getRevision(pollId, pollRevisionId)
+		//
+		// const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
+		//
+		// const ui: any = dbConverter.fromDb(doc, dbUtils.subPollProps, dbUtils.excludedProps)
+		//
+		// const originalUi = dbUtils.copy(ui)
+		//
+		// this.currRevision = {
+		// 	doc,
+		// 	originalUi,
+		// 	ui
+		// }
+		//
+		// return ui
 	}
 
 	async getRevisionListing(
 		pollId: Poll_Id,
-		revisionId: Revision_Id
-	): Promise<IRevisionData> {
-		const pollDao = await container(this).get(POLL_DAO)
+		revisionId: PollRevision_Id
+	): Promise<IUiPollRevision> {
+		// const pollDao = await container(this).get(POLL_DAO)
+		//
+		// const revisionDoc =
+		// 	      await pollDao.getRevisionListing(pollId, revisionId)
+		//
+		// return await this.convertDoc(revisionDoc)
 
-		const revisionDoc =
-			      await pollDao.getRevisionListing(pollId, revisionId)
-
-		return await this.convertDoc(revisionDoc)
+		return null
 	}
 
 	async mergeForm(): Promise<void> {
@@ -176,11 +180,11 @@ export class PollManager
 			return
 		}
 
-		const [pollFormManager, logicUtils, dbUtils] = await container(this).get(
-			POLL_FORM_MANAGER, LOGIC_UTILS, DB_UTILS)
+		const [pollFormManager, logicUtils] = await container(this).get(
+			POLL_FORM_MANAGER, LOGIC_UTILS)
 
-		const ui: IRevisionData       = pollFormManager.fromForm(form.value)
-		const uiDelta: IRevisionDelta = pollFormManager.fromForm(form.changeFlags)
+		const ui: IUiPollRevision           = pollFormManager.fromForm(form.value)
+		const uiDelta: IUiPollRevisionDelta = pollFormManager.fromForm(form.changeFlags)
 
 		const oldUi = this.currRevision.ui
 
@@ -194,41 +198,58 @@ export class PollManager
 			}, ui)
 		}
 		if (oldUi) {
-			logicUtils.copyProperties(oldUi, ui, dbUtils.subPollProps)
+			logicUtils.copyProperties(oldUi, ui, [
+				'createdAt',
+				'pollId',
+				'rootRevisionId',
+				'userId'
+			])
 		}
 		this.currRevision.ui      = ui
 		this.currRevision.uiDelta = uiDelta
 	}
 
 	async saveCurrentRevision(
-		user: IUser
+		user: IUserAccount
 	): Promise<void> {
 		const originalUi = this.currRevision.originalUi
 		const ui         = this.currRevision.ui
 		const delta      = this.currRevision.uiDelta
 
-		const [dbUtils, logicUtils] = await container(this).get(DB_UTILS, LOGIC_UTILS)
+		const logicUtils = await container(this).get(LOGIC_UTILS)
 
 		logicUtils.setDeltas(originalUi, ui, delta)
 
-		const dbConverter = await container(this).get(DB_CONVERTER)
+		const converter = await container(this).get(POLL_REVISION_CONVERTER)
 
-		const dbObject = dbConverter.toVersionedDb(ui, delta,
-			this.currRevision.doc, dbUtils.subPollProps)
+		// const response = await fetch('/add/poll/0/0', {
+		// 	method: 'POST',
+		// 	// headers: {
+		// 	// 	'Content-Type': 'application/json'
+		// 	// },
+		// 	body: JSON.stringify(data) // body data type must match "Content-Type" header
+		// })
+		//
+		// await response.json()
+
+		const dbObject = converter.uiToDb(ui
+			// , delta
+		)
 
 		const pollDao = await container(this).get(POLL_DAO)
 
-		await pollDao.save(dbObject, user)
+		await pollDao.createNew(dbObject, user)
 
 		this.currRevision = {
-			doc: null,
 			form: null,
 			originalUi: null,
 			ui: null,
 			uiDelta: null,
 		}
+
 	}
 
+	/*
 	private async convertDocs<In, Out>(
 		docs: In[]
 	): Promise<Out[]> {
@@ -259,6 +280,7 @@ export class PollManager
 
 		return data
 	}
+	 */
 
 }
 

@@ -1,7 +1,7 @@
 <script>
 	import {
 		forms
-	}                  from '@votecube/public-logic'
+	}                  from '@votecube/vc-logic'
 	import {
 		createEventDispatcher,
 		onDestroy,

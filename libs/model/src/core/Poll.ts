@@ -11,8 +11,9 @@ import {
 	DocStatus,
 	IFullTextSearch,
 	IsDelta,
-	IsDoc
-}                        from './common'
+	IsDoc,
+	Key
+} from './common'
 import {
 	ICoreAgeSuitabilityTracked,
 	IDocumentValue
@@ -22,10 +23,12 @@ import {ICoreOutcome,}   from './Outcome'
 import {ICoreTheme}      from './Theme'
 import {IUserCreated}    from './User'
 
+export type Poll_Key = Key
+
 export interface ICorePoll<Doc extends DocStatus, K extends Id = Poll_Id>
 	extends ICoreAgeSuitabilityTracked<Doc>,
 	        IFullTextSearch,
-	        IUserCreated<K> {
+	        IUserCreated {
 
 	factors: ICorePollFactorsFragment<Doc>
 	name: Doc extends IsDoc ? IDocumentValue<PollRevisionTranslation_Name> :

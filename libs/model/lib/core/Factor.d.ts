@@ -1,4 +1,4 @@
-import { Factor_Id, FactorTranslation_Name, PollRevisionFactorPosition_Axis, PollRevisionFactorPosition_FactorNumber } from '@votecube/relational-db';
+import { FactorTranslation_Name, PollRevisionFactorPosition_Axis, PollRevisionFactorPosition_FactorNumber } from '@votecube/relational-db';
 import { ICoreColor } from './Color';
 import { DocStatus, IFullTextSearch, IMarked, IsData, IsDelta, IsDoc } from './common';
 import { ICoreAgeSuitabilityTracked, IDocumentValue } from './DocumentValue';
@@ -28,7 +28,7 @@ export interface ICoreMarkedFactor<Doc extends DocStatus> extends ICoreAgeSuitab
         marks: IMarked;
     };
 }
-export interface ICoreFactorBase<Doc extends DocStatus> extends IFullTextSearch, IUserCreated<Factor_Id> {
+export interface ICoreFactorBase<Doc extends DocStatus> extends IFullTextSearch, IUserCreated {
     axis: Doc extends IsDoc ? IDocumentValue<Factor_Axis> : Doc extends IsDelta ? boolean : Factor_Axis;
     name: Doc extends IsDoc ? IDocumentValue<FactorTranslation_Name> : Doc extends IsDelta ? boolean : FactorTranslation_Name;
 }

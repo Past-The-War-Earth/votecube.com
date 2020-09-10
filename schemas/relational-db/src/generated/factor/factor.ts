@@ -32,6 +32,7 @@ export interface IFactor extends IAgeSuitableRow {
 	parent?: IFactor;
 	children?: IFactor[];
 	factorPositions?: IFactorPosition[];
+	translations?: IFactorTranslation[];
 
 	// Transient Properties
 

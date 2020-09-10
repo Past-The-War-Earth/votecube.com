@@ -1,11 +1,12 @@
 import { Factor_Id, Id, Outcome_Id, Poll_Id, PollRevision_Id, PollRevisionTranslation_Name, Position_Id } from '@votecube/relational-db';
-import { DocStatus, IFullTextSearch, IsDelta, IsDoc } from './common';
+import { DocStatus, IFullTextSearch, IsDelta, IsDoc, Key } from './common';
 import { ICoreAgeSuitabilityTracked, IDocumentValue } from './DocumentValue';
 import { ICoreFactorBase } from './Factor';
 import { ICoreOutcome } from './Outcome';
 import { ICoreTheme } from './Theme';
 import { IUserCreated } from './User';
-export interface ICorePoll<Doc extends DocStatus, K extends Id = Poll_Id> extends ICoreAgeSuitabilityTracked<Doc>, IFullTextSearch, IUserCreated<K> {
+export declare type Poll_Key = Key;
+export interface ICorePoll<Doc extends DocStatus, K extends Id = Poll_Id> extends ICoreAgeSuitabilityTracked<Doc>, IFullTextSearch, IUserCreated {
     factors: ICorePollFactorsFragment<Doc>;
     name: Doc extends IsDoc ? IDocumentValue<PollRevisionTranslation_Name> : Doc extends IsDelta ? boolean : PollRevisionTranslation_Name;
     outcomes: ICorePollOutcomesFragment<Doc>;

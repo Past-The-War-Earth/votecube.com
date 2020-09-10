@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
 	SystemGeneratedRowEUpdateProperties,
@@ -94,9 +94,15 @@ export interface VoteTypeEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface VoteTypeECascadeGraph
-	extends SystemGeneratedRowECascadeGraph {
-	// Cascading Relations
+export interface VoteTypeGraph
+	extends SystemGeneratedRowESelect, VoteTypeEOptionalId, SystemGeneratedRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	name?: string | IQStringField;
+	description?: string | IQStringField;
+
+	// Relations
 
 }
 

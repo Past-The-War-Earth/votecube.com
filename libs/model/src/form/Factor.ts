@@ -1,21 +1,24 @@
 import {
 	FactorTranslation_Name,
 	PositionTranslation_Name
-} from '@votecube/relational-db'
+}                    from '@votecube/relational-db'
+import {IUiColor}    from '..'
+import {UiDocStatus} from '../ui/common'
 import {
 	ICoreColor,
 	IsData,
-} from '../core/core'
+	IsDelta,
+}                    from '../core/core'
 
-export interface IFactorForm {
-	color: ICoreColor<IsData>
-	name: FactorTranslation_Name
-	positions: IFactorPositionsForm
+export interface IFactorForm<Doc extends UiDocStatus> {
+	color: IUiColor<Doc>
+	name: Doc extends IsDelta ? boolean : FactorTranslation_Name
+	positions: IFactorPositionsForm<Doc>
 }
 
-export interface IFactorPositionsForm {
+export interface IFactorPositionsForm<Doc extends UiDocStatus> {
 
-	A: PositionTranslation_Name
-	B: PositionTranslation_Name
+	A: Doc extends IsDelta ? boolean : PositionTranslation_Name
+	B: Doc extends IsDelta ? boolean : PositionTranslation_Name
 
 }

@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	MutableActorRowECascadeGraph,
+	MutableActorRowGraph,
 	MutableActorRowEId,
 	MutableActorRowEUpdateColumns,
 	MutableActorRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QMutableActorRow,
 } from '../infrastructure/row/qmutableactorrow';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionQRelation,
 } from '../poll/revision/qpollrevision';
 import {
-	PollRunECascadeGraph,
+	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
 	PollRunEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QPollRunQRelation,
 } from '../poll/run/qpollrun';
 import {
-	VoteECascadeGraph,
+	VoteGraph,
 	VoteEId,
 	VoteEOptionalId,
 	VoteEUpdateProperties,
@@ -62,7 +62,7 @@ import {
 	QVoteQRelation,
 } from '../vote/qvote';
 import {
-	PollRevisionOpinionRatingECascadeGraph,
+	PollRevisionOpinionRatingGraph,
 	PollRevisionOpinionRatingEId,
 	PollRevisionOpinionRatingEOptionalId,
 	PollRevisionOpinionRatingEUpdateProperties,
@@ -72,7 +72,7 @@ import {
 	QPollRevisionOpinionRatingQRelation,
 } from './rating/qpollrevisionopinionrating';
 import {
-	PollRevisionOpinionVersionECascadeGraph,
+	PollRevisionOpinionVersionGraph,
 	PollRevisionOpinionVersionEId,
 	PollRevisionOpinionVersionEOptionalId,
 	PollRevisionOpinionVersionEUpdateProperties,
@@ -82,7 +82,7 @@ import {
 	QPollRevisionOpinionVersionQRelation,
 } from './qpollrevisionopinionversion';
 import {
-	FactorOpinionVersionECascadeGraph,
+	FactorOpinionVersionGraph,
 	FactorOpinionVersionEId,
 	FactorOpinionVersionEOptionalId,
 	FactorOpinionVersionEUpdateProperties,
@@ -92,7 +92,7 @@ import {
 	QFactorOpinionVersionQRelation,
 } from './qfactoropinionversion';
 import {
-	OutcomeOpinionVersionECascadeGraph,
+	OutcomeOpinionVersionGraph,
 	OutcomeOpinionVersionEId,
 	OutcomeOpinionVersionEOptionalId,
 	OutcomeOpinionVersionEUpdateProperties,
@@ -102,7 +102,7 @@ import {
 	QOutcomeOpinionVersionQRelation,
 } from './qoutcomeopinionversion';
 import {
-	PositionOpinionVersionECascadeGraph,
+	PositionOpinionVersionGraph,
 	PositionOpinionVersionEId,
 	PositionOpinionVersionEOptionalId,
 	PositionOpinionVersionEUpdateProperties,
@@ -181,14 +181,21 @@ export interface PollRevisionOpinionEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionOpinionECascadeGraph
-	extends MutableActorRowECascadeGraph {
-	// Cascading Relations
-	ratings?: PollRevisionOpinionRatingECascadeGraph;
-	versions?: PollRevisionOpinionVersionECascadeGraph;
-	factors?: FactorOpinionVersionECascadeGraph;
-	outcomes?: OutcomeOpinionVersionECascadeGraph;
-	positions?: PositionOpinionVersionECascadeGraph;
+export interface PollRevisionOpinionGraph
+	extends MutableActorRowESelect, PollRevisionOpinionEOptionalId, MutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	pollRevision?: PollRevisionGraph;
+	run?: PollRunGraph;
+	vote?: VoteGraph;
+	ratings?: PollRevisionOpinionRatingGraph[];
+	versions?: PollRevisionOpinionVersionGraph[];
+	factors?: FactorOpinionVersionGraph[];
+	outcomes?: OutcomeOpinionVersionGraph[];
+	positions?: PositionOpinionVersionGraph[];
 
 }
 

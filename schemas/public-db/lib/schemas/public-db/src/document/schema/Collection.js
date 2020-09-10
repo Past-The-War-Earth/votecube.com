@@ -1,5 +1,7 @@
-import { ChildCollection } from './ChildCollection';
-export class Collection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const ChildCollection_1 = require("./ChildCollection");
+class Collection {
     constructor(name) {
         this.name = name;
     }
@@ -7,7 +9,7 @@ export class Collection {
         if (ChildCollectionConstructor) {
             return new ChildCollectionConstructor(name, this, keyOrReference);
         }
-        return new ChildCollection(name, this, keyOrReference);
+        return new ChildCollection_1.ChildCollection(name, this, keyOrReference);
     }
     doc(key) {
         if (key) {
@@ -18,4 +20,5 @@ export class Collection {
         }
     }
 }
+exports.Collection = Collection;
 //# sourceMappingURL=Collection.js.map

@@ -6,7 +6,7 @@ import {
 import {IUserCreated} from './User'
 
 export interface IPathFragment<K extends Id>
-	extends IUserCreated<K> {
+	extends IUserCreated {
 }
 
 export interface IPath<K extends Id> {
@@ -21,7 +21,7 @@ export interface IParent<K extends Id>
 }
 
 export interface IVersioned<K extends Id>
-	extends IUserCreated<K> {
+	extends IUserCreated {
 
 	depth: Doc_Depth
 	parent: IParent<K>

@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableRowECascadeGraph,
+	ImmutableRowGraph,
 	ImmutableRowEId,
 	ImmutableRowEUpdateColumns,
 	ImmutableRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QImmutableRow,
 } from '../../infrastructure/row/qimmutablerow';
 import {
-	SkinECascadeGraph,
+	SkinGraph,
 	SkinEId,
 	SkinEOptionalId,
 	SkinEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QSkinQRelation,
 } from '../../factor/qskin';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QPollRevisionQRelation,
 } from './qpollrevision';
 import {
-	FactorPositionECascadeGraph,
+	FactorPositionGraph,
 	FactorPositionEId,
 	FactorPositionEOptionalId,
 	FactorPositionEUpdateProperties,
@@ -143,10 +143,25 @@ export interface PollRevisionFactorPositionEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionFactorPositionECascadeGraph
-	extends ImmutableRowECascadeGraph {
-	// Cascading Relations
-	children?: PollRevisionFactorPositionECascadeGraph;
+export interface PollRevisionFactorPositionGraph
+	extends ImmutableRowESelect, PollRevisionFactorPositionEOptionalId, ImmutableRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	axis?: string | IQStringField;
+	dir?: number | IQNumberField;
+	factorNumber?: number | IQNumberField;
+	blue?: number | IQNumberField;
+	green?: number | IQNumberField;
+	red?: number | IQNumberField;
+	outcomeOrdinal?: string | IQStringField;
+
+	// Relations
+	skin?: SkinGraph;
+	pollRevision?: PollRevisionGraph;
+	factorPosition?: FactorPositionGraph;
+	parent?: PollRevisionFactorPositionGraph;
+	children?: PollRevisionFactorPositionGraph[];
 
 }
 

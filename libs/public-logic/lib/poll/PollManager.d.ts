@@ -1,36 +1,33 @@
 import { IFieldGroup } from '@votecube/forms';
-import { IPollData, IUiPollVariation, IUiPollVariationDelta, IUser, IVariationData, IVariationDoc, IVote, Poll_Id, Theme_Id, Variation_Id } from '@votecube/model';
+import { IsData, IUiPoll, IUiPollRevision, IUiPollRevisionDelta, IVote } from '@votecube/model';
+import { IUserAccount, Poll_Id, PollRevision_Id, Theme_Id } from '@votecube/relational-db';
 export interface IPageVote extends IVote {
-    changeMillis: number;
+    changeMillis?: number;
 }
 export interface IPollManager {
-    currentVariation: IStoredVariation;
-    getAllPolls(): Promise<IPollData[]>;
-    getChildVariationListings(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationData[]>;
-    getPollsForTheme(themeId: Theme_Id): Promise<IPollData[]>;
-    getVariation(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationData>;
-    getVariationListing(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationData>;
+    currentRevision: IStoredRevision;
+    getAllPolls(): Promise<IUiPoll<IsData>[]>;
+    getChildRevisionListings(pollId: Poll_Id, revisionId: PollRevision_Id): Promise<IUiPollRevision[]>;
+    getPollsForTheme(themeId: Theme_Id): Promise<IUiPoll<IsData>[]>;
+    getRevision(pollId: Poll_Id, pollRevisionId: PollRevision_Id): Promise<IUiPollRevision>;
+    getRevisionListing(pollId: Poll_Id, pollRevisionId: PollRevision_Id): Promise<IUiPollRevision>;
     mergeForm(): Promise<void>;
-    saveCurrentVariation(user: IUser): Promise<void>;
+    saveCurrentRevision(userAccount: IUserAccount): Promise<void>;
 }
-export interface IStoredVariation {
-    doc: IVariationDoc;
+export interface IStoredRevision {
     form?: IFieldGroup;
-    originalUi: IUiPollVariation;
-    ui: IUiPollVariation;
-    uiDelta?: IUiPollVariationDelta;
+    originalUi: IUiPollRevision;
+    ui: IUiPollRevision;
+    uiDelta?: IUiPollRevisionDelta;
 }
 export declare class PollManager implements IPollManager {
-    private currVariation;
-    get currentVariation(): IStoredVariation;
-    getAllPolls(): Promise<IPollData[]>;
-    getChildVariationListings(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationData[]>;
-    getPollsForTheme(themeId: Theme_Id): Promise<IPollData[]>;
-    getVariation(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationData>;
-    getVariationListing(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationData>;
+    private currRevision;
+    get currentRevision(): IStoredRevision;
+    getAllPolls(): Promise<IUiPoll<IsData>[]>;
+    getChildRevisionListings(pollId: Poll_Id, revisionId: PollRevision_Id): Promise<IUiPollRevision[]>;
+    getPollsForTheme(themeId: Theme_Id): Promise<IUiPoll<IsData>[]>;
+    getRevision(pollId: Poll_Id, pollRevisionId: PollRevision_Id): Promise<IUiPollRevision>;
+    getRevisionListing(pollId: Poll_Id, revisionId: PollRevision_Id): Promise<IUiPollRevision>;
     mergeForm(): Promise<void>;
-    saveCurrentVariation(user: IUser): Promise<void>;
-    private convertDocs;
-    private convertDoc;
-    private convertADoc;
+    saveCurrentRevision(user: IUserAccount): Promise<void>;
 }

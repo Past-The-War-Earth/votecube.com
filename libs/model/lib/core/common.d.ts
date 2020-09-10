@@ -2,6 +2,7 @@ import { Id } from '@votecube/relational-db';
 export declare type IsData = 'data';
 export declare type IsDelta = 'delta';
 export declare type IsDoc = 'doc';
+export declare type Key = string;
 export declare type DocStatus = IsData | IsDelta | IsDoc;
 export declare type IsFromForm = true;
 export declare type IsNotFromForm = false;

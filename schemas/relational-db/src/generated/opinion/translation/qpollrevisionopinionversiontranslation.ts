@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
 	SystemGeneratedRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QSystemGeneratedRow,
 } from '../../infrastructure/row/qsystemgeneratedrow';
 import {
-	PollRevisionOpinionVersionECascadeGraph,
+	PollRevisionOpinionVersionGraph,
 	PollRevisionOpinionVersionEId,
 	PollRevisionOpinionVersionEOptionalId,
 	PollRevisionOpinionVersionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionOpinionVersionQRelation,
 } from '../qpollrevisionopinionversion';
 import {
-	LanguageECascadeGraph,
+	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
 	LanguageEUpdateProperties,
@@ -120,9 +120,18 @@ export interface PollRevisionOpinionVersionTranslationEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionOpinionVersionTranslationECascadeGraph
-	extends SystemGeneratedRowECascadeGraph {
-	// Cascading Relations
+export interface PollRevisionOpinionVersionTranslationGraph
+	extends SystemGeneratedRowESelect, PollRevisionOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	original?: boolean | IQBooleanField;
+	title?: string | IQStringField;
+	text?: string | IQStringField;
+
+	// Relations
+	opinionVersion?: PollRevisionOpinionVersionGraph;
+	language?: LanguageGraph;
 
 }
 

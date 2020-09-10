@@ -3,7 +3,7 @@
 	import {
 		AUTH,
 		text
-	}                         from '@votecube/public-logic'
+	}                         from '@votecube/vc-logic'
 	import {
 		createEventDispatcher,
 		onDestroy,
@@ -38,9 +38,8 @@
 		const theText = get(text)
 
 		signInForm = formFactory.group('SignIn', {
-			username: formFactory.field([
+			userName: formFactory.field([
 				formFactory.validators.required(),
-				formFactory.validators.minLength(5),
 			], {maxLength: 64}),
 			password: formFactory.field([
 				formFactory.validators.required(),
@@ -49,9 +48,8 @@
 		}, [formFactory.validators.required()], theText.UI.SignIn, 'SignUp')
 
 		signUpForm = formFactory.group('SignUp', {
-			username: formFactory.field([
+			userName: formFactory.field([
 				formFactory.validators.required(),
-				formFactory.validators.minLength(5),
 			], {maxLength: 64}),
 			password: formFactory.field([
 				formFactory.validators.required(),
@@ -117,7 +115,7 @@
 		}
 		switch (errorObject.code) {
 			case 'NotFound':
-				error = 'Username not found.'
+				error = 'E-mail not found.'
 				break
 			case 'WrongPassword':
 				error = 'Wrong password.'
@@ -134,17 +132,17 @@
 
 
 	async function doSignUp(
-		username,
+		userName,
 		password
 	) {
 		const auth  = await container.get(AUTH)
-		const errorObject = await auth.signUp(username, password)
+		const errorObject = await auth.signUp(userName, password)
 		if (!errorObject) {
 			return true
 		}
 		switch (errorObject.code) {
 			case 'InUse':
-				error = 'Username already taken.'
+				error = 'E-mail already taken.'
 				break
 			case 'Invalid':
 				error = 'Invalid username.'
@@ -215,7 +213,7 @@
 			{#if signInMode}
 			<!--			<legend>Create Poll</legend>-->
 			<Text
-					field="{signInForm.fields.username}"
+					field="{signInForm.fields.userName}"
 			></Text>
 			<Text
 					field="{signInForm.fields.password}"
@@ -223,7 +221,7 @@
 			></Text>
 			{:else}
 			<Text
-					field="{signUpForm.fields.username}"
+					field="{signUpForm.fields.userName}"
 			></Text>
 			<div class="pure-control-group">
 				<Text

@@ -8,7 +8,7 @@
 	import {
 		CUBE_LOGIC,
 		LOGIC_UTILS
-	}           from '@votecube/public-logic'
+	}           from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

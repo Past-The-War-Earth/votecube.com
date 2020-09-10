@@ -1,8 +1,15 @@
-import { container, DI } from '@airport/di';
-import { BehaviorSubject } from '@airport/observe';
-import { USER_DAO } from '@votecube/public-db';
-import { AUTH } from './tokens';
-export class Auth {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const observe_1 = require("@airport/observe");
+const public_db_1 = require("@votecube/public-db");
+const tokens_1 = require("./tokens");
+class Auth {
+    constructor(a, b, c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
     getFbAuthUser() {
         const fb = window.fb;
         return fb.auth().currentUser;
@@ -23,7 +30,7 @@ export class Auth {
         const fb = window.fb;
         // const user = this.getUser()
         // store.set({user})
-        const subject = new BehaviorSubject(null);
+        const subject = new observe_1.BehaviorSubject(null);
         fb.auth().onAuthStateChanged((fbAuthUser) => {
             // let appUser: IAppUser = null
             // if (fbAuthUser) {
@@ -85,7 +92,7 @@ export class Auth {
             const user$ = await this.reactToUser();
             let user;
             user$.subscribe(createdUser => user = createdUser).unsubscribe();
-            const userDao = await container(this).get(USER_DAO);
+            const userDao = await di_1.container(this).get(public_db_1.USER_DAO);
             await userDao.signUp(username, password, user);
         }
         catch (error) {
@@ -106,11 +113,12 @@ export class Auth {
         }
     }
     async encodePassword(password) {
-        const jsSHA = await import('jssha/src/sha512');
+        const jsSHA = await Promise.resolve().then(() => require('jssha/src/sha512'));
         const shaObj = new jsSHA('SHA-512', 'TEXT');
         shaObj.update(password);
         return shaObj.getHash('B64');
     }
 }
-DI.set(AUTH, Auth);
+exports.Auth = Auth;
+di_1.DI.set(tokens_1.AUTH, Auth);
 //# sourceMappingURL=Auth.js.map

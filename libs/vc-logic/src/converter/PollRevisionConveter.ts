@@ -11,7 +11,6 @@ import {
 	Position_Dir,
 }                                from '@votecube/model'
 import {
-	Id,
 	IFactor,
 	IFactorPosition,
 	IFactorTranslation,
@@ -22,8 +21,11 @@ import {
 	IPollRevisionTranslation,
 	IPosition,
 	ITheme,
+}                                from '@votecube/relational-db/lib/generated/interfaces'
+import {
+	Id,
 	Outcome_Ordinal
-}                                from '@votecube/relational-db'
+}                                from '@votecube/relational-db/lib/types/types'
 import {POLL_REVISION_CONVERTER} from '../tokens'
 
 export interface IPollRevisionConverter {
@@ -71,90 +73,6 @@ export class PollRevisionConverter
 			pollId: revisionDb.poll.id,
 			theme: this.getUiTheme(revisionDb.poll.theme),
 			userId: revisionDb.userAccount.id
-		}
-	}
-
-	getUiFactor(
-		factorNumber: Factor_Number,
-		factorPositions: IPollRevisionFactorPosition[]
-	): IUiFactor<IsData> {
-		const matchingFactorPositions = factorPositions.filter(factorPosition =>
-			factorPosition.factorNumber === factorNumber)
-
-		let dbFactorPositionA: IPollRevisionFactorPosition
-		let dbFactorPositionB: IPollRevisionFactorPosition
-
-		if (matchingFactorPositions[0].outcomeOrdinal === 'A') {
-			dbFactorPositionA = matchingFactorPositions[0]
-			dbFactorPositionB = matchingFactorPositions[1]
-		} else {
-			dbFactorPositionA = matchingFactorPositions[1]
-			dbFactorPositionB = matchingFactorPositions[0]
-		}
-
-		const dbFactor = dbFactorPositionA.factorPosition.factor
-
-
-		return {
-			ageSuitability: dbFactor.ageSuitability,
-			axis: dbFactorPositionA.axis as 'x' | 'y' | 'z',
-			color: {
-				blue: dbFactorPositionA.blue,
-				green: dbFactorPositionA.green,
-				red: dbFactorPositionA.red,
-			},
-			createdAt: dbFactor.createdAt,
-			id: dbFactor.id,
-			name: dbFactor.parentTranslation.name,
-			parentId: dbFactor.parent ? dbFactor.parent.id : null,
-			positions: {
-				A: this.getUiPosition(dbFactorPositionA),
-				B: this.getUiPosition(dbFactorPositionB),
-			},
-			translationId: dbFactor.parentTranslation.id,
-			userId: dbFactor.userAccount.id,
-		}
-	}
-
-	getUiPosition(
-		prFactorPosition: IPollRevisionFactorPosition
-	): IUiPosition<IsData> {
-		const position = prFactorPosition.factorPosition.position
-
-		return {
-			ageSuitability: position.ageSuitability,
-			createdAt: position.createdAt,
-			dir: prFactorPosition.dir as Position_Dir,
-			id: position.id,
-			name: position.parentTranslation.name,
-			pollFactorPositionId: prFactorPosition.id,
-			pollFactorPositionParentId: prFactorPosition.parent ? prFactorPosition.parent.id : null,
-			positionParentId: position.parent ? position.parent.id : null,
-			userId: position.userAccount.id,
-		}
-	}
-
-	getUiOutcome(
-		outcome: IOutcome
-	): IUiOutcome<IsData> {
-		return {
-			ageSuitability: outcome.ageSuitability,
-			createdAt: outcome.createdAt,
-			id: outcome.id,
-			name: outcome.parentTranslation.name,
-			userId: outcome.userAccount.id,
-		}
-	}
-
-	getUiTheme(
-		theme: ITheme
-	): IUiTheme<IsData> {
-		// TODO: implement
-
-		return {
-			id: theme.id,
-			ageSuitability: theme.ageSuitability,
-			name: theme.name,
 		}
 	}
 
@@ -213,7 +131,90 @@ export class PollRevisionConverter
 		return uiPollRevision
 	}
 
-	getDbOutcome(
+	private getUiFactor(
+		factorNumber: Factor_Number,
+		factorPositions: IPollRevisionFactorPosition[]
+	): IUiFactor<IsData> {
+		const matchingFactorPositions = factorPositions.filter(factorPosition =>
+			factorPosition.factorNumber === factorNumber)
+
+		let dbFactorPositionA: IPollRevisionFactorPosition
+		let dbFactorPositionB: IPollRevisionFactorPosition
+
+		if (matchingFactorPositions[0].outcomeOrdinal === 'A') {
+			dbFactorPositionA = matchingFactorPositions[0]
+			dbFactorPositionB = matchingFactorPositions[1]
+		} else {
+			dbFactorPositionA = matchingFactorPositions[1]
+			dbFactorPositionB = matchingFactorPositions[0]
+		}
+
+		const dbFactor = dbFactorPositionA.factorPosition.factor
+
+		return {
+			ageSuitability: dbFactor.ageSuitability,
+			axis: dbFactorPositionA.axis as 'x' | 'y' | 'z',
+			color: {
+				blue: dbFactorPositionA.blue,
+				green: dbFactorPositionA.green,
+				red: dbFactorPositionA.red,
+			},
+			createdAt: dbFactor.createdAt,
+			id: dbFactor.id,
+			name: dbFactor.parentTranslation.name,
+			parentId: dbFactor.parent ? dbFactor.parent.id : null,
+			positions: {
+				A: this.getUiPosition(dbFactorPositionA),
+				B: this.getUiPosition(dbFactorPositionB),
+			},
+			translationId: dbFactor.parentTranslation.id,
+			userId: dbFactor.userAccount.id,
+		}
+	}
+
+	private getUiPosition(
+		prFactorPosition: IPollRevisionFactorPosition
+	): IUiPosition<IsData> {
+		const position = prFactorPosition.factorPosition.position
+
+		return {
+			ageSuitability: position.ageSuitability,
+			createdAt: position.createdAt,
+			dir: prFactorPosition.dir as Position_Dir,
+			id: position.id,
+			name: position.parentTranslation.name,
+			pollFactorPositionId: prFactorPosition.id,
+			pollFactorPositionParentId: prFactorPosition.parent ? prFactorPosition.parent.id : null,
+			positionParentId: position.parent ? position.parent.id : null,
+			userId: position.userAccount.id,
+		}
+	}
+
+	private getUiOutcome(
+		outcome: IOutcome
+	): IUiOutcome<IsData> {
+		return {
+			ageSuitability: outcome.ageSuitability,
+			createdAt: outcome.createdAt,
+			id: outcome.id,
+			name: outcome.parentTranslation.name,
+			userId: outcome.userAccount.id,
+		}
+	}
+
+	private getUiTheme(
+		theme: ITheme
+	): IUiTheme<IsData> {
+		// TODO: implement
+
+		return {
+			id: theme.id,
+			ageSuitability: theme.ageSuitability,
+			name: theme.name,
+		}
+	}
+
+	private getDbOutcome(
 		uiOutcome: IUiOutcome<IsData>
 	): IOutcome {
 		if (uiOutcome.id) {
@@ -232,7 +233,7 @@ export class PollRevisionConverter
 		}
 	}
 
-	getDbPollFactorPosition(
+	private getDbPollFactorPosition(
 		uiFactor: IUiFactor<IsData>,
 		factorNumber: Factor_Number,
 		outcomeOrdinal: Outcome_Ordinal
@@ -275,7 +276,7 @@ export class PollRevisionConverter
 		}
 	}
 
-	getDbFactor(
+	private getDbFactor(
 		uiFactor: IUiFactor<IsData>
 	): IFactor {
 		if (uiFactor.id) {
@@ -304,7 +305,7 @@ export class PollRevisionConverter
 		}
 	}
 
-	getDbPosition(
+	private getDbPosition(
 		uiPosition: IUiPosition<IsData>,
 	): IPosition {
 		if (uiPosition.id) {

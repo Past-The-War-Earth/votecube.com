@@ -1,5 +1,7 @@
-import { RootCollection } from './RootCollection';
-export class FactorsCollection extends RootCollection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const RootCollection_1 = require("./RootCollection");
+class FactorsCollection extends RootCollection_1.RootCollection {
     constructor(schema) {
         super('factors', schema);
     }
@@ -10,4 +12,5 @@ export class FactorsCollection extends RootCollection {
         return this.child(keyOrReference, 'factorPositions');
     }
 }
+exports.FactorsCollection = FactorsCollection;
 //# sourceMappingURL=FactorsCollection.js.map

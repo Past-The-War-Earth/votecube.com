@@ -1,11 +1,11 @@
-import { IPollForm, IsData, IsDelta, IVariationData, IVariationDataOrDelta } from '@votecube/model';
+import { IPollForm, IUiPollRevisionCore, UiDocStatus } from '@votecube/model';
 export interface IPollFormManager {
-    fromForm<DataOrDelta extends IsData | IsDelta>(form: IPollForm): IVariationDataOrDelta<DataOrDelta>;
-    toForm(data: IVariationData): IPollForm;
+    fromForm<Doc extends UiDocStatus>(form: IPollForm<Doc>): IUiPollRevisionCore<Doc>;
+    toForm<Doc extends UiDocStatus>(data: IUiPollRevisionCore<Doc>): IPollForm<Doc>;
 }
 export declare class PollFormManager implements IPollFormManager {
-    fromForm<DataOrDelta extends IsData | IsDelta>(form: IPollForm): IVariationDataOrDelta<DataOrDelta>;
-    toForm(data: IVariationData): IPollForm;
+    fromForm<Doc extends UiDocStatus>(form: IPollForm<Doc>): IUiPollRevisionCore<Doc>;
+    toForm<Doc extends UiDocStatus>(data: IUiPollRevisionCore<Doc>): IPollForm<Doc>;
     private toPollFactorForm;
     private toPollFactorFromForm;
 }

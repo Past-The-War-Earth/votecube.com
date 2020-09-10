@@ -1,8 +1,10 @@
-import { DI } from '@airport/di';
-import { CUBE_LOGIC, DETAILED_CUBE_LOGIC, LOGIC_UTILS } from '../../../tokens';
-export class DetailedCubeLogic {
-    async getCubeSides(variation, container) {
-        const [cubeLogic, logicUtils] = await container.get(CUBE_LOGIC, LOGIC_UTILS);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../../../tokens");
+class DetailedCubeLogic {
+    async getCubeSides(revision, container) {
+        const [cubeLogic, logicUtils] = await container.get(tokens_1.CUBE_LOGIC, tokens_1.LOGIC_UTILS);
         const cubeSides = cubeLogic.getDefaultCubePositions();
         const cubeSideMap = {
             x: {},
@@ -13,8 +15,8 @@ export class DetailedCubeLogic {
             cubeSideMap[cubeSide.axis][cubeSide.dir]
                 = cubeSide;
         }
-        for (const factorNumber in variation.factors) {
-            const factor = variation.factors[factorNumber];
+        for (const factorNumber in revision.factors) {
+            const factor = revision.factors[factorNumber];
             for (const outcome in factor.positions) {
                 const position = factor.positions[outcome];
                 const cubeSide = cubeSideMap[factor.axis][position.dir];
@@ -107,5 +109,6 @@ export class DetailedCubeLogic {
         cubeSideFrom.position.dir = toDir;
     }
 }
-DI.set(DETAILED_CUBE_LOGIC, DetailedCubeLogic);
+exports.DetailedCubeLogic = DetailedCubeLogic;
+di_1.DI.set(tokens_1.DETAILED_CUBE_LOGIC, DetailedCubeLogic);
 //# sourceMappingURL=DetailedCubeLogic.js.map

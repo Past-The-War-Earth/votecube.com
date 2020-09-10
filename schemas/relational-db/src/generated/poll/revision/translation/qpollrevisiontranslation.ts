@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
 	ImmutableActorRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QImmutableActorRow,
 } from '../../../infrastructure/row/qimmutableactorrow';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionQRelation,
 } from '../qpollrevision';
 import {
-	LanguageECascadeGraph,
+	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
 	LanguageEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QLanguageQRelation,
 } from '../../../infrastructure/qlanguage';
 import {
-	TranslationTypeECascadeGraph,
+	TranslationTypeGraph,
 	TranslationTypeEId,
 	TranslationTypeEOptionalId,
 	TranslationTypeEUpdateProperties,
@@ -62,7 +62,7 @@ import {
 	QTranslationTypeQRelation,
 } from '../../../infrastructure/qtranslationtype';
 import {
-	PollRevisionTranslationRatingECascadeGraph,
+	PollRevisionTranslationRatingGraph,
 	PollRevisionTranslationRatingEId,
 	PollRevisionTranslationRatingEOptionalId,
 	PollRevisionTranslationRatingEUpdateProperties,
@@ -142,11 +142,20 @@ export interface PollRevisionTranslationEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionTranslationECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
-	// Cascading Relations
-	children?: PollRevisionTranslationECascadeGraph;
-	ratings?: PollRevisionTranslationRatingECascadeGraph;
+export interface PollRevisionTranslationGraph
+	extends ImmutableActorRowESelect, PollRevisionTranslationEOptionalId, ImmutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	name?: string | IQStringField;
+
+	// Relations
+	pollRevision?: PollRevisionGraph;
+	language?: LanguageGraph;
+	type?: TranslationTypeGraph;
+	parent?: PollRevisionTranslationGraph;
+	children?: PollRevisionTranslationGraph[];
+	ratings?: PollRevisionTranslationRatingGraph[];
 
 }
 

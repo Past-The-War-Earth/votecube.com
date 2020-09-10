@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	AgeSuitableRowECascadeGraph,
+	AgeSuitableRowGraph,
 	AgeSuitableRowEId,
 	AgeSuitableRowEUpdateColumns,
 	AgeSuitableRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QAgeSuitableRow,
 } from '../../infrastructure/row/qagesuitablerow';
 import {
-	OutcomeTranslationECascadeGraph,
+	OutcomeTranslationGraph,
 	OutcomeTranslationEId,
 	OutcomeTranslationEOptionalId,
 	OutcomeTranslationEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QOutcomeTranslationQRelation,
 } from './translation/qoutcometranslation';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -117,12 +117,18 @@ export interface OutcomeEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface OutcomeECascadeGraph
-	extends AgeSuitableRowECascadeGraph {
-	// Cascading Relations
-	children?: OutcomeECascadeGraph;
-	pollRevisionsA?: PollRevisionECascadeGraph;
-	pollRevisionsB?: PollRevisionECascadeGraph;
+export interface OutcomeGraph
+	extends AgeSuitableRowESelect, OutcomeEOptionalId, AgeSuitableRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	parentTranslation?: OutcomeTranslationGraph;
+	parent?: OutcomeGraph;
+	children?: OutcomeGraph[];
+	pollRevisionsA?: PollRevisionGraph[];
+	pollRevisionsB?: PollRevisionGraph[];
 
 }
 

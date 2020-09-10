@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
 	SystemGeneratedRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QSystemGeneratedRow,
 } from '../../infrastructure/row/qsystemgeneratedrow';
 import {
-	OutcomeOpinionVersionECascadeGraph,
+	OutcomeOpinionVersionGraph,
 	OutcomeOpinionVersionEId,
 	OutcomeOpinionVersionEOptionalId,
 	OutcomeOpinionVersionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QOutcomeOpinionVersionQRelation,
 } from '../qoutcomeopinionversion';
 import {
-	LanguageECascadeGraph,
+	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
 	LanguageEUpdateProperties,
@@ -120,9 +120,18 @@ export interface OutcomeOpinionVersionTranslationEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface OutcomeOpinionVersionTranslationECascadeGraph
-	extends SystemGeneratedRowECascadeGraph {
-	// Cascading Relations
+export interface OutcomeOpinionVersionTranslationGraph
+	extends SystemGeneratedRowESelect, OutcomeOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	original?: boolean | IQBooleanField;
+	title?: string | IQStringField;
+	text?: string | IQStringField;
+
+	// Relations
+	outcomeOpinionVersion?: OutcomeOpinionVersionGraph;
+	language?: LanguageGraph;
 
 }
 

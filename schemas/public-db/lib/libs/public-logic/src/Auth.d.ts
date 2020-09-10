@@ -21,6 +21,10 @@ export interface IAuth {
     signUp(username: string, password: string): Promise<IAuthError | void>;
 }
 export declare class Auth implements IAuth {
+    a: any;
+    private b;
+    protected c: any;
+    constructor(a: any, b: any, c: any);
     getFbAuthUser(): IFbAuthUser;
     getUser(dbUser?: IFbAuthUser): IAppUser;
     reactToUser(): Promise<IObservable<IAppUser>>;

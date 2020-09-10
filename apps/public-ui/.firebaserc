@@ -1,7 +1,0 @@
-{
-  "projects": {
-    "default": "votecube-v1",
-    "prod": "votecube-v1",
-    "stage": "votecube-stage"
-  }
-}

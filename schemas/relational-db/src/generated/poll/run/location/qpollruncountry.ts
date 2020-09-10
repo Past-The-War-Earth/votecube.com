@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	CountryECascadeGraph,
+	CountryGraph,
 	CountryEId,
 	CountryEOptionalId,
 	CountryEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QCountryQRelation,
 } from '../../../location/qcountry';
 import {
-	PollRunECascadeGraph,
+	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
 	PollRunEUpdateProperties,
@@ -104,9 +104,15 @@ export interface PollRunCountryEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRunCountryECascadeGraph
-	extends IEntityCascadeGraph {
-	// Cascading Relations
+export interface PollRunCountryGraph
+	extends IEntitySelectProperties, PollRunCountryEOptionalId, IEntityCascadeGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	country?: CountryGraph;
+	run?: PollRunGraph;
 
 }
 

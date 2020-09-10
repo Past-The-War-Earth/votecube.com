@@ -1,8 +1,9 @@
 import {
+	Id,
 	Poll_Id,
 	PollRevision_Id,
 	PollRevisionTranslation_Name
-}                   from '@votecube/relational-db'
+} from '@votecube/relational-db'
 import {
 	DocStatus,
 	IFullTextSearch,
@@ -29,7 +30,6 @@ import {
 	ICoreTheme,
 	ICoreThemeFromForm
 }                   from './Theme'
-
 
 export interface ICoreRevision<Doc extends DocStatus>
 	extends ICoreAgeSuitabilityTracked<Doc>,

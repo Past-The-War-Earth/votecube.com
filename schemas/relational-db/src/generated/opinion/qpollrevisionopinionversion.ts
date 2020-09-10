@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableRowECascadeGraph,
+	ImmutableRowGraph,
 	ImmutableRowEId,
 	ImmutableRowEUpdateColumns,
 	ImmutableRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QImmutableRow,
 } from '../infrastructure/row/qimmutablerow';
 import {
-	PollRevisionOpinionECascadeGraph,
+	PollRevisionOpinionGraph,
 	PollRevisionOpinionEId,
 	PollRevisionOpinionEOptionalId,
 	PollRevisionOpinionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionOpinionQRelation,
 } from './qpollrevisionopinion';
 import {
-	PollRevisionOpinionVersionTranslationECascadeGraph,
+	PollRevisionOpinionVersionTranslationGraph,
 	PollRevisionOpinionVersionTranslationEId,
 	PollRevisionOpinionVersionTranslationEOptionalId,
 	PollRevisionOpinionVersionTranslationEUpdateProperties,
@@ -116,11 +116,17 @@ export interface PollRevisionOpinionVersionEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionOpinionVersionECascadeGraph
-	extends ImmutableRowECascadeGraph {
-	// Cascading Relations
-	children?: PollRevisionOpinionVersionECascadeGraph;
-	translations?: PollRevisionOpinionVersionTranslationECascadeGraph;
+export interface PollRevisionOpinionVersionGraph
+	extends ImmutableRowESelect, PollRevisionOpinionVersionEOptionalId, ImmutableRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	pollRevisionOpinion?: PollRevisionOpinionGraph;
+	parent?: PollRevisionOpinionVersionGraph;
+	children?: PollRevisionOpinionVersionGraph[];
+	translations?: PollRevisionOpinionVersionTranslationGraph[];
 
 }
 

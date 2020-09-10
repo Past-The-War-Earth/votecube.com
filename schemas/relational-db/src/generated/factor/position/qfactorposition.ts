@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
 	ImmutableActorRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QImmutableActorRow,
 } from '../../infrastructure/row/qimmutableactorrow';
 import {
-	FactorECascadeGraph,
+	FactorGraph,
 	FactorEId,
 	FactorEOptionalId,
 	FactorEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QFactorQRelation,
 } from '../qfactor';
 import {
-	PositionECascadeGraph,
+	PositionGraph,
 	PositionEId,
 	PositionEOptionalId,
 	PositionEUpdateProperties,
@@ -114,9 +114,15 @@ export interface FactorPositionEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface FactorPositionECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
-	// Cascading Relations
+export interface FactorPositionGraph
+	extends ImmutableActorRowESelect, FactorPositionEOptionalId, ImmutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	factor?: FactorGraph;
+	position?: PositionGraph;
 
 }
 

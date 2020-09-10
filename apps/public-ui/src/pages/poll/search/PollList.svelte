@@ -7,7 +7,7 @@
 		POLL_MAIN,
 		POLL_MANAGER,
 		text
-	}                    from '@votecube/public-logic'
+	}                    from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

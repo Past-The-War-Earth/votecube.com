@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	AgeSuitableRowECascadeGraph,
+	AgeSuitableRowGraph,
 	AgeSuitableRowEId,
 	AgeSuitableRowEUpdateColumns,
 	AgeSuitableRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QAgeSuitableRow,
 } from '../../infrastructure/row/qagesuitablerow';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionQRelation,
 } from '../../poll/revision/qpollrevision';
 import {
-	PositionTranslationECascadeGraph,
+	PositionTranslationGraph,
 	PositionTranslationEId,
 	PositionTranslationEOptionalId,
 	PositionTranslationEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QPositionTranslationQRelation,
 } from './qpositiontranslation';
 import {
-	FactorPositionECascadeGraph,
+	FactorPositionGraph,
 	FactorPositionEId,
 	FactorPositionEOptionalId,
 	FactorPositionEUpdateProperties,
@@ -129,12 +129,19 @@ export interface PositionEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PositionECascadeGraph
-	extends AgeSuitableRowECascadeGraph {
-	// Cascading Relations
-	children?: PositionECascadeGraph;
-	factorPositions?: FactorPositionECascadeGraph;
-	translations?: PositionTranslationECascadeGraph;
+export interface PositionGraph
+	extends AgeSuitableRowESelect, PositionEOptionalId, AgeSuitableRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	createdAtPollRevision?: PollRevisionGraph;
+	parentTranslation?: PositionTranslationGraph;
+	parent?: PositionGraph;
+	children?: PositionGraph[];
+	factorPositions?: FactorPositionGraph[];
+	translations?: PositionTranslationGraph[];
 
 }
 

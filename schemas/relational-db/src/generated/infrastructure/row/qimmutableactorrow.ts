@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableRowECascadeGraph,
+	ImmutableRowGraph,
 	ImmutableRowEId,
 	ImmutableRowEUpdateColumns,
 	ImmutableRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QImmutableRow,
 } from './qimmutablerow';
 import {
-	ActorECascadeGraph,
+	ActorGraph,
 	ActorEId,
 	ActorEOptionalId,
 	ActorEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QActorQRelation,
 } from '../../user/qactor';
 import {
-	UserAccountECascadeGraph,
+	UserAccountGraph,
 	UserAccountEId,
 	UserAccountEOptionalId,
 	UserAccountEUpdateProperties,
@@ -112,9 +112,15 @@ export interface ImmutableActorRowEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ImmutableActorRowECascadeGraph
-	extends ImmutableRowECascadeGraph {
-	// Cascading Relations
+export interface ImmutableActorRowGraph
+	extends ImmutableRowESelect, ImmutableActorRowEOptionalId, ImmutableRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	actor?: ActorGraph;
+	userAccount?: UserAccountGraph;
 
 }
 
@@ -179,6 +185,6 @@ export interface QImmutableActorRowQId extends QImmutableRowQId
 
 // Entity Relation Interface
 export interface QImmutableActorRowQRelation<SubType extends IQEntity>
-	extends QImmutableRowQRelation<QImmutableActorRow>, QImmutableActorRowQId {
+	extends QImmutableRowQRelation<SubType>, QImmutableActorRowQId {
 }
 

@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	AgeSuitableRowECascadeGraph,
+	AgeSuitableRowGraph,
 	AgeSuitableRowEId,
 	AgeSuitableRowEUpdateColumns,
 	AgeSuitableRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QAgeSuitableRow,
 } from '../../infrastructure/row/qagesuitablerow';
 import {
-	PollECascadeGraph,
+	PollGraph,
 	PollEId,
 	PollEOptionalId,
 	PollEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
-	PollRunECascadeGraph,
+	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
 	PollRunEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QPollRunQRelation,
 } from '../run/qpollrun';
 import {
-	OutcomeECascadeGraph,
+	OutcomeGraph,
 	OutcomeEId,
 	OutcomeEOptionalId,
 	OutcomeEUpdateProperties,
@@ -62,27 +62,7 @@ import {
 	QOutcomeQRelation,
 } from './qoutcome';
 import {
-	PollRevisionRatingECascadeGraph,
-	PollRevisionRatingEId,
-	PollRevisionRatingEOptionalId,
-	PollRevisionRatingEUpdateProperties,
-	PollRevisionRatingESelect,
-	QPollRevisionRating,
-	QPollRevisionRatingQId,
-	QPollRevisionRatingQRelation,
-} from '../rating/qpollrevisionrating';
-import {
-	PollRevisionFactorPositionECascadeGraph,
-	PollRevisionFactorPositionEId,
-	PollRevisionFactorPositionEOptionalId,
-	PollRevisionFactorPositionEUpdateProperties,
-	PollRevisionFactorPositionESelect,
-	QPollRevisionFactorPosition,
-	QPollRevisionFactorPositionQId,
-	QPollRevisionFactorPositionQRelation,
-} from './qpollrevisionfactorposition';
-import {
-	PollRevisionTranslationECascadeGraph,
+	PollRevisionTranslationGraph,
 	PollRevisionTranslationEId,
 	PollRevisionTranslationEOptionalId,
 	PollRevisionTranslationEUpdateProperties,
@@ -92,7 +72,27 @@ import {
 	QPollRevisionTranslationQRelation,
 } from './translation/qpollrevisiontranslation';
 import {
-	PollRevisionOpinionECascadeGraph,
+	PollRevisionRatingGraph,
+	PollRevisionRatingEId,
+	PollRevisionRatingEOptionalId,
+	PollRevisionRatingEUpdateProperties,
+	PollRevisionRatingESelect,
+	QPollRevisionRating,
+	QPollRevisionRatingQId,
+	QPollRevisionRatingQRelation,
+} from '../rating/qpollrevisionrating';
+import {
+	PollRevisionFactorPositionGraph,
+	PollRevisionFactorPositionEId,
+	PollRevisionFactorPositionEOptionalId,
+	PollRevisionFactorPositionEUpdateProperties,
+	PollRevisionFactorPositionESelect,
+	QPollRevisionFactorPosition,
+	QPollRevisionFactorPositionQId,
+	QPollRevisionFactorPositionQRelation,
+} from './qpollrevisionfactorposition';
+import {
+	PollRevisionOpinionGraph,
 	PollRevisionOpinionEId,
 	PollRevisionOpinionEOptionalId,
 	PollRevisionOpinionEUpdateProperties,
@@ -126,6 +126,7 @@ export interface PollRevisionESelect
 	outcomeVersionA?: OutcomeESelect;
 	outcomeVersionB?: OutcomeESelect;
 	parent?: PollRevisionESelect;
+	parentTranslation?: PollRevisionTranslationESelect;
 	children?: PollRevisionESelect;
 	ratings?: PollRevisionRatingESelect;
 	factorPositions?: PollRevisionFactorPositionESelect;
@@ -171,20 +172,32 @@ export interface PollRevisionEUpdateProperties
 	outcomeVersionA?: OutcomeEOptionalId;
 	outcomeVersionB?: OutcomeEOptionalId;
 	parent?: PollRevisionEOptionalId;
+	parentTranslation?: PollRevisionTranslationEOptionalId;
 
 }
 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionECascadeGraph
-	extends AgeSuitableRowECascadeGraph {
-	// Cascading Relations
-	children?: PollRevisionECascadeGraph;
-	ratings?: PollRevisionRatingECascadeGraph;
-	factorPositions?: PollRevisionFactorPositionECascadeGraph;
-	allTranslations?: PollRevisionTranslationECascadeGraph;
-	opinions?: PollRevisionOpinionECascadeGraph;
+export interface PollRevisionGraph
+	extends AgeSuitableRowESelect, PollRevisionEOptionalId, AgeSuitableRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	depth?: number | IQNumberField;
+
+	// Relations
+	poll?: PollGraph;
+	createdAtRun?: PollRunGraph;
+	outcomeVersionA?: OutcomeGraph;
+	outcomeVersionB?: OutcomeGraph;
+	parent?: PollRevisionGraph;
+	parentTranslation?: PollRevisionTranslationGraph;
+	children?: PollRevisionGraph[];
+	ratings?: PollRevisionRatingGraph[];
+	factorPositions?: PollRevisionFactorPositionGraph[];
+	allTranslations?: PollRevisionTranslationGraph[];
+	opinions?: PollRevisionOpinionGraph[];
 
 }
 
@@ -204,6 +217,7 @@ export interface PollRevisionEUpdateColumns
 	OUTCOME_A_VERSION_ID?: number | IQNumberField;
 	OUTCOME_B_VERSION_ID?: number | IQNumberField;
 	PARENT_POLL_REVISION_ID?: number | IQNumberField;
+	PARENT_POLL_REVISION_TRANSLATION_ID?: number | IQNumberField;
 
 }
 
@@ -247,6 +261,7 @@ export interface QPollRevision extends QAgeSuitableRow
 	outcomeVersionA: QOutcomeQRelation;
 	outcomeVersionB: QOutcomeQRelation;
 	parent: QPollRevisionQRelation;
+	parentTranslation: QPollRevisionTranslationQRelation;
 	children: IQOneToManyRelation<QPollRevision>;
 	ratings: IQOneToManyRelation<QPollRevisionRating>;
 	factorPositions: IQOneToManyRelation<QPollRevisionFactorPosition>;

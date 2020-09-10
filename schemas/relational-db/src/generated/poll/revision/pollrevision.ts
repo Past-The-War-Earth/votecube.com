@@ -11,14 +11,14 @@ import {
 	IOutcome,
 } from './outcome';
 import {
+	IPollRevisionTranslation,
+} from './translation/pollrevisiontranslation';
+import {
 	IPollRevisionRating,
 } from '../rating/pollrevisionrating';
 import {
 	IPollRevisionFactorPosition,
 } from './pollrevisionfactorposition';
-import {
-	IPollRevisionTranslation,
-} from './translation/pollrevisiontranslation';
 import {
 	IPollRevisionOpinion,
 } from '../../opinion/pollrevisionopinion';
@@ -45,6 +45,7 @@ export interface IPollRevision extends IAgeSuitableRow {
 	outcomeVersionA?: IOutcome;
 	outcomeVersionB?: IOutcome;
 	parent?: IPollRevision;
+	parentTranslation?: IPollRevisionTranslation;
 	children?: IPollRevision[];
 	ratings?: IPollRevisionRating[];
 	factorPositions?: IPollRevisionFactorPosition[];

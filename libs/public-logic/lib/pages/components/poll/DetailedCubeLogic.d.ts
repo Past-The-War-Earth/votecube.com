@@ -1,5 +1,6 @@
 import { IChildContainer } from '@airport/di';
-import { IFactorData, IPositionData, IVariationData, Outcome_Ordinal } from '@votecube/model';
+import { IFactorData, IPollRevisionData, IPositionData } from '@votecube/model';
+import { Outcome_Ordinal } from '@votecube/relational-db';
 import { ICubePosition } from '../../../poll/CubeLogic';
 export interface ICubeSide extends ICubePosition {
     colorRGB: string;
@@ -24,7 +25,7 @@ export interface ICubeSideMap {
 }
 export declare type SwitchToDefinition = ['x' | 'y' | 'z', -1 | 1];
 export interface IDetailedCubeLogic {
-    getCubeSides(variation: IVariationData, container: IChildContainer): Promise<{
+    getCubeSides(revision: IPollRevisionData, container: IChildContainer): Promise<{
         cubeSideMap: ICubeSideMap;
         cubeSides: ICubeSide[];
     }>;
@@ -32,7 +33,7 @@ export interface IDetailedCubeLogic {
     switchPoles(cubeSideMap: ICubeSideMap, cubeSide: ICubeSide): void;
 }
 export declare class DetailedCubeLogic implements IDetailedCubeLogic {
-    getCubeSides(variation: IVariationData, container: IChildContainer): Promise<{
+    getCubeSides(revision: IPollRevisionData, container: IChildContainer): Promise<{
         cubeSideMap: ICubeSideMap;
         cubeSides: ICubeSide[];
     }>;

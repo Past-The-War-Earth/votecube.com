@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const custom_1 = require("./custom");
+const email_1 = require("./email");
 const greaterThanOrEquals_1 = require("./greaterThanOrEquals");
 const minDate_1 = require("./minDate");
 const minLength_1 = require("./minLength");
@@ -8,6 +9,7 @@ const minTomorrow_1 = require("./minTomorrow");
 const required_1 = require("./required");
 exports.Validators = {
     custom: custom_1.custom,
+    email: email_1.email,
     greaterThanOrEquals: greaterThanOrEquals_1.greaterThanOrEquals,
     minDate: minDate_1.minDate,
     minLength: minLength_1.minLength,

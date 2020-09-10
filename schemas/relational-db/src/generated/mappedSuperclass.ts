@@ -760,6 +760,11 @@ export const MAPPED_SUPERCLASS = [
 																"moduleImport": null,
 																"sourceName": "UserAccount_MiddleName"
 															},
+															"UserAccount_PasswordHash": {
+																"asName": "UserAccount_PasswordHash",
+																"moduleImport": null,
+																"sourceName": "UserAccount_PasswordHash"
+															},
 															"UserAccount_UserName": {
 																"asName": "UserAccount_UserName",
 																"moduleImport": null,
@@ -772,6 +777,7 @@ export const MAPPED_SUPERCLASS = [
 													"UserAccount_Id": null,
 													"UserAccount_LastName": null,
 													"UserAccount_MiddleName": null,
+													"UserAccount_PasswordHash": null,
 													"UserAccount_UserName": null,
 													"SystemGeneratedRow": {
 														"fileImports": null,
@@ -852,6 +858,29 @@ export const MAPPED_SUPERCLASS = [
 															"name": "Column",
 															"values": [
 																{
+																	"name": "PASSWORD_HASH",
+																	"nullable": false
+																}
+															]
+														}
+													],
+													"isGenerated": false,
+													"isId": false,
+													"isMappedSuperclass": false,
+													"isTransient": false,
+													"name": "passwordHash",
+													"type": "string",
+													"ownerEntity": null,
+													"nonArrayType": "string",
+													"primitive": "string",
+													"index": 2
+												},
+												{
+													"decorators": [
+														{
+															"name": "Column",
+															"values": [
+																{
 																	"name": "FIRST_NAME",
 																	"nullable": false
 																}
@@ -867,7 +896,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "string",
 													"primitive": "string",
-													"index": 2
+													"index": 3
 												},
 												{
 													"decorators": [
@@ -889,7 +918,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "string",
 													"primitive": "string",
-													"index": 3
+													"index": 4
 												},
 												{
 													"decorators": [
@@ -912,7 +941,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "string",
 													"primitive": "string",
-													"index": 4
+													"index": 5
 												},
 												{
 													"decorators": [
@@ -934,7 +963,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "Date",
 													"primitive": "Date",
-													"index": 5
+													"index": 6
 												}
 											],
 											"methodSignatures": [],
@@ -2287,6 +2316,11 @@ export const MAPPED_SUPERCLASS = [
 																	"moduleImport": null,
 																	"sourceName": "UserAccount_MiddleName"
 																},
+																"UserAccount_PasswordHash": {
+																	"asName": "UserAccount_PasswordHash",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_PasswordHash"
+																},
 																"UserAccount_UserName": {
 																	"asName": "UserAccount_UserName",
 																	"moduleImport": null,
@@ -2299,6 +2333,7 @@ export const MAPPED_SUPERCLASS = [
 														"UserAccount_Id": null,
 														"UserAccount_LastName": null,
 														"UserAccount_MiddleName": null,
+														"UserAccount_PasswordHash": null,
 														"UserAccount_UserName": null,
 														"SystemGeneratedRow": {
 															"fileImports": null,
@@ -2379,6 +2414,29 @@ export const MAPPED_SUPERCLASS = [
 																"name": "Column",
 																"values": [
 																	{
+																		"name": "PASSWORD_HASH",
+																		"nullable": false
+																	}
+																]
+															}
+														],
+														"isGenerated": false,
+														"isId": false,
+														"isMappedSuperclass": false,
+														"isTransient": false,
+														"name": "passwordHash",
+														"type": "string",
+														"ownerEntity": null,
+														"nonArrayType": "string",
+														"primitive": "string",
+														"index": 2
+													},
+													{
+														"decorators": [
+															{
+																"name": "Column",
+																"values": [
+																	{
 																		"name": "FIRST_NAME",
 																		"nullable": false
 																	}
@@ -2394,7 +2452,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 2
+														"index": 3
 													},
 													{
 														"decorators": [
@@ -2416,7 +2474,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 3
+														"index": 4
 													},
 													{
 														"decorators": [
@@ -2439,7 +2497,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 4
+														"index": 5
 													},
 													{
 														"decorators": [
@@ -2461,7 +2519,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "Date",
 														"primitive": "Date",
-														"index": 5
+														"index": 6
 													}
 												],
 												"methodSignatures": [],
@@ -3815,6 +3873,11 @@ export const MAPPED_SUPERCLASS = [
 																	"moduleImport": null,
 																	"sourceName": "UserAccount_MiddleName"
 																},
+																"UserAccount_PasswordHash": {
+																	"asName": "UserAccount_PasswordHash",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_PasswordHash"
+																},
 																"UserAccount_UserName": {
 																	"asName": "UserAccount_UserName",
 																	"moduleImport": null,
@@ -3827,6 +3890,7 @@ export const MAPPED_SUPERCLASS = [
 														"UserAccount_Id": null,
 														"UserAccount_LastName": null,
 														"UserAccount_MiddleName": null,
+														"UserAccount_PasswordHash": null,
 														"UserAccount_UserName": null,
 														"SystemGeneratedRow": {
 															"fileImports": null,
@@ -3907,6 +3971,29 @@ export const MAPPED_SUPERCLASS = [
 																"name": "Column",
 																"values": [
 																	{
+																		"name": "PASSWORD_HASH",
+																		"nullable": false
+																	}
+																]
+															}
+														],
+														"isGenerated": false,
+														"isId": false,
+														"isMappedSuperclass": false,
+														"isTransient": false,
+														"name": "passwordHash",
+														"type": "string",
+														"ownerEntity": null,
+														"nonArrayType": "string",
+														"primitive": "string",
+														"index": 2
+													},
+													{
+														"decorators": [
+															{
+																"name": "Column",
+																"values": [
+																	{
 																		"name": "FIRST_NAME",
 																		"nullable": false
 																	}
@@ -3922,7 +4009,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 2
+														"index": 3
 													},
 													{
 														"decorators": [
@@ -3944,7 +4031,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 3
+														"index": 4
 													},
 													{
 														"decorators": [
@@ -3967,7 +4054,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 4
+														"index": 5
 													},
 													{
 														"decorators": [
@@ -3989,7 +4076,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "Date",
 														"primitive": "Date",
-														"index": 5
+														"index": 6
 													}
 												],
 												"methodSignatures": [],

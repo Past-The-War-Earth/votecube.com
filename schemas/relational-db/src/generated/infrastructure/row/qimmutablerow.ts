@@ -80,9 +80,14 @@ export interface ImmutableRowEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ImmutableRowECascadeGraph
-	extends IEntityCascadeGraph {
-	// Cascading Relations
+export interface ImmutableRowGraph
+	extends IEntitySelectProperties, ImmutableRowEOptionalId, IEntityCascadeGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	createdAt?: Date | IQDateField;
+
+	// Relations
 
 }
 

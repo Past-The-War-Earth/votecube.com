@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ContinentECascadeGraph,
+	ContinentGraph,
 	ContinentEId,
 	ContinentEOptionalId,
 	ContinentEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QContinentQRelation,
 } from '../../../location/qcontinent';
 import {
-	PollRunECascadeGraph,
+	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
 	PollRunEUpdateProperties,
@@ -104,9 +104,15 @@ export interface PollRunContinentEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRunContinentECascadeGraph
-	extends IEntityCascadeGraph {
-	// Cascading Relations
+export interface PollRunContinentGraph
+	extends IEntitySelectProperties, PollRunContinentEOptionalId, IEntityCascadeGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	continent?: ContinentGraph;
+	run?: PollRunGraph;
 
 }
 

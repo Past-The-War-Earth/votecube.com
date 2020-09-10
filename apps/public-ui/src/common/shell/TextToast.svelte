@@ -4,7 +4,7 @@
 	// 	isDesktop,
 	// 	showMainMenu,
 	// 	showTopMenu
-	// } from '@votecube/public-logic'
+	// } from '@votecube/vc-logic'
 
 	export let text = ''
 

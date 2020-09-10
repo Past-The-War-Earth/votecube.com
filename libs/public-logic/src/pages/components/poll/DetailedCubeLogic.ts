@@ -1,21 +1,21 @@
 import {
 	DI,
 	IChildContainer
-}                      from '@airport/di'
+}                        from '@airport/di'
 import {
 	Factor_Axis,
 	IFactorData,
+	IPollRevisionData,
 	IPositionData,
-	IRevisionData,
-	Outcome_Ordinal,
 	Position_Dir
-}                      from '@votecube/model'
-import {ICubePosition} from '../../../poll/CubeLogic'
+} from '@votecube/model'
+import {Outcome_Ordinal} from '@votecube/relational-db'
+import {ICubePosition}   from '../../../poll/CubeLogic'
 import {
 	CUBE_LOGIC,
 	DETAILED_CUBE_LOGIC,
 	LOGIC_UTILS
-}                      from '../../../tokens'
+}                        from '../../../tokens'
 
 export interface ICubeSide
 	extends ICubePosition {
@@ -74,7 +74,7 @@ interface ISwitchRecord {
 export interface IDetailedCubeLogic {
 
 	getCubeSides(
-		revision: IRevisionData,
+		revision: IPollRevisionData,
 		container: IChildContainer
 	): Promise<{
 		cubeSideMap: ICubeSideMap
@@ -98,7 +98,7 @@ export class DetailedCubeLogic
 	implements IDetailedCubeLogic {
 
 	async getCubeSides(
-		revision: IRevisionData,
+		revision: IPollRevisionData,
 		container: IChildContainer
 	): Promise<{
 		cubeSideMap: ICubeSideMap

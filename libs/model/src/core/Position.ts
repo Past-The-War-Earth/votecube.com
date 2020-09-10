@@ -8,13 +8,16 @@ import {
 	DocStatus,
 	IFullTextSearch,
 	IsDelta,
-	IsDoc
-}                     from './common'
+	IsDoc,
+	Key
+} from './common'
 import {
 	ICoreAgeSuitabilityTracked,
 	IDocumentValue
 }                     from './DocumentValue'
 import {IUserCreated} from './User'
+
+export type Position_Key = Key
 
 export type Position_Dir = PollRevisionFactorPosition_Dir | 0
 
@@ -23,7 +26,7 @@ export interface ICorePosition<Doc extends DocStatus>
 	        ICorePositionDefault<Doc>,
 	        ICorePositionFromForm<Doc>,
 	        IFullTextSearch,
-	        IUserCreated<Position_Id> {
+	        IUserCreated {
 }
 
 export interface ICoreFactorPosition<Doc extends DocStatus>

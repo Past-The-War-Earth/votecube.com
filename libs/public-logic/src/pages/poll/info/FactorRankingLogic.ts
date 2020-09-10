@@ -2,9 +2,9 @@ import {DI}                   from '@airport/di'
 import {
 	IVote,
 	IVoteFactor,
-	Outcome_Ordinal,
 	VoteFactor_Value
 }                             from '@votecube/model'
+import {Outcome_Ordinal}      from '@votecube/relational-db'
 import {fly}                  from 'svelte/transition'
 import {ILogicUtils}          from '../../../LogicUtils'
 import {IPageVote}            from '../../../poll/PollManager'

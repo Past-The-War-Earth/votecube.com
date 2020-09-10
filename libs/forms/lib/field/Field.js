@@ -27,12 +27,12 @@ class Field extends FieldBase_1.FieldBase {
     get label() {
         switch (this.rules.label) {
             case LabelRule.BOTH:
-                return this.value ? this.text.label : '';
+                return this.value ? (this.text ? this.text.label : '!this.text') : '';
             case LabelRule.IN:
             case LabelRule.NONE:
                 return '';
             case LabelRule.OVER:
-                return this.text.label;
+                return (this.text ? this.text.label : '!this.text');
         }
     }
     get numValue() {
@@ -42,7 +42,7 @@ class Field extends FieldBase_1.FieldBase {
         switch (this.rules.label) {
             case LabelRule.BOTH:
             case LabelRule.IN:
-                return this.text.label;
+                return (this.text ? this.text.label : '!this.text');
             case LabelRule.NONE:
             case LabelRule.OVER:
                 return '';

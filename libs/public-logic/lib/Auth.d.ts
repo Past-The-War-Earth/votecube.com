@@ -1,31 +1,23 @@
 import { IObservable } from '@airport/observe';
-import { IUser, User_Name } from '@votecube/model';
-import { Password } from '@votecube/public-db';
+import { IUserAccount, UserAccount_UserName } from '@votecube/relational-db';
+export declare type Password = string;
 export interface IAuthError {
     code?: string;
     message?: string;
 }
-export interface IFbAuthUser {
-    email: string;
-    uid: string;
-}
-export interface IAppUser extends IUser {
-    db: IFbAuthUser;
-}
 export interface IAuth {
-    getFbAuthUser(): IFbAuthUser;
-    getUser(dbUser?: IFbAuthUser): IAppUser;
-    reactToUser(): Promise<IObservable<IAppUser>>;
-    signIn(username: string, password: string): Promise<IAuthError | void>;
+    getUser(): IUserAccount;
+    reactToUser(): Promise<IObservable<IUserAccount>>;
+    signIn(username: UserAccount_UserName, password: Password): Promise<IAuthError | IUserAccount>;
     signOut(): Promise<void>;
-    signUp(username: string, password: string): Promise<IAuthError | void>;
+    signUp(username: UserAccount_UserName, password: Password): Promise<IAuthError | void>;
 }
 export declare class Auth implements IAuth {
-    getFbAuthUser(): IFbAuthUser;
-    getUser(dbUser?: IFbAuthUser): IAppUser;
-    reactToUser(): Promise<IObservable<IAppUser>>;
-    signIn(username: User_Name, password: Password): Promise<IAuthError | void>;
+    user: IUserAccount;
+    getUser(): IUserAccount;
+    reactToUser(): Promise<IObservable<IUserAccount>>;
+    signIn(userName: UserAccount_UserName, password: Password): Promise<IAuthError | IUserAccount>;
     signOut(): Promise<void>;
-    signUp(username: string, password: string): Promise<IAuthError | void>;
+    signUp(userName: UserAccount_UserName, password: Password): Promise<IAuthError | void>;
     private encodePassword;
 }

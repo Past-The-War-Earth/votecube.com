@@ -62,6 +62,6 @@ export interface IUiRevisionFromForm<Doc extends UiDocStatus = IsData> {
 		A: IUiOutcomeFromForm<Doc>
 		B: IUiOutcomeFromForm<Doc>
 	}
-	theme: IUiThemeFromForm
+	theme: IUiThemeFromForm<Doc>
 
 }

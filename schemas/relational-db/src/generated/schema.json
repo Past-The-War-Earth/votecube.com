@@ -483,7 +483,7 @@
 							"index": 3,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "FIRST_NAME",
+							"name": "PASSWORD_HASH",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -497,8 +497,8 @@
 							"index": 4,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "MIDDLE_NAME",
-							"notNull": false,
+							"name": "FIRST_NAME",
+							"notNull": true,
 							"propertyRefs": [
 								{
 									"index": 4
@@ -511,8 +511,8 @@
 							"index": 5,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "LAST_NAME",
-							"notNull": true,
+							"name": "MIDDLE_NAME",
+							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 5
@@ -525,11 +525,25 @@
 							"index": 6,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
+							"name": "LAST_NAME",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 6
+								}
+							],
+							"sinceVersion": 1,
+							"type": 5
+						},
+						{
+							"index": 7,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
 							"name": "BIRTH_DATE",
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 6
+									"index": 7
 								}
 							],
 							"sinceVersion": 1,
@@ -579,7 +593,7 @@
 							},
 							"index": 3,
 							"isId": false,
-							"name": "firstName",
+							"name": "passwordHash",
 							"sinceVersion": 1
 						},
 						{
@@ -588,7 +602,7 @@
 							},
 							"index": 4,
 							"isId": false,
-							"name": "middleName",
+							"name": "firstName",
 							"sinceVersion": 1
 						},
 						{
@@ -597,7 +611,7 @@
 							},
 							"index": 5,
 							"isId": false,
-							"name": "lastName",
+							"name": "middleName",
 							"sinceVersion": 1
 						},
 						{
@@ -605,6 +619,15 @@
 								"index": 6
 							},
 							"index": 6,
+							"isId": false,
+							"name": "lastName",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 7
+							},
+							"index": 7,
 							"isId": false,
 							"name": "birthDate",
 							"sinceVersion": 1
@@ -3387,7 +3410,7 @@
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
 									"oneTableIndex": 50,
-									"oneRelationIndex": 9,
+									"oneRelationIndex": 10,
 									"oneColumnIndex": 4,
 									"sinceVersion": 1
 								}
@@ -7855,7 +7878,7 @@
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
 									"oneTableIndex": 50,
-									"oneRelationIndex": 11,
+									"oneRelationIndex": 12,
 									"oneColumnIndex": 6,
 									"sinceVersion": 1
 								}
@@ -8733,6 +8756,359 @@
 					"tableConfig": {
 						"name": "POLLS",
 						"indexes": []
+					},
+					"operations": {
+						"createOne": {
+							"type": 0,
+							"subRules": {
+								"ageSuitability": {
+									"anyValue": true
+								},
+								"parent": {
+									"operator": "|",
+									"subRules": {
+										"left": {
+											"subRules": {
+												"id": {
+													"anyValue": true
+												}
+											}
+										},
+										"right": {
+											"isNull": true
+										}
+									}
+								},
+								"revisions": {
+									"isArray": true,
+									"subRules": [
+										{
+											"subRules": {
+												"ageSuitability": {
+													"anyValue": true
+												},
+												"depth": {
+													"numericValue": 1
+												},
+												"factorPositions": {
+													"isArray": true,
+													"subRules": [
+														{
+															"subRules": {
+																"axis": {
+																	"anyValue": true
+																},
+																"dir": {
+																	"anyValue": true
+																},
+																"factorNumber": {
+																	"anyValue": true
+																},
+																"blue": {
+																	"anyValue": true
+																},
+																"green": {
+																	"anyValue": true
+																},
+																"red": {
+																	"anyValue": true
+																},
+																"outcomeOrdinal": {
+																	"anyValue": true
+																},
+																"parent": {
+																	"operator": "|",
+																	"subRules": {
+																		"left": {
+																			"isNull": true
+																		},
+																		"right": {
+																			"subRules": {
+																				"id": {
+																					"anyValue": true
+																				}
+																			}
+																		}
+																	}
+																},
+																"skin": {
+																	"operator": "|",
+																	"subRules": {
+																		"left": {
+																			"subRules": {
+																				"id": {
+																					"anyValue": true
+																				}
+																			}
+																		},
+																		"right": {
+																			"subRules": {
+																				"backgroundColor": {
+																					"anyValue": true
+																				},
+																				"textColor": {
+																					"anyValue": true
+																				},
+																				"parent": {
+																					"operator": "|",
+																					"subRules": {
+																						"left": {
+																							"isNull": true
+																						},
+																						"right": {
+																							"subRules": {
+																								"id": {
+																									"anyValue": true
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																},
+																"factorPosition": {
+																	"subRules": {
+																		"factor": {
+																			"operator": "|",
+																			"subRules": {
+																				"left": {
+																					"subRules": {
+																						"id": {
+																							"anyValue": true
+																						}
+																					}
+																				},
+																				"right": {
+																					"subRules": {
+																						"ageSuitability": {
+																							"anyValue": true
+																						},
+																						"parentTranslation": {
+																							"subRules": {
+																								"name": {
+																									"anyValue": true
+																								}
+																							}
+																						},
+																						"parent": {
+																							"operator": "|",
+																							"subRules": {
+																								"left": {
+																									"isNull": true
+																								},
+																								"right": {
+																									"subRules": {
+																										"id": {
+																											"anyValue": true
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		},
+																		"position": {
+																			"operator": "|",
+																			"subRules": {
+																				"left": {
+																					"subRules": {
+																						"id": {
+																							"anyValue": true
+																						}
+																					}
+																				},
+																				"right": {
+																					"subRules": {
+																						"ageSuitability": {
+																							"anyValue": true
+																						},
+																						"parentTranslation": {
+																							"subRules": {
+																								"name": {
+																									"anyValue": true
+																								}
+																							}
+																						},
+																						"parent": {
+																							"operator": "|",
+																							"subRules": {
+																								"left": {
+																									"isNull": true
+																								},
+																								"right": {
+																									"subRules": {
+																										"id": {
+																											"anyValue": true
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														},
+														{
+															"functionCall": {
+																"functionName": "ANOTHER",
+																"parameters": [
+																	2
+																]
+															}
+														}
+													]
+												},
+												"outcomeVersionA": {
+													"operator": "|",
+													"subRules": {
+														"left": {
+															"subRules": {
+																"id": {
+																	"anyValue": true
+																}
+															}
+														},
+														"right": {
+															"subRules": {
+																"ageSuitability": {
+																	"anyValue": true
+																},
+																"parentTranslation": {
+																	"subRules": {
+																		"name": {
+																			"anyValue": true
+																		}
+																	}
+																},
+																"parent": {
+																	"operator": "|",
+																	"subRules": {
+																		"left": {
+																			"isNull": true
+																		},
+																		"right": {
+																			"subRules": {
+																				"id": {
+																					"anyValue": true
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												"outcomeVersionB": {
+													"operator": "|",
+													"subRules": {
+														"left": {
+															"subRules": {
+																"id": {
+																	"anyValue": true
+																}
+															}
+														},
+														"right": {
+															"subRules": {
+																"ageSuitability": {
+																	"anyValue": true
+																},
+																"parentTranslation": {
+																	"subRules": {
+																		"name": {
+																			"anyValue": true
+																		}
+																	}
+																},
+																"parent": {
+																	"operator": "|",
+																	"subRules": {
+																		"left": {
+																			"isNull": true
+																		},
+																		"right": {
+																			"subRules": {
+																				"id": {
+																					"anyValue": true
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												"parentTranslation": {
+													"operator": "|",
+													"subRules": {
+														"left": {
+															"subRules": {
+																"id": {
+																	"anyValue": true
+																}
+															}
+														},
+														"right": {
+															"subRules": {
+																"name": {
+																	"anyValue": true
+																},
+																"parent": {
+																	"operator": "|",
+																	"subRules": {
+																		"left": {
+																			"isNull": true
+																		},
+																		"right": {
+																			"subRules": {
+																				"id": {
+																					"anyValue": true
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												"poll": {
+													"subRules": {
+														"id": {
+															"anyValue": true
+														}
+													}
+												}
+											}
+										}
+									]
+								},
+								"theme": {
+									"subRules": {
+										"id": {
+											"anyValue": true
+										}
+									}
+								},
+								"type": {
+									"subRules": {
+										"id": {
+											"anyValue": true
+										}
+									}
+								}
+							}
+						}
 					}
 				},
 				{
@@ -8845,7 +9221,7 @@
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
 									"oneTableIndex": 50,
-									"oneRelationIndex": 8,
+									"oneRelationIndex": 9,
 									"oneColumnIndex": 4,
 									"sinceVersion": 1
 								}
@@ -9430,7 +9806,7 @@
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
 									"oneTableIndex": 50,
-									"oneRelationIndex": 10,
+									"oneRelationIndex": 11,
 									"oneColumnIndex": 4,
 									"sinceVersion": 1
 								}
@@ -9921,7 +10297,7 @@
 									"manyRelationIndex": 6,
 									"oneSchemaIndex": null,
 									"oneTableIndex": 50,
-									"oneRelationIndex": 7,
+									"oneRelationIndex": 8,
 									"oneColumnIndex": 4,
 									"sinceVersion": 1
 								}
@@ -9931,6 +10307,28 @@
 							"propertyRefs": [
 								{
 									"index": 10
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 11,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 7,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 49,
+									"oneColumnIndex": 3,
+									"sinceVersion": 1
+								}
+							],
+							"name": "PARENT_POLL_REVISION_TRANSLATION_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 11
 								}
 							],
 							"sinceVersion": 1,
@@ -10049,7 +10447,7 @@
 						{
 							"index": 11,
 							"isId": false,
-							"name": "children",
+							"name": "parentTranslation",
 							"relationRef": {
 								"index": 7
 							},
@@ -10058,7 +10456,7 @@
 						{
 							"index": 12,
 							"isId": false,
-							"name": "ratings",
+							"name": "children",
 							"relationRef": {
 								"index": 8
 							},
@@ -10067,7 +10465,7 @@
 						{
 							"index": 13,
 							"isId": false,
-							"name": "factorPositions",
+							"name": "ratings",
 							"relationRef": {
 								"index": 9
 							},
@@ -10076,7 +10474,7 @@
 						{
 							"index": 14,
 							"isId": false,
-							"name": "allTranslations",
+							"name": "factorPositions",
 							"relationRef": {
 								"index": 10
 							},
@@ -10085,9 +10483,18 @@
 						{
 							"index": 15,
 							"isId": false,
-							"name": "opinions",
+							"name": "allTranslations",
 							"relationRef": {
 								"index": 11
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 16,
+							"isId": false,
+							"name": "opinions",
+							"relationRef": {
+								"index": 12
 							},
 							"sinceVersion": 1
 						}
@@ -10166,15 +10573,11 @@
 						{
 							"index": 7,
 							"isId": false,
-							"oneToManyElems": {
-								"cascade": 1,
-								"mappedBy": "parent"
-							},
-							"relationType": 0,
+							"relationType": 1,
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 50,
+							"relationTableIndex": 49,
 							"sinceVersion": 1
 						},
 						{
@@ -10182,13 +10585,13 @@
 							"isId": false,
 							"oneToManyElems": {
 								"cascade": 1,
-								"mappedBy": "pollRevision"
+								"mappedBy": "parent"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 12
 							},
-							"relationTableIndex": 47,
+							"relationTableIndex": 50,
 							"sinceVersion": 1
 						},
 						{
@@ -10202,7 +10605,7 @@
 							"propertyRef": {
 								"index": 13
 							},
-							"relationTableIndex": 21,
+							"relationTableIndex": 47,
 							"sinceVersion": 1
 						},
 						{
@@ -10216,7 +10619,7 @@
 							"propertyRef": {
 								"index": 14
 							},
-							"relationTableIndex": 49,
+							"relationTableIndex": 21,
 							"sinceVersion": 1
 						},
 						{
@@ -10230,6 +10633,20 @@
 							"propertyRef": {
 								"index": 15
 							},
+							"relationTableIndex": 49,
+							"sinceVersion": 1
+						},
+						{
+							"index": 12,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "pollRevision"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 16
+							},
 							"relationTableIndex": 43,
 							"sinceVersion": 1
 						}
@@ -10238,6 +10655,318 @@
 					"tableConfig": {
 						"name": "POLL_REVISIONS",
 						"indexes": []
+					},
+					"operations": {
+						"createOne": {
+							"type": 0,
+							"subRules": {
+								"ageSuitability": {
+									"anyValue": true
+								},
+								"depth": {
+									"anyValue": true
+								},
+								"factorPositions": {
+									"isArray": true,
+									"subRules": [
+										{
+											"subRules": {
+												"axis": {
+													"anyValue": true
+												},
+												"dir": {
+													"anyValue": true
+												},
+												"factorNumber": {
+													"anyValue": true
+												},
+												"blue": {
+													"anyValue": true
+												},
+												"green": {
+													"anyValue": true
+												},
+												"red": {
+													"anyValue": true
+												},
+												"outcomeOrdinal": {
+													"anyValue": true
+												},
+												"parent": {
+													"operator": "|",
+													"subRules": {
+														"left": {
+															"isNull": true
+														},
+														"right": {
+															"subRules": {
+																"id": {
+																	"anyValue": true
+																}
+															}
+														}
+													}
+												},
+												"skin": {
+													"operator": "|",
+													"subRules": {
+														"left": {
+															"subRules": {
+																"id": {
+																	"anyValue": true
+																}
+															}
+														},
+														"right": {
+															"subRules": {
+																"backgroundColor": {
+																	"anyValue": true
+																},
+																"textColor": {
+																	"anyValue": true
+																},
+																"parent": {
+																	"operator": "|",
+																	"subRules": {
+																		"left": {
+																			"isNull": true
+																		},
+																		"right": {
+																			"subRules": {
+																				"id": {
+																					"anyValue": true
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												"factorPosition": {
+													"subRules": {
+														"factor": {
+															"operator": "|",
+															"subRules": {
+																"left": {
+																	"subRules": {
+																		"id": {
+																			"anyValue": true
+																		}
+																	}
+																},
+																"right": {
+																	"subRules": {
+																		"ageSuitability": {
+																			"anyValue": true
+																		},
+																		"parentTranslation": {
+																			"subRules": {
+																				"name": {
+																					"anyValue": true
+																				}
+																			}
+																		},
+																		"parent": {
+																			"operator": "|",
+																			"subRules": {
+																				"left": {
+																					"isNull": true
+																				},
+																				"right": {
+																					"subRules": {
+																						"id": {
+																							"anyValue": true
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														},
+														"position": {
+															"operator": "|",
+															"subRules": {
+																"left": {
+																	"subRules": {
+																		"id": {
+																			"anyValue": true
+																		}
+																	}
+																},
+																"right": {
+																	"subRules": {
+																		"ageSuitability": {
+																			"anyValue": true
+																		},
+																		"parentTranslation": {
+																			"subRules": {
+																				"name": {
+																					"anyValue": true
+																				}
+																			}
+																		},
+																		"parent": {
+																			"operator": "|",
+																			"subRules": {
+																				"left": {
+																					"isNull": true
+																				},
+																				"right": {
+																					"subRules": {
+																						"id": {
+																							"anyValue": true
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										{
+											"functionCall": {
+												"functionName": "ANOTHER",
+												"parameters": [
+													2
+												]
+											}
+										}
+									]
+								},
+								"outcomeVersionA": {
+									"operator": "|",
+									"subRules": {
+										"left": {
+											"subRules": {
+												"id": {
+													"anyValue": true
+												}
+											}
+										},
+										"right": {
+											"subRules": {
+												"ageSuitability": {
+													"anyValue": true
+												},
+												"parentTranslation": {
+													"subRules": {
+														"name": {
+															"anyValue": true
+														}
+													}
+												},
+												"parent": {
+													"operator": "|",
+													"subRules": {
+														"left": {
+															"isNull": true
+														},
+														"right": {
+															"subRules": {
+																"id": {
+																	"anyValue": true
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"outcomeVersionB": {
+									"operator": "|",
+									"subRules": {
+										"left": {
+											"subRules": {
+												"id": {
+													"anyValue": true
+												}
+											}
+										},
+										"right": {
+											"subRules": {
+												"ageSuitability": {
+													"anyValue": true
+												},
+												"parentTranslation": {
+													"subRules": {
+														"name": {
+															"anyValue": true
+														}
+													}
+												},
+												"parent": {
+													"operator": "|",
+													"subRules": {
+														"left": {
+															"isNull": true
+														},
+														"right": {
+															"subRules": {
+																"id": {
+																	"anyValue": true
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"parentTranslation": {
+									"operator": "|",
+									"subRules": {
+										"left": {
+											"subRules": {
+												"id": {
+													"anyValue": true
+												}
+											}
+										},
+										"right": {
+											"subRules": {
+												"name": {
+													"anyValue": true
+												},
+												"parent": {
+													"operator": "|",
+													"subRules": {
+														"left": {
+															"isNull": true
+														},
+														"right": {
+															"subRules": {
+																"id": {
+																	"anyValue": true
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"poll": {
+									"subRules": {
+										"id": {
+											"anyValue": true
+										}
+									}
+								}
+							}
+						}
 					}
 				},
 				{
@@ -10336,6 +11065,7 @@
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
 									"oneTableIndex": 52,
+									"oneRelationIndex": 7,
 									"oneColumnIndex": 4,
 									"sinceVersion": 1
 								}
@@ -10839,6 +11569,15 @@
 								"index": 6
 							},
 							"sinceVersion": 1
+						},
+						{
+							"index": 10,
+							"isId": false,
+							"name": "translations",
+							"relationRef": {
+								"index": 7
+							},
+							"sinceVersion": 1
 						}
 					],
 					"relations": [
@@ -10918,6 +11657,20 @@
 								"index": 9
 							},
 							"relationTableIndex": 55,
+							"sinceVersion": 1
+						},
+						{
+							"index": 7,
+							"isId": false,
+							"oneToManyElems": {
+								"cascade": 1,
+								"mappedBy": "factor"
+							},
+							"relationType": 0,
+							"propertyRef": {
+								"index": 10
+							},
+							"relationTableIndex": 51,
 							"sinceVersion": 1
 						}
 					],

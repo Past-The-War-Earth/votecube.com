@@ -1,9 +1,11 @@
-import { container, DI } from '@airport/di';
-import { DB_CONVERTER, DB_UTILS, POLL_DAO } from '@votecube/public-db';
-import { CUBE_LOGIC, LOGIC_UTILS, POLL_FORM_MANAGER, POLL_MANAGER } from '../tokens';
-export class PollManager {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const public_db_1 = require("@votecube/public-db");
+const tokens_1 = require("../tokens");
+class PollManager {
     constructor() {
-        this.currVariation = {
+        this.currRevision = {
             doc: null,
             form: null,
             originalUi: null,
@@ -11,65 +13,65 @@ export class PollManager {
             uiDelta: null,
         };
     }
-    get currentVariation() {
-        return this.currVariation;
+    get currentRevision() {
+        return this.currRevision;
     }
     async getAllPolls() {
-        const pollDao = await container(this).get(POLL_DAO);
+        const pollDao = await di_1.container(this).get(public_db_1.POLL_DAO);
         const pollDocs = await pollDao.getAll();
         return await this.convertDocs(pollDocs);
     }
-    async getChildVariationListings(pollId, variationId) {
-        const pollDao = await container(this).get(POLL_DAO);
-        const variationDocs = await pollDao.getChildVariationListings(pollId, variationId);
-        return await this.convertDocs(variationDocs);
+    async getChildRevisionListings(pollId, revisionId) {
+        const pollDao = await di_1.container(this).get(public_db_1.POLL_DAO);
+        const revisionDocs = await pollDao.getChildRevisionListings(pollId, revisionId);
+        return await this.convertDocs(revisionDocs);
     }
     async getPollsForTheme(themeId) {
-        const pollDao = await container(this).get(POLL_DAO);
+        const pollDao = await di_1.container(this).get(public_db_1.POLL_DAO);
         const pollDocs = await pollDao.getForTheme(themeId);
         return await this.convertDocs(pollDocs);
     }
-    async getVariation(pollId, variationId) {
+    async getRevision(pollId, revisionId) {
         if (!pollId) {
-            this.currVariation.doc = null;
-            return this.currVariation.ui;
+            this.currRevision.doc = null;
+            return this.currRevision.ui;
         }
-        if (this.currVariation.ui
-            && this.currVariation.ui.pollId === pollId
-            && this.currVariation.ui.id === variationId) {
-            return this.currVariation.ui;
+        if (this.currRevision.ui
+            && this.currRevision.ui.pollId === pollId
+            && this.currRevision.ui.id === revisionId) {
+            return this.currRevision.ui;
         }
-        const pollDao = await container(this).get(POLL_DAO);
-        const doc = await pollDao.getVariation(pollId, variationId);
-        const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS);
+        const pollDao = await di_1.container(this).get(public_db_1.POLL_DAO);
+        const doc = await pollDao.getRevision(pollId, revisionId);
+        const [dbConverter, dbUtils] = await di_1.container(this).get(public_db_1.DB_CONVERTER, public_db_1.DB_UTILS);
         const ui = dbConverter.fromDb(doc, dbUtils.subPollProps, dbUtils.excludedProps);
         const originalUi = dbUtils.copy(ui);
-        this.currVariation = {
+        this.currRevision = {
             doc,
             originalUi,
             ui
         };
         return ui;
     }
-    async getVariationListing(pollId, variationId) {
-        const pollDao = await container(this).get(POLL_DAO);
-        const variationDoc = await pollDao.getVariationListing(pollId, variationId);
-        return await this.convertDoc(variationDoc);
+    async getRevisionListing(pollId, revisionId) {
+        const pollDao = await di_1.container(this).get(public_db_1.POLL_DAO);
+        const revisionDoc = await pollDao.getRevisionListing(pollId, revisionId);
+        return await this.convertDoc(revisionDoc);
     }
     async mergeForm() {
-        const form = this.currVariation.form;
+        const form = this.currRevision.form;
         if (!form) {
             return;
         }
-        const [pollFormManager, logicUtils, dbUtils] = await container(this).get(POLL_FORM_MANAGER, LOGIC_UTILS, DB_UTILS);
+        const [pollFormManager, logicUtils, dbUtils] = await di_1.container(this).get(tokens_1.POLL_FORM_MANAGER, tokens_1.LOGIC_UTILS, public_db_1.DB_UTILS);
         const ui = pollFormManager.fromForm(form.value);
         const uiDelta = pollFormManager.fromForm(form.changeFlags);
-        const oldUi = this.currVariation.ui;
+        const oldUi = this.currRevision.ui;
         if (oldUi) {
             logicUtils.overlay(oldUi, ui);
         }
         else {
-            const cubeLogic = await container(this).get(CUBE_LOGIC);
+            const cubeLogic = await di_1.container(this).get(tokens_1.CUBE_LOGIC);
             logicUtils.overlay({
                 factors: cubeLogic.getPollFactorPositionDefault()
             }, ui);
@@ -77,20 +79,20 @@ export class PollManager {
         if (oldUi) {
             logicUtils.copyProperties(oldUi, ui, dbUtils.subPollProps);
         }
-        this.currVariation.ui = ui;
-        this.currVariation.uiDelta = uiDelta;
+        this.currRevision.ui = ui;
+        this.currRevision.uiDelta = uiDelta;
     }
-    async saveCurrentVariation(user) {
-        const originalUi = this.currVariation.originalUi;
-        const ui = this.currVariation.ui;
-        const delta = this.currVariation.uiDelta;
-        const [dbUtils, logicUtils] = await container(this).get(DB_UTILS, LOGIC_UTILS);
+    async saveCurrentRevision(user) {
+        const originalUi = this.currRevision.originalUi;
+        const ui = this.currRevision.ui;
+        const delta = this.currRevision.uiDelta;
+        const [dbUtils, logicUtils] = await di_1.container(this).get(public_db_1.DB_UTILS, tokens_1.LOGIC_UTILS);
         logicUtils.setDeltas(originalUi, ui, delta);
-        const dbConverter = await container(this).get(DB_CONVERTER);
-        const dbObject = dbConverter.toVersionedDb(ui, delta, this.currVariation.doc, dbUtils.subPollProps);
-        const pollDao = await container(this).get(POLL_DAO);
+        const dbConverter = await di_1.container(this).get(public_db_1.DB_CONVERTER);
+        const dbObject = dbConverter.toVersionedDb(ui, delta, this.currRevision.doc, dbUtils.subPollProps);
+        const pollDao = await di_1.container(this).get(public_db_1.POLL_DAO);
         await pollDao.save(dbObject, user);
-        this.currVariation = {
+        this.currRevision = {
             doc: null,
             form: null,
             originalUi: null,
@@ -99,12 +101,12 @@ export class PollManager {
         };
     }
     async convertDocs(docs) {
-        const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS);
+        const [dbConverter, dbUtils] = await di_1.container(this).get(public_db_1.DB_CONVERTER, public_db_1.DB_UTILS);
         const data = docs.map(doc => this.convertADoc(doc, dbConverter, dbUtils));
         return data;
     }
     async convertDoc(doc) {
-        const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS);
+        const [dbConverter, dbUtils] = await di_1.container(this).get(public_db_1.DB_CONVERTER, public_db_1.DB_UTILS);
         const data = this.convertADoc(doc, dbConverter, dbUtils);
         return data;
     }
@@ -113,5 +115,6 @@ export class PollManager {
         return data;
     }
 }
-DI.set(POLL_MANAGER, PollManager);
+exports.PollManager = PollManager;
+di_1.DI.set(tokens_1.POLL_MANAGER, PollManager);
 //# sourceMappingURL=PollManager.js.map

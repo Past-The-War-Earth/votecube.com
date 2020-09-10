@@ -5,12 +5,14 @@
 		AUTH,
 		authChecked,
 		CARD_CLIMATE_CHANGE,
+        cube,
 		currentPage,
 		FACTOR_INFO_MAIN,
 		FACTOR_LIST,
 		FEEDBACK,
 		isDesktop,
 		navigateToPage,
+        noOverflow,
 		POLL_FORM,
 		POLL_LIST,
 		POLL_LOCATIONS,
@@ -26,15 +28,17 @@
 		textToast,
 		user,
 		VARIATION_LIST
-	}                    from '@votecube/public-logic'
+	}                    from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount
 	}                    from 'svelte'
 	import {get}         from 'svelte/store'
 	import {loadUi}      from './libs/text/ui'
-    import Menu          from './shell/top/Menu.svelte'
+    import TextToast          from './common/shell/TextToast.svelte'
+    import Menu          from './shell/menu/Menu.svelte'
     import TopBar        from './shell/top/TopBar.svelte'
+    import SignIn        from './shell/SignIn.svelte'
 	import AboutUs       from './pages/AboutUs.svelte'
 	import FactorMain    from './pages/factor/info/FactorMain.svelte'
 	// import FactorList      from './pages/factor/search/FactorList.html'

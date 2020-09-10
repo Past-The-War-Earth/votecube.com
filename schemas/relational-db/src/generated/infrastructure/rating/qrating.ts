@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
 	SystemGeneratedRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QSystemGeneratedRow,
 } from '../row/qsystemgeneratedrow';
 import {
-	RatingTypeECascadeGraph,
+	RatingTypeGraph,
 	RatingTypeEId,
 	RatingTypeEOptionalId,
 	RatingTypeEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QRatingTypeQRelation,
 } from './qratingtype';
 import {
-	RatingSettingECascadeGraph,
+	RatingSettingGraph,
 	RatingSettingEId,
 	RatingSettingEOptionalId,
 	RatingSettingEUpdateProperties,
@@ -115,10 +115,16 @@ export interface RatingEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface RatingECascadeGraph
-	extends SystemGeneratedRowECascadeGraph {
-	// Cascading Relations
-	settings?: RatingSettingECascadeGraph;
+export interface RatingGraph
+	extends SystemGeneratedRowESelect, RatingEOptionalId, SystemGeneratedRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	cssClass?: string | IQStringField;
+
+	// Relations
+	type?: RatingTypeGraph;
+	settings?: RatingSettingGraph[];
 
 }
 

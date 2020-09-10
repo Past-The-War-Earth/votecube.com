@@ -7,15 +7,13 @@ import {
 	IObservable
 }             from '@airport/observe'
 import {
-	IUser,
-	User_Name
-}             from '@votecube/model'
-import {
-	Password,
-	USER_DAO
-}             from '@votecube/public-db'
-import {app}  from 'firebase'
+	IUserAccount,
+	USER_ACCOUNT_DAO,
+	UserAccount_UserName
+}             from '@votecube/relational-db'
 import {AUTH} from './tokens'
+
+export type Password = string
 
 export interface IAuthError {
 
@@ -24,40 +22,22 @@ export interface IAuthError {
 
 }
 
-export interface IFbAuthUser {
-
-	email: string
-	uid: string
-
-}
-
-export interface IAppUser
-	extends IUser {
-
-	db: IFbAuthUser
-
-}
-
 export interface IAuth {
 
-	getFbAuthUser(): IFbAuthUser
+	getUser(): IUserAccount
 
-	getUser(
-		dbUser?: IFbAuthUser
-	): IAppUser
-
-	reactToUser(): Promise<IObservable<IAppUser>>
+	reactToUser(): Promise<IObservable<IUserAccount>>
 
 	signIn(
-		username: string,
-		password: string
-	): Promise<IAuthError | void>
+		username: UserAccount_UserName,
+		password: Password
+	): Promise<IAuthError | IUserAccount>
 
 	signOut(): Promise<void>
 
 	signUp(
-		username: string,
-		password: string
+		username: UserAccount_UserName,
+		password: Password
 	): Promise<IAuthError | void>
 
 }
@@ -65,132 +45,67 @@ export interface IAuth {
 export class Auth
 	implements IAuth {
 
-	getFbAuthUser(): IFbAuthUser {
-		const fb: app.App = (window as any).fb
+	user: IUserAccount
 
-		return fb.auth().currentUser
+	getUser(): IUserAccount {
+		return this.user
 	}
 
-	getUser(
-		dbUser: IFbAuthUser = this.getFbAuthUser()
-	): IAppUser {
-		if (!dbUser) {
-			return null
-		}
-		return {
-			db: dbUser,
-			key: dbUser.uid,
-			name: dbUser.email.split('@')[0]
-		}
-	}
-
-	async reactToUser(
-		// fbAuthUser: IFbAuthUser
-	): Promise<IObservable<IAppUser>> {
-		const fb: app.App = (window as any).fb
-
-		// const user = this.getUser()
-		// store.set({user})
-
-		const subject = new BehaviorSubject<IAppUser>(null)
-
-		fb.auth().onAuthStateChanged((
-			fbAuthUser: IFbAuthUser
-		) => {
-			// let appUser: IAppUser = null
-			// if (fbAuthUser) {
-			// 	appUser = this.getUser(fbAuthUser)
-			// } else {
-			// 	const {currentPage} = store.get()
-			// 	if (currentPage.authenticated) {
-			// 		return true
-			// 		// navigateToPage(POLL_LIST)
-			// 	}
-			// }
-			subject.next(this.getUser(fbAuthUser))
-			// store.set({user, authChecked: true})
-		})
+	async reactToUser(): Promise<IObservable<IUserAccount>> {
+		const subject = new BehaviorSubject<IUserAccount>(null)
 
 		return subject
 	}
 
 	async signIn(
-		username: User_Name,
+		userName: UserAccount_UserName,
 		password: Password
-	): Promise<IAuthError | void> {
-		password = await this.encodePassword(password)
-		try {
-			const fb: app.App = (window as any).fb
-			await fb.auth().signInWithEmailAndPassword(
-				username + '@votecube.com', password)
-		} catch (error) {
-			switch (error.code) {
-				case 'auth/user-not-found':
-					return {
-						code: 'NotFound'
-					}
-				case 'auth/wrong-password':
-					return {
-						code: 'WrongPassword'
-					}
-				case 'auth/too-many-requests':
-					return {
-						code: 'TooManyTries'
-					}
-				default:
-					return {
-						message: error.message
-					}
+	): Promise<IAuthError | IUserAccount> {
+		const userAccountDao = await container(this).get(USER_ACCOUNT_DAO)
+		const userAccount = await userAccountDao.findByUsername(userName)
+
+		if (userAccount === null) {
+			return {
+				code: 'NotFound'
 			}
 		}
+
+		const passwordHash = await this.encodePassword(password)
+		if (passwordHash !== userAccount.passwordHash) {
+			return {
+				code: 'WrongPassword'
+			}
+		} else if (false) {
+			return {
+				code: 'TooManyTries'
+			}
+		}
+
+		this.user = userAccount
+
+		return this.user
 	}
 
 	async signOut(): Promise<void> {
-		try {
-			const fb: app.App = (window as any).fb
-			await fb.auth().signOut()
-			// Sign-out successful.
-		} catch (error) {
-			// An error happened.
-		}
+		this.user = null
 	}
 
 	async signUp(
-		username: string,
-		password: string
+		userName: UserAccount_UserName,
+		password: Password
 	): Promise<IAuthError | void> {
-		password = await this.encodePassword(password)
+		const userAccountDao = await container(this).get(USER_ACCOUNT_DAO)
+		const passwordHash = await this.encodePassword(password)
+
 		try {
-			const fb: app.App = (window as any).fb
-			await fb.auth().createUserWithEmailAndPassword(
-				username + '@votecube.com', password)
-
-			const user$ = await this.reactToUser()
-
-			let user
-			user$.subscribe(
-				createdUser =>
-					user = createdUser
-			).unsubscribe()
-
-			const userDao = await container(this).get(USER_DAO)
-
-			await userDao.signUp(username, password, user)
-		} catch (error) {
-			switch (error.code) {
-				case 'auth/email-already-in-use':
-					return {
-						code: 'InUse'
-					}
-				case 'auth/invalid-email':
-					return {
-						code: 'Invalid'
-					}
-				default:
-					return {
-						message: error.message
-					}
+			await userAccountDao.signUp(userName, passwordHash)
+		} catch (e) {
+			return {
+				code: 'InUse'
 			}
+			// return {
+			// 	code: 'Invalid'
+			// }
 		}
 	}
 

@@ -2,21 +2,22 @@ import {
 	Theme_Id,
 	Theme_Name
 }                                 from '@votecube/relational-db'
+import {IsDelta}                  from '..'
 import {UiDocStatus}              from './common'
 import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
 
 export interface IUiTheme<Doc extends UiDocStatus>
 	extends IUiAgeSuitabilityTracked<Doc>,
-	        IUiThemeFromForm {
+	        IUiThemeFromForm<Doc> {
 
-	id: Theme_Id
-	name: Theme_Name
+	id: Doc extends IsDelta ? boolean : Theme_Id
+	name: Doc extends IsDelta ? boolean : Theme_Name
 
 }
 
-export interface IUiThemeFromForm {
+export interface IUiThemeFromForm<Doc extends UiDocStatus> {
 
-	id: Theme_Id
-	name: Theme_Name
+	id: Doc extends IsDelta ? boolean : Theme_Id
+	name: Doc extends IsDelta ? boolean : Theme_Name
 
 }

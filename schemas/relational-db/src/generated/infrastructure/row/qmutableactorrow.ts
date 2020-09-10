@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
 	ImmutableActorRowEUpdateProperties,
@@ -90,9 +90,14 @@ export interface MutableActorRowEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface MutableActorRowECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
-	// Cascading Relations
+export interface MutableActorRowGraph
+	extends ImmutableActorRowESelect, MutableActorRowEOptionalId, ImmutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	updatedAt?: Date | IQDateField;
+
+	// Relations
 
 }
 
@@ -156,6 +161,6 @@ export interface QMutableActorRowQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QMutableActorRowQRelation<SubType extends IQEntity>
-	extends QImmutableActorRowQRelation<QMutableActorRow>, QMutableActorRowQId {
+	extends QImmutableActorRowQRelation<SubType>, QMutableActorRowQId {
 }
 

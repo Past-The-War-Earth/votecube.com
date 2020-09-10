@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	VoteVersionECascadeGraph,
+	VoteVersionGraph,
 	VoteVersionEId,
 	VoteVersionEOptionalId,
 	VoteVersionEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QVoteVersionQRelation,
 } from './qvoteversion';
 import {
-	PollRevisionFactorPositionECascadeGraph,
+	PollRevisionFactorPositionGraph,
 	PollRevisionFactorPositionEId,
 	PollRevisionFactorPositionEOptionalId,
 	PollRevisionFactorPositionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionFactorPositionQRelation,
 } from '../poll/revision/qpollrevisionfactorposition';
 import {
-	VoteFactorTypeECascadeGraph,
+	VoteFactorTypeGraph,
 	VoteFactorTypeEId,
 	VoteFactorTypeEOptionalId,
 	VoteFactorTypeEUpdateProperties,
@@ -118,9 +118,17 @@ export interface VoteFactorEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface VoteFactorECascadeGraph
-	extends IEntityCascadeGraph {
-	// Cascading Relations
+export interface VoteFactorGraph
+	extends IEntitySelectProperties, VoteFactorEOptionalId, IEntityCascadeGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	share?: string | IQStringField;
+
+	// Relations
+	voteRevision?: VoteVersionGraph;
+	pollFactorPos?: PollRevisionFactorPositionGraph;
+	type?: VoteFactorTypeGraph;
 
 }
 

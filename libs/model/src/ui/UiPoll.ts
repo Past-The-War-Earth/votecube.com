@@ -17,7 +17,7 @@ import {IUiTheme}                 from './UiTheme'
 
 export interface IUiPoll<Doc extends UiDocStatus, K extends Id = Poll_Id>
 	extends IUiAgeSuitabilityTracked<Doc>,
-	        IUserCreated<K> {
+	        IUserCreated {
 
 	factors: IUiPollFactorsFragment<Doc>
 	name: Doc extends IsDelta ? boolean : PollRevisionTranslation_Name

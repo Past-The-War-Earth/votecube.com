@@ -1,5 +1,7 @@
-import { Collection } from './Collection';
-export class ChildCollection extends Collection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Collection_1 = require("./Collection");
+class ChildCollection extends Collection_1.Collection {
     constructor(name, parent, parentKeyOrReference) {
         super(name);
         this.name = name;
@@ -12,4 +14,5 @@ export class ChildCollection extends Collection {
         }
     }
 }
+exports.ChildCollection = ChildCollection;
 //# sourceMappingURL=ChildCollection.js.map

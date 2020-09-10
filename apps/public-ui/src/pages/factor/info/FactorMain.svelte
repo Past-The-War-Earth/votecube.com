@@ -3,7 +3,7 @@
 		pageTitle,
 		POLL_FORM,
 		routeParams
-	}                      from '@votecube/public-logic'
+	}                      from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

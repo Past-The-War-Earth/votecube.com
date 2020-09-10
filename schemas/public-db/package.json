@@ -11,6 +11,8 @@
   "version": "0.0.1",
   "dependencies": {
     "@airport/di": "0.0.1",
+    "@votecube/model": "0.0.1",
+    "@votecube/relational-db": "0.0.1",
     "elasticlunr": "^0.9.x",
     "firebase": "^7.3.0"
   },

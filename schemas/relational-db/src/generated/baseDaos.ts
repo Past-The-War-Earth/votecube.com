@@ -26,7 +26,7 @@ import {
 	ActorEUpdateColumns,
 	ActorEUpdateProperties,
 	ActorEId,
-	ActorECascadeGraph,
+	ActorGraph,
 	QActor
 } from './user/qactor'
 import {
@@ -39,7 +39,7 @@ import {
 	ApplicationEUpdateColumns,
 	ApplicationEUpdateProperties,
 	ApplicationEId,
-	ApplicationECascadeGraph,
+	ApplicationGraph,
 	QApplication
 } from './user/qapplication'
 import {
@@ -52,7 +52,7 @@ import {
 	ContinentEUpdateColumns,
 	ContinentEUpdateProperties,
 	ContinentEId,
-	ContinentECascadeGraph,
+	ContinentGraph,
 	QContinent
 } from './location/qcontinent'
 import {
@@ -65,7 +65,7 @@ import {
 	CountryEUpdateColumns,
 	CountryEUpdateProperties,
 	CountryEId,
-	CountryECascadeGraph,
+	CountryGraph,
 	QCountry
 } from './location/qcountry'
 import {
@@ -78,7 +78,7 @@ import {
 	CountryTownEUpdateColumns,
 	CountryTownEUpdateProperties,
 	CountryTownEId,
-	CountryTownECascadeGraph,
+	CountryTownGraph,
 	QCountryTown
 } from './location/qcountrytown'
 import {
@@ -91,7 +91,7 @@ import {
 	CountyEUpdateColumns,
 	CountyEUpdateProperties,
 	CountyEId,
-	CountyECascadeGraph,
+	CountyGraph,
 	QCounty
 } from './location/qcounty'
 import {
@@ -104,7 +104,7 @@ import {
 	CountyTownEUpdateColumns,
 	CountyTownEUpdateProperties,
 	CountyTownEId,
-	CountyTownECascadeGraph,
+	CountyTownGraph,
 	QCountyTown
 } from './location/qcountytown'
 import {
@@ -117,7 +117,7 @@ import {
 	DesignPatternEUpdateColumns,
 	DesignPatternEUpdateProperties,
 	DesignPatternEId,
-	DesignPatternECascadeGraph,
+	DesignPatternGraph,
 	QDesignPattern
 } from './factor/position/qdesignpattern'
 import {
@@ -130,7 +130,7 @@ import {
 	DeviceEUpdateColumns,
 	DeviceEUpdateProperties,
 	DeviceEId,
-	DeviceECascadeGraph,
+	DeviceGraph,
 	QDevice
 } from './user/qdevice'
 import {
@@ -143,7 +143,7 @@ import {
 	EmojiEUpdateColumns,
 	EmojiEUpdateProperties,
 	EmojiEId,
-	EmojiECascadeGraph,
+	EmojiGraph,
 	QEmoji
 } from './factor/position/qemoji'
 import {
@@ -156,7 +156,7 @@ import {
 	FactorEUpdateColumns,
 	FactorEUpdateProperties,
 	FactorEId,
-	FactorECascadeGraph,
+	FactorGraph,
 	QFactor
 } from './factor/qfactor'
 import {
@@ -169,7 +169,7 @@ import {
 	FactorOpinionVersionEUpdateColumns,
 	FactorOpinionVersionEUpdateProperties,
 	FactorOpinionVersionEId,
-	FactorOpinionVersionECascadeGraph,
+	FactorOpinionVersionGraph,
 	QFactorOpinionVersion
 } from './opinion/qfactoropinionversion'
 import {
@@ -182,7 +182,7 @@ import {
 	FactorOpinionVersionTranslationEUpdateColumns,
 	FactorOpinionVersionTranslationEUpdateProperties,
 	FactorOpinionVersionTranslationEId,
-	FactorOpinionVersionTranslationECascadeGraph,
+	FactorOpinionVersionTranslationGraph,
 	QFactorOpinionVersionTranslation
 } from './opinion/translation/qfactoropinionversiontranslation'
 import {
@@ -195,7 +195,7 @@ import {
 	FactorPositionEUpdateColumns,
 	FactorPositionEUpdateProperties,
 	FactorPositionEId,
-	FactorPositionECascadeGraph,
+	FactorPositionGraph,
 	QFactorPosition
 } from './factor/position/qfactorposition'
 import {
@@ -208,7 +208,7 @@ import {
 	FactorTranslationEUpdateColumns,
 	FactorTranslationEUpdateProperties,
 	FactorTranslationEId,
-	FactorTranslationECascadeGraph,
+	FactorTranslationGraph,
 	QFactorTranslation
 } from './factor/qfactortranslation'
 import {
@@ -221,7 +221,7 @@ import {
 	LanguageEUpdateColumns,
 	LanguageEUpdateProperties,
 	LanguageEId,
-	LanguageECascadeGraph,
+	LanguageGraph,
 	QLanguage
 } from './infrastructure/qlanguage'
 import {
@@ -234,7 +234,7 @@ import {
 	OutcomeEUpdateColumns,
 	OutcomeEUpdateProperties,
 	OutcomeEId,
-	OutcomeECascadeGraph,
+	OutcomeGraph,
 	QOutcome
 } from './poll/revision/qoutcome'
 import {
@@ -247,7 +247,7 @@ import {
 	OutcomeOpinionVersionEUpdateColumns,
 	OutcomeOpinionVersionEUpdateProperties,
 	OutcomeOpinionVersionEId,
-	OutcomeOpinionVersionECascadeGraph,
+	OutcomeOpinionVersionGraph,
 	QOutcomeOpinionVersion
 } from './opinion/qoutcomeopinionversion'
 import {
@@ -260,7 +260,7 @@ import {
 	OutcomeOpinionVersionTranslationEUpdateColumns,
 	OutcomeOpinionVersionTranslationEUpdateProperties,
 	OutcomeOpinionVersionTranslationEId,
-	OutcomeOpinionVersionTranslationECascadeGraph,
+	OutcomeOpinionVersionTranslationGraph,
 	QOutcomeOpinionVersionTranslation
 } from './opinion/translation/qoutcomeopinionversiontranslation'
 import {
@@ -273,7 +273,7 @@ import {
 	OutcomeTranslationEUpdateColumns,
 	OutcomeTranslationEUpdateProperties,
 	OutcomeTranslationEId,
-	OutcomeTranslationECascadeGraph,
+	OutcomeTranslationGraph,
 	QOutcomeTranslation
 } from './poll/revision/translation/qoutcometranslation'
 import {
@@ -286,7 +286,7 @@ import {
 	PollEUpdateColumns,
 	PollEUpdateProperties,
 	PollEId,
-	PollECascadeGraph,
+	PollGraph,
 	QPoll
 } from './poll/qpoll'
 import {
@@ -299,7 +299,7 @@ import {
 	PollRevisionEUpdateColumns,
 	PollRevisionEUpdateProperties,
 	PollRevisionEId,
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	QPollRevision
 } from './poll/revision/qpollrevision'
 import {
@@ -312,7 +312,7 @@ import {
 	PollRevisionFactorPositionEUpdateColumns,
 	PollRevisionFactorPositionEUpdateProperties,
 	PollRevisionFactorPositionEId,
-	PollRevisionFactorPositionECascadeGraph,
+	PollRevisionFactorPositionGraph,
 	QPollRevisionFactorPosition
 } from './poll/revision/qpollrevisionfactorposition'
 import {
@@ -325,7 +325,7 @@ import {
 	PollRevisionOpinionEUpdateColumns,
 	PollRevisionOpinionEUpdateProperties,
 	PollRevisionOpinionEId,
-	PollRevisionOpinionECascadeGraph,
+	PollRevisionOpinionGraph,
 	QPollRevisionOpinion
 } from './opinion/qpollrevisionopinion'
 import {
@@ -338,7 +338,7 @@ import {
 	PollRevisionOpinionRatingEUpdateColumns,
 	PollRevisionOpinionRatingEUpdateProperties,
 	PollRevisionOpinionRatingEId,
-	PollRevisionOpinionRatingECascadeGraph,
+	PollRevisionOpinionRatingGraph,
 	QPollRevisionOpinionRating
 } from './opinion/rating/qpollrevisionopinionrating'
 import {
@@ -351,7 +351,7 @@ import {
 	PollRevisionOpinionVersionEUpdateColumns,
 	PollRevisionOpinionVersionEUpdateProperties,
 	PollRevisionOpinionVersionEId,
-	PollRevisionOpinionVersionECascadeGraph,
+	PollRevisionOpinionVersionGraph,
 	QPollRevisionOpinionVersion
 } from './opinion/qpollrevisionopinionversion'
 import {
@@ -364,7 +364,7 @@ import {
 	PollRevisionOpinionVersionTranslationEUpdateColumns,
 	PollRevisionOpinionVersionTranslationEUpdateProperties,
 	PollRevisionOpinionVersionTranslationEId,
-	PollRevisionOpinionVersionTranslationECascadeGraph,
+	PollRevisionOpinionVersionTranslationGraph,
 	QPollRevisionOpinionVersionTranslation
 } from './opinion/translation/qpollrevisionopinionversiontranslation'
 import {
@@ -377,7 +377,7 @@ import {
 	PollRevisionRatingEUpdateColumns,
 	PollRevisionRatingEUpdateProperties,
 	PollRevisionRatingEId,
-	PollRevisionRatingECascadeGraph,
+	PollRevisionRatingGraph,
 	QPollRevisionRating
 } from './poll/rating/qpollrevisionrating'
 import {
@@ -390,7 +390,7 @@ import {
 	PollRevisionTranslationEUpdateColumns,
 	PollRevisionTranslationEUpdateProperties,
 	PollRevisionTranslationEId,
-	PollRevisionTranslationECascadeGraph,
+	PollRevisionTranslationGraph,
 	QPollRevisionTranslation
 } from './poll/revision/translation/qpollrevisiontranslation'
 import {
@@ -403,7 +403,7 @@ import {
 	PollRevisionTranslationRatingEUpdateColumns,
 	PollRevisionTranslationRatingEUpdateProperties,
 	PollRevisionTranslationRatingEId,
-	PollRevisionTranslationRatingECascadeGraph,
+	PollRevisionTranslationRatingGraph,
 	QPollRevisionTranslationRating
 } from './poll/rating/qpollrevisiontranslationrating'
 import {
@@ -416,7 +416,7 @@ import {
 	PollRunEUpdateColumns,
 	PollRunEUpdateProperties,
 	PollRunEId,
-	PollRunECascadeGraph,
+	PollRunGraph,
 	QPollRun
 } from './poll/run/qpollrun'
 import {
@@ -429,7 +429,7 @@ import {
 	PollRunContinentEUpdateColumns,
 	PollRunContinentEUpdateProperties,
 	PollRunContinentEId,
-	PollRunContinentECascadeGraph,
+	PollRunContinentGraph,
 	QPollRunContinent
 } from './poll/run/location/qpollruncontinent'
 import {
@@ -442,7 +442,7 @@ import {
 	PollRunCountryEUpdateColumns,
 	PollRunCountryEUpdateProperties,
 	PollRunCountryEId,
-	PollRunCountryECascadeGraph,
+	PollRunCountryGraph,
 	QPollRunCountry
 } from './poll/run/location/qpollruncountry'
 import {
@@ -455,7 +455,7 @@ import {
 	PollRunCountyEUpdateColumns,
 	PollRunCountyEUpdateProperties,
 	PollRunCountyEId,
-	PollRunCountyECascadeGraph,
+	PollRunCountyGraph,
 	QPollRunCounty
 } from './poll/run/location/qpollruncounty'
 import {
@@ -468,7 +468,7 @@ import {
 	PollRunStateEUpdateColumns,
 	PollRunStateEUpdateProperties,
 	PollRunStateEId,
-	PollRunStateECascadeGraph,
+	PollRunStateGraph,
 	QPollRunState
 } from './poll/run/location/qpollrunstate'
 import {
@@ -481,7 +481,7 @@ import {
 	PollRunTownEUpdateColumns,
 	PollRunTownEUpdateProperties,
 	PollRunTownEId,
-	PollRunTownECascadeGraph,
+	PollRunTownGraph,
 	QPollRunTown
 } from './poll/run/location/qpollruntown'
 import {
@@ -494,7 +494,7 @@ import {
 	PollTypeEUpdateColumns,
 	PollTypeEUpdateProperties,
 	PollTypeEId,
-	PollTypeECascadeGraph,
+	PollTypeGraph,
 	QPollType
 } from './poll/qpolltype'
 import {
@@ -507,7 +507,7 @@ import {
 	PositionEUpdateColumns,
 	PositionEUpdateProperties,
 	PositionEId,
-	PositionECascadeGraph,
+	PositionGraph,
 	QPosition
 } from './factor/position/qposition'
 import {
@@ -520,7 +520,7 @@ import {
 	PositionOpinionVersionEUpdateColumns,
 	PositionOpinionVersionEUpdateProperties,
 	PositionOpinionVersionEId,
-	PositionOpinionVersionECascadeGraph,
+	PositionOpinionVersionGraph,
 	QPositionOpinionVersion
 } from './opinion/qpositionopinionversion'
 import {
@@ -533,7 +533,7 @@ import {
 	PositionOpinionVersionTranslationEUpdateColumns,
 	PositionOpinionVersionTranslationEUpdateProperties,
 	PositionOpinionVersionTranslationEId,
-	PositionOpinionVersionTranslationECascadeGraph,
+	PositionOpinionVersionTranslationGraph,
 	QPositionOpinionVersionTranslation
 } from './opinion/translation/qpositionopinionversiontranslation'
 import {
@@ -546,7 +546,7 @@ import {
 	PositionTranslationEUpdateColumns,
 	PositionTranslationEUpdateProperties,
 	PositionTranslationEId,
-	PositionTranslationECascadeGraph,
+	PositionTranslationGraph,
 	QPositionTranslation
 } from './factor/position/qpositiontranslation'
 import {
@@ -559,7 +559,7 @@ import {
 	RatingEUpdateColumns,
 	RatingEUpdateProperties,
 	RatingEId,
-	RatingECascadeGraph,
+	RatingGraph,
 	QRating
 } from './infrastructure/rating/qrating'
 import {
@@ -572,7 +572,7 @@ import {
 	RatingSettingEUpdateColumns,
 	RatingSettingEUpdateProperties,
 	RatingSettingEId,
-	RatingSettingECascadeGraph,
+	RatingSettingGraph,
 	QRatingSetting
 } from './infrastructure/rating/qratingsetting'
 import {
@@ -585,7 +585,7 @@ import {
 	RatingTypeEUpdateColumns,
 	RatingTypeEUpdateProperties,
 	RatingTypeEId,
-	RatingTypeECascadeGraph,
+	RatingTypeGraph,
 	QRatingType
 } from './infrastructure/rating/qratingtype'
 import {
@@ -598,7 +598,7 @@ import {
 	SkinEUpdateColumns,
 	SkinEUpdateProperties,
 	SkinEId,
-	SkinECascadeGraph,
+	SkinGraph,
 	QSkin
 } from './factor/qskin'
 import {
@@ -611,7 +611,7 @@ import {
 	StateEUpdateColumns,
 	StateEUpdateProperties,
 	StateEId,
-	StateECascadeGraph,
+	StateGraph,
 	QState
 } from './location/qstate'
 import {
@@ -624,7 +624,7 @@ import {
 	StateTownEUpdateColumns,
 	StateTownEUpdateProperties,
 	StateTownEId,
-	StateTownECascadeGraph,
+	StateTownGraph,
 	QStateTown
 } from './location/qstatetown'
 import {
@@ -637,7 +637,7 @@ import {
 	ThemeEUpdateColumns,
 	ThemeEUpdateProperties,
 	ThemeEId,
-	ThemeECascadeGraph,
+	ThemeGraph,
 	QTheme
 } from './poll/qtheme'
 import {
@@ -650,7 +650,7 @@ import {
 	TownEUpdateColumns,
 	TownEUpdateProperties,
 	TownEId,
-	TownECascadeGraph,
+	TownGraph,
 	QTown
 } from './location/qtown'
 import {
@@ -663,7 +663,7 @@ import {
 	TranslationTypeEUpdateColumns,
 	TranslationTypeEUpdateProperties,
 	TranslationTypeEId,
-	TranslationTypeECascadeGraph,
+	TranslationTypeGraph,
 	QTranslationType
 } from './infrastructure/qtranslationtype'
 import {
@@ -676,7 +676,7 @@ import {
 	UserAccountEUpdateColumns,
 	UserAccountEUpdateProperties,
 	UserAccountEId,
-	UserAccountECascadeGraph,
+	UserAccountGraph,
 	QUserAccount
 } from './user/quseraccount'
 import {
@@ -689,7 +689,7 @@ import {
 	VoteEUpdateColumns,
 	VoteEUpdateProperties,
 	VoteEId,
-	VoteECascadeGraph,
+	VoteGraph,
 	QVote
 } from './vote/qvote'
 import {
@@ -702,7 +702,7 @@ import {
 	VoteFactorEUpdateColumns,
 	VoteFactorEUpdateProperties,
 	VoteFactorEId,
-	VoteFactorECascadeGraph,
+	VoteFactorGraph,
 	QVoteFactor
 } from './vote/qvotefactor'
 import {
@@ -715,7 +715,7 @@ import {
 	VoteFactorTypeEUpdateColumns,
 	VoteFactorTypeEUpdateProperties,
 	VoteFactorTypeEId,
-	VoteFactorTypeECascadeGraph,
+	VoteFactorTypeGraph,
 	QVoteFactorType
 } from './vote/qvotefactortype'
 import {
@@ -728,7 +728,7 @@ import {
 	VoteTypeEUpdateColumns,
 	VoteTypeEUpdateProperties,
 	VoteTypeEId,
-	VoteTypeECascadeGraph,
+	VoteTypeGraph,
 	QVoteType
 } from './vote/qvotetype'
 import {
@@ -741,7 +741,7 @@ import {
 	VoteVersionEUpdateColumns,
 	VoteVersionEUpdateProperties,
 	VoteVersionEId,
-	VoteVersionECascadeGraph,
+	VoteVersionGraph,
 	QVoteVersion
 } from './vote/qvoteversion'
 
@@ -773,11 +773,11 @@ export class SQDIDao<Entity,
 
 
 export interface IBaseActorDao
-  extends IDao<IActor, ActorESelect, ActorECreateProperties, ActorEUpdateColumns, ActorEUpdateProperties, ActorEId, ActorECascadeGraph, QActor> {
+  extends IDao<IActor, ActorESelect, ActorECreateProperties, ActorEUpdateColumns, ActorEUpdateProperties, ActorEId, ActorGraph, QActor> {
 }
 
 export class BaseActorDao
-  extends SQDIDao<IActor, ActorESelect, ActorECreateProperties, ActorEUpdateColumns, ActorEUpdateProperties, ActorEId, ActorECascadeGraph, QActor>
+  extends SQDIDao<IActor, ActorESelect, ActorECreateProperties, ActorEUpdateColumns, ActorEUpdateProperties, ActorEId, ActorGraph, QActor>
 	implements IBaseActorDao {
 
 	static diSet(): boolean {
@@ -791,11 +791,11 @@ export class BaseActorDao
 
 
 export interface IBaseApplicationDao
-  extends IDao<IApplication, ApplicationESelect, ApplicationECreateProperties, ApplicationEUpdateColumns, ApplicationEUpdateProperties, ApplicationEId, ApplicationECascadeGraph, QApplication> {
+  extends IDao<IApplication, ApplicationESelect, ApplicationECreateProperties, ApplicationEUpdateColumns, ApplicationEUpdateProperties, ApplicationEId, ApplicationGraph, QApplication> {
 }
 
 export class BaseApplicationDao
-  extends SQDIDao<IApplication, ApplicationESelect, ApplicationECreateProperties, ApplicationEUpdateColumns, ApplicationEUpdateProperties, ApplicationEId, ApplicationECascadeGraph, QApplication>
+  extends SQDIDao<IApplication, ApplicationESelect, ApplicationECreateProperties, ApplicationEUpdateColumns, ApplicationEUpdateProperties, ApplicationEId, ApplicationGraph, QApplication>
 	implements IBaseApplicationDao {
 
 	static diSet(): boolean {
@@ -809,11 +809,11 @@ export class BaseApplicationDao
 
 
 export interface IBaseContinentDao
-  extends IDao<IContinent, ContinentESelect, ContinentECreateProperties, ContinentEUpdateColumns, ContinentEUpdateProperties, ContinentEId, ContinentECascadeGraph, QContinent> {
+  extends IDao<IContinent, ContinentESelect, ContinentECreateProperties, ContinentEUpdateColumns, ContinentEUpdateProperties, ContinentEId, ContinentGraph, QContinent> {
 }
 
 export class BaseContinentDao
-  extends SQDIDao<IContinent, ContinentESelect, ContinentECreateProperties, ContinentEUpdateColumns, ContinentEUpdateProperties, ContinentEId, ContinentECascadeGraph, QContinent>
+  extends SQDIDao<IContinent, ContinentESelect, ContinentECreateProperties, ContinentEUpdateColumns, ContinentEUpdateProperties, ContinentEId, ContinentGraph, QContinent>
 	implements IBaseContinentDao {
 
 	static diSet(): boolean {
@@ -827,11 +827,11 @@ export class BaseContinentDao
 
 
 export interface IBaseCountryDao
-  extends IDao<ICountry, CountryESelect, CountryECreateProperties, CountryEUpdateColumns, CountryEUpdateProperties, CountryEId, CountryECascadeGraph, QCountry> {
+  extends IDao<ICountry, CountryESelect, CountryECreateProperties, CountryEUpdateColumns, CountryEUpdateProperties, CountryEId, CountryGraph, QCountry> {
 }
 
 export class BaseCountryDao
-  extends SQDIDao<ICountry, CountryESelect, CountryECreateProperties, CountryEUpdateColumns, CountryEUpdateProperties, CountryEId, CountryECascadeGraph, QCountry>
+  extends SQDIDao<ICountry, CountryESelect, CountryECreateProperties, CountryEUpdateColumns, CountryEUpdateProperties, CountryEId, CountryGraph, QCountry>
 	implements IBaseCountryDao {
 
 	static diSet(): boolean {
@@ -845,11 +845,11 @@ export class BaseCountryDao
 
 
 export interface IBaseCountryTownDao
-  extends IDao<ICountryTown, CountryTownESelect, CountryTownECreateProperties, CountryTownEUpdateColumns, CountryTownEUpdateProperties, CountryTownEId, CountryTownECascadeGraph, QCountryTown> {
+  extends IDao<ICountryTown, CountryTownESelect, CountryTownECreateProperties, CountryTownEUpdateColumns, CountryTownEUpdateProperties, CountryTownEId, CountryTownGraph, QCountryTown> {
 }
 
 export class BaseCountryTownDao
-  extends SQDIDao<ICountryTown, CountryTownESelect, CountryTownECreateProperties, CountryTownEUpdateColumns, CountryTownEUpdateProperties, CountryTownEId, CountryTownECascadeGraph, QCountryTown>
+  extends SQDIDao<ICountryTown, CountryTownESelect, CountryTownECreateProperties, CountryTownEUpdateColumns, CountryTownEUpdateProperties, CountryTownEId, CountryTownGraph, QCountryTown>
 	implements IBaseCountryTownDao {
 
 	static diSet(): boolean {
@@ -863,11 +863,11 @@ export class BaseCountryTownDao
 
 
 export interface IBaseCountyDao
-  extends IDao<ICounty, CountyESelect, CountyECreateProperties, CountyEUpdateColumns, CountyEUpdateProperties, CountyEId, CountyECascadeGraph, QCounty> {
+  extends IDao<ICounty, CountyESelect, CountyECreateProperties, CountyEUpdateColumns, CountyEUpdateProperties, CountyEId, CountyGraph, QCounty> {
 }
 
 export class BaseCountyDao
-  extends SQDIDao<ICounty, CountyESelect, CountyECreateProperties, CountyEUpdateColumns, CountyEUpdateProperties, CountyEId, CountyECascadeGraph, QCounty>
+  extends SQDIDao<ICounty, CountyESelect, CountyECreateProperties, CountyEUpdateColumns, CountyEUpdateProperties, CountyEId, CountyGraph, QCounty>
 	implements IBaseCountyDao {
 
 	static diSet(): boolean {
@@ -881,11 +881,11 @@ export class BaseCountyDao
 
 
 export interface IBaseCountyTownDao
-  extends IDao<ICountyTown, CountyTownESelect, CountyTownECreateProperties, CountyTownEUpdateColumns, CountyTownEUpdateProperties, CountyTownEId, CountyTownECascadeGraph, QCountyTown> {
+  extends IDao<ICountyTown, CountyTownESelect, CountyTownECreateProperties, CountyTownEUpdateColumns, CountyTownEUpdateProperties, CountyTownEId, CountyTownGraph, QCountyTown> {
 }
 
 export class BaseCountyTownDao
-  extends SQDIDao<ICountyTown, CountyTownESelect, CountyTownECreateProperties, CountyTownEUpdateColumns, CountyTownEUpdateProperties, CountyTownEId, CountyTownECascadeGraph, QCountyTown>
+  extends SQDIDao<ICountyTown, CountyTownESelect, CountyTownECreateProperties, CountyTownEUpdateColumns, CountyTownEUpdateProperties, CountyTownEId, CountyTownGraph, QCountyTown>
 	implements IBaseCountyTownDao {
 
 	static diSet(): boolean {
@@ -899,11 +899,11 @@ export class BaseCountyTownDao
 
 
 export interface IBaseDesignPatternDao
-  extends IDao<IDesignPattern, DesignPatternESelect, DesignPatternECreateProperties, DesignPatternEUpdateColumns, DesignPatternEUpdateProperties, DesignPatternEId, DesignPatternECascadeGraph, QDesignPattern> {
+  extends IDao<IDesignPattern, DesignPatternESelect, DesignPatternECreateProperties, DesignPatternEUpdateColumns, DesignPatternEUpdateProperties, DesignPatternEId, DesignPatternGraph, QDesignPattern> {
 }
 
 export class BaseDesignPatternDao
-  extends SQDIDao<IDesignPattern, DesignPatternESelect, DesignPatternECreateProperties, DesignPatternEUpdateColumns, DesignPatternEUpdateProperties, DesignPatternEId, DesignPatternECascadeGraph, QDesignPattern>
+  extends SQDIDao<IDesignPattern, DesignPatternESelect, DesignPatternECreateProperties, DesignPatternEUpdateColumns, DesignPatternEUpdateProperties, DesignPatternEId, DesignPatternGraph, QDesignPattern>
 	implements IBaseDesignPatternDao {
 
 	static diSet(): boolean {
@@ -917,11 +917,11 @@ export class BaseDesignPatternDao
 
 
 export interface IBaseDeviceDao
-  extends IDao<IDevice, DeviceESelect, DeviceECreateProperties, DeviceEUpdateColumns, DeviceEUpdateProperties, DeviceEId, DeviceECascadeGraph, QDevice> {
+  extends IDao<IDevice, DeviceESelect, DeviceECreateProperties, DeviceEUpdateColumns, DeviceEUpdateProperties, DeviceEId, DeviceGraph, QDevice> {
 }
 
 export class BaseDeviceDao
-  extends SQDIDao<IDevice, DeviceESelect, DeviceECreateProperties, DeviceEUpdateColumns, DeviceEUpdateProperties, DeviceEId, DeviceECascadeGraph, QDevice>
+  extends SQDIDao<IDevice, DeviceESelect, DeviceECreateProperties, DeviceEUpdateColumns, DeviceEUpdateProperties, DeviceEId, DeviceGraph, QDevice>
 	implements IBaseDeviceDao {
 
 	static diSet(): boolean {
@@ -935,11 +935,11 @@ export class BaseDeviceDao
 
 
 export interface IBaseEmojiDao
-  extends IDao<IEmoji, EmojiESelect, EmojiECreateProperties, EmojiEUpdateColumns, EmojiEUpdateProperties, EmojiEId, EmojiECascadeGraph, QEmoji> {
+  extends IDao<IEmoji, EmojiESelect, EmojiECreateProperties, EmojiEUpdateColumns, EmojiEUpdateProperties, EmojiEId, EmojiGraph, QEmoji> {
 }
 
 export class BaseEmojiDao
-  extends SQDIDao<IEmoji, EmojiESelect, EmojiECreateProperties, EmojiEUpdateColumns, EmojiEUpdateProperties, EmojiEId, EmojiECascadeGraph, QEmoji>
+  extends SQDIDao<IEmoji, EmojiESelect, EmojiECreateProperties, EmojiEUpdateColumns, EmojiEUpdateProperties, EmojiEId, EmojiGraph, QEmoji>
 	implements IBaseEmojiDao {
 
 	static diSet(): boolean {
@@ -953,11 +953,11 @@ export class BaseEmojiDao
 
 
 export interface IBaseFactorDao
-  extends IDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorECascadeGraph, QFactor> {
+  extends IDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> {
 }
 
 export class BaseFactorDao
-  extends SQDIDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorECascadeGraph, QFactor>
+  extends SQDIDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor>
 	implements IBaseFactorDao {
 
 	static diSet(): boolean {
@@ -971,11 +971,11 @@ export class BaseFactorDao
 
 
 export interface IBaseFactorOpinionVersionDao
-  extends IDao<IFactorOpinionVersion, FactorOpinionVersionESelect, FactorOpinionVersionECreateProperties, FactorOpinionVersionEUpdateColumns, FactorOpinionVersionEUpdateProperties, FactorOpinionVersionEId, FactorOpinionVersionECascadeGraph, QFactorOpinionVersion> {
+  extends IDao<IFactorOpinionVersion, FactorOpinionVersionESelect, FactorOpinionVersionECreateProperties, FactorOpinionVersionEUpdateColumns, FactorOpinionVersionEUpdateProperties, FactorOpinionVersionEId, FactorOpinionVersionGraph, QFactorOpinionVersion> {
 }
 
 export class BaseFactorOpinionVersionDao
-  extends SQDIDao<IFactorOpinionVersion, FactorOpinionVersionESelect, FactorOpinionVersionECreateProperties, FactorOpinionVersionEUpdateColumns, FactorOpinionVersionEUpdateProperties, FactorOpinionVersionEId, FactorOpinionVersionECascadeGraph, QFactorOpinionVersion>
+  extends SQDIDao<IFactorOpinionVersion, FactorOpinionVersionESelect, FactorOpinionVersionECreateProperties, FactorOpinionVersionEUpdateColumns, FactorOpinionVersionEUpdateProperties, FactorOpinionVersionEId, FactorOpinionVersionGraph, QFactorOpinionVersion>
 	implements IBaseFactorOpinionVersionDao {
 
 	static diSet(): boolean {
@@ -989,11 +989,11 @@ export class BaseFactorOpinionVersionDao
 
 
 export interface IBaseFactorOpinionVersionTranslationDao
-  extends IDao<IFactorOpinionVersionTranslation, FactorOpinionVersionTranslationESelect, FactorOpinionVersionTranslationECreateProperties, FactorOpinionVersionTranslationEUpdateColumns, FactorOpinionVersionTranslationEUpdateProperties, FactorOpinionVersionTranslationEId, FactorOpinionVersionTranslationECascadeGraph, QFactorOpinionVersionTranslation> {
+  extends IDao<IFactorOpinionVersionTranslation, FactorOpinionVersionTranslationESelect, FactorOpinionVersionTranslationECreateProperties, FactorOpinionVersionTranslationEUpdateColumns, FactorOpinionVersionTranslationEUpdateProperties, FactorOpinionVersionTranslationEId, FactorOpinionVersionTranslationGraph, QFactorOpinionVersionTranslation> {
 }
 
 export class BaseFactorOpinionVersionTranslationDao
-  extends SQDIDao<IFactorOpinionVersionTranslation, FactorOpinionVersionTranslationESelect, FactorOpinionVersionTranslationECreateProperties, FactorOpinionVersionTranslationEUpdateColumns, FactorOpinionVersionTranslationEUpdateProperties, FactorOpinionVersionTranslationEId, FactorOpinionVersionTranslationECascadeGraph, QFactorOpinionVersionTranslation>
+  extends SQDIDao<IFactorOpinionVersionTranslation, FactorOpinionVersionTranslationESelect, FactorOpinionVersionTranslationECreateProperties, FactorOpinionVersionTranslationEUpdateColumns, FactorOpinionVersionTranslationEUpdateProperties, FactorOpinionVersionTranslationEId, FactorOpinionVersionTranslationGraph, QFactorOpinionVersionTranslation>
 	implements IBaseFactorOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
@@ -1007,11 +1007,11 @@ export class BaseFactorOpinionVersionTranslationDao
 
 
 export interface IBaseFactorPositionDao
-  extends IDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionECascadeGraph, QFactorPosition> {
+  extends IDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition> {
 }
 
 export class BaseFactorPositionDao
-  extends SQDIDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionECascadeGraph, QFactorPosition>
+  extends SQDIDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition>
 	implements IBaseFactorPositionDao {
 
 	static diSet(): boolean {
@@ -1025,11 +1025,11 @@ export class BaseFactorPositionDao
 
 
 export interface IBaseFactorTranslationDao
-  extends IDao<IFactorTranslation, FactorTranslationESelect, FactorTranslationECreateProperties, FactorTranslationEUpdateColumns, FactorTranslationEUpdateProperties, FactorTranslationEId, FactorTranslationECascadeGraph, QFactorTranslation> {
+  extends IDao<IFactorTranslation, FactorTranslationESelect, FactorTranslationECreateProperties, FactorTranslationEUpdateColumns, FactorTranslationEUpdateProperties, FactorTranslationEId, FactorTranslationGraph, QFactorTranslation> {
 }
 
 export class BaseFactorTranslationDao
-  extends SQDIDao<IFactorTranslation, FactorTranslationESelect, FactorTranslationECreateProperties, FactorTranslationEUpdateColumns, FactorTranslationEUpdateProperties, FactorTranslationEId, FactorTranslationECascadeGraph, QFactorTranslation>
+  extends SQDIDao<IFactorTranslation, FactorTranslationESelect, FactorTranslationECreateProperties, FactorTranslationEUpdateColumns, FactorTranslationEUpdateProperties, FactorTranslationEId, FactorTranslationGraph, QFactorTranslation>
 	implements IBaseFactorTranslationDao {
 
 	static diSet(): boolean {
@@ -1043,11 +1043,11 @@ export class BaseFactorTranslationDao
 
 
 export interface IBaseLanguageDao
-  extends IDao<ILanguage, LanguageESelect, LanguageECreateProperties, LanguageEUpdateColumns, LanguageEUpdateProperties, LanguageEId, LanguageECascadeGraph, QLanguage> {
+  extends IDao<ILanguage, LanguageESelect, LanguageECreateProperties, LanguageEUpdateColumns, LanguageEUpdateProperties, LanguageEId, LanguageGraph, QLanguage> {
 }
 
 export class BaseLanguageDao
-  extends SQDIDao<ILanguage, LanguageESelect, LanguageECreateProperties, LanguageEUpdateColumns, LanguageEUpdateProperties, LanguageEId, LanguageECascadeGraph, QLanguage>
+  extends SQDIDao<ILanguage, LanguageESelect, LanguageECreateProperties, LanguageEUpdateColumns, LanguageEUpdateProperties, LanguageEId, LanguageGraph, QLanguage>
 	implements IBaseLanguageDao {
 
 	static diSet(): boolean {
@@ -1061,11 +1061,11 @@ export class BaseLanguageDao
 
 
 export interface IBaseOutcomeDao
-  extends IDao<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeECascadeGraph, QOutcome> {
+  extends IDao<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome> {
 }
 
 export class BaseOutcomeDao
-  extends SQDIDao<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeECascadeGraph, QOutcome>
+  extends SQDIDao<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome>
 	implements IBaseOutcomeDao {
 
 	static diSet(): boolean {
@@ -1079,11 +1079,11 @@ export class BaseOutcomeDao
 
 
 export interface IBaseOutcomeOpinionVersionDao
-  extends IDao<IOutcomeOpinionVersion, OutcomeOpinionVersionESelect, OutcomeOpinionVersionECreateProperties, OutcomeOpinionVersionEUpdateColumns, OutcomeOpinionVersionEUpdateProperties, OutcomeOpinionVersionEId, OutcomeOpinionVersionECascadeGraph, QOutcomeOpinionVersion> {
+  extends IDao<IOutcomeOpinionVersion, OutcomeOpinionVersionESelect, OutcomeOpinionVersionECreateProperties, OutcomeOpinionVersionEUpdateColumns, OutcomeOpinionVersionEUpdateProperties, OutcomeOpinionVersionEId, OutcomeOpinionVersionGraph, QOutcomeOpinionVersion> {
 }
 
 export class BaseOutcomeOpinionVersionDao
-  extends SQDIDao<IOutcomeOpinionVersion, OutcomeOpinionVersionESelect, OutcomeOpinionVersionECreateProperties, OutcomeOpinionVersionEUpdateColumns, OutcomeOpinionVersionEUpdateProperties, OutcomeOpinionVersionEId, OutcomeOpinionVersionECascadeGraph, QOutcomeOpinionVersion>
+  extends SQDIDao<IOutcomeOpinionVersion, OutcomeOpinionVersionESelect, OutcomeOpinionVersionECreateProperties, OutcomeOpinionVersionEUpdateColumns, OutcomeOpinionVersionEUpdateProperties, OutcomeOpinionVersionEId, OutcomeOpinionVersionGraph, QOutcomeOpinionVersion>
 	implements IBaseOutcomeOpinionVersionDao {
 
 	static diSet(): boolean {
@@ -1097,11 +1097,11 @@ export class BaseOutcomeOpinionVersionDao
 
 
 export interface IBaseOutcomeOpinionVersionTranslationDao
-  extends IDao<IOutcomeOpinionVersionTranslation, OutcomeOpinionVersionTranslationESelect, OutcomeOpinionVersionTranslationECreateProperties, OutcomeOpinionVersionTranslationEUpdateColumns, OutcomeOpinionVersionTranslationEUpdateProperties, OutcomeOpinionVersionTranslationEId, OutcomeOpinionVersionTranslationECascadeGraph, QOutcomeOpinionVersionTranslation> {
+  extends IDao<IOutcomeOpinionVersionTranslation, OutcomeOpinionVersionTranslationESelect, OutcomeOpinionVersionTranslationECreateProperties, OutcomeOpinionVersionTranslationEUpdateColumns, OutcomeOpinionVersionTranslationEUpdateProperties, OutcomeOpinionVersionTranslationEId, OutcomeOpinionVersionTranslationGraph, QOutcomeOpinionVersionTranslation> {
 }
 
 export class BaseOutcomeOpinionVersionTranslationDao
-  extends SQDIDao<IOutcomeOpinionVersionTranslation, OutcomeOpinionVersionTranslationESelect, OutcomeOpinionVersionTranslationECreateProperties, OutcomeOpinionVersionTranslationEUpdateColumns, OutcomeOpinionVersionTranslationEUpdateProperties, OutcomeOpinionVersionTranslationEId, OutcomeOpinionVersionTranslationECascadeGraph, QOutcomeOpinionVersionTranslation>
+  extends SQDIDao<IOutcomeOpinionVersionTranslation, OutcomeOpinionVersionTranslationESelect, OutcomeOpinionVersionTranslationECreateProperties, OutcomeOpinionVersionTranslationEUpdateColumns, OutcomeOpinionVersionTranslationEUpdateProperties, OutcomeOpinionVersionTranslationEId, OutcomeOpinionVersionTranslationGraph, QOutcomeOpinionVersionTranslation>
 	implements IBaseOutcomeOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
@@ -1115,11 +1115,11 @@ export class BaseOutcomeOpinionVersionTranslationDao
 
 
 export interface IBaseOutcomeTranslationDao
-  extends IDao<IOutcomeTranslation, OutcomeTranslationESelect, OutcomeTranslationECreateProperties, OutcomeTranslationEUpdateColumns, OutcomeTranslationEUpdateProperties, OutcomeTranslationEId, OutcomeTranslationECascadeGraph, QOutcomeTranslation> {
+  extends IDao<IOutcomeTranslation, OutcomeTranslationESelect, OutcomeTranslationECreateProperties, OutcomeTranslationEUpdateColumns, OutcomeTranslationEUpdateProperties, OutcomeTranslationEId, OutcomeTranslationGraph, QOutcomeTranslation> {
 }
 
 export class BaseOutcomeTranslationDao
-  extends SQDIDao<IOutcomeTranslation, OutcomeTranslationESelect, OutcomeTranslationECreateProperties, OutcomeTranslationEUpdateColumns, OutcomeTranslationEUpdateProperties, OutcomeTranslationEId, OutcomeTranslationECascadeGraph, QOutcomeTranslation>
+  extends SQDIDao<IOutcomeTranslation, OutcomeTranslationESelect, OutcomeTranslationECreateProperties, OutcomeTranslationEUpdateColumns, OutcomeTranslationEUpdateProperties, OutcomeTranslationEId, OutcomeTranslationGraph, QOutcomeTranslation>
 	implements IBaseOutcomeTranslationDao {
 
 	static diSet(): boolean {
@@ -1133,11 +1133,11 @@ export class BaseOutcomeTranslationDao
 
 
 export interface IBasePollDao
-  extends IDao<IPoll, PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, PollECascadeGraph, QPoll> {
+  extends IDao<IPoll, PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, PollGraph, QPoll> {
 }
 
 export class BasePollDao
-  extends SQDIDao<IPoll, PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, PollECascadeGraph, QPoll>
+  extends SQDIDao<IPoll, PollESelect, PollECreateProperties, PollEUpdateColumns, PollEUpdateProperties, PollEId, PollGraph, QPoll>
 	implements IBasePollDao {
 
 	static diSet(): boolean {
@@ -1151,11 +1151,11 @@ export class BasePollDao
 
 
 export interface IBasePollRevisionDao
-  extends IDao<IPollRevision, PollRevisionESelect, PollRevisionECreateProperties, PollRevisionEUpdateColumns, PollRevisionEUpdateProperties, PollRevisionEId, PollRevisionECascadeGraph, QPollRevision> {
+  extends IDao<IPollRevision, PollRevisionESelect, PollRevisionECreateProperties, PollRevisionEUpdateColumns, PollRevisionEUpdateProperties, PollRevisionEId, PollRevisionGraph, QPollRevision> {
 }
 
 export class BasePollRevisionDao
-  extends SQDIDao<IPollRevision, PollRevisionESelect, PollRevisionECreateProperties, PollRevisionEUpdateColumns, PollRevisionEUpdateProperties, PollRevisionEId, PollRevisionECascadeGraph, QPollRevision>
+  extends SQDIDao<IPollRevision, PollRevisionESelect, PollRevisionECreateProperties, PollRevisionEUpdateColumns, PollRevisionEUpdateProperties, PollRevisionEId, PollRevisionGraph, QPollRevision>
 	implements IBasePollRevisionDao {
 
 	static diSet(): boolean {
@@ -1169,11 +1169,11 @@ export class BasePollRevisionDao
 
 
 export interface IBasePollRevisionFactorPositionDao
-  extends IDao<IPollRevisionFactorPosition, PollRevisionFactorPositionESelect, PollRevisionFactorPositionECreateProperties, PollRevisionFactorPositionEUpdateColumns, PollRevisionFactorPositionEUpdateProperties, PollRevisionFactorPositionEId, PollRevisionFactorPositionECascadeGraph, QPollRevisionFactorPosition> {
+  extends IDao<IPollRevisionFactorPosition, PollRevisionFactorPositionESelect, PollRevisionFactorPositionECreateProperties, PollRevisionFactorPositionEUpdateColumns, PollRevisionFactorPositionEUpdateProperties, PollRevisionFactorPositionEId, PollRevisionFactorPositionGraph, QPollRevisionFactorPosition> {
 }
 
 export class BasePollRevisionFactorPositionDao
-  extends SQDIDao<IPollRevisionFactorPosition, PollRevisionFactorPositionESelect, PollRevisionFactorPositionECreateProperties, PollRevisionFactorPositionEUpdateColumns, PollRevisionFactorPositionEUpdateProperties, PollRevisionFactorPositionEId, PollRevisionFactorPositionECascadeGraph, QPollRevisionFactorPosition>
+  extends SQDIDao<IPollRevisionFactorPosition, PollRevisionFactorPositionESelect, PollRevisionFactorPositionECreateProperties, PollRevisionFactorPositionEUpdateColumns, PollRevisionFactorPositionEUpdateProperties, PollRevisionFactorPositionEId, PollRevisionFactorPositionGraph, QPollRevisionFactorPosition>
 	implements IBasePollRevisionFactorPositionDao {
 
 	static diSet(): boolean {
@@ -1187,11 +1187,11 @@ export class BasePollRevisionFactorPositionDao
 
 
 export interface IBasePollRevisionOpinionDao
-  extends IDao<IPollRevisionOpinion, PollRevisionOpinionESelect, PollRevisionOpinionECreateProperties, PollRevisionOpinionEUpdateColumns, PollRevisionOpinionEUpdateProperties, PollRevisionOpinionEId, PollRevisionOpinionECascadeGraph, QPollRevisionOpinion> {
+  extends IDao<IPollRevisionOpinion, PollRevisionOpinionESelect, PollRevisionOpinionECreateProperties, PollRevisionOpinionEUpdateColumns, PollRevisionOpinionEUpdateProperties, PollRevisionOpinionEId, PollRevisionOpinionGraph, QPollRevisionOpinion> {
 }
 
 export class BasePollRevisionOpinionDao
-  extends SQDIDao<IPollRevisionOpinion, PollRevisionOpinionESelect, PollRevisionOpinionECreateProperties, PollRevisionOpinionEUpdateColumns, PollRevisionOpinionEUpdateProperties, PollRevisionOpinionEId, PollRevisionOpinionECascadeGraph, QPollRevisionOpinion>
+  extends SQDIDao<IPollRevisionOpinion, PollRevisionOpinionESelect, PollRevisionOpinionECreateProperties, PollRevisionOpinionEUpdateColumns, PollRevisionOpinionEUpdateProperties, PollRevisionOpinionEId, PollRevisionOpinionGraph, QPollRevisionOpinion>
 	implements IBasePollRevisionOpinionDao {
 
 	static diSet(): boolean {
@@ -1205,11 +1205,11 @@ export class BasePollRevisionOpinionDao
 
 
 export interface IBasePollRevisionOpinionRatingDao
-  extends IDao<IPollRevisionOpinionRating, PollRevisionOpinionRatingESelect, PollRevisionOpinionRatingECreateProperties, PollRevisionOpinionRatingEUpdateColumns, PollRevisionOpinionRatingEUpdateProperties, PollRevisionOpinionRatingEId, PollRevisionOpinionRatingECascadeGraph, QPollRevisionOpinionRating> {
+  extends IDao<IPollRevisionOpinionRating, PollRevisionOpinionRatingESelect, PollRevisionOpinionRatingECreateProperties, PollRevisionOpinionRatingEUpdateColumns, PollRevisionOpinionRatingEUpdateProperties, PollRevisionOpinionRatingEId, PollRevisionOpinionRatingGraph, QPollRevisionOpinionRating> {
 }
 
 export class BasePollRevisionOpinionRatingDao
-  extends SQDIDao<IPollRevisionOpinionRating, PollRevisionOpinionRatingESelect, PollRevisionOpinionRatingECreateProperties, PollRevisionOpinionRatingEUpdateColumns, PollRevisionOpinionRatingEUpdateProperties, PollRevisionOpinionRatingEId, PollRevisionOpinionRatingECascadeGraph, QPollRevisionOpinionRating>
+  extends SQDIDao<IPollRevisionOpinionRating, PollRevisionOpinionRatingESelect, PollRevisionOpinionRatingECreateProperties, PollRevisionOpinionRatingEUpdateColumns, PollRevisionOpinionRatingEUpdateProperties, PollRevisionOpinionRatingEId, PollRevisionOpinionRatingGraph, QPollRevisionOpinionRating>
 	implements IBasePollRevisionOpinionRatingDao {
 
 	static diSet(): boolean {
@@ -1223,11 +1223,11 @@ export class BasePollRevisionOpinionRatingDao
 
 
 export interface IBasePollRevisionOpinionVersionDao
-  extends IDao<IPollRevisionOpinionVersion, PollRevisionOpinionVersionESelect, PollRevisionOpinionVersionECreateProperties, PollRevisionOpinionVersionEUpdateColumns, PollRevisionOpinionVersionEUpdateProperties, PollRevisionOpinionVersionEId, PollRevisionOpinionVersionECascadeGraph, QPollRevisionOpinionVersion> {
+  extends IDao<IPollRevisionOpinionVersion, PollRevisionOpinionVersionESelect, PollRevisionOpinionVersionECreateProperties, PollRevisionOpinionVersionEUpdateColumns, PollRevisionOpinionVersionEUpdateProperties, PollRevisionOpinionVersionEId, PollRevisionOpinionVersionGraph, QPollRevisionOpinionVersion> {
 }
 
 export class BasePollRevisionOpinionVersionDao
-  extends SQDIDao<IPollRevisionOpinionVersion, PollRevisionOpinionVersionESelect, PollRevisionOpinionVersionECreateProperties, PollRevisionOpinionVersionEUpdateColumns, PollRevisionOpinionVersionEUpdateProperties, PollRevisionOpinionVersionEId, PollRevisionOpinionVersionECascadeGraph, QPollRevisionOpinionVersion>
+  extends SQDIDao<IPollRevisionOpinionVersion, PollRevisionOpinionVersionESelect, PollRevisionOpinionVersionECreateProperties, PollRevisionOpinionVersionEUpdateColumns, PollRevisionOpinionVersionEUpdateProperties, PollRevisionOpinionVersionEId, PollRevisionOpinionVersionGraph, QPollRevisionOpinionVersion>
 	implements IBasePollRevisionOpinionVersionDao {
 
 	static diSet(): boolean {
@@ -1241,11 +1241,11 @@ export class BasePollRevisionOpinionVersionDao
 
 
 export interface IBasePollRevisionOpinionVersionTranslationDao
-  extends IDao<IPollRevisionOpinionVersionTranslation, PollRevisionOpinionVersionTranslationESelect, PollRevisionOpinionVersionTranslationECreateProperties, PollRevisionOpinionVersionTranslationEUpdateColumns, PollRevisionOpinionVersionTranslationEUpdateProperties, PollRevisionOpinionVersionTranslationEId, PollRevisionOpinionVersionTranslationECascadeGraph, QPollRevisionOpinionVersionTranslation> {
+  extends IDao<IPollRevisionOpinionVersionTranslation, PollRevisionOpinionVersionTranslationESelect, PollRevisionOpinionVersionTranslationECreateProperties, PollRevisionOpinionVersionTranslationEUpdateColumns, PollRevisionOpinionVersionTranslationEUpdateProperties, PollRevisionOpinionVersionTranslationEId, PollRevisionOpinionVersionTranslationGraph, QPollRevisionOpinionVersionTranslation> {
 }
 
 export class BasePollRevisionOpinionVersionTranslationDao
-  extends SQDIDao<IPollRevisionOpinionVersionTranslation, PollRevisionOpinionVersionTranslationESelect, PollRevisionOpinionVersionTranslationECreateProperties, PollRevisionOpinionVersionTranslationEUpdateColumns, PollRevisionOpinionVersionTranslationEUpdateProperties, PollRevisionOpinionVersionTranslationEId, PollRevisionOpinionVersionTranslationECascadeGraph, QPollRevisionOpinionVersionTranslation>
+  extends SQDIDao<IPollRevisionOpinionVersionTranslation, PollRevisionOpinionVersionTranslationESelect, PollRevisionOpinionVersionTranslationECreateProperties, PollRevisionOpinionVersionTranslationEUpdateColumns, PollRevisionOpinionVersionTranslationEUpdateProperties, PollRevisionOpinionVersionTranslationEId, PollRevisionOpinionVersionTranslationGraph, QPollRevisionOpinionVersionTranslation>
 	implements IBasePollRevisionOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
@@ -1259,11 +1259,11 @@ export class BasePollRevisionOpinionVersionTranslationDao
 
 
 export interface IBasePollRevisionRatingDao
-  extends IDao<IPollRevisionRating, PollRevisionRatingESelect, PollRevisionRatingECreateProperties, PollRevisionRatingEUpdateColumns, PollRevisionRatingEUpdateProperties, PollRevisionRatingEId, PollRevisionRatingECascadeGraph, QPollRevisionRating> {
+  extends IDao<IPollRevisionRating, PollRevisionRatingESelect, PollRevisionRatingECreateProperties, PollRevisionRatingEUpdateColumns, PollRevisionRatingEUpdateProperties, PollRevisionRatingEId, PollRevisionRatingGraph, QPollRevisionRating> {
 }
 
 export class BasePollRevisionRatingDao
-  extends SQDIDao<IPollRevisionRating, PollRevisionRatingESelect, PollRevisionRatingECreateProperties, PollRevisionRatingEUpdateColumns, PollRevisionRatingEUpdateProperties, PollRevisionRatingEId, PollRevisionRatingECascadeGraph, QPollRevisionRating>
+  extends SQDIDao<IPollRevisionRating, PollRevisionRatingESelect, PollRevisionRatingECreateProperties, PollRevisionRatingEUpdateColumns, PollRevisionRatingEUpdateProperties, PollRevisionRatingEId, PollRevisionRatingGraph, QPollRevisionRating>
 	implements IBasePollRevisionRatingDao {
 
 	static diSet(): boolean {
@@ -1277,11 +1277,11 @@ export class BasePollRevisionRatingDao
 
 
 export interface IBasePollRevisionTranslationDao
-  extends IDao<IPollRevisionTranslation, PollRevisionTranslationESelect, PollRevisionTranslationECreateProperties, PollRevisionTranslationEUpdateColumns, PollRevisionTranslationEUpdateProperties, PollRevisionTranslationEId, PollRevisionTranslationECascadeGraph, QPollRevisionTranslation> {
+  extends IDao<IPollRevisionTranslation, PollRevisionTranslationESelect, PollRevisionTranslationECreateProperties, PollRevisionTranslationEUpdateColumns, PollRevisionTranslationEUpdateProperties, PollRevisionTranslationEId, PollRevisionTranslationGraph, QPollRevisionTranslation> {
 }
 
 export class BasePollRevisionTranslationDao
-  extends SQDIDao<IPollRevisionTranslation, PollRevisionTranslationESelect, PollRevisionTranslationECreateProperties, PollRevisionTranslationEUpdateColumns, PollRevisionTranslationEUpdateProperties, PollRevisionTranslationEId, PollRevisionTranslationECascadeGraph, QPollRevisionTranslation>
+  extends SQDIDao<IPollRevisionTranslation, PollRevisionTranslationESelect, PollRevisionTranslationECreateProperties, PollRevisionTranslationEUpdateColumns, PollRevisionTranslationEUpdateProperties, PollRevisionTranslationEId, PollRevisionTranslationGraph, QPollRevisionTranslation>
 	implements IBasePollRevisionTranslationDao {
 
 	static diSet(): boolean {
@@ -1295,11 +1295,11 @@ export class BasePollRevisionTranslationDao
 
 
 export interface IBasePollRevisionTranslationRatingDao
-  extends IDao<IPollRevisionTranslationRating, PollRevisionTranslationRatingESelect, PollRevisionTranslationRatingECreateProperties, PollRevisionTranslationRatingEUpdateColumns, PollRevisionTranslationRatingEUpdateProperties, PollRevisionTranslationRatingEId, PollRevisionTranslationRatingECascadeGraph, QPollRevisionTranslationRating> {
+  extends IDao<IPollRevisionTranslationRating, PollRevisionTranslationRatingESelect, PollRevisionTranslationRatingECreateProperties, PollRevisionTranslationRatingEUpdateColumns, PollRevisionTranslationRatingEUpdateProperties, PollRevisionTranslationRatingEId, PollRevisionTranslationRatingGraph, QPollRevisionTranslationRating> {
 }
 
 export class BasePollRevisionTranslationRatingDao
-  extends SQDIDao<IPollRevisionTranslationRating, PollRevisionTranslationRatingESelect, PollRevisionTranslationRatingECreateProperties, PollRevisionTranslationRatingEUpdateColumns, PollRevisionTranslationRatingEUpdateProperties, PollRevisionTranslationRatingEId, PollRevisionTranslationRatingECascadeGraph, QPollRevisionTranslationRating>
+  extends SQDIDao<IPollRevisionTranslationRating, PollRevisionTranslationRatingESelect, PollRevisionTranslationRatingECreateProperties, PollRevisionTranslationRatingEUpdateColumns, PollRevisionTranslationRatingEUpdateProperties, PollRevisionTranslationRatingEId, PollRevisionTranslationRatingGraph, QPollRevisionTranslationRating>
 	implements IBasePollRevisionTranslationRatingDao {
 
 	static diSet(): boolean {
@@ -1313,11 +1313,11 @@ export class BasePollRevisionTranslationRatingDao
 
 
 export interface IBasePollRunDao
-  extends IDao<IPollRun, PollRunESelect, PollRunECreateProperties, PollRunEUpdateColumns, PollRunEUpdateProperties, PollRunEId, PollRunECascadeGraph, QPollRun> {
+  extends IDao<IPollRun, PollRunESelect, PollRunECreateProperties, PollRunEUpdateColumns, PollRunEUpdateProperties, PollRunEId, PollRunGraph, QPollRun> {
 }
 
 export class BasePollRunDao
-  extends SQDIDao<IPollRun, PollRunESelect, PollRunECreateProperties, PollRunEUpdateColumns, PollRunEUpdateProperties, PollRunEId, PollRunECascadeGraph, QPollRun>
+  extends SQDIDao<IPollRun, PollRunESelect, PollRunECreateProperties, PollRunEUpdateColumns, PollRunEUpdateProperties, PollRunEId, PollRunGraph, QPollRun>
 	implements IBasePollRunDao {
 
 	static diSet(): boolean {
@@ -1331,11 +1331,11 @@ export class BasePollRunDao
 
 
 export interface IBasePollRunContinentDao
-  extends IDao<IPollRunContinent, PollRunContinentESelect, PollRunContinentECreateProperties, PollRunContinentEUpdateColumns, PollRunContinentEUpdateProperties, PollRunContinentEId, PollRunContinentECascadeGraph, QPollRunContinent> {
+  extends IDao<IPollRunContinent, PollRunContinentESelect, PollRunContinentECreateProperties, PollRunContinentEUpdateColumns, PollRunContinentEUpdateProperties, PollRunContinentEId, PollRunContinentGraph, QPollRunContinent> {
 }
 
 export class BasePollRunContinentDao
-  extends SQDIDao<IPollRunContinent, PollRunContinentESelect, PollRunContinentECreateProperties, PollRunContinentEUpdateColumns, PollRunContinentEUpdateProperties, PollRunContinentEId, PollRunContinentECascadeGraph, QPollRunContinent>
+  extends SQDIDao<IPollRunContinent, PollRunContinentESelect, PollRunContinentECreateProperties, PollRunContinentEUpdateColumns, PollRunContinentEUpdateProperties, PollRunContinentEId, PollRunContinentGraph, QPollRunContinent>
 	implements IBasePollRunContinentDao {
 
 	static diSet(): boolean {
@@ -1349,11 +1349,11 @@ export class BasePollRunContinentDao
 
 
 export interface IBasePollRunCountryDao
-  extends IDao<IPollRunCountry, PollRunCountryESelect, PollRunCountryECreateProperties, PollRunCountryEUpdateColumns, PollRunCountryEUpdateProperties, PollRunCountryEId, PollRunCountryECascadeGraph, QPollRunCountry> {
+  extends IDao<IPollRunCountry, PollRunCountryESelect, PollRunCountryECreateProperties, PollRunCountryEUpdateColumns, PollRunCountryEUpdateProperties, PollRunCountryEId, PollRunCountryGraph, QPollRunCountry> {
 }
 
 export class BasePollRunCountryDao
-  extends SQDIDao<IPollRunCountry, PollRunCountryESelect, PollRunCountryECreateProperties, PollRunCountryEUpdateColumns, PollRunCountryEUpdateProperties, PollRunCountryEId, PollRunCountryECascadeGraph, QPollRunCountry>
+  extends SQDIDao<IPollRunCountry, PollRunCountryESelect, PollRunCountryECreateProperties, PollRunCountryEUpdateColumns, PollRunCountryEUpdateProperties, PollRunCountryEId, PollRunCountryGraph, QPollRunCountry>
 	implements IBasePollRunCountryDao {
 
 	static diSet(): boolean {
@@ -1367,11 +1367,11 @@ export class BasePollRunCountryDao
 
 
 export interface IBasePollRunCountyDao
-  extends IDao<IPollRunCounty, PollRunCountyESelect, PollRunCountyECreateProperties, PollRunCountyEUpdateColumns, PollRunCountyEUpdateProperties, PollRunCountyEId, PollRunCountyECascadeGraph, QPollRunCounty> {
+  extends IDao<IPollRunCounty, PollRunCountyESelect, PollRunCountyECreateProperties, PollRunCountyEUpdateColumns, PollRunCountyEUpdateProperties, PollRunCountyEId, PollRunCountyGraph, QPollRunCounty> {
 }
 
 export class BasePollRunCountyDao
-  extends SQDIDao<IPollRunCounty, PollRunCountyESelect, PollRunCountyECreateProperties, PollRunCountyEUpdateColumns, PollRunCountyEUpdateProperties, PollRunCountyEId, PollRunCountyECascadeGraph, QPollRunCounty>
+  extends SQDIDao<IPollRunCounty, PollRunCountyESelect, PollRunCountyECreateProperties, PollRunCountyEUpdateColumns, PollRunCountyEUpdateProperties, PollRunCountyEId, PollRunCountyGraph, QPollRunCounty>
 	implements IBasePollRunCountyDao {
 
 	static diSet(): boolean {
@@ -1385,11 +1385,11 @@ export class BasePollRunCountyDao
 
 
 export interface IBasePollRunStateDao
-  extends IDao<IPollRunState, PollRunStateESelect, PollRunStateECreateProperties, PollRunStateEUpdateColumns, PollRunStateEUpdateProperties, PollRunStateEId, PollRunStateECascadeGraph, QPollRunState> {
+  extends IDao<IPollRunState, PollRunStateESelect, PollRunStateECreateProperties, PollRunStateEUpdateColumns, PollRunStateEUpdateProperties, PollRunStateEId, PollRunStateGraph, QPollRunState> {
 }
 
 export class BasePollRunStateDao
-  extends SQDIDao<IPollRunState, PollRunStateESelect, PollRunStateECreateProperties, PollRunStateEUpdateColumns, PollRunStateEUpdateProperties, PollRunStateEId, PollRunStateECascadeGraph, QPollRunState>
+  extends SQDIDao<IPollRunState, PollRunStateESelect, PollRunStateECreateProperties, PollRunStateEUpdateColumns, PollRunStateEUpdateProperties, PollRunStateEId, PollRunStateGraph, QPollRunState>
 	implements IBasePollRunStateDao {
 
 	static diSet(): boolean {
@@ -1403,11 +1403,11 @@ export class BasePollRunStateDao
 
 
 export interface IBasePollRunTownDao
-  extends IDao<IPollRunTown, PollRunTownESelect, PollRunTownECreateProperties, PollRunTownEUpdateColumns, PollRunTownEUpdateProperties, PollRunTownEId, PollRunTownECascadeGraph, QPollRunTown> {
+  extends IDao<IPollRunTown, PollRunTownESelect, PollRunTownECreateProperties, PollRunTownEUpdateColumns, PollRunTownEUpdateProperties, PollRunTownEId, PollRunTownGraph, QPollRunTown> {
 }
 
 export class BasePollRunTownDao
-  extends SQDIDao<IPollRunTown, PollRunTownESelect, PollRunTownECreateProperties, PollRunTownEUpdateColumns, PollRunTownEUpdateProperties, PollRunTownEId, PollRunTownECascadeGraph, QPollRunTown>
+  extends SQDIDao<IPollRunTown, PollRunTownESelect, PollRunTownECreateProperties, PollRunTownEUpdateColumns, PollRunTownEUpdateProperties, PollRunTownEId, PollRunTownGraph, QPollRunTown>
 	implements IBasePollRunTownDao {
 
 	static diSet(): boolean {
@@ -1421,11 +1421,11 @@ export class BasePollRunTownDao
 
 
 export interface IBasePollTypeDao
-  extends IDao<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateColumns, PollTypeEUpdateProperties, PollTypeEId, PollTypeECascadeGraph, QPollType> {
+  extends IDao<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateColumns, PollTypeEUpdateProperties, PollTypeEId, PollTypeGraph, QPollType> {
 }
 
 export class BasePollTypeDao
-  extends SQDIDao<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateColumns, PollTypeEUpdateProperties, PollTypeEId, PollTypeECascadeGraph, QPollType>
+  extends SQDIDao<IPollType, PollTypeESelect, PollTypeECreateProperties, PollTypeEUpdateColumns, PollTypeEUpdateProperties, PollTypeEId, PollTypeGraph, QPollType>
 	implements IBasePollTypeDao {
 
 	static diSet(): boolean {
@@ -1439,11 +1439,11 @@ export class BasePollTypeDao
 
 
 export interface IBasePositionDao
-  extends IDao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionECascadeGraph, QPosition> {
+  extends IDao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition> {
 }
 
 export class BasePositionDao
-  extends SQDIDao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionECascadeGraph, QPosition>
+  extends SQDIDao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition>
 	implements IBasePositionDao {
 
 	static diSet(): boolean {
@@ -1457,11 +1457,11 @@ export class BasePositionDao
 
 
 export interface IBasePositionOpinionVersionDao
-  extends IDao<IPositionOpinionVersion, PositionOpinionVersionESelect, PositionOpinionVersionECreateProperties, PositionOpinionVersionEUpdateColumns, PositionOpinionVersionEUpdateProperties, PositionOpinionVersionEId, PositionOpinionVersionECascadeGraph, QPositionOpinionVersion> {
+  extends IDao<IPositionOpinionVersion, PositionOpinionVersionESelect, PositionOpinionVersionECreateProperties, PositionOpinionVersionEUpdateColumns, PositionOpinionVersionEUpdateProperties, PositionOpinionVersionEId, PositionOpinionVersionGraph, QPositionOpinionVersion> {
 }
 
 export class BasePositionOpinionVersionDao
-  extends SQDIDao<IPositionOpinionVersion, PositionOpinionVersionESelect, PositionOpinionVersionECreateProperties, PositionOpinionVersionEUpdateColumns, PositionOpinionVersionEUpdateProperties, PositionOpinionVersionEId, PositionOpinionVersionECascadeGraph, QPositionOpinionVersion>
+  extends SQDIDao<IPositionOpinionVersion, PositionOpinionVersionESelect, PositionOpinionVersionECreateProperties, PositionOpinionVersionEUpdateColumns, PositionOpinionVersionEUpdateProperties, PositionOpinionVersionEId, PositionOpinionVersionGraph, QPositionOpinionVersion>
 	implements IBasePositionOpinionVersionDao {
 
 	static diSet(): boolean {
@@ -1475,11 +1475,11 @@ export class BasePositionOpinionVersionDao
 
 
 export interface IBasePositionOpinionVersionTranslationDao
-  extends IDao<IPositionOpinionVersionTranslation, PositionOpinionVersionTranslationESelect, PositionOpinionVersionTranslationECreateProperties, PositionOpinionVersionTranslationEUpdateColumns, PositionOpinionVersionTranslationEUpdateProperties, PositionOpinionVersionTranslationEId, PositionOpinionVersionTranslationECascadeGraph, QPositionOpinionVersionTranslation> {
+  extends IDao<IPositionOpinionVersionTranslation, PositionOpinionVersionTranslationESelect, PositionOpinionVersionTranslationECreateProperties, PositionOpinionVersionTranslationEUpdateColumns, PositionOpinionVersionTranslationEUpdateProperties, PositionOpinionVersionTranslationEId, PositionOpinionVersionTranslationGraph, QPositionOpinionVersionTranslation> {
 }
 
 export class BasePositionOpinionVersionTranslationDao
-  extends SQDIDao<IPositionOpinionVersionTranslation, PositionOpinionVersionTranslationESelect, PositionOpinionVersionTranslationECreateProperties, PositionOpinionVersionTranslationEUpdateColumns, PositionOpinionVersionTranslationEUpdateProperties, PositionOpinionVersionTranslationEId, PositionOpinionVersionTranslationECascadeGraph, QPositionOpinionVersionTranslation>
+  extends SQDIDao<IPositionOpinionVersionTranslation, PositionOpinionVersionTranslationESelect, PositionOpinionVersionTranslationECreateProperties, PositionOpinionVersionTranslationEUpdateColumns, PositionOpinionVersionTranslationEUpdateProperties, PositionOpinionVersionTranslationEId, PositionOpinionVersionTranslationGraph, QPositionOpinionVersionTranslation>
 	implements IBasePositionOpinionVersionTranslationDao {
 
 	static diSet(): boolean {
@@ -1493,11 +1493,11 @@ export class BasePositionOpinionVersionTranslationDao
 
 
 export interface IBasePositionTranslationDao
-  extends IDao<IPositionTranslation, PositionTranslationESelect, PositionTranslationECreateProperties, PositionTranslationEUpdateColumns, PositionTranslationEUpdateProperties, PositionTranslationEId, PositionTranslationECascadeGraph, QPositionTranslation> {
+  extends IDao<IPositionTranslation, PositionTranslationESelect, PositionTranslationECreateProperties, PositionTranslationEUpdateColumns, PositionTranslationEUpdateProperties, PositionTranslationEId, PositionTranslationGraph, QPositionTranslation> {
 }
 
 export class BasePositionTranslationDao
-  extends SQDIDao<IPositionTranslation, PositionTranslationESelect, PositionTranslationECreateProperties, PositionTranslationEUpdateColumns, PositionTranslationEUpdateProperties, PositionTranslationEId, PositionTranslationECascadeGraph, QPositionTranslation>
+  extends SQDIDao<IPositionTranslation, PositionTranslationESelect, PositionTranslationECreateProperties, PositionTranslationEUpdateColumns, PositionTranslationEUpdateProperties, PositionTranslationEId, PositionTranslationGraph, QPositionTranslation>
 	implements IBasePositionTranslationDao {
 
 	static diSet(): boolean {
@@ -1511,11 +1511,11 @@ export class BasePositionTranslationDao
 
 
 export interface IBaseRatingDao
-  extends IDao<IRating, RatingESelect, RatingECreateProperties, RatingEUpdateColumns, RatingEUpdateProperties, RatingEId, RatingECascadeGraph, QRating> {
+  extends IDao<IRating, RatingESelect, RatingECreateProperties, RatingEUpdateColumns, RatingEUpdateProperties, RatingEId, RatingGraph, QRating> {
 }
 
 export class BaseRatingDao
-  extends SQDIDao<IRating, RatingESelect, RatingECreateProperties, RatingEUpdateColumns, RatingEUpdateProperties, RatingEId, RatingECascadeGraph, QRating>
+  extends SQDIDao<IRating, RatingESelect, RatingECreateProperties, RatingEUpdateColumns, RatingEUpdateProperties, RatingEId, RatingGraph, QRating>
 	implements IBaseRatingDao {
 
 	static diSet(): boolean {
@@ -1529,11 +1529,11 @@ export class BaseRatingDao
 
 
 export interface IBaseRatingSettingDao
-  extends IDao<IRatingSetting, RatingSettingESelect, RatingSettingECreateProperties, RatingSettingEUpdateColumns, RatingSettingEUpdateProperties, RatingSettingEId, RatingSettingECascadeGraph, QRatingSetting> {
+  extends IDao<IRatingSetting, RatingSettingESelect, RatingSettingECreateProperties, RatingSettingEUpdateColumns, RatingSettingEUpdateProperties, RatingSettingEId, RatingSettingGraph, QRatingSetting> {
 }
 
 export class BaseRatingSettingDao
-  extends SQDIDao<IRatingSetting, RatingSettingESelect, RatingSettingECreateProperties, RatingSettingEUpdateColumns, RatingSettingEUpdateProperties, RatingSettingEId, RatingSettingECascadeGraph, QRatingSetting>
+  extends SQDIDao<IRatingSetting, RatingSettingESelect, RatingSettingECreateProperties, RatingSettingEUpdateColumns, RatingSettingEUpdateProperties, RatingSettingEId, RatingSettingGraph, QRatingSetting>
 	implements IBaseRatingSettingDao {
 
 	static diSet(): boolean {
@@ -1547,11 +1547,11 @@ export class BaseRatingSettingDao
 
 
 export interface IBaseRatingTypeDao
-  extends IDao<IRatingType, RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeECascadeGraph, QRatingType> {
+  extends IDao<IRatingType, RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeGraph, QRatingType> {
 }
 
 export class BaseRatingTypeDao
-  extends SQDIDao<IRatingType, RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeECascadeGraph, QRatingType>
+  extends SQDIDao<IRatingType, RatingTypeESelect, RatingTypeECreateProperties, RatingTypeEUpdateColumns, RatingTypeEUpdateProperties, RatingTypeEId, RatingTypeGraph, QRatingType>
 	implements IBaseRatingTypeDao {
 
 	static diSet(): boolean {
@@ -1565,11 +1565,11 @@ export class BaseRatingTypeDao
 
 
 export interface IBaseSkinDao
-  extends IDao<ISkin, SkinESelect, SkinECreateProperties, SkinEUpdateColumns, SkinEUpdateProperties, SkinEId, SkinECascadeGraph, QSkin> {
+  extends IDao<ISkin, SkinESelect, SkinECreateProperties, SkinEUpdateColumns, SkinEUpdateProperties, SkinEId, SkinGraph, QSkin> {
 }
 
 export class BaseSkinDao
-  extends SQDIDao<ISkin, SkinESelect, SkinECreateProperties, SkinEUpdateColumns, SkinEUpdateProperties, SkinEId, SkinECascadeGraph, QSkin>
+  extends SQDIDao<ISkin, SkinESelect, SkinECreateProperties, SkinEUpdateColumns, SkinEUpdateProperties, SkinEId, SkinGraph, QSkin>
 	implements IBaseSkinDao {
 
 	static diSet(): boolean {
@@ -1583,11 +1583,11 @@ export class BaseSkinDao
 
 
 export interface IBaseStateDao
-  extends IDao<IState, StateESelect, StateECreateProperties, StateEUpdateColumns, StateEUpdateProperties, StateEId, StateECascadeGraph, QState> {
+  extends IDao<IState, StateESelect, StateECreateProperties, StateEUpdateColumns, StateEUpdateProperties, StateEId, StateGraph, QState> {
 }
 
 export class BaseStateDao
-  extends SQDIDao<IState, StateESelect, StateECreateProperties, StateEUpdateColumns, StateEUpdateProperties, StateEId, StateECascadeGraph, QState>
+  extends SQDIDao<IState, StateESelect, StateECreateProperties, StateEUpdateColumns, StateEUpdateProperties, StateEId, StateGraph, QState>
 	implements IBaseStateDao {
 
 	static diSet(): boolean {
@@ -1601,11 +1601,11 @@ export class BaseStateDao
 
 
 export interface IBaseStateTownDao
-  extends IDao<IStateTown, StateTownESelect, StateTownECreateProperties, StateTownEUpdateColumns, StateTownEUpdateProperties, StateTownEId, StateTownECascadeGraph, QStateTown> {
+  extends IDao<IStateTown, StateTownESelect, StateTownECreateProperties, StateTownEUpdateColumns, StateTownEUpdateProperties, StateTownEId, StateTownGraph, QStateTown> {
 }
 
 export class BaseStateTownDao
-  extends SQDIDao<IStateTown, StateTownESelect, StateTownECreateProperties, StateTownEUpdateColumns, StateTownEUpdateProperties, StateTownEId, StateTownECascadeGraph, QStateTown>
+  extends SQDIDao<IStateTown, StateTownESelect, StateTownECreateProperties, StateTownEUpdateColumns, StateTownEUpdateProperties, StateTownEId, StateTownGraph, QStateTown>
 	implements IBaseStateTownDao {
 
 	static diSet(): boolean {
@@ -1619,11 +1619,11 @@ export class BaseStateTownDao
 
 
 export interface IBaseThemeDao
-  extends IDao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeECascadeGraph, QTheme> {
+  extends IDao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme> {
 }
 
 export class BaseThemeDao
-  extends SQDIDao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeECascadeGraph, QTheme>
+  extends SQDIDao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme>
 	implements IBaseThemeDao {
 
 	static diSet(): boolean {
@@ -1637,11 +1637,11 @@ export class BaseThemeDao
 
 
 export interface IBaseTownDao
-  extends IDao<ITown, TownESelect, TownECreateProperties, TownEUpdateColumns, TownEUpdateProperties, TownEId, TownECascadeGraph, QTown> {
+  extends IDao<ITown, TownESelect, TownECreateProperties, TownEUpdateColumns, TownEUpdateProperties, TownEId, TownGraph, QTown> {
 }
 
 export class BaseTownDao
-  extends SQDIDao<ITown, TownESelect, TownECreateProperties, TownEUpdateColumns, TownEUpdateProperties, TownEId, TownECascadeGraph, QTown>
+  extends SQDIDao<ITown, TownESelect, TownECreateProperties, TownEUpdateColumns, TownEUpdateProperties, TownEId, TownGraph, QTown>
 	implements IBaseTownDao {
 
 	static diSet(): boolean {
@@ -1655,11 +1655,11 @@ export class BaseTownDao
 
 
 export interface IBaseTranslationTypeDao
-  extends IDao<ITranslationType, TranslationTypeESelect, TranslationTypeECreateProperties, TranslationTypeEUpdateColumns, TranslationTypeEUpdateProperties, TranslationTypeEId, TranslationTypeECascadeGraph, QTranslationType> {
+  extends IDao<ITranslationType, TranslationTypeESelect, TranslationTypeECreateProperties, TranslationTypeEUpdateColumns, TranslationTypeEUpdateProperties, TranslationTypeEId, TranslationTypeGraph, QTranslationType> {
 }
 
 export class BaseTranslationTypeDao
-  extends SQDIDao<ITranslationType, TranslationTypeESelect, TranslationTypeECreateProperties, TranslationTypeEUpdateColumns, TranslationTypeEUpdateProperties, TranslationTypeEId, TranslationTypeECascadeGraph, QTranslationType>
+  extends SQDIDao<ITranslationType, TranslationTypeESelect, TranslationTypeECreateProperties, TranslationTypeEUpdateColumns, TranslationTypeEUpdateProperties, TranslationTypeEId, TranslationTypeGraph, QTranslationType>
 	implements IBaseTranslationTypeDao {
 
 	static diSet(): boolean {
@@ -1673,11 +1673,11 @@ export class BaseTranslationTypeDao
 
 
 export interface IBaseUserAccountDao
-  extends IDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountECascadeGraph, QUserAccount> {
+  extends IDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> {
 }
 
 export class BaseUserAccountDao
-  extends SQDIDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountECascadeGraph, QUserAccount>
+  extends SQDIDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount>
 	implements IBaseUserAccountDao {
 
 	static diSet(): boolean {
@@ -1691,11 +1691,11 @@ export class BaseUserAccountDao
 
 
 export interface IBaseVoteDao
-  extends IDao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, VoteECascadeGraph, QVote> {
+  extends IDao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, VoteGraph, QVote> {
 }
 
 export class BaseVoteDao
-  extends SQDIDao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, VoteECascadeGraph, QVote>
+  extends SQDIDao<IVote, VoteESelect, VoteECreateProperties, VoteEUpdateColumns, VoteEUpdateProperties, VoteEId, VoteGraph, QVote>
 	implements IBaseVoteDao {
 
 	static diSet(): boolean {
@@ -1709,11 +1709,11 @@ export class BaseVoteDao
 
 
 export interface IBaseVoteFactorDao
-  extends IDao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, VoteFactorECascadeGraph, QVoteFactor> {
+  extends IDao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, VoteFactorGraph, QVoteFactor> {
 }
 
 export class BaseVoteFactorDao
-  extends SQDIDao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, VoteFactorECascadeGraph, QVoteFactor>
+  extends SQDIDao<IVoteFactor, VoteFactorESelect, VoteFactorECreateProperties, VoteFactorEUpdateColumns, VoteFactorEUpdateProperties, VoteFactorEId, VoteFactorGraph, QVoteFactor>
 	implements IBaseVoteFactorDao {
 
 	static diSet(): boolean {
@@ -1727,11 +1727,11 @@ export class BaseVoteFactorDao
 
 
 export interface IBaseVoteFactorTypeDao
-  extends IDao<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateColumns, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, VoteFactorTypeECascadeGraph, QVoteFactorType> {
+  extends IDao<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateColumns, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, VoteFactorTypeGraph, QVoteFactorType> {
 }
 
 export class BaseVoteFactorTypeDao
-  extends SQDIDao<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateColumns, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, VoteFactorTypeECascadeGraph, QVoteFactorType>
+  extends SQDIDao<IVoteFactorType, VoteFactorTypeESelect, VoteFactorTypeECreateProperties, VoteFactorTypeEUpdateColumns, VoteFactorTypeEUpdateProperties, VoteFactorTypeEId, VoteFactorTypeGraph, QVoteFactorType>
 	implements IBaseVoteFactorTypeDao {
 
 	static diSet(): boolean {
@@ -1745,11 +1745,11 @@ export class BaseVoteFactorTypeDao
 
 
 export interface IBaseVoteTypeDao
-  extends IDao<IVoteType, VoteTypeESelect, VoteTypeECreateProperties, VoteTypeEUpdateColumns, VoteTypeEUpdateProperties, VoteTypeEId, VoteTypeECascadeGraph, QVoteType> {
+  extends IDao<IVoteType, VoteTypeESelect, VoteTypeECreateProperties, VoteTypeEUpdateColumns, VoteTypeEUpdateProperties, VoteTypeEId, VoteTypeGraph, QVoteType> {
 }
 
 export class BaseVoteTypeDao
-  extends SQDIDao<IVoteType, VoteTypeESelect, VoteTypeECreateProperties, VoteTypeEUpdateColumns, VoteTypeEUpdateProperties, VoteTypeEId, VoteTypeECascadeGraph, QVoteType>
+  extends SQDIDao<IVoteType, VoteTypeESelect, VoteTypeECreateProperties, VoteTypeEUpdateColumns, VoteTypeEUpdateProperties, VoteTypeEId, VoteTypeGraph, QVoteType>
 	implements IBaseVoteTypeDao {
 
 	static diSet(): boolean {
@@ -1763,11 +1763,11 @@ export class BaseVoteTypeDao
 
 
 export interface IBaseVoteVersionDao
-  extends IDao<IVoteVersion, VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionECascadeGraph, QVoteVersion> {
+  extends IDao<IVoteVersion, VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionGraph, QVoteVersion> {
 }
 
 export class BaseVoteVersionDao
-  extends SQDIDao<IVoteVersion, VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionECascadeGraph, QVoteVersion>
+  extends SQDIDao<IVoteVersion, VoteVersionESelect, VoteVersionECreateProperties, VoteVersionEUpdateColumns, VoteVersionEUpdateProperties, VoteVersionEId, VoteVersionGraph, QVoteVersion>
 	implements IBaseVoteVersionDao {
 
 	static diSet(): boolean {

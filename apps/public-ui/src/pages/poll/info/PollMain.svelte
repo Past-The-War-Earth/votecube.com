@@ -4,7 +4,7 @@
 		CUBE_EVENT_LISTENER,
 		MUTATION_API
 	}                      from '@votecube/cube-logic'
-	import {VOTE_DAO}      from '@votecube/public-db'
+	import {VOTE_DAO}      from '@votecube/relational-db'
 	import {
 		cardMove,
 		cube,
@@ -23,7 +23,7 @@
 		setResizeCllBck,
 		user,
 		VARIATION_LIST
-	}                      from '@votecube/public-logic'
+	}                      from '@votecube/vc-logic'
 	import {
 		beforeUpdate,
 		onDestroy,
@@ -126,7 +126,9 @@
 		cardMove.set(null)
 		container = DI.ui('PollMain')
 
-		let {pollId, pollRevisionId} = get(routeParams)
+		let params = get(routeParams)
+		let pollId = parseInt(params.pollId)
+		let pollRevisionId = parseInt(params.pollRevisionId)
 
 		resize()
 		if (window.location.href.indexOf('card/ClimateChange') > 0) {

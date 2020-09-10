@@ -9,6 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/public-ui/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/apps/public-ui/.rush" />
       <excludeFolder url="file://$MODULE_DIR$/apps/public-ui/build" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-node/lib" />
       <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/.rush" />
       <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/__sapper__" />

@@ -12,7 +12,7 @@
 		POLL_TIME_FRAME,
 		routeParams,
 		text
-	}                      from '@votecube/public-logic'
+	}                      from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

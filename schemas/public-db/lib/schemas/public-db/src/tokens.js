@@ -1,12 +1,14 @@
-import { system } from '@airport/di';
-const publicDb = system('votecube-ui').lib('public-db');
-export const DB_CONVERTER = publicDb.token();
-export const DB_UTILS = publicDb.token();
-export const FACTOR_DAO = publicDb.token();
-export const LABEL_DAO = publicDb.token();
-export const POLL_DAO = publicDb.token();
-export const POLL_VARIATION_DAO = publicDb.token();
-export const SCHEMA = publicDb.token();
-export const USER_DAO = publicDb.token();
-export const VOTE_DAO = publicDb.token();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const publicDb = di_1.system('votecube-ui').lib('public-db');
+exports.DB_CONVERTER = publicDb.token();
+exports.DB_UTILS = publicDb.token();
+exports.FACTOR_DAO = publicDb.token();
+exports.LABEL_DAO = publicDb.token();
+exports.POLL_DAO = publicDb.token();
+exports.POLL_VARIATION_DAO = publicDb.token();
+exports.SCHEMA = publicDb.token();
+exports.USER_DAO = publicDb.token();
+exports.VOTE_DAO = publicDb.token();
 //# sourceMappingURL=tokens.js.map

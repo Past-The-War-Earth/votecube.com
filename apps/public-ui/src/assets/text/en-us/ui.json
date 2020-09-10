@@ -48,7 +48,7 @@
     },
     "SignIn": {
       "SignUp": {
-        "username": {
+        "userName": {
           "info": "Select your username",
           "label": "Username",
           "errors": {

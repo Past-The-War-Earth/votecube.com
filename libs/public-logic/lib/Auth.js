@@ -1,116 +1,64 @@
-import { container, DI } from '@airport/di';
-import { BehaviorSubject } from '@airport/observe';
-import { USER_DAO } from '@votecube/public-db';
-import { AUTH } from './tokens';
-export class Auth {
-    getFbAuthUser() {
-        const fb = window.fb;
-        return fb.auth().currentUser;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const observe_1 = require("@airport/observe");
+const relational_db_1 = require("@votecube/relational-db");
+const tokens_1 = require("./tokens");
+class Auth {
+    getUser() {
+        return this.user;
     }
-    getUser(dbUser = this.getFbAuthUser()) {
-        if (!dbUser) {
-            return null;
-        }
-        return {
-            db: dbUser,
-            key: dbUser.uid,
-            name: dbUser.email.split('@')[0]
-        };
-    }
-    async reactToUser(
-    // fbAuthUser: IFbAuthUser
-    ) {
-        const fb = window.fb;
-        // const user = this.getUser()
-        // store.set({user})
-        const subject = new BehaviorSubject(null);
-        fb.auth().onAuthStateChanged((fbAuthUser) => {
-            // let appUser: IAppUser = null
-            // if (fbAuthUser) {
-            // 	appUser = this.getUser(fbAuthUser)
-            // } else {
-            // 	const {currentPage} = store.get()
-            // 	if (currentPage.authenticated) {
-            // 		return true
-            // 		// navigateToPage(POLL_LIST)
-            // 	}
-            // }
-            subject.next(this.getUser(fbAuthUser));
-            // store.set({user, authChecked: true})
-        });
+    async reactToUser() {
+        const subject = new observe_1.BehaviorSubject(null);
         return subject;
     }
-    async signIn(username, password) {
-        password = await this.encodePassword(password);
-        try {
-            const fb = window.fb;
-            await fb.auth().signInWithEmailAndPassword(username + '@votecube.com', password);
+    async signIn(userName, password) {
+        const userAccountDao = await di_1.container(this).get(relational_db_1.USER_ACCOUNT_DAO);
+        const userAccount = await userAccountDao.findByUsername(userName);
+        if (userAccount === null) {
+            return {
+                code: 'NotFound'
+            };
         }
-        catch (error) {
-            switch (error.code) {
-                case 'auth/user-not-found':
-                    return {
-                        code: 'NotFound'
-                    };
-                case 'auth/wrong-password':
-                    return {
-                        code: 'WrongPassword'
-                    };
-                case 'auth/too-many-requests':
-                    return {
-                        code: 'TooManyTries'
-                    };
-                default:
-                    return {
-                        message: error.message
-                    };
-            }
+        const passwordHash = await this.encodePassword(password);
+        if (passwordHash !== userAccount.passwordHash) {
+            return {
+                code: 'WrongPassword'
+            };
         }
+        else if (false) {
+            return {
+                code: 'TooManyTries'
+            };
+        }
+        this.user = userAccount;
+        return this.user;
     }
     async signOut() {
-        try {
-            const fb = window.fb;
-            await fb.auth().signOut();
-            // Sign-out successful.
-        }
-        catch (error) {
-            // An error happened.
-        }
+        this.user = null;
     }
-    async signUp(username, password) {
-        password = await this.encodePassword(password);
+    async signUp(userName, password) {
+        const userAccountDao = await di_1.container(this).get(relational_db_1.USER_ACCOUNT_DAO);
+        const passwordHash = await this.encodePassword(password);
         try {
-            const fb = window.fb;
-            await fb.auth().createUserWithEmailAndPassword(username + '@votecube.com', password);
-            const user$ = await this.reactToUser();
-            let user;
-            user$.subscribe(createdUser => user = createdUser).unsubscribe();
-            const userDao = await container(this).get(USER_DAO);
-            await userDao.signUp(username, password, user);
+            await userAccountDao.signUp(userName, passwordHash);
         }
-        catch (error) {
-            switch (error.code) {
-                case 'auth/email-already-in-use':
-                    return {
-                        code: 'InUse'
-                    };
-                case 'auth/invalid-email':
-                    return {
-                        code: 'Invalid'
-                    };
-                default:
-                    return {
-                        message: error.message
-                    };
-            }
+        catch (e) {
+            return {
+                code: 'InUse'
+            };
+            // return {
+            // 	code: 'Invalid'
+            // }
         }
     }
     async encodePassword(password) {
-        const jsSHA = await import('jssha/src/sha512');
+        const jsSHA = await Promise.resolve().then(() => require('jssha/src/sha512'));
         const shaObj = new jsSHA('SHA-512', 'TEXT');
         shaObj.update(password);
         return shaObj.getHash('B64');
     }
 }
-DI.set(AUTH, Auth);
+exports.Auth = Auth;
+di_1.DI.set(tokens_1.AUTH, Auth);
 //# sourceMappingURL=Auth.js.map

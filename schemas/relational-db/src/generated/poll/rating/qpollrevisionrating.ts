@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	MutableActorRowECascadeGraph,
+	MutableActorRowGraph,
 	MutableActorRowEId,
 	MutableActorRowEUpdateColumns,
 	MutableActorRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QMutableActorRow,
 } from '../../infrastructure/row/qmutableactorrow';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionQRelation,
 } from '../revision/qpollrevision';
 import {
-	RatingECascadeGraph,
+	RatingGraph,
 	RatingEId,
 	RatingEOptionalId,
 	RatingEUpdateProperties,
@@ -116,9 +116,16 @@ export interface PollRevisionRatingEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionRatingECascadeGraph
-	extends MutableActorRowECascadeGraph {
-	// Cascading Relations
+export interface PollRevisionRatingGraph
+	extends MutableActorRowESelect, PollRevisionRatingEOptionalId, MutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	value?: number | IQNumberField;
+
+	// Relations
+	pollRevision?: PollRevisionGraph;
+	rating?: RatingGraph;
 
 }
 

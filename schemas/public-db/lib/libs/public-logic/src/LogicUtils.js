@@ -1,7 +1,9 @@
-import { DI } from '@airport/di';
-import { create_bidirectional_transition } from 'svelte/internal';
-import { LOGIC_UTILS } from './tokens';
-export class LogicUtils {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const internal_1 = require("svelte/internal");
+const tokens_1 = require("./tokens");
+class LogicUtils {
     copyProperties(from, to, properties) {
         for (const property of properties) {
             if (from[property] !== undefined) {
@@ -118,7 +120,7 @@ export class LogicUtils {
             if (!domElementToTransition) {
                 return;
             }
-            const figureIntro = create_bidirectional_transition(domElementToTransition, transitionFunction, options, true);
+            const figureIntro = internal_1.create_bidirectional_transition(domElementToTransition, transitionFunction, options, true);
             figureIntro.run(1);
         });
     }
@@ -126,5 +128,6 @@ export class LogicUtils {
         return colorString.length === 1 ? '0' + colorString : colorString;
     }
 }
-DI.set(LOGIC_UTILS, LogicUtils);
+exports.LogicUtils = LogicUtils;
+di_1.DI.set(tokens_1.LOGIC_UTILS, LogicUtils);
 //# sourceMappingURL=LogicUtils.js.map

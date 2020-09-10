@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	PollRevisionOpinionECascadeGraph,
+	PollRevisionOpinionGraph,
 	PollRevisionOpinionEId,
 	PollRevisionOpinionEOptionalId,
 	PollRevisionOpinionEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QPollRevisionOpinionQRelation,
 } from './qpollrevisionopinion';
 import {
-	FactorECascadeGraph,
+	FactorGraph,
 	FactorEId,
 	FactorEOptionalId,
 	FactorEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QFactorQRelation,
 } from '../factor/qfactor';
 import {
-	FactorOpinionVersionTranslationECascadeGraph,
+	FactorOpinionVersionTranslationGraph,
 	FactorOpinionVersionTranslationEId,
 	FactorOpinionVersionTranslationEOptionalId,
 	FactorOpinionVersionTranslationEUpdateProperties,
@@ -118,11 +118,18 @@ export interface FactorOpinionVersionEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface FactorOpinionVersionECascadeGraph
-	extends IEntityCascadeGraph {
-	// Cascading Relations
-	children?: FactorOpinionVersionECascadeGraph;
-	translations?: FactorOpinionVersionTranslationECascadeGraph;
+export interface FactorOpinionVersionGraph
+	extends IEntitySelectProperties, FactorOpinionVersionEOptionalId, IEntityCascadeGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	pollRevisionOpinion?: PollRevisionOpinionGraph;
+	factor?: FactorGraph;
+	parent?: FactorOpinionVersionGraph;
+	children?: FactorOpinionVersionGraph[];
+	translations?: FactorOpinionVersionTranslationGraph[];
 
 }
 

@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
 	ImmutableActorRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QImmutableActorRow,
 } from '../../infrastructure/row/qimmutableactorrow';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QPollRevisionQRelation,
 } from '../revision/qpollrevision';
 import {
-	PollRunContinentECascadeGraph,
+	PollRunContinentGraph,
 	PollRunContinentEId,
 	PollRunContinentEOptionalId,
 	PollRunContinentEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QPollRunContinentQRelation,
 } from './location/qpollruncontinent';
 import {
-	PollRunCountryECascadeGraph,
+	PollRunCountryGraph,
 	PollRunCountryEId,
 	PollRunCountryEOptionalId,
 	PollRunCountryEUpdateProperties,
@@ -62,7 +62,7 @@ import {
 	QPollRunCountryQRelation,
 } from './location/qpollruncountry';
 import {
-	PollRunStateECascadeGraph,
+	PollRunStateGraph,
 	PollRunStateEId,
 	PollRunStateEOptionalId,
 	PollRunStateEUpdateProperties,
@@ -72,7 +72,7 @@ import {
 	QPollRunStateQRelation,
 } from './location/qpollrunstate';
 import {
-	PollRunCountyECascadeGraph,
+	PollRunCountyGraph,
 	PollRunCountyEId,
 	PollRunCountyEOptionalId,
 	PollRunCountyEUpdateProperties,
@@ -82,7 +82,7 @@ import {
 	QPollRunCountyQRelation,
 } from './location/qpollruncounty';
 import {
-	PollRunTownECascadeGraph,
+	PollRunTownGraph,
 	PollRunTownEId,
 	PollRunTownEOptionalId,
 	PollRunTownEUpdateProperties,
@@ -162,15 +162,22 @@ export interface PollRunEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRunECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
-	// Cascading Relations
-	createdAtRevisions?: PollRevisionECascadeGraph;
-	pollContinents?: PollRunContinentECascadeGraph;
-	pollCountries?: PollRunCountryECascadeGraph;
-	pollStates?: PollRunStateECascadeGraph;
-	pollCounties?: PollRunCountyECascadeGraph;
-	pollTowns?: PollRunTownECascadeGraph;
+export interface PollRunGraph
+	extends ImmutableActorRowESelect, PollRunEOptionalId, ImmutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	endDate?: Date | IQDateField;
+	startDate?: Date | IQDateField;
+
+	// Relations
+	pollRevision?: PollRevisionGraph;
+	createdAtRevisions?: PollRevisionGraph[];
+	pollContinents?: PollRunContinentGraph[];
+	pollCountries?: PollRunCountryGraph[];
+	pollStates?: PollRunStateGraph[];
+	pollCounties?: PollRunCountyGraph[];
+	pollTowns?: PollRunTownGraph[];
 
 }
 

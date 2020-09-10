@@ -12,130 +12,132 @@ import {
 	EntityId,
 	getSchemaName
 }                      from '@airport/ground-control';
-import { Actor } from '../ddl/user/actor';
 import { QActor } from './user/qactor';
-import { AgeSuitableRow } from '../ddl/infrastructure/row/agesuitablerow';
 import { QAgeSuitableRow } from './infrastructure/row/qagesuitablerow';
-import { Application } from '../ddl/user/application';
 import { QApplication } from './user/qapplication';
-import { Continent } from '../ddl/location/continent';
 import { QContinent } from './location/qcontinent';
-import { Country } from '../ddl/location/country';
 import { QCountry } from './location/qcountry';
-import { CountryTown } from '../ddl/location/countrytown';
 import { QCountryTown } from './location/qcountrytown';
-import { County } from '../ddl/location/county';
 import { QCounty } from './location/qcounty';
-import { CountyTown } from '../ddl/location/countytown';
 import { QCountyTown } from './location/qcountytown';
-import { DesignPattern } from '../ddl/factor/position/designpattern';
 import { QDesignPattern } from './factor/position/qdesignpattern';
-import { Device } from '../ddl/user/device';
 import { QDevice } from './user/qdevice';
-import { Emoji } from '../ddl/factor/position/emoji';
 import { QEmoji } from './factor/position/qemoji';
-import { Factor } from '../ddl/factor/factor';
 import { QFactor } from './factor/qfactor';
-import { FactorOpinionVersion } from '../ddl/opinion/factoropinionversion';
 import { QFactorOpinionVersion } from './opinion/qfactoropinionversion';
-import { FactorOpinionVersionTranslation } from '../ddl/opinion/translation/factoropinionversiontranslation';
 import { QFactorOpinionVersionTranslation } from './opinion/translation/qfactoropinionversiontranslation';
-import { FactorPosition } from '../ddl/factor/position/factorposition';
 import { QFactorPosition } from './factor/position/qfactorposition';
-import { FactorTranslation } from '../ddl/factor/factortranslation';
 import { QFactorTranslation } from './factor/qfactortranslation';
-import { ImmutableActorRow } from '../ddl/infrastructure/row/immutableactorrow';
 import { QImmutableActorRow } from './infrastructure/row/qimmutableactorrow';
-import { ImmutableRow } from '../ddl/infrastructure/row/immutablerow';
 import { QImmutableRow } from './infrastructure/row/qimmutablerow';
-import { Language } from '../ddl/infrastructure/language';
 import { QLanguage } from './infrastructure/qlanguage';
-import { MutableActorRow } from '../ddl/infrastructure/row/mutableactorrow';
 import { QMutableActorRow } from './infrastructure/row/qmutableactorrow';
-import { MutableRow } from '../ddl/infrastructure/row/mutablerow';
 import { QMutableRow } from './infrastructure/row/qmutablerow';
-import { Outcome } from '../ddl/poll/revision/outcome';
 import { QOutcome } from './poll/revision/qoutcome';
-import { OutcomeOpinionVersion } from '../ddl/opinion/outcomeopinionversion';
 import { QOutcomeOpinionVersion } from './opinion/qoutcomeopinionversion';
-import { OutcomeOpinionVersionTranslation } from '../ddl/opinion/translation/outcomeopinionversiontranslation';
 import { QOutcomeOpinionVersionTranslation } from './opinion/translation/qoutcomeopinionversiontranslation';
-import { OutcomeTranslation } from '../ddl/poll/revision/translation/outcometranslation';
 import { QOutcomeTranslation } from './poll/revision/translation/qoutcometranslation';
-import { Poll } from '../ddl/poll/poll';
 import { QPoll } from './poll/qpoll';
-import { PollRevision } from '../ddl/poll/revision/pollrevision';
 import { QPollRevision } from './poll/revision/qpollrevision';
-import { PollRevisionFactorPosition } from '../ddl/poll/revision/pollrevisionfactorposition';
 import { QPollRevisionFactorPosition } from './poll/revision/qpollrevisionfactorposition';
-import { PollRevisionOpinion } from '../ddl/opinion/pollrevisionopinion';
 import { QPollRevisionOpinion } from './opinion/qpollrevisionopinion';
-import { PollRevisionOpinionRating } from '../ddl/opinion/rating/pollrevisionopinionrating';
 import { QPollRevisionOpinionRating } from './opinion/rating/qpollrevisionopinionrating';
-import { PollRevisionOpinionVersion } from '../ddl/opinion/pollrevisionopinionversion';
 import { QPollRevisionOpinionVersion } from './opinion/qpollrevisionopinionversion';
-import { PollRevisionOpinionVersionTranslation } from '../ddl/opinion/translation/pollrevisionopinionversiontranslation';
 import { QPollRevisionOpinionVersionTranslation } from './opinion/translation/qpollrevisionopinionversiontranslation';
-import { PollRevisionRating } from '../ddl/poll/rating/pollrevisionrating';
 import { QPollRevisionRating } from './poll/rating/qpollrevisionrating';
-import { PollRevisionTranslation } from '../ddl/poll/revision/translation/pollrevisiontranslation';
 import { QPollRevisionTranslation } from './poll/revision/translation/qpollrevisiontranslation';
-import { PollRevisionTranslationRating } from '../ddl/poll/rating/pollrevisiontranslationrating';
 import { QPollRevisionTranslationRating } from './poll/rating/qpollrevisiontranslationrating';
-import { PollRun } from '../ddl/poll/run/pollrun';
 import { QPollRun } from './poll/run/qpollrun';
-import { PollRunContinent } from '../ddl/poll/run/location/pollruncontinent';
 import { QPollRunContinent } from './poll/run/location/qpollruncontinent';
-import { PollRunCountry } from '../ddl/poll/run/location/pollruncountry';
 import { QPollRunCountry } from './poll/run/location/qpollruncountry';
-import { PollRunCounty } from '../ddl/poll/run/location/pollruncounty';
 import { QPollRunCounty } from './poll/run/location/qpollruncounty';
-import { PollRunState } from '../ddl/poll/run/location/pollrunstate';
 import { QPollRunState } from './poll/run/location/qpollrunstate';
-import { PollRunTown } from '../ddl/poll/run/location/pollruntown';
 import { QPollRunTown } from './poll/run/location/qpollruntown';
-import { PollType } from '../ddl/poll/polltype';
 import { QPollType } from './poll/qpolltype';
-import { Position } from '../ddl/factor/position/position';
 import { QPosition } from './factor/position/qposition';
-import { PositionOpinionVersion } from '../ddl/opinion/positionopinionversion';
 import { QPositionOpinionVersion } from './opinion/qpositionopinionversion';
-import { PositionOpinionVersionTranslation } from '../ddl/opinion/translation/positionopinionversiontranslation';
 import { QPositionOpinionVersionTranslation } from './opinion/translation/qpositionopinionversiontranslation';
-import { PositionTranslation } from '../ddl/factor/position/positiontranslation';
 import { QPositionTranslation } from './factor/position/qpositiontranslation';
-import { Rating } from '../ddl/infrastructure/rating/rating';
 import { QRating } from './infrastructure/rating/qrating';
-import { RatingSetting } from '../ddl/infrastructure/rating/ratingsetting';
 import { QRatingSetting } from './infrastructure/rating/qratingsetting';
-import { RatingType } from '../ddl/infrastructure/rating/ratingtype';
 import { QRatingType } from './infrastructure/rating/qratingtype';
-import { Skin } from '../ddl/factor/skin';
 import { QSkin } from './factor/qskin';
-import { State } from '../ddl/location/state';
 import { QState } from './location/qstate';
-import { StateTown } from '../ddl/location/statetown';
 import { QStateTown } from './location/qstatetown';
-import { SystemGeneratedRow } from '../ddl/infrastructure/row/systemgeneratedrow';
 import { QSystemGeneratedRow } from './infrastructure/row/qsystemgeneratedrow';
-import { Theme } from '../ddl/poll/theme';
 import { QTheme } from './poll/qtheme';
-import { Town } from '../ddl/location/town';
 import { QTown } from './location/qtown';
-import { TranslationType } from '../ddl/infrastructure/translationtype';
 import { QTranslationType } from './infrastructure/qtranslationtype';
-import { UserAccount } from '../ddl/user/useraccount';
 import { QUserAccount } from './user/quseraccount';
-import { Vote } from '../ddl/vote/vote';
 import { QVote } from './vote/qvote';
-import { VoteFactor } from '../ddl/vote/votefactor';
 import { QVoteFactor } from './vote/qvotefactor';
-import { VoteFactorType } from '../ddl/vote/votefactortype';
 import { QVoteFactorType } from './vote/qvotefactortype';
-import { VoteType } from '../ddl/vote/votetype';
 import { QVoteType } from './vote/qvotetype';
-import { VoteVersion } from '../ddl/vote/voteversion';
 import { QVoteVersion } from './vote/qvoteversion';
+import {
+  Actor,
+  AgeSuitableRow,
+  Application,
+  Continent,
+  Country,
+  CountryTown,
+  County,
+  CountyTown,
+  DesignPattern,
+  Device,
+  Emoji,
+  Factor,
+  FactorOpinionVersion,
+  FactorOpinionVersionTranslation,
+  FactorPosition,
+  FactorTranslation,
+  ImmutableActorRow,
+  ImmutableRow,
+  Language,
+  MutableActorRow,
+  MutableRow,
+  Outcome,
+  OutcomeOpinionVersion,
+  OutcomeOpinionVersionTranslation,
+  OutcomeTranslation,
+  Poll,
+  PollRevision,
+  PollRevisionFactorPosition,
+  PollRevisionOpinion,
+  PollRevisionOpinionRating,
+  PollRevisionOpinionVersion,
+  PollRevisionOpinionVersionTranslation,
+  PollRevisionRating,
+  PollRevisionTranslation,
+  PollRevisionTranslationRating,
+  PollRun,
+  PollRunContinent,
+  PollRunCountry,
+  PollRunCounty,
+  PollRunState,
+  PollRunTown,
+  PollType,
+  Position,
+  PositionOpinionVersion,
+  PositionOpinionVersionTranslation,
+  PositionTranslation,
+  Rating,
+  RatingSetting,
+  RatingType,
+  Skin,
+  State,
+  StateTown,
+  SystemGeneratedRow,
+  Theme,
+  Town,
+  TranslationType,
+  UserAccount,
+  Vote,
+  VoteFactor,
+  VoteFactorType,
+  VoteType,
+  VoteVersion
+} from '../ddl/ddl';
 
 export interface LocalQSchema extends AirportQSchema {
 

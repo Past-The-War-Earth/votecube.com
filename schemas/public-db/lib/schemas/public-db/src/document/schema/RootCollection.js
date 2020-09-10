@@ -1,5 +1,7 @@
-import { Collection } from './Collection';
-export class RootCollection extends Collection {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Collection_1 = require("./Collection");
+class RootCollection extends Collection_1.Collection {
     constructor(name, schema) {
         super(name);
         this.name = name;
@@ -7,4 +9,5 @@ export class RootCollection extends Collection {
         this.reference = schema.db.collection(name);
     }
 }
+exports.RootCollection = RootCollection;
 //# sourceMappingURL=RootCollection.js.map

@@ -65,7 +65,7 @@ export interface ICoreMarkedFactor<Doc extends DocStatus>
 
 export interface ICoreFactorBase<Doc extends DocStatus>
 	extends IFullTextSearch,
-	        IUserCreated<Factor_Id> {
+	        IUserCreated {
 
 	axis: Doc extends IsDoc ? IDocumentValue<Factor_Axis>
 		: Doc extends IsDelta ? boolean : Factor_Axis

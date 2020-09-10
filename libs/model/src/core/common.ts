@@ -4,6 +4,8 @@ export type IsData = 'data'
 export type IsDelta = 'delta'
 export type IsDoc = 'doc'
 
+export type Key = string
+
 export type DocStatus = IsData | IsDelta | IsDoc
 
 export type IsFromForm = true

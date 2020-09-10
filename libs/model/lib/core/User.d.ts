@@ -1,13 +1,18 @@
-import { Id, UserAccount_Id, UserAccount_UserName } from '@votecube/relational-db';
-import { IIdentified, ITimestamp } from './common';
-export interface IUser extends IIdentified<UserAccount_Id> {
+import { UserAccount_Id, UserAccount_UserName } from '@votecube/relational-db';
+import { ITimestamp } from './common';
+export declare type User_Id = string;
+export declare type User_Key = string;
+export interface IUser {
+    id: string;
     name: UserAccount_UserName;
 }
-export interface IUserCreated<K extends Id> extends IIdentified<K> {
+export interface IUserCreated {
+    id: number;
     createdAt: ITimestamp;
     userId: UserAccount_Id;
 }
-export interface ICred extends IIdentified<UserAccount_Id> {
+export interface ICred {
+    id: string;
     hash: string;
     userId: UserAccount_Id;
 }

@@ -9,7 +9,7 @@
 		RELEASE_PLAN,
 		routeParams,
 		text
-	}                        from '@votecube/public-logic'
+	}                        from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

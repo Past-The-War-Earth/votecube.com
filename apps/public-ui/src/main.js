@@ -1,5 +1,7 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from 'firebase/app'
+import { AirportDatabase } from '@airport/tower'
+AirportDatabase.name
 
 import 'firebase/auth'
 import 'firebase/firestore'
@@ -48,11 +50,12 @@ async function setupApp() {
 
 		window.fb = firebase.initializeApp(firebaseConfig)
 		window.db = firebase.firestore()
-		try {
-			await window.db.enablePersistence({synchronizeTabs: true})
-		} catch (error) {
-			// Its OK if caching could not be enabled
-		}
+		// try {
+		// 	await window.db.enablePersistence({synchronizeTabs: true})
+		// } catch (error) {
+		// 	console.log(error);
+		// 	// Its OK if caching could not be enabled
+		// }
 		window.app = new App({
 			target: document.body
 		})

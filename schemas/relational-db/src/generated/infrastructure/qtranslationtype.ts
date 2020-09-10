@@ -82,9 +82,14 @@ export interface TranslationTypeEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface TranslationTypeECascadeGraph
-	extends IEntityCascadeGraph {
-	// Cascading Relations
+export interface TranslationTypeGraph
+	extends IEntitySelectProperties, TranslationTypeEOptionalId, IEntityCascadeGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	code?: number | IQNumberField;
+
+	// Relations
 
 }
 

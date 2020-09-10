@@ -2,12 +2,12 @@ import {
 	CUBE_EVENT_LISTENER,
 	MUTATION_API
 }                 from '@votecube/cube-logic'
-import {VOTE_DAO} from '@votecube/public-db'
+import {VOTE_DAO} from '@votecube/relational-db'
 import {
 	CUBE_LOGIC,
 	pageTitle,
 	POLL_MANAGER
-}                 from '@votecube/public-logic'
+}                 from '@votecube/vc-logic'
 
 // import {APP_CONTAINER} from './container'
 

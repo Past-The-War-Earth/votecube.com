@@ -1,10 +1,12 @@
-import { DI } from '@airport/di';
-import { POLL_FORM_MANAGER } from '../../tokens';
-export class PollFormManager {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const tokens_1 = require("../../tokens");
+class PollFormManager {
     fromForm(form) {
         const outcomes = form.outcomes;
         const formThemeValue = form.theme;
-        const variationFromForm = {
+        const revisionFromForm = {
             factors: {
                 1: this.toPollFactorFromForm(form.factors[1]),
                 2: this.toPollFactorFromForm(form.factors[2]),
@@ -21,10 +23,10 @@ export class PollFormManager {
             },
             theme: {
                 id: formThemeValue ? formThemeValue.id : null,
-                name: formThemeValue ? formThemeValue.text : ''
+                name: formThemeValue ? formThemeValue.text : null
             }
         };
-        return variationFromForm;
+        return revisionFromForm;
     }
     toForm(data) {
         const themeData = data.theme;
@@ -57,11 +59,14 @@ export class PollFormManager {
         };
     }
     toPollFactorFromForm(factorForm) {
+        const blue = factorForm.color.blue;
+        const green = factorForm.color.green;
+        const red = factorForm.color.red;
         return {
             color: {
-                blue: parseInt(factorForm.color.blue),
-                green: parseInt(factorForm.color.green),
-                red: parseInt(factorForm.color.red),
+                blue: typeof blue === 'boolean' ? blue : parseInt(blue),
+                green: typeof green === 'boolean' ? green : parseInt(green),
+                red: typeof red === 'boolean' ? red : parseInt(red),
             },
             name: factorForm.name,
             positions: {
@@ -75,5 +80,6 @@ export class PollFormManager {
         };
     }
 }
-DI.set(POLL_FORM_MANAGER, PollFormManager);
+exports.PollFormManager = PollFormManager;
+di_1.DI.set(tokens_1.POLL_FORM_MANAGER, PollFormManager);
 //# sourceMappingURL=PollFormManager.js.map

@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
 	SystemGeneratedRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QSystemGeneratedRow,
 } from '../infrastructure/row/qsystemgeneratedrow';
 import {
-	UserAccountECascadeGraph,
+	UserAccountGraph,
 	UserAccountEId,
 	UserAccountEOptionalId,
 	UserAccountEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QUserAccountQRelation,
 } from './quseraccount';
 import {
-	DeviceECascadeGraph,
+	DeviceGraph,
 	DeviceEId,
 	DeviceEOptionalId,
 	DeviceEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QDeviceQRelation,
 } from './qdevice';
 import {
-	ApplicationECascadeGraph,
+	ApplicationGraph,
 	ApplicationEId,
 	ApplicationEOptionalId,
 	ApplicationEUpdateProperties,
@@ -128,9 +128,17 @@ export interface ActorEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ActorECascadeGraph
-	extends SystemGeneratedRowECascadeGraph {
-	// Cascading Relations
+export interface ActorGraph
+	extends SystemGeneratedRowESelect, ActorEOptionalId, SystemGeneratedRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	hash?: number | IQNumberField;
+
+	// Relations
+	userAccount?: UserAccountGraph;
+	device?: DeviceGraph;
+	application?: ApplicationGraph;
 
 }
 

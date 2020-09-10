@@ -17,6 +17,7 @@ export interface IUserAccount extends ISystemGeneratedRow {
 
 	// Non-Id Properties
 	userName?: string;
+	passwordHash?: string;
 	firstName?: string;
 	middleName?: string;
 	lastName?: string;

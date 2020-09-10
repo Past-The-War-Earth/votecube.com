@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
 	SystemGeneratedRowEUpdateProperties,
@@ -47,6 +47,7 @@ export interface UserAccountESelect
     extends SystemGeneratedRowESelect, UserAccountEOptionalId {
 	// Non-Id Properties
 	userName?: string | IQStringField;
+	passwordHash?: string | IQStringField;
 	firstName?: string | IQStringField;
 	middleName?: string | IQStringField;
 	lastName?: string | IQStringField;
@@ -88,6 +89,7 @@ export interface UserAccountEUpdateProperties
 	extends SystemGeneratedRowEUpdateProperties {
 	// Non-Id Properties
 	userName?: string | IQStringField;
+	passwordHash?: string | IQStringField;
 	firstName?: string | IQStringField;
 	middleName?: string | IQStringField;
 	lastName?: string | IQStringField;
@@ -100,9 +102,19 @@ export interface UserAccountEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface UserAccountECascadeGraph
-	extends SystemGeneratedRowECascadeGraph {
-	// Cascading Relations
+export interface UserAccountGraph
+	extends SystemGeneratedRowESelect, UserAccountEOptionalId, SystemGeneratedRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	userName?: string | IQStringField;
+	passwordHash?: string | IQStringField;
+	firstName?: string | IQStringField;
+	middleName?: string | IQStringField;
+	lastName?: string | IQStringField;
+	birthDate?: Date | IQDateField;
+
+	// Relations
 
 }
 
@@ -114,6 +126,7 @@ export interface UserAccountEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	USER_NAME?: string | IQStringField;
+	PASSWORD_HASH?: string | IQStringField;
 	FIRST_NAME?: string | IQStringField;
 	MIDDLE_NAME?: string | IQStringField;
 	LAST_NAME?: string | IQStringField;
@@ -154,6 +167,7 @@ export interface QUserAccount extends QSystemGeneratedRow
 
 	// Non-Id Fields
 	userName: IQStringField;
+	passwordHash: IQStringField;
 	firstName: IQStringField;
 	middleName: IQStringField;
 	lastName: IQStringField;

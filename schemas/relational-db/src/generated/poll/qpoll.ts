@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	AgeSuitableRowECascadeGraph,
+	AgeSuitableRowGraph,
 	AgeSuitableRowEId,
 	AgeSuitableRowEUpdateColumns,
 	AgeSuitableRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QAgeSuitableRow,
 } from '../infrastructure/row/qagesuitablerow';
 import {
-	ThemeECascadeGraph,
+	ThemeGraph,
 	ThemeEId,
 	ThemeEOptionalId,
 	ThemeEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QThemeQRelation,
 } from './qtheme';
 import {
-	PollTypeECascadeGraph,
+	PollTypeGraph,
 	PollTypeEId,
 	PollTypeEOptionalId,
 	PollTypeEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QPollTypeQRelation,
 } from './qpolltype';
 import {
-	PollRunECascadeGraph,
+	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
 	PollRunEUpdateProperties,
@@ -62,7 +62,7 @@ import {
 	QPollRunQRelation,
 } from './run/qpollrun';
 import {
-	PollRevisionECascadeGraph,
+	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
 	PollRevisionEUpdateProperties,
@@ -139,12 +139,20 @@ export interface PollEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollECascadeGraph
-	extends AgeSuitableRowECascadeGraph {
-	// Cascading Relations
-	children?: PollECascadeGraph;
-	runs?: PollRunECascadeGraph;
-	revisions?: PollRevisionECascadeGraph;
+export interface PollGraph
+	extends AgeSuitableRowESelect, PollEOptionalId, AgeSuitableRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	id?: number | IQNumberField;
+
+	// Relations
+	theme?: ThemeGraph;
+	type?: PollTypeGraph;
+	parent?: PollGraph;
+	children?: PollGraph[];
+	runs?: PollRunGraph[];
+	revisions?: PollRevisionGraph[];
 
 }
 

@@ -4,7 +4,7 @@
 		POLL_LIST,
 		text,
 		user
-	}                  from '@votecube/public-logic'
+	}                  from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

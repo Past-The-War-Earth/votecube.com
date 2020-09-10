@@ -1,8 +1,10 @@
-import { DI } from '@airport/di';
-import { fly } from 'svelte/transition';
-import { cardMove } from '../../../store';
-import { FACTOR_RANKING_LOGIC } from '../../../tokens';
-export class FactorRankingLogic {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const transition_1 = require("svelte/transition");
+const store_1 = require("../../../store");
+const tokens_1 = require("../../../tokens");
+class FactorRankingLogic {
     getFactorInfoAtCoords(x, y, factorNumberToExclude) {
         if (!x || !y) {
             return null;
@@ -165,7 +167,7 @@ export class FactorRankingLogic {
         };
     }
     move(index, options, logicUtils) {
-        logicUtils.transition('factor_' + index, fly, options);
+        logicUtils.transition('factor_' + index, transition_1.fly, options);
     }
     moveFactorDown(voteFactors, vote, originalIndex, newIndex, logicUtils) {
         switch (originalIndex) {
@@ -393,7 +395,7 @@ export class FactorRankingLogic {
         return this.adjustRanking(logicUtils.getVoteFactorNodesInValueOrder(vote), deltaIndex, oldHigherOutcome);
     }
     onMove(move, moved) {
-        cardMove.set({
+        store_1.cardMove.set({
             move,
             moved
         });
@@ -434,5 +436,6 @@ export class FactorRankingLogic {
         return null;
     }
 }
-DI.set(FACTOR_RANKING_LOGIC, FactorRankingLogic);
+exports.FactorRankingLogic = FactorRankingLogic;
+di_1.DI.set(tokens_1.FACTOR_RANKING_LOGIC, FactorRankingLogic);
 //# sourceMappingURL=FactorRankingLogic.js.map

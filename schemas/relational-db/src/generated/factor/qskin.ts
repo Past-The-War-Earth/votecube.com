@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
 	ImmutableActorRowEUpdateProperties,
@@ -97,10 +97,17 @@ export interface SkinEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface SkinECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
-	// Cascading Relations
-	children?: SkinECascadeGraph;
+export interface SkinGraph
+	extends ImmutableActorRowESelect, SkinEOptionalId, ImmutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	backgroundColor?: number | IQNumberField;
+	textColor?: number | IQNumberField;
+
+	// Relations
+	parent?: SkinGraph;
+	children?: SkinGraph[];
 
 }
 

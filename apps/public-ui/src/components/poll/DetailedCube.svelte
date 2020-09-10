@@ -7,7 +7,7 @@
 	import {
 		DETAILED_CUBE_LOGIC,
 		LOGIC_UTILS
-	}                      from '@votecube/public-logic'
+	}                      from '@votecube/vc-logic'
 	import {
 		beforeUpdate,
 		createEventDispatcher,

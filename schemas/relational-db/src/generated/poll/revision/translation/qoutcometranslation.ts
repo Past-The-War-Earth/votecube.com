@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	ImmutableActorRowECascadeGraph,
+	ImmutableActorRowGraph,
 	ImmutableActorRowEId,
 	ImmutableActorRowEUpdateColumns,
 	ImmutableActorRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QImmutableActorRow,
 } from '../../../infrastructure/row/qimmutableactorrow';
 import {
-	OutcomeECascadeGraph,
+	OutcomeGraph,
 	OutcomeEId,
 	OutcomeEOptionalId,
 	OutcomeEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QOutcomeQRelation,
 } from '../qoutcome';
 import {
-	LanguageECascadeGraph,
+	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
 	LanguageEUpdateProperties,
@@ -52,7 +52,7 @@ import {
 	QLanguageQRelation,
 } from '../../../infrastructure/qlanguage';
 import {
-	TranslationTypeECascadeGraph,
+	TranslationTypeGraph,
 	TranslationTypeEId,
 	TranslationTypeEOptionalId,
 	TranslationTypeEUpdateProperties,
@@ -131,10 +131,19 @@ export interface OutcomeTranslationEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface OutcomeTranslationECascadeGraph
-	extends ImmutableActorRowECascadeGraph {
-	// Cascading Relations
-	children?: OutcomeTranslationECascadeGraph;
+export interface OutcomeTranslationGraph
+	extends ImmutableActorRowESelect, OutcomeTranslationEOptionalId, ImmutableActorRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	name?: string | IQStringField;
+
+	// Relations
+	outcome?: OutcomeGraph;
+	language?: LanguageGraph;
+	type?: TranslationTypeGraph;
+	parent?: OutcomeTranslationGraph;
+	children?: OutcomeTranslationGraph[];
 
 }
 

@@ -1,33 +1,35 @@
-import { container, DI } from '@airport/di';
-import * as firebase from 'firebase/app';
-import { DB_UTILS, POLL_DAO, SCHEMA } from '../../tokens';
-export class PollDao {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const di_1 = require("@airport/di");
+const firebase = require("firebase/app");
+const tokens_1 = require("../../tokens");
+class PollDao {
     async addTemp(poll) {
-        this.tempVariation = poll;
+        this.tempRevision = poll;
     }
     async getAll() {
-        const schema = await container(this).get(SCHEMA);
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
         const result = await schema.pollDrafts.reference
             .orderBy('createdAt.m', 'desc')
             .get();
         return result.docs.map(doc => doc.data());
     }
     async getForTheme(themeId) {
-        const schema = await container(this).get(SCHEMA);
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
         const result = await schema.pollDrafts.reference
             .where('theme.id.v', '==', themeId)
             .orderBy('createdAt.m', 'desc')
             .get();
         return result.docs.map(doc => doc.data());
     }
-    async getVariation(pollId, variationId) {
-        const schema = await container(this).get(SCHEMA);
-        return await this.getOne(schema.pollDrafts.pollVariations(pollId).doc(variationId));
+    async getRevision(pollId, revisionId) {
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
+        return await this.getOne(schema.pollDrafts.pollRevisions(pollId).doc(revisionId));
     }
-    async getVariationListing(pollId, variationId) {
-        const schema = await container(this).get(SCHEMA);
-        const result = await schema.pollDrafts.pollVariationListings(pollId)
-            .reference.where('id', '==', variationId)
+    async getRevisionListing(pollId, revisionId) {
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
+        const result = await schema.pollDrafts.pollRevisionListings(pollId)
+            .reference.where('id', '==', revisionId)
             .get();
         const records = result.docs.map(doc => doc.data());
         if (!records.length) {
@@ -35,40 +37,40 @@ export class PollDao {
         }
         return records[0];
     }
-    async getChildVariationListings(pollId, variationId) {
-        const schema = await container(this).get(SCHEMA);
-        const result = await schema.pollDrafts.pollVariationListings(pollId)
-            .reference.where('parent.id', '==', variationId)
+    async getChildRevisionListings(pollId, revisionId) {
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
+        const result = await schema.pollDrafts.pollRevisionListings(pollId)
+            .reference.where('parent.id', '==', revisionId)
             .orderBy('createdAt.m', 'desc')
             .get();
         return result.docs.map(doc => doc.data());
     }
-    async save(variationIn, user) {
-        const variationOnly = !!variationIn.pollId;
-        const variation = await this.setupVariation(variationIn, user);
-        const poll = await this.setupPoll(variation, user);
+    async save(revisionIn, user) {
+        const revisionOnly = !!revisionIn.pollId;
+        const revision = await this.setupRevision(revisionIn, user);
+        const poll = await this.setupPoll(revision, user);
         try {
-            const [dbUtils, schema] = await container(this).get(DB_UTILS, SCHEMA);
+            const [dbUtils, schema] = await di_1.container(this).get(tokens_1.DB_UTILS, tokens_1.SCHEMA);
             await schema.db.runTransaction(async (transaction) => {
-                const { pollRef, variationRef } = variationOnly
-                    ? await this.getRefs(variation)
+                const { pollRef, revisionRef } = revisionOnly
+                    ? await this.getRefs(revision)
                     : await this.prepPollAndGetRefs(poll);
                 poll.id = pollRef.id;
-                variation.pollId = poll.id;
-                variation.id = variationRef.id;
-                const variationListing = this.setupVariationListing(poll, variation);
-                const variationListingRef = schema.pollDrafts.pollVariationListings(pollRef)
-                    .doc(variation.id);
-                const outcomeFactorsAndPositionsFts = await this.addOutcomesFactorsAndPositions(poll, variationOnly, variation, user, transaction, dbUtils);
+                revision.pollId = poll.id;
+                revision.id = revisionRef.id;
+                const revisionListing = this.setupRevisionListing(poll, revision);
+                const revisionListingRef = schema.pollDrafts.pollRevisionListings(pollRef)
+                    .doc(revision.id);
+                const outcomeFactorsAndPositionsFts = await this.addOutcomesFactorsAndPositions(poll, revisionOnly, revision, user, transaction, dbUtils);
                 this.copyFtsProps(outcomeFactorsAndPositionsFts, poll.fts);
-                variation.fts = poll.fts;
-                variationListing.fts = poll.fts;
-                await transaction.set(variationRef, variation);
-                await transaction.set(variationListingRef, variationListing);
-                if (!variationOnly) {
+                revision.fts = poll.fts;
+                revisionListing.fts = poll.fts;
+                await transaction.set(revisionRef, revision);
+                await transaction.set(revisionListingRef, revisionListing);
+                if (!revisionOnly) {
                     await transaction.set(pollRef, poll);
                 }
-                delete this.tempVariation;
+                delete this.tempRevision;
             });
         }
         catch (error) {
@@ -79,7 +81,7 @@ export class PollDao {
         }
         return poll;
     }
-    async setupVariation(variationIn, user) {
+    async setupRevision(revisionIn, user) {
         const date = new Date();
         const dateString = date.toString();
         const timezone = dateString.split('(')[1].split(')')[0];
@@ -89,77 +91,77 @@ export class PollDao {
             s: firebase.firestore.FieldValue.serverTimestamp(),
             z: timezone
         };
-        const variation = Object.assign(Object.assign({}, variationIn), { createdAt, userId: user.id });
-        const dbUtils = await container(this).get(DB_UTILS);
-        dbUtils.calculateWaterMarks(variation);
-        return variation;
+        const revision = Object.assign(Object.assign({}, revisionIn), { createdAt, userId: user.id });
+        const dbUtils = await di_1.container(this).get(tokens_1.DB_UTILS);
+        dbUtils.calculateWaterMarks(revision);
+        return revision;
     }
-    async setupPoll(variation, user) {
+    async setupPoll(revision, user) {
         const factors = {
             1: undefined,
             2: undefined,
             3: undefined
         };
-        const dbUtils = await container(this).get(DB_UTILS);
+        const dbUtils = await di_1.container(this).get(tokens_1.DB_UTILS);
         const poll = {
-            ageSuitability: dbUtils.copy(variation.ageSuitability),
-            createdAt: variation.createdAt,
+            ageSuitability: dbUtils.copy(revision.ageSuitability),
+            createdAt: revision.createdAt,
             factors,
             fts: undefined,
             id: undefined,
-            name: dbUtils.copy(variation.name),
+            name: dbUtils.copy(revision.name),
             outcomes: undefined,
-            rootVariationId: variation.id,
-            theme: dbUtils.copy(variation.theme),
+            rootRevisionId: revision.id,
+            theme: dbUtils.copy(revision.theme),
             userId: user.id
         };
         const fts = await dbUtils.getFtsProps(poll);
-        const outcomes = dbUtils.copy(variation.outcomes);
-        for (const factorNumber in variation.factors) {
+        const outcomes = dbUtils.copy(revision.outcomes);
+        for (const factorNumber in revision.factors) {
             if (factorNumber === 'marks') {
                 continue;
             }
-            const variationFactor = variation.factors[factorNumber];
+            const revisionFactor = revision.factors[factorNumber];
             factors[factorNumber] = {
-                axis: dbUtils.copy(variationFactor.axis),
-                color: dbUtils.copy(variationFactor.color),
-                name: dbUtils.copy(variationFactor.name)
+                axis: dbUtils.copy(revisionFactor.axis),
+                color: dbUtils.copy(revisionFactor.color),
+                name: dbUtils.copy(revisionFactor.name)
             };
         }
         poll.outcomes = outcomes;
         poll.fts = fts;
         return poll;
     }
-    setupVariationListing(poll, variation) {
-        return Object.assign(Object.assign({}, poll), { depth: variation.depth, id: variation.id, parent: variation.parent, path: variation.path, pollId: variation.pollId });
+    setupRevisionListing(poll, revision) {
+        return Object.assign(Object.assign({}, poll), { depth: revision.depth, id: revision.id, parent: revision.parent, path: revision.path, pollId: revision.pollId });
     }
-    async getRefs(variation) {
-        const schema = await container(this).get(SCHEMA);
-        const pollRef = schema.pollDrafts.doc(variation.pollId);
-        const variationRef = schema.pollDrafts.pollVariations(pollRef).reference.doc();
+    async getRefs(revision) {
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
+        const pollRef = schema.pollDrafts.doc(revision.pollId);
+        const revisionRef = schema.pollDrafts.pollRevisions(pollRef).reference.doc();
         return {
             pollRef,
-            variationRef
+            revisionRef
         };
     }
     async prepPollAndGetRefs(poll) {
-        const schema = await container(this).get(SCHEMA);
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
         const pollRef = schema.pollDrafts.doc();
         poll.id = pollRef.id;
-        const variationRef = schema.pollDrafts.pollVariations(pollRef).doc();
-        poll.rootVariationId = variationRef.id;
+        const revisionRef = schema.pollDrafts.pollRevisions(pollRef).doc();
+        poll.rootRevisionId = revisionRef.id;
         return {
             pollRef,
-            variationRef
+            revisionRef
         };
     }
-    async addOutcomesFactorsAndPositions(poll, pollExists, variation, user, transaction, dbUtils) {
+    async addOutcomesFactorsAndPositions(poll, pollExists, revision, user, transaction, dbUtils) {
         const outcomeFactorsAndPositionsFts = {};
         const outcomeAfts = await this.addOutcome(poll.outcomes.A, poll, pollExists, user, transaction, dbUtils);
         const outcomeBfts = await this.addOutcome(poll.outcomes.B, poll, pollExists, user, transaction, dbUtils);
-        const factor1fts = await this.addFactor(variation.factors[1], poll, pollExists, user, transaction, dbUtils);
-        const factor2fts = await this.addFactor(variation.factors[2], poll, pollExists, user, transaction, dbUtils);
-        const factor3fts = await this.addFactor(variation.factors[3], poll, pollExists, user, transaction, dbUtils);
+        const factor1fts = await this.addFactor(revision.factors[1], poll, pollExists, user, transaction, dbUtils);
+        const factor2fts = await this.addFactor(revision.factors[2], poll, pollExists, user, transaction, dbUtils);
+        const factor3fts = await this.addFactor(revision.factors[3], poll, pollExists, user, transaction, dbUtils);
         this.copyFtsProps(outcomeAfts, outcomeFactorsAndPositionsFts);
         this.copyFtsProps(outcomeBfts, outcomeFactorsAndPositionsFts);
         this.copyFtsProps(factor1fts, outcomeFactorsAndPositionsFts);
@@ -169,14 +171,14 @@ export class PollDao {
     }
     async addOutcome(outcome, poll, pollExists, user, transaction, dbUtils) {
         const outcomeExists = !!outcome.id;
-        const schema = await container(this).get(SCHEMA);
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
         const { fts, ref } = await this.addResource(outcome, schema.outcomes, user, transaction, [], dbUtils);
         await this.addManyToManyResource(schema.outcomes.outcomePolls(ref), outcome, 'outcome', outcomeExists, poll, pollExists, user, transaction);
         return fts;
     }
     async addFactor(factor, poll, pollExists, user, transaction, dbUtils) {
         const factorExists = !!factor.id;
-        const schema = await container(this).get(SCHEMA);
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
         const { fts, ref } = await this.addResource(factor, schema.factors, user, transaction, ['positions'], dbUtils);
         await this.addManyToManyResource(schema.factors.factorPolls(ref), factor, 'factor', factorExists, poll, pollExists, user, transaction);
         const positionAFts = await this.addPosition(factor.positions.A, ref, factor, factorExists, poll, pollExists, user, transaction, dbUtils);
@@ -210,7 +212,7 @@ export class PollDao {
     }
     async addPosition(position, factorRef, factor, factorExists, poll, pollExists, user, transaction, dbUtils) {
         const positionExists = !!position.id;
-        const schema = await container(this).get(SCHEMA);
+        const schema = await di_1.container(this).get(tokens_1.SCHEMA);
         const { fts, ref } = await this.addResource(position, schema.positions, user, transaction, [], dbUtils);
         await this.addManyToManyResource(schema.positions.positionPolls(ref), position, 'position', positionExists, poll, pollExists, user, transaction);
         await this.addManyToManyResource(schema.factors.factorPositions(factorRef), factor, 'factor', factorExists, position, positionExists, user, transaction);
@@ -251,5 +253,6 @@ export class PollDao {
         return null;
     }
 }
-DI.set(POLL_DAO, PollDao);
+exports.PollDao = PollDao;
+di_1.DI.set(tokens_1.POLL_DAO, PollDao);
 //# sourceMappingURL=PollDao.js.map

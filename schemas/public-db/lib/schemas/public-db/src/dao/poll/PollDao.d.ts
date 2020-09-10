@@ -1,25 +1,25 @@
-import { IPollDoc, IUiPollVariation, IUser, IVariationDoc, IVariationListingDoc, Poll_Id, Variation_Id } from '@votecube/model';
+import { IPollDoc, IUiPollRevision, IUser, IRevisionDoc, IRevisionListingDoc, Poll_Id, Revision_Id } from '@votecube/model';
 export interface IPollDao {
-    addTemp(poll: IVariationDoc): void;
+    addTemp(poll: IRevisionDoc): void;
     getAll(): Promise<IPollDoc[]>;
-    getChildVariationListings(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationListingDoc[]>;
+    getChildRevisionListings(pollId: Poll_Id, revisionId: Revision_Id): Promise<IRevisionListingDoc[]>;
     getForTheme(themeId: number): Promise<IPollDoc[]>;
-    getVariation(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationDoc>;
-    getVariationListing(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationListingDoc>;
-    save(variation: IVariationDoc, user: IUser): Promise<IPollDoc>;
+    getRevision(pollId: Poll_Id, revisionId: Revision_Id): Promise<IRevisionDoc>;
+    getRevisionListing(pollId: Poll_Id, revisionId: Revision_Id): Promise<IRevisionListingDoc>;
+    save(revision: IRevisionDoc, user: IUser): Promise<IPollDoc>;
 }
 export declare class PollDao implements IPollDao {
-    tempVariation: IVariationDoc;
-    addTemp(poll: IVariationDoc): Promise<void>;
+    tempRevision: IRevisionDoc;
+    addTemp(poll: IRevisionDoc): Promise<void>;
     getAll(): Promise<IPollDoc[]>;
     getForTheme(themeId: number): Promise<IPollDoc[]>;
-    getVariation(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationDoc>;
-    getVariationListing(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationListingDoc>;
-    getChildVariationListings(pollId: Poll_Id, variationId: Variation_Id): Promise<IVariationListingDoc[]>;
-    save(variationIn: IUiPollVariation, user: IUser): Promise<IPollDoc>;
-    private setupVariation;
+    getRevision(pollId: Poll_Id, revisionId: Revision_Id): Promise<IRevisionDoc>;
+    getRevisionListing(pollId: Poll_Id, revisionId: Revision_Id): Promise<IRevisionListingDoc>;
+    getChildRevisionListings(pollId: Poll_Id, revisionId: Revision_Id): Promise<IRevisionListingDoc[]>;
+    save(revisionIn: IUiPollRevision, user: IUser): Promise<IPollDoc>;
+    private setupRevision;
     private setupPoll;
-    private setupVariationListing;
+    private setupRevisionListing;
     private getRefs;
     private prepPollAndGetRefs;
     private addOutcomesFactorsAndPositions;

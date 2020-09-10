@@ -46,4 +46,7 @@ export class Factor
 	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
 	factorPositions: FactorPosition[]
 
+	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
+	translations: FactorTranslation[]
+
 }

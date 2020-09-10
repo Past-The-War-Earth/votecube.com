@@ -1,6 +1,7 @@
 {
   "airport": {
     "domain": "public",
+    "daoDir": "src/dao",
     "ddlDir": "src/ddl",
     "generatedDir": "src/generated",
     "tablePrefix": "VC"

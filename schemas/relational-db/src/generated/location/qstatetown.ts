@@ -22,7 +22,7 @@ import {
 	RawUpdate,
 } from '@airport/air-control';
 import {
-	SystemGeneratedRowECascadeGraph,
+	SystemGeneratedRowGraph,
 	SystemGeneratedRowEId,
 	SystemGeneratedRowEUpdateColumns,
 	SystemGeneratedRowEUpdateProperties,
@@ -32,7 +32,7 @@ import {
 	QSystemGeneratedRow,
 } from '../infrastructure/row/qsystemgeneratedrow';
 import {
-	StateECascadeGraph,
+	StateGraph,
 	StateEId,
 	StateEOptionalId,
 	StateEUpdateProperties,
@@ -42,7 +42,7 @@ import {
 	QStateQRelation,
 } from './qstate';
 import {
-	TownECascadeGraph,
+	TownGraph,
 	TownEId,
 	TownEOptionalId,
 	TownEUpdateProperties,
@@ -114,9 +114,15 @@ export interface StateTownEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface StateTownECascadeGraph
-	extends SystemGeneratedRowECascadeGraph {
-	// Cascading Relations
+export interface StateTownGraph
+	extends SystemGeneratedRowESelect, StateTownEOptionalId, SystemGeneratedRowGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+
+	// Relations
+	state?: StateGraph;
+	town?: TownGraph;
 
 }
 

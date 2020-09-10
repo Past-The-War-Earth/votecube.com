@@ -3,7 +3,7 @@
 	import {
 		forms,
 		LOGIC_UTILS
-	}   from '@votecube/public-logic'
+	}   from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount

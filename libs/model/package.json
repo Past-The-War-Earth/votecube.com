@@ -4,7 +4,6 @@
   "typings": "lib/index",
   "version": "0.0.1",
   "dependencies": {
-    "@votecube/public-db": "0.0.1",
     "@votecube/relational-db": "0.0.1"
   },
   "devDependencies": {
