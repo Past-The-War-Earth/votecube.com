@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "@airport/di": "0.0.1",
-    "@votecube/relational-db": "0.0.1",
     "@votecube/vc-logic": "0.0.1",
     "@votecube/cube-logic": "0.0.1",
     "@votecube/forms": "0.0.1",
+    "@votecube/ecclesia": "0.0.1",
     "compression": "^1.7.4",
     "polka": "next",
     "sirv": "^0.4.2"
