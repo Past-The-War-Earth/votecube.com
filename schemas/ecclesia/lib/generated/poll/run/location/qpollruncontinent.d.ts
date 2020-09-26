@@ -64,3 +64,4 @@ export interface QPollRunContinentQId {
 }
 export interface QPollRunContinentQRelation extends IQRelation<QPollRunContinent>, QPollRunContinentQId {
 }
+//# sourceMappingURL=qpollruncontinent.d.ts.map

@@ -16,3 +16,4 @@ export declare class FactorOpinionVersionTranslation extends SystemGeneratedRow 
     factorOpinionVersion: FactorOpinionVersion;
     language: Language;
 }
+//# sourceMappingURL=FactorOpinionVersionTranslation.d.ts.map

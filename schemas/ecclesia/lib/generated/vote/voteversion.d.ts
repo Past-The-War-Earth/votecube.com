@@ -6,3 +6,4 @@ export interface IVoteVersion extends IImmutableActorRow {
     vote?: IVote;
     factors?: IVoteFactor[];
 }
+//# sourceMappingURL=voteversion.d.ts.map

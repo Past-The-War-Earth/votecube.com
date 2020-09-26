@@ -10,3 +10,4 @@ export interface IFactorTranslation extends IImmutableActorRow {
     children?: IFactorTranslation[];
     childFactors?: IFactor[];
 }
+//# sourceMappingURL=factortranslation.d.ts.map

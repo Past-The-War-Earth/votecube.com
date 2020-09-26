@@ -5,3 +5,4 @@ export interface IPollRunCounty {
     country?: ICounty;
     run?: IPollRun;
 }
+//# sourceMappingURL=pollruncounty.d.ts.map

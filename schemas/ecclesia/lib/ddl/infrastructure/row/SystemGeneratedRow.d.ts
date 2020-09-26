@@ -4,3 +4,4 @@ import { ImmutableRow } from './ImmutableRow';
  */
 export declare abstract class SystemGeneratedRow extends ImmutableRow {
 }
+//# sourceMappingURL=SystemGeneratedRow.d.ts.map

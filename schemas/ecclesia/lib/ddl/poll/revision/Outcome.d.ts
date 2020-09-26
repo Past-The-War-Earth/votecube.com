@@ -10,3 +10,4 @@ export declare class Outcome extends AgeSuitableRow {
     pollRevisionsA: PollRevision[];
     pollRevisionsB: PollRevision[];
 }
+//# sourceMappingURL=Outcome.d.ts.map

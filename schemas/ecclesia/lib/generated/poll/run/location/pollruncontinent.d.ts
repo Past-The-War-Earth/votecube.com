@@ -5,3 +5,4 @@ export interface IPollRunContinent {
     continent?: IContinent;
     run?: IPollRun;
 }
+//# sourceMappingURL=pollruncontinent.d.ts.map

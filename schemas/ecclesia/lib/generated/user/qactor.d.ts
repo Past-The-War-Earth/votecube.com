@@ -77,3 +77,4 @@ export interface QActorQId extends QSystemGeneratedRowQId {
 }
 export interface QActorQRelation extends QSystemGeneratedRowQRelation<QActor>, QActorQId {
 }
+//# sourceMappingURL=qactor.d.ts.map

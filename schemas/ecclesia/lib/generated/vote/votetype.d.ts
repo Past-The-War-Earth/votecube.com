@@ -4,3 +4,4 @@ export interface IVoteType extends ISystemGeneratedRow {
     name?: string;
     description?: string;
 }
+//# sourceMappingURL=votetype.d.ts.map

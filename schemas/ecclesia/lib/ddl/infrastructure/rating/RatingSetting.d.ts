@@ -13,3 +13,4 @@ export declare class RatingSetting extends SystemGeneratedRow {
     key: RatingSetting_Key;
     value: RatingSetting_Value;
 }
+//# sourceMappingURL=RatingSetting.d.ts.map

@@ -5,3 +5,4 @@ export declare class DesignPattern extends SystemGeneratedRow {
     name: DesignPattern_Name;
     cssClass: DesignPattern_CssClass;
 }
+//# sourceMappingURL=DesignPattern.d.ts.map

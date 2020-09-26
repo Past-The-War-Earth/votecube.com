@@ -71,3 +71,4 @@ export interface QVoteQId extends QImmutableActorRowQId {
 }
 export interface QVoteQRelation extends QImmutableActorRowQRelation<QVote>, QVoteQId {
 }
+//# sourceMappingURL=qvote.d.ts.map

@@ -1,4 +1,4 @@
-import {PollRunCounty_Id} from '@votecube/relational-db'
+import {PollRunCounty_Id} from '@votecube/ecclesia'
 import {IPreparedPoll}    from '../poll/PreparedPoll'
 import {ICounty}          from './County'
 

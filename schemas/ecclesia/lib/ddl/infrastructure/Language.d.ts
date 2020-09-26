@@ -3,3 +3,4 @@ export declare class Language {
     id: Language_Id;
     name: Language_Name;
 }
+//# sourceMappingURL=Language.d.ts.map

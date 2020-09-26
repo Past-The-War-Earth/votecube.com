@@ -9,7 +9,7 @@ import {
 	IPositionData,
 	Position_Dir
 } from '@votecube/model'
-import {Outcome_Ordinal} from '@votecube/relational-db'
+import {Outcome_Ordinal} from '@votecube/ecclesia'
 import {ICubePosition}   from '../../../poll/CubeLogic'
 import {
 	CUBE_LOGIC,

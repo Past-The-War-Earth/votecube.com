@@ -8,3 +8,4 @@ export declare class FactorPosition extends ImmutableActorRow {
     factor: Factor;
     position: Position;
 }
+//# sourceMappingURL=FactorPosition.d.ts.map

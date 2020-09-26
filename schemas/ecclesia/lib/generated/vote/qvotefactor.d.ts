@@ -75,3 +75,4 @@ export interface QVoteFactorQId {
 }
 export interface QVoteFactorQRelation extends IQRelation<QVoteFactor>, QVoteFactorQId {
 }
+//# sourceMappingURL=qvotefactor.d.ts.map

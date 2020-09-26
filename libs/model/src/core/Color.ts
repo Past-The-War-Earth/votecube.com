@@ -1,4 +1,4 @@
-import {Color}          from '@votecube/relational-db'
+import {Color}          from '@votecube/ecclesia'
 import {
 	DocStatus,
 	IsDelta,

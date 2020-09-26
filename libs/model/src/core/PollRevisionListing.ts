@@ -1,7 +1,7 @@
 import {
 	Poll_Id,
 	PollRevision_Id
-}                   from '@votecube/relational-db'
+}                   from '@votecube/ecclesia'
 import {DocStatus}  from './common'
 import {IVersioned} from './PathFragment'
 import {ICorePoll,} from './Poll'

@@ -16,3 +16,4 @@ export declare class PollRevisionOpinionVersionTranslation extends SystemGenerat
     opinionVersion: PollRevisionOpinionVersion;
     language: Language;
 }
+//# sourceMappingURL=PollRevisionOpinionVersionTranslation.d.ts.map

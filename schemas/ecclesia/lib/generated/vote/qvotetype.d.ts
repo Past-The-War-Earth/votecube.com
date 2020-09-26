@@ -64,3 +64,4 @@ export interface QVoteTypeQId extends QSystemGeneratedRowQId {
 }
 export interface QVoteTypeQRelation extends QSystemGeneratedRowQRelation<QVoteType>, QVoteTypeQId {
 }
+//# sourceMappingURL=qvotetype.d.ts.map

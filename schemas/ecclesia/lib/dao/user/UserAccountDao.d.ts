@@ -8,3 +8,4 @@ export declare class UserAccountDao extends BaseUserAccountDao implements IUserA
     signUp(userName: UserAccount_UserName, passwordHash: UserAccount_PasswordHash): Promise<IUserAccount>;
     findByUsername(userName: UserAccount_UserName): Promise<IUserAccount>;
 }
+//# sourceMappingURL=UserAccountDao.d.ts.map

@@ -60,3 +60,4 @@ export * from './vote/qvotefactor';
 export * from './vote/qvotefactortype';
 export * from './vote/qvotetype';
 export * from './vote/qvoteversion';
+//# sourceMappingURL=qInterfaces.d.ts.map

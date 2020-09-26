@@ -452,3 +452,4 @@ export declare class BaseVoteVersionDao extends SQDIDao<IVoteVersion, VoteVersio
     static diSet(): boolean;
     constructor();
 }
+//# sourceMappingURL=baseDaos.d.ts.map

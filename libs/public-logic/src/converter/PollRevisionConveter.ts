@@ -23,7 +23,7 @@ import {
 	IPosition,
 	ITheme,
 	Outcome_Ordinal
-}                                from '@votecube/relational-db'
+}                                from '@votecube/ecclesia'
 import {POLL_REVISION_CONVERTER} from '../tokens'
 
 export interface IPollRevisionConverter {

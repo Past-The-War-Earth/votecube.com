@@ -1,7 +1,7 @@
 import {
 	Outcome_Id,
 	Outcome_Name
-}                                 from '@votecube/relational-db'
+}                                 from '@votecube/ecclesia'
 import {IsDelta}                  from '../core/common'
 import {IUserCreated}             from '../core/User'
 import {UiDocStatus}              from './common'

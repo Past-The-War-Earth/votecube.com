@@ -64,3 +64,4 @@ export interface QThemeQId extends QSystemGeneratedRowQId {
 }
 export interface QThemeQRelation extends QSystemGeneratedRowQRelation<QTheme>, QThemeQId {
 }
+//# sourceMappingURL=qtheme.d.ts.map

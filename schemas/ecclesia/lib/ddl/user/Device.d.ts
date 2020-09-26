@@ -4,3 +4,4 @@ export declare class Device extends SystemGeneratedRow {
     id: Device_Id;
     hash: Device_Hash;
 }
+//# sourceMappingURL=Device.d.ts.map

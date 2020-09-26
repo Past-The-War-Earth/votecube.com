@@ -47,6 +47,7 @@ export interface UserAccountESelect
     extends SystemGeneratedRowESelect, UserAccountEOptionalId {
 	// Non-Id Properties
 	userName?: string | IQStringField;
+	email?: string | IQStringField;
 	passwordHash?: string | IQStringField;
 	firstName?: string | IQStringField;
 	middleName?: string | IQStringField;
@@ -89,6 +90,7 @@ export interface UserAccountEUpdateProperties
 	extends SystemGeneratedRowEUpdateProperties {
 	// Non-Id Properties
 	userName?: string | IQStringField;
+	email?: string | IQStringField;
 	passwordHash?: string | IQStringField;
 	firstName?: string | IQStringField;
 	middleName?: string | IQStringField;
@@ -108,6 +110,7 @@ export interface UserAccountGraph
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 	userName?: string | IQStringField;
+	email?: string | IQStringField;
 	passwordHash?: string | IQStringField;
 	firstName?: string | IQStringField;
 	middleName?: string | IQStringField;
@@ -126,6 +129,7 @@ export interface UserAccountEUpdateColumns
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
 	USER_NAME?: string | IQStringField;
+	EMAIL?: string | IQStringField;
 	PASSWORD_HASH?: string | IQStringField;
 	FIRST_NAME?: string | IQStringField;
 	MIDDLE_NAME?: string | IQStringField;
@@ -167,6 +171,7 @@ export interface QUserAccount extends QSystemGeneratedRow
 
 	// Non-Id Fields
 	userName: IQStringField;
+	email: IQStringField;
 	passwordHash: IQStringField;
 	firstName: IQStringField;
 	middleName: IQStringField;

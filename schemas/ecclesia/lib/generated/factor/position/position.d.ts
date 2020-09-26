@@ -11,3 +11,4 @@ export interface IPosition extends IAgeSuitableRow {
     factorPositions?: IFactorPosition[];
     translations?: IPositionTranslation[];
 }
+//# sourceMappingURL=position.d.ts.map

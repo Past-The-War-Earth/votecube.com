@@ -4,7 +4,7 @@ import {
 	IVoteFactor,
 	VoteFactor_Value
 }                             from '@votecube/model'
-import {Outcome_Ordinal}      from '@votecube/relational-db'
+import {Outcome_Ordinal}      from '@votecube/ecclesia'
 import {fly}                  from 'svelte/transition'
 import {ILogicUtils}          from '../../../LogicUtils'
 import {IPageVote}            from '../../../poll/PollManager'

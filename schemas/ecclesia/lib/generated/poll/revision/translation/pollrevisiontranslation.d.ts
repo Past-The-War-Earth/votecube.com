@@ -13,3 +13,4 @@ export interface IPollRevisionTranslation extends IImmutableActorRow {
     children?: IPollRevisionTranslation[];
     ratings?: IPollRevisionTranslationRating[];
 }
+//# sourceMappingURL=pollrevisiontranslation.d.ts.map

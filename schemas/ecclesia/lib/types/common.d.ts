@@ -5,3 +5,4 @@ export declare type TextColor = Color;
 export declare type CreatedAt = Date;
 export declare type UpdatedAt = Date;
 export declare type AgeSuitability = number;
+//# sourceMappingURL=common.d.ts.map

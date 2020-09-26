@@ -26,3 +26,4 @@ export declare class PollRevisionFactorPosition extends ImmutableRow {
     parent: PollRevisionFactorPosition;
     children: PollRevisionFactorPosition[];
 }
+//# sourceMappingURL=PollRevisionFactorPosition.d.ts.map

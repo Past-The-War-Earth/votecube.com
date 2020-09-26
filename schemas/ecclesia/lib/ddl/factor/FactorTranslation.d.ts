@@ -11,3 +11,4 @@ export declare class FactorTranslation extends ImmutableActorRow {
     children: FactorTranslation[];
     childFactors: Factor[];
 }
+//# sourceMappingURL=FactorTranslation.d.ts.map

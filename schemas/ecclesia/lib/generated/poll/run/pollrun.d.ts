@@ -17,3 +17,4 @@ export interface IPollRun extends IImmutableActorRow {
     pollCounties?: IPollRunCounty[];
     pollTowns?: IPollRunTown[];
 }
+//# sourceMappingURL=pollrun.d.ts.map

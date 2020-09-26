@@ -72,3 +72,4 @@ export interface QPollRevisionOpinionVersionQId extends QImmutableRowQId {
 }
 export interface QPollRevisionOpinionVersionQRelation extends QImmutableRowQRelation<QPollRevisionOpinionVersion>, QPollRevisionOpinionVersionQId {
 }
+//# sourceMappingURL=qpollrevisionopinionversion.d.ts.map

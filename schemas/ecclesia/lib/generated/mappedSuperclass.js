@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MAPPED_SUPERCLASS = [
     {
         "type": "ImmutableRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
+        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
         "parentClassName": null,
         "isSuperclass": true,
         "ids": [],
@@ -91,11 +91,11 @@ exports.MAPPED_SUPERCLASS = [
             ]
         },
         "implementedInterfaceNames": [],
-        "project": "@votecube/relational-db"
+        "project": "@votecube/ecclesia"
     },
     {
         "type": "SystemGeneratedRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
         "parentClassName": "ImmutableRow",
         "location": "./ImmutableRow",
         "isSuperclass": true,
@@ -157,7 +157,7 @@ exports.MAPPED_SUPERCLASS = [
         "implementedInterfaceNames": [],
         "parentEntity": {
             "type": "ImmutableRow",
-            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
+            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
             "parentClassName": null,
             "isSuperclass": true,
             "ids": [],
@@ -245,13 +245,13 @@ exports.MAPPED_SUPERCLASS = [
                 ]
             },
             "implementedInterfaceNames": [],
-            "project": "@votecube/relational-db"
+            "project": "@votecube/ecclesia"
         },
-        "project": "@votecube/relational-db"
+        "project": "@votecube/ecclesia"
     },
     {
         "type": "ImmutableActorRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutableactorrow.ts",
+        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
         "parentClassName": "ImmutableRow",
         "location": "./ImmutableRow",
         "isSuperclass": true,
@@ -365,7 +365,7 @@ exports.MAPPED_SUPERCLASS = [
                     "nonArrayType": "Actor",
                     "entity": {
                         "type": "Actor",
-                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/actor.ts",
+                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/actor.ts",
                         "parentClassName": "SystemGeneratedRow",
                         "location": "../infrastructure/row/SystemGeneratedRow",
                         "isSuperclass": false,
@@ -638,7 +638,7 @@ exports.MAPPED_SUPERCLASS = [
                                     "nonArrayType": "UserAccount",
                                     "entity": {
                                         "type": "UserAccount",
-                                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/useraccount.ts",
+                                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
                                         "parentClassName": "SystemGeneratedRow",
                                         "location": "../infrastructure/row/SystemGeneratedRow",
                                         "isSuperclass": false,
@@ -742,6 +742,11 @@ exports.MAPPED_SUPERCLASS = [
                                                                 "moduleImport": null,
                                                                 "sourceName": "UserAccount_BirthDate"
                                                             },
+                                                            "UserAccount_Email": {
+                                                                "asName": "UserAccount_Email",
+                                                                "moduleImport": null,
+                                                                "sourceName": "UserAccount_Email"
+                                                            },
                                                             "UserAccount_FirstName": {
                                                                 "asName": "UserAccount_FirstName",
                                                                 "moduleImport": null,
@@ -775,6 +780,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         },
                                                         "path": "../../types/user/UserAccount"
                                                     },
+                                                    "UserAccount_Email": null,
                                                     "UserAccount_FirstName": null,
                                                     "UserAccount_Id": null,
                                                     "UserAccount_LastName": null,
@@ -860,6 +866,29 @@ exports.MAPPED_SUPERCLASS = [
                                                             "name": "Column",
                                                             "values": [
                                                                 {
+                                                                    "name": "EMAIL",
+                                                                    "nullable": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "isGenerated": false,
+                                                    "isId": false,
+                                                    "isMappedSuperclass": false,
+                                                    "isTransient": false,
+                                                    "name": "email",
+                                                    "type": "string",
+                                                    "ownerEntity": null,
+                                                    "nonArrayType": "string",
+                                                    "primitive": "string",
+                                                    "index": 2
+                                                },
+                                                {
+                                                    "decorators": [
+                                                        {
+                                                            "name": "Column",
+                                                            "values": [
+                                                                {
                                                                     "name": "PASSWORD_HASH",
                                                                     "nullable": false
                                                                 }
@@ -875,7 +904,7 @@ exports.MAPPED_SUPERCLASS = [
                                                     "ownerEntity": null,
                                                     "nonArrayType": "string",
                                                     "primitive": "string",
-                                                    "index": 2
+                                                    "index": 3
                                                 },
                                                 {
                                                     "decorators": [
@@ -898,7 +927,7 @@ exports.MAPPED_SUPERCLASS = [
                                                     "ownerEntity": null,
                                                     "nonArrayType": "string",
                                                     "primitive": "string",
-                                                    "index": 3
+                                                    "index": 4
                                                 },
                                                 {
                                                     "decorators": [
@@ -920,7 +949,7 @@ exports.MAPPED_SUPERCLASS = [
                                                     "ownerEntity": null,
                                                     "nonArrayType": "string",
                                                     "primitive": "string",
-                                                    "index": 4
+                                                    "index": 5
                                                 },
                                                 {
                                                     "decorators": [
@@ -943,7 +972,7 @@ exports.MAPPED_SUPERCLASS = [
                                                     "ownerEntity": null,
                                                     "nonArrayType": "string",
                                                     "primitive": "string",
-                                                    "index": 5
+                                                    "index": 6
                                                 },
                                                 {
                                                     "decorators": [
@@ -965,7 +994,7 @@ exports.MAPPED_SUPERCLASS = [
                                                     "ownerEntity": null,
                                                     "nonArrayType": "Date",
                                                     "primitive": "Date",
-                                                    "index": 6
+                                                    "index": 7
                                                 }
                                             ],
                                             "methodSignatures": [],
@@ -979,7 +1008,7 @@ exports.MAPPED_SUPERCLASS = [
                                         "implementedInterfaceNames": [],
                                         "parentEntity": {
                                             "type": "SystemGeneratedRow",
-                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
                                             "parentClassName": "ImmutableRow",
                                             "location": "./ImmutableRow",
                                             "isSuperclass": true,
@@ -1041,7 +1070,7 @@ exports.MAPPED_SUPERCLASS = [
                                             "implementedInterfaceNames": [],
                                             "parentEntity": {
                                                 "type": "ImmutableRow",
-                                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
+                                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
                                                 "parentClassName": null,
                                                 "isSuperclass": true,
                                                 "ids": [],
@@ -1129,9 +1158,9 @@ exports.MAPPED_SUPERCLASS = [
                                                     ]
                                                 },
                                                 "implementedInterfaceNames": [],
-                                                "project": "@votecube/relational-db"
+                                                "project": "@votecube/ecclesia"
                                             },
-                                            "project": "@votecube/relational-db"
+                                            "project": "@votecube/ecclesia"
                                         }
                                     },
                                     "index": 2
@@ -1162,7 +1191,7 @@ exports.MAPPED_SUPERCLASS = [
                                     "nonArrayType": "Device",
                                     "entity": {
                                         "type": "Device",
-                                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/device.ts",
+                                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/device.ts",
                                         "parentClassName": "SystemGeneratedRow",
                                         "location": "../infrastructure/row/SystemGeneratedRow",
                                         "isSuperclass": false,
@@ -1398,7 +1427,7 @@ exports.MAPPED_SUPERCLASS = [
                                     "nonArrayType": "Application",
                                     "entity": {
                                         "type": "Application",
-                                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/application.ts",
+                                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/application.ts",
                                         "parentClassName": "SystemGeneratedRow",
                                         "location": "../infrastructure/row/SystemGeneratedRow",
                                         "isSuperclass": false,
@@ -1698,11 +1727,11 @@ exports.MAPPED_SUPERCLASS = [
         },
         "implementedInterfaceNames": [],
         "parentEntity": null,
-        "project": "@votecube/relational-db"
+        "project": "@votecube/ecclesia"
     },
     {
         "type": "AgeSuitableRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/agesuitablerow.ts",
+        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/agesuitablerow.ts",
         "parentClassName": "ImmutableActorRow",
         "location": "./ImmutableActorRow",
         "isSuperclass": true,
@@ -1807,7 +1836,7 @@ exports.MAPPED_SUPERCLASS = [
         "implementedInterfaceNames": [],
         "parentEntity": {
             "type": "ImmutableActorRow",
-            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutableactorrow.ts",
+            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
             "parentClassName": "ImmutableRow",
             "location": "./ImmutableRow",
             "isSuperclass": true,
@@ -1921,7 +1950,7 @@ exports.MAPPED_SUPERCLASS = [
                         "nonArrayType": "Actor",
                         "entity": {
                             "type": "Actor",
-                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/actor.ts",
+                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/actor.ts",
                             "parentClassName": "SystemGeneratedRow",
                             "location": "../infrastructure/row/SystemGeneratedRow",
                             "isSuperclass": false,
@@ -2194,7 +2223,7 @@ exports.MAPPED_SUPERCLASS = [
                                         "nonArrayType": "UserAccount",
                                         "entity": {
                                             "type": "UserAccount",
-                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/useraccount.ts",
+                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
                                             "parentClassName": "SystemGeneratedRow",
                                             "location": "../infrastructure/row/SystemGeneratedRow",
                                             "isSuperclass": false,
@@ -2298,6 +2327,11 @@ exports.MAPPED_SUPERCLASS = [
                                                                     "moduleImport": null,
                                                                     "sourceName": "UserAccount_BirthDate"
                                                                 },
+                                                                "UserAccount_Email": {
+                                                                    "asName": "UserAccount_Email",
+                                                                    "moduleImport": null,
+                                                                    "sourceName": "UserAccount_Email"
+                                                                },
                                                                 "UserAccount_FirstName": {
                                                                     "asName": "UserAccount_FirstName",
                                                                     "moduleImport": null,
@@ -2331,6 +2365,7 @@ exports.MAPPED_SUPERCLASS = [
                                                             },
                                                             "path": "../../types/user/UserAccount"
                                                         },
+                                                        "UserAccount_Email": null,
                                                         "UserAccount_FirstName": null,
                                                         "UserAccount_Id": null,
                                                         "UserAccount_LastName": null,
@@ -2416,6 +2451,29 @@ exports.MAPPED_SUPERCLASS = [
                                                                 "name": "Column",
                                                                 "values": [
                                                                     {
+                                                                        "name": "EMAIL",
+                                                                        "nullable": false
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "isGenerated": false,
+                                                        "isId": false,
+                                                        "isMappedSuperclass": false,
+                                                        "isTransient": false,
+                                                        "name": "email",
+                                                        "type": "string",
+                                                        "ownerEntity": null,
+                                                        "nonArrayType": "string",
+                                                        "primitive": "string",
+                                                        "index": 2
+                                                    },
+                                                    {
+                                                        "decorators": [
+                                                            {
+                                                                "name": "Column",
+                                                                "values": [
+                                                                    {
                                                                         "name": "PASSWORD_HASH",
                                                                         "nullable": false
                                                                     }
@@ -2431,7 +2489,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "string",
                                                         "primitive": "string",
-                                                        "index": 2
+                                                        "index": 3
                                                     },
                                                     {
                                                         "decorators": [
@@ -2454,7 +2512,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "string",
                                                         "primitive": "string",
-                                                        "index": 3
+                                                        "index": 4
                                                     },
                                                     {
                                                         "decorators": [
@@ -2476,7 +2534,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "string",
                                                         "primitive": "string",
-                                                        "index": 4
+                                                        "index": 5
                                                     },
                                                     {
                                                         "decorators": [
@@ -2499,7 +2557,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "string",
                                                         "primitive": "string",
-                                                        "index": 5
+                                                        "index": 6
                                                     },
                                                     {
                                                         "decorators": [
@@ -2521,7 +2579,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "Date",
                                                         "primitive": "Date",
-                                                        "index": 6
+                                                        "index": 7
                                                     }
                                                 ],
                                                 "methodSignatures": [],
@@ -2535,7 +2593,7 @@ exports.MAPPED_SUPERCLASS = [
                                             "implementedInterfaceNames": [],
                                             "parentEntity": {
                                                 "type": "SystemGeneratedRow",
-                                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+                                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
                                                 "parentClassName": "ImmutableRow",
                                                 "location": "./ImmutableRow",
                                                 "isSuperclass": true,
@@ -2597,7 +2655,7 @@ exports.MAPPED_SUPERCLASS = [
                                                 "implementedInterfaceNames": [],
                                                 "parentEntity": {
                                                     "type": "ImmutableRow",
-                                                    "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
+                                                    "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
                                                     "parentClassName": null,
                                                     "isSuperclass": true,
                                                     "ids": [],
@@ -2685,9 +2743,9 @@ exports.MAPPED_SUPERCLASS = [
                                                         ]
                                                     },
                                                     "implementedInterfaceNames": [],
-                                                    "project": "@votecube/relational-db"
+                                                    "project": "@votecube/ecclesia"
                                                 },
-                                                "project": "@votecube/relational-db"
+                                                "project": "@votecube/ecclesia"
                                             }
                                         },
                                         "index": 2
@@ -2718,7 +2776,7 @@ exports.MAPPED_SUPERCLASS = [
                                         "nonArrayType": "Device",
                                         "entity": {
                                             "type": "Device",
-                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/device.ts",
+                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/device.ts",
                                             "parentClassName": "SystemGeneratedRow",
                                             "location": "../infrastructure/row/SystemGeneratedRow",
                                             "isSuperclass": false,
@@ -2954,7 +3012,7 @@ exports.MAPPED_SUPERCLASS = [
                                         "nonArrayType": "Application",
                                         "entity": {
                                             "type": "Application",
-                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/application.ts",
+                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/application.ts",
                                             "parentClassName": "SystemGeneratedRow",
                                             "location": "../infrastructure/row/SystemGeneratedRow",
                                             "isSuperclass": false,
@@ -3254,13 +3312,13 @@ exports.MAPPED_SUPERCLASS = [
             },
             "implementedInterfaceNames": [],
             "parentEntity": null,
-            "project": "@votecube/relational-db"
+            "project": "@votecube/ecclesia"
         },
-        "project": "@votecube/relational-db"
+        "project": "@votecube/ecclesia"
     },
     {
         "type": "MutableActorRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/mutableactorrow.ts",
+        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutableactorrow.ts",
         "parentClassName": "ImmutableActorRow",
         "location": "./ImmutableActorRow",
         "isSuperclass": true,
@@ -3364,7 +3422,7 @@ exports.MAPPED_SUPERCLASS = [
         "implementedInterfaceNames": [],
         "parentEntity": {
             "type": "ImmutableActorRow",
-            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutableactorrow.ts",
+            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
             "parentClassName": "ImmutableRow",
             "location": "./ImmutableRow",
             "isSuperclass": true,
@@ -3478,7 +3536,7 @@ exports.MAPPED_SUPERCLASS = [
                         "nonArrayType": "Actor",
                         "entity": {
                             "type": "Actor",
-                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/actor.ts",
+                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/actor.ts",
                             "parentClassName": "SystemGeneratedRow",
                             "location": "../infrastructure/row/SystemGeneratedRow",
                             "isSuperclass": false,
@@ -3751,7 +3809,7 @@ exports.MAPPED_SUPERCLASS = [
                                         "nonArrayType": "UserAccount",
                                         "entity": {
                                             "type": "UserAccount",
-                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/useraccount.ts",
+                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
                                             "parentClassName": "SystemGeneratedRow",
                                             "location": "../infrastructure/row/SystemGeneratedRow",
                                             "isSuperclass": false,
@@ -3855,6 +3913,11 @@ exports.MAPPED_SUPERCLASS = [
                                                                     "moduleImport": null,
                                                                     "sourceName": "UserAccount_BirthDate"
                                                                 },
+                                                                "UserAccount_Email": {
+                                                                    "asName": "UserAccount_Email",
+                                                                    "moduleImport": null,
+                                                                    "sourceName": "UserAccount_Email"
+                                                                },
                                                                 "UserAccount_FirstName": {
                                                                     "asName": "UserAccount_FirstName",
                                                                     "moduleImport": null,
@@ -3888,6 +3951,7 @@ exports.MAPPED_SUPERCLASS = [
                                                             },
                                                             "path": "../../types/user/UserAccount"
                                                         },
+                                                        "UserAccount_Email": null,
                                                         "UserAccount_FirstName": null,
                                                         "UserAccount_Id": null,
                                                         "UserAccount_LastName": null,
@@ -3973,6 +4037,29 @@ exports.MAPPED_SUPERCLASS = [
                                                                 "name": "Column",
                                                                 "values": [
                                                                     {
+                                                                        "name": "EMAIL",
+                                                                        "nullable": false
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "isGenerated": false,
+                                                        "isId": false,
+                                                        "isMappedSuperclass": false,
+                                                        "isTransient": false,
+                                                        "name": "email",
+                                                        "type": "string",
+                                                        "ownerEntity": null,
+                                                        "nonArrayType": "string",
+                                                        "primitive": "string",
+                                                        "index": 2
+                                                    },
+                                                    {
+                                                        "decorators": [
+                                                            {
+                                                                "name": "Column",
+                                                                "values": [
+                                                                    {
                                                                         "name": "PASSWORD_HASH",
                                                                         "nullable": false
                                                                     }
@@ -3988,7 +4075,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "string",
                                                         "primitive": "string",
-                                                        "index": 2
+                                                        "index": 3
                                                     },
                                                     {
                                                         "decorators": [
@@ -4011,7 +4098,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "string",
                                                         "primitive": "string",
-                                                        "index": 3
+                                                        "index": 4
                                                     },
                                                     {
                                                         "decorators": [
@@ -4033,7 +4120,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "string",
                                                         "primitive": "string",
-                                                        "index": 4
+                                                        "index": 5
                                                     },
                                                     {
                                                         "decorators": [
@@ -4056,7 +4143,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "string",
                                                         "primitive": "string",
-                                                        "index": 5
+                                                        "index": 6
                                                     },
                                                     {
                                                         "decorators": [
@@ -4078,7 +4165,7 @@ exports.MAPPED_SUPERCLASS = [
                                                         "ownerEntity": null,
                                                         "nonArrayType": "Date",
                                                         "primitive": "Date",
-                                                        "index": 6
+                                                        "index": 7
                                                     }
                                                 ],
                                                 "methodSignatures": [],
@@ -4092,7 +4179,7 @@ exports.MAPPED_SUPERCLASS = [
                                             "implementedInterfaceNames": [],
                                             "parentEntity": {
                                                 "type": "SystemGeneratedRow",
-                                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+                                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
                                                 "parentClassName": "ImmutableRow",
                                                 "location": "./ImmutableRow",
                                                 "isSuperclass": true,
@@ -4154,7 +4241,7 @@ exports.MAPPED_SUPERCLASS = [
                                                 "implementedInterfaceNames": [],
                                                 "parentEntity": {
                                                     "type": "ImmutableRow",
-                                                    "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
+                                                    "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
                                                     "parentClassName": null,
                                                     "isSuperclass": true,
                                                     "ids": [],
@@ -4242,9 +4329,9 @@ exports.MAPPED_SUPERCLASS = [
                                                         ]
                                                     },
                                                     "implementedInterfaceNames": [],
-                                                    "project": "@votecube/relational-db"
+                                                    "project": "@votecube/ecclesia"
                                                 },
-                                                "project": "@votecube/relational-db"
+                                                "project": "@votecube/ecclesia"
                                             }
                                         },
                                         "index": 2
@@ -4275,7 +4362,7 @@ exports.MAPPED_SUPERCLASS = [
                                         "nonArrayType": "Device",
                                         "entity": {
                                             "type": "Device",
-                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/device.ts",
+                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/device.ts",
                                             "parentClassName": "SystemGeneratedRow",
                                             "location": "../infrastructure/row/SystemGeneratedRow",
                                             "isSuperclass": false,
@@ -4511,7 +4598,7 @@ exports.MAPPED_SUPERCLASS = [
                                         "nonArrayType": "Application",
                                         "entity": {
                                             "type": "Application",
-                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/user/application.ts",
+                                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/application.ts",
                                             "parentClassName": "SystemGeneratedRow",
                                             "location": "../infrastructure/row/SystemGeneratedRow",
                                             "isSuperclass": false,
@@ -4811,13 +4898,13 @@ exports.MAPPED_SUPERCLASS = [
             },
             "implementedInterfaceNames": [],
             "parentEntity": null,
-            "project": "@votecube/relational-db"
+            "project": "@votecube/ecclesia"
         },
-        "project": "@votecube/relational-db"
+        "project": "@votecube/ecclesia"
     },
     {
         "type": "MutableRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/mutablerow.ts",
+        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutablerow.ts",
         "parentClassName": "ImmutableRow",
         "location": "./ImmutableRow",
         "isSuperclass": true,
@@ -4921,7 +5008,7 @@ exports.MAPPED_SUPERCLASS = [
         "implementedInterfaceNames": [],
         "parentEntity": {
             "type": "ImmutableRow",
-            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/relational-db/src/ddl/infrastructure/row/immutablerow.ts",
+            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
             "parentClassName": null,
             "isSuperclass": true,
             "ids": [],
@@ -5009,9 +5096,9 @@ exports.MAPPED_SUPERCLASS = [
                 ]
             },
             "implementedInterfaceNames": [],
-            "project": "@votecube/relational-db"
+            "project": "@votecube/ecclesia"
         },
-        "project": "@votecube/relational-db"
+        "project": "@votecube/ecclesia"
     }
 ];
 //# sourceMappingURL=mappedSuperclass.js.map

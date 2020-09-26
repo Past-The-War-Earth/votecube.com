@@ -78,3 +78,4 @@ export interface QOutcomeQId extends QAgeSuitableRowQId {
 }
 export interface QOutcomeQRelation extends QAgeSuitableRowQRelation<QOutcome>, QOutcomeQId {
 }
+//# sourceMappingURL=qoutcome.d.ts.map

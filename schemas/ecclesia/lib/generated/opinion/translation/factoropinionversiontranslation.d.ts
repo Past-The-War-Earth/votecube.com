@@ -9,3 +9,4 @@ export interface IFactorOpinionVersionTranslation extends ISystemGeneratedRow {
     factorOpinionVersion?: IFactorOpinionVersion;
     language?: ILanguage;
 }
+//# sourceMappingURL=factoropinionversiontranslation.d.ts.map

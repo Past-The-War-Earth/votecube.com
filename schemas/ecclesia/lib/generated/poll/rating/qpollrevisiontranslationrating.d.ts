@@ -81,3 +81,4 @@ export interface QPollRevisionTranslationRatingQId extends QImmutableActorRowQId
 }
 export interface QPollRevisionTranslationRatingQRelation extends QImmutableActorRowQRelation<QPollRevisionTranslationRating>, QPollRevisionTranslationRatingQId {
 }
+//# sourceMappingURL=qpollrevisiontranslationrating.d.ts.map

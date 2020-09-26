@@ -81,3 +81,4 @@ export interface QPollRevisionOpinionVersionTranslationQId extends QSystemGenera
 }
 export interface QPollRevisionOpinionVersionTranslationQRelation extends QSystemGeneratedRowQRelation<QPollRevisionOpinionVersionTranslation>, QPollRevisionOpinionVersionTranslationQId {
 }
+//# sourceMappingURL=qpollrevisionopinionversiontranslation.d.ts.map

@@ -3,7 +3,9 @@ import {DI}               from '@airport/di'
 import {DATABASE_MANAGER} from '@airport/terminal'
 import {StoreType}        from '@airport/terminal-map'
 import {SCHEMA}           from '@votecube/ecclesia/lib/generated/schema'
+// import {VOTE_DAO} from '@votecube/ecclesia'
 import {fastify}          from 'fastify'
+import {AUTH}             from './tokens'
 
 const server = fastify({logger: false})
 server.register(require('fastify-cors'), {
@@ -23,10 +25,50 @@ server.register(require('fastify-cors'), {
 	}
 })
 
-server.put('/api/hello', async (
+server.get('/api/signIn', async (
 	request,
 	reply
 ) => {
+	const auth = await DI.db().get(AUTH)
+	const params: any = request.params
+
+	return await auth.signIn(params.email, params.passwordHash)
+})
+
+server.get('/api/signOut', async (
+	request,
+	reply
+) => {
+	const auth = await DI.db().get(AUTH)
+	const params: any = request.params
+
+	return await auth.signOut(params.email, params.passwordHash)
+})
+
+server.put('/api/signUp', async (
+	request,
+	reply
+) => {
+	const auth = await DI.db().get(AUTH)
+	const params: any = request.params
+
+	return await auth.signUp(params.email, params.passwordHash)
+})
+
+server.put('/api/createRevision', async (
+	request,
+	reply
+) => {
+	// return someJsonObject
+})
+
+server.get('/api/findUserVoteForPoll', async (
+	request,
+	reply
+) => {
+	// DI.db().get(VOTE_DAO)
+	// request.body
+	// request.query
 	// return someJsonObject
 })
 

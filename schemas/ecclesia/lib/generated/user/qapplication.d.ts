@@ -64,3 +64,4 @@ export interface QApplicationQId extends QSystemGeneratedRowQId {
 }
 export interface QApplicationQRelation extends QSystemGeneratedRowQRelation<QApplication>, QApplicationQId {
 }
+//# sourceMappingURL=qapplication.d.ts.map

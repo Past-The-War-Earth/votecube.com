@@ -1,4 +1,4 @@
-import {Country_Id} from '@votecube/relational-db'
+import {Country_Id} from '@votecube/ecclesia'
 import {IContinent} from './Continent'
 
 export const COUNTRIES = 'COUNTRIES'

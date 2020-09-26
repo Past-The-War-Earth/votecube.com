@@ -6,3 +6,4 @@ export interface ISkin extends IImmutableActorRow {
     parent?: ISkin;
     children?: ISkin[];
 }
+//# sourceMappingURL=skin.d.ts.map

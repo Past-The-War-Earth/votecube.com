@@ -17,3 +17,4 @@ export declare class PollRevisionTranslationRating extends ImmutableActorRow {
     parent: PollRevisionTranslationRating;
     child: PollRevisionTranslationRating[];
 }
+//# sourceMappingURL=PollRevisionTranslationRating.d.ts.map

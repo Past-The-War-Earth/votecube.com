@@ -5,3 +5,5 @@ export declare type UserAccount_MiddleName = string;
 export declare type UserAccount_LastName = string;
 export declare type UserAccount_BirthDate = Date;
 export declare type UserAccount_PasswordHash = string;
+export declare type UserAccount_Email = string;
+//# sourceMappingURL=UserAccount.d.ts.map

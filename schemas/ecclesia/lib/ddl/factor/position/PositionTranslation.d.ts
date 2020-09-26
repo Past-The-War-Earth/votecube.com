@@ -10,3 +10,4 @@ export declare class PositionTranslation extends ImmutableActorRow {
     parent: PositionTranslation;
     children: PositionTranslation[];
 }
+//# sourceMappingURL=PositionTranslation.d.ts.map

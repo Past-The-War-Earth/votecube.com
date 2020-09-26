@@ -16,3 +16,4 @@ export declare class PositionOpinionVersionTranslation extends SystemGeneratedRo
     positionOpinionVersion: PositionOpinionVersion;
     language: Language;
 }
+//# sourceMappingURL=PositionOpinionVersionTranslation.d.ts.map

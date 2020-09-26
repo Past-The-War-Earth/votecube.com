@@ -16,3 +16,4 @@ export declare class PollRevisionOpinionVersion extends ImmutableRow {
     children: PollRevisionOpinionVersion[];
     translations: PollRevisionOpinionVersionTranslation[];
 }
+//# sourceMappingURL=PollRevisionOpinionVersion.d.ts.map

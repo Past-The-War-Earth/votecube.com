@@ -3,3 +3,4 @@ export interface IPollType extends ISystemGeneratedRow {
     id: number;
     value?: string;
 }
+//# sourceMappingURL=polltype.d.ts.map

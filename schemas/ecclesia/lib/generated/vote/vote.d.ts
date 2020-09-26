@@ -7,3 +7,4 @@ export interface IVote extends IImmutableActorRow {
     run?: IPollRun;
     revisions?: IVoteVersion[];
 }
+//# sourceMappingURL=vote.d.ts.map

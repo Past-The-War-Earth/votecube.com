@@ -19,3 +19,4 @@ export declare class PollRevisionOpinion extends MutableActorRow {
     outcomes: OutcomeOpinionVersion[];
     positions: PositionOpinionVersion[];
 }
+//# sourceMappingURL=PollRevisionOpinion.d.ts.map

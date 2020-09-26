@@ -3,7 +3,7 @@ import {
 	PollRevisionFactorPosition_Id,
 	Position_Id,
 	PositionTranslation_Name
-}                                 from '@votecube/relational-db'
+}                                 from '@votecube/ecclesia'
 import {IsDelta}                  from '../core/common'
 import {Position_Dir,}            from '../core/Position'
 import {UiDocStatus}              from './common'

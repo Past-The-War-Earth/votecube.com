@@ -21,11 +21,11 @@ import {
 	IPollRevisionTranslation,
 	IPosition,
 	ITheme,
-}                                from '@votecube/relational-db/lib/generated/interfaces'
+}                                from '@votecube/ecclesia/lib/generated/interfaces'
 import {
 	Id,
 	Outcome_Ordinal
-}                                from '@votecube/relational-db/lib/types/types'
+}                                from '@votecube/ecclesia/lib/types/types'
 import {POLL_REVISION_CONVERTER} from '../tokens'
 
 export interface IPollRevisionConverter {

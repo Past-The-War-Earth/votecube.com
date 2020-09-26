@@ -8,3 +8,4 @@ export declare class CountyTown extends SystemGeneratedRow {
     county: County;
     town: Town;
 }
+//# sourceMappingURL=CountyTown.d.ts.map

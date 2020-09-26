@@ -7,13 +7,14 @@ import {
 }                           from '@airport/air-control'
 import {
 	UserAccount_BirthDate,
+	UserAccount_Email,
 	UserAccount_FirstName,
 	UserAccount_Id,
 	UserAccount_LastName,
 	UserAccount_MiddleName,
 	UserAccount_PasswordHash,
 	UserAccount_UserName
-} from '../../types/user/UserAccount'
+}                           from '../../types/user/UserAccount'
 import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 
 @Entity()
@@ -28,6 +29,9 @@ export class UserAccount
 
 	@Column({name: 'USER_NAME', nullable: false})
 	userName: UserAccount_UserName
+
+	@Column({name: 'EMAIL', nullable: false})
+	email: UserAccount_Email
 
 	@Column({name: 'PASSWORD_HASH', nullable: false})
 	passwordHash: UserAccount_PasswordHash

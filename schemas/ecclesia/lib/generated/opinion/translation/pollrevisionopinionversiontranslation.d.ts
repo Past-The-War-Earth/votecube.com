@@ -9,3 +9,4 @@ export interface IPollRevisionOpinionVersionTranslation extends ISystemGenerated
     opinionVersion?: IPollRevisionOpinionVersion;
     language?: ILanguage;
 }
+//# sourceMappingURL=pollrevisionopinionversiontranslation.d.ts.map

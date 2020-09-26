@@ -13,3 +13,4 @@ export declare class Poll extends AgeSuitableRow {
     runs: PollRun[];
     revisions: PollRevision[];
 }
+//# sourceMappingURL=Poll.d.ts.map

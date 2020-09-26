@@ -74,3 +74,4 @@ export interface QSkinQId extends QImmutableActorRowQId {
 }
 export interface QSkinQRelation extends QImmutableActorRowQRelation<QSkin>, QSkinQId {
 }
+//# sourceMappingURL=qskin.d.ts.map

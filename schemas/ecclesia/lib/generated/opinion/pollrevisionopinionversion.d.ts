@@ -8,3 +8,4 @@ export interface IPollRevisionOpinionVersion extends IImmutableRow {
     children?: IPollRevisionOpinionVersion[];
     translations?: IPollRevisionOpinionVersionTranslation[];
 }
+//# sourceMappingURL=pollrevisionopinionversion.d.ts.map

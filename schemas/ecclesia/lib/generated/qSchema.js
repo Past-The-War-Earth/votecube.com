@@ -71,8 +71,8 @@ const __constructors__ = {
 };
 exports.Q_SCHEMA = {
     __constructors__,
-    domain: 'public',
-    name: '@votecube/relational-db'
+    domain: 'votecube.com',
+    name: '@votecube/ecclesia'
 };
 exports.Q = exports.Q_SCHEMA;
 function diSet(dbEntityId) {

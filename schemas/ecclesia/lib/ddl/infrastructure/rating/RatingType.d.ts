@@ -5,3 +5,4 @@ export declare class RatingType extends SystemGeneratedRow {
     code: RatingType_Code;
     description: RatingType_Description;
 }
+//# sourceMappingURL=RatingType.d.ts.map

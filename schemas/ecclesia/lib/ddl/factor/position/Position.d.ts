@@ -15,3 +15,4 @@ export declare class Position extends AgeSuitableRow {
     factorPositions: FactorPosition[];
     translations: PositionTranslation[];
 }
+//# sourceMappingURL=Position.d.ts.map

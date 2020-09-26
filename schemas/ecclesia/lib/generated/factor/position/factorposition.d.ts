@@ -5,3 +5,4 @@ export interface IFactorPosition extends IImmutableActorRow {
     factor: IFactor;
     position: IPosition;
 }
+//# sourceMappingURL=factorposition.d.ts.map

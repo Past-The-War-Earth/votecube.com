@@ -3,7 +3,7 @@ import {
 	FactorTranslation_Name,
 	PollRevisionFactorPosition_Axis,
 	PollRevisionFactorPosition_FactorNumber
-} from '@votecube/relational-db'
+} from '@votecube/ecclesia'
 import {ICoreColor}   from './Color'
 import {
 	DocStatus,

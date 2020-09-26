@@ -116,3 +116,4 @@ export interface QPollRevisionFactorPositionQId extends QImmutableRowQId {
 }
 export interface QPollRevisionFactorPositionQRelation extends QImmutableRowQRelation<QPollRevisionFactorPosition>, QPollRevisionFactorPositionQId {
 }
+//# sourceMappingURL=qpollrevisionfactorposition.d.ts.map

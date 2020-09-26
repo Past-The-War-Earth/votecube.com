@@ -16,3 +16,4 @@ export declare class PollRevisionRating extends MutableActorRow {
     pollRevision: PollRevision;
     rating: Rating;
 }
+//# sourceMappingURL=PollRevisionRating.d.ts.map

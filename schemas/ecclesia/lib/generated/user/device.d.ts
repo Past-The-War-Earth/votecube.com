@@ -3,3 +3,4 @@ export interface IDevice extends ISystemGeneratedRow {
     id: number;
     hash?: number;
 }
+//# sourceMappingURL=device.d.ts.map

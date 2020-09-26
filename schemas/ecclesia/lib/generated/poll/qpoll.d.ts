@@ -86,3 +86,4 @@ export interface QPollQId extends QAgeSuitableRowQId {
 }
 export interface QPollQRelation extends QAgeSuitableRowQRelation<QPoll>, QPollQId {
 }
+//# sourceMappingURL=qpoll.d.ts.map

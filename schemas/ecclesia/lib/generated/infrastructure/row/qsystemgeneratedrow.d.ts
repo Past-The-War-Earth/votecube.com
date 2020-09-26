@@ -49,3 +49,4 @@ export interface QSystemGeneratedRowQId extends QImmutableRowQId {
 }
 export interface QSystemGeneratedRowQRelation<SubType extends IQEntity> extends QImmutableRowQRelation<SubType>, QSystemGeneratedRowQId {
 }
+//# sourceMappingURL=qsystemgeneratedrow.d.ts.map

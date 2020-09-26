@@ -18,3 +18,4 @@ export interface IPollRevisionOpinion extends IMutableActorRow {
     outcomes?: IOutcomeOpinionVersion[];
     positions?: IPositionOpinionVersion[];
 }
+//# sourceMappingURL=pollrevisionopinion.d.ts.map

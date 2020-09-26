@@ -18,3 +18,4 @@ export declare class PollRun extends ImmutableActorRow {
     pollCounties: PollRunCounty[];
     pollTowns: PollRunTown[];
 }
+//# sourceMappingURL=PollRun.d.ts.map

@@ -6,3 +6,4 @@ export declare class Continent extends SystemGeneratedRow {
     name: Continent_Name;
     countries: Country[];
 }
+//# sourceMappingURL=Continent.d.ts.map

@@ -8,3 +8,4 @@ export interface IVoteFactor {
     pollFactorPos?: IPollRevisionFactorPosition;
     type?: IVoteFactorType;
 }
+//# sourceMappingURL=votefactor.d.ts.map

@@ -66,3 +66,4 @@ export interface QFactorPositionQId extends QImmutableActorRowQId {
 }
 export interface QFactorPositionQRelation extends QImmutableActorRowQRelation<QFactorPosition>, QFactorPositionQId {
 }
+//# sourceMappingURL=qfactorposition.d.ts.map

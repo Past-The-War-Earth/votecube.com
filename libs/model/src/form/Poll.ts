@@ -1,7 +1,7 @@
 import {
 	Outcome_Name,
 	PollRevisionTranslation_Name
-}                    from '@votecube/relational-db'
+}                    from '@votecube/ecclesia'
 import {IsDelta}     from '../core/common'
 import {UiDocStatus} from '../ui/common'
 import {IFactorForm} from './Factor'

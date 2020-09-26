@@ -7,3 +7,4 @@ export interface IRating extends ISystemGeneratedRow {
     type?: IRatingType;
     settings?: IRatingSetting[];
 }
+//# sourceMappingURL=rating.d.ts.map

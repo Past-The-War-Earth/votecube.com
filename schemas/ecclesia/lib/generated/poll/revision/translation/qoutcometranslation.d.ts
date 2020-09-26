@@ -87,3 +87,4 @@ export interface QOutcomeTranslationQId extends QImmutableActorRowQId {
 }
 export interface QOutcomeTranslationQRelation extends QImmutableActorRowQRelation<QOutcomeTranslation>, QOutcomeTranslationQId {
 }
+//# sourceMappingURL=qoutcometranslation.d.ts.map

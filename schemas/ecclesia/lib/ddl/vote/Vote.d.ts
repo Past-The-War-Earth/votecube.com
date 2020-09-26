@@ -13,3 +13,4 @@ export declare class Vote extends ImmutableActorRow {
     run: PollRun;
     revisions: VoteVersion[];
 }
+//# sourceMappingURL=Vote.d.ts.map

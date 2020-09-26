@@ -5,3 +5,4 @@ export interface IContinent extends ISystemGeneratedRow {
     name?: string;
     countries?: ICountry[];
 }
+//# sourceMappingURL=continent.d.ts.map

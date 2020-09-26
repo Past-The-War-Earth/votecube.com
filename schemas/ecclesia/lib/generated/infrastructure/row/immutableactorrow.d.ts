@@ -5,3 +5,4 @@ export interface IImmutableActorRow extends IImmutableRow {
     actor?: IActor;
     userAccount?: IUserAccount;
 }
+//# sourceMappingURL=immutableactorrow.d.ts.map

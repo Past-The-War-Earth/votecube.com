@@ -13,3 +13,4 @@ export declare class PositionOpinionVersion {
     children: PositionOpinionVersion[];
     translations: PositionOpinionVersionTranslation[];
 }
+//# sourceMappingURL=PositionOpinionVersion.d.ts.map

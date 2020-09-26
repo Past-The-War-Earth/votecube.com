@@ -5,3 +5,4 @@ export interface ITown extends ISystemGeneratedRow {
     name?: string;
     county?: ICounty;
 }
+//# sourceMappingURL=town.d.ts.map

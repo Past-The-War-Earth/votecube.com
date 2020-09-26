@@ -89,7 +89,7 @@ export const MAPPED_SUPERCLASS = [
 			]
 		},
 		"implementedInterfaceNames": [],
-		"project": "@votecube/relational-db"
+		"project": "@votecube/ecclesia"
 	},
 	{
 		"type": "SystemGeneratedRow",
@@ -243,9 +243,9 @@ export const MAPPED_SUPERCLASS = [
 				]
 			},
 			"implementedInterfaceNames": [],
-			"project": "@votecube/relational-db"
+			"project": "@votecube/ecclesia"
 		},
-		"project": "@votecube/relational-db"
+		"project": "@votecube/ecclesia"
 	},
 	{
 		"type": "ImmutableActorRow",
@@ -740,6 +740,11 @@ export const MAPPED_SUPERCLASS = [
 																"moduleImport": null,
 																"sourceName": "UserAccount_BirthDate"
 															},
+															"UserAccount_Email": {
+																"asName": "UserAccount_Email",
+																"moduleImport": null,
+																"sourceName": "UserAccount_Email"
+															},
 															"UserAccount_FirstName": {
 																"asName": "UserAccount_FirstName",
 																"moduleImport": null,
@@ -773,6 +778,7 @@ export const MAPPED_SUPERCLASS = [
 														},
 														"path": "../../types/user/UserAccount"
 													},
+													"UserAccount_Email": null,
 													"UserAccount_FirstName": null,
 													"UserAccount_Id": null,
 													"UserAccount_LastName": null,
@@ -858,6 +864,29 @@ export const MAPPED_SUPERCLASS = [
 															"name": "Column",
 															"values": [
 																{
+																	"name": "EMAIL",
+																	"nullable": false
+																}
+															]
+														}
+													],
+													"isGenerated": false,
+													"isId": false,
+													"isMappedSuperclass": false,
+													"isTransient": false,
+													"name": "email",
+													"type": "string",
+													"ownerEntity": null,
+													"nonArrayType": "string",
+													"primitive": "string",
+													"index": 2
+												},
+												{
+													"decorators": [
+														{
+															"name": "Column",
+															"values": [
+																{
 																	"name": "PASSWORD_HASH",
 																	"nullable": false
 																}
@@ -873,7 +902,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "string",
 													"primitive": "string",
-													"index": 2
+													"index": 3
 												},
 												{
 													"decorators": [
@@ -896,7 +925,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "string",
 													"primitive": "string",
-													"index": 3
+													"index": 4
 												},
 												{
 													"decorators": [
@@ -918,7 +947,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "string",
 													"primitive": "string",
-													"index": 4
+													"index": 5
 												},
 												{
 													"decorators": [
@@ -941,7 +970,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "string",
 													"primitive": "string",
-													"index": 5
+													"index": 6
 												},
 												{
 													"decorators": [
@@ -963,7 +992,7 @@ export const MAPPED_SUPERCLASS = [
 													"ownerEntity": null,
 													"nonArrayType": "Date",
 													"primitive": "Date",
-													"index": 6
+													"index": 7
 												}
 											],
 											"methodSignatures": [],
@@ -1127,9 +1156,9 @@ export const MAPPED_SUPERCLASS = [
 													]
 												},
 												"implementedInterfaceNames": [],
-												"project": "@votecube/relational-db"
+												"project": "@votecube/ecclesia"
 											},
-											"project": "@votecube/relational-db"
+											"project": "@votecube/ecclesia"
 										}
 									},
 									"index": 2
@@ -1696,7 +1725,7 @@ export const MAPPED_SUPERCLASS = [
 		},
 		"implementedInterfaceNames": [],
 		"parentEntity": null,
-		"project": "@votecube/relational-db"
+		"project": "@votecube/ecclesia"
 	},
 	{
 		"type": "AgeSuitableRow",
@@ -2296,6 +2325,11 @@ export const MAPPED_SUPERCLASS = [
 																	"moduleImport": null,
 																	"sourceName": "UserAccount_BirthDate"
 																},
+																"UserAccount_Email": {
+																	"asName": "UserAccount_Email",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_Email"
+																},
 																"UserAccount_FirstName": {
 																	"asName": "UserAccount_FirstName",
 																	"moduleImport": null,
@@ -2329,6 +2363,7 @@ export const MAPPED_SUPERCLASS = [
 															},
 															"path": "../../types/user/UserAccount"
 														},
+														"UserAccount_Email": null,
 														"UserAccount_FirstName": null,
 														"UserAccount_Id": null,
 														"UserAccount_LastName": null,
@@ -2414,6 +2449,29 @@ export const MAPPED_SUPERCLASS = [
 																"name": "Column",
 																"values": [
 																	{
+																		"name": "EMAIL",
+																		"nullable": false
+																	}
+																]
+															}
+														],
+														"isGenerated": false,
+														"isId": false,
+														"isMappedSuperclass": false,
+														"isTransient": false,
+														"name": "email",
+														"type": "string",
+														"ownerEntity": null,
+														"nonArrayType": "string",
+														"primitive": "string",
+														"index": 2
+													},
+													{
+														"decorators": [
+															{
+																"name": "Column",
+																"values": [
+																	{
 																		"name": "PASSWORD_HASH",
 																		"nullable": false
 																	}
@@ -2429,7 +2487,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 2
+														"index": 3
 													},
 													{
 														"decorators": [
@@ -2452,7 +2510,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 3
+														"index": 4
 													},
 													{
 														"decorators": [
@@ -2474,7 +2532,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 4
+														"index": 5
 													},
 													{
 														"decorators": [
@@ -2497,7 +2555,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 5
+														"index": 6
 													},
 													{
 														"decorators": [
@@ -2519,7 +2577,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "Date",
 														"primitive": "Date",
-														"index": 6
+														"index": 7
 													}
 												],
 												"methodSignatures": [],
@@ -2683,9 +2741,9 @@ export const MAPPED_SUPERCLASS = [
 														]
 													},
 													"implementedInterfaceNames": [],
-													"project": "@votecube/relational-db"
+													"project": "@votecube/ecclesia"
 												},
-												"project": "@votecube/relational-db"
+												"project": "@votecube/ecclesia"
 											}
 										},
 										"index": 2
@@ -3252,9 +3310,9 @@ export const MAPPED_SUPERCLASS = [
 			},
 			"implementedInterfaceNames": [],
 			"parentEntity": null,
-			"project": "@votecube/relational-db"
+			"project": "@votecube/ecclesia"
 		},
-		"project": "@votecube/relational-db"
+		"project": "@votecube/ecclesia"
 	},
 	{
 		"type": "MutableActorRow",
@@ -3853,6 +3911,11 @@ export const MAPPED_SUPERCLASS = [
 																	"moduleImport": null,
 																	"sourceName": "UserAccount_BirthDate"
 																},
+																"UserAccount_Email": {
+																	"asName": "UserAccount_Email",
+																	"moduleImport": null,
+																	"sourceName": "UserAccount_Email"
+																},
 																"UserAccount_FirstName": {
 																	"asName": "UserAccount_FirstName",
 																	"moduleImport": null,
@@ -3886,6 +3949,7 @@ export const MAPPED_SUPERCLASS = [
 															},
 															"path": "../../types/user/UserAccount"
 														},
+														"UserAccount_Email": null,
 														"UserAccount_FirstName": null,
 														"UserAccount_Id": null,
 														"UserAccount_LastName": null,
@@ -3971,6 +4035,29 @@ export const MAPPED_SUPERCLASS = [
 																"name": "Column",
 																"values": [
 																	{
+																		"name": "EMAIL",
+																		"nullable": false
+																	}
+																]
+															}
+														],
+														"isGenerated": false,
+														"isId": false,
+														"isMappedSuperclass": false,
+														"isTransient": false,
+														"name": "email",
+														"type": "string",
+														"ownerEntity": null,
+														"nonArrayType": "string",
+														"primitive": "string",
+														"index": 2
+													},
+													{
+														"decorators": [
+															{
+																"name": "Column",
+																"values": [
+																	{
 																		"name": "PASSWORD_HASH",
 																		"nullable": false
 																	}
@@ -3986,7 +4073,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 2
+														"index": 3
 													},
 													{
 														"decorators": [
@@ -4009,7 +4096,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 3
+														"index": 4
 													},
 													{
 														"decorators": [
@@ -4031,7 +4118,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 4
+														"index": 5
 													},
 													{
 														"decorators": [
@@ -4054,7 +4141,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "string",
 														"primitive": "string",
-														"index": 5
+														"index": 6
 													},
 													{
 														"decorators": [
@@ -4076,7 +4163,7 @@ export const MAPPED_SUPERCLASS = [
 														"ownerEntity": null,
 														"nonArrayType": "Date",
 														"primitive": "Date",
-														"index": 6
+														"index": 7
 													}
 												],
 												"methodSignatures": [],
@@ -4240,9 +4327,9 @@ export const MAPPED_SUPERCLASS = [
 														]
 													},
 													"implementedInterfaceNames": [],
-													"project": "@votecube/relational-db"
+													"project": "@votecube/ecclesia"
 												},
-												"project": "@votecube/relational-db"
+												"project": "@votecube/ecclesia"
 											}
 										},
 										"index": 2
@@ -4809,9 +4896,9 @@ export const MAPPED_SUPERCLASS = [
 			},
 			"implementedInterfaceNames": [],
 			"parentEntity": null,
-			"project": "@votecube/relational-db"
+			"project": "@votecube/ecclesia"
 		},
-		"project": "@votecube/relational-db"
+		"project": "@votecube/ecclesia"
 	},
 	{
 		"type": "MutableRow",
@@ -5007,8 +5094,8 @@ export const MAPPED_SUPERCLASS = [
 				]
 			},
 			"implementedInterfaceNames": [],
-			"project": "@votecube/relational-db"
+			"project": "@votecube/ecclesia"
 		},
-		"project": "@votecube/relational-db"
+		"project": "@votecube/ecclesia"
 	}
 ];

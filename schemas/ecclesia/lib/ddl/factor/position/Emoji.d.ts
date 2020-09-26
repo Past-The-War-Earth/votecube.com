@@ -5,3 +5,4 @@ export declare class Emoji extends SystemGeneratedRow {
     name: Emoji_Name;
     cssClass: Emoji_CssClass;
 }
+//# sourceMappingURL=Emoji.d.ts.map

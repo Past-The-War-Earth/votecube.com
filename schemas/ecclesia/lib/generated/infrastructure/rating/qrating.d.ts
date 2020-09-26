@@ -69,3 +69,4 @@ export interface QRatingQId extends QSystemGeneratedRowQId {
 }
 export interface QRatingQRelation extends QSystemGeneratedRowQRelation<QRating>, QRatingQId {
 }
+//# sourceMappingURL=qrating.d.ts.map

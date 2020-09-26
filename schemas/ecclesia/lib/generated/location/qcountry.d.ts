@@ -73,3 +73,4 @@ export interface QCountryQId extends QSystemGeneratedRowQId {
 }
 export interface QCountryQRelation extends QSystemGeneratedRowQRelation<QCountry>, QCountryQId {
 }
+//# sourceMappingURL=qcountry.d.ts.map

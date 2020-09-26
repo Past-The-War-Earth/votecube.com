@@ -2,7 +2,7 @@ import {
 	Factor_Id,
 	FactorTranslation_Id,
 	FactorTranslation_Name
-}                                 from '@votecube/relational-db'
+}                                 from '@votecube/ecclesia'
 import {
 	IsData,
 	IsDelta

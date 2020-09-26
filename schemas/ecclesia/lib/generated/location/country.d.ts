@@ -9,3 +9,4 @@ export interface ICountry extends ISystemGeneratedRow {
     states?: IState[];
     countryTowns?: ICountryTown;
 }
+//# sourceMappingURL=country.d.ts.map

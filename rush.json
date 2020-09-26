@@ -76,13 +76,13 @@
     },
     // "schemas" folder (alphabetical order)
     {
-      "packageName": "@votecube/public-db",
-      "projectFolder": "schemas/public-db",
+      "packageName": "@votecube/ecclesia",
+      "projectFolder": "schemas/ecclesia",
       "shouldPublish": true
     },
     {
-      "packageName": "@votecube/relational-db",
-      "projectFolder": "schemas/relational-db",
+      "packageName": "@votecube/public-db",
+      "projectFolder": "schemas/public-db",
       "shouldPublish": true
     },
     // "apis" folder (alphabetical order)

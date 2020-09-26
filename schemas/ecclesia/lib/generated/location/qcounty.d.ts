@@ -69,3 +69,4 @@ export interface QCountyQId extends QSystemGeneratedRowQId {
 }
 export interface QCountyQRelation extends QSystemGeneratedRowQRelation<QCounty>, QCountyQId {
 }
+//# sourceMappingURL=qcounty.d.ts.map

@@ -9,3 +9,4 @@ export interface IFactorOpinionVersion {
     children?: IFactorOpinionVersion[];
     translations?: IFactorOpinionVersionTranslation[];
 }
+//# sourceMappingURL=factoropinionversion.d.ts.map

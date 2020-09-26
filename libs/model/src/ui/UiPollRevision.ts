@@ -2,7 +2,7 @@ import {
 	Poll_Id,
 	PollRevision_Id,
 	PollRevisionTranslation_Name
-}                                 from '@votecube/relational-db'
+}                                 from '@votecube/ecclesia'
 import {
 	IsData,
 	IsDelta

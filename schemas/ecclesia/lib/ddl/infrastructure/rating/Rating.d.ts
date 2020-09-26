@@ -15,3 +15,4 @@ export declare class Rating extends SystemGeneratedRow {
     type: RatingType;
     settings: RatingSetting[];
 }
+//# sourceMappingURL=Rating.d.ts.map

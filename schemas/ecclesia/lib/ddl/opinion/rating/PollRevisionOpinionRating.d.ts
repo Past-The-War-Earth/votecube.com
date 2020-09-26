@@ -12,3 +12,4 @@ export declare class PollRevisionOpinionRating extends ImmutableActorRow {
     pollRevisionOpinion: PollRevisionOpinion;
     rating: Rating;
 }
+//# sourceMappingURL=PollRevisionOpinionRating.d.ts.map

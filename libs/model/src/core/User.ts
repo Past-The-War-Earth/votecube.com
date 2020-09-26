@@ -2,7 +2,7 @@ import {
 	Id,
 	UserAccount_Id,
 	UserAccount_UserName
-} from '@votecube/relational-db'
+} from '@votecube/ecclesia'
 import {
 	IIdentified,
 	ITimestamp,

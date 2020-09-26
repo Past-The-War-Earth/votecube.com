@@ -57,3 +57,4 @@ export interface QLanguageQId {
 }
 export interface QLanguageQRelation extends IQRelation<QLanguage>, QLanguageQId {
 }
+//# sourceMappingURL=qlanguage.d.ts.map

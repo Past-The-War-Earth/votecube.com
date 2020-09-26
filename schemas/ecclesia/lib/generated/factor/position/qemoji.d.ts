@@ -64,3 +64,4 @@ export interface QEmojiQId extends QSystemGeneratedRowQId {
 }
 export interface QEmojiQRelation extends QSystemGeneratedRowQRelation<QEmoji>, QEmojiQId {
 }
+//# sourceMappingURL=qemoji.d.ts.map

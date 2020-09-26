@@ -9,3 +9,4 @@ export declare class VoteFactor {
     pollFactorPos: PollRevisionFactorPosition;
     type: VoteFactorType;
 }
+//# sourceMappingURL=VoteFactor.d.ts.map

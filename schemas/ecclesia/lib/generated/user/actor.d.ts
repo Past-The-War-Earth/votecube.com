@@ -9,3 +9,4 @@ export interface IActor extends ISystemGeneratedRow {
     device?: IDevice;
     application?: IApplication;
 }
+//# sourceMappingURL=actor.d.ts.map

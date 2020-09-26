@@ -6,3 +6,4 @@ export declare class PollRunTown {
     town: Town;
     run: PollRun;
 }
+//# sourceMappingURL=PollRunTown.d.ts.map

@@ -9,3 +9,4 @@ export interface IPositionOpinionVersionTranslation extends ISystemGeneratedRow 
     positionOpinionVersion?: IPositionOpinionVersion;
     language?: ILanguage;
 }
+//# sourceMappingURL=positionopinionversiontranslation.d.ts.map

@@ -4,7 +4,7 @@
   "typings": "lib/index",
   "version": "0.0.1",
   "dependencies": {
-    "@votecube/relational-db": "0.0.1"
+    "@votecube/ecclesia": "0.0.1"
   },
   "devDependencies": {
     "tslint": "^5.20.1",

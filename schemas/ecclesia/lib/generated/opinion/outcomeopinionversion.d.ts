@@ -9,3 +9,4 @@ export interface IOutcomeOpinionVersion {
     children?: IOutcomeOpinionVersion[];
     translations?: IOutcomeOpinionVersionTranslation[];
 }
+//# sourceMappingURL=outcomeopinionversion.d.ts.map

@@ -9,3 +9,4 @@ export interface IPositionTranslation extends IImmutableActorRow {
     parent?: IPositionTranslation;
     children?: IPositionTranslation[];
 }
+//# sourceMappingURL=positiontranslation.d.ts.map

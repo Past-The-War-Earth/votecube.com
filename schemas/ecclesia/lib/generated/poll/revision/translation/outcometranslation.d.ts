@@ -11,3 +11,4 @@ export interface IOutcomeTranslation extends IImmutableActorRow {
     parent?: IOutcomeTranslation;
     children?: IOutcomeTranslation[];
 }
+//# sourceMappingURL=outcometranslation.d.ts.map

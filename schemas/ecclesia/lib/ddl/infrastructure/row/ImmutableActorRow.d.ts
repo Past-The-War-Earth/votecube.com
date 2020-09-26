@@ -5,3 +5,4 @@ export declare abstract class ImmutableActorRow extends ImmutableRow {
     actor: Actor;
     userAccount: UserAccount;
 }
+//# sourceMappingURL=ImmutableActorRow.d.ts.map

@@ -59,3 +59,4 @@ export interface QImmutableActorRowQId extends QImmutableRowQId {
 }
 export interface QImmutableActorRowQRelation<SubType extends IQEntity> extends QImmutableRowQRelation<SubType>, QImmutableActorRowQId {
 }
+//# sourceMappingURL=qimmutableactorrow.d.ts.map

@@ -11,7 +11,7 @@ import {
 }                      from '@votecube/model'
 import {
 	Outcome_Ordinal,
-}                      from '@votecube/relational-db'
+}                      from '@votecube/ecclesia'
 import {ICubePosition} from '../../../poll/CubeLogic'
 import {
 	CUBE_LOGIC,

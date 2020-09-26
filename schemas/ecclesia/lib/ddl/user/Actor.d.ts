@@ -10,3 +10,4 @@ export declare class Actor extends SystemGeneratedRow {
     device: Device;
     application: Application;
 }
+//# sourceMappingURL=Actor.d.ts.map

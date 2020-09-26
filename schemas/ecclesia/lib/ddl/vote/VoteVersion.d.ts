@@ -7,3 +7,4 @@ export declare class VoteVersion extends ImmutableActorRow {
     vote: Vote;
     factors: VoteFactor[];
 }
+//# sourceMappingURL=VoteVersion.d.ts.map

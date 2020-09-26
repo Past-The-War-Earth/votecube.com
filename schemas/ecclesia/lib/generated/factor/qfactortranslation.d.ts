@@ -84,3 +84,4 @@ export interface QFactorTranslationQId extends QImmutableActorRowQId {
 }
 export interface QFactorTranslationQRelation extends QImmutableActorRowQRelation<QFactorTranslation>, QFactorTranslationQId {
 }
+//# sourceMappingURL=qfactortranslation.d.ts.map

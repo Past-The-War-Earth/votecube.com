@@ -1,7 +1,7 @@
 import {
 	Id,
 	UserAccount_Id
-}                     from '@votecube/relational-db'
+}                     from '@votecube/ecclesia'
 import {IIdentified,} from '../core/common'
 
 export interface IUiUserCreated<K extends Id>

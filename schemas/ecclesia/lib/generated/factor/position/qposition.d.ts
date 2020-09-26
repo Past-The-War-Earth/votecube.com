@@ -84,3 +84,4 @@ export interface QPositionQId extends QAgeSuitableRowQId {
 }
 export interface QPositionQRelation extends QAgeSuitableRowQRelation<QPosition>, QPositionQId {
 }
+//# sourceMappingURL=qposition.d.ts.map

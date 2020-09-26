@@ -5,3 +5,4 @@ export interface IPollRunTown {
     town?: ITown;
     run?: IPollRun;
 }
+//# sourceMappingURL=pollruntown.d.ts.map

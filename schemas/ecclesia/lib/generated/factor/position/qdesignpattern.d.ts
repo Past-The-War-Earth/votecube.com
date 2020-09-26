@@ -64,3 +64,4 @@ export interface QDesignPatternQId extends QSystemGeneratedRowQId {
 }
 export interface QDesignPatternQRelation extends QSystemGeneratedRowQRelation<QDesignPattern>, QDesignPatternQId {
 }
+//# sourceMappingURL=qdesignpattern.d.ts.map

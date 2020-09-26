@@ -13,3 +13,4 @@ export declare class TranslationType {
     id: TranslationType_Id;
     code: TranslationType_Code;
 }
+//# sourceMappingURL=TranslationType.d.ts.map

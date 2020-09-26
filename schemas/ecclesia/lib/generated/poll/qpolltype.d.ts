@@ -59,3 +59,4 @@ export interface QPollTypeQId extends QSystemGeneratedRowQId {
 }
 export interface QPollTypeQRelation extends QSystemGeneratedRowQRelation<QPollType>, QPollTypeQId {
 }
+//# sourceMappingURL=qpolltype.d.ts.map

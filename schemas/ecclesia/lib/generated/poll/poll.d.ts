@@ -12,3 +12,4 @@ export interface IPoll extends IAgeSuitableRow {
     runs?: IPollRun[];
     revisions?: IPollRevision[];
 }
+//# sourceMappingURL=poll.d.ts.map

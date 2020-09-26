@@ -3,7 +3,7 @@ import {
 	PollRevisionFactorPosition_Dir,
 	Position_Id,
 	PositionTranslation_Name
-}                     from '@votecube/relational-db'
+}                     from '@votecube/ecclesia'
 import {
 	DocStatus,
 	IFullTextSearch,

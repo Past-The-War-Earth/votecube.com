@@ -17,3 +17,4 @@ export interface IPollRevisionFactorPosition extends IImmutableRow {
     parent?: IPollRevisionFactorPosition;
     children?: IPollRevisionFactorPosition[];
 }
+//# sourceMappingURL=pollrevisionfactorposition.d.ts.map

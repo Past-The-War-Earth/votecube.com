@@ -9,3 +9,4 @@ export interface IOutcomeOpinionVersionTranslation extends ISystemGeneratedRow {
     outcomeOpinionVersion?: IOutcomeOpinionVersion;
     language?: ILanguage;
 }
+//# sourceMappingURL=outcomeopinionversiontranslation.d.ts.map

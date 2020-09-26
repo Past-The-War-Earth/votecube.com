@@ -16,3 +16,4 @@ export declare class OutcomeTranslation extends ImmutableActorRow {
     parent: OutcomeTranslation;
     children: OutcomeTranslation[];
 }
+//# sourceMappingURL=OutcomeTranslation.d.ts.map

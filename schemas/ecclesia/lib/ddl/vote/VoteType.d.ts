@@ -13,3 +13,4 @@ export declare class VoteType extends SystemGeneratedRow {
     name: VoteType_Name;
     description: VoteType_Description;
 }
+//# sourceMappingURL=VoteType.d.ts.map

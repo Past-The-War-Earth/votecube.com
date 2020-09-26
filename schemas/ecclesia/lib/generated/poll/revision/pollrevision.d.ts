@@ -21,3 +21,4 @@ export interface IPollRevision extends IAgeSuitableRow {
     allTranslations?: IPollRevisionTranslation[];
     opinions?: IPollRevisionOpinion[];
 }
+//# sourceMappingURL=pollrevision.d.ts.map

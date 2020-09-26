@@ -53,3 +53,4 @@ export interface QAgeSuitableRowQId extends QImmutableActorRowQId {
 }
 export interface QAgeSuitableRowQRelation<SubType extends IQEntity> extends QImmutableActorRowQRelation<SubType>, QAgeSuitableRowQId {
 }
+//# sourceMappingURL=qagesuitablerow.d.ts.map

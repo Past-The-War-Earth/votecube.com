@@ -8,3 +8,4 @@ export declare class PollRevisionDao extends BasePollRevisionDao implements IPol
     createNew(poll: IPoll, user: IUserAccount): Promise<void>;
     getListingsForLevel(parentId: PollRevision_Id): Promise<IPollRevision[]>;
 }
+//# sourceMappingURL=PollRevisionDao.d.ts.map

@@ -10,3 +10,4 @@ export declare const POLL_FACTOR_POSITION_REVISION_DUO: import("@airport/di").ID
 export declare const POLL_CONTINENT_DUO: import("@airport/di").IDiToken<IBasePollRunContinentDuo>;
 export declare const USER_ACCOUNT_DAO: import("@airport/di").IDiToken<IUserAccountDao>;
 export declare const USER_ACCOUNT_DUO: import("@airport/di").IDiToken<IUserAccountDuo>;
+//# sourceMappingURL=tokens.d.ts.map

@@ -6,7 +6,7 @@ import {
 	PollRevision_Id,
 	PollRevisionTranslation_Name,
 	Position_Id
-}                                 from '@votecube/relational-db'
+}                                 from '@votecube/ecclesia'
 import {IsDelta}                  from '../core/common'
 import {IUserCreated}             from '../core/User'
 import {UiDocStatus}              from './common'

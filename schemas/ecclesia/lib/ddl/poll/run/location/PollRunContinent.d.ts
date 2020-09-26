@@ -6,3 +6,4 @@ export declare class PollRunContinent {
     continent: Continent;
     run: PollRun;
 }
+//# sourceMappingURL=PollRunContinent.d.ts.map

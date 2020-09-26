@@ -5,3 +5,4 @@ export declare class Application extends SystemGeneratedRow {
     host: Application_Host;
     port: Application_Port;
 }
+//# sourceMappingURL=Application.d.ts.map

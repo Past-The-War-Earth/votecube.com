@@ -1,4 +1,4 @@
-import {Id} from '@votecube/relational-db'
+import {Id} from '@votecube/ecclesia'
 
 export type IsData = 'data'
 export type IsDelta = 'delta'

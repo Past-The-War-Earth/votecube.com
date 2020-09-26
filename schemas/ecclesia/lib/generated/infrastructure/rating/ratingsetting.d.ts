@@ -8,3 +8,4 @@ export interface IRatingSetting extends ISystemGeneratedRow {
     country?: ICountry;
     rating?: IRating;
 }
+//# sourceMappingURL=ratingsetting.d.ts.map

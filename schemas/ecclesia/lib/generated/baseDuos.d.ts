@@ -452,3 +452,4 @@ export declare class BaseVoteVersionDuo extends SQDIDuo<IVoteVersion, VoteVersio
     static diSet(): boolean;
     constructor();
 }
+//# sourceMappingURL=baseDuos.d.ts.map

@@ -65,3 +65,4 @@ export interface QTownQId extends QSystemGeneratedRowQId {
 }
 export interface QTownQRelation extends QSystemGeneratedRowQRelation<QTown>, QTownQId {
 }
+//# sourceMappingURL=qtown.d.ts.map

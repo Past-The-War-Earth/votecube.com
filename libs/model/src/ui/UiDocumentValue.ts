@@ -1,4 +1,4 @@
-import {AgeSuitability} from '@votecube/relational-db'
+import {AgeSuitability} from '@votecube/ecclesia'
 import {IsDelta}        from '../core/core'
 import {UiDocStatus}    from './common'
 

@@ -1,7 +1,7 @@
 export const SCHEMA = {
 	"domain": "votecube.com",
 	"index": null,
-	"name": "@votecube/relational-db",
+	"name": "@votecube/ecclesia",
 	"sinceVersion": 1,
 	"versions": [
 		{
@@ -483,7 +483,7 @@ export const SCHEMA = {
 							"index": 3,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "PASSWORD_HASH",
+							"name": "EMAIL",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -497,7 +497,7 @@ export const SCHEMA = {
 							"index": 4,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "FIRST_NAME",
+							"name": "PASSWORD_HASH",
 							"notNull": true,
 							"propertyRefs": [
 								{
@@ -511,8 +511,8 @@ export const SCHEMA = {
 							"index": 5,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "MIDDLE_NAME",
-							"notNull": false,
+							"name": "FIRST_NAME",
+							"notNull": true,
 							"propertyRefs": [
 								{
 									"index": 5
@@ -525,8 +525,8 @@ export const SCHEMA = {
 							"index": 6,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "LAST_NAME",
-							"notNull": true,
+							"name": "MIDDLE_NAME",
+							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 6
@@ -539,11 +539,25 @@ export const SCHEMA = {
 							"index": 7,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
+							"name": "LAST_NAME",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 7
+								}
+							],
+							"sinceVersion": 1,
+							"type": 5
+						},
+						{
+							"index": 8,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
 							"name": "BIRTH_DATE",
 							"notNull": false,
 							"propertyRefs": [
 								{
-									"index": 7
+									"index": 8
 								}
 							],
 							"sinceVersion": 1,
@@ -593,7 +607,7 @@ export const SCHEMA = {
 							},
 							"index": 3,
 							"isId": false,
-							"name": "passwordHash",
+							"name": "email",
 							"sinceVersion": 1
 						},
 						{
@@ -602,7 +616,7 @@ export const SCHEMA = {
 							},
 							"index": 4,
 							"isId": false,
-							"name": "firstName",
+							"name": "passwordHash",
 							"sinceVersion": 1
 						},
 						{
@@ -611,7 +625,7 @@ export const SCHEMA = {
 							},
 							"index": 5,
 							"isId": false,
-							"name": "middleName",
+							"name": "firstName",
 							"sinceVersion": 1
 						},
 						{
@@ -620,7 +634,7 @@ export const SCHEMA = {
 							},
 							"index": 6,
 							"isId": false,
-							"name": "lastName",
+							"name": "middleName",
 							"sinceVersion": 1
 						},
 						{
@@ -628,6 +642,15 @@ export const SCHEMA = {
 								"index": 7
 							},
 							"index": 7,
+							"isId": false,
+							"name": "lastName",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 8
+							},
+							"index": 8,
 							"isId": false,
 							"name": "birthDate",
 							"sinceVersion": 1

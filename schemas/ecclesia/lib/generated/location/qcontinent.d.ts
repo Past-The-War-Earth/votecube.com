@@ -63,3 +63,4 @@ export interface QContinentQId extends QSystemGeneratedRowQId {
 }
 export interface QContinentQRelation extends QSystemGeneratedRowQRelation<QContinent>, QContinentQId {
 }
+//# sourceMappingURL=qcontinent.d.ts.map

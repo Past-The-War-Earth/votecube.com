@@ -66,3 +66,4 @@ export interface QVoteVersionQId extends QImmutableActorRowQId {
 }
 export interface QVoteVersionQRelation extends QImmutableActorRowQRelation<QVoteVersion>, QVoteVersionQId {
 }
+//# sourceMappingURL=qvoteversion.d.ts.map

@@ -5,3 +5,4 @@ export interface IPollRunState {
     state?: IState;
     run?: IPollRun;
 }
+//# sourceMappingURL=pollrunstate.d.ts.map

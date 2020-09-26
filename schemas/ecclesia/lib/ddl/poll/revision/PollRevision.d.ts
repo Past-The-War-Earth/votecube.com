@@ -25,3 +25,4 @@ export declare class PollRevision extends AgeSuitableRow {
     allTranslations: PollRevisionTranslation[];
     opinions: PollRevisionOpinion[];
 }
+//# sourceMappingURL=PollRevision.d.ts.map

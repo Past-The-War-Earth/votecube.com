@@ -1,17 +1,21 @@
 import {
-	container,
 	DI
-}             from '@airport/di'
+}                      from '@airport/di'
 import {
 	BehaviorSubject,
 	IObservable
-}             from '@airport/observe'
+}                      from '@airport/observe'
 import {
 	IUserAccount,
-	USER_ACCOUNT_DAO,
+	UserAccount_Email,
+	UserAccount_PasswordHash,
 	UserAccount_UserName
-}             from '@votecube/relational-db'
-import {AUTH} from './tokens'
+}                      from '@votecube/ecclesia'
+import {APP_CONTAINER} from './container'
+import {
+	AUTH,
+	CONNECTION_MANAGER
+}                      from './tokens'
 
 export interface IAuthError {
 
@@ -20,12 +24,7 @@ export interface IAuthError {
 
 }
 
-export interface IFbAuthUser {
-
-	email: string
-	uid: string
-
-}
+export type Auth_Password = string;
 
 export interface IAuth {
 
@@ -34,15 +33,15 @@ export interface IAuth {
 	reactToUser(): Promise<IObservable<IUserAccount>>
 
 	signIn(
-		username: string,
-		password: string
+		username: UserAccount_UserName,
+		password: Auth_Password
 	): Promise<IAuthError | IUserAccount>
 
 	signOut(): Promise<void>
 
 	signUp(
-		email: string,
-		password: string
+		email: UserAccount_Email,
+		password: Auth_Password
 	): Promise<IAuthError | void>
 
 }
@@ -57,7 +56,6 @@ export class Auth
 	}
 
 	async reactToUser(
-		// fbAuthUser: IFbAuthUser
 	): Promise<IObservable<IUserAccount>> {
 		const subject = new BehaviorSubject<IUserAccount>(null)
 
@@ -66,61 +64,56 @@ export class Auth
 
 	async signIn(
 		userName: UserAccount_UserName,
-		password: string
+		password: Auth_Password
 	): Promise<IAuthError | IUserAccount> {
-		const userAccountDao = await container(this).get(USER_ACCOUNT_DAO)
-		const userAccount = await userAccountDao.findByUsername(userName)
+		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
+		const passwordHash      = await this.encodePassword(password)
 
-		if (userAccount === null) {
-			return {
-				code: 'NotFound'
-			}
+		const userAccount: IAuthError | IUserAccount = await connectionManager.get('signIn', {
+			passwordHash,
+			userName
+		})
+
+		if (!(<IAuthError>userAccount).code) {
+			this.user = <IUserAccount>userAccount
 		}
 
-		const passwordHash = await this.encodePassword(password)
-		if (passwordHash !== userAccount.passwordHash) {
-			return {
-				code: 'WrongPassword'
-			}
-		} else if (false) {
-			return {
-				code: 'TooManyTries'
-			}
-		}
-
-		this.user = userAccount
-
-		return this.user
+		return userAccount
 	}
 
 	async signOut(): Promise<void> {
+		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
+
+		await connectionManager.get('signOut', {
+			passwordHash: this.user.passwordHash,
+			userName: this.user.userName
+		})
+
 		this.user = null
 	}
 
 	async signUp(
-		userName: string,
-		password: string
+		userName: UserAccount_UserName,
+		password: Auth_Password
 	): Promise<IAuthError | void> {
-		const userAccountDao = await container(this).get(USER_ACCOUNT_DAO)
-		const passwordHash = await this.encodePassword(password)
+		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
+		const passwordHash   = await this.encodePassword(password)
 
-		try {
-			await userAccountDao.signUp(userName, passwordHash)
-		} catch (e) {
-			return {
-				code: 'InUse'
-			}
-			// return {
-			// 	code: 'Invalid'
-			// }
+		const userAccount: IAuthError | IUserAccount = await connectionManager.get('signUp', {
+			passwordHash,
+			userName
+		})
+
+		if (!(<IAuthError>userAccount).code) {
+			this.user = <IUserAccount>userAccount
+		} else {
+			return <IAuthError>userAccount
 		}
-
-		return null
 	}
 
 	private async encodePassword(
-		password: string
-	): Promise<string> {
+		password: Auth_Password
+	): Promise<UserAccount_PasswordHash> {
 		const jsSHA = await import('jssha/src/sha512')
 
 		const shaObj = new jsSHA('SHA-512', 'TEXT')
@@ -128,6 +121,7 @@ export class Auth
 
 		return shaObj.getHash('B64')
 	}
+
 }
 
 DI.set(AUTH, Auth)

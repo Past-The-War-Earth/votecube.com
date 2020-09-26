@@ -1,7 +1,7 @@
 import {
 	Outcome_Id,
 	Outcome_Name
-}                     from '@votecube/relational-db'
+}                     from '@votecube/ecclesia'
 import {
 	DocStatus,
 	IFullTextSearch,

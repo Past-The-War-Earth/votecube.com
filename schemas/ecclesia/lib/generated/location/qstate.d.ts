@@ -69,3 +69,4 @@ export interface QStateQId extends QSystemGeneratedRowQId {
 }
 export interface QStateQRelation extends QSystemGeneratedRowQRelation<QState>, QStateQId {
 }
+//# sourceMappingURL=qstate.d.ts.map

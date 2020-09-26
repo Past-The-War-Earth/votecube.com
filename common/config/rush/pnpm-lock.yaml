@@ -11,6 +11,7 @@ dependencies:
   '@rush-temp/cube-logic': 'file:projects/cube-logic.tgz'
   '@rush-temp/db': 'file:projects/db.tgz'
   '@rush-temp/di': 'file:projects/di.tgz_typescript@3.8.3'
+  '@rush-temp/ecclesia': 'file:projects/ecclesia.tgz'
   '@rush-temp/flight-log-archive': 'file:projects/flight-log-archive.tgz'
   '@rush-temp/forms': 'file:projects/forms.tgz'
   '@rush-temp/fuel-hydrant-system': 'file:projects/fuel-hydrant-system.tgz'
@@ -27,7 +28,6 @@ dependencies:
   '@rush-temp/public-db': 'file:projects/public-db.tgz'
   '@rush-temp/public-logic': 'file:projects/public-logic.tgz'
   '@rush-temp/public-ui': 'file:projects/public-ui.tgz'
-  '@rush-temp/relational-db': 'file:projects/relational-db.tgz'
   '@rush-temp/runway': 'file:projects/runway.tgz'
   '@rush-temp/runway-edge-lighting': 'file:projects/runway-edge-lighting.tgz'
   '@rush-temp/svelte-progressive-list': 'file:projects/svelte-progressive-list.tgz'
@@ -1681,6 +1681,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-01s+ac4qerwd6RHD+mVbOEsraDHSgUaefQlEdBbUolnQFjKwCr7luvAlEwW1RFojh67u0z4OUTjPn9LEl4zIkA==
+  /@types/node/14.10.0:
+    dev: false
+    resolution:
+      integrity: sha512-SOIyrdADB4cq6eY1F+9iU48iIomFAPltu11LCvA9PKcyEwHadjCFzNVPotAR+oEJA0bCP4Xvvgy+vwu1ZjVh8g==
   /@types/node/6.14.9:
     dev: false
     resolution:
@@ -9801,7 +9805,7 @@ packages:
     dev: false
     name: '@rush-temp/cube-logic'
     resolution:
-      integrity: sha512-ycG+m8dNZw77yfX9QHk1C5p4jaL84/Hrrt9nOD/BuqbIvFs2YCzEIS8CjrnySJmvw/x8PIqKjz4mbfsZc6iS9Q==
+      integrity: sha512-+2FK4voUTqLvKTKpYJAX29FVRWaK5nqY10GSNvD7mhjDNWSaRas8tl3dd91Ge4QhshxJXCsH/sHh2PvcpEGE0A==
       tarball: 'file:projects/cube-logic.tgz'
     version: 0.0.0
   'file:projects/db.tgz':
@@ -9825,6 +9829,17 @@ packages:
     resolution:
       integrity: sha512-XOE6s3VI6NKuJ7DK3+hJHXQgUkE0yRq+7agN+2GxnVl1N1Ntr5wRD3WGRQgwLObohUklD0N3sQ1W9hBnrns08g==
       tarball: 'file:projects/di.tgz'
+    version: 0.0.0
+  'file:projects/ecclesia.tgz':
+    dependencies:
+      firebase: 7.19.1
+      tslint: 5.20.1_typescript@3.8.3
+      typescript: 3.8.3
+    dev: false
+    name: '@rush-temp/ecclesia'
+    resolution:
+      integrity: sha512-KCtDztPaNSRPKGTF9YzbIVqg5JeqjoBV8RZbPP0BEMwC1tKKxb0t/rVfFUlKhsny9uka+V0QAV5TkxiqNGMeBw==
+      tarball: 'file:projects/ecclesia.tgz'
     version: 0.0.0
   'file:projects/flight-log-archive.tgz':
     dev: false
@@ -9898,7 +9913,7 @@ packages:
     dev: false
     name: '@rush-temp/model'
     resolution:
-      integrity: sha512-NJ1XtqWMzGZIKOdORCofDOnhC6N/8npLncvuJfvq6WPyM7Cbm53/YRmJJ7YSE96TzT4nmy1YW9CXeZcJAA0ElA==
+      integrity: sha512-GIMJGLg/zO1XIQge4oMs3NIIqhBBbCmgC5HXXz9nyk/5iQeR07+Bgj+3UHfgN5QpA/+8U0tAh+2dEEr6KJ/ZbA==
       tarball: 'file:projects/model.tgz'
     version: 0.0.0
   'file:projects/moving-walkway.tgz':
@@ -9964,7 +9979,7 @@ packages:
     dev: false
     name: '@rush-temp/public-db'
     resolution:
-      integrity: sha512-itgLOraDLgGGPgV7C05mRh1PPVnpFhiaCuamYRiNCfbo5HWhEc/F1vk6B15RFZmjYzOXo5BaYK8VTSH8vGZR3Q==
+      integrity: sha512-XDHg1kwF4dyCgteDV+uvOiVSeE3taxqpUNBHKEemiGjQCv2/1c8GmVkhTXX5PDM3nt33EQ/6MaRKfhHEenaBrA==
       tarball: 'file:projects/public-db.tgz'
     version: 0.0.0
   'file:projects/public-logic.tgz':
@@ -9980,7 +9995,7 @@ packages:
     dev: false
     name: '@rush-temp/public-logic'
     resolution:
-      integrity: sha512-QU2UiXhEkfZoEpSWLZ0Shk2SZJAqQG3Pi27KgtkOAYaJRAplG2HeZO6DoAjfQ15UMpT6crQ9JiUOCoNrmEjT7g==
+      integrity: sha512-gov0HVA4ryB9Cu91h0o8EegAluNTOZj2tj7Z8v4/LQOh06D4KbkiHQn6M8bTSRKrvDy4EA7FxF7eaSwGh8NrJw==
       tarball: 'file:projects/public-logic.tgz'
     version: 0.0.0
   'file:projects/public-ui.tgz':
@@ -10009,19 +10024,8 @@ packages:
     dev: false
     name: '@rush-temp/public-ui'
     resolution:
-      integrity: sha512-NSe92qHCOuajKbaDqtJJ0ccY+TgJwD+HthZpCiQpUj/AT6FYrkA7f0EsTUGk3Rhn5Dq9t9mzszztc8OCGXN75w==
+      integrity: sha512-fTGKojzaz/YQmBjwG6VDjpdXT+kmqKPd4Os/9fV5NNGU0Jtjk262az8xZv7fPAMdN52IIboQc2k3RGcSs4gBLA==
       tarball: 'file:projects/public-ui.tgz'
-    version: 0.0.0
-  'file:projects/relational-db.tgz':
-    dependencies:
-      firebase: 7.12.0
-      tslint: 5.20.1_typescript@3.8.3
-      typescript: 3.8.3
-    dev: false
-    name: '@rush-temp/relational-db'
-    resolution:
-      integrity: sha512-7uUSGYRdvszxkkvYCiTu6mFyPbEjaqcA38w7zvdcdNCRQGmqxywU92QV+JbUuHwjnVZPHv2+sdLLY3m+TvIAvw==
-      tarball: 'file:projects/relational-db.tgz'
     version: 0.0.0
   'file:projects/runway-edge-lighting.tgz':
     dependencies:
@@ -10130,11 +10134,12 @@ packages:
     dev: false
     name: '@rush-temp/vc-logic'
     resolution:
-      integrity: sha512-oMQVreslwRLBwoGdcWUPsS/WzvbmlIY0V0awYLdZEemx85orn6lQg7PLcWrQor79Cw8HjCY0w5piBJkNlzbJcw==
+      integrity: sha512-6gJQh/rtaJ1wJWD8RWeIEcg8AWpFD00rr00D9rQgSx8OhH3w7T2+rxcu7S8g+qjRwP2uCpfAnNcRTqTrXgy9KA==
       tarball: 'file:projects/vc-logic.tgz'
     version: 0.0.0
   'file:projects/vc-node.tgz':
     dependencies:
+      '@types/node': 14.10.0
       fastify: 3.3.0
       fastify-cors: 4.1.0
       mysql: 2.18.1
@@ -10143,7 +10148,7 @@ packages:
     dev: false
     name: '@rush-temp/vc-node'
     resolution:
-      integrity: sha512-SddjmW0V3Fpe78xll7BWCFnFge6/Rfw20sIJxoGg4hTa0T0yQJcw2B7sFQuRGbcaIQoQ8SM+VHdbLfr32ys58Q==
+      integrity: sha512-GUOOWLRLrT3EebRdm+A851rI1lB9meNxvzYUSAtKSNk90b5squAMHdmS8FITgdpAj80IsVnXsLf7E9/LIZgH0Q==
       tarball: 'file:projects/vc-node.tgz'
     version: 0.0.0
   'file:projects/vc-ui.tgz':
@@ -10171,7 +10176,7 @@ packages:
     dev: false
     name: '@rush-temp/vc-ui'
     resolution:
-      integrity: sha512-69ui+sNlq+Ql3hRItJitxu6mgrAgmM+LQV0+HZkMHGZTMsb42NkLdcFb11pBzH6PHnu4JbH1vEAoKVjNyMbAnA==
+      integrity: sha512-yHZfZ8EhLPL/s2Tnsg9nJ8i5D8ooBA8PUzkOgQFI+V84m7Hce3MSyyh7lTfcWRknKLNc61d9CmF7Et1oQh6hfw==
       tarball: 'file:projects/vc-ui.tgz'
     version: 0.0.0
 registry: ''
@@ -10188,6 +10193,7 @@ specifiers:
   '@rush-temp/cube-logic': 'file:./projects/cube-logic.tgz'
   '@rush-temp/db': 'file:./projects/db.tgz'
   '@rush-temp/di': 'file:./projects/di.tgz'
+  '@rush-temp/ecclesia': 'file:./projects/ecclesia.tgz'
   '@rush-temp/flight-log-archive': 'file:./projects/flight-log-archive.tgz'
   '@rush-temp/forms': 'file:./projects/forms.tgz'
   '@rush-temp/fuel-hydrant-system': 'file:./projects/fuel-hydrant-system.tgz'
@@ -10204,7 +10210,6 @@ specifiers:
   '@rush-temp/public-db': 'file:./projects/public-db.tgz'
   '@rush-temp/public-logic': 'file:./projects/public-logic.tgz'
   '@rush-temp/public-ui': 'file:./projects/public-ui.tgz'
-  '@rush-temp/relational-db': 'file:./projects/relational-db.tgz'
   '@rush-temp/runway': 'file:./projects/runway.tgz'
   '@rush-temp/runway-edge-lighting': 'file:./projects/runway-edge-lighting.tgz'
   '@rush-temp/svelte-progressive-list': 'file:./projects/svelte-progressive-list.tgz'

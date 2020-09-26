@@ -74,3 +74,4 @@ export interface QPollRevisionRatingQId extends QMutableActorRowQId {
 }
 export interface QPollRevisionRatingQRelation extends QMutableActorRowQRelation<QPollRevisionRating>, QPollRevisionRatingQId {
 }
+//# sourceMappingURL=qpollrevisionrating.d.ts.map

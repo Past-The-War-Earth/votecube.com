@@ -4,3 +4,4 @@ export interface IEmoji extends ISystemGeneratedRow {
     name?: string;
     cssClass?: string;
 }
+//# sourceMappingURL=emoji.d.ts.map

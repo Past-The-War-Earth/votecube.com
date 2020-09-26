@@ -276,7 +276,7 @@ const __constructors__ = {
 export const Q_SCHEMA: LocalQSchema = <any>{
 	__constructors__,
   domain: 'votecube.com',
-  name: '@votecube/relational-db'
+  name: '@votecube/ecclesia'
 };
 export const Q: LocalQSchema = Q_SCHEMA
 

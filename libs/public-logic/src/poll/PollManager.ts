@@ -16,7 +16,7 @@ import {
 	Poll_Id,
 	PollRevision_Id,
 	Theme_Id
-}                    from '@votecube/relational-db'
+}                    from '@votecube/ecclesia'
 import {
 	CUBE_LOGIC,
 	LOGIC_UTILS,

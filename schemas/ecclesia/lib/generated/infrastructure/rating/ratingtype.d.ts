@@ -4,3 +4,4 @@ export interface IRatingType extends ISystemGeneratedRow {
     code?: string;
     description?: string;
 }
+//# sourceMappingURL=ratingtype.d.ts.map

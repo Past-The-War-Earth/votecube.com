@@ -4,3 +4,4 @@ export interface IDesignPattern extends ISystemGeneratedRow {
     name?: string;
     cssClass?: string;
 }
+//# sourceMappingURL=designpattern.d.ts.map

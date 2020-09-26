@@ -7,7 +7,7 @@ import {
 }                                   from '@votecube/model'
 import {
 	Outcome_Ordinal
-}                                   from '@votecube/relational-db'
+}                                   from '@votecube/ecclesia'
 import {
 	CUBE_MOVE_MATRIX,
 	CUBE_MOVEMENT,

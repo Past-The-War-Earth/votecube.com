@@ -64,3 +64,4 @@ export interface QPollRunStateQId {
 }
 export interface QPollRunStateQRelation extends IQRelation<QPollRunState>, QPollRunStateQId {
 }
+//# sourceMappingURL=qpollrunstate.d.ts.map

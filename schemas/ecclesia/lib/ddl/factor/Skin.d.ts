@@ -7,3 +7,4 @@ export declare class Skin extends ImmutableActorRow {
     parent: Skin;
     children: Skin[];
 }
+//# sourceMappingURL=Skin.d.ts.map

@@ -4,3 +4,4 @@ export interface IApplication extends ISystemGeneratedRow {
     host?: string;
     port?: number;
 }
+//# sourceMappingURL=application.d.ts.map

@@ -16,3 +16,4 @@ export declare class OutcomeOpinionVersionTranslation extends SystemGeneratedRow
     outcomeOpinionVersion: OutcomeOpinionVersion;
     language: Language;
 }
+//# sourceMappingURL=OutcomeOpinionVersionTranslation.d.ts.map

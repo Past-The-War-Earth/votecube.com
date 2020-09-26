@@ -1,7 +1,7 @@
 import {
 	FactorTranslation_Name,
 	PositionTranslation_Name
-}                    from '@votecube/relational-db'
+}                    from '@votecube/ecclesia'
 import {IUiColor}    from '..'
 import {UiDocStatus} from '../ui/common'
 import {

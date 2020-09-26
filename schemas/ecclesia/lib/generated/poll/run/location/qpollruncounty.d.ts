@@ -64,3 +64,4 @@ export interface QPollRunCountyQId {
 }
 export interface QPollRunCountyQRelation extends IQRelation<QPollRunCounty>, QPollRunCountyQId {
 }
+//# sourceMappingURL=qpollruncounty.d.ts.map

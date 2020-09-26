@@ -5,6 +5,7 @@ import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpda
  */
 export interface UserAccountESelect extends SystemGeneratedRowESelect, UserAccountEOptionalId {
     userName?: string | IQStringField;
+    email?: string | IQStringField;
     passwordHash?: string | IQStringField;
     firstName?: string | IQStringField;
     middleName?: string | IQStringField;
@@ -28,6 +29,7 @@ export interface UserAccountEOptionalId {
  */
 export interface UserAccountEUpdateProperties extends SystemGeneratedRowEUpdateProperties {
     userName?: string | IQStringField;
+    email?: string | IQStringField;
     passwordHash?: string | IQStringField;
     firstName?: string | IQStringField;
     middleName?: string | IQStringField;
@@ -39,6 +41,7 @@ export interface UserAccountEUpdateProperties extends SystemGeneratedRowEUpdateP
  */
 export interface UserAccountGraph extends SystemGeneratedRowESelect, UserAccountEOptionalId, SystemGeneratedRowGraph {
     userName?: string | IQStringField;
+    email?: string | IQStringField;
     passwordHash?: string | IQStringField;
     firstName?: string | IQStringField;
     middleName?: string | IQStringField;
@@ -51,6 +54,7 @@ export interface UserAccountGraph extends SystemGeneratedRowESelect, UserAccount
 export interface UserAccountEUpdateColumns extends SystemGeneratedRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     USER_NAME?: string | IQStringField;
+    EMAIL?: string | IQStringField;
     PASSWORD_HASH?: string | IQStringField;
     FIRST_NAME?: string | IQStringField;
     MIDDLE_NAME?: string | IQStringField;
@@ -73,6 +77,7 @@ export interface UserAccountECreateColumns extends UserAccountEId, UserAccountEU
 export interface QUserAccount extends QSystemGeneratedRow {
     id: IQNumberField;
     userName: IQStringField;
+    email: IQStringField;
     passwordHash: IQStringField;
     firstName: IQStringField;
     middleName: IQStringField;
@@ -84,3 +89,4 @@ export interface QUserAccountQId extends QSystemGeneratedRowQId {
 }
 export interface QUserAccountQRelation extends QSystemGeneratedRowQRelation<QUserAccount>, QUserAccountQId {
 }
+//# sourceMappingURL=quseraccount.d.ts.map

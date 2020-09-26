@@ -5,3 +5,4 @@ export interface IStateTown extends ISystemGeneratedRow {
     state: IState;
     town: ITown;
 }
+//# sourceMappingURL=statetown.d.ts.map

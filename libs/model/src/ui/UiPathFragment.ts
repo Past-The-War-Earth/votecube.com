@@ -1,4 +1,4 @@
-import {Id}             from '@votecube/relational-db'
+import {Id}             from '@votecube/ecclesia'
 import {
 	Doc_Depth,
 	IIdentified

@@ -7,3 +7,4 @@ export interface ICounty extends ISystemGeneratedRow {
     state?: IState;
     countyTowns?: ICountyTown;
 }
+//# sourceMappingURL=county.d.ts.map

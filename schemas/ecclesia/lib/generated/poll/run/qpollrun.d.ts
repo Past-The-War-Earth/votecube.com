@@ -95,3 +95,4 @@ export interface QPollRunQId extends QImmutableActorRowQId {
 }
 export interface QPollRunQRelation extends QImmutableActorRowQRelation<QPollRun>, QPollRunQId {
 }
+//# sourceMappingURL=qpollrun.d.ts.map

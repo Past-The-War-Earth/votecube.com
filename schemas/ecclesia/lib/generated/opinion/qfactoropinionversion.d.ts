@@ -76,3 +76,4 @@ export interface QFactorOpinionVersionQId {
 }
 export interface QFactorOpinionVersionQRelation extends IQRelation<QFactorOpinionVersion>, QFactorOpinionVersionQId {
 }
+//# sourceMappingURL=qfactoropinionversion.d.ts.map

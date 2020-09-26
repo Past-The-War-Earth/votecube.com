@@ -1,4 +1,4 @@
-import {Outcome_Ordinal} from '@votecube/relational-db'
+import {Outcome_Ordinal} from '@votecube/ecclesia'
 import {Factor_Number}   from './core/Factor'
 
 export type VoteFactor_Value =

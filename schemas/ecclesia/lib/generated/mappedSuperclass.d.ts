@@ -675,6 +675,11 @@ export declare const MAPPED_SUPERCLASS: ({
                                                     moduleImport: any;
                                                     sourceName: string;
                                                 };
+                                                UserAccount_Email: {
+                                                    asName: string;
+                                                    moduleImport: any;
+                                                    sourceName: string;
+                                                };
                                                 UserAccount_FirstName: {
                                                     asName: string;
                                                     moduleImport: any;
@@ -708,6 +713,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                             };
                                             path: string;
                                         };
+                                        UserAccount_Email: any;
                                         UserAccount_FirstName: any;
                                         UserAccount_Id: any;
                                         UserAccount_LastName: any;
@@ -1059,6 +1065,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                             path: string;
                                         };
                                         UserAccount_BirthDate?: undefined;
+                                        UserAccount_Email?: undefined;
                                         UserAccount_FirstName?: undefined;
                                         UserAccount_Id?: undefined;
                                         UserAccount_LastName?: undefined;
@@ -1265,6 +1272,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                             path: string;
                                         };
                                         UserAccount_BirthDate?: undefined;
+                                        UserAccount_Email?: undefined;
                                         UserAccount_FirstName?: undefined;
                                         UserAccount_Id?: undefined;
                                         UserAccount_LastName?: undefined;
@@ -1869,6 +1877,11 @@ export declare const MAPPED_SUPERCLASS: ({
                                                         moduleImport: any;
                                                         sourceName: string;
                                                     };
+                                                    UserAccount_Email: {
+                                                        asName: string;
+                                                        moduleImport: any;
+                                                        sourceName: string;
+                                                    };
                                                     UserAccount_FirstName: {
                                                         asName: string;
                                                         moduleImport: any;
@@ -1902,6 +1915,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                                 };
                                                 path: string;
                                             };
+                                            UserAccount_Email: any;
                                             UserAccount_FirstName: any;
                                             UserAccount_Id: any;
                                             UserAccount_LastName: any;
@@ -2253,6 +2267,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                                 path: string;
                                             };
                                             UserAccount_BirthDate?: undefined;
+                                            UserAccount_Email?: undefined;
                                             UserAccount_FirstName?: undefined;
                                             UserAccount_Id?: undefined;
                                             UserAccount_LastName?: undefined;
@@ -2459,6 +2474,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                                 path: string;
                                             };
                                             UserAccount_BirthDate?: undefined;
+                                            UserAccount_Email?: undefined;
                                             UserAccount_FirstName?: undefined;
                                             UserAccount_Id?: undefined;
                                             UserAccount_LastName?: undefined;
@@ -3064,6 +3080,11 @@ export declare const MAPPED_SUPERCLASS: ({
                                                         moduleImport: any;
                                                         sourceName: string;
                                                     };
+                                                    UserAccount_Email: {
+                                                        asName: string;
+                                                        moduleImport: any;
+                                                        sourceName: string;
+                                                    };
                                                     UserAccount_FirstName: {
                                                         asName: string;
                                                         moduleImport: any;
@@ -3097,6 +3118,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                                 };
                                                 path: string;
                                             };
+                                            UserAccount_Email: any;
                                             UserAccount_FirstName: any;
                                             UserAccount_Id: any;
                                             UserAccount_LastName: any;
@@ -3448,6 +3470,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                                 path: string;
                                             };
                                             UserAccount_BirthDate?: undefined;
+                                            UserAccount_Email?: undefined;
                                             UserAccount_FirstName?: undefined;
                                             UserAccount_Id?: undefined;
                                             UserAccount_LastName?: undefined;
@@ -3654,6 +3677,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                                 path: string;
                                             };
                                             UserAccount_BirthDate?: undefined;
+                                            UserAccount_Email?: undefined;
                                             UserAccount_FirstName?: undefined;
                                             UserAccount_Id?: undefined;
                                             UserAccount_LastName?: undefined;
@@ -3939,3 +3963,4 @@ export declare const MAPPED_SUPERCLASS: ({
     };
     project: string;
 })[];
+//# sourceMappingURL=mappedSuperclass.d.ts.map

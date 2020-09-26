@@ -1,7 +1,7 @@
 import {
 	Theme_Id,
 	Theme_Name
-}                                 from '@votecube/relational-db'
+}                                 from '@votecube/ecclesia'
 import {IsDelta}                  from '..'
 import {UiDocStatus}              from './common'
 import {IUiAgeSuitabilityTracked} from './UiDocumentValue'

@@ -19,6 +19,9 @@ __decorate([
     air_control_1.Column({ name: 'USER_NAME', nullable: false })
 ], UserAccount.prototype, "userName", void 0);
 __decorate([
+    air_control_1.Column({ name: 'EMAIL', nullable: false })
+], UserAccount.prototype, "email", void 0);
+__decorate([
     air_control_1.Column({ name: 'PASSWORD_HASH', nullable: false })
 ], UserAccount.prototype, "passwordHash", void 0);
 __decorate([

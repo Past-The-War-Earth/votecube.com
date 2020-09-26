@@ -59,3 +59,4 @@ export interface QDeviceQId extends QSystemGeneratedRowQId {
 }
 export interface QDeviceQRelation extends QSystemGeneratedRowQRelation<QDevice>, QDeviceQId {
 }
+//# sourceMappingURL=qdevice.d.ts.map

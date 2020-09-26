@@ -81,3 +81,4 @@ export interface QPositionTranslationQId extends QImmutableActorRowQId {
 }
 export interface QPositionTranslationQRelation extends QImmutableActorRowQRelation<QPositionTranslation>, QPositionTranslationQId {
 }
+//# sourceMappingURL=qpositiontranslation.d.ts.map

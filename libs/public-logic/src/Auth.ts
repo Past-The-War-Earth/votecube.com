@@ -10,7 +10,7 @@ import {
 	IUserAccount,
 	USER_ACCOUNT_DAO,
 	UserAccount_UserName
-}             from '@votecube/relational-db'
+}             from '@votecube/ecclesia'
 import {AUTH} from './tokens'
 
 export type Password = string

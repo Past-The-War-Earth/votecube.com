@@ -4,3 +4,4 @@ export declare class PollType extends SystemGeneratedRow {
     id: PollType_Id;
     value: PollType_Value;
 }
+//# sourceMappingURL=PollType.d.ts.map

@@ -60,3 +60,4 @@ export * from './vote/votefactor';
 export * from './vote/votefactortype';
 export * from './vote/votetype';
 export * from './vote/voteversion';
+//# sourceMappingURL=interfaces.d.ts.map

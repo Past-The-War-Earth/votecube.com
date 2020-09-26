@@ -1,4 +1,0 @@
-export type PositionOpinionVersionTranslation_Id = number
-export type PositionOpinionVersionTranslation_Title = string
-export type PositionOpinionVersionTranslation_Text = string
-export type PositionOpinionVersionTranslation_IsOriginal = boolean

@@ -9,3 +9,4 @@ export interface IOutcome extends IAgeSuitableRow {
     pollRevisionsA?: IPollRevision[];
     pollRevisionsB?: IPollRevision[];
 }
+//# sourceMappingURL=outcome.d.ts.map

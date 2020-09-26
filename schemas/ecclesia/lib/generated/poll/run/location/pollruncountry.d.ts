@@ -5,3 +5,4 @@ export interface IPollRunCountry {
     country?: ICountry;
     run?: IPollRun;
 }
+//# sourceMappingURL=pollruncountry.d.ts.map

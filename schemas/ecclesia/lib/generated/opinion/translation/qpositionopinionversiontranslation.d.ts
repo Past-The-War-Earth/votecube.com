@@ -81,3 +81,4 @@ export interface QPositionOpinionVersionTranslationQId extends QSystemGeneratedR
 }
 export interface QPositionOpinionVersionTranslationQRelation extends QSystemGeneratedRowQRelation<QPositionOpinionVersionTranslation>, QPositionOpinionVersionTranslationQId {
 }
+//# sourceMappingURL=qpositionopinionversiontranslation.d.ts.map

@@ -7,3 +7,4 @@ export interface IPollRevisionRating extends IMutableActorRow {
     pollRevision?: IPollRevision;
     rating?: IRating;
 }
+//# sourceMappingURL=pollrevisionrating.d.ts.map
