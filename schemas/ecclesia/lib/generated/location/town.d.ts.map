@@ -1,0 +1,1 @@
+{"version":3,"file":"town.d.ts","sourceRoot":"","sources":["../../../src/generated/location/town.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,mBAAmB,EACnB,MAAM,0CAA0C,CAAC;AAClD,OAAO,EACN,OAAO,EACP,MAAM,UAAU,CAAC;AAQlB,MAAM,WAAW,KAAM,SAAQ,mBAAmB;IAGjD,EAAE,EAAE,MAAM,CAAC;IAKX,IAAI,CAAC,EAAE,MAAM,CAAC;IAGd,MAAM,CAAC,EAAE,OAAO,CAAC;CAMjB"}

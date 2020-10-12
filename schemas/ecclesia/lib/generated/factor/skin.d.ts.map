@@ -1,0 +1,1 @@
+{"version":3,"file":"skin.d.ts","sourceRoot":"","sources":["../../../src/generated/factor/skin.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,kBAAkB,EAClB,MAAM,yCAAyC,CAAC;AAQjD,MAAM,WAAW,KAAM,SAAQ,kBAAkB;IAGhD,EAAE,EAAE,MAAM,CAAC;IAKX,eAAe,CAAC,EAAE,MAAM,CAAC;IACzB,SAAS,CAAC,EAAE,MAAM,CAAC;IAGnB,MAAM,CAAC,EAAE,KAAK,CAAC;IACf,QAAQ,CAAC,EAAE,KAAK,EAAE,CAAC;CAMnB"}

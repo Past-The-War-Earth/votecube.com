@@ -1,0 +1,1 @@
+{"version":3,"file":"VoteType.d.ts","sourceRoot":"","sources":["../../../src/ddl/vote/VoteType.ts"],"names":[],"mappings":"AAOA,OAAO,EACN,oBAAoB,EACpB,WAAW,EACX,aAAa,EACb,MAAgC,2BAA2B,CAAA;AAC5D,OAAO,EAAC,kBAAkB,EAAC,MAAM,0CAA0C,CAAA;AAE3E;;;;;;;GAOG;AACH,qBAEa,QACZ,SAAQ,kBAAkB;IAK1B,EAAE,EAAE,WAAW,CAAA;IAGf,IAAI,EAAE,aAAa,CAAA;IAGnB,WAAW,EAAE,oBAAoB,CAAA;CAEjC"}

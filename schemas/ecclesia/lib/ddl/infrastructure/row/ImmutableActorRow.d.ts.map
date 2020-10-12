@@ -1,0 +1,1 @@
+{"version":3,"file":"ImmutableActorRow.d.ts","sourceRoot":"","sources":["../../../../src/ddl/infrastructure/row/ImmutableActorRow.ts"],"names":[],"mappings":"AAKA,OAAO,EAAC,KAAK,EAAC,MAAa,kBAAkB,CAAA;AAC7C,OAAO,EAAC,WAAW,EAAC,MAAO,wBAAwB,CAAA;AACnD,OAAO,EAAC,YAAY,EAAC,MAAM,gBAAgB,CAAA;AAE3C,8BACsB,iBACrB,SAAQ,YAAY;IAIpB,KAAK,EAAE,KAAK,CAAA;IAIZ,WAAW,EAAE,WAAW,CAAA;CAExB"}

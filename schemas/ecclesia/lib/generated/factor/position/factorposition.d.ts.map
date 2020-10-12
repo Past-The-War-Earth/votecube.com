@@ -1,0 +1,1 @@
+{"version":3,"file":"factorposition.d.ts","sourceRoot":"","sources":["../../../../src/generated/factor/position/factorposition.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,kBAAkB,EAClB,MAAM,4CAA4C,CAAC;AACpD,OAAO,EACN,OAAO,EACP,MAAM,WAAW,CAAC;AACnB,OAAO,EACN,SAAS,EACT,MAAM,YAAY,CAAC;AAQpB,MAAM,WAAW,eAAgB,SAAQ,kBAAkB;IAK1D,MAAM,EAAE,OAAO,CAAC;IAChB,QAAQ,EAAE,SAAS,CAAC;CAUpB"}

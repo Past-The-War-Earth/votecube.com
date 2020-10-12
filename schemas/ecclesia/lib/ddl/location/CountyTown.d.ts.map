@@ -1,0 +1,1 @@
+{"version":3,"file":"CountyTown.d.ts","sourceRoot":"","sources":["../../../src/ddl/location/CountyTown.ts"],"names":[],"mappings":"AAOA,OAAO,EAAC,kBAAkB,EAAC,MAAM,0CAA0C,CAAA;AAC3E,OAAO,EAAC,MAAM,EAAC,MAAkB,UAAU,CAAA;AAC3C,OAAO,EAAC,IAAI,EAAC,MAAoB,QAAQ,CAAA;AAEzC;;GAEG;AACH,qBAIa,UACZ,SAAQ,kBAAkB;IAK1B,MAAM,EAAE,MAAM,CAAA;IAKd,IAAI,EAAE,IAAI,CAAA;CAEV"}

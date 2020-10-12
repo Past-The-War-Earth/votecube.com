@@ -1,0 +1,1 @@
+{"version":3,"file":"StateTown.d.ts","sourceRoot":"","sources":["../../../src/ddl/location/StateTown.ts"],"names":[],"mappings":"AAOA,OAAO,EAAC,kBAAkB,EAAC,MAAM,0CAA0C,CAAA;AAC3E,OAAO,EAAC,KAAK,EAAC,MAAmB,SAAS,CAAA;AAC1C,OAAO,EAAC,IAAI,EAAC,MAAoB,QAAQ,CAAA;AAEzC;;GAEG;AACH,qBAIa,SACZ,SAAQ,kBAAkB;IAK1B,KAAK,EAAE,KAAK,CAAA;IAKZ,IAAI,EAAE,IAAI,CAAA;CAEV"}

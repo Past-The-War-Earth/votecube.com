@@ -1,0 +1,1 @@
+{"version":3,"file":"VoteFactorType.d.ts","sourceRoot":"","sources":["../../../src/ddl/vote/VoteFactorType.ts"],"names":[],"mappings":"AAOA,OAAO,EACN,iBAAiB,EACjB,oBAAoB,EACpB,MAAgC,iCAAiC,CAAA;AAClE,OAAO,EAAC,kBAAkB,EAAC,MAAM,0CAA0C,CAAA;AAE3E,qBAEa,cACZ,SAAQ,kBAAkB;IAI1B,EAAE,EAAE,iBAAiB,CAAA;IAIrB,KAAK,EAAE,oBAAoB,CAAA;CAE3B"}
