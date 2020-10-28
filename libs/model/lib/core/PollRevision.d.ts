@@ -1,4 +1,4 @@
-import { Poll_Id, PollRevision_Id, PollRevisionTranslation_Name } from '@votecube/relational-db';
+import { Poll_Id, PollRevision_Id, PollRevisionTranslation_Name } from '@votecube/ecclesia';
 import { DocStatus, IFullTextSearch, IMarked, IMarks, IsData, IsDelta, IsDoc } from './common';
 import { ICoreAgeSuitabilityTracked, IDocumentValue } from './DocumentValue';
 import { ICoreFactorFromForm, ICoreMarkedFactor } from './Factor';
@@ -34,3 +34,4 @@ export interface ICoreRevisionFromForm<Doc extends DocStatus = IsData> {
     };
     theme: ICoreThemeFromForm;
 }
+//# sourceMappingURL=PollRevision.d.ts.map

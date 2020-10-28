@@ -32,7 +32,7 @@ export interface SkinEUpdateProperties extends ImmutableActorRowEUpdatePropertie
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface SkinGraph extends ImmutableActorRowESelect, SkinEOptionalId, ImmutableActorRowGraph {
+export interface SkinGraph extends SkinEOptionalId, ImmutableActorRowGraph {
     backgroundColor?: number | IQNumberField;
     textColor?: number | IQNumberField;
     parent?: SkinGraph;

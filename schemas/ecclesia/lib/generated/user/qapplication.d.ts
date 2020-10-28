@@ -29,7 +29,7 @@ export interface ApplicationEUpdateProperties extends SystemGeneratedRowEUpdateP
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ApplicationGraph extends SystemGeneratedRowESelect, ApplicationEOptionalId, SystemGeneratedRowGraph {
+export interface ApplicationGraph extends ApplicationEOptionalId, SystemGeneratedRowGraph {
     host?: string | IQStringField;
     port?: number | IQNumberField;
 }

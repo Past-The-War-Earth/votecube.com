@@ -29,7 +29,7 @@ export interface ImmutableActorRowEUpdateProperties extends ImmutableRowEUpdateP
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ImmutableActorRowGraph extends ImmutableRowESelect, ImmutableActorRowEOptionalId, ImmutableRowGraph {
+export interface ImmutableActorRowGraph extends ImmutableActorRowEOptionalId, ImmutableRowGraph {
     actor?: ActorGraph;
     userAccount?: UserAccountGraph;
 }

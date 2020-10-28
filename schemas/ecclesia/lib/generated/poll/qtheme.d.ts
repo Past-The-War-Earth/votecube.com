@@ -29,7 +29,7 @@ export interface ThemeEUpdateProperties extends SystemGeneratedRowEUpdatePropert
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ThemeGraph extends SystemGeneratedRowESelect, ThemeEOptionalId, SystemGeneratedRowGraph {
+export interface ThemeGraph extends ThemeEOptionalId, SystemGeneratedRowGraph {
     name?: string | IQStringField;
     ageSuitability?: number | IQNumberField;
 }

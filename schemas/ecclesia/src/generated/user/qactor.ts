@@ -129,7 +129,7 @@ export interface ActorEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ActorGraph
-	extends SystemGeneratedRowESelect, ActorEOptionalId, SystemGeneratedRowGraph {
+	extends ActorEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

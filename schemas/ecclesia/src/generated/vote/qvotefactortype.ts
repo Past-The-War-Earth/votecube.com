@@ -93,7 +93,7 @@ export interface VoteFactorTypeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface VoteFactorTypeGraph
-	extends SystemGeneratedRowESelect, VoteFactorTypeEOptionalId, SystemGeneratedRowGraph {
+	extends VoteFactorTypeEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

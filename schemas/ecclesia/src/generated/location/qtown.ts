@@ -105,7 +105,7 @@ export interface TownEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface TownGraph
-	extends SystemGeneratedRowESelect, TownEOptionalId, SystemGeneratedRowGraph {
+	extends TownEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

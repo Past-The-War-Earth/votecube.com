@@ -130,7 +130,7 @@ export interface FactorEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface FactorGraph
-	extends AgeSuitableRowESelect, FactorEOptionalId, AgeSuitableRowGraph {
+	extends FactorEOptionalId, AgeSuitableRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

@@ -95,7 +95,7 @@ export interface DesignPatternEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface DesignPatternGraph
-	extends SystemGeneratedRowESelect, DesignPatternEOptionalId, SystemGeneratedRowGraph {
+	extends DesignPatternEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

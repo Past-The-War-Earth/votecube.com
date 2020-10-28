@@ -120,7 +120,7 @@ export interface PollRevisionTranslationRatingEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRevisionTranslationRatingGraph
-	extends ImmutableActorRowESelect, PollRevisionTranslationRatingEOptionalId, ImmutableActorRowGraph {
+	extends PollRevisionTranslationRatingEOptionalId, ImmutableActorRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

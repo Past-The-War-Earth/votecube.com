@@ -32,7 +32,7 @@ export interface VoteEUpdateProperties extends ImmutableActorRowEUpdatePropertie
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface VoteGraph extends ImmutableActorRowESelect, VoteEOptionalId, ImmutableActorRowGraph {
+export interface VoteGraph extends VoteEOptionalId, ImmutableActorRowGraph {
     type?: number | IQNumberField;
     run?: PollRunGraph;
     revisions?: VoteVersionGraph[];

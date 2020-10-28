@@ -132,7 +132,7 @@ export interface OutcomeTranslationEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface OutcomeTranslationGraph
-	extends ImmutableActorRowESelect, OutcomeTranslationEOptionalId, ImmutableActorRowGraph {
+	extends OutcomeTranslationEOptionalId, ImmutableActorRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

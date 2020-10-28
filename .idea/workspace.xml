@@ -19,8 +19,720 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="Renamed relational-db to ecclesia.  Started moving votecube persistence logic to the server side.">
+    <list default="true" id="390c8912-32c0-49a5-9fb5-66b6e2673065" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/cloudfare-worker/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/cloudfare-worker/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/old-ui/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/old-ui/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/public-ui/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/public-ui/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-node/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-node/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-node/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-node/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-node/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-node/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/vc-ui/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/vc-ui/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/scripts/install-run-rush.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/scripts/install-run-rush.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/scripts/install-run.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/scripts/install-run.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ajax/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/ajax/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/cube-logic/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/cube-logic/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/db/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/db/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/forms/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/forms/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/Vote.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/Vote.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/Vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/Vote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/VoteFactor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/VoteFactor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/VoteFactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/VoteFactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Color.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Color.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Color.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/DocumentValue.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/DocumentValue.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/DocumentValue.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/DocumentValue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Factor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Factor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Outcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Outcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PathFragment.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PathFragment.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PathFragment.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PathFragment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Poll.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Poll.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PollRevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PollRevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PollRevisionListing.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PollRevisionListing.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/PollRevisionListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/PollRevisionListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Position.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Position.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Theme.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Theme.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/User.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/User.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/common.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/common.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/core.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/core.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/core/core.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/core/core.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/AgeSuitability.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/AgeSuitability.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/AgeSuitability.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/AgeSuitability.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Factor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Factor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Outcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Outcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Poll.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Poll.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/PollRevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/PollRevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/PollRevisionListing.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/PollRevisionListing.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/PollRevisionListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/PollRevisionListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Position.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Position.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Theme.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Theme.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/data.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/data.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/data/data.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/data/data.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/AgeSuitability.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/AgeSuitability.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/AgeSuitability.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/AgeSuitability.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Factor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Factor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Outcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Outcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Poll.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Poll.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/PollRevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/PollRevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/PollRevisionListing.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/PollRevisionListing.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/PollRevisionListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/PollRevisionListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Position.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Position.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Theme.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Theme.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/delta.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/delta.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/delta.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/delta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/delta/delta.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/delta/delta.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/AgeSuitability.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/AgeSuitability.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/AgeSuitability.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/AgeSuitability.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Factor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Factor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Outcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Outcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Poll.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Poll.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/PollRevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/PollRevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/PollRevisionListing.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/PollRevisionListing.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/PollRevisionListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/PollRevisionListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Position.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Position.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Theme.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Theme.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/doc.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/doc.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/doc.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/doc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/doc/doc.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/doc/doc.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Factor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Factor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Poll.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Poll.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Theme.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Theme.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/form.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/form.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/form/form.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/form/form.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Continent.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Continent.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Continent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Continent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Country.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Country.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Country.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Country.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Country.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/County.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/County.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/County.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/County.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/County.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/County.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollContinent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCountry.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollCounty.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollState.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollState.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollState.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollState.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollState.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollTown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollTown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/PollTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/PollTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/State.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/State.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/State.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/State.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/State.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/State.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Town.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Town.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Town.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/location/Town.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/location/Town.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/old/model.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/old/model.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/old/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/old/model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/poll/PreparedPoll.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiColor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiColor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiColor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiDocumentValue.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiDocumentValue.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiDocumentValue.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiDocumentValue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiFactor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiFactor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiFactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiFactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiOutcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiOutcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiOutcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiOutcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPathFragment.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPathFragment.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPathFragment.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPathFragment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPoll.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPoll.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPoll.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPoll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPollRevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPollRevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPosition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPosition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiTheme.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiTheme.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiTheme.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiTheme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiUser.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiUser.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/UiUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/UiUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/common.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/common.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/ui.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/ui.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/ui.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/model/lib/ui/ui.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/libs/model/lib/ui/ui.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/public-logic/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/public-logic/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/svelte-progressive-list/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/svelte-progressive-list/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/vc-logic/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/libs/vc-logic/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/rush.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/dao.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/dao.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/poll/PollDao.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/poll/PollDao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/poll/PollDao.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/poll/PollDao.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/poll/revision/PollRevisionDao.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/poll/revision/PollRevisionDao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/poll/revision/PollRevisionDao.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/poll/revision/PollRevisionDao.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/user/UserAccountDao.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/user/UserAccountDao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/user/UserAccountDao.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/dao/user/UserAccountDao.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/ddl.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/ddl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/ddl.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/ddl.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/Factor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/Factor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/FactorTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/FactorTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/FactorTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/FactorTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/Skin.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/Skin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/Skin.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/Skin.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/DesignPattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/DesignPattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/DesignPattern.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/DesignPattern.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/Emoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/Emoji.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/Emoji.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/Emoji.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/FactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/FactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/FactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/FactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/Position.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/Position.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/PositionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/PositionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/PositionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/factor/position/PositionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/Language.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/Language.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/Language.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/Language.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/TranslationType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/TranslationType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/TranslationType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/TranslationType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/Rating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/Rating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/Rating.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/Rating.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/RatingSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/RatingSetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/RatingSetting.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/RatingSetting.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/RatingType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/RatingType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/RatingType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/rating/RatingType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/AgeSuitableRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/AgeSuitableRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/AgeSuitableRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/AgeSuitableRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/ImmutableActorRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/ImmutableActorRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/ImmutableActorRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/ImmutableActorRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/ImmutableRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/ImmutableRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/ImmutableRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/ImmutableRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/MutableActorRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/MutableActorRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/MutableActorRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/MutableActorRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/MutableRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/MutableRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/MutableRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/MutableRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/SystemGeneratedRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/SystemGeneratedRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/SystemGeneratedRow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/infrastructure/row/SystemGeneratedRow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Continent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Continent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Country.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Country.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Country.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/CountryTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/CountryTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/CountryTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/CountryTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/County.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/County.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/County.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/County.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/CountyTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/CountyTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/CountyTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/CountyTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/State.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/State.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/State.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/State.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/StateTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/StateTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/StateTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/StateTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Town.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Town.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/location/Town.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/FactorOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/FactorOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/FactorOpinionVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/FactorOpinionVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/OutcomeOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/OutcomeOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/OutcomeOpinionVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/OutcomeOpinionVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PollRevisionOpinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PollRevisionOpinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PollRevisionOpinion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PollRevisionOpinion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PollRevisionOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PollRevisionOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PollRevisionOpinionVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PollRevisionOpinionVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PositionOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PositionOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PositionOpinionVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/PositionOpinionVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/rating/PollRevisionOpinionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/rating/PollRevisionOpinionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/rating/PollRevisionOpinionRating.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/rating/PollRevisionOpinionRating.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/FactorOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/FactorOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/FactorOpinionVersionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/FactorOpinionVersionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/OutcomeOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/OutcomeOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/OutcomeOpinionVersionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/OutcomeOpinionVersionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/PollRevisionOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/PollRevisionOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/PollRevisionOpinionVersionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/PollRevisionOpinionVersionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/PositionOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/PositionOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/PositionOpinionVersionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/opinion/translation/PositionOpinionVersionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/Poll.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/Poll.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/PollType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/PollType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/PollType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/PollType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/Theme.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/Theme.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/rating/PollRevisionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/rating/PollRevisionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/rating/PollRevisionRating.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/rating/PollRevisionRating.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/rating/PollRevisionTranslationRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/rating/PollRevisionTranslationRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/rating/PollRevisionTranslationRating.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/rating/PollRevisionTranslationRating.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/Outcome.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/Outcome.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/PollRevision.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/PollRevision.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/PollRevisionFactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/PollRevisionFactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/PollRevisionFactorPosition.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/PollRevisionFactorPosition.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/translation/OutcomeTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/translation/OutcomeTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/translation/OutcomeTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/translation/OutcomeTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/translation/PollRevisionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/translation/PollRevisionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/translation/PollRevisionTranslation.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/revision/translation/PollRevisionTranslation.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/PollRun.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/PollRun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/PollRun.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/PollRun.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunContinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunContinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunContinent.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunContinent.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunCountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunCountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunCountry.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunCountry.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunCounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunCounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunCounty.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunCounty.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunState.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunState.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunState.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunTown.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/poll/run/location/PollRunTown.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Actor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Actor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Actor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Actor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Application.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Application.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Application.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Device.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Device.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/Device.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/UserAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/UserAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/UserAccount.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/user/UserAccount.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/Vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/Vote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/Vote.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/Vote.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteFactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteFactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteFactor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteFactor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteFactorType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteFactorType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteFactorType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteFactorType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteType.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteType.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteVersion.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/ddl/vote/VoteVersion.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/duo.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/duo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/duo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/duo.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/poll/PollRevisionFactorPositionDuo.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/poll/PollRevisionFactorPositionDuo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/poll/PollRevisionFactorPositionDuo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/poll/PollRevisionFactorPositionDuo.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/user/UserAccountDuo.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/user/UserAccountDuo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/user/UserAccountDuo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/duo/user/UserAccountDuo.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/baseDaos.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/baseDaos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/baseDaos.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/baseDaos.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/baseDuos.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/baseDuos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/baseDuos.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/baseDuos.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/factortranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/factortranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/designpattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/designpattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/emoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/emoji.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/factorposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/factorposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/position.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/positiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/positiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qdesignpattern.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qdesignpattern.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qdesignpattern.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qdesignpattern.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qdesignpattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qdesignpattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qemoji.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qemoji.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qemoji.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qemoji.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qemoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qemoji.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qfactorposition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qfactorposition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qfactorposition.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qfactorposition.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qfactorposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qfactorposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qposition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qposition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qposition.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qposition.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qpositiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qpositiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qpositiontranslation.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qpositiontranslation.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qpositiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/position/qpositiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactor.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactor.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactortranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactortranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactortranslation.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactortranslation.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactortranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qfactortranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qskin.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qskin.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qskin.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qskin.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qskin.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/qskin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/skin.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/factor/skin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/generated.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/generated.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/generated.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/generated.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/language.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/language.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/language.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/language.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qlanguage.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qlanguage.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qlanguage.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qlanguage.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qlanguage.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qlanguage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qtranslationtype.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qtranslationtype.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qtranslationtype.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qtranslationtype.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qtranslationtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/qtranslationtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qrating.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qrating.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qrating.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qrating.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingsetting.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingsetting.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingsetting.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingsetting.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingsetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingsetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingtype.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingtype.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingtype.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingtype.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/qratingtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/rating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/rating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/ratingsetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/ratingsetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/ratingtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/rating/ratingtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/agesuitablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/agesuitablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/immutableactorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/immutableactorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/immutablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/immutablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/immutablerow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/immutablerow.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/mutableactorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/mutableactorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/mutablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/mutablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qagesuitablerow.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qagesuitablerow.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qagesuitablerow.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qagesuitablerow.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qagesuitablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qagesuitablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutableactorrow.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutableactorrow.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutableactorrow.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutableactorrow.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutableactorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutableactorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutablerow.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutablerow.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutablerow.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutablerow.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qimmutablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutableactorrow.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutableactorrow.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutableactorrow.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutableactorrow.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutableactorrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutableactorrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutablerow.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutablerow.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutablerow.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutablerow.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutablerow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qmutablerow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qsystemgeneratedrow.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qsystemgeneratedrow.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qsystemgeneratedrow.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qsystemgeneratedrow.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qsystemgeneratedrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/qsystemgeneratedrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/systemgeneratedrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/row/systemgeneratedrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/translationtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/translationtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/translationtype.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/infrastructure/translationtype.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/interfaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/interfaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/interfaces.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/interfaces.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/country.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/countrytown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/countrytown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/county.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/county.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/countytown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/countytown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcontinent.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcontinent.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcontinent.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcontinent.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcontinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcontinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountry.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountry.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountry.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountry.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountrytown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountrytown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountrytown.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountrytown.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountrytown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountrytown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcounty.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcounty.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcounty.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcounty.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountytown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountytown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountytown.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountytown.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountytown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qcountytown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstate.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstate.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstate.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstate.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstatetown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstatetown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstatetown.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstatetown.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstatetown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qstatetown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qtown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qtown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qtown.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qtown.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qtown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/qtown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/state.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/statetown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/statetown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/town.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/location/town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/mappedSuperclass.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/mappedSuperclass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/mappedSuperclass.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/mappedSuperclass.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/factoropinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/factoropinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/outcomeopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/outcomeopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/pollrevisionopinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/pollrevisionopinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/pollrevisionopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/pollrevisionopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/positionopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/positionopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qfactoropinionversion.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qfactoropinionversion.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qfactoropinionversion.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qfactoropinionversion.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qfactoropinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qfactoropinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qoutcomeopinionversion.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qoutcomeopinionversion.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qoutcomeopinionversion.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qoutcomeopinionversion.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qoutcomeopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qoutcomeopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinion.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinion.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinion.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinion.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinionversion.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinionversion.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinionversion.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinionversion.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpollrevisionopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpositionopinionversion.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpositionopinionversion.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpositionopinionversion.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpositionopinionversion.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpositionopinionversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/qpositionopinionversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/rating/pollrevisionopinionrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/rating/pollrevisionopinionrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/rating/qpollrevisionopinionrating.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/rating/qpollrevisionopinionrating.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/rating/qpollrevisionopinionrating.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/rating/qpollrevisionopinionrating.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/rating/qpollrevisionopinionrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/rating/qpollrevisionopinionrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/factoropinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/factoropinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/outcomeopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/outcomeopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/pollrevisionopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/pollrevisionopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/positionopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/positionopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qfactoropinionversiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qfactoropinionversiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qfactoropinionversiontranslation.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qfactoropinionversiontranslation.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qfactoropinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qfactoropinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qoutcomeopinionversiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qoutcomeopinionversiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qoutcomeopinionversiontranslation.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qoutcomeopinionversiontranslation.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qoutcomeopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qoutcomeopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpollrevisionopinionversiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpollrevisionopinionversiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpollrevisionopinionversiontranslation.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpollrevisionopinionversiontranslation.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpollrevisionopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpollrevisionopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpositionopinionversiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpositionopinionversiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpositionopinionversiontranslation.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpositionopinionversiontranslation.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpositionopinionversiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/opinion/translation/qpositionopinionversiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/polltype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/polltype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpoll.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpoll.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpoll.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpoll.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpoll.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpoll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpolltype.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpolltype.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpolltype.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpolltype.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpolltype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qpolltype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qtheme.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qtheme.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qtheme.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qtheme.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qtheme.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/qtheme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/pollrevisionrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/pollrevisionrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/pollrevisiontranslationrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/pollrevisiontranslationrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisionrating.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisionrating.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisionrating.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisionrating.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisionrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisionrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisiontranslationrating.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisiontranslationrating.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisiontranslationrating.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisiontranslationrating.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisiontranslationrating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/rating/qpollrevisiontranslationrating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/pollrevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/pollrevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/pollrevisionfactorposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/pollrevisionfactorposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qoutcome.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qoutcome.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qoutcome.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qoutcome.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qoutcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qoutcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevision.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevision.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevision.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevision.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevisionfactorposition.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevisionfactorposition.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevisionfactorposition.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevisionfactorposition.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevisionfactorposition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/qpollrevisionfactorposition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/outcometranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/outcometranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/pollrevisiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/pollrevisiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qoutcometranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qoutcometranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qoutcometranslation.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qoutcometranslation.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qoutcometranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qoutcometranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qpollrevisiontranslation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qpollrevisiontranslation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qpollrevisiontranslation.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qpollrevisiontranslation.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qpollrevisiontranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/revision/translation/qpollrevisiontranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollruncontinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollruncontinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollruncountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollruncountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollruncounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollruncounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollrunstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollrunstate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollruntown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/pollruntown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncontinent.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncontinent.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncontinent.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncontinent.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncontinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncontinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncountry.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncountry.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncountry.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncountry.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncounty.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncounty.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncounty.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncounty.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruncounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollrunstate.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollrunstate.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollrunstate.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollrunstate.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollrunstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollrunstate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruntown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruntown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruntown.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruntown.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruntown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/location/qpollruntown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/pollrun.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/pollrun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/qpollrun.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/qpollrun.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/qpollrun.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/qpollrun.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/qpollrun.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/run/qpollrun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/poll/theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/qInterfaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/qInterfaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/qInterfaces.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/qInterfaces.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/qSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/qSchema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/qSchema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/qSchema.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/schema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/schema.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/actor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/actor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qactor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qactor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qactor.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qactor.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qapplication.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qapplication.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qapplication.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qapplication.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qapplication.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qapplication.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qdevice.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qdevice.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qdevice.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qdevice.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qdevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/qdevice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/quseraccount.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/quseraccount.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/quseraccount.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/quseraccount.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/quseraccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/quseraccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/useraccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/user/useraccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvote.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvote.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvote.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvote.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvote.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactor.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactor.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactor.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactor.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactortype.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactortype.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactortype.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactortype.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactortype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotefactortype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotetype.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotetype.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotetype.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotetype.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotetype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvotetype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvoteversion.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvoteversion.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvoteversion.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvoteversion.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvoteversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/qvoteversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/vote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/votefactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/votefactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/votefactortype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/votefactortype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/votetype.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/votetype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/voteversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/generated/vote/voteversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/tokens.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/tokens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/tokens.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/tokens.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/Factor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/Factor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/FactorTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/FactorTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/Skin.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/Skin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/position/DesignPattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/position/DesignPattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/position/Emoji.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/position/Emoji.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/position/Position.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/position/Position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/position/PositionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/factor/position/PositionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/Language.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/Language.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/TranslationType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/TranslationType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/rating/Rating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/rating/Rating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/rating/RatingSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/rating/RatingSetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/rating/RatingType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/infrastructure/rating/RatingType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/Continent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/Continent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/Country.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/Country.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/County.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/County.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/State.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/State.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/Town.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/location/Town.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/FactorOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/FactorOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/OutcomeOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/OutcomeOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/PollRevisionOpinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/PollRevisionOpinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/PollRevisionOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/PollRevisionOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/PositionOpinionVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/PositionOpinionVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/rating/PollRevisionOpinionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/rating/PollRevisionOpinionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/translation/FactorOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/translation/FactorOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/translation/OutcomeOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/translation/OutcomeOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/translation/PollRevisionOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/translation/PollRevisionOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/translation/PositionOpinionVersionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/opinion/translation/PositionOpinionVersionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/Poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/Poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/PollType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/PollType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/rating/PollRevisionRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/rating/PollRevisionRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/rating/PollRevisionTranslationRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/rating/PollRevisionTranslationRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/Outcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/Outcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/PollRevision.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/PollRevision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/PollRevisionFactorPosition.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/PollRevisionFactorPosition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/PollRevisionLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/PollRevisionLabel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/translation/OutcomeTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/translation/OutcomeTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/translation/PollRevisionTranslation.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/revision/translation/PollRevisionTranslation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/PollRun.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/PollRun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunContinent.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunContinent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunCountry.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunCountry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunCounty.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunCounty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunState.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunTown.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/poll/run/location/PollRunTown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/types.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/types.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/user/Actor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/user/Actor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/user/Application.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/user/Application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/user/Device.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/user/Device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/user/UserAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/user/UserAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/Vote.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/Vote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/VoteFactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/VoteFactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/VoteFactorType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/VoteFactorType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/VoteType.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/VoteType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/VoteVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/lib/types/vote/VoteVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qdesignpattern.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qdesignpattern.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qemoji.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qemoji.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qfactorposition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qfactorposition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qposition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qposition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qpositiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/position/qpositiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/qfactor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/qfactor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/qfactortranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/qfactortranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/qskin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/factor/qskin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/qlanguage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/qlanguage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/qtranslationtype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/qtranslationtype.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/rating/qrating.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/rating/qrating.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/rating/qratingsetting.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/rating/qratingsetting.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/rating/qratingtype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/rating/qratingtype.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qagesuitablerow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qagesuitablerow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qimmutableactorrow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qimmutableactorrow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qimmutablerow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qimmutablerow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qmutableactorrow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qmutableactorrow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qmutablerow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qmutablerow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qsystemgeneratedrow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/infrastructure/row/qsystemgeneratedrow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcontinent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcontinent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcountry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcountry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcountrytown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcountrytown.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcounty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcounty.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcountytown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qcountytown.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qstate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qstate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qstatetown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qstatetown.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qtown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/location/qtown.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qfactoropinionversion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qfactoropinionversion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qoutcomeopinionversion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qoutcomeopinionversion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qpollrevisionopinion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qpollrevisionopinion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qpollrevisionopinionversion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qpollrevisionopinionversion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qpositionopinionversion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/qpositionopinionversion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/rating/qpollrevisionopinionrating.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/rating/qpollrevisionopinionrating.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/translation/qfactoropinionversiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/translation/qfactoropinionversiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/translation/qoutcomeopinionversiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/translation/qoutcomeopinionversiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/translation/qpollrevisionopinionversiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/translation/qpollrevisionopinionversiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/translation/qpositionopinionversiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/opinion/translation/qpositionopinionversiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/qpoll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/qpoll.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/qpolltype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/qpolltype.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/qtheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/qtheme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/rating/qpollrevisionrating.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/rating/qpollrevisionrating.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/rating/qpollrevisiontranslationrating.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/rating/qpollrevisiontranslationrating.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/qoutcome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/qoutcome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/qpollrevision.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/qpollrevision.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/qpollrevisionfactorposition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/qpollrevisionfactorposition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/translation/qoutcometranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/translation/qoutcometranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/translation/qpollrevisiontranslation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/revision/translation/qpollrevisiontranslation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollruncontinent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollruncontinent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollruncountry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollruncountry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollruncounty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollruncounty.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollrunstate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollrunstate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollruntown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/location/qpollruntown.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/qpollrun.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/poll/run/qpollrun.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/user/qactor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/user/qactor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/user/qapplication.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/user/qapplication.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/user/qdevice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/user/qdevice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/user/quseraccount.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/user/quseraccount.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvote.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvote.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvotefactor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvotefactor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvotefactortype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvotefactortype.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvotetype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvotetype.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvoteversion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/ecclesia/src/generated/vote/qvoteversion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/public-db/.rush/temp/shrinkwrap-deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/public-db/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.core.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.core.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +772,14 @@
     <dismissed value="$PROJECT_DIR$/apps/public-ui/package.json" />
     <dismissed value="$PROJECT_DIR$/apps/vc-node/package.json" />
     <dismissed value="$PROJECT_DIR$/apps/vc-ui/package.json" />
+    <dismissed value="$PROJECT_DIR$/libs/ajax/package.json" />
     <dismissed value="$PROJECT_DIR$/libs/cube-logic/package.json" />
+    <dismissed value="$PROJECT_DIR$/libs/forms/package.json" />
+    <dismissed value="$PROJECT_DIR$/libs/model/package.json" />
     <dismissed value="$PROJECT_DIR$/libs/svelte-progressive-list/package.json" />
+    <dismissed value="$PROJECT_DIR$/libs/vc-logic/package.json" />
     <dismissed value="$PROJECT_DIR$/package.json" />
+    <dismissed value="$PROJECT_DIR$/schemas/ecclesia/package.json" />
     <dismissed value="$PROJECT_DIR$/schemas/public-db/package.json" />
   </component>
   <component name="ProjectId" id="1Q3OPj0ZRXoZLBCPXGjVpm0mhbx" />
@@ -85,7 +802,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/schemas/ecclesia" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-node\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -105,16 +822,20 @@
       <recent name="C:\Users\Papa\vc\ts\votecube-ui\apps\vc-ui\src\routes\[mode]" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.ecclesia">
-    <configuration name="ecclesia" type="NodeJSConfigurationType" path-to-js-file="node_modules/@airport/runway/lib/index.js" working-dir="$PROJECT_DIR$/schemas/ecclesia">
+  <component name="RunManager" selected="Node.js.vc-node">
+    <configuration name="ecclesia" type="NodeJSConfigurationType" node-parameters="--experimental-specifier-resolution=node" path-to-js-file="node_modules/@airport/runway/lib/index.js" working-dir="$PROJECT_DIR$/schemas/ecclesia">
       <method v="2" />
     </configuration>
     <configuration name="sapper" type="NodeJSConfigurationType" application-parameters="dev" nameIsGenerated="true" path-to-js-file="node_modules/sapper/sapper" working-dir="$PROJECT_DIR$/apps/vc-ui">
       <method v="2" />
     </configuration>
+    <configuration name="vc-node" type="NodeJSConfigurationType" node-parameters="--experimental-specifier-resolution=node" path-to-js-file="lib/server.js" working-dir="$PROJECT_DIR$/apps/vc-node">
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Node.js.sapper" />
       <item itemvalue="Node.js.ecclesia" />
+      <item itemvalue="Node.js.vc-node" />
+      <item itemvalue="Node.js.sapper" />
     </list>
   </component>
   <component name="RustProjectSettings">
@@ -207,6 +928,19 @@
       <workItem from="1602462653670" duration="2507000" />
       <workItem from="1602505482939" duration="596000" />
       <workItem from="1602506824260" duration="380000" />
+      <workItem from="1602508212932" duration="654000" />
+      <workItem from="1602781084032" duration="596000" />
+      <workItem from="1602861474633" duration="305000" />
+      <workItem from="1602861860304" duration="643000" />
+      <workItem from="1602864451193" duration="856000" />
+      <workItem from="1602875398898" duration="772000" />
+      <workItem from="1602896705801" duration="1178000" />
+      <workItem from="1603057430719" duration="592000" />
+      <workItem from="1603125949986" duration="104000" />
+      <workItem from="1603193516820" duration="5076000" />
+      <workItem from="1603756711636" duration="4106000" />
+      <workItem from="1603762951687" duration="3351000" />
+      <workItem from="1603766908828" duration="3902000" />
     </task>
     <task id="LOCAL-00001" summary="percise cube rotation">
       <created>1542566898548</created>
@@ -348,7 +1082,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601142676989</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Added lib files">
+      <created>1602508470847</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1602508470847</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,7 +1120,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added SSR and Progressive data loading on scrolling into ProgressiveList.  Bug fixes." />
     <MESSAGE value="Linked in poll detail page.  Fixed SSR not showing last item in ProgressiveList.svelte." />
     <MESSAGE value="Added opinion creation and retrieval." />
     <MESSAGE value="Started adjusting to latest ScyllaDB schema version." />
@@ -404,18 +1144,28 @@
     <MESSAGE value="Initial server harness logic." />
     <MESSAGE value="Renamed relational-db to ecclesia for easier reference in server database." />
     <MESSAGE value="Renamed relational-db to ecclesia.  Started moving votecube persistence logic to the server side." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed relational-db to ecclesia.  Started moving votecube persistence logic to the server side." />
+    <MESSAGE value="Added lib files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added lib files" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="424" y="127" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599877924807">
+    <state x="424" y="127" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603768042227">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="424" y="127" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1599877924807" />
-    <state x="6" y="-1080" width="1920" height="1067" key="CommitChangelistDialog2" timestamp="1601142714507">
-      <screen x="6" y="-1080" width="1920" height="1080" />
+    <state x="430" y="-953" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758351519" />
+    <state x="424" y="127" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1603768042227" />
+    <state x="715" y="242" key="#xdebugger.evaluate" timestamp="1603763624002">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="715" y="242" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1603763624002" />
+    <state x="0" y="0" width="1920" height="1067" key="CommitChangelistDialog2" timestamp="1602508466067">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="6" y="-1080" key="CommitChangelistDialog2/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1601142714507" />
-    <state x="0" y="0" width="1920" height="1067" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1599923032717" />
+    <state x="0" y="0" width="1920" height="1067" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1602508466067" />
+    <state width="1918" height="440" key="DebuggerActiveHint" timestamp="1603766962677">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1918" height="440" key="DebuggerActiveHint/0.0.1920.1080@0.0.1920.1080" timestamp="1603766962677" />
     <state x="98" y="-988" width="1736" height="896" key="DiffContextDialog" timestamp="1601142567067">
       <screen x="6" y="-1080" width="1920" height="1080" />
     </state>
@@ -425,67 +1175,88 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1599916841817" />
-    <state width="1877" height="294" key="GridCell.Tab.0.bottom" timestamp="1601124130753">
+    <state width="1899" height="363" key="GridCell.Tab.0.bottom" timestamp="1603819979568">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.0.bottom/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819979568" />
+    <state width="1899" height="363" key="GridCell.Tab.0.bottom/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758555782" />
+    <state width="1899" height="363" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.0.center" timestamp="1603819979568">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.0.center/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819979568" />
+    <state width="1899" height="363" key="GridCell.Tab.0.center/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758555781" />
+    <state width="1899" height="363" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.0.left" timestamp="1603819979568">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.0.left/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819979568" />
+    <state width="1899" height="363" key="GridCell.Tab.0.left/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758555781" />
+    <state width="1899" height="363" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.0.right" timestamp="1603819979568">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.0.right/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819979568" />
+    <state width="1899" height="363" key="GridCell.Tab.0.right/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758555782" />
+    <state width="1899" height="363" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.1.bottom" timestamp="1603819951443">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819951443" />
+    <state width="1899" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758563044" />
+    <state width="1899" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.1.center" timestamp="1603819951443">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.1.center/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819951443" />
+    <state width="1899" height="363" key="GridCell.Tab.1.center/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758563043" />
+    <state width="1899" height="363" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.1.left" timestamp="1603819951442">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.1.left/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819951442" />
+    <state width="1899" height="363" key="GridCell.Tab.1.left/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758563043" />
+    <state width="1899" height="363" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.1.right" timestamp="1603819951443">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.1.right/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819951443" />
+    <state width="1899" height="363" key="GridCell.Tab.1.right/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758563043" />
+    <state width="1899" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.2.bottom" timestamp="1603819943124">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.2.bottom/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819943124" />
+    <state width="1899" height="363" key="GridCell.Tab.2.bottom/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758555533" />
+    <state width="1899" height="363" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.2.center" timestamp="1603819943124">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.2.center/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819943124" />
+    <state width="1899" height="363" key="GridCell.Tab.2.center/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758555533" />
+    <state width="1899" height="363" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.2.left" timestamp="1603819943124">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.2.left/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819943124" />
+    <state width="1899" height="363" key="GridCell.Tab.2.left/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758555533" />
+    <state width="1899" height="363" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state width="1899" height="363" key="GridCell.Tab.2.right" timestamp="1603819943124">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="363" key="GridCell.Tab.2.right/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1603819943124" />
+    <state width="1899" height="363" key="GridCell.Tab.2.right/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603758555533" />
+    <state width="1899" height="363" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603767298684" />
+    <state x="467" y="-896" key="SettingsEditor" timestamp="1603756877836">
       <screen x="6" y="-1080" width="1920" height="1080" />
     </state>
-    <state width="1877" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1601124130753" />
-    <state width="1877" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1599879194980" />
-    <state width="1877" height="294" key="GridCell.Tab.0.center" timestamp="1601124130752">
-      <screen x="6" y="-1080" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="294" key="GridCell.Tab.0.center/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1601124130752" />
-    <state width="1877" height="294" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1599879194979" />
-    <state width="1877" height="294" key="GridCell.Tab.0.left" timestamp="1601124130752">
-      <screen x="6" y="-1080" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="294" key="GridCell.Tab.0.left/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1601124130752" />
-    <state width="1877" height="294" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1599879194979" />
-    <state width="1877" height="294" key="GridCell.Tab.0.right" timestamp="1601124130753">
-      <screen x="6" y="-1080" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1601124130753" />
-    <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1599879194980" />
-    <state width="1899" height="363" key="GridCell.Tab.1.bottom" timestamp="1599520461139">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1599520461139" />
-    <state width="1899" height="363" key="GridCell.Tab.1.center" timestamp="1599520461139">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="363" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1599520461139" />
-    <state width="1899" height="363" key="GridCell.Tab.1.left" timestamp="1599520461138">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="363" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1599520461138" />
-    <state width="1899" height="363" key="GridCell.Tab.1.right" timestamp="1599520461139">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1599520461139" />
-    <state width="1899" height="363" key="GridCell.Tab.2.bottom" timestamp="1599520461140">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="363" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1599520461140" />
-    <state width="1899" height="363" key="GridCell.Tab.2.center" timestamp="1599520461140">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="363" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1599520461140" />
-    <state width="1899" height="363" key="GridCell.Tab.2.left" timestamp="1599520461139">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="363" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1599520461139" />
-    <state width="1899" height="363" key="GridCell.Tab.2.right" timestamp="1599520461140">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="363" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1599520461140" />
-    <state x="461" y="184" key="SettingsEditor" timestamp="1599916851357">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
+    <state x="467" y="-896" key="SettingsEditor/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603756877836" />
     <state x="461" y="184" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1599916851357" />
-    <state x="558" y="-808" key="Vcs.Push.Dialog.v2" timestamp="1601142745240">
-      <screen x="6" y="-1080" width="1920" height="1080" />
+    <state x="552" y="272" key="Vcs.Push.Dialog.v2" timestamp="1602508473755">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="558" y="-808" key="Vcs.Push.Dialog.v2/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1601142745240" />
-    <state x="552" y="272" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1599922978866" />
+    <state x="552" y="272" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1602508473755" />
     <state x="92" y="92" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599520393847">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -500,12 +1271,12 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="616" y="249" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1595930547531" />
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1602503567994">
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1603767185940">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/6.-1080.1920.1080@0.0.1920.1080" timestamp="1599183345755" />
-    <state x="629" y="-845" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1601123949840" />
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1602503567994" />
+    <state x="629" y="-845" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/6.-1080.1920.1080@6.-1080.1920.1080" timestamp="1603196011277" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1603767185940" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -592,8 +1363,56 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../airport/generators/runway/lib/dao/parser/OperationGenerator.js</url>
-          <line>193</line>
+          <line>190</line>
           <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-node/lib/server.js</url>
+          <line>27</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-node/lib/server.js</url>
+          <line>32</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-node/lib/server.js</url>
+          <line>37</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-node/node_modules/@airport/tarmaq/src/net/TransactionalConnector.ts</url>
+          <line>190</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-node/node_modules/@airport/tarmaq/src/net/TransactionalConnector.ts</url>
+          <line>193</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/schemas/ecclesia/node_modules/@airport/di/src/Container.ts</url>
+          <line>801</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-node/node_modules/@airport/terminal/src/orchestration/DatabaseManager.ts</url>
+          <line>108</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-node/node_modules/@airport/terminal/src/orchestration/DatabaseManager.ts</url>
+          <line>110</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/vc-node/node_modules/@airport/mysql/src/MySqlDriver.ts</url>
+          <line>32</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="107" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

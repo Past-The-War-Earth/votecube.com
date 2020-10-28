@@ -31,7 +31,7 @@ export interface PollRevisionOpinionRatingEUpdateProperties extends ImmutableAct
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionOpinionRatingGraph extends ImmutableActorRowESelect, PollRevisionOpinionRatingEOptionalId, ImmutableActorRowGraph {
+export interface PollRevisionOpinionRatingGraph extends PollRevisionOpinionRatingEOptionalId, ImmutableActorRowGraph {
     pollRevisionOpinion?: PollRevisionOpinionGraph;
     rating?: RatingGraph;
 }

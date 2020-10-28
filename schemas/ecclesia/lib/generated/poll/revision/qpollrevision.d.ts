@@ -51,7 +51,7 @@ export interface PollRevisionEUpdateProperties extends AgeSuitableRowEUpdateProp
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionGraph extends AgeSuitableRowESelect, PollRevisionEOptionalId, AgeSuitableRowGraph {
+export interface PollRevisionGraph extends PollRevisionEOptionalId, AgeSuitableRowGraph {
     depth?: number | IQNumberField;
     poll?: PollGraph;
     createdAtRun?: PollRunGraph;

@@ -121,7 +121,7 @@ export interface PollRevisionOpinionVersionTranslationEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRevisionOpinionVersionTranslationGraph
-	extends SystemGeneratedRowESelect, PollRevisionOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
+	extends PollRevisionOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

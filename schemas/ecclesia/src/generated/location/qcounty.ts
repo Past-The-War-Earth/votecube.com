@@ -116,7 +116,7 @@ export interface CountyEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface CountyGraph
-	extends SystemGeneratedRowESelect, CountyEOptionalId, SystemGeneratedRowGraph {
+	extends CountyEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

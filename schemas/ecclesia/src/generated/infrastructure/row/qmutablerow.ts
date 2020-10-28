@@ -91,7 +91,7 @@ export interface MutableRowEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface MutableRowGraph
-	extends ImmutableRowESelect, MutableRowEOptionalId, ImmutableRowGraph {
+	extends MutableRowEOptionalId, ImmutableRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

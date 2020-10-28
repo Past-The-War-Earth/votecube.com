@@ -1,4 +1,4 @@
-import { Factor_Id, FactorTranslation_Id, FactorTranslation_Name } from '@votecube/relational-db';
+import { Factor_Id, FactorTranslation_Id, FactorTranslation_Name } from '@votecube/ecclesia';
 import { IsData, IsDelta } from '../core/common';
 import { Factor_Axis } from '../core/Factor';
 import { UiDocStatus } from './common';
@@ -33,3 +33,4 @@ export interface IUiFactorBase<Doc extends UiDocStatus> extends IUiUserCreated<F
     axis: Doc extends IsDelta ? boolean : Factor_Axis;
     name: Doc extends IsDelta ? boolean : FactorTranslation_Name;
 }
+//# sourceMappingURL=UiFactor.d.ts.map

@@ -1,4 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.STATES = 'STATES';
+export const STATES = 'STATES';
 //# sourceMappingURL=State.js.map

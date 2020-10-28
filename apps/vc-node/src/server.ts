@@ -1,14 +1,23 @@
-import {AIR_DB}           from '@airport/air-control'
 import {DI}               from '@airport/di'
-import {DATABASE_MANAGER} from '@airport/terminal'
-import {StoreType}        from '@airport/terminal-map'
+import {
+	closeDb,
+	startDb
+} from '@airport/mysql'
+import {injectAirportDatabase} from '@airport/tower'
+injectAirportDatabase()
+import {injectTransactionalServer} from '@airport/terminal'
+import {injectTransactionalConnector} from '@airport/tarmaq'
 import {SCHEMA}           from '@votecube/ecclesia/lib/generated/schema'
-// import {VOTE_DAO} from '@votecube/ecclesia'
 import {fastify}          from 'fastify'
 import {AUTH}             from './tokens'
 
+injectTransactionalServer()
+injectTransactionalConnector()
+
+import fastifyCors from 'fastify-cors'
+
 const server = fastify({logger: false})
-server.register(require('fastify-cors'), {
+server.register(fastifyCors, {
 	origin: (
 		origin,
 		cb
@@ -75,23 +84,14 @@ server.get('/api/findUserVoteForPoll', async (
 // Run the server!
 const startFunction = async () => {
 	try {
-		await startDb()
+		await startDb('votecube.com', SCHEMA)
 		await server.listen(8081, '0.0.0.0')
 		server.log.info(`server listening on ${(server.server as any).address().port}`)
 	} catch (err) {
 		server.log.error(err)
+		console.log(err)
 		process.exit(1)
 	}
-}
-
-async function startDb() {
-	await DI.db().get(AIR_DB)
-	const dbManager = await DI.db().get(DATABASE_MANAGER)
-	await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, SCHEMA)
-}
-
-function closeDb() {
-
 }
 
 // process.on('exit', () => {

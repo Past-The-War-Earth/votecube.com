@@ -116,7 +116,7 @@ export interface RatingEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface RatingGraph
-	extends SystemGeneratedRowESelect, RatingEOptionalId, SystemGeneratedRowGraph {
+	extends RatingEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

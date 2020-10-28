@@ -1,0 +1,1 @@
+{"version":3,"file":"Position.d.ts","sourceRoot":"","sources":["../../src/delta/Position.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,OAAO,EAAC,MAAM,gBAAgB,CAAA;AACtC,OAAO,EACN,mBAAmB,EACnB,aAAa,EACb,MAAqB,kBAAkB,CAAA;AAExC,MAAM,WAAW,cAChB,SAAQ,aAAa,CAAC,OAAO,CAAC;CAC9B;AAED,MAAM,WAAW,oBAChB,SAAQ,mBAAmB,CAAC,OAAO,CAAC;CACpC"}

@@ -29,7 +29,7 @@ export interface ContinentEUpdateProperties extends SystemGeneratedRowEUpdatePro
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ContinentGraph extends SystemGeneratedRowESelect, ContinentEOptionalId, SystemGeneratedRowGraph {
+export interface ContinentGraph extends ContinentEOptionalId, SystemGeneratedRowGraph {
     name?: string | IQStringField;
     countries?: CountryGraph[];
 }

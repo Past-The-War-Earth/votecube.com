@@ -105,7 +105,7 @@ export interface PollRunStateEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRunStateGraph
-	extends IEntitySelectProperties, PollRunStateEOptionalId, IEntityCascadeGraph {
+	extends PollRunStateEOptionalId, IEntityCascadeGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

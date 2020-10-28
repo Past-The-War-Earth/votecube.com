@@ -14,3 +14,4 @@ export interface IPollFactorPositionDefault {
     2: IFactorPositionDefault;
     3: IFactorPositionDefault;
 }
+//# sourceMappingURL=Poll.d.ts.map

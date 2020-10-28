@@ -6,3 +6,4 @@ export * from './Position';
 export * from './Theme';
 export * from './PollRevision';
 export * from './PollRevisionListing';
+//# sourceMappingURL=delta.d.ts.map

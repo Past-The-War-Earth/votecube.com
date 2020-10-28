@@ -25,7 +25,7 @@ export interface MutableRowEUpdateProperties extends ImmutableRowEUpdateProperti
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface MutableRowGraph extends ImmutableRowESelect, MutableRowEOptionalId, ImmutableRowGraph {
+export interface MutableRowGraph extends MutableRowEOptionalId, ImmutableRowGraph {
     updatedAt?: Date | IQDateField;
 }
 /**

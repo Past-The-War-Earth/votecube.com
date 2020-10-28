@@ -6,3 +6,4 @@ export interface IUiColor<Doc extends UiDocStatus> {
     green: Doc extends IsDelta ? boolean : Color_Value;
     red: Doc extends IsDelta ? boolean : Color_Value;
 }
+//# sourceMappingURL=UiColor.d.ts.map

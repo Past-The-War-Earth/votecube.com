@@ -30,7 +30,7 @@ export interface TownEUpdateProperties extends SystemGeneratedRowEUpdateProperti
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface TownGraph extends SystemGeneratedRowESelect, TownEOptionalId, SystemGeneratedRowGraph {
+export interface TownGraph extends TownEOptionalId, SystemGeneratedRowGraph {
     name?: string | IQStringField;
     county?: CountyGraph;
 }

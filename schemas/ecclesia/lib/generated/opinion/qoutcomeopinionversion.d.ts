@@ -35,7 +35,7 @@ export interface OutcomeOpinionVersionEUpdateProperties extends IEntityUpdatePro
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface OutcomeOpinionVersionGraph extends IEntitySelectProperties, OutcomeOpinionVersionEOptionalId, IEntityCascadeGraph {
+export interface OutcomeOpinionVersionGraph extends OutcomeOpinionVersionEOptionalId, IEntityCascadeGraph {
     pollRevisionOpinion?: PollRevisionOpinionGraph;
     outcome?: OutcomeGraph;
     parent?: OutcomeOpinionVersionGraph;

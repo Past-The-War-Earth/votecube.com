@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../../tokens");
-const generated_1 = require("../../generated/generated");
-class PollRevisionFactorPositionDuo extends generated_1.BasePollRevisionFactorPositionDuo {
+import { DI } from '@airport/di';
+import { POLL_FACTOR_POSITION_REVISION_DUO } from '../../tokens';
+import { BasePollRevisionFactorPositionDuo } from '../../generated/generated';
+export class PollRevisionFactorPositionDuo extends BasePollRevisionFactorPositionDuo {
 }
-exports.PollRevisionFactorPositionDuo = PollRevisionFactorPositionDuo;
-di_1.DI.set(tokens_1.POLL_FACTOR_POSITION_REVISION_DUO, PollRevisionFactorPositionDuo);
+DI.set(POLL_FACTOR_POSITION_REVISION_DUO, PollRevisionFactorPositionDuo);
 //# sourceMappingURL=PollRevisionFactorPositionDuo.js.map

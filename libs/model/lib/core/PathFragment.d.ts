@@ -1,4 +1,4 @@
-import { Id } from '@votecube/relational-db';
+import { Id } from '@votecube/ecclesia';
 import { Doc_Depth, IIdentified } from './common';
 import { IUserCreated } from './User';
 export interface IPathFragment<K extends Id> extends IUserCreated {
@@ -14,3 +14,4 @@ export interface IVersioned<K extends Id> extends IUserCreated {
     parent: IParent<K>;
     path: IPath<K>;
 }
+//# sourceMappingURL=PathFragment.d.ts.map

@@ -33,7 +33,7 @@ export interface PollRevisionRatingEUpdateProperties extends MutableActorRowEUpd
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionRatingGraph extends MutableActorRowESelect, PollRevisionRatingEOptionalId, MutableActorRowGraph {
+export interface PollRevisionRatingGraph extends PollRevisionRatingEOptionalId, MutableActorRowGraph {
     value?: number | IQNumberField;
     pollRevision?: PollRevisionGraph;
     rating?: RatingGraph;

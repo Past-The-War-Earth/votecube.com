@@ -36,7 +36,7 @@ export interface PollRevisionTranslationRatingEUpdateProperties extends Immutabl
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionTranslationRatingGraph extends ImmutableActorRowESelect, PollRevisionTranslationRatingEOptionalId, ImmutableActorRowGraph {
+export interface PollRevisionTranslationRatingGraph extends PollRevisionTranslationRatingEOptionalId, ImmutableActorRowGraph {
     value?: number | IQNumberField;
     run?: PollRunGraph;
     rating?: RatingGraph;

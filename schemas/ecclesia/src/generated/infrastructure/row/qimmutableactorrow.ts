@@ -113,7 +113,7 @@ export interface ImmutableActorRowEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ImmutableActorRowGraph
-	extends ImmutableRowESelect, ImmutableActorRowEOptionalId, ImmutableRowGraph {
+	extends ImmutableActorRowEOptionalId, ImmutableRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

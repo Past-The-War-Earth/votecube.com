@@ -37,7 +37,7 @@ export interface PositionOpinionVersionTranslationEUpdateProperties extends Syst
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PositionOpinionVersionTranslationGraph extends SystemGeneratedRowESelect, PositionOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
+export interface PositionOpinionVersionTranslationGraph extends PositionOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
     original?: boolean | IQBooleanField;
     title?: string | IQStringField;
     text?: string | IQStringField;

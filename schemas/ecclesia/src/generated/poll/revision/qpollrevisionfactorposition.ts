@@ -144,7 +144,7 @@ export interface PollRevisionFactorPositionEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRevisionFactorPositionGraph
-	extends ImmutableRowESelect, PollRevisionFactorPositionEOptionalId, ImmutableRowGraph {
+	extends PollRevisionFactorPositionEOptionalId, ImmutableRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

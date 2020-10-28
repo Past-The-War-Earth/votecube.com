@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const generated_1 = require("../../generated/generated");
-const tokens_1 = require("../../tokens");
-class UserAccountDao extends generated_1.BaseUserAccountDao {
+import { DI } from '@airport/di';
+import { BaseUserAccountDao, Q } from '../../generated/generated';
+import { USER_ACCOUNT_DAO } from '../../tokens';
+export class UserAccountDao extends BaseUserAccountDao {
     async signUp(userName, passwordHash) {
         const userAccount = {
             id: undefined,
@@ -18,12 +16,11 @@ class UserAccountDao extends generated_1.BaseUserAccountDao {
         return await this.db.findOne.tree({
             select: {},
             from: [
-                ua = generated_1.Q.UserAccount
+                ua = Q.UserAccount
             ],
             where: ua.userName.equals(userName)
         });
     }
 }
-exports.UserAccountDao = UserAccountDao;
-di_1.DI.set(tokens_1.USER_ACCOUNT_DAO, UserAccountDao);
+DI.set(USER_ACCOUNT_DAO, UserAccountDao);
 //# sourceMappingURL=UserAccountDao.js.map

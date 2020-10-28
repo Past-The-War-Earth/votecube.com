@@ -104,7 +104,7 @@ export interface ContinentEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ContinentGraph
-	extends SystemGeneratedRowESelect, ContinentEOptionalId, SystemGeneratedRowGraph {
+	extends ContinentEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

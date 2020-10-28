@@ -9,3 +9,4 @@ export interface ITweenVote {
     2: ITweenVoteFactor;
     3: ITweenVoteFactor;
 }
+//# sourceMappingURL=Vote.d.ts.map

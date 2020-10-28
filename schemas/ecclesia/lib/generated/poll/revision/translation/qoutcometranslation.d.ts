@@ -39,7 +39,7 @@ export interface OutcomeTranslationEUpdateProperties extends ImmutableActorRowEU
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface OutcomeTranslationGraph extends ImmutableActorRowESelect, OutcomeTranslationEOptionalId, ImmutableActorRowGraph {
+export interface OutcomeTranslationGraph extends OutcomeTranslationEOptionalId, ImmutableActorRowGraph {
     name?: string | IQStringField;
     outcome?: OutcomeGraph;
     language?: LanguageGraph;

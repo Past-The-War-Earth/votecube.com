@@ -27,7 +27,7 @@ export interface PollTypeEUpdateProperties extends SystemGeneratedRowEUpdateProp
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollTypeGraph extends SystemGeneratedRowESelect, PollTypeEOptionalId, SystemGeneratedRowGraph {
+export interface PollTypeGraph extends PollTypeEOptionalId, SystemGeneratedRowGraph {
     value?: string | IQStringField;
 }
 /**

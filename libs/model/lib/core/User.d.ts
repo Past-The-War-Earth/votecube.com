@@ -1,4 +1,4 @@
-import { UserAccount_Id, UserAccount_UserName } from '@votecube/relational-db';
+import { UserAccount_Id, UserAccount_UserName } from '@votecube/ecclesia';
 import { ITimestamp } from './common';
 export declare type User_Id = string;
 export declare type User_Key = string;
@@ -16,3 +16,4 @@ export interface ICred {
     hash: string;
     userId: UserAccount_Id;
 }
+//# sourceMappingURL=User.d.ts.map

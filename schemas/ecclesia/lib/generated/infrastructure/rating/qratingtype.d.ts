@@ -29,7 +29,7 @@ export interface RatingTypeEUpdateProperties extends SystemGeneratedRowEUpdatePr
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface RatingTypeGraph extends SystemGeneratedRowESelect, RatingTypeEOptionalId, SystemGeneratedRowGraph {
+export interface RatingTypeGraph extends RatingTypeEOptionalId, SystemGeneratedRowGraph {
     code?: string | IQStringField;
     description?: string | IQStringField;
 }

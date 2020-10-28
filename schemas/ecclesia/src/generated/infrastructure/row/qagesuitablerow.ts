@@ -91,7 +91,7 @@ export interface AgeSuitableRowEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface AgeSuitableRowGraph
-	extends ImmutableActorRowESelect, AgeSuitableRowEOptionalId, ImmutableActorRowGraph {
+	extends AgeSuitableRowEOptionalId, ImmutableActorRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

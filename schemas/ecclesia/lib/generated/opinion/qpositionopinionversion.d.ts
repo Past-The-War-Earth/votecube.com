@@ -35,7 +35,7 @@ export interface PositionOpinionVersionEUpdateProperties extends IEntityUpdatePr
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PositionOpinionVersionGraph extends IEntitySelectProperties, PositionOpinionVersionEOptionalId, IEntityCascadeGraph {
+export interface PositionOpinionVersionGraph extends PositionOpinionVersionEOptionalId, IEntityCascadeGraph {
     pollRevisionOpinion?: PollRevisionOpinionGraph;
     factorPosition?: PollRevisionFactorPositionGraph;
     parent?: PositionOpinionVersionGraph;

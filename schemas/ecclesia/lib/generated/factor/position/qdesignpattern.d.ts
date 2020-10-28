@@ -29,7 +29,7 @@ export interface DesignPatternEUpdateProperties extends SystemGeneratedRowEUpdat
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface DesignPatternGraph extends SystemGeneratedRowESelect, DesignPatternEOptionalId, SystemGeneratedRowGraph {
+export interface DesignPatternGraph extends DesignPatternEOptionalId, SystemGeneratedRowGraph {
     name?: string | IQStringField;
     cssClass?: string | IQStringField;
 }

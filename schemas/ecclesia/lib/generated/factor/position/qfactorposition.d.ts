@@ -31,7 +31,7 @@ export interface FactorPositionEUpdateProperties extends ImmutableActorRowEUpdat
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface FactorPositionGraph extends ImmutableActorRowESelect, FactorPositionEOptionalId, ImmutableActorRowGraph {
+export interface FactorPositionGraph extends FactorPositionEOptionalId, ImmutableActorRowGraph {
     factor?: FactorGraph;
     position?: PositionGraph;
 }

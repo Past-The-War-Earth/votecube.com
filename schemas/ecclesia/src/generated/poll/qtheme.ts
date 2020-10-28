@@ -95,7 +95,7 @@ export interface ThemeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ThemeGraph
-	extends SystemGeneratedRowESelect, ThemeEOptionalId, SystemGeneratedRowGraph {
+	extends ThemeEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

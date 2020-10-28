@@ -98,7 +98,7 @@ export interface SkinEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface SkinGraph
-	extends ImmutableActorRowESelect, SkinEOptionalId, ImmutableActorRowGraph {
+	extends SkinEOptionalId, ImmutableActorRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

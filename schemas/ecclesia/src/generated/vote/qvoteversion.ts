@@ -114,7 +114,7 @@ export interface VoteVersionEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface VoteVersionGraph
-	extends ImmutableActorRowESelect, VoteVersionEOptionalId, ImmutableActorRowGraph {
+	extends VoteVersionEOptionalId, ImmutableActorRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

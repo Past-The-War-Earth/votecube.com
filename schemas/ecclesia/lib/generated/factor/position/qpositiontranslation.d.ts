@@ -36,7 +36,7 @@ export interface PositionTranslationEUpdateProperties extends ImmutableActorRowE
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PositionTranslationGraph extends ImmutableActorRowESelect, PositionTranslationEOptionalId, ImmutableActorRowGraph {
+export interface PositionTranslationGraph extends PositionTranslationEOptionalId, ImmutableActorRowGraph {
     name?: string | IQStringField;
     position?: PositionGraph;
     language?: LanguageGraph;

@@ -83,7 +83,7 @@ export interface LanguageEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface LanguageGraph
-	extends IEntitySelectProperties, LanguageEOptionalId, IEntityCascadeGraph {
+	extends LanguageEOptionalId, IEntityCascadeGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

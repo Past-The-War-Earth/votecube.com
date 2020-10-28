@@ -25,7 +25,7 @@ export interface AgeSuitableRowEUpdateProperties extends ImmutableActorRowEUpdat
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface AgeSuitableRowGraph extends ImmutableActorRowESelect, AgeSuitableRowEOptionalId, ImmutableActorRowGraph {
+export interface AgeSuitableRowGraph extends AgeSuitableRowEOptionalId, ImmutableActorRowGraph {
     ageSuitability?: number | IQNumberField;
 }
 /**

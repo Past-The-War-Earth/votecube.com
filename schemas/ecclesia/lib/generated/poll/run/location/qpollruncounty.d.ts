@@ -30,7 +30,7 @@ export interface PollRunCountyEUpdateProperties extends IEntityUpdateProperties 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRunCountyGraph extends IEntitySelectProperties, PollRunCountyEOptionalId, IEntityCascadeGraph {
+export interface PollRunCountyGraph extends PollRunCountyEOptionalId, IEntityCascadeGraph {
     country?: CountyGraph;
     run?: PollRunGraph;
 }

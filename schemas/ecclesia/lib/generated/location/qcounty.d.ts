@@ -32,7 +32,7 @@ export interface CountyEUpdateProperties extends SystemGeneratedRowEUpdateProper
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface CountyGraph extends SystemGeneratedRowESelect, CountyEOptionalId, SystemGeneratedRowGraph {
+export interface CountyGraph extends CountyEOptionalId, SystemGeneratedRowGraph {
     name?: string | IQStringField;
     state?: StateGraph;
     countyTowns?: CountyTownGraph;

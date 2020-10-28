@@ -39,7 +39,7 @@ export interface UserAccountEUpdateProperties extends SystemGeneratedRowEUpdateP
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface UserAccountGraph extends SystemGeneratedRowESelect, UserAccountEOptionalId, SystemGeneratedRowGraph {
+export interface UserAccountGraph extends UserAccountEOptionalId, SystemGeneratedRowGraph {
     userName?: string | IQStringField;
     email?: string | IQStringField;
     passwordHash?: string | IQStringField;

@@ -8,3 +8,4 @@ export interface IOutcomePollDelta extends ICoreOutcomePoll<IsDelta> {
 }
 export interface IPositionPollDelta extends ICorePositionPoll<IsDelta> {
 }
+//# sourceMappingURL=Poll.d.ts.map

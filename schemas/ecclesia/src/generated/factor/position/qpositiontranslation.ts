@@ -120,7 +120,7 @@ export interface PositionTranslationEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PositionTranslationGraph
-	extends ImmutableActorRowESelect, PositionTranslationEOptionalId, ImmutableActorRowGraph {
+	extends PositionTranslationEOptionalId, ImmutableActorRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

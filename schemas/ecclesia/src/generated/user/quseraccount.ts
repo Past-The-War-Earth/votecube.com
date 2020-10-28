@@ -105,7 +105,7 @@ export interface UserAccountEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface UserAccountGraph
-	extends SystemGeneratedRowESelect, UserAccountEOptionalId, SystemGeneratedRowGraph {
+	extends UserAccountEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

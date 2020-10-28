@@ -1,17 +1,15 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const air_control_1 = require("@airport/air-control");
-const check_in_1 = require("@airport/check-in");
-const di_1 = require("@airport/di");
-const generated_1 = require("../../generated/generated");
-const tokens_1 = require("../../tokens");
-class PollDao extends generated_1.BasePollDao {
+import { ANOTHER, Y } from '@airport/air-control';
+import { Persist } from '@airport/check-in';
+import { DI } from '@airport/di';
+import { BasePollDao, } from '../../generated/generated';
+import { POLL_DAO } from '../../tokens';
+export class PollDao extends BasePollDao {
     constructor() {
         super(...arguments);
         this.createOne = this.create;
@@ -21,101 +19,100 @@ class PollDao extends generated_1.BasePollDao {
     }
 }
 __decorate([
-    check_in_1.Persist({
-        ageSuitability: air_control_1.Y,
+    Persist({
+        ageSuitability: Y,
         parent: {
-            id: air_control_1.Y
+            id: Y
         } || null,
         revisions: [{
-                ageSuitability: air_control_1.Y,
+                ageSuitability: Y,
                 depth: 1,
                 factorPositions: [{
-                        axis: air_control_1.Y,
-                        dir: air_control_1.Y,
-                        factorNumber: air_control_1.Y,
-                        blue: air_control_1.Y,
-                        green: air_control_1.Y,
-                        red: air_control_1.Y,
-                        outcomeOrdinal: air_control_1.Y,
+                        axis: Y,
+                        dir: Y,
+                        factorNumber: Y,
+                        blue: Y,
+                        green: Y,
+                        red: Y,
+                        outcomeOrdinal: Y,
                         parent: null || {
-                            id: air_control_1.Y
+                            id: Y
                         },
                         skin: {
-                            id: air_control_1.Y
+                            id: Y
                         } || {
-                            backgroundColor: air_control_1.Y,
-                            textColor: air_control_1.Y,
+                            backgroundColor: Y,
+                            textColor: Y,
                             parent: null || {
-                                id: air_control_1.Y
+                                id: Y
                             }
                         },
                         factorPosition: {
                             factor: {
-                                id: air_control_1.Y
+                                id: Y
                             } || {
-                                ageSuitability: air_control_1.Y,
+                                ageSuitability: Y,
                                 parentTranslation: {
-                                    name: air_control_1.Y,
+                                    name: Y,
                                 },
                                 parent: null || {
-                                    id: air_control_1.Y
+                                    id: Y
                                 }
                             },
                             position: {
-                                id: air_control_1.Y
+                                id: Y
                             } || {
-                                ageSuitability: air_control_1.Y,
+                                ageSuitability: Y,
                                 parentTranslation: {
-                                    name: air_control_1.Y,
+                                    name: Y,
                                 },
                                 parent: null || {
-                                    id: air_control_1.Y
+                                    id: Y
                                 }
                             }
                         }
-                    }, air_control_1.ANOTHER(2)],
+                    }, ANOTHER(2)],
                 outcomeVersionA: {
-                    id: air_control_1.Y
+                    id: Y
                 } || {
-                    ageSuitability: air_control_1.Y,
+                    ageSuitability: Y,
                     parentTranslation: {
-                        name: air_control_1.Y
+                        name: Y
                     },
                     parent: null || {
-                        id: air_control_1.Y
+                        id: Y
                     }
                 },
                 outcomeVersionB: {
-                    id: air_control_1.Y
+                    id: Y
                 } || {
-                    ageSuitability: air_control_1.Y,
+                    ageSuitability: Y,
                     parentTranslation: {
-                        name: air_control_1.Y
+                        name: Y
                     },
                     parent: null || {
-                        id: air_control_1.Y
+                        id: Y
                     }
                 },
                 parentTranslation: {
-                    id: air_control_1.Y,
+                    id: Y,
                 } || {
-                    name: air_control_1.Y,
+                    name: Y,
                     parent: null || {
-                        id: air_control_1.Y
+                        id: Y
                     }
                 },
                 poll: {
-                    id: air_control_1.Y
+                    id: Y
                 }
             }],
         theme: {
-            id: air_control_1.Y,
+            id: Y,
         },
         type: {
-            id: air_control_1.Y,
+            id: Y,
         }
     })
 ], PollDao.prototype, "createOne", void 0);
-exports.PollDao = PollDao;
-di_1.DI.set(tokens_1.POLL_DAO, PollDao);
+DI.set(POLL_DAO, PollDao);
 //# sourceMappingURL=PollDao.js.map

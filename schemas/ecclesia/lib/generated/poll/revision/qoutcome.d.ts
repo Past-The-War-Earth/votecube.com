@@ -34,7 +34,7 @@ export interface OutcomeEUpdateProperties extends AgeSuitableRowEUpdatePropertie
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface OutcomeGraph extends AgeSuitableRowESelect, OutcomeEOptionalId, AgeSuitableRowGraph {
+export interface OutcomeGraph extends OutcomeEOptionalId, AgeSuitableRowGraph {
     parentTranslation?: OutcomeTranslationGraph;
     parent?: OutcomeGraph;
     children?: OutcomeGraph[];

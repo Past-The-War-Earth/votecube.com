@@ -36,7 +36,7 @@ export interface ActorEUpdateProperties extends SystemGeneratedRowEUpdatePropert
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ActorGraph extends SystemGeneratedRowESelect, ActorEOptionalId, SystemGeneratedRowGraph {
+export interface ActorGraph extends ActorEOptionalId, SystemGeneratedRowGraph {
     hash?: number | IQNumberField;
     userAccount?: UserAccountGraph;
     device?: DeviceGraph;

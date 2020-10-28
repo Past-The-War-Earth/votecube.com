@@ -93,7 +93,7 @@ export interface DeviceEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface DeviceGraph
-	extends SystemGeneratedRowESelect, DeviceEOptionalId, SystemGeneratedRowGraph {
+	extends DeviceEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

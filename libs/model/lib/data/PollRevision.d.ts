@@ -4,3 +4,4 @@ export interface IPollRevisionData extends IPollRevisionDataOrDelta<IsData> {
 }
 export interface IPollRevisionDataOrDelta<DataOrDelta extends IsData | IsDelta> extends ICoreRevision<DataOrDelta> {
 }
+//# sourceMappingURL=PollRevision.d.ts.map

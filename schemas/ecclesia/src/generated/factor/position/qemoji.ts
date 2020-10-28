@@ -95,7 +95,7 @@ export interface EmojiEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface EmojiGraph
-	extends SystemGeneratedRowESelect, EmojiEOptionalId, SystemGeneratedRowGraph {
+	extends EmojiEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

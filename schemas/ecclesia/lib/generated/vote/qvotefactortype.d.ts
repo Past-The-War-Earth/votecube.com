@@ -27,7 +27,7 @@ export interface VoteFactorTypeEUpdateProperties extends SystemGeneratedRowEUpda
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface VoteFactorTypeGraph extends SystemGeneratedRowESelect, VoteFactorTypeEOptionalId, SystemGeneratedRowGraph {
+export interface VoteFactorTypeGraph extends VoteFactorTypeEOptionalId, SystemGeneratedRowGraph {
     value?: string | IQStringField;
 }
 /**

@@ -37,7 +37,7 @@ export interface FactorTranslationEUpdateProperties extends ImmutableActorRowEUp
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface FactorTranslationGraph extends ImmutableActorRowESelect, FactorTranslationEOptionalId, ImmutableActorRowGraph {
+export interface FactorTranslationGraph extends FactorTranslationEOptionalId, ImmutableActorRowGraph {
     name?: string | IQStringField;
     factor?: FactorGraph;
     language?: LanguageGraph;

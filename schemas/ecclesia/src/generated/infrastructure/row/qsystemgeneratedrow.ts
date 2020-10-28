@@ -89,7 +89,7 @@ export interface SystemGeneratedRowEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface SystemGeneratedRowGraph
-	extends ImmutableRowESelect, SystemGeneratedRowEOptionalId, ImmutableRowGraph {
+	extends SystemGeneratedRowEOptionalId, ImmutableRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

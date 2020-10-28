@@ -1,4 +1,4 @@
-import { PollRunContinent_Id } from '@votecube/relational-db';
+import { PollRunContinent_Id } from '@votecube/ecclesia';
 import { IPreparedPoll } from '../poll/PreparedPoll';
 import { IContinent } from './Continent';
 export declare const POLL_CONTINENTS = "POLL_CONTINENTS";
@@ -7,3 +7,4 @@ export interface IPollContinent {
     id: PollRunContinent_Id;
     poll: IPreparedPoll;
 }
+//# sourceMappingURL=PollContinent.d.ts.map

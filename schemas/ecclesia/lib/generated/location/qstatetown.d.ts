@@ -31,7 +31,7 @@ export interface StateTownEUpdateProperties extends SystemGeneratedRowEUpdatePro
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface StateTownGraph extends SystemGeneratedRowESelect, StateTownEOptionalId, SystemGeneratedRowGraph {
+export interface StateTownGraph extends StateTownEOptionalId, SystemGeneratedRowGraph {
     state?: StateGraph;
     town?: TownGraph;
 }

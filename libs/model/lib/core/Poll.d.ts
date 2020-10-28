@@ -1,4 +1,4 @@
-import { Factor_Id, Id, Outcome_Id, Poll_Id, PollRevision_Id, PollRevisionTranslation_Name, Position_Id } from '@votecube/relational-db';
+import { Factor_Id, Id, Outcome_Id, Poll_Id, PollRevision_Id, PollRevisionTranslation_Name, Position_Id } from '@votecube/ecclesia';
 import { DocStatus, IFullTextSearch, IsDelta, IsDoc, Key } from './common';
 import { ICoreAgeSuitabilityTracked, IDocumentValue } from './DocumentValue';
 import { ICoreFactorBase } from './Factor';
@@ -31,3 +31,4 @@ export interface ICoreOutcomePoll<Doc extends DocStatus> extends ICorePoll<Doc> 
 export interface ICorePositionPoll<Doc extends DocStatus> extends ICorePoll<Doc> {
     positionId: Position_Id;
 }
+//# sourceMappingURL=Poll.d.ts.map

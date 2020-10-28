@@ -24,7 +24,7 @@ export interface ImmutableRowEUpdateProperties extends IEntityUpdateProperties {
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ImmutableRowGraph extends IEntitySelectProperties, ImmutableRowEOptionalId, IEntityCascadeGraph {
+export interface ImmutableRowGraph extends ImmutableRowEOptionalId, IEntityCascadeGraph {
     createdAt?: Date | IQDateField;
 }
 /**

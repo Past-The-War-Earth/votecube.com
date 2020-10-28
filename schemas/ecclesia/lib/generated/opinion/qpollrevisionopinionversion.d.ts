@@ -33,7 +33,7 @@ export interface PollRevisionOpinionVersionEUpdateProperties extends ImmutableRo
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionOpinionVersionGraph extends ImmutableRowESelect, PollRevisionOpinionVersionEOptionalId, ImmutableRowGraph {
+export interface PollRevisionOpinionVersionGraph extends PollRevisionOpinionVersionEOptionalId, ImmutableRowGraph {
     pollRevisionOpinion?: PollRevisionOpinionGraph;
     parent?: PollRevisionOpinionVersionGraph;
     children?: PollRevisionOpinionVersionGraph[];

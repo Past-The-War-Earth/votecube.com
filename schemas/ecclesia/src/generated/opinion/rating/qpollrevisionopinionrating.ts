@@ -115,7 +115,7 @@ export interface PollRevisionOpinionRatingEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRevisionOpinionRatingGraph
-	extends ImmutableActorRowESelect, PollRevisionOpinionRatingEOptionalId, ImmutableActorRowGraph {
+	extends PollRevisionOpinionRatingEOptionalId, ImmutableActorRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

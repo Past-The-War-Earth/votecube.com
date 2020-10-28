@@ -1,4 +1,4 @@
-import { County_Id } from '@votecube/relational-db';
+import { County_Id } from '@votecube/ecclesia';
 import { IState } from './State';
 export declare const COUNTIES = "COUNTIES";
 export interface ICounty {
@@ -6,3 +6,4 @@ export interface ICounty {
     id: County_Id;
     name: string;
 }
+//# sourceMappingURL=County.d.ts.map

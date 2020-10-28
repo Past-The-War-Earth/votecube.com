@@ -1,10 +1,12 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "module": "commonjs",
+    "module": "ES2020",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "removeComments": false,

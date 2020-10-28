@@ -10,3 +10,4 @@ export interface IFactorPositionDefault {
         B: ICorePositionDefault<IsData>;
     };
 }
+//# sourceMappingURL=Factor.d.ts.map

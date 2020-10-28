@@ -27,7 +27,7 @@ export interface DeviceEUpdateProperties extends SystemGeneratedRowEUpdateProper
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface DeviceGraph extends SystemGeneratedRowESelect, DeviceEOptionalId, SystemGeneratedRowGraph {
+export interface DeviceGraph extends DeviceEOptionalId, SystemGeneratedRowGraph {
     hash?: number | IQNumberField;
 }
 /**

@@ -83,7 +83,7 @@ export interface TranslationTypeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface TranslationTypeGraph
-	extends IEntitySelectProperties, TranslationTypeEOptionalId, IEntityCascadeGraph {
+	extends TranslationTypeEOptionalId, IEntityCascadeGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

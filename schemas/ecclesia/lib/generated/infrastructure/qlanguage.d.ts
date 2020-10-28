@@ -26,7 +26,7 @@ export interface LanguageEUpdateProperties extends IEntityUpdateProperties {
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface LanguageGraph extends IEntitySelectProperties, LanguageEOptionalId, IEntityCascadeGraph {
+export interface LanguageGraph extends LanguageEOptionalId, IEntityCascadeGraph {
     name?: string | IQStringField;
 }
 /**

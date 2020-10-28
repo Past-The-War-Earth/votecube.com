@@ -119,7 +119,7 @@ export interface OutcomeOpinionVersionEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface OutcomeOpinionVersionGraph
-	extends IEntitySelectProperties, OutcomeOpinionVersionEOptionalId, IEntityCascadeGraph {
+	extends OutcomeOpinionVersionEOptionalId, IEntityCascadeGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

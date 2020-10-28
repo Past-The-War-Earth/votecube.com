@@ -1,4 +1,4 @@
-import { Factor_Id, Id, Outcome_Id, Poll_Id, PollRevision_Id, PollRevisionTranslation_Name, Position_Id } from '@votecube/relational-db';
+import { Factor_Id, Id, Outcome_Id, Poll_Id, PollRevision_Id, PollRevisionTranslation_Name, Position_Id } from '@votecube/ecclesia';
 import { IsDelta } from '../core/common';
 import { IUserCreated } from '../core/User';
 import { UiDocStatus } from './common';
@@ -31,3 +31,4 @@ export interface IUiOutcomePoll<Doc extends UiDocStatus> extends IUiPoll<Doc> {
 export interface IUiPositionPoll<Doc extends UiDocStatus> extends IUiPoll<Doc> {
     positionId: Position_Id;
 }
+//# sourceMappingURL=UiPoll.d.ts.map

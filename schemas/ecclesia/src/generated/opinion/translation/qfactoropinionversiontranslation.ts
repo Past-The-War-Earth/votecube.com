@@ -121,7 +121,7 @@ export interface FactorOpinionVersionTranslationEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface FactorOpinionVersionTranslationGraph
-	extends SystemGeneratedRowESelect, FactorOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
+	extends FactorOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

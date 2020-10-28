@@ -1,0 +1,1 @@
+{"version":3,"file":"PollRevision.d.ts","sourceRoot":"","sources":["../../src/data/PollRevision.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,MAAM,EACN,OAAO,EACP,MAA4B,gBAAgB,CAAA;AAC7C,OAAO,EAAC,aAAa,EAAC,MAAM,sBAAsB,CAAA;AAElD,MAAM,WAAW,iBAChB,SAAQ,wBAAwB,CAAC,MAAM,CAAC;CACxC;AAED,MAAM,WAAW,wBAAwB,CAAC,WAAW,SAAS,MAAM,GAAG,OAAO,CAC7E,SAAQ,aAAa,CAAC,WAAW,CAAC;CAElC"}

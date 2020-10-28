@@ -1,0 +1,1 @@
+{"version":3,"file":"UiDocumentValue.d.ts","sourceRoot":"","sources":["../../src/ui/UiDocumentValue.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,cAAc,EAAC,MAAM,oBAAoB,CAAA;AACjD,OAAO,EAAC,OAAO,EAAC,MAAa,cAAc,CAAA;AAC3C,OAAO,EAAC,WAAW,EAAC,MAAS,UAAU,CAAA;AAEvC,MAAM,WAAW,wBAAwB,CAAC,GAAG,SAAS,WAAW;IAEhE,cAAc,EAAE,GAAG,SAAS,OAAO,GAAG,OAAO,GAAG,cAAc,CAAA;CAE9D"}

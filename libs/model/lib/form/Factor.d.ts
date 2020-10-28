@@ -1,4 +1,4 @@
-import { FactorTranslation_Name, PositionTranslation_Name } from '@votecube/relational-db';
+import { FactorTranslation_Name, PositionTranslation_Name } from '@votecube/ecclesia';
 import { IUiColor } from '..';
 import { UiDocStatus } from '../ui/common';
 import { IsDelta } from '../core/core';
@@ -11,3 +11,4 @@ export interface IFactorPositionsForm<Doc extends UiDocStatus> {
     A: Doc extends IsDelta ? boolean : PositionTranslation_Name;
     B: Doc extends IsDelta ? boolean : PositionTranslation_Name;
 }
+//# sourceMappingURL=Factor.d.ts.map

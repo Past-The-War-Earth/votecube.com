@@ -130,7 +130,7 @@ export interface PositionEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PositionGraph
-	extends AgeSuitableRowESelect, PositionEOptionalId, AgeSuitableRowGraph {
+	extends PositionEOptionalId, AgeSuitableRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

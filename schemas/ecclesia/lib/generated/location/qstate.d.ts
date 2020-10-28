@@ -32,7 +32,7 @@ export interface StateEUpdateProperties extends SystemGeneratedRowEUpdatePropert
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface StateGraph extends SystemGeneratedRowESelect, StateEOptionalId, SystemGeneratedRowGraph {
+export interface StateGraph extends StateEOptionalId, SystemGeneratedRowGraph {
     name?: string | IQStringField;
     country?: CountryGraph;
     stateTowns?: StateTownGraph;

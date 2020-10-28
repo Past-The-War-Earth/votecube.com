@@ -93,7 +93,7 @@ export interface PollTypeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollTypeGraph
-	extends SystemGeneratedRowESelect, PollTypeEOptionalId, SystemGeneratedRowGraph {
+	extends PollTypeEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

@@ -1,4 +1,4 @@
-import { Factor_Id, PollRevisionFactorPosition_Dir, PositionTranslation_Name } from '@votecube/relational-db';
+import { Factor_Id, PollRevisionFactorPosition_Dir, PositionTranslation_Name } from '@votecube/ecclesia';
 import { DocStatus, IFullTextSearch, IsDelta, IsDoc, Key } from './common';
 import { ICoreAgeSuitabilityTracked, IDocumentValue } from './DocumentValue';
 import { IUserCreated } from './User';
@@ -15,3 +15,4 @@ export interface ICorePositionDefault<Doc extends DocStatus> {
 export interface ICorePositionFromForm<Doc extends DocStatus> {
     name: Doc extends IsDoc ? IDocumentValue<PositionTranslation_Name> : Doc extends IsDelta ? boolean : PositionTranslation_Name;
 }
+//# sourceMappingURL=Position.d.ts.map

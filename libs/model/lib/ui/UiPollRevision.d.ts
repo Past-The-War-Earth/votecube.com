@@ -1,4 +1,4 @@
-import { Poll_Id, PollRevision_Id, PollRevisionTranslation_Name } from '@votecube/relational-db';
+import { Poll_Id, PollRevision_Id, PollRevisionTranslation_Name } from '@votecube/ecclesia';
 import { IsData, IsDelta } from '../core/common';
 import { UiDocStatus } from './common';
 import { IUiAgeSuitabilityTracked } from './UiDocumentValue';
@@ -36,3 +36,4 @@ export interface IUiRevisionFromForm<Doc extends UiDocStatus = IsData> {
     };
     theme: IUiThemeFromForm<Doc>;
 }
+//# sourceMappingURL=UiPollRevision.d.ts.map

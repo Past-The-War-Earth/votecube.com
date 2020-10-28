@@ -105,7 +105,7 @@ export interface PollRunCountyEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRunCountyGraph
-	extends IEntitySelectProperties, PollRunCountyEOptionalId, IEntityCascadeGraph {
+	extends PollRunCountyEOptionalId, IEntityCascadeGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

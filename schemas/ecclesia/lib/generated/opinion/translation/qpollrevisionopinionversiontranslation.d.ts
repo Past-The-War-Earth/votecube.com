@@ -37,7 +37,7 @@ export interface PollRevisionOpinionVersionTranslationEUpdateProperties extends 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionOpinionVersionTranslationGraph extends SystemGeneratedRowESelect, PollRevisionOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
+export interface PollRevisionOpinionVersionTranslationGraph extends PollRevisionOpinionVersionTranslationEOptionalId, SystemGeneratedRowGraph {
     original?: boolean | IQBooleanField;
     title?: string | IQStringField;
     text?: string | IQStringField;

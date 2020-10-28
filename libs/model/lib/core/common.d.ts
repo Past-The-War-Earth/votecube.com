@@ -1,4 +1,4 @@
-import { Id } from '@votecube/relational-db';
+import { Id } from '@votecube/ecclesia';
 export declare type IsData = 'data';
 export declare type IsDelta = 'delta';
 export declare type IsDoc = 'doc';
@@ -42,3 +42,4 @@ export interface IFullTextSearch {
         [key: string]: FullTextSearch_Flag;
     };
 }
+//# sourceMappingURL=common.d.ts.map

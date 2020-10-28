@@ -118,7 +118,7 @@ export interface OutcomeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface OutcomeGraph
-	extends AgeSuitableRowESelect, OutcomeEOptionalId, AgeSuitableRowGraph {
+	extends OutcomeEOptionalId, AgeSuitableRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

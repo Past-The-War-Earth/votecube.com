@@ -51,7 +51,7 @@ export interface PollRevisionFactorPositionEUpdateProperties extends ImmutableRo
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionFactorPositionGraph extends ImmutableRowESelect, PollRevisionFactorPositionEOptionalId, ImmutableRowGraph {
+export interface PollRevisionFactorPositionGraph extends PollRevisionFactorPositionEOptionalId, ImmutableRowGraph {
     axis?: string | IQStringField;
     dir?: number | IQNumberField;
     factorNumber?: number | IQNumberField;

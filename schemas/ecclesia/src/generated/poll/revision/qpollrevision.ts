@@ -180,7 +180,7 @@ export interface PollRevisionEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollRevisionGraph
-	extends AgeSuitableRowESelect, PollRevisionEOptionalId, AgeSuitableRowGraph {
+	extends PollRevisionEOptionalId, AgeSuitableRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

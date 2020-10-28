@@ -116,7 +116,7 @@ export interface StateEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface StateGraph
-	extends SystemGeneratedRowESelect, StateEOptionalId, SystemGeneratedRowGraph {
+	extends StateEOptionalId, SystemGeneratedRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties

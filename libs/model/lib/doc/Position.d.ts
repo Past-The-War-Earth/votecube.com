@@ -4,3 +4,4 @@ export interface IPositionDoc extends ICorePosition<IsDoc> {
 }
 export interface IFactorPositionDoc extends ICoreFactorPosition<IsDoc> {
 }
+//# sourceMappingURL=Position.d.ts.map

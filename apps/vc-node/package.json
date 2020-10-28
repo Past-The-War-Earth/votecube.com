@@ -2,9 +2,12 @@
   "dependencies": {
     "@airport/air-control": "0.0.1",
     "@airport/di": "0.0.1",
+    "@airport/mysql": "0.0.1",
     "@airport/observe": "0.0.1",
+    "@airport/tarmaq": "0.0.1",
     "@airport/terminal": "0.0.1",
     "@airport/terminal-map": "0.0.1",
+    "@airport/tower": "0.0.1",
     "@votecube/model": "0.0.1",
     "@votecube/ecclesia": "0.0.1",
     "@types/node": "^14.10.0",
@@ -18,6 +21,7 @@
   },
   "main": "lib/index.js",
   "name": "@votecube/vc-node",
+  "type": "module",
   "typings": "lib/index",
   "version": "0.0.1"
 }

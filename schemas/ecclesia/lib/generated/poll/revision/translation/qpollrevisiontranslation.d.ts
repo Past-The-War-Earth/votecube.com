@@ -41,7 +41,7 @@ export interface PollRevisionTranslationEUpdateProperties extends ImmutableActor
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionTranslationGraph extends ImmutableActorRowESelect, PollRevisionTranslationEOptionalId, ImmutableActorRowGraph {
+export interface PollRevisionTranslationGraph extends PollRevisionTranslationEOptionalId, ImmutableActorRowGraph {
     name?: string | IQStringField;
     pollRevision?: PollRevisionGraph;
     language?: LanguageGraph;

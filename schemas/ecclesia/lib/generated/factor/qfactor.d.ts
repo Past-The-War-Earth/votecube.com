@@ -37,7 +37,7 @@ export interface FactorEUpdateProperties extends AgeSuitableRowEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface FactorGraph extends AgeSuitableRowESelect, FactorEOptionalId, AgeSuitableRowGraph {
+export interface FactorGraph extends FactorEOptionalId, AgeSuitableRowGraph {
     createdAtPollRevision?: PollRevisionGraph;
     parentTranslation?: FactorTranslationGraph;
     parent?: FactorGraph;

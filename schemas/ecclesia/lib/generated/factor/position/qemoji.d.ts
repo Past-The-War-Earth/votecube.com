@@ -29,7 +29,7 @@ export interface EmojiEUpdateProperties extends SystemGeneratedRowEUpdatePropert
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface EmojiGraph extends SystemGeneratedRowESelect, EmojiEOptionalId, SystemGeneratedRowGraph {
+export interface EmojiGraph extends EmojiEOptionalId, SystemGeneratedRowGraph {
     name?: string | IQStringField;
     cssClass?: string | IQStringField;
 }

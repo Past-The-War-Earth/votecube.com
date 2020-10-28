@@ -1,4 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.COUNTRIES = 'COUNTRIES';
+export const COUNTRIES = 'COUNTRIES';
 //# sourceMappingURL=Country.js.map

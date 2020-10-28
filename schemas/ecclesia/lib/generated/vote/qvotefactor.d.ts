@@ -35,7 +35,7 @@ export interface VoteFactorEUpdateProperties extends IEntityUpdateProperties {
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface VoteFactorGraph extends IEntitySelectProperties, VoteFactorEOptionalId, IEntityCascadeGraph {
+export interface VoteFactorGraph extends VoteFactorEOptionalId, IEntityCascadeGraph {
     share?: string | IQStringField;
     voteRevision?: VoteVersionGraph;
     pollFactorPos?: PollRevisionFactorPositionGraph;

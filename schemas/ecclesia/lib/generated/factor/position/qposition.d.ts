@@ -37,7 +37,7 @@ export interface PositionEUpdateProperties extends AgeSuitableRowEUpdateProperti
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PositionGraph extends AgeSuitableRowESelect, PositionEOptionalId, AgeSuitableRowGraph {
+export interface PositionGraph extends PositionEOptionalId, AgeSuitableRowGraph {
     createdAtPollRevision?: PollRevisionGraph;
     parentTranslation?: PositionTranslationGraph;
     parent?: PositionGraph;

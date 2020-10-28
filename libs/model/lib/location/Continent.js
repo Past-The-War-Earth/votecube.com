@@ -1,4 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CONTINENTS = 'CONTINENTS';
+export const CONTINENTS = 'CONTINENTS';
 //# sourceMappingURL=Continent.js.map

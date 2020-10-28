@@ -1,4 +1,4 @@
-import { Outcome_Name, PollRevisionTranslation_Name } from '@votecube/relational-db';
+import { Outcome_Name, PollRevisionTranslation_Name } from '@votecube/ecclesia';
 import { IsDelta } from '../core/common';
 import { UiDocStatus } from '../ui/common';
 import { IFactorForm } from './Factor';
@@ -18,3 +18,4 @@ export interface IPollOutcomesForm<Doc extends UiDocStatus> {
     A: Doc extends IsDelta ? boolean : Outcome_Name;
     B: Doc extends IsDelta ? boolean : Outcome_Name;
 }
+//# sourceMappingURL=Poll.d.ts.map

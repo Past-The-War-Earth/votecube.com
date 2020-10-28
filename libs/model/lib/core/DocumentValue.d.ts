@@ -1,4 +1,4 @@
-import { AgeSuitability } from '@votecube/relational-db';
+import { AgeSuitability } from '@votecube/ecclesia';
 import { DocStatus, IsDelta, IsDoc } from './common';
 export declare type DocumentValue_Delta = number;
 export interface IDocumentValue<T> {
@@ -8,3 +8,4 @@ export interface IDocumentValue<T> {
 export interface ICoreAgeSuitabilityTracked<Doc extends DocStatus> {
     ageSuitability: Doc extends IsDoc ? IDocumentValue<AgeSuitability> : Doc extends IsDelta ? boolean : AgeSuitability;
 }
+//# sourceMappingURL=DocumentValue.d.ts.map

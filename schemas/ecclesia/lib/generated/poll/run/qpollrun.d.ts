@@ -43,7 +43,7 @@ export interface PollRunEUpdateProperties extends ImmutableActorRowEUpdateProper
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRunGraph extends ImmutableActorRowESelect, PollRunEOptionalId, ImmutableActorRowGraph {
+export interface PollRunGraph extends PollRunEOptionalId, ImmutableActorRowGraph {
     endDate?: Date | IQDateField;
     startDate?: Date | IQDateField;
     pollRevision?: PollRevisionGraph;

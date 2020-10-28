@@ -44,7 +44,7 @@ export interface PollRevisionOpinionEUpdateProperties extends MutableActorRowEUp
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionOpinionGraph extends MutableActorRowESelect, PollRevisionOpinionEOptionalId, MutableActorRowGraph {
+export interface PollRevisionOpinionGraph extends PollRevisionOpinionEOptionalId, MutableActorRowGraph {
     pollRevision?: PollRevisionGraph;
     run?: PollRunGraph;
     vote?: VoteGraph;

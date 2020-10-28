@@ -1,4 +1,4 @@
-import { Factor_Id, PollRevisionFactorPosition_Id, Position_Id, PositionTranslation_Name } from '@votecube/relational-db';
+import { Factor_Id, PollRevisionFactorPosition_Id, Position_Id, PositionTranslation_Name } from '@votecube/ecclesia';
 import { IsDelta } from '../core/common';
 import { Position_Dir } from '../core/Position';
 import { UiDocStatus } from './common';
@@ -18,3 +18,4 @@ export interface IUiPositionDefault<Doc extends UiDocStatus> {
 export interface IUiPositionFromForm<Doc extends UiDocStatus> {
     name: Doc extends IsDelta ? boolean : PositionTranslation_Name;
 }
+//# sourceMappingURL=UiPosition.d.ts.map

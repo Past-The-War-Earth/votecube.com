@@ -121,7 +121,7 @@ export interface FactorTranslationEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface FactorTranslationGraph
-	extends ImmutableActorRowESelect, FactorTranslationEOptionalId, ImmutableActorRowGraph {
+	extends FactorTranslationEOptionalId, ImmutableActorRowGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
