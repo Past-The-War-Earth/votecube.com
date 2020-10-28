@@ -11,5 +11,8 @@ bundle.css
 1.1.js
 public.zip
 
+.idea/workspace.xml
+
 # Ignore Rush temporary files
 /common/temp/**
+.rush/
