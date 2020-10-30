@@ -50,7 +50,6 @@ export interface PositionGraph extends PositionEOptionalId, AgeSuitableRowGraph 
  */
 export interface PositionEUpdateColumns extends AgeSuitableRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
     AGE_SUITABILITY?: number | IQNumberField;
     POLL_REVISION_ID?: number | IQNumberField;

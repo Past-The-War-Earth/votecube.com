@@ -19,6 +19,7 @@ import {FactorOpinionVersionTranslation} from './translation/FactorOpinionVersio
  */
 @Entity()
 @Table({name: 'FACTOR_OPINION_VERSIONS'})
+// User information recorded at PollRevisionOpinion level
 export class FactorOpinionVersion {
 
 	@GeneratedValue()

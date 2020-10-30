@@ -59,7 +59,6 @@ export interface PollRunGraph extends PollRunEOptionalId, ImmutableActorRowGraph
  */
 export interface PollRunEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
     END_DATE?: Date | IQDateField;
     START_DATE?: Date | IQDateField;

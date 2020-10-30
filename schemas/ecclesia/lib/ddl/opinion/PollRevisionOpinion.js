@@ -6,8 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
-import { MutableActorRow } from '../infrastructure/row/MutableActorRow';
-let PollRevisionOpinion = class PollRevisionOpinion extends MutableActorRow {
+import { ImmutableActorRow } from '../infrastructure/row/ImmutableActorRow';
+let PollRevisionOpinion = class PollRevisionOpinion extends ImmutableActorRow {
 };
 __decorate([
     GeneratedValue(),

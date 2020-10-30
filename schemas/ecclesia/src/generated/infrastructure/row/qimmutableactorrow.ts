@@ -32,16 +32,6 @@ import {
 	QImmutableRow,
 } from './qimmutablerow';
 import {
-	ActorGraph,
-	ActorEId,
-	ActorEOptionalId,
-	ActorEUpdateProperties,
-	ActorESelect,
-	QActor,
-	QActorQId,
-	QActorQRelation,
-} from '../../user/qactor';
-import {
 	UserAccountGraph,
 	UserAccountEId,
 	UserAccountEOptionalId,
@@ -70,7 +60,6 @@ export interface ImmutableActorRowESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	actor?: ActorESelect;
 	userAccount?: UserAccountESelect;
 
 }
@@ -104,7 +93,6 @@ export interface ImmutableActorRowEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	actor?: ActorEOptionalId;
 	userAccount?: UserAccountEOptionalId;
 
 }
@@ -119,7 +107,6 @@ export interface ImmutableActorRowGraph
 	// Non-Id Properties
 
 	// Relations
-	actor?: ActorGraph;
 	userAccount?: UserAccountGraph;
 
 }
@@ -166,7 +153,6 @@ export interface QImmutableActorRow extends QImmutableRow
 	// Non-Id Fields
 
 	// Non-Id Relations
-	actor: QActorQRelation;
 	userAccount: QUserAccountQRelation;
 
 }

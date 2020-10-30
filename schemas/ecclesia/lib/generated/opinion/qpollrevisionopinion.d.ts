@@ -1,5 +1,5 @@
 import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-control';
-import { MutableActorRowGraph, MutableActorRowEId, MutableActorRowEUpdateColumns, MutableActorRowEUpdateProperties, MutableActorRowESelect, QMutableActorRowQId, QMutableActorRowQRelation, QMutableActorRow } from '../infrastructure/row/qmutableactorrow';
+import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../infrastructure/row/qimmutableactorrow';
 import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../poll/revision/qpollrevision';
 import { PollRunGraph, PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../poll/run/qpollrun';
 import { VoteGraph, VoteEOptionalId, VoteESelect, QVoteQRelation } from '../vote/qvote';
@@ -11,7 +11,7 @@ import { PositionOpinionVersionGraph, PositionOpinionVersionESelect, QPositionOp
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface PollRevisionOpinionESelect extends MutableActorRowESelect, PollRevisionOpinionEOptionalId {
+export interface PollRevisionOpinionESelect extends ImmutableActorRowESelect, PollRevisionOpinionEOptionalId {
     pollRevision?: PollRevisionESelect;
     run?: PollRunESelect;
     vote?: VoteESelect;
@@ -24,7 +24,7 @@ export interface PollRevisionOpinionESelect extends MutableActorRowESelect, Poll
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface PollRevisionOpinionEId extends MutableActorRowEId {
+export interface PollRevisionOpinionEId extends ImmutableActorRowEId {
     id: number | IQNumberField;
 }
 /**
@@ -36,7 +36,7 @@ export interface PollRevisionOpinionEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface PollRevisionOpinionEUpdateProperties extends MutableActorRowEUpdateProperties {
+export interface PollRevisionOpinionEUpdateProperties extends ImmutableActorRowEUpdateProperties {
     pollRevision?: PollRevisionEOptionalId;
     run?: PollRunEOptionalId;
     vote?: VoteEOptionalId;
@@ -44,7 +44,7 @@ export interface PollRevisionOpinionEUpdateProperties extends MutableActorRowEUp
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionOpinionGraph extends PollRevisionOpinionEOptionalId, MutableActorRowGraph {
+export interface PollRevisionOpinionGraph extends PollRevisionOpinionEOptionalId, ImmutableActorRowGraph {
     pollRevision?: PollRevisionGraph;
     run?: PollRunGraph;
     vote?: VoteGraph;
@@ -57,11 +57,9 @@ export interface PollRevisionOpinionGraph extends PollRevisionOpinionEOptionalId
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface PollRevisionOpinionEUpdateColumns extends MutableActorRowEUpdateColumns {
+export interface PollRevisionOpinionEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
-    UPDATED_AT?: Date | IQDateField;
     POLL_ID?: number | IQNumberField;
     POLL_RUN_ID?: number | IQNumberField;
     VOTE_ID?: number | IQNumberField;
@@ -79,7 +77,7 @@ export interface PollRevisionOpinionECreateColumns extends PollRevisionOpinionEI
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionOpinion extends QMutableActorRow {
+export interface QPollRevisionOpinion extends QImmutableActorRow {
     id: IQNumberField;
     pollRevision: QPollRevisionQRelation;
     run: QPollRunQRelation;
@@ -90,9 +88,9 @@ export interface QPollRevisionOpinion extends QMutableActorRow {
     outcomes: IQOneToManyRelation<QOutcomeOpinionVersion>;
     positions: IQOneToManyRelation<QPositionOpinionVersion>;
 }
-export interface QPollRevisionOpinionQId extends QMutableActorRowQId {
+export interface QPollRevisionOpinionQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionOpinionQRelation extends QMutableActorRowQRelation<QPollRevisionOpinion>, QPollRevisionOpinionQId {
+export interface QPollRevisionOpinionQRelation extends QImmutableActorRowQRelation<QPollRevisionOpinion>, QPollRevisionOpinionQId {
 }
 //# sourceMappingURL=qpollrevisionopinion.d.ts.map

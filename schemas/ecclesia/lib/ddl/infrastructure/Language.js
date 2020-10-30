@@ -5,7 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, Table } from '@airport/air-control';
-let Language = class Language {
+import { SystemGeneratedRow } from './row/SystemGeneratedRow';
+let Language = class Language extends SystemGeneratedRow {
 };
 __decorate([
     Id(),

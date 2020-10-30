@@ -6,7 +6,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
-let OutcomeOpinionVersion = class OutcomeOpinionVersion {
+let OutcomeOpinionVersion = 
+// User information recorded at PollRevisionOpinion level
+class OutcomeOpinionVersion {
 };
 __decorate([
     GeneratedValue(),
@@ -41,6 +43,7 @@ __decorate([
 OutcomeOpinionVersion = __decorate([
     Entity(),
     Table({ name: 'OUTCOME_OPINION_VERSIONS' })
+    // User information recorded at PollRevisionOpinion level
 ], OutcomeOpinionVersion);
 export { OutcomeOpinionVersion };
 //# sourceMappingURL=OutcomeOpinionVersion.js.map

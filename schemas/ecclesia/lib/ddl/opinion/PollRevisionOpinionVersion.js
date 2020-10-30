@@ -14,7 +14,9 @@ import { ImmutableRow } from '../infrastructure/row/ImmutableRow';
  *
  * Belongs to PollRevisionOpinion - does not need user tracking
  */
-let PollRevisionOpinionVersion = class PollRevisionOpinionVersion extends ImmutableRow {
+let PollRevisionOpinionVersion = 
+// User information recorded at PollRevisionOpinion level
+class PollRevisionOpinionVersion extends ImmutableRow {
 };
 __decorate([
     GeneratedValue(),
@@ -41,6 +43,7 @@ __decorate([
 PollRevisionOpinionVersion = __decorate([
     Entity(),
     Table({ name: 'POLL_REVISION_OPINION_VERSIONS' })
+    // User information recorded at PollRevisionOpinion level
 ], PollRevisionOpinionVersion);
 export { PollRevisionOpinionVersion };
 //# sourceMappingURL=PollRevisionOpinionVersion.js.map

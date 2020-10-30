@@ -1,14 +1,15 @@
-import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntityUpdateProperties, IEntitySelectProperties, IQNumberField, IQStringField, IQEntity, IQRelation } from '@airport/air-control';
+import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
+import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from './row/qsystemgeneratedrow';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface LanguageESelect extends IEntitySelectProperties, LanguageEOptionalId {
+export interface LanguageESelect extends SystemGeneratedRowESelect, LanguageEOptionalId {
     name?: string | IQStringField;
 }
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface LanguageEId extends IEntityIdProperties {
+export interface LanguageEId extends SystemGeneratedRowEId {
     id: number | IQNumberField;
 }
 /**
@@ -20,19 +21,20 @@ export interface LanguageEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface LanguageEUpdateProperties extends IEntityUpdateProperties {
+export interface LanguageEUpdateProperties extends SystemGeneratedRowEUpdateProperties {
     name?: string | IQStringField;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface LanguageGraph extends LanguageEOptionalId, IEntityCascadeGraph {
+export interface LanguageGraph extends LanguageEOptionalId, SystemGeneratedRowGraph {
     name?: string | IQStringField;
 }
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface LanguageEUpdateColumns extends IEntityUpdateColumns {
+export interface LanguageEUpdateColumns extends SystemGeneratedRowEUpdateColumns {
+    CREATED_AT?: Date | IQDateField;
     LANGUAGE_NAME?: string | IQStringField;
 }
 /**
@@ -48,13 +50,13 @@ export interface LanguageECreateColumns extends LanguageEId, LanguageEUpdateColu
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QLanguage extends IQEntity {
+export interface QLanguage extends QSystemGeneratedRow {
     id: IQNumberField;
     name: IQStringField;
 }
-export interface QLanguageQId {
+export interface QLanguageQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QLanguageQRelation extends IQRelation<QLanguage>, QLanguageQId {
+export interface QLanguageQRelation extends QSystemGeneratedRowQRelation<QLanguage>, QLanguageQId {
 }
 //# sourceMappingURL=qlanguage.d.ts.map

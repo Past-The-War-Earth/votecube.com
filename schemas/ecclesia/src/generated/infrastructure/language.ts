@@ -1,3 +1,6 @@
+import {
+	ISystemGeneratedRow,
+} from './row/systemgeneratedrow';
 
 
 
@@ -5,7 +8,7 @@
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ILanguage {
+export interface ILanguage extends ISystemGeneratedRow {
 	
 	// Id Properties
 	id: number;

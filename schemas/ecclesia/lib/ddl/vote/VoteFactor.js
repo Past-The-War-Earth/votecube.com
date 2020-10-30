@@ -5,7 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, DbString, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, Table } from '@airport/air-control';
-let VoteFactor = class VoteFactor {
+let VoteFactor = 
+// User information recorded at Vote level
+class VoteFactor {
 };
 __decorate([
     GeneratedValue(),
@@ -31,6 +33,7 @@ __decorate([
 VoteFactor = __decorate([
     Entity(),
     Table({ name: 'VOTE_FACTORS' })
+    // User information recorded at Vote level
 ], VoteFactor);
 export { VoteFactor };
 //# sourceMappingURL=VoteFactor.js.map

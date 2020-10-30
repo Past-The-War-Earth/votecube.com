@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, Table } from '@airport/air-control';
+import { SystemGeneratedRow } from './row/SystemGeneratedRow';
 /**
  * Translation isn't necessarily from one language to another.
  *
@@ -15,7 +16,7 @@ import { Column, Entity, GeneratedValue, Id, Table } from '@airport/air-control'
  * Internal Types like: Default, Best As voted, Best composite
  * User specified types: Funny, Abbreviated, Alegorical
  */
-let TranslationType = class TranslationType {
+let TranslationType = class TranslationType extends SystemGeneratedRow {
 };
 __decorate([
     Id(),

@@ -7,7 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, Table } from '@airport/air-control';
 // @Singleton()
 // @InsertOnly()
-let PollRunContinent = class PollRunContinent {
+let PollRunContinent = 
+// User information recorded at PollRun level
+class PollRunContinent {
 };
 __decorate([
     GeneratedValue(),
@@ -25,6 +27,7 @@ __decorate([
 PollRunContinent = __decorate([
     Entity(),
     Table({ name: 'POLL_CONTINENTS' })
+    // User information recorded at PollRun level
 ], PollRunContinent);
 export { PollRunContinent };
 //# sourceMappingURL=PollRunContinent.js.map

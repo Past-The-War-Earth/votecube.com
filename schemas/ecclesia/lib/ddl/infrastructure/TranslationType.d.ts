@@ -1,4 +1,5 @@
 import { TranslationType_Code, TranslationType_Id } from '../../types/infrastructure/TranslationType';
+import { SystemGeneratedRow } from './row/SystemGeneratedRow';
 /**
  * Translation isn't necessarily from one language to another.
  *
@@ -9,7 +10,7 @@ import { TranslationType_Code, TranslationType_Id } from '../../types/infrastruc
  * Internal Types like: Default, Best As voted, Best composite
  * User specified types: Funny, Abbreviated, Alegorical
  */
-export declare class TranslationType {
+export declare class TranslationType extends SystemGeneratedRow {
     id: TranslationType_Id;
     code: TranslationType_Code;
 }

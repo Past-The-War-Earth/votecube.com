@@ -13,6 +13,7 @@ import {PollRun} from '../PollRun'
 
 @Entity()
 @Table({name: 'POLL_STATES'})
+// User information recorded at PollRun level
 export class PollRunState {
 
 	@GeneratedValue()

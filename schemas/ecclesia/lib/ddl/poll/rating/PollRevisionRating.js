@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, Table } from '@airport/air-control';
-import { MutableActorRow } from '../../infrastructure/row/MutableActorRow';
+import { ImmutableActorRow } from '../../infrastructure/row/ImmutableActorRow';
 // export type UserPollRevisionRating_IsCurrent = boolean
 /**
  * User ratings for a particular Poll Revision (likely computed from
@@ -15,7 +15,7 @@ import { MutableActorRow } from '../../infrastructure/row/MutableActorRow';
  * the current Rating and is it a change in rating (of the same type) and
  * from what rating it was changed (so that it can decrement).
  */
-let PollRevisionRating = class PollRevisionRating extends MutableActorRow {
+let PollRevisionRating = class PollRevisionRating extends ImmutableActorRow {
 };
 __decorate([
     Id(),

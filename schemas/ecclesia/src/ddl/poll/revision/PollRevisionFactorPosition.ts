@@ -27,6 +27,7 @@ import {PollRevision}   from './PollRevision'
 
 @Entity()
 @Table({name: 'POLL_REVISION_FACTOR_POSITIONS'})
+// User information recorded at PollRevisionOpinion level
 export class PollRevisionFactorPosition
 	extends ImmutableRow {
 

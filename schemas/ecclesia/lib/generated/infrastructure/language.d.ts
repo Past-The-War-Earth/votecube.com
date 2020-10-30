@@ -1,4 +1,5 @@
-export interface ILanguage {
+import { ISystemGeneratedRow } from './row/systemgeneratedrow';
+export interface ILanguage extends ISystemGeneratedRow {
     id: number;
     name?: string;
 }

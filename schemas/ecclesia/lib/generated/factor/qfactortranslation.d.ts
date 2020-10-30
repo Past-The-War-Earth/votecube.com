@@ -50,7 +50,6 @@ export interface FactorTranslationGraph extends FactorTranslationEOptionalId, Im
  */
 export interface FactorTranslationEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
     FACTOR_NAME?: string | IQStringField;
     FACTOR_ID?: number | IQNumberField;

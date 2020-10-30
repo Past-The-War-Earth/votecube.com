@@ -23,6 +23,7 @@ import {PollRevisionOpinionVersionTranslation} from './translation/PollRevisionO
  */
 @Entity()
 @Table({name: 'POLL_REVISION_OPINION_VERSIONS'})
+// User information recorded at PollRevisionOpinion level
 export class PollRevisionOpinionVersion
 	extends ImmutableRow {
 

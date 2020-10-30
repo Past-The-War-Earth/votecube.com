@@ -40,7 +40,6 @@ export interface FactorPositionGraph extends FactorPositionEOptionalId, Immutabl
  */
 export interface FactorPositionEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
 }
 /**

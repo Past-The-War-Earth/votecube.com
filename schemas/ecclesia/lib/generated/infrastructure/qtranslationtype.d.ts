@@ -1,14 +1,15 @@
-import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntityUpdateProperties, IEntitySelectProperties, IQNumberField, IQEntity, IQRelation } from '@airport/air-control';
+import { IQDateField, IQNumberField } from '@airport/air-control';
+import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from './row/qsystemgeneratedrow';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface TranslationTypeESelect extends IEntitySelectProperties, TranslationTypeEOptionalId {
+export interface TranslationTypeESelect extends SystemGeneratedRowESelect, TranslationTypeEOptionalId {
     code?: number | IQNumberField;
 }
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface TranslationTypeEId extends IEntityIdProperties {
+export interface TranslationTypeEId extends SystemGeneratedRowEId {
     id: number | IQNumberField;
 }
 /**
@@ -20,19 +21,20 @@ export interface TranslationTypeEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface TranslationTypeEUpdateProperties extends IEntityUpdateProperties {
+export interface TranslationTypeEUpdateProperties extends SystemGeneratedRowEUpdateProperties {
     code?: number | IQNumberField;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface TranslationTypeGraph extends TranslationTypeEOptionalId, IEntityCascadeGraph {
+export interface TranslationTypeGraph extends TranslationTypeEOptionalId, SystemGeneratedRowGraph {
     code?: number | IQNumberField;
 }
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface TranslationTypeEUpdateColumns extends IEntityUpdateColumns {
+export interface TranslationTypeEUpdateColumns extends SystemGeneratedRowEUpdateColumns {
+    CREATED_AT?: Date | IQDateField;
     TRANSLATION_TYPE_CODE?: number | IQNumberField;
 }
 /**
@@ -48,13 +50,13 @@ export interface TranslationTypeECreateColumns extends TranslationTypeEId, Trans
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTranslationType extends IQEntity {
+export interface QTranslationType extends QSystemGeneratedRow {
     id: IQNumberField;
     code: IQNumberField;
 }
-export interface QTranslationTypeQId {
+export interface QTranslationTypeQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QTranslationTypeQRelation extends IQRelation<QTranslationType>, QTranslationTypeQId {
+export interface QTranslationTypeQRelation extends QSystemGeneratedRowQRelation<QTranslationType>, QTranslationTypeQId {
 }
 //# sourceMappingURL=qtranslationtype.d.ts.map

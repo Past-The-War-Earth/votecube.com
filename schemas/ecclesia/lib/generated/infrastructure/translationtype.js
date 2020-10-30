@@ -1,5 +1,2 @@
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
 export {};
 //# sourceMappingURL=translationtype.js.map

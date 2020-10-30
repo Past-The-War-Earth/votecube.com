@@ -1,7 +1,7 @@
 export const MAPPED_SUPERCLASS = [
 	{
 		"type": "ImmutableRow",
-		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+		"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
 		"parentClassName": null,
 		"isSuperclass": true,
 		"ids": [],
@@ -93,7 +93,7 @@ export const MAPPED_SUPERCLASS = [
 	},
 	{
 		"type": "SystemGeneratedRow",
-		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+		"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
 		"parentClassName": "ImmutableRow",
 		"location": "./ImmutableRow",
 		"isSuperclass": true,
@@ -155,7 +155,7 @@ export const MAPPED_SUPERCLASS = [
 		"implementedInterfaceNames": [],
 		"parentEntity": {
 			"type": "ImmutableRow",
-			"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+			"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
 			"parentClassName": null,
 			"isSuperclass": true,
 			"ids": [],
@@ -249,7 +249,7 @@ export const MAPPED_SUPERCLASS = [
 	},
 	{
 		"type": "ImmutableActorRow",
-		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
+		"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
 		"parentClassName": "ImmutableRow",
 		"location": "./ImmutableRow",
 		"isSuperclass": true,
@@ -348,7 +348,7 @@ export const MAPPED_SUPERCLASS = [
 							"name": "JoinColumn",
 							"values": [
 								{
-									"name": "ACTOR_ID"
+									"name": "USER_ACCOUNT_ID"
 								}
 							]
 						}
@@ -357,13 +357,13 @@ export const MAPPED_SUPERCLASS = [
 					"isId": false,
 					"isMappedSuperclass": false,
 					"isTransient": false,
-					"name": "actor",
-					"type": "Actor",
+					"name": "userAccount",
+					"type": "UserAccount",
 					"ownerEntity": null,
-					"nonArrayType": "Actor",
+					"nonArrayType": "UserAccount",
 					"entity": {
-						"type": "Actor",
-						"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/actor.ts",
+						"type": "UserAccount",
+						"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
 						"parentClassName": "SystemGeneratedRow",
 						"location": "../infrastructure/row/SystemGeneratedRow",
 						"isSuperclass": false,
@@ -382,7 +382,7 @@ export const MAPPED_SUPERCLASS = [
 										"name": "Column",
 										"values": [
 											{
-												"name": "ACTOR_ID"
+												"name": "USER_ACCOUNT_ID"
 											}
 										]
 									}
@@ -409,7 +409,7 @@ export const MAPPED_SUPERCLASS = [
 									"name": "Table",
 									"values": [
 										{
-											"name": "ACTORS"
+											"name": "USER_ACCOUNTS"
 										}
 									]
 								}
@@ -418,8 +418,8 @@ export const MAPPED_SUPERCLASS = [
 							"isId": false,
 							"isMappedSuperclass": false,
 							"isTransient": false,
-							"name": "Actor",
-							"type": "typeof Actor",
+							"name": "UserAccount",
+							"type": "typeof UserAccount",
 							"fileImports": {
 								"importMapByObjectAsName": {
 									"Column": {
@@ -430,11 +430,6 @@ export const MAPPED_SUPERCLASS = [
 												"asName": "Column",
 												"moduleImport": null,
 												"sourceName": "Column"
-											},
-											"DbNumber": {
-												"asName": "DbNumber",
-												"moduleImport": null,
-												"sourceName": "DbNumber"
 											},
 											"Entity": {
 												"asName": "Entity",
@@ -451,16 +446,6 @@ export const MAPPED_SUPERCLASS = [
 												"moduleImport": null,
 												"sourceName": "Id"
 											},
-											"JoinColumn": {
-												"asName": "JoinColumn",
-												"moduleImport": null,
-												"sourceName": "JoinColumn"
-											},
-											"ManyToOne": {
-												"asName": "ManyToOne",
-												"moduleImport": null,
-												"sourceName": "ManyToOne"
-											},
 											"Table": {
 												"asName": "Table",
 												"moduleImport": null,
@@ -469,31 +454,64 @@ export const MAPPED_SUPERCLASS = [
 										},
 										"path": "@airport/air-control"
 									},
-									"DbNumber": null,
 									"Entity": null,
 									"GeneratedValue": null,
 									"Id": null,
-									"JoinColumn": null,
-									"ManyToOne": null,
 									"Table": null,
-									"Actor_Hash": {
+									"UserAccount_BirthDate": {
 										"fileImports": null,
 										"isLocal": true,
 										"objectMapByAsName": {
-											"Actor_Hash": {
-												"asName": "Actor_Hash",
+											"UserAccount_BirthDate": {
+												"asName": "UserAccount_BirthDate",
 												"moduleImport": null,
-												"sourceName": "Actor_Hash"
+												"sourceName": "UserAccount_BirthDate"
 											},
-											"Actor_Id": {
-												"asName": "Actor_Id",
+											"UserAccount_Email": {
+												"asName": "UserAccount_Email",
 												"moduleImport": null,
-												"sourceName": "Actor_Id"
+												"sourceName": "UserAccount_Email"
+											},
+											"UserAccount_FirstName": {
+												"asName": "UserAccount_FirstName",
+												"moduleImport": null,
+												"sourceName": "UserAccount_FirstName"
+											},
+											"UserAccount_Id": {
+												"asName": "UserAccount_Id",
+												"moduleImport": null,
+												"sourceName": "UserAccount_Id"
+											},
+											"UserAccount_LastName": {
+												"asName": "UserAccount_LastName",
+												"moduleImport": null,
+												"sourceName": "UserAccount_LastName"
+											},
+											"UserAccount_MiddleName": {
+												"asName": "UserAccount_MiddleName",
+												"moduleImport": null,
+												"sourceName": "UserAccount_MiddleName"
+											},
+											"UserAccount_PasswordHash": {
+												"asName": "UserAccount_PasswordHash",
+												"moduleImport": null,
+												"sourceName": "UserAccount_PasswordHash"
+											},
+											"UserAccount_UserName": {
+												"asName": "UserAccount_UserName",
+												"moduleImport": null,
+												"sourceName": "UserAccount_UserName"
 											}
 										},
-										"path": "../../types/user/Actor"
+										"path": "../../types/user/UserAccount"
 									},
-									"Actor_Id": null,
+									"UserAccount_Email": null,
+									"UserAccount_FirstName": null,
+									"UserAccount_Id": null,
+									"UserAccount_LastName": null,
+									"UserAccount_MiddleName": null,
+									"UserAccount_PasswordHash": null,
+									"UserAccount_UserName": null,
 									"SystemGeneratedRow": {
 										"fileImports": null,
 										"isLocal": true,
@@ -505,51 +523,12 @@ export const MAPPED_SUPERCLASS = [
 											}
 										},
 										"path": "../infrastructure/row/SystemGeneratedRow"
-									},
-									"Application": {
-										"fileImports": null,
-										"isLocal": true,
-										"objectMapByAsName": {
-											"Application": {
-												"asName": "Application",
-												"moduleImport": null,
-												"sourceName": "Application"
-											}
-										},
-										"path": "./Application"
-									},
-									"Device": {
-										"fileImports": null,
-										"isLocal": true,
-										"objectMapByAsName": {
-											"Device": {
-												"asName": "Device",
-												"moduleImport": null,
-												"sourceName": "Device"
-											}
-										},
-										"path": "./Device"
-									},
-									"UserAccount": {
-										"fileImports": null,
-										"isLocal": true,
-										"objectMapByAsName": {
-											"UserAccount": {
-												"asName": "UserAccount",
-												"moduleImport": null,
-												"sourceName": "UserAccount"
-											}
-										},
-										"path": "./UserAccount"
 									}
 								},
 								"importMapByModulePath": {
 									"@airport/air-control": null,
-									"../../types/user/Actor": null,
-									"../infrastructure/row/SystemGeneratedRow": null,
-									"./Application": null,
-									"./Device": null,
-									"./UserAccount": null
+									"../../types/user/UserAccount": null,
+									"../infrastructure/row/SystemGeneratedRow": null
 								}
 							},
 							"properties": [
@@ -567,7 +546,7 @@ export const MAPPED_SUPERCLASS = [
 											"name": "Column",
 											"values": [
 												{
-													"name": "ACTOR_ID"
+													"name": "USER_ACCOUNT_ID"
 												}
 											]
 										}
@@ -589,38 +568,30 @@ export const MAPPED_SUPERCLASS = [
 											"name": "Column",
 											"values": [
 												{
-													"name": "ACTOR_HASH",
+													"name": "USER_NAME",
 													"nullable": false
 												}
 											]
-										},
-										{
-											"name": "DbNumber",
-											"values": []
 										}
 									],
 									"isGenerated": false,
 									"isId": false,
 									"isMappedSuperclass": false,
 									"isTransient": false,
-									"name": "hash",
-									"type": "number",
+									"name": "userName",
+									"type": "string",
 									"ownerEntity": null,
-									"nonArrayType": "number",
-									"primitive": "number",
+									"nonArrayType": "string",
+									"primitive": "string",
 									"index": 1
 								},
 								{
 									"decorators": [
 										{
-											"name": "ManyToOne",
-											"values": []
-										},
-										{
-											"name": "JoinColumn",
+											"name": "Column",
 											"values": [
 												{
-													"name": "USER_ACCOUNT_ID",
+													"name": "EMAIL",
 													"nullable": false
 												}
 											]
@@ -630,550 +601,20 @@ export const MAPPED_SUPERCLASS = [
 									"isId": false,
 									"isMappedSuperclass": false,
 									"isTransient": false,
-									"name": "userAccount",
-									"type": "UserAccount",
+									"name": "email",
+									"type": "string",
 									"ownerEntity": null,
-									"nonArrayType": "UserAccount",
-									"entity": {
-										"type": "UserAccount",
-										"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
-										"parentClassName": "SystemGeneratedRow",
-										"location": "../infrastructure/row/SystemGeneratedRow",
-										"isSuperclass": false,
-										"ids": [
-											{
-												"decorators": [
-													{
-														"name": "Id",
-														"values": []
-													},
-													{
-														"name": "GeneratedValue",
-														"values": []
-													},
-													{
-														"name": "Column",
-														"values": [
-															{
-																"name": "USER_ACCOUNT_ID"
-															}
-														]
-													}
-												],
-												"isGenerated": true,
-												"isId": true,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "id",
-												"type": "number",
-												"ownerEntity": null,
-												"nonArrayType": "number",
-												"primitive": "number",
-												"index": 0
-											}
-										],
-										"docEntry": {
-											"decorators": [
-												{
-													"name": "Entity",
-													"values": []
-												},
-												{
-													"name": "Table",
-													"values": [
-														{
-															"name": "USER_ACCOUNTS"
-														}
-													]
-												}
-											],
-											"isGenerated": false,
-											"isId": false,
-											"isMappedSuperclass": false,
-											"isTransient": false,
-											"name": "UserAccount",
-											"type": "typeof UserAccount",
-											"fileImports": {
-												"importMapByObjectAsName": {
-													"Column": {
-														"fileImports": null,
-														"isLocal": false,
-														"objectMapByAsName": {
-															"Column": {
-																"asName": "Column",
-																"moduleImport": null,
-																"sourceName": "Column"
-															},
-															"Entity": {
-																"asName": "Entity",
-																"moduleImport": null,
-																"sourceName": "Entity"
-															},
-															"GeneratedValue": {
-																"asName": "GeneratedValue",
-																"moduleImport": null,
-																"sourceName": "GeneratedValue"
-															},
-															"Id": {
-																"asName": "Id",
-																"moduleImport": null,
-																"sourceName": "Id"
-															},
-															"Table": {
-																"asName": "Table",
-																"moduleImport": null,
-																"sourceName": "Table"
-															}
-														},
-														"path": "@airport/air-control"
-													},
-													"Entity": null,
-													"GeneratedValue": null,
-													"Id": null,
-													"Table": null,
-													"UserAccount_BirthDate": {
-														"fileImports": null,
-														"isLocal": true,
-														"objectMapByAsName": {
-															"UserAccount_BirthDate": {
-																"asName": "UserAccount_BirthDate",
-																"moduleImport": null,
-																"sourceName": "UserAccount_BirthDate"
-															},
-															"UserAccount_Email": {
-																"asName": "UserAccount_Email",
-																"moduleImport": null,
-																"sourceName": "UserAccount_Email"
-															},
-															"UserAccount_FirstName": {
-																"asName": "UserAccount_FirstName",
-																"moduleImport": null,
-																"sourceName": "UserAccount_FirstName"
-															},
-															"UserAccount_Id": {
-																"asName": "UserAccount_Id",
-																"moduleImport": null,
-																"sourceName": "UserAccount_Id"
-															},
-															"UserAccount_LastName": {
-																"asName": "UserAccount_LastName",
-																"moduleImport": null,
-																"sourceName": "UserAccount_LastName"
-															},
-															"UserAccount_MiddleName": {
-																"asName": "UserAccount_MiddleName",
-																"moduleImport": null,
-																"sourceName": "UserAccount_MiddleName"
-															},
-															"UserAccount_PasswordHash": {
-																"asName": "UserAccount_PasswordHash",
-																"moduleImport": null,
-																"sourceName": "UserAccount_PasswordHash"
-															},
-															"UserAccount_UserName": {
-																"asName": "UserAccount_UserName",
-																"moduleImport": null,
-																"sourceName": "UserAccount_UserName"
-															}
-														},
-														"path": "../../types/user/UserAccount"
-													},
-													"UserAccount_Email": null,
-													"UserAccount_FirstName": null,
-													"UserAccount_Id": null,
-													"UserAccount_LastName": null,
-													"UserAccount_MiddleName": null,
-													"UserAccount_PasswordHash": null,
-													"UserAccount_UserName": null,
-													"SystemGeneratedRow": {
-														"fileImports": null,
-														"isLocal": true,
-														"objectMapByAsName": {
-															"SystemGeneratedRow": {
-																"asName": "SystemGeneratedRow",
-																"moduleImport": null,
-																"sourceName": "SystemGeneratedRow"
-															}
-														},
-														"path": "../infrastructure/row/SystemGeneratedRow"
-													}
-												},
-												"importMapByModulePath": {
-													"@airport/air-control": null,
-													"../../types/user/UserAccount": null,
-													"../infrastructure/row/SystemGeneratedRow": null
-												}
-											},
-											"properties": [
-												{
-													"decorators": [
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "USER_ACCOUNT_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "USER_NAME",
-																	"nullable": false
-																}
-															]
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "userName",
-													"type": "string",
-													"ownerEntity": null,
-													"nonArrayType": "string",
-													"primitive": "string",
-													"index": 1
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "EMAIL",
-																	"nullable": false
-																}
-															]
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "email",
-													"type": "string",
-													"ownerEntity": null,
-													"nonArrayType": "string",
-													"primitive": "string",
-													"index": 2
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "PASSWORD_HASH",
-																	"nullable": false
-																}
-															]
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "passwordHash",
-													"type": "string",
-													"ownerEntity": null,
-													"nonArrayType": "string",
-													"primitive": "string",
-													"index": 3
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "FIRST_NAME",
-																	"nullable": false
-																}
-															]
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "firstName",
-													"type": "string",
-													"ownerEntity": null,
-													"nonArrayType": "string",
-													"primitive": "string",
-													"index": 4
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "MIDDLE_NAME"
-																}
-															]
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "middleName",
-													"type": "string",
-													"ownerEntity": null,
-													"nonArrayType": "string",
-													"primitive": "string",
-													"index": 5
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "LAST_NAME",
-																	"nullable": false
-																}
-															]
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "lastName",
-													"type": "string",
-													"ownerEntity": null,
-													"nonArrayType": "string",
-													"primitive": "string",
-													"index": 6
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "BIRTH_DATE"
-																}
-															]
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "birthDate",
-													"type": "Date",
-													"ownerEntity": null,
-													"nonArrayType": "Date",
-													"primitive": "Date",
-													"index": 7
-												}
-											],
-											"methodSignatures": [],
-											"constructors": [
-												{
-													"parameters": [],
-													"returnType": "UserAccount"
-												}
-											]
-										},
-										"implementedInterfaceNames": [],
-										"parentEntity": {
-											"type": "SystemGeneratedRow",
-											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
-											"parentClassName": "ImmutableRow",
-											"location": "./ImmutableRow",
-											"isSuperclass": true,
-											"ids": [],
-											"docEntry": {
-												"decorators": [
-													{
-														"name": "MappedSuperclass",
-														"values": []
-													}
-												],
-												"isGenerated": false,
-												"isId": false,
-												"isMappedSuperclass": true,
-												"isTransient": false,
-												"name": "SystemGeneratedRow",
-												"type": "typeof SystemGeneratedRow",
-												"fileImports": {
-													"importMapByObjectAsName": {
-														"MappedSuperclass": {
-															"fileImports": null,
-															"isLocal": false,
-															"objectMapByAsName": {
-																"MappedSuperclass": {
-																	"asName": "MappedSuperclass",
-																	"moduleImport": null,
-																	"sourceName": "MappedSuperclass"
-																}
-															},
-															"path": "@airport/air-control"
-														},
-														"ImmutableRow": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"ImmutableRow": {
-																	"asName": "ImmutableRow",
-																	"moduleImport": null,
-																	"sourceName": "ImmutableRow"
-																}
-															},
-															"path": "./ImmutableRow"
-														}
-													},
-													"importMapByModulePath": {
-														"@airport/air-control": null,
-														"./ImmutableRow": null
-													}
-												},
-												"properties": [],
-												"methodSignatures": [],
-												"constructors": [
-													{
-														"parameters": [],
-														"returnType": "SystemGeneratedRow"
-													}
-												]
-											},
-											"implementedInterfaceNames": [],
-											"parentEntity": {
-												"type": "ImmutableRow",
-												"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
-												"parentClassName": null,
-												"isSuperclass": true,
-												"ids": [],
-												"docEntry": {
-													"decorators": [
-														{
-															"name": "MappedSuperclass",
-															"values": []
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": true,
-													"isTransient": false,
-													"name": "ImmutableRow",
-													"type": "typeof ImmutableRow",
-													"fileImports": {
-														"importMapByObjectAsName": {
-															"Column": {
-																"fileImports": null,
-																"isLocal": false,
-																"objectMapByAsName": {
-																	"Column": {
-																		"asName": "Column",
-																		"moduleImport": null,
-																		"sourceName": "Column"
-																	},
-																	"MappedSuperclass": {
-																		"asName": "MappedSuperclass",
-																		"moduleImport": null,
-																		"sourceName": "MappedSuperclass"
-																	}
-																},
-																"path": "@airport/air-control"
-															},
-															"MappedSuperclass": null,
-															"CreatedAt": {
-																"fileImports": null,
-																"isLocal": true,
-																"objectMapByAsName": {
-																	"CreatedAt": {
-																		"asName": "CreatedAt",
-																		"moduleImport": null,
-																		"sourceName": "CreatedAt"
-																	}
-																},
-																"path": "../../../types/common"
-															}
-														},
-														"importMapByModulePath": {
-															"@airport/air-control": null,
-															"../../../types/common": null
-														}
-													},
-													"properties": [
-														{
-															"decorators": [
-																{
-																	"name": "Column",
-																	"values": [
-																		{
-																			"name": "CREATED_AT"
-																		}
-																	]
-																}
-															],
-															"isGenerated": false,
-															"isId": false,
-															"isMappedSuperclass": false,
-															"isTransient": false,
-															"name": "createdAt",
-															"type": "Date",
-															"ownerEntity": null,
-															"nonArrayType": "Date",
-															"primitive": "Date",
-															"index": 0
-														}
-													],
-													"methodSignatures": [],
-													"constructors": [
-														{
-															"parameters": [],
-															"returnType": "ImmutableRow"
-														}
-													]
-												},
-												"implementedInterfaceNames": [],
-												"project": "@votecube/ecclesia"
-											},
-											"project": "@votecube/ecclesia"
-										}
-									},
+									"nonArrayType": "string",
+									"primitive": "string",
 									"index": 2
 								},
 								{
 									"decorators": [
 										{
-											"name": "ManyToOne",
-											"values": []
-										},
-										{
-											"name": "JoinColumn",
+											"name": "Column",
 											"values": [
 												{
-													"name": "DEVICE_ID",
+													"name": "PASSWORD_HASH",
 													"nullable": false
 												}
 											]
@@ -1183,233 +624,20 @@ export const MAPPED_SUPERCLASS = [
 									"isId": false,
 									"isMappedSuperclass": false,
 									"isTransient": false,
-									"name": "device",
-									"type": "Device",
+									"name": "passwordHash",
+									"type": "string",
 									"ownerEntity": null,
-									"nonArrayType": "Device",
-									"entity": {
-										"type": "Device",
-										"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/device.ts",
-										"parentClassName": "SystemGeneratedRow",
-										"location": "../infrastructure/row/SystemGeneratedRow",
-										"isSuperclass": false,
-										"ids": [
-											{
-												"decorators": [
-													{
-														"name": "GeneratedValue",
-														"values": []
-													},
-													{
-														"name": "Id",
-														"values": []
-													},
-													{
-														"name": "Column",
-														"values": [
-															{
-																"name": "DEVICE_ID"
-															}
-														]
-													}
-												],
-												"isGenerated": true,
-												"isId": true,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "id",
-												"type": "number",
-												"ownerEntity": null,
-												"nonArrayType": "number",
-												"primitive": "number",
-												"index": 0
-											}
-										],
-										"docEntry": {
-											"decorators": [
-												{
-													"name": "Entity",
-													"values": []
-												},
-												{
-													"name": "Table",
-													"values": [
-														{
-															"name": "DEVICES"
-														}
-													]
-												}
-											],
-											"isGenerated": false,
-											"isId": false,
-											"isMappedSuperclass": false,
-											"isTransient": false,
-											"name": "Device",
-											"type": "typeof Device",
-											"fileImports": {
-												"importMapByObjectAsName": {
-													"Column": {
-														"fileImports": null,
-														"isLocal": false,
-														"objectMapByAsName": {
-															"Column": {
-																"asName": "Column",
-																"moduleImport": null,
-																"sourceName": "Column"
-															},
-															"DbNumber": {
-																"asName": "DbNumber",
-																"moduleImport": null,
-																"sourceName": "DbNumber"
-															},
-															"Entity": {
-																"asName": "Entity",
-																"moduleImport": null,
-																"sourceName": "Entity"
-															},
-															"GeneratedValue": {
-																"asName": "GeneratedValue",
-																"moduleImport": null,
-																"sourceName": "GeneratedValue"
-															},
-															"Id": {
-																"asName": "Id",
-																"moduleImport": null,
-																"sourceName": "Id"
-															},
-															"Table": {
-																"asName": "Table",
-																"moduleImport": null,
-																"sourceName": "Table"
-															}
-														},
-														"path": "@airport/air-control"
-													},
-													"DbNumber": null,
-													"Entity": null,
-													"GeneratedValue": null,
-													"Id": null,
-													"Table": null,
-													"Device_Hash": {
-														"fileImports": null,
-														"isLocal": true,
-														"objectMapByAsName": {
-															"Device_Hash": {
-																"asName": "Device_Hash",
-																"moduleImport": null,
-																"sourceName": "Device_Hash"
-															},
-															"Device_Id": {
-																"asName": "Device_Id",
-																"moduleImport": null,
-																"sourceName": "Device_Id"
-															}
-														},
-														"path": "../../types/user/Device"
-													},
-													"Device_Id": null,
-													"SystemGeneratedRow": {
-														"fileImports": null,
-														"isLocal": true,
-														"objectMapByAsName": {
-															"SystemGeneratedRow": {
-																"asName": "SystemGeneratedRow",
-																"moduleImport": null,
-																"sourceName": "SystemGeneratedRow"
-															}
-														},
-														"path": "../infrastructure/row/SystemGeneratedRow"
-													}
-												},
-												"importMapByModulePath": {
-													"@airport/air-control": null,
-													"../../types/user/Device": null,
-													"../infrastructure/row/SystemGeneratedRow": null
-												}
-											},
-											"properties": [
-												{
-													"decorators": [
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "DEVICE_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "DEVICE_HASH",
-																	"nullable": false
-																}
-															]
-														},
-														{
-															"name": "DbNumber",
-															"values": []
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "hash",
-													"type": "string",
-													"ownerEntity": null,
-													"nonArrayType": "string",
-													"primitive": "number",
-													"index": 1
-												}
-											],
-											"methodSignatures": [],
-											"constructors": [
-												{
-													"parameters": [],
-													"returnType": "Device"
-												}
-											]
-										},
-										"implementedInterfaceNames": [],
-										"parentEntity": null
-									},
+									"nonArrayType": "string",
+									"primitive": "string",
 									"index": 3
 								},
 								{
 									"decorators": [
 										{
-											"name": "ManyToOne",
-											"values": []
-										},
-										{
-											"name": "JoinColumn",
+											"name": "Column",
 											"values": [
 												{
-													"name": "APPLICATION_ID",
+													"name": "FIRST_NAME",
 													"nullable": false
 												}
 											]
@@ -1419,300 +647,248 @@ export const MAPPED_SUPERCLASS = [
 									"isId": false,
 									"isMappedSuperclass": false,
 									"isTransient": false,
-									"name": "application",
-									"type": "Application",
+									"name": "firstName",
+									"type": "string",
 									"ownerEntity": null,
-									"nonArrayType": "Application",
-									"entity": {
-										"type": "Application",
-										"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/application.ts",
-										"parentClassName": "SystemGeneratedRow",
-										"location": "../infrastructure/row/SystemGeneratedRow",
-										"isSuperclass": false,
-										"ids": [
-											{
-												"decorators": [
-													{
-														"name": "GeneratedValue",
-														"values": []
-													},
-													{
-														"name": "Id",
-														"values": []
-													},
-													{
-														"name": "Column",
-														"values": [
-															{
-																"name": "APPLICATION_ID"
-															}
-														]
-													}
-												],
-												"isGenerated": true,
-												"isId": true,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "id",
-												"type": "number",
-												"ownerEntity": null,
-												"nonArrayType": "number",
-												"primitive": "number",
-												"index": 0
-											}
-										],
-										"docEntry": {
-											"decorators": [
+									"nonArrayType": "string",
+									"primitive": "string",
+									"index": 4
+								},
+								{
+									"decorators": [
+										{
+											"name": "Column",
+											"values": [
 												{
-													"name": "Entity",
-													"values": []
-												},
-												{
-													"name": "Table",
-													"values": [
-														{
-															"name": "APPLICATIONS"
-														}
-													]
-												}
-											],
-											"isGenerated": false,
-											"isId": false,
-											"isMappedSuperclass": false,
-											"isTransient": false,
-											"name": "Application",
-											"type": "typeof Application",
-											"fileImports": {
-												"importMapByObjectAsName": {
-													"Column": {
-														"fileImports": null,
-														"isLocal": false,
-														"objectMapByAsName": {
-															"Column": {
-																"asName": "Column",
-																"moduleImport": null,
-																"sourceName": "Column"
-															},
-															"DbNumber": {
-																"asName": "DbNumber",
-																"moduleImport": null,
-																"sourceName": "DbNumber"
-															},
-															"DbString": {
-																"asName": "DbString",
-																"moduleImport": null,
-																"sourceName": "DbString"
-															},
-															"Entity": {
-																"asName": "Entity",
-																"moduleImport": null,
-																"sourceName": "Entity"
-															},
-															"GeneratedValue": {
-																"asName": "GeneratedValue",
-																"moduleImport": null,
-																"sourceName": "GeneratedValue"
-															},
-															"Id": {
-																"asName": "Id",
-																"moduleImport": null,
-																"sourceName": "Id"
-															},
-															"Table": {
-																"asName": "Table",
-																"moduleImport": null,
-																"sourceName": "Table"
-															}
-														},
-														"path": "@airport/air-control"
-													},
-													"DbNumber": null,
-													"DbString": null,
-													"Entity": null,
-													"GeneratedValue": null,
-													"Id": null,
-													"Table": null,
-													"Application_Host": {
-														"fileImports": null,
-														"isLocal": true,
-														"objectMapByAsName": {
-															"Application_Host": {
-																"asName": "Application_Host",
-																"moduleImport": null,
-																"sourceName": "Application_Host"
-															},
-															"Application_Id": {
-																"asName": "Application_Id",
-																"moduleImport": null,
-																"sourceName": "Application_Id"
-															},
-															"Application_Port": {
-																"asName": "Application_Port",
-																"moduleImport": null,
-																"sourceName": "Application_Port"
-															}
-														},
-														"path": "../../types/user/Application"
-													},
-													"Application_Id": null,
-													"Application_Port": null,
-													"SystemGeneratedRow": {
-														"fileImports": null,
-														"isLocal": true,
-														"objectMapByAsName": {
-															"SystemGeneratedRow": {
-																"asName": "SystemGeneratedRow",
-																"moduleImport": null,
-																"sourceName": "SystemGeneratedRow"
-															}
-														},
-														"path": "../infrastructure/row/SystemGeneratedRow"
-													}
-												},
-												"importMapByModulePath": {
-													"@airport/air-control": null,
-													"../../types/user/Application": null,
-													"../infrastructure/row/SystemGeneratedRow": null
-												}
-											},
-											"properties": [
-												{
-													"decorators": [
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "APPLICATION_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												},
-												{
-													"decorators": [
-														{
-															"name": "DbString",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "HOST",
-																	"nullable": false
-																}
-															]
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "host",
-													"type": "string",
-													"ownerEntity": null,
-													"nonArrayType": "string",
-													"primitive": "string",
-													"index": 1
-												},
-												{
-													"decorators": [
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "PORT",
-																	"nullable": false
-																}
-															]
-														},
-														{
-															"name": "DbNumber",
-															"values": []
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "port",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 2
-												}
-											],
-											"methodSignatures": [],
-											"constructors": [
-												{
-													"parameters": [],
-													"returnType": "Application"
+													"name": "MIDDLE_NAME"
 												}
 											]
-										},
-										"implementedInterfaceNames": [],
-										"parentEntity": null
-									},
-									"index": 4
+										}
+									],
+									"isGenerated": false,
+									"isId": false,
+									"isMappedSuperclass": false,
+									"isTransient": false,
+									"name": "middleName",
+									"type": "string",
+									"ownerEntity": null,
+									"nonArrayType": "string",
+									"primitive": "string",
+									"index": 5
+								},
+								{
+									"decorators": [
+										{
+											"name": "Column",
+											"values": [
+												{
+													"name": "LAST_NAME",
+													"nullable": false
+												}
+											]
+										}
+									],
+									"isGenerated": false,
+									"isId": false,
+									"isMappedSuperclass": false,
+									"isTransient": false,
+									"name": "lastName",
+									"type": "string",
+									"ownerEntity": null,
+									"nonArrayType": "string",
+									"primitive": "string",
+									"index": 6
+								},
+								{
+									"decorators": [
+										{
+											"name": "Column",
+											"values": [
+												{
+													"name": "BIRTH_DATE"
+												}
+											]
+										}
+									],
+									"isGenerated": false,
+									"isId": false,
+									"isMappedSuperclass": false,
+									"isTransient": false,
+									"name": "birthDate",
+									"type": "Date",
+									"ownerEntity": null,
+									"nonArrayType": "Date",
+									"primitive": "Date",
+									"index": 7
 								}
 							],
 							"methodSignatures": [],
 							"constructors": [
 								{
 									"parameters": [],
-									"returnType": "Actor"
+									"returnType": "UserAccount"
 								}
 							]
 						},
 						"implementedInterfaceNames": [],
-						"parentEntity": null
+						"parentEntity": {
+							"type": "SystemGeneratedRow",
+							"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+							"parentClassName": "ImmutableRow",
+							"location": "./ImmutableRow",
+							"isSuperclass": true,
+							"ids": [],
+							"docEntry": {
+								"decorators": [
+									{
+										"name": "MappedSuperclass",
+										"values": []
+									}
+								],
+								"isGenerated": false,
+								"isId": false,
+								"isMappedSuperclass": true,
+								"isTransient": false,
+								"name": "SystemGeneratedRow",
+								"type": "typeof SystemGeneratedRow",
+								"fileImports": {
+									"importMapByObjectAsName": {
+										"MappedSuperclass": {
+											"fileImports": null,
+											"isLocal": false,
+											"objectMapByAsName": {
+												"MappedSuperclass": {
+													"asName": "MappedSuperclass",
+													"moduleImport": null,
+													"sourceName": "MappedSuperclass"
+												}
+											},
+											"path": "@airport/air-control"
+										},
+										"ImmutableRow": {
+											"fileImports": null,
+											"isLocal": true,
+											"objectMapByAsName": {
+												"ImmutableRow": {
+													"asName": "ImmutableRow",
+													"moduleImport": null,
+													"sourceName": "ImmutableRow"
+												}
+											},
+											"path": "./ImmutableRow"
+										}
+									},
+									"importMapByModulePath": {
+										"@airport/air-control": null,
+										"./ImmutableRow": null
+									}
+								},
+								"properties": [],
+								"methodSignatures": [],
+								"constructors": [
+									{
+										"parameters": [],
+										"returnType": "SystemGeneratedRow"
+									}
+								]
+							},
+							"implementedInterfaceNames": [],
+							"parentEntity": {
+								"type": "ImmutableRow",
+								"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+								"parentClassName": null,
+								"isSuperclass": true,
+								"ids": [],
+								"docEntry": {
+									"decorators": [
+										{
+											"name": "MappedSuperclass",
+											"values": []
+										}
+									],
+									"isGenerated": false,
+									"isId": false,
+									"isMappedSuperclass": true,
+									"isTransient": false,
+									"name": "ImmutableRow",
+									"type": "typeof ImmutableRow",
+									"fileImports": {
+										"importMapByObjectAsName": {
+											"Column": {
+												"fileImports": null,
+												"isLocal": false,
+												"objectMapByAsName": {
+													"Column": {
+														"asName": "Column",
+														"moduleImport": null,
+														"sourceName": "Column"
+													},
+													"MappedSuperclass": {
+														"asName": "MappedSuperclass",
+														"moduleImport": null,
+														"sourceName": "MappedSuperclass"
+													}
+												},
+												"path": "@airport/air-control"
+											},
+											"MappedSuperclass": null,
+											"CreatedAt": {
+												"fileImports": null,
+												"isLocal": true,
+												"objectMapByAsName": {
+													"CreatedAt": {
+														"asName": "CreatedAt",
+														"moduleImport": null,
+														"sourceName": "CreatedAt"
+													}
+												},
+												"path": "../../../types/common"
+											}
+										},
+										"importMapByModulePath": {
+											"@airport/air-control": null,
+											"../../../types/common": null
+										}
+									},
+									"properties": [
+										{
+											"decorators": [
+												{
+													"name": "Column",
+													"values": [
+														{
+															"name": "CREATED_AT"
+														}
+													]
+												}
+											],
+											"isGenerated": false,
+											"isId": false,
+											"isMappedSuperclass": false,
+											"isTransient": false,
+											"name": "createdAt",
+											"type": "Date",
+											"ownerEntity": null,
+											"nonArrayType": "Date",
+											"primitive": "Date",
+											"index": 0
+										}
+									],
+									"methodSignatures": [],
+									"constructors": [
+										{
+											"parameters": [],
+											"returnType": "ImmutableRow"
+										}
+									]
+								},
+								"implementedInterfaceNames": [],
+								"project": "@votecube/ecclesia"
+							},
+							"project": "@votecube/ecclesia"
+						}
 					},
 					"index": 0
-				},
-				{
-					"decorators": [
-						{
-							"name": "ManyToOne",
-							"values": []
-						},
-						{
-							"name": "JoinColumn",
-							"values": [
-								{
-									"name": "USER_ACCOUNT_ID"
-								}
-							]
-						}
-					],
-					"isGenerated": false,
-					"isId": false,
-					"isMappedSuperclass": false,
-					"isTransient": false,
-					"name": "userAccount",
-					"type": "UserAccount",
-					"ownerEntity": null,
-					"nonArrayType": "UserAccount",
-					"entity": null,
-					"index": 1
 				}
 			],
 			"methodSignatures": [],
@@ -1729,7 +905,7 @@ export const MAPPED_SUPERCLASS = [
 	},
 	{
 		"type": "AgeSuitableRow",
-		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/agesuitablerow.ts",
+		"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/agesuitablerow.ts",
 		"parentClassName": "ImmutableActorRow",
 		"location": "./ImmutableActorRow",
 		"isSuperclass": true,
@@ -1834,7 +1010,7 @@ export const MAPPED_SUPERCLASS = [
 		"implementedInterfaceNames": [],
 		"parentEntity": {
 			"type": "ImmutableActorRow",
-			"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
+			"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
 			"parentClassName": "ImmutableRow",
 			"location": "./ImmutableRow",
 			"isSuperclass": true,
@@ -1933,7 +1109,7 @@ export const MAPPED_SUPERCLASS = [
 								"name": "JoinColumn",
 								"values": [
 									{
-										"name": "ACTOR_ID"
+										"name": "USER_ACCOUNT_ID"
 									}
 								]
 							}
@@ -1942,13 +1118,13 @@ export const MAPPED_SUPERCLASS = [
 						"isId": false,
 						"isMappedSuperclass": false,
 						"isTransient": false,
-						"name": "actor",
-						"type": "Actor",
+						"name": "userAccount",
+						"type": "UserAccount",
 						"ownerEntity": null,
-						"nonArrayType": "Actor",
+						"nonArrayType": "UserAccount",
 						"entity": {
-							"type": "Actor",
-							"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/actor.ts",
+							"type": "UserAccount",
+							"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
 							"parentClassName": "SystemGeneratedRow",
 							"location": "../infrastructure/row/SystemGeneratedRow",
 							"isSuperclass": false,
@@ -1967,7 +1143,7 @@ export const MAPPED_SUPERCLASS = [
 											"name": "Column",
 											"values": [
 												{
-													"name": "ACTOR_ID"
+													"name": "USER_ACCOUNT_ID"
 												}
 											]
 										}
@@ -1994,7 +1170,7 @@ export const MAPPED_SUPERCLASS = [
 										"name": "Table",
 										"values": [
 											{
-												"name": "ACTORS"
+												"name": "USER_ACCOUNTS"
 											}
 										]
 									}
@@ -2003,8 +1179,8 @@ export const MAPPED_SUPERCLASS = [
 								"isId": false,
 								"isMappedSuperclass": false,
 								"isTransient": false,
-								"name": "Actor",
-								"type": "typeof Actor",
+								"name": "UserAccount",
+								"type": "typeof UserAccount",
 								"fileImports": {
 									"importMapByObjectAsName": {
 										"Column": {
@@ -2015,11 +1191,6 @@ export const MAPPED_SUPERCLASS = [
 													"asName": "Column",
 													"moduleImport": null,
 													"sourceName": "Column"
-												},
-												"DbNumber": {
-													"asName": "DbNumber",
-													"moduleImport": null,
-													"sourceName": "DbNumber"
 												},
 												"Entity": {
 													"asName": "Entity",
@@ -2036,16 +1207,6 @@ export const MAPPED_SUPERCLASS = [
 													"moduleImport": null,
 													"sourceName": "Id"
 												},
-												"JoinColumn": {
-													"asName": "JoinColumn",
-													"moduleImport": null,
-													"sourceName": "JoinColumn"
-												},
-												"ManyToOne": {
-													"asName": "ManyToOne",
-													"moduleImport": null,
-													"sourceName": "ManyToOne"
-												},
 												"Table": {
 													"asName": "Table",
 													"moduleImport": null,
@@ -2054,31 +1215,64 @@ export const MAPPED_SUPERCLASS = [
 											},
 											"path": "@airport/air-control"
 										},
-										"DbNumber": null,
 										"Entity": null,
 										"GeneratedValue": null,
 										"Id": null,
-										"JoinColumn": null,
-										"ManyToOne": null,
 										"Table": null,
-										"Actor_Hash": {
+										"UserAccount_BirthDate": {
 											"fileImports": null,
 											"isLocal": true,
 											"objectMapByAsName": {
-												"Actor_Hash": {
-													"asName": "Actor_Hash",
+												"UserAccount_BirthDate": {
+													"asName": "UserAccount_BirthDate",
 													"moduleImport": null,
-													"sourceName": "Actor_Hash"
+													"sourceName": "UserAccount_BirthDate"
 												},
-												"Actor_Id": {
-													"asName": "Actor_Id",
+												"UserAccount_Email": {
+													"asName": "UserAccount_Email",
 													"moduleImport": null,
-													"sourceName": "Actor_Id"
+													"sourceName": "UserAccount_Email"
+												},
+												"UserAccount_FirstName": {
+													"asName": "UserAccount_FirstName",
+													"moduleImport": null,
+													"sourceName": "UserAccount_FirstName"
+												},
+												"UserAccount_Id": {
+													"asName": "UserAccount_Id",
+													"moduleImport": null,
+													"sourceName": "UserAccount_Id"
+												},
+												"UserAccount_LastName": {
+													"asName": "UserAccount_LastName",
+													"moduleImport": null,
+													"sourceName": "UserAccount_LastName"
+												},
+												"UserAccount_MiddleName": {
+													"asName": "UserAccount_MiddleName",
+													"moduleImport": null,
+													"sourceName": "UserAccount_MiddleName"
+												},
+												"UserAccount_PasswordHash": {
+													"asName": "UserAccount_PasswordHash",
+													"moduleImport": null,
+													"sourceName": "UserAccount_PasswordHash"
+												},
+												"UserAccount_UserName": {
+													"asName": "UserAccount_UserName",
+													"moduleImport": null,
+													"sourceName": "UserAccount_UserName"
 												}
 											},
-											"path": "../../types/user/Actor"
+											"path": "../../types/user/UserAccount"
 										},
-										"Actor_Id": null,
+										"UserAccount_Email": null,
+										"UserAccount_FirstName": null,
+										"UserAccount_Id": null,
+										"UserAccount_LastName": null,
+										"UserAccount_MiddleName": null,
+										"UserAccount_PasswordHash": null,
+										"UserAccount_UserName": null,
 										"SystemGeneratedRow": {
 											"fileImports": null,
 											"isLocal": true,
@@ -2090,51 +1284,12 @@ export const MAPPED_SUPERCLASS = [
 												}
 											},
 											"path": "../infrastructure/row/SystemGeneratedRow"
-										},
-										"Application": {
-											"fileImports": null,
-											"isLocal": true,
-											"objectMapByAsName": {
-												"Application": {
-													"asName": "Application",
-													"moduleImport": null,
-													"sourceName": "Application"
-												}
-											},
-											"path": "./Application"
-										},
-										"Device": {
-											"fileImports": null,
-											"isLocal": true,
-											"objectMapByAsName": {
-												"Device": {
-													"asName": "Device",
-													"moduleImport": null,
-													"sourceName": "Device"
-												}
-											},
-											"path": "./Device"
-										},
-										"UserAccount": {
-											"fileImports": null,
-											"isLocal": true,
-											"objectMapByAsName": {
-												"UserAccount": {
-													"asName": "UserAccount",
-													"moduleImport": null,
-													"sourceName": "UserAccount"
-												}
-											},
-											"path": "./UserAccount"
 										}
 									},
 									"importMapByModulePath": {
 										"@airport/air-control": null,
-										"../../types/user/Actor": null,
-										"../infrastructure/row/SystemGeneratedRow": null,
-										"./Application": null,
-										"./Device": null,
-										"./UserAccount": null
+										"../../types/user/UserAccount": null,
+										"../infrastructure/row/SystemGeneratedRow": null
 									}
 								},
 								"properties": [
@@ -2152,7 +1307,7 @@ export const MAPPED_SUPERCLASS = [
 												"name": "Column",
 												"values": [
 													{
-														"name": "ACTOR_ID"
+														"name": "USER_ACCOUNT_ID"
 													}
 												]
 											}
@@ -2174,38 +1329,30 @@ export const MAPPED_SUPERCLASS = [
 												"name": "Column",
 												"values": [
 													{
-														"name": "ACTOR_HASH",
+														"name": "USER_NAME",
 														"nullable": false
 													}
 												]
-											},
-											{
-												"name": "DbNumber",
-												"values": []
 											}
 										],
 										"isGenerated": false,
 										"isId": false,
 										"isMappedSuperclass": false,
 										"isTransient": false,
-										"name": "hash",
-										"type": "number",
+										"name": "userName",
+										"type": "string",
 										"ownerEntity": null,
-										"nonArrayType": "number",
-										"primitive": "number",
+										"nonArrayType": "string",
+										"primitive": "string",
 										"index": 1
 									},
 									{
 										"decorators": [
 											{
-												"name": "ManyToOne",
-												"values": []
-											},
-											{
-												"name": "JoinColumn",
+												"name": "Column",
 												"values": [
 													{
-														"name": "USER_ACCOUNT_ID",
+														"name": "EMAIL",
 														"nullable": false
 													}
 												]
@@ -2215,550 +1362,20 @@ export const MAPPED_SUPERCLASS = [
 										"isId": false,
 										"isMappedSuperclass": false,
 										"isTransient": false,
-										"name": "userAccount",
-										"type": "UserAccount",
+										"name": "email",
+										"type": "string",
 										"ownerEntity": null,
-										"nonArrayType": "UserAccount",
-										"entity": {
-											"type": "UserAccount",
-											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
-											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/row/SystemGeneratedRow",
-											"isSuperclass": false,
-											"ids": [
-												{
-													"decorators": [
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "USER_ACCOUNT_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												}
-											],
-											"docEntry": {
-												"decorators": [
-													{
-														"name": "Entity",
-														"values": []
-													},
-													{
-														"name": "Table",
-														"values": [
-															{
-																"name": "USER_ACCOUNTS"
-															}
-														]
-													}
-												],
-												"isGenerated": false,
-												"isId": false,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "UserAccount",
-												"type": "typeof UserAccount",
-												"fileImports": {
-													"importMapByObjectAsName": {
-														"Column": {
-															"fileImports": null,
-															"isLocal": false,
-															"objectMapByAsName": {
-																"Column": {
-																	"asName": "Column",
-																	"moduleImport": null,
-																	"sourceName": "Column"
-																},
-																"Entity": {
-																	"asName": "Entity",
-																	"moduleImport": null,
-																	"sourceName": "Entity"
-																},
-																"GeneratedValue": {
-																	"asName": "GeneratedValue",
-																	"moduleImport": null,
-																	"sourceName": "GeneratedValue"
-																},
-																"Id": {
-																	"asName": "Id",
-																	"moduleImport": null,
-																	"sourceName": "Id"
-																},
-																"Table": {
-																	"asName": "Table",
-																	"moduleImport": null,
-																	"sourceName": "Table"
-																}
-															},
-															"path": "@airport/air-control"
-														},
-														"Entity": null,
-														"GeneratedValue": null,
-														"Id": null,
-														"Table": null,
-														"UserAccount_BirthDate": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"UserAccount_BirthDate": {
-																	"asName": "UserAccount_BirthDate",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_BirthDate"
-																},
-																"UserAccount_Email": {
-																	"asName": "UserAccount_Email",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_Email"
-																},
-																"UserAccount_FirstName": {
-																	"asName": "UserAccount_FirstName",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_FirstName"
-																},
-																"UserAccount_Id": {
-																	"asName": "UserAccount_Id",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_Id"
-																},
-																"UserAccount_LastName": {
-																	"asName": "UserAccount_LastName",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_LastName"
-																},
-																"UserAccount_MiddleName": {
-																	"asName": "UserAccount_MiddleName",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_MiddleName"
-																},
-																"UserAccount_PasswordHash": {
-																	"asName": "UserAccount_PasswordHash",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_PasswordHash"
-																},
-																"UserAccount_UserName": {
-																	"asName": "UserAccount_UserName",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_UserName"
-																}
-															},
-															"path": "../../types/user/UserAccount"
-														},
-														"UserAccount_Email": null,
-														"UserAccount_FirstName": null,
-														"UserAccount_Id": null,
-														"UserAccount_LastName": null,
-														"UserAccount_MiddleName": null,
-														"UserAccount_PasswordHash": null,
-														"UserAccount_UserName": null,
-														"SystemGeneratedRow": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"SystemGeneratedRow": {
-																	"asName": "SystemGeneratedRow",
-																	"moduleImport": null,
-																	"sourceName": "SystemGeneratedRow"
-																}
-															},
-															"path": "../infrastructure/row/SystemGeneratedRow"
-														}
-													},
-													"importMapByModulePath": {
-														"@airport/air-control": null,
-														"../../types/user/UserAccount": null,
-														"../infrastructure/row/SystemGeneratedRow": null
-													}
-												},
-												"properties": [
-													{
-														"decorators": [
-															{
-																"name": "Id",
-																"values": []
-															},
-															{
-																"name": "GeneratedValue",
-																"values": []
-															},
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "USER_ACCOUNT_ID"
-																	}
-																]
-															}
-														],
-														"isGenerated": true,
-														"isId": true,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "id",
-														"type": "number",
-														"ownerEntity": null,
-														"nonArrayType": "number",
-														"primitive": "number",
-														"index": 0
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "USER_NAME",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "userName",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 1
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "EMAIL",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "email",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 2
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "PASSWORD_HASH",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "passwordHash",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 3
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "FIRST_NAME",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "firstName",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 4
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "MIDDLE_NAME"
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "middleName",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 5
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "LAST_NAME",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "lastName",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 6
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "BIRTH_DATE"
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "birthDate",
-														"type": "Date",
-														"ownerEntity": null,
-														"nonArrayType": "Date",
-														"primitive": "Date",
-														"index": 7
-													}
-												],
-												"methodSignatures": [],
-												"constructors": [
-													{
-														"parameters": [],
-														"returnType": "UserAccount"
-													}
-												]
-											},
-											"implementedInterfaceNames": [],
-											"parentEntity": {
-												"type": "SystemGeneratedRow",
-												"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
-												"parentClassName": "ImmutableRow",
-												"location": "./ImmutableRow",
-												"isSuperclass": true,
-												"ids": [],
-												"docEntry": {
-													"decorators": [
-														{
-															"name": "MappedSuperclass",
-															"values": []
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": true,
-													"isTransient": false,
-													"name": "SystemGeneratedRow",
-													"type": "typeof SystemGeneratedRow",
-													"fileImports": {
-														"importMapByObjectAsName": {
-															"MappedSuperclass": {
-																"fileImports": null,
-																"isLocal": false,
-																"objectMapByAsName": {
-																	"MappedSuperclass": {
-																		"asName": "MappedSuperclass",
-																		"moduleImport": null,
-																		"sourceName": "MappedSuperclass"
-																	}
-																},
-																"path": "@airport/air-control"
-															},
-															"ImmutableRow": {
-																"fileImports": null,
-																"isLocal": true,
-																"objectMapByAsName": {
-																	"ImmutableRow": {
-																		"asName": "ImmutableRow",
-																		"moduleImport": null,
-																		"sourceName": "ImmutableRow"
-																	}
-																},
-																"path": "./ImmutableRow"
-															}
-														},
-														"importMapByModulePath": {
-															"@airport/air-control": null,
-															"./ImmutableRow": null
-														}
-													},
-													"properties": [],
-													"methodSignatures": [],
-													"constructors": [
-														{
-															"parameters": [],
-															"returnType": "SystemGeneratedRow"
-														}
-													]
-												},
-												"implementedInterfaceNames": [],
-												"parentEntity": {
-													"type": "ImmutableRow",
-													"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
-													"parentClassName": null,
-													"isSuperclass": true,
-													"ids": [],
-													"docEntry": {
-														"decorators": [
-															{
-																"name": "MappedSuperclass",
-																"values": []
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": true,
-														"isTransient": false,
-														"name": "ImmutableRow",
-														"type": "typeof ImmutableRow",
-														"fileImports": {
-															"importMapByObjectAsName": {
-																"Column": {
-																	"fileImports": null,
-																	"isLocal": false,
-																	"objectMapByAsName": {
-																		"Column": {
-																			"asName": "Column",
-																			"moduleImport": null,
-																			"sourceName": "Column"
-																		},
-																		"MappedSuperclass": {
-																			"asName": "MappedSuperclass",
-																			"moduleImport": null,
-																			"sourceName": "MappedSuperclass"
-																		}
-																	},
-																	"path": "@airport/air-control"
-																},
-																"MappedSuperclass": null,
-																"CreatedAt": {
-																	"fileImports": null,
-																	"isLocal": true,
-																	"objectMapByAsName": {
-																		"CreatedAt": {
-																			"asName": "CreatedAt",
-																			"moduleImport": null,
-																			"sourceName": "CreatedAt"
-																		}
-																	},
-																	"path": "../../../types/common"
-																}
-															},
-															"importMapByModulePath": {
-																"@airport/air-control": null,
-																"../../../types/common": null
-															}
-														},
-														"properties": [
-															{
-																"decorators": [
-																	{
-																		"name": "Column",
-																		"values": [
-																			{
-																				"name": "CREATED_AT"
-																			}
-																		]
-																	}
-																],
-																"isGenerated": false,
-																"isId": false,
-																"isMappedSuperclass": false,
-																"isTransient": false,
-																"name": "createdAt",
-																"type": "Date",
-																"ownerEntity": null,
-																"nonArrayType": "Date",
-																"primitive": "Date",
-																"index": 0
-															}
-														],
-														"methodSignatures": [],
-														"constructors": [
-															{
-																"parameters": [],
-																"returnType": "ImmutableRow"
-															}
-														]
-													},
-													"implementedInterfaceNames": [],
-													"project": "@votecube/ecclesia"
-												},
-												"project": "@votecube/ecclesia"
-											}
-										},
+										"nonArrayType": "string",
+										"primitive": "string",
 										"index": 2
 									},
 									{
 										"decorators": [
 											{
-												"name": "ManyToOne",
-												"values": []
-											},
-											{
-												"name": "JoinColumn",
+												"name": "Column",
 												"values": [
 													{
-														"name": "DEVICE_ID",
+														"name": "PASSWORD_HASH",
 														"nullable": false
 													}
 												]
@@ -2768,233 +1385,20 @@ export const MAPPED_SUPERCLASS = [
 										"isId": false,
 										"isMappedSuperclass": false,
 										"isTransient": false,
-										"name": "device",
-										"type": "Device",
+										"name": "passwordHash",
+										"type": "string",
 										"ownerEntity": null,
-										"nonArrayType": "Device",
-										"entity": {
-											"type": "Device",
-											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/device.ts",
-											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/row/SystemGeneratedRow",
-											"isSuperclass": false,
-											"ids": [
-												{
-													"decorators": [
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "DEVICE_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												}
-											],
-											"docEntry": {
-												"decorators": [
-													{
-														"name": "Entity",
-														"values": []
-													},
-													{
-														"name": "Table",
-														"values": [
-															{
-																"name": "DEVICES"
-															}
-														]
-													}
-												],
-												"isGenerated": false,
-												"isId": false,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "Device",
-												"type": "typeof Device",
-												"fileImports": {
-													"importMapByObjectAsName": {
-														"Column": {
-															"fileImports": null,
-															"isLocal": false,
-															"objectMapByAsName": {
-																"Column": {
-																	"asName": "Column",
-																	"moduleImport": null,
-																	"sourceName": "Column"
-																},
-																"DbNumber": {
-																	"asName": "DbNumber",
-																	"moduleImport": null,
-																	"sourceName": "DbNumber"
-																},
-																"Entity": {
-																	"asName": "Entity",
-																	"moduleImport": null,
-																	"sourceName": "Entity"
-																},
-																"GeneratedValue": {
-																	"asName": "GeneratedValue",
-																	"moduleImport": null,
-																	"sourceName": "GeneratedValue"
-																},
-																"Id": {
-																	"asName": "Id",
-																	"moduleImport": null,
-																	"sourceName": "Id"
-																},
-																"Table": {
-																	"asName": "Table",
-																	"moduleImport": null,
-																	"sourceName": "Table"
-																}
-															},
-															"path": "@airport/air-control"
-														},
-														"DbNumber": null,
-														"Entity": null,
-														"GeneratedValue": null,
-														"Id": null,
-														"Table": null,
-														"Device_Hash": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"Device_Hash": {
-																	"asName": "Device_Hash",
-																	"moduleImport": null,
-																	"sourceName": "Device_Hash"
-																},
-																"Device_Id": {
-																	"asName": "Device_Id",
-																	"moduleImport": null,
-																	"sourceName": "Device_Id"
-																}
-															},
-															"path": "../../types/user/Device"
-														},
-														"Device_Id": null,
-														"SystemGeneratedRow": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"SystemGeneratedRow": {
-																	"asName": "SystemGeneratedRow",
-																	"moduleImport": null,
-																	"sourceName": "SystemGeneratedRow"
-																}
-															},
-															"path": "../infrastructure/row/SystemGeneratedRow"
-														}
-													},
-													"importMapByModulePath": {
-														"@airport/air-control": null,
-														"../../types/user/Device": null,
-														"../infrastructure/row/SystemGeneratedRow": null
-													}
-												},
-												"properties": [
-													{
-														"decorators": [
-															{
-																"name": "GeneratedValue",
-																"values": []
-															},
-															{
-																"name": "Id",
-																"values": []
-															},
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "DEVICE_ID"
-																	}
-																]
-															}
-														],
-														"isGenerated": true,
-														"isId": true,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "id",
-														"type": "number",
-														"ownerEntity": null,
-														"nonArrayType": "number",
-														"primitive": "number",
-														"index": 0
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "DEVICE_HASH",
-																		"nullable": false
-																	}
-																]
-															},
-															{
-																"name": "DbNumber",
-																"values": []
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "hash",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "number",
-														"index": 1
-													}
-												],
-												"methodSignatures": [],
-												"constructors": [
-													{
-														"parameters": [],
-														"returnType": "Device"
-													}
-												]
-											},
-											"implementedInterfaceNames": [],
-											"parentEntity": null
-										},
+										"nonArrayType": "string",
+										"primitive": "string",
 										"index": 3
 									},
 									{
 										"decorators": [
 											{
-												"name": "ManyToOne",
-												"values": []
-											},
-											{
-												"name": "JoinColumn",
+												"name": "Column",
 												"values": [
 													{
-														"name": "APPLICATION_ID",
+														"name": "FIRST_NAME",
 														"nullable": false
 													}
 												]
@@ -3004,300 +1408,248 @@ export const MAPPED_SUPERCLASS = [
 										"isId": false,
 										"isMappedSuperclass": false,
 										"isTransient": false,
-										"name": "application",
-										"type": "Application",
+										"name": "firstName",
+										"type": "string",
 										"ownerEntity": null,
-										"nonArrayType": "Application",
-										"entity": {
-											"type": "Application",
-											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/application.ts",
-											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/row/SystemGeneratedRow",
-											"isSuperclass": false,
-											"ids": [
-												{
-													"decorators": [
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "APPLICATION_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												}
-											],
-											"docEntry": {
-												"decorators": [
+										"nonArrayType": "string",
+										"primitive": "string",
+										"index": 4
+									},
+									{
+										"decorators": [
+											{
+												"name": "Column",
+												"values": [
 													{
-														"name": "Entity",
-														"values": []
-													},
-													{
-														"name": "Table",
-														"values": [
-															{
-																"name": "APPLICATIONS"
-															}
-														]
-													}
-												],
-												"isGenerated": false,
-												"isId": false,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "Application",
-												"type": "typeof Application",
-												"fileImports": {
-													"importMapByObjectAsName": {
-														"Column": {
-															"fileImports": null,
-															"isLocal": false,
-															"objectMapByAsName": {
-																"Column": {
-																	"asName": "Column",
-																	"moduleImport": null,
-																	"sourceName": "Column"
-																},
-																"DbNumber": {
-																	"asName": "DbNumber",
-																	"moduleImport": null,
-																	"sourceName": "DbNumber"
-																},
-																"DbString": {
-																	"asName": "DbString",
-																	"moduleImport": null,
-																	"sourceName": "DbString"
-																},
-																"Entity": {
-																	"asName": "Entity",
-																	"moduleImport": null,
-																	"sourceName": "Entity"
-																},
-																"GeneratedValue": {
-																	"asName": "GeneratedValue",
-																	"moduleImport": null,
-																	"sourceName": "GeneratedValue"
-																},
-																"Id": {
-																	"asName": "Id",
-																	"moduleImport": null,
-																	"sourceName": "Id"
-																},
-																"Table": {
-																	"asName": "Table",
-																	"moduleImport": null,
-																	"sourceName": "Table"
-																}
-															},
-															"path": "@airport/air-control"
-														},
-														"DbNumber": null,
-														"DbString": null,
-														"Entity": null,
-														"GeneratedValue": null,
-														"Id": null,
-														"Table": null,
-														"Application_Host": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"Application_Host": {
-																	"asName": "Application_Host",
-																	"moduleImport": null,
-																	"sourceName": "Application_Host"
-																},
-																"Application_Id": {
-																	"asName": "Application_Id",
-																	"moduleImport": null,
-																	"sourceName": "Application_Id"
-																},
-																"Application_Port": {
-																	"asName": "Application_Port",
-																	"moduleImport": null,
-																	"sourceName": "Application_Port"
-																}
-															},
-															"path": "../../types/user/Application"
-														},
-														"Application_Id": null,
-														"Application_Port": null,
-														"SystemGeneratedRow": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"SystemGeneratedRow": {
-																	"asName": "SystemGeneratedRow",
-																	"moduleImport": null,
-																	"sourceName": "SystemGeneratedRow"
-																}
-															},
-															"path": "../infrastructure/row/SystemGeneratedRow"
-														}
-													},
-													"importMapByModulePath": {
-														"@airport/air-control": null,
-														"../../types/user/Application": null,
-														"../infrastructure/row/SystemGeneratedRow": null
-													}
-												},
-												"properties": [
-													{
-														"decorators": [
-															{
-																"name": "GeneratedValue",
-																"values": []
-															},
-															{
-																"name": "Id",
-																"values": []
-															},
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "APPLICATION_ID"
-																	}
-																]
-															}
-														],
-														"isGenerated": true,
-														"isId": true,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "id",
-														"type": "number",
-														"ownerEntity": null,
-														"nonArrayType": "number",
-														"primitive": "number",
-														"index": 0
-													},
-													{
-														"decorators": [
-															{
-																"name": "DbString",
-																"values": []
-															},
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "HOST",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "host",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 1
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "PORT",
-																		"nullable": false
-																	}
-																]
-															},
-															{
-																"name": "DbNumber",
-																"values": []
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "port",
-														"type": "number",
-														"ownerEntity": null,
-														"nonArrayType": "number",
-														"primitive": "number",
-														"index": 2
-													}
-												],
-												"methodSignatures": [],
-												"constructors": [
-													{
-														"parameters": [],
-														"returnType": "Application"
+														"name": "MIDDLE_NAME"
 													}
 												]
-											},
-											"implementedInterfaceNames": [],
-											"parentEntity": null
-										},
-										"index": 4
+											}
+										],
+										"isGenerated": false,
+										"isId": false,
+										"isMappedSuperclass": false,
+										"isTransient": false,
+										"name": "middleName",
+										"type": "string",
+										"ownerEntity": null,
+										"nonArrayType": "string",
+										"primitive": "string",
+										"index": 5
+									},
+									{
+										"decorators": [
+											{
+												"name": "Column",
+												"values": [
+													{
+														"name": "LAST_NAME",
+														"nullable": false
+													}
+												]
+											}
+										],
+										"isGenerated": false,
+										"isId": false,
+										"isMappedSuperclass": false,
+										"isTransient": false,
+										"name": "lastName",
+										"type": "string",
+										"ownerEntity": null,
+										"nonArrayType": "string",
+										"primitive": "string",
+										"index": 6
+									},
+									{
+										"decorators": [
+											{
+												"name": "Column",
+												"values": [
+													{
+														"name": "BIRTH_DATE"
+													}
+												]
+											}
+										],
+										"isGenerated": false,
+										"isId": false,
+										"isMappedSuperclass": false,
+										"isTransient": false,
+										"name": "birthDate",
+										"type": "Date",
+										"ownerEntity": null,
+										"nonArrayType": "Date",
+										"primitive": "Date",
+										"index": 7
 									}
 								],
 								"methodSignatures": [],
 								"constructors": [
 									{
 										"parameters": [],
-										"returnType": "Actor"
+										"returnType": "UserAccount"
 									}
 								]
 							},
 							"implementedInterfaceNames": [],
-							"parentEntity": null
+							"parentEntity": {
+								"type": "SystemGeneratedRow",
+								"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+								"parentClassName": "ImmutableRow",
+								"location": "./ImmutableRow",
+								"isSuperclass": true,
+								"ids": [],
+								"docEntry": {
+									"decorators": [
+										{
+											"name": "MappedSuperclass",
+											"values": []
+										}
+									],
+									"isGenerated": false,
+									"isId": false,
+									"isMappedSuperclass": true,
+									"isTransient": false,
+									"name": "SystemGeneratedRow",
+									"type": "typeof SystemGeneratedRow",
+									"fileImports": {
+										"importMapByObjectAsName": {
+											"MappedSuperclass": {
+												"fileImports": null,
+												"isLocal": false,
+												"objectMapByAsName": {
+													"MappedSuperclass": {
+														"asName": "MappedSuperclass",
+														"moduleImport": null,
+														"sourceName": "MappedSuperclass"
+													}
+												},
+												"path": "@airport/air-control"
+											},
+											"ImmutableRow": {
+												"fileImports": null,
+												"isLocal": true,
+												"objectMapByAsName": {
+													"ImmutableRow": {
+														"asName": "ImmutableRow",
+														"moduleImport": null,
+														"sourceName": "ImmutableRow"
+													}
+												},
+												"path": "./ImmutableRow"
+											}
+										},
+										"importMapByModulePath": {
+											"@airport/air-control": null,
+											"./ImmutableRow": null
+										}
+									},
+									"properties": [],
+									"methodSignatures": [],
+									"constructors": [
+										{
+											"parameters": [],
+											"returnType": "SystemGeneratedRow"
+										}
+									]
+								},
+								"implementedInterfaceNames": [],
+								"parentEntity": {
+									"type": "ImmutableRow",
+									"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+									"parentClassName": null,
+									"isSuperclass": true,
+									"ids": [],
+									"docEntry": {
+										"decorators": [
+											{
+												"name": "MappedSuperclass",
+												"values": []
+											}
+										],
+										"isGenerated": false,
+										"isId": false,
+										"isMappedSuperclass": true,
+										"isTransient": false,
+										"name": "ImmutableRow",
+										"type": "typeof ImmutableRow",
+										"fileImports": {
+											"importMapByObjectAsName": {
+												"Column": {
+													"fileImports": null,
+													"isLocal": false,
+													"objectMapByAsName": {
+														"Column": {
+															"asName": "Column",
+															"moduleImport": null,
+															"sourceName": "Column"
+														},
+														"MappedSuperclass": {
+															"asName": "MappedSuperclass",
+															"moduleImport": null,
+															"sourceName": "MappedSuperclass"
+														}
+													},
+													"path": "@airport/air-control"
+												},
+												"MappedSuperclass": null,
+												"CreatedAt": {
+													"fileImports": null,
+													"isLocal": true,
+													"objectMapByAsName": {
+														"CreatedAt": {
+															"asName": "CreatedAt",
+															"moduleImport": null,
+															"sourceName": "CreatedAt"
+														}
+													},
+													"path": "../../../types/common"
+												}
+											},
+											"importMapByModulePath": {
+												"@airport/air-control": null,
+												"../../../types/common": null
+											}
+										},
+										"properties": [
+											{
+												"decorators": [
+													{
+														"name": "Column",
+														"values": [
+															{
+																"name": "CREATED_AT"
+															}
+														]
+													}
+												],
+												"isGenerated": false,
+												"isId": false,
+												"isMappedSuperclass": false,
+												"isTransient": false,
+												"name": "createdAt",
+												"type": "Date",
+												"ownerEntity": null,
+												"nonArrayType": "Date",
+												"primitive": "Date",
+												"index": 0
+											}
+										],
+										"methodSignatures": [],
+										"constructors": [
+											{
+												"parameters": [],
+												"returnType": "ImmutableRow"
+											}
+										]
+									},
+									"implementedInterfaceNames": [],
+									"project": "@votecube/ecclesia"
+								},
+								"project": "@votecube/ecclesia"
+							}
 						},
 						"index": 0
-					},
-					{
-						"decorators": [
-							{
-								"name": "ManyToOne",
-								"values": []
-							},
-							{
-								"name": "JoinColumn",
-								"values": [
-									{
-										"name": "USER_ACCOUNT_ID"
-									}
-								]
-							}
-						],
-						"isGenerated": false,
-						"isId": false,
-						"isMappedSuperclass": false,
-						"isTransient": false,
-						"name": "userAccount",
-						"type": "UserAccount",
-						"ownerEntity": null,
-						"nonArrayType": "UserAccount",
-						"entity": null,
-						"index": 1
 					}
 				],
 				"methodSignatures": [],
@@ -3316,7 +1668,7 @@ export const MAPPED_SUPERCLASS = [
 	},
 	{
 		"type": "MutableActorRow",
-		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutableactorrow.ts",
+		"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutableactorrow.ts",
 		"parentClassName": "ImmutableActorRow",
 		"location": "./ImmutableActorRow",
 		"isSuperclass": true,
@@ -3420,7 +1772,7 @@ export const MAPPED_SUPERCLASS = [
 		"implementedInterfaceNames": [],
 		"parentEntity": {
 			"type": "ImmutableActorRow",
-			"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
+			"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
 			"parentClassName": "ImmutableRow",
 			"location": "./ImmutableRow",
 			"isSuperclass": true,
@@ -3519,7 +1871,7 @@ export const MAPPED_SUPERCLASS = [
 								"name": "JoinColumn",
 								"values": [
 									{
-										"name": "ACTOR_ID"
+										"name": "USER_ACCOUNT_ID"
 									}
 								]
 							}
@@ -3528,13 +1880,13 @@ export const MAPPED_SUPERCLASS = [
 						"isId": false,
 						"isMappedSuperclass": false,
 						"isTransient": false,
-						"name": "actor",
-						"type": "Actor",
+						"name": "userAccount",
+						"type": "UserAccount",
 						"ownerEntity": null,
-						"nonArrayType": "Actor",
+						"nonArrayType": "UserAccount",
 						"entity": {
-							"type": "Actor",
-							"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/actor.ts",
+							"type": "UserAccount",
+							"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
 							"parentClassName": "SystemGeneratedRow",
 							"location": "../infrastructure/row/SystemGeneratedRow",
 							"isSuperclass": false,
@@ -3553,7 +1905,7 @@ export const MAPPED_SUPERCLASS = [
 											"name": "Column",
 											"values": [
 												{
-													"name": "ACTOR_ID"
+													"name": "USER_ACCOUNT_ID"
 												}
 											]
 										}
@@ -3580,7 +1932,7 @@ export const MAPPED_SUPERCLASS = [
 										"name": "Table",
 										"values": [
 											{
-												"name": "ACTORS"
+												"name": "USER_ACCOUNTS"
 											}
 										]
 									}
@@ -3589,8 +1941,8 @@ export const MAPPED_SUPERCLASS = [
 								"isId": false,
 								"isMappedSuperclass": false,
 								"isTransient": false,
-								"name": "Actor",
-								"type": "typeof Actor",
+								"name": "UserAccount",
+								"type": "typeof UserAccount",
 								"fileImports": {
 									"importMapByObjectAsName": {
 										"Column": {
@@ -3601,11 +1953,6 @@ export const MAPPED_SUPERCLASS = [
 													"asName": "Column",
 													"moduleImport": null,
 													"sourceName": "Column"
-												},
-												"DbNumber": {
-													"asName": "DbNumber",
-													"moduleImport": null,
-													"sourceName": "DbNumber"
 												},
 												"Entity": {
 													"asName": "Entity",
@@ -3622,16 +1969,6 @@ export const MAPPED_SUPERCLASS = [
 													"moduleImport": null,
 													"sourceName": "Id"
 												},
-												"JoinColumn": {
-													"asName": "JoinColumn",
-													"moduleImport": null,
-													"sourceName": "JoinColumn"
-												},
-												"ManyToOne": {
-													"asName": "ManyToOne",
-													"moduleImport": null,
-													"sourceName": "ManyToOne"
-												},
 												"Table": {
 													"asName": "Table",
 													"moduleImport": null,
@@ -3640,31 +1977,64 @@ export const MAPPED_SUPERCLASS = [
 											},
 											"path": "@airport/air-control"
 										},
-										"DbNumber": null,
 										"Entity": null,
 										"GeneratedValue": null,
 										"Id": null,
-										"JoinColumn": null,
-										"ManyToOne": null,
 										"Table": null,
-										"Actor_Hash": {
+										"UserAccount_BirthDate": {
 											"fileImports": null,
 											"isLocal": true,
 											"objectMapByAsName": {
-												"Actor_Hash": {
-													"asName": "Actor_Hash",
+												"UserAccount_BirthDate": {
+													"asName": "UserAccount_BirthDate",
 													"moduleImport": null,
-													"sourceName": "Actor_Hash"
+													"sourceName": "UserAccount_BirthDate"
 												},
-												"Actor_Id": {
-													"asName": "Actor_Id",
+												"UserAccount_Email": {
+													"asName": "UserAccount_Email",
 													"moduleImport": null,
-													"sourceName": "Actor_Id"
+													"sourceName": "UserAccount_Email"
+												},
+												"UserAccount_FirstName": {
+													"asName": "UserAccount_FirstName",
+													"moduleImport": null,
+													"sourceName": "UserAccount_FirstName"
+												},
+												"UserAccount_Id": {
+													"asName": "UserAccount_Id",
+													"moduleImport": null,
+													"sourceName": "UserAccount_Id"
+												},
+												"UserAccount_LastName": {
+													"asName": "UserAccount_LastName",
+													"moduleImport": null,
+													"sourceName": "UserAccount_LastName"
+												},
+												"UserAccount_MiddleName": {
+													"asName": "UserAccount_MiddleName",
+													"moduleImport": null,
+													"sourceName": "UserAccount_MiddleName"
+												},
+												"UserAccount_PasswordHash": {
+													"asName": "UserAccount_PasswordHash",
+													"moduleImport": null,
+													"sourceName": "UserAccount_PasswordHash"
+												},
+												"UserAccount_UserName": {
+													"asName": "UserAccount_UserName",
+													"moduleImport": null,
+													"sourceName": "UserAccount_UserName"
 												}
 											},
-											"path": "../../types/user/Actor"
+											"path": "../../types/user/UserAccount"
 										},
-										"Actor_Id": null,
+										"UserAccount_Email": null,
+										"UserAccount_FirstName": null,
+										"UserAccount_Id": null,
+										"UserAccount_LastName": null,
+										"UserAccount_MiddleName": null,
+										"UserAccount_PasswordHash": null,
+										"UserAccount_UserName": null,
 										"SystemGeneratedRow": {
 											"fileImports": null,
 											"isLocal": true,
@@ -3676,51 +2046,12 @@ export const MAPPED_SUPERCLASS = [
 												}
 											},
 											"path": "../infrastructure/row/SystemGeneratedRow"
-										},
-										"Application": {
-											"fileImports": null,
-											"isLocal": true,
-											"objectMapByAsName": {
-												"Application": {
-													"asName": "Application",
-													"moduleImport": null,
-													"sourceName": "Application"
-												}
-											},
-											"path": "./Application"
-										},
-										"Device": {
-											"fileImports": null,
-											"isLocal": true,
-											"objectMapByAsName": {
-												"Device": {
-													"asName": "Device",
-													"moduleImport": null,
-													"sourceName": "Device"
-												}
-											},
-											"path": "./Device"
-										},
-										"UserAccount": {
-											"fileImports": null,
-											"isLocal": true,
-											"objectMapByAsName": {
-												"UserAccount": {
-													"asName": "UserAccount",
-													"moduleImport": null,
-													"sourceName": "UserAccount"
-												}
-											},
-											"path": "./UserAccount"
 										}
 									},
 									"importMapByModulePath": {
 										"@airport/air-control": null,
-										"../../types/user/Actor": null,
-										"../infrastructure/row/SystemGeneratedRow": null,
-										"./Application": null,
-										"./Device": null,
-										"./UserAccount": null
+										"../../types/user/UserAccount": null,
+										"../infrastructure/row/SystemGeneratedRow": null
 									}
 								},
 								"properties": [
@@ -3738,7 +2069,7 @@ export const MAPPED_SUPERCLASS = [
 												"name": "Column",
 												"values": [
 													{
-														"name": "ACTOR_ID"
+														"name": "USER_ACCOUNT_ID"
 													}
 												]
 											}
@@ -3760,38 +2091,30 @@ export const MAPPED_SUPERCLASS = [
 												"name": "Column",
 												"values": [
 													{
-														"name": "ACTOR_HASH",
+														"name": "USER_NAME",
 														"nullable": false
 													}
 												]
-											},
-											{
-												"name": "DbNumber",
-												"values": []
 											}
 										],
 										"isGenerated": false,
 										"isId": false,
 										"isMappedSuperclass": false,
 										"isTransient": false,
-										"name": "hash",
-										"type": "number",
+										"name": "userName",
+										"type": "string",
 										"ownerEntity": null,
-										"nonArrayType": "number",
-										"primitive": "number",
+										"nonArrayType": "string",
+										"primitive": "string",
 										"index": 1
 									},
 									{
 										"decorators": [
 											{
-												"name": "ManyToOne",
-												"values": []
-											},
-											{
-												"name": "JoinColumn",
+												"name": "Column",
 												"values": [
 													{
-														"name": "USER_ACCOUNT_ID",
+														"name": "EMAIL",
 														"nullable": false
 													}
 												]
@@ -3801,550 +2124,20 @@ export const MAPPED_SUPERCLASS = [
 										"isId": false,
 										"isMappedSuperclass": false,
 										"isTransient": false,
-										"name": "userAccount",
-										"type": "UserAccount",
+										"name": "email",
+										"type": "string",
 										"ownerEntity": null,
-										"nonArrayType": "UserAccount",
-										"entity": {
-											"type": "UserAccount",
-											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
-											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/row/SystemGeneratedRow",
-											"isSuperclass": false,
-											"ids": [
-												{
-													"decorators": [
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "USER_ACCOUNT_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												}
-											],
-											"docEntry": {
-												"decorators": [
-													{
-														"name": "Entity",
-														"values": []
-													},
-													{
-														"name": "Table",
-														"values": [
-															{
-																"name": "USER_ACCOUNTS"
-															}
-														]
-													}
-												],
-												"isGenerated": false,
-												"isId": false,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "UserAccount",
-												"type": "typeof UserAccount",
-												"fileImports": {
-													"importMapByObjectAsName": {
-														"Column": {
-															"fileImports": null,
-															"isLocal": false,
-															"objectMapByAsName": {
-																"Column": {
-																	"asName": "Column",
-																	"moduleImport": null,
-																	"sourceName": "Column"
-																},
-																"Entity": {
-																	"asName": "Entity",
-																	"moduleImport": null,
-																	"sourceName": "Entity"
-																},
-																"GeneratedValue": {
-																	"asName": "GeneratedValue",
-																	"moduleImport": null,
-																	"sourceName": "GeneratedValue"
-																},
-																"Id": {
-																	"asName": "Id",
-																	"moduleImport": null,
-																	"sourceName": "Id"
-																},
-																"Table": {
-																	"asName": "Table",
-																	"moduleImport": null,
-																	"sourceName": "Table"
-																}
-															},
-															"path": "@airport/air-control"
-														},
-														"Entity": null,
-														"GeneratedValue": null,
-														"Id": null,
-														"Table": null,
-														"UserAccount_BirthDate": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"UserAccount_BirthDate": {
-																	"asName": "UserAccount_BirthDate",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_BirthDate"
-																},
-																"UserAccount_Email": {
-																	"asName": "UserAccount_Email",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_Email"
-																},
-																"UserAccount_FirstName": {
-																	"asName": "UserAccount_FirstName",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_FirstName"
-																},
-																"UserAccount_Id": {
-																	"asName": "UserAccount_Id",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_Id"
-																},
-																"UserAccount_LastName": {
-																	"asName": "UserAccount_LastName",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_LastName"
-																},
-																"UserAccount_MiddleName": {
-																	"asName": "UserAccount_MiddleName",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_MiddleName"
-																},
-																"UserAccount_PasswordHash": {
-																	"asName": "UserAccount_PasswordHash",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_PasswordHash"
-																},
-																"UserAccount_UserName": {
-																	"asName": "UserAccount_UserName",
-																	"moduleImport": null,
-																	"sourceName": "UserAccount_UserName"
-																}
-															},
-															"path": "../../types/user/UserAccount"
-														},
-														"UserAccount_Email": null,
-														"UserAccount_FirstName": null,
-														"UserAccount_Id": null,
-														"UserAccount_LastName": null,
-														"UserAccount_MiddleName": null,
-														"UserAccount_PasswordHash": null,
-														"UserAccount_UserName": null,
-														"SystemGeneratedRow": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"SystemGeneratedRow": {
-																	"asName": "SystemGeneratedRow",
-																	"moduleImport": null,
-																	"sourceName": "SystemGeneratedRow"
-																}
-															},
-															"path": "../infrastructure/row/SystemGeneratedRow"
-														}
-													},
-													"importMapByModulePath": {
-														"@airport/air-control": null,
-														"../../types/user/UserAccount": null,
-														"../infrastructure/row/SystemGeneratedRow": null
-													}
-												},
-												"properties": [
-													{
-														"decorators": [
-															{
-																"name": "Id",
-																"values": []
-															},
-															{
-																"name": "GeneratedValue",
-																"values": []
-															},
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "USER_ACCOUNT_ID"
-																	}
-																]
-															}
-														],
-														"isGenerated": true,
-														"isId": true,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "id",
-														"type": "number",
-														"ownerEntity": null,
-														"nonArrayType": "number",
-														"primitive": "number",
-														"index": 0
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "USER_NAME",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "userName",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 1
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "EMAIL",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "email",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 2
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "PASSWORD_HASH",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "passwordHash",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 3
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "FIRST_NAME",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "firstName",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 4
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "MIDDLE_NAME"
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "middleName",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 5
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "LAST_NAME",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "lastName",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 6
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "BIRTH_DATE"
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "birthDate",
-														"type": "Date",
-														"ownerEntity": null,
-														"nonArrayType": "Date",
-														"primitive": "Date",
-														"index": 7
-													}
-												],
-												"methodSignatures": [],
-												"constructors": [
-													{
-														"parameters": [],
-														"returnType": "UserAccount"
-													}
-												]
-											},
-											"implementedInterfaceNames": [],
-											"parentEntity": {
-												"type": "SystemGeneratedRow",
-												"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
-												"parentClassName": "ImmutableRow",
-												"location": "./ImmutableRow",
-												"isSuperclass": true,
-												"ids": [],
-												"docEntry": {
-													"decorators": [
-														{
-															"name": "MappedSuperclass",
-															"values": []
-														}
-													],
-													"isGenerated": false,
-													"isId": false,
-													"isMappedSuperclass": true,
-													"isTransient": false,
-													"name": "SystemGeneratedRow",
-													"type": "typeof SystemGeneratedRow",
-													"fileImports": {
-														"importMapByObjectAsName": {
-															"MappedSuperclass": {
-																"fileImports": null,
-																"isLocal": false,
-																"objectMapByAsName": {
-																	"MappedSuperclass": {
-																		"asName": "MappedSuperclass",
-																		"moduleImport": null,
-																		"sourceName": "MappedSuperclass"
-																	}
-																},
-																"path": "@airport/air-control"
-															},
-															"ImmutableRow": {
-																"fileImports": null,
-																"isLocal": true,
-																"objectMapByAsName": {
-																	"ImmutableRow": {
-																		"asName": "ImmutableRow",
-																		"moduleImport": null,
-																		"sourceName": "ImmutableRow"
-																	}
-																},
-																"path": "./ImmutableRow"
-															}
-														},
-														"importMapByModulePath": {
-															"@airport/air-control": null,
-															"./ImmutableRow": null
-														}
-													},
-													"properties": [],
-													"methodSignatures": [],
-													"constructors": [
-														{
-															"parameters": [],
-															"returnType": "SystemGeneratedRow"
-														}
-													]
-												},
-												"implementedInterfaceNames": [],
-												"parentEntity": {
-													"type": "ImmutableRow",
-													"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
-													"parentClassName": null,
-													"isSuperclass": true,
-													"ids": [],
-													"docEntry": {
-														"decorators": [
-															{
-																"name": "MappedSuperclass",
-																"values": []
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": true,
-														"isTransient": false,
-														"name": "ImmutableRow",
-														"type": "typeof ImmutableRow",
-														"fileImports": {
-															"importMapByObjectAsName": {
-																"Column": {
-																	"fileImports": null,
-																	"isLocal": false,
-																	"objectMapByAsName": {
-																		"Column": {
-																			"asName": "Column",
-																			"moduleImport": null,
-																			"sourceName": "Column"
-																		},
-																		"MappedSuperclass": {
-																			"asName": "MappedSuperclass",
-																			"moduleImport": null,
-																			"sourceName": "MappedSuperclass"
-																		}
-																	},
-																	"path": "@airport/air-control"
-																},
-																"MappedSuperclass": null,
-																"CreatedAt": {
-																	"fileImports": null,
-																	"isLocal": true,
-																	"objectMapByAsName": {
-																		"CreatedAt": {
-																			"asName": "CreatedAt",
-																			"moduleImport": null,
-																			"sourceName": "CreatedAt"
-																		}
-																	},
-																	"path": "../../../types/common"
-																}
-															},
-															"importMapByModulePath": {
-																"@airport/air-control": null,
-																"../../../types/common": null
-															}
-														},
-														"properties": [
-															{
-																"decorators": [
-																	{
-																		"name": "Column",
-																		"values": [
-																			{
-																				"name": "CREATED_AT"
-																			}
-																		]
-																	}
-																],
-																"isGenerated": false,
-																"isId": false,
-																"isMappedSuperclass": false,
-																"isTransient": false,
-																"name": "createdAt",
-																"type": "Date",
-																"ownerEntity": null,
-																"nonArrayType": "Date",
-																"primitive": "Date",
-																"index": 0
-															}
-														],
-														"methodSignatures": [],
-														"constructors": [
-															{
-																"parameters": [],
-																"returnType": "ImmutableRow"
-															}
-														]
-													},
-													"implementedInterfaceNames": [],
-													"project": "@votecube/ecclesia"
-												},
-												"project": "@votecube/ecclesia"
-											}
-										},
+										"nonArrayType": "string",
+										"primitive": "string",
 										"index": 2
 									},
 									{
 										"decorators": [
 											{
-												"name": "ManyToOne",
-												"values": []
-											},
-											{
-												"name": "JoinColumn",
+												"name": "Column",
 												"values": [
 													{
-														"name": "DEVICE_ID",
+														"name": "PASSWORD_HASH",
 														"nullable": false
 													}
 												]
@@ -4354,233 +2147,20 @@ export const MAPPED_SUPERCLASS = [
 										"isId": false,
 										"isMappedSuperclass": false,
 										"isTransient": false,
-										"name": "device",
-										"type": "Device",
+										"name": "passwordHash",
+										"type": "string",
 										"ownerEntity": null,
-										"nonArrayType": "Device",
-										"entity": {
-											"type": "Device",
-											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/device.ts",
-											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/row/SystemGeneratedRow",
-											"isSuperclass": false,
-											"ids": [
-												{
-													"decorators": [
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "DEVICE_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												}
-											],
-											"docEntry": {
-												"decorators": [
-													{
-														"name": "Entity",
-														"values": []
-													},
-													{
-														"name": "Table",
-														"values": [
-															{
-																"name": "DEVICES"
-															}
-														]
-													}
-												],
-												"isGenerated": false,
-												"isId": false,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "Device",
-												"type": "typeof Device",
-												"fileImports": {
-													"importMapByObjectAsName": {
-														"Column": {
-															"fileImports": null,
-															"isLocal": false,
-															"objectMapByAsName": {
-																"Column": {
-																	"asName": "Column",
-																	"moduleImport": null,
-																	"sourceName": "Column"
-																},
-																"DbNumber": {
-																	"asName": "DbNumber",
-																	"moduleImport": null,
-																	"sourceName": "DbNumber"
-																},
-																"Entity": {
-																	"asName": "Entity",
-																	"moduleImport": null,
-																	"sourceName": "Entity"
-																},
-																"GeneratedValue": {
-																	"asName": "GeneratedValue",
-																	"moduleImport": null,
-																	"sourceName": "GeneratedValue"
-																},
-																"Id": {
-																	"asName": "Id",
-																	"moduleImport": null,
-																	"sourceName": "Id"
-																},
-																"Table": {
-																	"asName": "Table",
-																	"moduleImport": null,
-																	"sourceName": "Table"
-																}
-															},
-															"path": "@airport/air-control"
-														},
-														"DbNumber": null,
-														"Entity": null,
-														"GeneratedValue": null,
-														"Id": null,
-														"Table": null,
-														"Device_Hash": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"Device_Hash": {
-																	"asName": "Device_Hash",
-																	"moduleImport": null,
-																	"sourceName": "Device_Hash"
-																},
-																"Device_Id": {
-																	"asName": "Device_Id",
-																	"moduleImport": null,
-																	"sourceName": "Device_Id"
-																}
-															},
-															"path": "../../types/user/Device"
-														},
-														"Device_Id": null,
-														"SystemGeneratedRow": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"SystemGeneratedRow": {
-																	"asName": "SystemGeneratedRow",
-																	"moduleImport": null,
-																	"sourceName": "SystemGeneratedRow"
-																}
-															},
-															"path": "../infrastructure/row/SystemGeneratedRow"
-														}
-													},
-													"importMapByModulePath": {
-														"@airport/air-control": null,
-														"../../types/user/Device": null,
-														"../infrastructure/row/SystemGeneratedRow": null
-													}
-												},
-												"properties": [
-													{
-														"decorators": [
-															{
-																"name": "GeneratedValue",
-																"values": []
-															},
-															{
-																"name": "Id",
-																"values": []
-															},
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "DEVICE_ID"
-																	}
-																]
-															}
-														],
-														"isGenerated": true,
-														"isId": true,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "id",
-														"type": "number",
-														"ownerEntity": null,
-														"nonArrayType": "number",
-														"primitive": "number",
-														"index": 0
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "DEVICE_HASH",
-																		"nullable": false
-																	}
-																]
-															},
-															{
-																"name": "DbNumber",
-																"values": []
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "hash",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "number",
-														"index": 1
-													}
-												],
-												"methodSignatures": [],
-												"constructors": [
-													{
-														"parameters": [],
-														"returnType": "Device"
-													}
-												]
-											},
-											"implementedInterfaceNames": [],
-											"parentEntity": null
-										},
+										"nonArrayType": "string",
+										"primitive": "string",
 										"index": 3
 									},
 									{
 										"decorators": [
 											{
-												"name": "ManyToOne",
-												"values": []
-											},
-											{
-												"name": "JoinColumn",
+												"name": "Column",
 												"values": [
 													{
-														"name": "APPLICATION_ID",
+														"name": "FIRST_NAME",
 														"nullable": false
 													}
 												]
@@ -4590,300 +2170,248 @@ export const MAPPED_SUPERCLASS = [
 										"isId": false,
 										"isMappedSuperclass": false,
 										"isTransient": false,
-										"name": "application",
-										"type": "Application",
+										"name": "firstName",
+										"type": "string",
 										"ownerEntity": null,
-										"nonArrayType": "Application",
-										"entity": {
-											"type": "Application",
-											"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/application.ts",
-											"parentClassName": "SystemGeneratedRow",
-											"location": "../infrastructure/row/SystemGeneratedRow",
-											"isSuperclass": false,
-											"ids": [
-												{
-													"decorators": [
-														{
-															"name": "GeneratedValue",
-															"values": []
-														},
-														{
-															"name": "Id",
-															"values": []
-														},
-														{
-															"name": "Column",
-															"values": [
-																{
-																	"name": "APPLICATION_ID"
-																}
-															]
-														}
-													],
-													"isGenerated": true,
-													"isId": true,
-													"isMappedSuperclass": false,
-													"isTransient": false,
-													"name": "id",
-													"type": "number",
-													"ownerEntity": null,
-													"nonArrayType": "number",
-													"primitive": "number",
-													"index": 0
-												}
-											],
-											"docEntry": {
-												"decorators": [
+										"nonArrayType": "string",
+										"primitive": "string",
+										"index": 4
+									},
+									{
+										"decorators": [
+											{
+												"name": "Column",
+												"values": [
 													{
-														"name": "Entity",
-														"values": []
-													},
-													{
-														"name": "Table",
-														"values": [
-															{
-																"name": "APPLICATIONS"
-															}
-														]
-													}
-												],
-												"isGenerated": false,
-												"isId": false,
-												"isMappedSuperclass": false,
-												"isTransient": false,
-												"name": "Application",
-												"type": "typeof Application",
-												"fileImports": {
-													"importMapByObjectAsName": {
-														"Column": {
-															"fileImports": null,
-															"isLocal": false,
-															"objectMapByAsName": {
-																"Column": {
-																	"asName": "Column",
-																	"moduleImport": null,
-																	"sourceName": "Column"
-																},
-																"DbNumber": {
-																	"asName": "DbNumber",
-																	"moduleImport": null,
-																	"sourceName": "DbNumber"
-																},
-																"DbString": {
-																	"asName": "DbString",
-																	"moduleImport": null,
-																	"sourceName": "DbString"
-																},
-																"Entity": {
-																	"asName": "Entity",
-																	"moduleImport": null,
-																	"sourceName": "Entity"
-																},
-																"GeneratedValue": {
-																	"asName": "GeneratedValue",
-																	"moduleImport": null,
-																	"sourceName": "GeneratedValue"
-																},
-																"Id": {
-																	"asName": "Id",
-																	"moduleImport": null,
-																	"sourceName": "Id"
-																},
-																"Table": {
-																	"asName": "Table",
-																	"moduleImport": null,
-																	"sourceName": "Table"
-																}
-															},
-															"path": "@airport/air-control"
-														},
-														"DbNumber": null,
-														"DbString": null,
-														"Entity": null,
-														"GeneratedValue": null,
-														"Id": null,
-														"Table": null,
-														"Application_Host": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"Application_Host": {
-																	"asName": "Application_Host",
-																	"moduleImport": null,
-																	"sourceName": "Application_Host"
-																},
-																"Application_Id": {
-																	"asName": "Application_Id",
-																	"moduleImport": null,
-																	"sourceName": "Application_Id"
-																},
-																"Application_Port": {
-																	"asName": "Application_Port",
-																	"moduleImport": null,
-																	"sourceName": "Application_Port"
-																}
-															},
-															"path": "../../types/user/Application"
-														},
-														"Application_Id": null,
-														"Application_Port": null,
-														"SystemGeneratedRow": {
-															"fileImports": null,
-															"isLocal": true,
-															"objectMapByAsName": {
-																"SystemGeneratedRow": {
-																	"asName": "SystemGeneratedRow",
-																	"moduleImport": null,
-																	"sourceName": "SystemGeneratedRow"
-																}
-															},
-															"path": "../infrastructure/row/SystemGeneratedRow"
-														}
-													},
-													"importMapByModulePath": {
-														"@airport/air-control": null,
-														"../../types/user/Application": null,
-														"../infrastructure/row/SystemGeneratedRow": null
-													}
-												},
-												"properties": [
-													{
-														"decorators": [
-															{
-																"name": "GeneratedValue",
-																"values": []
-															},
-															{
-																"name": "Id",
-																"values": []
-															},
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "APPLICATION_ID"
-																	}
-																]
-															}
-														],
-														"isGenerated": true,
-														"isId": true,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "id",
-														"type": "number",
-														"ownerEntity": null,
-														"nonArrayType": "number",
-														"primitive": "number",
-														"index": 0
-													},
-													{
-														"decorators": [
-															{
-																"name": "DbString",
-																"values": []
-															},
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "HOST",
-																		"nullable": false
-																	}
-																]
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "host",
-														"type": "string",
-														"ownerEntity": null,
-														"nonArrayType": "string",
-														"primitive": "string",
-														"index": 1
-													},
-													{
-														"decorators": [
-															{
-																"name": "Column",
-																"values": [
-																	{
-																		"name": "PORT",
-																		"nullable": false
-																	}
-																]
-															},
-															{
-																"name": "DbNumber",
-																"values": []
-															}
-														],
-														"isGenerated": false,
-														"isId": false,
-														"isMappedSuperclass": false,
-														"isTransient": false,
-														"name": "port",
-														"type": "number",
-														"ownerEntity": null,
-														"nonArrayType": "number",
-														"primitive": "number",
-														"index": 2
-													}
-												],
-												"methodSignatures": [],
-												"constructors": [
-													{
-														"parameters": [],
-														"returnType": "Application"
+														"name": "MIDDLE_NAME"
 													}
 												]
-											},
-											"implementedInterfaceNames": [],
-											"parentEntity": null
-										},
-										"index": 4
+											}
+										],
+										"isGenerated": false,
+										"isId": false,
+										"isMappedSuperclass": false,
+										"isTransient": false,
+										"name": "middleName",
+										"type": "string",
+										"ownerEntity": null,
+										"nonArrayType": "string",
+										"primitive": "string",
+										"index": 5
+									},
+									{
+										"decorators": [
+											{
+												"name": "Column",
+												"values": [
+													{
+														"name": "LAST_NAME",
+														"nullable": false
+													}
+												]
+											}
+										],
+										"isGenerated": false,
+										"isId": false,
+										"isMappedSuperclass": false,
+										"isTransient": false,
+										"name": "lastName",
+										"type": "string",
+										"ownerEntity": null,
+										"nonArrayType": "string",
+										"primitive": "string",
+										"index": 6
+									},
+									{
+										"decorators": [
+											{
+												"name": "Column",
+												"values": [
+													{
+														"name": "BIRTH_DATE"
+													}
+												]
+											}
+										],
+										"isGenerated": false,
+										"isId": false,
+										"isMappedSuperclass": false,
+										"isTransient": false,
+										"name": "birthDate",
+										"type": "Date",
+										"ownerEntity": null,
+										"nonArrayType": "Date",
+										"primitive": "Date",
+										"index": 7
 									}
 								],
 								"methodSignatures": [],
 								"constructors": [
 									{
 										"parameters": [],
-										"returnType": "Actor"
+										"returnType": "UserAccount"
 									}
 								]
 							},
 							"implementedInterfaceNames": [],
-							"parentEntity": null
+							"parentEntity": {
+								"type": "SystemGeneratedRow",
+								"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+								"parentClassName": "ImmutableRow",
+								"location": "./ImmutableRow",
+								"isSuperclass": true,
+								"ids": [],
+								"docEntry": {
+									"decorators": [
+										{
+											"name": "MappedSuperclass",
+											"values": []
+										}
+									],
+									"isGenerated": false,
+									"isId": false,
+									"isMappedSuperclass": true,
+									"isTransient": false,
+									"name": "SystemGeneratedRow",
+									"type": "typeof SystemGeneratedRow",
+									"fileImports": {
+										"importMapByObjectAsName": {
+											"MappedSuperclass": {
+												"fileImports": null,
+												"isLocal": false,
+												"objectMapByAsName": {
+													"MappedSuperclass": {
+														"asName": "MappedSuperclass",
+														"moduleImport": null,
+														"sourceName": "MappedSuperclass"
+													}
+												},
+												"path": "@airport/air-control"
+											},
+											"ImmutableRow": {
+												"fileImports": null,
+												"isLocal": true,
+												"objectMapByAsName": {
+													"ImmutableRow": {
+														"asName": "ImmutableRow",
+														"moduleImport": null,
+														"sourceName": "ImmutableRow"
+													}
+												},
+												"path": "./ImmutableRow"
+											}
+										},
+										"importMapByModulePath": {
+											"@airport/air-control": null,
+											"./ImmutableRow": null
+										}
+									},
+									"properties": [],
+									"methodSignatures": [],
+									"constructors": [
+										{
+											"parameters": [],
+											"returnType": "SystemGeneratedRow"
+										}
+									]
+								},
+								"implementedInterfaceNames": [],
+								"parentEntity": {
+									"type": "ImmutableRow",
+									"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+									"parentClassName": null,
+									"isSuperclass": true,
+									"ids": [],
+									"docEntry": {
+										"decorators": [
+											{
+												"name": "MappedSuperclass",
+												"values": []
+											}
+										],
+										"isGenerated": false,
+										"isId": false,
+										"isMappedSuperclass": true,
+										"isTransient": false,
+										"name": "ImmutableRow",
+										"type": "typeof ImmutableRow",
+										"fileImports": {
+											"importMapByObjectAsName": {
+												"Column": {
+													"fileImports": null,
+													"isLocal": false,
+													"objectMapByAsName": {
+														"Column": {
+															"asName": "Column",
+															"moduleImport": null,
+															"sourceName": "Column"
+														},
+														"MappedSuperclass": {
+															"asName": "MappedSuperclass",
+															"moduleImport": null,
+															"sourceName": "MappedSuperclass"
+														}
+													},
+													"path": "@airport/air-control"
+												},
+												"MappedSuperclass": null,
+												"CreatedAt": {
+													"fileImports": null,
+													"isLocal": true,
+													"objectMapByAsName": {
+														"CreatedAt": {
+															"asName": "CreatedAt",
+															"moduleImport": null,
+															"sourceName": "CreatedAt"
+														}
+													},
+													"path": "../../../types/common"
+												}
+											},
+											"importMapByModulePath": {
+												"@airport/air-control": null,
+												"../../../types/common": null
+											}
+										},
+										"properties": [
+											{
+												"decorators": [
+													{
+														"name": "Column",
+														"values": [
+															{
+																"name": "CREATED_AT"
+															}
+														]
+													}
+												],
+												"isGenerated": false,
+												"isId": false,
+												"isMappedSuperclass": false,
+												"isTransient": false,
+												"name": "createdAt",
+												"type": "Date",
+												"ownerEntity": null,
+												"nonArrayType": "Date",
+												"primitive": "Date",
+												"index": 0
+											}
+										],
+										"methodSignatures": [],
+										"constructors": [
+											{
+												"parameters": [],
+												"returnType": "ImmutableRow"
+											}
+										]
+									},
+									"implementedInterfaceNames": [],
+									"project": "@votecube/ecclesia"
+								},
+								"project": "@votecube/ecclesia"
+							}
 						},
 						"index": 0
-					},
-					{
-						"decorators": [
-							{
-								"name": "ManyToOne",
-								"values": []
-							},
-							{
-								"name": "JoinColumn",
-								"values": [
-									{
-										"name": "USER_ACCOUNT_ID"
-									}
-								]
-							}
-						],
-						"isGenerated": false,
-						"isId": false,
-						"isMappedSuperclass": false,
-						"isTransient": false,
-						"name": "userAccount",
-						"type": "UserAccount",
-						"ownerEntity": null,
-						"nonArrayType": "UserAccount",
-						"entity": null,
-						"index": 1
 					}
 				],
 				"methodSignatures": [],
@@ -4902,7 +2430,7 @@ export const MAPPED_SUPERCLASS = [
 	},
 	{
 		"type": "MutableRow",
-		"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutablerow.ts",
+		"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutablerow.ts",
 		"parentClassName": "ImmutableRow",
 		"location": "./ImmutableRow",
 		"isSuperclass": true,
@@ -5006,7 +2534,7 @@ export const MAPPED_SUPERCLASS = [
 		"implementedInterfaceNames": [],
 		"parentEntity": {
 			"type": "ImmutableRow",
-			"path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+			"path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
 			"parentClassName": null,
 			"isSuperclass": true,
 			"ids": [],

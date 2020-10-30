@@ -40,7 +40,6 @@ export interface PollRevisionOpinionRatingGraph extends PollRevisionOpinionRatin
  */
 export interface PollRevisionOpinionRatingEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
     POLL_REVISION_OPINION_ID?: number | IQNumberField;
     RATING_ID?: number | IQNumberField;

@@ -1,4 +1,4 @@
-import { IMutableActorRow } from '../infrastructure/row/mutableactorrow';
+import { IImmutableActorRow } from '../infrastructure/row/immutableactorrow';
 import { IPollRevision } from '../poll/revision/pollrevision';
 import { IPollRun } from '../poll/run/pollrun';
 import { IVote } from '../vote/vote';
@@ -7,7 +7,7 @@ import { IPollRevisionOpinionVersion } from './pollrevisionopinionversion';
 import { IFactorOpinionVersion } from './factoropinionversion';
 import { IOutcomeOpinionVersion } from './outcomeopinionversion';
 import { IPositionOpinionVersion } from './positionopinionversion';
-export interface IPollRevisionOpinion extends IMutableActorRow {
+export interface IPollRevisionOpinion extends IImmutableActorRow {
     id: number;
     pollRevision?: IPollRevision;
     run?: IPollRun;

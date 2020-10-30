@@ -1,12 +1,10 @@
 import { IQEntity } from '@airport/air-control';
 import { ImmutableRowGraph, ImmutableRowEId, ImmutableRowEUpdateColumns, ImmutableRowEUpdateProperties, ImmutableRowESelect, QImmutableRowQId, QImmutableRowQRelation, QImmutableRow } from './qimmutablerow';
-import { ActorGraph, ActorEOptionalId, ActorESelect, QActorQRelation } from '../../user/qactor';
 import { UserAccountGraph, UserAccountEOptionalId, UserAccountESelect, QUserAccountQRelation } from '../../user/quseraccount';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface ImmutableActorRowESelect extends ImmutableRowESelect, ImmutableActorRowEOptionalId {
-    actor?: ActorESelect;
     userAccount?: UserAccountESelect;
 }
 /**
@@ -23,14 +21,12 @@ export interface ImmutableActorRowEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface ImmutableActorRowEUpdateProperties extends ImmutableRowEUpdateProperties {
-    actor?: ActorEOptionalId;
     userAccount?: UserAccountEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ImmutableActorRowGraph extends ImmutableActorRowEOptionalId, ImmutableRowGraph {
-    actor?: ActorGraph;
     userAccount?: UserAccountGraph;
 }
 /**
@@ -52,7 +48,6 @@ export interface ImmutableActorRowECreateColumns extends ImmutableActorRowEId, I
  * Query Entity Query Definition (used for Q.EntityName).
  */
 export interface QImmutableActorRow extends QImmutableRow {
-    actor: QActorQRelation;
     userAccount: QUserAccountQRelation;
 }
 export interface QImmutableActorRowQId extends QImmutableRowQId {

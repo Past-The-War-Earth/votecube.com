@@ -135,7 +135,6 @@ export interface VoteEUpdateColumns
 	extends ImmutableActorRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
-	ACTOR_ID?: number | IQNumberField;
 	USER_ACCOUNT_ID?: number | IQNumberField;
 	VOTE_TYPE_ID?: number | IQNumberField;
 	POLL_RUN_ID?: number | IQNumberField;

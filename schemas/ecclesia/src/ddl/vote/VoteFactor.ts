@@ -18,6 +18,7 @@ import {VoteVersion}    from './VoteVersion'
 
 @Entity()
 @Table({name: 'VOTE_FACTORS'})
+// User information recorded at Vote level
 export class VoteFactor {
 
 	@GeneratedValue()

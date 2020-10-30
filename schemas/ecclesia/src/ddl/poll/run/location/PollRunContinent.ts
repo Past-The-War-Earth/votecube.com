@@ -15,6 +15,7 @@ import {PollRun}   from '../PollRun'
 // @InsertOnly()
 @Entity()
 @Table({name: 'POLL_CONTINENTS'})
+// User information recorded at PollRun level
 export class PollRunContinent {
 
 	@GeneratedValue()

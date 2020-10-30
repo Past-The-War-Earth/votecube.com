@@ -154,7 +154,6 @@ export interface OutcomeTranslationEUpdateColumns
 	extends ImmutableActorRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
-	ACTOR_ID?: number | IQNumberField;
 	USER_ACCOUNT_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
 	OUTCOME_ID?: number | IQNumberField;

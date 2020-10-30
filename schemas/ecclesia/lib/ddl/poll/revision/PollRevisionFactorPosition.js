@@ -7,7 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { Column, DbNumber, DbString, Entity, GeneratedValue, Id, JoinColumn, JoinColumns, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
 import { ImmutableRow } from '../../infrastructure/row/ImmutableRow';
-let PollRevisionFactorPosition = class PollRevisionFactorPosition extends ImmutableRow {
+let PollRevisionFactorPosition = 
+// User information recorded at PollRevisionOpinion level
+class PollRevisionFactorPosition extends ImmutableRow {
 };
 __decorate([
     GeneratedValue(),
@@ -68,6 +70,7 @@ __decorate([
 PollRevisionFactorPosition = __decorate([
     Entity(),
     Table({ name: 'POLL_REVISION_FACTOR_POSITIONS' })
+    // User information recorded at PollRevisionOpinion level
 ], PollRevisionFactorPosition);
 export { PollRevisionFactorPosition };
 //# sourceMappingURL=PollRevisionFactorPosition.js.map

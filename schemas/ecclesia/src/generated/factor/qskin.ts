@@ -118,7 +118,6 @@ export interface SkinEUpdateColumns
 	extends ImmutableActorRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
-	ACTOR_ID?: number | IQNumberField;
 	USER_ACCOUNT_ID?: number | IQNumberField;
 	BACKGROUND_COLOR_ID?: number | IQNumberField;
 	TEXT_COLOR_ID?: number | IQNumberField;

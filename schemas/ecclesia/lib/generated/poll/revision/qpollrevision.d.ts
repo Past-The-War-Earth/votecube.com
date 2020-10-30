@@ -70,7 +70,6 @@ export interface PollRevisionGraph extends PollRevisionEOptionalId, AgeSuitableR
  */
 export interface PollRevisionEUpdateColumns extends AgeSuitableRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
     AGE_SUITABILITY?: number | IQNumberField;
     DEPTH?: number | IQNumberField;

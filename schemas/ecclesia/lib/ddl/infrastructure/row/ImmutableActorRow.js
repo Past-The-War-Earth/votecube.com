@@ -10,10 +10,6 @@ let ImmutableActorRow = class ImmutableActorRow extends ImmutableRow {
 };
 __decorate([
     ManyToOne(),
-    JoinColumn({ name: 'ACTOR_ID' })
-], ImmutableActorRow.prototype, "actor", void 0);
-__decorate([
-    ManyToOne(),
     JoinColumn({ name: 'USER_ACCOUNT_ID' })
 ], ImmutableActorRow.prototype, "userAccount", void 0);
 ImmutableActorRow = __decorate([

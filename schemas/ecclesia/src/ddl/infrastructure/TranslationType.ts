@@ -4,11 +4,12 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-} from '@airport/air-control'
+}                           from '@airport/air-control'
 import {
 	TranslationType_Code,
 	TranslationType_Id
-} from '../../types/infrastructure/TranslationType'
+}                           from '../../types/infrastructure/TranslationType'
+import {SystemGeneratedRow} from './row/SystemGeneratedRow'
 
 /**
  * Translation isn't necessarily from one language to another.
@@ -22,7 +23,7 @@ import {
  */
 @Entity()
 @Table({name: 'TRANSLATION_TYPES'})
-export class TranslationType {
+export class TranslationType extends SystemGeneratedRow {
 
 	@Id()
 	@GeneratedValue()

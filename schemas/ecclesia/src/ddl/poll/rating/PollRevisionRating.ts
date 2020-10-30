@@ -6,14 +6,14 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                        from '@airport/air-control'
+}                          from '@airport/air-control'
+import {ImmutableActorRow} from '../../infrastructure/row/ImmutableActorRow'
 import {
 	PollRevisionRating_Id,
 	PollRevisionRating_Value
-}                        from '../../../types/poll/rating/PollRevisionRating'
-import {Rating}          from '../../infrastructure/Rating/Rating'
-import {MutableActorRow} from '../../infrastructure/row/MutableActorRow'
-import {PollRevision}    from '../revision/PollRevision'
+}                          from '../../../types/poll/rating/PollRevisionRating'
+import {Rating}            from '../../infrastructure/Rating/Rating'
+import {PollRevision}      from '../revision/PollRevision'
 
 // export type UserPollRevisionRating_IsCurrent = boolean
 
@@ -28,7 +28,7 @@ import {PollRevision}    from '../revision/PollRevision'
 @Entity()
 @Table({name: 'POLL_REVISION_RATINGS'})
 export class PollRevisionRating
-	extends MutableActorRow {
+	extends ImmutableActorRow {
 
 	@Id()
 	@GeneratedValue()

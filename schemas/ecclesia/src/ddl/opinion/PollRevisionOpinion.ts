@@ -10,7 +10,7 @@ import {
 }                                   from '@airport/air-control'
 import {CascadeType}                from '@airport/ground-control'
 import {PollRevisionOpinion_Id}     from '../../types/opinion/PollRevisionOpinion'
-import {MutableActorRow}            from '../infrastructure/row/MutableActorRow'
+import {ImmutableActorRow}            from '../infrastructure/row/ImmutableActorRow'
 import {PollRevision}               from '../poll/revision/PollRevision'
 import {PollRun}                    from '../poll/run/PollRun'
 import {Vote}                       from '../vote/Vote'
@@ -23,7 +23,7 @@ import {PollRevisionOpinionRating}  from './rating/PollRevisionOpinionRating'
 @Entity()
 @Table({name: 'POLL_REVISION_OPINIONS'})
 export class PollRevisionOpinion
-	extends MutableActorRow {
+	extends ImmutableActorRow {
 
 	@GeneratedValue()
 	@Id()

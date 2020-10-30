@@ -1,7 +1,7 @@
-import { IMutableActorRow } from '../../infrastructure/row/mutableactorrow';
+import { IImmutableActorRow } from '../../infrastructure/row/immutableactorrow';
 import { IPollRevision } from '../revision/pollrevision';
 import { IRating } from '../../infrastructure/rating/rating';
-export interface IPollRevisionRating extends IMutableActorRow {
+export interface IPollRevisionRating extends IImmutableActorRow {
     id: number;
     value?: number;
     pollRevision?: IPollRevision;

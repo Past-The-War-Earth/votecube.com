@@ -48,7 +48,6 @@ export interface PollRevisionTranslationRatingGraph extends PollRevisionTranslat
  */
 export interface PollRevisionTranslationRatingEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
     VALUE?: number | IQNumberField;
     POLL_RUN_ID?: number | IQNumberField;

@@ -1,11 +1,11 @@
 import { IQDateField, IQNumberField } from '@airport/air-control';
-import { MutableActorRowGraph, MutableActorRowEId, MutableActorRowEUpdateColumns, MutableActorRowEUpdateProperties, MutableActorRowESelect, QMutableActorRowQId, QMutableActorRowQRelation, QMutableActorRow } from '../../infrastructure/row/qmutableactorrow';
+import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../../infrastructure/row/qimmutableactorrow';
 import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../revision/qpollrevision';
 import { RatingGraph, RatingEOptionalId, RatingESelect, QRatingQRelation } from '../../infrastructure/rating/qrating';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface PollRevisionRatingESelect extends MutableActorRowESelect, PollRevisionRatingEOptionalId {
+export interface PollRevisionRatingESelect extends ImmutableActorRowESelect, PollRevisionRatingEOptionalId {
     value?: number | IQNumberField;
     pollRevision?: PollRevisionESelect;
     rating?: RatingESelect;
@@ -13,7 +13,7 @@ export interface PollRevisionRatingESelect extends MutableActorRowESelect, PollR
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface PollRevisionRatingEId extends MutableActorRowEId {
+export interface PollRevisionRatingEId extends ImmutableActorRowEId {
     id: number | IQNumberField;
 }
 /**
@@ -25,7 +25,7 @@ export interface PollRevisionRatingEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface PollRevisionRatingEUpdateProperties extends MutableActorRowEUpdateProperties {
+export interface PollRevisionRatingEUpdateProperties extends ImmutableActorRowEUpdateProperties {
     value?: number | IQNumberField;
     pollRevision?: PollRevisionEOptionalId;
     rating?: RatingEOptionalId;
@@ -33,7 +33,7 @@ export interface PollRevisionRatingEUpdateProperties extends MutableActorRowEUpd
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface PollRevisionRatingGraph extends PollRevisionRatingEOptionalId, MutableActorRowGraph {
+export interface PollRevisionRatingGraph extends PollRevisionRatingEOptionalId, ImmutableActorRowGraph {
     value?: number | IQNumberField;
     pollRevision?: PollRevisionGraph;
     rating?: RatingGraph;
@@ -41,11 +41,9 @@ export interface PollRevisionRatingGraph extends PollRevisionRatingEOptionalId, 
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface PollRevisionRatingEUpdateColumns extends MutableActorRowEUpdateColumns {
+export interface PollRevisionRatingEUpdateColumns extends ImmutableActorRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
-    ACTOR_ID?: number | IQNumberField;
     USER_ACCOUNT_ID?: number | IQNumberField;
-    UPDATED_AT?: Date | IQDateField;
     VALUE?: number | IQNumberField;
     POLL_REVISION_ID?: number | IQNumberField;
     RATING_ID?: number | IQNumberField;
@@ -63,15 +61,15 @@ export interface PollRevisionRatingECreateColumns extends PollRevisionRatingEId,
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionRating extends QMutableActorRow {
+export interface QPollRevisionRating extends QImmutableActorRow {
     id: IQNumberField;
     value: IQNumberField;
     pollRevision: QPollRevisionQRelation;
     rating: QRatingQRelation;
 }
-export interface QPollRevisionRatingQId extends QMutableActorRowQId {
+export interface QPollRevisionRatingQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionRatingQRelation extends QMutableActorRowQRelation<QPollRevisionRating>, QPollRevisionRatingQId {
+export interface QPollRevisionRatingQRelation extends QImmutableActorRowQRelation<QPollRevisionRating>, QPollRevisionRatingQId {
 }
 //# sourceMappingURL=qpollrevisionrating.d.ts.map

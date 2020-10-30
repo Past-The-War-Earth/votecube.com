@@ -9,7 +9,9 @@ import { CascadeType } from '@airport/ground-control';
 /**
  * Belongs to FactorOpinionVersion - does not need user or creation tracking.
  */
-let PositionOpinionVersion = class PositionOpinionVersion {
+let PositionOpinionVersion = 
+// User information recorded at PollRevisionOpinion level
+class PositionOpinionVersion {
 };
 __decorate([
     GeneratedValue(),
@@ -44,6 +46,7 @@ __decorate([
 PositionOpinionVersion = __decorate([
     Entity(),
     Table({ name: 'POSITION_OPINION_VERSIONS' })
+    // User information recorded at PollRevisionOpinion level
 ], PositionOpinionVersion);
 export { PositionOpinionVersion };
 //# sourceMappingURL=PositionOpinionVersion.js.map

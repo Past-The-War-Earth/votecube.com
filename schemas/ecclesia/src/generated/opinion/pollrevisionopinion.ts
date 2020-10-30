@@ -1,6 +1,6 @@
 import {
-	IMutableActorRow,
-} from '../infrastructure/row/mutableactorrow';
+	IImmutableActorRow,
+} from '../infrastructure/row/immutableactorrow';
 import {
 	IPollRevision,
 } from '../poll/revision/pollrevision';
@@ -32,7 +32,7 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPollRevisionOpinion extends IMutableActorRow {
+export interface IPollRevisionOpinion extends IImmutableActorRow {
 	
 	// Id Properties
 	id: number;

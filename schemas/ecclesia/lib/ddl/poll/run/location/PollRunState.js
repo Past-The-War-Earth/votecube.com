@@ -5,7 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, Table } from '@airport/air-control';
-let PollRunState = class PollRunState {
+let PollRunState = 
+// User information recorded at PollRun level
+class PollRunState {
 };
 __decorate([
     GeneratedValue(),
@@ -23,6 +25,7 @@ __decorate([
 PollRunState = __decorate([
     Entity(),
     Table({ name: 'POLL_STATES' })
+    // User information recorded at PollRun level
 ], PollRunState);
 export { PollRunState };
 //# sourceMappingURL=PollRunState.js.map

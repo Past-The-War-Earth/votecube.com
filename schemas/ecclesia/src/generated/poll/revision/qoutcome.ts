@@ -139,7 +139,6 @@ export interface OutcomeEUpdateColumns
 	extends AgeSuitableRowEUpdateColumns {
 	// Non-Id Columns
 	CREATED_AT?: Date | IQDateField;
-	ACTOR_ID?: number | IQNumberField;
 	USER_ACCOUNT_ID?: number | IQNumberField;
 	AGE_SUITABILITY?: number | IQNumberField;
 	PARENT_OUTCOME_TRANSLATION_ID?: number | IQNumberField;

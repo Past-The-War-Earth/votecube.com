@@ -11,9 +11,9 @@ import {ImmutableRow} from './ImmutableRow'
 export abstract class ImmutableActorRow
 	extends ImmutableRow {
 
-	@ManyToOne()
-	@JoinColumn({name: 'ACTOR_ID'})
-	actor: Actor
+	// @ManyToOne()
+	// @JoinColumn({name: 'ACTOR_ID'})
+	// actor: Actor
 
 	@ManyToOne()
 	@JoinColumn({name: 'USER_ACCOUNT_ID'})
