@@ -84,6 +84,7 @@ server.get('/api/findUserVoteForPoll', async (
 // Run the server!
 const startFunction = async () => {
 	try {
+		console.log('before startDb')
 		await startDb('votecube.com', SCHEMA)
 		await server.listen(8081, '0.0.0.0')
 		server.log.info(`server listening on ${(server.server as any).address().port}`)

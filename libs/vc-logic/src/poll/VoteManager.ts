@@ -1,8 +1,9 @@
 import {DI}            from '@airport/di'
 import {
+	IPoll,
 	IVote,
 	Poll_Id
-}                      from '@votecube/ecclesia'
+} from '@votecube/ecclesia'
 import {APP_CONTAINER} from '../container'
 import {
 	CONNECTION_MANAGER,
@@ -16,6 +17,10 @@ export interface IVoteManager {
 		passwordHash: string,
 		pollId: Poll_Id
 	): Promise<IVote>
+
+	saveVote(
+		poll: IPoll
+	): Promise<void>
 
 }
 
@@ -34,6 +39,12 @@ export class VoteManager
 			pollId,
 			username
 		})
+	}
+
+	async saveVote(
+		poll: IPoll
+	): Promise<void> {
+
 	}
 
 }

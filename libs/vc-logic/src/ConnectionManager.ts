@@ -8,11 +8,11 @@ export interface IConnectionManager {
 		params?: any
 	): Promise<T>
 
-	put<T>(
+	put<V, R>(
 		url: string,
-		value: T,
+		value: V,
 		params?: any
-	): Promise<boolean>
+	): Promise<R>
 
 }
 
@@ -30,18 +30,18 @@ export class ConnectionManager
 		return response.json()
 	}
 
-	async put<T>(
+	async put<V, R>(
 		url: string,
-		value: T,
+		value: V,
 		params: any = {}
-	): Promise<boolean> {
-		await fetch(this.serverUrlPrefix + url + this.getParamsSuffix(params), {
+	): Promise<R> {
+		const response = await fetch(this.serverUrlPrefix + url + this.getParamsSuffix(params), {
 			method: 'PUT',
 			body: JSON.stringify(value)
 		})
 
 		// TODO: implement error handling
-		return true
+		return response.json()
 	}
 
 	private getParamsSuffix(

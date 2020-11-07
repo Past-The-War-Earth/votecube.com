@@ -1,6 +1,4 @@
-import {
-	DI
-}                      from '@airport/di'
+import {DI}            from '@airport/di'
 import {
 	BehaviorSubject,
 	IObservable
@@ -55,8 +53,7 @@ export class Auth
 		return this.user
 	}
 
-	async reactToUser(
-	): Promise<IObservable<IUserAccount>> {
+	async reactToUser(): Promise<IObservable<IUserAccount>> {
 		const subject = new BehaviorSubject<IUserAccount>(null)
 
 		return subject
@@ -97,9 +94,9 @@ export class Auth
 		password: Auth_Password
 	): Promise<IAuthError | void> {
 		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
-		const passwordHash   = await this.encodePassword(password)
+		const passwordHash      = await this.encodePassword(password)
 
-		const userAccount: IAuthError | IUserAccount = await connectionManager.get('signUp', {
+		const userAccount: IAuthError | IUserAccount = await connectionManager.put('signUp', {
 			passwordHash,
 			userName
 		})
