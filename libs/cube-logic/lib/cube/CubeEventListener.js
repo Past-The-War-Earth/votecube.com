@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../tokens");
-const CubeMovement_1 = require("./CubeMovement");
+import { container, DI } from '@airport/di';
+import { CUBE_DIRECTION, CUBE_EVENT_LISTENER, CUBE_MOVEMENT, CUBE_UTILS, EVENT_LISTENER_MAP, MUTATION_API, VIEWPORT } from '../tokens';
+import { Bool, Move } from './CubeMovement';
 // export const TOUCH = document.ontouchmove !== undefined
-class CubeEventListener {
+export class CubeEventListener {
     constructor() {
         this.lastMove = 0;
         this.suspended = false;
@@ -18,7 +16,7 @@ class CubeEventListener {
             this.addCubeAdjustmentToELM(this.dLM);
         }
         else {
-            const eventListenerMap = di_1.container(this).getSync(tokens_1.EVENT_LISTENER_MAP);
+            const eventListenerMap = container(this).getSync(EVENT_LISTENER_MAP);
             this.dLM = eventListenerMap.ad(document);
             this.addCubeAdjustmentToELM(this.dLM);
         }
@@ -28,24 +26,24 @@ class CubeEventListener {
             if (this.suspended) {
                 return;
             }
-            const [cubeUtils, viewport] = di_1.container(this).getSync(tokens_1.CUBE_UTILS, tokens_1.VIEWPORT);
+            const [cubeUtils, viewport] = container(this).getSync(CUBE_UTILS, VIEWPORT);
             this.rmMmTm();
             switch (ev.keyCode) {
                 case 37: // left
-                    viewport.move(CubeMovement_1.Bool.False, CubeMovement_1.Move.None, CubeMovement_1.Bool.True, CubeMovement_1.Move.Down);
+                    viewport.move(Bool.False, Move.None, Bool.True, Move.Down);
                     break;
                 case 38: // up
                     // prevent default
                     cubeUtils.pD(ev);
-                    viewport.move(CubeMovement_1.Bool.True, CubeMovement_1.Move.Up);
+                    viewport.move(Bool.True, Move.Up);
                     break;
                 case 39: // right
-                    viewport.move(CubeMovement_1.Bool.False, CubeMovement_1.Move.None, CubeMovement_1.Bool.True, CubeMovement_1.Move.Up);
+                    viewport.move(Bool.False, Move.None, Bool.True, Move.Up);
                     break;
                 case 40: // down
                     // prevent default
                     cubeUtils.pD(ev);
-                    viewport.move(CubeMovement_1.Bool.True, CubeMovement_1.Move.Down);
+                    viewport.move(Bool.True, Move.Down);
                     break;
                 case 27: // esc
                     viewport.reset();
@@ -84,7 +82,7 @@ class CubeEventListener {
         this.dLM.rm('keydown')('mousedown')('touchstart')('mouseup')('touchend');
     }
     clearView(elementId) {
-        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
+        const viewport = container(this).getSync(VIEWPORT);
         delete viewport.el[elementId];
     }
     resumeInteraction() {
@@ -99,7 +97,7 @@ class CubeEventListener {
         factorToAxisMapping[factorNumbers[0]] = 'x';
         factorToAxisMapping[factorNumbers[1]] = 'y';
         factorToAxisMapping[factorNumbers[2]] = 'z';
-        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
+        const viewport = container(this).getSync(VIEWPORT);
         viewport.pd = {
             // axisToFactorMapping: {
             // 	x: factorNumbers[0],
@@ -124,16 +122,16 @@ class CubeEventListener {
     }
     setPositionDataAndMove(vote) {
         if (this.setPositionData(vote)) {
-            const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
+            const viewport = container(this).getSync(VIEWPORT);
             viewport.moveToDegree();
         }
     }
     setView(elementId) {
-        const [cubeUtils, viewport] = di_1.container(this).getSync(tokens_1.CUBE_UTILS, tokens_1.VIEWPORT);
+        const [cubeUtils, viewport] = container(this).getSync(CUBE_UTILS, VIEWPORT);
         viewport.el[elementId] = cubeUtils.gQ('#' + elementId);
     }
     setViewPort(forCube, cb) {
-        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
+        const viewport = container(this).getSync(VIEWPORT);
         viewport.reset();
         viewport.cb = (uiVote) => {
             // this.populateVoteFactor('x', uiVote)
@@ -152,7 +150,7 @@ class CubeEventListener {
         if (!cb) {
             return null;
         }
-        const mutationApi = di_1.container(this).getSync(tokens_1.MUTATION_API);
+        const mutationApi = container(this).getSync(MUTATION_API);
         return mutationApi;
     }
     suspendInteraction() {
@@ -190,7 +188,7 @@ class CubeEventListener {
     }
     moveViewport(event, // event
     viewport) {
-        const [cubeDirection, cubeMovement] = di_1.container(this).getSync(tokens_1.CUBE_DIRECTION, tokens_1.CUBE_MOVEMENT);
+        const [cubeDirection, cubeMovement] = container(this).getSync(CUBE_DIRECTION, CUBE_MOVEMENT);
         const mouseObject = cubeMovement.mouse;
         const startCoords = mouseObject.start;
         let lastCoords = mouseObject.last;
@@ -215,7 +213,7 @@ class CubeEventListener {
      * On mousedown or touchstart
      */
     oMdTs(ev) {
-        const [cubeMovement, cubeUtils, viewport] = di_1.container(this).getSync(tokens_1.CUBE_MOVEMENT, tokens_1.CUBE_UTILS, tokens_1.VIEWPORT);
+        const [cubeMovement, cubeUtils, viewport] = container(this).getSync(CUBE_MOVEMENT, CUBE_UTILS, VIEWPORT);
         if (!Object.keys(viewport.el).length) {
             return;
         }
@@ -237,7 +235,7 @@ class CubeEventListener {
      * On mousemove or touchmove
      */
     oMmTm(ev) {
-        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
+        const viewport = container(this).getSync(VIEWPORT);
         if (!Object.keys(viewport.el).length) {
             return;
         }
@@ -294,7 +292,7 @@ class CubeEventListener {
      * Remove mousemove or touchmove
      */
     rmMmTm() {
-        const viewport = di_1.container(this).getSync(tokens_1.VIEWPORT);
+        const viewport = container(this).getSync(VIEWPORT);
         if (!Object.keys(viewport.el).length) {
             return;
         }
@@ -313,6 +311,5 @@ class CubeEventListener {
         this.rmMmTm();
     }
 }
-exports.CubeEventListener = CubeEventListener;
-di_1.DI.set(tokens_1.CUBE_EVENT_LISTENER, CubeEventListener);
+DI.set(CUBE_EVENT_LISTENER, CubeEventListener);
 //# sourceMappingURL=CubeEventListener.js.map

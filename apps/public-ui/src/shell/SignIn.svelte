@@ -80,7 +80,7 @@
 		if (!signInForm.valid) {
 			return
 		}
-		doSignIn(signInForm.value.username, signInForm.value.password).then(
+		doSignIn(signInForm.value.userName, signInForm.value.password).then(
 			success => {
 				if (success) {
 					dispatch('closed')
@@ -96,7 +96,7 @@
 		if (!signUpForm.valid) {
 			return
 		}
-		doSignUp(signUpForm.value.username, signUpForm.value.password).then(
+		doSignUp(signUpForm.value.userName, signUpForm.value.password).then(
 			success => {
 				if (success) {
 					dispatch('closed')
@@ -105,11 +105,11 @@
 	}
 
 	async function doSignIn(
-		username,
+		userName,
 		password
 	) {
 		const auth  = await container.get(AUTH)
-		const errorObject = await auth.signIn(username, password)
+		const errorObject = await auth.signIn(userName, password)
 		if (!errorObject) {
 			return true
 		}

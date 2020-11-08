@@ -4,7 +4,10 @@ import { IValuesOutCallback } from './CubeMovement';
 import { IMutationApi } from './mutation/MutationApi';
 export declare type MovementDirection = -1 | 0 | 1;
 export declare type ChangeInPixels = number;
-export declare type DirectionVector = [MovementDirection, ChangeInPixels];
+export declare type DirectionVector = [
+    MovementDirection,
+    ChangeInPixels
+];
 export interface ICubeEventListener {
     addCubeAdjustment(): void;
     clearCubeAdjustment(): void;
@@ -50,3 +53,4 @@ export declare class CubeEventListener implements ICubeEventListener {
     private safeOMdTs;
     private safeRmMmTm;
 }
+//# sourceMappingURL=CubeEventListener.d.ts.map

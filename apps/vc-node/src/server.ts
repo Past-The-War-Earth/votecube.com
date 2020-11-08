@@ -34,24 +34,26 @@ server.register(fastifyCors, {
 	}
 })
 
-server.get('/api/signIn', async (
+server.put('/api/signIn', async (
 	request,
 	reply
 ) => {
 	const auth = await DI.db().get(AUTH)
-	const params: any = request.params
+	const body: any = JSON.parse(request.body as any)
 
-	return await auth.signIn(params.email, params.passwordHash)
+	return await auth.signIn(body.userName, body.passwordHash)
 })
 
-server.get('/api/signOut', async (
+server.put('/api/signOut', async (
 	request,
 	reply
 ) => {
 	const auth = await DI.db().get(AUTH)
-	const params: any = request.params
+	const body: any = JSON.parse(request.body as any)
 
-	return await auth.signOut(params.email, params.passwordHash)
+	await auth.signOut(body.userName, body.passwordHash)
+
+	return null
 })
 
 server.put('/api/signUp', async (
@@ -59,9 +61,9 @@ server.put('/api/signUp', async (
 	reply
 ) => {
 	const auth = await DI.db().get(AUTH)
-	const params: any = request.params
+	const body: any = JSON.parse(request.body as any)
 
-	return await auth.signUp(params.email, params.passwordHash)
+	return await auth.signUp(body.userName, body.passwordHash)
 })
 
 server.put('/api/createRevision', async (

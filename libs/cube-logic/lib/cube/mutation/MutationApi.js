@@ -1,15 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../../tokens");
-class MutationApi {
+import { container, DI } from '@airport/di';
+import { CUBE_MOVE_MATRIX, CUBE_MOVEMENT, CUBE_UTILS, DEGREE_POSITION_CHOOSER, FINAL_POSITION_FINDER, MATRIX_VALUE_CHOOSER, MUTATION_API, PERCENTAGE_POSITION_CHOOSER, VIEWPORT } from '../../tokens';
+export class MutationApi {
     /*	changeZoom(
             zoomIndex: ZoomIndex
         ): void {
             // this.vp.zm = zoomIndex
         }*/
     move(factorNumber, outcome, percentChange) {
-        di_1.container(this).get(tokens_1.PERCENTAGE_POSITION_CHOOSER, tokens_1.VIEWPORT).then(([percentagePositionChooser, viewport]) => {
+        container(this).get(PERCENTAGE_POSITION_CHOOSER, VIEWPORT).then(([percentagePositionChooser, viewport]) => {
             const dimension = viewport.pd.factorToAxisMapping[factorNumber];
             const dimensionPositionData = viewport.pd[dimension];
             if (dimensionPositionData.value === 100
@@ -21,7 +19,7 @@ class MutationApi {
         });
     }
     async moveToValue(factorNumber, value) {
-        const [percentagePositionChooser, viewport] = await di_1.container(this).get(tokens_1.PERCENTAGE_POSITION_CHOOSER, tokens_1.VIEWPORT);
+        const [percentagePositionChooser, viewport] = await container(this).get(PERCENTAGE_POSITION_CHOOSER, VIEWPORT);
         const dimension = viewport.pd.factorToAxisMapping[factorNumber];
         const numericValue = parseInt(value);
         viewport.pd[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100;
@@ -32,7 +30,7 @@ class MutationApi {
         this.moveToPercent(dimension, numericValue, percentagePositionChooser, viewport);
     }
     async toggleSurface(factorNumber) {
-        const viewport = await di_1.container(this).get(tokens_1.VIEWPORT);
+        const viewport = await container(this).get(VIEWPORT);
         const dimension = viewport.pd.factorToAxisMapping[factorNumber];
         const dimensionPositionData = viewport.pd[dimension];
         if (!dimensionPositionData.outcome) {
@@ -61,7 +59,7 @@ class MutationApi {
         this.moveToPercent(dimension, 100, null, null);
     }
     async recompute() {
-        const [cubeMoveMatrix, cubeMovement, cubeUtils, degreePositionChooser, finalPositionFinder, matrixValueChooser, viewport] = await di_1.container(this).get(tokens_1.CUBE_MOVE_MATRIX, tokens_1.CUBE_MOVEMENT, tokens_1.CUBE_UTILS, tokens_1.DEGREE_POSITION_CHOOSER, tokens_1.FINAL_POSITION_FINDER, tokens_1.MATRIX_VALUE_CHOOSER, tokens_1.VIEWPORT);
+        const [cubeMoveMatrix, cubeMovement, cubeUtils, degreePositionChooser, finalPositionFinder, matrixValueChooser, viewport] = await container(this).get(CUBE_MOVE_MATRIX, CUBE_MOVEMENT, CUBE_UTILS, DEGREE_POSITION_CHOOSER, FINAL_POSITION_FINDER, MATRIX_VALUE_CHOOSER, VIEWPORT);
         if (!viewport.pd) {
             return;
         }
@@ -86,6 +84,5 @@ class MutationApi {
         this.recompute();
     }
 }
-exports.MutationApi = MutationApi;
-di_1.DI.set(tokens_1.MUTATION_API, MutationApi);
+DI.set(MUTATION_API, MutationApi);
 //# sourceMappingURL=MutationApi.js.map

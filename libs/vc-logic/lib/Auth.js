@@ -1,67 +1,60 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const observe_1 = require("@airport/observe");
-const ecclesia_1 = require("@votecube/ecclesia");
-const tokens_1 = require("./tokens");
-class Auth {
+import { DI } from '@airport/di';
+import { BehaviorSubject } from '@airport/observe';
+import { APP_CONTAINER } from './container';
+import { user } from './store';
+import { AUTH, CONNECTION_MANAGER } from './tokens';
+export class Auth {
     getUser() {
         return this.user;
     }
-    async reactToUser(
-    // fbAuthUser: IFbAuthUser
-    ) {
-        const subject = new observe_1.BehaviorSubject(null);
+    async reactToUser() {
+        const subject = new BehaviorSubject(null);
         return subject;
     }
     async signIn(userName, password) {
-        const userAccountDao = await di_1.container(this).get(ecclesia_1.USER_ACCOUNT_DAO);
-        const userAccount = await userAccountDao.findByUsername(userName);
-        if (userAccount === null) {
-            return {
-                code: 'NotFound'
-            };
-        }
+        const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER);
         const passwordHash = await this.encodePassword(password);
-        if (passwordHash !== userAccount.passwordHash) {
-            return {
-                code: 'WrongPassword'
-            };
+        const userAccount = await connectionManager.put('signIn', {
+            passwordHash,
+            userName
+        });
+        if (!userAccount.code) {
+            this.user = userAccount;
+            user.set(this.user);
+            return null;
         }
-        else if (false) {
-            return {
-                code: 'TooManyTries'
-            };
-        }
-        this.user = userAccount;
-        return this.user;
+        return userAccount;
     }
     async signOut() {
+        const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER);
+        await connectionManager.put('signOut', {
+            passwordHash: this.user.passwordHash,
+            userName: this.user.userName
+        });
         this.user = null;
+        user.set(null);
     }
     async signUp(userName, password) {
-        const userAccountDao = await di_1.container(this).get(ecclesia_1.USER_ACCOUNT_DAO);
+        const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER);
         const passwordHash = await this.encodePassword(password);
-        try {
-            await userAccountDao.signUp(userName, passwordHash);
+        const userAccount = await connectionManager.put('signUp', {
+            passwordHash,
+            userName
+        });
+        if (!userAccount.code) {
+            this.user = userAccount;
+            user.set(this.user);
         }
-        catch (e) {
-            return {
-                code: 'InUse'
-            };
-            // return {
-            // 	code: 'Invalid'
-            // }
+        else {
+            return userAccount;
         }
-        return null;
     }
     async encodePassword(password) {
-        const jsSHA = await Promise.resolve().then(() => require('jssha/src/sha512'));
-        const shaObj = new jsSHA('SHA-512', 'TEXT');
+        const jsSHA = await import('jssha/src/sha512');
+        const shaObj = new jsSHA.default('SHA-512', 'TEXT');
         shaObj.update(password);
         return shaObj.getHash('B64');
     }
 }
-exports.Auth = Auth;
-di_1.DI.set(tokens_1.AUTH, Auth);
+DI.set(AUTH, Auth);
 //# sourceMappingURL=Auth.js.map

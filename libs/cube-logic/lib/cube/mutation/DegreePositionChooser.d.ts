@@ -7,3 +7,4 @@ export declare class DegreePositionChooser implements IDegreePositionChooser {
     setFinalDegrees(finalPosition: IFinalPosition, viewport: IViewport): void;
     private getDimDegrees;
 }
+//# sourceMappingURL=DegreePositionChooser.d.ts.map

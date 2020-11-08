@@ -13,8 +13,8 @@ export type User_Key = string;
 
 export interface IUser {
 
-	id: string
-	name: UserAccount_UserName
+	id: number
+	userName: UserAccount_UserName
 
 }
 

@@ -1,5 +1,5 @@
 import { Factor_Number } from '@votecube/model';
-import { Outcome_Ordinal } from '@votecube/relational-db';
+import { Outcome_Ordinal } from '@votecube/ecclesia';
 import { PositionPercent } from '../CubeMovement';
 import { PercentChange } from './types';
 export interface IMutationApi {
@@ -15,3 +15,4 @@ export declare class MutationApi implements IMutationApi {
     recompute(): Promise<void>;
     private moveToPercent;
 }
+//# sourceMappingURL=MutationApi.d.ts.map

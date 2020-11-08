@@ -1,12 +1,17 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../tokens");
-class VoteManager {
+import { DI } from '@airport/di';
+import { APP_CONTAINER } from '../container';
+import { CONNECTION_MANAGER, VOTE_MANAGER } from '../tokens';
+export class VoteManager {
     async getVoteForPoll(username, passwordHash, pollId) {
-        return null;
+        const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER);
+        return await connectionManager.get('findUserVoteForPoll', {
+            passwordHash,
+            pollId,
+            username
+        });
+    }
+    async saveVote(poll) {
     }
 }
-exports.VoteManager = VoteManager;
-di_1.DI.set(tokens_1.VOTE_MANAGER, VoteManager);
+DI.set(VOTE_MANAGER, VoteManager);
 //# sourceMappingURL=VoteManager.js.map

@@ -484,7 +484,7 @@ export const SCHEMA = {
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "EMAIL",
-							"notNull": true,
+							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 3
@@ -512,7 +512,7 @@ export const SCHEMA = {
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "FIRST_NAME",
-							"notNull": true,
+							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 5
@@ -540,7 +540,7 @@ export const SCHEMA = {
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "LAST_NAME",
-							"notNull": true,
+							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 7

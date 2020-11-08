@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const ecclesia_1 = require("@votecube/ecclesia");
-const tokens_1 = require("../tokens");
-class PollManager {
+import { container, DI } from '@airport/di';
+import { POLL_DAO } from '@votecube/ecclesia';
+import { CUBE_LOGIC, LOGIC_UTILS, POLL_FORM_MANAGER, POLL_MANAGER, POLL_REVISION_CONVERTER } from '../tokens';
+export class PollManager {
     constructor() {
         this.currRevision = {
             // doc: null,
@@ -116,7 +114,7 @@ class PollManager {
         if (!form) {
             return;
         }
-        const [pollFormManager, logicUtils] = await di_1.container(this).get(tokens_1.POLL_FORM_MANAGER, tokens_1.LOGIC_UTILS);
+        const [pollFormManager, logicUtils] = await container(this).get(POLL_FORM_MANAGER, LOGIC_UTILS);
         const ui = pollFormManager.fromForm(form.value);
         const uiDelta = pollFormManager.fromForm(form.changeFlags);
         const oldUi = this.currRevision.ui;
@@ -124,7 +122,7 @@ class PollManager {
             logicUtils.overlay(oldUi, ui);
         }
         else {
-            const cubeLogic = await di_1.container(this).get(tokens_1.CUBE_LOGIC);
+            const cubeLogic = await container(this).get(CUBE_LOGIC);
             logicUtils.overlay({
                 factors: cubeLogic.getPollFactorPositionDefault()
             }, ui);
@@ -144,9 +142,9 @@ class PollManager {
         const originalUi = this.currRevision.originalUi;
         const ui = this.currRevision.ui;
         const delta = this.currRevision.uiDelta;
-        const logicUtils = await di_1.container(this).get(tokens_1.LOGIC_UTILS);
+        const logicUtils = await container(this).get(LOGIC_UTILS);
         logicUtils.setDeltas(originalUi, ui, delta);
-        const converter = await di_1.container(this).get(tokens_1.POLL_REVISION_CONVERTER);
+        const converter = await container(this).get(POLL_REVISION_CONVERTER);
         // const response = await fetch('/add/poll/0/0', {
         // 	method: 'POST',
         // 	// headers: {
@@ -159,7 +157,7 @@ class PollManager {
         const dbObject = converter.uiToDb(ui
         // , delta
         );
-        const pollDao = await di_1.container(this).get(ecclesia_1.POLL_DAO);
+        const pollDao = await container(this).get(POLL_DAO);
         await pollDao.createNew(dbObject, user);
         this.currRevision = {
             form: null,
@@ -169,6 +167,5 @@ class PollManager {
         };
     }
 }
-exports.PollManager = PollManager;
-di_1.DI.set(tokens_1.POLL_MANAGER, PollManager);
+DI.set(POLL_MANAGER, PollManager);
 //# sourceMappingURL=PollManager.js.map

@@ -1,4 +1,4 @@
-import { Outcome_Ordinal } from '@votecube/relational-db';
+import { Outcome_Ordinal } from '@votecube/ecclesia';
 import { PositionPercent } from '../CubeMovement';
 import { Dimension, IViewport } from '../Viewport';
 import { PercentChange } from './types';
@@ -15,3 +15,4 @@ export declare class PercentagePositionChooser implements IPercentagePositionCho
     private getDimensionToPreserve;
     private getDimensionToMove;
 }
+//# sourceMappingURL=PercentagePositionChooser.d.ts.map

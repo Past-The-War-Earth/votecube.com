@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../../tokens");
-class PercentagePositionChooser {
+import { DI } from '@airport/di';
+import { PERCENTAGE_POSITION_CHOOSER } from '../../tokens';
+export class PercentagePositionChooser {
     setPositionPercentages(dimension, percent, outcome, viewport) {
         const positionData = viewport.pd;
         if (percent && !outcome) {
@@ -139,6 +137,5 @@ class PercentagePositionChooser {
         }
     }
 }
-exports.PercentagePositionChooser = PercentagePositionChooser;
-di_1.DI.set(tokens_1.PERCENTAGE_POSITION_CHOOSER, PercentagePositionChooser);
+DI.set(PERCENTAGE_POSITION_CHOOSER, PercentagePositionChooser);
 //# sourceMappingURL=PercentagePositionChooser.js.map

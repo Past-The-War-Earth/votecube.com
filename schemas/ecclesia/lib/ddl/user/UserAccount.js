@@ -17,19 +17,19 @@ __decorate([
     Column({ name: 'USER_NAME', nullable: false })
 ], UserAccount.prototype, "userName", void 0);
 __decorate([
-    Column({ name: 'EMAIL', nullable: false })
+    Column({ name: 'EMAIL' })
 ], UserAccount.prototype, "email", void 0);
 __decorate([
     Column({ name: 'PASSWORD_HASH', nullable: false })
 ], UserAccount.prototype, "passwordHash", void 0);
 __decorate([
-    Column({ name: 'FIRST_NAME', nullable: false })
+    Column({ name: 'FIRST_NAME' })
 ], UserAccount.prototype, "firstName", void 0);
 __decorate([
     Column({ name: 'MIDDLE_NAME' })
 ], UserAccount.prototype, "middleName", void 0);
 __decorate([
-    Column({ name: 'LAST_NAME', nullable: false })
+    Column({ name: 'LAST_NAME' })
 ], UserAccount.prototype, "lastName", void 0);
 __decorate([
     Column({ name: 'BIRTH_DATE' })

@@ -12,3 +12,4 @@ export declare class CubeDirection implements ICubeDirection {
     getMove(startCoords: IPosition, endCoords: IPosition): IMoveCoords;
     private directionVector;
 }
+//# sourceMappingURL=CubeDirection.d.ts.map

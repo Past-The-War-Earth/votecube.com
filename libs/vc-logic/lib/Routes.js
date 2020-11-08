@@ -1,11 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const page_1 = require("page");
-const store_1 = require("svelte/store");
-const store_2 = require("./store");
-const tokens_1 = require("./tokens");
-class Routes {
+import { DI } from '@airport/di';
+import page from 'page';
+import { get } from 'svelte/store';
+import { currentPage, currentUrl, routeParams, showSignIn, signedInState, user } from './store';
+import { ROUTES } from './tokens';
+export class Routes {
     constructor() {
         this.defaultRouteParams = {
             mode: 'build'
@@ -56,7 +54,7 @@ class Routes {
         for (const pageKey in this.pageConf) {
             this.setupPage(this.pageConf[pageKey], pageMap[pageKey], setPageComp, errorRoutePath);
         }
-        page_1.default({
+        page({
             hashbang: true
         });
     }
@@ -71,14 +69,14 @@ class Routes {
     }
     setPageComp(theCurrentPage, theCurrentUrl, theRouteParams, PageComp, setPageComp) {
         this.pageComp = PageComp;
-        store_2.currentPage.set(theCurrentPage);
-        store_2.currentUrl.set(theCurrentUrl);
-        store_2.routeParams.set(theRouteParams);
+        currentPage.set(theCurrentPage);
+        currentUrl.set(theCurrentUrl);
+        routeParams.set(theRouteParams);
         setPageComp(PageComp);
     }
     setupPage(pageConfig, PageComp, setPageComp, errorRoutePath, url = pageConfig.url) {
-        page_1.default(url, (context) => {
-            let currentUser = store_1.get(store_2.user);
+        page(url, (context) => {
+            let currentUser = get(user);
             let params = this.inProgressParams;
             let nextUrl = this.inProgressUrl;
             if (!this.inProgressUrl) {
@@ -95,16 +93,16 @@ class Routes {
             }
             // Give Firebase Auth a bit of time to react
             setTimeout(() => {
-                currentUser = store_1.get(store_2.user);
+                currentUser = get(user);
                 if (currentUser) {
                     this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp);
                     return;
                 }
-                store_2.showSignIn.set(true);
-                const signedInStateUnsubscribe = store_2.signedInState.subscribe(({ changed, current }) => {
+                showSignIn.set(true);
+                const signedInStateUnsubscribe = signedInState.subscribe(({ changed, current }) => {
                     if (changed.authChecked && current.user) {
                         signedInStateUnsubscribe();
-                        store_2.showSignIn.set(false);
+                        showSignIn.set(false);
                         this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp);
                         return;
                     }
@@ -112,7 +110,7 @@ class Routes {
                         return;
                     }
                     signedInStateUnsubscribe();
-                    store_2.showSignIn.set(false);
+                    showSignIn.set(false);
                     if (current.user) {
                         this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp);
                     }
@@ -127,7 +125,7 @@ class Routes {
                             this.navigateToPage(errorRoutePath);
                         }
                         else if (current.currentUrl) {
-                            page_1.default(current.currentUrl);
+                            page(current.currentUrl);
                         }
                     }
                 });
@@ -135,6 +133,5 @@ class Routes {
         });
     }
 }
-exports.Routes = Routes;
-di_1.DI.set(tokens_1.ROUTES, Routes);
+DI.set(ROUTES, Routes);
 //# sourceMappingURL=Routes.js.map

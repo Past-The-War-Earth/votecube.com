@@ -1,4 +1,5 @@
 import { IAuth } from './Auth';
+import { IConnectionManager } from './ConnectionManager';
 import { IPollRevisionConverter } from './converter/PollRevisionConveter';
 import { ILogicUtils } from './LogicUtils';
 import { IDetailedCubeLogic } from './pages/components/poll/DetailedCubeLogic';
@@ -18,6 +19,7 @@ export declare const LOGIC_UTILS: import("@airport/di").IDiToken<ILogicUtils>;
 export declare const POLL_FORM_LOGIC: import("@airport/di").IDiToken<IPollFormLogic>;
 export declare const POLL_FORM_MANAGER: import("@airport/di").IDiToken<IPollFormManager>;
 export declare const POLL_MAIN_LOGIC: import("@airport/di").IDiToken<IPollMainLogic>;
+export declare const CONNECTION_MANAGER: import("@airport/di").IDiToken<IConnectionManager>;
 export declare const POLL_MANAGER: import("@airport/di").IDiToken<IPollManager>;
 export declare const VOTE_MANAGER: import("@airport/di").IDiToken<IVoteManager>;
 export declare const POLL_REVISION_CONVERTER: import("@airport/di").IDiToken<IPollRevisionConverter>;

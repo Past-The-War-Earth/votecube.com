@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../tokens");
-const CubeMoveMatrix_1 = require("./CubeMoveMatrix");
-class Viewport {
+import { container, DI } from '@airport/di';
+import { CUBE_MOVE_MATRIX, CUBE_MOVEMENT, VIEWPORT } from '../tokens';
+import { MoveIncrement } from './CubeMoveMatrix';
+export class Viewport {
     constructor() {
         this.cb = null;
         this.cr = {
@@ -11,7 +9,7 @@ class Viewport {
             y: 0
         };
         this.el = {};
-        this.increment = CubeMoveMatrix_1.MoveIncrement.FIVE;
+        this.increment = MoveIncrement.FIVE;
         this.pd = null;
         // Recently moved factor
         this.rmd = [];
@@ -25,13 +23,13 @@ class Viewport {
     }
     // zm: MV_INC_IDX[MoveIncrement.FIFTEEN],
     changeZoom(zoomIndex) {
-        di_1.container(this).get(tokens_1.CUBE_MOVE_MATRIX).then(cubeMoveMatrix => {
+        container(this).get(CUBE_MOVE_MATRIX).then(cubeMoveMatrix => {
             this.increment = cubeMoveMatrix.MOVE_INCREMENTS[zoomIndex];
             console.log('TODO: implement');
         });
     }
     move(moveX, xBy, moveY, yBy) {
-        di_1.container(this).get(tokens_1.CUBE_MOVE_MATRIX, tokens_1.CUBE_MOVEMENT).then(([cubeMoveMatrix, cubeMovement]) => {
+        container(this).get(CUBE_MOVE_MATRIX, CUBE_MOVEMENT).then(([cubeMoveMatrix, cubeMovement]) => {
             if (!Object.keys(this.el).length) {
                 return;
             }
@@ -94,10 +92,9 @@ class Viewport {
         if (!Object.keys(this.el).length) {
             return;
         }
-        this.increment = CubeMoveMatrix_1.MoveIncrement.FIVE;
+        this.increment = MoveIncrement.FIVE;
         this.move(0, 0, 0, 0);
     }
 }
-exports.Viewport = Viewport;
-di_1.DI.set(tokens_1.VIEWPORT, Viewport);
+DI.set(VIEWPORT, Viewport);
 //# sourceMappingURL=Viewport.js.map

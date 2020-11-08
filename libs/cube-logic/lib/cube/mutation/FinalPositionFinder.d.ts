@@ -49,3 +49,4 @@ export declare class FinalPositionFinder implements IFinalPositionFinder {
     private base72Pos;
     private getPositionDiffDirection;
 }
+//# sourceMappingURL=FinalPositionFinder.d.ts.map

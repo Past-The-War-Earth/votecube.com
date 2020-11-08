@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../../../tokens");
-class DetailedCubeLogic {
+import { DI } from '@airport/di';
+import { CUBE_LOGIC, DETAILED_CUBE_LOGIC, LOGIC_UTILS } from '../../../tokens';
+export class DetailedCubeLogic {
     async getCubeSides(uiPollRevision, container) {
-        const [cubeLogic, logicUtils] = await container.get(tokens_1.CUBE_LOGIC, tokens_1.LOGIC_UTILS);
+        const [cubeLogic, logicUtils] = await container.get(CUBE_LOGIC, LOGIC_UTILS);
         const cubeSides = cubeLogic.getDefaultCubePositions();
         const cubeSideMap = {
             x: {},
@@ -109,6 +107,5 @@ class DetailedCubeLogic {
         cubeSideFrom.position.dir = toDir;
     }
 }
-exports.DetailedCubeLogic = DetailedCubeLogic;
-di_1.DI.set(tokens_1.DETAILED_CUBE_LOGIC, DetailedCubeLogic);
+DI.set(DETAILED_CUBE_LOGIC, DetailedCubeLogic);
 //# sourceMappingURL=DetailedCubeLogic.js.map

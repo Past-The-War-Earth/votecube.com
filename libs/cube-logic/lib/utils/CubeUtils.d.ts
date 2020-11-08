@@ -19,3 +19,4 @@ export declare class CubeUtils implements ICubeUtils {
     iT(t: Element, tN: string, aM?: boolean): IIsKnownElementOfTag;
     secondIsGreaterShortCircuit(chain: any[][]): boolean;
 }
+//# sourceMappingURL=CubeUtils.d.ts.map

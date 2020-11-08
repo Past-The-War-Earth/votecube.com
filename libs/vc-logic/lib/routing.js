@@ -1,23 +1,20 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const container_1 = require("./container");
-const tokens_1 = require("./tokens");
-exports.ABOUT = '/about';
-exports.FEEDBACK = '/feedback';
-exports.RELEASE_PLAN = '/releasePlan';
-exports.FACTOR_INFO_MAIN = '/factor/info/Main/:mode';
-exports.FACTOR_LIST = '/factor/List';
-exports.POLL_LIST = '/poll/List';
-exports.VARIATION_LIST = '/revision/List/:pollId/:pollRevisionId';
-exports.POLL_FORM = '/poll/Form/:mode';
-exports.POLL_MAIN = '/poll/Main/:mode/:pollId/:pollRevisionId';
-exports.POLL_LOCATIONS = '/poll/Locations/:mode';
-exports.POLL_TIME_FRAME = '/poll/TimeFrame/:mode';
-exports.CARD_CLIMATE_CHANGE = '/card/ClimateChange';
-function navigateToPage(routePath, paramMap) {
-    container_1.APP_CONTAINER.get(tokens_1.ROUTES).then(routes => {
+import { APP_CONTAINER } from './container';
+import { ROUTES } from './tokens';
+export const ABOUT = '/about';
+export const FEEDBACK = '/feedback';
+export const RELEASE_PLAN = '/releasePlan';
+export const FACTOR_INFO_MAIN = '/factor/info/Main/:mode';
+export const FACTOR_LIST = '/factor/List';
+export const POLL_LIST = '/poll/List';
+export const VARIATION_LIST = '/revision/List/:pollId/:pollRevisionId';
+export const POLL_FORM = '/poll/Form/:mode';
+export const POLL_MAIN = '/poll/Main/:mode/:pollId/:pollRevisionId';
+export const POLL_LOCATIONS = '/poll/Locations/:mode';
+export const POLL_TIME_FRAME = '/poll/TimeFrame/:mode';
+export const CARD_CLIMATE_CHANGE = '/card/ClimateChange';
+export function navigateToPage(routePath, paramMap) {
+    APP_CONTAINER.get(ROUTES).then(routes => {
         routes.navigateToPage(routePath, paramMap);
     });
 }
-exports.navigateToPage = navigateToPage;
 //# sourceMappingURL=routing.js.map

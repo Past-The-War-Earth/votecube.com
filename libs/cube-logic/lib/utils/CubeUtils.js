@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../tokens");
-class CubeUtils {
+import { DI } from '@airport/di';
+import { CUBE_UTILS } from '../tokens';
+export class CubeUtils {
     // Get by query selector
     gQ(selector // selector
     ) {
@@ -40,6 +38,5 @@ class CubeUtils {
         return false;
     }
 }
-exports.CubeUtils = CubeUtils;
-di_1.DI.set(tokens_1.CUBE_UTILS, CubeUtils);
+DI.set(CUBE_UTILS, CubeUtils);
 //# sourceMappingURL=CubeUtils.js.map

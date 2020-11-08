@@ -48,3 +48,4 @@ export declare class CubeMovement implements ICubeMovement {
     moveCoordinates(currentDegree: number, move: Move, cubeMoveMatrix: ICubeMoveMatrix): [number, MatrixIndex];
     normMatrixIdx(signedMatrixIndex: number, cubeMoveMatrix: ICubeMoveMatrix): MatrixIndex;
 }
+//# sourceMappingURL=CubeMovement.d.ts.map

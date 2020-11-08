@@ -19,7 +19,7 @@ export interface IConnectionManager {
 export class ConnectionManager
 	implements IConnectionManager {
 
-	serverUrlPrefix = 'http://localhost:8080/api/'
+	serverUrlPrefix = 'http://localhost:8081/api/'
 
 	async get<T>(
 		url: string,
@@ -48,12 +48,12 @@ export class ConnectionManager
 		params: any
 	): string {
 		let paramStrings = []
-		for(let param of params) {
-			paramStrings.push(param + '=' + params[param])
+		for(let paramName in params) {
+			paramStrings.push(paramName + '=' + params[paramName])
 		}
 		let paramsSuffix = ''
-		if (params.length) {
-			paramsSuffix = '?' + params.join('&')
+		if (paramStrings.length) {
+			paramsSuffix = '?' + paramStrings.join('&')
 		}
 
 		return paramsSuffix

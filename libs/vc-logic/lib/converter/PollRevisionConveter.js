@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const tokens_1 = require("../tokens");
-class PollRevisionConverter {
+import { DI } from '@airport/di';
+import { POLL_REVISION_CONVERTER } from '../tokens';
+export class PollRevisionConverter {
     dbToUi(revisionDb) {
         let parent = null;
         if (revisionDb.parent) {
@@ -203,6 +201,5 @@ class PollRevisionConverter {
         };
     }
 }
-exports.PollRevisionConverter = PollRevisionConverter;
-di_1.DI.set(tokens_1.POLL_REVISION_CONVERTER, PollRevisionConverter);
+DI.set(POLL_REVISION_CONVERTER, PollRevisionConverter);
 //# sourceMappingURL=PollRevisionConveter.js.map

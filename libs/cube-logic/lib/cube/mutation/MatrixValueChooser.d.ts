@@ -12,3 +12,4 @@ export declare class MatrixValueChooser implements IMatrixValueChooser {
     private setDimZeroPositions;
     private getDimensionDistance;
 }
+//# sourceMappingURL=MatrixValueChooser.d.ts.map

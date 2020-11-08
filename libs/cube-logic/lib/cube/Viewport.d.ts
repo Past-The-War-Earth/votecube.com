@@ -53,3 +53,4 @@ export declare class Viewport implements IViewport {
     moveToDegree(): void;
     reset(): void;
 }
+//# sourceMappingURL=Viewport.d.ts.map

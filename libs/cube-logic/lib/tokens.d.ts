@@ -22,3 +22,4 @@ export declare const MATRIX_VALUE_CHOOSER: import("@airport/di").IDiToken<IMatri
 export declare const MUTATION_API: import("@airport/di").IDiToken<IMutationApi>;
 export declare const PERCENTAGE_POSITION_CHOOSER: import("@airport/di").IDiToken<IPercentagePositionChooser>;
 export declare const VIEWPORT: import("@airport/di").IDiToken<IViewport>;
+//# sourceMappingURL=tokens.d.ts.map

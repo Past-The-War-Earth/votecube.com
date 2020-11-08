@@ -15,3 +15,4 @@ export interface IMatrixPosition {
     numNonZeroPos?: NumberOfNonZeroPositions;
     values: PositionValues;
 }
+//# sourceMappingURL=types.d.ts.map

@@ -1,22 +1,20 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const store_1 = require("svelte/store");
+import { derived, get, writable } from 'svelte/store';
 function createShowMainMenu() {
-    const store = store_1.writable(false);
+    const store = writable(false);
     return {
         subscribe: store.subscribe,
-        toggle: () => store.set(!store_1.get(store))
+        toggle: () => store.set(!get(store))
     };
 }
 function createTopMenuShown() {
-    const store = store_1.writable(false);
+    const store = writable(false);
     return {
         subscribe: store.subscribe,
-        toggle: () => store.set(!store_1.get(store))
+        toggle: () => store.set(!get(store))
     };
 }
 function createTextToast() {
-    const { set, subscribe } = store_1.writable({
+    const { set, subscribe } = writable({
         seconds: 0,
         text: '',
         time: null
@@ -32,35 +30,35 @@ function createTextToast() {
         }
     };
 }
-exports.authChecked = store_1.writable(false);
-exports.cardMove = store_1.writable(null);
-exports.checkSizeIntervalId = store_1.writable(-1);
-exports.cube = store_1.writable(false);
+export let authChecked = writable(false);
+export let cardMove = writable(null);
+export let checkSizeIntervalId = writable(-1);
+export let cube = writable(false);
 // export let currentPage         = writable<any>(null)
-exports.currentPage = store_1.writable(null);
-exports.currentUrl = store_1.writable('');
-exports.emInPx = store_1.writable(0);
-exports.forms = store_1.writable(null);
-exports.isDesktop = store_1.writable(false);
-exports.mode = store_1.writable(null);
-exports.noOverflow = store_1.writable(false);
-exports.pageTitle = store_1.writable('Votecube');
-exports.popup = store_1.writable(false);
-exports.portalHeight = store_1.writable(0);
-exports.resized = store_1.writable(false);
-exports.routeParams = store_1.writable(null);
-exports.showConfirm = store_1.writable(false);
-exports.showMainMenu = createShowMainMenu();
-exports.showSignIn = store_1.writable(false);
-exports.text = store_1.writable({});
-exports.textToast = createTextToast();
-exports.topMenuShown = createTopMenuShown();
-exports.user = store_1.writable(null);
-exports.verticalLayout = store_1.writable(true);
-exports.windowWidth = store_1.writable(0);
-exports.showTopMenu = store_1.derived([
-    exports.showMainMenu,
-    exports.topMenuShown
+export let currentPage = writable(null);
+export let currentUrl = writable('');
+export let emInPx = writable(0);
+export let forms = writable(null);
+export let isDesktop = writable(false);
+export let mode = writable(null);
+export let noOverflow = writable(false);
+export let pageTitle = writable('Votecube');
+export let popup = writable(false);
+export let portalHeight = writable(0);
+export let resized = writable(false);
+export let routeParams = writable(null);
+export let showConfirm = writable(false);
+export let showMainMenu = createShowMainMenu();
+export let showSignIn = writable(false);
+export let text = writable({});
+export let textToast = createTextToast();
+export const topMenuShown = createTopMenuShown();
+export let user = writable(null);
+export let verticalLayout = writable(true);
+export let windowWidth = writable(0);
+export let showTopMenu = derived([
+    showMainMenu,
+    topMenuShown
 ], ([$showMainMenu, $topMenuShown]) => !$showMainMenu && $topMenuShown);
 let lastSignedInState = {
     authChecked: false,
@@ -69,12 +67,12 @@ let lastSignedInState = {
     showSignIn: false,
     user: null
 };
-exports.signedInState = store_1.derived([
-    exports.authChecked,
-    exports.currentPage,
+export let signedInState = derived([
+    authChecked,
+    currentPage,
     // currentUrl,
-    exports.showSignIn,
-    exports.user
+    showSignIn,
+    user
 ], ([$authChecked, $currentPage, $currentUrl, $showSignIn, $user]) => {
     const changed = {
         authChecked: $authChecked !== lastSignedInState.authChecked,
