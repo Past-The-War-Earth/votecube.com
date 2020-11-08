@@ -591,8 +591,7 @@ export const MAPPED_SUPERCLASS = [
                                             "name": "Column",
                                             "values": [
                                                 {
-                                                    "name": "EMAIL",
-                                                    "nullable": false
+                                                    "name": "EMAIL"
                                                 }
                                             ]
                                         }
@@ -637,8 +636,7 @@ export const MAPPED_SUPERCLASS = [
                                             "name": "Column",
                                             "values": [
                                                 {
-                                                    "name": "FIRST_NAME",
-                                                    "nullable": false
+                                                    "name": "FIRST_NAME"
                                                 }
                                             ]
                                         }
@@ -682,8 +680,7 @@ export const MAPPED_SUPERCLASS = [
                                             "name": "Column",
                                             "values": [
                                                 {
-                                                    "name": "LAST_NAME",
-                                                    "nullable": false
+                                                    "name": "LAST_NAME"
                                                 }
                                             ]
                                         }
@@ -1352,8 +1349,7 @@ export const MAPPED_SUPERCLASS = [
                                                 "name": "Column",
                                                 "values": [
                                                     {
-                                                        "name": "EMAIL",
-                                                        "nullable": false
+                                                        "name": "EMAIL"
                                                     }
                                                 ]
                                             }
@@ -1398,8 +1394,7 @@ export const MAPPED_SUPERCLASS = [
                                                 "name": "Column",
                                                 "values": [
                                                     {
-                                                        "name": "FIRST_NAME",
-                                                        "nullable": false
+                                                        "name": "FIRST_NAME"
                                                     }
                                                 ]
                                             }
@@ -1443,8 +1438,7 @@ export const MAPPED_SUPERCLASS = [
                                                 "name": "Column",
                                                 "values": [
                                                     {
-                                                        "name": "LAST_NAME",
-                                                        "nullable": false
+                                                        "name": "LAST_NAME"
                                                     }
                                                 ]
                                             }
@@ -2114,8 +2108,7 @@ export const MAPPED_SUPERCLASS = [
                                                 "name": "Column",
                                                 "values": [
                                                     {
-                                                        "name": "EMAIL",
-                                                        "nullable": false
+                                                        "name": "EMAIL"
                                                     }
                                                 ]
                                             }
@@ -2160,8 +2153,7 @@ export const MAPPED_SUPERCLASS = [
                                                 "name": "Column",
                                                 "values": [
                                                     {
-                                                        "name": "FIRST_NAME",
-                                                        "nullable": false
+                                                        "name": "FIRST_NAME"
                                                     }
                                                 ]
                                             }
@@ -2205,8 +2197,7 @@ export const MAPPED_SUPERCLASS = [
                                                 "name": "Column",
                                                 "values": [
                                                     {
-                                                        "name": "LAST_NAME",
-                                                        "nullable": false
+                                                        "name": "LAST_NAME"
                                                     }
                                                 ]
                                             }

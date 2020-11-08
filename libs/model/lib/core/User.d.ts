@@ -3,8 +3,8 @@ import { ITimestamp } from './common';
 export declare type User_Id = string;
 export declare type User_Key = string;
 export interface IUser {
-    id: string;
-    name: UserAccount_UserName;
+    id: number;
+    userName: UserAccount_UserName;
 }
 export interface IUserCreated {
     id: number;
