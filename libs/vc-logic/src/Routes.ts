@@ -4,6 +4,8 @@ import {get} from 'svelte/store'
 import {
 	currentPage,
 	currentUrl,
+	lastPage,
+	lastUrl,
 	routeParams,
 	showSignIn,
 	signedInState,
@@ -119,22 +121,15 @@ export class Routes
 		this.setInProgressState(paramMap, nextPage.url)
 
 		// FIXME: transition navigation to saper
-		// page(this.inProgressUrl)
+		page(this.inProgressUrl)
 
-		// let currentPage,
-		//     currentUrl
-		// if (appComp.store) {
-		// 	const state = appComp.store.get()
-		// 	currentPage = state.currentPage
-		// 	currentUrl  = state.currentUrl
-		// }
-		// appComp.store.set({
-		// 	currentPage: nextPage,
-		// 	currentUrl: url,
-		// 	lastPage: currentPage,
-		// 	lastUrl: currentUrl,
-		// 	routeParams: paramMap
-		// })
+		const previousPage: IRouteConfig = get(currentPage)
+		currentPage.set(nextPage)
+		lastPage.set(previousPage)
+		const previousUrl: Route_Path = get(currentUrl)
+		currentUrl.set(nextPage.url)
+		lastUrl.set(previousUrl)
+		routeParams.set(paramMap)
 	}
 
 	setupRoutes(
@@ -234,31 +229,36 @@ export class Routes
 
 					const signedInStateUnsubscribe = signedInState.subscribe(({changed, current}) => {
 						if (changed.authChecked && current.user) {
-							signedInStateUnsubscribe()
-							showSignIn.set(false)
-							this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp)
+							setTimeout(() => {
+								signedInStateUnsubscribe()
+								showSignIn.set(false)
+								this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp)
+							})
 							return
 						}
 						if (!changed.showSignIn || current.showSignIn) {
 							return
 						}
-						signedInStateUnsubscribe()
-						showSignIn.set(false)
-						if (current.user) {
-							this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp)
-						} else {
-							// const {lastPage, lastUrl} = appComp.store.get()
-							// if (!lastPage || lastPage.authenticated) {
-							// 	navigateToPage(POLL_LIST)
-							// } else if (lastUrl) {
-							// 	page(lastUrl)
-							// }
-							if (!current.currentPage || current.currentPage.authenticated) {
-								this.navigateToPage(errorRoutePath)
-							} else if (current.currentUrl) {
-								page(current.currentUrl)
+						setTimeout(() => {
+							signedInStateUnsubscribe()
+							showSignIn.set(false)
+							if (current.user) {
+								this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp)
+							} else {
+								// const previousPage = get(lastPage)
+								// const previousUrl = get(lastUrl)
+								// if (!previousPage || previousPage.authenticated) {
+								// 	navigateToPage(POLL_LIST)
+								// } else if (previousUrl) {
+								// 	page(previousUrl)
+								// }
+								if (!current.currentPage || current.currentPage.authenticated) {
+									this.navigateToPage(errorRoutePath)
+								} else if (current.currentUrl) {
+									page(current.currentUrl)
+								}
 							}
-						}
+						})
 					})
 				}, 400)
 			})

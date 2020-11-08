@@ -7,7 +7,6 @@ import {
 }              from 'svelte/store'
 import {
 	IRouteConfig,
-	IRouteParamMap,
 	Route_Path
 }              from './Routes'
 
@@ -86,13 +85,15 @@ export let currentUrl          = writable<Route_Path>('')
 export let emInPx              = writable(0)
 export let forms               = writable(null)
 export let isDesktop           = writable(false)
+export let lastPage            = writable<IRouteConfig>(null)
+export let lastUrl             = writable<Route_Path>(null)
 export let mode                = writable<string>(null)
 export let noOverflow          = writable(false)
 export let pageTitle           = writable('Votecube')
 export let popup               = writable<boolean>(false)
 export let portalHeight        = writable(0)
 export let resized             = writable(false)
-export let routeParams         = writable<{[key:string]:string}>(null)
+export let routeParams         = writable<{ [key: string]: string }>(null)
 export let showConfirm         = writable(false)
 export let showMainMenu        = createShowMainMenu()
 export let showSignIn          = writable(false)

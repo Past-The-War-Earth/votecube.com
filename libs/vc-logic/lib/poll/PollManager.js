@@ -1,6 +1,5 @@
 import { container, DI } from '@airport/di';
-import { POLL_DAO } from '@votecube/ecclesia';
-import { CUBE_LOGIC, LOGIC_UTILS, POLL_FORM_MANAGER, POLL_MANAGER, POLL_REVISION_CONVERTER } from '../tokens';
+import { CONNECTION_MANAGER, CUBE_LOGIC, LOGIC_UTILS, POLL_FORM_MANAGER, POLL_MANAGER, POLL_REVISION_CONVERTER } from '../tokens';
 export class PollManager {
     constructor() {
         this.currRevision = {
@@ -157,8 +156,11 @@ export class PollManager {
         const dbObject = converter.uiToDb(ui
         // , delta
         );
-        const pollDao = await container(this).get(POLL_DAO);
-        await pollDao.createNew(dbObject, user);
+        const connectionManager = await container(this).get(CONNECTION_MANAGER);
+        await connectionManager.put('api/createRevision', {
+            poll: dbObject,
+            user
+        });
         this.currRevision = {
             form: null,
             originalUi: null,

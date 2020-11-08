@@ -1,6 +1,6 @@
+import { IUserAccount, Poll_Id, PollRevision_Id, Theme_Id } from '@votecube/ecclesia';
 import { IFieldGroup } from '@votecube/forms';
 import { IsData, IUiPoll, IUiPollRevision, IUiPollRevisionDelta, IVote } from '@votecube/model';
-import { IUserAccount, Poll_Id, PollRevision_Id, Theme_Id } from '@votecube/ecclesia';
 export interface IPageVote extends IVote {
     changeMillis?: number;
 }

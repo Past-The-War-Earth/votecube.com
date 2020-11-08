@@ -6,6 +6,7 @@ export * from './pages/poll/info/PollMainLogic';
 export * from './pages/poll/PollFormManager';
 export * from './poll/CubeLogic';
 export * from './poll/PollManager';
+export * from './poll/VoteManager';
 export * from './Auth';
 export * from './ConnectionManager';
 export * from './container';

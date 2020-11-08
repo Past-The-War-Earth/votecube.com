@@ -1,7 +1,7 @@
 import { DI } from '@airport/di';
 import page from 'page';
 import { get } from 'svelte/store';
-import { currentPage, currentUrl, routeParams, showSignIn, signedInState, user } from './store';
+import { currentPage, currentUrl, lastPage, lastUrl, routeParams, showSignIn, signedInState, user } from './store';
 import { ROUTES } from './tokens';
 export class Routes {
     constructor() {
@@ -33,21 +33,14 @@ export class Routes {
         const nextPage = this.pageConf[pageKey];
         this.setInProgressState(paramMap, nextPage.url);
         // FIXME: transition navigation to saper
-        // page(this.inProgressUrl)
-        // let currentPage,
-        //     currentUrl
-        // if (appComp.store) {
-        // 	const state = appComp.store.get()
-        // 	currentPage = state.currentPage
-        // 	currentUrl  = state.currentUrl
-        // }
-        // appComp.store.set({
-        // 	currentPage: nextPage,
-        // 	currentUrl: url,
-        // 	lastPage: currentPage,
-        // 	lastUrl: currentUrl,
-        // 	routeParams: paramMap
-        // })
+        page(this.inProgressUrl);
+        const previousPage = get(currentPage);
+        currentPage.set(nextPage);
+        lastPage.set(previousPage);
+        const previousUrl = get(currentUrl);
+        currentUrl.set(nextPage.url);
+        lastUrl.set(previousUrl);
+        routeParams.set(paramMap);
     }
     setupRoutes(pageMap, setPageComp, defaultRoutePath, errorRoutePath) {
         this.setupPage(this.pageConf[defaultRoutePath], pageMap[defaultRoutePath], setPageComp, errorRoutePath, '/');
@@ -101,33 +94,38 @@ export class Routes {
                 showSignIn.set(true);
                 const signedInStateUnsubscribe = signedInState.subscribe(({ changed, current }) => {
                     if (changed.authChecked && current.user) {
-                        signedInStateUnsubscribe();
-                        showSignIn.set(false);
-                        this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp);
+                        setTimeout(() => {
+                            signedInStateUnsubscribe();
+                            showSignIn.set(false);
+                            this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp);
+                        });
                         return;
                     }
                     if (!changed.showSignIn || current.showSignIn) {
                         return;
                     }
-                    signedInStateUnsubscribe();
-                    showSignIn.set(false);
-                    if (current.user) {
-                        this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp);
-                    }
-                    else {
-                        // const {lastPage, lastUrl} = appComp.store.get()
-                        // if (!lastPage || lastPage.authenticated) {
-                        // 	navigateToPage(POLL_LIST)
-                        // } else if (lastUrl) {
-                        // 	page(lastUrl)
-                        // }
-                        if (!current.currentPage || current.currentPage.authenticated) {
-                            this.navigateToPage(errorRoutePath);
+                    setTimeout(() => {
+                        signedInStateUnsubscribe();
+                        showSignIn.set(false);
+                        if (current.user) {
+                            this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp);
                         }
-                        else if (current.currentUrl) {
-                            page(current.currentUrl);
+                        else {
+                            // const previousPage = get(lastPage)
+                            // const previousUrl = get(lastUrl)
+                            // if (!previousPage || previousPage.authenticated) {
+                            // 	navigateToPage(POLL_LIST)
+                            // } else if (previousUrl) {
+                            // 	page(previousUrl)
+                            // }
+                            if (!current.currentPage || current.currentPage.authenticated) {
+                                this.navigateToPage(errorRoutePath);
+                            }
+                            else if (current.currentUrl) {
+                                page(current.currentUrl);
+                            }
                         }
-                    }
+                    });
                 });
             }, 400);
         });

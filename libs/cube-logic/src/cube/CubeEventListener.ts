@@ -69,7 +69,7 @@ export interface ICubeEventListener {
 
 }
 
-// export const TOUCH = document.ontouchmove !== undefined
+export const TOUCH = document.ontouchmove !== undefined
 
 export class CubeEventListener
 	implements ICubeEventListener {

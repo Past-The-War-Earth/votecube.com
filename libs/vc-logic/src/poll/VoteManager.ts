@@ -34,6 +34,12 @@ export class VoteManager
 	): Promise<IVote> {
 		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
 
+		if(!pollId) {
+			return {
+
+			}
+		}
+
 		return await connectionManager.get('findUserVoteForPoll', {
 			passwordHash,
 			pollId,

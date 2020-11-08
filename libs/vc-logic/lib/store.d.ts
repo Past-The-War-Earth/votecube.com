@@ -24,6 +24,8 @@ export declare let currentUrl: import("svelte/store").Writable<string>;
 export declare let emInPx: import("svelte/store").Writable<number>;
 export declare let forms: import("svelte/store").Writable<any>;
 export declare let isDesktop: import("svelte/store").Writable<boolean>;
+export declare let lastPage: import("svelte/store").Writable<IRouteConfig>;
+export declare let lastUrl: import("svelte/store").Writable<string>;
 export declare let mode: import("svelte/store").Writable<string>;
 export declare let noOverflow: import("svelte/store").Writable<boolean>;
 export declare let pageTitle: import("svelte/store").Writable<string>;

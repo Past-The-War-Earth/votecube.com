@@ -4,6 +4,9 @@ import { CONNECTION_MANAGER, VOTE_MANAGER } from '../tokens';
 export class VoteManager {
     async getVoteForPoll(username, passwordHash, pollId) {
         const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER);
+        if (!pollId) {
+            return null;
+        }
         return await connectionManager.get('findUserVoteForPoll', {
             passwordHash,
             pollId,

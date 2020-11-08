@@ -1,15 +1,16 @@
-import {DI}               from '@airport/di'
+import {DI}                           from '@airport/di'
 import {
 	closeDb,
 	startDb
-} from '@airport/mysql'
-import {injectAirportDatabase} from '@airport/tower'
+}                                     from '@airport/mysql'
+import {injectAirportDatabase}        from '@airport/tower'
 injectAirportDatabase()
-import {injectTransactionalServer} from '@airport/terminal'
+import {injectTransactionalServer}    from '@airport/terminal'
 import {injectTransactionalConnector} from '@airport/tarmaq'
-import {SCHEMA}           from '@votecube/ecclesia/lib/generated/schema'
-import {fastify}          from 'fastify'
-import {AUTH}             from './tokens'
+import {POLL_DAO}                     from '@votecube/ecclesia'
+import {SCHEMA}                       from '@votecube/ecclesia/lib/generated/schema'
+import {fastify}                      from 'fastify'
+import {AUTH}                         from './tokens'
 
 injectTransactionalServer()
 injectTransactionalConnector()
@@ -70,7 +71,11 @@ server.put('/api/createRevision', async (
 	request,
 	reply
 ) => {
-	// return someJsonObject
+	const body: any = JSON.parse(request.body as any)
+
+	const pollDao = await DI.db().get(POLL_DAO)
+
+	await pollDao.createNew(body.poll, body.user)
 })
 
 server.get('/api/findUserVoteForPoll', async (

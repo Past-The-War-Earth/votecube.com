@@ -2,6 +2,13 @@ import {
 	container,
 	DI
 }                    from '@airport/di'
+import {
+	IUserAccount,
+	POLL_DAO,
+	Poll_Id,
+	PollRevision_Id,
+	Theme_Id
+}                    from '@votecube/ecclesia'
 import {IFieldGroup} from '@votecube/forms'
 import {
 	IsData,
@@ -11,13 +18,7 @@ import {
 	IVote,
 }                    from '@votecube/model'
 import {
-	IUserAccount,
-	POLL_DAO,
-	Poll_Id,
-	PollRevision_Id,
-	Theme_Id
-}                    from '@votecube/ecclesia'
-import {
+	CONNECTION_MANAGER,
 	CUBE_LOGIC,
 	LOGIC_UTILS,
 	POLL_FORM_MANAGER,
@@ -236,9 +237,11 @@ export class PollManager
 			// , delta
 		)
 
-		const pollDao = await container(this).get(POLL_DAO)
-
-		await pollDao.createNew(dbObject, user)
+		const connectionManager = await container(this).get(CONNECTION_MANAGER)
+		await connectionManager.put('api/createRevision', {
+			poll: dbObject,
+			user
+		})
 
 		this.currRevision = {
 			form: null,

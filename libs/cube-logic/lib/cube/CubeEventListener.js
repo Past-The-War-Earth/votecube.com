@@ -1,7 +1,7 @@
 import { container, DI } from '@airport/di';
 import { CUBE_DIRECTION, CUBE_EVENT_LISTENER, CUBE_MOVEMENT, CUBE_UTILS, EVENT_LISTENER_MAP, MUTATION_API, VIEWPORT } from '../tokens';
 import { Bool, Move } from './CubeMovement';
-// export const TOUCH = document.ontouchmove !== undefined
+export const TOUCH = document.ontouchmove !== undefined;
 export class CubeEventListener {
     constructor() {
         this.lastMove = 0;
