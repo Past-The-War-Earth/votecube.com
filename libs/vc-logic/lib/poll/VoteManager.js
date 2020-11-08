@@ -5,7 +5,7 @@ export class VoteManager {
     async getVoteForPoll(username, passwordHash, pollId) {
         const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER);
         if (!pollId) {
-            return null;
+            return this.getStubVote();
         }
         return await connectionManager.get('findUserVoteForPoll', {
             passwordHash,
@@ -14,6 +14,31 @@ export class VoteManager {
         });
     }
     async saveVote(poll) {
+    }
+    getStubVote() {
+        return {
+            1: {
+                factorNumber: 1,
+                outcome: 'A',
+                value: 33
+            },
+            2: {
+                factorNumber: 2,
+                outcome: 'A',
+                value: 33
+            },
+            3: {
+                factorNumber: 2,
+                outcome: 'B',
+                value: 34
+            }
+        };
+    }
+    dbToUi(vote) {
+        return null;
+    }
+    uiToDb(vote) {
+        return null;
     }
 }
 DI.set(VOTE_MANAGER, VoteManager);

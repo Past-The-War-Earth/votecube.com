@@ -4,6 +4,7 @@ import {
 	IVote,
 	Poll_Id
 } from '@votecube/ecclesia'
+import {IVote as UIVote} from '@votecube/model'
 import {APP_CONTAINER} from '../container'
 import {
 	CONNECTION_MANAGER,
@@ -16,7 +17,7 @@ export interface IVoteManager {
 		username: string,
 		passwordHash: string,
 		pollId: Poll_Id
-	): Promise<IVote>
+	): Promise<UIVote>
 
 	saveVote(
 		poll: IPoll
@@ -31,13 +32,11 @@ export class VoteManager
 		username: string,
 		passwordHash: string,
 		pollId: Poll_Id
-	): Promise<IVote> {
+	): Promise<UIVote> {
 		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
 
 		if(!pollId) {
-			return {
-
-			}
+			return this.getStubVote()
 		}
 
 		return await connectionManager.get('findUserVoteForPoll', {
@@ -51,6 +50,38 @@ export class VoteManager
 		poll: IPoll
 	): Promise<void> {
 
+	}
+
+	private getStubVote(): UIVote {
+		return {
+			1: {
+				factorNumber: 1,
+				outcome: 'A',
+				value: 33
+			},
+			2: {
+				factorNumber: 2,
+				outcome: 'A',
+				value: 33
+			},
+			3: {
+				factorNumber: 2,
+				outcome: 'B',
+				value: 34
+			}
+		}
+	}
+
+	private dbToUi(
+		vote: IVote
+	): UIVote {
+		return null
+	}
+
+	private uiToDb(
+		vote: UIVote
+	): IVote {
+		return null
 	}
 
 }

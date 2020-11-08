@@ -1,1 +1,0 @@
-{"version":3,"file":"PositionsCollection.js","sourceRoot":"","sources":["../../../../../../src/document/schema/PositionsCollection.ts"],"names":[],"mappings":";;AAWA,qDAAqD;AAWrD,MAAa,mBACZ,SAAQ,+BAAyC;IAGjD,YACC,MAAe;QAEf,KAAK,CAAC,WAAW,EAAE,MAAM,CAAC,CAAA;IAC3B,CAAC;IAED,aAAa,CACZ,cAA6E;QAE7E,OAAO,IAAI,CAAC,KAAK,CAAC,cAAc,EAAE,eAAe,CAAC,CAAA;IACnD,CAAC;CAED;AAhBD,kDAgBC"}
