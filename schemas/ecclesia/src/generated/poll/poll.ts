@@ -23,11 +23,11 @@ import {
 export interface IPoll extends IAgeSuitableRow {
 	
 	// Id Properties
+	id: number;
 
 	// Id Relations
 
 	// Non-Id Properties
-	id?: number;
 
 	// Non-Id Relations
 	theme?: ITheme;

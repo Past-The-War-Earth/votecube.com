@@ -86,7 +86,6 @@ declare function require(moduleName: string): any;
 export interface PollESelect
     extends AgeSuitableRowESelect, PollEOptionalId {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -106,6 +105,7 @@ export interface PollESelect
 export interface PollEId
     extends AgeSuitableRowEId {
 	// Id Properties
+	id: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -116,6 +116,7 @@ export interface PollEId
  */
 export interface PollEOptionalId {
 	// Id Properties
+	id?: number | IQNumberField;
 
 	// Id Relations - Ids only
 
@@ -127,7 +128,6 @@ export interface PollEOptionalId {
 export interface PollEUpdateProperties
 	extends AgeSuitableRowEUpdateProperties {
 	// Non-Id Properties
-	id?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	theme?: ThemeEOptionalId;
@@ -144,7 +144,6 @@ export interface PollGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
-	id?: number | IQNumberField;
 
 	// Relations
 	theme?: ThemeGraph;
@@ -165,7 +164,6 @@ export interface PollEUpdateColumns
 	CREATED_AT?: Date | IQDateField;
 	USER_ACCOUNT_ID?: number | IQNumberField;
 	AGE_SUITABILITY?: number | IQNumberField;
-	POLL_ID?: number | IQNumberField;
 	THEME_ID?: number | IQNumberField;
 	POLL_TYPE_ID?: number | IQNumberField;
 	PARENT_POLL_ID?: number | IQNumberField;
@@ -199,11 +197,11 @@ extends PollEId, PollEUpdateColumns {
 export interface QPoll extends QAgeSuitableRow
 {
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 
 	// Non-Id Fields
-	id: IQNumberField;
 
 	// Non-Id Relations
 	theme: QThemeQRelation;
@@ -221,6 +219,7 @@ export interface QPollQId extends QAgeSuitableRowQId
 {
 	
 	// Id Fields
+	id: IQNumberField;
 
 	// Id Relations
 

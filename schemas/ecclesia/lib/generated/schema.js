@@ -8250,7 +8250,11 @@ export const SCHEMA = {
                             "type": 4
                         }
                     ],
-                    "idColumnRefs": [],
+                    "idColumnRefs": [
+                        {
+                            "index": 3
+                        }
+                    ],
                     "index": 46,
                     "isLocal": true,
                     "isRepositoryEntity": false,
@@ -8288,7 +8292,7 @@ export const SCHEMA = {
                                 "index": 3
                             },
                             "index": 3,
-                            "isId": false,
+                            "isId": true,
                             "name": "id",
                             "sinceVersion": 1
                         },

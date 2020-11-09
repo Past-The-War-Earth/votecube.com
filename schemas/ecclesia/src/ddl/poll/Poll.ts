@@ -2,11 +2,12 @@ import {
 	Column,
 	Entity,
 	GeneratedValue,
+	Id,
 	JoinColumn,
 	ManyToOne,
 	OneToMany,
 	Table
-}                                from '@airport/air-control'
+} from '@airport/air-control'
 import {CascadeType}             from '@airport/ground-control'
 import {Poll_Id}                 from '../../types/poll/Poll'
 import {AgeSuitableRow}       from '../infrastructure/row/AgeSuitableRow'
@@ -22,6 +23,7 @@ export class Poll
 
 	@GeneratedValue()
 	@Column({name: 'POLL_ID'})
+	@Id()
 	id: Poll_Id
 
 	@ManyToOne()

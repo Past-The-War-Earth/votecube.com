@@ -8,7 +8,6 @@ import { PollRevisionGraph, PollRevisionESelect, QPollRevision } from './revisio
  * SELECT - All fields and relations (optional).
  */
 export interface PollESelect extends AgeSuitableRowESelect, PollEOptionalId {
-    id?: number | IQNumberField;
     theme?: ThemeESelect;
     type?: PollTypeESelect;
     parent?: PollESelect;
@@ -20,17 +19,18 @@ export interface PollESelect extends AgeSuitableRowESelect, PollEOptionalId {
  * DELETE - Ids fields and relations only (required).
  */
 export interface PollEId extends AgeSuitableRowEId {
+    id: number | IQNumberField;
 }
 /**
  * Ids fields and relations only (optional).
  */
 export interface PollEOptionalId {
+    id?: number | IQNumberField;
 }
 /**
  * UPDATE - non-id fields and relations (optional).
  */
 export interface PollEUpdateProperties extends AgeSuitableRowEUpdateProperties {
-    id?: number | IQNumberField;
     theme?: ThemeEOptionalId;
     type?: PollTypeEOptionalId;
     parent?: PollEOptionalId;
@@ -39,7 +39,6 @@ export interface PollEUpdateProperties extends AgeSuitableRowEUpdateProperties {
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface PollGraph extends PollEOptionalId, AgeSuitableRowGraph {
-    id?: number | IQNumberField;
     theme?: ThemeGraph;
     type?: PollTypeGraph;
     parent?: PollGraph;
@@ -54,7 +53,6 @@ export interface PollEUpdateColumns extends AgeSuitableRowEUpdateColumns {
     CREATED_AT?: Date | IQDateField;
     USER_ACCOUNT_ID?: number | IQNumberField;
     AGE_SUITABILITY?: number | IQNumberField;
-    POLL_ID?: number | IQNumberField;
     THEME_ID?: number | IQNumberField;
     POLL_TYPE_ID?: number | IQNumberField;
     PARENT_POLL_ID?: number | IQNumberField;
@@ -82,6 +80,7 @@ export interface QPoll extends QAgeSuitableRow {
     revisions: IQOneToManyRelation<QPollRevision>;
 }
 export interface QPollQId extends QAgeSuitableRowQId {
+    id: IQNumberField;
 }
 export interface QPollQRelation extends QAgeSuitableRowQRelation<QPoll>, QPollQId {
 }

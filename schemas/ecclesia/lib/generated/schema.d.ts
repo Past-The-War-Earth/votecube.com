@@ -246,7 +246,9 @@ export declare const SCHEMA: {
                 sinceVersion: number;
                 type: number;
             })[];
-            idColumnRefs: any[];
+            idColumnRefs: {
+                index: number;
+            }[];
             index: number;
             isLocal: boolean;
             isRepositoryEntity: boolean;

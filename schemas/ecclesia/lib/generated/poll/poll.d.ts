@@ -4,7 +4,7 @@ import { IPollType } from './polltype';
 import { IPollRun } from './run/pollrun';
 import { IPollRevision } from './revision/pollrevision';
 export interface IPoll extends IAgeSuitableRow {
-    id?: number;
+    id: number;
     theme?: ITheme;
     type?: IPollType;
     parent?: IPoll;

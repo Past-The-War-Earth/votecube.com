@@ -4,14 +4,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Column, Entity, GeneratedValue, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
+import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
 import { CascadeType } from '@airport/ground-control';
 import { AgeSuitableRow } from '../infrastructure/row/AgeSuitableRow';
 let Poll = class Poll extends AgeSuitableRow {
 };
 __decorate([
     GeneratedValue(),
-    Column({ name: 'POLL_ID' })
+    Column({ name: 'POLL_ID' }),
+    Id()
 ], Poll.prototype, "id", void 0);
 __decorate([
     ManyToOne(),
