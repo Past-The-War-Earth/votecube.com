@@ -34,7 +34,7 @@ export class PollRevisionConverter {
             id: revisionDoc.pollId
         };
         const parentRevision = {
-            id: revisionDoc.parent.id
+            id: revisionDoc.parent ? revisionDoc.parent.id : null
         };
         const uiPollRevisionTranslation = {
             id: null,

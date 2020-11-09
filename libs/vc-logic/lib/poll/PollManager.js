@@ -157,7 +157,7 @@ export class PollManager {
         // , delta
         );
         const connectionManager = await container(this).get(CONNECTION_MANAGER);
-        await connectionManager.put('api/createRevision', {
+        await connectionManager.put('createRevision', {
             poll: dbObject,
             user
         });
