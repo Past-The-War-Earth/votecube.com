@@ -174,6 +174,7 @@
         cubeSides = cubeSideResult.cubeSides
         loaded = true
         logicUtils = theLogicUtils
+        mode.set(params.mode)
     })
 
     onDestroy(async () => {

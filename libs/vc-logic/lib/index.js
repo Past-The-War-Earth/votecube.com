@@ -1,3 +1,4 @@
+export * from './converter/PollRevisionConveter';
 export * from './helpers/animation';
 export * from './pages/components/poll/DetailedCubeLogic';
 export * from './pages/poll/info/FactorRankingLogic';
