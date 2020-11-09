@@ -84,7 +84,7 @@ export class PollRevisionConverter
 		}
 
 		const parentRevision: IPollRevision = {
-			id: revisionDoc.parent.id
+			id: revisionDoc.parent ? revisionDoc.parent.id : null
 		}
 
 		const uiPollRevisionTranslation: IPollRevisionTranslation = {
