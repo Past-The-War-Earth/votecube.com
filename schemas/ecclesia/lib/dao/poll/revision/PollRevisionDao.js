@@ -14,8 +14,8 @@ export class PollRevisionDao extends BasePollRevisionDao {
         super(...arguments);
         this.createOne = this.create;
     }
-    async createNew(poll, user) {
-        await this.createOne(poll);
+    async createNew(poll, ctx) {
+        await this.createOne(poll, ctx);
     }
     async getListingsForLevel(parentId) {
         let pr, 

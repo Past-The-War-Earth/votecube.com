@@ -14,8 +14,8 @@ export class PollDao extends BasePollDao {
         super(...arguments);
         this.createOne = this.create;
     }
-    async createNew(poll, user) {
-        await this.createOne(poll);
+    async createNew(poll, ctx) {
+        await this.createOne(poll, ctx);
     }
 }
 __decorate([

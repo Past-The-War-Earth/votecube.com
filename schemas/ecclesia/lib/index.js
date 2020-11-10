@@ -1,4 +1,3 @@
-// export * from './dao/dao'
 export * from './dao/dao';
 export * from './ddl/ddl';
 export * from './duo/duo';

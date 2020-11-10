@@ -4,7 +4,10 @@ import {
 }                        from '@airport/air-control'
 import {Persist}         from '@airport/check-in'
 import {DI}              from '@airport/di'
-import {PollRevision_Id} from '../../..'
+import {
+	IVotecubeContext,
+	PollRevision_Id
+} from '../../..'
 import {
 	BasePollRevisionDao,
 	IBasePollRevisionDao,
@@ -30,7 +33,7 @@ export interface IPollRevisionDao
 
 	createNew(
 		poll: IPoll,
-		user: IUserAccount
+		ctx: IVotecubeContext
 	): Promise<void>
 
 }
@@ -125,9 +128,9 @@ export class PollRevisionDao
 
 	async createNew(
 		poll: IPoll,
-		user: IUserAccount
+		ctx: IVotecubeContext
 	): Promise<void> {
-		await this.createOne(poll)
+		await this.createOne(poll, ctx)
 	}
 
 	async getListingsForLevel(

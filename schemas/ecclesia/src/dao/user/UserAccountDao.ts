@@ -6,6 +6,7 @@ import {
 	Q,
 	QUserAccount
 }                         from '../../generated/generated'
+import {IVotecubeContext} from '../../index'
 import {USER_ACCOUNT_DAO} from '../../tokens'
 import {
 	UserAccount_PasswordHash,
@@ -17,11 +18,13 @@ export interface IUserAccountDao
 
 	signUp(
 		userName: UserAccount_UserName,
-		passwordHash: UserAccount_PasswordHash
+		passwordHash: UserAccount_PasswordHash,
+		ctx: IVotecubeContext
 	): Promise<IUserAccount>
 
 	findByUsername(
-		userName: UserAccount_UserName
+		userName: UserAccount_UserName,
+		ctx: IVotecubeContext
 	): Promise<IUserAccount>
 
 }
@@ -32,7 +35,8 @@ export class UserAccountDao
 
 	async signUp(
 		userName: UserAccount_UserName,
-		passwordHash: UserAccount_PasswordHash
+		passwordHash: UserAccount_PasswordHash,
+		ctx: IVotecubeContext
 	): Promise<IUserAccount> {
 		const userAccount: IUserAccount = {
 			id: undefined,
@@ -40,13 +44,14 @@ export class UserAccountDao
 			passwordHash
 		}
 
-		await this.db.create(userAccount)
+		await this.db.create(userAccount, ctx)
 
 		return userAccount
 	}
 
 	async findByUsername(
-		userName: UserAccount_UserName
+		userName: UserAccount_UserName,
+		ctx: IVotecubeContext
 	): Promise<IUserAccount> {
 		let ua: QUserAccount
 
@@ -56,7 +61,7 @@ export class UserAccountDao
 				ua = Q.UserAccount
 			],
 			where: ua.userName.equals(userName)
-		})
+		}, ctx)
 	}
 
 }

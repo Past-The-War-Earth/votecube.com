@@ -1,24 +1,24 @@
 import {
 	ANOTHER,
 	Y
-}                 from '@airport/air-control'
-import {Persist}  from '@airport/check-in'
-import {DI}       from '@airport/di'
+}                         from '@airport/air-control'
+import {Persist}          from '@airport/check-in'
+import {DI}               from '@airport/di'
 import {
 	BasePollDao,
 	IBasePollDao,
 	IPoll,
-	IUserAccount,
 	PollGraph,
-}                 from '../../generated/generated'
-import {POLL_DAO} from '../../tokens'
+}                         from '../../generated/generated'
+import {IVotecubeContext} from '../../index'
+import {POLL_DAO}         from '../../tokens'
 
 export interface IPollDao
 	extends IBasePollDao {
 
 	createNew(
 		poll: IPoll,
-		user: IUserAccount
+		ctx: IVotecubeContext
 	): Promise<void>
 
 }
@@ -125,9 +125,9 @@ export class PollDao
 
 	async createNew(
 		poll: IPoll,
-		user: IUserAccount
+		ctx: IVotecubeContext
 	): Promise<void> {
-		await this.createOne(poll)
+		await this.createOne(poll, ctx)
 	}
 
 }
