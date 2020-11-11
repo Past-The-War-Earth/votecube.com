@@ -1,5 +1,5 @@
-import {IContext}     from '@airport/di'
-import {IUserAccount} from './generated/user/useraccount'
+import {IEntityContext} from '@airport/air-control'
+import {IUserAccount}   from './generated/user/useraccount'
 
 export *          from './dao/dao'
 export *          from './ddl/ddl'
@@ -10,6 +10,6 @@ export *          from './generated/interfaces'
 export *          from './types/types'
 
 export interface IVotecubeContext
-	extends IContext {
+	extends IEntityContext {
 	userAccount: IUserAccount
 }
