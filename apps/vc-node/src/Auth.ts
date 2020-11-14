@@ -43,7 +43,7 @@ export class Auth
 		passwordHash: string
 	): Promise<IAuthError | IUserAccount> {
 		const userAccountDao = await container(this).get(USER_ACCOUNT_DAO)
-		const userAccount = await userAccountDao.findByUsername(userName)
+		const userAccount = await userAccountDao.findByUsername(userName, null)
 
 		if (userAccount === null) {
 			return {
@@ -77,7 +77,7 @@ export class Auth
 		const userAccountDao = await container(this).get(USER_ACCOUNT_DAO)
 
 		try {
-			return await userAccountDao.signUp(userName, passwordHash)
+			return await userAccountDao.signUp(userName, passwordHash, null)
 		} catch (e) {
 			return {
 				code: 'InUse'

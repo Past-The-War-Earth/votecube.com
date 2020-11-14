@@ -7,7 +7,10 @@ import {injectAirportDatabase}        from '@airport/tower'
 injectAirportDatabase()
 import {injectTransactionalServer}    from '@airport/terminal'
 import {injectTransactionalConnector} from '@airport/tarmaq'
-import {POLL_DAO}                     from '@votecube/ecclesia'
+import {
+	POLL_DAO,
+	USER_ACCOUNT_DAO
+}                                     from '@votecube/ecclesia'
 import {SCHEMA}                       from '@votecube/ecclesia/lib/generated/schema'
 import {fastify}                      from 'fastify'
 import {AUTH}                         from './tokens'
@@ -73,7 +76,7 @@ server.put('/api/createRevision', async (
 ) => {
 	const body: any = JSON.parse(request.body as any)
 
-	const pollDao = await DI.db().get(POLL_DAO)
+	const [pollDao, userAccountDao] = await DI.db().get(POLL_DAO, USER_ACCOUNT_DAO)
 
 	await pollDao.createNew(body.poll, body.user)
 })
