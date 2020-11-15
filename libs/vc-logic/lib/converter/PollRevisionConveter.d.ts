@@ -1,5 +1,5 @@
-import { IUiPollRevision } from '@votecube/model';
 import { IPollRevision } from '@votecube/ecclesia/lib/generated/interfaces';
+import { IUiPollRevision } from '@votecube/model';
 export interface IPollRevisionConverter {
     dbToUi(revisionDb: IPollRevision): IUiPollRevision;
     uiToDb(revisionDoc: IUiPollRevision): IPollRevision;

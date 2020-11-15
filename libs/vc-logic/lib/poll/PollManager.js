@@ -156,9 +156,12 @@ export class PollManager {
         const dbObject = converter.uiToDb(ui
         // , delta
         );
+        const poll = dbObject.poll;
+        poll.revisions = [dbObject];
+        delete dbObject.poll;
         const connectionManager = await container(this).get(CONNECTION_MANAGER);
         await connectionManager.put('createRevision', {
-            poll: dbObject,
+            poll,
             user
         });
         this.currRevision = {

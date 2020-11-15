@@ -31,7 +31,14 @@ export class PollRevisionConverter {
     }
     uiToDb(revisionDoc) {
         const poll = {
-            id: revisionDoc.pollId
+            ageSuitability: revisionDoc.ageSuitability,
+            id: revisionDoc.pollId,
+            type: {
+                id: 1
+            },
+            theme: {
+                id: revisionDoc.theme.id
+            }
         };
         const parentRevision = {
             id: revisionDoc.parent ? revisionDoc.parent.id : null
