@@ -237,9 +237,13 @@ export class PollManager
 			// , delta
 		)
 
+		const poll = dbObject.poll
+		poll.revisions = [dbObject]
+		delete dbObject.poll
+
 		const connectionManager = await container(this).get(CONNECTION_MANAGER)
 		await connectionManager.put('createRevision', {
-			poll: dbObject,
+			poll,
 			user
 		})
 

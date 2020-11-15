@@ -1,16 +1,5 @@
 import {DI}                      from '@airport/di'
 import {
-	Factor_Number,
-	IParent,
-	IsData,
-	IUiFactor,
-	IUiOutcome,
-	IUiPollRevision,
-	IUiPosition,
-	IUiTheme,
-	Position_Dir,
-}                                from '@votecube/model'
-import {
 	IFactor,
 	IFactorPosition,
 	IFactorTranslation,
@@ -26,6 +15,17 @@ import {
 	Id,
 	Outcome_Ordinal
 }                                from '@votecube/ecclesia/lib/types/types'
+import {
+	Factor_Number,
+	IParent,
+	IsData,
+	IUiFactor,
+	IUiOutcome,
+	IUiPollRevision,
+	IUiPosition,
+	IUiTheme,
+	Position_Dir,
+}                                from '@votecube/model'
 import {POLL_REVISION_CONVERTER} from '../tokens'
 
 export interface IPollRevisionConverter {
@@ -80,7 +80,14 @@ export class PollRevisionConverter
 		revisionDoc: IUiPollRevision
 	): IPollRevision {
 		const poll: IPoll = {
-			id: revisionDoc.pollId
+			ageSuitability: revisionDoc.ageSuitability,
+			id: revisionDoc.pollId,
+			type: {
+				id: 1
+			},
+			theme: {
+				id: revisionDoc.theme.id
+			}
 		}
 
 		const parentRevision: IPollRevision = {

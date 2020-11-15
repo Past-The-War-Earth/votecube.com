@@ -19,8 +19,8 @@ export class VotecubeOperationManager
 		idData?: EntityIdData,
 	): Promise<number> {
 		(entity as any).userAccount = ctx.userAccount;
-		(entity as any).createdBy = ctx.startedAt
-		return await this.performCreate(entity, createdEntityMap,
+		(entity as any).createdAt = ctx.startedAt
+		return await super.performCreate(entity, createdEntityMap,
 			transaction, ctx, idData)
 	}
 
@@ -33,7 +33,7 @@ export class VotecubeOperationManager
 	): Promise<number> {
 		entities.forEach(entity => {
 			(entity as any).userAccount = ctx.userAccount;
-			(entity as any).createdBy = ctx.startedAt
+			(entity as any).createdAt = ctx.startedAt
 		})
 		return await super.performBulkCreate(entities, createdEntityMap,
 			transaction, ctx, ensureGeneratedValues)
@@ -47,7 +47,7 @@ export class VotecubeOperationManager
 		originalValue?: E,
 	): Promise<number> {
 		(entity as any).userAccount = ctx.userAccount;
-		(entity as any).updatedBy = ctx.startedAt
+		(entity as any).updatedAt = ctx.startedAt
 		return await super.performUpdate(entity, updatedEntityMap,
 			transaction, ctx, originalValue)
 	}

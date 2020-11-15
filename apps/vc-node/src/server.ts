@@ -3,22 +3,20 @@ import {
 	closeDb,
 	startDb
 }                                     from '@airport/mysql'
-import {injectAirportDatabase}        from '@airport/tower'
-injectAirportDatabase()
-import {injectTransactionalServer}    from '@airport/terminal'
 import {injectTransactionalConnector} from '@airport/tarmaq'
-import {
-	POLL_DAO,
-	USER_ACCOUNT_DAO
-}                                     from '@votecube/ecclesia'
+import {injectTransactionalServer}    from '@airport/terminal'
+import {injectAirportDatabase}        from '@airport/tower'
+import {POLL_DAO}                     from '@votecube/ecclesia'
 import {SCHEMA}                       from '@votecube/ecclesia/lib/generated/schema'
 import {fastify}                      from 'fastify'
+import fastifyCors                    from 'fastify-cors'
 import {AUTH}                         from './tokens'
+import {IVotecubeContext}             from './VotecubeContext'
+
+injectAirportDatabase()
 
 injectTransactionalServer()
 injectTransactionalConnector()
-
-import fastifyCors from 'fastify-cors'
 
 const server = fastify({logger: false})
 server.register(fastifyCors, {
@@ -42,7 +40,8 @@ server.put('/api/signIn', async (
 	request,
 	reply
 ) => {
-	const auth = await DI.db().get(AUTH)
+	const auth      = await DI.db()
+		.get(AUTH)
 	const body: any = JSON.parse(request.body as any)
 
 	return await auth.signIn(body.userName, body.passwordHash)
@@ -52,7 +51,8 @@ server.put('/api/signOut', async (
 	request,
 	reply
 ) => {
-	const auth = await DI.db().get(AUTH)
+	const auth      = await DI.db()
+		.get(AUTH)
 	const body: any = JSON.parse(request.body as any)
 
 	await auth.signOut(body.userName, body.passwordHash)
@@ -64,7 +64,8 @@ server.put('/api/signUp', async (
 	request,
 	reply
 ) => {
-	const auth = await DI.db().get(AUTH)
+	const auth      = await DI.db()
+		.get(AUTH)
 	const body: any = JSON.parse(request.body as any)
 
 	return await auth.signUp(body.userName, body.passwordHash)
@@ -76,9 +77,18 @@ server.put('/api/createRevision', async (
 ) => {
 	const body: any = JSON.parse(request.body as any)
 
-	const [pollDao, userAccountDao] = await DI.db().get(POLL_DAO, USER_ACCOUNT_DAO)
+	const [pollDao, auth] = await DI.db().get(POLL_DAO, AUTH)
 
-	await pollDao.createNew(body.poll, body.user)
+	const userAccount = await auth.signIn(body.user.userName, body.user.passwordHash)
+	if ((userAccount as any).code) {
+		return userAccount
+	}
+
+	const ctx: IVotecubeContext<any, any> = {
+		userAccount
+	} as any
+
+	await pollDao.createNew(body.poll, ctx)
 })
 
 server.get('/api/findUserVoteForPoll', async (
