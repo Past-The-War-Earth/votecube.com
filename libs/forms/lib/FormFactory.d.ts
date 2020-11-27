@@ -23,3 +23,4 @@ export declare class FormFactory implements IFormFactory {
     matching(validators: IValidator[], rules?: IFieldRules): IMatchingField;
     options(validators: IValidator[], options: IFieldOption[], rules?: IOptionFieldRules): IOptionsField;
 }
+//# sourceMappingURL=FormFactory.d.ts.map

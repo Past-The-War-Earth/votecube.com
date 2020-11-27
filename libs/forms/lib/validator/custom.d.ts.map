@@ -1,0 +1,1 @@
+{"version":3,"file":"custom.d.ts","sourceRoot":"","sources":["../../src/validator/custom.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,WAAW,EAAC,MAAM,oBAAoB,CAAA;AAC9C,OAAO,EAAC,UAAU,EAAC,MAAO,aAAa,CAAA;AAEvC,wBAAgB,MAAM,CACrB,aAAa,EAAE,MAAM,EACrB,iBAAiB,EAAE,MAAM,WAAW,EAAE,GAAG,WAAW,GAAG,IAAI,EAC3D,aAAa,SAAgB,GAC3B,UAAU,CAMZ"}

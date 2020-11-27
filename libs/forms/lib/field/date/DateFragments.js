@@ -1,13 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Validator_1 = require("../../validator/Validator");
-var FragmentType;
+import { isPositiveInteger } from '../../validator/Validator';
+export var FragmentType;
 (function (FragmentType) {
     FragmentType["DATE"] = "date";
     FragmentType["MONTH"] = "month";
     FragmentType["YEAR"] = "year";
-})(FragmentType = exports.FragmentType || (exports.FragmentType = {}));
-class DateFragments {
+})(FragmentType || (FragmentType = {}));
+export class DateFragments {
     constructor(fieldState) {
         this.fieldState = fieldState;
         this.impl = {
@@ -169,7 +167,7 @@ class DateFragments {
     getInputFragmentValidity(fragmentString) {
         return {
             inRange: false,
-            isPositiveInteger: Validator_1.isPositiveInteger(fragmentString),
+            isPositiveInteger: isPositiveInteger(fragmentString),
             number: null
         };
     }
@@ -284,5 +282,4 @@ class DateFragments {
         return validity.fragmentToFocus;
     }
 }
-exports.DateFragments = DateFragments;
 //# sourceMappingURL=DateFragments.js.map

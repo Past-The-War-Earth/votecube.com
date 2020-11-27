@@ -17,3 +17,4 @@ export declare class DateCalendar extends DateSelection implements IDateCalendar
     toPrevMonth(): void;
     private setWeeks;
 }
+//# sourceMappingURL=DateCalendar.d.ts.map

@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Field_1 = require("./Field");
-class OptionsField extends Field_1.Field {
+import { Field, LabelRule } from './Field';
+export class OptionsField extends Field {
     constructor(validators, options = [], rules) {
-        super(validators, Object.assign(Object.assign({}, rules), { label: Field_1.LabelRule.OVER }));
+        super(validators, Object.assign(Object.assign({}, rules), { label: LabelRule.OVER }));
         this.filteredOptions = [];
         this.optionsMap = {};
         this.originalSelectionMap = {};
@@ -186,5 +184,4 @@ class OptionsField extends Field_1.Field {
         }
     }
 }
-exports.OptionsField = OptionsField;
 //# sourceMappingURL=OptionsField.js.map

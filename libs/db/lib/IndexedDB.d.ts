@@ -82,3 +82,4 @@ import { IDatabase } from './Database';
 export declare class IndexedDB {
     open(name: string, version?: number, upgradeCallback?: any): Promise<IDatabase>;
 }
+//# sourceMappingURL=IndexedDB.d.ts.map

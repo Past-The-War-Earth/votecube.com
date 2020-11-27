@@ -96,3 +96,4 @@ export declare abstract class FieldBase implements IFieldBase {
     protected shouldValidate(external: boolean): boolean;
 }
 export declare function validate(field: FieldBase): void;
+//# sourceMappingURL=FieldBase.d.ts.map

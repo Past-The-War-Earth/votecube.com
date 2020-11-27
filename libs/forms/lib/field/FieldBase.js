@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const changeTracker_1 = require("../changeTracker");
-class FieldBase {
+import { addChange, getChange } from '../changeTracker';
+export class FieldBase {
     constructor(validators = []) {
         this.validators = validators;
         // array: IFieldArray
@@ -53,8 +51,8 @@ class FieldBase {
             const delta = reuseChange
                 ? reuseChange
                 : reuseChange === 0
-                    ? changeTracker_1.getChange()
-                    : changeTracker_1.addChange();
+                    ? getChange()
+                    : addChange();
             for (const page of this.components) {
                 page.setDelta(delta);
             }
@@ -158,8 +156,7 @@ class FieldBase {
         return false;
     }
 }
-exports.FieldBase = FieldBase;
-function validate(field) {
+export function validate(field) {
     field.errors = [];
     field.validators.some(validator => {
         const error = validator(field);
@@ -178,6 +175,5 @@ function validate(field) {
         }
     });
 }
-exports.validate = validate;
 let VALIDATION_RUN_NUMBER = 0;
 //# sourceMappingURL=FieldBase.js.map

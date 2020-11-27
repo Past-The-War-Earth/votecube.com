@@ -15,3 +15,4 @@ export declare class DateSelection implements IDateSelection, IDateSelectionInte
     get year(): number;
     setState(external: boolean, date: DateOfMonth, month: Month, year: number): void;
 }
+//# sourceMappingURL=DateSelection.d.ts.map

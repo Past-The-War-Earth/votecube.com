@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-function email() {
+export function email() {
     emailValidator.type = 'email';
     return emailValidator;
 }
-exports.email = email;
 const emailValidator = function (field) {
     const value = field.value;
     if (!value

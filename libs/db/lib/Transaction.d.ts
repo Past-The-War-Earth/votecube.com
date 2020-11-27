@@ -8,3 +8,4 @@ export declare class Transaction implements ITransaction {
     with<T>(storeName: string): IObjectStore<T>;
     commit(): void;
 }
+//# sourceMappingURL=Transaction.d.ts.map

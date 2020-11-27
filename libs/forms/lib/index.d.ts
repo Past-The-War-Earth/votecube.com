@@ -17,3 +17,4 @@ export interface IRuleConstants {
     label: typeof LabelRule;
 }
 export declare const CONSTS: IConstants;
+//# sourceMappingURL=index.d.ts.map

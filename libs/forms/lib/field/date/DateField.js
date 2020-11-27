@@ -1,20 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Validator_1 = require("../../validator/Validator");
-const Field_1 = require("../Field");
-const DateCalendar_1 = require("./DateCalendar");
-const DateFragments_1 = require("./DateFragments");
-const DateSelection_1 = require("./DateSelection");
-const types_1 = require("./types");
-class DateField extends Field_1.Field {
+import { filterToRangeValidators } from '../../validator/Validator';
+import { Field, LabelRule } from '../Field';
+import { DateCalendar } from './DateCalendar';
+import { DateFragments } from './DateFragments';
+import { DateSelection } from './DateSelection';
+import { utcNow } from './types';
+export class DateField extends Field {
     constructor(validators, rules) {
         super(validators, rules);
-        this.fragments = new DateFragments_1.DateFragments(this);
-        this.calendar = new DateCalendar_1.DateCalendar(this);
-        this.selection = new DateSelection_1.DateSelection();
+        this.fragments = new DateFragments(this);
+        this.calendar = new DateCalendar(this);
+        this.selection = new DateSelection();
         this.today = new Date();
-        this.rules.label = Field_1.LabelRule.OVER;
-        this.rangeValidators = Validator_1.filterToRangeValidators(validators);
+        this.rules.label = LabelRule.OVER;
+        this.rangeValidators = filterToRangeValidators(validators);
         this.theValue = null;
         this.reset();
     }
@@ -78,7 +76,7 @@ class DateField extends Field_1.Field {
         this.setState(external, date.getUTCDate(), date.getUTCMonth(), date.getUTCFullYear());
     }
     setToNow() {
-        this.setToDate(true, types_1.utcNow());
+        this.setToDate(true, utcNow());
     }
     setValue(value, resetOriginal = false) {
         if (value) {
@@ -195,5 +193,4 @@ class DateField extends Field_1.Field {
         return [!invalid, inMonth];
     }
 }
-exports.DateField = DateField;
 //# sourceMappingURL=DateField.js.map

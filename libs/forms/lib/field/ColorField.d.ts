@@ -11,3 +11,4 @@ export interface IColorField extends IField {
 export declare class ColorField extends Field {
     get changeFlags(): IColorChangeFlags;
 }
+//# sourceMappingURL=ColorField.d.ts.map

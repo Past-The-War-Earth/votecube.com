@@ -7,3 +7,4 @@ export declare class ObjectStore<Entity extends IModel> {
     constructor(store: IDBObjectStore);
     add(record: Entity, skipExistingServerRecord?: boolean, skipExistingAirRecord?: boolean): Promise<void>;
 }
+//# sourceMappingURL=ObjectStore.d.ts.map

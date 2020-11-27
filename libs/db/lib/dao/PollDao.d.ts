@@ -6,3 +6,4 @@ export declare class PollDao extends Dao<IPoll> implements IPollDao {
     save(entity: IPoll): Promise<void>;
     private getTypesToSave;
 }
+//# sourceMappingURL=PollDao.d.ts.map

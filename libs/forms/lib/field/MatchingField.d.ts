@@ -7,3 +7,4 @@ export declare class MatchingField extends Field implements IMatchingField {
     get matches(): any[];
     set matches(newMatches: any[]);
 }
+//# sourceMappingURL=MatchingField.d.ts.map
