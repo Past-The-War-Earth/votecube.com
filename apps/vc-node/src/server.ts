@@ -1,3 +1,5 @@
+import {ENTITY_STATE_MANAGER}         from '@airport/air-control'
+import {QUERY_RESULTS_SERIALIZER}     from '@airport/check-in'
 import {DI}                           from '@airport/di'
 import {
 	closeDb,
@@ -40,11 +42,14 @@ server.put('/api/signIn', async (
 	request,
 	reply
 ) => {
-	const auth      = await DI.db()
-		.get(AUTH)
+	const [auth, queryResultsSerializer, entityStateManager]
+		              = await DI.db()
+		.get(AUTH, QUERY_RESULTS_SERIALIZER, ENTITY_STATE_MANAGER)
 	const body: any = JSON.parse(request.body as any)
 
-	return await auth.signIn(body.userName, body.passwordHash)
+	const user = await auth.signIn(body.userName, body.passwordHash)
+
+	return queryResultsSerializer.serialize(user, entityStateManager)
 })
 
 server.put('/api/signOut', async (
@@ -64,11 +69,14 @@ server.put('/api/signUp', async (
 	request,
 	reply
 ) => {
-	const auth      = await DI.db()
-		.get(AUTH)
+	const [auth, queryResultsSerializer, entityStateManager]
+		              = await DI.db()
+		.get(AUTH, QUERY_RESULTS_SERIALIZER, ENTITY_STATE_MANAGER)
 	const body: any = JSON.parse(request.body as any)
 
-	return await auth.signUp(body.userName, body.passwordHash)
+	const user = await auth.signUp(body.userName, body.passwordHash)
+
+	return queryResultsSerializer.serialize(user, entityStateManager)
 })
 
 server.put('/api/createRevision', async (
