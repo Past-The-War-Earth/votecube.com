@@ -64,7 +64,7 @@ export class PollRevisionRating
 	})
 	parent: UserPollRevisionRating
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	child: UserPollRevisionRating[]
 	 */
 

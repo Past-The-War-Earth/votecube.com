@@ -1,5 +1,9 @@
-import {DI}                 from '@airport/di'
-import {CONNECTION_MANAGER} from './tokens'
+import {DI} from '@airport/di'
+import {
+	CONNECTION_MANAGER,
+	ENTITY_STATE_MANAGER,
+	OPERATION_SERIALIZER
+}           from './tokens'
 
 export interface IConnectionManager {
 
@@ -25,7 +29,8 @@ export class ConnectionManager
 		url: string,
 		params: any = {}
 	): Promise<T> {
-		const response = await fetch(this.serverUrlPrefix + url + this.getParamsSuffix(params))
+		const response = await fetch(this.serverUrlPrefix + url +
+			this.getParamsSuffix(params))
 
 		return response.json()
 	}
@@ -35,9 +40,13 @@ export class ConnectionManager
 		value: V,
 		params: any = {}
 	): Promise<R> {
-		const response = await fetch(this.serverUrlPrefix + url + this.getParamsSuffix(params), {
+		const [entityStateManager, operationSerializer]
+			                    = await DI.db().get(ENTITY_STATE_MANAGER, OPERATION_SERIALIZER)
+		const serializedValue = operationSerializer.serialize(value, entityStateManager)
+		const response        = await fetch(this.serverUrlPrefix + url +
+			this.getParamsSuffix(params), {
 			method: 'PUT',
-			body: JSON.stringify(value)
+			body: JSON.stringify(serializedValue)
 		})
 
 		// TODO: implement error handling
@@ -48,7 +57,7 @@ export class ConnectionManager
 		params: any
 	): string {
 		let paramStrings = []
-		for(let paramName in params) {
+		for (let paramName in params) {
 			paramStrings.push(paramName + '=' + params[paramName])
 		}
 		let paramsSuffix = ''

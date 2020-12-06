@@ -8,10 +8,9 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
 import {
-	PositionTranslation_Name,
-	PositionTranslation_Id
+	PositionTranslation_Id,
+	PositionTranslation_Name
 }                          from '../../../types/factor/position/PositionTranslation'
 import {Language}          from '../../infrastructure/Language'
 import {ImmutableActorRow} from '../../infrastructure/row/ImmutableActorRow'
@@ -54,7 +53,7 @@ export class PositionTranslation
 	})
 	parent: PositionTranslation
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	children: PositionTranslation[]
 
 	/*

@@ -7,16 +7,13 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                               from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
+}                          from '@airport/air-control'
 import {
 	Skin_BackgroundColor,
 	Skin_Id,
 	Skin_TextColor
 }                          from '../../types/factor/Skin'
 import {ImmutableActorRow} from '../infrastructure/row/ImmutableActorRow'
-import {PollRevision}      from '../poll/revision/PollRevision'
-import {Factor}            from './Factor'
 
 @Entity()
 @Table({name: 'SKINS'})
@@ -41,7 +38,7 @@ export class Skin
 	})
 	parent: Skin
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	children: Skin[]
 
 }

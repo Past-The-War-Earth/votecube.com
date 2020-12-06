@@ -19,12 +19,12 @@ export interface IUserAccountDao
 	signUp(
 		userName: UserAccount_UserName,
 		passwordHash: UserAccount_PasswordHash,
-		ctx: IVotecubeContext
+		context: IVotecubeContext
 	): Promise<IUserAccount>
 
 	findByUsername(
 		userName: UserAccount_UserName,
-		ctx: IVotecubeContext
+		context: IVotecubeContext
 	): Promise<IUserAccount>
 
 }
@@ -36,7 +36,7 @@ export class UserAccountDao
 	async signUp(
 		userName: UserAccount_UserName,
 		passwordHash: UserAccount_PasswordHash,
-		ctx: IVotecubeContext
+		context: IVotecubeContext
 	): Promise<IUserAccount> {
 		const userAccount: IUserAccount = {
 			id: undefined,
@@ -44,14 +44,14 @@ export class UserAccountDao
 			passwordHash
 		}
 
-		await this.db.create(userAccount, ctx)
+		await this.db.save(userAccount, context)
 
 		return userAccount
 	}
 
 	async findByUsername(
 		userName: UserAccount_UserName,
-		ctx: IVotecubeContext
+		context: IVotecubeContext
 	): Promise<IUserAccount> {
 		let ua: QUserAccount
 
@@ -61,7 +61,7 @@ export class UserAccountDao
 				ua = Q.UserAccount
 			],
 			where: ua.userName.equals(userName)
-		}, ctx)
+		}, context)
 	}
 
 }

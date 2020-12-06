@@ -88,7 +88,7 @@ server.put('/api/createRevision', async (
 		userAccount
 	} as any
 
-	await pollDao.createNew(body.poll, ctx)
+	await pollDao.createNew(body.pollRevision, ctx)
 })
 
 server.get('/api/findUserVoteForPoll', async (

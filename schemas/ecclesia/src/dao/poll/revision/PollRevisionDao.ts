@@ -1,19 +1,18 @@
 import {
 	ANOTHER,
 	Y
-}                        from '@airport/air-control'
-import {Persist}         from '@airport/check-in'
-import {DI}              from '@airport/di'
+}                          from '@airport/air-control'
+import {Persist}           from '@airport/check-in'
+import {DI}                from '@airport/di'
 import {
 	IVotecubeContext,
 	PollRevision_Id
-} from '../../..'
+}                          from '../../..'
 import {
 	BasePollRevisionDao,
 	IBasePollRevisionDao,
 	IPoll,
 	IPollRevision,
-	IUserAccount,
 	PollRevisionGraph,
 	Q,
 	QFactor,
@@ -21,11 +20,10 @@ import {
 	QFactorTranslation,
 	QOutcome,
 	QOutcomeTranslation,
-	QPoll,
 	QPollRevision,
 	QPollRevisionFactorPosition,
 	QPollRevisionTranslation
-}                        from '../../../generated/generated'
+}                          from '../../../generated/generated'
 import {POLL_REVISION_DAO} from '../../../tokens'
 
 export interface IPollRevisionDao
@@ -33,7 +31,7 @@ export interface IPollRevisionDao
 
 	createNew(
 		poll: IPoll,
-		ctx: IVotecubeContext
+		context: IVotecubeContext
 	): Promise<void>
 
 }
@@ -124,13 +122,13 @@ export class PollRevisionDao
 			id: Y
 		}
 	})
-	createOne = this.create
+	createOne = this.save
 
 	async createNew(
-		poll: IPoll,
-		ctx: IVotecubeContext
+		pollRevision: IPollRevision,
+		context: IVotecubeContext
 	): Promise<void> {
-		await this.createOne(poll, ctx)
+		await this.save(pollRevision, context)
 	}
 
 	async getListingsForLevel(

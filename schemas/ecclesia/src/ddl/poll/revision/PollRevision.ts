@@ -8,7 +8,6 @@ import {
 	OneToMany,
 	Table
 }                                   from '@airport/air-control'
-import {CascadeType}                from '@airport/ground-control'
 import {
 	PollRevision_Depth,
 	PollRevision_Id
@@ -74,19 +73,19 @@ export class PollRevision
 	})
 	parentTranslation: PollRevisionTranslation
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	children: PollRevision[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
+	@OneToMany({mappedBy: 'pollRevision'})
 	ratings: PollRevisionRating[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
+	@OneToMany({mappedBy: 'pollRevision'})
 	factorPositions: PollRevisionFactorPosition[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
+	@OneToMany({mappedBy: 'pollRevision'})
 	allTranslations: PollRevisionTranslation[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevision'})
+	@OneToMany({mappedBy: 'pollRevision'})
 	opinions: PollRevisionOpinion[]
 
 }

@@ -1,7 +1,5 @@
-import {DI} from '@airport/di'
-import {
-	AgeSuitability
-}           from '@votecube/ecclesia'
+import {DI}                      from '@airport/di'
+import {AgeSuitability}          from '@votecube/ecclesia'
 import {
 	IFactor,
 	IFactorPosition,
@@ -13,7 +11,7 @@ import {
 	IPollRevisionTranslation,
 	IPosition,
 	ITheme,
-}           from '@votecube/ecclesia/lib/generated/interfaces'
+}                                from '@votecube/ecclesia/lib/generated/interfaces'
 import {
 	Id,
 	Outcome_Ordinal
@@ -42,8 +40,6 @@ export interface IPollRevisionConverter {
 	): IPollRevision
 
 }
-
-export const OPERATION_UNIQUE_ID_FIELD = '__UID__'
 
 export class PollRevisionConverter
 	implements IPollRevisionConverter {
@@ -108,6 +104,8 @@ export class PollRevisionConverter
 			name: revisionDoc.name,
 		}
 
+		const dbFactors: IFactor[] = []
+
 		const uiPollRevision: IPollRevision = {
 			// Non-Id Relations
 			ageSuitability: revisionDoc.ageSuitability,
@@ -117,32 +115,38 @@ export class PollRevisionConverter
 			outcomeVersionB: this.getDbOutcome(revisionDoc.outcomes.B, revisionDoc.ageSuitability),
 			poll,
 			factorPositions: [this.getDbPollFactorPosition(
-				revisionDoc.factors[1],
+				revisionDoc.factors,
+				dbFactors,
 				1,
 				'A',
 				revisionDoc.ageSuitability
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors[1],
+				revisionDoc.factors,
+				dbFactors,
 				1,
 				'B',
 				revisionDoc.ageSuitability
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors[2],
+				revisionDoc.factors,
+				dbFactors,
 				2,
 				'A',
 				revisionDoc.ageSuitability
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors[2],
+				revisionDoc.factors,
+				dbFactors,
 				2,
 				'B',
 				revisionDoc.ageSuitability
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors[3],
+				revisionDoc.factors,
+				dbFactors,
 				3,
 				'A',
 				revisionDoc.ageSuitability
 			), this.getDbPollFactorPosition(
-				revisionDoc.factors[3],
+				revisionDoc.factors,
+				dbFactors,
 				3,
 				'B',
 				revisionDoc.ageSuitability
@@ -257,11 +261,17 @@ export class PollRevisionConverter
 	}
 
 	private getDbPollFactorPosition(
-		uiFactor: IUiFactor<IsData>,
+		uiFactors: {
+			1: IUiFactor<IsData>,
+			2: IUiFactor<IsData>,
+			3: IUiFactor<IsData>,
+		},
+		dbFactors: IFactor[],
 		factorNumber: Factor_Number,
 		outcomeOrdinal: Outcome_Ordinal,
 		ageSuitability: AgeSuitability
 	): IPollRevisionFactorPosition {
+		const uiFactor   = uiFactors[factorNumber]
 		const uiPosition = uiFactor.positions[outcomeOrdinal]
 		if (uiPosition.pollFactorPositionId) {
 			return {
@@ -277,11 +287,11 @@ export class PollRevisionConverter
 			}
 		}
 
-		let factor: IFactor = null
-		// if (outcomeOrdinal == 'A') {
-			factor = this.getDbFactor(uiFactor, factorNumber, ageSuitability)
-			factor[OPERATION_UNIQUE_ID_FIELD] = 1000000 + factorNumber
-		// }
+		let factor: IFactor = dbFactors[factorNumber]
+		if (!factor) {
+			factor                  = this.getDbFactor(uiFactor, factorNumber, ageSuitability)
+			dbFactors[factorNumber] = factor
+		}
 
 		const position: IPosition = this.getDbPosition(uiPosition, ageSuitability)
 
@@ -327,7 +337,6 @@ export class PollRevisionConverter
 			id: null,
 			name: uiFactor.name,
 		}
-		parentTranslation[OPERATION_UNIQUE_ID_FIELD] = 1000000 + factorNumber * 100 + factorNumber
 
 		return {
 			ageSuitability,

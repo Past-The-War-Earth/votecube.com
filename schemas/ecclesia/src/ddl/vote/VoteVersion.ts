@@ -8,7 +8,6 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
 import {VoteVersion_Id}    from '../../types/vote/VoteVersion'
 import {ImmutableActorRow} from '../infrastructure/row/ImmutableActorRow'
 import {Vote}              from './Vote'
@@ -28,7 +27,7 @@ export class VoteVersion
 	@JoinColumn({name: 'VOTE_ID', nullable: false})
 	vote: Vote
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'voteRevision'})
+	@OneToMany({mappedBy: 'voteRevision'})
 	factors: VoteFactor[]
 
 }

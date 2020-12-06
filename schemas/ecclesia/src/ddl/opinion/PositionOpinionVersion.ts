@@ -8,7 +8,6 @@ import {
 	OneToMany,
 	Table
 }                                           from '@airport/air-control'
-import {CascadeType}                        from '@airport/ground-control'
 import {PositionOpinionVersion_Id}          from '../../types/opinion/PositionOpinionVersion'
 import {PollRevisionFactorPosition}         from '../poll/revision/PollRevisionFactorPosition'
 import {PollRevisionOpinion}                from './PollRevisionOpinion'
@@ -46,10 +45,10 @@ export class PositionOpinionVersion {
 	})
 	parent: PositionOpinionVersion
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	children: PositionOpinionVersion[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'positionOpinionVersion'})
+	@OneToMany({mappedBy: 'positionOpinionVersion'})
 	translations: PositionOpinionVersionTranslation[]
 
 }

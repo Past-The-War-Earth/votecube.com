@@ -8,7 +8,6 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
 import {
 	PollRun_EndDate,
 	PollRun_Id,
@@ -42,22 +41,22 @@ export class PollRun
 	@JoinColumn({name: 'POLL_REVISION_ID'})
 	pollRevision: PollRevision
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'createdAtRun'})
+	@OneToMany({mappedBy: 'createdAtRun'})
 	createdAtRevisions: PollRevision[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'run'})
+	@OneToMany({mappedBy: 'run'})
 	pollContinents: PollRunContinent[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'run'})
+	@OneToMany({mappedBy: 'run'})
 	pollCountries: PollRunCountry[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'run'})
+	@OneToMany({mappedBy: 'run'})
 	pollStates: PollRunState[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'run'})
+	@OneToMany({mappedBy: 'run'})
 	pollCounties: PollRunCounty[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'run'})
+	@OneToMany({mappedBy: 'run'})
 	pollTowns: PollRunTown[]
 
 }

@@ -11,7 +11,6 @@ import {
 	OneToMany,
 	Table
 }                       from '@airport/air-control'
-import {CascadeType}    from '@airport/ground-control'
 import {
 	PollRevisionFactorPosition_Axis,
 	PollRevisionFactorPosition_Color,
@@ -92,6 +91,6 @@ export class PollRevisionFactorPosition
 	})
 	parent: PollRevisionFactorPosition
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	children: PollRevisionFactorPosition[]
 }

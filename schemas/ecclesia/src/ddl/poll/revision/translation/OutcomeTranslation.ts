@@ -8,7 +8,6 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
 import {
 	OutcomeTranslation_Id,
 	OutcomeTranslation_Name
@@ -54,7 +53,7 @@ export class OutcomeTranslation
 	})
 	parent: OutcomeTranslation
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	children: OutcomeTranslation[]
 
 }

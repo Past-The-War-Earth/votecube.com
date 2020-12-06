@@ -2887,7 +2887,6 @@ export const SCHEMA = {
 							"index": 2,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "createdAtRun"
 							},
 							"relationType": 0,
@@ -2901,7 +2900,6 @@ export const SCHEMA = {
 							"index": 3,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "run"
 							},
 							"relationType": 0,
@@ -2915,7 +2913,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "run"
 							},
 							"relationType": 0,
@@ -2929,7 +2926,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "run"
 							},
 							"relationType": 0,
@@ -2943,7 +2939,6 @@ export const SCHEMA = {
 							"index": 6,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "run"
 							},
 							"relationType": 0,
@@ -2957,7 +2952,6 @@ export const SCHEMA = {
 							"index": 7,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "run"
 							},
 							"relationType": 0,
@@ -2971,6 +2965,119 @@ export const SCHEMA = {
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "POLL_RUNS",
+						"indexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "CREATED_AT",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": 2
+						},
+						{
+							"index": 1,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "VOTE_TYPE_ID",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": 4
+						},
+						{
+							"index": 2,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "VOTE_TYPE_NAME",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": 5
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "VOTE_TYPE_DESCRIPTION",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": 5
+						}
+					],
+					"idColumnRefs": [
+						{
+							"index": 1
+						}
+					],
+					"index": 20,
+					"isLocal": true,
+					"isRepositoryEntity": false,
+					"name": "VoteType",
+					"properties": [
+						{
+							"columnRef": {
+								"index": 0
+							},
+							"index": 0,
+							"isId": false,
+							"name": "createdAt",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 1
+							},
+							"index": 1,
+							"isId": true,
+							"name": "id",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": false,
+							"name": "name",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 3
+							},
+							"index": 3,
+							"isId": false,
+							"name": "description",
+							"sinceVersion": 1
+						}
+					],
+					"relations": [],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "VOTE_TYPES",
 						"indexes": []
 					}
 				},
@@ -3061,7 +3168,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 20,
+									"oneTableIndex": 21,
 									"oneRelationIndex": 2,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -3083,7 +3190,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 20,
+					"index": 21,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "Skin",
@@ -3170,21 +3277,20 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 20,
+							"relationTableIndex": 21,
 							"sinceVersion": 1
 						},
 						{
 							"index": 2,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 20,
+							"relationTableIndex": 21,
 							"sinceVersion": 1
 						}
 					],
@@ -3329,7 +3435,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 20,
+									"oneTableIndex": 21,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -3418,7 +3524,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 21,
+									"oneTableIndex": 22,
 									"oneRelationIndex": 4,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
@@ -3440,7 +3546,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 21,
+					"index": 22,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "PollRevisionFactorPosition",
@@ -3580,7 +3686,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 9
 							},
-							"relationTableIndex": 20,
+							"relationTableIndex": 21,
 							"sinceVersion": 1
 						},
 						{
@@ -3610,21 +3716,20 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 12
 							},
-							"relationTableIndex": 21,
+							"relationTableIndex": 22,
 							"sinceVersion": 1
 						},
 						{
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 13
 							},
-							"relationTableIndex": 21,
+							"relationTableIndex": 22,
 							"sinceVersion": 1
 						}
 					],
@@ -3684,7 +3789,7 @@ export const SCHEMA = {
 							"index": 1
 						}
 					],
-					"index": 22,
+					"index": 23,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteFactorType",
@@ -3761,7 +3866,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 0,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 24,
+									"oneTableIndex": 25,
 									"oneRelationIndex": 2,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
@@ -3784,7 +3889,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 21,
+									"oneTableIndex": 22,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -3806,7 +3911,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 2,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 22,
+									"oneTableIndex": 23,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -3827,7 +3932,7 @@ export const SCHEMA = {
 							"index": 0
 						}
 					],
-					"index": 23,
+					"index": 24,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteFactor",
@@ -3886,7 +3991,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 24,
+							"relationTableIndex": 25,
 							"sinceVersion": 1
 						},
 						{
@@ -3896,7 +4001,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 3
 							},
-							"relationTableIndex": 21,
+							"relationTableIndex": 22,
 							"sinceVersion": 1
 						},
 						{
@@ -3906,7 +4011,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 22,
+							"relationTableIndex": 23,
 							"sinceVersion": 1
 						}
 					],
@@ -3997,7 +4102,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 24,
+					"index": 25,
 					"isLocal": true,
 					"isRepositoryEntity": false,
 					"name": "VoteVersion",
@@ -4073,133 +4178,19 @@ export const SCHEMA = {
 							"index": 2,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "voteRevision"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 4
 							},
-							"relationTableIndex": 23,
+							"relationTableIndex": 24,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "VOTE_VERSIONS",
-						"indexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "CREATED_AT",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": 2
-						},
-						{
-							"index": 1,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "VOTE_TYPE_ID",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": 4
-						},
-						{
-							"index": 2,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "VOTE_TYPE_NAME",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": 5
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "VOTE_TYPE_DESCRIPTION",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": 5
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 1
-						}
-					],
-					"index": 25,
-					"isLocal": true,
-					"isRepositoryEntity": false,
-					"name": "VoteType",
-					"properties": [
-						{
-							"columnRef": {
-								"index": 0
-							},
-							"index": 0,
-							"isId": false,
-							"name": "createdAt",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 1
-							},
-							"index": 1,
-							"isId": true,
-							"name": "id",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": false,
-							"name": "name",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 3
-							},
-							"index": 3,
-							"isId": false,
-							"name": "description",
-							"sinceVersion": 1
-						}
-					],
-					"relations": [],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "VOTE_TYPES",
 						"indexes": []
 					}
 				},
@@ -4382,14 +4373,13 @@ export const SCHEMA = {
 							"index": 2,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "vote"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 24,
+							"relationTableIndex": 25,
 							"sinceVersion": 1
 						}
 					],
@@ -4894,7 +4884,6 @@ export const SCHEMA = {
 							"index": 3,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -4908,7 +4897,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "factorOpinionVersion"
 							},
 							"relationType": 0,
@@ -5318,7 +5306,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -5574,7 +5561,6 @@ export const SCHEMA = {
 							"index": 3,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -5588,7 +5574,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "outcomeVersionA"
 							},
 							"relationType": 0,
@@ -5602,7 +5587,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "outcomeVersionB"
 							},
 							"relationType": 0,
@@ -6024,7 +6008,6 @@ export const SCHEMA = {
 							"index": 3,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -6038,7 +6021,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "outcomeOpinionVersion"
 							},
 							"relationType": 0,
@@ -6441,7 +6423,6 @@ export const SCHEMA = {
 							"index": 2,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -6455,7 +6436,6 @@ export const SCHEMA = {
 							"index": 3,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollOpinionVersion"
 							},
 							"relationType": 0,
@@ -6738,7 +6718,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 1,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 21,
+									"oneTableIndex": 22,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -6860,7 +6840,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 2
 							},
-							"relationTableIndex": 21,
+							"relationTableIndex": 22,
 							"sinceVersion": 1
 						},
 						{
@@ -6877,7 +6857,6 @@ export const SCHEMA = {
 							"index": 3,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -6891,7 +6870,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "positionOpinionVersion"
 							},
 							"relationType": 0,
@@ -7356,7 +7334,6 @@ export const SCHEMA = {
 							"index": 1,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "rating"
 							},
 							"relationType": 0,
@@ -7840,7 +7817,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevisionOpinion"
 							},
 							"relationType": 0,
@@ -7854,7 +7830,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevisionOpinion"
 							},
 							"relationType": 0,
@@ -7868,7 +7843,6 @@ export const SCHEMA = {
 							"index": 6,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevisionOpinion"
 							},
 							"relationType": 0,
@@ -7882,7 +7856,6 @@ export const SCHEMA = {
 							"index": 7,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevisionOpinion"
 							},
 							"relationType": 0,
@@ -7896,7 +7869,6 @@ export const SCHEMA = {
 							"index": 8,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevisionOpinion"
 							},
 							"relationType": 0,
@@ -8409,7 +8381,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "poll"
 							},
 							"relationType": 0,
@@ -8423,7 +8394,6 @@ export const SCHEMA = {
 							"index": 6,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "poll"
 							},
 							"relationType": 0,
@@ -8441,7 +8411,7 @@ export const SCHEMA = {
 					},
 					"operations": {
 						"createOne": {
-							"type": 0,
+							"type": 2,
 							"subRules": {
 								"ageSuitability": {
 									"anyValue": true
@@ -9270,7 +9240,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -9600,7 +9569,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -9614,7 +9582,6 @@ export const SCHEMA = {
 							"index": 6,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "translation"
 							},
 							"relationType": 0,
@@ -10079,7 +10046,6 @@ export const SCHEMA = {
 							"index": 7,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -10093,7 +10059,6 @@ export const SCHEMA = {
 							"index": 8,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevision"
 							},
 							"relationType": 0,
@@ -10107,21 +10072,19 @@ export const SCHEMA = {
 							"index": 9,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevision"
 							},
 							"relationType": 0,
 							"propertyRef": {
 								"index": 13
 							},
-							"relationTableIndex": 21,
+							"relationTableIndex": 22,
 							"sinceVersion": 1
 						},
 						{
 							"index": 10,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevision"
 							},
 							"relationType": 0,
@@ -10135,7 +10098,6 @@ export const SCHEMA = {
 							"index": 11,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "pollRevision"
 							},
 							"relationType": 0,
@@ -10153,7 +10115,7 @@ export const SCHEMA = {
 					},
 					"operations": {
 						"createOne": {
-							"type": 0,
+							"type": 2,
 							"subRules": {
 								"ageSuitability": {
 									"anyValue": true
@@ -10736,7 +10698,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -10750,7 +10711,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parentTranslation"
 							},
 							"relationType": 0,
@@ -11048,7 +11008,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -11062,7 +11021,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "factor"
 							},
 							"relationType": 0,
@@ -11076,7 +11034,6 @@ export const SCHEMA = {
 							"index": 6,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "factor"
 							},
 							"relationType": 0,
@@ -11356,7 +11313,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -11653,7 +11609,6 @@ export const SCHEMA = {
 							"index": 4,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "parent"
 							},
 							"relationType": 0,
@@ -11667,7 +11622,6 @@ export const SCHEMA = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "position"
 							},
 							"relationType": 0,
@@ -11681,7 +11635,6 @@ export const SCHEMA = {
 							"index": 6,
 							"isId": false,
 							"oneToManyElems": {
-								"cascade": 1,
 								"mappedBy": "position"
 							},
 							"relationType": 0,

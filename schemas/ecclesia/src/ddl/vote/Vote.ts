@@ -9,12 +9,11 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
-import {PollRun}           from '../poll/run/PollRun'
 import {Vote_Id}           from '../../types/vote/Vote'
 import {ImmutableActorRow} from '../infrastructure/row/ImmutableActorRow'
-import {VoteVersion}       from './VoteVersion'
+import {PollRun}           from '../poll/run/PollRun'
 import {VoteType}          from './VoteType'
+import {VoteVersion}       from './VoteVersion'
 
 @Entity()
 @Table({name: 'VOTES'})
@@ -38,7 +37,7 @@ export class Vote
 	@JoinColumn({name: 'POLL_RUN_ID', nullable: false})
 	run: PollRun
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'vote'})
+	@OneToMany({mappedBy: 'vote'})
 	revisions: VoteVersion[]
 
 }

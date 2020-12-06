@@ -1177,11 +1177,11 @@ export class BasePollRevisionFactorPositionDuo
 	implements IBasePollRevisionFactorPositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(21)
+		return duoDiSet(22)
 	}
 	
 	constructor() {
-		super(21)
+		super(22)
 	}
 }
 
@@ -1573,11 +1573,11 @@ export class BaseSkinDuo
 	implements IBaseSkinDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(20)
+		return duoDiSet(21)
 	}
 	
 	constructor() {
-		super(20)
+		super(21)
 	}
 }
 
@@ -1717,11 +1717,11 @@ export class BaseVoteFactorDuo
 	implements IBaseVoteFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(23)
+		return duoDiSet(24)
 	}
 	
 	constructor() {
-		super(23)
+		super(24)
 	}
 }
 
@@ -1735,11 +1735,11 @@ export class BaseVoteFactorTypeDuo
 	implements IBaseVoteFactorTypeDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(22)
+		return duoDiSet(23)
 	}
 	
 	constructor() {
-		super(22)
+		super(23)
 	}
 }
 
@@ -1753,11 +1753,11 @@ export class BaseVoteTypeDuo
 	implements IBaseVoteTypeDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(25)
+		return duoDiSet(20)
 	}
 	
 	constructor() {
-		super(25)
+		super(20)
 	}
 }
 
@@ -1771,10 +1771,10 @@ export class BaseVoteVersionDuo
 	implements IBaseVoteVersionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(24)
+		return duoDiSet(25)
 	}
 	
 	constructor() {
-		super(24)
+		super(25)
 	}
 }

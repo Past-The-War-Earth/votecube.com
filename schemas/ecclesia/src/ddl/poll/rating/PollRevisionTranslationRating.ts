@@ -8,7 +8,6 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
 import {
 	PollRevisionTranslationRating_Id,
 	PollRevisionTranslationRating_Value
@@ -56,7 +55,7 @@ export class PollRevisionTranslationRating
 	})
 	parent: PollRevisionTranslationRating
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	child: PollRevisionTranslationRating[]
 
 }

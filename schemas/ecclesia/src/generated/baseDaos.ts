@@ -1177,11 +1177,11 @@ export class BasePollRevisionFactorPositionDao
 	implements IBasePollRevisionFactorPositionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(21)
+		return duoDiSet(22)
 	}
 	
 	constructor() {
-		super(21)
+		super(22)
 	}
 }
 
@@ -1573,11 +1573,11 @@ export class BaseSkinDao
 	implements IBaseSkinDao {
 
 	static diSet(): boolean {
-		return duoDiSet(20)
+		return duoDiSet(21)
 	}
 	
 	constructor() {
-		super(20)
+		super(21)
 	}
 }
 
@@ -1717,11 +1717,11 @@ export class BaseVoteFactorDao
 	implements IBaseVoteFactorDao {
 
 	static diSet(): boolean {
-		return duoDiSet(23)
+		return duoDiSet(24)
 	}
 	
 	constructor() {
-		super(23)
+		super(24)
 	}
 }
 
@@ -1735,11 +1735,11 @@ export class BaseVoteFactorTypeDao
 	implements IBaseVoteFactorTypeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(22)
+		return duoDiSet(23)
 	}
 	
 	constructor() {
-		super(22)
+		super(23)
 	}
 }
 
@@ -1753,11 +1753,11 @@ export class BaseVoteTypeDao
 	implements IBaseVoteTypeDao {
 
 	static diSet(): boolean {
-		return duoDiSet(25)
+		return duoDiSet(20)
 	}
 	
 	constructor() {
-		super(25)
+		super(20)
 	}
 }
 
@@ -1771,10 +1771,10 @@ export class BaseVoteVersionDao
 	implements IBaseVoteVersionDao {
 
 	static diSet(): boolean {
-		return duoDiSet(24)
+		return duoDiSet(25)
 	}
 	
 	constructor() {
-		super(24)
+		super(25)
 	}
 }

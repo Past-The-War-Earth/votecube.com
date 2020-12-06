@@ -7,14 +7,13 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-} from '@airport/air-control'
-import {CascadeType}             from '@airport/ground-control'
-import {Poll_Id}                 from '../../types/poll/Poll'
-import {AgeSuitableRow}       from '../infrastructure/row/AgeSuitableRow'
-import {PollRun}                 from './run/PollRun'
-import {PollType}                from './PollType'
-import {Theme}                   from './Theme'
-import {PollRevision}       from './revision/PollRevision'
+}                       from '@airport/air-control'
+import {Poll_Id}        from '../../types/poll/Poll'
+import {AgeSuitableRow} from '../infrastructure/row/AgeSuitableRow'
+import {PollType}       from './PollType'
+import {PollRevision}   from './revision/PollRevision'
+import {PollRun}        from './run/PollRun'
+import {Theme}          from './Theme'
 
 @Entity()
 @Table({name: 'POLLS'})
@@ -44,10 +43,10 @@ export class Poll
 	@OneToMany({mappedBy: 'parent'})
 	children: Poll[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	@OneToMany({mappedBy: 'poll'})
 	runs: PollRun[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'poll'})
+	@OneToMany({mappedBy: 'poll'})
 	revisions: PollRevision[]
 
 }

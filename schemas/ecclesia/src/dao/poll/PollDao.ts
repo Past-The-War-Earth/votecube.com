@@ -18,7 +18,7 @@ export interface IPollDao
 
 	createNew(
 		poll: IPoll,
-		ctx: IVotecubeContext
+		context: IVotecubeContext
 	): Promise<void>
 
 }
@@ -121,13 +121,13 @@ export class PollDao
 			id: Y,
 		}
 	})
-	createOne = this.create
+	createOne = this.save
 
 	async createNew(
 		poll: IPoll,
-		ctx: IVotecubeContext
+		context: IVotecubeContext
 	): Promise<void> {
-		await this.createOne(poll, ctx)
+		await this.createOne(poll, context)
 	}
 
 }

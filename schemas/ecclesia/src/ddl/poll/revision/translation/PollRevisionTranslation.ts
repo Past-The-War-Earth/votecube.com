@@ -7,14 +7,13 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                          from '@airport/air-control'
-import {CascadeType}                       from '@airport/ground-control'
+}                                      from '@airport/air-control'
 import {
 	PollRevisionTranslation_Id,
 	PollRevisionTranslation_Name
-}                                          from '../../../../types/poll/revision/translation/PollRevisionTranslation'
-import {Language}                          from '../../../infrastructure/Language'
-import {ImmutableActorRow}                 from '../../../infrastructure/row/ImmutableActorRow'
+}                                      from '../../../../types/poll/revision/translation/PollRevisionTranslation'
+import {Language}                      from '../../../infrastructure/Language'
+import {ImmutableActorRow}             from '../../../infrastructure/row/ImmutableActorRow'
 import {TranslationType}               from '../../../infrastructure/TranslationType'
 import {PollRevisionTranslationRating} from '../../rating/PollRevisionTranslationRating'
 import {PollRevision}                  from '../PollRevision'
@@ -55,10 +54,10 @@ export class PollRevisionTranslation
 	})
 	parent: PollRevisionTranslation
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	children: PollRevisionTranslation[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'translation'})
+	@OneToMany({mappedBy: 'translation'})
 	ratings: PollRevisionTranslationRating[]
 
 }

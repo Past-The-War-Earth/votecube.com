@@ -8,9 +8,8 @@ import {
 	OneToMany,
 	Table
 }                                   from '@airport/air-control'
-import {CascadeType}                from '@airport/ground-control'
 import {PollRevisionOpinion_Id}     from '../../types/opinion/PollRevisionOpinion'
-import {ImmutableActorRow}            from '../infrastructure/row/ImmutableActorRow'
+import {ImmutableActorRow}          from '../infrastructure/row/ImmutableActorRow'
 import {PollRevision}               from '../poll/revision/PollRevision'
 import {PollRun}                    from '../poll/run/PollRun'
 import {Vote}                       from '../vote/Vote'
@@ -44,19 +43,19 @@ export class PollRevisionOpinion
 	@JoinColumn({name: 'VOTE_ID'})
 	vote: Vote
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	@OneToMany({mappedBy: 'pollRevisionOpinion'})
 	ratings: PollRevisionOpinionRating[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	@OneToMany({mappedBy: 'pollRevisionOpinion'})
 	versions: PollRevisionOpinionVersion[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	@OneToMany({mappedBy: 'pollRevisionOpinion'})
 	factors: FactorOpinionVersion[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	@OneToMany({mappedBy: 'pollRevisionOpinion'})
 	outcomes: OutcomeOpinionVersion[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion'})
+	@OneToMany({mappedBy: 'pollRevisionOpinion'})
 	positions: PositionOpinionVersion[]
 
 }

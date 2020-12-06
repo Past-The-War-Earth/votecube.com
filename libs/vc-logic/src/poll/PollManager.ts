@@ -4,7 +4,6 @@ import {
 }                    from '@airport/di'
 import {
 	IUserAccount,
-	POLL_DAO,
 	Poll_Id,
 	PollRevision_Id,
 	Theme_Id
@@ -233,17 +232,13 @@ export class PollManager
 		//
 		// await response.json()
 
-		const dbObject = converter.uiToDb(ui
+		const pollRevision = converter.uiToDb(ui
 			// , delta
 		)
 
-		const poll = dbObject.poll
-		poll.revisions = [dbObject]
-		delete dbObject.poll
-
 		const connectionManager = await container(this).get(CONNECTION_MANAGER)
 		await connectionManager.put('createRevision', {
-			poll,
+			pollRevision,
 			user
 		})
 

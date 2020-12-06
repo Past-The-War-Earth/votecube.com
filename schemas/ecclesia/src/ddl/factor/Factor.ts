@@ -8,9 +8,8 @@ import {
 	OneToMany,
 	Table
 }                          from '@airport/air-control'
-import {CascadeType}       from '@airport/ground-control'
 import {Factor_Id}         from '../../types/factor/Factor'
-import {AgeSuitableRow} from '../infrastructure/row/AgeSuitableRow'
+import {AgeSuitableRow}    from '../infrastructure/row/AgeSuitableRow'
 import {PollRevision}      from '../poll/revision/PollRevision'
 import {FactorTranslation} from './FactorTranslation'
 import {FactorPosition}    from './position/FactorPosition'
@@ -40,13 +39,13 @@ export class Factor
 	@JoinColumn({name: 'PARENT_FACTOR_ID', referencedColumnName: 'FACTOR_ID'})
 	parent: Factor
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'parent'})
+	@OneToMany({mappedBy: 'parent'})
 	children: Factor[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
+	@OneToMany({mappedBy: 'factor'})
 	factorPositions: FactorPosition[]
 
-	@OneToMany({cascade: CascadeType.ALL, mappedBy: 'factor'})
+	@OneToMany({mappedBy: 'factor'})
 	translations: FactorTranslation[]
 
 }
