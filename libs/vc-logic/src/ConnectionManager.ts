@@ -2,7 +2,8 @@ import {DI} from '@airport/di'
 import {
 	CONNECTION_MANAGER,
 	ENTITY_STATE_MANAGER,
-	OPERATION_SERIALIZER
+	OPERATION_SERIALIZER,
+	QUERY_RESULTS_DESERIALIZER
 }           from './tokens'
 
 export interface IConnectionManager {
@@ -29,10 +30,14 @@ export class ConnectionManager
 		url: string,
 		params: any = {}
 	): Promise<T> {
+		const [entityStateManager, queryResultsDeserializer]
+			             = await DI.db().get(ENTITY_STATE_MANAGER, QUERY_RESULTS_DESERIALIZER)
 		const response = await fetch(this.serverUrlPrefix + url +
 			this.getParamsSuffix(params))
 
-		return response.json()
+		const jsonTree = response.json()
+
+		return queryResultsDeserializer.deserialize(jsonTree, entityStateManager)
 	}
 
 	async put<V, R>(

@@ -1,13 +1,15 @@
 import { DI } from '@airport/di';
-import { CONNECTION_MANAGER, ENTITY_STATE_MANAGER, OPERATION_SERIALIZER } from './tokens';
+import { CONNECTION_MANAGER, ENTITY_STATE_MANAGER, OPERATION_SERIALIZER, QUERY_RESULTS_DESERIALIZER } from './tokens';
 export class ConnectionManager {
     constructor() {
         this.serverUrlPrefix = 'http://localhost:8081/api/';
     }
     async get(url, params = {}) {
+        const [entityStateManager, queryResultsDeserializer] = await DI.db().get(ENTITY_STATE_MANAGER, QUERY_RESULTS_DESERIALIZER);
         const response = await fetch(this.serverUrlPrefix + url +
             this.getParamsSuffix(params));
-        return response.json();
+        const jsonTree = response.json();
+        return queryResultsDeserializer.deserialize(jsonTree, entityStateManager);
     }
     async put(url, value, params = {}) {
         const [entityStateManager, operationSerializer] = await DI.db().get(ENTITY_STATE_MANAGER, OPERATION_SERIALIZER);
