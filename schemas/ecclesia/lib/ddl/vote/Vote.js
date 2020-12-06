@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, DbNumber, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
-import { CascadeType } from '@airport/ground-control';
 import { ImmutableActorRow } from '../infrastructure/row/ImmutableActorRow';
 let Vote = class Vote extends ImmutableActorRow {
 };
@@ -23,7 +22,7 @@ __decorate([
     JoinColumn({ name: 'POLL_RUN_ID', nullable: false })
 ], Vote.prototype, "run", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'vote' })
+    OneToMany({ mappedBy: 'vote' })
 ], Vote.prototype, "revisions", void 0);
 Vote = __decorate([
     Entity(),

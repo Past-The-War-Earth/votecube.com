@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
-import { CascadeType } from '@airport/ground-control';
 /**
  * Belongs to PollOpinionVersion - does not need user or creation tracking.
  */
@@ -38,10 +37,10 @@ __decorate([
     })
 ], FactorOpinionVersion.prototype, "parent", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+    OneToMany({ mappedBy: 'parent' })
 ], FactorOpinionVersion.prototype, "children", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'factorOpinionVersion' })
+    OneToMany({ mappedBy: 'factorOpinionVersion' })
 ], FactorOpinionVersion.prototype, "translations", void 0);
 FactorOpinionVersion = __decorate([
     Entity(),

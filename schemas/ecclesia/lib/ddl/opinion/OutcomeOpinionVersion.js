@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
-import { CascadeType } from '@airport/ground-control';
 let OutcomeOpinionVersion = 
 // User information recorded at PollRevisionOpinion level
 class OutcomeOpinionVersion {
@@ -35,10 +34,10 @@ __decorate([
     })
 ], OutcomeOpinionVersion.prototype, "parent", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+    OneToMany({ mappedBy: 'parent' })
 ], OutcomeOpinionVersion.prototype, "children", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'outcomeOpinionVersion' })
+    OneToMany({ mappedBy: 'outcomeOpinionVersion' })
 ], OutcomeOpinionVersion.prototype, "translations", void 0);
 OutcomeOpinionVersion = __decorate([
     Entity(),

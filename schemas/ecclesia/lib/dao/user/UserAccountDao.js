@@ -2,16 +2,16 @@ import { DI } from '@airport/di';
 import { BaseUserAccountDao, Q } from '../../generated/generated';
 import { USER_ACCOUNT_DAO } from '../../tokens';
 export class UserAccountDao extends BaseUserAccountDao {
-    async signUp(userName, passwordHash, ctx) {
+    async signUp(userName, passwordHash, context) {
         const userAccount = {
             id: undefined,
             userName,
             passwordHash
         };
-        await this.db.create(userAccount, ctx);
+        await this.db.save(userAccount, context);
         return userAccount;
     }
-    async findByUsername(userName, ctx) {
+    async findByUsername(userName, context) {
         let ua;
         return await this.db.findOne.tree({
             select: {},
@@ -19,7 +19,7 @@ export class UserAccountDao extends BaseUserAccountDao {
                 ua = Q.UserAccount
             ],
             where: ua.userName.equals(userName)
-        }, ctx);
+        }, context);
     }
 }
 DI.set(USER_ACCOUNT_DAO, UserAccountDao);

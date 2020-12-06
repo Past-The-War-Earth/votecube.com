@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
-import { CascadeType } from '@airport/ground-control';
 import { ImmutableActorRow } from '../infrastructure/row/ImmutableActorRow';
 let PollRevisionOpinion = class PollRevisionOpinion extends ImmutableActorRow {
 };
@@ -27,19 +26,19 @@ __decorate([
     JoinColumn({ name: 'VOTE_ID' })
 ], PollRevisionOpinion.prototype, "vote", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+    OneToMany({ mappedBy: 'pollRevisionOpinion' })
 ], PollRevisionOpinion.prototype, "ratings", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+    OneToMany({ mappedBy: 'pollRevisionOpinion' })
 ], PollRevisionOpinion.prototype, "versions", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+    OneToMany({ mappedBy: 'pollRevisionOpinion' })
 ], PollRevisionOpinion.prototype, "factors", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+    OneToMany({ mappedBy: 'pollRevisionOpinion' })
 ], PollRevisionOpinion.prototype, "outcomes", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'pollRevisionOpinion' })
+    OneToMany({ mappedBy: 'pollRevisionOpinion' })
 ], PollRevisionOpinion.prototype, "positions", void 0);
 PollRevisionOpinion = __decorate([
     Entity(),

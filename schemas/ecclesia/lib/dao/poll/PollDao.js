@@ -12,10 +12,10 @@ import { POLL_DAO } from '../../tokens';
 export class PollDao extends BasePollDao {
     constructor() {
         super(...arguments);
-        this.createOne = this.create;
+        this.createOne = this.save;
     }
-    async createNew(poll, ctx) {
-        await this.createOne(poll, ctx);
+    async createNew(poll, context) {
+        await this.createOne(poll, context);
     }
 }
 __decorate([

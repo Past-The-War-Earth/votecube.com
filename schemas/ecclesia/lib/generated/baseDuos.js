@@ -184,10 +184,10 @@ export class BasePollRevisionDuo extends SQDIDuo {
 }
 export class BasePollRevisionFactorPositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(21);
+        return duoDiSet(22);
     }
     constructor() {
-        super(21);
+        super(22);
     }
 }
 export class BasePollRevisionOpinionDuo extends SQDIDuo {
@@ -360,10 +360,10 @@ export class BaseRatingTypeDuo extends SQDIDuo {
 }
 export class BaseSkinDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(20);
+        return duoDiSet(21);
     }
     constructor() {
-        super(20);
+        super(21);
     }
 }
 export class BaseStateDuo extends SQDIDuo {
@@ -424,34 +424,34 @@ export class BaseVoteDuo extends SQDIDuo {
 }
 export class BaseVoteFactorDuo extends SQDIDuo {
     static diSet() {
+        return duoDiSet(24);
+    }
+    constructor() {
+        super(24);
+    }
+}
+export class BaseVoteFactorTypeDuo extends SQDIDuo {
+    static diSet() {
         return duoDiSet(23);
     }
     constructor() {
         super(23);
     }
 }
-export class BaseVoteFactorTypeDuo extends SQDIDuo {
+export class BaseVoteTypeDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(22);
+        return duoDiSet(20);
     }
     constructor() {
-        super(22);
+        super(20);
     }
 }
-export class BaseVoteTypeDuo extends SQDIDuo {
+export class BaseVoteVersionDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(25);
     }
     constructor() {
         super(25);
-    }
-}
-export class BaseVoteVersionDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(24);
-    }
-    constructor() {
-        super(24);
     }
 }
 //# sourceMappingURL=baseDuos.js.map

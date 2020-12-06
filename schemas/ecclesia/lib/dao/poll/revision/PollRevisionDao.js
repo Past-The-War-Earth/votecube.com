@@ -12,10 +12,10 @@ import { POLL_REVISION_DAO } from '../../../tokens';
 export class PollRevisionDao extends BasePollRevisionDao {
     constructor() {
         super(...arguments);
-        this.createOne = this.create;
+        this.createOne = this.save;
     }
-    async createNew(poll, ctx) {
-        await this.createOne(poll, ctx);
+    async createNew(pollRevision, context) {
+        await this.save(pollRevision, context);
     }
     async getListingsForLevel(parentId) {
         let pr, 

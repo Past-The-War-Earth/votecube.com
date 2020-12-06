@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
-import { CascadeType } from '@airport/ground-control';
 import { AgeSuitableRow } from '../infrastructure/row/AgeSuitableRow';
 let Factor = class Factor extends AgeSuitableRow {
 };
@@ -30,13 +29,13 @@ __decorate([
     JoinColumn({ name: 'PARENT_FACTOR_ID', referencedColumnName: 'FACTOR_ID' })
 ], Factor.prototype, "parent", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+    OneToMany({ mappedBy: 'parent' })
 ], Factor.prototype, "children", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'factor' })
+    OneToMany({ mappedBy: 'factor' })
 ], Factor.prototype, "factorPositions", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'factor' })
+    OneToMany({ mappedBy: 'factor' })
 ], Factor.prototype, "translations", void 0);
 Factor = __decorate([
     Entity(),

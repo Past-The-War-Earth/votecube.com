@@ -1,8 +1,8 @@
-import { PollRun } from '../poll/run/PollRun';
 import { Vote_Id } from '../../types/vote/Vote';
 import { ImmutableActorRow } from '../infrastructure/row/ImmutableActorRow';
-import { VoteVersion } from './VoteVersion';
+import { PollRun } from '../poll/run/PollRun';
 import { VoteType } from './VoteType';
+import { VoteVersion } from './VoteVersion';
 export declare class Vote extends ImmutableActorRow {
     id: Vote_Id;
     /**

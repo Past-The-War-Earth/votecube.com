@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, DbNumber, DbString, Entity, GeneratedValue, Id, JoinColumn, JoinColumns, ManyToOne, OneToMany, Table } from '@airport/air-control';
-import { CascadeType } from '@airport/ground-control';
 import { ImmutableRow } from '../../infrastructure/row/ImmutableRow';
 let PollRevisionFactorPosition = 
 // User information recorded at PollRevisionOpinion level
@@ -65,7 +64,7 @@ __decorate([
     })
 ], PollRevisionFactorPosition.prototype, "parent", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+    OneToMany({ mappedBy: 'parent' })
 ], PollRevisionFactorPosition.prototype, "children", void 0);
 PollRevisionFactorPosition = __decorate([
     Entity(),

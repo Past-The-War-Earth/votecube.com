@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
-import { CascadeType } from '@airport/ground-control';
 import { ImmutableActorRow } from '../../../infrastructure/row/ImmutableActorRow';
 /**
  * This the translation of a given poll revision.
@@ -41,10 +40,10 @@ __decorate([
     })
 ], PollRevisionTranslation.prototype, "parent", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+    OneToMany({ mappedBy: 'parent' })
 ], PollRevisionTranslation.prototype, "children", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'translation' })
+    OneToMany({ mappedBy: 'translation' })
 ], PollRevisionTranslation.prototype, "ratings", void 0);
 PollRevisionTranslation = __decorate([
     Entity(),

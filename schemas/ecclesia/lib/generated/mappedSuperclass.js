@@ -1,7 +1,7 @@
 export const MAPPED_SUPERCLASS = [
     {
         "type": "ImmutableRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+        "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
         "parentClassName": null,
         "isSuperclass": true,
         "ids": [],
@@ -93,7 +93,7 @@ export const MAPPED_SUPERCLASS = [
     },
     {
         "type": "SystemGeneratedRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+        "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
         "parentClassName": "ImmutableRow",
         "location": "./ImmutableRow",
         "isSuperclass": true,
@@ -155,7 +155,7 @@ export const MAPPED_SUPERCLASS = [
         "implementedInterfaceNames": [],
         "parentEntity": {
             "type": "ImmutableRow",
-            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+            "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
             "parentClassName": null,
             "isSuperclass": true,
             "ids": [],
@@ -249,7 +249,7 @@ export const MAPPED_SUPERCLASS = [
     },
     {
         "type": "ImmutableActorRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
+        "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
         "parentClassName": "ImmutableRow",
         "location": "./ImmutableRow",
         "isSuperclass": true,
@@ -363,7 +363,7 @@ export const MAPPED_SUPERCLASS = [
                     "nonArrayType": "UserAccount",
                     "entity": {
                         "type": "UserAccount",
-                        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
+                        "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
                         "parentClassName": "SystemGeneratedRow",
                         "location": "../infrastructure/row/SystemGeneratedRow",
                         "isSuperclass": false,
@@ -730,7 +730,7 @@ export const MAPPED_SUPERCLASS = [
                         "implementedInterfaceNames": [],
                         "parentEntity": {
                             "type": "SystemGeneratedRow",
-                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+                            "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
                             "parentClassName": "ImmutableRow",
                             "location": "./ImmutableRow",
                             "isSuperclass": true,
@@ -792,7 +792,7 @@ export const MAPPED_SUPERCLASS = [
                             "implementedInterfaceNames": [],
                             "parentEntity": {
                                 "type": "ImmutableRow",
-                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+                                "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
                                 "parentClassName": null,
                                 "isSuperclass": true,
                                 "ids": [],
@@ -902,7 +902,7 @@ export const MAPPED_SUPERCLASS = [
     },
     {
         "type": "AgeSuitableRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/agesuitablerow.ts",
+        "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/agesuitablerow.ts",
         "parentClassName": "ImmutableActorRow",
         "location": "./ImmutableActorRow",
         "isSuperclass": true,
@@ -1007,7 +1007,7 @@ export const MAPPED_SUPERCLASS = [
         "implementedInterfaceNames": [],
         "parentEntity": {
             "type": "ImmutableActorRow",
-            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
+            "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
             "parentClassName": "ImmutableRow",
             "location": "./ImmutableRow",
             "isSuperclass": true,
@@ -1121,7 +1121,7 @@ export const MAPPED_SUPERCLASS = [
                         "nonArrayType": "UserAccount",
                         "entity": {
                             "type": "UserAccount",
-                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
+                            "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
                             "parentClassName": "SystemGeneratedRow",
                             "location": "../infrastructure/row/SystemGeneratedRow",
                             "isSuperclass": false,
@@ -1488,7 +1488,7 @@ export const MAPPED_SUPERCLASS = [
                             "implementedInterfaceNames": [],
                             "parentEntity": {
                                 "type": "SystemGeneratedRow",
-                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+                                "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
                                 "parentClassName": "ImmutableRow",
                                 "location": "./ImmutableRow",
                                 "isSuperclass": true,
@@ -1550,7 +1550,7 @@ export const MAPPED_SUPERCLASS = [
                                 "implementedInterfaceNames": [],
                                 "parentEntity": {
                                     "type": "ImmutableRow",
-                                    "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+                                    "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
                                     "parentClassName": null,
                                     "isSuperclass": true,
                                     "ids": [],
@@ -1662,7 +1662,7 @@ export const MAPPED_SUPERCLASS = [
     },
     {
         "type": "MutableActorRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutableactorrow.ts",
+        "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutableactorrow.ts",
         "parentClassName": "ImmutableActorRow",
         "location": "./ImmutableActorRow",
         "isSuperclass": true,
@@ -1766,7 +1766,7 @@ export const MAPPED_SUPERCLASS = [
         "implementedInterfaceNames": [],
         "parentEntity": {
             "type": "ImmutableActorRow",
-            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
+            "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutableactorrow.ts",
             "parentClassName": "ImmutableRow",
             "location": "./ImmutableRow",
             "isSuperclass": true,
@@ -1880,7 +1880,7 @@ export const MAPPED_SUPERCLASS = [
                         "nonArrayType": "UserAccount",
                         "entity": {
                             "type": "UserAccount",
-                            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
+                            "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/user/useraccount.ts",
                             "parentClassName": "SystemGeneratedRow",
                             "location": "../infrastructure/row/SystemGeneratedRow",
                             "isSuperclass": false,
@@ -2247,7 +2247,7 @@ export const MAPPED_SUPERCLASS = [
                             "implementedInterfaceNames": [],
                             "parentEntity": {
                                 "type": "SystemGeneratedRow",
-                                "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
+                                "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/systemgeneratedrow.ts",
                                 "parentClassName": "ImmutableRow",
                                 "location": "./ImmutableRow",
                                 "isSuperclass": true,
@@ -2309,7 +2309,7 @@ export const MAPPED_SUPERCLASS = [
                                 "implementedInterfaceNames": [],
                                 "parentEntity": {
                                     "type": "ImmutableRow",
-                                    "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+                                    "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
                                     "parentClassName": null,
                                     "isSuperclass": true,
                                     "ids": [],
@@ -2421,7 +2421,7 @@ export const MAPPED_SUPERCLASS = [
     },
     {
         "type": "MutableRow",
-        "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutablerow.ts",
+        "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/mutablerow.ts",
         "parentClassName": "ImmutableRow",
         "location": "./ImmutableRow",
         "isSuperclass": true,
@@ -2525,7 +2525,7 @@ export const MAPPED_SUPERCLASS = [
         "implementedInterfaceNames": [],
         "parentEntity": {
             "type": "ImmutableRow",
-            "path": "c:/users/papa/vc/ts/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
+            "path": "c:/users/papa/vc/votecube-ui/schemas/ecclesia/src/ddl/infrastructure/row/immutablerow.ts",
             "parentClassName": null,
             "isSuperclass": true,
             "ids": [],

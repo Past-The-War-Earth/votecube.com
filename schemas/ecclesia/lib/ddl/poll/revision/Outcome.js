@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, GeneratedValue, Id, JoinColumn, ManyToOne, OneToMany, Table } from '@airport/air-control';
-import { CascadeType } from '@airport/ground-control';
 import { AgeSuitableRow } from '../../infrastructure/row/AgeSuitableRow';
 let Outcome = class Outcome extends AgeSuitableRow {
 };
@@ -29,13 +28,13 @@ __decorate([
     })
 ], Outcome.prototype, "parent", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'parent' })
+    OneToMany({ mappedBy: 'parent' })
 ], Outcome.prototype, "children", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'outcomeVersionA' })
+    OneToMany({ mappedBy: 'outcomeVersionA' })
 ], Outcome.prototype, "pollRevisionsA", void 0);
 __decorate([
-    OneToMany({ cascade: CascadeType.ALL, mappedBy: 'outcomeVersionB' })
+    OneToMany({ mappedBy: 'outcomeVersionB' })
 ], Outcome.prototype, "pollRevisionsB", void 0);
 Outcome = __decorate([
     Entity(),

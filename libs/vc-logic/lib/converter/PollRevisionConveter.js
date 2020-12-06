@@ -1,6 +1,5 @@
 import { DI } from '@airport/di';
 import { POLL_REVISION_CONVERTER } from '../tokens';
-export const OPERATION_UNIQUE_ID_FIELD = '__UID__';
 export class PollRevisionConverter {
     dbToUi(revisionDb) {
         let parent = null;
@@ -51,6 +50,7 @@ export class PollRevisionConverter {
             id: null,
             name: revisionDoc.name,
         };
+        const dbFactors = [];
         const uiPollRevision = {
             // Non-Id Relations
             ageSuitability: revisionDoc.ageSuitability,
@@ -59,7 +59,7 @@ export class PollRevisionConverter {
             outcomeVersionA: this.getDbOutcome(revisionDoc.outcomes.A, revisionDoc.ageSuitability),
             outcomeVersionB: this.getDbOutcome(revisionDoc.outcomes.B, revisionDoc.ageSuitability),
             poll,
-            factorPositions: [this.getDbPollFactorPosition(revisionDoc.factors[1], 1, 'A', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors[1], 1, 'B', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors[2], 2, 'A', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors[2], 2, 'B', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors[3], 3, 'A', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors[3], 3, 'B', revisionDoc.ageSuitability)],
+            factorPositions: [this.getDbPollFactorPosition(revisionDoc.factors, dbFactors, 1, 'A', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors, dbFactors, 1, 'B', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors, dbFactors, 2, 'A', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors, dbFactors, 2, 'B', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors, dbFactors, 3, 'A', revisionDoc.ageSuitability), this.getDbPollFactorPosition(revisionDoc.factors, dbFactors, 3, 'B', revisionDoc.ageSuitability)],
             allTranslations: [uiPollRevisionTranslation]
         };
         return uiPollRevision;
@@ -143,7 +143,8 @@ export class PollRevisionConverter {
             }
         };
     }
-    getDbPollFactorPosition(uiFactor, factorNumber, outcomeOrdinal, ageSuitability) {
+    getDbPollFactorPosition(uiFactors, dbFactors, factorNumber, outcomeOrdinal, ageSuitability) {
+        const uiFactor = uiFactors[factorNumber];
         const uiPosition = uiFactor.positions[outcomeOrdinal];
         if (uiPosition.pollFactorPositionId) {
             return {
@@ -156,11 +157,11 @@ export class PollRevisionConverter {
                 id: uiPosition.pollFactorPositionParentId
             };
         }
-        let factor = null;
-        // if (outcomeOrdinal == 'A') {
-        factor = this.getDbFactor(uiFactor, factorNumber, ageSuitability);
-        factor[OPERATION_UNIQUE_ID_FIELD] = 1000000 + factorNumber;
-        // }
+        let factor = dbFactors[factorNumber];
+        if (!factor) {
+            factor = this.getDbFactor(uiFactor, factorNumber, ageSuitability);
+            dbFactors[factorNumber] = factor;
+        }
         const position = this.getDbPosition(uiPosition, ageSuitability);
         let factorPosition = {
             factor,
@@ -195,7 +196,6 @@ export class PollRevisionConverter {
             id: null,
             name: uiFactor.name,
         };
-        parentTranslation[OPERATION_UNIQUE_ID_FIELD] = 1000000 + factorNumber * 100 + factorNumber;
         return {
             ageSuitability,
             id: null,

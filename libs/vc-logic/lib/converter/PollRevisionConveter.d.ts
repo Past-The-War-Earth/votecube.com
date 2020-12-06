@@ -4,7 +4,6 @@ export interface IPollRevisionConverter {
     dbToUi(revisionDb: IPollRevision): IUiPollRevision;
     uiToDb(revisionDoc: IUiPollRevision): IPollRevision;
 }
-export declare const OPERATION_UNIQUE_ID_FIELD = "__UID__";
 export declare class PollRevisionConverter implements IPollRevisionConverter {
     dbToUi(revisionDb: IPollRevision): IUiPollRevision;
     uiToDb(revisionDoc: IUiPollRevision): IPollRevision;
