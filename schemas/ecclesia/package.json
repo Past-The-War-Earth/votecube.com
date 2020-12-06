@@ -21,9 +21,6 @@
     "@airport/travel-document-checkpoint": "0.0.1"
   },
   "devDependencies": {
-    "@airport/runway": "0.0.1",
-    "firebase": "^7.2.x",
-    "tslint": "^5.20.1",
-    "typescript": "^3.8.2"
+    "@airport/runway": "0.0.1"
   }
 }

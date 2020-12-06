@@ -61,7 +61,6 @@ dependencies:
   html-webpack-plugin: 3.2.0
   jssha: 2.4.2
   mini-css-extract-plugin: 0.5.0
-  mysql: 2.18.1
   mysql2: 2.2.5
   node-fetch: 2.6.1
   node-typescript: 0.1.3
@@ -7715,13 +7714,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
-  /typescript/4.0.3:
+  /typescript/4.1.2:
     dev: false
     engines:
       node: '>=4.2.0'
     hasBin: true
     resolution:
-      integrity: sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
+      integrity: sha512-thGloWsGH3SOxv1SoY7QojKi0tc+8FnOmiarEGMbd/lar7QOEd3hvlx3Fp5y6FlDUGl9L+pd4n2e+oToGMmhRQ==
   /uglify-js/3.11.3:
     dev: false
     engines:
@@ -8438,7 +8437,7 @@ packages:
     dev: false
     name: '@rush-temp/ecclesia'
     resolution:
-      integrity: sha512-M1CBwANGcbxaTaSyQEFifSP0utHU1bHFUguxAvjPzlkIms/GH6OXznmBskya0acymKcY8VE9aKZEC6mVFlIAcA==
+      integrity: sha512-vbTdx458hsQm3IDd2vJBB2emMSdfq7m9uTTTVOmNiqeuUx6KnUAZv/Pe9TLi9Us3EjrOKG09kostJjFoK9wGBg==
       tarball: 'file:projects/ecclesia.tgz'
     version: 0.0.0
   'file:projects/flight-log-archive.tgz':
@@ -8529,7 +8528,7 @@ packages:
     dev: false
     name: '@rush-temp/mysql'
     resolution:
-      integrity: sha512-Ikv7Wzzp7ELtkfvX3sFFGpeBzicpgz3/zmk8v4C0U77+SRHq80RrlYpUxw1M3QtLlOgCnayPua+l0ofufMtisw==
+      integrity: sha512-t2JFc+bee1LkGUmVYxwqT90l6Dv4TXRnsT8NBdLbvUM3LdEDEkI5eCMgqpbdDeU6hbmKOyDnPeIDq6pdNJj5JQ==
       tarball: 'file:projects/mysql.tgz'
     version: 0.0.0
   'file:projects/observe.tgz':
@@ -8646,11 +8645,11 @@ packages:
   'file:projects/runway.tgz':
     dependencies:
       '@types/node': 14.11.10
-      typescript: 4.0.3
+      typescript: 4.1.2
     dev: false
     name: '@rush-temp/runway'
     resolution:
-      integrity: sha512-9NF5tg/kRbBIR/HDgFCaliU8G6QbNMWjbCvOdWzF8HcRC/ELDLhwNouSZuHBvJth/u83Q3m5QkEg9AZ8z2zMwg==
+      integrity: sha512-pb+QWVzOhGE1gPHPMdLdQnlw3cLn0iPuEJsxZ4g/+dmaNzsdcPvIOfqTGL9vAV/OiyWgDUejA5K9Nwzm0JnH8w==
       tarball: 'file:projects/runway.tgz'
     version: 0.0.0
   'file:projects/sequence.tgz':
@@ -8697,7 +8696,7 @@ packages:
     dev: false
     name: '@rush-temp/terminal-map'
     resolution:
-      integrity: sha512-sbPx3cc/Ht4L0Nqkkm3i92Z26IL5UQzUuv/QQbNhSfFxjJykeL/f4AkpbsYorNw8v/VE7+x9t3Rv5XraIxDtkw==
+      integrity: sha512-sSfhhyXYLZ+OYkRTOFfBstIEwVbay33RjxJ2ORdUx19KxUYTla+gYCMUxtYgiBH/fTsbA0GEw3ryXm+HdbQ6gg==
       tarball: 'file:projects/terminal-map.tgz'
     version: 0.0.0
   'file:projects/terminal.tgz':
@@ -8720,7 +8719,7 @@ packages:
     dev: false
     name: '@rush-temp/tower'
     resolution:
-      integrity: sha512-X6s4O5F3DMw2SIlHnhmhsCHouoS7d6Z6qz/SXlcGPVd0jAsMK+ziGnIFY45/c1OzAq0texaUxwwQyNkOAL6eaw==
+      integrity: sha512-An/8FWT/Le0FuNMA/BtShK76stPLNDKBUdQWJZu/J/DpOEaBigL5wvo7PFHoEcIkxaUnihLK9U3Gullw8mTTbA==
       tarball: 'file:projects/tower.tgz'
     version: 0.0.0
   'file:projects/traffic-pattern.tgz':
@@ -8762,7 +8761,7 @@ packages:
     dev: false
     name: '@rush-temp/vc-node'
     resolution:
-      integrity: sha512-p7fPy2LopJ0Zvy95QQrC5vnCphSdLy9sGgtxeFHblhyeeewxUBeFmP+rpTiPTk8pF/J9a79La/fp6c4H+g66qw==
+      integrity: sha512-Tzag7YBHyaUuM0WOosBk0sKZZSE8SvxYrDnxmVBFQVdF2RIx9TEKLupEARD5x/MSgQWjHU6gLzvOvzqPS5DVxA==
       tarball: 'file:projects/vc-node.tgz'
     version: 0.0.0
   'file:projects/vc-ui.tgz':
@@ -8781,6 +8780,7 @@ packages:
       integrity: sha512-4Qn7X9ihLNkdRnA6GGG9GtOMTEwtEZGnAtDz9puyG4gvb0E/CU+PQvu5fRBPcbQ+0zuFeG3A9kr8//4YaINUEg==
       tarball: 'file:projects/vc-ui.tgz'
     version: 0.0.0
+registry: ''
 specifiers:
   '@rush-temp/air-control': 'file:./projects/air-control.tgz'
   '@rush-temp/airport-code': 'file:./projects/airport-code.tgz'
@@ -8844,7 +8844,6 @@ specifiers:
   html-webpack-plugin: ^3.2.x
   jssha: ^2.3.x
   mini-css-extract-plugin: ^0.5.0
-  mysql: ^2.18.1
   mysql2: ^2.1.0
   node-fetch: ^2.6.0
   node-typescript: ^0.1.3
