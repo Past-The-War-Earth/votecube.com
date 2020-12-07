@@ -9,9 +9,22 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/public-ui/.rush" />
       <excludeFolder url="file://$MODULE_DIR$/apps/public-ui/build" />
     </content>
+    <content url="file://$MODULE_DIR$/apps/old-ui">
+      <excludeFolder url="file://$MODULE_DIR$/apps/old-ui/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/old-ui/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/old-ui/build" />
+    </content>
+    <content url="file://$MODULE_DIR$/apps/vc-ui">
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-ui/build" />
+    </content>
     <content url="file://$MODULE_DIR$/apps/vc-node">
       <excludeFolder url="file://$MODULE_DIR$/apps/vc-node/.rush" />
       <excludeFolder url="file://$MODULE_DIR$/apps/vc-node/lib" />
+    </content>
+    <content url="file://$MODULE_DIR$/common">
+      <excludeFolder url="file://$MODULE_DIR$/common/temp" />
     </content>
     <content url="file://$MODULE_DIR$/libs/ajax">
       <excludeFolder url="file://$MODULE_DIR$/libs/ajax/.idea" />
@@ -47,6 +60,11 @@
       <excludeFolder url="file://$MODULE_DIR$/libs/vc-logic/.rush" />
       <excludeFolder url="file://$MODULE_DIR$/libs/vc-logic/lib" />
     </content>
+    <content url="file://$MODULE_DIR$/libs/public-logic">
+      <excludeFolder url="file://$MODULE_DIR$/libs/public-logic/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/public-logic/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/public-logic/lib" />
+    </content>
     <content url="file://$MODULE_DIR$/schemas/ecclesia">
       <excludeFolder url="file://$MODULE_DIR$/schemas/ecclesia/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/schemas/ecclesia/.rush" />
@@ -54,5 +72,55 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-  </component>
+    <content url="file://$MODULE_DIR$/apps/vc-node">
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-node/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vc-node/lib" />
+    </content>
+    <content url="file://$MODULE_DIR$/libs/ajax">
+      <excludeFolder url="file://$MODULE_DIR$/libs/ajax/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/ajax/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/ajax/lib" />
+    </content>
+    <content url="file://$MODULE_DIR$/libs/cube-logic">
+      <excludeFolder url="file://$MODULE_DIR$/libs/cube-logic/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/cube-logic/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/cube-logic/lib" />
+    </content>
+    <content url="file://$MODULE_DIR$/libs/db">
+      <excludeFolder url="file://$MODULE_DIR$/libs/db/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/db/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/db/lib" />
+    </content>
+    <content url="file://$MODULE_DIR$/libs/forms">
+      <excludeFolder url="file://$MODULE_DIR$/libs/forms/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/forms/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/forms/lib" />
+    </content>
+    <content url="file://$MODULE_DIR$/libs/model">
+      <excludeFolder url="file://$MODULE_DIR$/libs/model/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/model/.rush" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/model/lib" />
+    </content>
+<content url="file://$MODULE_DIR$/libs/svelte-progressive-list">
+<sourceFolder url="file://$MODULE_DIR$/libs/svelte-progressive-list/test" isTestSource="true" />
+<excludeFolder url="file://$MODULE_DIR$/libs/svelte-progressive-list/.rush" />
+</content>
+<content url="file://$MODULE_DIR$/libs/vc-logic">
+<excludeFolder url="file://$MODULE_DIR$/libs/vc-logic/.idea" />
+<excludeFolder url="file://$MODULE_DIR$/libs/vc-logic/.rush" />
+<excludeFolder url="file://$MODULE_DIR$/libs/vc-logic/lib" />
+</content>
+<content url="file://$MODULE_DIR$/schemas/ecclesia">
+<excludeFolder url="file://$MODULE_DIR$/schemas/ecclesia/.idea" />
+<excludeFolder url="file://$MODULE_DIR$/schemas/ecclesia/.rush" />
+<excludeFolder url="file://$MODULE_DIR$/schemas/ecclesia/lib" />
+</content>
+<content url="file://$MODULE_DIR$/schemas/public-db">
+<excludeFolder url="file://$MODULE_DIR$/schemas/public-db/.idea" />
+<excludeFolder url="file://$MODULE_DIR$/schemas/public-db/.rush" />
+<excludeFolder url="file://$MODULE_DIR$/schemas/public-db/lib" />
+</content>
+<orderEntry type="inheritedJdk" />
+<orderEntry type="sourceFolder" forTests="false" />
+</component>
 </module>

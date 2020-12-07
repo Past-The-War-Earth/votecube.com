@@ -1,3 +1,8 @@
+# Idea files
+.idea/workspace.xml
+.idea/shelf/**
+
+# Node runtime
 npm-debug.log
 
 # Ignore NPM package folders
@@ -11,8 +16,8 @@ bundle.css
 1.1.js
 public.zip
 
-.idea/workspace.xml
-
 # Ignore Rush temporary files
 /common/temp/**
+
+# Ignore Microsoft Rush temp files
 .rush/
