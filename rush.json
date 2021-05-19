@@ -4,7 +4,7 @@
   "pnpmVersion": "5.9.3",
   "nodeSupportedVersionRange": ">=14.0.0 <15.0.0",
   "projectFolderMinDepth": 1,
-  "projectFolderMaxDepth": 4,
+  "projectFolderMaxDepth": 6,
 
   "projects": [
     // "apps" folder (alphabetical order)
@@ -88,157 +88,167 @@
     // "apis" folder (alphabetical order)
     {
       "packageName": "@airport/air-control",
-      "projectFolder": "../airport/apis/air-control",
+      "projectFolder": "../../AIR/AIRport/apis/air-control",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/arrivals-n-departures",
-      "projectFolder": "../airport/apis/arrivals-n-departures",
+      "projectFolder": "../../AIR/AIRport/apis/arrivals-n-departures",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/check-in",
-      "projectFolder": "../airport/apis/check-in",
+      "projectFolder": "../../AIR/AIRport/apis/check-in",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/config",
+      "projectFolder": "../../AIR/AIRport/apis/config",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/ground-control",
-      "projectFolder": "../airport/apis/ground-control",
+      "projectFolder": "../../AIR/AIRport/apis/ground-control",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/terminal-map",
-      "projectFolder": "../airport/apis/terminal-map",
+      "projectFolder": "../../AIR/AIRport/apis/terminal-map",
       "shouldPublish": true
     },
     // "apps" folder (alphabetical order)
     {
       "packageName": "@airport/automated-guideway-transit",
-      "projectFolder": "../airport/apps/automated-guideway-transit",
+      "projectFolder": "../../AIR/AIRport/apps/automated-guideway-transit",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/tarmaq",
-      "projectFolder": "../airport/apps/tarmaq",
+      "projectFolder": "../../AIR/AIRport/apps/tarmaq",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/terminal",
-      "projectFolder": "../airport/apps/terminal",
+      "projectFolder": "../../AIR/AIRport/apps/terminal",
       "shouldPublish": true
     },
     // "db" folder (alphabetical order)
     {
       "packageName": "@airport/mysql",
-      "projectFolder": "../airport/db/mysql",
+      "projectFolder": "../../AIR/AIRport/db/mysql",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/sequence",
-      "projectFolder": "../airport/db/sequence",
+      "projectFolder": "../../AIR/AIRport/db/sequence",
       "shouldPublish": true
     },
     // "libs" folder (alphabetical order)
     {
       "packageName": "@airport/approach-lighting-system",
-      "projectFolder": "../airport/libs/approach-lighting-system",
+      "projectFolder": "../../AIR/AIRport/libs/approach-lighting-system",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/blueprint",
-      "projectFolder": "../airport/libs/blueprint",
+      "projectFolder": "../../AIR/AIRport/libs/blueprint",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/di",
-      "projectFolder": "../airport/libs/di",
+      "projectFolder": "../../AIR/AIRport/libs/di",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/fuel-hydrant-system",
-      "projectFolder": "../airport/libs/fuel-hydrant-system",
+      "projectFolder": "../../AIR/AIRport/libs/fuel-hydrant-system",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/ground-transport",
-      "projectFolder": "../airport/libs/ground-transport",
+      "projectFolder": "../../AIR/AIRport/libs/ground-transport",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/observe",
-      "projectFolder": "../airport/libs/observe",
+      "projectFolder": "../../AIR/AIRport/libs/observe",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/tower",
-      "projectFolder": "../airport/libs/tower",
+      "projectFolder": "../../AIR/AIRport/libs/tower",
       "shouldPublish": true
     },
     // "generators" folder (alphabetical order)
     {
       "packageName": "@airport/landing",
-      "projectFolder": "../airport/generators/landing",
+      "projectFolder": "../../AIR/AIRport/generators/landing",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/runway",
-      "projectFolder": "../airport/generators/runway",
+      "projectFolder": "../../AIR/AIRport/generators/runway",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/takeoff",
-      "projectFolder": "../airport/generators/takeoff",
+      "projectFolder": "../../AIR/AIRport/generators/takeoff",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/taxiway",
+      "projectFolder": "../../AIR/AIRport/generators/taxiway",
       "shouldPublish": true
     },
     // "schemas" folder (alphabetical order),
     {
       "packageName": "@airport/airport-code",
-      "projectFolder": "../airport/schemas/airport-code",
+      "projectFolder": "../../AIR/AIRport/schemas/airport-code",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/guideway",
-      "projectFolder": "../airport/schemas/guideway",
+      "projectFolder": "../../AIR/AIRport/schemas/guideway",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/flight-log-archive",
-      "projectFolder": "../airport/schemas/flight-log-archive",
+      "projectFolder": "../../AIR/AIRport/schemas/flight-log-archive",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/holding-pattern",
-      "projectFolder": "../airport/schemas/holding-pattern",
+      "projectFolder": "../../AIR/AIRport/schemas/holding-pattern",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/travel-document-checkpoint",
-      "projectFolder": "../airport/schemas/travel-document-checkpoint",
+      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/moving-walkway",
-      "projectFolder": "../airport/schemas/moving-walkway",
+      "projectFolder": "../../AIR/AIRport/schemas/moving-walkway",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/point-of-destination",
-      "projectFolder": "../airport/schemas/point-of-destination",
+      "projectFolder": "../../AIR/AIRport/schemas/point-of-destination",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/runway-edge-lighting",
-      "projectFolder": "../airport/schemas/runway-edge-lighting",
+      "projectFolder": "../../AIR/AIRport/schemas/runway-edge-lighting",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/territory",
-      "projectFolder": "../airport/schemas/territory",
+      "projectFolder": "../../AIR/AIRport/schemas/territory",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/traffic-pattern",
-      "projectFolder": "../airport/schemas/traffic-pattern",
+      "projectFolder": "../../AIR/AIRport/schemas/traffic-pattern",
       "shouldPublish": true
     }
 

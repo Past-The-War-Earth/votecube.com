@@ -8,6 +8,7 @@ dependencies:
   '@rush-temp/blueprint': 'file:projects/blueprint.tgz'
   '@rush-temp/check-in': 'file:projects/check-in.tgz'
   '@rush-temp/cloudfare-worker': 'file:projects/cloudfare-worker.tgz'
+  '@rush-temp/config': 'file:projects/config.tgz'
   '@rush-temp/cube-logic': 'file:projects/cube-logic.tgz'
   '@rush-temp/db': 'file:projects/db.tgz'
   '@rush-temp/di': 'file:projects/di.tgz'
@@ -35,6 +36,7 @@ dependencies:
   '@rush-temp/svelte-progressive-list': 'file:projects/svelte-progressive-list.tgz'
   '@rush-temp/takeoff': 'file:projects/takeoff.tgz'
   '@rush-temp/tarmaq': 'file:projects/tarmaq.tgz'
+  '@rush-temp/taxiway': 'file:projects/taxiway.tgz'
   '@rush-temp/terminal': 'file:projects/terminal.tgz'
   '@rush-temp/terminal-map': 'file:projects/terminal-map.tgz'
   '@rush-temp/territory': 'file:projects/territory.tgz'
@@ -74,6 +76,7 @@ dependencies:
   rollup-plugin-commonjs: 9.3.4_rollup@1.32.1
   rollup-plugin-node-resolve: 4.2.4
   rollup-plugin-svelte: 5.2.3_rollup@1.32.1
+  rxjs: 7.0.1
   sapper: 0.27.16
   serve: 10.1.2
   style-loader: 0.23.1
@@ -6553,6 +6556,12 @@ packages:
       npm: '>=2.0.0'
     resolution:
       integrity: sha512-trsQc+xYYXZ3urjOiJOuCOa5N3jAZ3eiSpQB5hIT8zGlL2QfnHLJ2r7GMkBGuIausdJN1OneaI6gQlsqNHHmZQ==
+  /rxjs/7.0.1:
+    dependencies:
+      tslib: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha512-wViQ4Vgps1xJwqWIBooMNN44usCSthL7wCUl4qWqrVjhGfWyVyXcxlYzfDKkJKACQvZMTOft/jJ3RkbwK1j9QQ==
   /safe-buffer/5.1.2:
     dev: false
     resolution:
@@ -7607,6 +7616,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+  /tslib/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
   /tslint/5.20.1:
     dependencies:
       '@babel/code-frame': 7.10.4
@@ -8400,6 +8413,13 @@ packages:
       integrity: sha512-liZCl4J6sD7f+Q2i94736XBlYbW+hyYxUaEi10Pk5PLzFnUE6VBq0me6K22Y40mwP+VqsSZerPlDdpHGWFsGiw==
       tarball: 'file:projects/cloudfare-worker.tgz'
     version: 0.0.0
+  'file:projects/config.tgz':
+    dev: false
+    name: '@rush-temp/config'
+    resolution:
+      integrity: sha512-8So3LgeYHF0UcgpG4swUlZich4ha6otKiMi4MrZVqoGMfrypZSoaDdhJPqi4Wxb6eFBW04qMBVdtQyA6Y4LUHw==
+      tarball: 'file:projects/config.tgz'
+    version: 0.0.0
   'file:projects/cube-logic.tgz':
     dependencies:
       tslint: 5.20.1_typescript@3.9.7
@@ -8468,7 +8488,7 @@ packages:
     dev: false
     name: '@rush-temp/ground-control'
     resolution:
-      integrity: sha512-zCERAbKOdSD4UAd6VT9P9gzpt0CmzJPCe5n0ejO7Tk2bxu2JwQSE7+sQSkziRyVLMJb/79aOEPvQmbK51g6VxQ==
+      integrity: sha512-h/v0ZquJiGLv5vhaytwbCPvA8/gsNM2JaCh3NKJto99HNiQxt/vVgWOvMhfOTg+GSWZus0j6bo0rEh6W1YH2QA==
       tarball: 'file:projects/ground-control.tgz'
     version: 0.0.0
   'file:projects/ground-transport.tgz':
@@ -8532,10 +8552,12 @@ packages:
       tarball: 'file:projects/mysql.tgz'
     version: 0.0.0
   'file:projects/observe.tgz':
+    dependencies:
+      rxjs: 7.0.1
     dev: false
     name: '@rush-temp/observe'
     resolution:
-      integrity: sha512-47hjbZyI+43vPPFEOoNnzaGKKKnzVe3Jq6+rEegVIORRQaEPs/LAcosB0smr4ZqH7avzd7UeBPy3S75mob/dbQ==
+      integrity: sha512-tJW4aqaS7LJPInBp4rlEjtUesJ3U15IB/izhMuJVTsTszjAfeQqLaMWEHZRkEWaCIRKaOHYfdzlqMz5ficPyqQ==
       tarball: 'file:projects/observe.tgz'
     version: 0.0.0
   'file:projects/old-ui.tgz':
@@ -8649,7 +8671,7 @@ packages:
     dev: false
     name: '@rush-temp/runway'
     resolution:
-      integrity: sha512-pb+QWVzOhGE1gPHPMdLdQnlw3cLn0iPuEJsxZ4g/+dmaNzsdcPvIOfqTGL9vAV/OiyWgDUejA5K9Nwzm0JnH8w==
+      integrity: sha512-uh1sfeEf7FcFZrM5kj3AUktxrxrKfcDks4G9nZy+Y/9umAn0Vmv6NoNhU8Cbh/TAHxHszaGsnNCXBl1d9trASw==
       tarball: 'file:projects/runway.tgz'
     version: 0.0.0
   'file:projects/sequence.tgz':
@@ -8691,6 +8713,16 @@ packages:
     resolution:
       integrity: sha512-Ma3TycL9F/rD0VHCKhOHhhlXhnGZ2CUccYQxqJjZiNLPmG1p0ABRNLHRetNVhLl3leQ0zYtps8VZoR4oZtBxEA==
       tarball: 'file:projects/tarmaq.tgz'
+    version: 0.0.0
+  'file:projects/taxiway.tgz':
+    dependencies:
+      '@types/node': 14.11.10
+      typescript: 4.1.2
+    dev: false
+    name: '@rush-temp/taxiway'
+    resolution:
+      integrity: sha512-De3Bbj7u6vRjWhqWQHPHBKewsgIjbC0VnpnJyc/F05MotH2yPlHmY29vZ8aMWx5vrRwBjzzGdxdHljwLY6Bpmg==
+      tarball: 'file:projects/taxiway.tgz'
     version: 0.0.0
   'file:projects/terminal-map.tgz':
     dev: false
@@ -8791,6 +8823,7 @@ specifiers:
   '@rush-temp/blueprint': 'file:./projects/blueprint.tgz'
   '@rush-temp/check-in': 'file:./projects/check-in.tgz'
   '@rush-temp/cloudfare-worker': 'file:./projects/cloudfare-worker.tgz'
+  '@rush-temp/config': 'file:./projects/config.tgz'
   '@rush-temp/cube-logic': 'file:./projects/cube-logic.tgz'
   '@rush-temp/db': 'file:./projects/db.tgz'
   '@rush-temp/di': 'file:./projects/di.tgz'
@@ -8818,6 +8851,7 @@ specifiers:
   '@rush-temp/svelte-progressive-list': 'file:./projects/svelte-progressive-list.tgz'
   '@rush-temp/takeoff': 'file:./projects/takeoff.tgz'
   '@rush-temp/tarmaq': 'file:./projects/tarmaq.tgz'
+  '@rush-temp/taxiway': 'file:./projects/taxiway.tgz'
   '@rush-temp/terminal': 'file:./projects/terminal.tgz'
   '@rush-temp/terminal-map': 'file:./projects/terminal-map.tgz'
   '@rush-temp/territory': 'file:./projects/territory.tgz'
@@ -8857,6 +8891,7 @@ specifiers:
   rollup-plugin-commonjs: ^9.2.0
   rollup-plugin-node-resolve: ^4.0.0
   rollup-plugin-svelte: ^5.0.1
+  rxjs: ^7.0.0-beta.10
   sapper: ^0.27.11
   serve: ^10.1.1
   style-loader: ^0.23.1
