@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
+import { Application } from '../../ddl/user/Application';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -54,7 +55,7 @@ export interface ApplicationECreateColumns extends ApplicationEId, ApplicationEU
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QApplication extends QSystemGeneratedRow {
+export interface QApplication extends QSystemGeneratedRow<Application> {
     id: IQNumberField;
     host: IQStringField;
     port: IQNumberField;
@@ -62,6 +63,6 @@ export interface QApplication extends QSystemGeneratedRow {
 export interface QApplicationQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QApplicationQRelation extends QSystemGeneratedRowQRelation<QApplication>, QApplicationQId {
+export interface QApplicationQRelation extends QSystemGeneratedRowQRelation<Application, QApplication>, QApplicationQId {
 }
 //# sourceMappingURL=qapplication.d.ts.map

@@ -42,6 +42,9 @@ import {
 	QPollRevisionOpinionQRelation,
 } from './qpollrevisionopinion';
 import {
+	PollRevisionOpinion,
+} from '../../ddl/opinion/PollRevisionOpinion';
+import {
 	PollRevisionOpinionVersionTranslationGraph,
 	PollRevisionOpinionVersionTranslationEId,
 	PollRevisionOpinionVersionTranslationEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QPollRevisionOpinionVersionTranslationQId,
 	QPollRevisionOpinionVersionTranslationQRelation,
 } from './translation/qpollrevisionopinionversiontranslation';
+import {
+	PollRevisionOpinionVersionTranslation,
+} from '../../ddl/opinion/translation/PollRevisionOpinionVersionTranslation';
+import {
+	PollRevisionOpinionVersion,
+} from '../../ddl/opinion/PollRevisionOpinionVersion';
 
 
 declare function require(moduleName: string): any;
@@ -166,7 +175,7 @@ extends PollRevisionOpinionVersionEId, PollRevisionOpinionVersionEUpdateColumns 
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionOpinionVersion extends QImmutableRow
+export interface QPollRevisionOpinionVersion extends QImmutableRow<PollRevisionOpinionVersion>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -178,8 +187,8 @@ export interface QPollRevisionOpinionVersion extends QImmutableRow
 	// Non-Id Relations
 	pollRevisionOpinion: QPollRevisionOpinionQRelation;
 	parent: QPollRevisionOpinionVersionQRelation;
-	children: IQOneToManyRelation<QPollRevisionOpinionVersion>;
-	translations: IQOneToManyRelation<QPollRevisionOpinionVersionTranslation>;
+	children: IQOneToManyRelation<PollRevisionOpinionVersion, QPollRevisionOpinionVersion>;
+	translations: IQOneToManyRelation<PollRevisionOpinionVersionTranslation, QPollRevisionOpinionVersionTranslation>;
 
 }
 
@@ -198,6 +207,6 @@ export interface QPollRevisionOpinionVersionQId extends QImmutableRowQId
 
 // Entity Relation Interface
 export interface QPollRevisionOpinionVersionQRelation
-	extends QImmutableRowQRelation<QPollRevisionOpinionVersion>, QPollRevisionOpinionVersionQId {
+	extends QImmutableRowQRelation<PollRevisionOpinionVersion, QPollRevisionOpinionVersion>, QPollRevisionOpinionVersionQId {
 }
 

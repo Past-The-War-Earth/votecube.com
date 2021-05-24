@@ -2,6 +2,8 @@ import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntity
 import { PollRevisionOpinionGraph, PollRevisionOpinionEOptionalId, PollRevisionOpinionESelect, QPollRevisionOpinionQRelation } from './qpollrevisionopinion';
 import { OutcomeGraph, OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from '../poll/revision/qoutcome';
 import { OutcomeOpinionVersionTranslationGraph, OutcomeOpinionVersionTranslationESelect, QOutcomeOpinionVersionTranslation } from './translation/qoutcomeopinionversiontranslation';
+import { OutcomeOpinionVersionTranslation } from '../../ddl/opinion/translation/OutcomeOpinionVersionTranslation';
+import { OutcomeOpinionVersion } from '../../ddl/opinion/OutcomeOpinionVersion';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -63,17 +65,17 @@ export interface OutcomeOpinionVersionECreateColumns extends OutcomeOpinionVersi
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcomeOpinionVersion extends IQEntity {
+export interface QOutcomeOpinionVersion extends IQEntity<OutcomeOpinionVersion> {
     id: IQNumberField;
     pollRevisionOpinion: QPollRevisionOpinionQRelation;
     outcome: QOutcomeQRelation;
     parent: QOutcomeOpinionVersionQRelation;
-    children: IQOneToManyRelation<QOutcomeOpinionVersion>;
-    translations: IQOneToManyRelation<QOutcomeOpinionVersionTranslation>;
+    children: IQOneToManyRelation<OutcomeOpinionVersion, QOutcomeOpinionVersion>;
+    translations: IQOneToManyRelation<OutcomeOpinionVersionTranslation, QOutcomeOpinionVersionTranslation>;
 }
 export interface QOutcomeOpinionVersionQId {
     id: IQNumberField;
 }
-export interface QOutcomeOpinionVersionQRelation extends IQRelation<QOutcomeOpinionVersion>, QOutcomeOpinionVersionQId {
+export interface QOutcomeOpinionVersionQRelation extends IQRelation<OutcomeOpinionVersion, QOutcomeOpinionVersion>, QOutcomeOpinionVersionQId {
 }
 //# sourceMappingURL=qoutcomeopinionversion.d.ts.map

@@ -5,21 +5,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { ANOTHER, Y } from '@airport/air-control';
-import { Persist } from '@airport/check-in';
 import { DI } from '@airport/di';
 import { BasePollDao, } from '../../generated/generated';
 import { POLL_DAO } from '../../tokens';
 export class PollDao extends BasePollDao {
-    constructor() {
-        super(...arguments);
-        this.createOne = this.save;
-    }
-    async createNew(poll, context) {
-        await this.createOne(poll, context);
-    }
 }
 __decorate([
-    Persist({
+    PollDao.Save({
         ageSuitability: Y,
         parent: {
             id: Y
@@ -113,6 +105,6 @@ __decorate([
             id: Y,
         }
     })
-], PollDao.prototype, "createOne", void 0);
+], PollDao.prototype, "create", void 0);
 DI.set(POLL_DAO, PollDao);
 //# sourceMappingURL=PollDao.js.map

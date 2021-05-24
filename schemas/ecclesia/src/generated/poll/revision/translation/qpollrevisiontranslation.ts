@@ -42,6 +42,9 @@ import {
 	QPollRevisionQRelation,
 } from '../qpollrevision';
 import {
+	PollRevision,
+} from '../../../../ddl/poll/revision/PollRevision';
+import {
 	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -51,6 +54,9 @@ import {
 	QLanguageQId,
 	QLanguageQRelation,
 } from '../../../infrastructure/qlanguage';
+import {
+	Language,
+} from '../../../../ddl/infrastructure/Language';
 import {
 	TranslationTypeGraph,
 	TranslationTypeEId,
@@ -62,6 +68,9 @@ import {
 	QTranslationTypeQRelation,
 } from '../../../infrastructure/qtranslationtype';
 import {
+	TranslationType,
+} from '../../../../ddl/infrastructure/TranslationType';
+import {
 	PollRevisionTranslationRatingGraph,
 	PollRevisionTranslationRatingEId,
 	PollRevisionTranslationRatingEOptionalId,
@@ -71,6 +80,12 @@ import {
 	QPollRevisionTranslationRatingQId,
 	QPollRevisionTranslationRatingQRelation,
 } from '../../rating/qpollrevisiontranslationrating';
+import {
+	PollRevisionTranslationRating,
+} from '../../../../ddl/poll/rating/PollRevisionTranslationRating';
+import {
+	PollRevisionTranslation,
+} from '../../../../ddl/poll/revision/translation/PollRevisionTranslation';
 
 
 declare function require(moduleName: string): any;
@@ -199,7 +214,7 @@ extends PollRevisionTranslationEId, PollRevisionTranslationEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionTranslation extends QImmutableActorRow
+export interface QPollRevisionTranslation extends QImmutableActorRow<PollRevisionTranslation>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -214,8 +229,8 @@ export interface QPollRevisionTranslation extends QImmutableActorRow
 	language: QLanguageQRelation;
 	type: QTranslationTypeQRelation;
 	parent: QPollRevisionTranslationQRelation;
-	children: IQOneToManyRelation<QPollRevisionTranslation>;
-	ratings: IQOneToManyRelation<QPollRevisionTranslationRating>;
+	children: IQOneToManyRelation<PollRevisionTranslation, QPollRevisionTranslation>;
+	ratings: IQOneToManyRelation<PollRevisionTranslationRating, QPollRevisionTranslationRating>;
 
 }
 
@@ -234,6 +249,6 @@ export interface QPollRevisionTranslationQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QPollRevisionTranslationQRelation
-	extends QImmutableActorRowQRelation<QPollRevisionTranslation>, QPollRevisionTranslationQId {
+	extends QImmutableActorRowQRelation<PollRevisionTranslation, QPollRevisionTranslation>, QPollRevisionTranslationQId {
 }
 

@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-control';
 import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../infrastructure/row/qimmutableactorrow';
+import { Skin } from '../../ddl/factor/Skin';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -61,16 +62,16 @@ export interface SkinECreateColumns extends SkinEId, SkinEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QSkin extends QImmutableActorRow {
+export interface QSkin extends QImmutableActorRow<Skin> {
     id: IQNumberField;
     backgroundColor: IQNumberField;
     textColor: IQNumberField;
     parent: QSkinQRelation;
-    children: IQOneToManyRelation<QSkin>;
+    children: IQOneToManyRelation<Skin, QSkin>;
 }
 export interface QSkinQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QSkinQRelation extends QImmutableActorRowQRelation<QSkin>, QSkinQId {
+export interface QSkinQRelation extends QImmutableActorRowQRelation<Skin, QSkin>, QSkinQId {
 }
 //# sourceMappingURL=qskin.d.ts.map

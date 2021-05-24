@@ -2,6 +2,7 @@ import { IQBooleanField, IQDateField, IQNumberField, IQStringField } from '@airp
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../../infrastructure/row/qsystemgeneratedrow';
 import { FactorOpinionVersionGraph, FactorOpinionVersionEOptionalId, FactorOpinionVersionESelect, QFactorOpinionVersionQRelation } from '../qfactoropinionversion';
 import { LanguageGraph, LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../infrastructure/qlanguage';
+import { FactorOpinionVersionTranslation } from '../../../ddl/opinion/translation/FactorOpinionVersionTranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -68,7 +69,7 @@ export interface FactorOpinionVersionTranslationECreateColumns extends FactorOpi
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorOpinionVersionTranslation extends QSystemGeneratedRow {
+export interface QFactorOpinionVersionTranslation extends QSystemGeneratedRow<FactorOpinionVersionTranslation> {
     id: IQNumberField;
     original: IQBooleanField;
     title: IQStringField;
@@ -79,6 +80,6 @@ export interface QFactorOpinionVersionTranslation extends QSystemGeneratedRow {
 export interface QFactorOpinionVersionTranslationQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QFactorOpinionVersionTranslationQRelation extends QSystemGeneratedRowQRelation<QFactorOpinionVersionTranslation>, QFactorOpinionVersionTranslationQId {
+export interface QFactorOpinionVersionTranslationQRelation extends QSystemGeneratedRowQRelation<FactorOpinionVersionTranslation, QFactorOpinionVersionTranslation>, QFactorOpinionVersionTranslationQId {
 }
 //# sourceMappingURL=qfactoropinionversiontranslation.d.ts.map

@@ -43,10 +43,10 @@ export interface SystemGeneratedRowECreateColumns extends SystemGeneratedRowEId,
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QSystemGeneratedRow extends QImmutableRow {
+export interface QSystemGeneratedRow<T> extends QImmutableRow<T> {
 }
 export interface QSystemGeneratedRowQId extends QImmutableRowQId {
 }
-export interface QSystemGeneratedRowQRelation<SubType extends IQEntity> extends QImmutableRowQRelation<SubType>, QSystemGeneratedRowQId {
+export interface QSystemGeneratedRowQRelation<SubType, SubQType extends IQEntity<SubType>> extends QImmutableRowQRelation<SubType, SubQType>, QSystemGeneratedRowQId {
 }
 //# sourceMappingURL=qsystemgeneratedrow.d.ts.map

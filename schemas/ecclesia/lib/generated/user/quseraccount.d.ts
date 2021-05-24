@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
+import { UserAccount } from '../../ddl/user/UserAccount';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -74,7 +75,7 @@ export interface UserAccountECreateColumns extends UserAccountEId, UserAccountEU
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QUserAccount extends QSystemGeneratedRow {
+export interface QUserAccount extends QSystemGeneratedRow<UserAccount> {
     id: IQNumberField;
     userName: IQStringField;
     email: IQStringField;
@@ -87,6 +88,6 @@ export interface QUserAccount extends QSystemGeneratedRow {
 export interface QUserAccountQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QUserAccountQRelation extends QSystemGeneratedRowQRelation<QUserAccount>, QUserAccountQId {
+export interface QUserAccountQRelation extends QSystemGeneratedRowQRelation<UserAccount, QUserAccount>, QUserAccountQId {
 }
 //# sourceMappingURL=quseraccount.d.ts.map

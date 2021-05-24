@@ -31,6 +31,9 @@ import {
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
 } from '../infrastructure/row/qsystemgeneratedrow';
+import {
+	VoteFactorType,
+} from '../../ddl/vote/VoteFactorType';
 
 
 declare function require(moduleName: string): any;
@@ -138,7 +141,7 @@ extends VoteFactorTypeEId, VoteFactorTypeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVoteFactorType extends QSystemGeneratedRow
+export interface QVoteFactorType extends QSystemGeneratedRow<VoteFactorType>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -167,6 +170,6 @@ export interface QVoteFactorTypeQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QVoteFactorTypeQRelation
-	extends QSystemGeneratedRowQRelation<QVoteFactorType>, QVoteFactorTypeQId {
+	extends QSystemGeneratedRowQRelation<VoteFactorType, QVoteFactorType>, QVoteFactorTypeQId {
 }
 

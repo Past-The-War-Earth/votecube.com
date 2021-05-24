@@ -42,6 +42,9 @@ import {
 	QSkinQRelation,
 } from '../../factor/qskin';
 import {
+	Skin,
+} from '../../../ddl/factor/Skin';
+import {
 	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
@@ -52,6 +55,9 @@ import {
 	QPollRevisionQRelation,
 } from './qpollrevision';
 import {
+	PollRevision,
+} from '../../../ddl/poll/revision/PollRevision';
+import {
 	FactorPositionGraph,
 	FactorPositionEId,
 	FactorPositionEOptionalId,
@@ -61,6 +67,12 @@ import {
 	QFactorPositionQId,
 	QFactorPositionQRelation,
 } from '../../factor/position/qfactorposition';
+import {
+	FactorPosition,
+} from '../../../ddl/factor/position/FactorPosition';
+import {
+	PollRevisionFactorPosition,
+} from '../../../ddl/poll/revision/PollRevisionFactorPosition';
 
 
 declare function require(moduleName: string): any;
@@ -211,7 +223,7 @@ extends PollRevisionFactorPositionEId, PollRevisionFactorPositionEUpdateColumns 
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionFactorPosition extends QImmutableRow
+export interface QPollRevisionFactorPosition extends QImmutableRow<PollRevisionFactorPosition>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -232,7 +244,7 @@ export interface QPollRevisionFactorPosition extends QImmutableRow
 	pollRevision: QPollRevisionQRelation;
 	factorPosition: QFactorPositionQRelation;
 	parent: QPollRevisionFactorPositionQRelation;
-	children: IQOneToManyRelation<QPollRevisionFactorPosition>;
+	children: IQOneToManyRelation<PollRevisionFactorPosition, QPollRevisionFactorPosition>;
 
 }
 
@@ -251,6 +263,6 @@ export interface QPollRevisionFactorPositionQId extends QImmutableRowQId
 
 // Entity Relation Interface
 export interface QPollRevisionFactorPositionQRelation
-	extends QImmutableRowQRelation<QPollRevisionFactorPosition>, QPollRevisionFactorPositionQId {
+	extends QImmutableRowQRelation<PollRevisionFactorPosition, QPollRevisionFactorPosition>, QPollRevisionFactorPositionQId {
 }
 

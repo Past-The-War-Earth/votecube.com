@@ -42,6 +42,9 @@ import {
 	QRatingTypeQRelation,
 } from './qratingtype';
 import {
+	RatingType,
+} from '../../../ddl/infrastructure/rating/RatingType';
+import {
 	RatingSettingGraph,
 	RatingSettingEId,
 	RatingSettingEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QRatingSettingQId,
 	QRatingSettingQRelation,
 } from './qratingsetting';
+import {
+	RatingSetting,
+} from '../../../ddl/infrastructure/rating/RatingSetting';
+import {
+	Rating,
+} from '../../../ddl/infrastructure/rating/Rating';
 
 
 declare function require(moduleName: string): any;
@@ -164,7 +173,7 @@ extends RatingEId, RatingEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QRating extends QSystemGeneratedRow
+export interface QRating extends QSystemGeneratedRow<Rating>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -176,7 +185,7 @@ export interface QRating extends QSystemGeneratedRow
 
 	// Non-Id Relations
 	type: QRatingTypeQRelation;
-	settings: IQOneToManyRelation<QRatingSetting>;
+	settings: IQOneToManyRelation<RatingSetting, QRatingSetting>;
 
 }
 
@@ -195,6 +204,6 @@ export interface QRatingQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QRatingQRelation
-	extends QSystemGeneratedRowQRelation<QRating>, QRatingQId {
+	extends QSystemGeneratedRowQRelation<Rating, QRating>, QRatingQId {
 }
 

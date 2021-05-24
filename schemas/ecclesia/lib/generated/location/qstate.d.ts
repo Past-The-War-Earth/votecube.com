@@ -2,6 +2,7 @@ import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control'
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
 import { CountryGraph, CountryEOptionalId, CountryESelect, QCountryQRelation } from './qcountry';
 import { StateTownGraph, StateTownESelect, QStateTownQRelation } from './qstatetown';
+import { State } from '../../ddl/location/State';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -58,7 +59,7 @@ export interface StateECreateColumns extends StateEId, StateEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QState extends QSystemGeneratedRow {
+export interface QState extends QSystemGeneratedRow<State> {
     id: IQNumberField;
     name: IQStringField;
     country: QCountryQRelation;
@@ -67,6 +68,6 @@ export interface QState extends QSystemGeneratedRow {
 export interface QStateQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QStateQRelation extends QSystemGeneratedRowQRelation<QState>, QStateQId {
+export interface QStateQRelation extends QSystemGeneratedRowQRelation<State, QState>, QStateQId {
 }
 //# sourceMappingURL=qstate.d.ts.map

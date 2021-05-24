@@ -3,6 +3,7 @@ import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpda
 import { UserAccountGraph, UserAccountEOptionalId, UserAccountESelect, QUserAccountQRelation } from './quseraccount';
 import { DeviceGraph, DeviceEOptionalId, DeviceESelect, QDeviceQRelation } from './qdevice';
 import { ApplicationGraph, ApplicationEOptionalId, ApplicationESelect, QApplicationQRelation } from './qapplication';
+import { Actor } from '../../ddl/user/Actor';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -65,7 +66,7 @@ export interface ActorECreateColumns extends ActorEId, ActorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QActor extends QSystemGeneratedRow {
+export interface QActor extends QSystemGeneratedRow<Actor> {
     id: IQNumberField;
     hash: IQNumberField;
     userAccount: QUserAccountQRelation;
@@ -75,6 +76,6 @@ export interface QActor extends QSystemGeneratedRow {
 export interface QActorQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QActorQRelation extends QSystemGeneratedRowQRelation<QActor>, QActorQId {
+export interface QActorQRelation extends QSystemGeneratedRowQRelation<Actor, QActor>, QActorQId {
 }
 //# sourceMappingURL=qactor.d.ts.map

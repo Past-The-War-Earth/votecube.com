@@ -1,6 +1,7 @@
 import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntityUpdateProperties, IEntitySelectProperties, IQNumberField, IQEntity, IQRelation } from '@airport/air-control';
 import { StateGraph, StateEOptionalId, StateESelect, QStateQRelation } from '../../../location/qstate';
 import { PollRunGraph, PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../qpollrun';
+import { PollRunState } from '../../../../ddl/poll/run/location/PollRunState';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -54,7 +55,7 @@ export interface PollRunStateECreateColumns extends PollRunStateEId, PollRunStat
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRunState extends IQEntity {
+export interface QPollRunState extends IQEntity<PollRunState> {
     id: IQNumberField;
     state: QStateQRelation;
     run: QPollRunQRelation;
@@ -62,6 +63,6 @@ export interface QPollRunState extends IQEntity {
 export interface QPollRunStateQId {
     id: IQNumberField;
 }
-export interface QPollRunStateQRelation extends IQRelation<QPollRunState>, QPollRunStateQId {
+export interface QPollRunStateQRelation extends IQRelation<PollRunState, QPollRunState>, QPollRunStateQId {
 }
 //# sourceMappingURL=qpollrunstate.d.ts.map

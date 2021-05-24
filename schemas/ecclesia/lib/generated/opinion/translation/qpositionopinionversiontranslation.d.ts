@@ -2,6 +2,7 @@ import { IQBooleanField, IQDateField, IQNumberField, IQStringField } from '@airp
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../../infrastructure/row/qsystemgeneratedrow';
 import { PositionOpinionVersionGraph, PositionOpinionVersionEOptionalId, PositionOpinionVersionESelect, QPositionOpinionVersionQRelation } from '../qpositionopinionversion';
 import { LanguageGraph, LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../infrastructure/qlanguage';
+import { PositionOpinionVersionTranslation } from '../../../ddl/opinion/translation/PositionOpinionVersionTranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -68,7 +69,7 @@ export interface PositionOpinionVersionTranslationECreateColumns extends Positio
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPositionOpinionVersionTranslation extends QSystemGeneratedRow {
+export interface QPositionOpinionVersionTranslation extends QSystemGeneratedRow<PositionOpinionVersionTranslation> {
     id: IQNumberField;
     original: IQBooleanField;
     title: IQStringField;
@@ -79,6 +80,6 @@ export interface QPositionOpinionVersionTranslation extends QSystemGeneratedRow 
 export interface QPositionOpinionVersionTranslationQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QPositionOpinionVersionTranslationQRelation extends QSystemGeneratedRowQRelation<QPositionOpinionVersionTranslation>, QPositionOpinionVersionTranslationQId {
+export interface QPositionOpinionVersionTranslationQRelation extends QSystemGeneratedRowQRelation<PositionOpinionVersionTranslation, QPositionOpinionVersionTranslation>, QPositionOpinionVersionTranslationQId {
 }
 //# sourceMappingURL=qpositionopinionversiontranslation.d.ts.map

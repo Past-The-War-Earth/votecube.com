@@ -32,6 +32,9 @@ import {
 	QContinentQRelation,
 } from '../../../location/qcontinent';
 import {
+	Continent,
+} from '../../../../ddl/location/Continent';
+import {
 	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
@@ -41,6 +44,12 @@ import {
 	QPollRunQId,
 	QPollRunQRelation,
 } from '../qpollrun';
+import {
+	PollRun,
+} from '../../../../ddl/poll/run/PollRun';
+import {
+	PollRunContinent,
+} from '../../../../ddl/poll/run/location/PollRunContinent';
 
 
 declare function require(moduleName: string): any;
@@ -151,7 +160,7 @@ extends PollRunContinentEId, PollRunContinentEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRunContinent extends IQEntity
+export interface QPollRunContinent extends IQEntity<PollRunContinent>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -181,6 +190,6 @@ export interface QPollRunContinentQId
 
 // Entity Relation Interface
 export interface QPollRunContinentQRelation
-	extends IQRelation<QPollRunContinent>, QPollRunContinentQId {
+	extends IQRelation<PollRunContinent, QPollRunContinent>, QPollRunContinentQId {
 }
 

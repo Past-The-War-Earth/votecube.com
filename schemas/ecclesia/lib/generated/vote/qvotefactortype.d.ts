@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
+import { VoteFactorType } from '../../ddl/vote/VoteFactorType';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -50,13 +51,13 @@ export interface VoteFactorTypeECreateColumns extends VoteFactorTypeEId, VoteFac
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVoteFactorType extends QSystemGeneratedRow {
+export interface QVoteFactorType extends QSystemGeneratedRow<VoteFactorType> {
     id: IQNumberField;
     value: IQStringField;
 }
 export interface QVoteFactorTypeQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QVoteFactorTypeQRelation extends QSystemGeneratedRowQRelation<QVoteFactorType>, QVoteFactorTypeQId {
+export interface QVoteFactorTypeQRelation extends QSystemGeneratedRowQRelation<VoteFactorType, QVoteFactorType>, QVoteFactorTypeQId {
 }
 //# sourceMappingURL=qvotefactortype.d.ts.map

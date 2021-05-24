@@ -42,6 +42,9 @@ import {
 	QOutcomeTranslationQRelation,
 } from './translation/qoutcometranslation';
 import {
+	OutcomeTranslation,
+} from '../../../ddl/poll/revision/translation/OutcomeTranslation';
+import {
 	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QPollRevisionQId,
 	QPollRevisionQRelation,
 } from './qpollrevision';
+import {
+	PollRevision,
+} from '../../../ddl/poll/revision/PollRevision';
+import {
+	Outcome,
+} from '../../../ddl/poll/revision/Outcome';
 
 
 declare function require(moduleName: string): any;
@@ -170,7 +179,7 @@ extends OutcomeEId, OutcomeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcome extends QAgeSuitableRow
+export interface QOutcome extends QAgeSuitableRow<Outcome>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -182,9 +191,9 @@ export interface QOutcome extends QAgeSuitableRow
 	// Non-Id Relations
 	parentTranslation: QOutcomeTranslationQRelation;
 	parent: QOutcomeQRelation;
-	children: IQOneToManyRelation<QOutcome>;
-	pollRevisionsA: IQOneToManyRelation<QPollRevision>;
-	pollRevisionsB: IQOneToManyRelation<QPollRevision>;
+	children: IQOneToManyRelation<Outcome, QOutcome>;
+	pollRevisionsA: IQOneToManyRelation<PollRevision, QPollRevision>;
+	pollRevisionsB: IQOneToManyRelation<PollRevision, QPollRevision>;
 
 }
 
@@ -203,6 +212,6 @@ export interface QOutcomeQId extends QAgeSuitableRowQId
 
 // Entity Relation Interface
 export interface QOutcomeQRelation
-	extends QAgeSuitableRowQRelation<QOutcome>, QOutcomeQId {
+	extends QAgeSuitableRowQRelation<Outcome, QOutcome>, QOutcomeQId {
 }
 

@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../../infrastructure/row/qsystemgeneratedrow';
+import { DesignPattern } from '../../../ddl/factor/position/DesignPattern';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -54,7 +55,7 @@ export interface DesignPatternECreateColumns extends DesignPatternEId, DesignPat
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QDesignPattern extends QSystemGeneratedRow {
+export interface QDesignPattern extends QSystemGeneratedRow<DesignPattern> {
     id: IQNumberField;
     name: IQStringField;
     cssClass: IQStringField;
@@ -62,6 +63,6 @@ export interface QDesignPattern extends QSystemGeneratedRow {
 export interface QDesignPatternQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QDesignPatternQRelation extends QSystemGeneratedRowQRelation<QDesignPattern>, QDesignPatternQId {
+export interface QDesignPatternQRelation extends QSystemGeneratedRowQRelation<DesignPattern, QDesignPattern>, QDesignPatternQId {
 }
 //# sourceMappingURL=qdesignpattern.d.ts.map

@@ -31,6 +31,9 @@ import {
 	QImmutableActorRowQRelation,
 	QImmutableActorRow,
 } from './qimmutableactorrow';
+import {
+	AgeSuitableRow,
+} from '../../../ddl/infrastructure/row/AgeSuitableRow';
 
 
 declare function require(moduleName: string): any;
@@ -134,7 +137,7 @@ extends AgeSuitableRowEId, AgeSuitableRowEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QAgeSuitableRow extends QImmutableActorRow
+export interface QAgeSuitableRow<T> extends QImmutableActorRow<T>
 {
 	// Id Fields
 
@@ -160,7 +163,7 @@ export interface QAgeSuitableRowQId extends QImmutableActorRowQId
 }
 
 // Entity Relation Interface
-export interface QAgeSuitableRowQRelation<SubType extends IQEntity>
-	extends QImmutableActorRowQRelation<SubType>, QAgeSuitableRowQId {
+export interface QAgeSuitableRowQRelation<SubType, SubQType extends IQEntity<SubType>>
+	extends QImmutableActorRowQRelation<SubType, SubQType>, QAgeSuitableRowQId {
 }
 

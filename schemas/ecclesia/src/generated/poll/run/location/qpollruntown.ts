@@ -32,6 +32,9 @@ import {
 	QTownQRelation,
 } from '../../../location/qtown';
 import {
+	Town,
+} from '../../../../ddl/location/Town';
+import {
 	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
@@ -41,6 +44,12 @@ import {
 	QPollRunQId,
 	QPollRunQRelation,
 } from '../qpollrun';
+import {
+	PollRun,
+} from '../../../../ddl/poll/run/PollRun';
+import {
+	PollRunTown,
+} from '../../../../ddl/poll/run/location/PollRunTown';
 
 
 declare function require(moduleName: string): any;
@@ -151,7 +160,7 @@ extends PollRunTownEId, PollRunTownEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRunTown extends IQEntity
+export interface QPollRunTown extends IQEntity<PollRunTown>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -181,6 +190,6 @@ export interface QPollRunTownQId
 
 // Entity Relation Interface
 export interface QPollRunTownQRelation
-	extends IQRelation<QPollRunTown>, QPollRunTownQId {
+	extends IQRelation<PollRunTown, QPollRunTown>, QPollRunTownQId {
 }
 

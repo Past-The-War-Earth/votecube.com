@@ -42,6 +42,9 @@ import {
 	QPositionQRelation,
 } from './qposition';
 import {
+	Position,
+} from '../../../ddl/factor/position/Position';
+import {
 	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QLanguageQId,
 	QLanguageQRelation,
 } from '../../infrastructure/qlanguage';
+import {
+	Language,
+} from '../../../ddl/infrastructure/Language';
+import {
+	PositionTranslation,
+} from '../../../ddl/factor/position/PositionTranslation';
 
 
 declare function require(moduleName: string): any;
@@ -173,7 +182,7 @@ extends PositionTranslationEId, PositionTranslationEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPositionTranslation extends QImmutableActorRow
+export interface QPositionTranslation extends QImmutableActorRow<PositionTranslation>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -187,7 +196,7 @@ export interface QPositionTranslation extends QImmutableActorRow
 	position: QPositionQRelation;
 	language: QLanguageQRelation;
 	parent: QPositionTranslationQRelation;
-	children: IQOneToManyRelation<QPositionTranslation>;
+	children: IQOneToManyRelation<PositionTranslation, QPositionTranslation>;
 
 }
 
@@ -206,6 +215,6 @@ export interface QPositionTranslationQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QPositionTranslationQRelation
-	extends QImmutableActorRowQRelation<QPositionTranslation>, QPositionTranslationQId {
+	extends QImmutableActorRowQRelation<PositionTranslation, QPositionTranslation>, QPositionTranslationQId {
 }
 

@@ -32,6 +32,9 @@ import {
 	QPollRevisionOpinionQRelation,
 } from './qpollrevisionopinion';
 import {
+	PollRevisionOpinion,
+} from '../../ddl/opinion/PollRevisionOpinion';
+import {
 	OutcomeGraph,
 	OutcomeEId,
 	OutcomeEOptionalId,
@@ -42,6 +45,9 @@ import {
 	QOutcomeQRelation,
 } from '../poll/revision/qoutcome';
 import {
+	Outcome,
+} from '../../ddl/poll/revision/Outcome';
+import {
 	OutcomeOpinionVersionTranslationGraph,
 	OutcomeOpinionVersionTranslationEId,
 	OutcomeOpinionVersionTranslationEOptionalId,
@@ -51,6 +57,12 @@ import {
 	QOutcomeOpinionVersionTranslationQId,
 	QOutcomeOpinionVersionTranslationQRelation,
 } from './translation/qoutcomeopinionversiontranslation';
+import {
+	OutcomeOpinionVersionTranslation,
+} from '../../ddl/opinion/translation/OutcomeOpinionVersionTranslation';
+import {
+	OutcomeOpinionVersion,
+} from '../../ddl/opinion/OutcomeOpinionVersion';
 
 
 declare function require(moduleName: string): any;
@@ -169,7 +181,7 @@ extends OutcomeOpinionVersionEId, OutcomeOpinionVersionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcomeOpinionVersion extends IQEntity
+export interface QOutcomeOpinionVersion extends IQEntity<OutcomeOpinionVersion>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -182,8 +194,8 @@ export interface QOutcomeOpinionVersion extends IQEntity
 	pollRevisionOpinion: QPollRevisionOpinionQRelation;
 	outcome: QOutcomeQRelation;
 	parent: QOutcomeOpinionVersionQRelation;
-	children: IQOneToManyRelation<QOutcomeOpinionVersion>;
-	translations: IQOneToManyRelation<QOutcomeOpinionVersionTranslation>;
+	children: IQOneToManyRelation<OutcomeOpinionVersion, QOutcomeOpinionVersion>;
+	translations: IQOneToManyRelation<OutcomeOpinionVersionTranslation, QOutcomeOpinionVersionTranslation>;
 
 }
 
@@ -202,6 +214,6 @@ export interface QOutcomeOpinionVersionQId
 
 // Entity Relation Interface
 export interface QOutcomeOpinionVersionQRelation
-	extends IQRelation<QOutcomeOpinionVersion>, QOutcomeOpinionVersionQId {
+	extends IQRelation<OutcomeOpinionVersion, QOutcomeOpinionVersion>, QOutcomeOpinionVersionQId {
 }
 

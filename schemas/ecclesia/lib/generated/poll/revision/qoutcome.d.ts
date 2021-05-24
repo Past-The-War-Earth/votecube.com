@@ -2,6 +2,8 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { AgeSuitableRowGraph, AgeSuitableRowEId, AgeSuitableRowEUpdateColumns, AgeSuitableRowEUpdateProperties, AgeSuitableRowESelect, QAgeSuitableRowQId, QAgeSuitableRowQRelation, QAgeSuitableRow } from '../../infrastructure/row/qagesuitablerow';
 import { OutcomeTranslationGraph, OutcomeTranslationEOptionalId, OutcomeTranslationESelect, QOutcomeTranslationQRelation } from './translation/qoutcometranslation';
 import { PollRevisionGraph, PollRevisionESelect, QPollRevision } from './qpollrevision';
+import { PollRevision } from '../../../ddl/poll/revision/PollRevision';
+import { Outcome } from '../../../ddl/poll/revision/Outcome';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -64,17 +66,17 @@ export interface OutcomeECreateColumns extends OutcomeEId, OutcomeEUpdateColumns
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcome extends QAgeSuitableRow {
+export interface QOutcome extends QAgeSuitableRow<Outcome> {
     id: IQNumberField;
     parentTranslation: QOutcomeTranslationQRelation;
     parent: QOutcomeQRelation;
-    children: IQOneToManyRelation<QOutcome>;
-    pollRevisionsA: IQOneToManyRelation<QPollRevision>;
-    pollRevisionsB: IQOneToManyRelation<QPollRevision>;
+    children: IQOneToManyRelation<Outcome, QOutcome>;
+    pollRevisionsA: IQOneToManyRelation<PollRevision, QPollRevision>;
+    pollRevisionsB: IQOneToManyRelation<PollRevision, QPollRevision>;
 }
 export interface QOutcomeQId extends QAgeSuitableRowQId {
     id: IQNumberField;
 }
-export interface QOutcomeQRelation extends QAgeSuitableRowQRelation<QOutcome>, QOutcomeQId {
+export interface QOutcomeQRelation extends QAgeSuitableRowQRelation<Outcome, QOutcome>, QOutcomeQId {
 }
 //# sourceMappingURL=qoutcome.d.ts.map

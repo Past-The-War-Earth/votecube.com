@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from './row/qsystemgeneratedrow';
+import { TranslationType } from '../../ddl/infrastructure/TranslationType';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -50,13 +51,13 @@ export interface TranslationTypeECreateColumns extends TranslationTypeEId, Trans
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTranslationType extends QSystemGeneratedRow {
+export interface QTranslationType extends QSystemGeneratedRow<TranslationType> {
     id: IQNumberField;
     code: IQNumberField;
 }
 export interface QTranslationTypeQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QTranslationTypeQRelation extends QSystemGeneratedRowQRelation<QTranslationType>, QTranslationTypeQId {
+export interface QTranslationTypeQRelation extends QSystemGeneratedRowQRelation<TranslationType, QTranslationType>, QTranslationTypeQId {
 }
 //# sourceMappingURL=qtranslationtype.d.ts.map

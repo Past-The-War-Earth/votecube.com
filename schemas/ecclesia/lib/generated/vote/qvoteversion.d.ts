@@ -2,6 +2,8 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../infrastructure/row/qimmutableactorrow';
 import { VoteGraph, VoteEOptionalId, VoteESelect, QVoteQRelation } from './qvote';
 import { VoteFactorGraph, VoteFactorESelect, QVoteFactor } from './qvotefactor';
+import { VoteFactor } from '../../ddl/vote/VoteFactor';
+import { VoteVersion } from '../../ddl/vote/VoteVersion';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -55,14 +57,14 @@ export interface VoteVersionECreateColumns extends VoteVersionEId, VoteVersionEU
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVoteVersion extends QImmutableActorRow {
+export interface QVoteVersion extends QImmutableActorRow<VoteVersion> {
     id: IQNumberField;
     vote: QVoteQRelation;
-    factors: IQOneToManyRelation<QVoteFactor>;
+    factors: IQOneToManyRelation<VoteFactor, QVoteFactor>;
 }
 export interface QVoteVersionQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QVoteVersionQRelation extends QImmutableActorRowQRelation<QVoteVersion>, QVoteVersionQId {
+export interface QVoteVersionQRelation extends QImmutableActorRowQRelation<VoteVersion, QVoteVersion>, QVoteVersionQId {
 }
 //# sourceMappingURL=qvoteversion.d.ts.map

@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
+import { Device } from '../../ddl/user/Device';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -50,13 +51,13 @@ export interface DeviceECreateColumns extends DeviceEId, DeviceEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QDevice extends QSystemGeneratedRow {
+export interface QDevice extends QSystemGeneratedRow<Device> {
     id: IQNumberField;
     hash: IQNumberField;
 }
 export interface QDeviceQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QDeviceQRelation extends QSystemGeneratedRowQRelation<QDevice>, QDeviceQId {
+export interface QDeviceQRelation extends QSystemGeneratedRowQRelation<Device, QDevice>, QDeviceQId {
 }
 //# sourceMappingURL=qdevice.d.ts.map

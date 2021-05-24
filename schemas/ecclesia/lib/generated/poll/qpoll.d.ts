@@ -3,7 +3,10 @@ import { AgeSuitableRowGraph, AgeSuitableRowEId, AgeSuitableRowEUpdateColumns, A
 import { ThemeGraph, ThemeEOptionalId, ThemeESelect, QThemeQRelation } from './qtheme';
 import { PollTypeGraph, PollTypeEOptionalId, PollTypeESelect, QPollTypeQRelation } from './qpolltype';
 import { PollRunGraph, PollRunESelect, QPollRun } from './run/qpollrun';
+import { PollRun } from '../../ddl/poll/run/PollRun';
 import { PollRevisionGraph, PollRevisionESelect, QPollRevision } from './revision/qpollrevision';
+import { PollRevision } from '../../ddl/poll/revision/PollRevision';
+import { Poll } from '../../ddl/poll/Poll';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -70,18 +73,18 @@ export interface PollECreateColumns extends PollEId, PollEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPoll extends QAgeSuitableRow {
+export interface QPoll extends QAgeSuitableRow<Poll> {
     id: IQNumberField;
     theme: QThemeQRelation;
     type: QPollTypeQRelation;
     parent: QPollQRelation;
-    children: IQOneToManyRelation<QPoll>;
-    runs: IQOneToManyRelation<QPollRun>;
-    revisions: IQOneToManyRelation<QPollRevision>;
+    children: IQOneToManyRelation<Poll, QPoll>;
+    runs: IQOneToManyRelation<PollRun, QPollRun>;
+    revisions: IQOneToManyRelation<PollRevision, QPollRevision>;
 }
 export interface QPollQId extends QAgeSuitableRowQId {
     id: IQNumberField;
 }
-export interface QPollQRelation extends QAgeSuitableRowQRelation<QPoll>, QPollQId {
+export interface QPollQRelation extends QAgeSuitableRowQRelation<Poll, QPoll>, QPollQId {
 }
 //# sourceMappingURL=qpoll.d.ts.map

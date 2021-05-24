@@ -2,6 +2,7 @@ import { IQDateField, IQNumberField } from '@airport/air-control';
 import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../../infrastructure/row/qimmutableactorrow';
 import { FactorGraph, FactorEId, FactorEOptionalId, FactorESelect, QFactorQId, QFactorQRelation } from '../qfactor';
 import { PositionGraph, PositionEId, PositionEOptionalId, PositionESelect, QPositionQId, QPositionQRelation } from './qposition';
+import { FactorPosition } from '../../../ddl/factor/position/FactorPosition';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -55,7 +56,7 @@ export interface FactorPositionECreateColumns extends FactorPositionEId, FactorP
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorPosition extends QImmutableActorRow {
+export interface QFactorPosition extends QImmutableActorRow<FactorPosition> {
     factor: QFactorQRelation;
     position: QPositionQRelation;
 }
@@ -63,6 +64,6 @@ export interface QFactorPositionQId extends QImmutableActorRowQId {
     factor: QFactorQId;
     position: QPositionQId;
 }
-export interface QFactorPositionQRelation extends QImmutableActorRowQRelation<QFactorPosition>, QFactorPositionQId {
+export interface QFactorPositionQRelation extends QImmutableActorRowQRelation<FactorPosition, QFactorPosition>, QFactorPositionQId {
 }
 //# sourceMappingURL=qfactorposition.d.ts.map

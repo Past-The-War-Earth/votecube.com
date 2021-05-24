@@ -2,6 +2,8 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../infrastructure/row/qimmutableactorrow';
 import { PollRunGraph, PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../poll/run/qpollrun';
 import { VoteVersionGraph, VoteVersionESelect, QVoteVersion } from './qvoteversion';
+import { VoteVersion } from '../../ddl/vote/VoteVersion';
+import { Vote } from '../../ddl/vote/Vote';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -59,15 +61,15 @@ export interface VoteECreateColumns extends VoteEId, VoteEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVote extends QImmutableActorRow {
+export interface QVote extends QImmutableActorRow<Vote> {
     id: IQNumberField;
     type: IQNumberField;
     run: QPollRunQRelation;
-    revisions: IQOneToManyRelation<QVoteVersion>;
+    revisions: IQOneToManyRelation<VoteVersion, QVoteVersion>;
 }
 export interface QVoteQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QVoteQRelation extends QImmutableActorRowQRelation<QVote>, QVoteQId {
+export interface QVoteQRelation extends QImmutableActorRowQRelation<Vote, QVote>, QVoteQId {
 }
 //# sourceMappingURL=qvote.d.ts.map

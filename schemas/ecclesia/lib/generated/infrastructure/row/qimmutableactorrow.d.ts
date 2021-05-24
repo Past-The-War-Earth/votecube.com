@@ -47,11 +47,11 @@ export interface ImmutableActorRowECreateColumns extends ImmutableActorRowEId, I
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QImmutableActorRow extends QImmutableRow {
+export interface QImmutableActorRow<T> extends QImmutableRow<T> {
     userAccount: QUserAccountQRelation;
 }
 export interface QImmutableActorRowQId extends QImmutableRowQId {
 }
-export interface QImmutableActorRowQRelation<SubType extends IQEntity> extends QImmutableRowQRelation<SubType>, QImmutableActorRowQId {
+export interface QImmutableActorRowQRelation<SubType, SubQType extends IQEntity<SubType>> extends QImmutableRowQRelation<SubType, SubQType>, QImmutableActorRowQId {
 }
 //# sourceMappingURL=qimmutableactorrow.d.ts.map

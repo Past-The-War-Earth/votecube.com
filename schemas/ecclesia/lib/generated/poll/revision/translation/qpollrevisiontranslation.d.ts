@@ -4,6 +4,8 @@ import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollR
 import { LanguageGraph, LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../../infrastructure/qlanguage';
 import { TranslationTypeGraph, TranslationTypeEOptionalId, TranslationTypeESelect, QTranslationTypeQRelation } from '../../../infrastructure/qtranslationtype';
 import { PollRevisionTranslationRatingGraph, PollRevisionTranslationRatingESelect, QPollRevisionTranslationRating } from '../../rating/qpollrevisiontranslationrating';
+import { PollRevisionTranslationRating } from '../../../../ddl/poll/rating/PollRevisionTranslationRating';
+import { PollRevisionTranslation } from '../../../../ddl/poll/revision/translation/PollRevisionTranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -75,19 +77,19 @@ export interface PollRevisionTranslationECreateColumns extends PollRevisionTrans
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionTranslation extends QImmutableActorRow {
+export interface QPollRevisionTranslation extends QImmutableActorRow<PollRevisionTranslation> {
     id: IQNumberField;
     name: IQStringField;
     pollRevision: QPollRevisionQRelation;
     language: QLanguageQRelation;
     type: QTranslationTypeQRelation;
     parent: QPollRevisionTranslationQRelation;
-    children: IQOneToManyRelation<QPollRevisionTranslation>;
-    ratings: IQOneToManyRelation<QPollRevisionTranslationRating>;
+    children: IQOneToManyRelation<PollRevisionTranslation, QPollRevisionTranslation>;
+    ratings: IQOneToManyRelation<PollRevisionTranslationRating, QPollRevisionTranslationRating>;
 }
 export interface QPollRevisionTranslationQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionTranslationQRelation extends QImmutableActorRowQRelation<QPollRevisionTranslation>, QPollRevisionTranslationQId {
+export interface QPollRevisionTranslationQRelation extends QImmutableActorRowQRelation<PollRevisionTranslation, QPollRevisionTranslation>, QPollRevisionTranslationQId {
 }
 //# sourceMappingURL=qpollrevisiontranslation.d.ts.map

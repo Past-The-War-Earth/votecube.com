@@ -3,6 +3,7 @@ import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateC
 import { OutcomeGraph, OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from '../qoutcome';
 import { LanguageGraph, LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../../infrastructure/qlanguage';
 import { TranslationTypeGraph, TranslationTypeEOptionalId, TranslationTypeESelect, QTranslationTypeQRelation } from '../../../infrastructure/qtranslationtype';
+import { OutcomeTranslation } from '../../../../ddl/poll/revision/translation/OutcomeTranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -72,18 +73,18 @@ export interface OutcomeTranslationECreateColumns extends OutcomeTranslationEId,
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcomeTranslation extends QImmutableActorRow {
+export interface QOutcomeTranslation extends QImmutableActorRow<OutcomeTranslation> {
     id: IQNumberField;
     name: IQStringField;
     outcome: QOutcomeQRelation;
     language: QLanguageQRelation;
     type: QTranslationTypeQRelation;
     parent: QOutcomeTranslationQRelation;
-    children: IQOneToManyRelation<QOutcomeTranslation>;
+    children: IQOneToManyRelation<OutcomeTranslation, QOutcomeTranslation>;
 }
 export interface QOutcomeTranslationQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QOutcomeTranslationQRelation extends QImmutableActorRowQRelation<QOutcomeTranslation>, QOutcomeTranslationQId {
+export interface QOutcomeTranslationQRelation extends QImmutableActorRowQRelation<OutcomeTranslation, QOutcomeTranslation>, QOutcomeTranslationQId {
 }
 //# sourceMappingURL=qoutcometranslation.d.ts.map

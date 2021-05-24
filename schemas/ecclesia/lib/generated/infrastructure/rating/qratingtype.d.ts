@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../row/qsystemgeneratedrow';
+import { RatingType } from '../../../ddl/infrastructure/rating/RatingType';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -54,7 +55,7 @@ export interface RatingTypeECreateColumns extends RatingTypeEId, RatingTypeEUpda
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QRatingType extends QSystemGeneratedRow {
+export interface QRatingType extends QSystemGeneratedRow<RatingType> {
     id: IQNumberField;
     code: IQStringField;
     description: IQStringField;
@@ -62,6 +63,6 @@ export interface QRatingType extends QSystemGeneratedRow {
 export interface QRatingTypeQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QRatingTypeQRelation extends QSystemGeneratedRowQRelation<QRatingType>, QRatingTypeQId {
+export interface QRatingTypeQRelation extends QSystemGeneratedRowQRelation<RatingType, QRatingType>, QRatingTypeQId {
 }
 //# sourceMappingURL=qratingtype.d.ts.map

@@ -2,7 +2,9 @@ import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
 import { ContinentGraph, ContinentEOptionalId, ContinentESelect, QContinentQRelation } from './qcontinent';
 import { StateGraph, StateESelect, QState } from './qstate';
+import { State } from '../../ddl/location/State';
 import { CountryTownGraph, CountryTownESelect, QCountryTownQRelation } from './qcountrytown';
+import { Country } from '../../ddl/location/Country';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -61,16 +63,16 @@ export interface CountryECreateColumns extends CountryEId, CountryEUpdateColumns
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QCountry extends QSystemGeneratedRow {
+export interface QCountry extends QSystemGeneratedRow<Country> {
     id: IQNumberField;
     name: IQStringField;
     continent: QContinentQRelation;
-    states: IQOneToManyRelation<QState>;
+    states: IQOneToManyRelation<State, QState>;
     countryTowns: QCountryTownQRelation;
 }
 export interface QCountryQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QCountryQRelation extends QSystemGeneratedRowQRelation<QCountry>, QCountryQId {
+export interface QCountryQRelation extends QSystemGeneratedRowQRelation<Country, QCountry>, QCountryQId {
 }
 //# sourceMappingURL=qcountry.d.ts.map

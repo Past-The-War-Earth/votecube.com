@@ -1,12 +1,16 @@
+import {I, A}                from '@airport/air-control'
 import {DI}               from '@airport/di'
 import {
 	BaseUserAccountDao,
 	IBaseUserAccountDao,
 	IUserAccount,
-	Q,
+	LocalQSchema,
 	QUserAccount
 }                         from '../../generated/generated'
-import {IVotecubeContext} from '../../index'
+import {
+	IVotecubeContext,
+	UserAccount
+}                         from '../../index'
 import {USER_ACCOUNT_DAO} from '../../tokens'
 import {
 	UserAccount_PasswordHash,
@@ -17,12 +21,11 @@ export interface IUserAccountDao
 	extends IBaseUserAccountDao {
 
 	signUp(
-		userName: UserAccount_UserName,
-		passwordHash: UserAccount_PasswordHash,
+		userAccount: UserAccount,
 		context: IVotecubeContext
 	): Promise<IUserAccount>
 
-	findByUsername(
+	findOneByUsername(
 		userName: UserAccount_UserName,
 		context: IVotecubeContext
 	): Promise<IUserAccount>
@@ -33,36 +36,25 @@ export class UserAccountDao
 	extends BaseUserAccountDao
 	implements IUserAccountDao {
 
-	async signUp(
+	@UserAccountDao.Save({
+		id: I,
+		userName: A,
+		passwordHash: A
+	})
+	signUp
+
+	@UserAccountDao.FindOne.Tree((
 		userName: UserAccount_UserName,
-		passwordHash: UserAccount_PasswordHash,
-		context: IVotecubeContext
-	): Promise<IUserAccount> {
-		const userAccount: IUserAccount = {
-			id: undefined,
-			userName,
-			passwordHash
-		}
-
-		await this.db.save(userAccount, context)
-
-		return userAccount
-	}
-
-	async findByUsername(
-		userName: UserAccount_UserName,
-		context: IVotecubeContext
-	): Promise<IUserAccount> {
-		let ua: QUserAccount
-
-		return await this.db.findOne.tree({
-			select: {},
-			from: [
-				ua = Q.UserAccount
-			],
-			where: ua.userName.equals(userName)
-		}, context)
-	}
+		Q: LocalQSchema,
+		ua: QUserAccount
+	) => ({
+		select: {},
+		from: [
+			ua = Q.UserAccount
+		],
+		where: ua.userName.equals(userName)
+	}))
+	findOneByUsername
 
 }
 

@@ -42,6 +42,9 @@ import {
 	QPollRunQRelation,
 } from '../poll/run/qpollrun';
 import {
+	PollRun,
+} from '../../ddl/poll/run/PollRun';
+import {
 	VoteVersionGraph,
 	VoteVersionEId,
 	VoteVersionEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QVoteVersionQId,
 	QVoteVersionQRelation,
 } from './qvoteversion';
+import {
+	VoteVersion,
+} from '../../ddl/vote/VoteVersion';
+import {
+	Vote,
+} from '../../ddl/vote/Vote';
 
 
 declare function require(moduleName: string): any;
@@ -165,7 +174,7 @@ extends VoteEId, VoteEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVote extends QImmutableActorRow
+export interface QVote extends QImmutableActorRow<Vote>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -177,7 +186,7 @@ export interface QVote extends QImmutableActorRow
 
 	// Non-Id Relations
 	run: QPollRunQRelation;
-	revisions: IQOneToManyRelation<QVoteVersion>;
+	revisions: IQOneToManyRelation<VoteVersion, QVoteVersion>;
 
 }
 
@@ -196,6 +205,6 @@ export interface QVoteQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QVoteQRelation
-	extends QImmutableActorRowQRelation<QVote>, QVoteQId {
+	extends QImmutableActorRowQRelation<Vote, QVote>, QVoteQId {
 }
 

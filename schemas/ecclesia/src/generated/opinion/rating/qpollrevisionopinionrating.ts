@@ -42,6 +42,9 @@ import {
 	QPollRevisionOpinionQRelation,
 } from '../qpollrevisionopinion';
 import {
+	PollRevisionOpinion,
+} from '../../../ddl/opinion/PollRevisionOpinion';
+import {
 	RatingGraph,
 	RatingEId,
 	RatingEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QRatingQId,
 	QRatingQRelation,
 } from '../../infrastructure/rating/qrating';
+import {
+	Rating,
+} from '../../../ddl/infrastructure/rating/Rating';
+import {
+	PollRevisionOpinionRating,
+} from '../../../ddl/opinion/rating/PollRevisionOpinionRating';
 
 
 declare function require(moduleName: string): any;
@@ -163,7 +172,7 @@ extends PollRevisionOpinionRatingEId, PollRevisionOpinionRatingEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionOpinionRating extends QImmutableActorRow
+export interface QPollRevisionOpinionRating extends QImmutableActorRow<PollRevisionOpinionRating>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -193,6 +202,6 @@ export interface QPollRevisionOpinionRatingQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QPollRevisionOpinionRatingQRelation
-	extends QImmutableActorRowQRelation<QPollRevisionOpinionRating>, QPollRevisionOpinionRatingQId {
+	extends QImmutableActorRowQRelation<PollRevisionOpinionRating, QPollRevisionOpinionRating>, QPollRevisionOpinionRatingQId {
 }
 

@@ -31,6 +31,9 @@ import {
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
 } from '../infrastructure/row/qsystemgeneratedrow';
+import {
+	PollType,
+} from '../../ddl/poll/PollType';
 
 
 declare function require(moduleName: string): any;
@@ -138,7 +141,7 @@ extends PollTypeEId, PollTypeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollType extends QSystemGeneratedRow
+export interface QPollType extends QSystemGeneratedRow<PollType>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -167,6 +170,6 @@ export interface QPollTypeQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QPollTypeQRelation
-	extends QSystemGeneratedRowQRelation<QPollType>, QPollTypeQId {
+	extends QSystemGeneratedRowQRelation<PollType, QPollType>, QPollTypeQId {
 }
 

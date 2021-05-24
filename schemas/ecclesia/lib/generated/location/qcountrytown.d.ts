@@ -2,6 +2,7 @@ import { IQDateField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
 import { CountryGraph, CountryEId, CountryEOptionalId, CountryESelect, QCountryQId, QCountryQRelation } from './qcountry';
 import { TownGraph, TownEId, TownEOptionalId, TownESelect, QTownQId, QTownQRelation } from './qtown';
+import { CountryTown } from '../../ddl/location/CountryTown';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -54,7 +55,7 @@ export interface CountryTownECreateColumns extends CountryTownEId, CountryTownEU
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QCountryTown extends QSystemGeneratedRow {
+export interface QCountryTown extends QSystemGeneratedRow<CountryTown> {
     country: QCountryQRelation;
     town: QTownQRelation;
 }
@@ -62,6 +63,6 @@ export interface QCountryTownQId extends QSystemGeneratedRowQId {
     country: QCountryQId;
     town: QTownQId;
 }
-export interface QCountryTownQRelation extends QSystemGeneratedRowQRelation<QCountryTown>, QCountryTownQId {
+export interface QCountryTownQRelation extends QSystemGeneratedRowQRelation<CountryTown, QCountryTown>, QCountryTownQId {
 }
 //# sourceMappingURL=qcountrytown.d.ts.map

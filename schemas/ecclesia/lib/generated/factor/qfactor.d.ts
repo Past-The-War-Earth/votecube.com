@@ -2,7 +2,10 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { AgeSuitableRowGraph, AgeSuitableRowEId, AgeSuitableRowEUpdateColumns, AgeSuitableRowEUpdateProperties, AgeSuitableRowESelect, QAgeSuitableRowQId, QAgeSuitableRowQRelation, QAgeSuitableRow } from '../infrastructure/row/qagesuitablerow';
 import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../poll/revision/qpollrevision';
 import { FactorTranslationGraph, FactorTranslationEOptionalId, FactorTranslationESelect, QFactorTranslation, QFactorTranslationQRelation } from './qfactortranslation';
+import { FactorTranslation } from '../../ddl/factor/FactorTranslation';
 import { FactorPositionGraph, FactorPositionESelect, QFactorPosition } from './position/qfactorposition';
+import { FactorPosition } from '../../ddl/factor/position/FactorPosition';
+import { Factor } from '../../ddl/factor/Factor';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -69,18 +72,18 @@ export interface FactorECreateColumns extends FactorEId, FactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactor extends QAgeSuitableRow {
+export interface QFactor extends QAgeSuitableRow<Factor> {
     id: IQNumberField;
     createdAtPollRevision: QPollRevisionQRelation;
     parentTranslation: QFactorTranslationQRelation;
     parent: QFactorQRelation;
-    children: IQOneToManyRelation<QFactor>;
-    factorPositions: IQOneToManyRelation<QFactorPosition>;
-    translations: IQOneToManyRelation<QFactorTranslation>;
+    children: IQOneToManyRelation<Factor, QFactor>;
+    factorPositions: IQOneToManyRelation<FactorPosition, QFactorPosition>;
+    translations: IQOneToManyRelation<FactorTranslation, QFactorTranslation>;
 }
 export interface QFactorQId extends QAgeSuitableRowQId {
     id: IQNumberField;
 }
-export interface QFactorQRelation extends QAgeSuitableRowQRelation<QFactor>, QFactorQId {
+export interface QFactorQRelation extends QAgeSuitableRowQRelation<Factor, QFactor>, QFactorQId {
 }
 //# sourceMappingURL=qfactor.d.ts.map

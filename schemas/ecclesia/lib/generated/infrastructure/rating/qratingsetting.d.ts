@@ -2,6 +2,7 @@ import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control'
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../row/qsystemgeneratedrow';
 import { CountryGraph, CountryEOptionalId, CountryESelect, QCountryQRelation } from '../../location/qcountry';
 import { RatingGraph, RatingEOptionalId, RatingESelect, QRatingQRelation } from './qrating';
+import { RatingSetting } from '../../../ddl/infrastructure/rating/RatingSetting';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -64,7 +65,7 @@ export interface RatingSettingECreateColumns extends RatingSettingEId, RatingSet
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QRatingSetting extends QSystemGeneratedRow {
+export interface QRatingSetting extends QSystemGeneratedRow<RatingSetting> {
     id: IQNumberField;
     key: IQStringField;
     value: IQStringField;
@@ -74,6 +75,6 @@ export interface QRatingSetting extends QSystemGeneratedRow {
 export interface QRatingSettingQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QRatingSettingQRelation extends QSystemGeneratedRowQRelation<QRatingSetting>, QRatingSettingQId {
+export interface QRatingSettingQRelation extends QSystemGeneratedRowQRelation<RatingSetting, QRatingSetting>, QRatingSettingQId {
 }
 //# sourceMappingURL=qratingsetting.d.ts.map

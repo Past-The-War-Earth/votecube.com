@@ -31,6 +31,9 @@ import {
 	QImmutableActorRowQRelation,
 	QImmutableActorRow,
 } from '../infrastructure/row/qimmutableactorrow';
+import {
+	Skin,
+} from '../../ddl/factor/Skin';
 
 
 declare function require(moduleName: string): any;
@@ -149,7 +152,7 @@ extends SkinEId, SkinEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QSkin extends QImmutableActorRow
+export interface QSkin extends QImmutableActorRow<Skin>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -162,7 +165,7 @@ export interface QSkin extends QImmutableActorRow
 
 	// Non-Id Relations
 	parent: QSkinQRelation;
-	children: IQOneToManyRelation<QSkin>;
+	children: IQOneToManyRelation<Skin, QSkin>;
 
 }
 
@@ -181,6 +184,6 @@ export interface QSkinQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QSkinQRelation
-	extends QImmutableActorRowQRelation<QSkin>, QSkinQId {
+	extends QImmutableActorRowQRelation<Skin, QSkin>, QSkinQId {
 }
 

@@ -42,6 +42,9 @@ import {
 	QOutcomeQRelation,
 } from '../qoutcome';
 import {
+	Outcome,
+} from '../../../../ddl/poll/revision/Outcome';
+import {
 	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -52,6 +55,9 @@ import {
 	QLanguageQRelation,
 } from '../../../infrastructure/qlanguage';
 import {
+	Language,
+} from '../../../../ddl/infrastructure/Language';
+import {
 	TranslationTypeGraph,
 	TranslationTypeEId,
 	TranslationTypeEOptionalId,
@@ -61,6 +67,12 @@ import {
 	QTranslationTypeQId,
 	QTranslationTypeQRelation,
 } from '../../../infrastructure/qtranslationtype';
+import {
+	TranslationType,
+} from '../../../../ddl/infrastructure/TranslationType';
+import {
+	OutcomeTranslation,
+} from '../../../../ddl/poll/revision/translation/OutcomeTranslation';
 
 
 declare function require(moduleName: string): any;
@@ -187,7 +199,7 @@ extends OutcomeTranslationEId, OutcomeTranslationEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcomeTranslation extends QImmutableActorRow
+export interface QOutcomeTranslation extends QImmutableActorRow<OutcomeTranslation>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -202,7 +214,7 @@ export interface QOutcomeTranslation extends QImmutableActorRow
 	language: QLanguageQRelation;
 	type: QTranslationTypeQRelation;
 	parent: QOutcomeTranslationQRelation;
-	children: IQOneToManyRelation<QOutcomeTranslation>;
+	children: IQOneToManyRelation<OutcomeTranslation, QOutcomeTranslation>;
 
 }
 
@@ -221,6 +233,6 @@ export interface QOutcomeTranslationQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QOutcomeTranslationQRelation
-	extends QImmutableActorRowQRelation<QOutcomeTranslation>, QOutcomeTranslationQId {
+	extends QImmutableActorRowQRelation<OutcomeTranslation, QOutcomeTranslation>, QOutcomeTranslationQId {
 }
 

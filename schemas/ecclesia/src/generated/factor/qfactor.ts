@@ -42,6 +42,9 @@ import {
 	QPollRevisionQRelation,
 } from '../poll/revision/qpollrevision';
 import {
+	PollRevision,
+} from '../../ddl/poll/revision/PollRevision';
+import {
 	FactorTranslationGraph,
 	FactorTranslationEId,
 	FactorTranslationEOptionalId,
@@ -52,6 +55,9 @@ import {
 	QFactorTranslationQRelation,
 } from './qfactortranslation';
 import {
+	FactorTranslation,
+} from '../../ddl/factor/FactorTranslation';
+import {
 	FactorPositionGraph,
 	FactorPositionEId,
 	FactorPositionEOptionalId,
@@ -61,6 +67,12 @@ import {
 	QFactorPositionQId,
 	QFactorPositionQRelation,
 } from './position/qfactorposition';
+import {
+	FactorPosition,
+} from '../../ddl/factor/position/FactorPosition';
+import {
+	Factor,
+} from '../../ddl/factor/Factor';
 
 
 declare function require(moduleName: string): any;
@@ -184,7 +196,7 @@ extends FactorEId, FactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactor extends QAgeSuitableRow
+export interface QFactor extends QAgeSuitableRow<Factor>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -197,9 +209,9 @@ export interface QFactor extends QAgeSuitableRow
 	createdAtPollRevision: QPollRevisionQRelation;
 	parentTranslation: QFactorTranslationQRelation;
 	parent: QFactorQRelation;
-	children: IQOneToManyRelation<QFactor>;
-	factorPositions: IQOneToManyRelation<QFactorPosition>;
-	translations: IQOneToManyRelation<QFactorTranslation>;
+	children: IQOneToManyRelation<Factor, QFactor>;
+	factorPositions: IQOneToManyRelation<FactorPosition, QFactorPosition>;
+	translations: IQOneToManyRelation<FactorTranslation, QFactorTranslation>;
 
 }
 
@@ -218,6 +230,6 @@ export interface QFactorQId extends QAgeSuitableRowQId
 
 // Entity Relation Interface
 export interface QFactorQRelation
-	extends QAgeSuitableRowQRelation<QFactor>, QFactorQId {
+	extends QAgeSuitableRowQRelation<Factor, QFactor>, QFactorQId {
 }
 

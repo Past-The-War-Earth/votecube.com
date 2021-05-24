@@ -2,6 +2,7 @@ import { IQBooleanField, IQDateField, IQNumberField, IQStringField } from '@airp
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../../infrastructure/row/qsystemgeneratedrow';
 import { PollRevisionOpinionVersionGraph, PollRevisionOpinionVersionEOptionalId, PollRevisionOpinionVersionESelect, QPollRevisionOpinionVersionQRelation } from '../qpollrevisionopinionversion';
 import { LanguageGraph, LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../infrastructure/qlanguage';
+import { PollRevisionOpinionVersionTranslation } from '../../../ddl/opinion/translation/PollRevisionOpinionVersionTranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -68,7 +69,7 @@ export interface PollRevisionOpinionVersionTranslationECreateColumns extends Pol
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionOpinionVersionTranslation extends QSystemGeneratedRow {
+export interface QPollRevisionOpinionVersionTranslation extends QSystemGeneratedRow<PollRevisionOpinionVersionTranslation> {
     id: IQNumberField;
     original: IQBooleanField;
     title: IQStringField;
@@ -79,6 +80,6 @@ export interface QPollRevisionOpinionVersionTranslation extends QSystemGenerated
 export interface QPollRevisionOpinionVersionTranslationQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionOpinionVersionTranslationQRelation extends QSystemGeneratedRowQRelation<QPollRevisionOpinionVersionTranslation>, QPollRevisionOpinionVersionTranslationQId {
+export interface QPollRevisionOpinionVersionTranslationQRelation extends QSystemGeneratedRowQRelation<PollRevisionOpinionVersionTranslation, QPollRevisionOpinionVersionTranslation>, QPollRevisionOpinionVersionTranslationQId {
 }
 //# sourceMappingURL=qpollrevisionopinionversiontranslation.d.ts.map

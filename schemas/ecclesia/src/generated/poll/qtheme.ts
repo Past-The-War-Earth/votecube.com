@@ -31,6 +31,9 @@ import {
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
 } from '../infrastructure/row/qsystemgeneratedrow';
+import {
+	Theme,
+} from '../../ddl/poll/Theme';
 
 
 declare function require(moduleName: string): any;
@@ -142,7 +145,7 @@ extends ThemeEId, ThemeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTheme extends QSystemGeneratedRow
+export interface QTheme extends QSystemGeneratedRow<Theme>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -172,6 +175,6 @@ export interface QThemeQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QThemeQRelation
-	extends QSystemGeneratedRowQRelation<QTheme>, QThemeQId {
+	extends QSystemGeneratedRowQRelation<Theme, QTheme>, QThemeQId {
 }
 

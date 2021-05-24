@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
+import { PollType } from '../../ddl/poll/PollType';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -50,13 +51,13 @@ export interface PollTypeECreateColumns extends PollTypeEId, PollTypeEUpdateColu
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollType extends QSystemGeneratedRow {
+export interface QPollType extends QSystemGeneratedRow<PollType> {
     id: IQNumberField;
     value: IQStringField;
 }
 export interface QPollTypeQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QPollTypeQRelation extends QSystemGeneratedRowQRelation<QPollType>, QPollTypeQId {
+export interface QPollTypeQRelation extends QSystemGeneratedRowQRelation<PollType, QPollType>, QPollTypeQId {
 }
 //# sourceMappingURL=qpolltype.d.ts.map

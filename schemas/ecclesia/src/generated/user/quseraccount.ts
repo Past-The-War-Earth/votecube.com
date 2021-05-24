@@ -31,6 +31,9 @@ import {
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
 } from '../infrastructure/row/qsystemgeneratedrow';
+import {
+	UserAccount,
+} from '../../ddl/user/UserAccount';
 
 
 declare function require(moduleName: string): any;
@@ -162,7 +165,7 @@ extends UserAccountEId, UserAccountEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QUserAccount extends QSystemGeneratedRow
+export interface QUserAccount extends QSystemGeneratedRow<UserAccount>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -197,6 +200,6 @@ export interface QUserAccountQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QUserAccountQRelation
-	extends QSystemGeneratedRowQRelation<QUserAccount>, QUserAccountQId {
+	extends QSystemGeneratedRowQRelation<UserAccount, QUserAccount>, QUserAccountQId {
 }
 

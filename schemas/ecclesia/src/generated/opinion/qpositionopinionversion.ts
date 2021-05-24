@@ -32,6 +32,9 @@ import {
 	QPollRevisionOpinionQRelation,
 } from './qpollrevisionopinion';
 import {
+	PollRevisionOpinion,
+} from '../../ddl/opinion/PollRevisionOpinion';
+import {
 	PollRevisionFactorPositionGraph,
 	PollRevisionFactorPositionEId,
 	PollRevisionFactorPositionEOptionalId,
@@ -42,6 +45,9 @@ import {
 	QPollRevisionFactorPositionQRelation,
 } from '../poll/revision/qpollrevisionfactorposition';
 import {
+	PollRevisionFactorPosition,
+} from '../../ddl/poll/revision/PollRevisionFactorPosition';
+import {
 	PositionOpinionVersionTranslationGraph,
 	PositionOpinionVersionTranslationEId,
 	PositionOpinionVersionTranslationEOptionalId,
@@ -51,6 +57,12 @@ import {
 	QPositionOpinionVersionTranslationQId,
 	QPositionOpinionVersionTranslationQRelation,
 } from './translation/qpositionopinionversiontranslation';
+import {
+	PositionOpinionVersionTranslation,
+} from '../../ddl/opinion/translation/PositionOpinionVersionTranslation';
+import {
+	PositionOpinionVersion,
+} from '../../ddl/opinion/PositionOpinionVersion';
 
 
 declare function require(moduleName: string): any;
@@ -169,7 +181,7 @@ extends PositionOpinionVersionEId, PositionOpinionVersionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPositionOpinionVersion extends IQEntity
+export interface QPositionOpinionVersion extends IQEntity<PositionOpinionVersion>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -182,8 +194,8 @@ export interface QPositionOpinionVersion extends IQEntity
 	pollRevisionOpinion: QPollRevisionOpinionQRelation;
 	factorPosition: QPollRevisionFactorPositionQRelation;
 	parent: QPositionOpinionVersionQRelation;
-	children: IQOneToManyRelation<QPositionOpinionVersion>;
-	translations: IQOneToManyRelation<QPositionOpinionVersionTranslation>;
+	children: IQOneToManyRelation<PositionOpinionVersion, QPositionOpinionVersion>;
+	translations: IQOneToManyRelation<PositionOpinionVersionTranslation, QPositionOpinionVersionTranslation>;
 
 }
 
@@ -202,6 +214,6 @@ export interface QPositionOpinionVersionQId
 
 // Entity Relation Interface
 export interface QPositionOpinionVersionQRelation
-	extends IQRelation<QPositionOpinionVersion>, QPositionOpinionVersionQId {
+	extends IQRelation<PositionOpinionVersion, QPositionOpinionVersion>, QPositionOpinionVersionQId {
 }
 

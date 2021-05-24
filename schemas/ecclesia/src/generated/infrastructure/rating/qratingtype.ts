@@ -31,6 +31,9 @@ import {
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
 } from '../row/qsystemgeneratedrow';
+import {
+	RatingType,
+} from '../../../ddl/infrastructure/rating/RatingType';
 
 
 declare function require(moduleName: string): any;
@@ -142,7 +145,7 @@ extends RatingTypeEId, RatingTypeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QRatingType extends QSystemGeneratedRow
+export interface QRatingType extends QSystemGeneratedRow<RatingType>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -172,6 +175,6 @@ export interface QRatingTypeQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QRatingTypeQRelation
-	extends QSystemGeneratedRowQRelation<QRatingType>, QRatingTypeQId {
+	extends QSystemGeneratedRowQRelation<RatingType, QRatingType>, QRatingTypeQId {
 }
 

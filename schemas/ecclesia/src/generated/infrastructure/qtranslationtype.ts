@@ -31,6 +31,9 @@ import {
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
 } from './row/qsystemgeneratedrow';
+import {
+	TranslationType,
+} from '../../ddl/infrastructure/TranslationType';
 
 
 declare function require(moduleName: string): any;
@@ -138,7 +141,7 @@ extends TranslationTypeEId, TranslationTypeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTranslationType extends QSystemGeneratedRow
+export interface QTranslationType extends QSystemGeneratedRow<TranslationType>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -167,6 +170,6 @@ export interface QTranslationTypeQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QTranslationTypeQRelation
-	extends QSystemGeneratedRowQRelation<QTranslationType>, QTranslationTypeQId {
+	extends QSystemGeneratedRowQRelation<TranslationType, QTranslationType>, QTranslationTypeQId {
 }
 

@@ -21,6 +21,9 @@ import {
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
+import {
+	ImmutableRow,
+} from '../../../ddl/infrastructure/row/ImmutableRow';
 
 
 declare function require(moduleName: string): any;
@@ -124,7 +127,7 @@ extends ImmutableRowEId, ImmutableRowEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QImmutableRow extends IQEntity
+export interface QImmutableRow<T> extends IQEntity<T>
 {
 	// Id Fields
 
@@ -150,7 +153,7 @@ export interface QImmutableRowQId
 }
 
 // Entity Relation Interface
-export interface QImmutableRowQRelation<SubType extends IQEntity>
-	extends IQRelation<SubType>, QImmutableRowQId {
+export interface QImmutableRowQRelation<SubType, SubQType extends IQEntity<SubType>>
+	extends IQRelation<SubType, SubQType>, QImmutableRowQId {
 }
 

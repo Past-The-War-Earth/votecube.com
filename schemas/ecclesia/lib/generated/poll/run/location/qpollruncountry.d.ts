@@ -1,6 +1,7 @@
 import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntityUpdateProperties, IEntitySelectProperties, IQNumberField, IQEntity, IQRelation } from '@airport/air-control';
 import { CountryGraph, CountryEOptionalId, CountryESelect, QCountryQRelation } from '../../../location/qcountry';
 import { PollRunGraph, PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../qpollrun';
+import { PollRunCountry } from '../../../../ddl/poll/run/location/PollRunCountry';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -54,7 +55,7 @@ export interface PollRunCountryECreateColumns extends PollRunCountryEId, PollRun
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRunCountry extends IQEntity {
+export interface QPollRunCountry extends IQEntity<PollRunCountry> {
     id: IQNumberField;
     country: QCountryQRelation;
     run: QPollRunQRelation;
@@ -62,6 +63,6 @@ export interface QPollRunCountry extends IQEntity {
 export interface QPollRunCountryQId {
     id: IQNumberField;
 }
-export interface QPollRunCountryQRelation extends IQRelation<QPollRunCountry>, QPollRunCountryQId {
+export interface QPollRunCountryQRelation extends IQRelation<PollRunCountry, QPollRunCountry>, QPollRunCountryQId {
 }
 //# sourceMappingURL=qpollruncountry.d.ts.map

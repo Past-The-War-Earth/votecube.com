@@ -42,6 +42,9 @@ import {
 	QThemeQRelation,
 } from './qtheme';
 import {
+	Theme,
+} from '../../ddl/poll/Theme';
+import {
 	PollTypeGraph,
 	PollTypeEId,
 	PollTypeEOptionalId,
@@ -51,6 +54,9 @@ import {
 	QPollTypeQId,
 	QPollTypeQRelation,
 } from './qpolltype';
+import {
+	PollType,
+} from '../../ddl/poll/PollType';
 import {
 	PollRunGraph,
 	PollRunEId,
@@ -62,6 +68,9 @@ import {
 	QPollRunQRelation,
 } from './run/qpollrun';
 import {
+	PollRun,
+} from '../../ddl/poll/run/PollRun';
+import {
 	PollRevisionGraph,
 	PollRevisionEId,
 	PollRevisionEOptionalId,
@@ -71,6 +80,12 @@ import {
 	QPollRevisionQId,
 	QPollRevisionQRelation,
 } from './revision/qpollrevision';
+import {
+	PollRevision,
+} from '../../ddl/poll/revision/PollRevision';
+import {
+	Poll,
+} from '../../ddl/poll/Poll';
 
 
 declare function require(moduleName: string): any;
@@ -194,7 +209,7 @@ extends PollEId, PollEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPoll extends QAgeSuitableRow
+export interface QPoll extends QAgeSuitableRow<Poll>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -207,9 +222,9 @@ export interface QPoll extends QAgeSuitableRow
 	theme: QThemeQRelation;
 	type: QPollTypeQRelation;
 	parent: QPollQRelation;
-	children: IQOneToManyRelation<QPoll>;
-	runs: IQOneToManyRelation<QPollRun>;
-	revisions: IQOneToManyRelation<QPollRevision>;
+	children: IQOneToManyRelation<Poll, QPoll>;
+	runs: IQOneToManyRelation<PollRun, QPollRun>;
+	revisions: IQOneToManyRelation<PollRevision, QPollRevision>;
 
 }
 
@@ -228,6 +243,6 @@ export interface QPollQId extends QAgeSuitableRowQId
 
 // Entity Relation Interface
 export interface QPollQRelation
-	extends QAgeSuitableRowQRelation<QPoll>, QPollQId {
+	extends QAgeSuitableRowQRelation<Poll, QPoll>, QPollQId {
 }
 

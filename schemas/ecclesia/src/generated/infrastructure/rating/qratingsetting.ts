@@ -42,6 +42,9 @@ import {
 	QCountryQRelation,
 } from '../../location/qcountry';
 import {
+	Country,
+} from '../../../ddl/location/Country';
+import {
 	RatingGraph,
 	RatingEId,
 	RatingEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QRatingQId,
 	QRatingQRelation,
 } from './qrating';
+import {
+	Rating,
+} from '../../../ddl/infrastructure/rating/Rating';
+import {
+	RatingSetting,
+} from '../../../ddl/infrastructure/rating/RatingSetting';
 
 
 declare function require(moduleName: string): any;
@@ -170,7 +179,7 @@ extends RatingSettingEId, RatingSettingEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QRatingSetting extends QSystemGeneratedRow
+export interface QRatingSetting extends QSystemGeneratedRow<RatingSetting>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -202,6 +211,6 @@ export interface QRatingSettingQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QRatingSettingQRelation
-	extends QSystemGeneratedRowQRelation<QRatingSetting>, QRatingSettingQId {
+	extends QSystemGeneratedRowQRelation<RatingSetting, QRatingSetting>, QRatingSettingQId {
 }
 

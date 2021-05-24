@@ -42,6 +42,9 @@ import {
 	QPollRevisionQRelation,
 } from '../revision/qpollrevision';
 import {
+	PollRevision,
+} from '../../../ddl/poll/revision/PollRevision';
+import {
 	PollRunContinentGraph,
 	PollRunContinentEId,
 	PollRunContinentEOptionalId,
@@ -51,6 +54,9 @@ import {
 	QPollRunContinentQId,
 	QPollRunContinentQRelation,
 } from './location/qpollruncontinent';
+import {
+	PollRunContinent,
+} from '../../../ddl/poll/run/location/PollRunContinent';
 import {
 	PollRunCountryGraph,
 	PollRunCountryEId,
@@ -62,6 +68,9 @@ import {
 	QPollRunCountryQRelation,
 } from './location/qpollruncountry';
 import {
+	PollRunCountry,
+} from '../../../ddl/poll/run/location/PollRunCountry';
+import {
 	PollRunStateGraph,
 	PollRunStateEId,
 	PollRunStateEOptionalId,
@@ -71,6 +80,9 @@ import {
 	QPollRunStateQId,
 	QPollRunStateQRelation,
 } from './location/qpollrunstate';
+import {
+	PollRunState,
+} from '../../../ddl/poll/run/location/PollRunState';
 import {
 	PollRunCountyGraph,
 	PollRunCountyEId,
@@ -82,6 +94,9 @@ import {
 	QPollRunCountyQRelation,
 } from './location/qpollruncounty';
 import {
+	PollRunCounty,
+} from '../../../ddl/poll/run/location/PollRunCounty';
+import {
 	PollRunTownGraph,
 	PollRunTownEId,
 	PollRunTownEOptionalId,
@@ -91,6 +106,12 @@ import {
 	QPollRunTownQId,
 	QPollRunTownQRelation,
 } from './location/qpollruntown';
+import {
+	PollRunTown,
+} from '../../../ddl/poll/run/location/PollRunTown';
+import {
+	PollRun,
+} from '../../../ddl/poll/run/PollRun';
 
 
 declare function require(moduleName: string): any;
@@ -219,7 +240,7 @@ extends PollRunEId, PollRunEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRun extends QImmutableActorRow
+export interface QPollRun extends QImmutableActorRow<PollRun>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -232,12 +253,12 @@ export interface QPollRun extends QImmutableActorRow
 
 	// Non-Id Relations
 	pollRevision: QPollRevisionQRelation;
-	createdAtRevisions: IQOneToManyRelation<QPollRevision>;
-	pollContinents: IQOneToManyRelation<QPollRunContinent>;
-	pollCountries: IQOneToManyRelation<QPollRunCountry>;
-	pollStates: IQOneToManyRelation<QPollRunState>;
-	pollCounties: IQOneToManyRelation<QPollRunCounty>;
-	pollTowns: IQOneToManyRelation<QPollRunTown>;
+	createdAtRevisions: IQOneToManyRelation<PollRevision, QPollRevision>;
+	pollContinents: IQOneToManyRelation<PollRunContinent, QPollRunContinent>;
+	pollCountries: IQOneToManyRelation<PollRunCountry, QPollRunCountry>;
+	pollStates: IQOneToManyRelation<PollRunState, QPollRunState>;
+	pollCounties: IQOneToManyRelation<PollRunCounty, QPollRunCounty>;
+	pollTowns: IQOneToManyRelation<PollRunTown, QPollRunTown>;
 
 }
 
@@ -256,6 +277,6 @@ export interface QPollRunQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QPollRunQRelation
-	extends QImmutableActorRowQRelation<QPollRun>, QPollRunQId {
+	extends QImmutableActorRowQRelation<PollRun, QPollRun>, QPollRunQId {
 }
 

@@ -2,7 +2,10 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { AgeSuitableRowGraph, AgeSuitableRowEId, AgeSuitableRowEUpdateColumns, AgeSuitableRowEUpdateProperties, AgeSuitableRowESelect, QAgeSuitableRowQId, QAgeSuitableRowQRelation, QAgeSuitableRow } from '../../infrastructure/row/qagesuitablerow';
 import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../../poll/revision/qpollrevision';
 import { PositionTranslationGraph, PositionTranslationEOptionalId, PositionTranslationESelect, QPositionTranslation, QPositionTranslationQRelation } from './qpositiontranslation';
+import { PositionTranslation } from '../../../ddl/factor/position/PositionTranslation';
 import { FactorPositionGraph, FactorPositionESelect, QFactorPosition } from './qfactorposition';
+import { FactorPosition } from '../../../ddl/factor/position/FactorPosition';
+import { Position } from '../../../ddl/factor/position/Position';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -69,18 +72,18 @@ export interface PositionECreateColumns extends PositionEId, PositionEUpdateColu
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPosition extends QAgeSuitableRow {
+export interface QPosition extends QAgeSuitableRow<Position> {
     id: IQNumberField;
     createdAtPollRevision: QPollRevisionQRelation;
     parentTranslation: QPositionTranslationQRelation;
     parent: QPositionQRelation;
-    children: IQOneToManyRelation<QPosition>;
-    factorPositions: IQOneToManyRelation<QFactorPosition>;
-    translations: IQOneToManyRelation<QPositionTranslation>;
+    children: IQOneToManyRelation<Position, QPosition>;
+    factorPositions: IQOneToManyRelation<FactorPosition, QFactorPosition>;
+    translations: IQOneToManyRelation<PositionTranslation, QPositionTranslation>;
 }
 export interface QPositionQId extends QAgeSuitableRowQId {
     id: IQNumberField;
 }
-export interface QPositionQRelation extends QAgeSuitableRowQRelation<QPosition>, QPositionQId {
+export interface QPositionQRelation extends QAgeSuitableRowQRelation<Position, QPosition>, QPositionQId {
 }
 //# sourceMappingURL=qposition.d.ts.map

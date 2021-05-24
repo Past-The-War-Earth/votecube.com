@@ -3,6 +3,7 @@ import { ImmutableRowGraph, ImmutableRowEId, ImmutableRowEUpdateColumns, Immutab
 import { SkinGraph, SkinEOptionalId, SkinESelect, QSkinQRelation } from '../../factor/qskin';
 import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from './qpollrevision';
 import { FactorPositionGraph, FactorPositionEOptionalId, FactorPositionESelect, QFactorPositionQRelation } from '../../factor/position/qfactorposition';
+import { PollRevisionFactorPosition } from '../../../ddl/poll/revision/PollRevisionFactorPosition';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -96,7 +97,7 @@ export interface PollRevisionFactorPositionECreateColumns extends PollRevisionFa
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionFactorPosition extends QImmutableRow {
+export interface QPollRevisionFactorPosition extends QImmutableRow<PollRevisionFactorPosition> {
     id: IQNumberField;
     axis: IQStringField;
     dir: IQNumberField;
@@ -109,11 +110,11 @@ export interface QPollRevisionFactorPosition extends QImmutableRow {
     pollRevision: QPollRevisionQRelation;
     factorPosition: QFactorPositionQRelation;
     parent: QPollRevisionFactorPositionQRelation;
-    children: IQOneToManyRelation<QPollRevisionFactorPosition>;
+    children: IQOneToManyRelation<PollRevisionFactorPosition, QPollRevisionFactorPosition>;
 }
 export interface QPollRevisionFactorPositionQId extends QImmutableRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionFactorPositionQRelation extends QImmutableRowQRelation<QPollRevisionFactorPosition>, QPollRevisionFactorPositionQId {
+export interface QPollRevisionFactorPositionQRelation extends QImmutableRowQRelation<PollRevisionFactorPosition, QPollRevisionFactorPosition>, QPollRevisionFactorPositionQId {
 }
 //# sourceMappingURL=qpollrevisionfactorposition.d.ts.map

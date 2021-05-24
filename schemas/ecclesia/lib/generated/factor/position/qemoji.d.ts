@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../../infrastructure/row/qsystemgeneratedrow';
+import { Emoji } from '../../../ddl/factor/position/Emoji';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -54,7 +55,7 @@ export interface EmojiECreateColumns extends EmojiEId, EmojiEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QEmoji extends QSystemGeneratedRow {
+export interface QEmoji extends QSystemGeneratedRow<Emoji> {
     id: IQNumberField;
     name: IQStringField;
     cssClass: IQStringField;
@@ -62,6 +63,6 @@ export interface QEmoji extends QSystemGeneratedRow {
 export interface QEmojiQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QEmojiQRelation extends QSystemGeneratedRowQRelation<QEmoji>, QEmojiQId {
+export interface QEmojiQRelation extends QSystemGeneratedRowQRelation<Emoji, QEmoji>, QEmojiQId {
 }
 //# sourceMappingURL=qemoji.d.ts.map

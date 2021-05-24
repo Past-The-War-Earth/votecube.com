@@ -1,7 +1,9 @@
 import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-control';
 import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../infrastructure/row/qimmutableactorrow';
 import { FactorGraph, FactorEOptionalId, FactorESelect, QFactor, QFactorQRelation } from './qfactor';
+import { Factor } from '../../ddl/factor/Factor';
 import { LanguageGraph, LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../infrastructure/qlanguage';
+import { FactorTranslation } from '../../ddl/factor/FactorTranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -69,18 +71,18 @@ export interface FactorTranslationECreateColumns extends FactorTranslationEId, F
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorTranslation extends QImmutableActorRow {
+export interface QFactorTranslation extends QImmutableActorRow<FactorTranslation> {
     id: IQNumberField;
     name: IQStringField;
     factor: QFactorQRelation;
     language: QLanguageQRelation;
     parent: QFactorTranslationQRelation;
-    children: IQOneToManyRelation<QFactorTranslation>;
-    childFactors: IQOneToManyRelation<QFactor>;
+    children: IQOneToManyRelation<FactorTranslation, QFactorTranslation>;
+    childFactors: IQOneToManyRelation<Factor, QFactor>;
 }
 export interface QFactorTranslationQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QFactorTranslationQRelation extends QImmutableActorRowQRelation<QFactorTranslation>, QFactorTranslationQId {
+export interface QFactorTranslationQRelation extends QImmutableActorRowQRelation<FactorTranslation, QFactorTranslation>, QFactorTranslationQId {
 }
 //# sourceMappingURL=qfactortranslation.d.ts.map

@@ -42,6 +42,9 @@ import {
 	QCountryQRelation,
 } from './qcountry';
 import {
+	Country,
+} from '../../ddl/location/Country';
+import {
 	TownGraph,
 	TownEId,
 	TownEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QTownQId,
 	QTownQRelation,
 } from './qtown';
+import {
+	Town,
+} from '../../ddl/location/Town';
+import {
+	CountryTown,
+} from '../../ddl/location/CountryTown';
 
 
 declare function require(moduleName: string): any;
@@ -160,7 +169,7 @@ extends CountryTownEId, CountryTownEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QCountryTown extends QSystemGeneratedRow
+export interface QCountryTown extends QSystemGeneratedRow<CountryTown>
 {
 	// Id Fields
 
@@ -190,6 +199,6 @@ export interface QCountryTownQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QCountryTownQRelation
-	extends QSystemGeneratedRowQRelation<QCountryTown>, QCountryTownQId {
+	extends QSystemGeneratedRowQRelation<CountryTown, QCountryTown>, QCountryTownQId {
 }
 

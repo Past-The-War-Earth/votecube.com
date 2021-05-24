@@ -42,6 +42,9 @@ import {
 	QPollRevisionQRelation,
 } from '../poll/revision/qpollrevision';
 import {
+	PollRevision,
+} from '../../ddl/poll/revision/PollRevision';
+import {
 	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
@@ -51,6 +54,9 @@ import {
 	QPollRunQId,
 	QPollRunQRelation,
 } from '../poll/run/qpollrun';
+import {
+	PollRun,
+} from '../../ddl/poll/run/PollRun';
 import {
 	VoteGraph,
 	VoteEId,
@@ -62,6 +68,9 @@ import {
 	QVoteQRelation,
 } from '../vote/qvote';
 import {
+	Vote,
+} from '../../ddl/vote/Vote';
+import {
 	PollRevisionOpinionRatingGraph,
 	PollRevisionOpinionRatingEId,
 	PollRevisionOpinionRatingEOptionalId,
@@ -71,6 +80,9 @@ import {
 	QPollRevisionOpinionRatingQId,
 	QPollRevisionOpinionRatingQRelation,
 } from './rating/qpollrevisionopinionrating';
+import {
+	PollRevisionOpinionRating,
+} from '../../ddl/opinion/rating/PollRevisionOpinionRating';
 import {
 	PollRevisionOpinionVersionGraph,
 	PollRevisionOpinionVersionEId,
@@ -82,6 +94,9 @@ import {
 	QPollRevisionOpinionVersionQRelation,
 } from './qpollrevisionopinionversion';
 import {
+	PollRevisionOpinionVersion,
+} from '../../ddl/opinion/PollRevisionOpinionVersion';
+import {
 	FactorOpinionVersionGraph,
 	FactorOpinionVersionEId,
 	FactorOpinionVersionEOptionalId,
@@ -91,6 +106,9 @@ import {
 	QFactorOpinionVersionQId,
 	QFactorOpinionVersionQRelation,
 } from './qfactoropinionversion';
+import {
+	FactorOpinionVersion,
+} from '../../ddl/opinion/FactorOpinionVersion';
 import {
 	OutcomeOpinionVersionGraph,
 	OutcomeOpinionVersionEId,
@@ -102,6 +120,9 @@ import {
 	QOutcomeOpinionVersionQRelation,
 } from './qoutcomeopinionversion';
 import {
+	OutcomeOpinionVersion,
+} from '../../ddl/opinion/OutcomeOpinionVersion';
+import {
 	PositionOpinionVersionGraph,
 	PositionOpinionVersionEId,
 	PositionOpinionVersionEOptionalId,
@@ -111,6 +132,12 @@ import {
 	QPositionOpinionVersionQId,
 	QPositionOpinionVersionQRelation,
 } from './qpositionopinionversion';
+import {
+	PositionOpinionVersion,
+} from '../../ddl/opinion/PositionOpinionVersion';
+import {
+	PollRevisionOpinion,
+} from '../../ddl/opinion/PollRevisionOpinion';
 
 
 declare function require(moduleName: string): any;
@@ -237,7 +264,7 @@ extends PollRevisionOpinionEId, PollRevisionOpinionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionOpinion extends QImmutableActorRow
+export interface QPollRevisionOpinion extends QImmutableActorRow<PollRevisionOpinion>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -250,11 +277,11 @@ export interface QPollRevisionOpinion extends QImmutableActorRow
 	pollRevision: QPollRevisionQRelation;
 	run: QPollRunQRelation;
 	vote: QVoteQRelation;
-	ratings: IQOneToManyRelation<QPollRevisionOpinionRating>;
-	versions: IQOneToManyRelation<QPollRevisionOpinionVersion>;
-	factors: IQOneToManyRelation<QFactorOpinionVersion>;
-	outcomes: IQOneToManyRelation<QOutcomeOpinionVersion>;
-	positions: IQOneToManyRelation<QPositionOpinionVersion>;
+	ratings: IQOneToManyRelation<PollRevisionOpinionRating, QPollRevisionOpinionRating>;
+	versions: IQOneToManyRelation<PollRevisionOpinionVersion, QPollRevisionOpinionVersion>;
+	factors: IQOneToManyRelation<FactorOpinionVersion, QFactorOpinionVersion>;
+	outcomes: IQOneToManyRelation<OutcomeOpinionVersion, QOutcomeOpinionVersion>;
+	positions: IQOneToManyRelation<PositionOpinionVersion, QPositionOpinionVersion>;
 
 }
 
@@ -273,6 +300,6 @@ export interface QPollRevisionOpinionQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QPollRevisionOpinionQRelation
-	extends QImmutableActorRowQRelation<QPollRevisionOpinion>, QPollRevisionOpinionQId {
+	extends QImmutableActorRowQRelation<PollRevisionOpinion, QPollRevisionOpinion>, QPollRevisionOpinionQId {
 }
 

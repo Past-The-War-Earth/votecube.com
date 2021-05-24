@@ -2,6 +2,7 @@ import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '
 import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../../infrastructure/row/qimmutableactorrow';
 import { PositionGraph, PositionEOptionalId, PositionESelect, QPositionQRelation } from './qposition';
 import { LanguageGraph, LanguageEOptionalId, LanguageESelect, QLanguageQRelation } from '../../infrastructure/qlanguage';
+import { PositionTranslation } from '../../../ddl/factor/position/PositionTranslation';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -67,17 +68,17 @@ export interface PositionTranslationECreateColumns extends PositionTranslationEI
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPositionTranslation extends QImmutableActorRow {
+export interface QPositionTranslation extends QImmutableActorRow<PositionTranslation> {
     id: IQNumberField;
     name: IQStringField;
     position: QPositionQRelation;
     language: QLanguageQRelation;
     parent: QPositionTranslationQRelation;
-    children: IQOneToManyRelation<QPositionTranslation>;
+    children: IQOneToManyRelation<PositionTranslation, QPositionTranslation>;
 }
 export interface QPositionTranslationQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QPositionTranslationQRelation extends QImmutableActorRowQRelation<QPositionTranslation>, QPositionTranslationQId {
+export interface QPositionTranslationQRelation extends QImmutableActorRowQRelation<PositionTranslation, QPositionTranslation>, QPositionTranslationQId {
 }
 //# sourceMappingURL=qpositiontranslation.d.ts.map

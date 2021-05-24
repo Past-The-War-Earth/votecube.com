@@ -2,6 +2,8 @@ import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../row/qsystemgeneratedrow';
 import { RatingTypeGraph, RatingTypeEOptionalId, RatingTypeESelect, QRatingTypeQRelation } from './qratingtype';
 import { RatingSettingGraph, RatingSettingESelect, QRatingSetting } from './qratingsetting';
+import { RatingSetting } from '../../../ddl/infrastructure/rating/RatingSetting';
+import { Rating } from '../../../ddl/infrastructure/rating/Rating';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -58,15 +60,15 @@ export interface RatingECreateColumns extends RatingEId, RatingEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QRating extends QSystemGeneratedRow {
+export interface QRating extends QSystemGeneratedRow<Rating> {
     id: IQNumberField;
     cssClass: IQStringField;
     type: QRatingTypeQRelation;
-    settings: IQOneToManyRelation<QRatingSetting>;
+    settings: IQOneToManyRelation<RatingSetting, QRatingSetting>;
 }
 export interface QRatingQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QRatingQRelation extends QSystemGeneratedRowQRelation<QRating>, QRatingQId {
+export interface QRatingQRelation extends QSystemGeneratedRowQRelation<Rating, QRating>, QRatingQId {
 }
 //# sourceMappingURL=qrating.d.ts.map

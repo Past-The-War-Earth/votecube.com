@@ -42,6 +42,9 @@ import {
 	QPollQRelation,
 } from '../qpoll';
 import {
+	Poll,
+} from '../../../ddl/poll/Poll';
+import {
 	PollRunGraph,
 	PollRunEId,
 	PollRunEOptionalId,
@@ -51,6 +54,9 @@ import {
 	QPollRunQId,
 	QPollRunQRelation,
 } from '../run/qpollrun';
+import {
+	PollRun,
+} from '../../../ddl/poll/run/PollRun';
 import {
 	OutcomeGraph,
 	OutcomeEId,
@@ -62,6 +68,9 @@ import {
 	QOutcomeQRelation,
 } from './qoutcome';
 import {
+	Outcome,
+} from '../../../ddl/poll/revision/Outcome';
+import {
 	PollRevisionTranslationGraph,
 	PollRevisionTranslationEId,
 	PollRevisionTranslationEOptionalId,
@@ -71,6 +80,9 @@ import {
 	QPollRevisionTranslationQId,
 	QPollRevisionTranslationQRelation,
 } from './translation/qpollrevisiontranslation';
+import {
+	PollRevisionTranslation,
+} from '../../../ddl/poll/revision/translation/PollRevisionTranslation';
 import {
 	PollRevisionRatingGraph,
 	PollRevisionRatingEId,
@@ -82,6 +94,9 @@ import {
 	QPollRevisionRatingQRelation,
 } from '../rating/qpollrevisionrating';
 import {
+	PollRevisionRating,
+} from '../../../ddl/poll/rating/PollRevisionRating';
+import {
 	PollRevisionFactorPositionGraph,
 	PollRevisionFactorPositionEId,
 	PollRevisionFactorPositionEOptionalId,
@@ -92,6 +107,9 @@ import {
 	QPollRevisionFactorPositionQRelation,
 } from './qpollrevisionfactorposition';
 import {
+	PollRevisionFactorPosition,
+} from '../../../ddl/poll/revision/PollRevisionFactorPosition';
+import {
 	PollRevisionOpinionGraph,
 	PollRevisionOpinionEId,
 	PollRevisionOpinionEOptionalId,
@@ -101,6 +119,12 @@ import {
 	QPollRevisionOpinionQId,
 	QPollRevisionOpinionQRelation,
 } from '../../opinion/qpollrevisionopinion';
+import {
+	PollRevisionOpinion,
+} from '../../../ddl/opinion/PollRevisionOpinion';
+import {
+	PollRevision,
+} from '../../../ddl/poll/revision/PollRevision';
 
 
 declare function require(moduleName: string): any;
@@ -244,7 +268,7 @@ extends PollRevisionEId, PollRevisionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevision extends QAgeSuitableRow
+export interface QPollRevision extends QAgeSuitableRow<PollRevision>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -261,11 +285,11 @@ export interface QPollRevision extends QAgeSuitableRow
 	outcomeVersionB: QOutcomeQRelation;
 	parent: QPollRevisionQRelation;
 	parentTranslation: QPollRevisionTranslationQRelation;
-	children: IQOneToManyRelation<QPollRevision>;
-	ratings: IQOneToManyRelation<QPollRevisionRating>;
-	factorPositions: IQOneToManyRelation<QPollRevisionFactorPosition>;
-	allTranslations: IQOneToManyRelation<QPollRevisionTranslation>;
-	opinions: IQOneToManyRelation<QPollRevisionOpinion>;
+	children: IQOneToManyRelation<PollRevision, QPollRevision>;
+	ratings: IQOneToManyRelation<PollRevisionRating, QPollRevisionRating>;
+	factorPositions: IQOneToManyRelation<PollRevisionFactorPosition, QPollRevisionFactorPosition>;
+	allTranslations: IQOneToManyRelation<PollRevisionTranslation, QPollRevisionTranslation>;
+	opinions: IQOneToManyRelation<PollRevisionOpinion, QPollRevisionOpinion>;
 
 }
 
@@ -284,6 +308,6 @@ export interface QPollRevisionQId extends QAgeSuitableRowQId
 
 // Entity Relation Interface
 export interface QPollRevisionQRelation
-	extends QAgeSuitableRowQRelation<QPollRevision>, QPollRevisionQId {
+	extends QAgeSuitableRowQRelation<PollRevision, QPollRevision>, QPollRevisionQId {
 }
 

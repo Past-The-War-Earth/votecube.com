@@ -42,6 +42,9 @@ import {
 	QContinentQRelation,
 } from './qcontinent';
 import {
+	Continent,
+} from '../../ddl/location/Continent';
+import {
 	StateGraph,
 	StateEId,
 	StateEOptionalId,
@@ -52,6 +55,9 @@ import {
 	QStateQRelation,
 } from './qstate';
 import {
+	State,
+} from '../../ddl/location/State';
+import {
 	CountryTownGraph,
 	CountryTownEId,
 	CountryTownEOptionalId,
@@ -61,6 +67,12 @@ import {
 	QCountryTownQId,
 	QCountryTownQRelation,
 } from './qcountrytown';
+import {
+	CountryTown,
+} from '../../ddl/location/CountryTown';
+import {
+	Country,
+} from '../../ddl/location/Country';
 
 
 declare function require(moduleName: string): any;
@@ -176,7 +188,7 @@ extends CountryEId, CountryEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QCountry extends QSystemGeneratedRow
+export interface QCountry extends QSystemGeneratedRow<Country>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -188,7 +200,7 @@ export interface QCountry extends QSystemGeneratedRow
 
 	// Non-Id Relations
 	continent: QContinentQRelation;
-	states: IQOneToManyRelation<QState>;
+	states: IQOneToManyRelation<State, QState>;
 	countryTowns: QCountryTownQRelation;
 
 }
@@ -208,6 +220,6 @@ export interface QCountryQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QCountryQRelation
-	extends QSystemGeneratedRowQRelation<QCountry>, QCountryQId {
+	extends QSystemGeneratedRowQRelation<Country, QCountry>, QCountryQId {
 }
 

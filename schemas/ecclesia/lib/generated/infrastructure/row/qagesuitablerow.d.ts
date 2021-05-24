@@ -46,11 +46,11 @@ export interface AgeSuitableRowECreateColumns extends AgeSuitableRowEId, AgeSuit
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QAgeSuitableRow extends QImmutableActorRow {
+export interface QAgeSuitableRow<T> extends QImmutableActorRow<T> {
     ageSuitability: IQNumberField;
 }
 export interface QAgeSuitableRowQId extends QImmutableActorRowQId {
 }
-export interface QAgeSuitableRowQRelation<SubType extends IQEntity> extends QImmutableActorRowQRelation<SubType>, QAgeSuitableRowQId {
+export interface QAgeSuitableRowQRelation<SubType, SubQType extends IQEntity<SubType>> extends QImmutableActorRowQRelation<SubType, SubQType>, QAgeSuitableRowQId {
 }
 //# sourceMappingURL=qagesuitablerow.d.ts.map

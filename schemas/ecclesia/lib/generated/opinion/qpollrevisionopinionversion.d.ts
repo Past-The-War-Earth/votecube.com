@@ -2,6 +2,8 @@ import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-co
 import { ImmutableRowGraph, ImmutableRowEId, ImmutableRowEUpdateColumns, ImmutableRowEUpdateProperties, ImmutableRowESelect, QImmutableRowQId, QImmutableRowQRelation, QImmutableRow } from '../infrastructure/row/qimmutablerow';
 import { PollRevisionOpinionGraph, PollRevisionOpinionEOptionalId, PollRevisionOpinionESelect, QPollRevisionOpinionQRelation } from './qpollrevisionopinion';
 import { PollRevisionOpinionVersionTranslationGraph, PollRevisionOpinionVersionTranslationESelect, QPollRevisionOpinionVersionTranslation } from './translation/qpollrevisionopinionversiontranslation';
+import { PollRevisionOpinionVersionTranslation } from '../../ddl/opinion/translation/PollRevisionOpinionVersionTranslation';
+import { PollRevisionOpinionVersion } from '../../ddl/opinion/PollRevisionOpinionVersion';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -60,16 +62,16 @@ export interface PollRevisionOpinionVersionECreateColumns extends PollRevisionOp
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionOpinionVersion extends QImmutableRow {
+export interface QPollRevisionOpinionVersion extends QImmutableRow<PollRevisionOpinionVersion> {
     id: IQNumberField;
     pollRevisionOpinion: QPollRevisionOpinionQRelation;
     parent: QPollRevisionOpinionVersionQRelation;
-    children: IQOneToManyRelation<QPollRevisionOpinionVersion>;
-    translations: IQOneToManyRelation<QPollRevisionOpinionVersionTranslation>;
+    children: IQOneToManyRelation<PollRevisionOpinionVersion, QPollRevisionOpinionVersion>;
+    translations: IQOneToManyRelation<PollRevisionOpinionVersionTranslation, QPollRevisionOpinionVersionTranslation>;
 }
 export interface QPollRevisionOpinionVersionQId extends QImmutableRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionOpinionVersionQRelation extends QImmutableRowQRelation<QPollRevisionOpinionVersion>, QPollRevisionOpinionVersionQId {
+export interface QPollRevisionOpinionVersionQRelation extends QImmutableRowQRelation<PollRevisionOpinionVersion, QPollRevisionOpinionVersion>, QPollRevisionOpinionVersionQId {
 }
 //# sourceMappingURL=qpollrevisionopinionversion.d.ts.map

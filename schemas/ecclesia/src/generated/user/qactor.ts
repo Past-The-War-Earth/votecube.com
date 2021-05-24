@@ -42,6 +42,9 @@ import {
 	QUserAccountQRelation,
 } from './quseraccount';
 import {
+	UserAccount,
+} from '../../ddl/user/UserAccount';
+import {
 	DeviceGraph,
 	DeviceEId,
 	DeviceEOptionalId,
@@ -52,6 +55,9 @@ import {
 	QDeviceQRelation,
 } from './qdevice';
 import {
+	Device,
+} from '../../ddl/user/Device';
+import {
 	ApplicationGraph,
 	ApplicationEId,
 	ApplicationEOptionalId,
@@ -61,6 +67,12 @@ import {
 	QApplicationQId,
 	QApplicationQRelation,
 } from './qapplication';
+import {
+	Application,
+} from '../../ddl/user/Application';
+import {
+	Actor,
+} from '../../ddl/user/Actor';
 
 
 declare function require(moduleName: string): any;
@@ -180,7 +192,7 @@ extends ActorEId, ActorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QActor extends QSystemGeneratedRow
+export interface QActor extends QSystemGeneratedRow<Actor>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -212,6 +224,6 @@ export interface QActorQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QActorQRelation
-	extends QSystemGeneratedRowQRelation<QActor>, QActorQId {
+	extends QSystemGeneratedRowQRelation<Actor, QActor>, QActorQId {
 }
 

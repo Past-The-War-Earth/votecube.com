@@ -2,6 +2,7 @@ import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntity
 import { VoteVersionGraph, VoteVersionEOptionalId, VoteVersionESelect, QVoteVersionQRelation } from './qvoteversion';
 import { PollRevisionFactorPositionGraph, PollRevisionFactorPositionEOptionalId, PollRevisionFactorPositionESelect, QPollRevisionFactorPositionQRelation } from '../poll/revision/qpollrevisionfactorposition';
 import { VoteFactorTypeGraph, VoteFactorTypeEOptionalId, VoteFactorTypeESelect, QVoteFactorTypeQRelation } from './qvotefactortype';
+import { VoteFactor } from '../../ddl/vote/VoteFactor';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -63,7 +64,7 @@ export interface VoteFactorECreateColumns extends VoteFactorEId, VoteFactorEUpda
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QVoteFactor extends IQEntity {
+export interface QVoteFactor extends IQEntity<VoteFactor> {
     id: IQNumberField;
     share: IQStringField;
     voteRevision: QVoteVersionQRelation;
@@ -73,6 +74,6 @@ export interface QVoteFactor extends IQEntity {
 export interface QVoteFactorQId {
     id: IQNumberField;
 }
-export interface QVoteFactorQRelation extends IQRelation<QVoteFactor>, QVoteFactorQId {
+export interface QVoteFactorQRelation extends IQRelation<VoteFactor, QVoteFactor>, QVoteFactorQId {
 }
 //# sourceMappingURL=qvotefactor.d.ts.map

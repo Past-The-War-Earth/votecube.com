@@ -1,5 +1,6 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
+import { Theme } from '../../ddl/poll/Theme';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -54,7 +55,7 @@ export interface ThemeECreateColumns extends ThemeEId, ThemeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTheme extends QSystemGeneratedRow {
+export interface QTheme extends QSystemGeneratedRow<Theme> {
     id: IQNumberField;
     name: IQStringField;
     ageSuitability: IQNumberField;
@@ -62,6 +63,6 @@ export interface QTheme extends QSystemGeneratedRow {
 export interface QThemeQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QThemeQRelation extends QSystemGeneratedRowQRelation<QTheme>, QThemeQId {
+export interface QThemeQRelation extends QSystemGeneratedRowQRelation<Theme, QTheme>, QThemeQId {
 }
 //# sourceMappingURL=qtheme.d.ts.map

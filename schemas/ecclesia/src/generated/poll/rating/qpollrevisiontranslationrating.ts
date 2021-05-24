@@ -42,6 +42,9 @@ import {
 	QPollRunQRelation,
 } from '../run/qpollrun';
 import {
+	PollRun,
+} from '../../../ddl/poll/run/PollRun';
+import {
 	RatingGraph,
 	RatingEId,
 	RatingEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QRatingQId,
 	QRatingQRelation,
 } from '../../infrastructure/rating/qrating';
+import {
+	Rating,
+} from '../../../ddl/infrastructure/rating/Rating';
+import {
+	PollRevisionTranslationRating,
+} from '../../../ddl/poll/rating/PollRevisionTranslationRating';
 
 
 declare function require(moduleName: string): any;
@@ -173,7 +182,7 @@ extends PollRevisionTranslationRatingEId, PollRevisionTranslationRatingEUpdateCo
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionTranslationRating extends QImmutableActorRow
+export interface QPollRevisionTranslationRating extends QImmutableActorRow<PollRevisionTranslationRating>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -187,7 +196,7 @@ export interface QPollRevisionTranslationRating extends QImmutableActorRow
 	run: QPollRunQRelation;
 	rating: QRatingQRelation;
 	parent: QPollRevisionTranslationRatingQRelation;
-	child: IQOneToManyRelation<QPollRevisionTranslationRating>;
+	child: IQOneToManyRelation<PollRevisionTranslationRating, QPollRevisionTranslationRating>;
 
 }
 
@@ -206,6 +215,6 @@ export interface QPollRevisionTranslationRatingQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QPollRevisionTranslationRatingQRelation
-	extends QImmutableActorRowQRelation<QPollRevisionTranslationRating>, QPollRevisionTranslationRatingQId {
+	extends QImmutableActorRowQRelation<PollRevisionTranslationRating, QPollRevisionTranslationRating>, QPollRevisionTranslationRatingQId {
 }
 

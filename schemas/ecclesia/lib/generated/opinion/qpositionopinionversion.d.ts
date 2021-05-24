@@ -2,6 +2,8 @@ import { IEntityIdProperties, IEntityCascadeGraph, IEntityUpdateColumns, IEntity
 import { PollRevisionOpinionGraph, PollRevisionOpinionEOptionalId, PollRevisionOpinionESelect, QPollRevisionOpinionQRelation } from './qpollrevisionopinion';
 import { PollRevisionFactorPositionGraph, PollRevisionFactorPositionEOptionalId, PollRevisionFactorPositionESelect, QPollRevisionFactorPositionQRelation } from '../poll/revision/qpollrevisionfactorposition';
 import { PositionOpinionVersionTranslationGraph, PositionOpinionVersionTranslationESelect, QPositionOpinionVersionTranslation } from './translation/qpositionopinionversiontranslation';
+import { PositionOpinionVersionTranslation } from '../../ddl/opinion/translation/PositionOpinionVersionTranslation';
+import { PositionOpinionVersion } from '../../ddl/opinion/PositionOpinionVersion';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -63,17 +65,17 @@ export interface PositionOpinionVersionECreateColumns extends PositionOpinionVer
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPositionOpinionVersion extends IQEntity {
+export interface QPositionOpinionVersion extends IQEntity<PositionOpinionVersion> {
     id: IQNumberField;
     pollRevisionOpinion: QPollRevisionOpinionQRelation;
     factorPosition: QPollRevisionFactorPositionQRelation;
     parent: QPositionOpinionVersionQRelation;
-    children: IQOneToManyRelation<QPositionOpinionVersion>;
-    translations: IQOneToManyRelation<QPositionOpinionVersionTranslation>;
+    children: IQOneToManyRelation<PositionOpinionVersion, QPositionOpinionVersion>;
+    translations: IQOneToManyRelation<PositionOpinionVersionTranslation, QPositionOpinionVersionTranslation>;
 }
 export interface QPositionOpinionVersionQId {
     id: IQNumberField;
 }
-export interface QPositionOpinionVersionQRelation extends IQRelation<QPositionOpinionVersion>, QPositionOpinionVersionQId {
+export interface QPositionOpinionVersionQRelation extends IQRelation<PositionOpinionVersion, QPositionOpinionVersion>, QPositionOpinionVersionQId {
 }
 //# sourceMappingURL=qpositionopinionversion.d.ts.map

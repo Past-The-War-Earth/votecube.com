@@ -32,6 +32,9 @@ import {
 	QPollRevisionOpinionQRelation,
 } from './qpollrevisionopinion';
 import {
+	PollRevisionOpinion,
+} from '../../ddl/opinion/PollRevisionOpinion';
+import {
 	FactorGraph,
 	FactorEId,
 	FactorEOptionalId,
@@ -42,6 +45,9 @@ import {
 	QFactorQRelation,
 } from '../factor/qfactor';
 import {
+	Factor,
+} from '../../ddl/factor/Factor';
+import {
 	FactorOpinionVersionTranslationGraph,
 	FactorOpinionVersionTranslationEId,
 	FactorOpinionVersionTranslationEOptionalId,
@@ -51,6 +57,12 @@ import {
 	QFactorOpinionVersionTranslationQId,
 	QFactorOpinionVersionTranslationQRelation,
 } from './translation/qfactoropinionversiontranslation';
+import {
+	FactorOpinionVersionTranslation,
+} from '../../ddl/opinion/translation/FactorOpinionVersionTranslation';
+import {
+	FactorOpinionVersion,
+} from '../../ddl/opinion/FactorOpinionVersion';
 
 
 declare function require(moduleName: string): any;
@@ -169,7 +181,7 @@ extends FactorOpinionVersionEId, FactorOpinionVersionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorOpinionVersion extends IQEntity
+export interface QFactorOpinionVersion extends IQEntity<FactorOpinionVersion>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -182,8 +194,8 @@ export interface QFactorOpinionVersion extends IQEntity
 	pollRevisionOpinion: QPollRevisionOpinionQRelation;
 	factor: QFactorQRelation;
 	parent: QFactorOpinionVersionQRelation;
-	children: IQOneToManyRelation<QFactorOpinionVersion>;
-	translations: IQOneToManyRelation<QFactorOpinionVersionTranslation>;
+	children: IQOneToManyRelation<FactorOpinionVersion, QFactorOpinionVersion>;
+	translations: IQOneToManyRelation<FactorOpinionVersionTranslation, QFactorOpinionVersionTranslation>;
 
 }
 
@@ -202,6 +214,6 @@ export interface QFactorOpinionVersionQId
 
 // Entity Relation Interface
 export interface QFactorOpinionVersionQRelation
-	extends IQRelation<QFactorOpinionVersion>, QFactorOpinionVersionQId {
+	extends IQRelation<FactorOpinionVersion, QFactorOpinionVersion>, QFactorOpinionVersionQId {
 }
 

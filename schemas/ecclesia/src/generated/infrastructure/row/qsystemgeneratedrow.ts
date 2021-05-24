@@ -31,6 +31,9 @@ import {
 	QImmutableRowQRelation,
 	QImmutableRow,
 } from './qimmutablerow';
+import {
+	SystemGeneratedRow,
+} from '../../../ddl/infrastructure/row/SystemGeneratedRow';
 
 
 declare function require(moduleName: string): any;
@@ -131,7 +134,7 @@ extends SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QSystemGeneratedRow extends QImmutableRow
+export interface QSystemGeneratedRow<T> extends QImmutableRow<T>
 {
 	// Id Fields
 
@@ -156,7 +159,7 @@ export interface QSystemGeneratedRowQId extends QImmutableRowQId
 }
 
 // Entity Relation Interface
-export interface QSystemGeneratedRowQRelation<SubType extends IQEntity>
-	extends QImmutableRowQRelation<SubType>, QSystemGeneratedRowQId {
+export interface QSystemGeneratedRowQRelation<SubType, SubQType extends IQEntity<SubType>>
+	extends QImmutableRowQRelation<SubType, SubQType>, QSystemGeneratedRowQId {
 }
 

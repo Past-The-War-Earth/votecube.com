@@ -2,6 +2,7 @@ import { IQDateField, IQNumberField } from '@airport/air-control';
 import { ImmutableActorRowGraph, ImmutableActorRowEId, ImmutableActorRowEUpdateColumns, ImmutableActorRowEUpdateProperties, ImmutableActorRowESelect, QImmutableActorRowQId, QImmutableActorRowQRelation, QImmutableActorRow } from '../../infrastructure/row/qimmutableactorrow';
 import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from '../revision/qpollrevision';
 import { RatingGraph, RatingEOptionalId, RatingESelect, QRatingQRelation } from '../../infrastructure/rating/qrating';
+import { PollRevisionRating } from '../../../ddl/poll/rating/PollRevisionRating';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -61,7 +62,7 @@ export interface PollRevisionRatingECreateColumns extends PollRevisionRatingEId,
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionRating extends QImmutableActorRow {
+export interface QPollRevisionRating extends QImmutableActorRow<PollRevisionRating> {
     id: IQNumberField;
     value: IQNumberField;
     pollRevision: QPollRevisionQRelation;
@@ -70,6 +71,6 @@ export interface QPollRevisionRating extends QImmutableActorRow {
 export interface QPollRevisionRatingQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionRatingQRelation extends QImmutableActorRowQRelation<QPollRevisionRating>, QPollRevisionRatingQId {
+export interface QPollRevisionRatingQRelation extends QImmutableActorRowQRelation<PollRevisionRating, QPollRevisionRating>, QPollRevisionRatingQId {
 }
 //# sourceMappingURL=qpollrevisionrating.d.ts.map

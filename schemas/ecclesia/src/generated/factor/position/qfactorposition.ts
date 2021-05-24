@@ -42,6 +42,9 @@ import {
 	QFactorQRelation,
 } from '../qfactor';
 import {
+	Factor,
+} from '../../../ddl/factor/Factor';
+import {
 	PositionGraph,
 	PositionEId,
 	PositionEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QPositionQId,
 	QPositionQRelation,
 } from './qposition';
+import {
+	Position,
+} from '../../../ddl/factor/position/Position';
+import {
+	FactorPosition,
+} from '../../../ddl/factor/position/FactorPosition';
 
 
 declare function require(moduleName: string): any;
@@ -161,7 +170,7 @@ extends FactorPositionEId, FactorPositionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorPosition extends QImmutableActorRow
+export interface QFactorPosition extends QImmutableActorRow<FactorPosition>
 {
 	// Id Fields
 
@@ -191,6 +200,6 @@ export interface QFactorPositionQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QFactorPositionQRelation
-	extends QImmutableActorRowQRelation<QFactorPosition>, QFactorPositionQId {
+	extends QImmutableActorRowQRelation<FactorPosition, QFactorPosition>, QFactorPositionQId {
 }
 

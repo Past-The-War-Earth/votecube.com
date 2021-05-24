@@ -31,6 +31,9 @@ import {
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
 } from '../../infrastructure/row/qsystemgeneratedrow';
+import {
+	Emoji,
+} from '../../../ddl/factor/position/Emoji';
 
 
 declare function require(moduleName: string): any;
@@ -142,7 +145,7 @@ extends EmojiEId, EmojiEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QEmoji extends QSystemGeneratedRow
+export interface QEmoji extends QSystemGeneratedRow<Emoji>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -172,6 +175,6 @@ export interface QEmojiQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QEmojiQRelation
-	extends QSystemGeneratedRowQRelation<QEmoji>, QEmojiQId {
+	extends QSystemGeneratedRowQRelation<Emoji, QEmoji>, QEmojiQId {
 }
 

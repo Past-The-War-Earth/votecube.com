@@ -1,14 +1,14 @@
 import {
+	I,
+	A,
 	ANOTHER,
-	Y
+	U
 }                         from '@airport/air-control'
-import {Persist}          from '@airport/check-in'
 import {DI}               from '@airport/di'
 import {
 	BasePollDao,
 	IBasePollDao,
 	IPoll,
-	PollGraph,
 }                         from '../../generated/generated'
 import {IVotecubeContext} from '../../index'
 import {POLL_DAO}         from '../../tokens'
@@ -16,8 +16,8 @@ import {POLL_DAO}         from '../../tokens'
 export interface IPollDao
 	extends IBasePollDao {
 
-	createNew(
-		poll: IPoll,
+	create(
+		poll: IPoll | IPoll[],
 		context: IVotecubeContext
 	): Promise<void>
 
@@ -27,108 +27,104 @@ export class PollDao
 	extends BasePollDao
 	implements IPollDao {
 
-	@Persist<PollGraph>({
-		ageSuitability: Y,
+	@PollDao.Save({
+		ageSuitability: A,
 		parent: {
-			id: Y
+			id: A
 		} || null,
 		revisions: [{
-			ageSuitability: Y,
+			id: U,
+			ageSuitability: A,
 			depth: 1,
 			factorPositions: [{
-				axis: Y,
-				dir: Y,
-				factorNumber: Y,
-				blue: Y,
-				green: Y,
-				red: Y,
-				outcomeOrdinal: Y,
+				id: U,
+				axis: A,
+				dir: A,
+				factorNumber: A,
+				blue: A,
+				green: A,
+				red: A,
+				outcomeOrdinal: A,
 				parent: null || {
-					id: Y
+					id: A
 				},
 				skin: {
-					id: Y
+					id: A
 				} || {
-					backgroundColor: Y,
-					textColor: Y,
+					id: U,
+					backgroundColor: A,
+					textColor: A,
 					parent: null || {
-						id: Y
+						id: A
 					}
 				},
 				factorPosition: {
 					factor: {
-						id: Y
+						id: A
 					} || {
-						ageSuitability: Y,
+						ageSuitability: I,
 						parentTranslation: {
-							name: Y,
+							name: I,
 						},
 						parent: null || {
-							id: Y
+							id: I
 						}
 					},
 					position: {
-						id: Y
+						id: A
 					} || {
-						ageSuitability: Y,
+						ageSuitability: I,
 						parentTranslation: {
-							name: Y,
+							name: I,
 						},
 						parent: null || {
-							id: Y
+							id: I
 						}
 					}
 				}
 			}, ANOTHER(2)],
 			outcomeVersionA: {
-				id: Y
+				id: A
 			} || {
-				ageSuitability: Y,
+				ageSuitability: I,
 				parentTranslation: {
-					name: Y
+					name: I
 				},
 				parent: null || {
-					id: Y
+					id: I
 				}
 			},
 			outcomeVersionB: {
-				id: Y
+				id: A
 			} || {
-				ageSuitability: Y,
+				ageSuitability: I,
 				parentTranslation: {
-					name: Y
+					name: I
 				},
 				parent: null || {
-					id: Y
+					id: I
 				}
 			},
 			parentTranslation: {
-				id: Y,
+				id: A,
 			} || {
-				name: Y,
+				name: I,
 				parent: null || {
-					id: Y
+					id: I
 				}
 			},
 			poll: {
-				id: Y
+				id: A
 			}
 		}],
 		theme: {
-			id: Y,
+			id: A,
 		},
 		type: {
-			id: Y,
+			id: A,
 		}
 	})
-	createOne = this.save
-
-	async createNew(
-		poll: IPoll,
-		context: IVotecubeContext
-	): Promise<void> {
-		await this.createOne(poll, context)
-	}
+	create
 
 }
 

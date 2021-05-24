@@ -42,6 +42,9 @@ import {
 	QPollRevisionOpinionVersionQRelation,
 } from '../qpollrevisionopinionversion';
 import {
+	PollRevisionOpinionVersion,
+} from '../../../ddl/opinion/PollRevisionOpinionVersion';
+import {
 	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QLanguageQId,
 	QLanguageQRelation,
 } from '../../infrastructure/qlanguage';
+import {
+	Language,
+} from '../../../ddl/infrastructure/Language';
+import {
+	PollRevisionOpinionVersionTranslation,
+} from '../../../ddl/opinion/translation/PollRevisionOpinionVersionTranslation';
 
 
 declare function require(moduleName: string): any;
@@ -174,7 +183,7 @@ extends PollRevisionOpinionVersionTranslationEId, PollRevisionOpinionVersionTran
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionOpinionVersionTranslation extends QSystemGeneratedRow
+export interface QPollRevisionOpinionVersionTranslation extends QSystemGeneratedRow<PollRevisionOpinionVersionTranslation>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -207,6 +216,6 @@ export interface QPollRevisionOpinionVersionTranslationQId extends QSystemGenera
 
 // Entity Relation Interface
 export interface QPollRevisionOpinionVersionTranslationQRelation
-	extends QSystemGeneratedRowQRelation<QPollRevisionOpinionVersionTranslation>, QPollRevisionOpinionVersionTranslationQId {
+	extends QSystemGeneratedRowQRelation<PollRevisionOpinionVersionTranslation, QPollRevisionOpinionVersionTranslation>, QPollRevisionOpinionVersionTranslationQId {
 }
 

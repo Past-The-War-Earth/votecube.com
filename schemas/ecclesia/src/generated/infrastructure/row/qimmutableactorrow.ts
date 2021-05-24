@@ -41,6 +41,12 @@ import {
 	QUserAccountQId,
 	QUserAccountQRelation,
 } from '../../user/quseraccount';
+import {
+	UserAccount,
+} from '../../../ddl/user/UserAccount';
+import {
+	ImmutableActorRow,
+} from '../../../ddl/infrastructure/row/ImmutableActorRow';
 
 
 declare function require(moduleName: string): any;
@@ -144,7 +150,7 @@ extends ImmutableActorRowEId, ImmutableActorRowEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QImmutableActorRow extends QImmutableRow
+export interface QImmutableActorRow<T> extends QImmutableRow<T>
 {
 	// Id Fields
 
@@ -170,7 +176,7 @@ export interface QImmutableActorRowQId extends QImmutableRowQId
 }
 
 // Entity Relation Interface
-export interface QImmutableActorRowQRelation<SubType extends IQEntity>
-	extends QImmutableRowQRelation<SubType>, QImmutableActorRowQId {
+export interface QImmutableActorRowQRelation<SubType, SubQType extends IQEntity<SubType>>
+	extends QImmutableRowQRelation<SubType, SubQType>, QImmutableActorRowQId {
 }
 

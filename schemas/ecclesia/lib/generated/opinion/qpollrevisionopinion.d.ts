@@ -4,10 +4,16 @@ import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollR
 import { PollRunGraph, PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../poll/run/qpollrun';
 import { VoteGraph, VoteEOptionalId, VoteESelect, QVoteQRelation } from '../vote/qvote';
 import { PollRevisionOpinionRatingGraph, PollRevisionOpinionRatingESelect, QPollRevisionOpinionRating } from './rating/qpollrevisionopinionrating';
+import { PollRevisionOpinionRating } from '../../ddl/opinion/rating/PollRevisionOpinionRating';
 import { PollRevisionOpinionVersionGraph, PollRevisionOpinionVersionESelect, QPollRevisionOpinionVersion } from './qpollrevisionopinionversion';
+import { PollRevisionOpinionVersion } from '../../ddl/opinion/PollRevisionOpinionVersion';
 import { FactorOpinionVersionGraph, FactorOpinionVersionESelect, QFactorOpinionVersion } from './qfactoropinionversion';
+import { FactorOpinionVersion } from '../../ddl/opinion/FactorOpinionVersion';
 import { OutcomeOpinionVersionGraph, OutcomeOpinionVersionESelect, QOutcomeOpinionVersion } from './qoutcomeopinionversion';
+import { OutcomeOpinionVersion } from '../../ddl/opinion/OutcomeOpinionVersion';
 import { PositionOpinionVersionGraph, PositionOpinionVersionESelect, QPositionOpinionVersion } from './qpositionopinionversion';
+import { PositionOpinionVersion } from '../../ddl/opinion/PositionOpinionVersion';
+import { PollRevisionOpinion } from '../../ddl/opinion/PollRevisionOpinion';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -77,20 +83,20 @@ export interface PollRevisionOpinionECreateColumns extends PollRevisionOpinionEI
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPollRevisionOpinion extends QImmutableActorRow {
+export interface QPollRevisionOpinion extends QImmutableActorRow<PollRevisionOpinion> {
     id: IQNumberField;
     pollRevision: QPollRevisionQRelation;
     run: QPollRunQRelation;
     vote: QVoteQRelation;
-    ratings: IQOneToManyRelation<QPollRevisionOpinionRating>;
-    versions: IQOneToManyRelation<QPollRevisionOpinionVersion>;
-    factors: IQOneToManyRelation<QFactorOpinionVersion>;
-    outcomes: IQOneToManyRelation<QOutcomeOpinionVersion>;
-    positions: IQOneToManyRelation<QPositionOpinionVersion>;
+    ratings: IQOneToManyRelation<PollRevisionOpinionRating, QPollRevisionOpinionRating>;
+    versions: IQOneToManyRelation<PollRevisionOpinionVersion, QPollRevisionOpinionVersion>;
+    factors: IQOneToManyRelation<FactorOpinionVersion, QFactorOpinionVersion>;
+    outcomes: IQOneToManyRelation<OutcomeOpinionVersion, QOutcomeOpinionVersion>;
+    positions: IQOneToManyRelation<PositionOpinionVersion, QPositionOpinionVersion>;
 }
 export interface QPollRevisionOpinionQId extends QImmutableActorRowQId {
     id: IQNumberField;
 }
-export interface QPollRevisionOpinionQRelation extends QImmutableActorRowQRelation<QPollRevisionOpinion>, QPollRevisionOpinionQId {
+export interface QPollRevisionOpinionQRelation extends QImmutableActorRowQRelation<PollRevisionOpinion, QPollRevisionOpinion>, QPollRevisionOpinionQId {
 }
 //# sourceMappingURL=qpollrevisionopinion.d.ts.map

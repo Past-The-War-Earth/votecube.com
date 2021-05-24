@@ -42,6 +42,9 @@ import {
 	QFactorQRelation,
 } from './qfactor';
 import {
+	Factor,
+} from '../../ddl/factor/Factor';
+import {
 	LanguageGraph,
 	LanguageEId,
 	LanguageEOptionalId,
@@ -51,6 +54,12 @@ import {
 	QLanguageQId,
 	QLanguageQRelation,
 } from '../infrastructure/qlanguage';
+import {
+	Language,
+} from '../../ddl/infrastructure/Language';
+import {
+	FactorTranslation,
+} from '../../ddl/factor/FactorTranslation';
 
 
 declare function require(moduleName: string): any;
@@ -175,7 +184,7 @@ extends FactorTranslationEId, FactorTranslationEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactorTranslation extends QImmutableActorRow
+export interface QFactorTranslation extends QImmutableActorRow<FactorTranslation>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -189,8 +198,8 @@ export interface QFactorTranslation extends QImmutableActorRow
 	factor: QFactorQRelation;
 	language: QLanguageQRelation;
 	parent: QFactorTranslationQRelation;
-	children: IQOneToManyRelation<QFactorTranslation>;
-	childFactors: IQOneToManyRelation<QFactor>;
+	children: IQOneToManyRelation<FactorTranslation, QFactorTranslation>;
+	childFactors: IQOneToManyRelation<Factor, QFactor>;
 
 }
 
@@ -209,6 +218,6 @@ export interface QFactorTranslationQId extends QImmutableActorRowQId
 
 // Entity Relation Interface
 export interface QFactorTranslationQRelation
-	extends QImmutableActorRowQRelation<QFactorTranslation>, QFactorTranslationQId {
+	extends QImmutableActorRowQRelation<FactorTranslation, QFactorTranslation>, QFactorTranslationQId {
 }
 

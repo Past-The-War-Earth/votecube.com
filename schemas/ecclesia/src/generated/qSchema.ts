@@ -144,7 +144,6 @@ export interface LocalQSchema extends AirportQSchema {
   db: DbSchema;
 
 	Actor: QActor;
-	AgeSuitableRow: QAgeSuitableRow;
 	Application: QApplication;
 	Continent: QContinent;
 	Country: QCountry;
@@ -159,11 +158,7 @@ export interface LocalQSchema extends AirportQSchema {
 	FactorOpinionVersionTranslation: QFactorOpinionVersionTranslation;
 	FactorPosition: QFactorPosition;
 	FactorTranslation: QFactorTranslation;
-	ImmutableActorRow: QImmutableActorRow;
-	ImmutableRow: QImmutableRow;
 	Language: QLanguage;
-	MutableActorRow: QMutableActorRow;
-	MutableRow: QMutableRow;
 	Outcome: QOutcome;
 	OutcomeOpinionVersion: QOutcomeOpinionVersion;
 	OutcomeOpinionVersionTranslation: QOutcomeOpinionVersionTranslation;
@@ -195,7 +190,6 @@ export interface LocalQSchema extends AirportQSchema {
 	Skin: QSkin;
 	State: QState;
 	StateTown: QStateTown;
-	SystemGeneratedRow: QSystemGeneratedRow;
 	Theme: QTheme;
 	Town: QTown;
 	TranslationType: QTranslationType;

@@ -31,6 +31,9 @@ import {
 	QSystemGeneratedRowQRelation,
 	QSystemGeneratedRow,
 } from '../../infrastructure/row/qsystemgeneratedrow';
+import {
+	DesignPattern,
+} from '../../../ddl/factor/position/DesignPattern';
 
 
 declare function require(moduleName: string): any;
@@ -142,7 +145,7 @@ extends DesignPatternEId, DesignPatternEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QDesignPattern extends QSystemGeneratedRow
+export interface QDesignPattern extends QSystemGeneratedRow<DesignPattern>
 {
 	// Id Fields
 	id: IQNumberField;
@@ -172,6 +175,6 @@ export interface QDesignPatternQId extends QSystemGeneratedRowQId
 
 // Entity Relation Interface
 export interface QDesignPatternQRelation
-	extends QSystemGeneratedRowQRelation<QDesignPattern>, QDesignPatternQId {
+	extends QSystemGeneratedRowQRelation<DesignPattern, QDesignPattern>, QDesignPatternQId {
 }
 

@@ -1,6 +1,8 @@
 import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../infrastructure/row/qsystemgeneratedrow';
 import { CountryGraph, CountryESelect, QCountry } from './qcountry';
+import { Country } from '../../ddl/location/Country';
+import { Continent } from '../../ddl/location/Continent';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -53,14 +55,14 @@ export interface ContinentECreateColumns extends ContinentEId, ContinentEUpdateC
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QContinent extends QSystemGeneratedRow {
+export interface QContinent extends QSystemGeneratedRow<Continent> {
     id: IQNumberField;
     name: IQStringField;
-    countries: IQOneToManyRelation<QCountry>;
+    countries: IQOneToManyRelation<Country, QCountry>;
 }
 export interface QContinentQId extends QSystemGeneratedRowQId {
     id: IQNumberField;
 }
-export interface QContinentQRelation extends QSystemGeneratedRowQRelation<QContinent>, QContinentQId {
+export interface QContinentQRelation extends QSystemGeneratedRowQRelation<Continent, QContinent>, QContinentQId {
 }
 //# sourceMappingURL=qcontinent.d.ts.map
