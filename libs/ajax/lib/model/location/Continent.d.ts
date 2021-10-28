@@ -11,3 +11,4 @@ export declare class ContinentSerializer extends ModelSerializer<IContinent> {
     serializeRecord(model: IContinent, out: Out): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<IContinent>;
 }
+//# sourceMappingURL=Continent.d.ts.map

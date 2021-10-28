@@ -82,7 +82,7 @@
 
 	$: errors = v(field.errors, delta)
 	$: label = v(field.label, delta)
-	$: modified = v(!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
+	$: modified = v(!errors.length && field.rules.trackOriginal && !field.isOriginal(),
 		delta)
 	$: options = v(filter
 		? field.filteredOptions

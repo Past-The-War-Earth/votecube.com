@@ -1,13 +1,14 @@
 {
-  "main": "lib/index.js",
-  "name": "@votecube/model",
-  "typings": "lib/index",
-  "version": "0.0.1",
   "dependencies": {
     "@votecube/ecclesia": "0.0.1"
   },
   "devDependencies": {
     "tslint": "^5.20.1",
     "typescript": "^3.8.2"
-  }
+  },
+  "main": "lib/index.js",
+  "name": "@votecube/model",
+  "type": "module",
+  "typings": "lib/index",
+  "version": "0.0.1"
 }

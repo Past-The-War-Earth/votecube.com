@@ -46,31 +46,67 @@
         }
       }
     },
-    "SignIn": {
+    "Account": {
+      "SignIn": {
+        "email": {
+          "info": "Please enter your email",
+          "label": "Email",
+          "errors": {
+            "required": "Email is required",
+            "email": "Invalid Email address"
+          }
+        }
+      },
       "SignUp": {
         "userName": {
-          "info": "Select your username",
+          "info": "Please enter your username",
           "label": "Username",
           "errors": {
             "required": "Username is required",
-            "minLength": "Username must be at least 5 characters long"
+            "minLength": "Username must be at least 3 characters long"
           }
         },
-        "password": {
-          "info": "Please enter password",
-          "label": "Password",
+        "email": {
+          "info": "Please enter your email",
+          "label": "Email",
           "errors": {
-            "required": "Password is required",
-            "minLength": "Password must be at least 8 characters long"
+            "required": "Email is required",
+            "email": "Invalid Email address"
           }
         },
-        "passwordCheck": {
-          "info": "Please re-enter password",
-          "label": "Password Check",
+        "birthMonth": {
+          "info": "Please enter your month of birth",
+          "label": "Month of Birth",
           "errors": {
-            "required": "Password Check is required",
-            "minLength": "Password must be at least 8 characters long",
-            "passwordMismatch": "Password does not match"
+            "required": "Month of Birth is required"
+          }
+        },
+        "continent": {
+          "info": "Please enter Continent of residence",
+          "label": "Continent",
+          "errors": {
+            "required": "Continent is required"
+          }
+        },
+        "country": {
+          "info": "Please enter Country of residence",
+          "label": "Country",
+          "errors": {
+            "required": "Country is required"
+          }
+        },
+        "state": {
+          "info": "Please enter State of residence",
+          "label": "State",
+          "errors": {
+            "required": "State is required"
+          }
+        },
+        "city": {
+          "info": "Please enter City of residence",
+          "label": "City",
+          "errors": {
+            "required": "City is required"
           }
         }
       }

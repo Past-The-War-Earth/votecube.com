@@ -50,6 +50,8 @@ export interface IField
 	placeholder: string
 	rules: IFieldRules
 	text: IFieldText
+	// Specifying "Country" in label and tying label to a field causes chrome to
+	// to show autocomplete
 
 	clear(): void
 

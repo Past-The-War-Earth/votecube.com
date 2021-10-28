@@ -1,14 +1,14 @@
 import {DI}            from '@airport/di'
 import {
-	BehaviorSubject,
-	IObservable
-}                      from '@airport/observe'
-import {
 	IUserAccount,
 	UserAccount_Email,
 	UserAccount_PasswordHash,
 	UserAccount_UserName
 }                      from '@votecube/ecclesia'
+import {
+	BehaviorSubject,
+	Observable
+}                      from 'rxjs'
 import {APP_CONTAINER} from './container'
 import {user}          from './store'
 import {
@@ -29,7 +29,7 @@ export interface IAuth {
 
 	getUser(): IUserAccount
 
-	reactToUser(): Promise<IObservable<IUserAccount>>
+	reactToUser(): Promise<Observable<IUserAccount>>
 
 	signIn(
 		username: UserAccount_UserName,
@@ -39,8 +39,10 @@ export interface IAuth {
 	signOut(): Promise<void>
 
 	signUp(
-		email: UserAccount_Email,
-		password: Auth_Password
+		countryId: number, 
+		birthMonth: number, 
+		email: string, 
+		username: string
 	): Promise<IAuthError | void>
 
 }
@@ -54,7 +56,7 @@ export class Auth
 		return this.user
 	}
 
-	async reactToUser(): Promise<IObservable<IUserAccount>> {
+	async reactToUser(): Promise<Observable<IUserAccount>> {
 		const subject = new BehaviorSubject<IUserAccount>(null)
 
 		return subject
@@ -94,35 +96,44 @@ export class Auth
 	}
 
 	async signUp(
-		userName: UserAccount_UserName,
-		password: Auth_Password
+		countryId: number, 
+		birthMonth: number, 
+		email: string, 
+		userName: string
 	): Promise<IAuthError | void> {
 		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
-		const passwordHash      = await this.encodePassword(password)
+		// const passwordHash      = await this.encodePassword(password)
 
 		const userAccount: IAuthError | IUserAccount = await connectionManager.put('signUp', {
-			passwordHash,
+			countryId,
+			birthMonth,
+			email,
 			userName
 		})
 
 		if (!(<IAuthError>userAccount).code) {
-			this.user = <IUserAccount>userAccount
+			this.user = <IUserAccount>{
+				countryId,
+				birthMonth,
+				email,
+				userName,
+			}
 			user.set(this.user)
 		} else {
 			return <IAuthError>userAccount
 		}
 	}
 
-	private async encodePassword(
-		password: Auth_Password
-	): Promise<UserAccount_PasswordHash> {
-		const jsSHA = await import('jssha/src/sha512')
+	// private async encodePassword(
+	// 	password: Auth_Password
+	// ): Promise<UserAccount_PasswordHash> {
+	// 	const jsSHA = await import('jssha/src/sha512')
 
-		const shaObj = new jsSHA.default('SHA-512', 'TEXT')
-		shaObj.update(password)
+	// 	const shaObj = new jsSHA.default('SHA-512', 'TEXT')
+	// 	shaObj.update(password)
 
-		return shaObj.getHash('B64')
-	}
+	// 	return shaObj.getHash('B64')
+	// }
 
 }
 

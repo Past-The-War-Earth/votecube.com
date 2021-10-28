@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		pageTitle,
 		POLL_FORM,
@@ -10,7 +10,7 @@
 	}                      from 'svelte'
 	import CharacterButton from '../../../common/control/button/CharacterButton.svelte'
 	import SaveButton      from '../../../common/control/button/SaveButton.svelte'
-	import ColorPicker     from '../../../common/field/ColorPicker'
+	import ColorPicker     from '../../../common/field/ColorPicker.svelte'
 	import Text            from '../../../common/field/Text.svelte'
 	import TextArea        from '../../../common/field/TextArea.svelte'
 	import {savePollForm}  from '../../../form/cache'

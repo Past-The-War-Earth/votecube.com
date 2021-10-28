@@ -1,38 +1,39 @@
-import {DI}           from '@airport/di'
-import {FORM_FACTORY} from './tokens'
+import { DI } from '@airport/di'
+import { FORM_FACTORY } from './tokens'
 import {
 	ColorField,
 	IColorField
-}                     from './field/ColorField'
+} from './field/ColorField'
 import {
 	DateField,
 	IDateField
-}                     from './field/date/DateField'
+} from './field/date/DateField'
 import {
 	Field,
 	IField,
 	IFieldRules
-}                     from './field/Field'
+} from './field/Field'
 import {
 	FieldGroup,
 	IFieldGroup,
 	IFieldMap
-}                     from './field/FieldGroup'
+} from './field/FieldGroup'
 import {
 	IMatchingField,
 	MatchingField
-}                     from './field/MatchingField'
+} from './field/MatchingField'
 import {
 	IFieldOption,
 	IOptionFieldRules,
 	IOptionsField,
 	OptionsField
-}                     from './field/OptionsField'
+} from './field/OptionsField'
 import {
 	IValidator,
 	IValidators,
 	Validators
-}                     from './validator/Validator'
+} from './validator/Validator'
+import { IMonthYearField, MonthYearField } from './field/date/MonthYearField'
 
 
 export interface IFormFactory {
@@ -65,6 +66,11 @@ export interface IFormFactory {
 		validators: IValidator[],
 		rules?: IFieldRules
 	): IMatchingField
+
+	monthYear(
+		validators: IValidator[],
+		rules?: IFieldRules
+	): IMonthYearField
 
 	options(
 		validators: IValidator[],
@@ -117,12 +123,26 @@ export class FormFactory
 		return new MatchingField(validators, rules)
 	}
 
+	monthYear(
+		validators: IValidator[],
+		rules?: IFieldRules
+	): IMonthYearField {
+		return new MonthYearField(validators, rules)
+	}
+
 	options(
 		validators: IValidator[],
 		options: IFieldOption[],
 		rules?: IOptionFieldRules
 	): IOptionsField {
 		return new OptionsField(validators, options, rules)
+	}
+
+	yearMonth(
+		validators: IValidator[],
+		rules?: IFieldRules
+	): IDateField {
+		return new DateField(validators, rules)
 	}
 
 }

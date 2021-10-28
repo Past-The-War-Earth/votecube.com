@@ -6,7 +6,7 @@ export interface IPollRevisionDao extends IBasePollRevisionDao {
     findTree(parentId: PollRevision_Id): Promise<IPollRevision[]>;
 }
 export declare class PollRevisionDao extends BasePollRevisionDao implements IPollRevisionDao {
-    create: any;
-    findTree: any;
+    create(pollRevision: IPollRevision): Promise<void>;
+    findTree(parentId: PollRevision_Id): Promise<IPollRevision[]>;
 }
 //# sourceMappingURL=PollRevisionDao.d.ts.map

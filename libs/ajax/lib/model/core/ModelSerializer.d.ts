@@ -27,3 +27,4 @@ export declare abstract class ModelSerializer<M extends IModel> implements IMode
     abstract serializeRecord(model: M, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     abstract deserialize(mode: Mode, bin: In): Promise<M>;
 }
+//# sourceMappingURL=ModelSerializer.d.ts.map

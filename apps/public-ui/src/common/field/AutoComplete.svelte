@@ -85,6 +85,7 @@
 
 	$: errors = v(field.errors, delta)
 	$: label = v(field.label, delta)
+	// $: label = v(field.unlinkLabel, delta)
 	$: modified = v(!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
 		delta)
 	$: options = v(filter

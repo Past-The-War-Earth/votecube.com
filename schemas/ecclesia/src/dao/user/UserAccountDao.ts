@@ -5,6 +5,7 @@ import {
 	IBaseUserAccountDao,
 	IUserAccount,
 	LocalQSchema,
+	Q,
 	QUserAccount
 }                         from '../../generated/generated'
 import {
@@ -36,13 +37,25 @@ export class UserAccountDao
 	extends BaseUserAccountDao
 	implements IUserAccountDao {
 
+		/*
 	@UserAccountDao.Save({
 		id: I,
 		userName: A,
 		passwordHash: A
 	})
-	signUp
+	signUpOrig
+*/
 
+	async signUp(
+		userAccount: UserAccount,
+		context: IVotecubeContext
+	): Promise<IUserAccount> {
+		await this.db.save(userAccount, context)
+
+		return userAccount
+	}
+
+	/*
 	@UserAccountDao.FindOne.Tree((
 		userName: UserAccount_UserName,
 		Q: LocalQSchema,
@@ -54,7 +67,23 @@ export class UserAccountDao
 		],
 		where: ua.userName.equals(userName)
 	}))
-	findOneByUsername
+	findOneByUsernameOrig
+	*/
+
+	async findOneByUsername(
+		userName: UserAccount_UserName,
+		context: IVotecubeContext
+	): Promise<IUserAccount> {
+		let ua: QUserAccount
+
+		return this.db.findOne.tree({
+			select: {},
+			from: [
+				ua = Q.UserAccount
+			],
+			where: ua.userName.equals(userName)
+		})
+	}
 
 }
 

@@ -11,3 +11,4 @@ export declare class FactorSerializer extends ModelSerializer<IFactor> {
     serializeRecord(model: IFactor, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<IFactor>;
 }
+//# sourceMappingURL=Factor.d.ts.map

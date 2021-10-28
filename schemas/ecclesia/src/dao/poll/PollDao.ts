@@ -10,7 +10,7 @@ import {
 	IBasePollDao,
 	IPoll,
 }                         from '../../generated/generated'
-import {IVotecubeContext} from '../../index'
+import { IVotecubeContext } from '../../index'
 import {POLL_DAO}         from '../../tokens'
 
 export interface IPollDao
@@ -27,6 +27,7 @@ export class PollDao
 	extends BasePollDao
 	implements IPollDao {
 
+	/*
 	@PollDao.Save({
 		ageSuitability: A,
 		parent: {
@@ -124,7 +125,13 @@ export class PollDao
 			id: A,
 		}
 	})
-	create
+	*/
+	async create(
+		poll: IPoll | IPoll[],
+		context: IVotecubeContext
+	) {
+		this.save(poll, context)
+	}
 
 }
 

@@ -1,3 +1,4 @@
+import { IField } from '..';
 import { IFieldBase, IFieldError } from '../field/FieldBase';
 import { custom } from './custom';
 import { email } from './email';
@@ -11,7 +12,7 @@ export interface IValidator<F extends IFieldBase = IFieldBase> {
     (field: F): IFieldError[] | IFieldError | null;
 }
 export interface IValidators {
-    custom: (validatorName: string, validatorFunction: () => IFieldError[] | IFieldError | null, validatorType?: string) => IValidator;
+    custom: (validatorName: string, validatorFunction: (field?: IField) => IFieldError[] | IFieldError | null, validatorType?: string) => IValidator;
     email: () => IValidator;
     minLength: (minLength: number) => IValidator;
     required: () => IValidator;

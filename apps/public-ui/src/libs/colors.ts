@@ -10,7 +10,7 @@ export async function loadColors() {
 	}
 
 	const data = await get(`./assets/data/colors${HASH}.json`)
-	rawColors  = JSON.parse(data)
+	rawColors  = JSON.parse(data as string)
 
 	return rawColors
 }

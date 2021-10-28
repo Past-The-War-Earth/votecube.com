@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Mode_1 = require("./Mode");
-exports.MODE_CREATE = 0x00;
-exports.MODE_REFERENCE = 0x01;
-exports.MODE_RECORD = 0x02;
-class ModelSerializer {
+import { Mode } from './Mode';
+export const MODE_CREATE = 0x00;
+export const MODE_REFERENCE = 0x01;
+export const MODE_RECORD = 0x02;
+export class ModelSerializer {
     constructor(entityType) {
         this.entityType = entityType;
         this.lastTempId = 0;
@@ -16,12 +14,12 @@ class ModelSerializer {
         }
         const id = model.id;
         if (id) {
-            out.byte(Mode_1.Mode.REFERENCE);
+            out.byte(Mode.REFERENCE);
             out.num(id);
         }
         else {
             const tempId = --this.lastTempId;
-            out.byte(Mode_1.Mode.RECORD);
+            out.byte(Mode.RECORD);
             tempRecordIds.push({
                 tempId: --this.lastTempId,
                 type: this.entityType,
@@ -36,5 +34,4 @@ class ModelSerializer {
         }
     }
 }
-exports.ModelSerializer = ModelSerializer;
 //# sourceMappingURL=ModelSerializer.js.map

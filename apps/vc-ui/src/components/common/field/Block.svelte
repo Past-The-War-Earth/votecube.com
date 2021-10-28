@@ -33,7 +33,7 @@
 		: null, delta)
 	$: label = v(fieldGroup.label, delta)
 	$: modified = v(!error && fieldGroup.rules.trackOriginal
-		&& !fieldGroup.theIsOriginal, delta)
+		&& !fieldGroup.isOriginal(), delta)
 	$: requiredInvalid = v(fieldGroup.isRequired && error, delta)
 	$: requiredValid = v(!modified && fieldGroup.isRequired && !error, delta)
 	$: touched = v(fieldGroup.touched, delta)

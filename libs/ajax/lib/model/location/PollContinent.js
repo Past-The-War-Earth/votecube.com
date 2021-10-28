@@ -1,15 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const model_1 = require("@votecube/model");
-const tokens_1 = require("../../tokens");
-const ModelSerializer_1 = require("../core/ModelSerializer");
+import { DI } from '@airport/di';
+import { EntityType } from '@votecube/model';
+import { AJAX_Z_POLL_CONTINENT } from '../../tokens';
+import { ModelSerializer } from '../core/ModelSerializer';
 /**
  * Please try to keep properties serialized in UI-model alphabetic order. :)
  */
-class PollContinentSerializer extends ModelSerializer_1.ModelSerializer {
+export class PollContinentSerializer extends ModelSerializer {
     constructor() {
-        super(model_1.EntityType.PLL_CNTNNT);
+        super(EntityType.PLL_CNTNNT);
     }
     async serializeRecord(model, out, tempRecordIds) {
         out.num(model.continent.id);
@@ -18,6 +16,5 @@ class PollContinentSerializer extends ModelSerializer_1.ModelSerializer {
         return undefined;
     }
 }
-exports.PollContinentSerializer = PollContinentSerializer;
-di_1.DI.set(tokens_1.AJAX_Z_POLL_CONTINENT, PollContinentSerializer);
+DI.set(AJAX_Z_POLL_CONTINENT, PollContinentSerializer);
 //# sourceMappingURL=PollContinent.js.map

@@ -1,10 +1,10 @@
-import {IValidator} from '../validator/Validator'
+import { IValidator } from '../validator/Validator'
 import {
 	Field,
 	IField,
 	IFieldRules,
 	LabelRule
-}                   from './Field'
+} from './Field'
 
 export interface IFieldOption {
 	id: string | number
@@ -40,10 +40,10 @@ export class OptionsField
 	extends Field
 	implements IOptionsField {
 
-	filteredOptions: IFieldOption[]                             = []
-	optionsMap: { [optionKey: string]: IFieldOption }           = {}
+	filteredOptions: IFieldOption[] = []
+	optionsMap: { [optionKey: string]: IFieldOption } = {}
 	originalSelectionMap: { [optionKey: string]: IFieldOption } = {}
-	selectionMap: { [optionKey: string]: IFieldOption }         = {}
+	selectionMap: { [optionKey: string]: IFieldOption } = {}
 	theOptions: IFieldOption[]
 
 	constructor(
@@ -55,7 +55,7 @@ export class OptionsField
 			...rules as any,
 			label: LabelRule.OVER
 		})
-		this.theValue      = rules && rules.multi ? [] : null
+		this.theValue = rules && rules.multi ? [] : null
 		this.originalValue = rules && rules.multi ? [] : null
 
 		this.setOptions(options)
@@ -70,9 +70,9 @@ export class OptionsField
 	) {
 		this.setOptions(newOptions)
 
-		const newValue        = []
+		const newValue = []
 		const newSelectionMap = {}
-		let valueChanged    = false
+		let valueChanged = false
 		for (const selection of this.value) {
 			if (!this.optionsMap[selection.id]) {
 				valueChanged = true
@@ -83,7 +83,7 @@ export class OptionsField
 		}
 		if (valueChanged) {
 			this.selectionMap = newSelectionMap
-			this.value        = newValue
+			this.value = newValue
 			this.validate(true, false)
 		}
 		this.detect()
@@ -110,7 +110,7 @@ export class OptionsField
 	clear(): void {
 		if (this.theValue instanceof Array) {
 			this.selectionMap = {}
-			this.value        = []
+			this.value = []
 			this.filterOptions()
 		} else {
 			this.value = null
@@ -120,7 +120,9 @@ export class OptionsField
 	}
 
 	hidePopup(): void {
-		this.components[0].setShowOptions(false)
+		if (this.components[0].setShowOptions) {
+			this.components[0].setShowOptions(false)
+		}
 	}
 
 	isOriginal(): boolean {
@@ -168,7 +170,7 @@ export class OptionsField
 		}
 		if (resetOriginal) {
 			if (this.theValue instanceof Array) {
-				this.originalValue        = [
+				this.originalValue = [
 					...value
 				]
 				this.originalSelectionMap = {}
@@ -231,7 +233,7 @@ export class OptionsField
 	) {
 		if (this.theValue instanceof Array) {
 			this.selectionMap[option.id] = option
-			this.theValue                = [...this.theValue, option]
+			this.theValue = [...this.theValue, option]
 			this.filterOptions()
 		} else {
 			this.theValue = option

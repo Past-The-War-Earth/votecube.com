@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { AIR_DB } from '@airport/air-control';
+import { AIRPORT_DATABASE } from '@airport/air-control';
 import { DI } from '@airport/di';
 import { ImmutableRow } from '../ddl/infrastructure/row/ImmutableRow';
 import { SystemGeneratedRow } from '../ddl/infrastructure/row/SystemGeneratedRow';
@@ -64,7 +64,7 @@ import { PollRevision } from '../ddl/poll/revision/PollRevision';
 import { MutableActorRow } from '../ddl/infrastructure/row/MutableActorRow';
 import { MutableRow } from '../ddl/infrastructure/row/MutableRow';
 
-DI.db().get(AIR_DB).then(airDb => {
+DI.db().get(AIRPORT_DATABASE).then(airDb => {
   const accumulator = airDb.getAccumulator('votecube.com', 'ecclesia');
   accumulator.add(ImmutableRow, undefined);
   accumulator.add(SystemGeneratedRow, undefined);

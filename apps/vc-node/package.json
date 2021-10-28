@@ -4,7 +4,6 @@
     "@airport/check-in": "0.0.1",
     "@airport/di": "0.0.1",
     "@airport/mysql": "0.0.1",
-    "@airport/observe": "0.0.1",
     "@airport/tarmaq": "0.0.1",
     "@airport/terminal": "0.0.1",
     "@airport/terminal-map": "0.0.1",
@@ -13,7 +12,8 @@
     "@votecube/ecclesia": "0.0.1",
     "@types/node": "^14.10.0",
     "fastify": "^3.3.0",
-    "fastify-cors": "^4.1.0"
+    "fastify-cors": "^4.1.0",
+    "rxjs": "^7.3.0"
   },
   "devDependencies": {
     "tslint": "^5.20.1",

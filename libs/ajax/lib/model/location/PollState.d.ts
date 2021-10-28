@@ -11,3 +11,4 @@ export declare class PollStateSerializer extends ModelSerializer<IPollState> {
     serializeRecord(model: IPollState, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<IPollState>;
 }
+//# sourceMappingURL=PollState.d.ts.map

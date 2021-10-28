@@ -11,3 +11,4 @@ export declare class TownSerializer extends ModelSerializer<ITown> {
     serializeRecord(model: ITown, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<ITown>;
 }
+//# sourceMappingURL=Town.d.ts.map

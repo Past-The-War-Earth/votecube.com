@@ -73,6 +73,9 @@ export class CubeMoveMatrix {
             [4, 0, 3, 8, 4],
             [3, 0, 2, 8, 6],
             [2, 0, 1, 8, 8],
+            // next 8 - top and bottom are flipped (5 instead of 0)
+            // next 16 - upside down, second is flipped (5 to 0 and back),
+            // initial offset 180 abs(-12), 180 (+12%24)
         ];
         // 4 sequential positions for each entry, repeating (16 total)
         this.tempMatrixMoveXY = [];

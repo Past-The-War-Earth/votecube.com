@@ -6,6 +6,7 @@ export class FieldBase {
         this.dirty = false;
         this.errors = [];
         this.id = '';
+        // optionText
         this.components = [];
         this.pristine = true;
         this.theIsOriginal = true;
@@ -24,6 +25,12 @@ export class FieldBase {
     }
     get isRequired() {
         return this.validatorMap.required;
+    }
+    get optionText() {
+        return this._optionText;
+    }
+    set optionText(newOptionText) {
+        this._optionText = newOptionText;
     }
     get touched() {
         return this.theTouched;

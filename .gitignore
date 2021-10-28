@@ -21,3 +21,5 @@ public.zip
 
 # Ignore Microsoft Rush temp files
 .rush/
+
+.history/

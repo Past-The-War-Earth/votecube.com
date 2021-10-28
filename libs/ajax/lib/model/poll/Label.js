@@ -1,15 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const model_1 = require("@votecube/model");
-const tokens_1 = require("../../tokens");
-const ModelSerializer_1 = require("../core/ModelSerializer");
+import { DI } from '@airport/di';
+import { EntityType } from '@votecube/model';
+import { AJAX_Z_LABEL } from '../../tokens';
+import { ModelSerializer } from '../core/ModelSerializer';
 /**
  * Please try to keep properties serialized in UI-model alphabetic order. :)
  */
-class LabelSerializer extends ModelSerializer_1.ModelSerializer {
+export class LabelSerializer extends ModelSerializer {
     constructor() {
-        super(model_1.EntityType.LBL);
+        super(EntityType.LBL);
     }
     async serializeRecord(model, out, tempRecordIds) {
         out.str(model.description);
@@ -19,6 +17,5 @@ class LabelSerializer extends ModelSerializer_1.ModelSerializer {
         return undefined;
     }
 }
-exports.LabelSerializer = LabelSerializer;
-di_1.DI.set(tokens_1.AJAX_Z_LABEL, LabelSerializer);
+DI.set(AJAX_Z_LABEL, LabelSerializer);
 //# sourceMappingURL=Label.js.map

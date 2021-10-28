@@ -1,14 +1,15 @@
-import {IUser} from '@votecube/model'
+import { IUserAccount } from '@votecube/ecclesia'
+import { IUser } from '@votecube/model'
 import {
 	derived,
 	get,
 	Readable,
 	writable
-}              from 'svelte/store'
+} from 'svelte/store'
 import {
 	IRouteConfig,
 	Route_Path
-}              from './Routes'
+} from './Routes'
 
 export interface ITextToast {
 
@@ -54,7 +55,7 @@ function createTopMenuShown(): IToggleStore {
 }
 
 function createTextToast(): ITextToastStore {
-	const {set, subscribe} = writable({
+	const { set, subscribe } = writable({
 		seconds: 0,
 		text: '',
 		time: null
@@ -75,43 +76,43 @@ function createTextToast(): ITextToastStore {
 	}
 }
 
-export let authChecked         = writable(false)
-export let cardMove            = writable<{ move: number, moved: number[] }>(null)
+export let authChecked = writable(false)
+export let cardMove = writable<{ move: number, moved: number[] }>(null)
 export let checkSizeIntervalId = writable(-1)
-export let cube                = writable(false)
+export let cube = writable(false)
 // export let currentPage         = writable<any>(null)
-export let currentPage         = writable<IRouteConfig>(null)
-export let currentUrl          = writable<Route_Path>('')
-export let emInPx              = writable(0)
-export let forms               = writable(null)
-export let isDesktop           = writable(false)
-export let lastPage            = writable<IRouteConfig>(null)
-export let lastUrl             = writable<Route_Path>(null)
-export let mode                = writable<string>(null)
-export let noOverflow          = writable(false)
-export let pageTitle           = writable('Votecube')
-export let popup               = writable<boolean>(false)
-export let portalHeight        = writable(0)
-export let resized             = writable(false)
-export let routeParams         = writable<{ [key: string]: string }>(null)
-export let showConfirm         = writable(false)
-export let showMainMenu        = createShowMainMenu()
-export let showSignIn          = writable(false)
-export let text                = writable({})
-export let textToast           = createTextToast()
-export const topMenuShown      = createTopMenuShown()
-export let user                = writable<IUser>(null)
-export let verticalLayout      = writable(true)
-export let windowWidth         = writable(0)
+export let currentPage = writable<IRouteConfig>(null)
+export let currentUrl = writable<Route_Path>('')
+export let emInPx = writable(0)
+export let forms = writable(null)
+export let isDesktop = writable(false)
+export let lastPage = writable<IRouteConfig>(null)
+export let lastUrl = writable<Route_Path>(null)
+export let mode = writable<string>(null)
+export let noOverflow = writable(false)
+export let pageTitle = writable('Votecube')
+export let popup = writable<boolean>(false)
+export let portalHeight = writable(0)
+export let resized = writable(false)
+export let routeParams = writable<{ [key: string]: string }>(null)
+export let showConfirm = writable(false)
+export let showMainMenu = createShowMainMenu()
+export let showSignIn = writable(false)
+export let text = writable({})
+export let textToast = createTextToast()
+export const topMenuShown = createTopMenuShown()
+export let user = writable<IUserAccount>(null)
+export let verticalLayout = writable(true)
+export let windowWidth = writable(0)
 
 export let showTopMenu = derived<any, boolean>([
-		showMainMenu,
-		topMenuShown
-	],
+	showMainMenu,
+	topMenuShown
+],
 	([
-		 $showMainMenu,
-		 $topMenuShown
-	 ]) => !$showMainMenu && $topMenuShown)
+		$showMainMenu,
+		$topMenuShown
+	]) => !$showMainMenu && $topMenuShown)
 
 let lastSignedInState = {
 	authChecked: false,
@@ -153,12 +154,12 @@ export let signedInState = derived<any, ISignedInState>([
 	showSignIn,
 	user
 ], ([
-	    $authChecked,
-	    $currentPage,
-	    $currentUrl,
-	    $showSignIn,
-	    $user
-    ]) => {
+	$authChecked,
+	$currentPage,
+	$currentUrl,
+	$showSignIn,
+	$user
+]) => {
 	const changed = {
 		authChecked: $authChecked !== lastSignedInState.authChecked,
 		currentPage: $currentPage !== lastSignedInState.currentPage,

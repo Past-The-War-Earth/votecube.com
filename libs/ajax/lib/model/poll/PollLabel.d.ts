@@ -11,3 +11,4 @@ export declare class PollLabelSerializer extends ModelSerializer<IPollLabel> {
     serializeRecord(model: IPollLabel, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): IPollLabel;
 }
+//# sourceMappingURL=PollLabel.d.ts.map

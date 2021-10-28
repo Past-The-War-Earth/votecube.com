@@ -11,3 +11,4 @@ export declare class CountrySerializer extends ModelSerializer<ICountry> {
     serializeRecord(model: ICountry, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<ICountry>;
 }
+//# sourceMappingURL=Country.d.ts.map

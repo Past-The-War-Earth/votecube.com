@@ -290,7 +290,7 @@
 			errors: ({delta, field}) => field.errors,
 			label: ({delta, field}) => field.label,
 			modified: ({delta, errors, field}) =>
-				!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
+				!errors.length && field.rules.trackOriginal && !field.isOriginal(),
 			month: ({delta, field}) => field.fragments.month,
 			calendarTitle: ({delta, field, $text}) => {
 				return `${$text.UI.Common.Field.Datepicker.month[field.calendar.month]} ${field.calendar.year}`

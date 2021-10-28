@@ -3,3 +3,4 @@ export declare enum Type {
     DIMENSION = 2,
     DIRECTION = 3
 }
+//# sourceMappingURL=Type.d.ts.map

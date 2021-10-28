@@ -1,6 +1,7 @@
 import { LabelRule } from './field/Field';
 export { FragmentType } from './field/date/DateFragments';
 export { IDateField, IMutableDateState } from './field/date/DateField';
+export { IMonthYearField as IYearMonthField, IMutableYearMonthState } from './field/date/MonthYearField';
 export { IMatchingField } from './field/MatchingField';
 export { IColorChangeFlag, IColorChangeFlags, IColorField } from './field/ColorField';
 export { LabelRule, IFieldRules, IFieldText, IValidate, IDetect, IField } from './field/Field';

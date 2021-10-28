@@ -3,3 +3,4 @@ export declare enum Mode {
     RECORD = 1,
     REFERENCE = 2
 }
+//# sourceMappingURL=Mode.d.ts.map

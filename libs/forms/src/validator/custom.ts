@@ -1,9 +1,10 @@
-import {IFieldError} from '../field/FieldBase'
-import {IValidator}  from './Validator'
+import { IField } from '../field/Field'
+import { IFieldError } from '../field/FieldBase'
+import { IValidator } from './Validator'
 
 export function custom(
 	validatorName: string,
-	validatorFunction: () => IFieldError[] | IFieldError | null,
+	validatorFunction: (field: IField) => IFieldError[] | IFieldError | null,
 	validatorType = validatorName
 ): IValidator {
 	const validator = validatorFunction as any

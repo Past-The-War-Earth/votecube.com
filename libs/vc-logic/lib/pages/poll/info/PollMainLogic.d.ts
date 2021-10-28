@@ -1,5 +1,5 @@
-import { IObservable } from '@airport/observe';
 import { ITweenVote, ITweenVoteFactor, IVote, IVoteFactor, VoteFactor_Value } from '@votecube/model';
+import { Observable } from 'rxjs';
 declare type FrameDuration = number;
 declare type FrameNumber = number;
 declare type NumberOfFrames = number;
@@ -24,13 +24,13 @@ export interface IFactorConfig {
 }
 export interface IPollMainLogic {
     copyVoteToTween(vote: IVote, lastVote: IVote): ITweenVote;
-    scheduleFactorTweens(oldVote: IVote, newVote: ITweenVote, durationMillis: FrameDuration): IObservable<ITweenVote>;
+    scheduleFactorTweens(oldVote: IVote, newVote: ITweenVote, durationMillis: FrameDuration): Observable<ITweenVote>;
     votesEqual(lastVote: IVote, vote: IVote): boolean;
 }
 export declare class PollMainLogic implements IPollMainLogic {
     votesEqual(lastVote: IVote, vote: IVote): boolean;
     copyVoteToTween(vote: IVote, lastVote: IVote): ITweenVote;
-    scheduleFactorTweens(oldVote: IVote, newVote: ITweenVote, durationMillis: FrameDuration): IObservable<ITweenVote>;
+    scheduleFactorTweens(oldVote: IVote, newVote: ITweenVote, durationMillis: FrameDuration): Observable<ITweenVote>;
     private getTweenVoteFactor;
     private runFactorTween;
     private setFinalFactor;

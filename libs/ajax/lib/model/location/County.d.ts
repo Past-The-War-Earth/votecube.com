@@ -11,3 +11,4 @@ export declare class CountySerializer extends ModelSerializer<ICounty> {
     serializeRecord(model: ICounty, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<ICounty>;
 }
+//# sourceMappingURL=County.d.ts.map

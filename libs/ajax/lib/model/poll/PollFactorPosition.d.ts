@@ -10,5 +10,6 @@ export declare class PollFactorPositionSerializer extends ModelSerializer<IPollF
     constructor();
     serializeRecord(model: IPollFactorPosition, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<IPollFactorPosition>;
-    getAxisByte(axis: any): 1 | 0 | 2;
+    getAxisByte(axis: any): 0 | 1 | 2;
 }
+//# sourceMappingURL=PollFactorPosition.d.ts.map

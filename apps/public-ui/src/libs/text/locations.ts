@@ -3,11 +3,11 @@ import {HASH}    from '../../helpers/hash'
 import {setText} from './setText'
 
 export var loadLocations = async (
-	locale
+	locale: string
 ) => {
 	const text = await get(`./assets/text/${locale}/locations${HASH}.json`)
 
-	return setText(text)
+	return setText(text as string)
 }
 // switch (locale) {
 //     case 'en-us': {

@@ -1,9 +1,5 @@
 import {DI}              from '@airport/di'
 import {
-	IObservable,
-	Subject
-}                        from '@airport/observe'
-import {
 	Factor_Number,
 	ITweenVote,
 	ITweenVoteFactor,
@@ -11,6 +7,10 @@ import {
 	IVoteFactor,
 	VoteFactor_Value
 }                        from '@votecube/model'
+import {
+	Observable,
+	Subject
+}                        from 'rxjs'
 import {POLL_MAIN_LOGIC} from '../../../tokens'
 
 type FrameDuration = number
@@ -50,7 +50,7 @@ export interface IPollMainLogic {
 		oldVote: IVote,
 		newVote: ITweenVote,
 		durationMillis: FrameDuration,
-	): IObservable<ITweenVote>
+	): Observable<ITweenVote>
 
 	votesEqual(
 		lastVote: IVote,
@@ -90,7 +90,7 @@ export class PollMainLogic
 		oldVote: IVote,
 		newVote: ITweenVote,
 		durationMillis: FrameDuration,
-	): IObservable<ITweenVote> {
+	): Observable<ITweenVote> {
 
 		const subject = new Subject<ITweenVote>()
 

@@ -271,7 +271,7 @@
 			errors: ({delta, field}) => field.errors,
 			label: ({delta, field}) => field.label,
 			modified: ({delta, errors, field}) =>
-				!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
+				!errors.length && field.rules.trackOriginal && !field.isOriginal(),
 			options: ({delta, field, filter}) => filter
 				? field.filteredOptions
 					.filter(option =>

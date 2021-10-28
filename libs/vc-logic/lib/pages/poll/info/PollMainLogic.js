@@ -1,5 +1,5 @@
 import { DI } from '@airport/di';
-import { Subject } from '@airport/observe';
+import { Subject } from 'rxjs';
 import { POLL_MAIN_LOGIC } from '../../../tokens';
 export class PollMainLogic {
     votesEqual(lastVote, vote) {

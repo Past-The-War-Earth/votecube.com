@@ -6,7 +6,7 @@ export interface IUserAccountDao extends IBaseUserAccountDao {
     findOneByUsername(userName: UserAccount_UserName, context: IVotecubeContext): Promise<IUserAccount>;
 }
 export declare class UserAccountDao extends BaseUserAccountDao implements IUserAccountDao {
-    signUp: any;
-    findOneByUsername: any;
+    signUp(userAccount: UserAccount, context: IVotecubeContext): Promise<IUserAccount>;
+    findOneByUsername(userName: UserAccount_UserName, context: IVotecubeContext): Promise<IUserAccount>;
 }
 //# sourceMappingURL=UserAccountDao.d.ts.map

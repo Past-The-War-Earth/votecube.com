@@ -38,6 +38,7 @@ export interface IFieldBase {
 	optionText
 	pristine: boolean
 	text
+	theIsOriginal: boolean
 	touched: boolean
 	valid: boolean
 	validationRun: number
@@ -119,7 +120,7 @@ export abstract class FieldBase
 	id = ''
 	lastValue: any
 	name: string
-	optionText
+	// optionText
 	components: IComponent[] = []
 	pristine                 = true
 	text
@@ -133,6 +134,8 @@ export abstract class FieldBase
 	protected originalValue: any
 
 	private theTouched = false
+
+	protected _optionText: string
 
 	constructor(
 		public validators: IValidator[] = []
@@ -150,6 +153,16 @@ export abstract class FieldBase
 
 	get isRequired(): boolean {
 		return this.validatorMap.required
+	}
+
+	get optionText(): string {
+		return this._optionText
+	}
+
+	set optionText(
+		newOptionText: string
+	) {
+		this._optionText = newOptionText 
 	}
 
 	get touched(): boolean {

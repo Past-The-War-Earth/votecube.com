@@ -11,3 +11,4 @@ export declare class PositionSerializer extends ModelSerializer<IPosition> {
     serializeRecord(model: IPosition, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<IPosition>;
 }
+//# sourceMappingURL=Position.d.ts.map

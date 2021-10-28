@@ -11,3 +11,4 @@ export declare class LabelSerializer extends ModelSerializer<ILabel> {
     serializeRecord(model: ILabel, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<ILabel>;
 }
+//# sourceMappingURL=Label.d.ts.map

@@ -78,7 +78,7 @@ export interface IMutableDateState {
 
 export interface IDateFieldInternal
 	extends IDateField,
-	        IMutableDateState {
+	IMutableDateState {
 }
 
 export class DateField
@@ -86,9 +86,9 @@ export class DateField
 	implements IDateFieldInternal {
 
 	fragments = new DateFragments(this)
-	calendar  = new DateCalendar(this)
+	calendar = new DateCalendar(this)
 	selection = new DateSelection()
-	today     = new Date()
+	today = new Date()
 
 	private rangeValidators: IValidator[]
 
@@ -101,7 +101,7 @@ export class DateField
 		this.rules.label = LabelRule.OVER
 
 		this.rangeValidators = filterToRangeValidators(validators)
-		this.theValue        = null
+		this.theValue = null
 
 		this.reset()
 	}
@@ -136,7 +136,9 @@ export class DateField
 	}
 
 	hidePopup(): void {
-		this.components[0].setShowCalendar(false)
+		if (this.components[0].setShowCalendar) {
+			this.components[0].setShowCalendar(false)
+		}
 	}
 
 	isOriginal(): boolean {
@@ -230,11 +232,11 @@ export class DateField
 		calendarOnly?: boolean
 	) {
 		let calendarMonth = month
-		let calendarYear  = year
+		let calendarYear = year
 		if (!year) {
-			const now     = new Date()
+			const now = new Date()
 			calendarMonth = now.getMonth() as Month
-			calendarYear  = now.getFullYear()
+			calendarYear = now.getFullYear()
 		}
 		this.calendar.setState(external, null, calendarMonth, calendarYear)
 
@@ -274,7 +276,7 @@ export class DateField
 			if (!this.shouldValidate(external)) {
 				return
 			}
-			const key     = 'format'
+			const key = 'format'
 			this.errors = [{
 				key,
 				message: this.text.errors[key]
@@ -303,7 +305,7 @@ export class DateField
 		dateOfMonth: DateOfMonth,
 		weekIndex: 0 | 1 | 2 | 3 | 4 | 5
 	): [number, Month] {
-		let year  = this.calendar.year
+		let year = this.calendar.year
 		let month = this.calendar.month
 		if (!weekIndex && dateOfMonth > 7) {
 			month--
@@ -329,8 +331,8 @@ export class DateField
 		const [year, month] = this.getCalendarYearAndMonth(dateOfMonth, weekIndex)
 
 		// FIXME: verify correctness after range validator is implemented
-		const value          = new Date(Date.UTC(year, month, dateOfMonth))
-		const numValue       = value.getTime()
+		const value = new Date(Date.UTC(year, month, dateOfMonth))
+		const numValue = value.getTime()
 		const fakeField: any = {
 			fragments: {
 				valid: true

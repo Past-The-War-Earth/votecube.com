@@ -1,5 +1,5 @@
 import { DI } from '@airport/di';
-import { BehaviorSubject } from '@airport/observe';
+import { BehaviorSubject } from 'rxjs';
 import { APP_CONTAINER } from './container';
 import { user } from './store';
 import { AUTH, CONNECTION_MANAGER } from './tokens';

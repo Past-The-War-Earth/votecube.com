@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		ABOUT,
 		APP_CONTAINER,

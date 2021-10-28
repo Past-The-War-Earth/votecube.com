@@ -15,3 +15,4 @@ export declare class Out {
     str(str: string): void;
     toData(): ArrayBuffer;
 }
+//# sourceMappingURL=Out.d.ts.map

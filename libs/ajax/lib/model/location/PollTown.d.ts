@@ -11,3 +11,4 @@ export declare class PollTownSerializer extends ModelSerializer<IPollTown> {
     serializeRecord(model: IPollTown, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<IPollTown>;
 }
+//# sourceMappingURL=PollTown.d.ts.map

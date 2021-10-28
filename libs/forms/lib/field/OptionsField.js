@@ -58,7 +58,9 @@ export class OptionsField extends Field {
         this.onValueChanged();
     }
     hidePopup() {
-        this.components[0].setShowOptions(false);
+        if (this.components[0].setShowOptions) {
+            this.components[0].setShowOptions(false);
+        }
     }
     isOriginal() {
         if (!this.rules.trackOriginal) {

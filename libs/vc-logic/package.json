@@ -1,14 +1,14 @@
 {
   "dependencies": {
     "@airport/di": "0.0.1",
-    "@airport/observe": "0.0.1",
     "@votecube/cube-logic": "0.0.1",
     "@votecube/forms": "0.0.1",
     "@votecube/model": "0.0.1",
     "@votecube/ecclesia": "0.0.1",
     "firebase": "^7.3.0",
     "jssha": "^2.3.x",
-    "page": "^1.11.3"
+    "page": "^1.11.3",
+    "rxjs": "^7.3.0"
   },
   "devDependencies": {
     "svelte": "^3.16.3",
@@ -17,6 +17,7 @@
   },
   "main": "lib/index.js",
   "name": "@votecube/vc-logic",
+  "type": "module",
   "typings": "lib/index",
   "version": "0.0.1"
 }

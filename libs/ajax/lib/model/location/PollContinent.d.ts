@@ -11,3 +11,4 @@ export declare class PollContinentSerializer extends ModelSerializer<IPollContin
     serializeRecord(model: IPollContinent, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): Promise<IPollContinent>;
 }
+//# sourceMappingURL=PollContinent.d.ts.map

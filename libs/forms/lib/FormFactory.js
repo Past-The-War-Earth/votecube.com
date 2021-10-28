@@ -7,6 +7,7 @@ import { FieldGroup } from './field/FieldGroup';
 import { MatchingField } from './field/MatchingField';
 import { OptionsField } from './field/OptionsField';
 import { Validators } from './validator/Validator';
+import { MonthYearField } from './field/date/MonthYearField';
 export class FormFactory {
     constructor() {
         this.validators = Validators;
@@ -26,8 +27,14 @@ export class FormFactory {
     matching(validators, rules) {
         return new MatchingField(validators, rules);
     }
+    monthYear(validators, rules) {
+        return new MonthYearField(validators, rules);
+    }
     options(validators, options, rules) {
         return new OptionsField(validators, options, rules);
+    }
+    yearMonth(validators, rules) {
+        return new DateField(validators, rules);
     }
 }
 DI.set(FORM_FACTORY, FormFactory);

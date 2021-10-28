@@ -11,3 +11,4 @@ export declare class StateSerializer extends ModelSerializer<IState> {
     serializeRecord(model: IState, out: Out, tempRecordIds: ITempRecordId[]): Promise<void>;
     deserialize(mode: Mode, bin: In): IState;
 }
+//# sourceMappingURL=State.d.ts.map

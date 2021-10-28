@@ -1,1 +1,0 @@
-export var HASH = '.kow1wtsd'

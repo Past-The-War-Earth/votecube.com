@@ -8,7 +8,7 @@ export async function loadLocations() {
 		return locations
 	}
 	const text = await get(`./assets/data/locations${HASH}.json`)
-	locations  = JSON.parse(text)
+	locations  = JSON.parse(text as string)
 
 	return locations
 }

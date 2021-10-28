@@ -24,6 +24,7 @@ export interface IFieldBase {
     optionText: any;
     pristine: boolean;
     text: any;
+    theIsOriginal: boolean;
     touched: boolean;
     valid: boolean;
     validationRun: number;
@@ -57,7 +58,6 @@ export declare abstract class FieldBase implements IFieldBase {
     id: string;
     lastValue: any;
     name: string;
-    optionText: any;
     components: IComponent[];
     pristine: boolean;
     text: any;
@@ -69,9 +69,12 @@ export declare abstract class FieldBase implements IFieldBase {
     protected theValue: any;
     protected originalValue: any;
     private theTouched;
+    protected _optionText: string;
     constructor(validators?: IValidator[]);
     get hasValue(): boolean;
     get isRequired(): boolean;
+    get optionText(): string;
+    set optionText(newOptionText: string);
     get touched(): boolean;
     get value(): any;
     set value(newValue: any);

@@ -115,6 +115,7 @@ export class PollFormLogic {
             }),
             outcomes,
             theme,
+            // timeframe
         }, [formFactory.validators.required()], text);
     }
     createFactorForm(uiText, form, formValidators) {

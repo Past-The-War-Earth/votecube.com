@@ -35,7 +35,9 @@ export class DateField extends Field {
         this.setState(true, null, null, null);
     }
     hidePopup() {
-        this.components[0].setShowCalendar(false);
+        if (this.components[0].setShowCalendar) {
+            this.components[0].setShowCalendar(false);
+        }
     }
     isOriginal() {
         if (!this.rules.trackOriginal) {

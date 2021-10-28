@@ -1,18 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const di_1 = require("@airport/di");
-const model_1 = require("@votecube/model");
-const tokens_1 = require("../tokens");
-const ModelSerializer_1 = require("./core/ModelSerializer");
+import { DI } from '@airport/di';
+import { EntityType } from '@votecube/model';
+import { AJAX_Z_FACTOR, AJAX_Z_FACTOR_POSITION, AJAX_Z_POSITION } from '../tokens';
+import { ModelSerializer } from './core/ModelSerializer';
 /**
  * Please try to keep properties serialized in UI-model alphabetic order. :)
  */
-class FactorPositionSerializer extends ModelSerializer_1.ModelSerializer {
+export class FactorPositionSerializer extends ModelSerializer {
     constructor() {
-        super(model_1.EntityType.DIM_DIR);
+        super(EntityType.DIM_DIR);
     }
     async serializeRecord(model, out, tempRecordIds) {
-        const [factorZ, positionZ] = await di_1.DI.get(tokens_1.AJAX_Z_FACTOR, tokens_1.AJAX_Z_POSITION);
+        const [factorZ, positionZ] = await DI.get(AJAX_Z_FACTOR, AJAX_Z_POSITION);
         await factorZ.serialize(model.factor, out, tempRecordIds);
         await positionZ.serialize(model.position, out, tempRecordIds);
     }
@@ -20,6 +18,5 @@ class FactorPositionSerializer extends ModelSerializer_1.ModelSerializer {
         return undefined;
     }
 }
-exports.FactorPositionSerializer = FactorPositionSerializer;
-di_1.DI.set(tokens_1.AJAX_Z_FACTOR_POSITION, FactorPositionSerializer);
+DI.set(AJAX_Z_FACTOR_POSITION, FactorPositionSerializer);
 //# sourceMappingURL=FactorPosition.js.map

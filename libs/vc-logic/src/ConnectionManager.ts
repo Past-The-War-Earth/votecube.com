@@ -24,7 +24,7 @@ export interface IConnectionManager {
 export class ConnectionManager
 	implements IConnectionManager {
 
-	serverUrlPrefix = 'http://localhost:8081/api/'
+	serverUrlPrefix = 'http://localhost:2345/api/'
 
 	async get<T>(
 		url: string,
@@ -45,13 +45,13 @@ export class ConnectionManager
 		value: V,
 		params: any = {}
 	): Promise<R> {
-		const [entityStateManager, operationSerializer]
-			                    = await DI.db().get(ENTITY_STATE_MANAGER, OPERATION_SERIALIZER)
-		const serializedValue = operationSerializer.serialize(value, entityStateManager)
+		// const [entityStateManager, operationSerializer]
+		// 	                    = await DI.db().get(ENTITY_STATE_MANAGER, OPERATION_SERIALIZER)
+		// const serializedValue = operationSerializer.serialize(value, entityStateManager)
 		const response        = await fetch(this.serverUrlPrefix + url +
 			this.getParamsSuffix(params), {
 			method: 'PUT',
-			body: JSON.stringify(serializedValue)
+			body: JSON.stringify(value)
 		})
 
 		// TODO: implement error handling

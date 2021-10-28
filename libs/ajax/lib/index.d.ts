@@ -24,3 +24,4 @@ export * from './model/Factor';
 export * from './model/FactorPosition';
 export * from './model/Position';
 export * from './tokens';
+//# sourceMappingURL=index.d.ts.map
