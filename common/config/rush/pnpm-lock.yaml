@@ -61,6 +61,7 @@ dependencies:
   '@rush-temp/vc-logic': 'file:projects/vc-logic.tgz'
   '@rush-temp/vc-node': 'file:projects/vc-node.tgz'
   '@rush-temp/vc-ui': 'file:projects/vc-ui.tgz_webpack-cli@3.3.12'
+  '@rush-temp/votecube': 'file:projects/votecube.tgz'
   '@rush-temp/write-processor': 'file:projects/write-processor.tgz'
   '@sveltejs/kit': 1.0.0-next.190
   '@tsconfig/svelte': 2.0.1
@@ -10979,10 +10980,12 @@ packages:
       tarball: 'file:projects/traffic-pattern.tgz'
     version: 0.0.0
   'file:projects/travel-document-checkpoint.tgz':
+    dependencies:
+      uuid: 8.3.2
     dev: false
     name: '@rush-temp/travel-document-checkpoint'
     resolution:
-      integrity: sha512-3kEefmEi8+XJKKmdRAWU8l6auFsRrEzP90z8QigGxtA4rl7XWjGzWCmxW/uIStRBRHCQx1hus3Bwc5L7TFutaA==
+      integrity: sha512-xkJLcuUnK/bq065M3Nqo1dParB06Myqs/ygDn2ef3zoiZwAZcGq5u5NYSCJLRaUr9iI0wTL9idApVOCQ2jlktw==
       tarball: 'file:projects/travel-document-checkpoint.tgz'
     version: 0.0.0
   'file:projects/ui.tgz':
@@ -11057,6 +11060,13 @@ packages:
     resolution:
       integrity: sha512-4Qn7X9ihLNkdRnA6GGG9GtOMTEwtEZGnAtDz9puyG4gvb0E/CU+PQvu5fRBPcbQ+0zuFeG3A9kr8//4YaINUEg==
       tarball: 'file:projects/vc-ui.tgz'
+    version: 0.0.0
+  'file:projects/votecube.tgz':
+    dev: false
+    name: '@rush-temp/votecube'
+    resolution:
+      integrity: sha512-Gbw79WDsrlvkb5LyhL9zlpwieiAUoSgLBAK/jYKZenWeMmv63h8kePha2RoEUCGDvkLXatzEX1qjHFvjAIYklA==
+      tarball: 'file:projects/votecube.tgz'
     version: 0.0.0
   'file:projects/write-processor.tgz':
     dependencies:
@@ -11144,6 +11154,7 @@ specifiers:
   '@rush-temp/vc-logic': 'file:./projects/vc-logic.tgz'
   '@rush-temp/vc-node': 'file:./projects/vc-node.tgz'
   '@rush-temp/vc-ui': 'file:./projects/vc-ui.tgz'
+  '@rush-temp/votecube': 'file:./projects/votecube.tgz'
   '@rush-temp/write-processor': 'file:./projects/write-processor.tgz'
   '@sveltejs/kit': next
   '@tsconfig/svelte': ^2.0.0

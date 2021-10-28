@@ -6,27 +6,33 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                          from '@airport/air-control'
-import {ImmutableActorRow} from '../../infrastructure/row/ImmutableActorRow'
-import {Factor}            from '../Factor'
-import {Position}          from './Position'
+} from '@airport/air-control'
+import { ImmutableActorRow } from '../../infrastructure/row/ImmutableActorRow'
+import { Factor } from '../Factor'
+import { Position } from './Position'
 
 /**
  * Which positions belong to which factors.
  */
+
+export type FactorPosition_Id = number
+
 @Entity()
-@Table({name: 'FACTOR_POSITIONS'})
+@Table({ name: 'FACTOR_POSITIONS' })
 export class FactorPosition
 	extends ImmutableActorRow {
 
 	@Id()
+	@GeneratedValue()
+	@Column({ name: 'FACTOR_POSITION_ID' })
+	id: FactorPosition_Id
+
 	@ManyToOne()
-	@JoinColumn({name: 'FACTOR_ID'})
+	@JoinColumn({ name: 'FACTOR_ID' })
 	factor: Factor
 
-	@Id()
 	@ManyToOne()
-	@JoinColumn({name: 'POSITION_ID'})
+	@JoinColumn({ name: 'POSITION_ID' })
 	position: Position
 
 }

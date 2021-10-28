@@ -90,6 +90,11 @@
       "projectFolder": "schemas/public-db",
       "shouldPublish": true
     },
+    {
+      "packageName": "@votecube/votecube",
+      "projectFolder": "schemas/votecube",
+      "shouldPublish": true
+    },
     // "apis" folder (alphabetical order)
     {
       "packageName": "@airport/air-control",
