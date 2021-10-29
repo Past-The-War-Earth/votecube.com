@@ -1,9 +1,6 @@
 import {
 	IRepositoryEntity,
 } from '@airport/holding-pattern';
-import {
-	ICategory,
-} from './category';
 
 
 
@@ -11,18 +8,16 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ISituation extends IRepositoryEntity {
+export interface IOutcome extends IRepositoryEntity {
 	
 	// Id Properties
 
 	// Id Relations
 
 	// Non-Id Properties
+	name?: string;
 
 	// Non-Id Relations
-	theme?: ICategory;
-	parent?: ISituation;
-	children?: ISituation[];
 
 	// Transient Properties
 

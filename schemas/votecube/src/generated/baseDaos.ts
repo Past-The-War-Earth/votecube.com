@@ -13,8 +13,60 @@ import {
 	QCategory,
 } from './qcategory';
 import {
+	IFactor,
+} from './factor/factor';
+import {
+	FactorESelect,
+	FactorECreateColumns,
+	FactorECreateProperties,
+	FactorEUpdateColumns,
+	FactorEUpdateProperties,
+	FactorEId,
+	FactorGraph,
+	QFactor,
+} from './factor/qfactor';
+import {
+	IFactorPosition,
+} from './factor/position/factorposition';
+import {
+	FactorPositionESelect,
+	FactorPositionECreateColumns,
+	FactorPositionECreateProperties,
+	FactorPositionEUpdateColumns,
+	FactorPositionEUpdateProperties,
+	FactorPositionEId,
+	FactorPositionGraph,
+	QFactorPosition,
+} from './factor/position/qfactorposition';
+import {
+	IOutcome,
+} from './situation/outcome';
+import {
+	OutcomeESelect,
+	OutcomeECreateColumns,
+	OutcomeECreateProperties,
+	OutcomeEUpdateColumns,
+	OutcomeEUpdateProperties,
+	OutcomeEId,
+	OutcomeGraph,
+	QOutcome,
+} from './situation/qoutcome';
+import {
+	IPosition,
+} from './factor/position/position';
+import {
+	PositionESelect,
+	PositionECreateColumns,
+	PositionECreateProperties,
+	PositionEUpdateColumns,
+	PositionEUpdateProperties,
+	PositionEId,
+	PositionGraph,
+	QPosition,
+} from './factor/position/qposition';
+import {
 	ISituation,
-} from './situation';
+} from './situation/situation';
 import {
 	SituationESelect,
 	SituationECreateColumns,
@@ -24,7 +76,20 @@ import {
 	SituationEId,
 	SituationGraph,
 	QSituation,
-} from './qsituation';
+} from './situation/qsituation';
+import {
+	ISituationFactorPosition,
+} from './situation/situationfactorposition';
+import {
+	SituationFactorPositionESelect,
+	SituationFactorPositionECreateColumns,
+	SituationFactorPositionECreateProperties,
+	SituationFactorPositionEUpdateColumns,
+	SituationFactorPositionEUpdateProperties,
+	SituationFactorPositionEId,
+	SituationFactorPositionGraph,
+	QSituationFactorPosition,
+} from './situation/qsituationfactorposition';
 import {
 	IDao,
 	IEntityCascadeGraph,
@@ -102,6 +167,118 @@ export class BaseCategoryDao
 }
 
 
+export interface IBaseFactorDao
+  extends IDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> {
+}
+
+export class BaseFactorDao
+  extends SQDIDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor>
+	implements IBaseFactorDao {
+	
+	static Find      = new DaoQueryDecorators<FactorESelect>();
+	static FindOne   = new DaoQueryDecorators<FactorESelect>();
+	static Search    = new DaoQueryDecorators<FactorESelect>();
+	static SearchOne = new DaoQueryDecorators<FactorESelect>();
+	static Save(
+		config: FactorGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<FactorGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(3)
+	}
+	
+	constructor() {
+		super(3)
+	}
+}
+
+
+export interface IBaseFactorPositionDao
+  extends IDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition> {
+}
+
+export class BaseFactorPositionDao
+  extends SQDIDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition>
+	implements IBaseFactorPositionDao {
+	
+	static Find      = new DaoQueryDecorators<FactorPositionESelect>();
+	static FindOne   = new DaoQueryDecorators<FactorPositionESelect>();
+	static Search    = new DaoQueryDecorators<FactorPositionESelect>();
+	static SearchOne = new DaoQueryDecorators<FactorPositionESelect>();
+	static Save(
+		config: FactorPositionGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<FactorPositionGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(2)
+	}
+	
+	constructor() {
+		super(2)
+	}
+}
+
+
+export interface IBaseOutcomeDao
+  extends IDao<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome> {
+}
+
+export class BaseOutcomeDao
+  extends SQDIDao<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome>
+	implements IBaseOutcomeDao {
+	
+	static Find      = new DaoQueryDecorators<OutcomeESelect>();
+	static FindOne   = new DaoQueryDecorators<OutcomeESelect>();
+	static Search    = new DaoQueryDecorators<OutcomeESelect>();
+	static SearchOne = new DaoQueryDecorators<OutcomeESelect>();
+	static Save(
+		config: OutcomeGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<OutcomeGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(4)
+	}
+	
+	constructor() {
+		super(4)
+	}
+}
+
+
+export interface IBasePositionDao
+  extends IDao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition> {
+}
+
+export class BasePositionDao
+  extends SQDIDao<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition>
+	implements IBasePositionDao {
+	
+	static Find      = new DaoQueryDecorators<PositionESelect>();
+	static FindOne   = new DaoQueryDecorators<PositionESelect>();
+	static Search    = new DaoQueryDecorators<PositionESelect>();
+	static SearchOne = new DaoQueryDecorators<PositionESelect>();
+	static Save(
+		config: PositionGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<PositionGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(1)
+	}
+	
+	constructor() {
+		super(1)
+	}
+}
+
+
 export interface IBaseSituationDao
   extends IDao<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
 }
@@ -121,10 +298,38 @@ export class BaseSituationDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(6)
 	}
 	
 	constructor() {
-		super(1)
+		super(6)
+	}
+}
+
+
+export interface IBaseSituationFactorPositionDao
+  extends IDao<ISituationFactorPosition, SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition> {
+}
+
+export class BaseSituationFactorPositionDao
+  extends SQDIDao<ISituationFactorPosition, SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition>
+	implements IBaseSituationFactorPositionDao {
+	
+	static Find      = new DaoQueryDecorators<SituationFactorPositionESelect>();
+	static FindOne   = new DaoQueryDecorators<SituationFactorPositionESelect>();
+	static Search    = new DaoQueryDecorators<SituationFactorPositionESelect>();
+	static SearchOne = new DaoQueryDecorators<SituationFactorPositionESelect>();
+	static Save(
+		config: SituationFactorPositionGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<SituationFactorPositionGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(5)
+	}
+	
+	constructor() {
+		super(5)
 	}
 }

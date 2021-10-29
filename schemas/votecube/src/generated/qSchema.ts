@@ -13,10 +13,20 @@ import {
 	getSchemaName
 }                      from '@airport/ground-control';
 import { QCategory } from './qcategory';
-import { QSituation } from './qsituation';
+import { QFactor } from './factor/qfactor';
+import { QFactorPosition } from './factor/position/qfactorposition';
+import { QOutcome } from './situation/qoutcome';
+import { QPosition } from './factor/position/qposition';
+import { QSituation } from './situation/qsituation';
+import { QSituationFactorPosition } from './situation/qsituationfactorposition';
 import {
   Category,
-  Situation
+  Factor,
+  FactorPosition,
+  Outcome,
+  Position,
+  Situation,
+  SituationFactorPosition
 } from '../ddl/ddl';
 
 export interface LocalQSchema extends AirportQSchema {
@@ -24,13 +34,23 @@ export interface LocalQSchema extends AirportQSchema {
   db: DbSchema;
 
 	Category: QCategory;
+	Factor: QFactor;
+	FactorPosition: QFactorPosition;
+	Outcome: QOutcome;
+	Position: QPosition;
 	Situation: QSituation;
+	SituationFactorPosition: QSituationFactorPosition;
 
 }
 
 const __constructors__ = {
 	Category: Category,
-	Situation: Situation
+	Factor: Factor,
+	FactorPosition: FactorPosition,
+	Outcome: Outcome,
+	Position: Position,
+	Situation: Situation,
+	SituationFactorPosition: SituationFactorPosition
 };
 
 export const Q_SCHEMA: LocalQSchema = <any>{

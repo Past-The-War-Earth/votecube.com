@@ -32,21 +32,34 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	CategoryGraph,
-	CategoryEId,
-	CategoryEOptionalId,
-	CategoryEUpdateProperties,
-	CategoryESelect,
-	QCategory,
-	QCategoryQId,
-	QCategoryQRelation,
-} from './qcategory';
+	FactorGraph,
+	FactorEId,
+	FactorEOptionalId,
+	FactorEUpdateProperties,
+	FactorESelect,
+	QFactor,
+	QFactorQId,
+	QFactorQRelation,
+} from '../qfactor';
 import {
-	Category,
-} from '../ddl/Category';
+	Factor,
+} from '../../../ddl/factor/Factor';
 import {
-	Situation,
-} from '../ddl/Situation';
+	PositionGraph,
+	PositionEId,
+	PositionEOptionalId,
+	PositionEUpdateProperties,
+	PositionESelect,
+	QPosition,
+	QPositionQId,
+	QPositionQRelation,
+} from './qposition';
+import {
+	Position,
+} from '../../../ddl/factor/position/Position';
+import {
+	FactorPosition,
+} from '../../../ddl/factor/position/FactorPosition';
 
 
 declare function require(moduleName: string): any;
@@ -59,23 +72,22 @@ declare function require(moduleName: string): any;
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface SituationESelect
-    extends RepositoryEntityESelect, SituationEOptionalId {
+export interface FactorPositionESelect
+    extends RepositoryEntityESelect, FactorPositionEOptionalId {
 	// Non-Id Properties
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	theme?: CategoryESelect;
-	parent?: SituationESelect;
-	children?: SituationESelect;
+	factor?: FactorESelect;
+	position?: PositionESelect;
 
 }
 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface SituationEId
+export interface FactorPositionEId
     extends RepositoryEntityEId {
 	// Id Properties
 
@@ -86,7 +98,7 @@ export interface SituationEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface SituationEOptionalId {
+export interface FactorPositionEOptionalId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -96,61 +108,60 @@ export interface SituationEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface SituationEUpdateProperties
+export interface FactorPositionEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	theme?: CategoryEOptionalId;
-	parent?: SituationEOptionalId;
+	factor?: FactorEOptionalId;
+	position?: PositionEOptionalId;
 
 }
 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface SituationGraph
-	extends SituationEOptionalId, RepositoryEntityGraph {
+export interface FactorPositionGraph
+	extends FactorPositionEOptionalId, RepositoryEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 
 	// Relations
-	theme?: CategoryGraph;
-	parent?: SituationGraph;
-	children?: SituationGraph[];
+	factor?: FactorGraph;
+	position?: PositionGraph;
 
 }
 
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface SituationEUpdateColumns
+export interface FactorPositionEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
-	CATEGORIES_RID?: number | IQNumberField;
-	CATEGORIES_AID?: number | IQNumberField;
-	CATEGORIES_ARID?: number | IQNumberField;
-	SITUATIONS_RID?: number | IQNumberField;
-	SITUATIONS_AID?: number | IQNumberField;
-	SITUATIONS_ARID?: number | IQNumberField;
+	FACTORS_RID?: number | IQNumberField;
+	FACTORS_AID?: number | IQNumberField;
+	FACTORS_ARID?: number | IQNumberField;
+	POSITIONS_RID?: number | IQNumberField;
+	POSITIONS_AID?: number | IQNumberField;
+	POSITIONS_ARID?: number | IQNumberField;
 
 }
 
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface SituationECreateProperties
-extends Partial<SituationEId>, SituationEUpdateProperties {
+export interface FactorPositionECreateProperties
+extends Partial<FactorPositionEId>, FactorPositionEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface SituationECreateColumns
-extends SituationEId, SituationEUpdateColumns {
+export interface FactorPositionECreateColumns
+extends FactorPositionEId, FactorPositionEUpdateColumns {
 }
 
 
@@ -163,7 +174,7 @@ extends SituationEId, SituationEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QSituation extends QRepositoryEntity<Situation>
+export interface QFactorPosition extends QRepositoryEntity<FactorPosition>
 {
 	// Id Fields
 
@@ -172,15 +183,14 @@ export interface QSituation extends QRepositoryEntity<Situation>
 	// Non-Id Fields
 
 	// Non-Id Relations
-	theme: QCategoryQRelation;
-	parent: QSituationQRelation;
-	children: IQOneToManyRelation<Situation, QSituation>;
+	factor: QFactorQRelation;
+	position: QPositionQRelation;
 
 }
 
 
 // Entity Id Interface
-export interface QSituationQId extends QRepositoryEntityQId
+export interface QFactorPositionQId extends QRepositoryEntityQId
 {
 	
 	// Id Fields
@@ -191,7 +201,7 @@ export interface QSituationQId extends QRepositoryEntityQId
 }
 
 // Entity Relation Interface
-export interface QSituationQRelation
-	extends QRepositoryEntityQRelation<Situation, QSituation>, QSituationQId {
+export interface QFactorPositionQRelation
+	extends QRepositoryEntityQRelation<FactorPosition, QFactorPosition>, QFactorPositionQId {
 }
 
