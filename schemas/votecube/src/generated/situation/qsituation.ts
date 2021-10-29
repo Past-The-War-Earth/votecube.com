@@ -168,15 +168,18 @@ export interface SituationEUpdateColumns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
-	CATEGORIES_RID?: number | IQNumberField;
-	CATEGORIES_AID?: number | IQNumberField;
-	CATEGORIES_ARID?: number | IQNumberField;
-	SITUATIONS_RID?: number | IQNumberField;
-	SITUATIONS_AID?: number | IQNumberField;
-	SITUATIONS_ARID?: number | IQNumberField;
-	OUTCOMES_RID?: number | IQNumberField;
-	OUTCOMES_AID?: number | IQNumberField;
-	OUTCOMES_ARID?: number | IQNumberField;
+	CATEGORIES_RID_1?: number | IQNumberField;
+	CATEGORIES_AID_1?: number | IQNumberField;
+	CATEGORIES_ARID_1?: number | IQNumberField;
+	SITUATIONS_RID_1?: number | IQNumberField;
+	SITUATIONS_AID_1?: number | IQNumberField;
+	SITUATIONS_ARID_1?: number | IQNumberField;
+	OUTCOMES_RID_1?: number | IQNumberField;
+	OUTCOMES_AID_1?: number | IQNumberField;
+	OUTCOMES_ARID_1?: number | IQNumberField;
+	OUTCOMES_RID_2?: number | IQNumberField;
+	OUTCOMES_AID_2?: number | IQNumberField;
+	OUTCOMES_ARID_2?: number | IQNumberField;
 
 }
 

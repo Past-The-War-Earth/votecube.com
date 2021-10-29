@@ -118,9 +118,9 @@ export interface CategoryEUpdateColumns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
-	CATEGORIES_RID?: number | IQNumberField;
-	CATEGORIES_AID?: number | IQNumberField;
-	CATEGORIES_ARID?: number | IQNumberField;
+	CATEGORIES_RID_1?: number | IQNumberField;
+	CATEGORIES_AID_1?: number | IQNumberField;
+	CATEGORIES_ARID_1?: number | IQNumberField;
 
 }
 

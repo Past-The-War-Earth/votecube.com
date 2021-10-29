@@ -165,11 +165,11 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(3)
+		super(1)
 	}
 }
 
@@ -183,11 +183,11 @@ export class BaseFactorPositionDuo
 	implements IBaseFactorPositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(2)
+		super(3)
 	}
 }
 
@@ -219,11 +219,11 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(1)
+		super(2)
 	}
 }
 
