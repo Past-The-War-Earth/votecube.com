@@ -1,1 +1,0 @@
-{"version":3,"file":"Dao.d.ts","sourceRoot":"","sources":["../src/Dao.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,QAAQ,CAAC,MAAM;IAE/B,IAAI,CAAC,MAAM,EAAE,MAAM,OAAC;CAEpB;AAED,8BAAsB,GAAG,CAAC,MAAM,CAC/B,YAAW,QAAQ,CAAC,MAAM,CAAC;IAE3B,QAAQ,CAAC,IAAI,CAAC,MAAM,EAAE,MAAM;CAE5B"}

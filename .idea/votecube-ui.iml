@@ -45,16 +45,6 @@
       <excludeFolder url="file://$MODULE_DIR$/libs/cube-logic/.rush" />
       <excludeFolder url="file://$MODULE_DIR$/libs/cube-logic/lib" />
     </content>
-    <content url="file://$MODULE_DIR$/libs/db">
-      <excludeFolder url="file://$MODULE_DIR$/libs/db/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/db/.rush" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/db/lib" />
-    </content>
-    <content url="file://$MODULE_DIR$/libs/db">
-      <excludeFolder url="file://$MODULE_DIR$/libs/db/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/db/.rush" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/db/lib" />
-    </content>
     <content url="file://$MODULE_DIR$/libs/forms">
       <excludeFolder url="file://$MODULE_DIR$/libs/forms/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/libs/forms/.rush" />

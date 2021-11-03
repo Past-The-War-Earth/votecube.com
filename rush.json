@@ -40,11 +40,6 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@votecube/db",
-      "projectFolder": "libs/db",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@votecube/forms",
       "projectFolder": "libs/forms",
       "shouldPublish": true

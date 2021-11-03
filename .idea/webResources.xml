@@ -37,13 +37,6 @@
           </resourceRoots>
         </entryData>
       </entry>
-      <entry url="file://$PROJECT_DIR$/libs/db">
-        <entryData>
-          <resourceRoots>
-            <path value="file://$PROJECT_DIR$/libs/db/src" />
-          </resourceRoots>
-        </entryData>
-      </entry>
       <entry url="file://$PROJECT_DIR$/libs/forms">
         <entryData>
           <resourceRoots>
