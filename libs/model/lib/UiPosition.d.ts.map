@@ -1,0 +1,1 @@
+{"version":3,"file":"UiPosition.d.ts","sourceRoot":"","sources":["../src/UiPosition.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,mBAAmB,EACnB,MAAM,UAAU,CAAA;AAEjB,MAAM,WAAW,WAChB,SAAQ,mBAAmB;IAE3B,GAAG,EAAE,CAAC,CAAC,GAAG,CAAC,CAAA;IACX,IAAI,EAAE,MAAM,CAAA;IACZ,cAAc,EAAE,iBAAiB,CAAA;CAEjC;AAED,MAAM,WAAW,iBAChB,SAAQ,mBAAmB;CAC3B"}

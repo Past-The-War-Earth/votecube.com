@@ -1,7 +1,4 @@
 {
-  "dependencies": {
-    "@votecube/ecclesia": "0.0.1"
-  },
   "devDependencies": {
     "tslint": "^5.20.1",
     "typescript": "^3.8.2"
