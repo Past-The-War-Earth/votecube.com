@@ -1,17 +1,18 @@
 import {
 	Outcome_Id,
 	Outcome_Name
-}                                 from '@votecube/ecclesia'
-import {IsDelta}                  from '../core/common'
-import {IUserCreated}             from '../core/User'
-import {UiDocStatus}              from './common'
-import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
-import {IUiUserCreated}           from './UiUser'
+} from '@votecube/ecclesia'
+import {
+	IsDelta,
+	IUiRepositoryRecord
+} from '../core/common'
+import { UiDocStatus } from './common'
+import { IUiAgeSuitabilityTracked } from './UiDocumentValue'
 
 export interface IUiOutcome<Doc extends UiDocStatus>
 	extends IUiAgeSuitabilityTracked<Doc>,
-	        IUiOutcomeFromForm<Doc>,
-	        IUiUserCreated<Outcome_Id> {
+	IUiOutcomeFromForm<Doc>,
+	IUiRepositoryRecord {
 
 	name: Doc extends IsDelta ? boolean : Outcome_Name
 

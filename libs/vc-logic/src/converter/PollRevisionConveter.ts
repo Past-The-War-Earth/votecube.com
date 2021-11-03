@@ -1,43 +1,27 @@
-import {DI}                      from '@airport/di'
-import {AgeSuitability}          from '@votecube/ecclesia'
-import {
-	IFactor,
-	IFactorPosition,
-	IFactorTranslation,
-	IOutcome,
-	IPoll,
-	IPollRevision,
-	IPollRevisionFactorPosition,
-	IPollRevisionTranslation,
-	IPosition,
-	ITheme,
-}                                from '@votecube/ecclesia/lib/generated/interfaces'
-import {
-	Id,
-	Outcome_Ordinal
-}                                from '@votecube/ecclesia/lib/types/types'
+import { DI } from '@airport/di'
+import { Situation, SituationFactorPosition } from '@votecube/votecube'
 import {
 	Factor_Number,
-	IParent,
 	IsData,
 	IUiFactor,
 	IUiOutcome,
 	IUiPollRevision,
 	IUiPosition,
+	IUiRepositoryRecord,
 	IUiTheme,
 	Position_Dir,
-}                                from '@votecube/model'
-import {POLL_REVISION_CONVERTER} from '../tokens'
+} from '@votecube/model'
+import { POLL_REVISION_CONVERTER } from '../tokens'
 
 export interface IPollRevisionConverter {
 
 	dbToUi(
-		revisionDb: IPollRevision
+		dbSituation: Situation
 	): IUiPollRevision
 
 	uiToDb(
-		revisionDoc: IUiPollRevision
-	): IPollRevision
+		docSituation: IUiPollRevision
+	): Situation
 
 }
 
@@ -45,35 +29,37 @@ export class PollRevisionConverter
 	implements IPollRevisionConverter {
 
 	dbToUi(
-		revisionDb: IPollRevision
+		dbSituation: Situation
 	): IUiPollRevision {
-		let parent: IParent<Id> = null
+		let parent: IUiRepositoryRecord = null
 
-		if (revisionDb.parent) {
+		if (dbSituation.parent) {
 			parent = {
-				id: revisionDb.parent.id
+				actorId: dbSituation.parent.actor.id,
+				actorRecordId: dbSituation.parent.actorRecordId,
+				repositoryId: dbSituation.parent.repository.id,
 			}
 		}
 
 		return {
-			ageSuitability: revisionDb.ageSuitability,
-			createdAt: revisionDb.createdAt,
-			depth: revisionDb.depth,
-			id: revisionDb.id,
+			ageSuitability: dbSituation.ageSuitability,
+			createdAt: dbSituation.createdAt,
+			depth: dbSituation.depth,
+			id: dbSituation.id,
 			factors: {
-				'1': this.getUiFactor(1, revisionDb.factorPositions),
-				'2': this.getUiFactor(2, revisionDb.factorPositions),
-				'3': this.getUiFactor(3, revisionDb.factorPositions)
+				'1': this.getUiFactor(1, dbSituation.situationFactorPositions),
+				'2': this.getUiFactor(2, dbSituation.situationFactorPositions),
+				'3': this.getUiFactor(3, dbSituation.situationFactorPositions)
 			},
-			name: revisionDb.allTranslations[0].name,
+			name: dbSituation.allTranslations[0].name,
 			outcomes: {
-				A: this.getUiOutcome(revisionDb.outcomeVersionA),
-				B: this.getUiOutcome(revisionDb.outcomeVersionB)
+				A: this.getUiOutcome(dbSituation.outcomeVersionA),
+				B: this.getUiOutcome(dbSituation.outcomeVersionB)
 			},
 			parent,
-			pollId: revisionDb.poll.id,
-			theme: this.getUiTheme(revisionDb.poll.theme),
-			userId: revisionDb.userAccount.id
+			pollId: dbSituation.poll.id,
+			theme: this.getUiTheme(dbSituation.poll.theme),
+			userId: dbSituation.userAccount.id
 		}
 	}
 
@@ -159,13 +145,13 @@ export class PollRevisionConverter
 
 	private getUiFactor(
 		factorNumber: Factor_Number,
-		factorPositions: IPollRevisionFactorPosition[]
+		factorPositions: SituationFactorPosition[]
 	): IUiFactor<IsData> {
 		const matchingFactorPositions = factorPositions.filter(factorPosition =>
 			factorPosition.factorNumber === factorNumber)
 
-		let dbFactorPositionA: IPollRevisionFactorPosition
-		let dbFactorPositionB: IPollRevisionFactorPosition
+		let dbFactorPositionA: SituationFactorPosition
+		let dbFactorPositionB: SituationFactorPosition
 
 		if (matchingFactorPositions[0].outcomeOrdinal === 'A') {
 			dbFactorPositionA = matchingFactorPositions[0]
@@ -187,7 +173,7 @@ export class PollRevisionConverter
 			},
 			createdAt: dbFactor.createdAt,
 			id: dbFactor.id,
-			name: dbFactor.parentTranslation.name,
+			name: dbFactor.name,
 			parentId: dbFactor.parent ? dbFactor.parent.id : null,
 			positions: {
 				A: this.getUiPosition(dbFactorPositionA),
@@ -271,7 +257,7 @@ export class PollRevisionConverter
 		outcomeOrdinal: Outcome_Ordinal,
 		ageSuitability: AgeSuitability
 	): IPollRevisionFactorPosition {
-		const uiFactor   = uiFactors[factorNumber]
+		const uiFactor = uiFactors[factorNumber]
 		const uiPosition = uiFactor.positions[outcomeOrdinal]
 		if (uiPosition.pollFactorPositionId) {
 			return {
@@ -289,7 +275,7 @@ export class PollRevisionConverter
 
 		let factor: IFactor = dbFactors[factorNumber]
 		if (!factor) {
-			factor                  = this.getDbFactor(uiFactor, factorNumber, ageSuitability)
+			factor = this.getDbFactor(uiFactor, factorNumber, ageSuitability)
 			dbFactors[factorNumber] = factor
 		}
 

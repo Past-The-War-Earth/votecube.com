@@ -12,22 +12,14 @@ export type IsFromForm = true
 export type IsNotFromForm = false
 export type FromForm = IsFromForm | IsNotFromForm
 
-export interface IIdentified<K extends Id> {
+export interface IUiRepositoryRecord {
 
-	id: K
-
+	actorId: number
+	actorRecordId: number
+	repositoryId: number
 }
 
 export type Doc_Depth = number
-
-/*
-export interface IParent<K extends Id> {
-
-	depth: Doc_Depth
-	key: K
-
-}
- */
 
 export type Timestamp_Milliseconds = number
 export type Timestamp_TimezoneOffset = number

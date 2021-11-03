@@ -40,12 +40,12 @@ export interface FactorPositionGraph extends FactorPositionEOptionalId, Reposito
 export interface FactorPositionEUpdateColumns extends RepositoryEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
-    FACTORS_RID?: number | IQNumberField;
-    FACTORS_AID?: number | IQNumberField;
-    FACTORS_ARID?: number | IQNumberField;
-    POSITIONS_RID?: number | IQNumberField;
-    POSITIONS_AID?: number | IQNumberField;
-    POSITIONS_ARID?: number | IQNumberField;
+    FACTORS_RID_1?: number | IQNumberField;
+    FACTORS_AID_1?: number | IQNumberField;
+    FACTORS_ARID_1?: number | IQNumberField;
+    POSITIONS_RID_1?: number | IQNumberField;
+    POSITIONS_AID_1?: number | IQNumberField;
+    POSITIONS_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).

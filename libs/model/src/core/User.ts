@@ -4,7 +4,6 @@ import {
 	UserAccount_UserName
 } from '@votecube/ecclesia'
 import {
-	IIdentified,
 	ITimestamp,
 } from './common'
 

@@ -2,24 +2,24 @@ import {
 	Factor_Id,
 	FactorTranslation_Id,
 	FactorTranslation_Name
-}                                 from '@votecube/ecclesia'
+} from '@votecube/ecclesia'
 import {
 	IsData,
-	IsDelta
-}                                 from '../core/common'
-import {Factor_Axis,}             from '../core/Factor'
-import {UiDocStatus}              from './common'
-import {IUiColor}                 from './UiColor'
-import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
+	IsDelta,
+	IUiRepositoryRecord
+} from '../core/common'
+import { Factor_Axis, } from '../core/Factor'
+import { UiDocStatus } from './common'
+import { IUiColor } from './UiColor'
+import { IUiAgeSuitabilityTracked } from './UiDocumentValue'
 import {
 	IUiPosition,
 	IUiPositionFromForm
-}                                 from './UiPosition'
-import {IUiUserCreated}           from './UiUser'
+} from './UiPosition'
 
 export interface IUiFactor<Doc extends UiDocStatus>
 	extends IUiFactorBase<Doc>,
-	        IUiFactorFromForm<Doc> {
+	IUiFactorFromForm<Doc> {
 
 	positions: {
 		A: IUiPosition<Doc>
@@ -41,7 +41,7 @@ export interface IUiFactorFromForm<Doc extends UiDocStatus = IsData> {
 
 export interface IUiFactor<Doc extends UiDocStatus>
 	extends IUiAgeSuitabilityTracked<Doc>,
-	        IUiFactorBase<Doc> {
+	IUiFactorBase<Doc> {
 
 	color: IUiColor<Doc>
 	parentId: Factor_Id
@@ -54,7 +54,7 @@ export interface IUiFactor<Doc extends UiDocStatus>
 }
 
 export interface IUiFactorBase<Doc extends UiDocStatus>
-	extends IUiUserCreated<Factor_Id> {
+	extends IUiRepositoryRecord {
 
 	axis: Doc extends IsDelta ? boolean : Factor_Axis
 	name: Doc extends IsDelta ? boolean : FactorTranslation_Name

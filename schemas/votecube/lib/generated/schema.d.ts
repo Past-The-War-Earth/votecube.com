@@ -110,7 +110,7 @@ export declare const SCHEMA: {
             sinceVersion: number;
             tableConfig: {
                 name: string;
-                indexes: any[];
+                columnIndexes: any[];
             };
         }[];
         integerVersion: number;

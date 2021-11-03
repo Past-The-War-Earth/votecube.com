@@ -3,18 +3,20 @@ import {
 	PollRevisionFactorPosition_Id,
 	Position_Id,
 	PositionTranslation_Name
-}                                 from '@votecube/ecclesia'
-import {IsDelta}                  from '../core/common'
-import {Position_Dir,}            from '../core/Position'
-import {UiDocStatus}              from './common'
-import {IUiAgeSuitabilityTracked} from './UiDocumentValue'
-import {IUiUserCreated}           from './UiUser'
+} from '@votecube/ecclesia'
+import {
+	IsDelta,
+	IUiRepositoryRecord
+} from '../core/common'
+import { Position_Dir, } from '../core/Position'
+import { UiDocStatus } from './common'
+import { IUiAgeSuitabilityTracked } from './UiDocumentValue'
 
 export interface IUiPosition<Doc extends UiDocStatus>
 	extends IUiAgeSuitabilityTracked<Doc>,
-	        IUiPositionDefault<Doc>,
-	        IUiPositionFromForm<Doc>,
-	        IUiUserCreated<Position_Id> {
+	IUiPositionDefault<Doc>,
+	IUiPositionFromForm<Doc>,
+	IUiRepositoryRecord {
 
 	pollFactorPositionId: PollRevisionFactorPosition_Id
 	pollFactorPositionParentId: PollRevisionFactorPosition_Id

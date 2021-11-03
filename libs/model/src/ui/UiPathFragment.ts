@@ -1,30 +1,23 @@
-import {Id}             from '@votecube/ecclesia'
 import {
 	Doc_Depth,
-	IIdentified
+	IUiRepositoryRecord
 }                       from '../core/common'
-import {IUiUserCreated} from './UiUser'
 
-// export interface IUiPathFragment<K extends Id>
-// 	extends IUiUserCreated<K> {
+// export interface IUiPathFragment
+// 	extends IUiRepositoryRecord {
 // }
 //
-// export interface IUiPath<K extends Id> {
+// export interface IUiPath {
 // 	length: number
 //
-// 	[pathFragmentNumber: number]: IUiPathFragment<K>
+// 	[pathFragmentNumber: number]: IUiPathFragment
 // }
 
-export interface IUiParent<K extends Id>
-	extends IIdentified<K> {
-	// depth?: Doc_Depth
-}
-
-export interface IUiVersioned<K extends Id>
-	extends IUiUserCreated<K> {
+export interface IUiVersioned
+	extends IUiRepositoryRecord {
 
 	depth: Doc_Depth
-	parent: IUiParent<K>
+	parent: IUiRepositoryRecord
 	// path: IUiPath<K>
 
 }

@@ -322,7 +322,7 @@ export const SCHEMA = {
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "CATEGORIES",
-						"indexes": []
+						"columnIndexes": []
 					}
 				},
 				{
@@ -548,7 +548,7 @@ export const SCHEMA = {
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "FACTORS",
-						"indexes": []
+						"columnIndexes": []
 					}
 				},
 				{
@@ -774,7 +774,7 @@ export const SCHEMA = {
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "POSITIONS",
-						"indexes": []
+						"columnIndexes": []
 					}
 				},
 				{
@@ -1131,7 +1131,7 @@ export const SCHEMA = {
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "FACTOR_POSITIONS",
-						"indexes": []
+						"columnIndexes": []
 					}
 				},
 				{
@@ -1335,7 +1335,7 @@ export const SCHEMA = {
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "OUTCOMES",
-						"indexes": []
+						"columnIndexes": []
 					}
 				},
 				{
@@ -1850,7 +1850,7 @@ export const SCHEMA = {
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "SITUATION_FACTOR_POSITIONS",
-						"indexes": []
+						"columnIndexes": []
 					}
 				},
 				{
@@ -2441,7 +2441,7 @@ export const SCHEMA = {
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "SITUATIONS",
-						"indexes": []
+						"columnIndexes": []
 					}
 				}
 			],

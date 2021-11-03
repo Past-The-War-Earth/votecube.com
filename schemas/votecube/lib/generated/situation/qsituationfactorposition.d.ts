@@ -68,12 +68,12 @@ export interface SituationFactorPositionEUpdateColumns extends RepositoryEntityE
     COLOR_GREEN?: number | IQNumberField;
     COLOR_RED?: number | IQNumberField;
     OUTCOME_ORDINAL?: string | IQStringField;
-    SITUATIONS_RID?: number | IQNumberField;
-    SITUATIONS_AID?: number | IQNumberField;
-    SITUATIONS_ARID?: number | IQNumberField;
-    FACTOR_POSITIONS_RID?: number | IQNumberField;
-    FACTOR_POSITIONS_AID?: number | IQNumberField;
-    FACTOR_POSITIONS_ARID?: number | IQNumberField;
+    SITUATIONS_RID_1?: number | IQNumberField;
+    SITUATIONS_AID_1?: number | IQNumberField;
+    SITUATIONS_ARID_1?: number | IQNumberField;
+    FACTOR_POSITIONS_RID_1?: number | IQNumberField;
+    FACTOR_POSITIONS_AID_1?: number | IQNumberField;
+    FACTOR_POSITIONS_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).

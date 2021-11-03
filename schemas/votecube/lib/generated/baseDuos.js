@@ -16,18 +16,18 @@ export class BaseCategoryDuo extends SQDIDuo {
 }
 export class BaseFactorDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(3);
+        return duoDiSet(1);
     }
     constructor() {
-        super(3);
+        super(1);
     }
 }
 export class BaseFactorPositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(2);
+        return duoDiSet(3);
     }
     constructor() {
-        super(2);
+        super(3);
     }
 }
 export class BaseOutcomeDuo extends SQDIDuo {
@@ -40,10 +40,10 @@ export class BaseOutcomeDuo extends SQDIDuo {
 }
 export class BasePositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(1);
+        return duoDiSet(2);
     }
     constructor() {
-        super(1);
+        super(2);
     }
 }
 export class BaseSituationDuo extends SQDIDuo {

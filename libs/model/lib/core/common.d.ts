@@ -1,4 +1,3 @@
-import { Id } from '@votecube/ecclesia';
 export declare type IsData = 'data';
 export declare type IsDelta = 'delta';
 export declare type IsDoc = 'doc';
@@ -7,8 +6,15 @@ export declare type DocStatus = IsData | IsDelta | IsDoc;
 export declare type IsFromForm = true;
 export declare type IsNotFromForm = false;
 export declare type FromForm = IsFromForm | IsNotFromForm;
-export interface IIdentified<K extends Id> {
-    id: K;
+export interface IIdentified {
+    repositoryId: number;
+    actorId: number;
+    actorRecordId: number;
+}
+export interface IUiRepositoryRecord {
+    actorId: number;
+    actorRecordId: number;
+    repositoryId: number;
 }
 export declare type Doc_Depth = number;
 export declare type Timestamp_Milliseconds = number;
