@@ -28,31 +28,6 @@
       <change beforePath="$PROJECT_DIR$/../ajax/src/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ajax/src/tokens.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../db/src/Database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../db/src/Database.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../db/src/dao/PollDao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../db/src/dao/PollDao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/dao/poll/PollDao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/dao/poll/PollDao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Factor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Factor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/FactorPosition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/FactorPosition.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Position.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Position.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/Theme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Continent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Continent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Country.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Country.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/County.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/County.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/State.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Town.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/location/Town.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/poll/PollType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/poll/PollType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/vote/VoteFactorType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/ddl/vote/VoteFactorType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/baseDaos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/baseDaos.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/baseDuos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/baseDuos.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcontinent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcontinent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcountry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcountry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcounty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qcounty.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qstate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qstate.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qtown.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/location/qtown.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/poll/qpolltype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/poll/qpolltype.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/qSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/qSchema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/qtheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/qtheme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/generated/vote/qvotefactortype.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/generated/vote/qvotefactortype.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
