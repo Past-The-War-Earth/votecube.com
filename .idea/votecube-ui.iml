@@ -4,11 +4,6 @@
     <content url="file://$MODULE_DIR$/apps/cloudfare-worker">
       <excludeFolder url="file://$MODULE_DIR$/apps/cloudfare-worker/.rush" />
     </content>
-    <content url="file://$MODULE_DIR$/apps/old-ui">
-      <excludeFolder url="file://$MODULE_DIR$/apps/old-ui/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/apps/old-ui/.rush" />
-      <excludeFolder url="file://$MODULE_DIR$/apps/old-ui/build" />
-    </content>
     <content url="file://$MODULE_DIR$/apps/public-ui">
       <excludeFolder url="file://$MODULE_DIR$/apps/public-ui/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/apps/public-ui/.rush" />
@@ -79,11 +74,6 @@
       <excludeFolder url="file://$MODULE_DIR$/libs/model/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/libs/model/.rush" />
       <excludeFolder url="file://$MODULE_DIR$/libs/model/lib" />
-    </content>
-    <content url="file://$MODULE_DIR$/libs/public-logic">
-      <excludeFolder url="file://$MODULE_DIR$/libs/public-logic/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/public-logic/.rush" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/public-logic/lib" />
     </content>
     <content url="file://$MODULE_DIR$/libs/svelte-progressive-list">
       <sourceFolder url="file://$MODULE_DIR$/libs/svelte-progressive-list/test" isTestSource="true" />

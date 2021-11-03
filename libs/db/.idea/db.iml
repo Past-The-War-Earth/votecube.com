@@ -2,7 +2,6 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../../apps/cloudfare-worker" />
-    <content url="file://$MODULE_DIR$/../../apps/old-ui" />
     <content url="file://$MODULE_DIR$/../../apps/public-ui">
       <excludeFolder url="file://$MODULE_DIR$/../../apps/public-ui/functions/lib" />
       <excludeFolder url="file://$MODULE_DIR$/../../apps/public-ui/public" />

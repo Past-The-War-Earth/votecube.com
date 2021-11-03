@@ -19,11 +19,6 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@votecube/old-ui",
-      "projectFolder": "apps/old-ui",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@votecube/vc-node",
       "projectFolder": "apps/vc-node",
       "shouldPublish": true
