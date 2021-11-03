@@ -21,9 +21,6 @@
     <content url="file://$MODULE_DIR$/../model">
       <excludeFolder url="file://$MODULE_DIR$/../model/lib" />
     </content>
-    <content url="file://$MODULE_DIR$/../public-logic">
-      <excludeFolder url="file://$MODULE_DIR$/../public-logic/lib" />
-    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="relational-db" />

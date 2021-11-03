@@ -24,7 +24,6 @@
       <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/[pollId]/[pollName].svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/[pollId]/[pollName].svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/create.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/create.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../libs/public-logic/src/Routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/public-logic/src/Routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tsconfig.core.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../tsconfig.core.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -23,13 +23,6 @@
           </resourceRoots>
         </entryData>
       </entry>
-      <entry url="file://$PROJECT_DIR$/../public-logic">
-        <entryData>
-          <resourceRoots>
-            <path value="file://$PROJECT_DIR$/../public-logic/src" />
-          </resourceRoots>
-        </entryData>
-      </entry>
     </contentEntries>
   </component>
 </project>

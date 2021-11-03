@@ -60,11 +60,6 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@votecube/public-logic",
-      "projectFolder": "libs/public-logic",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@votecube/svelte-progressive-list",
       "projectFolder": "libs/svelte-progressive-list",
       "shouldPublish": true
