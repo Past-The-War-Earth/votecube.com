@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e52f5e4-372a-4032-a9af-c24a57d4bc3a" name="Default Changelist" comment="additional layout adjustments for desktop and text fixes">
-      <change afterPath="$PROJECT_DIR$/../../schemas/public-db/src/conveter/PollVariationConveter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vc-ui/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/rollup.config.js" afterDir="false" />
@@ -26,8 +25,6 @@
       <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/create.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/create.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vc-ui/src/routes/poll/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../vc-ui/src/routes/poll/index.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../libs/public-logic/src/Routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../libs/public-logic/src/Routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/dao/DbUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/dao/DbUtils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../schemas/public-db/src/dao/poll/PollDao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../schemas/public-db/src/dao/poll/PollDao.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tsconfig.core.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../tsconfig.core.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

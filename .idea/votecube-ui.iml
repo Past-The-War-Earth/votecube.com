@@ -113,11 +113,6 @@
       <excludeFolder url="file://$MODULE_DIR$/schemas/ecclesia/.rush" />
       <excludeFolder url="file://$MODULE_DIR$/schemas/ecclesia/lib" />
     </content>
-    <content url="file://$MODULE_DIR$/schemas/public-db">
-      <excludeFolder url="file://$MODULE_DIR$/schemas/public-db/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/schemas/public-db/.rush" />
-      <excludeFolder url="file://$MODULE_DIR$/schemas/public-db/lib" />
-    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />

@@ -38,7 +38,6 @@ dependencies:
   '@rush-temp/postgres': 'file:projects/postgres.tgz'
   '@rush-temp/pressurization': 'file:projects/pressurization.tgz'
   '@rush-temp/processor-common': 'file:projects/processor-common.tgz'
-  '@rush-temp/public-db': 'file:projects/public-db.tgz'
   '@rush-temp/public-logic': 'file:projects/public-logic.tgz'
   '@rush-temp/public-ui': 'file:projects/public-ui.tgz'
   '@rush-temp/runway': 'file:projects/runway.tgz'
@@ -10716,7 +10715,7 @@ packages:
     dev: false
     name: '@rush-temp/old-ui'
     resolution:
-      integrity: sha512-0jTVXhAcQh5ZM20apErSfK3g+b9dDpEYTRozxxoLASMdlFuiAvCva542jsn74iENDgBi95TuWB5PzyGWMG3U1A==
+      integrity: sha512-q+7aTw6l73bvvY9JrSJI288T3s2+sQqbikhmGmbcQCgbT4k1layCcP4hnOZXxfnN/ZvJe97nB5Xv/q3vZviq+Q==
       tarball: 'file:projects/old-ui.tgz'
     version: 0.0.0
   'file:projects/point-of-destination.tgz':
@@ -10765,19 +10764,6 @@ packages:
       integrity: sha512-mIt2T0kI3eUa+SJfNA+Te0pAZELmy7XTtzTEBZ5NaoRKXEpkfNmp/Yj7NcBJeWmIgqnFufMufuSCZLRTLgcGTg==
       tarball: 'file:projects/processor-common.tgz'
     version: 0.0.0
-  'file:projects/public-db.tgz':
-    dependencies:
-      '@types/elasticlunr': 0.9.3
-      elasticlunr: 0.9.5
-      firebase: 7.24.0
-      tslint: 5.20.1_typescript@3.9.10
-      typescript: 3.9.10
-    dev: false
-    name: '@rush-temp/public-db'
-    resolution:
-      integrity: sha512-PFsZQr3WQhjBCr+33T85Xvh3r/xjzb7TKJif220Q8af8P+GxpPoZKj9UTpo7y5CvlxEPoL1q06uOS/Z2pDMgFA==
-      tarball: 'file:projects/public-db.tgz'
-    version: 0.0.0
   'file:projects/public-logic.tgz':
     dependencies:
       '@types/elasticlunr': 0.9.3
@@ -10792,7 +10778,7 @@ packages:
     dev: false
     name: '@rush-temp/public-logic'
     resolution:
-      integrity: sha512-MtkofTWoouLbnxua9x547yN7vzM5ttjPGhgEcGoyS764ywIa9zmElfMVctXpcydBB1k7PzpepxVSBqAiXANrDw==
+      integrity: sha512-oyOD8SACCzgxi6w/lKm0rEkDnngwUKRPkFufIUihvRzahaUxOHv0R9cSs1u3IYXiHIxHg9xaX0ARwAVkvcZl0w==
       tarball: 'file:projects/public-logic.tgz'
     version: 0.0.0
   'file:projects/public-ui.tgz':
@@ -11025,7 +11011,7 @@ packages:
     dev: false
     name: '@rush-temp/vc-logic'
     resolution:
-      integrity: sha512-s5aiW8tt9dnpcqhRemPpdz1CIGD5EHsSp55AiFZwC4kX5SHJpxFTnIXJRCcNbbx6UKkLxPtpfkspHDG66F6bSw==
+      integrity: sha512-83/brmE1z2rnvf2CokUks8s5JZr6NsyxJPPqaqrjrcEzke4Nr133raUyG1Qd0SOO9KKln2VUgfVkP+jNMcLcog==
       tarball: 'file:projects/vc-logic.tgz'
     version: 0.0.0
   'file:projects/vc-node.tgz':
@@ -11131,7 +11117,6 @@ specifiers:
   '@rush-temp/postgres': 'file:./projects/postgres.tgz'
   '@rush-temp/pressurization': 'file:./projects/pressurization.tgz'
   '@rush-temp/processor-common': 'file:./projects/processor-common.tgz'
-  '@rush-temp/public-db': 'file:./projects/public-db.tgz'
   '@rush-temp/public-logic': 'file:./projects/public-logic.tgz'
   '@rush-temp/public-ui': 'file:./projects/public-ui.tgz'
   '@rush-temp/runway': 'file:./projects/runway.tgz'

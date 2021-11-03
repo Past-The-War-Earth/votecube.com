@@ -86,11 +86,6 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@votecube/public-db",
-      "projectFolder": "schemas/public-db",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@votecube/votecube",
       "projectFolder": "schemas/votecube",
       "shouldPublish": true
