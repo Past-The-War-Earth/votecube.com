@@ -43,9 +43,9 @@ export class PollRevisionConverter
 
 		return {
 			ageSuitability: dbSituation.ageSuitability,
-			createdAt: dbSituation.createdAt,
-			depth: dbSituation.depth,
-			id: dbSituation.id,
+			actorId: dbSituation.actor.id,
+			actorRecordId: dbSituation.actorRecordId,
+			repositoryId: dbSituation.repository.id,
 			factors: {
 				'1': this.getUiFactor(1, dbSituation.situationFactorPositions),
 				'2': this.getUiFactor(2, dbSituation.situationFactorPositions),
