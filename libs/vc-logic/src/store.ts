@@ -36,6 +36,11 @@ export interface ITextToastStore
 
 }
 
+export interface IUserInfo {
+	password: string
+	username: string
+}
+
 function createShowMainMenu(): IToggleStore {
 	const store = writable(false)
 
@@ -101,7 +106,7 @@ export let showSignIn = writable(false)
 export let text = writable({})
 export let textToast = createTextToast()
 export const topMenuShown = createTopMenuShown()
-export let user = writable<IUserAccount>(null)
+export let user = writable<IUserInfo>(null)
 export let verticalLayout = writable(true)
 export let windowWidth = writable(0)
 

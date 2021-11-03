@@ -1,20 +1,21 @@
-import {DI}            from '@airport/di'
+import { DI } from '@airport/di'
 import {
 	IUserAccount,
 	UserAccount_Email,
 	UserAccount_PasswordHash,
 	UserAccount_UserName
-}                      from '@votecube/ecclesia'
+} from '@votecube/ecclesia'
 import {
 	BehaviorSubject,
 	Observable
-}                      from 'rxjs'
-import {APP_CONTAINER} from './container'
-import {user}          from './store'
+} from 'rxjs'
+import { IUserInfo } from '.'
+import { APP_CONTAINER } from './container'
+import { user } from './store'
 import {
 	AUTH,
 	CONNECTION_MANAGER
-}                      from './tokens'
+} from './tokens'
 
 export interface IAuthError {
 
@@ -27,74 +28,84 @@ export type Auth_Password = string;
 
 export interface IAuth {
 
-	getUser(): IUserAccount
+	getUser(): IUserInfo
 
-	reactToUser(): Promise<Observable<IUserAccount>>
+	reactToUser(): Promise<Observable<IUserInfo>>
 
 	signIn(
-		username: UserAccount_UserName,
-		password: Auth_Password
-	): Promise<IAuthError | IUserAccount>
+		username: string,
+		password: string
+	): Promise<void>
 
 	signOut(): Promise<void>
 
+	/*
 	signUp(
 		countryId: number, 
 		birthMonth: number, 
 		email: string, 
 		username: string
 	): Promise<IAuthError | void>
-
+	*/
 }
 
 export class Auth
 	implements IAuth {
 
-	user: IUserAccount
+	user: IUserInfo
 
-	getUser(): IUserAccount {
+	getUser(): IUserInfo {
 		return this.user
 	}
 
-	async reactToUser(): Promise<Observable<IUserAccount>> {
-		const subject = new BehaviorSubject<IUserAccount>(null)
+	async reactToUser(): Promise<Observable<IUserInfo>> {
+		const subject = new BehaviorSubject<IUserInfo>(null)
 
 		return subject
 	}
 
 	async signIn(
-		userName: UserAccount_UserName,
-		password: Auth_Password
-	): Promise<IAuthError | IUserAccount> {
-		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
-		const passwordHash      = await this.encodePassword(password)
+		username: string,
+		password: string
+	): Promise<void> {
+		// const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
+		// const passwordHash      = await this.encodePassword(password)
 
-		const userAccount: IAuthError | IUserAccount = await connectionManager.put('signIn', {
-			passwordHash,
-			userName
-		})
+		// const userAccount: IAuthError | IUserAccount = await connectionManager.put('signIn', {
+		// 	passwordHash,
+		// 	userName
+		// })
 
-		if (!(<IAuthError>userAccount).code) {
-			this.user = <IUserAccount>userAccount
-			user.set(this.user)
-			return null;
+		// if (!(<IAuthError>userAccount).code) {
+		// 	this.user = <IUserAccount>userAccount
+		// 	user.set(this.user)
+		// 	return null;
+		// }
+		// TODO: generate RSA public/private keys and save them to local storage
+
+		this.user = {
+			password,
+			username
 		}
+		user.set(this.user)
 
-		return userAccount
+		// return userAccount
+		// return this.user
 	}
 
 	async signOut(): Promise<void> {
-		const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
+		// const connectionManager = await APP_CONTAINER.get(CONNECTION_MANAGER)
 
-		await connectionManager.put('signOut', {
-			passwordHash: this.user.passwordHash,
-			userName: this.user.userName
-		})
+		// await connectionManager.put('signOut', {
+		// 	passwordHash: this.user.passwordHash,
+		// 	userName: this.user.userName
+		// })
 
 		this.user = null
 		user.set(null)
 	}
 
+	/*
 	async signUp(
 		countryId: number, 
 		birthMonth: number, 
@@ -123,6 +134,7 @@ export class Auth
 			return <IAuthError>userAccount
 		}
 	}
+	*/
 
 	// private async encodePassword(
 	// 	password: Auth_Password

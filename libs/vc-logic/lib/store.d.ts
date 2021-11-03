@@ -1,4 +1,3 @@
-import { IUserAccount } from '@votecube/ecclesia';
 import { IUser } from '@votecube/model';
 import { Readable } from 'svelte/store';
 import { IRouteConfig } from './Routes';
@@ -12,6 +11,10 @@ export interface IToggleStore extends Readable<boolean> {
 }
 export interface ITextToastStore extends Readable<ITextToast> {
     toggle(newText: string, seconds?: number): void;
+}
+export interface IUserInfo {
+    password: string;
+    username: string;
 }
 export declare let authChecked: import("svelte/store").Writable<boolean>;
 export declare let cardMove: import("svelte/store").Writable<{
@@ -42,7 +45,7 @@ export declare let showSignIn: import("svelte/store").Writable<boolean>;
 export declare let text: import("svelte/store").Writable<{}>;
 export declare let textToast: ITextToastStore;
 export declare const topMenuShown: IToggleStore;
-export declare let user: import("svelte/store").Writable<IUserAccount>;
+export declare let user: import("svelte/store").Writable<IUserInfo>;
 export declare let verticalLayout: import("svelte/store").Writable<boolean>;
 export declare let windowWidth: import("svelte/store").Writable<number>;
 export declare let showTopMenu: Readable<boolean>;

@@ -94,20 +94,23 @@
 		if (!signInForm.valid) {
 			return;
 		}
-		doSignIn(signInForm.value.email, signInForm).then((success) => {
-			if (success) {
-				dispatch("closed");
+		doSignIn(signInForm.value.email, signInForm.value.password).then(
+			(success) => {
+				if (success) {
+					dispatch("closed");
+				}
 			}
-		});
+		);
 	}
 
 	async function doSignIn(userName, password) {
 		const auth = await container.get(AUTH);
-		const errorObject = await auth.signIn(userName, password);
-		if (!errorObject) {
+		try {
+			await auth.signIn(userName, password);
 			return true;
+		} catch (e) {
+			return false;
 		}
-		return false;
 	}
 </script>
 

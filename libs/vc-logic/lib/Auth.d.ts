@@ -1,24 +1,21 @@
-import { IUserAccount, UserAccount_Email, UserAccount_UserName } from '@votecube/ecclesia';
 import { Observable } from 'rxjs';
+import { IUserInfo } from '.';
 export interface IAuthError {
     code?: string;
     message?: string;
 }
 export declare type Auth_Password = string;
 export interface IAuth {
-    getUser(): IUserAccount;
-    reactToUser(): Promise<Observable<IUserAccount>>;
-    signIn(username: UserAccount_UserName, password: Auth_Password): Promise<IAuthError | IUserAccount>;
+    getUser(): IUserInfo;
+    reactToUser(): Promise<Observable<IUserInfo>>;
+    signIn(username: string, password: string): Promise<void>;
     signOut(): Promise<void>;
-    signUp(email: UserAccount_Email, password: Auth_Password): Promise<IAuthError | void>;
 }
 export declare class Auth implements IAuth {
-    user: IUserAccount;
-    getUser(): IUserAccount;
-    reactToUser(): Promise<Observable<IUserAccount>>;
-    signIn(userName: UserAccount_UserName, password: Auth_Password): Promise<IAuthError | IUserAccount>;
+    user: IUserInfo;
+    getUser(): IUserInfo;
+    reactToUser(): Promise<Observable<IUserInfo>>;
+    signIn(username: string, password: string): Promise<void>;
     signOut(): Promise<void>;
-    signUp(userName: UserAccount_UserName, password: Auth_Password): Promise<IAuthError | void>;
-    private encodePassword;
 }
 //# sourceMappingURL=Auth.d.ts.map

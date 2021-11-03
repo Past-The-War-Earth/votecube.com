@@ -1,8 +1,8 @@
 import { DI } from '@airport/di';
-import { CONNECTION_MANAGER, ENTITY_STATE_MANAGER, OPERATION_SERIALIZER, QUERY_RESULTS_DESERIALIZER } from './tokens';
+import { CONNECTION_MANAGER, ENTITY_STATE_MANAGER, QUERY_RESULTS_DESERIALIZER } from './tokens';
 export class ConnectionManager {
     constructor() {
-        this.serverUrlPrefix = 'http://localhost:8081/api/';
+        this.serverUrlPrefix = 'http://localhost:2345/api/';
     }
     async get(url, params = {}) {
         const [entityStateManager, queryResultsDeserializer] = await DI.db().get(ENTITY_STATE_MANAGER, QUERY_RESULTS_DESERIALIZER);
@@ -12,12 +12,13 @@ export class ConnectionManager {
         return queryResultsDeserializer.deserialize(jsonTree, entityStateManager);
     }
     async put(url, value, params = {}) {
-        const [entityStateManager, operationSerializer] = await DI.db().get(ENTITY_STATE_MANAGER, OPERATION_SERIALIZER);
-        const serializedValue = operationSerializer.serialize(value, entityStateManager);
+        // const [entityStateManager, operationSerializer]
+        // 	                    = await DI.db().get(ENTITY_STATE_MANAGER, OPERATION_SERIALIZER)
+        // const serializedValue = operationSerializer.serialize(value, entityStateManager)
         const response = await fetch(this.serverUrlPrefix + url +
             this.getParamsSuffix(params), {
             method: 'PUT',
-            body: JSON.stringify(serializedValue)
+            body: JSON.stringify(value)
         });
         // TODO: implement error handling
         return response.json();
