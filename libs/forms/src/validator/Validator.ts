@@ -9,7 +9,9 @@ import {greaterThanOrEquals} from './greaterThanOrEquals'
 import {minDate}             from './minDate'
 import {minLength}           from './minLength'
 import {minTomorrow}         from './minTomorrow'
+import {password}            from './password'
 import {required}            from './required'
+import {username}            from './username'
 
 export interface IValidator<F extends IFieldBase = IFieldBase> {
 	type: string
@@ -27,7 +29,9 @@ export interface IValidators {
 	) => IValidator,
 	email: () => IValidator,
 	minLength: (minLength: number) => IValidator,
-	required: () => IValidator
+	password: () => IValidator,
+	required: () => IValidator,
+	username: () => IValidator,
 }
 
 export interface IErrorsText {
@@ -42,7 +46,9 @@ export const Validators = {
 	minDate,
 	minLength,
 	minTomorrow,
-	required
+	password,
+	required,
+	username
 }
 
 export function filterToRangeValidators(

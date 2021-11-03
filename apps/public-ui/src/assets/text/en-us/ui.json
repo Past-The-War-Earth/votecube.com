@@ -48,12 +48,31 @@
     },
     "Account": {
       "SignIn": {
-        "email": {
-          "info": "Please enter your email",
-          "label": "Email",
+        "username": {
+          "info": "Please enter your username",
+          "label": "Username",
           "errors": {
-            "required": "Email is required",
-            "email": "Invalid Email address"
+            "required": "Username is required",
+            "minLength": "Username must be at least 5 characters long",
+            "username": "Username can only have A-Z a-z 0-9 - _ in it"
+          }
+        },
+        "password": {
+          "info": "Please enter your password",
+          "label": "Password",
+          "errors": {
+            "required": "Password is required",
+            "minLength": "Password must be at least 12 characters long",
+            "password": "Password must have at least one of A-Z, a-z, 0-9, !@#$%^&*"
+          }
+        },
+        "passwordCheck": {
+          "info": "Please re-enter your password",
+          "label": "Re-enter password",
+          "errors": {
+            "required": "Password is required",
+            "minLength": "Password must be at least 12 characters long",
+            "passwordMismatch": "Password does not match"
           }
         }
       },

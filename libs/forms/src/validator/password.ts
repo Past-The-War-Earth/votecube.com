@@ -1,0 +1,24 @@
+import {
+	IFieldBase,
+	IFieldError
+}                   from '..'
+import {IValidator} from './Validator'
+
+export function password(): IValidator {
+	passwordValidator.type = 'password'
+
+	return passwordValidator
+}
+
+const passwordValidator: IValidator = function (
+	field: IFieldBase
+): IFieldError[] | IFieldError | null {
+	const value = field.value
+	if (!value
+		|| typeof value !== 'string'
+		|| !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{12,})/.test(value)){
+		return {
+			key: 'password'
+		}
+	}
+} as any

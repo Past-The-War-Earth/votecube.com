@@ -4,7 +4,9 @@ import { greaterThanOrEquals } from './greaterThanOrEquals';
 import { minDate } from './minDate';
 import { minLength } from './minLength';
 import { minTomorrow } from './minTomorrow';
+import { password } from './password';
 import { required } from './required';
+import { username } from './username';
 export const Validators = {
     custom,
     email,
@@ -12,7 +14,9 @@ export const Validators = {
     minDate,
     minLength,
     minTomorrow,
-    required
+    password,
+    required,
+    username
 };
 export function filterToRangeValidators(validators) {
     return validators.filter(validator => ['min', 'max', 'greaterThanOrEquals'].indexOf(validator.type) > -1);
