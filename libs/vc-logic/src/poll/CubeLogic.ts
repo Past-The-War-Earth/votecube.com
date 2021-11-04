@@ -11,8 +11,6 @@ import {
 } from '@votecube/model'
 import { CUBE_LOGIC } from '../tokens'
 
-
-
 export interface ICubeLogic {
 
 	getDefaultCubePositions(): ICubePosition[]

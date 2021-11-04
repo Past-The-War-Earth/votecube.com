@@ -6,7 +6,7 @@ import {
 }                         from '@votecube/forms'
 import {
 	POLL_FORM_LOGIC,
-	POLL_FORM_MANAGER
+	SITUATION_FORM_MANAGER
 }                         from '../../../tokens'
 import {IStoredRevision} from '../../../poll/PollManager'
 
@@ -32,7 +32,7 @@ export class PollFormLogic
 		text,
 		formFactory: IFormFactory
 	): Promise<IFieldGroup> {
-		const pollFormManager = await container(this).get(POLL_FORM_MANAGER)
+		const pollFormManager = await container(this).get(SITUATION_FORM_MANAGER)
 
 		const form = await this.createPollForm(
 			// labels,

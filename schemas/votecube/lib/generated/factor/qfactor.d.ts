@@ -1,14 +1,11 @@
-import { IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-control';
+import { IQNumberField, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
-import { FactorPositionGraph, FactorPositionESelect, QFactorPosition } from './position/qfactorposition';
-import { FactorPosition } from '../../ddl/factor/position/FactorPosition';
 import { Factor } from '../../ddl/factor/Factor';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface FactorESelect extends RepositoryEntityESelect, FactorEOptionalId {
     name?: string | IQStringField;
-    factorPositions?: FactorPositionESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -31,7 +28,6 @@ export interface FactorEUpdateProperties extends RepositoryEntityEUpdateProperti
  */
 export interface FactorGraph extends FactorEOptionalId, RepositoryEntityGraph {
     name?: string | IQStringField;
-    factorPositions?: FactorPositionGraph[];
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -56,7 +52,6 @@ export interface FactorECreateColumns extends FactorEId, FactorEUpdateColumns {
  */
 export interface QFactor extends QRepositoryEntity<Factor> {
     name: IQStringField;
-    factorPositions: IQOneToManyRelation<FactorPosition, QFactorPosition>;
 }
 export interface QFactorQId extends QRepositoryEntityQId {
 }

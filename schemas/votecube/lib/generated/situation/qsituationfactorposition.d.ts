@@ -1,7 +1,8 @@
 import { IQNumberField, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from './qsituation';
-import { FactorPositionGraph, FactorPositionEOptionalId, FactorPositionESelect, QFactorPositionQRelation } from '../factor/position/qfactorposition';
+import { FactorGraph, FactorEOptionalId, FactorESelect, QFactorQRelation } from '../factor/qfactor';
+import { PositionGraph, PositionEOptionalId, PositionESelect, QPositionQRelation } from '../factor/qposition';
 import { SituationFactorPosition } from '../../ddl/situation/SituationFactorPosition';
 /**
  * SELECT - All fields and relations (optional).
@@ -15,7 +16,8 @@ export interface SituationFactorPositionESelect extends RepositoryEntityESelect,
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
     situation?: SituationESelect;
-    factorPosition?: FactorPositionESelect;
+    factor?: FactorESelect;
+    position?: PositionESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -39,7 +41,8 @@ export interface SituationFactorPositionEUpdateProperties extends RepositoryEnti
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
     situation?: SituationEOptionalId;
-    factorPosition?: FactorPositionEOptionalId;
+    factor?: FactorEOptionalId;
+    position?: PositionEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
@@ -53,7 +56,8 @@ export interface SituationFactorPositionGraph extends SituationFactorPositionEOp
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
     situation?: SituationGraph;
-    factorPosition?: FactorPositionGraph;
+    factor?: FactorGraph;
+    position?: PositionGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -71,9 +75,12 @@ export interface SituationFactorPositionEUpdateColumns extends RepositoryEntityE
     SITUATIONS_RID_1?: number | IQNumberField;
     SITUATIONS_AID_1?: number | IQNumberField;
     SITUATIONS_ARID_1?: number | IQNumberField;
-    FACTOR_POSITIONS_RID_1?: number | IQNumberField;
-    FACTOR_POSITIONS_AID_1?: number | IQNumberField;
-    FACTOR_POSITIONS_ARID_1?: number | IQNumberField;
+    FACTORS_RID_1?: number | IQNumberField;
+    FACTORS_AID_1?: number | IQNumberField;
+    FACTORS_ARID_1?: number | IQNumberField;
+    POSITIONS_RID_1?: number | IQNumberField;
+    POSITIONS_AID_1?: number | IQNumberField;
+    POSITIONS_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -97,7 +104,8 @@ export interface QSituationFactorPosition extends QRepositoryEntity<SituationFac
     red: IQNumberField;
     outcomeOrdinal: IQStringField;
     situation: QSituationQRelation;
-    factorPosition: QFactorPositionQRelation;
+    factor: QFactorQRelation;
+    position: QPositionQRelation;
 }
 export interface QSituationFactorPositionQId extends QRepositoryEntityQId {
 }

@@ -26,19 +26,6 @@ import {
 	QFactor,
 } from './factor/qfactor';
 import {
-	IFactorPosition,
-} from './factor/position/factorposition';
-import {
-	FactorPositionESelect,
-	FactorPositionECreateColumns,
-	FactorPositionECreateProperties,
-	FactorPositionEUpdateColumns,
-	FactorPositionEUpdateProperties,
-	FactorPositionEId,
-	FactorPositionGraph,
-	QFactorPosition,
-} from './factor/position/qfactorposition';
-import {
 	IOutcome,
 } from './situation/outcome';
 import {
@@ -53,7 +40,7 @@ import {
 } from './situation/qoutcome';
 import {
 	IPosition,
-} from './factor/position/position';
+} from './factor/position';
 import {
 	PositionESelect,
 	PositionECreateColumns,
@@ -63,7 +50,7 @@ import {
 	PositionEId,
 	PositionGraph,
 	QPosition,
-} from './factor/position/qposition';
+} from './factor/qposition';
 import {
 	ISituation,
 } from './situation/situation';
@@ -165,29 +152,11 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(1)
-	}
-}
-
-
-export interface IBaseFactorPositionDuo
-  extends IDuo<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition> {
-}
-
-export class BaseFactorPositionDuo
-  extends SQDIDuo<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition>
-	implements IBaseFactorPositionDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(3)
-	}
-	
-	constructor() {
-		super(3)
+		super(2)
 	}
 }
 
@@ -201,11 +170,11 @@ export class BaseOutcomeDuo
 	implements IBaseOutcomeDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(4)
+		super(3)
 	}
 }
 
@@ -219,11 +188,11 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(2)
+		super(1)
 	}
 }
 
@@ -237,11 +206,11 @@ export class BaseSituationDuo
 	implements IBaseSituationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(6)
+		return duoDiSet(5)
 	}
 	
 	constructor() {
-		super(6)
+		super(5)
 	}
 }
 
@@ -255,10 +224,10 @@ export class BaseSituationFactorPositionDuo
 	implements IBaseSituationFactorPositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(5)
+		super(4)
 	}
 }

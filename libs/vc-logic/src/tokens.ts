@@ -7,7 +7,7 @@ import { IDetailedCubeLogic } from './pages/components/poll/DetailedCubeLogic'
 import { IFactorRankingLogic } from './pages/poll/info/FactorRankingLogic'
 import { IPollFormLogic } from './pages/poll/info/PollFormLogic'
 import { IPollMainLogic } from './pages/poll/info/PollMainLogic'
-import { IPollFormManager } from './pages/poll/PollFormManager'
+import { ISituationFormManager } from './pages/poll/SituationFormManager'
 import { ICubeLogic } from './poll/CubeLogic'
 import { IPollManager } from './poll/PollManager'
 import { IVoteManager } from './poll/VoteManager'
@@ -28,7 +28,7 @@ export const FACTOR_RANKING_LOGIC = publicLogic.token<IFactorRankingLogic>('IFac
 export const LOGIC_UTILS = publicLogic.token<ILogicUtils>('ILogicUtils')
 export const OPERATION_SERIALIZER = publicLogic.token<IOperationSerializer>('IOperationSerializer')
 export const POLL_FORM_LOGIC = publicLogic.token<IPollFormLogic>('IPollFormLogic')
-export const POLL_FORM_MANAGER = publicLogic.token<IPollFormManager>('IPollFormManager')
+export const SITUATION_FORM_MANAGER = publicLogic.token<ISituationFormManager>('IPollFormManager')
 export const POLL_MAIN_LOGIC = publicLogic.token<IPollMainLogic>('IPollMainLogic')
 export const POLL_MANAGER = publicLogic.token<IPollManager>('IPollManager')
 export const SITUATION_CONVERTER = publicLogic.token<ISituationConverter>('ISituationConverter')

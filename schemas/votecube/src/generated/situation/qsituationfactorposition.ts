@@ -45,18 +45,31 @@ import {
 	Situation,
 } from '../../ddl/situation/Situation';
 import {
-	FactorPositionGraph,
-	FactorPositionEId,
-	FactorPositionEOptionalId,
-	FactorPositionEUpdateProperties,
-	FactorPositionESelect,
-	QFactorPosition,
-	QFactorPositionQId,
-	QFactorPositionQRelation,
-} from '../factor/position/qfactorposition';
+	FactorGraph,
+	FactorEId,
+	FactorEOptionalId,
+	FactorEUpdateProperties,
+	FactorESelect,
+	QFactor,
+	QFactorQId,
+	QFactorQRelation,
+} from '../factor/qfactor';
 import {
-	FactorPosition,
-} from '../../ddl/factor/position/FactorPosition';
+	Factor,
+} from '../../ddl/factor/Factor';
+import {
+	PositionGraph,
+	PositionEId,
+	PositionEOptionalId,
+	PositionEUpdateProperties,
+	PositionESelect,
+	QPosition,
+	QPositionQId,
+	QPositionQRelation,
+} from '../factor/qposition';
+import {
+	Position,
+} from '../../ddl/factor/Position';
 import {
 	SituationFactorPosition,
 } from '../../ddl/situation/SituationFactorPosition';
@@ -87,7 +100,8 @@ export interface SituationFactorPositionESelect
 
   // Non-Id relations (including OneToMany's)
 	situation?: SituationESelect;
-	factorPosition?: FactorPositionESelect;
+	factor?: FactorESelect;
+	position?: PositionESelect;
 
 }
 
@@ -128,7 +142,8 @@ export interface SituationFactorPositionEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situation?: SituationEOptionalId;
-	factorPosition?: FactorPositionEOptionalId;
+	factor?: FactorEOptionalId;
+	position?: PositionEOptionalId;
 
 }
 
@@ -150,7 +165,8 @@ export interface SituationFactorPositionGraph
 
 	// Relations
 	situation?: SituationGraph;
-	factorPosition?: FactorPositionGraph;
+	factor?: FactorGraph;
+	position?: PositionGraph;
 
 }
 
@@ -172,9 +188,12 @@ export interface SituationFactorPositionEUpdateColumns
 	SITUATIONS_RID_1?: number | IQNumberField;
 	SITUATIONS_AID_1?: number | IQNumberField;
 	SITUATIONS_ARID_1?: number | IQNumberField;
-	FACTOR_POSITIONS_RID_1?: number | IQNumberField;
-	FACTOR_POSITIONS_AID_1?: number | IQNumberField;
-	FACTOR_POSITIONS_ARID_1?: number | IQNumberField;
+	FACTORS_RID_1?: number | IQNumberField;
+	FACTORS_AID_1?: number | IQNumberField;
+	FACTORS_ARID_1?: number | IQNumberField;
+	POSITIONS_RID_1?: number | IQNumberField;
+	POSITIONS_AID_1?: number | IQNumberField;
+	POSITIONS_ARID_1?: number | IQNumberField;
 
 }
 
@@ -219,7 +238,8 @@ export interface QSituationFactorPosition extends QRepositoryEntity<SituationFac
 
 	// Non-Id Relations
 	situation: QSituationQRelation;
-	factorPosition: QFactorPositionQRelation;
+	factor: QFactorQRelation;
+	position: QPositionQRelation;
 
 }
 

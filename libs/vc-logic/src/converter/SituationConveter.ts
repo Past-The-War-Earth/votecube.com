@@ -2,7 +2,6 @@ import { DI } from '@airport/di'
 import {
 	ICategory,
 	IFactor,
-	IFactorPosition,
 	IOutcome,
 	IPosition,
 	ISituation,
@@ -159,7 +158,7 @@ export class SituationConverter
 			dbFactorPositionB = matchingFactorPositions[0]
 		}
 
-		const dbFactor = dbFactorPositionA.factorPosition.factor
+		const dbFactor = dbFactorPositionA.factor
 
 		return {
 			actorId: dbFactor.actor.id,
@@ -183,20 +182,13 @@ export class SituationConverter
 	private getUiPosition(
 		dbSituationFactorPosition: ISituationFactorPosition
 	): IUiPosition {
-		const factorPosition = dbSituationFactorPosition.factorPosition
-		const position = factorPosition.position
+		const position = dbSituationFactorPosition.position
 
 		return {
 			actorId: position.actor.id,
 			actorRecordId: position.actorRecordId,
 			ageSuitability: position.ageSuitability as 0 | 7 | 13 | 18,
 			dir: dbSituationFactorPosition.dir as -1 | 1,
-			factorPosition: {
-				actorId: factorPosition.actor.id,
-				actorRecordId: factorPosition.actorRecordId,
-				ageSuitability: factorPosition.ageSuitability as 0 | 7 | 13 | 18,
-				repositoryId: factorPosition.repository.id,
-			},
 			name: position.name,
 			repositoryId: position.repository.id,
 		}
@@ -263,18 +255,6 @@ export class SituationConverter
 
 		const position: IPosition = this.getDbPosition(uiPosition, uiSituation.ageSuitability)
 
-		let factorPosition: IFactorPosition = {
-			actor: {
-				id: uiPosition.factorPosition.actorId
-			},
-			actorRecordId: uiPosition.factorPosition.actorRecordId,
-			factor,
-			position,
-			repository: {
-				id: uiPosition.factorPosition.repositoryId
-			}
-		}
-
 		return {
 			actor: {
 				id: uiSituation.actorId,
@@ -284,9 +264,10 @@ export class SituationConverter
 			blue: uiFactor.color.blue,
 			dir: uiPosition.dir,
 			factorNumber,
-			factorPosition,
+			factor,
 			green: uiFactor.color.green,
 			outcomeOrdinal,
+			position,
 			red: uiFactor.color.red,
 			repository: {
 				id: uiSituation.repositoryId

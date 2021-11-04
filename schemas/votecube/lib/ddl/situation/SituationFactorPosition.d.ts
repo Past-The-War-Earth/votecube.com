@@ -1,5 +1,5 @@
 import { RepositoryEntity } from '@airport/holding-pattern';
-import { FactorPosition } from '../factor/position/FactorPosition';
+import { Factor, Position } from '../ddl';
 import { Situation } from './Situation';
 export declare class SituationFactorPosition extends RepositoryEntity {
     axis: 'x' | 'y' | 'z';
@@ -10,6 +10,7 @@ export declare class SituationFactorPosition extends RepositoryEntity {
     red: number;
     outcomeOrdinal: 'A' | 'B';
     situation: Situation;
-    factorPosition: FactorPosition;
+    factor: Factor;
+    position: Position;
 }
 //# sourceMappingURL=SituationFactorPosition.d.ts.map

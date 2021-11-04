@@ -16,13 +16,13 @@ export class BaseCategoryDuo extends SQDIDuo {
 }
 export class BaseFactorDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(1);
+        return duoDiSet(2);
     }
     constructor() {
-        super(1);
+        super(2);
     }
 }
-export class BaseFactorPositionDuo extends SQDIDuo {
+export class BaseOutcomeDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(3);
     }
@@ -30,36 +30,28 @@ export class BaseFactorPositionDuo extends SQDIDuo {
         super(3);
     }
 }
-export class BaseOutcomeDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(4);
-    }
-    constructor() {
-        super(4);
-    }
-}
 export class BasePositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(2);
+        return duoDiSet(1);
     }
     constructor() {
-        super(2);
+        super(1);
     }
 }
 export class BaseSituationDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(6);
-    }
-    constructor() {
-        super(6);
-    }
-}
-export class BaseSituationFactorPositionDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(5);
     }
     constructor() {
         super(5);
+    }
+}
+export class BaseSituationFactorPositionDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(4);
+    }
+    constructor() {
+        super(4);
     }
 }
 //# sourceMappingURL=baseDuos.js.map

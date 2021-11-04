@@ -1,6 +1,6 @@
 import { RepositoryEntity } from '@airport/holding-pattern';
 import { Factor } from '../Factor';
-import { Position } from './Position';
+import { Position } from '../Position';
 /**
  * Which positions belong to which factors.
  */

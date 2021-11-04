@@ -32,19 +32,6 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	FactorPositionGraph,
-	FactorPositionEId,
-	FactorPositionEOptionalId,
-	FactorPositionEUpdateProperties,
-	FactorPositionESelect,
-	QFactorPosition,
-	QFactorPositionQId,
-	QFactorPositionQRelation,
-} from './position/qfactorposition';
-import {
-	FactorPosition,
-} from '../../ddl/factor/position/FactorPosition';
-import {
 	Factor,
 } from '../../ddl/factor/Factor';
 
@@ -67,7 +54,6 @@ export interface FactorESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	factorPositions?: FactorPositionESelect;
 
 }
 
@@ -115,7 +101,6 @@ export interface FactorGraph
 	name?: string | IQStringField;
 
 	// Relations
-	factorPositions?: FactorPositionGraph[];
 
 }
 
@@ -165,7 +150,6 @@ export interface QFactor extends QRepositoryEntity<Factor>
 	name: IQStringField;
 
 	// Non-Id Relations
-	factorPositions: IQOneToManyRelation<FactorPosition, QFactorPosition>;
 
 }
 

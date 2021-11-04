@@ -3,16 +3,11 @@ import {
 	DbNumber,
 	DbString,
 	Entity,
-	GeneratedValue,
-	Id,
-	JoinColumn,
-	JoinColumns,
 	ManyToOne,
-	OneToMany,
 	Table
 } from '@airport/air-control'
 import { RepositoryEntity } from '@airport/holding-pattern'
-import { FactorPosition } from '../factor/position/FactorPosition'
+import { Factor, Position } from '../ddl'
 import { Situation } from './Situation'
 
 @Entity()
@@ -49,6 +44,9 @@ export class SituationFactorPosition
 	situation: Situation
 
 	@ManyToOne()
-	factorPosition: FactorPosition
+	factor: Factor
+
+	@ManyToOne()
+	position: Position
 
 }

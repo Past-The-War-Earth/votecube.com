@@ -1,6 +1,7 @@
 import { IRepositoryEntity } from '@airport/holding-pattern';
 import { ISituation } from './situation';
-import { IFactorPosition } from '../factor/position/factorposition';
+import { IFactor } from '../factor/factor';
+import { IPosition } from '../factor/position';
 export interface ISituationFactorPosition extends IRepositoryEntity {
     axis?: string;
     dir?: number;
@@ -10,6 +11,7 @@ export interface ISituationFactorPosition extends IRepositoryEntity {
     red?: number;
     outcomeOrdinal?: string;
     situation?: ISituation;
-    factorPosition?: IFactorPosition;
+    factor?: IFactor;
+    position?: IPosition;
 }
 //# sourceMappingURL=situationfactorposition.d.ts.map

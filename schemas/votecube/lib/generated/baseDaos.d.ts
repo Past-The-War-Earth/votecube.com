@@ -2,12 +2,10 @@ import { ICategory } from './category';
 import { CategoryESelect, CategoryECreateProperties, CategoryEUpdateColumns, CategoryEUpdateProperties, CategoryEId, CategoryGraph, QCategory } from './qcategory';
 import { IFactor } from './factor/factor';
 import { FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor } from './factor/qfactor';
-import { IFactorPosition } from './factor/position/factorposition';
-import { FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition } from './factor/position/qfactorposition';
 import { IOutcome } from './situation/outcome';
 import { OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome } from './situation/qoutcome';
-import { IPosition } from './factor/position/position';
-import { PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition } from './factor/position/qposition';
+import { IPosition } from './factor/position';
+import { PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition } from './factor/qposition';
 import { ISituation } from './situation/situation';
 import { SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation } from './situation/qsituation';
 import { ISituationFactorPosition } from './situation/situationfactorposition';
@@ -37,17 +35,6 @@ export declare class BaseFactorDao extends SQDIDao<IFactor, FactorESelect, Facto
     static Search: DaoQueryDecorators<FactorESelect>;
     static SearchOne: DaoQueryDecorators<FactorESelect>;
     static Save(config: FactorGraph): PropertyDecorator;
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseFactorPositionDao extends IDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition> {
-}
-export declare class BaseFactorPositionDao extends SQDIDao<IFactorPosition, FactorPositionESelect, FactorPositionECreateProperties, FactorPositionEUpdateColumns, FactorPositionEUpdateProperties, FactorPositionEId, FactorPositionGraph, QFactorPosition> implements IBaseFactorPositionDao {
-    static Find: DaoQueryDecorators<FactorPositionESelect>;
-    static FindOne: DaoQueryDecorators<FactorPositionESelect>;
-    static Search: DaoQueryDecorators<FactorPositionESelect>;
-    static SearchOne: DaoQueryDecorators<FactorPositionESelect>;
-    static Save(config: FactorPositionGraph): PropertyDecorator;
     static diSet(): boolean;
     constructor();
 }

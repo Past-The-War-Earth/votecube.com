@@ -2,7 +2,7 @@ import { IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { FactorPositionGraph, FactorPositionESelect, QFactorPosition } from './qfactorposition';
 import { FactorPosition } from '../../../ddl/factor/position/FactorPosition';
-import { Position } from '../../../ddl/factor/position/Position';
+import { Position } from '../../../ddl/factor/Position';
 /**
  * SELECT - All fields and relations (optional).
  */

@@ -5,8 +5,11 @@ import {
 	ISituation,
 } from './situation';
 import {
-	IFactorPosition,
-} from '../factor/position/factorposition';
+	IFactor,
+} from '../factor/factor';
+import {
+	IPosition,
+} from '../factor/position';
 
 
 
@@ -31,7 +34,8 @@ export interface ISituationFactorPosition extends IRepositoryEntity {
 
 	// Non-Id Relations
 	situation?: ISituation;
-	factorPosition?: IFactorPosition;
+	factor?: IFactor;
+	position?: IPosition;
 
 	// Transient Properties
 

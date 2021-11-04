@@ -1,5 +1,5 @@
 import { RepositoryEntity } from '@airport/holding-pattern';
-import { FactorPosition } from './FactorPosition';
+import { FactorPosition } from './position/FactorPosition';
 /**
  * This is the generic position records (not related to any poll).
  */

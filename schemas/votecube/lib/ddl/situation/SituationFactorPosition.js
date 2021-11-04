@@ -38,7 +38,10 @@ __decorate([
 ], SituationFactorPosition.prototype, "situation", void 0);
 __decorate([
     ManyToOne()
-], SituationFactorPosition.prototype, "factorPosition", void 0);
+], SituationFactorPosition.prototype, "factor", void 0);
+__decorate([
+    ManyToOne()
+], SituationFactorPosition.prototype, "position", void 0);
 SituationFactorPosition = __decorate([
     Entity(),
     Table({ name: 'SITUATION_FACTOR_POSITIONS' })

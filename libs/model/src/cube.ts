@@ -1,8 +1,6 @@
 export interface ICubePosition {
-
 	axis: 'x' | 'y' | 'z'
 	dir: -1 | 1
-
 }
 
 export interface ICubeFactorPositionDefault {

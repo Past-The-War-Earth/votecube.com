@@ -20,7 +20,7 @@ import {
 	CONNECTION_MANAGER,
 	CUBE_LOGIC,
 	LOGIC_UTILS,
-	POLL_FORM_MANAGER,
+	SITUATION_FORM_MANAGER,
 	POLL_MANAGER,
 	SITUATION_CONVERTER
 }                    from '../tokens'
@@ -181,7 +181,7 @@ export class PollManager
 		}
 
 		const [pollFormManager, logicUtils] = await container(this).get(
-			POLL_FORM_MANAGER, LOGIC_UTILS)
+			SITUATION_FORM_MANAGER, LOGIC_UTILS)
 
 		const ui: IUiPollRevision           = pollFormManager.fromForm(form.value)
 		const uiDelta: IUiPollRevisionDelta = pollFormManager.fromForm(form.changeFlags)
