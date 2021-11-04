@@ -8,7 +8,7 @@ export interface ISituation extends IRepositoryEntity {
     parent?: ISituation;
     outcomeA?: IOutcome;
     outcomeB?: IOutcome;
-    situationFactorPositions?: ISituationFactorPosition;
+    situationFactorPositions?: ISituationFactorPosition[];
     children?: ISituation[];
 }
 //# sourceMappingURL=situation.d.ts.map

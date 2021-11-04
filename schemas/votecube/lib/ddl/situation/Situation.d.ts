@@ -8,7 +8,7 @@ export declare class Situation extends RepositoryEntity {
     parent: Situation;
     outcomeA: Outcome;
     outcomeB: Outcome;
-    situationFactorPositions: SituationFactorPosition;
+    situationFactorPositions: SituationFactorPosition[];
     children: Situation[];
 }
 //# sourceMappingURL=Situation.d.ts.map

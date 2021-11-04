@@ -14,5 +14,6 @@ export interface IUiSituation extends IUiRepositoryRecord {
         A: IUiOutcome;
         B: IUiOutcome;
     };
+    parent: IUiRepositoryRecord;
 }
 //# sourceMappingURL=UiSituation.d.ts.map

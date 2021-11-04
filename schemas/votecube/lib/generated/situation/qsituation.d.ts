@@ -2,7 +2,8 @@ import { IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { CategoryGraph, CategoryEOptionalId, CategoryESelect, QCategoryQRelation } from '../qcategory';
 import { OutcomeGraph, OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from './qoutcome';
-import { SituationFactorPositionGraph, SituationFactorPositionESelect, QSituationFactorPositionQRelation } from './qsituationfactorposition';
+import { SituationFactorPositionGraph, SituationFactorPositionESelect, QSituationFactorPosition } from './qsituationfactorposition';
+import { SituationFactorPosition } from '../../ddl/situation/SituationFactorPosition';
 import { Situation } from '../../ddl/situation/Situation';
 /**
  * SELECT - All fields and relations (optional).
@@ -45,7 +46,7 @@ export interface SituationGraph extends SituationEOptionalId, RepositoryEntityGr
     parent?: SituationGraph;
     outcomeA?: OutcomeGraph;
     outcomeB?: OutcomeGraph;
-    situationFactorPositions?: SituationFactorPositionGraph;
+    situationFactorPositions?: SituationFactorPositionGraph[];
     children?: SituationGraph[];
 }
 /**
@@ -87,7 +88,7 @@ export interface QSituation extends QRepositoryEntity<Situation> {
     parent: QSituationQRelation;
     outcomeA: QOutcomeQRelation;
     outcomeB: QOutcomeQRelation;
-    situationFactorPositions: QSituationFactorPositionQRelation;
+    situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;
     children: IQOneToManyRelation<Situation, QSituation>;
 }
 export interface QSituationQId extends QRepositoryEntityQId {

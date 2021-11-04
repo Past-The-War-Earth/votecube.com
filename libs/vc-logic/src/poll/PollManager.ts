@@ -22,7 +22,7 @@ import {
 	LOGIC_UTILS,
 	POLL_FORM_MANAGER,
 	POLL_MANAGER,
-	POLL_REVISION_CONVERTER
+	SITUATION_CONVERTER
 }                    from '../tokens'
 
 export interface IPageVote
@@ -220,7 +220,7 @@ export class PollManager
 
 		logicUtils.setDeltas(originalUi, ui, delta)
 
-		const converter = await container(this).get(POLL_REVISION_CONVERTER)
+		const converter = await container(this).get(SITUATION_CONVERTER)
 
 		// const response = await fetch('/add/poll/0/0', {
 		// 	method: 'POST',

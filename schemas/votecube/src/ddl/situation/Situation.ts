@@ -31,7 +31,7 @@ export class Situation
 	outcomeB: Outcome
 
 	@OneToMany({ mappedBy: 'situation' })
-	situationFactorPositions: SituationFactorPosition
+	situationFactorPositions: SituationFactorPosition[]
 
 	@OneToMany({ mappedBy: 'parent' })
 	children: Situation[]

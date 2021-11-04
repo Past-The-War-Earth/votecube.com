@@ -25,5 +25,6 @@ export interface IUiSituation
 		A: IUiOutcome
 		B: IUiOutcome
 	}
+	parent: IUiRepositoryRecord
 
 }

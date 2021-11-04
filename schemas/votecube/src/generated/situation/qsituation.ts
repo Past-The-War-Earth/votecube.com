@@ -154,7 +154,7 @@ export interface SituationGraph
 	parent?: SituationGraph;
 	outcomeA?: OutcomeGraph;
 	outcomeB?: OutcomeGraph;
-	situationFactorPositions?: SituationFactorPositionGraph;
+	situationFactorPositions?: SituationFactorPositionGraph[];
 	children?: SituationGraph[];
 
 }
@@ -221,7 +221,7 @@ export interface QSituation extends QRepositoryEntity<Situation>
 	parent: QSituationQRelation;
 	outcomeA: QOutcomeQRelation;
 	outcomeB: QOutcomeQRelation;
-	situationFactorPositions: QSituationFactorPositionQRelation;
+	situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;
 	children: IQOneToManyRelation<Situation, QSituation>;
 
 }
