@@ -1,11 +1,11 @@
 import {
 	container,
 	DI
-}                                    from '@airport/di'
+} from '@airport/di'
 import {
-	Factor_Number,
-	IVote
-}                                    from '@votecube/model'
+	IUiSolution
+} from '@votecube/model'
+import { Factor_Number } from './mutation/types'
 import {
 	CUBE_DIRECTION,
 	CUBE_EVENT_LISTENER,
@@ -14,19 +14,19 @@ import {
 	EVENT_LISTENER_MAP,
 	MUTATION_API,
 	VIEWPORT
-}                                    from '../tokens'
-import {IPerElementEventListenerMap} from '../utils/EventListenerMap'
+} from '../tokens'
+import { IPerElementEventListenerMap } from '../utils/EventListenerMap'
 import {
 	Bool,
 	IFactorToAxisMapping,
 	IPosition,
-	IUiVote,
-	IUiVoteDimension,
+	ICubeSolution,
+	ICubeSolutionDimension,
 	IValuesOutCallback,
 	Move
-}                                    from './CubeMovement'
-import {IMutationApi}                from './mutation/MutationApi'
-import {IViewport}                   from './Viewport'
+} from './CubeMovement'
+import { IMutationApi } from './mutation/MutationApi'
+import { IViewport } from './Viewport'
 
 export type MovementDirection = -1 | 0 | 1;
 export type ChangeInPixels = number;
@@ -48,12 +48,12 @@ export interface ICubeEventListener {
 	resumeInteraction(): void
 
 	setPositionData(
-		vote: IVote,
+		vote: IUiSolution,
 		factorNumbers?: Factor_Number[]
 	): boolean
 
 	setPositionDataAndMove(
-		vote: IVote
+		vote: IUiSolution
 	): void
 
 	setView(
@@ -76,7 +76,7 @@ export class CubeEventListener
 
 	// document listener map
 	private dLM: IPerElementEventListenerMap
-	private lastMove  = 0
+	private lastMove = 0
 	private suspended = false
 
 	addCubeAdjustment(): void {
@@ -88,7 +88,7 @@ export class CubeEventListener
 			this.addCubeAdjustmentToELM(this.dLM)
 		} else {
 			const eventListenerMap = container(this).getSync(EVENT_LISTENER_MAP)
-			this.dLM               = eventListenerMap.ad(document)
+			this.dLM = eventListenerMap.ad(document)
 			this.addCubeAdjustmentToELM(this.dLM)
 		}
 	}
@@ -149,30 +149,30 @@ export class CubeEventListener
 				}
 
 			})
-		('mousedown',
-			event => this.safeOMdTs(event))
-		('touchstart',
-			event => {
-				// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/
-				// Supporting_both_TouchEvent_and_MouseEvent
-				try {
-					event.preventDefault()
-				} catch (_) {
-				}
-				this.safeOMdTs(event)
-			})
-		('mouseup',
-			_ => this.safeRmMmTm())
-		('touchend',
-			_ => this.safeRmMmTm())
+			('mousedown',
+				event => this.safeOMdTs(event))
+			('touchstart',
+				event => {
+					// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/
+					// Supporting_both_TouchEvent_and_MouseEvent
+					try {
+						event.preventDefault()
+					} catch (_) {
+					}
+					this.safeOMdTs(event)
+				})
+			('mouseup',
+				_ => this.safeRmMmTm())
+			('touchend',
+				_ => this.safeRmMmTm())
 	}
 
 	clearCubeAdjustment(): void {
 		this.dLM.rm('keydown')
-		('mousedown')
-		('touchstart')
-		('mouseup')
-		('touchend')
+			('mousedown')
+			('touchstart')
+			('mouseup')
+			('touchend')
 	}
 
 	clearView(
@@ -187,7 +187,7 @@ export class CubeEventListener
 	}
 
 	setPositionData(
-		vote: IVote,
+		vote: IUiSolution,
 		factorNumbers: Factor_Number[] = [1, 2, 3]
 	): boolean {
 		const factorToAxisMapping: IFactorToAxisMapping = {
@@ -195,12 +195,12 @@ export class CubeEventListener
 			2: null,
 			3: null
 		}
-		factorToAxisMapping[factorNumbers[0]]           = 'x'
-		factorToAxisMapping[factorNumbers[1]]           = 'y'
-		factorToAxisMapping[factorNumbers[2]]           = 'z'
+		factorToAxisMapping[factorNumbers[0]] = 'x'
+		factorToAxisMapping[factorNumbers[1]] = 'y'
+		factorToAxisMapping[factorNumbers[2]] = 'z'
 
 		const viewport = container(this).getSync(VIEWPORT)
-		viewport.pd    = {
+		viewport.pd = {
 			// axisToFactorMapping: {
 			// 	x: factorNumbers[0],
 			// 	y: factorNumbers[1],
@@ -208,15 +208,15 @@ export class CubeEventListener
 			// },
 			factorToAxisMapping,
 			vote,
-			x: this.getUiVoteDimension(1,
+			x: this.getUIUiSolutionDimension(1,
 				// 'x',
 				vote
 				// , 100
 			),
-			y: this.getUiVoteDimension(2,
+			y: this.getUIUiSolutionDimension(2,
 				// 'y',
 				vote),
-			z: this.getUiVoteDimension(3,
+			z: this.getUIUiSolutionDimension(3,
 				// 'z',
 				vote),
 		}
@@ -225,7 +225,7 @@ export class CubeEventListener
 	}
 
 	setPositionDataAndMove(
-		vote: IVote
+		vote: IUiSolution
 	): void {
 		if (this.setPositionData(vote)) {
 			const viewport = container(this).getSync(VIEWPORT)
@@ -237,7 +237,7 @@ export class CubeEventListener
 		elementId: string
 	): void {
 		const [cubeUtils, viewport] = container(this).getSync(CUBE_UTILS, VIEWPORT)
-		viewport.el[elementId]      = cubeUtils.gQ('#' + elementId)
+		viewport.el[elementId] = cubeUtils.gQ('#' + elementId)
 	}
 
 	setViewPort(
@@ -248,12 +248,12 @@ export class CubeEventListener
 
 		viewport.reset()
 		viewport.cb = (
-			uiVote: IUiVote
+			uIUiSolution: ICubeSolution
 		) => {
-			// this.populateVoteFactor('x', uiVote)
-			// this.populateVoteFactor('y', uiVote)
-			// this.populateVoteFactor('z', uiVote)
-			cb(uiVote.vote)
+			// this.populateVoteFactor('x', uIUiSolution)
+			// this.populateVoteFactor('y', uIUiSolution)
+			// this.populateVoteFactor('z', uIUiSolution)
+			cb(uIUiSolution.vote)
 		}
 
 		if (forCube) {
@@ -277,12 +277,12 @@ export class CubeEventListener
 		this.suspended = true
 	}
 
-	private getUiVoteDimension(
+	private getUIUiSolutionDimension(
 		factorNumber: Factor_Number,
 		// axis: Factor_Axis,
-		vote: IVote,
+		vote: IUiSolution,
 		// value: VoteFactor_Value = 0
-	): IUiVoteDimension {
+	): ICubeSolutionDimension {
 		if (!vote) {
 			return null
 		}
@@ -297,7 +297,7 @@ export class CubeEventListener
 		// 	}
 		// }
 
-		const voteFactor = vote[factorNumber] as IUiVoteDimension
+		const voteFactor = vote[factorNumber] as ICubeSolutionDimension
 		// if (voteFactor.outcome === 'A') {
 		// 	dir = 1
 		// } else if (voteFactor.outcome === 'B') {
@@ -319,23 +319,23 @@ export class CubeEventListener
 		viewport: IViewport
 	): void {
 		const [
-			      cubeDirection,
-			      cubeMovement
-		      ] = container(this).getSync(CUBE_DIRECTION, CUBE_MOVEMENT)
+			cubeDirection,
+			cubeMovement
+		] = container(this).getSync(CUBE_DIRECTION, CUBE_MOVEMENT)
 
 		const mouseObject = cubeMovement.mouse
 		const startCoords = mouseObject.start
-		let lastCoords    = mouseObject.last
+		let lastCoords = mouseObject.last
 
 
 		const now: number = new Date().getTime()
 
 		if (!cubeMovement.mouse.last) {
 			cubeMovement.mouse.last = lastCoords = cubeMovement.mouse.start
-			this.lastMove           = now
+			this.lastMove = now
 		}
 
-		const {moveX, moveY, xBy, yBy} = cubeDirection.getMove(startCoords, event)
+		const { moveX, moveY, xBy, yBy } = cubeDirection.getMove(startCoords, event)
 
 		if (now - this.lastMove >= 8) {
 			startCoords.x = lastCoords.x
@@ -357,10 +357,10 @@ export class CubeEventListener
 		ev: MouseEvent | TouchEvent, // Event
 	): void {
 		const [
-			      cubeMovement,
-			      cubeUtils,
-			      viewport
-		      ] = container(this).getSync(CUBE_MOVEMENT, CUBE_UTILS, VIEWPORT)
+			cubeMovement,
+			cubeUtils,
+			viewport
+		] = container(this).getSync(CUBE_MOVEMENT, CUBE_UTILS, VIEWPORT)
 
 		if (!Object.keys(viewport.el).length) {
 			return
@@ -410,7 +410,7 @@ export class CubeEventListener
 			// Get touch co-ords
 			// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
 			// dispatch 'move-viewport' event
-			this.moveViewport({x: point.screenX, y: point.screenY}, viewport)
+			this.moveViewport({ x: point.screenX, y: point.screenY }, viewport)
 		}
 	}
 
@@ -422,8 +422,8 @@ export class CubeEventListener
 		const p: MouseEvent | Touch = touches
 			? touches[0]
 			: ev as MouseEvent
-		start.x                     = p.pageX
-		start.y                     = p.pageY
+		start.x = p.pageX
+		start.y = p.pageY
 	}
 
 	private populateEndCoords(
@@ -444,11 +444,11 @@ export class CubeEventListener
 	/*
 	private populateVoteFactor(
 		axis: Factor_Axis,
-		uiVote: IUiVote
+		uIUiSolution: ICubeSolution
 	): void {
-		const vote                    = uiVote.vote
-		const voteFactor: IVoteFactor = vote[uiVote.axisToFactorMapping[axis]]
-		const voteDimension           = uiVote[axis]
+		const vote                    = uIUiSolution.vote
+		const voteFactor: IUiSolutionFactor = vote[uIUiSolution.axisToFactorMapping[axis]]
+		const voteDimension           = uIUiSolution[axis]
 		voteFactor.outcome            = null
 		if (voteDimension.dir === 1) {
 			voteFactor.outcome = 'A'

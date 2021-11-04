@@ -2,12 +2,7 @@ import {
 	container,
 	DI
 } from '@airport/di'
-import {
-	Factor_Axis,
-} from '@votecube/model'
-import {
-	Outcome_Ordinal,
-} from '@votecube/ecclesia'
+import { Outcome_Ordinal } from '..'
 import {
 	CUBE_MOVE_MATRIX,
 	CUBE_MOVEMENT,
@@ -22,8 +17,8 @@ import {
 import {
 	Bool,
 	Direction,
-	IUiVote,
-	IUiVoteDimension,
+	ICubeSolution,
+	ICubeSolutionDimension,
 	IValuesThruCallback,
 	Move
 } from './CubeMovement'
@@ -34,7 +29,7 @@ export interface IViewport {
 	cr: ICubeRotation
 	el: { [elementId: string]: Element }
 	increment: MoveIncrement
-	pd: IUiVote
+	pd: ICubeSolution
 	// Recently Moved Dimension
 	rmd: Dimension[]
 	x: number
@@ -74,7 +69,7 @@ export interface IVisibleDirection {
 	z: Direction
 }
 
-export type Dimension = Factor_Axis
+export type Dimension = 'x' | 'y' | 'z'
 
 export class Viewport
 	implements IViewport {
@@ -148,7 +143,7 @@ export class Viewport
 				positivePosition: ValueArrayPosition,
 				negativePosition: ValueArrayPosition,
 				positionValues: PositionValues,
-				voteDimension: IUiVoteDimension
+				voteDimension: ICubeSolutionDimension
 			): void {
 				let outcome: Outcome_Ordinal = 'A'
 				let value                    = positionValues[positivePosition]

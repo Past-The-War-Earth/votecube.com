@@ -1,7 +1,6 @@
-import { Outcome_Ordinal } from '@votecube/ecclesia';
 import { PositionPercent } from '../CubeMovement';
 import { Dimension, IViewport } from '../Viewport';
-import { PercentChange } from './types';
+import { Outcome_Ordinal, PercentChange } from './types';
 export interface IPercentagePositionChooser {
     changePositionPercentages(dimension: Dimension, percentChange: PercentChange, outcome: Outcome_Ordinal, viewport: IViewport): void;
     setPositionPercentages(dimension: Dimension, percent: PositionPercent, outcome: Outcome_Ordinal, viewport: IViewport): void;

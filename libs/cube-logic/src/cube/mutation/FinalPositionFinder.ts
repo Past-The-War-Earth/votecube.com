@@ -10,7 +10,7 @@ import {
 import {
 	Direction,
 	ICubeMovement,
-	IUiVoteDimension,
+	ICubeSolutionDimension,
 	PositionPercent
 }                              from '../CubeMovement'
 import {IViewport}             from '../Viewport'
@@ -114,7 +114,7 @@ export class FinalPositionFinder
 	}
 
 	private getDirectionVals(
-		voteDimension: IUiVoteDimension
+		voteDimension: ICubeSolutionDimension
 	): [PositionPercent, PositionPercent] {
 		return voteDimension.outcome === 'A'
 			? [voteDimension.value, 0]

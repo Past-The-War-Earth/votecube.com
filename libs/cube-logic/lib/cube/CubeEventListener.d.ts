@@ -1,4 +1,5 @@
-import { Factor_Number, IVote } from '@votecube/model';
+import { IUiSolution } from '@votecube/model';
+import { Factor_Number } from './mutation/types';
 import { IPerElementEventListenerMap } from '../utils/EventListenerMap';
 import { IValuesOutCallback } from './CubeMovement';
 import { IMutationApi } from './mutation/MutationApi';
@@ -13,8 +14,8 @@ export interface ICubeEventListener {
     clearCubeAdjustment(): void;
     clearView(elementId: string): void;
     resumeInteraction(): void;
-    setPositionData(vote: IVote, factorNumbers?: Factor_Number[]): boolean;
-    setPositionDataAndMove(vote: IVote): void;
+    setPositionData(vote: IUiSolution, factorNumbers?: Factor_Number[]): boolean;
+    setPositionDataAndMove(vote: IUiSolution): void;
     setView(elementId: string): void;
     setViewPort(forCube: boolean, cb?: IValuesOutCallback): IMutationApi;
     suspendInteraction(): void;
@@ -29,12 +30,12 @@ export declare class CubeEventListener implements ICubeEventListener {
     clearCubeAdjustment(): void;
     clearView(elementId: string): void;
     resumeInteraction(): void;
-    setPositionData(vote: IVote, factorNumbers?: Factor_Number[]): boolean;
-    setPositionDataAndMove(vote: IVote): void;
+    setPositionData(vote: IUiSolution, factorNumbers?: Factor_Number[]): boolean;
+    setPositionDataAndMove(vote: IUiSolution): void;
     setView(elementId: string): void;
     setViewPort(forCube: boolean, cb?: IValuesOutCallback): IMutationApi;
     suspendInteraction(): void;
-    private getUiVoteDimension;
+    private getUIUiSolutionDimension;
     private moveViewport;
     /**
      * On mousedown or touchstart

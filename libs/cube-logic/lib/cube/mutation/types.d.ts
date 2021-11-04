@@ -7,6 +7,8 @@ export interface IFinalPosition {
     y: number;
 }
 export declare type NumberOfNonZeroPositions = 1 | 2 | 3;
+export declare type Outcome_Ordinal = 'A' | 'B';
+export declare type Factor_Number = 1 | 2 | 3;
 export interface IMatrixPosition {
     done?: boolean;
     i: number;

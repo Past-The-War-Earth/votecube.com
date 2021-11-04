@@ -1,11 +1,8 @@
 import {DI}            from '@airport/di'
 import {
-	Factor_Axis,
-	Factor_Number,
-	IVote,
-	IVoteFactor,
-	Position_Dir,
-	VoteFactor_Value
+	IUiSolution,
+	IUiSolutionFactor,
+	SolutionFactor_Value
 }                      from '@votecube/model'
 import {CUBE_MOVEMENT} from '../tokens'
 import {
@@ -25,9 +22,9 @@ export enum Move {
 	Up   = 1
 }
 
-export type Direction = Position_Dir | 0
+export type Direction = -1 | 0 | 1
 
-export type PositionPercent = VoteFactor_Value
+export type PositionPercent = SolutionFactor_Value
 
 export interface IPosition {
 
@@ -43,7 +40,7 @@ export interface IMousePosition {
 
 }
 
-export interface IUiVote {
+export interface ICubeSolution {
 
 	// axisToFactorMapping: {
 	// 	x: Factor_Number
@@ -51,12 +48,14 @@ export interface IUiVote {
 	// 	z: Factor_Number
 	// }
 	factorToAxisMapping: IFactorToAxisMapping
-	vote: IVote
-	x: IUiVoteDimension
-	y: IUiVoteDimension
-	z: IUiVoteDimension
+	vote: IUiSolution
+	x: ICubeSolutionDimension
+	y: ICubeSolutionDimension
+	z: ICubeSolutionDimension
 
 }
+
+export type Factor_Axis = 'x' | 'y' | 'z'
 
 export interface IFactorToAxisMapping {
 
@@ -66,16 +65,16 @@ export interface IFactorToAxisMapping {
 
 }
 
-export interface IUiVoteDimension
-	extends IVoteFactor {
+export interface ICubeSolutionDimension
+	extends IUiSolutionFactor {
 	valid: boolean
 }
 
 export type IValuesOutCallback =
-	(vote: IVote) => void
+	(vote: IUiSolution) => void
 
 export type IValuesThruCallback =
-	(vote: IUiVote) => void
+	(vote: ICubeSolution) => void
 
 export interface ICubeMovement {
 

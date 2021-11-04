@@ -18,6 +18,10 @@ export interface IFinalPosition {
 
 export type NumberOfNonZeroPositions = 1 | 2 | 3
 
+export type Outcome_Ordinal = 'A' | 'B'
+
+export type Factor_Number = 1 | 2 | 3
+
 export interface IMatrixPosition {
 	done?: boolean
 	i: number

@@ -1,7 +1,5 @@
-import { Factor_Number } from '@votecube/model';
-import { Outcome_Ordinal } from '@votecube/ecclesia';
 import { PositionPercent } from '../CubeMovement';
-import { PercentChange } from './types';
+import { Factor_Number, Outcome_Ordinal, PercentChange } from './types';
 export interface IMutationApi {
     move(factorNumber: Factor_Number, outcome: Outcome_Ordinal, percentChange: PercentChange): void;
     moveToValue(factorNumber: Factor_Number, value: PositionPercent): Promise<void>;

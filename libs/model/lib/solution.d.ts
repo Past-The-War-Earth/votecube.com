@@ -8,7 +8,7 @@ export interface ITweenSolutionFactor extends IUiSolutionFactor {
     tweenOutcome: 'A' | 'B';
     tweenValue: SolutionFactor_Value;
 }
-export interface IUISolution {
+export interface IUiSolution {
     1: IUiSolutionFactor;
     2: IUiSolutionFactor;
     3: IUiSolutionFactor;

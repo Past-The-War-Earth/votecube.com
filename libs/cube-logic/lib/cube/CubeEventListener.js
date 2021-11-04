@@ -106,15 +106,15 @@ export class CubeEventListener {
             // },
             factorToAxisMapping,
             vote,
-            x: this.getUiVoteDimension(1, 
+            x: this.getUIUiSolutionDimension(1, 
             // 'x',
             vote
             // , 100
             ),
-            y: this.getUiVoteDimension(2, 
+            y: this.getUIUiSolutionDimension(2, 
             // 'y',
             vote),
-            z: this.getUiVoteDimension(3, 
+            z: this.getUIUiSolutionDimension(3, 
             // 'z',
             vote),
         };
@@ -133,11 +133,11 @@ export class CubeEventListener {
     setViewPort(forCube, cb) {
         const viewport = container(this).getSync(VIEWPORT);
         viewport.reset();
-        viewport.cb = (uiVote) => {
-            // this.populateVoteFactor('x', uiVote)
-            // this.populateVoteFactor('y', uiVote)
-            // this.populateVoteFactor('z', uiVote)
-            cb(uiVote.vote);
+        viewport.cb = (uIUiSolution) => {
+            // this.populateVoteFactor('x', uIUiSolution)
+            // this.populateVoteFactor('y', uIUiSolution)
+            // this.populateVoteFactor('z', uIUiSolution)
+            cb(uIUiSolution.vote);
         };
         if (forCube) {
             if (cb) {
@@ -156,7 +156,7 @@ export class CubeEventListener {
     suspendInteraction() {
         this.suspended = true;
     }
-    getUiVoteDimension(factorNumber, 
+    getUIUiSolutionDimension(factorNumber, 
     // axis: Factor_Axis,
     vote) {
         if (!vote) {
@@ -274,11 +274,11 @@ export class CubeEventListener {
     /*
     private populateVoteFactor(
         axis: Factor_Axis,
-        uiVote: IUiVote
+        uIUiSolution: ICubeSolution
     ): void {
-        const vote                    = uiVote.vote
-        const voteFactor: IVoteFactor = vote[uiVote.axisToFactorMapping[axis]]
-        const voteDimension           = uiVote[axis]
+        const vote                    = uIUiSolution.vote
+        const voteFactor: IUiSolutionFactor = vote[uIUiSolution.axisToFactorMapping[axis]]
+        const voteDimension           = uIUiSolution[axis]
         voteFactor.outcome            = null
         if (voteDimension.dir === 1) {
             voteFactor.outcome = 'A'

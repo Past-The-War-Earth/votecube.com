@@ -1,6 +1,5 @@
-import { Factor_Axis } from '@votecube/model';
 import { MoveIncrement, ZoomIndex } from './CubeMoveMatrix';
-import { Bool, Direction, IUiVote, IValuesThruCallback, Move } from './CubeMovement';
+import { Bool, Direction, ICubeSolution, IValuesThruCallback, Move } from './CubeMovement';
 export interface IViewport {
     cb: IValuesThruCallback;
     cr: ICubeRotation;
@@ -8,7 +7,7 @@ export interface IViewport {
         [elementId: string]: Element;
     };
     increment: MoveIncrement;
-    pd: IUiVote;
+    pd: ICubeSolution;
     rmd: Dimension[];
     x: number;
     y: number;
@@ -27,7 +26,7 @@ export interface IVisibleDirection {
     y: Direction;
     z: Direction;
 }
-export declare type Dimension = Factor_Axis;
+export declare type Dimension = 'x' | 'y' | 'z';
 export declare class Viewport implements IViewport {
     cb: any;
     cr: {
@@ -39,9 +38,9 @@ export declare class Viewport implements IViewport {
     pd: any;
     rmd: any[];
     vd: {
-        x: any;
-        y: any;
-        z: any;
+        x: Direction;
+        y: Direction;
+        z: Direction;
     };
     x: number;
     y: number;

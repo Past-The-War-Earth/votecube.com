@@ -7,8 +7,8 @@ import {
 	ValueArrayPosition
 }                             from '../CubeMoveMatrix'
 import {
-	IUiVote,
-	IUiVoteDimension
+	ICubeSolution,
+	ICubeSolutionDimension
 }                             from '../CubeMovement'
 import {IViewport}            from '../Viewport'
 import {
@@ -72,7 +72,7 @@ export class MatrixValueChooser
 		// need to find the percentages that best endPoint the specified ones
 		const valueMatrix = cubeMoveMatrix.VALUE_MATRIX
 
-		const newPositionData: IUiVote = viewport.pd
+		const newPositionData: ICubeSolution = viewport.pd
 
 		let lowestLargest       = 50
 		let lowestMedian        = 33
@@ -157,7 +157,7 @@ export class MatrixValueChooser
 	}
 
 	private setDimZeroPositions(
-		voteDimension: IUiVoteDimension,
+		voteDimension: ICubeSolutionDimension,
 		plusIndex: ValueArrayPosition,
 		minusIndex: ValueArrayPosition,
 		zeroedPositions: boolean[]
@@ -175,7 +175,7 @@ export class MatrixValueChooser
 	}
 
 	private getDimensionDistance(
-		newVoteDimension: IUiVoteDimension,
+		newVoteDimension: ICubeSolutionDimension,
 		positionData: PositionValues,
 		positiveIndex: ValueArrayPosition,
 		negativeIndex: ValueArrayPosition,

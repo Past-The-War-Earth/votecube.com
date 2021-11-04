@@ -1,16 +1,19 @@
-import {DI}                          from '@airport/di'
-import {Outcome_Ordinal}             from '@votecube/ecclesia'
-import {PERCENTAGE_POSITION_CHOOSER} from '../../tokens'
+import { DI } from '@airport/di'
+import { PERCENTAGE_POSITION_CHOOSER } from '../../tokens'
 import {
 	Direction,
-	IUiVote,
+	ICubeSolution,
 	PositionPercent
-}                                    from '../CubeMovement'
+} from '../CubeMovement'
 import {
 	Dimension,
 	IViewport
-}                                    from '../Viewport'
-import {PercentChange}               from './types'
+} from '../Viewport'
+import {
+	Outcome_Ordinal,
+	PercentChange
+} from './types'
+
 
 export interface IPercentagePositionChooser {
 
@@ -47,7 +50,7 @@ export class PercentagePositionChooser
 			outcome = null
 		}
 		positionData[dimension].value = percent
-		positionData[dimension].outcome   = outcome
+		positionData[dimension].outcome = outcome
 
 		this.adjustDimensions(dimension, viewport)
 	}
@@ -77,15 +80,15 @@ export class PercentagePositionChooser
 
 		if (dimensionPositionData.outcome !== outcome) {
 			const existingValueToDecrease = dimensionPositionData.value
-			const decreasedValue          = existingValueToDecrease - percentChange as PositionPercent
+			const decreasedValue = existingValueToDecrease - percentChange as PositionPercent
 			if (decreasedValue > 0) {
 				dimensionPositionData.value = decreasedValue
 			} else if (decreasedValue === 0) {
-				dimensionPositionData.value   = 0
+				dimensionPositionData.value = 0
 				dimensionPositionData.outcome = null
 			} else {
 				dimensionPositionData.value = -decreasedValue as PositionPercent
-				dimensionPositionData.outcome   = outcome
+				dimensionPositionData.outcome = outcome
 			}
 		} else if (!dimensionPositionData.value) {
 			dimensionPositionData.value = percentChange
@@ -105,12 +108,12 @@ export class PercentagePositionChooser
 		dimension: Dimension,
 		viewport: IViewport,
 	): void {
-		const positionData             = viewport.pd
+		const positionData = viewport.pd
 		const newChangedDimensionValue = viewport.pd[dimension].value
-		let i                          = -1
-		const dimensionToPreserve      = this.getDimensionToPreserve(dimension, viewport)
-		const dimensionToMove          = this.getDimensionToMove(dimension, dimensionToPreserve)
-		const otherDimensions          = [dimensionToMove, dimensionToPreserve]
+		let i = -1
+		const dimensionToPreserve = this.getDimensionToPreserve(dimension, viewport)
+		const dimensionToMove = this.getDimensionToMove(dimension, dimensionToPreserve)
+		const otherDimensions = [dimensionToMove, dimensionToPreserve]
 		let otherDimensionValues
 		let totalValue
 		do {
@@ -133,7 +136,7 @@ export class PercentagePositionChooser
 	}
 
 	private adjustDimension(
-		positionData: IUiVote,
+		positionData: ICubeSolution,
 		dimension: Dimension,
 		currentDimensionValue: number,
 		totalValue: number
@@ -147,7 +150,7 @@ export class PercentagePositionChooser
 				return false
 			}
 			dimensionPositionData.value = 0
-			dimensionPositionData.outcome   = null
+			dimensionPositionData.outcome = null
 
 			return true
 		}
