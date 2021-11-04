@@ -1,30 +1,23 @@
-import {DI}         from '@airport/di'
+import { DI } from '@airport/di'
 import {
 	ICubeEventListener,
 	IMutationApi,
 	IValuesOutCallback
-}                   from '@votecube/cube-logic'
+} from '@votecube/cube-logic'
 import {
-	Factor_Axis,
-	IFactorPositionDefault,
-	IPollFactorPositionDefault,
-	IVote,
-	Position_Dir
-}                   from '@votecube/model'
-import {CUBE_LOGIC} from '../tokens'
+	ICubeFactorPositionDefault,
+	ICubePosition,
+	ICubeSituationFactorPositionDefault,
+} from '@votecube/model'
+import { CUBE_LOGIC } from '../tokens'
 
-export interface ICubePosition {
 
-	axis: Factor_Axis
-	dir: Position_Dir
-
-}
 
 export interface ICubeLogic {
 
 	getDefaultCubePositions(): ICubePosition[]
 
-	getPollFactorPositionDefault(): IPollFactorPositionDefault
+	getPollFactorPositionDefault(): ICubeSituationFactorPositionDefault
 
 	shutDownCubeListener(
 		cubeEventListener: ICubeEventListener,
@@ -62,20 +55,20 @@ export class CubeLogic
 		}]
 	}
 
-	getPollFactorPositionDefault(): IPollFactorPositionDefault {
-		const dcp = this.getDefaultCubePositions()
+	getPollFactorPositionDefault(): ICubeSituationFactorPositionDefault {
+		const defaultCubePositions = this.getDefaultCubePositions()
 		return {
 			1: this.getFactorPositionDefault(
-				dcp[0],
-				dcp[5],
+				defaultCubePositions[0],
+				defaultCubePositions[5],
 			),
 			2: this.getFactorPositionDefault(
-				dcp[1],
-				dcp[3],
+				defaultCubePositions[1],
+				defaultCubePositions[3],
 			),
 			3: this.getFactorPositionDefault(
-				dcp[2],
-				dcp[4],
+				defaultCubePositions[2],
+				defaultCubePositions[4],
 			)
 		}
 	}
@@ -119,7 +112,7 @@ export class CubeLogic
 	private getFactorPositionDefault(
 		cubePosition1: ICubePosition,
 		cubePosition2: ICubePosition,
-	): IFactorPositionDefault {
+	): ICubeFactorPositionDefault {
 		return {
 			axis: cubePosition1.axis,
 			positions: {

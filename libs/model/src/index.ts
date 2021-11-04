@@ -1,4 +1,5 @@
 export * from './common'
+export * from './cube'
 export * from './UiCategory'
 export * from './UiColor'
 export * from './UiFactor'
