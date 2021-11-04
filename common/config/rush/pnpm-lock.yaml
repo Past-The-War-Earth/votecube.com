@@ -4,7 +4,6 @@ dependencies:
   '@rollup/plugin-typescript': 8.3.0_tslib@2.3.1
   '@rush-temp/air-control': 'file:projects/air-control.tgz'
   '@rush-temp/airport-code': 'file:projects/airport-code.tgz'
-  '@rush-temp/ajax': 'file:projects/ajax.tgz'
   '@rush-temp/approach-lighting-system': 'file:projects/approach-lighting-system.tgz'
   '@rush-temp/arrivals-n-departures': 'file:projects/arrivals-n-departures.tgz'
   '@rush-temp/automated-guideway-transit': 'file:projects/automated-guideway-transit.tgz'
@@ -9197,16 +9196,6 @@ packages:
       integrity: sha512-s9A+DMw3Y5MFmAbCD/qzfjWRxmedNRK9DFVndlTbbiG6LAYsYIVNYrlxLofqbPeUMRQ0LF0ytxVFbGt0HE8F9w==
       tarball: 'file:projects/airport-code.tgz'
     version: 0.0.0
-  'file:projects/ajax.tgz':
-    dependencies:
-      tslint: 5.20.1_typescript@3.9.10
-      typescript: 3.9.10
-    dev: false
-    name: '@rush-temp/ajax'
-    resolution:
-      integrity: sha512-NW7TWK66pOyGRky0AaEyECP6dX7QoTL5RJ0HAvUoJJsk/tT+isUyUc/CwXxLs6JEJZibixXjxSVxa70Lb+TrMw==
-      tarball: 'file:projects/ajax.tgz'
-    version: 0.0.0
   'file:projects/approach-lighting-system.tgz':
     dev: false
     name: '@rush-temp/approach-lighting-system'
@@ -9303,7 +9292,7 @@ packages:
     dev: false
     name: '@rush-temp/cube-logic'
     resolution:
-      integrity: sha512-WZEgwDeblQHpp52dzKGpfoe/iwlx2O3/vcB9p4DPHfdvJ1bFy3SA54ZjmHJdGz27Mk2VjGvFFZ66uC9Z0fVrPQ==
+      integrity: sha512-OvmNkBynL/oAZrfIz6foxUx4vuLRztimfdrVbgnid6nCGSXlc/s+KzgNdAAcKjf2fxMqZvaaHIeCI/pPRYCTIg==
       tarball: 'file:projects/cube-logic.tgz'
     version: 0.0.0
   'file:projects/di.tgz':
@@ -9414,7 +9403,7 @@ packages:
     dev: false
     name: '@rush-temp/model'
     resolution:
-      integrity: sha512-dS+OkcrAdlIUjJj4+7Ny32McrYmrWHHjY188hiwMpLM2ntse97G/QdmCeTUj/Huku519oH3MvxwlDx75zdnuXQ==
+      integrity: sha512-LaVWP/gmmL6O3B4GDITYO5PW/BtGkSk7qvR4YaW4mvDFexHQkTN6mxDawbFXXENUVk0SUU6k17oHz/gRYTqr1A==
       tarball: 'file:projects/model.tgz'
     version: 0.0.0
   'file:projects/moving-walkway.tgz':
@@ -9698,7 +9687,7 @@ packages:
     dev: false
     name: '@rush-temp/vc-logic'
     resolution:
-      integrity: sha512-pa4LWzD5NOuHkcqx5t7+Ksfp3OrRxiUPtJYsPio/X5laAg8fNk0KTNCm0pIzDnvt6YkeY8RzVlQ2fz8rnktMlQ==
+      integrity: sha512-57rY5em/NxF9n0Yb5sWxA+hAt674FqFSC/U330IWIc4pxuyAKIwjdoqHDKk2NyNKDwAStYdDuTsLIQ2B6HdK4g==
       tarball: 'file:projects/vc-logic.tgz'
     version: 0.0.0
   'file:projects/vc-node.tgz':
@@ -9767,7 +9756,6 @@ specifiers:
   '@rollup/plugin-typescript': ^8.0.0
   '@rush-temp/air-control': 'file:./projects/air-control.tgz'
   '@rush-temp/airport-code': 'file:./projects/airport-code.tgz'
-  '@rush-temp/ajax': 'file:./projects/ajax.tgz'
   '@rush-temp/approach-lighting-system': 'file:./projects/approach-lighting-system.tgz'
   '@rush-temp/arrivals-n-departures': 'file:./projects/arrivals-n-departures.tgz'
   '@rush-temp/automated-guideway-transit': 'file:./projects/automated-guideway-transit.tgz'

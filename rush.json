@@ -30,11 +30,6 @@
     },
     // "libs" folder (alphabetical order)
     {
-      "packageName": "@votecube/ajax",
-      "projectFolder": "libs/ajax",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@votecube/cube-logic",
       "projectFolder": "libs/cube-logic",
       "shouldPublish": true
