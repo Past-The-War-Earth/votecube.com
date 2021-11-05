@@ -1,13 +1,13 @@
 import { IOC } from "@airport/di"
-// import { DeepPartial } from "@airport/pressurization";
-import type { ICategory, ISituation } from "../generated/generated";
+import { DeepPartial } from "@airport/pressurization";
+import { Category, Situation } from "../ddl/ddl";
 import { SITUATION_API } from "../tokens";
 
 export class SituationApiClient {
 
     async getSituationsForCategory(
-        category: ICategory
-    ): Promise<ISituation[]> {
+        category: DeepPartial<Category>
+    ): Promise<DeepPartial<Situation>[]> {
         const situationApi = await IOC.get(SITUATION_API)
 
         return await situationApi
@@ -15,8 +15,8 @@ export class SituationApiClient {
     }
 
     async getLeafSituations(
-        situation: ISituation
-    ): Promise<ISituation[]> {
+        situation: DeepPartial<Situation>
+    ): Promise<DeepPartial<Situation>[]> {
         const situationApi = await IOC.get(SITUATION_API)
 
         return await situationApi
@@ -24,8 +24,8 @@ export class SituationApiClient {
     }
 
     async getStemSituation(
-        situation: ISituation
-    ): Promise<ISituation> {
+        situation: DeepPartial<Situation>
+    ): Promise<DeepPartial<Situation>> {
         const situationApi = await IOC.get(SITUATION_API)
 
         return await situationApi
@@ -33,7 +33,7 @@ export class SituationApiClient {
     }
 
     async saveSituation(
-        situation: ISituation
+        situation: DeepPartial<Situation>
     ): Promise<void> {
         const situationApi = await IOC.get(SITUATION_API)
 

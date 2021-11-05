@@ -10,6 +10,10 @@ import { ISituation } from './situation/situation';
 import { SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation } from './situation/qsituation';
 import { ISituationFactorPosition } from './situation/situationfactorposition';
 import { SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition } from './situation/qsituationfactorposition';
+import { ISolution } from './solution/solution';
+import { SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution } from './solution/qsolution';
+import { ISolutionFactor } from './solution/solutionfactor';
+import { SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor } from './solution/qsolutionfactor';
 import { IDao, IEntityCascadeGraph, IEntityCreateProperties, IEntityIdProperties, IEntitySelectProperties, IEntityUpdateColumns, IEntityUpdateProperties, IQEntity } from '@airport/air-control';
 import { Dao, DaoQueryDecorators } from '@airport/check-in';
 import { EntityId as DbEntityId } from '@airport/ground-control';
@@ -79,6 +83,28 @@ export declare class BaseSituationFactorPositionDao extends SQDIDao<ISituationFa
     static Search: DaoQueryDecorators<SituationFactorPositionESelect>;
     static SearchOne: DaoQueryDecorators<SituationFactorPositionESelect>;
     static Save(config: SituationFactorPositionGraph): PropertyDecorator;
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseSolutionDao extends IDao<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution> {
+}
+export declare class BaseSolutionDao extends SQDIDao<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution> implements IBaseSolutionDao {
+    static Find: DaoQueryDecorators<SolutionESelect>;
+    static FindOne: DaoQueryDecorators<SolutionESelect>;
+    static Search: DaoQueryDecorators<SolutionESelect>;
+    static SearchOne: DaoQueryDecorators<SolutionESelect>;
+    static Save(config: SolutionGraph): PropertyDecorator;
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseSolutionFactorDao extends IDao<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> {
+}
+export declare class BaseSolutionFactorDao extends SQDIDao<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> implements IBaseSolutionFactorDao {
+    static Find: DaoQueryDecorators<SolutionFactorESelect>;
+    static FindOne: DaoQueryDecorators<SolutionFactorESelect>;
+    static Search: DaoQueryDecorators<SolutionFactorESelect>;
+    static SearchOne: DaoQueryDecorators<SolutionFactorESelect>;
+    static Save(config: SolutionFactorGraph): PropertyDecorator;
     static diSet(): boolean;
     constructor();
 }

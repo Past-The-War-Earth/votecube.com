@@ -40,13 +40,29 @@ export class BasePositionDuo extends SQDIDuo {
 }
 export class BaseSituationDuo extends SQDIDuo {
     static diSet() {
+        return duoDiSet(7);
+    }
+    constructor() {
+        super(7);
+    }
+}
+export class BaseSituationFactorPositionDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(6);
+    }
+    constructor() {
+        super(6);
+    }
+}
+export class BaseSolutionDuo extends SQDIDuo {
+    static diSet() {
         return duoDiSet(5);
     }
     constructor() {
         super(5);
     }
 }
-export class BaseSituationFactorPositionDuo extends SQDIDuo {
+export class BaseSolutionFactorDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(4);
     }

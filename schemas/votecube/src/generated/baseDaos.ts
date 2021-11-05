@@ -78,6 +78,32 @@ import {
 	QSituationFactorPosition,
 } from './situation/qsituationfactorposition';
 import {
+	ISolution,
+} from './solution/solution';
+import {
+	SolutionESelect,
+	SolutionECreateColumns,
+	SolutionECreateProperties,
+	SolutionEUpdateColumns,
+	SolutionEUpdateProperties,
+	SolutionEId,
+	SolutionGraph,
+	QSolution,
+} from './solution/qsolution';
+import {
+	ISolutionFactor,
+} from './solution/solutionfactor';
+import {
+	SolutionFactorESelect,
+	SolutionFactorECreateColumns,
+	SolutionFactorECreateProperties,
+	SolutionFactorEUpdateColumns,
+	SolutionFactorEUpdateProperties,
+	SolutionFactorEId,
+	SolutionFactorGraph,
+	QSolutionFactor,
+} from './solution/qsolutionfactor';
+import {
 	IDao,
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
@@ -257,11 +283,11 @@ export class BaseSituationDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(7)
 	}
 	
 	constructor() {
-		super(5)
+		super(7)
 	}
 }
 
@@ -282,6 +308,62 @@ export class BaseSituationFactorPositionDao
 		config: SituationFactorPositionGraph
 	): PropertyDecorator {
 		return Dao.BaseSave<SituationFactorPositionGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(6)
+	}
+	
+	constructor() {
+		super(6)
+	}
+}
+
+
+export interface IBaseSolutionDao
+  extends IDao<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution> {
+}
+
+export class BaseSolutionDao
+  extends SQDIDao<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution>
+	implements IBaseSolutionDao {
+	
+	static Find      = new DaoQueryDecorators<SolutionESelect>();
+	static FindOne   = new DaoQueryDecorators<SolutionESelect>();
+	static Search    = new DaoQueryDecorators<SolutionESelect>();
+	static SearchOne = new DaoQueryDecorators<SolutionESelect>();
+	static Save(
+		config: SolutionGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<SolutionGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(5)
+	}
+	
+	constructor() {
+		super(5)
+	}
+}
+
+
+export interface IBaseSolutionFactorDao
+  extends IDao<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> {
+}
+
+export class BaseSolutionFactorDao
+  extends SQDIDao<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor>
+	implements IBaseSolutionFactorDao {
+	
+	static Find      = new DaoQueryDecorators<SolutionFactorESelect>();
+	static FindOne   = new DaoQueryDecorators<SolutionFactorESelect>();
+	static Search    = new DaoQueryDecorators<SolutionFactorESelect>();
+	static SearchOne = new DaoQueryDecorators<SolutionFactorESelect>();
+	static Save(
+		config: SolutionFactorGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<SolutionFactorGraph>(config);
   }
 
 	static diSet(): boolean {

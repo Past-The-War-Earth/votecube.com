@@ -7,6 +7,7 @@ import {
 } from '@airport/air-control'
 import { RepositoryEntity } from '@airport/holding-pattern'
 import { Category } from '../Category'
+import { Solution } from '../solution/Solution'
 import { Outcome } from './Outcome'
 import { SituationFactorPosition } from './SituationFactorPosition'
 
@@ -30,10 +31,13 @@ export class Situation
 	@ManyToOne()
 	outcomeB: Outcome
 
+	@OneToMany({ mappedBy: 'parent' })
+	children: Situation[]
+
 	@OneToMany({ mappedBy: 'situation' })
 	situationFactorPositions: SituationFactorPosition[]
 
-	@OneToMany({ mappedBy: 'parent' })
-	children: Situation[]
+	@OneToMany({ mappedBy: 'situation' })
+	solutions: Solution[]
 
 }

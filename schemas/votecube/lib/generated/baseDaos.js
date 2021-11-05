@@ -68,6 +68,36 @@ BasePositionDao.Search = new DaoQueryDecorators();
 BasePositionDao.SearchOne = new DaoQueryDecorators();
 export class BaseSituationDao extends SQDIDao {
     constructor() {
+        super(7);
+    }
+    static Save(config) {
+        return Dao.BaseSave(config);
+    }
+    static diSet() {
+        return duoDiSet(7);
+    }
+}
+BaseSituationDao.Find = new DaoQueryDecorators();
+BaseSituationDao.FindOne = new DaoQueryDecorators();
+BaseSituationDao.Search = new DaoQueryDecorators();
+BaseSituationDao.SearchOne = new DaoQueryDecorators();
+export class BaseSituationFactorPositionDao extends SQDIDao {
+    constructor() {
+        super(6);
+    }
+    static Save(config) {
+        return Dao.BaseSave(config);
+    }
+    static diSet() {
+        return duoDiSet(6);
+    }
+}
+BaseSituationFactorPositionDao.Find = new DaoQueryDecorators();
+BaseSituationFactorPositionDao.FindOne = new DaoQueryDecorators();
+BaseSituationFactorPositionDao.Search = new DaoQueryDecorators();
+BaseSituationFactorPositionDao.SearchOne = new DaoQueryDecorators();
+export class BaseSolutionDao extends SQDIDao {
+    constructor() {
         super(5);
     }
     static Save(config) {
@@ -77,11 +107,11 @@ export class BaseSituationDao extends SQDIDao {
         return duoDiSet(5);
     }
 }
-BaseSituationDao.Find = new DaoQueryDecorators();
-BaseSituationDao.FindOne = new DaoQueryDecorators();
-BaseSituationDao.Search = new DaoQueryDecorators();
-BaseSituationDao.SearchOne = new DaoQueryDecorators();
-export class BaseSituationFactorPositionDao extends SQDIDao {
+BaseSolutionDao.Find = new DaoQueryDecorators();
+BaseSolutionDao.FindOne = new DaoQueryDecorators();
+BaseSolutionDao.Search = new DaoQueryDecorators();
+BaseSolutionDao.SearchOne = new DaoQueryDecorators();
+export class BaseSolutionFactorDao extends SQDIDao {
     constructor() {
         super(4);
     }
@@ -92,8 +122,8 @@ export class BaseSituationFactorPositionDao extends SQDIDao {
         return duoDiSet(4);
     }
 }
-BaseSituationFactorPositionDao.Find = new DaoQueryDecorators();
-BaseSituationFactorPositionDao.FindOne = new DaoQueryDecorators();
-BaseSituationFactorPositionDao.Search = new DaoQueryDecorators();
-BaseSituationFactorPositionDao.SearchOne = new DaoQueryDecorators();
+BaseSolutionFactorDao.Find = new DaoQueryDecorators();
+BaseSolutionFactorDao.FindOne = new DaoQueryDecorators();
+BaseSolutionFactorDao.Search = new DaoQueryDecorators();
+BaseSolutionFactorDao.SearchOne = new DaoQueryDecorators();
 //# sourceMappingURL=baseDaos.js.map

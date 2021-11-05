@@ -1,15 +1,15 @@
-import { ICoreColor, IsData, ITweenVoteFactor, IVote, IVoteFactor } from '@votecube/model';
+import { ITweenSolutionFactor, IUiColor, IUiSolution, IUiSolutionFactor } from '@votecube/model';
 export interface ILogicUtils {
     copyProperties(from: any, to: any, properties: string[]): void;
     getArrayValueTexts(arrayValue: Array<{
         text: string;
     }>): string;
-    getColor(color: ICoreColor<IsData>): string;
+    getColor(color: IUiColor): string;
     getDate(date: Date): string;
-    getTextColor(color: ICoreColor<IsData>): string;
-    getVoteFactorNodesInValueOrder(vote: IVote): IVoteFactor[];
+    getTextColor(color: IUiColor): string;
+    getVoteFactorNodesInValueOrder(vote: IUiSolution): IUiSolutionFactor[];
     overlay(from: any, to: any): void;
-    setDeltas(from: any, to: any, delta: any, excludeKeys?: string[]): void;
+    isDifferent(original: any, changed: any, excludeKeys?: string[]): boolean;
     transition(elementId: string, transitionFunction: any, options: any): void;
 }
 export declare class LogicUtils implements ILogicUtils {
@@ -17,12 +17,12 @@ export declare class LogicUtils implements ILogicUtils {
     getArrayValueTexts(arrayValue: Array<{
         text: string;
     }>): string;
-    getColor(color: ICoreColor<IsData>): string;
+    getColor(color: IUiColor): string;
     getDate(date: Date): string;
-    getTextColor(color: ICoreColor<IsData>): string;
-    getVoteFactorNodesInValueOrder<V extends IVote = IVote>(vote: V): IVoteFactor[] | ITweenVoteFactor[];
+    getTextColor(color: IUiColor): string;
+    getVoteFactorNodesInValueOrder<V extends IUiSolution = IUiSolution>(vote: V): IUiSolutionFactor[] | ITweenSolutionFactor[];
     overlay(from: any, to: any): void;
-    setDeltas(from: any, to: any, delta: any, excludeKeys?: string[]): void;
+    isDifferent(original: any, changed: any, excludeKeys?: string[]): boolean;
     transition(elementId: string, transitionFunction: any, options: any): void;
     private ensure2Digits;
 }

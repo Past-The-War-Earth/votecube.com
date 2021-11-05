@@ -18,13 +18,17 @@ import { QOutcome } from './situation/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QSituation } from './situation/qsituation';
 import { QSituationFactorPosition } from './situation/qsituationfactorposition';
+import { QSolution } from './solution/qsolution';
+import { QSolutionFactor } from './solution/qsolutionfactor';
 import {
   Category,
   Factor,
   Outcome,
   Position,
   Situation,
-  SituationFactorPosition
+  SituationFactorPosition,
+  Solution,
+  SolutionFactor
 } from '../ddl/ddl';
 
 export interface LocalQSchema extends AirportQSchema {
@@ -37,6 +41,8 @@ export interface LocalQSchema extends AirportQSchema {
 	Position: QPosition;
 	Situation: QSituation;
 	SituationFactorPosition: QSituationFactorPosition;
+	Solution: QSolution;
+	SolutionFactor: QSolutionFactor;
 
 }
 
@@ -46,7 +52,9 @@ const __constructors__ = {
 	Outcome: Outcome,
 	Position: Position,
 	Situation: Situation,
-	SituationFactorPosition: SituationFactorPosition
+	SituationFactorPosition: SituationFactorPosition,
+	Solution: Solution,
+	SolutionFactor: SolutionFactor
 };
 
 export const Q_SCHEMA: LocalQSchema = <any>{

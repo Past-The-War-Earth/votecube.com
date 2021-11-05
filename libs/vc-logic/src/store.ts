@@ -1,4 +1,3 @@
-import { IUserAccount } from '@votecube/ecclesia'
 import { IUser } from '@votecube/model'
 import {
 	derived,

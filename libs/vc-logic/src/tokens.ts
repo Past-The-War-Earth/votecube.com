@@ -3,35 +3,28 @@ import { IAuth } from './Auth'
 import { IConnectionManager } from './ConnectionManager'
 import { ISituationConverter } from './converter/SituationConveter'
 import { ILogicUtils } from './LogicUtils'
-import { IDetailedCubeLogic } from './pages/components/poll/DetailedCubeLogic'
-import { IFactorRankingLogic } from './pages/poll/info/FactorRankingLogic'
-import { IPollFormLogic } from './pages/poll/info/PollFormLogic'
-import { IPollMainLogic } from './pages/poll/info/PollMainLogic'
-import { ISituationFormManager } from './pages/poll/SituationFormManager'
-import { ICubeLogic } from './poll/CubeLogic'
-import { ISituationManager } from './poll/SituationManager'
-import { IVoteManager } from './poll/VoteManager'
+import { IDetailedCubeLogic } from './pages/components/situation/DetailedCubeLogic'
+import { IFactorRankingLogic } from './pages/situation/info/FactorRankingLogic'
+import { ISituationFormLogic } from './pages/situation/info/SituationFormLogic'
+import { ISituationMainLogic } from './pages/situation/info/SituationMainLogic'
+import { ISituationFormManager } from './pages/situation/SituationFormManager'
+import { ICubeLogic } from './situation/CubeLogic'
+import { ISituationManager } from './situation/SituationManager'
+import { ISolutionManager } from './situation/SolutionManager'
 import { IRoutes } from './Routes'
-import { IEntityStateManager } from './serialize/EntityStateManager'
-import { IOperationSerializer } from './serialize/OperationSerializer'
-import { IQueryResultsDeserializer } from './serialize/QueryResultsDeserializer'
 
 const publicLogic = system('votecube-ui')
 	.lib('vc-logic')
 
 export const AUTH = publicLogic.token<IAuth>('IAuth')
-export const CONNECTION_MANAGER = publicLogic.token<IConnectionManager>('IConnectionManager')
 export const CUBE_LOGIC = publicLogic.token<ICubeLogic>('ICubeLogic')
 export const DETAILED_CUBE_LOGIC = publicLogic.token<IDetailedCubeLogic>('IDetailedCubeLogic')
-export const ENTITY_STATE_MANAGER = publicLogic.token<IEntityStateManager>('IEntityStateManager')
 export const FACTOR_RANKING_LOGIC = publicLogic.token<IFactorRankingLogic>('IFactorRankingLogic')
 export const LOGIC_UTILS = publicLogic.token<ILogicUtils>('ILogicUtils')
-export const OPERATION_SERIALIZER = publicLogic.token<IOperationSerializer>('IOperationSerializer')
-export const POLL_FORM_LOGIC = publicLogic.token<IPollFormLogic>('IPollFormLogic')
-export const SITUATION_FORM_MANAGER = publicLogic.token<ISituationFormManager>('IPollFormManager')
-export const POLL_MAIN_LOGIC = publicLogic.token<IPollMainLogic>('IPollMainLogic')
-export const SITUATION_MANAGER = publicLogic.token<ISituationManager>('IPollManager')
-export const SITUATION_CONVERTER = publicLogic.token<ISituationConverter>('ISituationConverter')
-export const QUERY_RESULTS_DESERIALIZER = publicLogic.token<IQueryResultsDeserializer>('IQueryResultsDeserializer')
 export const ROUTES = publicLogic.token<IRoutes>('IRoutes')
-export const VOTE_MANAGER = publicLogic.token<IVoteManager>('IVoteManager')
+export const SITUATION_FORM_LOGIC = publicLogic.token<ISituationFormLogic>('ISituationFormLogic')
+export const SITUATION_FORM_MANAGER = publicLogic.token<ISituationFormManager>('ISituationFormManager')
+export const SITUATION_MAIN_LOGIC = publicLogic.token<ISituationMainLogic>('ISituationMainLogic')
+export const SITUATION_MANAGER = publicLogic.token<ISituationManager>('ISituationManager')
+export const SITUATION_CONVERTER = publicLogic.token<ISituationConverter>('ISituationConverter')
+export const SOLUTION_MANAGER = publicLogic.token<ISolutionManager>('ISolutionManager')

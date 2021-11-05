@@ -1,18 +1,17 @@
-import {DI}             from '@airport/di'
+import { DI } from '@airport/di'
 import {
-	ICoreColor,
-	IsData,
-	ITweenVoteFactor,
-	IVote,
-	IVoteFactor
-}                       from '@votecube/model'
-import {create_bidirectional_transition} from 'svelte/internal'
-import {LOGIC_UTILS}    from './tokens'
+	ITweenSolutionFactor,
+	IUiColor,
+	IUiSolution,
+	IUiSolutionFactor
+} from '@votecube/model'
+import { create_bidirectional_transition } from 'svelte/internal'
+import { LOGIC_UTILS } from './tokens'
 
-interface IVoteFactorNode {
+interface IUiSolutionFactorNode {
 
-	next?: IVoteFactorNode
-	voteFactor: IVoteFactor
+	next?: IUiSolutionFactorNode
+	voteFactor: IUiSolutionFactor
 
 }
 
@@ -31,7 +30,7 @@ export interface ILogicUtils {
 	): string
 
 	getColor(
-		color: ICoreColor<IsData>
+		color: IUiColor
 	): string
 
 	getDate(
@@ -39,24 +38,23 @@ export interface ILogicUtils {
 	): string
 
 	getTextColor(
-		color: ICoreColor<IsData>
+		color: IUiColor
 	): string
 
 	getVoteFactorNodesInValueOrder(
-		vote: IVote
-	): IVoteFactor[]
+		vote: IUiSolution
+	): IUiSolutionFactor[]
 
 	overlay(
 		from,
 		to
 	): void
 
-	setDeltas(
-		from,
-		to,
-		delta,
+	isDifferent(
+		original,
+		changed,
 		excludeKeys?: string[]
-	): void
+	): boolean
 
 	transition(
 		elementId: string,
@@ -98,13 +96,13 @@ export class LogicUtils
 	}
 
 	getColor(
-		color: ICoreColor<IsData>
+		color: IUiColor
 	): string {
 		if (!color) {
 			return `FFF`
 		}
 
-		const {blue, green, red} = color
+		const { blue, green, red } = color
 
 		return this.ensure2Digits(red.toString(16))
 			+ this.ensure2Digits(green.toString(16))
@@ -122,11 +120,11 @@ export class LogicUtils
 	}
 
 	getTextColor(
-		color: ICoreColor<IsData>
+		color: IUiColor
 	): string {
-		const red   = parseInt(color.red as any)
+		const red = parseInt(color.red as any)
 		const green = parseInt(color.green as any)
-		const blue  = parseInt(color.blue as any)
+		const blue = parseInt(color.blue as any)
 		if (red + green + blue > 384) {
 			return '000'
 		} else if (red < 10 && blue < 10 && green >= 240) {
@@ -135,36 +133,36 @@ export class LogicUtils
 		return 'FFF'
 	}
 
-	getVoteFactorNodesInValueOrder<V extends IVote = IVote>(
+	getVoteFactorNodesInValueOrder<V extends IUiSolution = IUiSolution>(
 		vote: V
-	): IVoteFactor[] | ITweenVoteFactor[] {
+	): IUiSolutionFactor[] | ITweenSolutionFactor[] {
 		if (!vote) {
 			return []
 		}
-		const node1: IVoteFactorNode = {
+		const node1: IUiSolutionFactorNode = {
 			voteFactor: vote[1]
 		}
-		const node2: IVoteFactorNode = {
+		const node2: IUiSolutionFactorNode = {
 			voteFactor: vote[2]
 		}
-		const node3: IVoteFactorNode = {
+		const node3: IUiSolutionFactorNode = {
 			voteFactor: vote[3]
 		}
 		let headNode
 		if (vote[2].value >= vote[3].value) {
 			node2.next = node3
-			headNode   = node2
+			headNode = node2
 		} else {
 			node3.next = node2
-			headNode   = node3
+			headNode = node3
 		}
 		if (headNode.voteFactor.value < vote[1].value) {
 			node1.next = headNode
-			headNode   = node1
+			headNode = node1
 		} else if (headNode.next.voteFactor.value < vote[1].value) {
 			const lastNode = headNode.next
-			headNode.next  = node1
-			node1.next     = lastNode
+			headNode.next = node1
+			node1.next = lastNode
 		} else {
 			headNode.next.next = node1
 		}
@@ -192,23 +190,26 @@ export class LogicUtils
 		}
 	}
 
-	setDeltas(
-		from,
-		to,
-		delta,
+	isDifferent(
+		original,
+		changed,
 		excludeKeys: string[] = ['createdAt', 'id', 'marks', 'path', 'userId']
-	): void {
-		if (!from) {
-			return
+	): boolean {
+		if (!original) {
+			return true
 		}
-		for (const propertyName in from) {
+		let isDifferent = false
+		for (const propertyName in original) {
 			if (excludeKeys.indexOf(propertyName) > -1) {
 				continue
 			}
-			if (from[propertyName] instanceof Object) {
-				this.setDeltas(from[propertyName], to[propertyName], delta[propertyName])
-			} else if (to[propertyName] !== from[propertyName]) {
-				delta[propertyName] = true
+			if (original[propertyName] instanceof Object) {
+				isDifferent = this.isDifferent(original[propertyName], changed[propertyName], excludeKeys)
+			} else if (changed[propertyName] !== original[propertyName]) {
+				return true
+			}
+			if (isDifferent) {
+				return true
 			}
 		}
 	}

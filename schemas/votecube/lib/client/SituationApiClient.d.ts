@@ -1,8 +1,9 @@
-import type { ICategory, ISituation } from "../generated/generated";
+import { DeepPartial } from "@airport/pressurization";
+import { Category, Situation } from "../ddl/ddl";
 export declare class SituationApiClient {
-    getSituationsForCategory(category: ICategory): Promise<ISituation[]>;
-    getLeafSituations(situation: ISituation): Promise<ISituation[]>;
-    getStemSituation(situation: ISituation): Promise<ISituation>;
-    saveSituation(situation: ISituation): Promise<void>;
+    getSituationsForCategory(category: DeepPartial<Category>): Promise<DeepPartial<Situation>[]>;
+    getLeafSituations(situation: DeepPartial<Situation>): Promise<DeepPartial<Situation>[]>;
+    getStemSituation(situation: DeepPartial<Situation>): Promise<DeepPartial<Situation>>;
+    saveSituation(situation: DeepPartial<Situation>): Promise<void>;
 }
 //# sourceMappingURL=SituationApiClient.d.ts.map

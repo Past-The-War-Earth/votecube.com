@@ -96,19 +96,23 @@ export class LogicUtils {
             }
         }
     }
-    setDeltas(from, to, delta, excludeKeys = ['createdAt', 'id', 'marks', 'path', 'userId']) {
-        if (!from) {
-            return;
+    isDifferent(original, changed, excludeKeys = ['createdAt', 'id', 'marks', 'path', 'userId']) {
+        if (!original) {
+            return true;
         }
-        for (const propertyName in from) {
+        let isDifferent = false;
+        for (const propertyName in original) {
             if (excludeKeys.indexOf(propertyName) > -1) {
                 continue;
             }
-            if (from[propertyName] instanceof Object) {
-                this.setDeltas(from[propertyName], to[propertyName], delta[propertyName]);
+            if (original[propertyName] instanceof Object) {
+                isDifferent = this.isDifferent(original[propertyName], changed[propertyName], excludeKeys);
             }
-            else if (to[propertyName] !== from[propertyName]) {
-                delta[propertyName] = true;
+            else if (changed[propertyName] !== original[propertyName]) {
+                return true;
+            }
+            if (isDifferent) {
+                return true;
             }
         }
     }

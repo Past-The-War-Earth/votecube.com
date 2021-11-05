@@ -71,6 +71,19 @@ import {
 	SituationFactorPosition,
 } from '../../ddl/situation/SituationFactorPosition';
 import {
+	SolutionGraph,
+	SolutionEId,
+	SolutionEOptionalId,
+	SolutionEUpdateProperties,
+	SolutionESelect,
+	QSolution,
+	QSolutionQId,
+	QSolutionQRelation,
+} from '../solution/qsolution';
+import {
+	Solution,
+} from '../../ddl/solution/Solution';
+import {
 	Situation,
 } from '../../ddl/situation/Situation';
 
@@ -97,8 +110,9 @@ export interface SituationESelect
 	parent?: SituationESelect;
 	outcomeA?: OutcomeESelect;
 	outcomeB?: OutcomeESelect;
-	situationFactorPositions?: SituationFactorPositionESelect;
 	children?: SituationESelect;
+	situationFactorPositions?: SituationFactorPositionESelect;
+	solutions?: SolutionESelect;
 
 }
 
@@ -154,8 +168,9 @@ export interface SituationGraph
 	parent?: SituationGraph;
 	outcomeA?: OutcomeGraph;
 	outcomeB?: OutcomeGraph;
-	situationFactorPositions?: SituationFactorPositionGraph[];
 	children?: SituationGraph[];
+	situationFactorPositions?: SituationFactorPositionGraph[];
+	solutions?: SolutionGraph[];
 
 }
 
@@ -221,8 +236,9 @@ export interface QSituation extends QRepositoryEntity<Situation>
 	parent: QSituationQRelation;
 	outcomeA: QOutcomeQRelation;
 	outcomeB: QOutcomeQRelation;
-	situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;
 	children: IQOneToManyRelation<Situation, QSituation>;
+	situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;
+	solutions: IQOneToManyRelation<Solution, QSolution>;
 
 }
 

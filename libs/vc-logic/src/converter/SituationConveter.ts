@@ -25,7 +25,7 @@ export interface ISituationConverter {
 	): IUiSituation
 
 	uiToDb(
-		docSituation: IUiSituation
+		uiSituation: IUiSituation
 	): DeepPartial<Situation>
 
 }

@@ -4,6 +4,8 @@ import { CategoryGraph, CategoryEOptionalId, CategoryESelect, QCategoryQRelation
 import { OutcomeGraph, OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from './qoutcome';
 import { SituationFactorPositionGraph, SituationFactorPositionESelect, QSituationFactorPosition } from './qsituationfactorposition';
 import { SituationFactorPosition } from '../../ddl/situation/SituationFactorPosition';
+import { SolutionGraph, SolutionESelect, QSolution } from '../solution/qsolution';
+import { Solution } from '../../ddl/solution/Solution';
 import { Situation } from '../../ddl/situation/Situation';
 /**
  * SELECT - All fields and relations (optional).
@@ -14,8 +16,9 @@ export interface SituationESelect extends RepositoryEntityESelect, SituationEOpt
     parent?: SituationESelect;
     outcomeA?: OutcomeESelect;
     outcomeB?: OutcomeESelect;
-    situationFactorPositions?: SituationFactorPositionESelect;
     children?: SituationESelect;
+    situationFactorPositions?: SituationFactorPositionESelect;
+    solutions?: SolutionESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -46,8 +49,9 @@ export interface SituationGraph extends SituationEOptionalId, RepositoryEntityGr
     parent?: SituationGraph;
     outcomeA?: OutcomeGraph;
     outcomeB?: OutcomeGraph;
-    situationFactorPositions?: SituationFactorPositionGraph[];
     children?: SituationGraph[];
+    situationFactorPositions?: SituationFactorPositionGraph[];
+    solutions?: SolutionGraph[];
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -88,8 +92,9 @@ export interface QSituation extends QRepositoryEntity<Situation> {
     parent: QSituationQRelation;
     outcomeA: QOutcomeQRelation;
     outcomeB: QOutcomeQRelation;
-    situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;
     children: IQOneToManyRelation<Situation, QSituation>;
+    situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;
+    solutions: IQOneToManyRelation<Solution, QSolution>;
 }
 export interface QSituationQId extends QRepositoryEntityQId {
 }

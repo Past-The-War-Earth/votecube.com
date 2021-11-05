@@ -6,6 +6,8 @@ import { QOutcome } from './situation/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QSituation } from './situation/qsituation';
 import { QSituationFactorPosition } from './situation/qsituationfactorposition';
+import { QSolution } from './solution/qsolution';
+import { QSolutionFactor } from './solution/qsolutionfactor';
 export interface LocalQSchema extends AirportQSchema {
     db: DbSchema;
     Category: QCategory;
@@ -14,6 +16,8 @@ export interface LocalQSchema extends AirportQSchema {
     Position: QPosition;
     Situation: QSituation;
     SituationFactorPosition: QSituationFactorPosition;
+    Solution: QSolution;
+    SolutionFactor: QSolutionFactor;
 }
 export declare const Q_SCHEMA: LocalQSchema;
 export declare const Q: LocalQSchema;

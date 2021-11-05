@@ -78,6 +78,32 @@ import {
 	QSituationFactorPosition,
 } from './situation/qsituationfactorposition';
 import {
+	ISolution,
+} from './solution/solution';
+import {
+	SolutionESelect,
+	SolutionECreateColumns,
+	SolutionECreateProperties,
+	SolutionEUpdateColumns,
+	SolutionEUpdateProperties,
+	SolutionEId,
+	SolutionGraph,
+	QSolution,
+} from './solution/qsolution';
+import {
+	ISolutionFactor,
+} from './solution/solutionfactor';
+import {
+	SolutionFactorESelect,
+	SolutionFactorECreateColumns,
+	SolutionFactorECreateProperties,
+	SolutionFactorEUpdateColumns,
+	SolutionFactorEUpdateProperties,
+	SolutionFactorEId,
+	SolutionFactorGraph,
+	QSolutionFactor,
+} from './solution/qsolutionfactor';
+import {
 	IDuo,
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
@@ -206,11 +232,11 @@ export class BaseSituationDuo
 	implements IBaseSituationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(7)
 	}
 	
 	constructor() {
-		super(5)
+		super(7)
 	}
 }
 
@@ -222,6 +248,42 @@ export interface IBaseSituationFactorPositionDuo
 export class BaseSituationFactorPositionDuo
   extends SQDIDuo<ISituationFactorPosition, SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition>
 	implements IBaseSituationFactorPositionDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(6)
+	}
+	
+	constructor() {
+		super(6)
+	}
+}
+
+
+export interface IBaseSolutionDuo
+  extends IDuo<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution> {
+}
+
+export class BaseSolutionDuo
+  extends SQDIDuo<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution>
+	implements IBaseSolutionDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(5)
+	}
+	
+	constructor() {
+		super(5)
+	}
+}
+
+
+export interface IBaseSolutionFactorDuo
+  extends IDuo<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> {
+}
+
+export class BaseSolutionFactorDuo
+  extends SQDIDuo<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor>
+	implements IBaseSolutionFactorDuo {
 
 	static diSet(): boolean {
 		return duoDiSet(4)

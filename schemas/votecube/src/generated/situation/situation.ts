@@ -10,6 +10,9 @@ import {
 import {
 	ISituationFactorPosition,
 } from './situationfactorposition';
+import {
+	ISolution,
+} from '../solution/solution';
 
 
 
@@ -31,8 +34,9 @@ export interface ISituation extends IRepositoryEntity {
 	parent?: ISituation;
 	outcomeA?: IOutcome;
 	outcomeB?: IOutcome;
-	situationFactorPositions?: ISituationFactorPosition[];
 	children?: ISituation[];
+	situationFactorPositions?: ISituationFactorPosition[];
+	solutions?: ISolution[];
 
 	// Transient Properties
 

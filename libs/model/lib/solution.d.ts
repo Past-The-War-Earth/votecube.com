@@ -13,7 +13,7 @@ export interface IUiSolution {
     2: IUiSolutionFactor;
     3: IUiSolutionFactor;
 }
-export interface ITweenVote {
+export interface ITweenSolution {
     1: ITweenSolutionFactor;
     2: ITweenSolutionFactor;
     3: ITweenSolutionFactor;

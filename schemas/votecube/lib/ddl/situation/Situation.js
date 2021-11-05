@@ -24,11 +24,14 @@ __decorate([
     ManyToOne()
 ], Situation.prototype, "outcomeB", void 0);
 __decorate([
+    OneToMany({ mappedBy: 'parent' })
+], Situation.prototype, "children", void 0);
+__decorate([
     OneToMany({ mappedBy: 'situation' })
 ], Situation.prototype, "situationFactorPositions", void 0);
 __decorate([
-    OneToMany({ mappedBy: 'parent' })
-], Situation.prototype, "children", void 0);
+    OneToMany({ mappedBy: 'situation' })
+], Situation.prototype, "solutions", void 0);
 Situation = __decorate([
     Entity(),
     Table({ name: 'SITUATIONS' })

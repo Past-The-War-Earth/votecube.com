@@ -1,1 +1,1 @@
-{"version":3,"file":"qInterfaces.d.ts","sourceRoot":"","sources":["../../src/generated/qInterfaces.ts"],"names":[],"mappings":"AAAA,cAAc,kBAAkB,CAAC;AACjC,cAAc,oBAAoB,CAAC;AACnC,cAAc,aAAa,CAAC;AAC5B,cAAc,sBAAsB,CAAC;AACrC,cAAc,wBAAwB,CAAC;AACvC,cAAc,sCAAsC,CAAC"}
+{"version":3,"file":"qInterfaces.d.ts","sourceRoot":"","sources":["../../src/generated/qInterfaces.ts"],"names":[],"mappings":"AAAA,cAAc,kBAAkB,CAAC;AACjC,cAAc,oBAAoB,CAAC;AACnC,cAAc,aAAa,CAAC;AAC5B,cAAc,sBAAsB,CAAC;AACrC,cAAc,wBAAwB,CAAC;AACvC,cAAc,sCAAsC,CAAC;AACrD,cAAc,sBAAsB,CAAC;AACrC,cAAc,4BAA4B,CAAC"}
