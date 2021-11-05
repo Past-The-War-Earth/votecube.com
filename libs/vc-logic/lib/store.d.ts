@@ -1,4 +1,3 @@
-import { IUser } from '@votecube/model';
 import { Readable } from 'svelte/store';
 import { IRouteConfig } from './Routes';
 export interface ITextToast {
@@ -61,7 +60,7 @@ export interface ISignedInStateCurrent {
     currentPage: IRouteConfig;
     currentUrl: string;
     showSignIn: boolean;
-    user: IUser;
+    user: IUserInfo;
 }
 export interface ISignedInState {
     changed: ISignedInStateChanged;

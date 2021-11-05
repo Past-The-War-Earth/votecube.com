@@ -1,4 +1,3 @@
-import { IUser } from '@votecube/model'
 import {
 	derived,
 	get,
@@ -142,7 +141,7 @@ export interface ISignedInStateCurrent {
 	currentPage: IRouteConfig
 	currentUrl: string
 	showSignIn: boolean
-	user: IUser
+	user: IUserInfo
 
 }
 

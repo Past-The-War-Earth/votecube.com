@@ -1,6 +1,5 @@
 import { system } from '@airport/di'
 import { IAuth } from './Auth'
-import { IConnectionManager } from './ConnectionManager'
 import { ISituationConverter } from './converter/SituationConveter'
 import { ILogicUtils } from './LogicUtils'
 import { IDetailedCubeLogic } from './pages/components/situation/DetailedCubeLogic'
