@@ -51,7 +51,6 @@ dependencies:
   '@rush-temp/traffic-pattern': 'file:projects/traffic-pattern.tgz'
   '@rush-temp/travel-document-checkpoint': 'file:projects/travel-document-checkpoint.tgz'
   '@rush-temp/vc-logic': 'file:projects/vc-logic.tgz'
-  '@rush-temp/vc-node': 'file:projects/vc-node.tgz'
   '@rush-temp/vc-ui': 'file:projects/vc-ui.tgz'
   '@rush-temp/votecube': 'file:projects/votecube.tgz'
   '@rush-temp/write-processor': 'file:projects/write-processor.tgz'
@@ -67,6 +66,8 @@ dependencies:
   cassandra-driver: 4.6.3
   child-process: 1.0.2
   compression: 1.7.4
+  fastify: 3.22.1
+  fastify-cors: 6.0.2
   fastify-static: 4.4.2
   jssha: 2.4.2
   mysql2: 2.3.2
@@ -3198,13 +3199,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-9K8+qfNNiicc9YrSs3WfQx8LMY0=
-  /fastify-cors/4.1.0:
-    dependencies:
-      fastify-plugin: 2.3.4
-      vary: 1.1.2
-    dev: false
-    resolution:
-      integrity: sha512-Vr4AgypDkRwG16cs1ORnYItZx6FMN+gCpHvP3/nzNZL1HFzf7U/NaSgmC784VqtK8yiqSXZEoTGCsmzeSp8JVw==
   /fastify-cors/6.0.2:
     dependencies:
       fastify-plugin: 3.0.0
@@ -3216,12 +3210,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-oCfpcsDndgnDVgiI7bwFKAun2dO+4h84vBlkWsWnz/OUK9Reff5UFoFl241xTiLeHWX/vU9zkDVXqYUxjOwHcQ==
-  /fastify-plugin/2.3.4:
-    dependencies:
-      semver: 7.3.5
-    dev: false
-    resolution:
-      integrity: sha512-I+Oaj6p9oiRozbam30sh39BiuiqBda7yK2nmSPVwDCfIBlKnT8YB3MY+pRQc2Fcd07bf6KPGklHJaQ2Qu81TYQ==
   /fastify-plugin/3.0.0:
     dev: false
     resolution:
@@ -9687,22 +9675,8 @@ packages:
     dev: false
     name: '@rush-temp/vc-logic'
     resolution:
-      integrity: sha512-57rY5em/NxF9n0Yb5sWxA+hAt674FqFSC/U330IWIc4pxuyAKIwjdoqHDKk2NyNKDwAStYdDuTsLIQ2B6HdK4g==
+      integrity: sha512-7JTpvO/u6NSAd4UuhUvlnNxAoRl6Mkxdm0AYGCdJB5keZfWtc8usykR4Kq5QVP3gV+n/5aKITKR2A1XOcxkwxw==
       tarball: 'file:projects/vc-logic.tgz'
-    version: 0.0.0
-  'file:projects/vc-node.tgz':
-    dependencies:
-      '@types/node': 14.17.32
-      fastify: 3.22.1
-      fastify-cors: 4.1.0
-      rxjs: 7.4.0
-      tslint: 5.20.1_typescript@3.9.10
-      typescript: 3.9.10
-    dev: false
-    name: '@rush-temp/vc-node'
-    resolution:
-      integrity: sha512-rN7fLK6kqQJPQIun8RhpeFNStilsFwvqV8WvsR1w7eD50hfong1YCqhyUqHFhRupipvxPqnko075vsyIyHoT9g==
-      tarball: 'file:projects/vc-node.tgz'
     version: 0.0.0
   'file:projects/vc-ui.tgz':
     dependencies:
@@ -9724,7 +9698,7 @@ packages:
     dev: false
     name: '@rush-temp/votecube'
     resolution:
-      integrity: sha512-Gbw79WDsrlvkb5LyhL9zlpwieiAUoSgLBAK/jYKZenWeMmv63h8kePha2RoEUCGDvkLXatzEX1qjHFvjAIYklA==
+      integrity: sha512-pyj+etweRdVDfcPZrfcGfSY6tsuLoTH2BxwYG/dyWFvoJs1im7ygEhAZlA4IyY6iD6zkR8vGQNQMmLeaJjzjrw==
       tarball: 'file:projects/votecube.tgz'
     version: 0.0.0
   'file:projects/write-processor.tgz':
@@ -9803,7 +9777,6 @@ specifiers:
   '@rush-temp/traffic-pattern': 'file:./projects/traffic-pattern.tgz'
   '@rush-temp/travel-document-checkpoint': 'file:./projects/travel-document-checkpoint.tgz'
   '@rush-temp/vc-logic': 'file:./projects/vc-logic.tgz'
-  '@rush-temp/vc-node': 'file:./projects/vc-node.tgz'
   '@rush-temp/vc-ui': 'file:./projects/vc-ui.tgz'
   '@rush-temp/votecube': 'file:./projects/votecube.tgz'
   '@rush-temp/write-processor': 'file:./projects/write-processor.tgz'
@@ -9819,6 +9792,8 @@ specifiers:
   cassandra-driver: ^4.6.3
   child-process: latest
   compression: ^1.7.4
+  fastify: ^3.22.0
+  fastify-cors: ^6.0.2
   fastify-static: ^4.4.2
   jssha: ^2.3.x
   mysql2: ^2.1.0
