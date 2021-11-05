@@ -1,11 +1,12 @@
 import { DI } from '@airport/di'
+import { DeepPartial } from '@airport/pressurization'
 import {
-	ICategory,
-	IFactor,
-	IOutcome,
-	IPosition,
-	ISituation,
-	ISituationFactorPosition,
+	Category,
+	Factor,
+	Outcome,
+	Position,
+	Situation,
+	SituationFactorPosition,
 } from '@votecube/votecube'
 import {
 	IUiCategory,
@@ -20,12 +21,12 @@ import { SITUATION_CONVERTER } from '../tokens'
 export interface ISituationConverter {
 
 	dbToUi(
-		dbSituation: ISituation
+		dbSituation: DeepPartial<Situation>
 	): IUiSituation
 
 	uiToDb(
 		docSituation: IUiSituation
-	): ISituation
+	): DeepPartial<Situation>
 
 }
 
@@ -33,7 +34,7 @@ export class SituationConverter
 	implements ISituationConverter {
 
 	dbToUi(
-		dbSituation: ISituation
+		dbSituation: DeepPartial<Situation>
 	): IUiSituation {
 		let parent: IUiRepositoryRecord = null
 
@@ -68,11 +69,11 @@ export class SituationConverter
 
 	uiToDb(
 		uiSituation: IUiSituation
-	): ISituation {
+	): DeepPartial<Situation> {
 		const uiCategory = uiSituation.category
 		const uiParent = uiSituation.parent
 
-		const dbFactors: IFactor[] = []
+		const dbFactors: DeepPartial<Factor>[] = []
 
 		return {
 			actor: {
@@ -142,13 +143,13 @@ export class SituationConverter
 
 	private getUiFactor(
 		factorNumber: 1 | 2 | 3,
-		factorPositions: ISituationFactorPosition[]
+		factorPositions: DeepPartial<SituationFactorPosition>[]
 	): IUiFactor {
 		const matchingFactorPositions = factorPositions.filter(factorPosition =>
 			factorPosition.factorNumber === factorNumber)
 
-		let dbFactorPositionA: ISituationFactorPosition
-		let dbFactorPositionB: ISituationFactorPosition
+		let dbFactorPositionA: DeepPartial<SituationFactorPosition>
+		let dbFactorPositionB: DeepPartial<SituationFactorPosition>
 
 		if (matchingFactorPositions[0].outcomeOrdinal === 'A') {
 			dbFactorPositionA = matchingFactorPositions[0]
@@ -180,7 +181,7 @@ export class SituationConverter
 	}
 
 	private getUiPosition(
-		dbSituationFactorPosition: ISituationFactorPosition
+		dbSituationFactorPosition: DeepPartial<SituationFactorPosition>
 	): IUiPosition {
 		const position = dbSituationFactorPosition.position
 
@@ -195,7 +196,7 @@ export class SituationConverter
 	}
 
 	private getUiOutcome(
-		outcome: IOutcome
+		outcome: DeepPartial<Outcome>
 	): IUiOutcome {
 		return {
 			ageSuitability: outcome.ageSuitability as 0 | 7 | 13 | 18,
@@ -207,7 +208,7 @@ export class SituationConverter
 	}
 
 	private getUiCategory(
-		category: ICategory
+		category: DeepPartial<Category>
 	): IUiCategory {
 		return {
 			actorId: category.actor.id,
@@ -221,7 +222,7 @@ export class SituationConverter
 	private getDbOutcome(
 		uiOutcome: IUiOutcome,
 		ageSuitability: 0 | 7 | 13 | 18
-	): IOutcome {
+	): DeepPartial<Outcome> {
 		if (uiOutcome.ageSuitability || uiOutcome.ageSuitability === 0) {
 			ageSuitability = uiOutcome.ageSuitability
 		}
@@ -242,18 +243,18 @@ export class SituationConverter
 		uiSituation: IUiSituation,
 		factorNumber: 1 | 2 | 3,
 		outcomeOrdinal: 'A' | 'B',
-		dbFactors: IFactor[]
-	): ISituationFactorPosition {
+		dbFactors: DeepPartial<Factor>[]
+	): DeepPartial<SituationFactorPosition> {
 		const uiFactor = uiSituation.factors[factorNumber]
 		const uiPosition = uiFactor.positions[outcomeOrdinal]
 
-		let factor: IFactor = dbFactors[factorNumber]
+		let factor: DeepPartial<Factor> = dbFactors[factorNumber]
 		if (!factor) {
 			factor = this.getDbFactor(uiFactor, uiSituation.ageSuitability)
 			dbFactors[factorNumber] = factor
 		}
 
-		const position: IPosition = this.getDbPosition(uiPosition, uiSituation.ageSuitability)
+		const position: DeepPartial<Position> = this.getDbPosition(uiPosition, uiSituation.ageSuitability)
 
 		return {
 			actor: {
@@ -278,7 +279,7 @@ export class SituationConverter
 	private getDbFactor(
 		uiFactor: IUiFactor,
 		ageSuitability: 0 | 7 | 13 | 18
-	): IFactor {
+	): DeepPartial<Factor> {
 		if (uiFactor.ageSuitability || uiFactor.ageSuitability === 0) {
 			ageSuitability = uiFactor.ageSuitability
 		}
@@ -299,7 +300,7 @@ export class SituationConverter
 	private getDbPosition(
 		uiPosition: IUiPosition,
 		ageSuitability: 0 | 7 | 13 | 18
-	): IPosition {
+	): DeepPartial<Position> {
 		if (uiPosition.ageSuitability || uiPosition.ageSuitability === 0) {
 			ageSuitability = uiPosition.ageSuitability
 		}

@@ -8,7 +8,7 @@ import {
 	POLL_FORM_LOGIC,
 	SITUATION_FORM_MANAGER
 }                         from '../../../tokens'
-import {IStoredRevision} from '../../../poll/PollManager'
+import {IStoredRevision} from '../../../poll/SituationManager'
 
 export interface IPollFormLogic {
 

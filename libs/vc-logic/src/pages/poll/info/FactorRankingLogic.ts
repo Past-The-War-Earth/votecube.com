@@ -9,7 +9,7 @@ import {
 }                             from '@votecube/ecclesia'
 import {fly}                  from 'svelte/transition'
 import {ILogicUtils}          from '../../../LogicUtils'
-import {IPageVote}            from '../../../poll/PollManager'
+import {IPageVote}            from '../../../poll/SituationManager'
 import {cardMove}             from '../../../store'
 import {FACTOR_RANKING_LOGIC} from '../../../tokens'
 

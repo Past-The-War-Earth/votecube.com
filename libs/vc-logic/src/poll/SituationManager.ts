@@ -1,80 +1,62 @@
 import {
 	container,
 	DI
-}                    from '@airport/di'
+} from '@airport/di'
+import { IFieldGroup } from '@votecube/forms'
 import {
-	IUserAccount,
-	Poll_Id,
-	PollRevision_Id,
-	Theme_Id
-}                    from '@votecube/ecclesia'
-import {IFieldGroup} from '@votecube/forms'
-import {
-	IsData,
-	IUiPoll,
-	IUiPollRevision,
-	IUiPollRevisionDelta,
-	IVote,
-}                    from '@votecube/model'
+	IUiSolution,
+	IUiSituation,
+	IUiCategory,
+} from '@votecube/model'
+import { SituationApi } from '@votecube/votecube/lib/server'
 import {
 	CONNECTION_MANAGER,
 	CUBE_LOGIC,
 	LOGIC_UTILS,
 	SITUATION_FORM_MANAGER,
-	POLL_MANAGER,
+	SITUATION_MANAGER,
 	SITUATION_CONVERTER
-}                    from '../tokens'
+} from '../tokens'
 
 export interface IPageVote
-	extends IVote {
+	extends IUiSituation {
 	changeMillis?: number
 }
 
-export interface IPollManager {
+export interface ISituationManager {
 
 	currentRevision: IStoredRevision
 
-	getAllPolls(): Promise<IUiPoll<IsData>[]>
+	getSituationsForCategory(
+		category: IUiCategory
+	): Promise<IUiSituation[]>
 
-	getChildRevisionListings(
-		pollId: Poll_Id,
-		revisionId: PollRevision_Id
-	): Promise<IUiPollRevision[]>
+	getLeafSituations(
+		situation: IUiSituation
+	): Promise<IUiSituation[]>
 
-	getPollsForTheme(
-		themeId: Theme_Id
-	): Promise<IUiPoll<IsData>[]>
-
-	getRevision(
-		pollId: Poll_Id,
-		pollRevisionId: PollRevision_Id
-	): Promise<IUiPollRevision>
-
-	getRevisionListing(
-		pollId: Poll_Id,
-		pollRevisionId: PollRevision_Id
-	): Promise<IUiPollRevision>
+	getStemSituation(
+		situation: IUiSituation
+	): Promise<IUiSituation>
 
 	mergeForm(): Promise<void>
 
-	saveCurrentRevision(
-		userAccount: IUserAccount
+	saveSituation(
+		situation: IUiSituation
 	): Promise<void>
 
 }
 
 export interface IStoredRevision {
-
-	// doc: IRevisionDoc
 	form?: IFieldGroup
-	originalUi: IUiPollRevision
-	ui: IUiPollRevision
-	uiDelta?: IUiPollRevisionDelta
-
+	originalUi: IUiSolution
+	ui: IUiSolution
 }
 
-export class PollManager
-	implements IPollManager {
+export class SituationManager
+	implements ISituationManager {
+
+	situationApi = new SituationApi()
 
 	private currRevision: IStoredRevision = {
 		// doc: null,
@@ -87,6 +69,15 @@ export class PollManager
 	get currentRevision(): IStoredRevision {
 		return this.currRevision
 	}
+
+
+
+	async getSituationsForCategory(
+		category: IUiCategory
+	): Promise<IUiSituation[]> {
+		return []
+	}
+
 
 	async getAllPolls(): Promise<IUiPoll<IsData>[]> {
 		// const pollDao = await container(this).get(POLL_DAO)
@@ -101,7 +92,7 @@ export class PollManager
 	async getChildRevisionListings(
 		pollId: Poll_Id,
 		revisionId: PollRevision_Id
-	): Promise<IUiPollRevision[]> {
+	): Promise<IUiSolution[]> {
 		// const pollDao = await container(this).get(POLL_DAO)
 		//
 		// const revisionDocs =
@@ -124,56 +115,6 @@ export class PollManager
 		return []
 	}
 
-	async getRevision(
-		pollId: Poll_Id,
-		pollRevisionId: PollRevision_Id
-	): Promise<IUiPollRevision> {
-		if (!pollId) {
-			// this.currRevision.doc = null
-			return this.currRevision.ui
-		}
-
-		if (this.currRevision.ui
-			&& this.currRevision.ui.pollId === pollId
-			&& this.currRevision.ui.id === pollRevisionId) {
-			return this.currRevision.ui
-		}
-
-		return null
-
-		// const pollDao = await container(this).get(POLL_DAO)
-		//
-		// const doc = await pollDao.getRevision(pollId, pollRevisionId)
-		//
-		// const [dbConverter, dbUtils] = await container(this).get(DB_CONVERTER, DB_UTILS)
-		//
-		// const ui: any = dbConverter.fromDb(doc, dbUtils.subPollProps, dbUtils.excludedProps)
-		//
-		// const originalUi = dbUtils.copy(ui)
-		//
-		// this.currRevision = {
-		// 	doc,
-		// 	originalUi,
-		// 	ui
-		// }
-		//
-		// return ui
-	}
-
-	async getRevisionListing(
-		pollId: Poll_Id,
-		revisionId: PollRevision_Id
-	): Promise<IUiPollRevision> {
-		// const pollDao = await container(this).get(POLL_DAO)
-		//
-		// const revisionDoc =
-		// 	      await pollDao.getRevisionListing(pollId, revisionId)
-		//
-		// return await this.convertDoc(revisionDoc)
-
-		return null
-	}
-
 	async mergeForm(): Promise<void> {
 		const form = this.currRevision.form
 		if (!form) {
@@ -183,8 +124,8 @@ export class PollManager
 		const [pollFormManager, logicUtils] = await container(this).get(
 			SITUATION_FORM_MANAGER, LOGIC_UTILS)
 
-		const ui: IUiPollRevision           = pollFormManager.fromForm(form.value)
-		const uiDelta: IUiPollRevisionDelta = pollFormManager.fromForm(form.changeFlags)
+		const ui: IUiSolution = pollFormManager.fromForm(form.value)
+		const uiDelta: IUiSolutionDelta = pollFormManager.fromForm(form.changeFlags)
 
 		const oldUi = this.currRevision.ui
 
@@ -205,7 +146,7 @@ export class PollManager
 				'userId'
 			])
 		}
-		this.currRevision.ui      = ui
+		this.currRevision.ui = ui
 		this.currRevision.uiDelta = uiDelta
 	}
 
@@ -213,8 +154,8 @@ export class PollManager
 		user: IUserAccount
 	): Promise<void> {
 		const originalUi = this.currRevision.originalUi
-		const ui         = this.currRevision.ui
-		const delta      = this.currRevision.uiDelta
+		const ui = this.currRevision.ui
+		const delta = this.currRevision.uiDelta
 
 		const logicUtils = await container(this).get(LOGIC_UTILS)
 
@@ -286,4 +227,4 @@ export class PollManager
 
 }
 
-DI.set(POLL_MANAGER, PollManager)
+DI.set(SITUATION_MANAGER, SituationManager)

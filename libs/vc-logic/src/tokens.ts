@@ -9,7 +9,7 @@ import { IPollFormLogic } from './pages/poll/info/PollFormLogic'
 import { IPollMainLogic } from './pages/poll/info/PollMainLogic'
 import { ISituationFormManager } from './pages/poll/SituationFormManager'
 import { ICubeLogic } from './poll/CubeLogic'
-import { IPollManager } from './poll/PollManager'
+import { ISituationManager } from './poll/SituationManager'
 import { IVoteManager } from './poll/VoteManager'
 import { IRoutes } from './Routes'
 import { IEntityStateManager } from './serialize/EntityStateManager'
@@ -30,7 +30,7 @@ export const OPERATION_SERIALIZER = publicLogic.token<IOperationSerializer>('IOp
 export const POLL_FORM_LOGIC = publicLogic.token<IPollFormLogic>('IPollFormLogic')
 export const SITUATION_FORM_MANAGER = publicLogic.token<ISituationFormManager>('IPollFormManager')
 export const POLL_MAIN_LOGIC = publicLogic.token<IPollMainLogic>('IPollMainLogic')
-export const POLL_MANAGER = publicLogic.token<IPollManager>('IPollManager')
+export const SITUATION_MANAGER = publicLogic.token<ISituationManager>('IPollManager')
 export const SITUATION_CONVERTER = publicLogic.token<ISituationConverter>('ISituationConverter')
 export const QUERY_RESULTS_DESERIALIZER = publicLogic.token<IQueryResultsDeserializer>('IQueryResultsDeserializer')
 export const ROUTES = publicLogic.token<IRoutes>('IRoutes')
