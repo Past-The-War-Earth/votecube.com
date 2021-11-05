@@ -6,8 +6,8 @@
 		emInPx,
 		FEEDBACK,
 		navigateToPage,
-		POLL_FORM,
-		POLL_LIST,
+		SITUATION_FORM,
+		SITUATION_LIST,
 		RELEASE_PLAN,
 		showMainMenu,
 		showSignIn,
@@ -25,12 +25,12 @@
 	const dispatch = createEventDispatcher()
 
 	let menuItems = [{
-		key: POLL_LIST,
+		key: SITUATION_LIST,
 		name: 'Polls'
 	}, {
 		auth: true,
-		key: POLL_FORM,
-		path: POLL_FORM.replace(':mode', 'build'),
+		key: SITUATION_FORM,
+		path: SITUATION_FORM.replace(':mode', 'build'),
 		name: 'Create Poll',
 	}, {
 		key: ABOUT,

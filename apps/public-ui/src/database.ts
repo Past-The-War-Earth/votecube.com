@@ -1,5 +1,5 @@
 import {MUTATION_API} from '@votecube/cube-logic'
-import {pageTitle, POLL_MANAGER, VOTE_MANAGER} from '@votecube/vc-logic'
+import {pageTitle, SITUATION_MANAGER, SOLUTION_MANAGER} from '@votecube/vc-logic'
 
 // import {APP_CONTAINER} from './container'
 
@@ -19,7 +19,7 @@ export async function setupCubeView(
     const [
         mutationApi, pollManager, voteManager
     ] = await container.get(
-        MUTATION_API, POLL_MANAGER, VOTE_MANAGER)
+        MUTATION_API, SITUATION_MANAGER, SOLUTION_MANAGER)
 
 	const username = ''
 	const passwordHash = ''
@@ -30,7 +30,7 @@ export async function setupCubeView(
     );
 
     // if (!vote) {
-    // 	navigateToPage(POLL_FORM)
+    // 	navigateToPage(SITUATION_FORM)
     // 	return
     // }
 

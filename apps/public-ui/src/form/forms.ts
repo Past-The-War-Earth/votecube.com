@@ -1,6 +1,6 @@
 import {navigateToPage} from '@votecube/vc-logic'
 
-export const CREATE_POLL_TOP = 'CREATE_POLL_TOP'
+export const DEFINE_SITUATION_TOP = 'DEFINE_SITUATION_TOP'
 export const CREATE_FACTOR   = 'CREATE_FACTOR'
 
 

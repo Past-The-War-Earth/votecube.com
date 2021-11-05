@@ -44,14 +44,14 @@
 				$routeParams
 			) {
 				// this.set({keepPollId: $routeParams.pollId})
-				forms.navigateOnValid(this, routes.POLL_FORM, $routeParams)
+				forms.navigateOnValid(this, routes.SITUATION_FORM, $routeParams)
 			}
 		},
 		oncreate() {
 			formCache.getPollRouteParams(this)
 			forms.ensureChildForm(
-				forms.CREATE_POLL_TOP, 'timeframe',
-				this, routes.POLL_FORM)
+				forms.DEFINE_SITUATION_TOP, 'timeframe',
+				this, routes.SITUATION_FORM)
 			this.store.set({
 				pageTitle: 'Poll Time Frame'
 			})

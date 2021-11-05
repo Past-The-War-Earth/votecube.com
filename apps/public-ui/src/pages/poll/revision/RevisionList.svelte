@@ -4,8 +4,8 @@
 		LOGIC_UTILS,
 		navigateToPage,
 		pageTitle,
-		POLL_MAIN,
-		POLL_MANAGER,
+		SITUATION_MAIN,
+		SITUATION_MANAGER,
 		RELEASE_PLAN,
 		routeParams,
 		text
@@ -112,7 +112,7 @@
 			pollRevisionId
 	) {
 		// FIXME: need a new mode, something like 'view' - since you can't vote on a revision
-		navigateToPage(POLL_MAIN, {
+		navigateToPage(SITUATION_MAIN, {
 			mode: 'vote',
 			pollId,
 			pollRevisionId,
@@ -160,7 +160,7 @@
 		otherPromise,
 		container
 	) {
-		const pollManager = await container.get(POLL_MANAGER)
+		const pollManager = await container.get(SITUATION_MANAGER)
 		let [
 			    currentRevision,
 			    childRevisions,

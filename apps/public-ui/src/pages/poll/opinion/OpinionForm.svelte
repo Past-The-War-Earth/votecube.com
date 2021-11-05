@@ -1,7 +1,7 @@
 <script>
 	import {
 		navigateToPage,
-		POLL_LIST,
+		SITUATION_LIST,
 		text,
 		user
 	}                  from '@votecube/vc-logic'
@@ -93,7 +93,7 @@
 		saveFeedback(form.value).then(
 			success => {
 				if (success) {
-					navigateToPage(POLL_LIST)
+					navigateToPage(SITUATION_LIST)
 				} else {
 					error = 'Error saving feedback, please check your network connection'
 				}

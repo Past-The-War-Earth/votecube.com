@@ -22,8 +22,8 @@
         LOGIC_UTILS,
         mode,
         noOverflow,
-        POLL_MAIN_LOGIC,
-        POLL_MANAGER,
+        SITUATION_MAIN_LOGIC,
+        SITUATION_MANAGER,
         setResizeCllBck,
         user,
     }                      from '@votecube/vc-logic'
@@ -208,7 +208,7 @@
             return
         }
 
-        const logic = await container.get(POLL_MAIN_LOGIC)
+        const logic = await container.get(SITUATION_MAIN_LOGIC)
 
         if (logic.votesEqual(currentVote, vote)) {
             return
@@ -478,7 +478,7 @@
         $user
     ) {
         savingMessage     = 'Saving ...'
-        const pollManager = await container.get(POLL_MANAGER)
+        const pollManager = await container.get(SITUATION_MANAGER)
         try {
             await pollManager.saveCurrentRevision($user)
             confirm = false

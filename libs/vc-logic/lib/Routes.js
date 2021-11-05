@@ -114,7 +114,7 @@ export class Routes {
                             // const previousPage = get(lastPage)
                             // const previousUrl = get(lastUrl)
                             // if (!previousPage || previousPage.authenticated) {
-                            // 	navigateToPage(POLL_LIST)
+                            // 	navigateToPage(SITUATION_LIST)
                             // } else if (previousUrl) {
                             // 	page(previousUrl)
                             // }

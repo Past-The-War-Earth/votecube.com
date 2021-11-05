@@ -13,11 +13,11 @@
 		isDesktop,
 		navigateToPage,
         noOverflow,
-		POLL_FORM,
-		POLL_LIST,
-		POLL_LOCATIONS,
-		POLL_MAIN,
-		POLL_TIME_FRAME,
+		SITUATION_FORM,
+		SITUATION_LIST,
+		SITUATION_LOCATIONS,
+		SITUATION_MAIN,
+		SITUATION_TIME_FRAME,
 		RELEASE_PLAN,
 		ROUTES,
 		scheduleToResize,
@@ -118,17 +118,17 @@
 			[FACTOR_INFO_MAIN]: FactorMain,
 			// [FACTOR_LIST]: FactorList,
 			[FEEDBACK]: Feedback,
-			[POLL_FORM]: PollForm,
-			[POLL_LIST]: PollList,
-			// [POLL_LOCATIONS]: PollLocations,
-			[POLL_MAIN]: PollInfoMain,
-			// [POLL_TIME_FRAME]: PollTimeframe,
+			[SITUATION_FORM]: PollForm,
+			[SITUATION_LIST]: PollList,
+			// [SITUATION_LOCATIONS]: PollLocations,
+			[SITUATION_MAIN]: PollInfoMain,
+			// [SITUATION_TIME_FRAME]: PollTimeframe,
 			[RELEASE_PLAN]: ReleasePlan,
 			[VARIATION_LIST]: RevisionList,
 		}
 		/*		topMenuMap = {
-					[routes.POLL_MAIN]: PollInfoCommonTopMenu,
-					[routes.POLL_LIST]: PollListTopMenu
+					[routes.SITUATION_MAIN]: PollInfoCommonTopMenu,
+					[routes.SITUATION_LIST]: PollListTopMenu
 				}*/
 
 		routes.configPages([
@@ -137,18 +137,18 @@
 			[FACTOR_INFO_MAIN, false, false],
 			[FACTOR_LIST, false, true],
 			[FEEDBACK, false, false],
-			[POLL_FORM, true, false],
-			[POLL_LIST, false, true],
-			[POLL_LOCATIONS, true, false],
-			[POLL_MAIN, false, true],
-			[POLL_TIME_FRAME, true, false],
+			[SITUATION_FORM, true, false],
+			[SITUATION_LIST, false, true],
+			[SITUATION_LOCATIONS, true, false],
+			[SITUATION_MAIN, false, true],
+			[SITUATION_TIME_FRAME, true, false],
 			[RELEASE_PLAN, false, false],
 			[VARIATION_LIST, false, true],
 		])
 
 		routes.setupRoutes(pageMap,
 			setPageComp,
-			ABOUT, POLL_LIST
+			ABOUT, SITUATION_LIST
 		)
 
 		startResizeInterval()
@@ -175,7 +175,7 @@
 			authUser => {
 				const theCurrentPage = get(currentPage)
 				if (!authUser && theCurrentPage && theCurrentPage.authenticated) {
-					navigateToPage(POLL_LIST)
+					navigateToPage(SITUATION_LIST)
 				}
 
 				user.set(authUser)

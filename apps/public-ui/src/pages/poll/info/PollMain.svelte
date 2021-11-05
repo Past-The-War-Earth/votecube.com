@@ -10,16 +10,16 @@
         mode,
         navigateToPage,
         noOverflow,
-        POLL_FORM,
-        POLL_LIST,
-        POLL_MAIN_LOGIC,
-        POLL_MANAGER,
+        SITUATION_FORM,
+        SITUATION_LIST,
+        SITUATION_MAIN_LOGIC,
+        SITUATION_MANAGER,
         RELEASE_PLAN,
         routeParams,
         setResizeCllBck,
         user,
         VARIATION_LIST,
-        VOTE_MANAGER
+        SOLUTION_MANAGER
     } from '@votecube/vc-logic'
     import {beforeUpdate, onDestroy, onMount} from 'svelte'
     import {get} from 'svelte/store'
@@ -199,7 +199,7 @@
             return
         }
 
-        const logic = await container.get(POLL_MAIN_LOGIC)
+        const logic = await container.get(SITUATION_MAIN_LOGIC)
 
         if (logic.votesEqual(currentVote, vote)) {
             return
@@ -238,7 +238,7 @@
             mode = 'alter'
         }
         // confirmAlter.set(false)
-        navigateToPage(POLL_FORM, {
+        navigateToPage(SITUATION_FORM, {
             ...$routeParams,
             mode
         })
@@ -402,7 +402,7 @@
     function toPollForm(
         $routeParams
     ) {
-        navigateToPage(POLL_FORM, $routeParams)
+        navigateToPage(SITUATION_FORM, $routeParams)
     }
 
     function submitVote() {
@@ -472,11 +472,11 @@
         $user
     ) {
         savingMessage = 'Saving ...'
-        const pollManager = await container.get(POLL_MANAGER)
+        const pollManager = await container.get(SITUATION_MANAGER)
         try {
             await pollManager.saveCurrentRevision($user)
             confirm = false
-            navigateToPage(POLL_LIST)
+            navigateToPage(SITUATION_LIST)
         } catch (theError) {
             error = theError
             savingMessage = 'Error'
@@ -485,11 +485,11 @@
 
     async function doSubmitVote() {
         // confirm = false
-        const voteManager = await container.get(VOTE_MANAGER)
+        const voteManager = await container.get(SOLUTION_MANAGER)
         try {
             await voteManager.saveVote(poll)
             confirm = false
-            navigateToPage(POLL_LIST)
+            navigateToPage(SITUATION_LIST)
         } catch (theError) {
             error = theError
             savingMessage = 'Error'

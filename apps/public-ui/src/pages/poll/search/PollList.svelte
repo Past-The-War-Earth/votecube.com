@@ -4,8 +4,8 @@
 		LOGIC_UTILS,
 		navigateToPage,
 		pageTitle,
-		POLL_MAIN,
-		POLL_MANAGER,
+		SITUATION_MAIN,
+		SITUATION_MANAGER,
 		text
 	}                    from '@votecube/vc-logic'
 	import {
@@ -72,7 +72,7 @@
 			pollId,
 			pollRevisionId
 	) {
-		navigateToPage(POLL_MAIN, {
+		navigateToPage(SITUATION_MAIN, {
 			mode: 'vote',
 			pollId,
 			pollRevisionId,
@@ -94,7 +94,7 @@
 	}
 
 	async function initPage() {
-		const pollManager = await container.get(POLL_MANAGER)
+		const pollManager = await container.get(SITUATION_MANAGER)
 		const [
 			      formFactory,
 			      originalPolls

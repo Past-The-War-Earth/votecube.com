@@ -1,6 +1,6 @@
 import {
 	APP_CONTAINER,
-	POLL_MANAGER
+	SITUATION_MANAGER
 }                 from '@votecube/vc-logic'
 import * as forms from '../form/forms'
 
@@ -11,9 +11,9 @@ export async function savePollForm(
 		return
 	}
 
-	const pollManager = await APP_CONTAINER.get(POLL_MANAGER)
+	const pollManager = await APP_CONTAINER.get(SITUATION_MANAGER)
 	await pollManager.mergeForm()
 
-	forms.uncacheForm(forms.CREATE_POLL_TOP)
+	forms.uncacheForm(forms.DEFINE_SITUATION_TOP)
 	forms.uncacheForm(forms.CREATE_FACTOR)
 }

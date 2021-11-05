@@ -4,12 +4,12 @@
         FACTOR_INFO_MAIN,
         navigateToPage,
         pageTitle,
-        POLL_FORM_LOGIC,
-        POLL_LIST,
-        POLL_LOCATIONS,
-        POLL_MAIN,
-        POLL_MANAGER,
-        POLL_TIME_FRAME,
+        SITUATION_FORM_LOGIC,
+        SITUATION_LIST,
+        SITUATION_LOCATIONS,
+        SITUATION_MAIN,
+        SITUATION_MANAGER,
+        SITUATION_TIME_FRAME,
         routeParams,
         text
     } from '@votecube/vc-logic'
@@ -139,14 +139,14 @@ return !form.fields.locations.isOriginal()
         $routeParams
     ) {
         // this.set({keepPollId: $routeParams.pollId})
-        navigateToPage(POLL_LOCATIONS, $routeParams)
+        navigateToPage(SITUATION_LOCATIONS, $routeParams)
     }
 
     function selectTimeframe(
         $routeParams
     ) {
         // this.set({keepPollId: $routeParams.pollId})
-        navigateToPage(POLL_TIME_FRAME, $routeParams)
+        navigateToPage(SITUATION_TIME_FRAME, $routeParams)
     }
 
     function submit(
@@ -175,7 +175,7 @@ return !form.fields.locations.isOriginal()
 
         // let labels = await labelDao.getAll()
 
-        form = forms.getForm(forms.CREATE_POLL_TOP)
+        form = forms.getForm(forms.DEFINE_SITUATION_TOP)
 
         const theText = get(text)
 
@@ -183,15 +183,15 @@ return !form.fields.locations.isOriginal()
             const {mode} = get(routeParams)
 
             try {
-                const pollManager = await container.get(POLL_MANAGER)
+                const pollManager = await container.get(SITUATION_MANAGER)
 
                 const currentRevision = pollManager.currentRevision
                 if (!currentRevision.ui && mode !== 'build') {
-                    navigateToPage(POLL_LIST)
+                    navigateToPage(SITUATION_LIST)
                     return
                 }
 
-                const pollFormLogic = await container.get(POLL_FORM_LOGIC)
+                const pollFormLogic = await container.get(SITUATION_FORM_LOGIC)
 
                 form = await pollFormLogic.getPollForm(
                     currentRevision,
@@ -200,7 +200,7 @@ return !form.fields.locations.isOriginal()
                     theText,
                     formFactory)
 
-                forms.setForm(forms.CREATE_POLL_TOP, form)
+                forms.setForm(forms.DEFINE_SITUATION_TOP, form)
             } catch (theError) {
                 error = theError
                 return
@@ -225,7 +225,7 @@ return !form.fields.locations.isOriginal()
         $routeParams,
         modified
     ) {
-        const pollManager = await container.get(POLL_MANAGER)
+        const pollManager = await container.get(SITUATION_MANAGER)
 
         const form = pollManager.currentRevision.form
         form.touch()
@@ -248,7 +248,7 @@ return !form.fields.locations.isOriginal()
             $routeParams.pollRevisionId = 0
         }
 
-        forms.navigateOnValid(form, POLL_MAIN, $routeParams)
+        forms.navigateOnValid(form, SITUATION_MAIN, $routeParams)
     }
 
 </script>

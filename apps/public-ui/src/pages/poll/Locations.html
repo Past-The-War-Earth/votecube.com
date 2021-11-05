@@ -56,14 +56,14 @@
 				$routeParams
 			) {
 				// this.set({keepPollId: $routeParams.pollId})
-				forms.navigateOnValid(this, routes.POLL_FORM, $routeParams)
+				forms.navigateOnValid(this, routes.SITUATION_FORM, $routeParams)
 			}
 		},
 		oncreate() {
 			formCache.getPollRouteParams(this)
 			const form = forms.ensureChildForm(
-				forms.CREATE_POLL_TOP, 'locations',
-				this, routes.POLL_FORM)
+				forms.DEFINE_SITUATION_TOP, 'locations',
+				this, routes.SITUATION_FORM)
 			if (!form) {
 				return
 			}

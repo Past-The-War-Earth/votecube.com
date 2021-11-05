@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {
 		pageTitle,
-		POLL_FORM,
+		SITUATION_FORM,
 		routeParams
 	}                      from '@votecube/vc-logic'
 	import {
@@ -48,7 +48,7 @@
 	onMount(async () => {
 		form = ensureTopForm(
 			CREATE_FACTOR,
-			formHandle, POLL_FORM)
+			formHandle, SITUATION_FORM)
 		pageTitle.set('Factor Info')
 	})
 
@@ -62,7 +62,7 @@
 		$routeParams
 	) {
 		interFormNavigation = true
-		navigateOnValid(form, POLL_FORM, $routeParams)
+		navigateOnValid(form, SITUATION_FORM, $routeParams)
 	}
 
 </script>
