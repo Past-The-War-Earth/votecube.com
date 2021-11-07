@@ -26,20 +26,20 @@ export class SituationFormLogic {
     // labelData,
     // locationsData,
     uiText, formFactory) {
-        const text = uiText.Poll;
+        const text = uiText.Situation;
         const factors = formFactory.group('Factors', {
             1: this.createFactorForm(uiText, formFactory, [formFactory.validators.required()]),
             2: this.createFactorForm(uiText, formFactory, [formFactory.validators.required()]),
             3: this.createFactorForm(uiText, formFactory, [formFactory.validators.required()])
         }, [formFactory.validators.required()], text);
         const outcomes = formFactory.group('Outcomes', {
-            A: formFactory.field([
+            A: formFactory.matching(this.findOutcomeMatches, [
                 formFactory.validators.minLength(3),
                 formFactory.validators.required()
             ], {
                 maxLength: 50
             }),
-            B: formFactory.field([
+            B: formFactory.matching(this.findOutcomeMatches, [
                 formFactory.validators.minLength(3),
                 formFactory.validators.required()
             ], {
@@ -74,7 +74,7 @@ export class SituationFormLogic {
                 form.validators.minTomorrow()
             ])
         */
-        const theme = formFactory.options([
+        const category = formFactory.options([
             formFactory.validators.required()
         ], [{
                 id: 1,
@@ -114,23 +114,32 @@ export class SituationFormLogic {
                 maxLength: 40
             }),
             outcomes,
-            theme,
+            category,
         }, [formFactory.validators.required()], text);
     }
+    async findOutcomeMatches(outcomeText) {
+        return [];
+    }
+    async findFactorMatches(factorText) {
+        return [];
+    }
+    async findPositionMatches(factorText) {
+        return [];
+    }
     createFactorForm(uiText, form, formValidators) {
-        const name = form.matching([
+        const name = form.matching(this.findFactorMatches, [
             form.validators.required(),
             form.validators.minLength(5)
         ], {
             maxLength: 20
         });
-        const positionAName = form.matching([
+        const positionAName = form.matching(this.findPositionMatches, [
             form.validators.required(),
             form.validators.minLength(5)
         ], {
             maxLength: 120
         });
-        const positionBName = form.matching([
+        const positionBName = form.matching(this.findPositionMatches, [
             form.validators.required(),
             form.validators.minLength(5)
         ], {
@@ -153,7 +162,7 @@ export class SituationFormLogic {
         const positions = form.group('Positions', {
             A: positionAName,
             B: positionBName
-        }, [form.validators.required()], uiText.Poll);
+        }, [form.validators.required()], uiText.Situation);
         // FIXME: move to appropriate place once matching is implemented
         /*	name.onChange((
                 value

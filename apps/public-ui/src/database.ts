@@ -4,29 +4,24 @@ import {pageTitle, SITUATION_MANAGER, SOLUTION_MANAGER} from '@votecube/vc-logic
 // import {APP_CONTAINER} from './container'
 
 export async function init() {
-    // await APP_CONTAINER.get(AIR_DB)
+    // await APP_CONTAINER.get(AIR
     // const dbManager = await APP_CONTAINER.get(DATABASE_MANAGER)
     // await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, SCHEMA)
 }
 
 export async function setupCubeView(
-    pollId,
-    pollRevisionId,
+    repositoryId,
     cubeLogic,
     cubeEventListener,
     container
 ) {
     const [
-        mutationApi, pollManager, voteManager
+        mutationApi, situationManager, solutionManager
     ] = await container.get(
         MUTATION_API, SITUATION_MANAGER, SOLUTION_MANAGER)
 
-	const username = ''
-	const passwordHash = ''
-    const vote = await voteManager.getVoteForPoll(
-        username,
-        passwordHash,
-        pollId
+    const solution = await solutionManager.getSolutionForSituation(
+        null
     );
 
     // if (!vote) {
@@ -34,19 +29,19 @@ export async function setupCubeView(
     // 	return
     // }
 
-    const poll = await pollManager.getRevision(pollId, pollRevisionId)
+    const poll = await situationManager.getSituation(repositoryId)
 
-    cubeEventListener.setPositionData(vote)
+    cubeEventListener.setPositionData(solution)
     await mutationApi.recompute()
     // const poll = vote.poll
     const setPositionDataAndMove = (vote) => cubeEventListener.setPositionDataAndMove(vote)
     // const originalPoll =
-    setPositionDataAndMove(vote)
+    setPositionDataAndMove(solution)
 
     pageTitle.set(poll.name)
 
     return {
         poll,
-        vote
+        vote: solution
     }
 }

@@ -13,7 +13,7 @@ export function password(): IValidator {
 const passwordValidator: IValidator = function (
 	field: IFieldBase
 ): IFieldError[] | IFieldError | null {
-	const value = field.value
+	const value = field.displayValue
 	if (!value
 		|| typeof value !== 'string'
 		|| !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{12,})/.test(value)){

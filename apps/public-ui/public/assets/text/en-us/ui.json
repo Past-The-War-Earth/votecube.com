@@ -130,7 +130,7 @@
         }
       }
     },
-    "Poll": {
+    "Situation": {
       "List": {
         "search": {
           "info": "Search for Situations or use the filter in the top-right menu",

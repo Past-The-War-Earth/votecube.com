@@ -9,8 +9,8 @@ export function minLength(
 	) => {
 		this.name = 'minLength'
 
-		if (field.value
-			&& field.value.length < minimumLength) {
+		if (field.displayValue
+			&& field.displayValue.length < minimumLength) {
 			return {
 				key: 'minLength'
 			}

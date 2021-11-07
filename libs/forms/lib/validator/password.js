@@ -3,7 +3,7 @@ export function password() {
     return passwordValidator;
 }
 const passwordValidator = function (field) {
-    const value = field.value;
+    const value = field.displayValue;
     if (!value
         || typeof value !== 'string'
         || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{12,})/.test(value)) {

@@ -13,7 +13,7 @@ export function username(): IValidator {
 const usernameValidator: IValidator = function (
 	field: IFieldBase
 ): IFieldError[] | IFieldError | null {
-	const value = field.value
+	const value = field.displayValue
 	if (!value
 		|| typeof value !== 'string'
 		|| !/^[a-zA-Z0-9_\-]+$/.test(value)){

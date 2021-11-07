@@ -1,8 +1,8 @@
 export function minLength(minimumLength) {
     const validator = ((field) => {
         this.name = 'minLength';
-        if (field.value
-            && field.value.length < minimumLength) {
+        if (field.displayValue
+            && field.displayValue.length < minimumLength) {
             return {
                 key: 'minLength'
             };

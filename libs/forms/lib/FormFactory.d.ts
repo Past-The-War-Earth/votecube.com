@@ -2,7 +2,7 @@ import { IColorField } from './field/ColorField';
 import { IDateField } from './field/date/DateField';
 import { IField, IFieldRules } from './field/Field';
 import { IFieldGroup, IFieldMap } from './field/FieldGroup';
-import { IMatchingField } from './field/MatchingField';
+import { IMatch, IMatchingField } from './field/MatchingField';
 import { IFieldOption, IOptionFieldRules, IOptionsField } from './field/OptionsField';
 import { IValidator, IValidators } from './validator/Validator';
 import { IMonthYearField } from './field/date/MonthYearField';
@@ -12,7 +12,7 @@ export interface IFormFactory {
     date(validators: IValidator[], rules?: IFieldRules): IDateField;
     field(validators: IValidator[], rules?: IFieldRules): IField;
     group(name: any, fields: IFieldMap, validators: IValidator[], text: any, textName?: string): IFieldGroup;
-    matching(validators: IValidator[], rules?: IFieldRules): IMatchingField;
+    matching(matchCallback: (text: string) => Promise<IMatch[]>, validators?: IValidator[], rules?: IFieldRules): IMatchingField;
     monthYear(validators: IValidator[], rules?: IFieldRules): IMonthYearField;
     options(validators: IValidator[], options: IFieldOption[], rules?: IOptionFieldRules): IOptionsField;
 }
@@ -22,7 +22,7 @@ export declare class FormFactory implements IFormFactory {
     date(validators: IValidator[], rules?: IFieldRules): IDateField;
     field(validators: IValidator[], rules?: IFieldRules): IField;
     group(name: any, fields: IFieldMap, validators: IValidator[], text: any, textName?: string): IFieldGroup;
-    matching(validators: IValidator[], rules?: IFieldRules): IMatchingField;
+    matching(matchCallback: (text: string) => Promise<IMatch[]>, validators?: IValidator[], rules?: IFieldRules): IMatchingField;
     monthYear(validators: IValidator[], rules?: IFieldRules): IMonthYearField;
     options(validators: IValidator[], options: IFieldOption[], rules?: IOptionFieldRules): IOptionsField;
     yearMonth(validators: IValidator[], rules?: IFieldRules): IDateField;

@@ -6,6 +6,9 @@ export interface ISituationFormLogic {
 export declare class SituationFormLogic implements ISituationFormLogic {
     getPollForm(currentRevision: ICachedSituation, trackOriginal: boolean, touch: boolean, text: any, formFactory: IFormFactory): Promise<IFieldGroup>;
     private createPollForm;
+    private findOutcomeMatches;
+    private findFactorMatches;
+    private findPositionMatches;
     private createFactorForm;
 }
 //# sourceMappingURL=SituationFormLogic.d.ts.map

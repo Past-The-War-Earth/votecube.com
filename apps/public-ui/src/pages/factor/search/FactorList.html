@@ -2,7 +2,7 @@
 <form>
 	<div class="pure-control-group">
 		<AutoComplete
-				field="{form.fields.theme}"
+				field="{form.fields.category}"
 		></AutoComplete>
 	</div>
 	<div class="pure-control-group">
@@ -82,7 +82,7 @@
 		const formFactory = await loadForms(page.store)
 
 		const filter = formFactory.group('List', {
-			theme: formFactory.options([
+			category: formFactory.options([
 				// Validators.required()
 			], [{
 				id: 1,
@@ -103,13 +103,13 @@
 			labels: formFactory.options([], [{
 				id: 1,
 				text: 'Trump',
-				theme: {
+				category: {
 					id: 1
 				}
 			}, {
 				id: 2,
 				text: 'Integration',
-				theme: {
+				category: {
 					id: 1
 				}
 			}], {

@@ -28,6 +28,7 @@ export interface IFieldBase {
 
 	changeFlags: any
 	components: IComponent[]
+	displayValue: any
 	errors: IFieldError[]
 	group: IFieldGroup
 	hasValue: boolean
@@ -66,6 +67,8 @@ export interface IFieldBase {
 	): boolean
 
 	isOriginal(): boolean
+
+	displayMatches(): boolean
 
 	onChange(
 		callback: (
@@ -183,6 +186,14 @@ export abstract class FieldBase
 		return this.isOriginal() ? 0 : 1
 	}
 
+	get displayValue() {
+		return this.theValue
+	}
+
+	displayMatches(): boolean {
+		return false
+	}
+
 	setRun(
 		runNumber: number
 	): void {
@@ -232,12 +243,12 @@ export abstract class FieldBase
 			}
 
 			for (const property in val1) {
-				if (val1[property] !== val2[property]) {
+				if (!this.isSame(val1[property], val2[property])) {
 					return false
 				}
 			}
 			for (const property in val2) {
-				if (val1[property] !== val2[property]) {
+				if (!this.isSame(val1[property], val2[property])) {
 					return false
 				}
 			}

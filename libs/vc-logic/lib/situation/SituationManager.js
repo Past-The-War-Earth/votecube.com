@@ -13,6 +13,12 @@ export class SituationManager {
     get currentRevision() {
         return this.currSituation;
     }
+    async getSituation(repositoryId) {
+        return null;
+    }
+    async getAllSituations() {
+        return [];
+    }
     async getSituationsForCategory(category) {
         return [];
     }

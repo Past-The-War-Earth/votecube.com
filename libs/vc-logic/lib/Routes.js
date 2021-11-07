@@ -72,10 +72,10 @@ export class Routes {
             let currentUser = get(user);
             let params = this.inProgressParams;
             let nextUrl = this.inProgressUrl;
-            if (!this.inProgressUrl) {
-                params = this.inProgressParams = context.params;
-                nextUrl = this.inProgressUrl = context.path;
-            }
+            // if (!this.inProgressUrl) {
+            params = this.inProgressParams = context.params;
+            nextUrl = this.inProgressUrl = context.path;
+            // }
             if (!pageConfig.authenticated || currentUser) {
                 this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp);
                 return;

@@ -19,6 +19,7 @@ import {
 	IFieldMap
 } from './field/FieldGroup'
 import {
+	IMatch,
 	IMatchingField,
 	MatchingField
 } from './field/MatchingField'
@@ -63,7 +64,10 @@ export interface IFormFactory {
 	): IFieldGroup
 
 	matching(
-		validators: IValidator[],
+		matchCallback: (
+			text: string
+		) => Promise<IMatch[]>,
+		validators?: IValidator[],
 		rules?: IFieldRules
 	): IMatchingField
 
@@ -117,10 +121,13 @@ export class FormFactory
 	}
 
 	matching(
-		validators: IValidator[],
+		matchCallback: (
+			text: string
+		) => Promise<IMatch[]>,		
+		validators?: IValidator[],
 		rules?: IFieldRules
 	): IMatchingField {
-		return new MatchingField(validators, rules)
+		return new MatchingField(matchCallback, validators, rules)
 	}
 
 	monthYear(

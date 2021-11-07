@@ -15,6 +15,7 @@ export interface IComponent {
 export interface IFieldBase {
     changeFlags: any;
     components: IComponent[];
+    displayValue: any;
     errors: IFieldError[];
     group: IFieldGroup;
     hasValue: boolean;
@@ -40,6 +41,7 @@ export interface IFieldBase {
     hidePopup(): void;
     isSame(val1: any, val2: any): boolean;
     isOriginal(): boolean;
+    displayMatches(): boolean;
     onChange(callback: (value: any) => void): void;
     removeComponent(component: IComponent): void;
     removeComponent(component: IComponent): void;
@@ -79,6 +81,8 @@ export declare abstract class FieldBase implements IFieldBase {
     get value(): any;
     set value(newValue: any);
     get changeFlags(): any;
+    get displayValue(): any;
+    displayMatches(): boolean;
     setRun(runNumber: number): void;
     addComponent(component: IComponent): void;
     clearComponents(): void;

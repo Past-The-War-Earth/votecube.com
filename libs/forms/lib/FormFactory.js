@@ -24,8 +24,8 @@ export class FormFactory {
     group(name, fields, validators, text, textName) {
         return new FieldGroup(name, fields, validators, text, textName);
     }
-    matching(validators, rules) {
-        return new MatchingField(validators, rules);
+    matching(matchCallback, validators, rules) {
+        return new MatchingField(matchCallback, validators, rules);
     }
     monthYear(validators, rules) {
         return new MonthYearField(validators, rules);

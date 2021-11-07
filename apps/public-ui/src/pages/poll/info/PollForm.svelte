@@ -297,7 +297,7 @@ return !form.fields.locations.isOriginal()
         ></Text>
         <div class="pure-control-group">
             <AutoComplete
-                    field="{form.fields.theme}"
+                    field="{form.fields.category}"
             ></AutoComplete>
         </div>
         <div

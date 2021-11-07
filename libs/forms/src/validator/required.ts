@@ -13,7 +13,7 @@ export function required(): IValidator {
 const requiredValidator: IValidator = function (
 	field: IFieldBase
 ): IFieldError[] | IFieldError | null {
-	const value = field.value
+	const value = field.displayValue
 	if ((!value
 		&& value !== false
 		&& value !== 0)

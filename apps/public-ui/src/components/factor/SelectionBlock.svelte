@@ -126,7 +126,7 @@
 				<td>
 					<div>
 						{#if factor.valid && factor.hasChildValues}
-						{factor.fields.name.value}
+						{factor.fields.name.displayValue}
 						{:else}
 						{text.label}
 						{/if}
@@ -146,7 +146,7 @@
 				></CharacterButton>
 				<div>
 					{#if factor.valid && factor.hasChildValues}
-					{factor.fields.positions.fields.A.value}
+					{factor.fields.positions.fields.A.displayValue}
 					{/if}
 				</div>
 			</div>
@@ -161,7 +161,7 @@
 				></CharacterButton>
 				<div>
 					{#if factor.valid && factor.hasChildValues}
-					{factor.fields.positions.fields.B.value}
+					{factor.fields.positions.fields.B.displayValue}
 					{/if}
 				</div>
 			</div>

@@ -3,7 +3,7 @@
     "Factor": {
       "Info": {
         "name": {
-          "info": "A short name for this Factor.  Factor is a particular aspect of the issue that is being considered.",
+          "info": "A short name for this Factor.  Factor is a particular aspect of a Situation that is being considered.",
           "label": "Factor Name",
           "errors": {
             "required": "Factor Name is required",
@@ -18,9 +18,9 @@
       },
       "List": {
         "theme": {
-          "label": "Select the theme",
+          "label": "Select the Category",
           "errors": {
-            "required": "Theme is required"
+            "required": "Category is required"
           }
         },
         "labels": {
@@ -30,7 +30,7 @@
     },
     "Feedback": {
       "category": {
-        "info": "Please enter the category for your feedback",
+        "info": "Please enter the Category for your feedback",
         "label": "Category",
         "errors": {
           "required": "A comment is required",
@@ -133,12 +133,12 @@
     "Poll": {
       "List": {
         "search": {
-          "info": "Search for Polls or use the filter in the top-right menu",
-          "label": "Find Polls"
+          "info": "Search for Situations or use the filter in the top-right menu",
+          "label": "Find Situations"
         },
         "theme": {
-          "info": "Pick a Theme to focus your results",
-          "label": "Pick a theme"
+          "info": "Pick a Category to focus your results",
+          "label": "Pick a Category"
         }
       },
       "MainInfo": {
@@ -146,40 +146,40 @@
           "errors": {}
         },
         "name": {
-          "info": "Select the name for this poll",
-          "label": "Poll Issue",
+          "info": "Select the name for this Situation",
+          "label": "Situation Name",
           "errors": {
-            "required": "Poll Issue is required",
-            "minLength": "Poll Issue must be at least 3 characters long"
+            "required": "Situation Name is required",
+            "minLength": "Situation Name must be at least 3 characters long"
           }
         },
         "factors": {
-          "info": "Select the Factors of the poll",
+          "info": "Select the Factors of the Situation",
           "error": "All 3 Factors are required"
         },
         "labels": {
-          "info": "Select matching Tag(s) for this poll",
+          "info": "Select matching Tag(s) for this Situation",
           "label": "Tag(s)"
         },
         "locations": {
-          "info": "Select the location(s) of the poll (Continent(s), Country(ies), State(s), City(ies))",
+          "info": "Select the location(s) of the Situation (Continent(s), Country(ies), State(s), City(ies))",
           "error": "Correct location information is required"
         },
         "timeframe": {
-          "info": "Select the Start and End dates for the poll",
+          "info": "Select the Start and End dates for the Situation",
           "error": "Correct time-frame information is required"
         },
         "theme": {
-          "info": "Select the defining theme of this poll",
-          "label": "Theme",
+          "info": "Select the defining Category of this Situation",
+          "label": "Category",
           "errors": {
-            "required": "Poll Theme is required"
+            "required": "Situation Category is required"
           }
         }
       },
       "Outcomes": {
         "A": {
-          "info": "What is the result of the poll in case A.",
+          "info": "What is the Outcome of this Situation in case A.",
           "label": "Outcome A",
           "errors": {
             "required": "Outcome A is required",
@@ -187,7 +187,7 @@
           }
         },
         "B": {
-          "info": "What is the result of the poll in case B.",
+          "info": "What is the Outcome of the Situation in case B.",
           "label": "Outcome B",
           "errors": {
             "required": "Outcome B is required",
@@ -217,29 +217,29 @@
       },
       "Labels": {
         "labels": {
-          "info": "Select matching Tag(s) for this poll",
+          "info": "Select matching Tag(s) for this Situation",
           "label": "Tag(s)"
         }
       },
       "Locations": {
         "cities": {
-          "info": "Select one or more Cities to which this poll will apply",
+          "info": "Select one or more Cities to which this Situation will apply",
           "label": "City(ies)"
         },
         "continents": {
-          "info": "Select one or more Continents to which this poll will apply",
+          "info": "Select one or more Continents to which this Situation will apply",
           "label": "Continent(s)",
           "errors": {
             "required": "Continent is required"
           }
         },
         "countries": {
-          "info": "Select one or more Countries to which this poll will apply",
+          "info": "Select one or more Countries to which this Situation will apply",
           "label": "Country(ies)"
         },
-        "error": "Poll Geography is required",
+        "error": "Situation Geography is required",
         "states": {
-          "info": "Select one or more States to which this poll will apply",
+          "info": "Select one or more States to which this Situation will apply",
           "label": "State(s)"
         }
       },
@@ -263,7 +263,7 @@
       },
       "Timeframe": {
         "startDate": {
-          "info": "Select the date when this poll starts",
+          "info": "Select the date when solving this Situation starts",
           "label": "Start Date",
           "errors": {
             "required": "Start Date is required",
@@ -272,7 +272,7 @@
           }
         },
         "endDate": {
-          "info": "Select the last date when this poll open",
+          "info": "Select the last date when this Situation open for Solutions",
           "label": "End Date",
           "errors": {
             "required": "End Date is required",
@@ -281,7 +281,7 @@
             "greaterThanOrEquals": "End Date must be on or after Start Date"
           }
         },
-        "error": "Poll Time Frame is required"
+        "error": "Situation Time Frame is required"
       }
     },
     "Common": {

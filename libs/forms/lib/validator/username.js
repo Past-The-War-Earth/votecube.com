@@ -3,7 +3,7 @@ export function username() {
     return usernameValidator;
 }
 const usernameValidator = function (field) {
-    const value = field.value;
+    const value = field.displayValue;
     if (!value
         || typeof value !== 'string'
         || !/^[a-zA-Z0-9_\-]+$/.test(value)) {

@@ -36,7 +36,7 @@
 	})
 	let logicUtils
 	let mode = 'factors'
-	let polls
+	let situations
 
 	let formHandle = {
 		setDelta(newDelta) {
@@ -51,7 +51,7 @@
 	}
 
 	onMount(async () => {
-		container                          = DI.ui('PollList')
+		container                          = DI.ui('SituationList')
 		logicUtils = await container.get(LOGIC_UTILS)
 	})
 
@@ -94,18 +94,18 @@
 	}
 
 	async function initPage() {
-		const pollManager = await container.get(SITUATION_MANAGER)
+		const situationManager = await container.get(SITUATION_MANAGER)
 		const [
 			      formFactory,
 			      originalPolls
 		      ]                            = await Promise.all([
 			loadForms(),
-			findPolls(null, pollManager)
+			findSituations(null, situationManager)
 		])
-		polls                              = originalPolls
+		situations                              = originalPolls
 
 
-		const theme = formFactory.options([], [{
+		const category = formFactory.options([], [{
 			id: 1,
 			text: 'Politics'
 		}, {
@@ -122,30 +122,30 @@
 			text: 'Security'
 		}])
 
-		theme.onChange((aTheme) => {
-			findPolls(aTheme, pollManager).then(
-				thePolls => {
-					polls = thePolls
+		category.onChange((aCategory) => {
+			findSituations(aCategory, situationManager).then(
+				theSituations => {
+					situations = theSituations
 				})
 		})
 
 		form = formFactory.group('List', {
-			theme
+			category
 		}, [], get(text).UI.Poll)
 
 		forms.ensureForm(form, formHandle)
 
-		pageTitle.set('Polls')
+		pageTitle.set('Situations')
 	}
 
-	async function findPolls(
-		theme,
-		pollManager
+	async function findSituations(
+		category,
+		situationManager
 	) {
-		if (!theme) {
-			return pollManager.getAllPolls()
+		if (!category) {
+			return situationManager.getAllSituations()
 		} else {
-			return pollManager.getPollsForTheme(theme.id)
+			return situationManager.getSituationsForCategory(category)
 		}
 	}
 </script>
@@ -173,16 +173,16 @@
 	{#if form}
 	<form>
 		<AutoComplete
-				field="{form.fields.theme}"
+				field="{form.fields.category}"
 		></AutoComplete>
 	</form>
 	<table>
-		{#each polls as poll}
+		{#each situations as situation}
 		<PollListItem
 				logicUtils="{logicUtils}"
 				mode="{mode}"
-				on:click="{() => goTo(poll.id, poll.rootRevisionId)}"
-				poll="{poll}"
+				on:click="{() => goTo(situation.id, situation.rootRevisionId)}"
+				poll="{situation}"
 		></PollListItem>
 		{/each}
 	</table>

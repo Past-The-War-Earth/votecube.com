@@ -15,8 +15,8 @@ AirportDatabase.name
 
 import App from './App.svelte'
 
-import './assets/styles/global.css'
-import './assets/styles/votecube.css'
+import './styles/global.css'
+import './styles/votecube.css'
 
 let app;
 export default app;

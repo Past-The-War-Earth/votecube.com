@@ -44,6 +44,12 @@ export class FieldBase {
     get changeFlags() {
         return this.isOriginal() ? 0 : 1;
     }
+    get displayValue() {
+        return this.theValue;
+    }
+    displayMatches() {
+        return false;
+    }
     setRun(runNumber) {
         this.validationRun = runNumber;
     }
@@ -77,12 +83,12 @@ export class FieldBase {
                 return false;
             }
             for (const property in val1) {
-                if (val1[property] !== val2[property]) {
+                if (!this.isSame(val1[property], val2[property])) {
                     return false;
                 }
             }
             for (const property in val2) {
-                if (val1[property] !== val2[property]) {
+                if (!this.isSame(val1[property], val2[property])) {
                     return false;
                 }
             }

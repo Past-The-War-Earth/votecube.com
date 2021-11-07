@@ -34,6 +34,7 @@
 
 	$: errors = v(field.errors, delta)
 	$: label = v(field.label, delta)
+	$: displayMatches = v(field.displayMatches(), delta)
 	$: matches = v(field.matches, delta)
 	$: modified = v(
 		!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
@@ -45,7 +46,7 @@
 		!modified && field.validatorMap.required && !errors.length, delta)
 	$: touched = v(field.touched, delta)
 	$: trackOriginal = v(field.rules.trackOriginal, delta)
-	$: value = v(field.value, delta)
+	$: value = v(field.displayValue, delta)
 
 	onMount(() => field.setAsField(formHandle))
 	onDestroy(() => field.removeComponent(formHandle))
@@ -138,7 +139,7 @@
 			class="field-label"
 			for="{field.id}"
 	>{label}</label>
-	{#if matches}
+	{#if displayMatches}
 	<a
 			href="/#"
 	>{matches.length} matches</a>

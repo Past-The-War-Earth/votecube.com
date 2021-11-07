@@ -5,7 +5,7 @@ export function minDate(date // UTC only
     const minYear = date.getUTCFullYear();
     const validator = ((field) => {
         if (!field.fragments.valid
-            || field.value === null) {
+            || field.displayValue === null) {
             return null;
         }
         const selection = field.selection;

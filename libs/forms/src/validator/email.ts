@@ -13,7 +13,7 @@ export function email(): IValidator {
 const emailValidator: IValidator = function (
 	field: IFieldBase
 ): IFieldError[] | IFieldError | null {
-	const value = field.value
+	const value = field.displayValue
 	if (!value
 		|| typeof value !== 'string'
 		|| !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value)){

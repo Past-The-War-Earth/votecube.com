@@ -4,7 +4,7 @@
     {#if form}
     <form>
         <AutoComplete
-                field="{form.fields.theme}"
+                field="{form.fields.category}"
         ></AutoComplete>
     </form>
     <table>

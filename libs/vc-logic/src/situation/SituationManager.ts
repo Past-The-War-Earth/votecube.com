@@ -2,13 +2,14 @@ import {
 	container,
 	DI
 } from '@airport/di'
+import { DeepPartial } from '@airport/pressurization'
 import { IFieldGroup } from '@votecube/forms'
 import {
 	IUiSolution,
 	IUiSituation,
 	IUiCategory,
 } from '@votecube/model'
-import { SituationApiClient } from '@votecube/votecube'
+import { Situation, SituationApiClient } from '@votecube/votecube'
 import {
 	CUBE_LOGIC,
 	LOGIC_UTILS,
@@ -25,6 +26,12 @@ export interface IPageSolution
 export interface ISituationManager {
 
 	currentRevision: ICachedSituation
+
+	getSituation(
+		repositoryId: number
+	): Promise<DeepPartial<Situation>>
+
+	getAllSituations(): Promise<IUiSituation[]>
 
 	getSituationsForCategory(
 		category: IUiCategory
@@ -65,6 +72,16 @@ export class SituationManager
 
 	get currentRevision(): ICachedSituation {
 		return this.currSituation
+	}
+
+	async getSituation(
+		repositoryId: number
+	): Promise<DeepPartial<Situation>> {
+		return null
+	}
+
+	async getAllSituations(): Promise<IUiSituation[]> {
+		return []
 	}
 
 	async getSituationsForCategory(

@@ -12,7 +12,7 @@ export function minDate(
 		field: IDateField,
 	) => {
 		if (!field.fragments.valid
-			|| field.value === null) {
+			|| field.displayValue === null) {
 			return null
 		}
 

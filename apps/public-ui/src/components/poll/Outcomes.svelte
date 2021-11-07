@@ -95,7 +95,7 @@
 		width: 100%;
 	}
 
-	.theme {
+	.category {
 		display: block;
 		text-align: center;
 		width: 100%;
@@ -111,7 +111,7 @@
 	By:
 </summary>
 <div
-		class="theme"
+		class="category"
 >
 	{poll.by}
 </div>
@@ -119,12 +119,12 @@
 <summary
 		class="title"
 >
-	Theme:
+	Category:
 </summary>
 <div
-		class="theme"
+		class="category"
 >
-	{poll.theme.name}
+	{poll.category.name}
 </div>
 <summary
 		class="title"

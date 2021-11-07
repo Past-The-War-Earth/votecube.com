@@ -120,13 +120,11 @@
         container = DI.ui('PollMain')
 
         let params = get(routeParams)
-        let pollId = parseInt(params.pollId)
-        let pollRevisionId = parseInt(params.pollRevisionId)
+        let repositoryId = params.pollId
 
         resize()
         if (window.location.href.indexOf('card/ClimateChange') > 0) {
-            pollId = '7U2Z2ItoJVTnpZwZdjrg'
-            pollRevisionId = 'NFKgyOxEfT8RlqBBwEf2'
+            repositoryId = '1e62db65-807b-457f-ba34-4410013e8d39'
         }
         cube.set(true)
         noOverflow.set(true)
@@ -808,9 +806,9 @@
                     Please Confirm
                 </div>
                 <div slot="content">
-                    Create the "{poll.name}" poll?
+                    Define the "{poll.name}" Situation?
                     <br>
-                    Theme: {poll.theme.name}
+                    Category: {poll.category.name}
                     <br>
                     Age Suitability: {poll.ageSuitability}+
                 </div>

@@ -3,7 +3,7 @@ export function required() {
     return requiredValidator;
 }
 const requiredValidator = function (field) {
-    const value = field.value;
+    const value = field.displayValue;
     if ((!value
         && value !== false
         && value !== 0)

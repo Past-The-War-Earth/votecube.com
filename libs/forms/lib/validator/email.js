@@ -3,7 +3,7 @@ export function email() {
     return emailValidator;
 }
 const emailValidator = function (field) {
-    const value = field.value;
+    const value = field.displayValue;
     if (!value
         || typeof value !== 'string'
         || !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value)) {
