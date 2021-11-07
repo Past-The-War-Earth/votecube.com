@@ -11,8 +11,8 @@
 
 	<ul>
 		<li>Opinions: ability to record your comments</li>
-		<li>Labels: ability to label polls</li>
-		<li>Review & publish polls</li>
+		<li>Labels: ability to label Situations</li>
+		<li>Review & publish Situations</li>
 		<li>Solution: recording your Solutions on Situations</li>
 		<li>Solution totals</li>
 		<li>Ranking of Situations by Solution counts</li>
@@ -22,16 +22,16 @@
 	<h3>Beta - analytics</h3>
 
 	<ul>
-		<li>Ranking of polls</li>
+		<li>Ranking of Situations</li>
 		<li>Ranking of opinions</li>
 		<li>Ranking of users</li>
-		<li>Poll result verification</li>
+		<li>Situation result verification</li>
 		<li>Advertisements</li>
 	</ul>
 
 	<h3>General Availability Release</h3>
 
 	<ul>
-		<li>Private polls</li>
+		<li>Private Situations</li>
 	</ul>
 </article>

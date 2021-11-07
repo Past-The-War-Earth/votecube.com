@@ -32,9 +32,9 @@ export class SituationFormLogic
 		text,
 		formFactory: IFormFactory
 	): Promise<IFieldGroup> {
-		const pollFormManager = await container(this).get(SITUATION_FORM_MANAGER)
+		const situationFormManager = await container(this).get(SITUATION_FORM_MANAGER)
 
-		const form = await this.createPollForm(
+		const form = await this.createSituationForm(
 			// labels,
 			// locations,
 			text.UI,
@@ -48,7 +48,7 @@ export class SituationFormLogic
 		// form.fields.locations.optionText = text.LOCATIONS
 		if (cachedSituation.ui) {
 			form.setValue(
-				pollFormManager.toForm(cachedSituation.ui),
+				situationFormManager.toForm(cachedSituation.ui),
 				true
 				// !currentCachedSituation.ui.draft
 			)
@@ -61,7 +61,7 @@ export class SituationFormLogic
 		return form
 	}
 
-	private async createPollForm(
+	private async createSituationForm(
 		// labelData,
 		// locationsData,
 		uiText,

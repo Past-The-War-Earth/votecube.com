@@ -20,10 +20,10 @@ ISituationManager,
 	import AutoComplete  from '../../../common/field/AutoComplete.svelte'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import ActionPopover from '../../../common/shell/ActionPopover.svelte'
-	import PollListFab   from '../../../components/poll/PollListFab.svelte'
+	import SituationListFab   from '../../../components/situation/SituationListFab.svelte'
 	import * as forms    from '../../../form/forms'
 	import {loadForms}   from '../../../libs/forms'
-	import PollListItem  from './PollListItem.svelte'
+	import SituationListItem  from './SituationListItem.svelte'
 
 	let action
 	let container
@@ -97,12 +97,12 @@ ISituationManager,
 		const situationManager = await container.get(SITUATION_MANAGER)
 		const [
 			      formFactory,
-			      originalPolls
+			      originalSituations
 		      ]                            = await Promise.all([
 			loadForms(),
 			findSituations(null, situationManager)
 		])
-		situations                              = originalPolls
+		situations                              = originalSituations
 
 
 		const category = formFactory.options([], [{
@@ -131,7 +131,7 @@ ISituationManager,
 
 		form = formFactory.group('List', {
 			category
-		}, [], get(text).UI.Poll)
+		}, [], get(text).UI.Situation)
 
 		forms.ensureForm(form, formHandle)
 
@@ -178,20 +178,20 @@ ISituationManager,
 	</form>
 	<table>
 		{#each situations as situation}
-		<PollListItem
+		<SituationListItem
 				logicUtils="{logicUtils}"
 				mode="{mode}"
 				on:click="{() => goTo(situation.repositoryUuId)}"
 				situation="{situation}"
-		></PollListItem>
+		></SituationListItem>
 		{/each}
 	</table>
-	<PollListFab
+	<SituationListFab
 			on:factors="{showFactors}"
 			on:sort="{() => setAction('sort')}"
 			on:filter="{() => setAction('filter')}"
 			on:outcomes="{showOutcomes}"
-	></PollListFab>
+	></SituationListFab>
 	<!--
 	<VirtualList items={factors} component={ListItem} />
 	-->
@@ -212,10 +212,10 @@ ISituationManager,
 			<br>
 			<h3>
 				{#if action === 'filter'}
-				Ability filter Poll results is coming right after Opinions and will be
+				Ability filter Situations is coming right after Opinions and will be
 				released mid-Alpha.
 				{:else if action === 'sort'}
-				Ability sort Poll results is at the same time as the ability to filter
+				Ability sort Situations is at the same time as the ability to filter
 				and will be released mid-Alpha.
 				{/if}
 				<br>

@@ -24,7 +24,7 @@
         routeParams,
         setResizeCllBck,
         user,
-        VARIATION_LIST,
+        DERIVATION_LIST,
         SOLUTION_MANAGER,
         ILogicUtils,
     } from "@votecube/vc-logic";
@@ -36,10 +36,10 @@
     import PercentPicker from "../../../common/control/PercentPicker.svelte";
     import ActionPopover from "../../../common/shell/ActionPopover.svelte";
     import AgeSuitability from "../../../components/AgeSuitability.svelte";
-    import DetailedCube from "../../../components/poll/DetailedCube.svelte";
-    import FactorRanking from "../../../components/poll/FactorRanking.svelte";
-    import Outcomes from "../../../components/poll/Outcomes.svelte";
-    import PollFab from "../../../components/poll/PollFab.svelte";
+    import DetailedCube from "../../../components/situation/DetailedCube.svelte";
+    import FactorRanking from "../../../components/situation/FactorRanking.svelte";
+    import Outcomes from "../../../components/situation/Outcomes.svelte";
+    import SituationFab from "../../../components/situation/SituationFab.svelte";
     import SolutionComponentGraph from "../../../components/solution/SolutionComponentGraph.svelte";
     import { setupCubeView } from "../../../database";
     // import SolutionComponentSummary from '../../../components/solution/SolutionComponentSummary.html'
@@ -135,7 +135,7 @@
 
     onMount(async () => {
         cardMove.set(null);
-        container = DI.ui("PollMain");
+        container = DI.ui("SituationMain");
 
         let params = get(routeParams);
         let repositoryUuId = params.repositoryUuId;
@@ -266,8 +266,8 @@
         save($user);
     }
 
-    function checkBuild(poll) {
-        if (!poll.ageSuitability && poll.ageSuitability !== 0) {
+    function checkBuild(situation) {
+        if (!situation.ageSuitability && situation.ageSuitability !== 0) {
             ageSuitabilityVisible = true;
             saving = true;
             return;
@@ -291,9 +291,9 @@
         navigateToPage(RELEASE_PLAN);
     }
 
-    function goToRevisions() {
+    function goToDerivations() {
         const { repositoryUuId } = get(routeParams);
-        navigateToPage(VARIATION_LIST, { repositoryUuId });
+        navigateToPage(DERIVATION_LIST, { repositoryUuId });
     }
 
     function onAgeSuitabilitySave(saving) {
@@ -311,7 +311,7 @@
         error = "";
     }
 
-    function pollAltered(newCubeSides?) {
+    function situationAltered(newCubeSides?) {
         if (!newCubeSides) {
             newCubeSides = cubeSides;
         }
@@ -320,8 +320,8 @@
         moveDelta = moveDelta + 1;
     }
 
-    function pollAdjusted() {
-        pollAltered();
+    function situationAdjusted() {
+        situationAltered();
         container.get(MUTATION_API).then((mutationApi) => {
             mutationApi.recompute();
         });
@@ -389,7 +389,7 @@
         doToggleView(currentlyInCubeView, forCubeView).then();
     }
 
-    function toPollForm($routeParams) {
+    function toSituationForm($routeParams) {
         navigateToPage(SITUATION_FORM, $routeParams);
     }
 
@@ -450,9 +450,9 @@
 
     async function save($user) {
         savingMessage = "Saving ...";
-        const pollManager = await container.get(SITUATION_MANAGER);
+        const situationManager = await container.get(SITUATION_MANAGER);
         try {
-            await pollManager.saveCurrentRevision($user);
+            await situationManager.saveCurrentSituation($user);
             confirm = false;
             navigateToPage(SITUATION_LIST);
         } catch (theError) {
@@ -489,22 +489,22 @@
     Fab has all of the actions related to that screen, system wide
     actions are in ?top menu?
 
-    for example for the poll screens Fab shows the:
+    for example for the situation screens Fab shows the:
 
     vertical - on screen actions
     horizontal - related views
 
     ?but what if you have to navigate to an unrelated view?  some views
     are accessible from anywhere, like:
-        create new poll
-        poll listings (there is only one with filters)
+        create new situation
+        situation listings (there is only one with filters)
         favorites (like bookmarks of saved listing filters) - post beta launch
         about (mission statement and the team)
 
     so a top level menu seems appropriate, BUT we can hide it until
-    you click on the Fab.  But in that case, where does the poll title
+    you click on the Fab.  But in that case, where does the situation title
     go - probably just across the screen on the top, without a menu.
-    That leaves more space for the title (of poll or just screen,
+    That leaves more space for the title (of situation or just screen,
     if needed)
 
     how important are animations
@@ -567,7 +567,7 @@
                     <DetailedCube
                         {cubeSideMap}
                         {cubeSides}
-                        on:cubeAltered={pollAltered}
+                        on:cubeAltered={situationAltered}
                         {situation}
                         {positionMode}
                         {verticalLayout}
@@ -577,7 +577,7 @@
                     <!--						verticalLayout="{verticalLayout}"-->
                     <FactorRanking
                         {delta}
-                        on:rankingAdjusted={pollAdjusted}
+                        on:rankingAdjusted={situationAdjusted}
                         {situation}
                         {solution}
                         {solutionFactors}
@@ -597,7 +597,7 @@
                 {solutionFactors}
             />
         {/if}
-        <PollFab
+        <SituationFab
             on:ageSuitability={() => showAgeSuitability(true)}
             on:build={() => checkBuild(situation)}
             on:confirmSolution={() => confirmSolution()}
@@ -608,7 +608,7 @@
             on:position={togglePositionMode}
             on:rankings={() => setAction("rankings")}
             on:stats={() => setAction("stats")}
-            on:revisions={goToRevisions}
+            on:derivations={goToDerivations}
             mode={$mode}
         />
         {#if ageSuitabilityVisible}
@@ -616,7 +616,7 @@
                 {saving}
                 on:cancel={() => showAgeSuitability(false)}
                 on:save={() => onAgeSuitabilitySave(saving)}
-                poll={situation}
+                situation={situation}
             />
         {/if}
         {#if outcomesVisible}
@@ -625,7 +625,7 @@
                     {situation.name}
                 </div>
                 <div slot="content">
-                    <Outcomes final={loaded} poll={situation} />
+                    <Outcomes final={loaded} situation={situation} />
                 </div>
                 <div slot="cancel">
                     <OutcomeButton on:click={() => showOutcomes(false)} />
@@ -650,25 +650,25 @@
             <ActionPopover customCancel={true} on:cancel={closeConfirm}>
                 <div slot="header">
                     {#if action === "opinions"}
-                        Almost Here - Poll Opinions
+                        Almost Here - Situation Opinions
                     {:else if action === "solution"}
                         Coming soon - Solve
                     {:else if action === "rankings"}
-                        Coming soon - Poll Rankings
+                        Coming soon - Situation Rankings
                     {:else if action === "stats"}
-                        Coming in Beta - Poll Statistics
+                        Coming in Beta - Situation Statistics
                     {/if}
                 </div>
                 <div slot="content">
                     <!--
                     <div>
-                        {poll.name}
+                        {situation.name}
                     </div>
                     -->
                     <!--
                     <SolutionComponentSummary
                             bind:delta
-                            bind:poll
+                            bind:situation
                             verticalLayout="Y"
                             bind:solution
                             maxBarSize="{120}"
@@ -679,17 +679,17 @@
                     <br />
                     <h3>
                         {#if action === "opinions"}
-                            Ability to post your opinions about Polls is coming
+                            Ability to post your opinions about Situations is coming
                             next!
                         {:else if action === "solution"}
                             Voting is scheduled to be released at the end of
                             Alpha testing period.
                         {:else if action === "rankings"}
-                            We'll start providing basic Poll Rankings at the end
+                            We'll start providing basic Situation Rankings at the end
                             of Alpha testing period. More will be added in
                             subsequent releases.
                         {:else if action === "stats"}
-                            Basic Poll Statistics will be available in Beta
+                            Basic Situation Statistics will be available in Beta
                             release. More advanced stats will be provided in
                             version 1.
                         {/if}
@@ -732,10 +732,10 @@
                 on:cancel="doNotAlter()"
         >
             <div slot="header">
-                Alter Poll
+                Alter Situation
             </div>
             <div slot="content">
-                Alter this poll?
+                Alter this situation?
             </div>
             <div slot="actions">
                 <AlterButton

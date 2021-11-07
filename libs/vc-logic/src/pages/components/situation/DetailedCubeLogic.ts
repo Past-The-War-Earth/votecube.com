@@ -77,7 +77,7 @@ interface ISwitchRecord {
 export interface IDetailedCubeLogic {
 
 	getCubeSides(
-		uiPollRevision: IUiSituation,
+		situation: IUiSituation,
 		container: IChildContainer
 	): Promise<{
 		cubeSideMap: ICubeSideMap
@@ -101,7 +101,7 @@ export class DetailedCubeLogic
 	implements IDetailedCubeLogic {
 
 	async getCubeSides(
-		uiPollRevision: IUiSituation,
+		situation: IUiSituation,
 		container: IChildContainer
 	): Promise<{
 		cubeSideMap: ICubeSideMap
@@ -123,8 +123,8 @@ export class DetailedCubeLogic
 				= cubeSide
 		}
 
-		for (const factorNumber in uiPollRevision.factors) {
-			const factor: IUiFactor = uiPollRevision.factors[factorNumber]
+		for (const factorNumber in situation.factors) {
+			const factor: IUiFactor = situation.factors[factorNumber]
 
 			for (const outcome in factor.positions) {
 				const position: IUiPosition = factor.positions[outcome]

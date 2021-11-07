@@ -22,7 +22,7 @@
     import TextArea from '../../../common/field/TextArea.svelte'
     import ActionPopover from '../../../common/shell/ActionPopover.svelte'
     import SelectionBlock from '../../../components/factor/SelectionBlock.svelte'
-    import {savePollForm} from '../../../form/cache'
+    import {saveSituationForm} from '../../../form/cache'
     import * as forms from '../../../form/forms'
     import {loadForms} from '../../../libs/forms'
 
@@ -35,9 +35,6 @@
     let isOriginal = true
     let isValid = false
     let modified
-    let poll = {
-        name: ''
-    }
     let theRouteParams = routeParams
 
     let formHandle = {
@@ -162,11 +159,6 @@ return !form.fields.locations.isOriginal()
             formFactory,
             // locations,
             // _,
-            // [
-            // labelDao,
-            // pollDao
-            // , solutionDao
-            // ]
         ] = await Promise.all([
             loadForms(),
             // loadLocations(),
@@ -209,11 +201,11 @@ return !form.fields.locations.isOriginal()
 
         forms.ensureForm(form, formHandle)
 
-        pageTitle.set('Poll Info')
+        pageTitle.set('Situation Info')
     })
 
     onDestroy(() => {
-        savePollForm(interFormNavigation).then()
+        saveSituationForm(interFormNavigation).then()
         form && form.clearComponents()
     })
 
@@ -288,7 +280,7 @@ return !form.fields.locations.isOriginal()
 
 {#if form}
     <form>
-        <legend>Create Poll</legend>
+        <legend>Define Situation</legend>
         <Text
                 field="{form.fields.name}"
         ></Text>

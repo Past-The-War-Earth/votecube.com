@@ -13,7 +13,7 @@
 	import ColorPicker     from '../../../common/field/ColorPicker.svelte'
 	import Text            from '../../../common/field/Text.svelte'
 	import TextArea        from '../../../common/field/TextArea.svelte'
-	import {savePollForm}  from '../../../form/cache'
+	import {saveSituationForm}  from '../../../form/cache'
 	import {
 		CREATE_FACTOR,
 		ensureTopForm,
@@ -53,7 +53,7 @@
 	})
 
 	onDestroy(() => {
-		savePollForm(interFormNavigation).then()
+		saveSituationForm(interFormNavigation).then()
 
 		form && form.clearComponents()
 	})
@@ -101,11 +101,11 @@
 		>
 			<CharacterButton
 					character="A"
-					fontSize="20"
-					fontX="12"
-					fontY="19"
-					size="24"
-					strokeWidth="1"
+					fontSize={20}
+					fontX={12}
+					fontY={19}
+					size={24}
+					strokeWidth={1}
 			></CharacterButton>
 			<TextArea
 					field="{form.fields.positions.fields.A}"
@@ -117,11 +117,11 @@
 		>
 			<CharacterButton
 					character="B"
-					fontSize="20"
-					fontX="12"
-					fontY="19"
-					size="24"
-					strokeWidth="1"
+					fontSize={20}
+					fontX={12}
+					fontY={19}
+					size={24}
+					strokeWidth={1}
 			></CharacterButton>
 			<TextArea
 					field="{form.fields.positions.fields.B}"

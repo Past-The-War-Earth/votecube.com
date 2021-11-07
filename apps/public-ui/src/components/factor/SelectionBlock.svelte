@@ -1,56 +1,107 @@
-<script>
+<script lang="ts">
+	import { DI } from "@airport/di";
+	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
+	import { onDestroy, onMount } from "svelte";
+	import CharacterButton from "../../common/control/button/CharacterButton.svelte";
+	import Block from "../../common/field/Block.svelte";
 
-	import {DI}            from '@airport/di'
-	import {LOGIC_UTILS}   from '@votecube/vc-logic'
-	import {
-		onDestroy,
-		onMount
-	}                      from 'svelte'
-	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
-	import Block           from '../../common/field/Block.svelte'
+	export let factor;
+	export let text;
 
-	export let factor
-	export let text
+	let container;
+	let logicUtils: ILogicUtils;
 
-	let container
-	let logicUtils
-
-
-	$: color = factor
-		? factor.fields.color
-		: null
+	$: color = factor ? factor.fields.color : null;
 	$: selectedColor = f(() => {
 		if (!color || !color.valid) {
-			return '#808080'
+			return "#808080";
 		}
-		const value = color.value
+		const value = color.value;
 
-		return `rgb(${value.red}, ${value.green}, ${value.blue})`
-	})
+		return `rgb(${value.red}, ${value.green}, ${value.blue})`;
+	});
 
 	onMount(async () => {
-		container  = DI.ui('SelectionBlock')
-		logicUtils = await container.get(LOGIC_UTILS)
-	})
-	onDestroy(() => DI.remove(container))
+		container = DI.ui("SelectionBlock");
+		logicUtils = await container.get(LOGIC_UTILS);
+	});
+	onDestroy(() => DI.remove(container));
 
 	function f(func) {
-		return func()
+		return func();
 	}
 
-	function getTextColor(
-		color
-	) {
+	function getTextColor(color) {
 		if (!logicUtils) {
-			return '000'
+			return "000";
 		}
-		return logicUtils.getTextColor(color)
+		return logicUtils.getTextColor(color);
 	}
-
 </script>
 
-<style>
+<Block customError={text.error} fieldGroup={factor} on:select>
+	<div slot="content">
+		<table>
+			<tr>
+				<td>
+					<div>
+						<figure
+							style="
+                    background-color: {selectedColor};
+                    color: #{getTextColor(color.value)};
+                "
+						>
+							T
+						</figure>
+					</div>
+				</td>
+				<td>
+					<div>
+						{#if factor.valid && factor.hasChildValues}
+							{factor.fields.name.displayValue}
+						{:else}
+							{text.label}
+						{/if}
+					</div>
+				</td>
+			</tr>
+		</table>
+		<section>
+			<div>
+				<CharacterButton
+					character="A"
+					fontSize={20}
+					fontX={12}
+					fontY={19}
+					size={24}
+					strokeWidth={1}
+				/>
+				<div>
+					{#if factor.valid && factor.hasChildValues}
+						{factor.fields.positions.fields.A.displayValue}
+					{/if}
+				</div>
+			</div>
+			<div>
+				<CharacterButton
+					character="B"
+					fontSize={20}
+					fontX={12}
+					fontY={19}
+					size={24}
+					strokeWidth={1}
+				/>
+				<div>
+					{#if factor.valid && factor.hasChildValues}
+						{factor.fields.positions.fields.B.displayValue}
+					{/if}
+				</div>
+			</div>
+		</section>
+	</div>
+</Block>
 
+<style>
 	figure {
 		border: 3px groove gray;
 		border-radius: 3px;
@@ -63,7 +114,6 @@
 		transform: translate(-50%, -50%);
 		width: 25px;
 	}
-
 
 	section {
 		display: flex;
@@ -100,71 +150,4 @@
 		width: 100%;
 		word-break: break-word;
 	}
-
 </style>
-
-<Block
-		customError="{text.error}"
-		fieldGroup="{factor}"
-		on:select
->
-	<div slot="content">
-		<table>
-			<tr>
-				<td>
-					<div>
-						<figure
-								style="
-                    background-color: {selectedColor};
-                    color: #{getTextColor(color.value)};
-                "
-						>
-							T
-						</figure>
-					</div>
-				</td>
-				<td>
-					<div>
-						{#if factor.valid && factor.hasChildValues}
-						{factor.fields.name.displayValue}
-						{:else}
-						{text.label}
-						{/if}
-					</div>
-				</td>
-			</tr>
-		</table>
-		<section>
-			<div>
-				<CharacterButton
-						character="A"
-						fontSize="20"
-						fontX="12"
-						fontY="19"
-						size="24"
-						strokeWidth="1"
-				></CharacterButton>
-				<div>
-					{#if factor.valid && factor.hasChildValues}
-					{factor.fields.positions.fields.A.displayValue}
-					{/if}
-				</div>
-			</div>
-			<div>
-				<CharacterButton
-						character="B"
-						fontSize="20"
-						fontX="12"
-						fontY="19"
-						size="24"
-						strokeWidth="1"
-				></CharacterButton>
-				<div>
-					{#if factor.valid && factor.hasChildValues}
-					{factor.fields.positions.fields.B.displayValue}
-					{/if}
-				</div>
-			</div>
-		</section>
-	</div>
-</Block>

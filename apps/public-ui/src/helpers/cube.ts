@@ -1,47 +1,49 @@
-export function getPollFactorPositions(
-	poll,
-	axis
-) {
-	return poll.pollFactorPositions.filter(
-		pollsFactorPosition =>
-			pollsFactorPosition.axis === axis
-	)
+import type { IUiFactor, IUiSituation } from "@votecube/model"
+
+export function getSituationFactors(
+	situation: IUiSituation,
+	axis: 'x' | 'y' | 'z'
+): IUiFactor {
+	return [situation.factors[1], situation.factors[2], situation.factors[3]].filter(
+		factor =>
+			factor.axis === axis
+	)[0]
 }
 
 /*
 export function getFactorPositions(
-    poll,
-    axis
+	situation,
+	axis
 ) {
-    return getPollFactorPositions(poll, axis).map((pollFactorPosition) => {
-        return pollFactorPosition.factorPosition
-    })
+	return getSituationFactorPositions(situation, axis).map((situationFactorPosition) => {
+		return situationFactorPosition.factorPosition
+	})
 }
 */
 
 /*
 export function getFactor(
-    poll,
-    axis
+	situation,
+	axis
 ) {
-    return getFactorPositions(poll, axis)[0].factor
+	return getFactorPositions(situation, axis)[0].factor
 }
 */
 
 /*export function getColor(
 	delta,
-	poll,
+	situation,
 	axis
 ) {
-	return getGeneralColor(getPollFactorPositions(poll, axis)[0].color)
+	return getGeneralColor(getSituationFactorPositions(situation, axis)[0].color)
 }*/
 
 export function getSideText(
-	delta,
+	_delta: number,
 	mode,
-	poll,
-	axis,
-	dir,
+	sutation: IUiSituation,
+	axis: 'x' | 'y' | 'x',
+	dir: -1 | 1,
 	defaultDir
 ) {
 	if (defaultDir && !dir) {
@@ -50,19 +52,19 @@ export function getSideText(
 	if (!dir) {
 		return ''
 	}
-	const pollFactorPositions = getPollFactorPositions(poll, axis)
+	const factor = getSituationFactors(sutation, axis)
 
-	const factorPosition = pollFactorPositions.filter(
-		pollFactorPosition =>
-			pollFactorPosition.dir === dir
-	)[0].factorPosition
+	const position = [factor.positions.A, factor.positions.B].filter(
+		position =>
+			position.dir === dir
+	)[0]
 
 	switch (mode) {
 		case 'confirm':
-			return factorPosition.factor.name
+			return factor.name
 		case 'cube':
-			return factorPosition.position.name
+			return position.name
 		default:
-			return `${factorPosition.factor.name}: ${factorPosition.position.name}`
+			return `${factor.name}: ${position.name}`
 	}
 }

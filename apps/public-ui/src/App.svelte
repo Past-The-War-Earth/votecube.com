@@ -27,7 +27,7 @@
 		startResizeInterval,
 		textToast,
 		user,
-		VARIATION_LIST
+		DERIVATION_LIST
 	}                    from '@votecube/vc-logic'
 	import {
 		onDestroy,
@@ -43,12 +43,12 @@
 	import FactorMain    from './pages/factor/info/FactorMain.svelte'
 	// import FactorList      from './pages/factor/search/FactorList.html'
 	import Feedback      from './pages/feedback/FeedbackForm.svelte'
-	import PollForm      from './pages/poll/info/PollForm.svelte'
-	import PollInfoMain  from './pages/poll/info/PollMain.svelte'
-	// import PollLocations   from './pages/poll/Locations.html'
-	import PollList      from './pages/poll/search/PollList.svelte'
-	// import PollTimeframe   from './pages/poll/Timeframe.html'
-	import RevisionList from './pages/poll/revision/RevisionList.svelte'
+	import SituationForm      from './pages/situation/info/SituationForm.svelte'
+	import SituationInfoMain  from './pages/situation/info/SituationMain.svelte'
+	// import SituationLocations   from './pages/situation/Locations.html'
+	import SituationList      from './pages/situation/search/SituationList.svelte'
+	// import SituationTimeframe   from './pages/situation/Timeframe.html'
+	import SituationList from './pages/situation/list/SituationList.svelte'
 	import ReleasePlan   from './pages/ReleasePlan.svelte'
 
 	// let topMenuMap
@@ -114,21 +114,21 @@
 
 		pageMap = {
 			[ABOUT]: AboutUs,
-			[CARD_CLIMATE_CHANGE]: PollInfoMain,
+			[CARD_CLIMATE_CHANGE]: SituationInfoMain,
 			[FACTOR_INFO_MAIN]: FactorMain,
 			// [FACTOR_LIST]: FactorList,
 			[FEEDBACK]: Feedback,
-			[SITUATION_FORM]: PollForm,
-			[SITUATION_LIST]: PollList,
-			// [SITUATION_LOCATIONS]: PollLocations,
-			[SITUATION_MAIN]: PollInfoMain,
-			// [SITUATION_TIME_FRAME]: PollTimeframe,
+			[SITUATION_FORM]: SituationForm,
+			[SITUATION_LIST]: SituationList,
+			// [SITUATION_LOCATIONS]: SituationLocations,
+			[SITUATION_MAIN]: SituationInfoMain,
+			// [SITUATION_TIME_FRAME]: SituationTimeframe,
 			[RELEASE_PLAN]: ReleasePlan,
-			[VARIATION_LIST]: RevisionList,
+			[DERIVATION_LIST]: SituationList,
 		}
 		/*		topMenuMap = {
-					[routes.SITUATION_MAIN]: PollInfoCommonTopMenu,
-					[routes.SITUATION_LIST]: PollListTopMenu
+					[routes.SITUATION_MAIN]: SituationInfoCommonTopMenu,
+					[routes.SITUATION_LIST]: SituationListTopMenu
 				}*/
 
 		routes.configPages([
@@ -143,7 +143,7 @@
 			[SITUATION_MAIN, false, true],
 			[SITUATION_TIME_FRAME, true, false],
 			[RELEASE_PLAN, false, false],
-			[VARIATION_LIST, false, true],
+			[DERIVATION_LIST, false, true],
 		])
 
 		routes.setupRoutes(pageMap,

@@ -122,7 +122,7 @@ export class SituationManager
 			const cubeLogic = await container(this).get(CUBE_LOGIC)
 
 			logicUtils.overlay({
-				factors: cubeLogic.getPollFactorPositionDefault()
+				factors: cubeLogic.getSituationFactorPositionDefault()
 			}, ui)
 		}
 		if (oldUiSituation) {

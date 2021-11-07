@@ -64,7 +64,7 @@
 		We host all content on Social Change and Global Impact without advertisements.
 		<br>
 		People of all ages are entitled to an opinion. Votecube is engineered from the
-		ground up with a parental control system. Polls and opinions must be rated
+		ground up with a parental control system. Situations and opinions must be rated
 		for age suitability by their creators. Overall decision of the community
 		determines the effective rating of every item.
 	</p>
@@ -72,20 +72,20 @@
 		THE PRODUCT
 	</h3>
 	<p>
-		We make opinion polls fun, engaging and informative.
+		We make opinion situations fun, engaging and informative.
 		<br>
-		Our unique multidimensional polls are presented in a form of a positioning game.
-		The 3 dimensional form factor of our polls allows to extract meaningful information
-		even for 50/50 splits in outcome. The community driven poll design system
-		automatically picks the best factors to put into a poll. Our poll extension mechanism
-		allows to gather information on any number of factors. Answering Votecube polls
+		Our unique multidimensional situations are presented in a form of a positioning game.
+		The 3 dimensional form factor of our situations allows to extract meaningful information
+		even for 50/50 splits in outcome. The community driven situation design system
+		automatically picks the best factors to put into a situation. Our situation extension mechanism
+		allows to gather information on any number of factors. Answering Votecube situations
 		requires about a minute of user's time.
 	</p>
 	<h3>
 		PRIVACY
 	</h3>
 	<p>
-		Votecube ads are based purely on the content of the polls. We don't use cookies or
+		Votecube ads are based purely on the content of the situations. We don't use cookies or
 		any activity tracking. We are opening the source of our advertisement engine for
 		review
 		by community.
@@ -97,13 +97,13 @@
 		INSIGHT
 	</h3>
 	<p>
-		Votecube polls can be adjusted to better formulate positions. They are extended
+		Votecube situations can be adjusted to better formulate positions. They are extended
 		structurally to allow different factor compositions. They are also labeled and rated
-		for age suitability. Ultimately the polls are evaluated and voted on.
+		for age suitability. Ultimately the situations are evaluated and voted on.
 		<br>
-		We use the relations between poll versions, labels and ratings to gain insight on
-		their topics. The composite vote of polls is used to understand the public opinion.
-		We publish all statistical results of every public poll.
+		We use the relations between situation versions, labels and ratings to gain insight on
+		their topics. The composite vote of situations is used to understand the public opinion.
+		We publish all statistical results of every public situation.
 		Vote cube helps you figure out "why it is" and "what to do".
 	</p>
 	<h3>
@@ -111,11 +111,11 @@
 	</h3>
 	<p>
 		Most of personal data should be limited to friends and family.
-		We are working on sharing polls directly with the people that matter.
-		Our servers won't be aware of these private polls.
+		We are working on sharing situations directly with the people that matter.
+		Our servers won't be aware of these private situations.
 		<br>
 		Public opinion should be gathered from real people, not bots. And only residents
-		should vote in local polls. We are working on keeping public and local polls accurate
+		should vote in local situations. We are working on keeping public and local situations accurate
 		while keeping users anonymous.
 	</p>
 	<h3>
@@ -136,7 +136,7 @@
 			<main>Nick is "the guy that knows
 				why".
 				Coming from big data analysis Nick has the experience and expertise to
-				analyze our data. He has set out on making our polls useful to the public
+				analyze our data. He has set out on making our situations useful to the public
 				far beyond the obvious. Nick is working on Votecube's analytical
 				abilities.</main>
 		</section>

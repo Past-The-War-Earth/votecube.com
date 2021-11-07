@@ -43,7 +43,7 @@
 	>
 		<DescribedButton
 				bind:opened
-				label="Sort Revisions"
+				label="Sort Situations"
 				on:click="{() => run('sort')}"
 		>
 			<SortButton
@@ -55,7 +55,7 @@
 	>
 		<DescribedButton
 				bind:opened
-				label="Filter Revisions"
+				label="Filter Situations"
 				on:click="{() => run('filter')}"
 		>
 			<FilterButton

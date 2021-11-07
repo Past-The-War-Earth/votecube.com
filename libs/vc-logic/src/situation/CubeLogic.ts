@@ -15,7 +15,7 @@ export interface ICubeLogic {
 
 	getDefaultCubePositions(): ICubePosition[]
 
-	getPollFactorPositionDefault(): ICubeSituationFactorPositionDefault
+	getSituationFactorPositionDefault(): ICubeSituationFactorPositionDefault
 
 	shutDownCubeListener(
 		cubeEventListener: ICubeEventListener,
@@ -53,7 +53,7 @@ export class CubeLogic
 		}]
 	}
 
-	getPollFactorPositionDefault(): ICubeSituationFactorPositionDefault {
+	getSituationFactorPositionDefault(): ICubeSituationFactorPositionDefault {
 		const defaultCubePositions = this.getDefaultCubePositions()
 		return {
 			1: this.getFactorPositionDefault(

@@ -60,7 +60,7 @@
 			}
 		},
 		oncreate() {
-			formCache.getPollRouteParams(this)
+			formCache.getSituationRouteParams(this)
 			const form = forms.ensureChildForm(
 				forms.DEFINE_SITUATION_TOP, 'locations',
 				this, routes.SITUATION_FORM)
@@ -109,11 +109,11 @@
 				forms.ensureForm(form, this)
 			})
 			this.store.set({
-				pageTitle: 'Poll Location(s)'
+				pageTitle: 'Situation Location(s)'
 			})
 		},
 		ondestroy() {
-			formCache.savePollForm(this).then()
+			formCache.saveSituationForm(this).then()
 			forms.clearForm(this)
 		},
 		store: () => store

@@ -1,46 +1,74 @@
-<script>
-	import {
-		createEventDispatcher,
-		onMount
-	} from 'svelte'
-	import BuildButton   from '../common/control/button/BuildButton.svelte'
-	import SaveButton    from '../common/control/button/SaveButton.svelte'
-	import Radio         from '../common/field/Radio.svelte'
-	import ActionPopover from '../common/shell/ActionPopover.svelte'
+<script lang="ts">
+	import type { IUiSituation } from "@votecube/model";
 
-	ActionPopover
-	BuildButton
-	Radio
-	SaveButton
+	import { createEventDispatcher, onMount } from "svelte";
+	import BuildButton from "../common/control/button/BuildButton.svelte";
+	import SaveButton from "../common/control/button/SaveButton.svelte";
+	import Radio from "../common/field/Radio.svelte";
+	import ActionPopover from "../common/shell/ActionPopover.svelte";
 
-	export let poll
-	export let saving
+	ActionPopover;
+	BuildButton;
+	Radio;
+	SaveButton;
 
-	let value
-	let values = [0, 7, 13, 17, 21]
+	export let situation: IUiSituation;
+	export let saving;
 
-	const dispatch = createEventDispatcher()
+	let value;
+	let values = [0, 7, 13, 17, 21];
+
+	const dispatch = createEventDispatcher();
 
 	onMount(() => {
-		if (poll.ageSuitability !== undefined) {
-			value = poll.ageSuitability
+		if (situation.ageSuitability !== undefined) {
+			value = situation.ageSuitability;
 		}
-	})
+	});
 
 	function setValue(newValue) {
-		value = newValue
+		value = newValue;
 	}
 	function save() {
 		// TODO: save age suitability
 		if (!value && value !== 0) {
-			dispatch('cancel')
-			return
+			dispatch("cancel");
+			return;
 		}
-		poll.ageSuitability = value
-		dispatch('save')
+		situation.ageSuitability = value;
+		dispatch("save");
 	}
-
 </script>
+
+<ActionPopover on:cancel>
+	<div slot="header">Situation Age Suitability</div>
+	<div slot="content">
+		<table>
+			{#each values as value}
+				<tr>
+					<td>
+						<Radio
+							name="ageSuitability"
+							on:select={() => setValue(value)}
+							styles="position: absolute; right: 5px; top: -1px;"
+							{value}
+						/>
+					</td>
+					<td>
+						{value}+
+					</td>
+				</tr>
+			{/each}
+		</table>
+	</div>
+	<div slot="actions">
+		{#if saving}
+			<BuildButton on:click={save} />
+		{:else}
+			<SaveButton on:click={save} />
+		{/if}
+	</div>
+</ActionPopover>
 
 <style>
 	table {
@@ -60,41 +88,3 @@
 		text-align: left;
 	}
 </style>
-
-<ActionPopover
-		on:cancel
->
-	<div slot="header">
-		Poll Age Suitability
-	</div>
-	<div slot="content">
-		<table>
-			{#each values as value}
-			<tr>
-				<td>
-					<Radio
-							name="ageSuitability"
-							on:select="{() => setValue(value)}"
-							styles="position: absolute; right: 5px; top: -1px;"
-							value="value"
-					></Radio>
-				</td>
-				<td>
-					{value}+
-				</td>
-			</tr>
-			{/each}
-		</table>
-	</div>
-	<div slot="actions">
-		{#if saving}
-		<BuildButton
-				on:click="{save}"
-		></BuildButton>
-		{:else}
-		<SaveButton
-				on:click="{save}"
-		></SaveButton>
-		{/if}
-	</div>
-</ActionPopover>

@@ -48,7 +48,7 @@
 			}
 		},
 		oncreate() {
-			formCache.getPollRouteParams(this)
+			formCache.getSituationRouteParams(this)
 			forms.ensureChildForm(
 				forms.DEFINE_SITUATION_TOP, 'timeframe',
 				this, routes.SITUATION_FORM)
@@ -57,7 +57,7 @@
 			})
 		},
 		ondestroy() {
-			formCache.savePollForm(this).then()
+			formCache.saveSituationForm(this).then()
 			forms.clearForm(this)
 		},
 		store: () => store

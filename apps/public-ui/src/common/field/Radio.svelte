@@ -1,18 +1,23 @@
-<script>
+<script lang="ts">
+	import { createEventDispatcher } from "svelte";
 
-	import {createEventDispatcher} from 'svelte'
+	export let name: string;
+	export let styles = "";
+	export let value;
 
-	export let name
-	export let styles
-	export let value
-
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher();
 
 	function onInput(value) {
-		dispatch('select', value)
+		dispatch("select", value);
 	}
-
 </script>
+
+<div class="container" style={styles}>
+	<label on:click={() => onInput(value)}>
+		<input {name} on:input={() => onInput(value)} type="radio" {value} />
+		<span class="choice" />
+	</label>
+</div>
 
 <style>
 	input[type="radio"] {
@@ -78,22 +83,3 @@
 		width: 12px;
 	}
 </style>
-
-<div
-		class="container"
-		style="{styles}"
->
-	<label
-			on:click="{() => onInput(value)}"
-	>
-		<input
-				name="{name}"
-				on:input="{() => onInput(value)}"
-				type="radio"
-				value={value}
-		>
-		<span
-				class="choice"
-		></span>
-	</label>
-</div>

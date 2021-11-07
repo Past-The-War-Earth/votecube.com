@@ -26,12 +26,12 @@
 
 	let menuItems = [{
 		key: SITUATION_LIST,
-		name: 'Polls'
+		name: 'Situations'
 	}, {
 		auth: true,
 		key: SITUATION_FORM,
 		path: SITUATION_FORM.replace(':mode', 'build'),
-		name: 'Create Poll',
+		name: 'Define Situation',
 	}, {
 		key: ABOUT,
 		name: 'About Us'

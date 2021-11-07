@@ -13,8 +13,8 @@
 	import RankingsButton    from '../../common/control/button/RankingsButton.svelte'
 	import ShieldButton      from '../../common/control/button/ShieldButton.svelte'
 	import UndescribedButton from '../../common/control/button/UndescribedButton.svelte'
-	import RevisionTreeButton
-	                         from '../../common/control/button/RevisionTreeButton.svelte'
+	import SituationTreeButton
+	                         from '../../common/control/button/SituationTreeButton.svelte'
 	import SolutionButton        from '../../common/control/button/SolutionButton.svelte'
 	import Fab               from '../../common/control/Fab.svelte'
 
@@ -26,7 +26,7 @@
 	const dispatch = createEventDispatcher()
 
 	$: previewMode = mode === 'build' || mode === 'alter'
-	$: editPollLabel = mode === 'build' ? 'Edit Poll' : 'Improve Poll'
+	$: editSituationLabel = mode === 'build' ? 'Edit Situation' : 'Alter Situation'
 
 	function run(
 		action
@@ -113,7 +113,7 @@
 	>
 		<DescribedButton
 				bind:opened
-				label="{editPollLabel}"
+				label="{editSituationLabel}"
 				on:click="{() => run('edit')}"
 		>
 			<EditButton
@@ -125,7 +125,7 @@
 	>
 		<DescribedButton
 				bind:opened
-				label="{previewMode ? 'Build Poll' : 'Solve'}"
+				label="{previewMode ? 'Define Situation' : 'Solve'}"
 				on:click="{() => run(previewMode ? 'build' : 'confirmSolution')}"
 		>
 			{#if previewMode}
@@ -141,10 +141,10 @@
 			slot="left1"
 	>
 		<UndescribedButton>
-			<RevisionTreeButton
-					on:click="{() => run('revisions')}"
+			<SituationTreeButton
+					on:click="{() => run('derivations')}"
 					styles="position: absolute; right: 0px; top: 0px;"
-			></RevisionTreeButton>
+			></SituationTreeButton>
 		</UndescribedButton>
 	</div>
 	<div

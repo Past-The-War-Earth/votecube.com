@@ -58,7 +58,7 @@
 		</figure>
 	</div>
 	<div class="description">
-		<div class="pollName" class:outcomes={mode === "outcomes"}>
+		<div class="situationName" class:outcomes={mode === "outcomes"}>
 			{situation.name}
 		</div>
 
@@ -171,7 +171,7 @@
 		width: 45px;
 	}
 
-	.pollName {
+	.situationName {
 		color: black;
 		font-weight: 500;
 		overflow: hidden;

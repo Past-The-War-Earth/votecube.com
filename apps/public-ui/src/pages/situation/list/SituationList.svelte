@@ -19,10 +19,10 @@ ILogicUtils,
 	import RightButton from "../../../common/control/button/RightButton.svelte";
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import ActionPopover from "../../../common/shell/ActionPopover.svelte";
-	import RevisionListFab from "../../../components/poll/revision/RevisionListFab.svelte";
+	import SituationListFab from "../../../components/situation/situation/SituationListFab.svelte";
 	import * as forms from "../../../form/forms";
 	import { loadForms } from "../../../libs/forms";
-	import RevisionListItem from "./RevisionListItem.svelte";
+	import SituationListItem from "./SituationListItem.svelte";
 
 	let action;
 	let leafSituations: IUiSituation[];
@@ -52,7 +52,7 @@ ILogicUtils,
 	};
 
 	onMount(async () => {
-		container = DI.ui("RevisionList");
+		container = DI.ui("SituationList");
 
 		const { repositoryUuId } = get(routeParams);
 		let results = await getListingsAndOther(
@@ -71,7 +71,7 @@ ILogicUtils,
 				search: formFactory.field([]),
 			},
 			[],
-			get(text).UI.Poll
+			get(text).UI.Situation
 		);
 
 		navList = {
@@ -85,7 +85,7 @@ ILogicUtils,
 
 		forms.ensureForm(form, formHandle);
 
-		pageTitle.set("Poll Revisions");
+		pageTitle.set("Situations");
 	});
 
 	onDestroy(() => {
@@ -323,7 +323,7 @@ ILogicUtils,
 			</div>
 			<var> &nbsp;&nbsp;Go to stem Situation </var>
 		</nav>
-		<RevisionListItem
+		<SituationListItem
 			childMode={false}
 			classes={switchToClasses(
 				switching,
@@ -338,7 +338,7 @@ ILogicUtils,
 		/>
 		<div class="divider" />
 		{#each leafSituations as situation}
-			<RevisionListItem
+			<SituationListItem
 				classes={switchToClasses(
 					switching,
 					switchedToRepositoryUuId,
@@ -354,9 +354,9 @@ ILogicUtils,
 			/>
 		{/each}
 		{#if !leafSituations.length}
-			<div class="noChildRevisions">No child revisions exist yet.</div>
+			<div class="noLeafSituations">No derived Situations exist yet.</div>
 		{/if}
-		<RevisionListFab
+		<SituationListFab
 			on:factors={showFactors}
 			on:sort={() => setAction("sort")}
 			on:filter={() => setAction("filter")}
@@ -382,10 +382,10 @@ ILogicUtils,
 					<br />
 					<h3>
 						{#if action === "filter"}
-							Ability filter Poll results is coming right after
+							Ability filter Situation results is coming right after
 							Opinions and will be released mid-Alpha.
 						{:else if action === "sort"}
-							Ability sort Poll results is at the same time as the
+							Ability sort Situation results is at the same time as the
 							ability to filter and will be released mid-Alpha.
 						{/if}
 						<br />
@@ -444,7 +444,7 @@ ILogicUtils,
 		max-width: 100%;
 	}
 
-	.noChildRevisions {
+	.noLeafSituations {
 		padding: 15px;
 		text-align: center;
 		width: 100%;

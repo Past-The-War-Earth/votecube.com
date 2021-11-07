@@ -47,7 +47,7 @@ export function ensureTopForm(
 	topFormName,
 	formHandle,
 	navigateToRouteOnNotFound,
-	navigateParamsOnNotFound
+	navigateParamsOnNotFound?
 ) {
 	const topForm = getForm(topFormName)
 	if (!topForm) {
