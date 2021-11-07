@@ -88,7 +88,7 @@ export class CubeEventListener {
     resumeInteraction() {
         this.suspended = false;
     }
-    setPositionData(vote, factorNumbers = [1, 2, 3]) {
+    setPositionData(solution, factorNumbers = [1, 2, 3]) {
         const factorToAxisMapping = {
             1: null,
             2: null,
@@ -105,23 +105,23 @@ export class CubeEventListener {
             // 	z: factorNumbers[2]
             // },
             factorToAxisMapping,
-            vote,
+            solution,
             x: this.getUIUiSolutionDimension(1, 
             // 'x',
-            vote
+            solution
             // , 100
             ),
             y: this.getUIUiSolutionDimension(2, 
             // 'y',
-            vote),
+            solution),
             z: this.getUIUiSolutionDimension(3, 
             // 'z',
-            vote),
+            solution),
         };
-        return !!vote;
+        return !!solution;
     }
-    setPositionDataAndMove(vote) {
-        if (this.setPositionData(vote)) {
+    setPositionDataAndMove(solution) {
+        if (this.setPositionData(solution)) {
             const viewport = container(this).getSync(VIEWPORT);
             viewport.moveToDegree();
         }
@@ -134,10 +134,10 @@ export class CubeEventListener {
         const viewport = container(this).getSync(VIEWPORT);
         viewport.reset();
         viewport.cb = (uIUiSolution) => {
-            // this.populateVoteFactor('x', uIUiSolution)
-            // this.populateVoteFactor('y', uIUiSolution)
-            // this.populateVoteFactor('z', uIUiSolution)
-            cb(uIUiSolution.vote);
+            // this.populateSolutionFactor('x', uIUiSolution)
+            // this.populateSolutionFactor('y', uIUiSolution)
+            // this.populateSolutionFactor('z', uIUiSolution)
+            cb(uIUiSolution.solution);
         };
         if (forCube) {
             if (cb) {
@@ -158,12 +158,12 @@ export class CubeEventListener {
     }
     getUIUiSolutionDimension(factorNumber, 
     // axis: Factor_Axis,
-    vote) {
-        if (!vote) {
+    solution) {
+        if (!solution) {
             return null;
         }
         // let dir: Position_Dir = 0
-        // if (!vote) {
+        // if (!solution) {
         // 	return {
         // 		axis,
         // 		dir,
@@ -171,20 +171,20 @@ export class CubeEventListener {
         // 		value
         // 	}
         // }
-        const voteFactor = vote[factorNumber];
-        // if (voteFactor.outcome === 'A') {
+        const solutionFactor = solution[factorNumber];
+        // if (solutionFactor.outcome === 'A') {
         // 	dir = 1
-        // } else if (voteFactor.outcome === 'B') {
+        // } else if (solutionFactor.outcome === 'B') {
         // 	dir = -1
         // }
         // return {
         // 	axis,
         // 	dir,
         // 	valid: true,
-        // 	value: voteFactor.value
+        // 	value: solutionFactor.value
         // }
-        voteFactor.valid = true;
-        return voteFactor;
+        solutionFactor.valid = true;
+        return solutionFactor;
     }
     moveViewport(event, // event
     viewport) {
@@ -272,20 +272,20 @@ export class CubeEventListener {
         return this.populateCoords(ev, ev.touches, start);
     }
     /*
-    private populateVoteFactor(
+    private populateSolutionFactor(
         axis: Factor_Axis,
-        uIUiSolution: ICubeSolution
+        uiSolution: ICubeSolution
     ): void {
-        const vote                    = uIUiSolution.vote
-        const voteFactor: IUiSolutionFactor = vote[uIUiSolution.axisToFactorMapping[axis]]
-        const voteDimension           = uIUiSolution[axis]
-        voteFactor.outcome            = null
-        if (voteDimension.dir === 1) {
-            voteFactor.outcome = 'A'
-        } else if (voteDimension.dir === -1) {
-            voteFactor.outcome = 'B'
+        const solution                    = uiSolution.solution
+        const solutionFactor: IUiSolutionFactor = solution[uiSolution.axisToFactorMapping[axis]]
+        const solutionDimension           = uiSolution[axis]
+        solutionFactor.outcome            = null
+        if (solutionDimension.dir === 1) {
+            solutionFactor.outcome = 'A'
+        } else if (solutionDimension.dir === -1) {
+            solutionFactor.outcome = 'B'
         }
-        voteFactor.value = voteDimension.value
+        solutionFactor.value = solutionDimension.value
     }
 */
     /**

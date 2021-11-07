@@ -12,8 +12,8 @@ import {ICachedSituation} from '../../../situation/SituationManager'
 
 export interface ISituationFormLogic {
 
-	getPollForm(
-		currentRevision: ICachedSituation,
+	getSituationForm(
+		cachedSituation: ICachedSituation,
 		trackOriginal: boolean,
 		touch: boolean,
 		text,
@@ -25,8 +25,8 @@ export interface ISituationFormLogic {
 export class SituationFormLogic
 	implements ISituationFormLogic {
 
-	async getPollForm(
-		currentRevision: ICachedSituation,
+	async getSituationForm(
+		cachedSituation: ICachedSituation,
 		trackOriginal: boolean,
 		touch: boolean,
 		text,
@@ -43,14 +43,14 @@ export class SituationFormLogic
 		form.setTrackOriginal(trackOriginal)
 		form.validate()
 
-		currentRevision.form = form
+		cachedSituation.form = form
 
 		// form.fields.locations.optionText = text.LOCATIONS
-		if (currentRevision.ui) {
+		if (cachedSituation.ui) {
 			form.setValue(
-				pollFormManager.toForm(currentRevision.ui),
+				pollFormManager.toForm(cachedSituation.ui),
 				true
-				// !currentRevision.ui.draft
+				// !currentCachedSituation.ui.draft
 			)
 			form.validate()
 			if (touch) {

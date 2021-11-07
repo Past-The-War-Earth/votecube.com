@@ -114,11 +114,11 @@ export class FinalPositionFinder
 	}
 
 	private getDirectionVals(
-		voteDimension: ICubeSolutionDimension
+		solutionDimension: ICubeSolutionDimension
 	): [PositionPercent, PositionPercent] {
-		return voteDimension.outcome === 'A'
-			? [voteDimension.value, 0]
-			: [0, voteDimension.value]
+		return solutionDimension.outcome === 'A'
+			? [solutionDimension.value, 0]
+			: [0, solutionDimension.value]
 	}
 
 	private findVectorEndPoint(

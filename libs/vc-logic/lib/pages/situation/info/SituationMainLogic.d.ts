@@ -23,15 +23,15 @@ export interface IFactorConfig {
     newSolutionFactor: ITweenSolutionFactor;
 }
 export interface ISituationMainLogic {
-    copyVoteToTween(vote: IUiSolution, lastVote: IUiSolution): ITweenSolution;
-    scheduleFactorTweens(oldVote: IUiSolution, newVote: ITweenSolution, durationMillis: FrameDuration): Observable<ITweenSolution>;
-    votesEqual(lastVote: IUiSolution, vote: IUiSolution): boolean;
+    copySolutionToTween(solution: IUiSolution, lastSolution: IUiSolution): ITweenSolution;
+    scheduleFactorTweens(oldSolution: IUiSolution, newSolution: ITweenSolution, durationMillis: FrameDuration): Observable<ITweenSolution>;
+    solutionsEqual(lastSolution: IUiSolution, solution: IUiSolution): boolean;
 }
 export declare class SituationMainLogic implements ISituationMainLogic {
-    votesEqual(lastSolution: IUiSolution, solution: IUiSolution): boolean;
-    copyVoteToTween(solution: IUiSolution, lastSolution: IUiSolution): ITweenSolution;
+    solutionsEqual(lastSolution: IUiSolution, solution: IUiSolution): boolean;
+    copySolutionToTween(solution: IUiSolution, lastSolution: IUiSolution): ITweenSolution;
     scheduleFactorTweens(oldSolution: IUiSolution, newSolution: ITweenSolution, durationMillis: FrameDuration): Observable<ITweenSolution>;
-    private getTweenVoteFactor;
+    private getTweenSolutionFactor;
     private runFactorTween;
     private setFinalFactor;
     private setupFactorTween;

@@ -1,5 +1,7 @@
 import {MUTATION_API} from '@votecube/cube-logic'
-import {pageTitle, SITUATION_MANAGER, SOLUTION_MANAGER} from '@votecube/vc-logic'
+import {ICubeLogic, pageTitle, SITUATION_MANAGER, SOLUTION_MANAGER} from '@votecube/vc-logic'
+import type { IUiSolution } from '../../../libs/cube-logic/node_modules/@votecube/model/lib';
+import type { IUiSituation } from '../../../libs/cube-logic/node_modules/@votecube/model/lib';
 
 // import {APP_CONTAINER} from './container'
 
@@ -10,38 +12,34 @@ export async function init() {
 }
 
 export async function setupCubeView(
-    repositoryId,
-    cubeLogic,
+    repositoryUuId: string,
+    cubeLogic: ICubeLogic,
     cubeEventListener,
     container
-) {
+): Promise<{
+    situation: IUiSituation,
+    solution: IUiSolution
+}> {
     const [
         mutationApi, situationManager, solutionManager
     ] = await container.get(
         MUTATION_API, SITUATION_MANAGER, SOLUTION_MANAGER)
 
     const solution = await solutionManager.getSolutionForSituation(
-        null
+        repositoryUuId
     );
 
-    // if (!vote) {
-    // 	navigateToPage(SITUATION_FORM)
-    // 	return
-    // }
-
-    const poll = await situationManager.getSituation(repositoryId)
+    const situation = await situationManager.getSituation(repositoryUuId)
 
     cubeEventListener.setPositionData(solution)
     await mutationApi.recompute()
-    // const poll = vote.poll
-    const setPositionDataAndMove = (vote) => cubeEventListener.setPositionDataAndMove(vote)
-    // const originalPoll =
+    const setPositionDataAndMove = (solution) => cubeEventListener.setPositionDataAndMove(solution)
     setPositionDataAndMove(solution)
 
-    pageTitle.set(poll.name)
+    pageTitle.set(situation.name)
 
     return {
-        poll,
-        vote: solution
+        situation,
+        solution
     }
 }

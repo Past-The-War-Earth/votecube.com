@@ -1,6 +1,6 @@
-<script>
-	export let classes
-	export let styles
+<script lang="ts">
+	export let classes = ''
+	export let styles = ''
 </script>
 
 <svg

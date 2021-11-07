@@ -9,6 +9,7 @@ export class SituationConverter {
                 actorRecordId: dbSituation.parent.actorRecordId,
                 ageSuitability: dbSituation.parent.ageSuitability,
                 repositoryId: dbSituation.parent.repository.id,
+                repositoryUuId: dbSituation.parent.repository.uuId,
             };
         }
         return {
@@ -28,6 +29,7 @@ export class SituationConverter {
             },
             parent,
             repositoryId: dbSituation.repository.id,
+            repositoryUuId: dbSituation.repository.uuId,
         };
     }
     uiToDb(uiSituation) {
@@ -47,7 +49,8 @@ export class SituationConverter {
                 actorRecordId: uiCategory.actorRecordId,
                 ageSuitability: uiCategory.ageSuitability,
                 repository: {
-                    id: uiCategory.repositoryId
+                    id: uiCategory.repositoryId,
+                    uuId: uiCategory.repositoryUuId
                 }
             },
             name: uiSituation.name,
@@ -59,11 +62,13 @@ export class SituationConverter {
                 },
                 actorRecordId: uiParent.actorRecordId,
                 repository: {
-                    id: uiParent.repositoryId
+                    id: uiParent.repositoryId,
+                    uuId: uiParent.repositoryUuId
                 }
             },
             repository: {
-                id: uiSituation.repositoryId
+                id: uiSituation.repositoryId,
+                uuId: uiParent.repositoryUuId
             },
             situationFactorPositions: [this.getDbSituationFactorPosition(uiSituation, 1, 'A', dbFactors), this.getDbSituationFactorPosition(uiSituation, 1, 'B', dbFactors), this.getDbSituationFactorPosition(uiSituation, 2, 'A', dbFactors), this.getDbSituationFactorPosition(uiSituation, 2, 'B', dbFactors), this.getDbSituationFactorPosition(uiSituation, 3, 'A', dbFactors), this.getDbSituationFactorPosition(uiSituation, 3, 'B', dbFactors)],
         };
@@ -97,6 +102,7 @@ export class SituationConverter {
                 B: this.getUiPosition(dbFactorPositionB),
             },
             repositoryId: dbFactor.repository.id,
+            repositoryUuId: dbFactor.repository.uuId,
         };
     }
     getUiPosition(dbSituationFactorPosition) {
@@ -108,6 +114,7 @@ export class SituationConverter {
             dir: dbSituationFactorPosition.dir,
             name: position.name,
             repositoryId: position.repository.id,
+            repositoryUuId: position.repository.uuId,
         };
     }
     getUiOutcome(outcome) {
@@ -117,6 +124,7 @@ export class SituationConverter {
             actorRecordId: outcome.actorRecordId,
             name: outcome.name,
             repositoryId: outcome.repository.id,
+            repositoryUuId: outcome.repository.uuId,
         };
     }
     getUiCategory(category) {
@@ -125,7 +133,8 @@ export class SituationConverter {
             actorRecordId: category.actorRecordId,
             ageSuitability: category.ageSuitability,
             name: category.name,
-            repositoryId: category.repository.id
+            repositoryId: category.repository.id,
+            repositoryUuId: category.repository.uuId
         };
     }
     getDbOutcome(uiOutcome, ageSuitability) {
@@ -140,7 +149,8 @@ export class SituationConverter {
             ageSuitability: ageSuitability,
             name: uiOutcome.name,
             repository: {
-                id: uiOutcome.repositoryId
+                id: uiOutcome.repositoryId,
+                uuId: uiOutcome.repositoryUuId
             }
         };
     }
@@ -168,7 +178,8 @@ export class SituationConverter {
             position,
             red: uiFactor.color.red,
             repository: {
-                id: uiSituation.repositoryId
+                id: uiSituation.repositoryId,
+                uuId: uiSituation.repositoryUuId
             }
         };
     }
@@ -184,7 +195,8 @@ export class SituationConverter {
             ageSuitability,
             name: uiFactor.name,
             repository: {
-                id: uiFactor.repositoryId
+                id: uiFactor.repositoryId,
+                uuId: uiFactor.repositoryUuId
             }
         };
     }
@@ -200,7 +212,8 @@ export class SituationConverter {
             ageSuitability,
             name: uiPosition.name,
             repository: {
-                id: uiPosition.repositoryId
+                id: uiPosition.repositoryId,
+                uuId: uiPosition.repositoryUuId
             }
         };
     }

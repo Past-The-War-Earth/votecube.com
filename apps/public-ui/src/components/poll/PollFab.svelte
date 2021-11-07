@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {createEventDispatcher} from 'svelte'
 
 	import AlignmentButton   from '../../common/control/button/AlignmentButton.svelte'
@@ -15,7 +15,7 @@
 	import UndescribedButton from '../../common/control/button/UndescribedButton.svelte'
 	import RevisionTreeButton
 	                         from '../../common/control/button/RevisionTreeButton.svelte'
-	import VoteButton        from '../../common/control/button/VoteButton.svelte'
+	import SolutionButton        from '../../common/control/button/SolutionButton.svelte'
 	import Fab               from '../../common/control/Fab.svelte'
 
 	export let mode
@@ -125,15 +125,15 @@
 	>
 		<DescribedButton
 				bind:opened
-				label="{previewMode ? 'Build Poll' : 'Submit Vote'}"
-				on:click="{() => run(previewMode ? 'build' : 'confirmVote')}"
+				label="{previewMode ? 'Build Poll' : 'Solve'}"
+				on:click="{() => run(previewMode ? 'build' : 'confirmSolution')}"
 		>
 			{#if previewMode}
 			<BuildButton
 			></BuildButton>
 			{:else}
-			<VoteButton
-			></VoteButton>
+			<SolutionButton
+			></SolutionButton>
 			{/if}
 		</DescribedButton>
 	</div>

@@ -41,7 +41,7 @@ export declare let routeParams: import("svelte/store").Writable<{
 export declare let showConfirm: import("svelte/store").Writable<boolean>;
 export declare let showMainMenu: IToggleStore;
 export declare let showSignIn: import("svelte/store").Writable<boolean>;
-export declare let text: import("svelte/store").Writable<{}>;
+export declare let text: import("svelte/store").Writable<any>;
 export declare let textToast: ITextToastStore;
 export declare const topMenuShown: IToggleStore;
 export declare let user: import("svelte/store").Writable<IUserInfo>;

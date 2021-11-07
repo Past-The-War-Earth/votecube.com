@@ -95,9 +95,9 @@ export class MatrixValueChooser {
         this.setDimZeroPositions(positionData.z, 2, 4, zeroedPositions);
         return zeroedPositions;
     }
-    setDimZeroPositions(voteDimension, plusIndex, minusIndex, zeroedPositions) {
-        if (voteDimension.value) {
-            if (voteDimension.outcome === 'A') {
+    setDimZeroPositions(solutionDimension, plusIndex, minusIndex, zeroedPositions) {
+        if (solutionDimension.value) {
+            if (solutionDimension.outcome === 'A') {
                 zeroedPositions[minusIndex] = true;
             }
             else {
@@ -109,12 +109,12 @@ export class MatrixValueChooser {
             zeroedPositions[minusIndex] = true;
         }
     }
-    getDimensionDistance(newVoteDimension, positionData, positiveIndex, negativeIndex, positionsWithZeroes) {
+    getDimensionDistance(newSolutionDimension, positionData, positiveIndex, negativeIndex, positionsWithZeroes) {
         let positiveDistance = 0;
         const maximumDistance = MAX_DIST;
         if (!positionsWithZeroes[positiveIndex]) {
             positiveDistance = Math.abs(positionData[positiveIndex]
-                - newVoteDimension.value);
+                - newSolutionDimension.value);
             if (positiveDistance > maximumDistance) {
                 return undefined;
             }
@@ -122,7 +122,7 @@ export class MatrixValueChooser {
         let negativeDistance = 0;
         if (!positionsWithZeroes[negativeIndex]) {
             negativeDistance = Math.abs(positionData[negativeIndex]
-                - newVoteDimension.value);
+                - newSolutionDimension.value);
             if (negativeDistance > maximumDistance) {
                 return undefined;
             }

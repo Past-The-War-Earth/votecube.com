@@ -157,13 +157,13 @@ export class MatrixValueChooser
 	}
 
 	private setDimZeroPositions(
-		voteDimension: ICubeSolutionDimension,
+		solutionDimension: ICubeSolutionDimension,
 		plusIndex: ValueArrayPosition,
 		minusIndex: ValueArrayPosition,
 		zeroedPositions: boolean[]
 	) {
-		if (voteDimension.value) {
-			if (voteDimension.outcome === 'A') {
+		if (solutionDimension.value) {
+			if (solutionDimension.outcome === 'A') {
 				zeroedPositions[minusIndex] = true
 			} else {
 				zeroedPositions[plusIndex] = true
@@ -175,7 +175,7 @@ export class MatrixValueChooser
 	}
 
 	private getDimensionDistance(
-		newVoteDimension: ICubeSolutionDimension,
+		newSolutionDimension: ICubeSolutionDimension,
 		positionData: PositionValues,
 		positiveIndex: ValueArrayPosition,
 		negativeIndex: ValueArrayPosition,
@@ -185,7 +185,7 @@ export class MatrixValueChooser
 		const maximumDistance = MAX_DIST
 		if (!positionsWithZeroes[positiveIndex]) {
 			positiveDistance = Math.abs(positionData[positiveIndex]
-				- newVoteDimension.value)
+				- newSolutionDimension.value)
 			if (positiveDistance > maximumDistance) {
 				return undefined
 			}
@@ -193,7 +193,7 @@ export class MatrixValueChooser
 		let negativeDistance = 0
 		if (!positionsWithZeroes[negativeIndex]) {
 			negativeDistance = Math.abs(positionData[negativeIndex]
-				- newVoteDimension.value)
+				- newSolutionDimension.value)
 			if (negativeDistance > maximumDistance) {
 				return undefined
 			}

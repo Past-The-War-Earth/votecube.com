@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {createEventDispatcher} from 'svelte'
 	import Popover from './Popover.svelte'
 
@@ -6,9 +6,9 @@
 	export let contentStyles = ''
 	export let customCancel = false
 	export let infoOnly = false
-	export let maxWidth
+	export let maxWidth = null
 	export let viewOnly = false
-	export let width
+	export let width = 380
 
 	const dispatch = createEventDispatcher()
 

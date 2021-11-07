@@ -8,11 +8,11 @@
         ></AutoComplete>
     </form>
     <table>
-        {#each polls as poll}
+        {#each opinions as opinion}
         <FeedbackListItem
                 mode="{mode}"
-                on:select="goTo(poll.id, poll.rootRevisionId)"
-                poll="{poll}"
+                on:select="goTo(opinion.id)"
+                opinion="{opinion}"
         ></FeedbackListItem>
         {/each}
     </table>

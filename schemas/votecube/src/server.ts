@@ -5,5 +5,5 @@ export * from './generated/generated'
 export * from './tokens'
 
 export function load() {
-    console.log('Votecube App loaded')
+    console.log('TrumentBox App loaded')
 }

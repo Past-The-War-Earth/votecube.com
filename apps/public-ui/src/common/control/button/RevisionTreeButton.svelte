@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 
-	export let classes
-	export let styles
+	export let classes = ''
+	export let styles = ''
 
 </script>
 

@@ -6,12 +6,12 @@ export interface IPageSolution extends IUiSolution {
     changeMillis?: number;
 }
 export interface ISituationManager {
-    currentRevision: ICachedSituation;
-    getSituation(repositoryId: number): Promise<DeepPartial<Situation>>;
+    cachedSituation: ICachedSituation;
+    getSituation(repositoryUuId: string): Promise<DeepPartial<Situation>>;
     getAllSituations(): Promise<IUiSituation[]>;
     getSituationsForCategory(category: IUiCategory): Promise<IUiSituation[]>;
-    getLeafSituations(situation: IUiSituation): Promise<IUiSituation[]>;
-    getStemSituation(situation: IUiSituation): Promise<IUiSituation>;
+    getLeafSituations(stemSituationRepositoryUuId: string): Promise<IUiSituation[]>;
+    getStemSituation(leafSituationUuId: string): Promise<IUiSituation>;
     mergeForm(): Promise<void>;
     saveSituation(situation: IUiSituation): Promise<void>;
 }
@@ -22,13 +22,13 @@ export interface ICachedSituation {
 }
 export declare class SituationManager implements ISituationManager {
     situationApi: SituationApiClient;
-    private currSituation;
-    get currentRevision(): ICachedSituation;
-    getSituation(repositoryId: number): Promise<DeepPartial<Situation>>;
+    private theCachedSituation;
+    get cachedSituation(): ICachedSituation;
+    getSituation(repositoryUuId: string): Promise<DeepPartial<Situation>>;
     getAllSituations(): Promise<IUiSituation[]>;
     getSituationsForCategory(category: IUiCategory): Promise<IUiSituation[]>;
-    getLeafSituations(situation: IUiSituation): Promise<IUiSituation[]>;
-    getStemSituation(situation: IUiSituation): Promise<IUiSituation>;
+    getLeafSituations(stemSituationRepositoryUuId: string): Promise<IUiSituation[]>;
+    getStemSituation(leafSituationUuId: string): Promise<IUiSituation>;
     mergeForm(): Promise<void>;
     saveSituation(situation: IUiSituation): Promise<void>;
 }

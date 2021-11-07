@@ -11,7 +11,7 @@ import { LOGIC_UTILS } from './tokens'
 interface IUiSolutionFactorNode {
 
 	next?: IUiSolutionFactorNode
-	voteFactor: IUiSolutionFactor
+	solutionFactor: IUiSolutionFactor
 
 }
 
@@ -41,8 +41,8 @@ export interface ILogicUtils {
 		color: IUiColor
 	): string
 
-	getVoteFactorNodesInValueOrder(
-		vote: IUiSolution
+	getSolutionFactorNodesInValueOrder(
+		solution: IUiSolution
 	): IUiSolutionFactor[]
 
 	overlay(
@@ -133,33 +133,33 @@ export class LogicUtils
 		return 'FFF'
 	}
 
-	getVoteFactorNodesInValueOrder<V extends IUiSolution = IUiSolution>(
-		vote: V
+	getSolutionFactorNodesInValueOrder<V extends IUiSolution = IUiSolution>(
+		solution: V
 	): IUiSolutionFactor[] | ITweenSolutionFactor[] {
-		if (!vote) {
+		if (!solution) {
 			return []
 		}
 		const node1: IUiSolutionFactorNode = {
-			voteFactor: vote[1]
+			solutionFactor: solution[1]
 		}
 		const node2: IUiSolutionFactorNode = {
-			voteFactor: vote[2]
+			solutionFactor: solution[2]
 		}
 		const node3: IUiSolutionFactorNode = {
-			voteFactor: vote[3]
+			solutionFactor: solution[3]
 		}
 		let headNode
-		if (vote[2].value >= vote[3].value) {
+		if (solution[2].value >= solution[3].value) {
 			node2.next = node3
 			headNode = node2
 		} else {
 			node3.next = node2
 			headNode = node3
 		}
-		if (headNode.voteFactor.value < vote[1].value) {
+		if (headNode.solutionFactor.value < solution[1].value) {
 			node1.next = headNode
 			headNode = node1
-		} else if (headNode.next.voteFactor.value < vote[1].value) {
+		} else if (headNode.next.solutionFactor.value < solution[1].value) {
 			const lastNode = headNode.next
 			headNode.next = node1
 			node1.next = lastNode
@@ -168,9 +168,9 @@ export class LogicUtils
 		}
 
 		return [
-			headNode.voteFactor,
-			headNode.next.voteFactor,
-			headNode.next.next.voteFactor
+			headNode.solutionFactor,
+			headNode.next.solutionFactor,
+			headNode.next.next.solutionFactor
 		]
 	}
 

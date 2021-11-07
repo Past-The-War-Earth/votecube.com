@@ -40,11 +40,6 @@
 			      formFactory,
 			      // locations,
 			      // _,
-			      // [
-			      // labelDao,
-			      // pollDao
-			      // , voteDao
-			      // ]
 		      ] = await Promise.all([
 			loadForms(),
 			// loadLocations(),

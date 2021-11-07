@@ -3,8 +3,8 @@ import { SOLUTION_MANAGER } from '../tokens';
 export class SolutionManager {
     async getSolutionForSituation(
     // User-information is in AIRport
-    situation) {
-        if (!situation) {
+    situationRepositoryUuid) {
+        if (!situationRepositoryUuid) {
             return this.getStubSolution();
         }
         // TODO: add AIRport call for data
@@ -34,7 +34,7 @@ export class SolutionManager {
     dbToUi(solution) {
         return null;
     }
-    uiToDb(vote) {
+    uiToDb(solution) {
         return null;
     }
 }

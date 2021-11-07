@@ -21,7 +21,7 @@ export interface IMousePosition {
 }
 export interface ICubeSolution {
     factorToAxisMapping: IFactorToAxisMapping;
-    vote: IUiSolution;
+    solution: IUiSolution;
     x: ICubeSolutionDimension;
     y: ICubeSolutionDimension;
     z: ICubeSolutionDimension;
@@ -35,8 +35,8 @@ export interface IFactorToAxisMapping {
 export interface ICubeSolutionDimension extends IUiSolutionFactor {
     valid: boolean;
 }
-export declare type IValuesOutCallback = (vote: IUiSolution) => void;
-export declare type IValuesThruCallback = (vote: ICubeSolution) => void;
+export declare type IValuesOutCallback = (solution: IUiSolution) => void;
+export declare type IValuesThruCallback = (solution: ICubeSolution) => void;
 export interface ICubeMovement {
     mouse: IMousePosition;
     getMatrixIdxFromDeg(rotationDegrees: number, cubeMoveMatrix: ICubeMoveMatrix): MatrixIndex;

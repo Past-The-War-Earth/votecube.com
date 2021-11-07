@@ -1,10 +1,11 @@
-<script>
+<script lang="ts">
 
 	import {DI} from '@airport/di'
 	import {
 		CUBE_EVENT_LISTENER,
 		MUTATION_API
 	}           from '@votecube/cube-logic'
+import type { IUiSolution } from '@votecube/model';
 	import {
 		CUBE_LOGIC,
 		LOGIC_UTILS
@@ -15,9 +16,9 @@
 	}                      from 'svelte'
 	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
 
-	export let cubeSides
+	export let cubeSides: any[]
 	export let delta
-	export let vote
+	export let solution: IUiSolution
 
 	let container
 	let loading        = true
@@ -26,7 +27,7 @@
 	let positions
 	let rotating       = false
 
-	$: transformMillis = v(vote ? vote.changeMillis : 700, delta)
+	$: transformMillis = v(solution ? solution.changeMillis : 700, delta)
 
 	onMount(async () => {
 		container = DI.ui('CubeMiniature')
@@ -57,7 +58,7 @@
 		DI.remove(container)
 	})
 
-	function v(val) {
+	function v<T>(val:T, _delta: number): T {
 		return val
 	}
 
@@ -192,11 +193,11 @@
 			<p>
 				<CharacterButton
 						character="{cubeSide.outcome}"
-						fontSize="20"
-						fontX="12"
-						fontY="19"
-						size="24"
-						strokeWidth="1"
+						fontSize={20}
+						fontX={12}
+						fontY={19}
+						size={24}
+						strokeWidth={1}
 						styles="left: 4px; position: absolute; top: 4px;"
 				></CharacterButton>
 			</p>

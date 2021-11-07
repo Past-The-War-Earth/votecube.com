@@ -8,6 +8,7 @@ export interface IMatch {
         actorId: number;
         actorRecordId: number;
         repositoryId: number;
+        repositoryUuId: string;
     };
     text: string;
 }

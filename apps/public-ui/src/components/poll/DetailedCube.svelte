@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 	import {DI}            from '@airport/di'
 	import {
 		CUBE_EVENT_LISTENER,
 		MUTATION_API
 	}                      from '@votecube/cube-logic'
+import type { IUiSituation, IUiSolution } from '@votecube/model';
 	import {
 		DETAILED_CUBE_LOGIC,
 		LOGIC_UTILS
@@ -22,20 +23,28 @@
 	// export let cubeView
 	// export let delta
 	// export let moveType
-	export let poll
+	export let situation: IUiSituation
 	export let positionMode
 	export let verticalLayout
-	export let vote
+	export let solution: IUiSolution
 
-	let changed = {}
+	let changed: {
+		situation: boolean
+	} = {
+		situation: false
+	}
 	let container
 	// let factorPositionPlaces = []
 	let loading   = true
 	let logicUtils
 	let positions = []
-	let previous = {}
+	let previous: {
+		situation: IUiSituation
+	} = {
+		situation: null
+	}
 	let rotating  = false
-	let voteSet   = false
+	let situationSet   = false
 
 	const dispatch = createEventDispatcher()
 
@@ -73,15 +82,15 @@
 
 	beforeUpdate(() => {
 		ensureContainer()
-		changed.poll = poll !== previous.poll;
-		previous.poll = poll;
-		if (!voteSet) {
-			if (changed.poll && poll) {
+		changed.situation = situation !== previous.situation;
+		previous.situation = situation;
+		if (!situationSet) {
+			if (changed.situation && situation) {
 				getCubeSides().then()
 			}
-			if (vote) {
-				vote.changeMillis = 128
-				voteSet           = true
+			if (solution) {
+				solution.changeMillis = 128
+				situationSet           = true
 			}
 		}
 	})
@@ -231,7 +240,7 @@
 	async function doGetCubeSides(
 		detailedCubeLogic
 	) {
-		const results = await detailedCubeLogic.getCubeSides(poll, container)
+		const results = await detailedCubeLogic.getCubeSides(situation, container)
 
 		cubeSideMap = results.results
 		cubeSides   = results.cubeSides
@@ -400,11 +409,11 @@
 		<header>
 			<CharacterButton
 					character="{cubeSide.outcome}"
-					fontSize="23"
-					fontX="14.5"
-					fontY="23"
-					size="30"
-					strokeWidth="0"
+					fontSize={23}
+					fontX={14.5}
+					fontY={23}
+					size={30}
+					strokeWidth={0}
 					styles="{charButtonAlignment(cubeSide.outcome)}: 1px; position: absolute; top: 0px;"
 			></CharacterButton>
 			{cubeSide.factor.name}

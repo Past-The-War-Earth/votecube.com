@@ -1,12 +1,14 @@
-<script>
+<script lang="ts">
 	import { beforeUpdate } from 'svelte';
 
 	export let displayed = false
-	export let displayedHandle
+	export let displayedHandle = null
 	export let opened  = false
 	export let label     = ''
 
-	let changed = {}
+	let changed: {
+		opened?: boolean
+	} = {}
 	let closing
 	let openedInternal = false
 	let previous = {

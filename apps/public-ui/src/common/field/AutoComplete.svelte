@@ -17,8 +17,8 @@
 	export let doShowOptions = false
 	export let field
 	export let filter        = ''
-	export let filterInput
-	export let fieldSection
+	export let filterInput = null
+	export let fieldSection = null
 	export let options       = []
 
 	export let activeOptionIndex = 0

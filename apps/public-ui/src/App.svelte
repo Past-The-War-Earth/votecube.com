@@ -234,7 +234,7 @@
     <TopBar></TopBar>
     {#if showLogo}
     <div>
-        VOTECUBE
+        TrumentBox
     </div>
     {/if}
 

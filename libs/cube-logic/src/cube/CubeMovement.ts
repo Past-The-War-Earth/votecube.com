@@ -48,7 +48,7 @@ export interface ICubeSolution {
 	// 	z: Factor_Number
 	// }
 	factorToAxisMapping: IFactorToAxisMapping
-	vote: IUiSolution
+	solution: IUiSolution
 	x: ICubeSolutionDimension
 	y: ICubeSolutionDimension
 	z: ICubeSolutionDimension
@@ -71,10 +71,10 @@ export interface ICubeSolutionDimension
 }
 
 export type IValuesOutCallback =
-	(vote: IUiSolution) => void
+	(solution: IUiSolution) => void
 
 export type IValuesThruCallback =
-	(vote: ICubeSolution) => void
+	(solution: ICubeSolution) => void
 
 export interface ICubeMovement {
 

@@ -32,10 +32,10 @@ export class FinalPositionFinder {
         const directionVectorMatch = vectorPosition.endPoint;
         return this.get2DOffsetFinalPosition(closestMatrixPosition, directionVectorMatch, cubeMoveMatrix);
     }
-    getDirectionVals(voteDimension) {
-        return voteDimension.outcome === 'A'
-            ? [voteDimension.value, 0]
-            : [0, voteDimension.value];
+    getDirectionVals(solutionDimension) {
+        return solutionDimension.outcome === 'A'
+            ? [solutionDimension.value, 0]
+            : [0, solutionDimension.value];
     }
     findVectorEndPoint(processedMatches, newPosition, closestMatrixPosition, vectorPosition, cubeUtils, cubeMoveMatrix, cubeMovement) {
         const closestMatrixPositionKey = closestMatrixPosition.i + ':' + closestMatrixPosition.j;

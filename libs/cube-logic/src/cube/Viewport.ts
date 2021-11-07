@@ -143,7 +143,7 @@ export class Viewport
 				positivePosition: ValueArrayPosition,
 				negativePosition: ValueArrayPosition,
 				positionValues: PositionValues,
-				voteDimension: ICubeSolutionDimension
+				solutionDimension: ICubeSolutionDimension
 			): void {
 				let outcome: Outcome_Ordinal = 'A'
 				let value                    = positionValues[positivePosition]
@@ -153,9 +153,9 @@ export class Viewport
 				} else if (!value) {
 					outcome = null
 				}
-				voteDimension.outcome = outcome
-				voteDimension.valid   = true
-				voteDimension.value   = value
+				solutionDimension.outcome = outcome
+				solutionDimension.valid   = true
+				solutionDimension.value   = value
 			}
 
 			getDimensionState(0, 5, values, this.pd.x)

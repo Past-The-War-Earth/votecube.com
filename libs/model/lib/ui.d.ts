@@ -3,6 +3,7 @@ export interface IUiRepositoryRecord {
     actorRecordId: number;
     ageSuitability: 0 | 7 | 13 | 18;
     repositoryId: number;
+    repositoryUuId: string;
 }
 export interface IUiNamedRecord extends IUiRepositoryRecord {
     name: string;
@@ -40,5 +41,11 @@ export interface IUiSituation extends IUiNamedRecord {
         B: IUiOutcome;
     };
     parent: IUiRepositoryRecord;
+}
+export interface INavList {
+    direction: 0 | 1 | -1;
+    isTarget: boolean;
+    previous: INavList;
+    situation: IUiSituation;
 }
 //# sourceMappingURL=ui.d.ts.map

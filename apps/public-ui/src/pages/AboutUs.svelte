@@ -37,7 +37,7 @@
 		<svg width="345" height="345"
 		>
 			<g class="layer">
-				<title>Votecube</title>
+				<title>TrumentBox</title>
 				<polygon fill="yellow"
 				         points="298,84 163,164 25,84 161,22 298,84 "/>
 				<polygon fill="#b837c8"
@@ -48,7 +48,7 @@
 		</svg>
 	</figure>
 	<h1>
-		VOTECUBE
+		TrumentBox
 	</h1>
 	<h2>
 		decide together

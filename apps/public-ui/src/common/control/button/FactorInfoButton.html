@@ -4,6 +4,7 @@
 		on:click="fire('toggle')"
 		class:pageInfo="isPage"
 		class:confirmInfo="!isPage"
+		style:ba
 		style="
         background-color: #{logicUtils.getColor(poll.factors[factorNumber].color)};
         border-bottom-color: #{bottomBorderColor};
@@ -48,8 +49,8 @@
 
 	export default {
 		computed: {
-			bottomBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, voteFactor}) =>
-				borderColor(cubeView, delta, poll, factorNumber, voteFactor, 'B', logicUtils),
+			bottomBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, solutionFactor}) =>
+				borderColor(cubeView, delta, poll, factorNumber, solutionFactor, 'B', logicUtils),
 			float: ({factorNumber, position, $verticalLayout}) =>
 				$verticalLayout && factorNumber === 1 && position != 'left'
 					? 'right' : 'initial',
@@ -57,10 +58,10 @@
 			margin: ({factorNumber, position, $verticalLayout}) =>
 				$verticalLayout && factorNumber === 2 && position != 'left'
 					? 'auto' : 'initial',
-			topBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, voteFactor}) =>
-				borderColor(cubeView, delta, poll, factorNumber, voteFactor, 'A', logicUtils),
-			percentValue: ({cubeView, delta, voteFactor}) =>
-				getValue(cubeView ? voteFactor.value : voteFactor.tweenValue)
+			topBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, solutionFactor}) =>
+				borderColor(cubeView, delta, poll, factorNumber, solutionFactor, 'A', logicUtils),
+			percentValue: ({cubeView, delta, solutionFactor}) =>
+				getValue(cubeView ? solutionFactor.value : solutionFactor.tweenValue)
 		},
 		data() {
 			return {
@@ -92,18 +93,18 @@
 		delta,
 		poll,
 		factorNumber,
-		voteFactor,
+		solutionFactor,
 		outcome,
 		logicUtils
 	) {
-		if (!voteFactor) {
+		if (!solutionFactor) {
 			return '000'
 		} else if (cubeView) {
-			if (voteFactor.outcome === outcome) {
+			if (solutionFactor.outcome === outcome) {
 				return '000'
 			}
 		} else {
-			if (voteFactor.tweenOutcome === outcome) {
+			if (solutionFactor.tweenOutcome === outcome) {
 				return '000'
 			}
 		}

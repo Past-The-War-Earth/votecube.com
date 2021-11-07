@@ -4,7 +4,7 @@
 
 	export let logicUtils
 	export let mode
-	export let poll
+	export let situation
 
 </script>
 
@@ -103,15 +103,15 @@
 		<figure>
 			<div
 					class="surface s1"
-					style="background-color: #{logicUtils.getColor(poll.factors[1].color)};"
+					style="background-color: #{logicUtils.getColor(situation.factors[1].color)};"
 			></div>
 			<div
 					class="surface s2"
-					style="background-color: #{logicUtils.getColor(poll.factors[3].color)};"
+					style="background-color: #{logicUtils.getColor(situation.factors[3].color)};"
 			></div>
 			<div
 					class="surface s5"
-					style="background-color: #{logicUtils.getColor(poll.factors[2].color)};"
+					style="background-color: #{logicUtils.getColor(situation.factors[2].color)};"
 			></div>
 		</figure>
 	<td
@@ -120,18 +120,18 @@
 		<div
 				class:outcomes="{mode === 'outcomes'}"
 		>
-			{poll.name}
+			{situation.name}
 		</div>
 
 		{#if mode === 'factors'}
 		<var>
-			{poll.factors[1].name}
+			{situation.factors[1].name}
 		</var>
 		<var>
-			{poll.factors[2].name}
+			{situation.factors[2].name}
 		</var>
 		<var>
-			{poll.factors[3].name}
+			{situation.factors[3].name}
 		</var>
 		{:else}
 
@@ -139,12 +139,12 @@
 			<var
 					class="A"
 			>
-				{poll.outcomes.A.name}
+				{situation.outcomes.A.name}
 			</var>
 			<var
 					class="B"
 			>
-				{poll.outcomes.B.name}
+				{situation.outcomes.B.name}
 			</var>
 		</section>
 

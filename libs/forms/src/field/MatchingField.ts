@@ -13,7 +13,8 @@ export interface IMatch {
 	id: {
 		actorId: number,
 		actorRecordId: number,
-		repositoryId: number
+		repositoryId: number,
+		repositoryUuId: string
 	}
 	text: string
 }
@@ -100,7 +101,8 @@ export class MatchingField
 				id: {
 					actorId: null,
 					actorRecordId: null,
-					repositoryId: null
+					repositoryId: null,
+					repositoryUuId: ''
 				},
 				text: textOrValue
 			}

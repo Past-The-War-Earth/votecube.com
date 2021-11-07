@@ -3,7 +3,7 @@
 
 	let thePageTitle = pageTitle
 
-	$: title = $thePageTitle ? $thePageTitle : 'Votecube'
+	$: title = $thePageTitle ? $thePageTitle : 'TrumentBox'
 
 </script>
 

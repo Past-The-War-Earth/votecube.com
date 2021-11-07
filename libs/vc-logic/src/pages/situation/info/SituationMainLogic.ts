@@ -43,20 +43,20 @@ export interface IFactorConfig {
 
 export interface ISituationMainLogic {
 
-	copyVoteToTween(
-		vote: IUiSolution,
-		lastVote: IUiSolution
+	copySolutionToTween(
+		solution: IUiSolution,
+		lastSolution: IUiSolution
 	): ITweenSolution
 
 	scheduleFactorTweens(
-		oldVote: IUiSolution,
-		newVote: ITweenSolution,
+		oldSolution: IUiSolution,
+		newSolution: ITweenSolution,
 		durationMillis: FrameDuration,
 	): Observable<ITweenSolution>
 
-	votesEqual(
-		lastVote: IUiSolution,
-		vote: IUiSolution
+	solutionsEqual(
+		lastSolution: IUiSolution,
+		solution: IUiSolution
 	): boolean
 
 }
@@ -64,7 +64,7 @@ export interface ISituationMainLogic {
 export class SituationMainLogic
 	implements ISituationMainLogic {
 
-	votesEqual(
+	solutionsEqual(
 		lastSolution: IUiSolution,
 		solution: IUiSolution
 	): boolean {
@@ -77,14 +77,14 @@ export class SituationMainLogic
 			&& lastSolution[3].value === solution[3].value
 	}
 
-	copyVoteToTween(
+	copySolutionToTween(
 		solution: IUiSolution,
 		lastSolution: IUiSolution
 	): ITweenSolution {
 		return {
-			1: this.getTweenVoteFactor(solution, lastSolution, 1),
-			2: this.getTweenVoteFactor(solution, lastSolution, 2),
-			3: this.getTweenVoteFactor(solution, lastSolution, 3)
+			1: this.getTweenSolutionFactor(solution, lastSolution, 1),
+			2: this.getTweenSolutionFactor(solution, lastSolution, 2),
+			3: this.getTweenSolutionFactor(solution, lastSolution, 3)
 		}
 	}
 
@@ -128,16 +128,16 @@ export class SituationMainLogic
 		return subject
 	}
 
-	private getTweenVoteFactor(
+	private getTweenSolutionFactor(
 		solution,
-		solutionVote,
+		solutionSolution,
 		factorNumber
 	): ITweenSolutionFactor {
 		return {
 			factorNumber,
 			outcome: solution[factorNumber].outcome,
-			tweenOutcome: solutionVote[factorNumber].outcome,
-			tweenValue: solutionVote[factorNumber].value,
+			tweenOutcome: solutionSolution[factorNumber].outcome,
+			tweenValue: solutionSolution[factorNumber].value,
 			value: solution[factorNumber].value
 		}
 	}
@@ -150,13 +150,13 @@ export class SituationMainLogic
 
 		const {
 			      newDirFrameNumber,
-			      newSolutionFactor: newSolutionFactor,
-			      newSolutionValue: newSolutionValue,
+			      newSolutionFactor,
+			      newSolutionValue,
 			      numNewDirFrames,
 			      numOldDirFrames,
 			      numRemainingOldDirFrames,
-			      oldSolutionFactor: oldVoteFactor,
-			      oldSolutionValue: oldVoteValue,
+			      oldSolutionFactor,
+			      oldSolutionValue,
 			      zeroValueFrameNumber
 		      } = config
 
@@ -168,18 +168,18 @@ export class SituationMainLogic
 			} else if (!newSolutionFactor.outcome
 				|| numRemainingFrames > zeroValueFrameNumber) {
 				// Always go here if the factor is being removed (dir === 0)
-				newSolutionFactor.tweenValue   = Math.floor(oldVoteValue
+				newSolutionFactor.tweenValue   = Math.floor(oldSolutionValue
 					/ numOldDirFrames * numRemainingOldDirFrames) as SolutionFactor_Value
-				newSolutionFactor.tweenOutcome = oldVoteFactor.outcome
+				newSolutionFactor.tweenOutcome = oldSolutionFactor.outcome
 			} else {
 				newSolutionFactor.tweenValue   = Math.floor(newSolutionValue
 					/ numNewDirFrames * newDirFrameNumber) as SolutionFactor_Value
 				newSolutionFactor.tweenOutcome = newSolutionFactor.outcome
 			}
 		} else {
-			const factorValue          = oldVoteValue + ((newSolutionValue - oldVoteValue)
+			const factorValue          = oldSolutionValue + ((newSolutionValue - oldSolutionValue)
 				/ numNewDirFrames * newDirFrameNumber)
-			newSolutionFactor.tweenValue   = newSolutionValue > oldVoteValue
+			newSolutionFactor.tweenValue   = newSolutionValue > oldSolutionValue
 				? Math.floor(factorValue) as SolutionFactor_Value
 				: Math.ceil(factorValue) as SolutionFactor_Value
 			newSolutionFactor.tweenOutcome = newSolutionFactor.outcome
@@ -188,7 +188,7 @@ export class SituationMainLogic
 		config.numRemainingOldDirFrames--
 	}
 
-	// if(!newVoteFactor.dir) {
+	// if(!newSolutionFactor.dir) {
 	private setFinalFactor(
 		newSolutionFactor: ITweenSolutionFactor,
 		outcomeConfig: IFactorConfig
@@ -200,15 +200,15 @@ export class SituationMainLogic
 
 	private setupFactorTween(
 		factorNumber: Factor_Number,
-		oldVote: IUiSolution,
-		newVote: ITweenSolution,
+		oldSolution: IUiSolution,
+		newSolution: ITweenSolution,
 		numFrames: NumberOfFrames
 	): IFactorFrameConfig {
 
-		const oldVoteFactor: IUiSolutionFactor      = oldVote[factorNumber]
-		const newSolutionFactor: ITweenSolutionFactor = newVote[factorNumber]
+		const oldSolutionFactor: IUiSolutionFactor      = oldSolution[factorNumber]
+		const newSolutionFactor: ITweenSolutionFactor = newSolution[factorNumber]
 
-		const oldVoteValue: SolutionFactor_Value = oldVoteFactor.value
+		const oldSolutionValue: SolutionFactor_Value = oldSolutionFactor.value
 		const newSolutionValue: SolutionFactor_Value = newSolutionFactor.value
 
 		let zeroValueFrameNumber: FrameNumber        = 0
@@ -216,14 +216,14 @@ export class SituationMainLogic
 		let numOldDirFrames: NumberOfFrames          = 0
 		let newDirFrameNumber: FrameNumber           = 0
 		let numRemainingOldDirFrames: NumberOfFrames = 0
-		if (oldVoteFactor.outcome !== newSolutionFactor.outcome) {
-			const valueDifference      = oldVoteValue + newSolutionValue
-			const oldVoteFraction      = oldVoteValue / valueDifference
-			numOldDirFrames            = zeroValueFrameNumber = Math.ceil(numFrames * oldVoteFraction)
+		if (oldSolutionFactor.outcome !== newSolutionFactor.outcome) {
+			const valueDifference      = oldSolutionValue + newSolutionValue
+			const oldSolutionFraction      = oldSolutionValue / valueDifference
+			numOldDirFrames            = zeroValueFrameNumber = Math.ceil(numFrames * oldSolutionFraction)
 			numRemainingOldDirFrames   = numOldDirFrames
 			numNewDirFrames            = numFrames - numOldDirFrames
 			newDirFrameNumber          = -numOldDirFrames
-			newSolutionFactor.tweenOutcome = oldVoteFactor.outcome
+			newSolutionFactor.tweenOutcome = oldSolutionFactor.outcome
 		} else {
 			numNewDirFrames            = numFrames
 			newSolutionFactor.tweenOutcome = newSolutionFactor.outcome
@@ -231,13 +231,13 @@ export class SituationMainLogic
 
 		return {
 			newDirFrameNumber,
-			newSolutionFactor: newSolutionFactor,
-			newSolutionValue: newSolutionValue,
+			newSolutionFactor,
+			newSolutionValue,
 			numNewDirFrames,
 			numOldDirFrames,
 			numRemainingOldDirFrames,
-			oldSolutionFactor: oldVoteFactor,
-			oldSolutionValue: oldVoteValue,
+			oldSolutionFactor,
+			oldSolutionValue,
 			zeroValueFrameNumber
 		}
 	}

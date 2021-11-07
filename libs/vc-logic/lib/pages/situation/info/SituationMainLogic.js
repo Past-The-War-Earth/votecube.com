@@ -2,7 +2,7 @@ import { DI } from '@airport/di';
 import { Subject } from 'rxjs';
 import { SITUATION_MAIN_LOGIC } from '../../../tokens';
 export class SituationMainLogic {
-    votesEqual(lastSolution, solution) {
+    solutionsEqual(lastSolution, solution) {
         return lastSolution && solution
             && lastSolution[1].outcome === solution[1].outcome
             && lastSolution[2].outcome === solution[2].outcome
@@ -11,11 +11,11 @@ export class SituationMainLogic {
             && lastSolution[2].value === solution[2].value
             && lastSolution[3].value === solution[3].value;
     }
-    copyVoteToTween(solution, lastSolution) {
+    copySolutionToTween(solution, lastSolution) {
         return {
-            1: this.getTweenVoteFactor(solution, lastSolution, 1),
-            2: this.getTweenVoteFactor(solution, lastSolution, 2),
-            3: this.getTweenVoteFactor(solution, lastSolution, 3)
+            1: this.getTweenSolutionFactor(solution, lastSolution, 1),
+            2: this.getTweenSolutionFactor(solution, lastSolution, 2),
+            3: this.getTweenSolutionFactor(solution, lastSolution, 3)
         };
     }
     scheduleFactorTweens(oldSolution, newSolution, durationMillis) {
@@ -45,18 +45,18 @@ export class SituationMainLogic {
         }, 17);
         return subject;
     }
-    getTweenVoteFactor(solution, solutionVote, factorNumber) {
+    getTweenSolutionFactor(solution, solutionSolution, factorNumber) {
         return {
             factorNumber,
             outcome: solution[factorNumber].outcome,
-            tweenOutcome: solutionVote[factorNumber].outcome,
-            tweenValue: solutionVote[factorNumber].value,
+            tweenOutcome: solutionSolution[factorNumber].outcome,
+            tweenValue: solutionSolution[factorNumber].value,
             value: solution[factorNumber].value
         };
     }
     runFactorTween(config, numRemainingFrames) {
         config.newDirFrameNumber++;
-        const { newDirFrameNumber, newSolutionFactor: newSolutionFactor, newSolutionValue: newSolutionValue, numNewDirFrames, numOldDirFrames, numRemainingOldDirFrames, oldSolutionFactor: oldVoteFactor, oldSolutionValue: oldVoteValue, zeroValueFrameNumber } = config;
+        const { newDirFrameNumber, newSolutionFactor, newSolutionValue, numNewDirFrames, numOldDirFrames, numRemainingOldDirFrames, oldSolutionFactor, oldSolutionValue, zeroValueFrameNumber } = config;
         if (zeroValueFrameNumber) {
             if (newSolutionFactor.outcome
                 && numRemainingFrames === zeroValueFrameNumber) {
@@ -66,9 +66,9 @@ export class SituationMainLogic {
             else if (!newSolutionFactor.outcome
                 || numRemainingFrames > zeroValueFrameNumber) {
                 // Always go here if the factor is being removed (dir === 0)
-                newSolutionFactor.tweenValue = Math.floor(oldVoteValue
+                newSolutionFactor.tweenValue = Math.floor(oldSolutionValue
                     / numOldDirFrames * numRemainingOldDirFrames);
-                newSolutionFactor.tweenOutcome = oldVoteFactor.outcome;
+                newSolutionFactor.tweenOutcome = oldSolutionFactor.outcome;
             }
             else {
                 newSolutionFactor.tweenValue = Math.floor(newSolutionValue
@@ -77,39 +77,39 @@ export class SituationMainLogic {
             }
         }
         else {
-            const factorValue = oldVoteValue + ((newSolutionValue - oldVoteValue)
+            const factorValue = oldSolutionValue + ((newSolutionValue - oldSolutionValue)
                 / numNewDirFrames * newDirFrameNumber);
-            newSolutionFactor.tweenValue = newSolutionValue > oldVoteValue
+            newSolutionFactor.tweenValue = newSolutionValue > oldSolutionValue
                 ? Math.floor(factorValue)
                 : Math.ceil(factorValue);
             newSolutionFactor.tweenOutcome = newSolutionFactor.outcome;
         }
         config.numRemainingOldDirFrames--;
     }
-    // if(!newVoteFactor.dir) {
+    // if(!newSolutionFactor.dir) {
     setFinalFactor(newSolutionFactor, outcomeConfig) {
         newSolutionFactor.tweenOutcome = outcomeConfig.newSolutionFactor.outcome;
         // }
         newSolutionFactor.tweenValue = outcomeConfig.newSolutionFactor.value;
     }
-    setupFactorTween(factorNumber, oldVote, newVote, numFrames) {
-        const oldVoteFactor = oldVote[factorNumber];
-        const newSolutionFactor = newVote[factorNumber];
-        const oldVoteValue = oldVoteFactor.value;
+    setupFactorTween(factorNumber, oldSolution, newSolution, numFrames) {
+        const oldSolutionFactor = oldSolution[factorNumber];
+        const newSolutionFactor = newSolution[factorNumber];
+        const oldSolutionValue = oldSolutionFactor.value;
         const newSolutionValue = newSolutionFactor.value;
         let zeroValueFrameNumber = 0;
         let numNewDirFrames;
         let numOldDirFrames = 0;
         let newDirFrameNumber = 0;
         let numRemainingOldDirFrames = 0;
-        if (oldVoteFactor.outcome !== newSolutionFactor.outcome) {
-            const valueDifference = oldVoteValue + newSolutionValue;
-            const oldVoteFraction = oldVoteValue / valueDifference;
-            numOldDirFrames = zeroValueFrameNumber = Math.ceil(numFrames * oldVoteFraction);
+        if (oldSolutionFactor.outcome !== newSolutionFactor.outcome) {
+            const valueDifference = oldSolutionValue + newSolutionValue;
+            const oldSolutionFraction = oldSolutionValue / valueDifference;
+            numOldDirFrames = zeroValueFrameNumber = Math.ceil(numFrames * oldSolutionFraction);
             numRemainingOldDirFrames = numOldDirFrames;
             numNewDirFrames = numFrames - numOldDirFrames;
             newDirFrameNumber = -numOldDirFrames;
-            newSolutionFactor.tweenOutcome = oldVoteFactor.outcome;
+            newSolutionFactor.tweenOutcome = oldSolutionFactor.outcome;
         }
         else {
             numNewDirFrames = numFrames;
@@ -117,13 +117,13 @@ export class SituationMainLogic {
         }
         return {
             newDirFrameNumber,
-            newSolutionFactor: newSolutionFactor,
-            newSolutionValue: newSolutionValue,
+            newSolutionFactor,
+            newSolutionValue,
             numNewDirFrames,
             numOldDirFrames,
             numRemainingOldDirFrames,
-            oldSolutionFactor: oldVoteFactor,
-            oldSolutionValue: oldVoteValue,
+            oldSolutionFactor,
+            oldSolutionValue,
             zeroValueFrameNumber
         };
     }

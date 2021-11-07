@@ -25,10 +25,10 @@ export interface IPageSolution
 
 export interface ISituationManager {
 
-	currentRevision: ICachedSituation
+	cachedSituation: ICachedSituation
 
 	getSituation(
-		repositoryId: number
+		repositoryUuId: string
 	): Promise<DeepPartial<Situation>>
 
 	getAllSituations(): Promise<IUiSituation[]>
@@ -38,11 +38,11 @@ export interface ISituationManager {
 	): Promise<IUiSituation[]>
 
 	getLeafSituations(
-		situation: IUiSituation
+		stemSituationRepositoryUuId: string
 	): Promise<IUiSituation[]>
 
 	getStemSituation(
-		situation: IUiSituation
+		leafSituationUuId: string
 	): Promise<IUiSituation>
 
 	mergeForm(): Promise<void>
@@ -64,18 +64,18 @@ export class SituationManager
 
 	situationApi = new SituationApiClient()
 
-	private currSituation: ICachedSituation = {
+	private theCachedSituation: ICachedSituation = {
 		form: null,
 		originalUi: null,
 		ui: null,
 	}
 
-	get currentRevision(): ICachedSituation {
-		return this.currSituation
+	get cachedSituation(): ICachedSituation {
+		return this.theCachedSituation
 	}
 
 	async getSituation(
-		repositoryId: number
+		repositoryUuId: string
 	): Promise<DeepPartial<Situation>> {
 		return null
 	}
@@ -91,19 +91,19 @@ export class SituationManager
 	}
 
 	async getLeafSituations(
-		situation: IUiSituation
+		stemSituationRepositoryUuId: string
 	): Promise<IUiSituation[]> {
 		return []
 	}
 
 	async getStemSituation(
-		situation: IUiSituation
+		leafSituationUuId: string
 	): Promise<IUiSituation> {
 		return null
 	}
 
 	async mergeForm(): Promise<void> {
-		const form = this.currSituation.form
+		const form = this.cachedSituation.form
 		if (!form) {
 			return
 		}
@@ -112,12 +112,12 @@ export class SituationManager
 			SITUATION_FORM_MANAGER, LOGIC_UTILS)
 
 		const ui = situationFormManager
-			.fromForm(form.value, this.currSituation.ui)
+			.fromForm(form.value, this.cachedSituation.ui)
 
-		const oldUi = this.currSituation.ui
+		const oldUiSituation = this.cachedSituation.ui
 
-		if (oldUi) {
-			logicUtils.overlay(oldUi, ui)
+		if (oldUiSituation) {
+			logicUtils.overlay(oldUiSituation, ui)
 		} else {
 			const cubeLogic = await container(this).get(CUBE_LOGIC)
 
@@ -125,22 +125,35 @@ export class SituationManager
 				factors: cubeLogic.getPollFactorPositionDefault()
 			}, ui)
 		}
-		if (oldUi) {
-			logicUtils.copyProperties(oldUi, ui, [
-				'createdAt',
-				'pollId',
-				'rootRevisionId',
-				'userId'
+		if (oldUiSituation) {
+			logicUtils.copyProperties(oldUiSituation, ui, [
+				'actorId',
+				'actorRecordId',
+				'ageSuitability',
+				'repositoryId',
+				'repositoryUuId',
 			])
+			if (oldUiSituation.parent) {
+				if (!ui.parent) {
+					ui.parent = {} as any
+				}
+				logicUtils.copyProperties(oldUiSituation.parent, ui.parent, [
+					'actorId',
+					'actorRecordId',
+					'ageSuitability',
+					'repositoryId',
+					'repositoryUuId',
+				])
+			}
 		}
-		this.currSituation.ui = ui
+		this.cachedSituation.ui = ui
 	}
 
 	async saveSituation(
 		situation: IUiSituation
 	): Promise<void> {
-		const originalUi = this.currSituation.originalUi
-		const ui = this.currSituation.ui
+		const originalUi = this.cachedSituation.originalUi
+		const ui = this.cachedSituation.ui
 
 		const logicUtils = await container(this).get(LOGIC_UTILS)
 
@@ -154,7 +167,7 @@ export class SituationManager
 
 		await this.situationApi.saveSituation(dbSituation);
 
-		this.currSituation = {
+		this.theCachedSituation = {
 			form: null,
 			originalUi: null,
 			ui: null,

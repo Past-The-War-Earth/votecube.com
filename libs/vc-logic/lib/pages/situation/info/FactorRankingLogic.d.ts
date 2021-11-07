@@ -20,29 +20,29 @@ export interface IInElementOffsetEvent {
     target: HTMLElement;
 }
 export interface IFactorRankingLogic {
-    addOrRemoveAFactor(voteFactors: IUiSolutionFactor[], index: number, addOrRemove: AddOrRemove, vote: IUiSolution, logicUtils: ILogicUtils): {
+    addOrRemoveAFactor(solutionFactors: IUiSolutionFactor[], index: number, addOrRemove: AddOrRemove, solution: IUiSolution, logicUtils: ILogicUtils): {
         numMoved: number;
         placeholder: boolean;
     };
     getAlternateIndex(absDy: number, dy: number, originalIndex: number, have3: boolean): number;
     getFactorInfoAtCoords(x: number, y: number, factorNumberToExclude: number): IFactorInfo;
     getInElementOffset(event: IInElementOffsetEvent): IInElementOffset;
-    moveFactorDown(voteFactors: IUiSolutionFactor[], vote: IUiSolution, originalIndex: number, newIndex: number, logicUtils: ILogicUtils): boolean;
-    moveFactorUp(voteFactors: IUiSolutionFactor[], vote: IUiSolution, originalIndex: number, newIndex: number, logicUtils: ILogicUtils): boolean;
-    setOutcome(voteFactors: IUiSolutionFactor[], index: number, outcome: 'A' | 'B'): void;
+    moveFactorDown(solutionFactors: IUiSolutionFactor[], solution: IUiSolution, originalIndex: number, newIndex: number, logicUtils: ILogicUtils): boolean;
+    moveFactorUp(solutionFactors: IUiSolutionFactor[], soultion: IUiSolution, originalIndex: number, newIndex: number, logicUtils: ILogicUtils): boolean;
+    setOutcome(solutionFactors: IUiSolutionFactor[], index: number, outcome: 'A' | 'B'): void;
 }
 export declare class FactorRankingLogic implements IFactorRankingLogic {
     getFactorInfoAtCoords(x: number, y: number, factorNumberToExclude: number): IFactorInfo;
     getInElementOffset(event: IInElementOffsetEvent): IInElementOffset;
     getAlternateIndex(absDy: number, dy: number, originalIndex: number, have3: boolean): number;
-    addOrRemoveAFactor(voteFactors: IUiSolutionFactor[], index: number, addOrRemove: AddOrRemove, vote: IPageSolution, logicUtils: ILogicUtils): {
+    addOrRemoveAFactor(solutionFactors: IUiSolutionFactor[], index: number, addOrRemove: AddOrRemove, solution: IPageSolution, logicUtils: ILogicUtils): {
         numMoved: number;
         placeholder: boolean;
     };
     move(index: number, options: any, logicUtils: ILogicUtils): void;
-    moveFactorDown(voteFactors: IUiSolutionFactor[], vote: IPageSolution, originalIndex: number, newIndex: number, logicUtils: ILogicUtils): boolean;
-    moveFactorUp(voteFactors: IUiSolutionFactor[], vote: IPageSolution, originalIndex: number, newIndex: number, logicUtils: ILogicUtils): boolean;
-    setOutcome(voteFactors: IUiSolutionFactor[], index: number, outcome: 'A' | 'B'): void;
+    moveFactorDown(solutionFactors: IUiSolutionFactor[], solution: IPageSolution, originalIndex: number, newIndex: number, logicUtils: ILogicUtils): boolean;
+    moveFactorUp(solutionFactors: IUiSolutionFactor[], solution: IPageSolution, originalIndex: number, newIndex: number, logicUtils: ILogicUtils): boolean;
+    setOutcome(solutionFactors: IUiSolutionFactor[], index: number, outcome: 'A' | 'B'): void;
     private adjustRanking;
     private swapOnRemove;
     private removeFirstFactor;

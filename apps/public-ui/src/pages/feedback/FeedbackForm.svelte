@@ -43,7 +43,7 @@
 			      // [
 			      // labelDao,
 			      // pollDao
-			      // , voteDao
+			      // , solutionDao
 			      // ]
 		      ] = await Promise.all([
 			loadForms(),

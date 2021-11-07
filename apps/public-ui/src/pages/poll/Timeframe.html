@@ -43,7 +43,7 @@
 			submit(
 				$routeParams
 			) {
-				// this.set({keepPollId: $routeParams.pollId})
+				// this.set({keepRepositoryUuId: $routeParams.repositoryUuId})
 				forms.navigateOnValid(this, routes.SITUATION_FORM, $routeParams)
 			}
 		},
@@ -53,7 +53,7 @@
 				forms.DEFINE_SITUATION_TOP, 'timeframe',
 				this, routes.SITUATION_FORM)
 			this.store.set({
-				pageTitle: 'Poll Time Frame'
+				pageTitle: 'Situation Time Frame'
 			})
 		},
 		ondestroy() {

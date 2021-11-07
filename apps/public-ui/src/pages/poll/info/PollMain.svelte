@@ -1,6 +1,12 @@
-<script>
-    import {DI} from '@airport/di'
-    import {CUBE_EVENT_LISTENER, MUTATION_API} from '@votecube/cube-logic'
+<script lang="ts">
+    import { DI } from "@airport/di";
+    import { CUBE_EVENT_LISTENER, MUTATION_API } from "@votecube/cube-logic";
+    import type {
+        ITweenSolutionFactor,
+        IUiSituation,
+        IUiSolution,
+        IUiSolutionFactor,
+    } from "@votecube/model";
     import {
         cardMove,
         cube,
@@ -19,227 +25,235 @@
         setResizeCllBck,
         user,
         VARIATION_LIST,
-        SOLUTION_MANAGER
-    } from '@votecube/vc-logic'
-    import {beforeUpdate, onDestroy, onMount} from 'svelte'
-    import {get} from 'svelte/store'
-    import BuildButton from '../../../common/control/button/BuildButton.svelte'
-    import CancelButton from '../../../common/control/button/CancelButton.svelte'
-    import OutcomeButton from '../../../common/control/button/OutcomeButton.svelte'
-    import PercentPicker from '../../../common/control/PercentPicker.svelte'
-    import ActionPopover from '../../../common/shell/ActionPopover.svelte'
-    import AgeSuitability from '../../../components/AgeSuitability.svelte'
-    import DetailedCube from '../../../components/poll/DetailedCube.svelte'
-    import FactorRanking from '../../../components/poll/FactorRanking.svelte'
-    import Outcomes from '../../../components/poll/Outcomes.svelte'
-    import PollFab from '../../../components/poll/PollFab.svelte'
-    import VoteComponentGraph from '../../../components/vote/VoteComponentGraph.svelte'
-    import {setupCubeView} from '../../../database'
-    // import VoteComponentSummary from '../../../components/vote/VoteComponentSummary.html'
+        SOLUTION_MANAGER,
+        ILogicUtils,
+    } from "@votecube/vc-logic";
+    import { beforeUpdate, onDestroy, onMount } from "svelte";
+    import { get } from "svelte/store";
+    import BuildButton from "../../../common/control/button/BuildButton.svelte";
+    import CancelButton from "../../../common/control/button/CancelButton.svelte";
+    import OutcomeButton from "../../../common/control/button/OutcomeButton.svelte";
+    import PercentPicker from "../../../common/control/PercentPicker.svelte";
+    import ActionPopover from "../../../common/shell/ActionPopover.svelte";
+    import AgeSuitability from "../../../components/AgeSuitability.svelte";
+    import DetailedCube from "../../../components/poll/DetailedCube.svelte";
+    import FactorRanking from "../../../components/poll/FactorRanking.svelte";
+    import Outcomes from "../../../components/poll/Outcomes.svelte";
+    import PollFab from "../../../components/poll/PollFab.svelte";
+    import SolutionComponentGraph from "../../../components/solution/SolutionComponentGraph.svelte";
+    import { setupCubeView } from "../../../database";
+    // import SolutionComponentSummary from '../../../components/solution/SolutionComponentSummary.html'
 
-    let action
-    let ageSuitabilityVisible
-    let beforeCardView = false
-    let beforeCubeView = false
-    let changed = {}
-    let confirm
-    let container
-    let cubeSideMap
-    let cubeSides
-    let cubeView = false
+    let action;
+    let ageSuitabilityVisible;
+    let beforeCardView = false;
+    let beforeCubeView = false;
+    let changed: {
+        delta: boolean;
+    } = {
+        delta: false,
+    };
+    let confirm;
+    let container;
+    let cubeSideMap;
+    let cubeSides;
+    let cubeView = false;
     // cubeTransition: false,
-    let currentVote = {
+    let currentSolution: IUiSolution = {
         1: {
+            factorNumber: 1,
             outcome: null,
-            value: 0
+            value: 0,
         },
         2: {
+            factorNumber: 2,
             outcome: null,
-            value: 0
+            value: 0,
         },
         3: {
+            factorNumber: 3,
             outcome: null,
-            value: 0
-        }
-    }
-    let delta = 0
-    let effectiveCubeView
-    let error
-    let loaded
-    let logicUtils
-    let moveDelta = 0
-    let moveType
-    let manualControlsOn = true
-    let mutationApi
-    let outcomesVisible = false
-    let percentMode = false
-    let poll = null
+            value: 0,
+        },
+    };
+    let delta = 0;
+    let effectiveCubeView;
+    let error;
+    let loaded;
+    let logicUtils: ILogicUtils;
+    let moveDelta = 0;
+    let moveType;
+    let manualControlsOn = true;
+    let mutationApi;
+    let outcomesVisible = false;
+    let percentMode = false;
+    let situation: IUiSituation = null;
     let positionChanges = {
         0: 0,
         1: 1,
         2: 2,
         3: 3,
         4: 4,
-        5: 5
-    }
-    let positionMode = false
+        5: 5,
+    };
+    let positionMode = false;
     let previous = {
-        delta: 0
-    }
-    let saving = false
-    let savingMessage
-    let theCurrentVoteFactors = []
-    let theVoteFactors = []
-    let tweenDelta = 0 // Only for the factor cubes
-    let verticalLayout = true
-    let vote
-    let zoomFactor = 0.65
+        delta: 0,
+    };
+    let saving = false;
+    let savingMessage;
+    let theCurrentSolutionFactors: IUiSolutionFactor[] = [];
+    let theSolutionFactors: IUiSolutionFactor[] = [];
+    let tweenDelta = 0; // Only for the factor cubes
+    let verticalLayout = true;
+    let solution: IUiSolution;
+    let zoomFactor = 0.65;
 
-    $: currentVoteFactors = f(() => {
-        if (logicUtils && currentVote) {
-            theCurrentVoteFactors = logicUtils.getVoteFactorNodesInValueOrder(currentVote)
+    $: currentSolutionFactors = f(() => {
+        if (logicUtils && currentSolution) {
+            theCurrentSolutionFactors =
+                logicUtils.getSolutionFactorNodesInValueOrder(currentSolution);
         }
 
-        return theCurrentVoteFactors
-    }, delta)
-    $: dynamicDelta = effectiveCubeView ? delta : tweenDelta
-    $: dynamicVote = effectiveCubeView ? vote : currentVote
-    $: effectiveCubeView = cubeView && !beforeCubeView
-    $: horizontalLayout = !verticalLayout
-    $: transformScale = effectiveCubeView ? `transform: scale(${zoomFactor}, ${zoomFactor});` : ''
-    $: voteFactors = f(() => {
-        if (logicUtils && vote) {
-            theVoteFactors = logicUtils.getVoteFactorNodesInValueOrder(vote)
+        return theCurrentSolutionFactors as any as ITweenSolutionFactor[];
+    }, delta);
+    $: dynamicDelta = effectiveCubeView ? delta : tweenDelta;
+    $: dynamicSolution = effectiveCubeView ? solution : currentSolution;
+    $: effectiveCubeView = cubeView && !beforeCubeView;
+    $: horizontalLayout = !verticalLayout;
+    $: transformScale = effectiveCubeView
+        ? `transform: scale(${zoomFactor}, ${zoomFactor});`
+        : "";
+    $: solutionFactors = f(() => {
+        if (logicUtils && solution) {
+            theSolutionFactors =
+                logicUtils.getSolutionFactorNodesInValueOrder(solution);
         }
 
-        return theVoteFactors
-    }, delta)
+        return theSolutionFactors;
+    }, delta);
 
     onMount(async () => {
-        cardMove.set(null)
-        container = DI.ui('PollMain')
+        cardMove.set(null);
+        container = DI.ui("PollMain");
 
-        let params = get(routeParams)
-        let repositoryId = params.pollId
+        let params = get(routeParams);
+        let repositoryUuId = params.repositoryUuId;
 
-        resize()
-        if (window.location.href.indexOf('card/ClimateChange') > 0) {
-            repositoryId = '1e62db65-807b-457f-ba34-4410013e8d39'
+        resize();
+        if (window.location.href.indexOf("card/ClimateChange") > 0) {
+            repositoryUuId = "1e62db65-807b-457f-ba34-4410013e8d39";
         }
-        cube.set(true)
-        noOverflow.set(true)
+        cube.set(true);
+        noOverflow.set(true);
 
-        const cubeLogicModule = await import('@votecube/cube-logic')
+        const cubeLogicModule = await import("@votecube/cube-logic");
 
-        const [
-            cubeEventListener,
-            cubeLogic,
-            detailedCubeLogic,
-            theLogicUtils
-        ] = await container.get(
-            cubeLogicModule.CUBE_EVENT_LISTENER, CUBE_LOGIC,
-            DETAILED_CUBE_LOGIC, LOGIC_UTILS
-        )
+        const [cubeEventListener, cubeLogic, detailedCubeLogic, theLogicUtils] =
+            await container.get(
+                cubeLogicModule.CUBE_EVENT_LISTENER,
+                CUBE_LOGIC,
+                DETAILED_CUBE_LOGIC,
+                LOGIC_UTILS
+            );
 
         cubeLogic.setCubeViewPort(
             cubeEventListener,
-            (
-                theMutationApi
-            ) => {
-                mutationApi = theMutationApi
-            }, () => {
+            (theMutationApi) => {
+                mutationApi = theMutationApi;
+            },
+            () => {
                 /*
                 if (percentMode) {
                     TODO: implement correct card and graph animations for the PercentPicker, IF NEEDED
                 }
                 */
-                delta = delta + 1
-// 				percentMode = false
+                delta = delta + 1;
+                // 				percentMode = false
             }
-        )
+        );
 
-        const cubeViewResult = await setupCubeView(pollId, pollRevisionId,
-            cubeLogic, cubeEventListener, container)
+        const cubeViewResult = await setupCubeView(
+            repositoryUuId,
+            cubeLogic,
+            cubeEventListener,
+            container
+        );
 
-        poll = cubeViewResult.poll
+        situation = cubeViewResult.situation;
 
-        const cubeSideResult = await detailedCubeLogic.getCubeSides(poll, container)
+        const cubeSideResult = await detailedCubeLogic.getCubeSides(
+            situation,
+            container
+        );
 
-        await doToggleView(!cubeView, cubeView)
+        await doToggleView(!cubeView, cubeView);
 
-        vote = cubeViewResult.vote
-        cubeSideMap = cubeSideResult.cubeSideMap
-        cubeSides = cubeSideResult.cubeSides
-        loaded = true
-        logicUtils = theLogicUtils
-        mode.set(params.mode)
-    })
+        solution = cubeViewResult.solution;
+        cubeSideMap = cubeSideResult.cubeSideMap;
+        cubeSides = cubeSideResult.cubeSides;
+        loaded = true;
+        logicUtils = theLogicUtils;
+        mode.set(params.mode);
+    });
 
     onDestroy(async () => {
-        setResizeCllBck(null)
+        setResizeCllBck(null);
 
-        const [cubeEventListener, cubeLogic]
-            = await container.get(CUBE_EVENT_LISTENER, CUBE_LOGIC)
+        const [cubeEventListener, cubeLogic] = await container.get(
+            CUBE_EVENT_LISTENER,
+            CUBE_LOGIC
+        );
 
-        cubeLogic.shutDownCubeListener(cubeEventListener)
-        mutationApi = null
-        cube.set(false)
-        noOverflow.set(false)
+        cubeLogic.shutDownCubeListener(cubeEventListener);
+        mutationApi = null;
+        cube.set(false);
+        noOverflow.set(false);
 
-        DI.remove(container)
-    })
+        DI.remove(container);
+    });
 
     beforeUpdate(async () => {
         changed.delta = delta !== previous.delta;
         previous.delta = delta;
-        if (!changed.delta
-            || !vote) {
-            return
+        if (!changed.delta || !solution) {
+            return;
         }
 
-        const logic = await container.get(SITUATION_MAIN_LOGIC)
+        const logic = await container.get(SITUATION_MAIN_LOGIC);
 
-        if (logic.votesEqual(currentVote, vote)) {
-            return
+        if (logic.solutionsEqual(currentSolution, solution)) {
+            return;
         }
 
-        let lastVote = currentVote
-        currentVote = logic.copyVoteToTween(vote, lastVote)
+        let lastSolution = currentSolution;
+        currentSolution = logic.copySolutionToTween(solution, lastSolution);
 
-        // Not needed, current vote is always set
-        // if (!lastVote) {
-        // 	this.set({currentVote})
-        // 	return
-        // }
+        logic
+            .scheduleFactorTweens(
+                lastSolution,
+                currentSolution,
+                solution.changeMillis ? solution.changeMillis : 400
+            )
+            .subscribe((_) => {
+                tweenDelta = tweenDelta + 1;
+            });
+    });
 
-        // if (current.currentVoteInterval) {
-        // 	clearInterval(current.currentVoteInterval)
-        // }
-
-        logic.scheduleFactorTweens(
-            lastVote,
-            currentVote,
-            vote.changeMillis ? vote.changeMillis : 400,
-        ).subscribe(
-            newVote => {
-                tweenDelta = tweenDelta + 1
-            })
-    })
-
-    function f(func) {
-        return func()
+    function f<T>(func: () => T, delta?: number) {
+        return func();
     }
 
     function alter($routeParams) {
-        let mode = $routeParams.mode
-        if (mode === 'vote') {
-            mode = 'alter'
+        let mode = $routeParams.mode;
+        if (mode === "solution") {
+            mode = "alter";
         }
         // confirmAlter.set(false)
         navigateToPage(SITUATION_FORM, {
             ...$routeParams,
-            mode
-        })
+            mode,
+        });
     }
 
     // confirmAlter(event) {
@@ -249,301 +263,217 @@
     // 	confirmAlter.set(false)
     // },
     function build($user) {
-        save($user)
+        save($user);
     }
 
-    function checkBuild(
-        poll
-    ) {
+    function checkBuild(poll) {
         if (!poll.ageSuitability && poll.ageSuitability !== 0) {
-            ageSuitabilityVisible = true
-            saving = true
-            return
+            ageSuitabilityVisible = true;
+            saving = true;
+            return;
         }
-        setAction('confirm')
+        setAction("confirm");
     }
 
     function closeConfirm() {
         // setCubeAdjustment(true).then(() => {
-        setAction('none')
+        setAction("none");
         // })
     }
 
-    function confirmVote() {
+    function confirmSolution() {
         setCubeAdjustment(false).then(() => {
-            setAction('vote')
-        })
+            setAction("solution");
+        });
     }
 
     function goToReleasePlan() {
-        navigateToPage(RELEASE_PLAN)
+        navigateToPage(RELEASE_PLAN);
     }
 
     function goToRevisions() {
-        const {pollId, pollRevisionId} = get(routeParams)
-        navigateToPage(VARIATION_LIST, {pollId, pollRevisionId})
+        const { repositoryUuId } = get(routeParams);
+        navigateToPage(VARIATION_LIST, { repositoryUuId });
     }
 
-    function onAgeSuitabilitySave(
-        saving
-    ) {
+    function onAgeSuitabilitySave(saving) {
         if (saving) {
             setTimeout(() => {
-                setAction('confirm')
-            })
+                setAction("confirm");
+            });
         }
-        ageSuitabilityVisible = false
-        delta = delta + 1
+        ageSuitabilityVisible = false;
+        delta = delta + 1;
     }
 
-    function setAction(
-        newAction
-    ) {
-        action = newAction
-        error = ''
+    function setAction(newAction) {
+        action = newAction;
+        error = "";
     }
 
-    function pollAltered(
-        newCubeSides
-    ) {
+    function pollAltered(newCubeSides?) {
         if (!newCubeSides) {
-            newCubeSides = cubeSides
+            newCubeSides = cubeSides;
         }
-        cubeSides = newCubeSides
-        delta = delta + 1
-        moveDelta = moveDelta + 1
+        cubeSides = newCubeSides;
+        delta = delta + 1;
+        moveDelta = moveDelta + 1;
     }
 
     function pollAdjusted() {
-        pollAltered()
-        container.get(MUTATION_API).then(
-            mutationApi => {
-                mutationApi.recompute()
-            })
+        pollAltered();
+        container.get(MUTATION_API).then((mutationApi) => {
+            mutationApi.recompute();
+        });
     }
 
-    function move(
-        event
-    ) {
-        percentMode = true
-        container.get(MUTATION_API).then(
-            mutationApi => {
-                mutationApi.move(
-                    event.detail.factorNumber,
-                    event.detail.outcome,
-                    event.detail.percentChange
-                )
-            })
+    function move(event) {
+        percentMode = true;
+        container.get(MUTATION_API).then((mutationApi) => {
+            mutationApi.move(
+                event.detail.factorNumber,
+                event.detail.outcome,
+                event.detail.percentChange
+            );
+        });
     }
 
-    function moveToValue(
-        event
-    ) {
-        percentMode = true
-        container.get(MUTATION_API).then(
-            mutationApi => {
-                mutationApi.moveToValue(event.detail.factorNumber, event.detail.value)
-            })
+    function moveToValue(event) {
+        percentMode = true;
+        container.get(MUTATION_API).then((mutationApi) => {
+            mutationApi.moveToValue(
+                event.detail.factorNumber,
+                event.detail.value
+            );
+        });
     }
 
-    function showAgeSuitability(
-        newAgeSuitabilityVisible
-    ) {
-        ageSuitabilityVisible = newAgeSuitabilityVisible
+    function showAgeSuitability(newAgeSuitabilityVisible) {
+        ageSuitabilityVisible = newAgeSuitabilityVisible;
     }
 
-    function showOutcomes(
-        newOutcomesVisible
-    ) {
-        outcomesVisible = newOutcomesVisible
+    function showOutcomes(newOutcomesVisible) {
+        outcomesVisible = newOutcomesVisible;
     }
 
     function togglePercentPicker() {
-        let newPercentMode = !percentMode
+        let newPercentMode = !percentMode;
         setCubeAdjustment(!percentMode).then(() => {
             if (newPercentMode) {
-                cubeView = true
+                cubeView = true;
             }
-            percentMode = newPercentMode
-        })
+            percentMode = newPercentMode;
+        });
     }
 
     function togglePositionMode() {
-        positionMode = !positionMode
-        cubeView = positionMode ? true : cubeView
+        positionMode = !positionMode;
+        cubeView = positionMode ? true : cubeView;
     }
 
-    function toggleSurface(
-        factorNumber
-    ) {
-        let originalMoveType = moveType
-        moveType = 'toggle'
+    function toggleSurface(factorNumber) {
+        let originalMoveType = moveType;
+        moveType = "toggle";
         setTimeout(() => {
-            container.get(MUTATION_API).then(
-                mutationApi => {
-                    mutationApi.toggleSurface(factorNumber)
-                    delta = delta + 1
-                    setTimeout(() => {
-                        moveType = originalMoveType
-                    }, 500)
-                })
-        }, 1)
+            container.get(MUTATION_API).then((mutationApi) => {
+                mutationApi.toggleSurface(factorNumber);
+                delta = delta + 1;
+                setTimeout(() => {
+                    moveType = originalMoveType;
+                }, 500);
+            });
+        }, 1);
     }
 
-    function toggleView(
-        currentlyInCubeView,
-        forCubeView,
-    ) {
-        doToggleView(currentlyInCubeView, forCubeView).then()
+    function toggleView(currentlyInCubeView, forCubeView) {
+        doToggleView(currentlyInCubeView, forCubeView).then();
     }
 
-    function toPollForm(
-        $routeParams
-    ) {
-        navigateToPage(SITUATION_FORM, $routeParams)
+    function toPollForm($routeParams) {
+        navigateToPage(SITUATION_FORM, $routeParams);
     }
 
-    function submitVote() {
-        confirm = false
-        // doSubmitVote()
+    function submitSolution() {
+        confirm = false;
+        // doSubmitSolution()
     }
 
-    async function setCubeAdjustment(
-        enableCubeAdjustment
-    ) {
-        const [cubeEventListener, cubeLogic] =
-            await container.get(CUBE_EVENT_LISTENER, CUBE_LOGIC)
+    async function setCubeAdjustment(enableCubeAdjustment) {
+        const [cubeEventListener, cubeLogic] = await container.get(
+            CUBE_EVENT_LISTENER,
+            CUBE_LOGIC
+        );
 
-        cubeLogic.setCubeAdjustment(cubeEventListener, enableCubeAdjustment)
+        cubeLogic.setCubeAdjustment(cubeEventListener, enableCubeAdjustment);
     }
 
-    async function doToggleView(
-        currentlyInCubeView,
-        forCubeView
-    ) {
-
-        const cubeEventListener = await container.get(CUBE_EVENT_LISTENER)
+    async function doToggleView(currentlyInCubeView, forCubeView) {
+        const cubeEventListener = await container.get(CUBE_EVENT_LISTENER);
 
         if (forCubeView) {
             if (!currentlyInCubeView) {
                 // Animate Factor Rankings out of the view
-                beforeCubeView = true
+                beforeCubeView = true;
 
-                cubeEventListener.resumeInteraction()
+                cubeEventListener.resumeInteraction();
 
-                cubeView = forCubeView
+                cubeView = forCubeView;
                 setTimeout(() => {
-                    beforeCubeView = false
-                }, 5)
+                    beforeCubeView = false;
+                }, 5);
             }
         } else {
             if (currentlyInCubeView) {
                 // Animate Factor Rankings out of the view
-                beforeCardView = true
+                beforeCardView = true;
 
-                cubeEventListener.suspendInteraction()
+                cubeEventListener.suspendInteraction();
 
-                cubeView = forCubeView
+                cubeView = forCubeView;
                 setTimeout(() => {
-                    beforeCardView = false
-                }, 701)
+                    beforeCardView = false;
+                }, 701);
             }
         }
     }
 
     function resize() {
-        setResizeCllBck((
-            portalHeight,
-            windowWidth
-        ) => {
-            const figureHeight = portalHeight * 0.55 + 95
+        setResizeCllBck((portalHeight, windowWidth) => {
+            const figureHeight = portalHeight * 0.55 + 95;
 
-            const cubeAreaLeastFactor = windowWidth < figureHeight
-                ? windowWidth
-                : figureHeight
+            const cubeAreaLeastFactor =
+                windowWidth < figureHeight ? windowWidth : figureHeight;
 
-            zoomFactor = (Math.sqrt(cubeAreaLeastFactor) * 3) / 100
-        })
+            zoomFactor = (Math.sqrt(cubeAreaLeastFactor) * 3) / 100;
+        });
     }
 
-    async function save(
-        $user
-    ) {
-        savingMessage = 'Saving ...'
-        const pollManager = await container.get(SITUATION_MANAGER)
+    async function save($user) {
+        savingMessage = "Saving ...";
+        const pollManager = await container.get(SITUATION_MANAGER);
         try {
-            await pollManager.saveCurrentRevision($user)
-            confirm = false
-            navigateToPage(SITUATION_LIST)
+            await pollManager.saveCurrentRevision($user);
+            confirm = false;
+            navigateToPage(SITUATION_LIST);
         } catch (theError) {
-            error = theError
-            savingMessage = 'Error'
+            error = theError;
+            savingMessage = "Error";
         }
     }
 
-    async function doSubmitVote() {
+    async function doSubmitSolution() {
         // confirm = false
-        const voteManager = await container.get(SOLUTION_MANAGER)
+        const solutionManager = await container.get(SOLUTION_MANAGER);
         try {
-            await voteManager.saveVote(poll)
-            confirm = false
-            navigateToPage(SITUATION_LIST)
+            await solutionManager.saveSolution(situation);
+            confirm = false;
+            navigateToPage(SITUATION_LIST);
         } catch (theError) {
-            error = theError
-            savingMessage = 'Error'
+            error = theError;
+            savingMessage = "Error";
         }
     }
-
 </script>
-
-<style>
-    article {
-        max-width: 420px;
-    }
-
-    @media (min-width: 321px) {
-        section.card {
-            top: 145px !important;
-        }
-
-        section.cube {
-            top: 56% !important;
-        }
-    }
-
-    #viewport {
-        height: 100%;
-        perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
-        /* 1500 increases range from 11% to 9%, 2500 increases to 6% */
-        perspective-origin: 50% 160px; /* 670px; */
-        /*transform: scale(0.75,0.75);*/
-        width: 100%;
-    }
-
-    div[slot="cancel"] {
-        text-align: center;
-    }
-
-    section.card {
-        left: 0px;
-        position: absolute;
-        top: 110px;
-        width: 100%;
-    }
-
-    section.cube {
-        left: 50%;
-        margin-right: -50%;
-        position: absolute;
-        top: 56%;
-        transform: translate(-50%, -50%);
-    }
-
-    /*	.ranking {
-            top: 275px;
-        }*/
-
-</style>
 
 <article>
     <!-- for toggling the view -->
@@ -605,119 +535,108 @@
     <!--			moveType="{moveType}"-->
     <!--			positionMode="{positionMode}"-->
     <!--			verticalLayout="{verticalLayout}"-->
-    <VoteComponentGraph
-            cubeSides="{cubeSides}"
-            cubeView="{effectiveCubeView}"
-            delta="{delta}"
-            on:toggleView="{() => toggleView(cubeView, !cubeView)}"
-            on:togglePercent="{togglePercentPicker}"
-            on:toggleChart="{() => showOutcomes(true)}"
-            poll="{poll}"
-            tweenDelta="{tweenDelta}"
-            vote="{vote}"
-            voteFactors="{currentVoteFactors}"
-    ></VoteComponentGraph>
+    <SolutionComponentGraph
+        {cubeSides}
+        cubeView={effectiveCubeView}
+        {delta}
+        on:toggleView={() => toggleView(cubeView, !cubeView)}
+        on:togglePercent={togglePercentPicker}
+        on:toggleChart={() => showOutcomes(true)}
+        {situation}
+        {tweenDelta}
+        {solution}
+        solutionFactors={currentSolutionFactors}
+    />
     <!-- the main view -->
     <!--			class:ranking="!effectiveCubeView"-->
     <section
-            class:cube="{effectiveCubeView}"
-            class:card="{!effectiveCubeView}"
-            colspan="4"
+        class:cube={effectiveCubeView}
+        class:card={!effectiveCubeView}
+        colspan="4"
     >
         <main>
             <section
-                    id="viewport"
-                    class:leftViewport="{horizontalLayout}"
-                    style="{transformScale}"
+                id="viewport"
+                class:leftViewport={horizontalLayout}
+                style={transformScale}
             >
                 {#if effectiveCubeView}
                     <!--						cubeView="{effectiveCubeView}"-->
                     <!--						delta="{delta}"-->
                     <!--						moveType="{moveType}"-->
                     <DetailedCube
-                            cubeSideMap="{cubeSideMap}"
-                            cubeSides="{cubeSides}"
-                            on:cubeAltered="{pollAltered}"
-                            poll="{poll}"
-                            positionMode="{positionMode}"
-                            verticalLayout="{verticalLayout}"
-                            vote="{vote}"
-                    ></DetailedCube>
+                        {cubeSideMap}
+                        {cubeSides}
+                        on:cubeAltered={pollAltered}
+                        {situation}
+                        {positionMode}
+                        {verticalLayout}
+                        {solution}
+                    />
                 {:else}
                     <!--						verticalLayout="{verticalLayout}"-->
                     <FactorRanking
-                            delta="{delta}"
-                            on:rankingAdjusted="{pollAdjusted}"
-                            poll="{poll}"
-                            vote="{vote}"
-                            voteFactors="{voteFactors}"
-                    ></FactorRanking>
+                        {delta}
+                        on:rankingAdjusted={pollAdjusted}
+                        {situation}
+                        {solution}
+                        {solutionFactors}
+                    />
                 {/if}
             </section>
         </main>
     </section>
-    {#if vote}
+    {#if solution}
         {#if percentMode}
             <PercentPicker
-                    delta="{delta}"
-                    on:close="{togglePercentPicker}"
-                    on:move="{move}"
-                    on:moveToValue="{moveToValue}"
-                    poll="{poll}"
-                    vote="{vote}"
-                    voteFactors="{voteFactors}"
-            ></PercentPicker>
+                {delta}
+                on:close={togglePercentPicker}
+                on:move={move}
+                on:moveToValue={moveToValue}
+                {situation}
+                {solutionFactors}
+            />
         {/if}
         <PollFab
-                on:ageSuitability="{() => showAgeSuitability(true)}"
-                on:build="{() => checkBuild(poll)}"
-                on:confirmVote="{() => confirmVote()}"
-                on:edit="{() => alter($routeParams)}"
-                on:manuallyOverwrite="{togglePercentPicker}"
-                on:outcomes="{() => showOutcomes(true)}"
-                on:opinions="{() => setAction('opinions')}"
-                on:position="{togglePositionMode}"
-                on:rankings="{() => setAction('rankings')}"
-                on:stats="{() => setAction('stats')}"
-                on:revisions="{goToRevisions}"
-                mode="{$mode}"
-        >
-        </PollFab>
+            on:ageSuitability={() => showAgeSuitability(true)}
+            on:build={() => checkBuild(situation)}
+            on:confirmSolution={() => confirmSolution()}
+            on:edit={() => alter($routeParams)}
+            on:manuallyOverwrite={togglePercentPicker}
+            on:outcomes={() => showOutcomes(true)}
+            on:opinions={() => setAction("opinions")}
+            on:position={togglePositionMode}
+            on:rankings={() => setAction("rankings")}
+            on:stats={() => setAction("stats")}
+            on:revisions={goToRevisions}
+            mode={$mode}
+        />
         {#if ageSuitabilityVisible}
             <AgeSuitability
-                    saving="{saving}"
-                    on:cancel="{() => showAgeSuitability(false)}"
-                    on:save="{() => onAgeSuitabilitySave(saving)}"
-                    poll="{poll}"
-            ></AgeSuitability>
+                {saving}
+                on:cancel={() => showAgeSuitability(false)}
+                on:save={() => onAgeSuitabilitySave(saving)}
+                poll={situation}
+            />
         {/if}
         {#if outcomesVisible}
-            <ActionPopover
-                    customCancel="{true}"
-                    infoOnly="true"
-            >
+            <ActionPopover customCancel={true} infoOnly={true}>
                 <div slot="header">
-                    {poll.name}
+                    {situation.name}
                 </div>
                 <div slot="content">
-                    <Outcomes
-                            final="{loaded}"
-                            poll="{poll}"
-                    >
-                    </Outcomes>
+                    <Outcomes final={loaded} poll={situation} />
                 </div>
                 <div slot="cancel">
-                    <OutcomeButton
-                            on:click="{() => showOutcomes(false)}"
-                    ></OutcomeButton>
+                    <OutcomeButton on:click={() => showOutcomes(false)} />
                 </div>
             </ActionPopover>
         {/if}
-        {#if action === 'save'}
+        {#if action === "save"}
             <ActionPopover
-                    on:cancel="{closeConfirm}"
-                    viewOnly="{!error}"
-                    infoOnly="{error}"
+                on:cancel={closeConfirm}
+                viewOnly={!error}
+                infoOnly={error}
             >
                 <div slot="header">
                     {savingMessage}
@@ -726,20 +645,17 @@
                     {error}
                 </div>
             </ActionPopover>
-        {:else if ['vote', 'stats', 'rankings', 'opinions'].indexOf(action) > -1}
+        {:else if ["solution", "stats", "rankings", "opinions"].indexOf(action) > -1}
             <!--			contentClass="smallPadding"-->
-            <ActionPopover
-                    customCancel="{true}"
-                    on:cancel="{closeConfirm}"
-            >
+            <ActionPopover customCancel={true} on:cancel={closeConfirm}>
                 <div slot="header">
-                    {#if action === 'opinions'}
+                    {#if action === "opinions"}
                         Almost Here - Poll Opinions
-                    {:else if action === 'vote'}
-                        Coming soon - Confirm Vote
-                    {:else if action === 'rankings'}
+                    {:else if action === "solution"}
+                        Coming soon - Solve
+                    {:else if action === "rankings"}
                         Coming soon - Poll Rankings
-                    {:else if action === 'stats'}
+                    {:else if action === "stats"}
                         Coming in Beta - Poll Statistics
                     {/if}
                 </div>
@@ -750,72 +666,63 @@
                     </div>
                     -->
                     <!--
-                    <VoteComponentSummary
+                    <SolutionComponentSummary
                             bind:delta
                             bind:poll
                             verticalLayout="Y"
-                            bind:vote
+                            bind:solution
                             maxBarSize="{120}"
                             mode="confirm"
-                            voteFactors="{voteFactors}"
-                    ></VoteComponentSummary>
+                            solutionFactors="{solutionFactors}"
+                    ></SolutionComponentSummary>
                     -->
-                    <br>
+                    <br />
                     <h3>
-                        {#if action === 'opinions'}
-                            Ability to post your opinions about Polls is coming next!
-                        {:else if action === 'vote'}
-                            Voting is scheduled to be released at the end of Alpha testing period.
-                        {:else if action === 'rankings'}
-                            We'll start providing basic Poll Rankings at the end of Alpha testing
-                            period. More
-                            will
-                            be added in subsequent releases.
-                        {:else if action === 'stats'}
-                            Basic Poll Statistics will be available in Beta release. More advanced
-                            stats
-                            will be provided in version 1.
+                        {#if action === "opinions"}
+                            Ability to post your opinions about Polls is coming
+                            next!
+                        {:else if action === "solution"}
+                            Voting is scheduled to be released at the end of
+                            Alpha testing period.
+                        {:else if action === "rankings"}
+                            We'll start providing basic Poll Rankings at the end
+                            of Alpha testing period. More will be added in
+                            subsequent releases.
+                        {:else if action === "stats"}
+                            Basic Poll Statistics will be available in Beta
+                            release. More advanced stats will be provided in
+                            version 1.
                         {/if}
-                        <br>
-                        <br>
-                        Please see
-                        the <a
-                            href="/releasePlan"
-                    >Release Plan</a> for details.
+                        <br />
+                        <br />
+                        Please see the <a href="/releasePlan">Release Plan</a> for
+                        details.
                     </h3>
-                    <br>
+                    <br />
                 </div>
                 <!--
                 <div slot="actions">
-                    <VoteButton
-                            on:select="submitVote()"
-                    ></VoteButton>
+                    <SolutionButton
+                            on:select="submitSolution()"
+                    ></SolutionButton>
                 </div>
         -->
                 <div slot="cancel">
-                    <CancelButton
-                            on:click="{closeConfirm}"
-                    ></CancelButton>
+                    <CancelButton on:click={closeConfirm} />
                 </div>
             </ActionPopover>
-        {:else if action === 'confirm'}
-            <ActionPopover
-                    on:cancel="{closeConfirm}"
-            >
-                <div slot="header">
-                    Please Confirm
-                </div>
+        {:else if action === "confirm"}
+            <ActionPopover on:cancel={closeConfirm}>
+                <div slot="header">Please Confirm</div>
                 <div slot="content">
-                    Define the "{poll.name}" Situation?
-                    <br>
-                    Category: {poll.category.name}
-                    <br>
-                    Age Suitability: {poll.ageSuitability}+
+                    Define the "{situation.name}" Situation?
+                    <br />
+                    Category: {situation.category.name}
+                    <br />
+                    Age Suitability: {situation.ageSuitability}+
                 </div>
                 <div slot="actions">
-                    <BuildButton
-                            on:click="{() => build($user)}"
-                    ></BuildButton>
+                    <BuildButton on:click={() => build($user)} />
                 </div>
             </ActionPopover>
         {/if}
@@ -838,3 +745,51 @@
         </ActionPopover>
         {/if}-->
 </article>
+
+<style>
+    article {
+        max-width: 420px;
+    }
+
+    @media (min-width: 321px) {
+        section.card {
+            top: 145px !important;
+        }
+
+        section.cube {
+            top: 56% !important;
+        }
+    }
+
+    #viewport {
+        height: 100%;
+        perspective: 900px; /* FIXME: make the cube more approachable 1500px ~ 2500px;*/
+        /* 1500 increases range from 11% to 9%, 2500 increases to 6% */
+        perspective-origin: 50% 160px; /* 670px; */
+        /*transform: scale(0.75,0.75);*/
+        width: 100%;
+    }
+
+    div[slot="cancel"] {
+        text-align: center;
+    }
+
+    section.card {
+        left: 0px;
+        position: absolute;
+        top: 110px;
+        width: 100%;
+    }
+
+    section.cube {
+        left: 50%;
+        margin-right: -50%;
+        position: absolute;
+        top: 56%;
+        transform: translate(-50%, -50%);
+    }
+
+    /*	.ranking {
+            top: 275px;
+        }*/
+</style>

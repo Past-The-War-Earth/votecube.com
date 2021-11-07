@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import {DI} from '@airport/di'
     import {
         FACTOR_INFO_MAIN,
@@ -138,14 +138,14 @@ return !form.fields.locations.isOriginal()
     function selectLocations(
         $routeParams
     ) {
-        // this.set({keepPollId: $routeParams.pollId})
+        // this.set({keepRepositoryUuId: $routeParams.repositoryUuId})
         navigateToPage(SITUATION_LOCATIONS, $routeParams)
     }
 
     function selectTimeframe(
         $routeParams
     ) {
-        // this.set({keepPollId: $routeParams.pollId})
+        // this.set({keepRepositoryUuId: $routeParams.repositoryUuId})
         navigateToPage(SITUATION_TIME_FRAME, $routeParams)
     }
 
@@ -157,7 +157,7 @@ return !form.fields.locations.isOriginal()
     }
 
     onMount(async () => {
-        container = DI.ui('PollForm')
+        container = DI.ui('SituationForm')
         const [
             formFactory,
             // locations,
@@ -165,7 +165,7 @@ return !form.fields.locations.isOriginal()
             // [
             // labelDao,
             // pollDao
-            // , voteDao
+            // , solutionDao
             // ]
         ] = await Promise.all([
             loadForms(),
@@ -183,18 +183,18 @@ return !form.fields.locations.isOriginal()
             const {mode} = get(routeParams)
 
             try {
-                const pollManager = await container.get(SITUATION_MANAGER)
+                const situationManager = await container.get(SITUATION_MANAGER)
 
-                const currentRevision = pollManager.currentRevision
-                if (!currentRevision.ui && mode !== 'build') {
+                const cachedSituation = situationManager.cachedSituation
+                if (!cachedSituation.ui && mode !== 'build') {
                     navigateToPage(SITUATION_LIST)
                     return
                 }
 
-                const pollFormLogic = await container.get(SITUATION_FORM_LOGIC)
+                const situationFormLogic = await container.get(SITUATION_FORM_LOGIC)
 
-                form = await pollFormLogic.getPollForm(
-                    currentRevision,
+                form = await situationFormLogic.getSituationForm(
+                    cachedSituation,
                     mode === 'alter',
                     mode !== 'create',
                     theText,
@@ -225,9 +225,9 @@ return !form.fields.locations.isOriginal()
         $routeParams,
         modified
     ) {
-        const pollManager = await container.get(SITUATION_MANAGER)
+        const situationManager = await container.get(SITUATION_MANAGER)
 
-        const form = pollManager.currentRevision.form
+        const form = situationManager.cachedSituation.form
         form.touch()
 
         if (!form.valid) {
@@ -241,11 +241,8 @@ return !form.fields.locations.isOriginal()
             return
         }
 
-        if (!$routeParams.pollId) {
-            $routeParams.pollId = 0
-        }
-        if (!$routeParams.pollRevisionId) {
-            $routeParams.pollRevisionId = 0
+        if (!$routeParams.repositoryUuId) {
+            $routeParams.repositoryUuId = ''
         }
 
         forms.navigateOnValid(form, SITUATION_MAIN, $routeParams)
@@ -308,11 +305,11 @@ return !form.fields.locations.isOriginal()
             >
                 <CharacterButton
                         character="A"
-                        fontSize="20"
-                        fontX="12"
-                        fontY="19"
-                        size="24"
-                        strokeWidth="1"
+                        fontSize={20}
+                        fontX={12}
+                        fontY={19}
+                        size={24}
+                        strokeWidth={1}
                 ></CharacterButton>
                 <TextArea
                         field="{form.fields.outcomes.fields.A}"
@@ -326,11 +323,11 @@ return !form.fields.locations.isOriginal()
             >
                 <CharacterButton
                         character="B"
-                        fontSize="20"
-                        fontX="12"
-                        fontY="19"
-                        size="24"
-                        strokeWidth="1"
+                        fontSize={20}
+                        fontX={12}
+                        fontY={19}
+                        size={24}
+                        strokeWidth={1}
                 ></CharacterButton>
                 <TextArea
                         field="{form.fields.outcomes.fields.B}"
@@ -453,7 +450,7 @@ return !form.fields.locations.isOriginal()
     {#if invalidAlter}
         <ActionPopover
                 on:cancel="{ack}"
-                infoOnly="Y"
+                infoOnly={true}
         >
             <div slot="header">
                 Error

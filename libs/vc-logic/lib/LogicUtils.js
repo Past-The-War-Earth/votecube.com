@@ -43,21 +43,21 @@ export class LogicUtils {
         }
         return 'FFF';
     }
-    getVoteFactorNodesInValueOrder(vote) {
-        if (!vote) {
+    getSolutionFactorNodesInValueOrder(solution) {
+        if (!solution) {
             return [];
         }
         const node1 = {
-            voteFactor: vote[1]
+            solutionFactor: solution[1]
         };
         const node2 = {
-            voteFactor: vote[2]
+            solutionFactor: solution[2]
         };
         const node3 = {
-            voteFactor: vote[3]
+            solutionFactor: solution[3]
         };
         let headNode;
-        if (vote[2].value >= vote[3].value) {
+        if (solution[2].value >= solution[3].value) {
             node2.next = node3;
             headNode = node2;
         }
@@ -65,11 +65,11 @@ export class LogicUtils {
             node3.next = node2;
             headNode = node3;
         }
-        if (headNode.voteFactor.value < vote[1].value) {
+        if (headNode.solutionFactor.value < solution[1].value) {
             node1.next = headNode;
             headNode = node1;
         }
-        else if (headNode.next.voteFactor.value < vote[1].value) {
+        else if (headNode.next.solutionFactor.value < solution[1].value) {
             const lastNode = headNode.next;
             headNode.next = node1;
             node1.next = lastNode;
@@ -78,9 +78,9 @@ export class LogicUtils {
             headNode.next.next = node1;
         }
         return [
-            headNode.voteFactor,
-            headNode.next.voteFactor,
-            headNode.next.next.voteFactor
+            headNode.solutionFactor,
+            headNode.next.solutionFactor,
+            headNode.next.next.solutionFactor
         ];
     }
     overlay(from, to) {

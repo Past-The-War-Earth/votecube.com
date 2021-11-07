@@ -48,12 +48,12 @@ export interface ICubeEventListener {
 	resumeInteraction(): void
 
 	setPositionData(
-		vote: IUiSolution,
+		solution: IUiSolution,
 		factorNumbers?: Factor_Number[]
 	): boolean
 
 	setPositionDataAndMove(
-		vote: IUiSolution
+		solution: IUiSolution
 	): void
 
 	setView(
@@ -187,7 +187,7 @@ export class CubeEventListener
 	}
 
 	setPositionData(
-		vote: IUiSolution,
+		solution: IUiSolution,
 		factorNumbers: Factor_Number[] = [1, 2, 3]
 	): boolean {
 		const factorToAxisMapping: IFactorToAxisMapping = {
@@ -207,27 +207,27 @@ export class CubeEventListener
 			// 	z: factorNumbers[2]
 			// },
 			factorToAxisMapping,
-			vote,
+			solution,
 			x: this.getUIUiSolutionDimension(1,
 				// 'x',
-				vote
+				solution
 				// , 100
 			),
 			y: this.getUIUiSolutionDimension(2,
 				// 'y',
-				vote),
+				solution),
 			z: this.getUIUiSolutionDimension(3,
 				// 'z',
-				vote),
+				solution),
 		}
 
-		return !!vote
+		return !!solution
 	}
 
 	setPositionDataAndMove(
-		vote: IUiSolution
+		solution: IUiSolution
 	): void {
-		if (this.setPositionData(vote)) {
+		if (this.setPositionData(solution)) {
 			const viewport = container(this).getSync(VIEWPORT)
 			viewport.moveToDegree()
 		}
@@ -250,10 +250,10 @@ export class CubeEventListener
 		viewport.cb = (
 			uIUiSolution: ICubeSolution
 		) => {
-			// this.populateVoteFactor('x', uIUiSolution)
-			// this.populateVoteFactor('y', uIUiSolution)
-			// this.populateVoteFactor('z', uIUiSolution)
-			cb(uIUiSolution.vote)
+			// this.populateSolutionFactor('x', uIUiSolution)
+			// this.populateSolutionFactor('y', uIUiSolution)
+			// this.populateSolutionFactor('z', uIUiSolution)
+			cb(uIUiSolution.solution)
 		}
 
 		if (forCube) {
@@ -280,15 +280,15 @@ export class CubeEventListener
 	private getUIUiSolutionDimension(
 		factorNumber: Factor_Number,
 		// axis: Factor_Axis,
-		vote: IUiSolution,
-		// value: VoteFactor_Value = 0
+		solution: IUiSolution,
+		// solutionFactorValue: number = 0
 	): ICubeSolutionDimension {
-		if (!vote) {
+		if (!solution) {
 			return null
 		}
 		// let dir: Position_Dir = 0
 
-		// if (!vote) {
+		// if (!solution) {
 		// 	return {
 		// 		axis,
 		// 		dir,
@@ -297,21 +297,21 @@ export class CubeEventListener
 		// 	}
 		// }
 
-		const voteFactor = vote[factorNumber] as ICubeSolutionDimension
-		// if (voteFactor.outcome === 'A') {
+		const solutionFactor = solution[factorNumber] as ICubeSolutionDimension
+		// if (solutionFactor.outcome === 'A') {
 		// 	dir = 1
-		// } else if (voteFactor.outcome === 'B') {
+		// } else if (solutionFactor.outcome === 'B') {
 		// 	dir = -1
 		// }
 		// return {
 		// 	axis,
 		// 	dir,
 		// 	valid: true,
-		// 	value: voteFactor.value
+		// 	value: solutionFactor.value
 		// }
-		voteFactor.valid = true
+		solutionFactor.valid = true
 
-		return voteFactor
+		return solutionFactor
 	}
 
 	private moveViewport(
@@ -442,20 +442,20 @@ export class CubeEventListener
 	}
 
 	/*
-	private populateVoteFactor(
+	private populateSolutionFactor(
 		axis: Factor_Axis,
-		uIUiSolution: ICubeSolution
+		uiSolution: ICubeSolution
 	): void {
-		const vote                    = uIUiSolution.vote
-		const voteFactor: IUiSolutionFactor = vote[uIUiSolution.axisToFactorMapping[axis]]
-		const voteDimension           = uIUiSolution[axis]
-		voteFactor.outcome            = null
-		if (voteDimension.dir === 1) {
-			voteFactor.outcome = 'A'
-		} else if (voteDimension.dir === -1) {
-			voteFactor.outcome = 'B'
+		const solution                    = uiSolution.solution
+		const solutionFactor: IUiSolutionFactor = solution[uiSolution.axisToFactorMapping[axis]]
+		const solutionDimension           = uiSolution[axis]
+		solutionFactor.outcome            = null
+		if (solutionDimension.dir === 1) {
+			solutionFactor.outcome = 'A'
+		} else if (solutionDimension.dir === -1) {
+			solutionFactor.outcome = 'B'
 		}
-		voteFactor.value = voteDimension.value
+		solutionFactor.value = solutionDimension.value
 	}
 */
 	/**

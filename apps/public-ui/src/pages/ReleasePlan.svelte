@@ -13,10 +13,10 @@
 		<li>Opinions: ability to record your comments</li>
 		<li>Labels: ability to label polls</li>
 		<li>Review & publish polls</li>
-		<li>Voting: recording your votes on polls</li>
-		<li>Vote totals</li>
-		<li>Ranking of polls by vote counts</li>
-		<li>Realtime vote total updates</li>
+		<li>Solution: recording your Solutions on Situations</li>
+		<li>Solution totals</li>
+		<li>Ranking of Situations by Solution counts</li>
+		<li>Realtime Solution total updates</li>
 	</ul>
 
 	<h3>Beta - analytics</h3>

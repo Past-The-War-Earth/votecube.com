@@ -38,9 +38,9 @@ export declare class Viewport implements IViewport {
     pd: any;
     rmd: any[];
     vd: {
-        x: Direction;
-        y: Direction;
-        z: Direction;
+        x: 0 | 1 | -1;
+        y: 0 | 1 | -1;
+        z: 0 | 1 | -1;
     };
     x: number;
     y: number;

@@ -14,8 +14,8 @@ export interface ICubeEventListener {
     clearCubeAdjustment(): void;
     clearView(elementId: string): void;
     resumeInteraction(): void;
-    setPositionData(vote: IUiSolution, factorNumbers?: Factor_Number[]): boolean;
-    setPositionDataAndMove(vote: IUiSolution): void;
+    setPositionData(solution: IUiSolution, factorNumbers?: Factor_Number[]): boolean;
+    setPositionDataAndMove(solution: IUiSolution): void;
     setView(elementId: string): void;
     setViewPort(forCube: boolean, cb?: IValuesOutCallback): IMutationApi;
     suspendInteraction(): void;
@@ -30,8 +30,8 @@ export declare class CubeEventListener implements ICubeEventListener {
     clearCubeAdjustment(): void;
     clearView(elementId: string): void;
     resumeInteraction(): void;
-    setPositionData(vote: IUiSolution, factorNumbers?: Factor_Number[]): boolean;
-    setPositionDataAndMove(vote: IUiSolution): void;
+    setPositionData(solution: IUiSolution, factorNumbers?: Factor_Number[]): boolean;
+    setPositionDataAndMove(solution: IUiSolution): void;
     setView(elementId: string): void;
     setViewPort(forCube: boolean, cb?: IValuesOutCallback): IMutationApi;
     suspendInteraction(): void;

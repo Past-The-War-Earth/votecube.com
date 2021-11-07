@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import {DI}        from '@airport/di'
+import type { IUiCategory, IUiSituation } from '@votecube/model';
 	import {
+ISituationManager,
 		LOGIC_UTILS,
 		navigateToPage,
 		pageTitle,
@@ -25,10 +27,10 @@
 
 	let action
 	let container
-	let delta
+	let delta: number
 	let form
-	let isOriginal
-	let isValid
+	let isOriginal: boolean
+	let isValid: boolean
 	let load = new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(initPage())
@@ -36,7 +38,7 @@
 	})
 	let logicUtils
 	let mode = 'factors'
-	let situations
+	let situations: IUiSituation[]
 
 	let formHandle = {
 		setDelta(newDelta) {
@@ -69,13 +71,11 @@
 	}
 
 	function goTo(
-			pollId,
-			pollRevisionId
+			repositoryUuId: string
 	) {
 		navigateToPage(SITUATION_MAIN, {
-			mode: 'vote',
-			pollId,
-			pollRevisionId,
+			mode: 'solution',
+			repositoryUuId: repositoryUuId,
 		})
 	}
 
@@ -139,8 +139,8 @@
 	}
 
 	async function findSituations(
-		category,
-		situationManager
+		category: IUiCategory,
+		situationManager: ISituationManager
 	) {
 		if (!category) {
 			return situationManager.getAllSituations()
@@ -181,8 +181,8 @@
 		<PollListItem
 				logicUtils="{logicUtils}"
 				mode="{mode}"
-				on:click="{() => goTo(situation.id, situation.rootRevisionId)}"
-				poll="{situation}"
+				on:click="{() => goTo(situation.repositoryUuId)}"
+				situation="{situation}"
 		></PollListItem>
 		{/each}
 	</table>
@@ -228,9 +228,9 @@
 		</div>
 		<!--
 		<div slot="actions">
-			<VoteButton
-					on:select="vote()"
-			></VoteButton>
+			<SolutionButton
+					on:select="solve()"
+			></SolutionButton>
 		</div>
 	-->
 		<div slot="cancel">

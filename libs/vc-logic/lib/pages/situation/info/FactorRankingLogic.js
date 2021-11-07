@@ -90,8 +90,8 @@ export class FactorRankingLogic {
         }
         return originalIndex;
     }
-    addOrRemoveAFactor(voteFactors, index, addOrRemove, vote, logicUtils) {
-        const [_, secondFactor, thirdFactor] = voteFactors;
+    addOrRemoveAFactor(solutionFactors, index, addOrRemove, solution, logicUtils) {
+        const [_, secondFactor, thirdFactor] = solutionFactors;
         let numMoved = 0;
         let placeholder = false;
         if (index === 0) {
@@ -107,16 +107,16 @@ export class FactorRankingLogic {
             }
             placeholder = true;
             // scheduleFactorPlaceholder()
-            vote.changeMillis = 550;
+            solution.changeMillis = 550;
             // Remove first factor
-            this.removeFirstFactor(voteFactors, vote, !!thirdFactor.outcome, logicUtils);
+            this.removeFirstFactor(solutionFactors, solution, !!thirdFactor.outcome, logicUtils);
             return {
                 numMoved: 1,
                 placeholder
             };
         }
         numMoved = 1;
-        const outcome = voteFactors[index].outcome;
+        const outcome = solutionFactors[index].outcome;
         if (addOrRemove === 'remove') {
             // remove
             if (!outcome) {
@@ -126,19 +126,19 @@ export class FactorRankingLogic {
                     placeholder,
                 };
             }
-            vote.changeMillis = 550;
+            solution.changeMillis = 550;
             placeholder = true;
             // scheduleFactorPlaceholder(index, direction)
             if (index === 1 && thirdFactor.outcome) {
                 this.onMove(1, [2, 1]);
                 this.swapOnRemove(
-                // voteFactors,
-                vote, secondFactor, thirdFactor, null, 2, logicUtils);
+                // solutionFactors,
+                solution, secondFactor, thirdFactor, null, 2, logicUtils);
                 this.moveUpOne(1, logicUtils);
             }
             else {
-                this.setOutcome(voteFactors, index, null);
-                this.adjustRanking(voteFactors, index, null);
+                this.setOutcome(solutionFactors, index, null);
+                this.adjustRanking(solutionFactors, index, null);
             }
         }
         else {
@@ -150,14 +150,14 @@ export class FactorRankingLogic {
                     placeholder
                 };
             }
-            vote.changeMillis = 550;
+            solution.changeMillis = 550;
             if (index === 2 && !secondFactor.outcome) {
-                this.setOutcome(voteFactors, 1, 'A');
-                this.adjustRanking(voteFactors, 1, 'A');
+                this.setOutcome(solutionFactors, 1, 'A');
+                this.adjustRanking(solutionFactors, 1, 'A');
                 numMoved = 2;
             }
-            this.setOutcome(voteFactors, index, 'A');
-            this.adjustRanking(voteFactors, index, 'A');
+            this.setOutcome(solutionFactors, index, 'A');
+            this.adjustRanking(solutionFactors, index, 'A');
         }
         return {
             numMoved,
@@ -167,20 +167,20 @@ export class FactorRankingLogic {
     move(index, options, logicUtils) {
         logicUtils.transition('factor_' + index, fly, options);
     }
-    moveFactorDown(voteFactors, vote, originalIndex, newIndex, logicUtils) {
+    moveFactorDown(solutionFactors, solution, originalIndex, newIndex, logicUtils) {
         switch (originalIndex) {
             // Started the move from 1st Factor
             case 0: {
                 if (newIndex === 1) {
                     this.onMove(1, [0, 1]);
-                    vote.changeMillis = 200;
-                    this.setFactorOrder(voteFactors, originalIndex, -1, vote, logicUtils);
+                    solution.changeMillis = 200;
+                    this.setFactorOrder(solutionFactors, originalIndex, -1, solution, logicUtils);
                     this.moveUpOne(0, logicUtils);
                 }
                 else {
                     this.onMove(2, [0, 2]);
-                    vote.changeMillis = 600;
-                    this.setFactorOrder(voteFactors, originalIndex, -1, vote, logicUtils, voteFactors[0], voteFactors[2], 0);
+                    solution.changeMillis = 600;
+                    this.setFactorOrder(solutionFactors, originalIndex, -1, solution, logicUtils, solutionFactors[0], solutionFactors[2], 0);
                     this.moveUpTwo(0, logicUtils);
                 }
                 return true;
@@ -188,8 +188,8 @@ export class FactorRankingLogic {
             // Started the move from 2nd Factor
             case 1: {
                 this.onMove(1, [1, 2]);
-                vote.changeMillis = 200;
-                this.setFactorOrder(voteFactors, originalIndex, -1, vote, logicUtils);
+                solution.changeMillis = 200;
+                this.setFactorOrder(solutionFactors, originalIndex, -1, solution, logicUtils);
                 this.moveUpOne(1, logicUtils);
                 return true;
             }
@@ -201,7 +201,7 @@ export class FactorRankingLogic {
         }
         return false;
     }
-    moveFactorUp(voteFactors, vote, originalIndex, newIndex, logicUtils) {
+    moveFactorUp(solutionFactors, solution, originalIndex, newIndex, logicUtils) {
         switch (originalIndex) {
             // Started the move from 1st Factor
             // case 0: {
@@ -211,8 +211,8 @@ export class FactorRankingLogic {
             // Started the move from 2nd Factor
             case 1: {
                 this.onMove(1, [1, 0]);
-                vote.changeMillis = 200;
-                this.setFactorOrder(voteFactors, originalIndex, 1, vote, logicUtils);
+                solution.changeMillis = 200;
+                this.setFactorOrder(solutionFactors, originalIndex, 1, solution, logicUtils);
                 this.moveDownOne(1, logicUtils);
                 return true;
             }
@@ -220,14 +220,14 @@ export class FactorRankingLogic {
             case 2: {
                 if (newIndex === 1) {
                     this.onMove(1, [2, 1]);
-                    vote.changeMillis = 200;
-                    this.setFactorOrder(voteFactors, originalIndex, 1, vote, logicUtils);
+                    solution.changeMillis = 200;
+                    this.setFactorOrder(solutionFactors, originalIndex, 1, solution, logicUtils);
                     this.moveDownOne(2, logicUtils);
                 }
                 else {
                     this.onMove(2, [2, 0]);
-                    vote.changeMillis = 600;
-                    this.setFactorOrder(voteFactors, originalIndex, 1, vote, logicUtils, voteFactors[0], voteFactors[2], 0);
+                    solution.changeMillis = 600;
+                    this.setFactorOrder(solutionFactors, originalIndex, 1, solution, logicUtils, solutionFactors[0], solutionFactors[2], 0);
                     this.moveDownTwo(2, logicUtils);
                 }
                 return true;
@@ -235,79 +235,79 @@ export class FactorRankingLogic {
         }
         return false;
     }
-    setOutcome(voteFactors, index, outcome) {
-        voteFactors[index].outcome = outcome;
+    setOutcome(solutionFactors, index, outcome) {
+        solutionFactors[index].outcome = outcome;
         // if (adjustRanking) {
         // 	dispatch('rankingAdjusted')
         // }
     }
-    adjustRanking(voteFactors, index, outcome) {
-        const [firstVoteFactor, secondVoteFactor, thirdVoteFactor] = voteFactors;
+    adjustRanking(solutionFactors, index, outcome) {
+        const [firstSolutionFactor, secondSolutionFactor, thirdSolutionFactor] = solutionFactors;
         switch (index) {
             case 0: {
                 // firstFactor.dir = dir
                 // Don't have to worry about dir === 0 - 1st factor cannot have it as such
                 if (
-                // If there the 1st factor is present in vote
-                this.factorsAt(100, 0, 0, voteFactors)
+                // If there the 1st factor is present in solution
+                this.factorsAt(100, 0, 0, solutionFactors)
                     // Or its another standard distribution
-                    || this.factorsAt(66, 34, 0, voteFactors)
-                    || this.factorsAt(55, 30, 15, voteFactors)) {
+                    || this.factorsAt(66, 34, 0, solutionFactors)
+                    || this.factorsAt(55, 30, 15, solutionFactors)) {
                     // Nothing to do, just change direction
                 }
                 else {
                     // set default distribution
-                    firstVoteFactor.value = 55;
-                    secondVoteFactor.value = 30;
-                    thirdVoteFactor.value = 15;
+                    firstSolutionFactor.value = 55;
+                    secondSolutionFactor.value = 30;
+                    thirdSolutionFactor.value = 15;
                 }
                 break;
             }
             case 1: {
                 // secondFactor.dir = dir
-                // If the 2nd factor is being removed from the vote
+                // If the 2nd factor is being removed from the solution
                 if (!outcome) {
-                    firstVoteFactor.value = 100;
-                    secondVoteFactor.value = 0;
-                    thirdVoteFactor.value = 0;
+                    firstSolutionFactor.value = 100;
+                    secondSolutionFactor.value = 0;
+                    thirdSolutionFactor.value = 0;
                     // thirdFactor.dir    = 0
                     break;
                 }
-                // Otherwise the 2nd factor is now present in the vote
-                if (this.factorsAt(55, 30, 15, voteFactors)
-                    || this.factorsAt(66, 34, 0, voteFactors)) {
+                // Otherwise the 2nd factor is now present in the solution
+                if (this.factorsAt(55, 30, 15, solutionFactors)
+                    || this.factorsAt(66, 34, 0, solutionFactors)) {
                     // Factors are already at reserved values, no need to adjust values
                 }
-                else if (this.factorsAt(100, 0, 0, voteFactors)) {
+                else if (this.factorsAt(100, 0, 0, solutionFactors)) {
                     // Add the second factor
-                    firstVoteFactor.value = 66;
-                    secondVoteFactor.value = 34;
+                    firstSolutionFactor.value = 66;
+                    secondSolutionFactor.value = 34;
                 }
                 else {
                     // set default distribution
-                    firstVoteFactor.value = 55;
-                    secondVoteFactor.value = 30;
-                    thirdVoteFactor.value = 15;
+                    firstSolutionFactor.value = 55;
+                    secondSolutionFactor.value = 30;
+                    thirdSolutionFactor.value = 15;
                 }
                 break;
             }
             case 2: {
-                // If the 3rd factor is being removed from the vote
+                // If the 3rd factor is being removed from the solution
                 if (!outcome) {
-                    firstVoteFactor.value = 66;
-                    secondVoteFactor.value = 34;
-                    thirdVoteFactor.value = 0;
+                    firstSolutionFactor.value = 66;
+                    secondSolutionFactor.value = 34;
+                    thirdSolutionFactor.value = 0;
                     break;
                 }
-                // Otherwise the 3rd factor is now present in the vote
-                if (this.factorsAt(55, 30, 15, voteFactors)) {
+                // Otherwise the 3rd factor is now present in the solution
+                if (this.factorsAt(55, 30, 15, solutionFactors)) {
                     // Factors are already at reserved values, no need to adjust values
                 }
                 else {
                     // set default distribution
-                    firstVoteFactor.value = 55;
-                    secondVoteFactor.value = 30;
-                    thirdVoteFactor.value = 15;
+                    firstSolutionFactor.value = 55;
+                    secondSolutionFactor.value = 30;
+                    thirdSolutionFactor.value = 15;
                 }
                 break;
             }
@@ -320,8 +320,8 @@ export class FactorRankingLogic {
         // }
     }
     swapOnRemove(
-    // voteFactors,
-    vote, removedFactor, movedFactor1, movedFactor2, adjustRankingIndex, logicUtils) {
+    // solutionFactors,
+    solution, removedFactor, movedFactor1, movedFactor2, adjustRankingIndex, logicUtils) {
         if (movedFactor2) {
             movedFactor2.value = movedFactor1.value;
         }
@@ -332,26 +332,26 @@ export class FactorRankingLogic {
         if (!adjustRankingIndex) {
             adjustRankingIndex = movedFactor2 ? 2 : 1;
         }
-        this.adjustRanking(logicUtils.getVoteFactorNodesInValueOrder(vote), adjustRankingIndex, null);
+        this.adjustRanking(logicUtils.getSolutionFactorNodesInValueOrder(solution), adjustRankingIndex, null);
     }
-    removeFirstFactor(voteFactors, vote, move3, logicUtils) {
+    removeFirstFactor(solutionFactors, solution, move3, logicUtils) {
         if (move3) {
             this.onMove(1, [2, 1, 0]);
         }
         else {
             this.onMove(1, [1, 0]);
         }
-        const [firstFactor, secondFactor, thirdFactor] = voteFactors;
+        const [firstFactor, secondFactor, thirdFactor] = solutionFactors;
         this.swapOnRemove(
-        // voteFactors,
-        vote, firstFactor, secondFactor, move3 ? thirdFactor : null, 0, logicUtils);
+        // solutionFactors,
+        solution, firstFactor, secondFactor, move3 ? thirdFactor : null, 0, logicUtils);
         if (move3) {
             this.moveUpOne(1, logicUtils);
         }
         this.moveUpOne(0, logicUtils);
     }
-    setFactorOrder(voteFactors, index, delta, vote, logicUtils, oldHigherFactor, oldLowerFactor, deltaIndex) {
-        const [firstVoteFactor, secondVoteFactor, thirdVoteFactor] = voteFactors;
+    setFactorOrder(solutionFactors, index, delta, solution, logicUtils, oldHigherFactor, oldLowerFactor, deltaIndex) {
+        const [firstSolutionFactor, secondSolutionFactor, thirdSolutionFactor] = solutionFactors;
         let oldHigherOutcome;
         let oldHigherValue;
         if (!oldHigherFactor) {
@@ -359,28 +359,28 @@ export class FactorRankingLogic {
                 case 0: {
                     // Only Down arrow can be pressed, no need to check delta
                     deltaIndex = 0;
-                    oldHigherFactor = firstVoteFactor;
-                    oldLowerFactor = secondVoteFactor;
+                    oldHigherFactor = firstSolutionFactor;
+                    oldLowerFactor = secondSolutionFactor;
                     break;
                 }
                 case 1: {
                     if (delta > 0) {
                         deltaIndex = 0;
-                        oldHigherFactor = firstVoteFactor;
-                        oldLowerFactor = secondVoteFactor;
+                        oldHigherFactor = firstSolutionFactor;
+                        oldLowerFactor = secondSolutionFactor;
                     }
                     else {
                         deltaIndex = 1;
-                        oldHigherFactor = secondVoteFactor;
-                        oldLowerFactor = thirdVoteFactor;
+                        oldHigherFactor = secondSolutionFactor;
+                        oldLowerFactor = thirdSolutionFactor;
                     }
                     break;
                 }
                 case 2: {
                     // Only Up arrow can be pressed, no need to check delta
                     deltaIndex = 1;
-                    oldHigherFactor = secondVoteFactor;
-                    oldLowerFactor = thirdVoteFactor;
+                    oldHigherFactor = secondSolutionFactor;
+                    oldLowerFactor = thirdSolutionFactor;
                     break;
                 }
             }
@@ -390,7 +390,7 @@ export class FactorRankingLogic {
         oldHigherFactor.value = oldLowerFactor.value;
         oldLowerFactor.value = oldHigherValue;
         // page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
-        return this.adjustRanking(logicUtils.getVoteFactorNodesInValueOrder(vote), deltaIndex, oldHigherOutcome);
+        return this.adjustRanking(logicUtils.getSolutionFactorNodesInValueOrder(solution), deltaIndex, oldHigherOutcome);
     }
     onMove(move, moved) {
         cardMove.set({
@@ -410,10 +410,10 @@ export class FactorRankingLogic {
     moveUpTwo(index, logicUtils) {
         this.move(index, { y: 200, duration: 800 }, logicUtils);
     }
-    factorsAt(firstFactorValue, secondFactorValue, thirdFactorValue, voteFactors) {
-        return voteFactors[0].value === firstFactorValue
-            && voteFactors[1].value === secondFactorValue
-            && voteFactors[2].value === thirdFactorValue;
+    factorsAt(firstFactorValue, secondFactorValue, thirdFactorValue, solutionFactors) {
+        return solutionFactors[0].value === firstFactorValue
+            && solutionFactors[1].value === secondFactorValue
+            && solutionFactors[2].value === thirdFactorValue;
     }
     getFactorInfo(node) {
         if (!node) {

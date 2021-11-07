@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		isDesktop,
 		popup
@@ -9,7 +9,7 @@
 	}             from 'svelte'
 	import {fade} from 'svelte/transition'
 
-	export let desktopWidth
+	export let desktopWidth="34%"
 	export let height = 'initial'
 	export let maxWidth
 	export let width
@@ -18,7 +18,7 @@
 
 	$: theWidth = f(() => {
 		if ($theIsDesktop) {
-			return desktopWidth ? desktopWidth : '34%'
+			return desktopWidth
 		} else {
 			return width ? width : '90%'
 		}

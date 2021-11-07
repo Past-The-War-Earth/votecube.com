@@ -13,7 +13,7 @@ export interface ISolutionManager {
 
 	getSolutionForSituation(
 		// User-information is in AIRport
-		situation: DeepPartial<Situation>
+		situationRepositoryUuId: string
 	): Promise<IUiSolution>
 
 	saveSolution(
@@ -27,10 +27,10 @@ export class SolutionManager
 
 	async getSolutionForSituation(
 		// User-information is in AIRport
-		situation: DeepPartial<Situation>
+		situationRepositoryUuid: string
 	): Promise<IUiSolution> {
 
-		if (!situation) {
+		if (!situationRepositoryUuid) {
 			return this.getStubSolution()
 		}
 
@@ -72,7 +72,7 @@ export class SolutionManager
 	}
 
 	private uiToDb(
-		vote: IUiSolution
+		solution: IUiSolution
 	): DeepPartial<Solution> {
 		return null
 	}

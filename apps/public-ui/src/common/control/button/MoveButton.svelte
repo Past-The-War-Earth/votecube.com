@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		createEventDispatcher
 	}                      from 'svelte'
@@ -7,7 +7,7 @@
 	export let highlightColor = 'B0B0B0'
 	// export let strokeWidth = 3
 	export let size = 20
-	export let styles
+	export let styles = ''
 
 	const dispatch = createEventDispatcher()
 

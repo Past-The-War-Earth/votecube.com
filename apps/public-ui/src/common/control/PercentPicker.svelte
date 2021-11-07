@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+import type { IUiSituation, IUiSolutionFactor } from '@votecube/model';
+
 	import {popup} from '@votecube/vc-logic'
 	import {
 		createEventDispatcher,
@@ -10,8 +12,8 @@
 	import LinearPositionPicker from './LinearPositionPicker.svelte'
 
 	export let delta
-	export let poll
-	export let voteFactors
+	export let situation: IUiSituation
+	export let solutionFactors: IUiSolutionFactor[]
 
 	let pickerDelta = 0
 
@@ -162,22 +164,22 @@
 				<td>
 					<CharacterButton
 							character="A"
-							fontSize="20"
-							fontX="12"
-							fontY="19"
-							size="24"
-							strokeWidth="1"
+							fontSize={20}
+							fontX={12}
+							fontY={19}
+							size={24}
+							strokeWidth={1}
 					></CharacterButton>
 				</td>
 				<td></td>
 				<td>
 					<CharacterButton
 							character="B"
-							fontSize="20"
-							fontX="12"
-							fontY="19"
-							size="24"
-							strokeWidth="1"
+							fontSize={20}
+							fontX={12}
+							fontY={19}
+							size={24}
+							strokeWidth={1}
 					></CharacterButton>
 				</td>
 			</tr>
@@ -219,14 +221,14 @@
 			-->
 			<!-- TODO: add support for voting value -->
 
-			{#each voteFactors as voteFactor, i}
+			{#each solutionFactors as solutionFactor, i}
 			<LinearPositionPicker
 					moveDelta="{moveDelta}"
-					on:move="{(event) => move(voteFactor.factorNumber, event.detail.outcome, event.detail.percentChange)}"
-					on:moveToValue="{(event) => moveToValue(voteFactor.factorNumber, event)}"
+					on:move="{(event) => move(solutionFactor.factorNumber, event.detail.outcome, event.detail.percentChange)}"
+					on:moveToValue="{(event) => moveToValue(solutionFactor.factorNumber, event)}"
 					on:update="{update}"
-					poll="{poll}"
-					voteFactor="{voteFactor}"
+					situation={situation}
+					solutionFactor="{solutionFactor}"
 			/>
 			{/each}
 		</table>

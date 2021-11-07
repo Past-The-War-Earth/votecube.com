@@ -8,14 +8,14 @@
 	<table
 			class="chart-contents"
 	>
-		{#each voteDims as voteDim, i}
-		{#if showPosition(voteDim)}
+		{#each solutionDims as solutionDim, i}
+		{#if showPosition(solutionDim)}
 		<tr id="plus">
 			<td>
 				<div
 						style="
-        background-color: #{getColor(delta, poll, voteDim.axis)};
-        width: {voteDim.value}%;
+        background-color: #{getColor(delta, poll, solutionDim.axis)};
+        width: {solutionDim.value}%;
             "
 				>
 				</div>
@@ -23,8 +23,8 @@
 			<td>
 				<div
 						style="
-        background-color: #{getColor(delta, poll, voteDim.axis)};
-        width: {voteDim.value}%;
+        background-color: #{getColor(delta, poll, solutionDim.axis)};
+        width: {solutionDim.value}%;
             "
 				>
 				</div>
@@ -42,7 +42,7 @@
 		class:rightInfo="horizontalPage"
 >
 
-	{#each voteDims as voteDim, i}
+	{#each solutionDims as solutionDim, i}
 	<tr>
 		<td>
 			<FactorInfoButton
@@ -52,13 +52,13 @@
 					on:toggle="fire('toggleX')"
 					poll="{poll}"
 					position="left"
-					voteDim="{voteDim}"
+					solutionDim="{solutionDim}"
 			></FactorInfoButton>
 		</td>
 		<td
 				class="positionText"
 		>
-			{dirText(voteDim, mode, poll, vote, delta)}
+			{dirText(solutionDim, mode, poll, solution, delta)}
 		</td>
 	<tr>
 	</tr>
@@ -71,13 +71,13 @@
 				on:toggle="fire('toggleY')"
 				poll="{poll}"
 				position="left"
-				voteDim="{voteDim}"
+				solutionDim="{solutionDim}"
 		></FactorInfoButton>
 	</td>
 	<td
 			class="positionText"
 	>
-		{dirText(voteDim, mode, poll, vote, delta)}
+		{dirText(solutionDim, mode, poll, solution, delta)}
 	</td>
 	<tr>
 		<td>
@@ -89,13 +89,13 @@
 					on:toggle="fire('toggleZ')"
 					poll="{poll}"
 					position="left"
-					voteDim="{voteDim}"
+					solutionDim="{solutionDim}"
 			></FactorInfoButton>
 		</td>
 		<td
 				class="positionText"
 		>
-			{dirText(voteDim, mode, poll, vote, delta)}
+			{dirText(solutionDim, mode, poll, solution, delta)}
 		</td>
 	</tr>
 	{/each}
@@ -231,17 +231,17 @@
 			                 }) => {
 				return mode == 'page' && !verticalLayout
 			},
-/*			maxValue: ({poll, delta, vote}) => {
-				if (!vote) {
+/*			maxValue: ({poll, delta, solution}) => {
+				if (!solution) {
 					return 0
 				}
 
 				const positiveValues = []
 				const negativeValues = []
 
-				addToVals(poll, vote.x, positiveValues, negativeValues)
-				addToVals(poll, vote.y, positiveValues, negativeValues)
-				addToVals(poll, vote.z, positiveValues, negativeValues)
+				addToVals(poll, solution.x, positiveValues, negativeValues)
+				addToVals(poll, solution.y, positiveValues, negativeValues)
+				addToVals(poll, solution.z, positiveValues, negativeValues)
 
 				const maxPositiveValue = getMaxVal(positiveValues)
 				const maxNegativeValue = getMaxVal(negativeValues)
@@ -259,38 +259,38 @@
 		helpers: {
 			getColor,
 /*			dirWidth: (
-				voteDim,
+				solutionDim,
 				maxBarSize,
 				maxValue,
-				vote,
+				solution,
 				delta,
 			) =>
-				vote ?
-					barHeight(vote[voteDim.axis], voteDim.dir, maxBarSize, maxValue)
+				solution ?
+					barHeight(solution[solutionDim.axis], solutionDim.dir, maxBarSize, maxValue)
 					: 0,*/
 			dirText: (
-				voteDim,
+				solutionDim,
 				mode,
 				poll,
-				vote,
+				solution,
 				delta
 			) =>
-				vote ?
-					positionText(delta, mode, poll, vote[voteDim.axis])
+				solution ?
+					positionText(delta, mode, poll, solution[solutionDim.axis])
 					: ''
 		}
 	}
 
 /*
 	function barWidth(
-		voteFactor,
+		solutionFactor,
 		position,
 		maxBarSize,
 		maxValue
 	) {
-		return voteFactor
-		&& voteFactor.dir === position
-			? voteFactor.value * maxBarSize / (maxValue * 1.2)
+		return solutionFactor
+		&& solutionFactor.dir === position
+			? solutionFactor.value * maxBarSize / (maxValue * 1.2)
 			: 0
 	}
 */
@@ -299,22 +299,22 @@
 		delta,
 		mode,
 		poll,
-		voteFactor
+		solutionFactor
 	) {
-		return getSideText(delta, mode, poll, voteFactor.axis, voteFactor.dir)
+		return getSideText(delta, mode, poll, solutionFactor.axis, solutionFactor.dir)
 	}
 
 /*
 	function addToVals(
 		poll,
-		voteFactor,
+		solutionFactor,
 		positiveValues,
 		negativeValues
 	) {
-		if (voteFactor.dir === 1) {
-			positiveValues.push(voteFactor.value)
+		if (solutionFactor.dir === 1) {
+			positiveValues.push(solutionFactor.value)
 		} else {
-			negativeValues.push(voteFactor.value)
+			negativeValues.push(solutionFactor.value)
 		}
 	}
 */

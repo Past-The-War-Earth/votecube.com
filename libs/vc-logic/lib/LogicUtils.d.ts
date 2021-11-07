@@ -7,7 +7,7 @@ export interface ILogicUtils {
     getColor(color: IUiColor): string;
     getDate(date: Date): string;
     getTextColor(color: IUiColor): string;
-    getVoteFactorNodesInValueOrder(vote: IUiSolution): IUiSolutionFactor[];
+    getSolutionFactorNodesInValueOrder(solution: IUiSolution): IUiSolutionFactor[];
     overlay(from: any, to: any): void;
     isDifferent(original: any, changed: any, excludeKeys?: string[]): boolean;
     transition(elementId: string, transitionFunction: any, options: any): void;
@@ -20,7 +20,7 @@ export declare class LogicUtils implements ILogicUtils {
     getColor(color: IUiColor): string;
     getDate(date: Date): string;
     getTextColor(color: IUiColor): string;
-    getVoteFactorNodesInValueOrder<V extends IUiSolution = IUiSolution>(vote: V): IUiSolutionFactor[] | ITweenSolutionFactor[];
+    getSolutionFactorNodesInValueOrder<V extends IUiSolution = IUiSolution>(solution: V): IUiSolutionFactor[] | ITweenSolutionFactor[];
     overlay(from: any, to: any): void;
     isDifferent(original: any, changed: any, excludeKeys?: string[]): boolean;
     transition(elementId: string, transitionFunction: any, options: any): void;

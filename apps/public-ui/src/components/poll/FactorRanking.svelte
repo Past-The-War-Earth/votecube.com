@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
 	import {DI}            from '@airport/di'
 	import {TOUCH}         from '@votecube/cube-logic'
+import type { IUiSituation, IUiSolution, IUiSolutionFactor } from '@votecube/model';
 	import {
 		FACTOR_RANKING_LOGIC,
 		LOGIC_UTILS,
@@ -15,17 +16,17 @@
 	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
 	import MoveButton      from '../../common/control/button/MoveButton.svelte'
 
-	export let delta
-	export let poll
+	export let delta: number
+	export let situation: IUiSituation
 	// export let verticalLayout
-	export let vote
-	export let voteFactors = []
+	export let solution: IUiSolution
+	export let solutionFactors: IUiSolutionFactor[] = []
 
 	let container
 	let factorOrderDelta      = 0
 	let lastMoveStart
-	let movingVoteFactor
-	let movingVoteFactorDelta = 0
+	let movingSolutionFactor
+	let movingSolutionFactorDelta = 0
 	let removeCount           = 0
 	let removeDoneCount       = 0
 	let showTransition        = true
@@ -43,51 +44,54 @@
 	})
 
 	function canRemove(
-		voteFactors,
-		index
+		solutionFactors: IUiSolutionFactor[],
+		index,
+		_delta: number
 	) {
-		return index ? true : voteFactors[1].outcome
+		return index ? true : solutionFactors[1].outcome
 	}
 
 	function factorHighlight(
-		movingVoteFactor,
+		movingSolutionFactor,
 		index,
-		movingVoteFactorDelta
+		_movingSolutionFactorDelta,
+		_container?
 	) {
-		if (!movingVoteFactor || index === movingVoteFactor.index || !container) {
+		if (!movingSolutionFactor || index === movingSolutionFactor.index || !container) {
 			return ''
 		}
 
 		const factorInfo = container.getSync(FACTOR_RANKING_LOGIC).getFactorInfoAtCoords(
-			movingVoteFactor.originalX, movingVoteFactor.pageY, movingVoteFactor.index)
+			movingSolutionFactor.originalX, movingSolutionFactor.pageY, movingSolutionFactor.index)
 
 		return factorInfo && factorInfo.factorNumber === index ? 'highlighted' : ''
 	}
 
 	function factorPosition(
 		$windowWidth,
-		movingVoteFactor
+		movingSolutionFactor,
+		_movingSolutionFactorDelta: number
 	) {
-		if (!movingVoteFactor.moving || !movingVoteFactor.outcome) {
+		if (!movingSolutionFactor.moving || !movingSolutionFactor.outcome) {
 			return ''
 		}
-		// let left = Math.ceil(movingVoteFactor.offset.topLeft.x)
-		// let left = movingVoteFactor.pageX
-		let top = movingVoteFactor.pageY
-		if (movingVoteFactor.offset) {
-			// left -= movingVoteFactor.offset.x
-			top -= movingVoteFactor.offset.y
+		// let left = Math.ceil(movingSolutionFactor.offset.topLeft.x)
+		// let left = movingSolutionFactor.pageX
+		let top = movingSolutionFactor.pageY
+		if (movingSolutionFactor.offset) {
+			// left -= movingSolutionFactor.offset.x
+			top -= movingSolutionFactor.offset.y
 		}
-		const xChange    = movingVoteFactor.originalX - movingVoteFactor.pageX
+		const xChange    = movingSolutionFactor.originalX - movingSolutionFactor.pageX
 		const absXChange = Math.abs(xChange)
-		const absYChange = Math.abs(movingVoteFactor.originalY - movingVoteFactor.pageY)
+		const absYChange = Math.abs(movingSolutionFactor.originalY - movingSolutionFactor.pageY)
 
-		if (movingVoteFactor.index > 0
+		if (movingSolutionFactor.index > 0
 			&& xChange > 0
 			&& absXChange > absYChange
 		) {
-			if (movingVoteFactor.originalTopLeftY) {
-				top = movingVoteFactor.originalTopLeftY
+			if (movingSolutionFactor.originalTopLeftY) {
+				top = movingSolutionFactor.originalTopLeftY
 			}
 		}
 		const topOffset = $windowWidth > 320 ? 189 : 153
@@ -95,20 +99,22 @@
 		// left: ${left}px;
 		return `position: absolute;
 					top: ${top - topOffset}px;
-					width: ${movingVoteFactor.width}px;
+					width: ${movingSolutionFactor.width}px;
 					z-index: 5000`
 	}
 
 	function flyX(
-		voteFactor,
+		solutionFactor: IUiSolutionFactor,
 		// cubeTransition
 	) {
-		return voteFactor.outcome === 'A' ? -200 : 200
+		return solutionFactor.outcome === 'A' ? -200 : 200
 	}
 
-	// cubeTransition ? 0 : voteFactor.outcome === 'A' ? -200 : 200,
+	// cubeTransition ? 0 : solutionFactor.outcome === 'A' ? -200 : 200,
 	function getColor(
-		color
+		color,
+		container,
+		_delta: number
 	) {
 		if (!container) {
 			return 'FFF'
@@ -117,7 +123,9 @@
 	}
 
 	function getTextColor(
-		color
+		color,
+		container,
+		_delta: number
 	) {
 		if (!container) {
 			return '000'
@@ -126,9 +134,10 @@
 	}
 
 	function isB(
-		voteFactor
+		solutionFactor,
+		_delta: number
 	) {
-		return voteFactor.outcome === 'B'
+		return solutionFactor.outcome === 'B'
 	}
 
 	function showPlaceholder(
@@ -139,26 +148,28 @@
 	}
 
 	function showMovePlaceholder(
-		movingVoteFactor,
+		movingSolutionFactor,
 		index,
-		movingVoteFactorDelta
+		_movingSolutionFactorDelta
 	) {
-		return movingVoteFactor && movingVoteFactor.moving
-			&& index === movingVoteFactor.index
+		return movingSolutionFactor && movingSolutionFactor.moving
+			&& index === movingSolutionFactor.index
 	}
 
 	function showPosition(
-		voteFactor
+		solutionFactor: IUiSolutionFactor,
+		_movingSolutionFactor, 
+		_movingSolutionFactorDelta
 	) {
-		return voteFactor.value
+		return solutionFactor.value
 	}
 
 	function sideMatch(
-		voteFactor,
+		solutionFactor: IUiSolutionFactor,
 		outcome,
 		switchingOutcome
 	) {
-		return switchingOutcome || outcome === voteFactor.outcome
+		return switchingOutcome || outcome === solutionFactor.outcome
 	}
 
 	function transitionStyle(
@@ -170,9 +181,9 @@
 	}
 
 	function moveEnd(
-		movingVoteFactor,
-		vote,
-		voteFactors,
+		movingSolutionFactor,
+		solution,
+		solutionFactors,
 		index,
 		event
 	) {
@@ -185,7 +196,7 @@
 			if (!lastMoveStart
 				||
 				// Already added the factor in
-				!movingVoteFactor) {
+				!movingSolutionFactor) {
 				return
 			}
 
@@ -194,13 +205,13 @@
 			const [factorRankingLogic, logicUtils] =
 				      container.getSync(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
 			const factorInfo                       = factorRankingLogic
-				.getFactorInfoAtCoords(voteFactors[index].originalX, usefulEvent.pageY, index)
+				.getFactorInfoAtCoords(solutionFactors[index].originalX, usefulEvent.pageY, index)
 			if (factorInfo && factorInfo.factorNumber >= 0) {
 				index = factorInfo.factorNumber
 			}
 
-			let dx      = movingVoteFactor.pageX - movingVoteFactor.originalX
-			let dy      = movingVoteFactor.pageY - movingVoteFactor.originalY
+			let dx      = movingSolutionFactor.pageX - movingSolutionFactor.originalX
+			let dy      = movingSolutionFactor.pageY - movingSolutionFactor.originalY
 			const absDx = Math.abs(dx)
 			const absDy = Math.abs(dy)
 
@@ -213,41 +224,41 @@
 
 			if (!upButtonClickMove && originalIndex === index) {
 				singleFactorChange(absDx, absDy, addOrRemove, dx, dy, index,
-					originalIndex, upButtonClickMove, vote,
-					voteFactors, factorRankingLogic, logicUtils)
+					originalIndex, upButtonClickMove, solution,
+					solutionFactors, factorRankingLogic, logicUtils)
 			} else {
 				multiFactorChange(absDx, absDy, dy, index,
-					originalIndex, upButtonClickMove, vote,
-					voteFactors, factorRankingLogic, logicUtils)
+					originalIndex, upButtonClickMove, solution,
+					solutionFactors, factorRankingLogic, logicUtils)
 			}
 		} finally {
-			stopVoteFactorMovement(movingVoteFactor)
+			stopSolutionFactorMovement(movingSolutionFactor)
 		}
 	}
 
 	function moveStart(
-		voteFactors,
+		solutionFactors,
 		index,
 		event
 	) {
 		let time         = new Date().getTime()
-		movingVoteFactor = voteFactors[index]
+		movingSolutionFactor = solutionFactors[index]
 
 		const usefulEvent       = event.touches ? event.touches[0] : event
-		movingVoteFactor.index  = index
+		movingSolutionFactor.index  = index
 		// Offset is only recorded once
-		movingVoteFactor.offset = container.getSync(FACTOR_RANKING_LOGIC)
+		movingSolutionFactor.offset = container.getSync(FACTOR_RANKING_LOGIC)
 			.getInElementOffset(usefulEvent)
-		positionMovingVoteFactor(movingVoteFactor, usefulEvent)
-		movingVoteFactor.originalX = movingVoteFactor.pageX
-		movingVoteFactor.originalY = movingVoteFactor.pageY
+		positionMovingSolutionFactor(movingSolutionFactor, usefulEvent)
+		movingSolutionFactor.originalX = movingSolutionFactor.pageX
+		movingSolutionFactor.originalY = movingSolutionFactor.pageY
 
 		const move        = event.factorButtonMove
 		const addOrRemove = event.factorButtonAddOrRemove
 		if (addOrRemove || move) {
-			movingVoteFactor.moving = true
+			movingSolutionFactor.moving = true
 		}
-		movingVoteFactor.width = document.getElementById('factorPlace_' + index).clientWidth
+		movingSolutionFactor.width = document.getElementById('factorPlace_' + index).clientWidth
 
 		lastMoveStart = {
 			index: event.factorButtonMove ? event.factorButtonIndex : index,
@@ -260,7 +271,7 @@
 		if (!addOrRemove) {
 			document.addEventListener('mousemove', onFactorMove)
 			document.addEventListener('touchmove', onFactorMove)
-			voteFactors[index].moving = true
+			solutionFactors[index].moving = true
 		}
 		// console.log('moveStart: ' + index)
 		// console.log(event)
@@ -274,18 +285,19 @@
 	}
 
 	function touchStart(
-		voteFactors,
+		solutionFactors: IUiSolutionFactor[],
 		index,
 		event,
 	) {
 		// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Supporting_both_TouchEvent_and_MouseEvent
 		event.preventDefault()
-		moveStart(voteFactors, index, event)
+		moveStart(solutionFactors, index, event)
 	}
 
 	function upStart(
 		index,
-		event
+		event,
+		_container
 	) {
 		event.factorButtonMove  = true
 		event.factorButtonIndex = index - 1
@@ -306,13 +318,13 @@
 		index,
 		originalIndex,
 		upButtonClickMove,
-		vote,
-		voteFactors,
+		solution,
+		solutionFactors,
 		factorRankingLogic,
 		logicUtils
 	) {
 		if (!addOrRemove && absDx < 10 && absDy < 10) {
-			changeFactorPosition(voteFactors, index, factorRankingLogic)
+			changeFactorPosition(solutionFactors, index, factorRankingLogic)
 		}
 		// Change to 1 factor only
 		else if (addOrRemove || absDx - 10 > absDy) {
@@ -320,8 +332,8 @@
 				addOrRemove = dx > 0 ? 'add' : 'remove'
 			}
 			handleMoveEffects(factorRankingLogic.addOrRemoveAFactor(
-				voteFactors, index, addOrRemove,
-				vote, logicUtils))
+				solutionFactors, index, addOrRemove,
+				solution, logicUtils))
 			// if (addOrRemove === 'add') {
 			// 	setTimeout(() => {
 			// 		move(index, {x: -200, duration: 700})
@@ -329,10 +341,10 @@
 			// }
 		} else if (absDy >= 10 && absDx * 2 < absDy) {
 			const index = factorRankingLogic.getAlternateIndex(
-				absDy, dy, originalIndex, !!voteFactors[2].outcome)
+				absDy, dy, originalIndex, !!solutionFactors[2].outcome)
 			if (index !== originalIndex) {
 				multiFactorChange(absDx, absDy, dy, index,
-					originalIndex, upButtonClickMove, vote, voteFactors,
+					originalIndex, upButtonClickMove, solution, solutionFactors,
 					factorRankingLogic, logicUtils)
 			}
 			// Else a no-op
@@ -347,27 +359,27 @@
 		index,
 		originalIndex,
 		upButtonClickMove,
-		vote,
-		voteFactors,
+		solution,
+		solutionFactors,
 		factorRankingLogic,
 		logicUtils
 	) {
 		// Change across multiple items
 		if (upButtonClickMove || absDy - 10 > absDx) {
-			if (!voteFactors[originalIndex].outcome
-				|| !voteFactors[index].outcome) {
+			if (!solutionFactors[originalIndex].outcome
+				|| !solutionFactors[index].outcome) {
 				return
 			}
 			// Move items
 			if (upButtonClickMove || dy > 0) {
 				handleMoveEffects({
 					numMoved: factorRankingLogic.moveFactorDown(
-						voteFactors, vote, originalIndex, index, logicUtils)
+						solutionFactors, solution, originalIndex, index, logicUtils)
 				})
 			} else {
 				handleMoveEffects({
 					numMoved: factorRankingLogic.moveFactorUp(
-						voteFactors, vote, originalIndex, index, logicUtils)
+						solutionFactors, solution, originalIndex, index, logicUtils)
 				})
 			}
 		}
@@ -375,9 +387,9 @@
 		else if (moveCoords.moveY) {
 			// Add or remove items
 			if (moveCoords.yBy <= 0) {
-				removeFactors(voteFactors, this)
+				removeFactors(solutionFactors, this)
 			} else {
-				addFactors(voteFactors, lastMoveStart.index, index, this)
+				addFactors(solutionFactors, lastMoveStart.index, index, this)
 			}
 		}
 		*/
@@ -385,16 +397,16 @@
 	}
 
 	function changeFactorPosition(
-		voteFactors,
+		solutionFactors,
 		index,
 		factorRankingLogic
 	) {
-		if (!voteFactors[index].outcome) {
+		if (!solutionFactors[index].outcome) {
 			// If the factor isn't shown don't change position
 			return
 		}
 		let outcome = 'B'
-		if (voteFactors[index].outcome === 'B') {
+		if (solutionFactors[index].outcome === 'B') {
 			outcome = 'A'
 		}
 		const lastTimeoutHandle = timeoutHandle
@@ -403,8 +415,8 @@
 		}
 		switchingOutcome = true
 		setTimeout(() => {
-			vote.changeMillis = 1000
-			factorRankingLogic.setOutcome(voteFactors, index, outcome
+			solution.changeMillis = 1000
+			factorRankingLogic.setOutcome(solutionFactors, index, outcome
 				// , true
 			)
 			timeoutHandle = setTimeout(() => {
@@ -431,23 +443,23 @@
 			// Get touch co-ords
 			// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
 			// dispatch 'move-viewport' event
-			positionMovingVoteFactor(movingVoteFactor, position)
+			positionMovingSolutionFactor(movingSolutionFactor, position)
 
 			// If the user is swiping in the factor
-			if (movingVoteFactor.moving && !movingVoteFactor.outcome
-				&& movingVoteFactor.originalX - movingVoteFactor.pageX < -10) {
+			if (movingSolutionFactor.moving && !movingSolutionFactor.outcome
+				&& movingSolutionFactor.originalX - movingSolutionFactor.pageX < -10) {
 				stopMoveEventListening(
-					// movingVoteFactor
+					// movingSolutionFactor
 				)
 				// stopping movement before adding factor to get the slide in animation
-				stopVoteFactorMovement(movingVoteFactor)
+				stopSolutionFactorMovement(movingSolutionFactor)
 				setTimeout(() => {
 					// Proactively swipe in the factor
 					const [factorRankingLogic, logicUtils] =
 						      container.getSync(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
 					handleMoveEffects(
 						factorRankingLogic.addOrRemoveAFactor(
-							voteFactors, movingVoteFactor.index, 1, vote, logicUtils
+							solutionFactors, movingSolutionFactor.index, 1, solution, logicUtils
 						))
 				})
 			}
@@ -473,28 +485,28 @@
 	}
 
 	function stopMoveEventListening(
-		// movingVoteFactor
+		// movingSolutionFactor
 	) {
 		document.removeEventListener('mousemove', onFactorMove)
 		document.removeEventListener('touchmove', onFactorMove)
 	}
 
-	function stopVoteFactorMovement(
-		movingVoteFactor
+	function stopSolutionFactorMovement(
+		movingSolutionFactor
 	) {
-		if (movingVoteFactor) {
-			movingVoteFactor.moving = false
+		if (movingSolutionFactor) {
+			movingSolutionFactor.moving = false
 		}
-		movingVoteFactor = null
+		movingSolutionFactor = null
 		incMovingDelta()
 	}
 
-	function positionMovingVoteFactor(
-		movingVoteFactor,
+	function positionMovingSolutionFactor(
+		movingSolutionFactor,
 		position
 	) {
-		movingVoteFactor.pageX = position.pageX
-		movingVoteFactor.pageY = position.pageY
+		movingSolutionFactor.pageX = position.pageX
+		movingSolutionFactor.pageY = position.pageY
 	}
 
 	function scheduleFactorPlaceholder() {
@@ -512,11 +524,11 @@
 	}
 
 	function incMovingDelta() {
-		movingVoteFactorDelta = movingVoteFactorDelta + 1
+		movingSolutionFactorDelta = movingSolutionFactorDelta + 1
 		setTimeout(() => {
-			movingVoteFactorDelta = movingVoteFactorDelta + 1
+			movingSolutionFactorDelta = movingSolutionFactorDelta + 1
 			setTimeout(() => {
-				movingVoteFactorDelta = movingVoteFactorDelta + 1
+				movingSolutionFactorDelta = movingSolutionFactorDelta + 1
 			}, 100)
 		})
 	}
@@ -631,34 +643,33 @@
 
 </style>
 
-{#if poll}
-{#each voteFactors as voteFactor, i}
+{#if situation}
+{#each solutionFactors as solutionFactor, i}
 <section
-		on:mousedown="{(event) => moveStart(voteFactors, i, event)}"
-		on:mouseup="{(event) => moveEnd(movingVoteFactor, vote, voteFactors, i, event)}"
-		on:touchend="{(event) => moveEnd(movingVoteFactor, vote, voteFactors, i, event)}"
-		on:touchstart="{(event) => touchStart(voteFactors, i, event)}"
+		on:mousedown="{(event) => moveStart(solutionFactors, i, event)}"
+		on:mouseup="{(event) => moveEnd(movingSolutionFactor, solution, solutionFactors, i, event)}"
+		on:touchend="{(event) => moveEnd(movingSolutionFactor, solution, solutionFactors, i, event)}"
+		on:touchstart="{(event) => touchStart(solutionFactors, i, event)}"
 		id="factorPlace_{i}"
 >
-	{#if showPosition(voteFactor, movingVoteFactor, movingVoteFactorDelta)}
+	{#if showPosition(solutionFactor, movingSolutionFactor, movingSolutionFactorDelta)}
 	<figure
 			class="factorFigure"
-			class:isB="{isB(voteFactor, delta)}"
-			class:removingFactor="{removeCount && !voteFactor.outcome}"
-			factorNumber="{i}"
+			class:isB="{isB(solutionFactor, delta)}"
+			class:removingFactor="{removeCount && !solutionFactor.outcome}"
 			id="factor_{i}"
-			style="{factorPosition($windowWidth, voteFactor, movingVoteFactorDelta)}
+			style="{factorPosition($windowWidth, solutionFactor, movingSolutionFactorDelta)}
 					 {transitionStyle(showTransition)}"
-			in:fly='{{x: flyX(voteFactor), duration: 700}}'
+			in:fly='{{x: flyX(solutionFactor), duration: 700}}'
 	>
 		<!--
 			transition:fade
 			-->
-		{#if sideMatch(voteFactor, 'A', switchingOutcome)}
+		{#if sideMatch(solutionFactor, 'A', switchingOutcome)}
 		<var
 				class="factor A
-					{factorHighlight(movingVoteFactor, i, movingVoteFactorDelta, container)}"
-				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, container, delta)};"
+					{factorHighlight(movingSolutionFactor, i, movingSolutionFactorDelta, container)}"
+				style="background-color: #{getColor(situation.factors[solutionFactor.factorNumber].color, container, delta)};"
 		>
 			<!--
 				id="factor_{i}_A"
@@ -667,19 +678,19 @@
 			<header>
 				<CharacterButton
 						character="A"
-						fontSize="20"
-						fontX="12"
-						fontY="19"
-						size="24"
-						strokeWidth="1"
+						fontSize={20}
+						fontX={12}
+						fontY={19}
+						size={24}
+						strokeWidth={1}
 						styles="left: 1px; position: absolute; top: -1px;"
 				></CharacterButton>
-				{poll.factors[voteFactor.factorNumber].name}
-				{#if canRemove(voteFactors, i, delta)}
+				{situation.factors[solutionFactor.factorNumber].name}
+				{#if canRemove(solutionFactors, i, delta)}
 				<MoveButton
 						on:selectStart="{(event) => addOrRemove('remove', event)}"
 						classes="right"
-						size="19"
+						size={19}
 						styles="left: 24px; position: absolute; top: -1.5px"
 				></MoveButton>
 				{/if}
@@ -687,46 +698,46 @@
 				<MoveButton
 						on:selectStart="{(event) => upStart(i, event, container)}"
 						classes="up"
-						size="19"
+						size={19}
 						styles="right: 24px; position: absolute; top: -2px"
 				></MoveButton>
 				{/if}
 			</header>
 			<p
-					style="color: #{getTextColor(poll.factors[voteFactor.factorNumber].color, container, delta)};"
+					style="color: #{getTextColor(situation.factors[solutionFactor.factorNumber].color, container, delta)};"
 			>
-				{poll.factors[voteFactor.factorNumber].positions.A.name}
+				{situation.factors[solutionFactor.factorNumber].positions.A.name}
 			</p>
 		</var>
 		{/if}
-		{#if sideMatch(voteFactor, 'B', switchingOutcome)}
+		{#if sideMatch(solutionFactor, 'B', switchingOutcome)}
 		<!--
 		transition:fly='{x: -200, duration: 1000}'
 		-->
 		<var
 				class="factor B
-					{factorHighlight(movingVoteFactor, i, movingVoteFactorDelta)}"
-				style="background-color: #{getColor(poll.factors[voteFactor.factorNumber].color, container, delta)};"
+					{factorHighlight(movingSolutionFactor, i, movingSolutionFactorDelta)}"
+				style="background-color: #{getColor(situation.factors[solutionFactor.factorNumber].color, container, delta)};"
 		>
 			<!--
 				id="factor_{i}_B"
 				-->
 			<header>
-				{poll.factors[voteFactor.factorNumber].name}
+				{situation.factors[solutionFactor.factorNumber].name}
 				<CharacterButton
 						character="B"
-						fontSize="20"
-						fontX="12"
-						fontY="19"
-						size="24"
-						strokeWidth="1"
+						fontSize={20}
+						fontX={12}
+						fontY={19}
+						size={24}
+						strokeWidth={1}
 						styles="right: 1px; position: absolute; top: -1px;"
 				></CharacterButton>
-				{#if canRemove(voteFactors, i, delta)}
+				{#if canRemove(solutionFactors, i, delta)}
 				<MoveButton
 						on:selectStart="{(event) => addOrRemove('remove', event)}"
 						classes="right"
-						size="19"
+						size={19}
 						styles="left: 24px; position: absolute; top: -1.5px"
 				></MoveButton>
 				{/if}
@@ -734,15 +745,15 @@
 				<MoveButton
 						on:selectStart="{(event) => upStart(i, event, container)}"
 						classes="up"
-						size="19"
+						size={19}
 						styles="right: 24px; position: absolute; top: -2px"
 				></MoveButton>
 				{/if}
 			</header>
 			<p
-					style="color: #{getTextColor(poll.factors[voteFactor.factorNumber].color, container, delta)};"
+					style="color: #{getTextColor(situation.factors[solutionFactor.factorNumber].color, container, delta)};"
 			>
-				{poll.factors[voteFactor.factorNumber].positions.B.name}
+				{situation.factors[solutionFactor.factorNumber].positions.B.name}
 			</p>
 		</var>
 		{/if}
@@ -754,12 +765,12 @@
 
 		<MoveButton
 				on:selectStart="{(event) => addOrRemove('add', event)}"
-				size="19"
+				size={19}
 				styles="left: 32px; position: absolute; top: 42px"
 		></MoveButton>
 	</var>
 	{/if}
-	{#if showMovePlaceholder(movingVoteFactor, i, movingVoteFactorDelta)}
+	{#if showMovePlaceholder(movingSolutionFactor, i, movingSolutionFactorDelta)}
 	<figure>
 		<var
 				class="placeholder"

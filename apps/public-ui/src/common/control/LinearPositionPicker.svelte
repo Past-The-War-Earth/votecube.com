@@ -1,127 +1,127 @@
-<script>
-	import {DI}          from '@airport/di'
-	import {LOGIC_UTILS} from '@votecube/vc-logic'
-	import {
-		createEventDispatcher,
-		onDestroy,
-		onMount
-	}                    from 'svelte'
-	import LeftButton    from './button/LeftButton.svelte'
-	import RightButton   from './button/RightButton.svelte'
+<script lang="ts">
+	import { DI } from "@airport/di";
+	import type { IUiSituation, IUiSolutionFactor } from "@votecube/model";
+	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
+	import { createEventDispatcher, onDestroy, onMount } from "svelte";
+	import LeftButton from "./button/LeftButton.svelte";
+	import RightButton from "./button/RightButton.svelte";
 
-	export let moveDelta
-	export let poll
-	export let voteFactor
+	export let moveDelta: number;
+	export let situation: IUiSituation;
+	export let solutionFactor: IUiSolutionFactor;
 
-	let container
-	let incrementInterval
-	let interval
-	let lastNumIncs
-	let lastVoteFactor
-	let logicUtils
-	let numIncs
-	let numReIncs
-	let outcome
-	let percentChange
-	let positionInput
+	let container;
+	let incrementInterval;
+	let interval;
+	let lastNumIncs;
+	let lastSolutionFactor: IUiSolutionFactor;
+	let logicUtils: ILogicUtils;
+	let numIncs;
+	let numReIncs;
+	let outcome;
+	let percentChange;
+	let positionInput;
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher();
 
 	// valueBottomBorder: ({moveToValueDelta, value}) => getInputBorder(value),
-	$: leftCircleRadius = v(getRadius('A', voteFactor), moveDelta)
-	$: rightCircleRadius = v(getRadius('B', voteFactor), moveDelta)
-	$: leftStrokeWidth = v(getStrokeWidth('A', voteFactor), moveDelta)
-	$: rightStrokeWidth = v(getStrokeWidth('B', voteFactor), moveDelta)
-	$: leftHighlightColor = v(getButtonColor(['B', null], voteFactor), moveDelta)
-	$: rightHighlightColor = v(getButtonColor(['A', null], voteFactor), moveDelta)
-	$: leftFillColor = v(getButtonColor(['A'], voteFactor), moveDelta)
-	$: rightFillColor = v(getButtonColor(['B'], voteFactor), moveDelta)
-	$: factorColor = v(logicUtils && voteFactor.outcome
-		? '#' + logicUtils.getColor(poll.factors[voteFactor.factorNumber].color)
-		: 'initial', moveDelta)
+	$: leftCircleRadius = v(getRadius("A", solutionFactor), moveDelta);
+	$: rightCircleRadius = v(getRadius("B", solutionFactor), moveDelta);
+	$: leftStrokeWidth = v(getStrokeWidth("A", solutionFactor), moveDelta);
+	$: rightStrokeWidth = v(getStrokeWidth("B", solutionFactor), moveDelta);
+	$: leftHighlightColor = v(
+		getButtonColor(["B", null], solutionFactor),
+		moveDelta
+	);
+	$: rightHighlightColor = v(
+		getButtonColor(["A", null], solutionFactor),
+		moveDelta
+	);
+	$: leftFillColor = v(getButtonColor(["A"], solutionFactor), moveDelta);
+	$: rightFillColor = v(getButtonColor(["B"], solutionFactor), moveDelta);
+	$: factorColor = v(
+		logicUtils && solutionFactor.outcome
+			? "#" +
+					logicUtils.getColor(
+						situation.factors[solutionFactor.factorNumber].color
+					)
+			: "initial",
+		moveDelta
+	);
 
-	function v(val) {
-		return val
+	function v<T>(val: T, _delta: number): T {
+		return val;
 	}
 
-	function mouseDown(
-		outcome
-	) {
-		onPress(outcome)
+	function mouseDown(outcome) {
+		onPress(outcome);
 	}
 
-	function mouseUp(
-		event
-	) {
-		event.preventDefault()
+	function mouseUp(event) {
+		event.preventDefault();
 
-		clearIntrvl()
+		clearIntrvl();
 	}
 
 	function moveToValue() {
-		dispatch('moveToValue', positionInput.value)
+		dispatch("moveToValue", positionInput.value);
 		// this.set({moveToValueDelta: this.get().moveToValueDelta + 1})
 	}
 
-	function touchStart(
-		outcome,
-		event
-	) {
-		event.preventDefault()
-		onPress(outcome)
+	function touchStart(outcome, event) {
+		event.preventDefault();
+		onPress(outcome);
 	}
 	onMount(async () => {
-		container  = DI.ui('LinearPositionPicker')
-		logicUtils = await container.get(LOGIC_UTILS)
-	})
+		container = DI.ui("LinearPositionPicker");
+		logicUtils = await container.get(LOGIC_UTILS);
+	});
 
 	onDestroy(() => {
 		// this.refreshListener.cancel()
-		DI.remove(container)
-	})
+		DI.remove(container);
+	});
 
 	async function initPage() {
-		container  = DI.ui('LinearPositionPicker')
-		logicUtils = await container.get(LOGIC_UTILS)
+		container = DI.ui("LinearPositionPicker");
+		logicUtils = await container.get(LOGIC_UTILS);
 	}
 
 	function checkInterval() {
-		numIncs       = numIncs - 1
-		if (lastVoteFactor !== voteFactor) {
-			clearIntrvl()
-			numIncs = 0
-			return
+		numIncs = numIncs - 1;
+		if (lastSolutionFactor !== solutionFactor) {
+			clearIntrvl();
+			numIncs = 0;
+			return;
 		}
-		dispatch('move', {
+		dispatch("move", {
 			outcome,
-			percentChange
-		})
+			percentChange,
+		});
 		if (!numIncs) {
-			clearIntrvl()
-			numReIncs = numReIncs - 1
+			clearIntrvl();
+			numReIncs = numReIncs - 1;
 			if (!numReIncs) {
-				return
+				return;
 			}
-			interval  = interval / 2
-			numIncs   = lastNumIncs * 2
-			percentChange = percentChange * 2
-			lastNumIncs = numIncs
-			setIntrvl(interval)
+			interval = interval / 2;
+			numIncs = lastNumIncs * 2;
+			percentChange = percentChange * 2;
+			lastNumIncs = numIncs;
+			setIntrvl(interval);
 		}
 	}
 
-	function setIntrvl(
-		interval
-	) {
+	function setIntrvl(interval) {
 		incrementInterval = setInterval(() => {
-			checkInterval()
-			dispatch('update')
-		}, interval)
+			checkInterval();
+			dispatch("update");
+		}, interval);
 	}
 
 	function clearIntrvl() {
 		if (incrementInterval) {
-			clearInterval(incrementInterval)
+			clearInterval(incrementInterval);
 		}
 	}
 
@@ -134,64 +134,102 @@
 							: '3px solid red'
 			}*/
 
-	function getRadius(
-		outcome,
-		voteFactor
-	) {
-		return outcome === voteFactor.outcome
-			? 24
-			: 23
+	function getRadius(outcome, solutionFactor: IUiSolutionFactor) {
+		return outcome === solutionFactor.outcome ? 24 : 23;
 	}
 
-	function getStrokeWidth(
-		outcome,
-		voteFactor
-	) {
-		return outcome === voteFactor.outcome
-			? 0
-			: 3
+	function getStrokeWidth(outcome, solutionFactor: IUiSolutionFactor) {
+		return outcome === solutionFactor.outcome ? 0 : 3;
 	}
 
-	function getButtonColor(
-		matchingOutcomes,
-		voteFactor
-	) {
-		return matchingOutcomes.indexOf(voteFactor.outcome) > -1
-			? '000'
-			: 'fff'
+	function getButtonColor(matchingOutcomes, solutionFactor: IUiSolutionFactor) {
+		return matchingOutcomes.indexOf(solutionFactor.outcome) > -1
+			? "000"
+			: "fff";
 	}
-/*
+	/*
 	function updateValue() {
 		setTimeout(() => {
-			positionInput.value = voteFactor.value
+			positionInput.value = solutionFactor.value
 		}, 16)
 	}*/
 
-	function onPress(
-		newOutcome
-	) {
-		percentChange = 1
-		lastNumIncs = 5
-		lastVoteFactor = voteFactor
+	function onPress(newOutcome) {
+		percentChange = 1;
+		lastNumIncs = 5;
+		lastSolutionFactor = solutionFactor;
 
-		dispatch('move', {
+		dispatch("move", {
 			outcome: newOutcome,
-			percentChange
-		})
+			percentChange,
+		});
 
-		interval = 360
-		outcome = newOutcome
-		numIncs = 8
-		numReIncs = 4
-		percentChange = 1
-		setIntrvl(interval)
+		interval = 360;
+		outcome = newOutcome;
+		numIncs = 8;
+		numReIncs = 4;
+		percentChange = 1;
+		setIntrvl(interval);
 
-		dispatch('update')
+		dispatch("update");
 	}
 </script>
 
-<style>
+<tr>
+	<td>
+		<div
+			on:mousedown={() => mouseDown("A")}
+			on:mouseup={mouseUp}
+			on:touchstart={(event) => touchStart("A", event)}
+			on:touchend={mouseUp}
+		>
+			<LeftButton
+				circleRadius={leftCircleRadius}
+				fillColor={leftFillColor}
+				highlightColor={leftHighlightColor}
+				strokeWidth={leftStrokeWidth}
+				styles="left: 0px; position: absolute; top: 0px;"
+			/>
+		</div>
+	</td>
+	<td>
+		<figure
+			class:factor={solutionFactor.value}
+			style="background-color: {factorColor};"
+		>
+			<input
+				maxlength="3"
+				on:input={moveToValue}
+				bind:this={positionInput}
+				value={solutionFactor.value}
+			/>
+			<span>%</span>
+		</figure>
+		<!--
+						style="
+				border-bottom: {valueBottomBorder};
+			"
+			-->
+	</td>
+	<td>
+		<div
+			on:mousedown={() => mouseDown("B")}
+			on:mouseup={mouseUp}
+			on:touchstart={(event) => touchStart("B", event)}
+			on:touchend={mouseUp}
+		>
+			<RightButton
+				circleRadius={rightCircleRadius}
+				fillColor={rightFillColor}
+				highlightColor={rightHighlightColor}
+				strokeWidth={rightStrokeWidth}
+				styles="left: 0px; position: absolute; top: 0px;"
+			/>
+		</div>
+	</td>
+</tr>
 
+<style>
 	div {
 		display: inline-block;
 		height: 50px;
@@ -239,61 +277,4 @@
 		border-radius: 4px;
 		border-top: 10px solid;
 	}
-
 </style>
-
-<tr>
-	<td>
-		<div
-				on:mousedown="{() => mouseDown('A')}"
-				on:mouseup="{mouseUp}"
-				on:touchstart="{(event) => touchStart('A', event)}"
-				on:touchend="{mouseUp}"
-		>
-			<LeftButton
-					circleRadius="{leftCircleRadius}"
-					fillColor="{leftFillColor}"
-					highlightColor="{leftHighlightColor}"
-					strokeWidth="{leftStrokeWidth}"
-					styles="left: 0px; position: absolute; top: 0px;"
-			></LeftButton>
-		</div>
-	</td>
-	<td>
-		<figure
-				class:factor="{voteFactor.value}"
-				style="background-color: {factorColor};"
-		>
-
-			<input
-					maxlength="3"
-					on:input="{moveToValue}"
-					bind:this="{positionInput}"
-					value="{voteFactor.value}"
-			>
-			<span>%</span>
-		</figure>
-		<!--
-						style="
-				border-bottom: {valueBottomBorder};
-			"
-			-->
-	</td>
-	<td
-	>
-		<div
-				on:mousedown="{() => mouseDown('B')}"
-				on:mouseup="{mouseUp}"
-				on:touchstart="{(event) => touchStart('B', event)}"
-				on:touchend="{mouseUp}"
-		>
-			<RightButton
-					circleRadius="{rightCircleRadius}"
-					fillColor="{rightFillColor}"
-					highlightColor="{rightHighlightColor}"
-					strokeWidth="{rightStrokeWidth}"
-					styles="left: 0px; position: absolute; top: 0px;"
-			></RightButton>
-		</div>
-	</td>
-</tr>
