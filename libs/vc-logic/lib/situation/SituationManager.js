@@ -14,6 +14,9 @@ export class SituationManager {
         return this.theCachedSituation;
     }
     async getSituation(repositoryUuId) {
+        if (!repositoryUuId || repositoryUuId === 'unsolved') {
+            return this.cachedSituation.ui;
+        }
         return null;
     }
     async getAllSituations() {

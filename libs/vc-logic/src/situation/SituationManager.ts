@@ -9,7 +9,7 @@ import {
 	IUiSituation,
 	IUiCategory,
 } from '@votecube/model'
-import { Situation, SituationApiClient } from '@votecube/votecube'
+import { SituationApiClient } from '@votecube/votecube'
 import {
 	CUBE_LOGIC,
 	LOGIC_UTILS,
@@ -29,7 +29,7 @@ export interface ISituationManager {
 
 	getSituation(
 		repositoryUuId: string
-	): Promise<DeepPartial<Situation>>
+	): Promise<DeepPartial<IUiSituation>>
 
 	getAllSituations(): Promise<IUiSituation[]>
 
@@ -76,7 +76,11 @@ export class SituationManager
 
 	async getSituation(
 		repositoryUuId: string
-	): Promise<DeepPartial<Situation>> {
+	): Promise<DeepPartial<IUiSituation>> {
+		if (!repositoryUuId || repositoryUuId === 'unsolved') {
+			return this.cachedSituation.ui
+		}
+
 		return null
 	}
 

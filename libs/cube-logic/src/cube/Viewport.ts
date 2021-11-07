@@ -2,7 +2,7 @@ import {
 	container,
 	DI
 } from '@airport/di'
-import { Outcome_Ordinal } from '..'
+import { Outcome_Ordinal } from './mutation/types'
 import {
 	CUBE_MOVE_MATRIX,
 	CUBE_MOVEMENT,

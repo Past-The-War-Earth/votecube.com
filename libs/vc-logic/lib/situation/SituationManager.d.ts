@@ -1,13 +1,13 @@
 import { DeepPartial } from '@airport/pressurization';
 import { IFieldGroup } from '@votecube/forms';
 import { IUiSolution, IUiSituation, IUiCategory } from '@votecube/model';
-import { Situation, SituationApiClient } from '@votecube/votecube';
+import { SituationApiClient } from '@votecube/votecube';
 export interface IPageSolution extends IUiSolution {
     changeMillis?: number;
 }
 export interface ISituationManager {
     cachedSituation: ICachedSituation;
-    getSituation(repositoryUuId: string): Promise<DeepPartial<Situation>>;
+    getSituation(repositoryUuId: string): Promise<DeepPartial<IUiSituation>>;
     getAllSituations(): Promise<IUiSituation[]>;
     getSituationsForCategory(category: IUiCategory): Promise<IUiSituation[]>;
     getLeafSituations(stemSituationRepositoryUuId: string): Promise<IUiSituation[]>;
@@ -24,7 +24,7 @@ export declare class SituationManager implements ISituationManager {
     situationApi: SituationApiClient;
     private theCachedSituation;
     get cachedSituation(): ICachedSituation;
-    getSituation(repositoryUuId: string): Promise<DeepPartial<Situation>>;
+    getSituation(repositoryUuId: string): Promise<DeepPartial<IUiSituation>>;
     getAllSituations(): Promise<IUiSituation[]>;
     getSituationsForCategory(category: IUiCategory): Promise<IUiSituation[]>;
     getLeafSituations(stemSituationRepositoryUuId: string): Promise<IUiSituation[]>;

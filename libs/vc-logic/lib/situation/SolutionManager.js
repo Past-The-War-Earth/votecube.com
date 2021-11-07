@@ -4,7 +4,7 @@ export class SolutionManager {
     async getSolutionForSituation(
     // User-information is in AIRport
     situationRepositoryUuid) {
-        if (!situationRepositoryUuid) {
+        if (!situationRepositoryUuid || situationRepositoryUuid === 'unsolved') {
             return this.getStubSolution();
         }
         // TODO: add AIRport call for data
@@ -25,7 +25,7 @@ export class SolutionManager {
                 value: 33
             },
             3: {
-                factorNumber: 2,
+                factorNumber: 3,
                 outcome: 'B',
                 value: 34
             }

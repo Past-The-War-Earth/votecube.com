@@ -30,7 +30,7 @@ export class SolutionManager
 		situationRepositoryUuid: string
 	): Promise<IUiSolution> {
 
-		if (!situationRepositoryUuid) {
+		if (!situationRepositoryUuid || situationRepositoryUuid === 'unsolved') {
 			return this.getStubSolution()
 		}
 
@@ -58,7 +58,7 @@ export class SolutionManager
 				value: 33
 			},
 			3: {
-				factorNumber: 2,
+				factorNumber: 3,
 				outcome: 'B',
 				value: 34
 			}

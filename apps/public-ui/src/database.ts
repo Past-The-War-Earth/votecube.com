@@ -1,4 +1,4 @@
-import {MUTATION_API} from '@votecube/cube-logic'
+import {ICubeEventListener, MUTATION_API} from '@votecube/cube-logic'
 import {ICubeLogic, pageTitle, SITUATION_MANAGER, SOLUTION_MANAGER} from '@votecube/vc-logic'
 import type { IUiSolution } from '../../../libs/cube-logic/node_modules/@votecube/model/lib';
 import type { IUiSituation } from '../../../libs/cube-logic/node_modules/@votecube/model/lib';
@@ -14,7 +14,7 @@ export async function init() {
 export async function setupCubeView(
     repositoryUuId: string,
     cubeLogic: ICubeLogic,
-    cubeEventListener,
+    cubeEventListener: ICubeEventListener,
     container
 ): Promise<{
     situation: IUiSituation,

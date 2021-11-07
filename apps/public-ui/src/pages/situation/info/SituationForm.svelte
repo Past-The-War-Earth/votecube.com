@@ -89,7 +89,7 @@ return !form.fields.locations.isOriginal()
         return modified
             ? '0b0'
             : 'b00'
-    })
+    }, delta)
     // timeframe: ({form}) => form ? form.fields.timeframe : null
 
     /*
@@ -209,7 +209,7 @@ return !form.fields.locations.isOriginal()
         form && form.clearComponents()
     })
 
-    function f(func) {
+    function f<T>(func: () => T, _delta: number): T {
         return func()
     }
 
