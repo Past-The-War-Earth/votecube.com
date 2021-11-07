@@ -91,6 +91,7 @@
 	<div class="pure-control-group">
 		<Text
 				field="{form.fields.name}"
+				floatLabel={false}
 		></Text>
 	</div>
 	<div
@@ -109,7 +110,8 @@
 			></CharacterButton>
 			<TextArea
 					field="{form.fields.positions.fields.A}"
-					mid="{true}"
+					floatLabel={false}
+					mid={true}
 			></TextArea>
 		</div>
 		<div
@@ -125,7 +127,8 @@
 			></CharacterButton>
 			<TextArea
 					field="{form.fields.positions.fields.B}"
-					mid="{true}"
+					floatLabel={false}
+					mid={true}
 			></TextArea>
 		</div>
 	</div>

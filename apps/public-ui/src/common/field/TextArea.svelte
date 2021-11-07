@@ -1,95 +1,159 @@
-<svelte:options immutable/>
+<svelte:options immutable />
 
-<script>
-	import {
-		forms,
-		textToast
-	} from '@votecube/vc-logic'
-	import {
-		onDestroy,
-		onMount
-	}                  from 'svelte'
-	import ClearIcon from '../icon/ClearIcon.svelte'
-	import InfoIcon  from '../icon/InfoIcon.svelte'
-	import UndoIcon  from '../icon/UndoIcon.svelte'
+<script type="ts">
+	import type { IComponent, IField, IFieldBase, IMatchingField } from "@votecube/forms";
 
-	export let field
-	export let floatLabel  = true
-	export let mid  = false
-	export let mini = false
+	import { forms, textToast } from "@votecube/vc-logic";
+	import { onDestroy, onMount } from "svelte";
+	import ClearIcon from "../icon/ClearIcon.svelte";
+	import InfoIcon from "../icon/InfoIcon.svelte";
+	import UndoIcon from "../icon/UndoIcon.svelte";
 
-	let delta       = 0
-	let isOriginal               = true
-	let isValid                  = false
+	export let field: IMatchingField;
+	export let floatLabel = true;
+	export let mid = false;
+	export let mini = false;
 
-	let formHandle = {
+	let delta = 0;
+	let isOriginal = true;
+	let isValid = false;
+
+	let formHandle: IFieldBase & IComponent = {
 		setDelta(newDelta) {
-			delta = newDelta
+			delta = newDelta;
 		},
 		setIsValid(newIsValid) {
-			isValid = newIsValid
+			isValid = newIsValid;
 		},
 		setIsOriginal(newIsOriginal) {
-			isOriginal = newIsOriginal
-		}
-	}
+			isOriginal = newIsOriginal;
+		},
+	} as any;
 
 	$: charCount = f(() => {
-		const separator = mid || mini ? '/' : ' / '
+		const separator = mid || mini ? "/" : " / ";
 		return field.rules.maxLength
-			? `${field.value ? field.value.length : 0}${separator}${field.rules.maxLength}`
-			: ''
-	}, delta)
-	$: errors = v(field.errors, delta)
-	$: label = v(field.label, delta)
-	$: displayMatches = v(field.displayMatches(), delta)
-	$: matches = v(field.matches, delta)
+			? `${field.displayValue ? field.displayValue.length : 0}${separator}${
+					field.rules.maxLength
+			  }`
+			: "";
+	}, delta);
+	$: errors = v(field.errors, delta);
+	$: label = v(field.label, delta);
+	$: displayMatches = v(field.displayMatches(), delta);
+	$: matches = v(field.matches, delta);
+	$: maxlength = v(field.rules.maxLength as number, delta)
 	$: modified = v(
-		!errors.length && field.rules.trackOriginal && !field.theIsOriginal, delta)
-	$: placeholder = v(field.placeholder, delta)
-	$: requiredInvalid = v(field.validatorMap.required && errors.length, delta)
-	$: requiredValid = v(!modified && field.validatorMap.required && !errors.length, delta)
-	$: touched = v(field.touched, delta)
-	$: trackOriginal = v(field.rules.trackOriginal, delta)
-	$: value = v(field.displayValue, delta)
+		!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
+		delta
+	);
+	$: placeholder = v(field.placeholder, delta);
+	$: requiredInvalid = v(field.validatorMap.required && errors.length, delta);
+	$: requiredValid = v(
+		!modified && field.validatorMap.required && !errors.length,
+		delta
+	);
+	$: touched = v(field.touched, delta);
+	$: trackOriginal = v(field.rules.trackOriginal, delta);
+	$: value = v(field.displayValue, delta);
 
-	onMount(() => field.setAsField(formHandle))
-	onDestroy(() => field.removeComponent(formHandle))
+	onMount(() => field.setAsField(formHandle));
+	onDestroy(() => field.removeComponent(formHandle));
 
-	function f(func) {
-		return func()
+	function f<T>(func: () => T, _delta: number): T {
+		return func();
 	}
 
-	function v(val) {
-		return val
+	function v<T>(val: T, _delta: number): T {
+		return val;
 	}
 
 	function clear() {
-		field.clear()
+		field.clear();
 	}
 
 	function help() {
-		const text = field.text
-		textToast.toggle(text.info, text.infoSeconds)
+		const text = field.text;
+		textToast.toggle(text.info, text.infoSeconds);
 	}
 
 	function onBlur(event) {
-		field.onBlur()
+		field.onBlur();
 	}
 
 	function onInput(event) {
-		field.value = event.target.value
-		field.onInput()
+		field.value = event.target.value;
+		field.onInput();
 	}
 
 	function revert() {
-		field.revert()
+		field.revert();
 	}
-
 </script>
 
-<style>
+{#if $forms}
+	<div class="textArea">
+		{#if floatLabel}
+			<label class="field-label" for={field.id}>
+				{label}
+			</label>
+		{/if}
+		{#if displayMatches}
+			<a href="/#">{matches.length} matches</a>
+		{/if}
+		<section
+			class="field fieldBox"
+			class:invalid={touched && errors.length}
+			class:modified
+			class:requiredInvalid
+			class:requiredValid
+		>
+			<div class="text" class:mid class:mini>
+				<!--		            use:id="{id}"-->
+				<textarea
+					class:mid
+					class:mini
+					id={field.id}
+					on:blur={onBlur}
+					on:input={onInput}
+					{placeholder}
+					type="text"
+					maxlength={maxlength}
+					rows="5"
+					{value}
+				/>
+			</div>
+			<div class="icons" class:mid class:mini>
+				<div class="multiRowIconsCenter">
+					{#if trackOriginal}
+						<UndoIcon on:click={revert} multiLine={true} />
+					{:else}
+						<ClearIcon on:click={clear} multiLine={true} />
+					{/if}
+					<InfoIcon on:click={help} multiLine={true} />
+				</div>
+			</div>
+		</section>
+		<table>
+			<tr>
+				<td>
+					{#if touched}
+						{#each errors as error}
+							<span class="pure-form-message error"
+								>{error.message}</span
+							>
+						{/each}
+					{/if}
+				</td>
+				<td class:mid class:mini>
+					{charCount}
+				</td>
+			</tr>
+		</table>
+	</div>
+{/if}
 
+<style>
 	a {
 		display: inline-block;
 		position: absolute;
@@ -132,7 +196,7 @@
 		margin: 0;
 		margin-top: 8px;
 		padding-left: 5px;
-		mini-align: text-bottom;
+		text-align: text-bottom;
 		width: 100%;
 	}
 
@@ -179,92 +243,4 @@
 		position: relative;
 		text-align: left;
 	}
-
 </style>
-
-{#if $forms}
-<div
-		class="textArea"
->
-	{#if floatLabel}
-	<label
-			class="field-label"
-			for="{field.id}"
-	>
-		{label}
-	</label>
-	{/if}
-	{#if displayMatches}
-	<a href="/#">{matches.length} matches</a>
-	{/if}
-	<section
-			class="field fieldBox"
-			class:invalid="{touched && errors.length}"
-			class:modified="{modified}"
-			class:requiredInvalid="{requiredInvalid}"
-			class:requiredValid="{requiredValid}"
-	>
-		<div
-				class="text"
-				class:mid="{mid}"
-				class:mini="{mini}"
-		>
-			<!--		            use:id="{id}"-->
-			<textarea
-					class:mid="{mid}"
-					class:mini="{mini}"
-					id="{field.id}"
-					on:blur="{onBlur}"
-					on:input="{onInput}"
-					placeholder="{placeholder}"
-					type="text"
-					maxlength="{field.rules.maxLength}"
-					rows="5"
-					value="{value}"
-			/>
-		</div>
-		<div
-				class="icons"
-				class:mid="{mid}"
-				class:mini="{mini}"
-		>
-			<div
-					class="multiRowIconsCenter"
-			>
-				{#if trackOriginal}
-				<UndoIcon
-						on:click="{revert}"
-						multiLine="y"
-				></UndoIcon>
-				{:else}
-				<ClearIcon
-						on:click="{clear}"
-						multiLine="y"
-				></ClearIcon>
-				{/if}
-				<InfoIcon
-						on:click="{help}"
-						multiLine="y"
-				></InfoIcon>
-			</div>
-		</div>
-	</section>
-	<table>
-		<tr>
-			<td>
-				{#if touched}
-				{#each errors as error}
-				<span class="pure-form-message error">{error.message}</span>
-				{/each}
-				{/if}
-			</td>
-			<td
-					class:mid="{mid}"
-					class:mini="{mini}"
-			>
-				{charCount}
-			</td>
-		</tr>
-	</table>
-</div>
-{/if}

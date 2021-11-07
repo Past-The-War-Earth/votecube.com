@@ -234,7 +234,7 @@ return !form.fields.locations.isOriginal()
         }
 
         if (!$routeParams.repositoryUuId) {
-            $routeParams.repositoryUuId = ''
+            $routeParams.repositoryUuId = 'unsolved'
         }
 
         forms.navigateOnValid(form, SITUATION_MAIN, $routeParams)
@@ -305,9 +305,9 @@ return !form.fields.locations.isOriginal()
                 ></CharacterButton>
                 <TextArea
                         field="{form.fields.outcomes.fields.A}"
-                        floatLabel="{false}"
-                        mid="{false}"
-                        mini="{true}"
+                        floatLabel={false}
+                        mid={false}
+                        mini={true}
                 ></TextArea>
             </div>
             <div
@@ -323,9 +323,9 @@ return !form.fields.locations.isOriginal()
                 ></CharacterButton>
                 <TextArea
                         field="{form.fields.outcomes.fields.B}"
-                        floatLabel="{false}"
-                        mid="{false}"
-                        mini="{true}"
+                        floatLabel={false}
+                        mid={false}
+                        mini={true}
                 ></TextArea>
             </div>
         </div>
