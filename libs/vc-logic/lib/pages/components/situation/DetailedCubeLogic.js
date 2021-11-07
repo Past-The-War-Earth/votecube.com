@@ -1,7 +1,7 @@
 import { DI } from '@airport/di';
 import { CUBE_LOGIC, DETAILED_CUBE_LOGIC, LOGIC_UTILS } from '../../../tokens';
 export class DetailedCubeLogic {
-    async getCubeSides(uiPollRevision, container) {
+    async getCubeSides(situation, container) {
         const [cubeLogic, logicUtils] = await container.get(CUBE_LOGIC, LOGIC_UTILS);
         const cubeSides = cubeLogic.getDefaultCubePositions();
         const cubeSideMap = {
@@ -13,8 +13,8 @@ export class DetailedCubeLogic {
             cubeSideMap[cubeSide.axis][cubeSide.dir]
                 = cubeSide;
         }
-        for (const factorNumber in uiPollRevision.factors) {
-            const factor = uiPollRevision.factors[factorNumber];
+        for (const factorNumber in situation.factors) {
+            const factor = situation.factors[factorNumber];
             for (const outcome in factor.positions) {
                 const position = factor.positions[outcome];
                 const cubeSide = cubeSideMap[factor.axis][position.dir];

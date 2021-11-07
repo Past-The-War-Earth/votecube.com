@@ -57,7 +57,8 @@ export class MatchingField extends Field {
                 id: {
                     actorId: null,
                     actorRecordId: null,
-                    repositoryId: null
+                    repositoryId: null,
+                    repositoryUuId: ''
                 },
                 text: textOrValue
             };

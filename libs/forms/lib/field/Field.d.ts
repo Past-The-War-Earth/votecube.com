@@ -14,6 +14,7 @@ export interface IFieldRules {
 export interface IFieldText {
     errors?: IErrorsText;
     info: string;
+    infoSeconds?: number;
     label: string;
 }
 export interface IValidate {

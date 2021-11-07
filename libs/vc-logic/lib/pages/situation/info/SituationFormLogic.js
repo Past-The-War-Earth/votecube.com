@@ -2,8 +2,8 @@ import { container, DI } from '@airport/di';
 import { SITUATION_FORM_LOGIC, SITUATION_FORM_MANAGER } from '../../../tokens';
 export class SituationFormLogic {
     async getSituationForm(cachedSituation, trackOriginal, touch, text, formFactory) {
-        const pollFormManager = await container(this).get(SITUATION_FORM_MANAGER);
-        const form = await this.createPollForm(
+        const situationFormManager = await container(this).get(SITUATION_FORM_MANAGER);
+        const form = await this.createSituationForm(
         // labels,
         // locations,
         text.UI, formFactory);
@@ -12,7 +12,7 @@ export class SituationFormLogic {
         cachedSituation.form = form;
         // form.fields.locations.optionText = text.LOCATIONS
         if (cachedSituation.ui) {
-            form.setValue(pollFormManager.toForm(cachedSituation.ui), true
+            form.setValue(situationFormManager.toForm(cachedSituation.ui), true
             // !currentCachedSituation.ui.draft
             );
             form.validate();
@@ -22,7 +22,7 @@ export class SituationFormLogic {
         }
         return form;
     }
-    async createPollForm(
+    async createSituationForm(
     // labelData,
     // locationsData,
     uiText, formFactory) {

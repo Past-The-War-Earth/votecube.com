@@ -97,7 +97,7 @@ export class SituationFormManager
 			uiRepositoryRecord.actorRecordId = null
 			uiRepositoryRecord.ageSuitability = null
 			uiRepositoryRecord.repositoryId = null
-			uiRepositoryRecord.repositoryUuId = ''
+			uiRepositoryRecord.repositoryUuId = 'unsolved'
 		} else {
 			uiRepositoryRecord.actorId = formField.id.actorId
 			uiRepositoryRecord.actorRecordId = formField.id.actorRecordId

@@ -22,7 +22,7 @@ export class CubeLogic {
                 dir: -1
             }];
     }
-    getPollFactorPositionDefault() {
+    getSituationFactorPositionDefault() {
         const defaultCubePositions = this.getDefaultCubePositions();
         return {
             1: this.getFactorPositionDefault(defaultCubePositions[0], defaultCubePositions[5]),

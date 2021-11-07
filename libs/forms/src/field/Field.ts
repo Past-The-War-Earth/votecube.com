@@ -25,6 +25,7 @@ export interface IFieldRules {
 export interface IFieldText {
 	errors?: IErrorsText
 	info: string
+	infoSeconds?: number // Delay before info is displayed
 	label: string
 }
 

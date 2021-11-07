@@ -5,7 +5,7 @@ export interface ISituationFormLogic {
 }
 export declare class SituationFormLogic implements ISituationFormLogic {
     getSituationForm(cachedSituation: ICachedSituation, trackOriginal: boolean, touch: boolean, text: any, formFactory: IFormFactory): Promise<IFieldGroup>;
-    private createPollForm;
+    private createSituationForm;
     private findOutcomeMatches;
     private findFactorMatches;
     private findPositionMatches;

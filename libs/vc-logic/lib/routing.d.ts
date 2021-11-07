@@ -5,7 +5,7 @@ export declare const RELEASE_PLAN: Route_Path;
 export declare const FACTOR_INFO_MAIN: Route_Path;
 export declare const FACTOR_LIST: Route_Path;
 export declare const SITUATION_LIST: Route_Path;
-export declare const VARIATION_LIST: Route_Path;
+export declare const DERIVATION_LIST: Route_Path;
 export declare const SITUATION_FORM: Route_Path;
 export declare const SITUATION_MAIN: Route_Path;
 export declare const SITUATION_LOCATIONS: Route_Path;

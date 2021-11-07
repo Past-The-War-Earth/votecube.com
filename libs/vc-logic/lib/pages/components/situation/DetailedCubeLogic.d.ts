@@ -25,7 +25,7 @@ export interface ICubeSideMap {
 }
 export declare type SwitchToDefinition = ['x' | 'y' | 'z', -1 | 1];
 export interface IDetailedCubeLogic {
-    getCubeSides(uiPollRevision: IUiSituation, container: IChildContainer): Promise<{
+    getCubeSides(situation: IUiSituation, container: IChildContainer): Promise<{
         cubeSideMap: ICubeSideMap;
         cubeSides: ICubeSide[];
     }>;
@@ -33,7 +33,7 @@ export interface IDetailedCubeLogic {
     switchPoles(cubeSideMap: ICubeSideMap, cubeSide: ICubeSide): void;
 }
 export declare class DetailedCubeLogic implements IDetailedCubeLogic {
-    getCubeSides(uiPollRevision: IUiSituation, container: IChildContainer): Promise<{
+    getCubeSides(situation: IUiSituation, container: IChildContainer): Promise<{
         cubeSideMap: ICubeSideMap;
         cubeSides: ICubeSide[];
     }>;
