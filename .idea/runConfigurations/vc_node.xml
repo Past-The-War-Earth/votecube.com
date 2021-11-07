@@ -1,5 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="vc-node" type="NodeJSConfigurationType" node-parameters="--experimental-specifier-resolution=node" path-to-js-file="lib/index.js" working-dir="$PROJECT_DIR$/apps/vc-node">
-    <method v="2" />
-  </configuration>
-</component>
