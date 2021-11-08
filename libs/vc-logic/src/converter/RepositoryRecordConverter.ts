@@ -1,8 +1,24 @@
 import { IUiRepositoryRecord } from "@votecube/model";
 import type { RepositoryEntity } from "@airport/holding-pattern";
 import { DeepPartial } from "@airport/pressurization";
+import { DI } from "@airport/di";
+import { REPOSITORY_RECORD_CONVERTER } from "../tokens";
 
-export class RepositoryRecordConverter {
+export interface IRepositoryRecordConverter {
+
+    dbToUi(
+        dbRepositoryEntity: DeepPartial<RepositoryEntity>
+    ): IUiRepositoryRecord
+
+    uiToDb(
+        uiRepositoryRecord: IUiRepositoryRecord,
+        ageSuitability: 0 | 7 | 13 | 18
+    ): DeepPartial<DeepPartial<RepositoryEntity>>
+
+}
+
+export class RepositoryRecordConverter
+    implements IRepositoryRecordConverter {
 
     dbToUi(
         dbRepositoryEntity: DeepPartial<RepositoryEntity>
@@ -22,8 +38,8 @@ export class RepositoryRecordConverter {
         ageSuitability: 0 | 7 | 13 | 18 = null
     ): DeepPartial<DeepPartial<RepositoryEntity>> {
         if (uiRepositoryRecord.ageSuitability || uiRepositoryRecord.ageSuitability === 0) {
-			ageSuitability = uiRepositoryRecord.ageSuitability
-		}
+            ageSuitability = uiRepositoryRecord.ageSuitability
+        }
         return {
             actor: {
                 id: uiRepositoryRecord.actorId,
@@ -39,3 +55,4 @@ export class RepositoryRecordConverter {
     }
 
 }
+DI.set(REPOSITORY_RECORD_CONVERTER, RepositoryRecordConverter)

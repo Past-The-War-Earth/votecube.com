@@ -12,21 +12,23 @@ import {
 	EntityId,
 	getSchemaName
 }                      from '@airport/ground-control';
-import { QCategory } from './qcategory';
 import { QFactor } from './factor/qfactor';
+import { QLabel } from './qlabel';
 import { QOutcome } from './situation/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QSituation } from './situation/qsituation';
 import { QSituationFactorPosition } from './situation/qsituationfactorposition';
+import { QSituationLabel } from './situation/qsituationlabel';
 import { QSolution } from './solution/qsolution';
 import { QSolutionFactor } from './solution/qsolutionfactor';
 import {
-  Category,
   Factor,
+  Label,
   Outcome,
   Position,
   Situation,
   SituationFactorPosition,
+  SituationLabel,
   Solution,
   SolutionFactor
 } from '../ddl/ddl';
@@ -35,24 +37,26 @@ export interface LocalQSchema extends AirportQSchema {
 
   db: DbSchema;
 
-	Category: QCategory;
 	Factor: QFactor;
+	Label: QLabel;
 	Outcome: QOutcome;
 	Position: QPosition;
 	Situation: QSituation;
 	SituationFactorPosition: QSituationFactorPosition;
+	SituationLabel: QSituationLabel;
 	Solution: QSolution;
 	SolutionFactor: QSolutionFactor;
 
 }
 
 const __constructors__ = {
-	Category: Category,
 	Factor: Factor,
+	Label: Label,
 	Outcome: Outcome,
 	Position: Position,
 	Situation: Situation,
 	SituationFactorPosition: SituationFactorPosition,
+	SituationLabel: SituationLabel,
 	Solution: Solution,
 	SolutionFactor: SolutionFactor
 };

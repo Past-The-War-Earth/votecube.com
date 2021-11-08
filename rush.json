@@ -18,11 +18,6 @@
       "projectFolder": "apps/public-ui",
       "shouldPublish": true
     },
-    {
-      "packageName": "@votecube/vc-ui",
-      "projectFolder": "apps/vc-ui",
-      "shouldPublish": true
-    },
     // "libs" folder (alphabetical order)
     {
       "packageName": "@votecube/cube-logic",

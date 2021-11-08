@@ -1,18 +1,5 @@
 /* eslint-disable */
 import {
-	ICategory,
-} from './category';
-import {
-	CategoryESelect,
-	CategoryECreateColumns,
-	CategoryECreateProperties,
-	CategoryEUpdateColumns,
-	CategoryEUpdateProperties,
-	CategoryEId,
-	CategoryGraph,
-	QCategory,
-} from './qcategory';
-import {
 	IFactor,
 } from './factor/factor';
 import {
@@ -25,6 +12,19 @@ import {
 	FactorGraph,
 	QFactor,
 } from './factor/qfactor';
+import {
+	ILabel,
+} from './label';
+import {
+	LabelESelect,
+	LabelECreateColumns,
+	LabelECreateProperties,
+	LabelEUpdateColumns,
+	LabelEUpdateProperties,
+	LabelEId,
+	LabelGraph,
+	QLabel,
+} from './qlabel';
 import {
 	IOutcome,
 } from './situation/outcome';
@@ -77,6 +77,19 @@ import {
 	SituationFactorPositionGraph,
 	QSituationFactorPosition,
 } from './situation/qsituationfactorposition';
+import {
+	ISituationLabel,
+} from './situation/situationlabel';
+import {
+	SituationLabelESelect,
+	SituationLabelECreateColumns,
+	SituationLabelECreateProperties,
+	SituationLabelEUpdateColumns,
+	SituationLabelEUpdateProperties,
+	SituationLabelEId,
+	SituationLabelGraph,
+	QSituationLabel,
+} from './situation/qsituationlabel';
 import {
 	ISolution,
 } from './solution/solution';
@@ -152,34 +165,6 @@ export class SQDIDao<Entity,
 }
 
 
-export interface IBaseCategoryDao
-  extends IDao<ICategory, CategoryESelect, CategoryECreateProperties, CategoryEUpdateColumns, CategoryEUpdateProperties, CategoryEId, CategoryGraph, QCategory> {
-}
-
-export class BaseCategoryDao
-  extends SQDIDao<ICategory, CategoryESelect, CategoryECreateProperties, CategoryEUpdateColumns, CategoryEUpdateProperties, CategoryEId, CategoryGraph, QCategory>
-	implements IBaseCategoryDao {
-	
-	static Find      = new DaoQueryDecorators<CategoryESelect>();
-	static FindOne   = new DaoQueryDecorators<CategoryESelect>();
-	static Search    = new DaoQueryDecorators<CategoryESelect>();
-	static SearchOne = new DaoQueryDecorators<CategoryESelect>();
-	static Save(
-		config: CategoryGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<CategoryGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(0)
-	}
-	
-	constructor() {
-		super(0)
-	}
-}
-
-
 export interface IBaseFactorDao
   extends IDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> {
 }
@@ -199,11 +184,39 @@ export class BaseFactorDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(2)
+		super(1)
+	}
+}
+
+
+export interface IBaseLabelDao
+  extends IDao<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel> {
+}
+
+export class BaseLabelDao
+  extends SQDIDao<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel>
+	implements IBaseLabelDao {
+	
+	static Find      = new DaoQueryDecorators<LabelESelect>();
+	static FindOne   = new DaoQueryDecorators<LabelESelect>();
+	static Search    = new DaoQueryDecorators<LabelESelect>();
+	static SearchOne = new DaoQueryDecorators<LabelESelect>();
+	static Save(
+		config: LabelGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<LabelGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(6)
+	}
+	
+	constructor() {
+		super(6)
 	}
 }
 
@@ -227,11 +240,11 @@ export class BaseOutcomeDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(3)
+		super(2)
 	}
 }
 
@@ -255,11 +268,11 @@ export class BasePositionDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
-		super(1)
+		super(0)
 	}
 }
 
@@ -283,11 +296,11 @@ export class BaseSituationDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(7)
+		return duoDiSet(8)
 	}
 	
 	constructor() {
-		super(7)
+		super(8)
 	}
 }
 
@@ -311,11 +324,39 @@ export class BaseSituationFactorPositionDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(6)
+		return duoDiSet(5)
 	}
 	
 	constructor() {
-		super(6)
+		super(5)
+	}
+}
+
+
+export interface IBaseSituationLabelDao
+  extends IDao<ISituationLabel, SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel> {
+}
+
+export class BaseSituationLabelDao
+  extends SQDIDao<ISituationLabel, SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel>
+	implements IBaseSituationLabelDao {
+	
+	static Find      = new DaoQueryDecorators<SituationLabelESelect>();
+	static FindOne   = new DaoQueryDecorators<SituationLabelESelect>();
+	static Search    = new DaoQueryDecorators<SituationLabelESelect>();
+	static SearchOne = new DaoQueryDecorators<SituationLabelESelect>();
+	static Save(
+		config: SituationLabelGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<SituationLabelGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(7)
+	}
+	
+	constructor() {
+		super(7)
 	}
 }
 
@@ -339,11 +380,11 @@ export class BaseSolutionDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(5)
+		super(4)
 	}
 }
 
@@ -367,10 +408,10 @@ export class BaseSolutionFactorDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(4)
+		super(3)
 	}
 }

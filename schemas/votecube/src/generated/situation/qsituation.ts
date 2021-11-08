@@ -32,19 +32,6 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	CategoryGraph,
-	CategoryEId,
-	CategoryEOptionalId,
-	CategoryEUpdateProperties,
-	CategoryESelect,
-	QCategory,
-	QCategoryQId,
-	QCategoryQRelation,
-} from '../qcategory';
-import {
-	Category,
-} from '../../ddl/Category';
-import {
 	OutcomeGraph,
 	OutcomeEId,
 	OutcomeEOptionalId,
@@ -57,6 +44,19 @@ import {
 import {
 	Outcome,
 } from '../../ddl/situation/Outcome';
+import {
+	SituationLabelGraph,
+	SituationLabelEId,
+	SituationLabelEOptionalId,
+	SituationLabelEUpdateProperties,
+	SituationLabelESelect,
+	QSituationLabel,
+	QSituationLabelQId,
+	QSituationLabelQRelation,
+} from './qsituationlabel';
+import {
+	SituationLabel,
+} from '../../ddl/situation/SituationLabel';
 import {
 	SituationFactorPositionGraph,
 	SituationFactorPositionEId,
@@ -106,11 +106,11 @@ export interface SituationESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	category?: CategoryESelect;
 	parent?: SituationESelect;
 	outcomeA?: OutcomeESelect;
 	outcomeB?: OutcomeESelect;
 	children?: SituationESelect;
+	situationLabels?: SituationLabelESelect;
 	situationFactorPositions?: SituationFactorPositionESelect;
 	solutions?: SolutionESelect;
 
@@ -146,7 +146,6 @@ export interface SituationEUpdateProperties
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	category?: CategoryEOptionalId;
 	parent?: SituationEOptionalId;
 	outcomeA?: OutcomeEOptionalId;
 	outcomeB?: OutcomeEOptionalId;
@@ -164,11 +163,11 @@ export interface SituationGraph
 	name?: string | IQStringField;
 
 	// Relations
-	category?: CategoryGraph;
 	parent?: SituationGraph;
 	outcomeA?: OutcomeGraph;
 	outcomeB?: OutcomeGraph;
 	children?: SituationGraph[];
+	situationLabels?: SituationLabelGraph[];
 	situationFactorPositions?: SituationFactorPositionGraph[];
 	solutions?: SolutionGraph[];
 
@@ -183,9 +182,6 @@ export interface SituationEUpdateColumns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
-	CATEGORIES_RID_1?: number | IQNumberField;
-	CATEGORIES_AID_1?: number | IQNumberField;
-	CATEGORIES_ARID_1?: number | IQNumberField;
 	SITUATIONS_RID_1?: number | IQNumberField;
 	SITUATIONS_AID_1?: number | IQNumberField;
 	SITUATIONS_ARID_1?: number | IQNumberField;
@@ -232,11 +228,11 @@ export interface QSituation extends QRepositoryEntity<Situation>
 	name: IQStringField;
 
 	// Non-Id Relations
-	category: QCategoryQRelation;
 	parent: QSituationQRelation;
 	outcomeA: QOutcomeQRelation;
 	outcomeB: QOutcomeQRelation;
 	children: IQOneToManyRelation<Situation, QSituation>;
+	situationLabels: IQOneToManyRelation<SituationLabel, QSituationLabel>;
 	situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;
 	solutions: IQOneToManyRelation<Solution, QSolution>;
 

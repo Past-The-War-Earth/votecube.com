@@ -2,11 +2,11 @@ import {
 	IRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	ICategory,
-} from '../category';
-import {
 	IOutcome,
 } from './outcome';
+import {
+	ISituationLabel,
+} from './situationlabel';
 import {
 	ISituationFactorPosition,
 } from './situationfactorposition';
@@ -30,11 +30,11 @@ export interface ISituation extends IRepositoryEntity {
 	name?: string;
 
 	// Non-Id Relations
-	category?: ICategory;
 	parent?: ISituation;
 	outcomeA?: IOutcome;
 	outcomeB?: IOutcome;
 	children?: ISituation[];
+	situationLabels?: ISituationLabel[];
 	situationFactorPositions?: ISituationFactorPosition[];
 	solutions?: ISolution[];
 

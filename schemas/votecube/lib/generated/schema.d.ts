@@ -85,6 +85,17 @@ export declare const SCHEMA: {
             } | {
                 index: number;
                 isId: boolean;
+                relationType: string;
+                propertyRef: {
+                    index: number;
+                };
+                relationTableIndex: number;
+                sinceVersion: number;
+                relationTableSchemaIndex?: undefined;
+                oneToManyElems?: undefined;
+            } | {
+                index: number;
+                isId: boolean;
                 oneToManyElems: {
                     mappedBy: string;
                 };
@@ -95,17 +106,6 @@ export declare const SCHEMA: {
                 relationTableIndex: number;
                 sinceVersion: number;
                 relationTableSchemaIndex?: undefined;
-            } | {
-                index: number;
-                isId: boolean;
-                relationType: string;
-                propertyRef: {
-                    index: number;
-                };
-                relationTableIndex: number;
-                sinceVersion: number;
-                relationTableSchemaIndex?: undefined;
-                oneToManyElems?: undefined;
             })[];
             sinceVersion: number;
             tableConfig: {

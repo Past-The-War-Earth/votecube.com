@@ -13,9 +13,6 @@ __decorate([
 ], Situation.prototype, "name", void 0);
 __decorate([
     ManyToOne()
-], Situation.prototype, "category", void 0);
-__decorate([
-    ManyToOne()
 ], Situation.prototype, "parent", void 0);
 __decorate([
     ManyToOne()
@@ -26,6 +23,9 @@ __decorate([
 __decorate([
     OneToMany({ mappedBy: 'parent' })
 ], Situation.prototype, "children", void 0);
+__decorate([
+    OneToMany({ mappedBy: 'situation' })
+], Situation.prototype, "situationLabels", void 0);
 __decorate([
     OneToMany({ mappedBy: 'situation' })
 ], Situation.prototype, "situationFactorPositions", void 0);

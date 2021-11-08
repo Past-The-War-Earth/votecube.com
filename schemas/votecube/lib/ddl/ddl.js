@@ -5,5 +5,5 @@ export * from './situation/Situation';
 export * from './situation/SituationFactorPosition';
 export * from './solution/Solution';
 export * from './solution/SolutionFactor';
-export * from './Category';
+export * from './Label';
 //# sourceMappingURL=ddl.js.map

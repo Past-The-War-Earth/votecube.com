@@ -1,14 +1,15 @@
-import { DI } from '@airport/di'
+import { container, DI } from '@airport/di'
 import { DeepPartial } from '@airport/pressurization'
 import {
 	Situation,
 	Solution,
 	SolutionApiClient
 } from '@votecube/votecube'
-import { IUiSolution } from '@votecube/model'
+import { IUiRepositoryRecord, IUiSituation, IUiSolution } from '@votecube/model'
 import {
 	SOLUTION_MANAGER
 } from '../tokens'
+import { SITUATION_CONVERTER, SOLUTION_CONVERTER } from '..'
 
 export interface ISolutionManager {
 
@@ -18,7 +19,8 @@ export interface ISolutionManager {
 	): Promise<IUiSolution>
 
 	saveSolution(
-		situation: DeepPartial<Situation>
+		situation: IUiSituation,
+		solution: IUiSolution
 	): Promise<void>
 
 }
@@ -32,37 +34,50 @@ export class SolutionManager
 		// User-information is in AIRport
 		situationRepositoryUuid: string
 	): Promise<IUiSolution> {
-
 		if (!situationRepositoryUuid || situationRepositoryUuid === 'unsolved') {
 			return this.getStubSolution()
 		}
 
-		return await this.solutionApi.getSolutionForSituation(situationRepositoryUuid)
+		const solution = await this.solutionApi
+			.getMySolutionForSituation(situationRepositoryUuid)
+
+		const solutionConverter = await container(this).get(SOLUTION_CONVERTER)
+
+		return solutionConverter.dbToUi(solution)
 	}
 
 	async saveSolution(
-		solution: DeepPartial<Solution>
+		situation: IUiSituation,
+		solution: IUiSolution
 	): Promise<void> {
-		if (solution !== 'unsolved') {
-			throw new Error(`Cannot re-save a solution`)
-		}
+		const [situationConverter, solutionConverter] = await container(this)
+			.get(SITUATION_CONVERTER, SOLUTION_CONVERTER)
 
-		return await this.solutionApi.saveSolution(solution)
+		const dbSituation = situationConverter.uiToDb(situation)
+
+		const dbSolution = solutionConverter.uiToDb(
+			solution, situation.ageSuitability, dbSituation)
+
+		await this.solutionApi.saveSolution(dbSolution)
 	}
 
 	private getStubSolution(): IUiSolution {
 		return {
+			...this.getStubIds(),
 			1: {
+				...this.getStubIds(),
 				factorNumber: 1,
 				outcome: 'A',
 				value: 33
 			},
 			2: {
+				...this.getStubIds(),
 				factorNumber: 2,
 				outcome: 'A',
 				value: 33
 			},
 			3: {
+				...this.getStubIds(),
 				factorNumber: 3,
 				outcome: 'B',
 				value: 34
@@ -70,16 +85,15 @@ export class SolutionManager
 		}
 	}
 
-	private dbToUi(
-		solution: DeepPartial<Solution>
-	): IUiSolution {
-		return null
-	}
-
-	private uiToDb(
-		solution: IUiSolution
-	): DeepPartial<Solution> {
-		return null
+	private getStubIds(): IUiRepositoryRecord {
+		return {
+			actorId: null,
+			actorUuId: null,
+			actorRecordId: null,
+			ageSuitability: null,
+			repositoryId: null,
+			repositoryUuId: null,
+		}
 	}
 
 }

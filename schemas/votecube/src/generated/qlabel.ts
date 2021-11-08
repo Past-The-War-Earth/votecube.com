@@ -32,8 +32,8 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	Category,
-} from '../ddl/Category';
+	Label,
+} from '../ddl/Label';
 
 
 declare function require(moduleName: string): any;
@@ -46,23 +46,21 @@ declare function require(moduleName: string): any;
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface CategoryESelect
-    extends RepositoryEntityESelect, CategoryEOptionalId {
+export interface LabelESelect
+    extends RepositoryEntityESelect, LabelEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	childCategories?: CategoryESelect;
-	parentCategory?: CategoryESelect;
 
 }
 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface CategoryEId
+export interface LabelEId
     extends RepositoryEntityEId {
 	// Id Properties
 
@@ -73,7 +71,7 @@ export interface CategoryEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface CategoryEOptionalId {
+export interface LabelEOptionalId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -83,59 +81,53 @@ export interface CategoryEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface CategoryEUpdateProperties
+export interface LabelEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	parentCategory?: CategoryEOptionalId;
 
 }
 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface CategoryGraph
-	extends CategoryEOptionalId, RepositoryEntityGraph {
+export interface LabelGraph
+	extends LabelEOptionalId, RepositoryEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 	name?: string | IQStringField;
 
 	// Relations
-	childCategories?: CategoryGraph[];
-	parentCategory?: CategoryGraph;
 
 }
 
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface CategoryEUpdateColumns
+export interface LabelEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
-	CATEGORIES_RID_1?: number | IQNumberField;
-	CATEGORIES_AID_1?: number | IQNumberField;
-	CATEGORIES_ARID_1?: number | IQNumberField;
 
 }
 
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface CategoryECreateProperties
-extends Partial<CategoryEId>, CategoryEUpdateProperties {
+export interface LabelECreateProperties
+extends Partial<LabelEId>, LabelEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface CategoryECreateColumns
-extends CategoryEId, CategoryEUpdateColumns {
+export interface LabelECreateColumns
+extends LabelEId, LabelEUpdateColumns {
 }
 
 
@@ -148,7 +140,7 @@ extends CategoryEId, CategoryEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QCategory extends QRepositoryEntity<Category>
+export interface QLabel extends QRepositoryEntity<Label>
 {
 	// Id Fields
 
@@ -158,14 +150,12 @@ export interface QCategory extends QRepositoryEntity<Category>
 	name: IQStringField;
 
 	// Non-Id Relations
-	childCategories: IQOneToManyRelation<Category, QCategory>;
-	parentCategory: QCategoryQRelation;
 
 }
 
 
 // Entity Id Interface
-export interface QCategoryQId extends QRepositoryEntityQId
+export interface QLabelQId extends QRepositoryEntityQId
 {
 	
 	// Id Fields
@@ -176,7 +166,7 @@ export interface QCategoryQId extends QRepositoryEntityQId
 }
 
 // Entity Relation Interface
-export interface QCategoryQRelation
-	extends QRepositoryEntityQRelation<Category, QCategory>, QCategoryQId {
+export interface QLabelQRelation
+	extends QRepositoryEntityQRelation<Label, QLabel>, QLabelQId {
 }
 

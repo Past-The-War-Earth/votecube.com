@@ -6,31 +6,7 @@ export class SQDIDuo extends Duo {
         super(dbEntityId, Q);
     }
 }
-export class BaseCategoryDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(0);
-    }
-    constructor() {
-        super(0);
-    }
-}
 export class BaseFactorDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(2);
-    }
-    constructor() {
-        super(2);
-    }
-}
-export class BaseOutcomeDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(3);
-    }
-    constructor() {
-        super(3);
-    }
-}
-export class BasePositionDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(1);
     }
@@ -38,15 +14,7 @@ export class BasePositionDuo extends SQDIDuo {
         super(1);
     }
 }
-export class BaseSituationDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(7);
-    }
-    constructor() {
-        super(7);
-    }
-}
-export class BaseSituationFactorPositionDuo extends SQDIDuo {
+export class BaseLabelDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(6);
     }
@@ -54,7 +22,31 @@ export class BaseSituationFactorPositionDuo extends SQDIDuo {
         super(6);
     }
 }
-export class BaseSolutionDuo extends SQDIDuo {
+export class BaseOutcomeDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(2);
+    }
+    constructor() {
+        super(2);
+    }
+}
+export class BasePositionDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(0);
+    }
+    constructor() {
+        super(0);
+    }
+}
+export class BaseSituationDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(8);
+    }
+    constructor() {
+        super(8);
+    }
+}
+export class BaseSituationFactorPositionDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(5);
     }
@@ -62,12 +54,28 @@ export class BaseSolutionDuo extends SQDIDuo {
         super(5);
     }
 }
-export class BaseSolutionFactorDuo extends SQDIDuo {
+export class BaseSituationLabelDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(7);
+    }
+    constructor() {
+        super(7);
+    }
+}
+export class BaseSolutionDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(4);
     }
     constructor() {
         super(4);
+    }
+}
+export class BaseSolutionFactorDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(3);
+    }
+    constructor() {
+        super(3);
     }
 }
 //# sourceMappingURL=baseDuos.js.map

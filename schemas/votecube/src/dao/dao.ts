@@ -1,1 +1,1 @@
-export const PLACEHOLDER = 1
+export * from './SituationDao'

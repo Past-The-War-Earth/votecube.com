@@ -2,14 +2,15 @@ import { AIRPORT_DATABASE } from '@airport/air-control';
 import { diSet as dS, duoDiSet as ddS } from '@airport/check-in';
 import { DI } from '@airport/di';
 import { getSchemaName } from '@airport/ground-control';
-import { Category, Factor, Outcome, Position, Situation, SituationFactorPosition, Solution, SolutionFactor } from '../ddl/ddl';
+import { Factor, Label, Outcome, Position, Situation, SituationFactorPosition, SituationLabel, Solution, SolutionFactor } from '../ddl/ddl';
 const __constructors__ = {
-    Category: Category,
     Factor: Factor,
+    Label: Label,
     Outcome: Outcome,
     Position: Position,
     Situation: Situation,
     SituationFactorPosition: SituationFactorPosition,
+    SituationLabel: SituationLabel,
     Solution: Solution,
     SolutionFactor: SolutionFactor
 };

@@ -1,9 +1,9 @@
-import { DI } from "@airport/di";
+import { container, DI } from "@airport/di";
 import { DeepPartial } from "@airport/pressurization";
 import { IUiSolution, IUiSolutionFactor, SolutionFactor_Value } from "@votecube/model";
-import { Situation, Solution, SolutionFactor } from "@votecube/votecube";
+import { Situation, SituationFactorPosition, Solution, SolutionFactor } from "@votecube/votecube";
+import { REPOSITORY_RECORD_CONVERTER } from "..";
 import { SOLUTION_CONVERTER } from "../tokens";
-import { RepositoryRecordConverter } from "./RepositoryRecordConverter";
 
 export interface ISolutionConverter {
 
@@ -12,18 +12,20 @@ export interface ISolutionConverter {
     ): IUiSolution
 
     uiToDb(
-        uiSolution: IUiSolution
+        uiSolution: IUiSolution,
+        ageSuitability: 0 | 7 | 13 | 18,
+        situation: DeepPartial<Situation>
     ): DeepPartial<Solution>
 
 }
 
 export class SolutionConverter
-    extends RepositoryRecordConverter
     implements ISolutionConverter {
 
     dbToUi(
         dbSolution: DeepPartial<Solution>
-    ): IUiSolution {
+    ): IUiSolution {    
+        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         let solutionFactor1: DeepPartial<SolutionFactor>
         let solutionFactor2: DeepPartial<SolutionFactor>
         let solutionFactor3: DeepPartial<SolutionFactor>
@@ -41,18 +43,19 @@ export class SolutionConverter
             }
         }
         return {
-            ...super.dbToUi(dbSolution),
-            "1": this.solutionFactorDbUi(solutionFactor1),
-            "2": this.solutionFactorDbUi(solutionFactor2),
-            "3": this.solutionFactorDbUi(solutionFactor3)
+            ...repositoryRecordConverter.dbToUi(dbSolution),
+            "1": this.solutionFactorDbToUi(solutionFactor1),
+            "2": this.solutionFactorDbToUi(solutionFactor2),
+            "3": this.solutionFactorDbToUi(solutionFactor3)
         }
     }
 
-    private solutionFactorDbUi(
+    private solutionFactorDbToUi(
         dbSolutionFactor: DeepPartial<SolutionFactor>
     ): IUiSolutionFactor {
+        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         return {
-            ...super.dbToUi(dbSolutionFactor),
+            ...repositoryRecordConverter.dbToUi(dbSolutionFactor),
             factorNumber: this.getFactorNumber(dbSolutionFactor.axis as 'x' | 'y' | 'z'),
             outcome: dbSolutionFactor.situationFactorPosition.outcomeOrdinal,
             value: dbSolutionFactor.share as SolutionFactor_Value
@@ -79,27 +82,36 @@ export class SolutionConverter
         ageSuitability: 0 | 7 | 13 | 18 = 0,
         situation: DeepPartial<Situation>
     ): DeepPartial<Solution> {
-
-        let factors = []
-        return {
-            ...super.uiToDb(uiSolution, ageSuitability),
+        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
+        let factors: DeepPartial<SolutionFactor>[] = []
+        let solution: DeepPartial<Solution> = {
+            ...repositoryRecordConverter.uiToDb(uiSolution, ageSuitability),
             situation,
             factors
         }
+        for (const situationFactorPosition of situation.situationFactorPositions) {
+            const uiSolutionFactor = uiSolution[
+                this.getFactorNumber(situationFactorPosition.axis)]
+            factors.push(this.solutionFactorUiToDb(uiSolutionFactor, ageSuitability,
+                solution, situationFactorPosition))
+        }
+
+        return solution
     }
 
-    solutionFactorUiToDb(
+    private solutionFactorUiToDb(
         uiSolutionFactor: IUiSolutionFactor,
         ageSuitability: 0 | 7 | 13 | 18 = 0,
-        solution: Solution
+        solution: DeepPartial<Solution>,
+        situationFactorPosition: DeepPartial<SituationFactorPosition>
     ): DeepPartial<SolutionFactor> {
+        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         return {
-            ...super.uiToDb(uiSolutionFactor, ageSuitability),
+            ...repositoryRecordConverter.uiToDb(uiSolutionFactor, ageSuitability),
             solution,
             situationFactorPosition
         }
     }
-
 
 }
 DI.set(SOLUTION_CONVERTER, SolutionConverter)

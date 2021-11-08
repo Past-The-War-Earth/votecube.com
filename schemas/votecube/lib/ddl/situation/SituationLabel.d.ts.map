@@ -1,0 +1,1 @@
+{"version":3,"file":"SituationLabel.d.ts","sourceRoot":"","sources":["../../../src/ddl/situation/SituationLabel.ts"],"names":[],"mappings":"AAQA,OAAO,EAAE,gBAAgB,EAAE,MAAM,0BAA0B,CAAA;AAC3D,OAAO,EAAE,KAAK,EAAE,MAAM,UAAU,CAAA;AAChC,OAAO,EAAE,SAAS,EAAE,MAAM,aAAa,CAAA;AAEvC,qBAEa,cACT,SAAQ,gBAAgB;IAGxB,SAAS,EAAE,SAAS,CAAA;IAGpB,KAAK,EAAE,KAAK,CAAA;CAEf"}

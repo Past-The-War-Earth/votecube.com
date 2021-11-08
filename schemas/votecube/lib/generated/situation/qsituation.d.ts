@@ -1,7 +1,8 @@
 import { IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
-import { CategoryGraph, CategoryEOptionalId, CategoryESelect, QCategoryQRelation } from '../qcategory';
 import { OutcomeGraph, OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from './qoutcome';
+import { SituationLabelGraph, SituationLabelESelect, QSituationLabel } from './qsituationlabel';
+import { SituationLabel } from '../../ddl/situation/SituationLabel';
 import { SituationFactorPositionGraph, SituationFactorPositionESelect, QSituationFactorPosition } from './qsituationfactorposition';
 import { SituationFactorPosition } from '../../ddl/situation/SituationFactorPosition';
 import { SolutionGraph, SolutionESelect, QSolution } from '../solution/qsolution';
@@ -12,11 +13,11 @@ import { Situation } from '../../ddl/situation/Situation';
  */
 export interface SituationESelect extends RepositoryEntityESelect, SituationEOptionalId {
     name?: string | IQStringField;
-    category?: CategoryESelect;
     parent?: SituationESelect;
     outcomeA?: OutcomeESelect;
     outcomeB?: OutcomeESelect;
     children?: SituationESelect;
+    situationLabels?: SituationLabelESelect;
     situationFactorPositions?: SituationFactorPositionESelect;
     solutions?: SolutionESelect;
 }
@@ -35,7 +36,6 @@ export interface SituationEOptionalId {
  */
 export interface SituationEUpdateProperties extends RepositoryEntityEUpdateProperties {
     name?: string | IQStringField;
-    category?: CategoryEOptionalId;
     parent?: SituationEOptionalId;
     outcomeA?: OutcomeEOptionalId;
     outcomeB?: OutcomeEOptionalId;
@@ -45,11 +45,11 @@ export interface SituationEUpdateProperties extends RepositoryEntityEUpdatePrope
  */
 export interface SituationGraph extends SituationEOptionalId, RepositoryEntityGraph {
     name?: string | IQStringField;
-    category?: CategoryGraph;
     parent?: SituationGraph;
     outcomeA?: OutcomeGraph;
     outcomeB?: OutcomeGraph;
     children?: SituationGraph[];
+    situationLabels?: SituationLabelGraph[];
     situationFactorPositions?: SituationFactorPositionGraph[];
     solutions?: SolutionGraph[];
 }
@@ -60,9 +60,6 @@ export interface SituationEUpdateColumns extends RepositoryEntityEUpdateColumns 
     AGE_SUITABILITY?: number | IQNumberField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     NAME?: string | IQStringField;
-    CATEGORIES_RID_1?: number | IQNumberField;
-    CATEGORIES_AID_1?: number | IQNumberField;
-    CATEGORIES_ARID_1?: number | IQNumberField;
     SITUATIONS_RID_1?: number | IQNumberField;
     SITUATIONS_AID_1?: number | IQNumberField;
     SITUATIONS_ARID_1?: number | IQNumberField;
@@ -88,11 +85,11 @@ export interface SituationECreateColumns extends SituationEId, SituationEUpdateC
  */
 export interface QSituation extends QRepositoryEntity<Situation> {
     name: IQStringField;
-    category: QCategoryQRelation;
     parent: QSituationQRelation;
     outcomeA: QOutcomeQRelation;
     outcomeB: QOutcomeQRelation;
     children: IQOneToManyRelation<Situation, QSituation>;
+    situationLabels: IQOneToManyRelation<SituationLabel, QSituationLabel>;
     situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;
     solutions: IQOneToManyRelation<Solution, QSolution>;
 }

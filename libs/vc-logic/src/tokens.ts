@@ -12,6 +12,7 @@ import { ISituationManager } from './situation/SituationManager'
 import { ISolutionManager } from './situation/SolutionManager'
 import { IRoutes } from './Routes'
 import { ISolutionConverter } from './converter/SolutionConverter'
+import { IRepositoryRecordConverter } from './converter/RepositoryRecordConverter'
 
 const publicLogic = system('votecube-ui')
 	.lib('vc-logic')
@@ -29,3 +30,4 @@ export const SITUATION_MANAGER = publicLogic.token<ISituationManager>('ISituatio
 export const SITUATION_CONVERTER = publicLogic.token<ISituationConverter>('ISituationConverter')
 export const SOLUTION_MANAGER = publicLogic.token<ISolutionManager>('ISolutionManager')
 export const SOLUTION_CONVERTER = publicLogic.token<ISolutionConverter>('ISolutionConverter')
+export const REPOSITORY_RECORD_CONVERTER = publicLogic.token<IRepositoryRecordConverter>('IRepositoryRecordConverter')

@@ -1,58 +1,88 @@
 import { Api } from "@airport/check-in";
-import { DI } from "@airport/di";
-import { DeepPartial } from "@airport/pressurization";
-import { Category, Situation } from "../ddl/ddl";
-import { SITUATION_API } from "../tokens";
+import { container, DI } from "@airport/di";
+import { ILabel, ISituation } from "../server";
+import { SITUATION_API, SITUATION_DAO } from "../tokens";
 
 export interface ISituationApi {
 
-    getSituationsForCategory(
-        category: DeepPartial<Category>
-    ): Promise<DeepPartial<Situation>[]>
+    getSituationsForLabels(
+        labels: ILabel[]
+    ): Promise<ISituation[]>
 
     getLeafSituations(
-        situation: DeepPartial<Situation>
-    ): Promise<DeepPartial<Situation>[]>
+        situation: ISituation
+    ): Promise<ISituation[]>
 
     getStemSituation(
-        situation: DeepPartial<Situation>
-    ): Promise<DeepPartial<Situation>>
+        situation: ISituation
+    ): Promise<ISituation>
+
+    getSituation(
+        situationRepositoryUuId: string
+    ): Promise<ISituation>
 
     saveSituation(
-        situation: DeepPartial<Situation>
+        situation: ISituation
     ): Promise<void>
 
 }
+
+/**
+ * Version 1 situation retrieval across devices.
+ * 
+ * - no search capabilities (Vespa is not yet integrated)
+ * - a repository private (writable) repository transaction log is maintained in ScyllaDb
+ * - the private Uuid of the user hardcoded
+ * - the transaction logs for a given repository are retrieved by user private Uuid and
+ *       the repositoryUuid
+ * - on-going record retrieval also accepts "sinceTime" parameter that retrieves only
+ * the logs entered since that time
+ * 
+ * Thus - the search for  a situation is done via a repositoryUuid.  AIRport retrieves
+ * the entire reposiory and then does a local search for all Situations that have that
+ * repository id and returns the first one found (there should only be one).
+ */
 
 export class SituationApi
     implements ISituationApi {
 
     @Api()
-    async getSituationsForCategory(
-        category: DeepPartial<Category>
-    ): Promise<DeepPartial<Situation>[]> {
+    async getSituationsForLabels(
+        labels: ILabel[]
+    ): Promise<ISituation[]> {
         return []
     }
 
     @Api()
     async getLeafSituations(
-        situation: DeepPartial<Situation>
-    ): Promise<DeepPartial<Situation>[]> {
+        situation: ISituation
+    ): Promise<ISituation[]> {
         return []
     }
 
     @Api()
     async getStemSituation(
-        situation: DeepPartial<Situation>
-    ): Promise<DeepPartial<Situation>> {
+        situation: ISituation
+    ): Promise<ISituation> {
         return null
     }
 
     @Api()
+    async getSituation(
+        situationRepositoryUuId: string
+    ): Promise<ISituation> {
+        const situationDao = await container(this).get(SITUATION_DAO)
+
+        return await situationDao.findByRepositoryUuId(situationRepositoryUuId)
+    }
+
+    @Api()
     async saveSituation(
-        situation: DeepPartial<Situation>
+        situation: ISituation
     ): Promise<void> {
-        // 
+        const situationDao = await container(this).get(SITUATION_DAO)
+
+        return await situationDao.saveSituation(situation)
     }
 
 }

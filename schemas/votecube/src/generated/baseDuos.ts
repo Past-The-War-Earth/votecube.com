@@ -1,18 +1,5 @@
 /* eslint-disable */
 import {
-	ICategory,
-} from './category';
-import {
-	CategoryESelect,
-	CategoryECreateColumns,
-	CategoryECreateProperties,
-	CategoryEUpdateColumns,
-	CategoryEUpdateProperties,
-	CategoryEId,
-	CategoryGraph,
-	QCategory,
-} from './qcategory';
-import {
 	IFactor,
 } from './factor/factor';
 import {
@@ -25,6 +12,19 @@ import {
 	FactorGraph,
 	QFactor,
 } from './factor/qfactor';
+import {
+	ILabel,
+} from './label';
+import {
+	LabelESelect,
+	LabelECreateColumns,
+	LabelECreateProperties,
+	LabelEUpdateColumns,
+	LabelEUpdateProperties,
+	LabelEId,
+	LabelGraph,
+	QLabel,
+} from './qlabel';
 import {
 	IOutcome,
 } from './situation/outcome';
@@ -77,6 +77,19 @@ import {
 	SituationFactorPositionGraph,
 	QSituationFactorPosition,
 } from './situation/qsituationfactorposition';
+import {
+	ISituationLabel,
+} from './situation/situationlabel';
+import {
+	SituationLabelESelect,
+	SituationLabelECreateColumns,
+	SituationLabelECreateProperties,
+	SituationLabelEUpdateColumns,
+	SituationLabelEUpdateProperties,
+	SituationLabelEId,
+	SituationLabelGraph,
+	QSituationLabel,
+} from './situation/qsituationlabel';
 import {
 	ISolution,
 } from './solution/solution';
@@ -151,24 +164,6 @@ export class SQDIDuo<Entity,
 }
 
 
-export interface IBaseCategoryDuo
-  extends IDuo<ICategory, CategoryESelect, CategoryECreateProperties, CategoryEUpdateColumns, CategoryEUpdateProperties, CategoryEId, CategoryGraph, QCategory> {
-}
-
-export class BaseCategoryDuo
-  extends SQDIDuo<ICategory, CategoryESelect, CategoryECreateProperties, CategoryEUpdateColumns, CategoryEUpdateProperties, CategoryEId, CategoryGraph, QCategory>
-	implements IBaseCategoryDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(0)
-	}
-	
-	constructor() {
-		super(0)
-	}
-}
-
-
 export interface IBaseFactorDuo
   extends IDuo<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> {
 }
@@ -178,11 +173,29 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(2)
+		super(1)
+	}
+}
+
+
+export interface IBaseLabelDuo
+  extends IDuo<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel> {
+}
+
+export class BaseLabelDuo
+  extends SQDIDuo<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel>
+	implements IBaseLabelDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(6)
+	}
+	
+	constructor() {
+		super(6)
 	}
 }
 
@@ -196,11 +209,11 @@ export class BaseOutcomeDuo
 	implements IBaseOutcomeDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(3)
+		super(2)
 	}
 }
 
@@ -214,11 +227,11 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
-		super(1)
+		super(0)
 	}
 }
 
@@ -232,11 +245,11 @@ export class BaseSituationDuo
 	implements IBaseSituationDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(7)
+		return duoDiSet(8)
 	}
 	
 	constructor() {
-		super(7)
+		super(8)
 	}
 }
 
@@ -250,11 +263,29 @@ export class BaseSituationFactorPositionDuo
 	implements IBaseSituationFactorPositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(6)
+		return duoDiSet(5)
 	}
 	
 	constructor() {
-		super(6)
+		super(5)
+	}
+}
+
+
+export interface IBaseSituationLabelDuo
+  extends IDuo<ISituationLabel, SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel> {
+}
+
+export class BaseSituationLabelDuo
+  extends SQDIDuo<ISituationLabel, SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel>
+	implements IBaseSituationLabelDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(7)
+	}
+	
+	constructor() {
+		super(7)
 	}
 }
 
@@ -268,11 +299,11 @@ export class BaseSolutionDuo
 	implements IBaseSolutionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(5)
+		super(4)
 	}
 }
 
@@ -286,10 +317,10 @@ export class BaseSolutionFactorDuo
 	implements IBaseSolutionFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(4)
+		super(3)
 	}
 }

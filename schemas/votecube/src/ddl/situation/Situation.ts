@@ -6,10 +6,10 @@ import {
 	Table
 } from '@airport/air-control'
 import { RepositoryEntity } from '@airport/holding-pattern'
-import { Category } from '../Category'
 import { Solution } from '../solution/Solution'
 import { Outcome } from './Outcome'
 import { SituationFactorPosition } from './SituationFactorPosition'
+import { SituationLabel } from './SituationLabel'
 
 @Entity()
 @Table({ name: 'SITUATIONS' })
@@ -18,9 +18,6 @@ export class Situation
 
 	@Column({ name: 'NAME', nullable: false })
 	name: string
-
-	@ManyToOne()
-	category: Category
 
 	@ManyToOne()
 	parent: Situation
@@ -33,6 +30,9 @@ export class Situation
 
 	@OneToMany({ mappedBy: 'parent' })
 	children: Situation[]
+
+	@OneToMany({ mappedBy: 'situation' })
+	situationLabels: SituationLabel[]
 
 	@OneToMany({ mappedBy: 'situation' })
 	situationFactorPositions: SituationFactorPosition[]
