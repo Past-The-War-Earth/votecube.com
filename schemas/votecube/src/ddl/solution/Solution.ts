@@ -12,6 +12,6 @@ export class Solution
     situation: Situation
 
     @OneToMany({ mappedBy: 'solution' })
-    factors: SolutionFactor
+    factors: SolutionFactor[]
 
 }

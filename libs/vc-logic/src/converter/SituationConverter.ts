@@ -17,6 +17,7 @@ import {
 	IUiSituation,
 } from '@votecube/model'
 import { SITUATION_CONVERTER } from '../tokens'
+import { RepositoryRecordConverter } from './RepositoryRecordConverter'
 
 export interface ISituationConverter {
 
@@ -31,6 +32,7 @@ export interface ISituationConverter {
 }
 
 export class SituationConverter
+	extends RepositoryRecordConverter
 	implements ISituationConverter {
 
 	dbToUi(
@@ -39,19 +41,11 @@ export class SituationConverter
 		let parent: IUiRepositoryRecord = null
 
 		if (dbSituation.parent) {
-			parent = {
-				actorId: dbSituation.parent.actor.id,
-				actorRecordId: dbSituation.parent.actorRecordId,
-				ageSuitability: dbSituation.parent.ageSuitability as 0 | 7 | 13 | 18,
-				repositoryId: dbSituation.parent.repository.id,
-				repositoryUuId: dbSituation.parent.repository.uuId,
-			}
+			parent = super.dbToUi(dbSituation.parent)
 		}
 
 		return {
-			ageSuitability: dbSituation.ageSuitability as 0 | 7 | 13 | 18,
-			actorId: dbSituation.actor.id,
-			actorRecordId: dbSituation.actorRecordId,
+			...super.dbToUi(dbSituation.parent),
 			category: this.getUiCategory(dbSituation.category),
 			factors: {
 				'1': this.getUiFactor(1, dbSituation.situationFactorPositions),
@@ -63,9 +57,7 @@ export class SituationConverter
 				A: this.getUiOutcome(dbSituation.outcomeA),
 				B: this.getUiOutcome(dbSituation.outcomeB)
 			},
-			parent,
-			repositoryId: dbSituation.repository.id,
-			repositoryUuId: dbSituation.repository.uuId,
+			parent
 		}
 	}
 
@@ -78,38 +70,15 @@ export class SituationConverter
 		const dbFactors: DeepPartial<Factor>[] = []
 
 		return {
-			actor: {
-				id: uiSituation.actorId
-			},
-			actorRecordId: uiSituation.actorRecordId,
-			ageSuitability: uiSituation.ageSuitability,
+			...super.uiToDb(uiSituation),
 			category: {
-				actor: {
-					id: uiCategory.actorId,
-				},
-				actorRecordId: uiCategory.actorRecordId,
-				ageSuitability: uiCategory.ageSuitability,
-				repository: {
-					id: uiCategory.repositoryId,
-					uuId: uiCategory.repositoryUuId
-				}
+				...super.uiToDb(uiCategory),
 			},
 			name: uiSituation.name,
 			outcomeA: this.getDbOutcome(uiSituation.outcomes.A, uiSituation.ageSuitability),
 			outcomeB: this.getDbOutcome(uiSituation.outcomes.B, uiSituation.ageSuitability),
 			parent: {
-				actor: {
-					id: uiParent.actorId
-				},
-				actorRecordId: uiParent.actorRecordId,
-				repository: {
-					id: uiParent.repositoryId,
-					uuId: uiParent.repositoryUuId
-				}
-			},
-			repository: {
-				id: uiSituation.repositoryId,
-				uuId: uiParent.repositoryUuId
+				...super.uiToDb(uiParent),
 			},
 			situationFactorPositions: [this.getDbSituationFactorPosition(
 				uiSituation,
@@ -167,9 +136,7 @@ export class SituationConverter
 		const dbFactor = dbFactorPositionA.factor
 
 		return {
-			actorId: dbFactor.actor.id,
-			actorRecordId: dbFactor.actorRecordId,
-			ageSuitability: dbFactor.ageSuitability as 0 | 7 | 13 | 18,
+			...super.dbToUi(dbFactor),
 			axis: dbFactorPositionA.axis as 'x' | 'y' | 'z',
 			color: {
 				blue: dbFactorPositionA.blue,
@@ -181,8 +148,6 @@ export class SituationConverter
 				A: this.getUiPosition(dbFactorPositionA),
 				B: this.getUiPosition(dbFactorPositionB),
 			},
-			repositoryId: dbFactor.repository.id,
-			repositoryUuId: dbFactor.repository.uuId,
 		}
 	}
 
@@ -192,13 +157,9 @@ export class SituationConverter
 		const position = dbSituationFactorPosition.position
 
 		return {
-			actorId: position.actor.id,
-			actorRecordId: position.actorRecordId,
-			ageSuitability: position.ageSuitability as 0 | 7 | 13 | 18,
+			...super.dbToUi(position),
 			dir: dbSituationFactorPosition.dir as -1 | 1,
 			name: position.name,
-			repositoryId: position.repository.id,
-			repositoryUuId: position.repository.uuId,
 		}
 	}
 
@@ -206,12 +167,8 @@ export class SituationConverter
 		outcome: DeepPartial<Outcome>
 	): IUiOutcome {
 		return {
-			ageSuitability: outcome.ageSuitability as 0 | 7 | 13 | 18,
-			actorId: outcome.actor.id,
-			actorRecordId: outcome.actorRecordId,
+			...super.dbToUi(outcome),
 			name: outcome.name,
-			repositoryId: outcome.repository.id,
-			repositoryUuId: outcome.repository.uuId,
 		}
 	}
 
@@ -219,12 +176,8 @@ export class SituationConverter
 		category: DeepPartial<Category>
 	): IUiCategory {
 		return {
-			actorId: category.actor.id,
-			actorRecordId: category.actorRecordId,
-			ageSuitability: category.ageSuitability as 0 | 7 | 13 | 18,
+			...super.dbToUi(category),
 			name: category.name,
-			repositoryId: category.repository.id,
-			repositoryUuId: category.repository.uuId
 		}
 	}
 
@@ -232,20 +185,9 @@ export class SituationConverter
 		uiOutcome: IUiOutcome,
 		ageSuitability: 0 | 7 | 13 | 18
 	): DeepPartial<Outcome> {
-		if (uiOutcome.ageSuitability || uiOutcome.ageSuitability === 0) {
-			ageSuitability = uiOutcome.ageSuitability
-		}
 		return {
-			actor: {
-				id: uiOutcome.actorId
-			},
-			actorRecordId: uiOutcome.actorRecordId,
-			ageSuitability: ageSuitability,
+			...super.uiToDb(uiOutcome, ageSuitability),
 			name: uiOutcome.name,
-			repository: {
-				id: uiOutcome.repositoryId,
-				uuId: uiOutcome.repositoryUuId
-			}
 		}
 	}
 
@@ -267,10 +209,7 @@ export class SituationConverter
 		const position: DeepPartial<Position> = this.getDbPosition(uiPosition, uiSituation.ageSuitability)
 
 		return {
-			actor: {
-				id: uiSituation.actorId,
-			},
-			actorRecordId: null,
+			...super.dbToUi(uiSituation),
 			axis: uiFactor.axis,
 			blue: uiFactor.color.blue,
 			dir: uiPosition.dir,
@@ -280,10 +219,6 @@ export class SituationConverter
 			outcomeOrdinal,
 			position,
 			red: uiFactor.color.red,
-			repository: {
-				id: uiSituation.repositoryId,
-				uuId: uiSituation.repositoryUuId
-			}
 		}
 	}
 
@@ -291,21 +226,9 @@ export class SituationConverter
 		uiFactor: IUiFactor,
 		ageSuitability: 0 | 7 | 13 | 18
 	): DeepPartial<Factor> {
-		if (uiFactor.ageSuitability || uiFactor.ageSuitability === 0) {
-			ageSuitability = uiFactor.ageSuitability
-		}
-
 		return {
-			actorRecordId: uiFactor.actorRecordId,
-			actor: {
-				id: uiFactor.actorId
-			},
-			ageSuitability,
+			...super.uiToDb(uiFactor, ageSuitability),
 			name: uiFactor.name,
-			repository: {
-				id: uiFactor.repositoryId,
-				uuId: uiFactor.repositoryUuId
-			}
 		}
 	}
 
@@ -313,20 +236,9 @@ export class SituationConverter
 		uiPosition: IUiPosition,
 		ageSuitability: 0 | 7 | 13 | 18
 	): DeepPartial<Position> {
-		if (uiPosition.ageSuitability || uiPosition.ageSuitability === 0) {
-			ageSuitability = uiPosition.ageSuitability
-		}
 		return {
-			actorRecordId: uiPosition.actorRecordId,
-			actor: {
-				id: uiPosition.actorId
-			},
-			ageSuitability,
+			...super.uiToDb(uiPosition, ageSuitability),
 			name: uiPosition.name,
-			repository: {
-				id: uiPosition.repositoryId,
-				uuId: uiPosition.repositoryUuId
-			}
 		}
 	}
 

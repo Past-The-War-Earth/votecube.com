@@ -1,6 +1,6 @@
 import { system } from '@airport/di'
 import { IAuth } from './Auth'
-import { ISituationConverter } from './converter/SituationConveter'
+import { ISituationConverter } from './converter/SituationConverter'
 import { ILogicUtils } from './LogicUtils'
 import { IDetailedCubeLogic } from './pages/components/situation/DetailedCubeLogic'
 import { IFactorRankingLogic } from './pages/situation/info/FactorRankingLogic'
@@ -11,6 +11,7 @@ import { ICubeLogic } from './situation/CubeLogic'
 import { ISituationManager } from './situation/SituationManager'
 import { ISolutionManager } from './situation/SolutionManager'
 import { IRoutes } from './Routes'
+import { ISolutionConverter } from './converter/SolutionConverter'
 
 const publicLogic = system('votecube-ui')
 	.lib('vc-logic')
@@ -27,3 +28,4 @@ export const SITUATION_MAIN_LOGIC = publicLogic.token<ISituationMainLogic>('ISit
 export const SITUATION_MANAGER = publicLogic.token<ISituationManager>('ISituationManager')
 export const SITUATION_CONVERTER = publicLogic.token<ISituationConverter>('ISituationConverter')
 export const SOLUTION_MANAGER = publicLogic.token<ISolutionManager>('ISolutionManager')
+export const SOLUTION_CONVERTER = publicLogic.token<ISolutionConverter>('ISolutionConverter')

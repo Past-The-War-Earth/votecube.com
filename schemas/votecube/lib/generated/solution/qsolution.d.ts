@@ -1,7 +1,8 @@
-import { IQNumberField } from '@airport/air-control';
+import { IQNumberField, IQOneToManyRelation } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '../situation/qsituation';
-import { SolutionFactorGraph, SolutionFactorESelect, QSolutionFactorQRelation } from './qsolutionfactor';
+import { SolutionFactorGraph, SolutionFactorESelect, QSolutionFactor } from './qsolutionfactor';
+import { SolutionFactor } from '../../ddl/solution/SolutionFactor';
 import { Solution } from '../../ddl/solution/Solution';
 /**
  * SELECT - All fields and relations (optional).
@@ -31,7 +32,7 @@ export interface SolutionEUpdateProperties extends RepositoryEntityEUpdateProper
  */
 export interface SolutionGraph extends SolutionEOptionalId, RepositoryEntityGraph {
     situation?: SituationGraph;
-    factors?: SolutionFactorGraph;
+    factors?: SolutionFactorGraph[];
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -58,7 +59,7 @@ export interface SolutionECreateColumns extends SolutionEId, SolutionEUpdateColu
  */
 export interface QSolution extends QRepositoryEntity<Solution> {
     situation: QSituationQRelation;
-    factors: QSolutionFactorQRelation;
+    factors: IQOneToManyRelation<SolutionFactor, QSolutionFactor>;
 }
 export interface QSolutionQId extends QRepositoryEntityQId {
 }

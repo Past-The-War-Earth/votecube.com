@@ -465,7 +465,7 @@
         // confirm = false
         const solutionManager = await container.get(SOLUTION_MANAGER);
         try {
-            await solutionManager.saveSolution(situation);
+            await solutionManager.saveSolution(solution);
             confirm = false;
             navigateToPage(SITUATION_LIST);
         } catch (theError) {

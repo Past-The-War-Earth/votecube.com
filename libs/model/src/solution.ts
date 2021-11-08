@@ -1,3 +1,5 @@
+import { IUiRepositoryRecord } from ".";
+
 export type SolutionFactor_Value =
 	0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 	10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 |
@@ -11,7 +13,8 @@ export type SolutionFactor_Value =
 	90 | 91 | 92 | 93 | 94 | 95 | 96 | 97 | 98 | 99 |
 	100
 
-export interface IUiSolutionFactor {
+export interface IUiSolutionFactor
+	extends IUiRepositoryRecord {
 	factorNumber: 1 | 2 | 3
 	outcome: 'A' | 'B'
 	value: SolutionFactor_Value
@@ -24,7 +27,8 @@ export interface ITweenSolutionFactor
 	tweenValue: SolutionFactor_Value
 }
 
-export interface IUiSolution {
+export interface IUiSolution
+	extends IUiRepositoryRecord {
 	1: IUiSolutionFactor
 	2: IUiSolutionFactor
 	3: IUiSolutionFactor

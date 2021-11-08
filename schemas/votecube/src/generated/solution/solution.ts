@@ -24,7 +24,7 @@ export interface ISolution extends IRepositoryEntity {
 
 	// Non-Id Relations
 	situation?: ISituation;
-	factors?: ISolutionFactor;
+	factors?: ISolutionFactor[];
 
 	// Transient Properties
 

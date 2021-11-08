@@ -3,6 +3,6 @@ import { Situation } from "../ddl";
 import { SolutionFactor } from "./SolutionFactor";
 export declare class Solution extends RepositoryEntity {
     situation: Situation;
-    factors: SolutionFactor;
+    factors: SolutionFactor[];
 }
 //# sourceMappingURL=Solution.d.ts.map

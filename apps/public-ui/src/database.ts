@@ -1,7 +1,17 @@
-import {ICubeEventListener, MUTATION_API} from '@votecube/cube-logic'
-import {ICubeLogic, pageTitle, SITUATION_MANAGER, SOLUTION_MANAGER} from '@votecube/vc-logic'
-import type { IUiSolution } from '../../../libs/cube-logic/node_modules/@votecube/model/lib';
-import type { IUiSituation } from '../../../libs/cube-logic/node_modules/@votecube/model/lib';
+import {
+    ICubeEventListener,
+    MUTATION_API
+} from '@votecube/cube-logic'
+import {
+    ICubeLogic,
+    pageTitle,
+    SITUATION_MANAGER,
+    SOLUTION_MANAGER
+} from '@votecube/vc-logic'
+import type {
+    IUiSolution,
+    IUiSituation
+} from '@votecube/model';
 
 // import {APP_CONTAINER} from './container'
 

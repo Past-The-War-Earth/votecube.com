@@ -1,4 +1,4 @@
-export * from './converter/SituationConveter'
+export * from './converter/SituationConverter'
 export * from './helpers/animation'
 export * from './pages/components/situation/DetailedCubeLogic'
 export * from './pages/situation/info/FactorRankingLogic'

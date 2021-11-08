@@ -128,7 +128,7 @@ export interface SolutionGraph
 
 	// Relations
 	situation?: SituationGraph;
-	factors?: SolutionFactorGraph;
+	factors?: SolutionFactorGraph[];
 
 }
 
@@ -180,7 +180,7 @@ export interface QSolution extends QRepositoryEntity<Solution>
 
 	// Non-Id Relations
 	situation: QSituationQRelation;
-	factors: QSolutionFactorQRelation;
+	factors: IQOneToManyRelation<SolutionFactor, QSolutionFactor>;
 
 }
 

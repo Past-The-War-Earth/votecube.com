@@ -3,6 +3,7 @@ import { DeepPartial } from '@airport/pressurization'
 import {
 	Situation,
 	Solution,
+	SolutionApiClient
 } from '@votecube/votecube'
 import { IUiSolution } from '@votecube/model'
 import {
@@ -25,6 +26,8 @@ export interface ISolutionManager {
 export class SolutionManager
 	implements ISolutionManager {
 
+	solutionApi = new SolutionApiClient()
+
 	async getSolutionForSituation(
 		// User-information is in AIRport
 		situationRepositoryUuid: string
@@ -34,15 +37,17 @@ export class SolutionManager
 			return this.getStubSolution()
 		}
 
-		// TODO: add AIRport call for data
-
-		return null
+		return await this.solutionApi.getSolutionForSituation(situationRepositoryUuid)
 	}
 
 	async saveSolution(
-		situation: DeepPartial<Situation>
+		solution: DeepPartial<Solution>
 	): Promise<void> {
+		if (solution !== 'unsolved') {
+			throw new Error(`Cannot re-save a solution`)
+		}
 
+		return await this.solutionApi.saveSolution(solution)
 	}
 
 	private getStubSolution(): IUiSolution {
