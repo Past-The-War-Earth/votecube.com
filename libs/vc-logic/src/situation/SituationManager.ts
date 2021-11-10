@@ -51,6 +51,9 @@ export interface ISituationManager {
 		situation: IUiSituation
 	): Promise<void>
 
+	saveCachedSituation(
+		user
+	): Promise<void>
 }
 
 export interface ICachedSituation {
@@ -219,6 +222,12 @@ export class SituationManager
 			ui: null,
 		}
 
+	}
+
+	async saveCachedSituation(
+		user
+	): Promise<void> {
+		await this.saveSituation(this.cachedSituation.ui)
 	}
 
 }

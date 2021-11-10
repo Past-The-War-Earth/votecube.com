@@ -13,6 +13,7 @@ export interface ISituationManager {
     getStemSituation(leafSituationUuId: string): Promise<IUiSituation>;
     mergeForm(): Promise<void>;
     saveSituation(situation: IUiSituation): Promise<void>;
+    saveCachedSituation(user: any): Promise<void>;
 }
 export interface ICachedSituation {
     form?: IFieldGroup;
@@ -31,5 +32,6 @@ export declare class SituationManager implements ISituationManager {
     mergeForm(): Promise<void>;
     publishSituation(situation: IUiSituation): Promise<void>;
     saveSituation(situation: IUiSituation): Promise<void>;
+    saveCachedSituation(user: any): Promise<void>;
 }
 //# sourceMappingURL=SituationManager.d.ts.map

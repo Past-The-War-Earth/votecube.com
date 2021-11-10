@@ -1,7 +1,7 @@
 import { container, DI } from '@airport/di';
 import { SolutionApiClient } from '@votecube/votecube';
 import { SOLUTION_MANAGER } from '../tokens';
-import { SITUATION_CONVERTER, SOLUTION_CONVERTER } from '..';
+import { SITUATION_CONVERTER, SITUATION_MANAGER, SOLUTION_CONVERTER } from '..';
 export class SolutionManager {
     constructor() {
         this.solutionApi = new SolutionApiClient();
@@ -23,6 +23,10 @@ export class SolutionManager {
         const dbSituation = situationConverter.uiToDb(situation);
         const dbSolution = solutionConverter.uiToDb(solution, situation.ageSuitability, dbSituation);
         await this.solutionApi.saveSolution(dbSolution);
+    }
+    async saveCachedSituationSolution(solution) {
+        const situationManager = await container(this).get(SITUATION_MANAGER);
+        await this.saveSolution(situationManager.cachedSituation.ui, solution);
     }
     getStubSolution() {
         return Object.assign(Object.assign({}, this.getStubIds()), { 1: Object.assign(Object.assign({}, this.getStubIds()), { factorNumber: 1, outcome: 'A', value: 33 }), 2: Object.assign(Object.assign({}, this.getStubIds()), { factorNumber: 2, outcome: 'A', value: 33 }), 3: Object.assign(Object.assign({}, this.getStubIds()), { factorNumber: 3, outcome: 'B', value: 34 }) });

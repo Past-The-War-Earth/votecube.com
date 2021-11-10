@@ -26,6 +26,12 @@ export interface ICubeLogic {
 		enableCubeAdjustment: boolean
 	): void
 
+	setCubeViewPort(
+		cubeEventListener: ICubeEventListener,
+		setMutationApi: (mutationApi: IMutationApi) => void,
+		callback: IValuesOutCallback
+	): void
+
 }
 
 export class CubeLogic

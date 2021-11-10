@@ -8,7 +8,7 @@ import { IUiRepositoryRecord, IUiSituation, IUiSolution } from '@votecube/model'
 import {
 	SOLUTION_MANAGER
 } from '../tokens'
-import { SITUATION_CONVERTER, SOLUTION_CONVERTER } from '..'
+import { SITUATION_CONVERTER, SITUATION_MANAGER, SOLUTION_CONVERTER } from '..'
 
 export interface ISolutionManager {
 
@@ -19,6 +19,10 @@ export interface ISolutionManager {
 
 	saveSolution(
 		situation: IUiSituation,
+		solution: IUiSolution
+	): Promise<void>
+
+	saveCachedSituationSolution(
 		solution: IUiSolution
 	): Promise<void>
 
@@ -58,6 +62,13 @@ export class SolutionManager
 			solution, situation.ageSuitability, dbSituation)
 
 		await this.solutionApi.saveSolution(dbSolution)
+	}
+
+	async saveCachedSituationSolution(
+		solution: IUiSolution
+	): Promise<void> {
+		const situationManager = await container(this).get(SITUATION_MANAGER)
+		await this.saveSolution(situationManager.cachedSituation.ui, solution)
 	}
 
 	private getStubSolution(): IUiSolution {

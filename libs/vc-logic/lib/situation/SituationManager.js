@@ -126,6 +126,9 @@ export class SituationManager {
             ui: null,
         };
     }
+    async saveCachedSituation(user) {
+        await this.saveSituation(this.cachedSituation.ui);
+    }
 }
 DI.set(SITUATION_MANAGER, SituationManager);
 //# sourceMappingURL=SituationManager.js.map

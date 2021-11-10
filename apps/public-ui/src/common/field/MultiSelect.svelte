@@ -1,3 +1,108 @@
+<script lang="ts">
+	import store from '@votecube/vc-logic'
+	import {OPTIONS} from '../../form/forms'
+	import {
+		removeWatch,
+		watchMultilineField
+	} from '../../watch'
+	import ClearIcon from '../icon/ClearIcon.svelte'
+	import InfoIcon from '../icon/InfoIcon.svelte'
+	import UndoIcon from '../icon/UndoIcon.svelte'
+
+	$: errors = ({delta, field}) => field.errors,
+	$: label = ({delta, field}) => field.label,
+	$: modified = ({delta, errors, field}) =>
+				!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
+	$: options = ({delta, field, filter}) => filter
+				? field.filteredOptions
+					.filter(option =>
+						option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
+				: field.filteredOptions,
+	$: requiredInvalid = ({delta, errors, field}) =>
+				field.validatorMap.required && errors.length,
+	$: requiredValid = ({delta, errors, field, modified}) =>
+				!modified && field.validatorMap.required && !errors.length,
+	$: selections = ({delta, field}) => field.value,
+	$: touched = ({delta, field}) => field.touched,
+			trackOriginal: ({delta, field}) => field.rules.trackOriginal
+
+	function v<T>(val: T, _delta: number): T {
+		
+	}
+
+	function hideOptions() {
+		showOptions = false
+	}
+
+	export default {
+		computed: {
+		},
+		data() {
+			return {
+				filter: '',
+				activeOptionIndex: 0
+			}
+		},
+		immutable: true,
+		methods: {
+			clear() {
+				this.get().field.clear()
+				this.refs.filter.value = ''
+			},
+			help() {
+				const text = this.get().field.text
+				this.store.setTextToast(text.info, text.infoSeconds)
+			},
+			hideOptions() {
+				this.set({showOptions: false})
+			},
+			onDocumentClick(event) {
+				this.hideOptions()
+			},
+			onDocumentKeydown(event) {
+				OPTIONS.handleKeydown(this, true, event)
+			},
+			revert() {
+				this.get().field.revert()
+				this.refs.filter.value = ''
+			},
+			select(option) {
+				this.get().field.select(option)
+				this.hideOptions()
+				this.set({filter: ''})
+			},
+			showOptions(
+				element,
+				event
+			) {
+				OPTIONS.showFiltered(this, element, event
+					// , true
+				)
+			},
+			unselect(
+				option,
+				event
+			) {
+				this.get().field.unselect(option)
+				event.stopPropagation()
+				this.set({filter: ''})
+			}
+		},
+		oncreate() {
+			this.get().field.setAsField(this)
+			watchMultilineField(this, this.refs.field
+				// , this.refs.selectionSizer
+			)
+		},
+		ondestroy() {
+			this.get().field.removeComponent(this)
+			removeWatch(this)
+		},
+		store: () => store
+	}
+
+</script>
+
 <svelte:document
 		on:click="onDocumentClick(event)"
 		on:keydown="onDocumentKeydown(event)"
@@ -225,128 +330,3 @@
 	}
 
 </style>
-
-<script>
-	import store from '@votecube/vc-logic/src/store'
-	import {OPTIONS} from '../../form/forms'
-	import {
-		removeWatch,
-		watchMultilineField
-	} from '../../watch'
-	import ClearIcon from '../icon/ClearIcon.svelte'
-	import InfoIcon from '../icon/InfoIcon.svelte'
-	import UndoIcon from '../icon/UndoIcon.svelte'
-
-
-	// Svelte V3 conversion: is 'export' needed here
-	export function hideOptions() {
-		showOptions = false
-	}
-
-	export default {
-		actions: {
-			for(
-				node,
-				id
-			) {
-				if (id) {
-					node.id = id
-				}
-			},
-			id(
-				node,
-				id
-			) {
-				if (id) {
-					node.id = id
-				}
-			}
-		},
-		components: {
-			ClearIcon,
-			InfoIcon,
-			UndoIcon
-		},
-		computed: {
-			errors: ({delta, field}) => field.errors,
-			label: ({delta, field}) => field.label,
-			modified: ({delta, errors, field}) =>
-				!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
-			options: ({delta, field, filter}) => filter
-				? field.filteredOptions
-					.filter(option =>
-						option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
-				: field.filteredOptions,
-			requiredInvalid: ({delta, errors, field}) =>
-				field.validatorMap.required && errors.length,
-			requiredValid: ({delta, errors, field, modified}) =>
-				!modified && field.validatorMap.required && !errors.length,
-			selections: ({delta, field}) => field.value,
-			touched: ({delta, field}) => field.touched,
-			trackOriginal: ({delta, field}) => field.rules.trackOriginal
-		},
-		data() {
-			return {
-				filter: '',
-				activeOptionIndex: 0
-			}
-		},
-		immutable: true,
-		methods: {
-			clear() {
-				this.get().field.clear()
-				this.refs.filter.value = ''
-			},
-			help() {
-				const text = this.get().field.text
-				this.store.setTextToast(text.info, text.infoSeconds)
-			},
-			hideOptions() {
-				this.set({showOptions: false})
-			},
-			onDocumentClick(event) {
-				this.hideOptions()
-			},
-			onDocumentKeydown(event) {
-				OPTIONS.handleKeydown(this, true, event)
-			},
-			revert() {
-				this.get().field.revert()
-				this.refs.filter.value = ''
-			},
-			select(option) {
-				this.get().field.select(option)
-				this.hideOptions()
-				this.set({filter: ''})
-			},
-			showOptions(
-				element,
-				event
-			) {
-				OPTIONS.showFiltered(this, element, event
-					// , true
-				)
-			},
-			unselect(
-				option,
-				event
-			) {
-				this.get().field.unselect(option)
-				event.stopPropagation()
-				this.set({filter: ''})
-			}
-		},
-		oncreate() {
-			this.get().field.setAsField(this)
-			watchMultilineField(this, this.refs.field
-				// , this.refs.selectionSizer
-			)
-		},
-		ondestroy() {
-			this.get().field.removeComponent(this)
-			removeWatch(this)
-		},
-		store: () => store
-	}
-
-</script>

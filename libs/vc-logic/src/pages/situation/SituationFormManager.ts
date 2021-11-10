@@ -62,8 +62,7 @@ export class SituationFormManager
 		this.transferFactorWithPositions(formSituation.factors[2], uiSituation.factors[2])
 		this.transferFactorWithPositions(formSituation.factors[3], uiSituation.factors[3])
 
-		this.transferNameAndId(formSituation.ageGroup, uiSituation.ageGroup)
-		uiSituation.ageGroups = this.formLabelsToUi(formSituation.labels)
+		uiSituation.ageGroups = this.formLabelsToUi(formSituation.ageGroups)
 		uiSituation.labels = this.formLabelsToUi(formSituation.labels)
 		this.transferNameAndId(formSituation.outcomes.A, uiSituation.outcomes.A)
 		this.transferNameAndId(formSituation.outcomes.B, uiSituation.outcomes.B)

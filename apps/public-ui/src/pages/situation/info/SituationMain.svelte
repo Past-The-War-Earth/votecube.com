@@ -443,7 +443,7 @@
         savingMessage = "Saving ...";
         const situationManager = await container.get(SITUATION_MANAGER);
         try {
-            await situationManager.saveCurrentSituation($user);
+            await situationManager.saveCachedSituation($user);
             confirm = false;
             navigateToPage(SITUATION_LIST);
         } catch (theError) {
@@ -456,7 +456,7 @@
         // confirm = false
         const solutionManager = await container.get(SOLUTION_MANAGER);
         try {
-            await solutionManager.saveSolution(solution);
+            await solutionManager.saveCachedSituationSolution(solution);
             confirm = false;
             navigateToPage(SITUATION_LIST);
         } catch (theError) {
@@ -708,9 +708,13 @@
                 <div slot="content">
                     Define the "{situation.name}" Situation?
                     <br />
-                    Category: {situation.category.name}
+                    Age Groups: {situation.ageGroups
+                        .map((ageGroup) => ageGroup.name)
+                        .join(" , ")}
                     <br />
-                    Age Suitability: {situation.ageSuitability}+
+                    Labels: {situation.labels
+                        .map((label) => label.name)
+                        .join(" , ")}
                 </div>
                 <div slot="actions">
                     <BuildButton on:click={() => build($user)} />
