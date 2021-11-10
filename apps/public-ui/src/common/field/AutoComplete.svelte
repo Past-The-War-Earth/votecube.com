@@ -1,6 +1,10 @@
 <svelte:options immutable/>
 
-<script>
+<script lang="ts">
+	import type {
+		IOptionsField
+	} from '@votecube/forms'
+	
 	import {
 		forms,
 		textToast
@@ -15,7 +19,7 @@
 	import UndoIcon  from '../icon/UndoIcon.svelte'
 
 	export let doShowOptions = false
-	export let field
+	export let field: IOptionsField
 	export let filter        = ''
 	export let filterInput = null
 	export let fieldSection = null
@@ -80,6 +84,12 @@
 		},
 		setIsOriginal(newIsOriginal) {
 			isOriginal = newIsOriginal
+		},
+		setShowCalendar(_) {
+
+		},
+		setShowOptions(newShowOptions: boolean) {
+			doShowOptions = newShowOptions
 		}
 	}
 
@@ -102,7 +112,7 @@
 	onMount(() => field.setAsField(formHandle))
 	onDestroy(() => field.removeComponent(formHandle))
 
-	function v(val) {
+	function v<T>(val: T, _delta: number): T {
 		return val
 	}
 
@@ -151,7 +161,7 @@
 
 	function revert() {
 		field.revert()
-		const value = field.theValue
+		const value = field.value
 		if (value) {
 			filterInput.value = value.text
 		} else {
@@ -283,12 +293,12 @@
 			<div>
 				{#if trackOriginal}
 				<UndoIcon
-						multiLine="y"
+						multiLine={true}
 						on:click="{revert}"
 				></UndoIcon>
 				{:else}
 				<ClearIcon
-						multiLine="y"
+						multiLine={true}
 						on:click="{clear}"
 				></ClearIcon>
 				{/if}

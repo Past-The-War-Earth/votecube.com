@@ -1,3 +1,5 @@
+<svelte:options immutable />
+
 <script lang="ts">
 	import store from '@votecube/vc-logic'
 	import {OPTIONS} from '../../form/forms'
@@ -9,77 +11,80 @@
 	import InfoIcon from '../icon/InfoIcon.svelte'
 	import UndoIcon from '../icon/UndoIcon.svelte'
 
-	$: errors = ({delta, field}) => field.errors,
-	$: label = ({delta, field}) => field.label,
-	$: modified = ({delta, errors, field}) =>
-				!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
-	$: options = ({delta, field, filter}) => filter
+export let field: IOptionsField;
+
+	let delta = 0
+	let filter = ''
+	let activeOptionIndex = 0
+
+let formHandle: any = {
+	setDelta(newDelta) {
+		delta = newDelta;
+	},
+	setIsValid(newIsValid) {
+		isValid = newIsValid;
+	},
+	setIsOriginal(newIsOriginal) {
+		isOriginal = newIsOriginal;
+	},
+};
+
+	$: errors = v(field.errors, delta);
+	$: label = v(field.label, delta);
+	$: modified = v(!errors.length && field.rules.trackOriginal && !field.theIsOriginal, delta)
+	$: options = v(filter
 				? field.filteredOptions
 					.filter(option =>
 						option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
-				: field.filteredOptions,
-	$: requiredInvalid = ({delta, errors, field}) =>
-				field.validatorMap.required && errors.length,
-	$: requiredValid = ({delta, errors, field, modified}) =>
-				!modified && field.validatorMap.required && !errors.length,
-	$: selections = ({delta, field}) => field.value,
-	$: touched = ({delta, field}) => field.touched,
-			trackOriginal: ({delta, field}) => field.rules.trackOriginal
+				: field.filteredOptions, delta)
+	$: requiredInvalid = v(field.validatorMap.required && errors.length, delta)
+	$: requiredValid = v(!modified && field.validatorMap.required && !errors.length, delta)
+	$: selections = v(field.value, delta)
+	$: touched = v(field.touched, delta)
+	$: trackOriginal = v(field.rules.trackOriginal, delta)
 
 	function v<T>(val: T, _delta: number): T {
-		
+		return val
 	}
 
 	function hideOptions() {
 		showOptions = false
 	}
-
-	export default {
-		computed: {
-		},
-		data() {
-			return {
-				filter: '',
-				activeOptionIndex: 0
-			}
-		},
-		immutable: true,
-		methods: {
-			clear() {
+	function clear() {
 				this.get().field.clear()
 				this.refs.filter.value = ''
-			},
-			help() {
+			}
+			function help() {
 				const text = this.get().field.text
 				this.store.setTextToast(text.info, text.infoSeconds)
-			},
-			hideOptions() {
+			}
+			function hideOptions() {
 				this.set({showOptions: false})
-			},
-			onDocumentClick(event) {
+			}
+			function onDocumentClick(event) {
 				this.hideOptions()
-			},
-			onDocumentKeydown(event) {
+			}
+			function onDocumentKeydown(event) {
 				OPTIONS.handleKeydown(this, true, event)
-			},
-			revert() {
+			}
+			function revert() {
 				this.get().field.revert()
 				this.refs.filter.value = ''
-			},
-			select(option) {
+			}
+			function select(option) {
 				this.get().field.select(option)
 				this.hideOptions()
 				this.set({filter: ''})
-			},
-			showOptions(
+			}
+			function showOptions(
 				element,
 				event
 			) {
 				OPTIONS.showFiltered(this, element, event
 					// , true
 				)
-			},
-			unselect(
+			}
+			function unselect(
 				option,
 				event
 			) {
@@ -87,26 +92,24 @@
 				event.stopPropagation()
 				this.set({filter: ''})
 			}
-		},
-		oncreate() {
-			this.get().field.setAsField(this)
+
+
+			onMount(() => {
+			field.setAsField(formHandle)
 			watchMultilineField(this, this.refs.field
-				// , this.refs.selectionSizer
-			)
-		},
-		ondestroy() {
-			this.get().field.removeComponent(this)
+			});
+	onDestroy(() => {
+		field.removeComponent(formHandle)
 			removeWatch(this)
-		},
-		store: () => store
-	}
+	});
 
 </script>
 
-<svelte:document
-		on:click="onDocumentClick(event)"
-		on:keydown="onDocumentKeydown(event)"
-></svelte:document>
+<svelte:window
+		on:click="{onDocumentClick}"
+		on:keydown="{onDocumentKeydown}"
+></svelte:window>
+
 {#if $forms}
 <div
 		class="multiSelect"
