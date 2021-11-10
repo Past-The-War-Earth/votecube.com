@@ -3,7 +3,7 @@ import { SITUATION_FORM_MANAGER } from '../../tokens';
 export class SituationFormManager {
     fromForm(formSituation, uiSituation) {
         if (!uiSituation) {
-            uiSituation = Object.assign(Object.assign({}, this.getBlankUiNamedRecord()), { category: this.getBlankUiNamedRecord(), factors: {
+            uiSituation = Object.assign(Object.assign({}, this.getBlankUiNamedRecord()), { ageGroups: [], labels: [], factors: {
                     1: this.getBlankUiFactor('x'),
                     2: this.getBlankUiFactor('y'),
                     3: this.getBlankUiFactor('z'),
@@ -16,7 +16,9 @@ export class SituationFormManager {
         this.transferFactorWithPositions(formSituation.factors[1], uiSituation.factors[1]);
         this.transferFactorWithPositions(formSituation.factors[2], uiSituation.factors[2]);
         this.transferFactorWithPositions(formSituation.factors[3], uiSituation.factors[3]);
-        this.transferNameAndId(formSituation.category, uiSituation.category);
+        this.transferNameAndId(formSituation.ageGroup, uiSituation.ageGroup);
+        uiSituation.ageGroups = this.formLabelsToUi(formSituation.labels);
+        uiSituation.labels = this.formLabelsToUi(formSituation.labels);
         this.transferNameAndId(formSituation.outcomes.A, uiSituation.outcomes.A);
         this.transferNameAndId(formSituation.outcomes.B, uiSituation.outcomes.B);
         return uiSituation;
@@ -63,6 +65,16 @@ export class SituationFormManager {
                 B: Object.assign(Object.assign({}, this.getBlankUiNamedRecord()), { dir: -1 })
             } });
     }
+    formLabelsToUi(labels) {
+        return labels.map(formLabel => {
+            const uiLabel = this.getBlankUiLabel();
+            this.transferNameAndId(formLabel, uiLabel);
+            return uiLabel;
+        });
+    }
+    getBlankUiLabel() {
+        return Object.assign(Object.assign({}, this.getBlankUiNamedRecord()), { situationLabel: this.getBlankUiRepositoryRecord() });
+    }
     getBlankUiRepositoryRecord() {
         return {
             actorId: null,
@@ -75,16 +87,18 @@ export class SituationFormManager {
         return Object.assign(Object.assign({}, this.getBlankUiRepositoryRecord()), { name: null });
     }
     toForm(uiSituation) {
-        const category = this.getFormField(uiSituation.category);
         const uiOutcomeA = uiSituation.outcomes.A;
         const uiOutcomeB = uiSituation.outcomes.B;
+        const ageGroups = uiSituation.ageGroups.map(uiLabel => this.getFormField(uiLabel));
+        const labels = uiSituation.labels.map(uiLabel => this.getFormField(uiLabel));
         return {
-            category,
+            ageGroups,
             factors: {
                 1: this.uiToFormFactor(uiSituation.factors[1]),
                 2: this.uiToFormFactor(uiSituation.factors[2]),
                 3: this.uiToFormFactor(uiSituation.factors[3])
             },
+            labels,
             name: uiSituation.name,
             outcomes: {
                 A: this.getFormField(uiOutcomeA),

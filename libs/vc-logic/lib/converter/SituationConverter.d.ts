@@ -8,6 +8,7 @@ export interface ISituationConverter {
 export declare class SituationConverter extends RepositoryRecordConverter implements ISituationConverter {
     dbToUi(dbSituation: ISituation): IUiSituation;
     uiToDb(uiSituation: IUiSituation): ISituation;
+    private getUiLabel;
     private getUiFactor;
     private getUiPosition;
     private getUiOutcome;

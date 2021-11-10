@@ -1,5 +1,6 @@
-import { DI } from '@airport/di';
+import { container, DI } from '@airport/di';
 import { Subject } from 'rxjs';
+import { SITUATION_FORM_MANAGER } from '../../..';
 import { SITUATION_MAIN_LOGIC } from '../../../tokens';
 export class SituationMainLogic {
     solutionsEqual(lastSolution, solution) {
@@ -12,11 +13,8 @@ export class SituationMainLogic {
             && lastSolution[3].value === solution[3].value;
     }
     copySolutionToTween(solution, lastSolution) {
-        return {
-            1: this.getTweenSolutionFactor(solution, lastSolution, 1),
-            2: this.getTweenSolutionFactor(solution, lastSolution, 2),
-            3: this.getTweenSolutionFactor(solution, lastSolution, 3)
-        };
+        const situationFormManager = container(this).getSync(SITUATION_FORM_MANAGER);
+        return Object.assign(Object.assign({}, situationFormManager.getBlankUiRepositoryRecord()), { 1: this.getTweenSolutionFactor(solution, lastSolution, 1), 2: this.getTweenSolutionFactor(solution, lastSolution, 2), 3: this.getTweenSolutionFactor(solution, lastSolution, 3) });
     }
     scheduleFactorTweens(oldSolution, newSolution, durationMillis) {
         const subject = new Subject();

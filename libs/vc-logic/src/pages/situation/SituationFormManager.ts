@@ -5,6 +5,7 @@ import {
 	IFormField,
 	IFormSituation,
 	IUiFactor,
+	IUiLabel,
 	IUiNamedRecord,
 	IUiRepositoryRecord,
 	IUiSituation
@@ -25,6 +26,10 @@ export interface ISituationFormManager {
 		uiSituation: IUiSituation
 	): IFormSituation
 
+	getBlankUiRepositoryRecord(): IUiRepositoryRecord
+
+	getBlankUiNamedRecord(): IUiNamedRecord
+
 }
 
 export class SituationFormManager
@@ -37,7 +42,8 @@ export class SituationFormManager
 		if (!uiSituation) {
 			uiSituation = {
 				...this.getBlankUiNamedRecord(),
-				category: this.getBlankUiNamedRecord(),
+				ageGroups: [],
+				labels: [],
 				factors: {
 					1: this.getBlankUiFactor('x'),
 					2: this.getBlankUiFactor('y'),
@@ -56,7 +62,9 @@ export class SituationFormManager
 		this.transferFactorWithPositions(formSituation.factors[2], uiSituation.factors[2])
 		this.transferFactorWithPositions(formSituation.factors[3], uiSituation.factors[3])
 
-		this.transferNameAndId(formSituation.category, uiSituation.category)
+		this.transferNameAndId(formSituation.ageGroup, uiSituation.ageGroup)
+		uiSituation.ageGroups = this.formLabelsToUi(formSituation.labels)
+		uiSituation.labels = this.formLabelsToUi(formSituation.labels)
 		this.transferNameAndId(formSituation.outcomes.A, uiSituation.outcomes.A)
 		this.transferNameAndId(formSituation.outcomes.B, uiSituation.outcomes.B)
 
@@ -131,7 +139,24 @@ export class SituationFormManager
 		}
 	}
 
-	private getBlankUiRepositoryRecord(): IUiRepositoryRecord {
+	private formLabelsToUi(
+		labels: IFormField[]
+	): IUiLabel[] {
+		return labels.map(formLabel => {
+			const uiLabel = this.getBlankUiLabel()
+			this.transferNameAndId(formLabel, uiLabel)
+			return uiLabel
+		})
+	}
+
+	private getBlankUiLabel(): IUiLabel {
+		return {
+			...this.getBlankUiNamedRecord(),
+			situationLabel: this.getBlankUiRepositoryRecord()
+		}
+	}
+
+	getBlankUiRepositoryRecord(): IUiRepositoryRecord {
 		return {
 			actorId: null,
 			actorRecordId: null,
@@ -141,7 +166,7 @@ export class SituationFormManager
 		}
 	}
 
-	private getBlankUiNamedRecord(): IUiNamedRecord {
+	getBlankUiNamedRecord(): IUiNamedRecord {
 		return {
 			...this.getBlankUiRepositoryRecord(),
 			name: null
@@ -151,18 +176,22 @@ export class SituationFormManager
 	toForm(
 		uiSituation: IUiSituation
 	): IFormSituation {
-		const category = this.getFormField(uiSituation.category)
-
 		const uiOutcomeA = uiSituation.outcomes.A
 		const uiOutcomeB = uiSituation.outcomes.B
 
+		const ageGroups = uiSituation.ageGroups.map(uiLabel =>
+			this.getFormField(uiLabel))
+		const labels = uiSituation.labels.map(uiLabel =>
+			this.getFormField(uiLabel))
+
 		return {
-			category,
+			ageGroups,
 			factors: {
 				1: this.uiToFormFactor(uiSituation.factors[1]),
 				2: this.uiToFormFactor(uiSituation.factors[2]),
 				3: this.uiToFormFactor(uiSituation.factors[3])
 			},
+			labels,
 			name: uiSituation.name,
 			outcomes: {
 				A: this.getFormField(uiOutcomeA),

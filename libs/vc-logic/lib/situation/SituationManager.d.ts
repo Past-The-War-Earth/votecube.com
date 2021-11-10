@@ -1,4 +1,3 @@
-import { DeepPartial } from '@airport/pressurization';
 import { IFieldGroup } from '@votecube/forms';
 import { IUiSolution, IUiSituation, IUiLabel } from '@votecube/model';
 import { SituationApiClient } from '@votecube/votecube';
@@ -7,7 +6,7 @@ export interface IPageSolution extends IUiSolution {
 }
 export interface ISituationManager {
     cachedSituation: ICachedSituation;
-    getSituation(hostingPlatform: string, repositoryUuId: string): Promise<DeepPartial<IUiSituation>>;
+    getSituation(hostingPlatform: string, repositoryUuId: string): Promise<IUiSituation>;
     getAllSituations(): Promise<IUiSituation[]>;
     getSituationsForCategory(category: IUiLabel): Promise<IUiSituation[]>;
     getLeafSituations(stemSituationRepositoryUuId: string): Promise<IUiSituation[]>;
@@ -24,7 +23,7 @@ export declare class SituationManager implements ISituationManager {
     situationApi: SituationApiClient;
     private theCachedSituation;
     get cachedSituation(): ICachedSituation;
-    getSituation(hostingPlatform: string, repositoryUuId: string): Promise<DeepPartial<IUiSituation>>;
+    getSituation(hostingPlatform: string, repositoryUuId: string): Promise<IUiSituation>;
     getAllSituations(): Promise<IUiSituation[]>;
     getSituationsForCategory(category: IUiLabel): Promise<IUiSituation[]>;
     getLeafSituations(stemSituationRepositoryUuId: string): Promise<IUiSituation[]>;

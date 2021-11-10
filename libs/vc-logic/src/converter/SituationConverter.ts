@@ -1,4 +1,4 @@
-import { DI } from '@airport/di'
+import { container, DI } from '@airport/di'
 import {
 	ILabel,
 	IFactor,
@@ -15,10 +15,12 @@ import {
 	IUiPosition,
 	IUiRepositoryRecord,
 	IUiSituation,
+	AGE_GROUPS,
 } from '@votecube/model'
 import { SITUATION_CONVERTER } from '../tokens'
 import { RepositoryRecordConverter } from './RepositoryRecordConverter'
 import { Label } from '@votecube/votecube/lib/server'
+import { SITUATION_FORM_MANAGER } from '..'
 
 export interface ISituationConverter {
 
@@ -45,8 +47,16 @@ export class SituationConverter
 			parent = super.dbToUi(dbSituation.parent)
 		}
 
+		const ageGroups = dbSituation.situationLabels.filter(situationLabel =>
+			AGE_GROUPS.includes(situationLabel.label.name))
+			.map(ageGroupLabel => this.getUiLabel(ageGroupLabel))
+		const labels = dbSituation.situationLabels.filter(situationLabel =>
+			!AGE_GROUPS.includes(situationLabel.label.name))
+			.map(ageGroupLabel => this.getUiLabel(ageGroupLabel))
+
 		return {
 			...super.dbToUi(dbSituation.parent),
+			ageGroups,
 			factors: {
 				'1': this.getUiFactor(1, dbSituation.situationFactorPositions),
 				'2': this.getUiFactor(2, dbSituation.situationFactorPositions),
@@ -58,7 +68,7 @@ export class SituationConverter
 				B: this.getUiOutcome(dbSituation.outcomeB)
 			},
 			parent,
-			labels: this.getUiLabels(dbSituation.situationLabels),
+			labels,
 		}
 	}
 
@@ -108,7 +118,26 @@ export class SituationConverter
 				'B',
 				dbFactors
 			)],
-			situationLabels: this.getDbLabels(uiSituation, uiSituation.labels),
+			situationLabels: this.getDbLabels(
+				uiSituation,  uiSituation.ageGroups.concat(uiSituation.labels)),
+		}
+	}
+
+	private getUiLabel(
+		situationLabel: ISituationLabel
+	) {
+		if (!situationLabel) {
+			const situationFormManager = container(this).getSync(SITUATION_FORM_MANAGER)
+			return {
+				...situationFormManager.getBlankUiNamedRecord(),
+				situationLabel: situationFormManager.getBlankUiRepositoryRecord()
+			}
+		}
+		const label = situationLabel.label
+		return {
+			...super.dbToUi(label),
+			name: label.name,
+			situationLabel: super.dbToUi(situationLabel)
 		}
 	}
 
@@ -175,14 +204,9 @@ export class SituationConverter
 		if (!situationLabels) {
 			return []
 		}
-		return situationLabels.map(situationLabel => {
-			const label = situationLabel.label
-			return {
-				...super.dbToUi(label),
-				name: Label.name,
-				situationLabel: super.dbToUi(situationLabel)
-			}
-		})
+		return situationLabels.map(situationLabel =>
+			this.getUiLabel(situationLabel)
+		)
 	}
 
 	private getDbLabels(
@@ -194,12 +218,13 @@ export class SituationConverter
 		}
 		return uiLabels.map(uiLabel => {
 			return {
-				...super.uiToDb(uiLabel),
+				...super.uiToDb(uiLabel.situationLabel, uiSituation.ageSuitability),
 				label: {
-					...super.uiToDb(uiLabel),
+					...super.uiToDb(uiLabel, uiSituation.ageSuitability),
+					name: uiLabel.name
 				},
 				situation: {
-					...super.uiToDb(uiLabel.situationLabel),
+					...super.uiToDb(uiSituation),
 				}
 
 			}

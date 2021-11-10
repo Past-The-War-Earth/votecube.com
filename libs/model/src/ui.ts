@@ -45,6 +45,7 @@ export interface IUiPosition
 
 export interface IUiSituation
 	extends IUiNamedRecord {
+	ageGroups: IUiLabel[]
 	labels: IUiLabel[]
 	factors: {
 		1: IUiFactor

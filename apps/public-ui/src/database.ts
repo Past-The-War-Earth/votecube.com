@@ -4,14 +4,20 @@ import {
 } from '@votecube/cube-logic'
 import {
     ICubeLogic,
+    ISituationFormManager,
     pageTitle,
+    SITUATION_FORM_MANAGER,
     SITUATION_MANAGER,
     SOLUTION_MANAGER
 } from '@votecube/vc-logic'
 import type {
     IUiSolution,
-    IUiSituation
+    IUiSituation,
+    IUiSolutionFactor,
+    ITweenSolution,
+    ITweenSolutionFactor
 } from '@votecube/model';
+import type { IChildContainer, IRootContainer } from '@airport/di';
 
 // import {APP_CONTAINER} from './container'
 
@@ -21,12 +27,59 @@ export async function init() {
     // await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, SCHEMA)
 }
 
+export function getBlankTweenSolution(
+    container: IChildContainer
+): ITweenSolution {
+    const situationFormManager = container.getSync(SITUATION_FORM_MANAGER)
+
+    return {
+        ...situationFormManager.getBlankUiRepositoryRecord(),
+        1: getBlankTweenSolutionFactor(situationFormManager),
+        2: getBlankTweenSolutionFactor(situationFormManager),
+        3: getBlankTweenSolutionFactor(situationFormManager)
+    }
+}
+
+export function getBlankUiSolution(
+    container: IChildContainer
+): IUiSolution {
+    const situationFormManager = container.getSync(SITUATION_FORM_MANAGER)
+
+    return {
+        ...situationFormManager.getBlankUiRepositoryRecord(),
+        1: getBlankUiSolutionFactor(situationFormManager),
+        2: getBlankUiSolutionFactor(situationFormManager),
+        3: getBlankUiSolutionFactor(situationFormManager)
+    }
+}
+
+function getBlankTweenSolutionFactor(
+    situationFormManager: ISituationFormManager
+): ITweenSolutionFactor {
+    return {
+        ...getBlankUiSolutionFactor(situationFormManager),
+        tweenOutcome: null,
+        tweenValue: 0,
+    }
+}
+
+function getBlankUiSolutionFactor(
+    situationFormManager: ISituationFormManager
+): IUiSolutionFactor {
+    return {
+        ...situationFormManager.getBlankUiRepositoryRecord(),
+        factorNumber: 1,
+        outcome: null,
+        value: 0,
+    }
+}
+
 export async function setupCubeView(
     hostingPlatform: string,
     repositoryUuId: string,
     cubeLogic: ICubeLogic,
     cubeEventListener: ICubeEventListener,
-    container
+    container: IChildContainer
 ): Promise<{
     situation: IUiSituation,
     solution: IUiSolution

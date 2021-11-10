@@ -1,4 +1,4 @@
-import { ICubeEventListener } from '@votecube/cube-logic';
+import { ICubeEventListener, IMutationApi, IValuesOutCallback } from '@votecube/cube-logic';
 import { ICubePosition, ICubeSituationFactorPositionDefault } from '@votecube/model';
 export interface ICubeLogic {
     getDefaultCubePositions(): ICubePosition[];
@@ -11,7 +11,7 @@ export declare class CubeLogic implements ICubeLogic {
     getSituationFactorPositionDefault(): ICubeSituationFactorPositionDefault;
     shutDownCubeListener(cubeEventListener: ICubeEventListener): void;
     setCubeAdjustment(cubeEventListener: ICubeEventListener, enableCubeAdjustment: boolean): void;
-    private setCubeViewPort;
+    setCubeViewPort(cubeEventListener: ICubeEventListener, setMutationApi: (mutationApi: IMutationApi) => void, callback: IValuesOutCallback): void;
     private getFactorPositionDefault;
 }
 //# sourceMappingURL=CubeLogic.d.ts.map

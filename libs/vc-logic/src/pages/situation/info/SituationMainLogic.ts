@@ -1,4 +1,4 @@
-import {DI}              from '@airport/di'
+import {container, DI}              from '@airport/di'
 import {
 	Factor_Number
 }                        from '@votecube/cube-logic'
@@ -13,6 +13,7 @@ import {
 	Observable,
 	Subject
 }                        from 'rxjs'
+import { SITUATION_FORM_MANAGER } from '../../..'
 import {SITUATION_MAIN_LOGIC} from '../../../tokens'
 
 type FrameDuration = number
@@ -81,7 +82,9 @@ export class SituationMainLogic
 		solution: IUiSolution,
 		lastSolution: IUiSolution
 	): ITweenSolution {
+		const situationFormManager = container(this).getSync(SITUATION_FORM_MANAGER)
 		return {
+			...situationFormManager.getBlankUiRepositoryRecord(),
 			1: this.getTweenSolutionFactor(solution, lastSolution, 1),
 			2: this.getTweenSolutionFactor(solution, lastSolution, 2),
 			3: this.getTweenSolutionFactor(solution, lastSolution, 3)

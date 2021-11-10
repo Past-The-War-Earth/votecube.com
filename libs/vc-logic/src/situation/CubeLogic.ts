@@ -98,7 +98,7 @@ export class CubeLogic
 		}
 	}
 
-	private setCubeViewPort(
+	setCubeViewPort(
 		cubeEventListener: ICubeEventListener,
 		setMutationApi: (mutationApi: IMutationApi) => void,
 		callback: IValuesOutCallback

@@ -2,6 +2,7 @@
     import { DI } from "@airport/di";
     import { CUBE_EVENT_LISTENER, MUTATION_API } from "@votecube/cube-logic";
     import type {
+        ITweenSolution,
         ITweenSolutionFactor,
         IUiSituation,
         IUiSolution,
@@ -41,7 +42,11 @@
     import Outcomes from "../../../components/situation/Outcomes.svelte";
     import SituationFab from "../../../components/situation/SituationFab.svelte";
     import SolutionComponentGraph from "../../../components/solution/SolutionComponentGraph.svelte";
-    import { setupCubeView } from "../../../database";
+    import {
+        getBlankTweenSolution,
+        getBlankUiSolution,
+        setupCubeView,
+    } from "../../../database";
     // import SolutionComponentSummary from '../../../components/solution/SolutionComponentSummary.html'
 
     let action;
@@ -54,29 +59,13 @@
         delta: false,
     };
     let confirm;
-    let container;
     let cubeSideMap;
     let cubeSides;
     let cubeView = false;
     // cubeTransition: false,
-    let currentSolution: IUiSolution = {
-        1: {
-            factorNumber: 1,
-            outcome: null,
-            value: 0,
-        },
-        2: {
-            factorNumber: 2,
-            outcome: null,
-            value: 0,
-        },
-        3: {
-            factorNumber: 3,
-            outcome: null,
-            value: 0,
-        },
-        labels: []
-    };
+
+    let container = DI.ui("SituationMain");
+    let currentSolution: ITweenSolution = getBlankTweenSolution(container);
     let delta = 0;
     let effectiveCubeView;
     let error;
@@ -136,7 +125,6 @@
 
     onMount(async () => {
         cardMove.set(null);
-        container = DI.ui("SituationMain");
 
         let params = get(routeParams);
         let hostingPlatform = params.hostingPlatform;
@@ -619,7 +607,7 @@
                 {saving}
                 on:cancel={() => showAgeSuitability(false)}
                 on:save={() => onAgeSuitabilitySave(saving)}
-                situation={situation}
+                {situation}
             />
         {/if}
         {#if outcomesVisible}
@@ -628,7 +616,7 @@
                     {situation.name}
                 </div>
                 <div slot="content">
-                    <Outcomes final={loaded} situation={situation} />
+                    <Outcomes final={loaded} {situation} />
                 </div>
                 <div slot="cancel">
                     <OutcomeButton on:click={() => showOutcomes(false)} />
@@ -682,15 +670,15 @@
                     <br />
                     <h3>
                         {#if action === "opinions"}
-                            Ability to post your opinions about Situations is coming
-                            next!
+                            Ability to post your opinions about Situations is
+                            coming next!
                         {:else if action === "solution"}
                             Voting is scheduled to be released at the end of
                             Alpha testing period.
                         {:else if action === "rankings"}
-                            We'll start providing basic Situation Rankings at the end
-                            of Alpha testing period. More will be added in
-                            subsequent releases.
+                            We'll start providing basic Situation Rankings at
+                            the end of Alpha testing period. More will be added
+                            in subsequent releases.
                         {:else if action === "stats"}
                             Basic Situation Statistics will be available in Beta
                             release. More advanced stats will be provided in

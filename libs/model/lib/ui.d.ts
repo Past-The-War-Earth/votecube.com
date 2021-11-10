@@ -30,6 +30,7 @@ export interface IUiPosition extends IUiNamedRecord {
     dir: -1 | 1;
 }
 export interface IUiSituation extends IUiNamedRecord {
+    ageGroups: IUiLabel[];
     labels: IUiLabel[];
     factors: {
         1: IUiFactor;

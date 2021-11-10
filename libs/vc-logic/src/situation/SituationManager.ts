@@ -2,7 +2,6 @@ import {
 	container,
 	DI
 } from '@airport/di'
-import { DeepPartial } from '@airport/pressurization'
 import { IFieldGroup } from '@votecube/forms'
 import {
 	IUiSolution,
@@ -30,7 +29,7 @@ export interface ISituationManager {
 	getSituation(
 		hostingPlatform: string,
 		repositoryUuId: string
-	): Promise<DeepPartial<IUiSituation>>
+	): Promise<IUiSituation>
 
 	getAllSituations(): Promise<IUiSituation[]>
 
@@ -78,7 +77,7 @@ export class SituationManager
 	async getSituation(
 		hostingPlatform: string,
 		repositoryUuId: string
-	): Promise<DeepPartial<IUiSituation>> {
+	): Promise<IUiSituation> {
 		if (!repositoryUuId || repositoryUuId === 'unsolved') {
 			return this.cachedSituation.ui
 		}

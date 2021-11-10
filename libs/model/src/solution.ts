@@ -35,7 +35,8 @@ export interface IUiSolution
 	changeMillis?: number
 }
 
-export interface ITweenSolution {
+export interface ITweenSolution
+	extends IUiRepositoryRecord {
 	1: ITweenSolutionFactor
 	2: ITweenSolutionFactor
 	3: ITweenSolutionFactor
