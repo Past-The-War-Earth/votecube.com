@@ -13,4 +13,6 @@ export const SITUATION_MAIN_LOGIC = publicLogic.token('ISituationMainLogic');
 export const SITUATION_MANAGER = publicLogic.token('ISituationManager');
 export const SITUATION_CONVERTER = publicLogic.token('ISituationConverter');
 export const SOLUTION_MANAGER = publicLogic.token('ISolutionManager');
+export const SOLUTION_CONVERTER = publicLogic.token('ISolutionConverter');
+export const REPOSITORY_RECORD_CONVERTER = publicLogic.token('IRepositoryRecordConverter');
 //# sourceMappingURL=tokens.js.map

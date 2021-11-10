@@ -1,12 +1,11 @@
 import { IOC } from "@airport/di";
-import { DeepPartial } from "@airport/pressurization";
-import { Solution } from "../ddl/ddl";
+import { ISolution } from "../generated/interfaces";
 import { SOLUTION_API } from "../tokens";
 
 export class SolutionApiClient {
 
     async saveSolution(
-        solution: DeepPartial<Solution>
+        solution: ISolution
     ): Promise<void> {
         const solutionApi = await IOC.get(SOLUTION_API)
 
@@ -15,7 +14,7 @@ export class SolutionApiClient {
 
     async getMySolutionForSituation(
         situationRepositoryUuid: string
-    ): Promise<Solution> {
+    ): Promise<ISolution> {
         const solutionApi = await IOC.get(SOLUTION_API)
 
         return await solutionApi.getMySolutionForSituation(situationRepositoryUuid)

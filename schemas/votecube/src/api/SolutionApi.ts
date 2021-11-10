@@ -1,18 +1,17 @@
 import { Api } from "@airport/check-in";
 import { DI } from "@airport/di";
-import { DeepPartial } from "@airport/pressurization";
-import { Solution } from "../ddl/ddl";
+import { ISolution } from "../generated/interfaces";
 import { SOLUTION_API } from "../tokens";
 
 export interface ISolutionApi {
 
     saveSolution(
-        solution: DeepPartial<Solution>
+        solution: ISolution
     ): Promise<void>
 
     getMySolutionForSituation(
         situationRepositoryUuid: string
-    ): Promise<Solution>
+    ): Promise<ISolution>
 
 }
 
@@ -21,7 +20,7 @@ export class SolutionApi
 
     @Api()
     async saveSolution(
-        solution: DeepPartial<Solution>
+        solution: ISolution
     ): Promise<void> {
         return null
     }
@@ -29,7 +28,7 @@ export class SolutionApi
     @Api()
     async getMySolutionForSituation(
         situationRepositoryUuid: string
-    ): Promise<Solution> {
+    ): Promise<ISolution> {
         return null
     }
 

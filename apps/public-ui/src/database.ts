@@ -22,6 +22,7 @@ export async function init() {
 }
 
 export async function setupCubeView(
+    hostingPlatform: string,
     repositoryUuId: string,
     cubeLogic: ICubeLogic,
     cubeEventListener: ICubeEventListener,
@@ -39,7 +40,7 @@ export async function setupCubeView(
         repositoryUuId
     );
 
-    const situation = await situationManager.getSituation(repositoryUuId)
+    const situation = await situationManager.getSituation(hostingPlatform, repositoryUuId)
 
     cubeEventListener.setPositionData(solution)
     await mutationApi.recompute()

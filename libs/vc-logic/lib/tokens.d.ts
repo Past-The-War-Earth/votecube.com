@@ -1,5 +1,5 @@
 import { IAuth } from './Auth';
-import { ISituationConverter } from './converter/SituationConveter';
+import { ISituationConverter } from './converter/SituationConverter';
 import { ILogicUtils } from './LogicUtils';
 import { IDetailedCubeLogic } from './pages/components/situation/DetailedCubeLogic';
 import { IFactorRankingLogic } from './pages/situation/info/FactorRankingLogic';
@@ -10,6 +10,8 @@ import { ICubeLogic } from './situation/CubeLogic';
 import { ISituationManager } from './situation/SituationManager';
 import { ISolutionManager } from './situation/SolutionManager';
 import { IRoutes } from './Routes';
+import { ISolutionConverter } from './converter/SolutionConverter';
+import { IRepositoryRecordConverter } from './converter/RepositoryRecordConverter';
 export declare const AUTH: import("@airport/di").IDiToken<IAuth>;
 export declare const CUBE_LOGIC: import("@airport/di").IDiToken<ICubeLogic>;
 export declare const DETAILED_CUBE_LOGIC: import("@airport/di").IDiToken<IDetailedCubeLogic>;
@@ -22,4 +24,6 @@ export declare const SITUATION_MAIN_LOGIC: import("@airport/di").IDiToken<ISitua
 export declare const SITUATION_MANAGER: import("@airport/di").IDiToken<ISituationManager>;
 export declare const SITUATION_CONVERTER: import("@airport/di").IDiToken<ISituationConverter>;
 export declare const SOLUTION_MANAGER: import("@airport/di").IDiToken<ISolutionManager>;
+export declare const SOLUTION_CONVERTER: import("@airport/di").IDiToken<ISolutionConverter>;
+export declare const REPOSITORY_RECORD_CONVERTER: import("@airport/di").IDiToken<IRepositoryRecordConverter>;
 //# sourceMappingURL=tokens.d.ts.map

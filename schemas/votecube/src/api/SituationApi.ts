@@ -18,6 +18,7 @@ export interface ISituationApi {
     ): Promise<ISituation>
 
     getSituation(
+        repositorySource: string,
         situationRepositoryUuId: string
     ): Promise<ISituation>
 
@@ -69,11 +70,12 @@ export class SituationApi
 
     @Api()
     async getSituation(
+        repositorySource: string,
         situationRepositoryUuId: string
     ): Promise<ISituation> {
         const situationDao = await container(this).get(SITUATION_DAO)
 
-        return await situationDao.findByRepositoryUuId(situationRepositoryUuId)
+        return await situationDao.findByRepositoryUuId(repositorySource, situationRepositoryUuId)
     }
 
     @Api()

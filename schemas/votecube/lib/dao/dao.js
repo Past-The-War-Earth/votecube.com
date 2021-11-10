@@ -1,2 +1,2 @@
-export const PLACEHOLDER = 1;
+export * from './SituationDao';
 //# sourceMappingURL=dao.js.map

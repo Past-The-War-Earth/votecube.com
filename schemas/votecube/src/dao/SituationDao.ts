@@ -19,6 +19,7 @@ import { Situation } from "../ddl/ddl";
 export interface ISituationDao {
 
     findByRepositoryUuId(
+        repositorySource: string,
         situationReposioryUuid: string
     ): Promise<Situation>
 
@@ -45,6 +46,7 @@ export class SituationDao
      * repositoryUuId is used for page navigation).
      */
     async findByRepositoryUuId(
+        repositorySource: string,
         situationReposioryUuid: string
     ): Promise<ISituation> {
         let s: QSituation
@@ -57,7 +59,10 @@ export class SituationDao
         let sfp: QSituationFactorPosition
         let f: QFactor
         let p: QPosition
-        const matchingRepositories = await this.db.find.tree({
+        const matchingRepositories = await this.db.findForRepository(
+            repositorySource,
+            situationReposioryUuid,
+        ).tree({
             select: {
                 parent: {},
                 outcomeA: {},
@@ -100,6 +105,7 @@ export class SituationDao
     }
 
     async saveSituation(
+        repositoryDestination: string,
         situation: ISituation
     ): Promise<void> {
         await this.db.save(situation)

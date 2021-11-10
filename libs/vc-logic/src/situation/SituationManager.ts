@@ -7,7 +7,7 @@ import { IFieldGroup } from '@votecube/forms'
 import {
 	IUiSolution,
 	IUiSituation,
-	IUiCategory,
+	IUiLabel,
 } from '@votecube/model'
 import { SituationApiClient } from '@votecube/votecube'
 import {
@@ -28,13 +28,14 @@ export interface ISituationManager {
 	cachedSituation: ICachedSituation
 
 	getSituation(
+		hostingPlatform: string,
 		repositoryUuId: string
 	): Promise<DeepPartial<IUiSituation>>
 
 	getAllSituations(): Promise<IUiSituation[]>
 
 	getSituationsForCategory(
-		category: IUiCategory
+		category: IUiLabel
 	): Promise<IUiSituation[]>
 
 	getLeafSituations(
@@ -75,6 +76,7 @@ export class SituationManager
 	}
 
 	async getSituation(
+		hostingPlatform: string,
 		repositoryUuId: string
 	): Promise<DeepPartial<IUiSituation>> {
 		if (!repositoryUuId || repositoryUuId === 'unsolved') {
@@ -89,7 +91,7 @@ export class SituationManager
 	}
 
 	async getSituationsForCategory(
-		category: IUiCategory
+		category: IUiLabel
 	): Promise<IUiSituation[]> {
 		return []
 	}
@@ -153,6 +155,47 @@ export class SituationManager
 		this.cachedSituation.ui = ui
 	}
 
+	/*
+	 * Publishing a situation makes it publically accessable by adding it
+	 * to Vepsa FTS and showing it in search results either by direct
+	 * text match or by label match.
+	 */
+	async publishSituation(
+		situation: IUiSituation
+	): Promise<void> {
+		// TODO: implement publish once saving across devices works
+		// (using votecube.com backend)
+	}
+
+	/*
+	 * For now saving the situation saves it in votecube via ScyllaDb.
+	 * it becomes accessible privately (if you know the private votecube UUID of
+	 * the user) and supports data syncing (via retrieval of new transaction
+	 * log entries)
+	 * 
+	 * Eventually, on initial save the user will be presented with a choice
+	 *  of where they want to save it - privately in IPFS or semi-privately
+	 * in the host application.  They can set that choice in Turbase.App settings
+	 * (to say that by default save all private repositories to IPFS or to 
+	 * host applications).  Note saving of private repos is done via Turbase,
+	 * the host application is still free to save this data as it chooses fit
+	 * (since there is no way to enforce what network connections the host application
+	 * UI makes in a standard browser).
+	 * 
+	 * The user choice of where to save can be passed in from the application UI.  If
+	 * that choice conflicts with the user settings the Turbase.App parent frame
+	 * will pop-up a dialog asking the user to confirm their choice.
+	 * 
+	 * Once the repository is saved the user's choice of where to save becomes
+	 * persistent and will take an explict action from the user to change it.  The
+	 * application is aware of the choice and should put it into the URL, thus
+	 * allowing the user to retrieve the private repository from the correct location
+	 * via a saved link.
+	 * 
+	 * On initial save the user is redirected from the build screen to the
+	 * screen with the same entity but the correct URL for where it is stored.
+	 * 
+	 */
 	async saveSituation(
 		situation: IUiSituation
 	): Promise<void> {
@@ -169,7 +212,7 @@ export class SituationManager
 
 		const dbSituation = converter.uiToDb(ui)
 
-		await this.situationApi.saveSituation(dbSituation);
+		await this.situationApi.saveSituation(dbSituation)
 
 		this.theCachedSituation = {
 			form: null,

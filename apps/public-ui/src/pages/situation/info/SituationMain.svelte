@@ -75,6 +75,7 @@
             outcome: null,
             value: 0,
         },
+        labels: []
     };
     let delta = 0;
     let effectiveCubeView;
@@ -138,6 +139,7 @@
         container = DI.ui("SituationMain");
 
         let params = get(routeParams);
+        let hostingPlatform = params.hostingPlatform;
         let repositoryUuId = params.repositoryUuId;
 
         resize();
@@ -174,6 +176,7 @@
         );
 
         const cubeViewResult = await setupCubeView(
+            hostingPlatform,
             repositoryUuId,
             cubeLogic,
             cubeEventListener,

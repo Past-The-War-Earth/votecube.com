@@ -1,15 +1,15 @@
 import { DI } from '@airport/di'
-import { DeepPartial } from '@airport/pressurization'
 import {
-	Category,
-	Factor,
-	Outcome,
-	Position,
-	Situation,
-	SituationFactorPosition,
+	ILabel,
+	IFactor,
+	IOutcome,
+	IPosition,
+	ISituation,
+	ISituationFactorPosition,
+	ISituationLabel,
 } from '@votecube/votecube'
 import {
-	IUiCategory,
+	IUiLabel,
 	IUiFactor,
 	IUiOutcome,
 	IUiPosition,
@@ -18,16 +18,17 @@ import {
 } from '@votecube/model'
 import { SITUATION_CONVERTER } from '../tokens'
 import { RepositoryRecordConverter } from './RepositoryRecordConverter'
+import { Label } from '@votecube/votecube/lib/server'
 
 export interface ISituationConverter {
 
 	dbToUi(
-		dbSituation: DeepPartial<Situation>
+		dbSituation: ISituation
 	): IUiSituation
 
 	uiToDb(
 		uiSituation: IUiSituation
-	): DeepPartial<Situation>
+	): ISituation
 
 }
 
@@ -36,7 +37,7 @@ export class SituationConverter
 	implements ISituationConverter {
 
 	dbToUi(
-		dbSituation: DeepPartial<Situation>
+		dbSituation: ISituation
 	): IUiSituation {
 		let parent: IUiRepositoryRecord = null
 
@@ -46,7 +47,6 @@ export class SituationConverter
 
 		return {
 			...super.dbToUi(dbSituation.parent),
-			category: this.getUiCategory(dbSituation.category),
 			factors: {
 				'1': this.getUiFactor(1, dbSituation.situationFactorPositions),
 				'2': this.getUiFactor(2, dbSituation.situationFactorPositions),
@@ -57,23 +57,20 @@ export class SituationConverter
 				A: this.getUiOutcome(dbSituation.outcomeA),
 				B: this.getUiOutcome(dbSituation.outcomeB)
 			},
-			parent
+			parent,
+			labels: this.getUiLabels(dbSituation.situationLabels),
 		}
 	}
 
 	uiToDb(
 		uiSituation: IUiSituation
-	): DeepPartial<Situation> {
-		const uiCategory = uiSituation.category
+	): ISituation {
 		const uiParent = uiSituation.parent
 
-		const dbFactors: DeepPartial<Factor>[] = []
+		const dbFactors: IFactor[] = []
 
 		return {
 			...super.uiToDb(uiSituation),
-			category: {
-				...super.uiToDb(uiCategory),
-			},
 			name: uiSituation.name,
 			outcomeA: this.getDbOutcome(uiSituation.outcomes.A, uiSituation.ageSuitability),
 			outcomeB: this.getDbOutcome(uiSituation.outcomes.B, uiSituation.ageSuitability),
@@ -111,19 +108,19 @@ export class SituationConverter
 				'B',
 				dbFactors
 			)],
-
+			situationLabels: this.getDbLabels(uiSituation, uiSituation.labels),
 		}
 	}
 
 	private getUiFactor(
 		factorNumber: 1 | 2 | 3,
-		factorPositions: DeepPartial<SituationFactorPosition>[]
+		factorPositions: ISituationFactorPosition[]
 	): IUiFactor {
 		const matchingFactorPositions = factorPositions.filter(factorPosition =>
 			factorPosition.factorNumber === factorNumber)
 
-		let dbFactorPositionA: DeepPartial<SituationFactorPosition>
-		let dbFactorPositionB: DeepPartial<SituationFactorPosition>
+		let dbFactorPositionA: ISituationFactorPosition
+		let dbFactorPositionB: ISituationFactorPosition
 
 		if (matchingFactorPositions[0].outcomeOrdinal === 'A') {
 			dbFactorPositionA = matchingFactorPositions[0]
@@ -152,7 +149,7 @@ export class SituationConverter
 	}
 
 	private getUiPosition(
-		dbSituationFactorPosition: DeepPartial<SituationFactorPosition>
+		dbSituationFactorPosition: ISituationFactorPosition
 	): IUiPosition {
 		const position = dbSituationFactorPosition.position
 
@@ -164,7 +161,7 @@ export class SituationConverter
 	}
 
 	private getUiOutcome(
-		outcome: DeepPartial<Outcome>
+		outcome: IOutcome
 	): IUiOutcome {
 		return {
 			...super.dbToUi(outcome),
@@ -172,19 +169,48 @@ export class SituationConverter
 		}
 	}
 
-	private getUiCategory(
-		category: DeepPartial<Category>
-	): IUiCategory {
-		return {
-			...super.dbToUi(category),
-			name: category.name,
+	private getUiLabels(
+		situationLabels: ISituationLabel[]
+	): IUiLabel[] {
+		if (!situationLabels) {
+			return []
 		}
+		return situationLabels.map(situationLabel => {
+			const label = situationLabel.label
+			return {
+				...super.dbToUi(label),
+				name: Label.name,
+				situationLabel: super.dbToUi(situationLabel)
+			}
+		})
+	}
+
+	private getDbLabels(
+		uiSituation: IUiSituation,
+		uiLabels: IUiLabel[]
+	): ISituationLabel[] {
+		if (!uiLabels) {
+			return []
+		}
+		return uiLabels.map(uiLabel => {
+			return {
+				...super.uiToDb(uiLabel),
+				label: {
+					...super.uiToDb(uiLabel),
+				},
+				situation: {
+					...super.uiToDb(uiLabel.situationLabel),
+				}
+
+			}
+		})
+
 	}
 
 	private getDbOutcome(
 		uiOutcome: IUiOutcome,
 		ageSuitability: 0 | 7 | 13 | 18
-	): DeepPartial<Outcome> {
+	): IOutcome {
 		return {
 			...super.uiToDb(uiOutcome, ageSuitability),
 			name: uiOutcome.name,
@@ -195,21 +221,21 @@ export class SituationConverter
 		uiSituation: IUiSituation,
 		factorNumber: 1 | 2 | 3,
 		outcomeOrdinal: 'A' | 'B',
-		dbFactors: DeepPartial<Factor>[]
-	): DeepPartial<SituationFactorPosition> {
+		dbFactors: IFactor[]
+	): ISituationFactorPosition {
 		const uiFactor = uiSituation.factors[factorNumber]
 		const uiPosition = uiFactor.positions[outcomeOrdinal]
 
-		let factor: DeepPartial<Factor> = dbFactors[factorNumber]
+		let factor: IFactor = dbFactors[factorNumber]
 		if (!factor) {
 			factor = this.getDbFactor(uiFactor, uiSituation.ageSuitability)
 			dbFactors[factorNumber] = factor
 		}
 
-		const position: DeepPartial<Position> = this.getDbPosition(uiPosition, uiSituation.ageSuitability)
+		const position: IPosition = this.getDbPosition(uiPosition, uiSituation.ageSuitability)
 
 		return {
-			...super.dbToUi(uiSituation),
+			...super.uiToDb(uiSituation, uiSituation.ageSuitability),
 			axis: uiFactor.axis,
 			blue: uiFactor.color.blue,
 			dir: uiPosition.dir,
@@ -225,7 +251,7 @@ export class SituationConverter
 	private getDbFactor(
 		uiFactor: IUiFactor,
 		ageSuitability: 0 | 7 | 13 | 18
-	): DeepPartial<Factor> {
+	): IFactor {
 		return {
 			...super.uiToDb(uiFactor, ageSuitability),
 			name: uiFactor.name,
@@ -235,7 +261,7 @@ export class SituationConverter
 	private getDbPosition(
 		uiPosition: IUiPosition,
 		ageSuitability: 0 | 7 | 13 | 18
-	): DeepPartial<Position> {
+	): IPosition {
 		return {
 			...super.uiToDb(uiPosition, ageSuitability),
 			name: uiPosition.name,

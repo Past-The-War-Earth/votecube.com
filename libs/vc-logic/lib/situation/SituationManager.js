@@ -13,7 +13,7 @@ export class SituationManager {
     get cachedSituation() {
         return this.theCachedSituation;
     }
-    async getSituation(repositoryUuId) {
+    async getSituation(hostingPlatform, repositoryUuId) {
         if (!repositoryUuId || repositoryUuId === 'unsolved') {
             return this.cachedSituation.ui;
         }
@@ -72,6 +72,44 @@ export class SituationManager {
         }
         this.cachedSituation.ui = ui;
     }
+    /*
+     * Publishing a situation makes it publically accessable by adding it
+     * to Vepsa FTS and showing it in search results either by direct
+     * text match or by label match.
+     */
+    async publishSituation(situation) {
+        // TODO: implement publish once saving across devices works
+        // (using votecube.com backend)
+    }
+    /*
+     * For now saving the situation saves it in votecube via ScyllaDb.
+     * it becomes accessible privately (if you know the private votecube UUID of
+     * the user) and supports data syncing (via retrieval of new transaction
+     * log entries)
+     *
+     * Eventually, on initial save the user will be presented with a choice
+     *  of where they want to save it - privately in IPFS or semi-privately
+     * in the host application.  They can set that choice in Turbase.App settings
+     * (to say that by default save all private repositories to IPFS or to
+     * host applications).  Note saving of private repos is done via Turbase,
+     * the host application is still free to save this data as it chooses fit
+     * (since there is no way to enforce what network connections the host application
+     * UI makes in a standard browser).
+     *
+     * The user choice of where to save can be passed in from the application UI.  If
+     * that choice conflicts with the user settings the Turbase.App parent frame
+     * will pop-up a dialog asking the user to confirm their choice.
+     *
+     * Once the repository is saved the user's choice of where to save becomes
+     * persistent and will take an explict action from the user to change it.  The
+     * application is aware of the choice and should put it into the URL, thus
+     * allowing the user to retrieve the private repository from the correct location
+     * via a saved link.
+     *
+     * On initial save the user is redirected from the build screen to the
+     * screen with the same entity but the correct URL for where it is stored.
+     *
+     */
     async saveSituation(situation) {
         const originalUi = this.cachedSituation.originalUi;
         const ui = this.cachedSituation.ui;

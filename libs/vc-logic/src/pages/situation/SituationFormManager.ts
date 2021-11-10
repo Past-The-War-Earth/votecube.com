@@ -97,13 +97,13 @@ export class SituationFormManager
 			uiRepositoryRecord.actorRecordId = null
 			uiRepositoryRecord.ageSuitability = null
 			uiRepositoryRecord.repositoryId = null
-			uiRepositoryRecord.repositoryUuId = 'unsolved'
+			// uiRepositoryRecord.repositoryUuId = 'unsolved'
 		} else {
 			uiRepositoryRecord.actorId = formField.id.actorId
 			uiRepositoryRecord.actorRecordId = formField.id.actorRecordId
 			uiRepositoryRecord.ageSuitability = formField.id.ageSuitability
 			uiRepositoryRecord.repositoryId = formField.id.repositoryId
-			uiRepositoryRecord.repositoryUuId = formField.id.repositoryUuId
+			// uiRepositoryRecord.repositoryUuId = formField.id.repositoryUuId
 		}
 	}
 
@@ -137,7 +137,7 @@ export class SituationFormManager
 			actorRecordId: null,
 			ageSuitability: null,
 			repositoryId: null,
-			repositoryUuId: '',
+			// repositoryUuId: '',
 		}
 	}
 
@@ -188,7 +188,7 @@ export class SituationFormManager
 			actorRecordId: uiRepositoryRecord.actorRecordId,
 			ageSuitability: uiRepositoryRecord.ageSuitability,
 			repositoryId: uiRepositoryRecord.repositoryId,
-			repositoryUuId: uiRepositoryRecord.repositoryUuId
+			// repositoryUuId: uiRepositoryRecord.repositoryUuId
 		}
 	}
 

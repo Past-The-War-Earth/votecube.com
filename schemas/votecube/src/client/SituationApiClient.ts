@@ -31,11 +31,12 @@ export class SituationApiClient {
     }
 
     async getSituation(
+        repositorySource: string,
         situationRepositoryUuId: string
     ): Promise<ISituation> {
         const situationApi = await IOC.get(SITUATION_API)
 
-        return await situationApi.getSituaition(situationRepositoryUuId)
+        return await situationApi.getSituation(repositorySource, situationRepositoryUuId)
     }
 
     async saveSituation(

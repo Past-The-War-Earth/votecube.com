@@ -1,9 +1,9 @@
-import { DeepPartial } from "@airport/pressurization";
-import { Category, Situation } from "../ddl/ddl";
+import { ILabel, ISituation } from "../server";
 export declare class SituationApiClient {
-    getSituationsForCategory(category: DeepPartial<Category>): Promise<DeepPartial<Situation>[]>;
-    getLeafSituations(situation: DeepPartial<Situation>): Promise<DeepPartial<Situation>[]>;
-    getStemSituation(situation: DeepPartial<Situation>): Promise<DeepPartial<Situation>>;
-    saveSituation(situation: DeepPartial<Situation>): Promise<void>;
+    getSituationsForLabels(labels: ILabel[]): Promise<ISituation[]>;
+    getLeafSituations(situation: ISituation): Promise<ISituation[]>;
+    getStemSituation(situation: ISituation): Promise<ISituation>;
+    getSituation(repositorySource: string, situationRepositoryUuId: string): Promise<ISituation>;
+    saveSituation(situation: ISituation): Promise<void>;
 }
 //# sourceMappingURL=SituationApiClient.d.ts.map

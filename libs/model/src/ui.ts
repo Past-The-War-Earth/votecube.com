@@ -1,10 +1,10 @@
 export interface IUiRepositoryRecord {
 	actorId: number
-	actorUuId: string
+	// actorUuId: string
 	actorRecordId: number
 	ageSuitability: 0 | 7 | 13 | 18
 	repositoryId: number
-	repositoryUuId: string
+	// repositoryUuId: string
 }
 
 export interface IUiNamedRecord
@@ -12,8 +12,9 @@ export interface IUiNamedRecord
 	name: string
 }
 
-export interface IUiCategory
+export interface IUiLabel
 	extends IUiNamedRecord {
+	situationLabel: IUiRepositoryRecord
 }
 
 export interface IUiColor {
@@ -44,7 +45,7 @@ export interface IUiPosition
 
 export interface IUiSituation
 	extends IUiNamedRecord {
-	category: IUiCategory
+	labels: IUiLabel[]
 	factors: {
 		1: IUiFactor
 		2: IUiFactor

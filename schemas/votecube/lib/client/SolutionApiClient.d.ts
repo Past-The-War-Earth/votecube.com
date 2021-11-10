@@ -1,7 +1,6 @@
-import { DeepPartial } from "@airport/pressurization";
-import { Solution } from "../ddl/ddl";
+import { ISolution } from "../generated/interfaces";
 export declare class SolutionApiClient {
-    saveSolution(solution: DeepPartial<Solution>): Promise<void>;
-    getMySolutionForSituation(situationRepositoryUuid: string): Promise<Solution>;
+    saveSolution(solution: ISolution): Promise<void>;
+    getMySolutionForSituation(situationRepositoryUuid: string): Promise<ISolution>;
 }
 //# sourceMappingURL=SolutionApiClient.d.ts.map

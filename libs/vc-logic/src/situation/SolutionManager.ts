@@ -1,8 +1,7 @@
 import { container, DI } from '@airport/di'
-import { DeepPartial } from '@airport/pressurization'
 import {
-	Situation,
-	Solution,
+	ISituation,
+	ISolution,
 	SolutionApiClient
 } from '@votecube/votecube'
 import { IUiRepositoryRecord, IUiSituation, IUiSolution } from '@votecube/model'
@@ -88,11 +87,11 @@ export class SolutionManager
 	private getStubIds(): IUiRepositoryRecord {
 		return {
 			actorId: null,
-			actorUuId: null,
+			// actorUuId: null,
 			actorRecordId: null,
 			ageSuitability: null,
 			repositoryId: null,
-			repositoryUuId: null,
+			// repositoryUuId: null,
 		}
 	}
 
