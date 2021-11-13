@@ -4,7 +4,6 @@
 	import type {
 		IOptionsField
 	} from '@votecube/forms'
-	
 	import {
 		forms,
 		textToast
@@ -24,8 +23,8 @@
 	export let filterInput = null
 	export let fieldSection = null
 	export let options       = []
-
 	export let activeOptionIndex = 0
+
 	let delta                    = 0
 	let dropdownTopPx            = 0
 	let isOriginal               = true
@@ -185,72 +184,6 @@
 
 </script>
 
-<style>
-
-	input[type="text"] {
-		border: 0;
-		box-shadow: none;
-		color: #222;
-		display: inline-block;
-		font-weight: 600;
-		margin: 0;
-		margin-top: 8px;
-		padding-left: 5px;
-		vertical-align: text-bottom;
-		width: 100%;
-	}
-
-	li {
-		font-weight: 600;
-		list-style: none;
-		padding: 10px;
-	}
-
-	li + li {
-		border-top: 1px solid #f8f8f8;
-	}
-
-	li:hover {
-		background-color: #eee;
-	}
-
-	ul {
-		max-height: 300px;
-		padding: 0;
-		width: 100%;
-	}
-
-	.autoComplete {
-		position: relative;
-	}
-
-	.activeOption {
-		background-color: #eee;
-	}
-
-	.fieldBox {
-		background-color: white;
-		min-height: 2.25em;
-		padding-bottom: 5px;
-		position: relative;
-		width: 100%;
-	}
-
-	.icons {
-		display: inline-block;
-		height: 100%;
-		position: absolute;
-		right: 0px;
-		top: 1px;
-	}
-
-	.selection {
-		display: inline-block;
-		width: calc(100% - 70px);
-	}
-
-</style>
-
 <svelte:window
 		on:click="{onDocumentClick}"
 		on:keydown="{onDocumentKeydown}"
@@ -333,3 +266,69 @@
 	{/if}
 </div>
 {/if}
+
+<style>
+
+	input[type="text"] {
+		border: 0;
+		box-shadow: none;
+		color: #222;
+		display: inline-block;
+		font-weight: 600;
+		margin: 0;
+		margin-top: 8px;
+		padding-left: 5px;
+		vertical-align: text-bottom;
+		width: 100%;
+	}
+
+	li {
+		font-weight: 600;
+		list-style: none;
+		padding: 10px;
+	}
+
+	li + li {
+		border-top: 1px solid #f8f8f8;
+	}
+
+	li:hover {
+		background-color: #eee;
+	}
+
+	ul {
+		max-height: 300px;
+		padding: 0;
+		width: 100%;
+	}
+
+	.autoComplete {
+		position: relative;
+	}
+
+	.activeOption {
+		background-color: #eee;
+	}
+
+	.fieldBox {
+		background-color: white;
+		min-height: 2.25em;
+		padding-bottom: 5px;
+		position: relative;
+		width: 100%;
+	}
+
+	.icons {
+		display: inline-block;
+		height: 100%;
+		position: absolute;
+		right: 0px;
+		top: 1px;
+	}
+
+	.selection {
+		display: inline-block;
+		width: calc(100% - 70px);
+	}
+
+</style>

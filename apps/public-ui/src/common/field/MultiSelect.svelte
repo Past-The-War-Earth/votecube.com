@@ -1,224 +1,287 @@
 <svelte:options immutable />
 
 <script lang="ts">
-	import store from '@votecube/vc-logic'
-	import {OPTIONS} from '../../form/forms'
-	import {
-		removeWatch,
-		watchMultilineField
-	} from '../../watch'
-	import ClearIcon from '../icon/ClearIcon.svelte'
-	import InfoIcon from '../icon/InfoIcon.svelte'
-	import UndoIcon from '../icon/UndoIcon.svelte'
+	import type { IOptionsField } from "@votecube/forms";
+	import { forms, textToast } from "@votecube/vc-logic";
+	// import { store } from "@votecube/vc-logic";
+	import { onDestroy, onMount } from "svelte";
+	import { OPTIONS } from "../../form/forms";
+	import { removeWatch, watchMultilineField } from "../../watch";
+	import ClearIcon from "../icon/ClearIcon.svelte";
+	import InfoIcon from "../icon/InfoIcon.svelte";
+	import UndoIcon from "../icon/UndoIcon.svelte";
 
-export let field: IOptionsField;
+	export let doShowOptions = false;
+	export let field: IOptionsField;
+	export let filter = "";
+	export let filterInput = null;
+	export let fieldSection = null;
+	export let options = [];
+	export let activeOptionIndex = 0;
 
-	let delta = 0
-	let filter = ''
-	let activeOptionIndex = 0
+	let delta = 0;
+	let dropdownTopPx = 0;
+	let isOriginal = true;
+	let isValid = false;
 
-let formHandle: any = {
-	setDelta(newDelta) {
-		delta = newDelta;
-	},
-	setIsValid(newIsValid) {
-		isValid = newIsValid;
-	},
-	setIsOriginal(newIsOriginal) {
-		isOriginal = newIsOriginal;
-	},
-};
+	let formHandle: any = {
+		get activeOptionIndex() {
+			return activeOptionIndex;
+		},
+		set activeOptionIndex(newActiveOptionIndex) {
+			activeOptionIndex = newActiveOptionIndex;
+		},
+		get dropdownTopPx() {
+			return dropdownTopPx;
+		},
+		set dropdownTopPx(newDropdownTopPx) {
+			dropdownTopPx = newDropdownTopPx;
+		},
+		get field() {
+			return field;
+		},
+		get filterInput() {
+			return filterInput;
+		},
+		get filter() {
+			return filter;
+		},
+		set filter(newFilter) {
+			filter = newFilter;
+		},
+		get options() {
+			return options;
+		},
+		get showOptions() {
+			return doShowOptions;
+		},
+		set showOptions(newShowOptions) {
+			doShowOptions = newShowOptions;
+		},
+		hideOptions() {
+			hideOptions();
+		},
+		setDelta(newDelta) {
+			delta = newDelta;
+		},
+		setIsValid(newIsValid) {
+			isValid = newIsValid;
+		},
+		setIsOriginal(newIsOriginal) {
+			isOriginal = newIsOriginal;
+		},
+		setShowCalendar(_) {},
+		setShowOptions(newShowOptions: boolean) {
+			doShowOptions = newShowOptions;
+		},
+	};
 
 	$: errors = v(field.errors, delta);
 	$: label = v(field.label, delta);
-	$: modified = v(!errors.length && field.rules.trackOriginal && !field.theIsOriginal, delta)
-	$: options = v(filter
-				? field.filteredOptions
-					.filter(option =>
-						option.text.toLowerCase().indexOf(filter.toLowerCase()) > -1)
-				: field.filteredOptions, delta)
-	$: requiredInvalid = v(field.validatorMap.required && errors.length, delta)
-	$: requiredValid = v(!modified && field.validatorMap.required && !errors.length, delta)
-	$: selections = v(field.value, delta)
-	$: touched = v(field.touched, delta)
-	$: trackOriginal = v(field.rules.trackOriginal, delta)
+	$: modified = v(
+		!errors.length && field.rules.trackOriginal && !field.theIsOriginal,
+		delta
+	);
+	$: options = v(
+		filter
+			? field.filteredOptions.filter(
+					(option) =>
+						option.text
+							.toLowerCase()
+							.indexOf(filter.toLowerCase()) > -1
+			  )
+			: field.filteredOptions,
+		delta
+	);
+	$: requiredInvalid = v(field.validatorMap.required && errors.length, delta);
+	$: requiredValid = v(
+		!modified && field.validatorMap.required && !errors.length,
+		delta
+	);
+	$: selections = v<{
+		text: string
+	}[]>(field.value, delta);
+	$: touched = v(field.touched, delta);
+	$: trackOriginal = v(field.rules.trackOriginal, delta);
 
 	function v<T>(val: T, _delta: number): T {
-		return val
+		return val;
 	}
 
-	function hideOptions() {
-		showOptions = false
+	function blur() {
+		field.touch();
+		field.detect();
+	}
+
+	function checkValue(event) {
+		OPTIONS.showFiltered(formHandle, fieldSection, event);
+		if (
+			field.value &&
+			field.value.text.toLowerCase() !== filter.toLowerCase()
+		) {
+			field.unselect();
+			return;
+		}
+		if (options.length !== 1) {
+			return;
+		}
+		const theOption = options[0];
+		if (filter.toLowerCase() === theOption.text.toLowerCase()) {
+			field.select(theOption);
+		}
 	}
 	function clear() {
-				this.get().field.clear()
-				this.refs.filter.value = ''
-			}
-			function help() {
-				const text = this.get().field.text
-				this.store.setTextToast(text.info, text.infoSeconds)
-			}
-			function hideOptions() {
-				this.set({showOptions: false})
-			}
-			function onDocumentClick(event) {
-				this.hideOptions()
-			}
-			function onDocumentKeydown(event) {
-				OPTIONS.handleKeydown(this, true, event)
-			}
-			function revert() {
-				this.get().field.revert()
-				this.refs.filter.value = ''
-			}
-			function select(option) {
-				this.get().field.select(option)
-				this.hideOptions()
-				this.set({filter: ''})
-			}
-			function showOptions(
-				element,
-				event
-			) {
-				OPTIONS.showFiltered(this, element, event
-					// , true
-				)
-			}
-			function unselect(
-				option,
-				event
-			) {
-				this.get().field.unselect(option)
-				event.stopPropagation()
-				this.set({filter: ''})
-			}
+		field.clear();
+		filter.value = "";
+	}
 
+	function help() {
+		const text = field.text;
+		textToast.toggle(text.info, text.infoSeconds);
+	}
+	
+	function hideOptions() {
+		doShowOptions = false;
+	}
 
-			onMount(() => {
-			field.setAsField(formHandle)
-			watchMultilineField(this, this.refs.field
-			});
+	function onDocumentClick(event) {
+		hideOptions();
+	}
+
+	function onDocumentKeydown(event) {
+		OPTIONS.handleKeydown(this, true, event);
+	}
+
+	function revert() {
+		field.revert()
+		const value = field.value
+		if (value) {
+			filterInput.value = value.text
+		} else {
+			filterInput.value = ''
+		}
+	}
+
+	function select(option) {
+		field.select(option)
+		filterInput.value = ''
+		hideOptions()
+	}
+
+	function showOptions(event) {
+		OPTIONS.showFiltered(
+			this,
+			event.currentTarget,
+			event
+			// , true
+		);
+	}
+
+	function unselect(option, event) {
+		field.unselect(option);
+		event.stopPropagation();
+		filterInput.value = ''
+	}
+
+	onMount(() => {
+		field.setAsField(formHandle);
+		// watchMultilineField(formHandle, field);
+	});
+
 	onDestroy(() => {
-		field.removeComponent(formHandle)
-			removeWatch(this)
+		field.removeComponent(formHandle);
+		// removeWatch(formHandle);
 	});
 
 </script>
 
-<svelte:window
-		on:click="{onDocumentClick}"
-		on:keydown="{onDocumentKeydown}"
-></svelte:window>
-
+<svelte:window on:click={onDocumentClick} on:keydown={onDocumentKeydown} />
 {#if $forms}
-<div
-		class="multiSelect"
->
-	<label
-			class="field-label"
-			use:for="{id}"
-	>
-		{label}
-	</label>
-	<section
+	<div class="multiSelect">
+		<label class="field-label" for={field.id}>
+			{label}
+		</label>
+		<section
 			class="dropdownAnchor field fieldBox"
-			class:invalid="touched && errors.length"
-			class:modified="modified"
-			class:requiredInvalid="requiredInvalid"
-			class:requiredValid="requiredValid"
-			on:click="showOptions(this, event)"
-			ref:field
-	>
-		<div
-				class="selections"
+			class:invalid={touched && errors.length}
+			class:modified
+			class:requiredInvalid
+			class:requiredValid
+			on:click={showOptions}
+			bind:this={fieldSection}
 		>
-			<!--
+			<div class="selections">
+				<!--
 					<div
 							class="selectionSizer"
 							ref:selectionSizer
 					>
 -->
-			{#each selections as selection}
-			<section
-					class="selection"
-			>
-				<div
-						class="selection-contents"
-				>
-					{selection.text}
-				</div>
-				<span
-						class="unselect"
-						on:click="unselect(selection, event)"
-				>
-                        <s class="bar"></s>
-                        <s class="bar"></s>
-                    </span>
-			</section>
-			{/each}
-			<input
+				{#each selections as selection}
+					<section class="selection">
+						<div class="selection-contents">
+							{selection.text}
+						</div>
+						<span
+							class="unselect"
+							on:click={event => unselect(selection, event)}
+						>
+							<s class="bar" />
+							<s class="bar" />
+						</span>
+					</section>
+				{/each}
+				<input
 					autocomplete="off"
-					bind:value="filter"
-					ref:filter
+					bind:value={filter}
+					bind:this={filterInput}
+					id={field.id}
+					on:blur={blur}
+					on:input={checkValue}
 					type="text"
-					use:id="{id}"
-			>
-			<!--
+				/>
+				<!--
 	</div>
 	-->
-		</div>
-		<div
-				class="icons"
-		>
-			<div
-					class="multiRowIconsCenter"
-			>
-				{#if trackOriginal}
-				<UndoIcon
-						multiLine="y"
-						on:select="revert()"
-				></UndoIcon>
-				{:else}
-				<ClearIcon
-						multiLine="y"
-						on:select="clear()"
-				></ClearIcon>
-				{/if}
-				<InfoIcon
-						multiLine="y"
-						on:select="help()"
-				></InfoIcon>
 			</div>
-		</div>
-	</section>
-	{#if showOptions && options.length}
-	<ul
-			class="dropdown"
-			style="
+			<div class="icons">
+				<div class="multiRowIconsCenter">
+					{#if trackOriginal}
+						<UndoIcon multiLine={true} on:click={revert} />
+					{:else}
+						<ClearIcon multiLine={true} on:click={clear} />
+					{/if}
+					<InfoIcon multiLine={true} on:click={help} />
+				</div>
+			</div>
+		</section>
+		{#if showOptions && options.length}
+			<ul
+				class="dropdown"
+				style="
             top: {dropdownTopPx}px;
         "
-	>
-		{#each options as option, index}
-		<li
-				class="option"
-				class:activeOption="index === activeOptionIndex"
-				on:click="select(option)"
-		>
-			{option.text}
-		</li>
-		{/each}
-	</ul>
-	{/if}
-	{#if touched}
-	{#each errors as error}
-	<span class="pure-form-message error">{error.message}</span>
-	{/each}
-	{/if}
-</div>
+			>
+				{#each options as option, index}
+					<li
+						class="option"
+						class:activeOption={index === activeOptionIndex}
+						on:click={() => select(option)}
+					>
+						{option.text}
+					</li>
+				{/each}
+			</ul>
+		{/if}
+		{#if touched}
+			{#each errors as error}
+				<span class="pure-form-message error">{error.message}</span>
+			{/each}
+		{/if}
+	</div>
 {/if}
 
 <style>
-
 	input[type="text"] {
 		border: 0;
 		box-shadow: none;
@@ -331,5 +394,4 @@ let formHandle: any = {
 	.unselect .bar:last-child {
 		transform: rotate(45deg);
 	}
-
 </style>

@@ -18,6 +18,7 @@
     import CharacterButton from '../../../common/control/button/CharacterButton.svelte'
     import PreviewButton from '../../../common/control/button/PreviewButton.svelte'
     import AutoComplete from '../../../common/field/AutoComplete.svelte'
+    import MultiSelect from '../../../common/field/MultiSelect.svelte'
     import Text from '../../../common/field/Text.svelte'
     import TextArea from '../../../common/field/TextArea.svelte'
     import ActionPopover from '../../../common/shell/ActionPopover.svelte'
@@ -242,52 +243,28 @@ return !form.fields.locations.isOriginal()
 
 </script>
 
-<style>
-
-    legend {
-        display: none;
-    }
-
-    .A, .B {
-        flex-basis: 100%;
-        text-align: center;
-    }
-
-    .B {
-        margin-left: 0.4em;
-    }
-
-    .outcomes {
-        display: flex;
-        margin-top: 10px;
-        width: 100%;
-    }
-
-    /*
-        .timeframe td {
-            padding: 5px;
-        }
-
-        .timeframe td:first-child {
-            text-align: right;
-        }
-
-        .timeframe td:nth-child(2) {
-            text-align: left;
-        }
-    */
-</style>
-
 {#if form}
     <form>
         <legend>Define Situation</legend>
         <Text
                 field="{form.fields.name}"
         ></Text>
+        <!--
         <div class="pure-control-group">
             <AutoComplete
                     field="{form.fields.category}"
             ></AutoComplete>
+        </div>
+        -->
+        <div class="pure-control-group">
+            <MultiSelect
+                field="{form.fields.ageGroups}"
+            ></MultiSelect>
+        </div>
+        <div class="pure-control-group">
+            <MultiSelect
+            field="{form.fields.labels}"
+            ></MultiSelect>
         </div>
         <div
                 class="outcomes"
@@ -453,3 +430,39 @@ return !form.fields.locations.isOriginal()
         </ActionPopover>
     {/if}
 {/if}
+
+<style>
+
+    legend {
+        display: none;
+    }
+
+    .A, .B {
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .B {
+        margin-left: 0.4em;
+    }
+
+    .outcomes {
+        display: flex;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /*
+        .timeframe td {
+            padding: 5px;
+        }
+
+        .timeframe td:first-child {
+            text-align: right;
+        }
+
+        .timeframe td:nth-child(2) {
+            text-align: left;
+        }
+    */
+</style>

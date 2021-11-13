@@ -46,11 +46,12 @@ export class SituationFormLogic {
                 maxLength: 50
             })
         }, [], text);
-        /*
-            const labels = form.options([], labelData, {
-                multi: true
-            })
-         */
+        const ageGroups = formFactory.options([], [], {
+            multi: true
+        });
+        const labels = formFactory.options([], [], {
+            multi: true
+        });
         /*
             const locations = form.group('Locations', {
                 continents: form.options([
@@ -103,8 +104,10 @@ export class SituationFormLogic {
             }, [form.validators.required()], text)
         */
         return formFactory.group('MainInfo', {
+            ageGroups,
             // ageSuitability: form.field([], {}),
             factors,
+            labels,
             // labels,
             // locations,
             name: formFactory.field([

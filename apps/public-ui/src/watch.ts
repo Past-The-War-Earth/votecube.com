@@ -12,7 +12,7 @@ setInterval(() => {
 
 export function removeWatch(
 	component,
-	watchType
+	watchType?
 ) {
 	for (let index = watches.length - 1; index >= 0; index--) {
 		const watch = watches[index]

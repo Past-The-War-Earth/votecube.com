@@ -1,14 +1,14 @@
-import {container, DI}    from '@airport/di'
+import { container, DI } from '@airport/di'
 import {
 	FORM_FACTORY,
 	IFieldGroup,
 	IFormFactory
-}                         from '@votecube/forms'
+} from '@votecube/forms'
 import {
 	SITUATION_FORM_LOGIC,
 	SITUATION_FORM_MANAGER
-}                         from '../../../tokens'
-import {ICachedSituation} from '../../../situation/SituationManager'
+} from '../../../tokens'
+import { ICachedSituation } from '../../../situation/SituationManager'
 
 export interface ISituationFormLogic {
 
@@ -102,11 +102,15 @@ export class SituationFormLogic
 				maxLength: 50
 			})
 		}, [], text)
-		/*
-			const labels = form.options([], labelData, {
-				multi: true
-			})
-		 */
+
+
+		const ageGroups = formFactory.options([], [], {
+			multi: true
+		})
+		const labels = formFactory.options([], [], {
+			multi: true
+		})
+
 		/*
 			const locations = form.group('Locations', {
 				continents: form.options([
@@ -159,8 +163,10 @@ export class SituationFormLogic
 			}, [form.validators.required()], text)
 		*/
 		return formFactory.group('MainInfo', {
+			ageGroups,
 			// ageSuitability: form.field([], {}),
 			factors,
+			labels,
 			// labels,
 			// locations,
 			name: formFactory.field([
@@ -198,7 +204,7 @@ export class SituationFormLogic
 		form: IFormFactory,
 		formValidators
 	): IFieldGroup {
-		const name          = form.matching(this.findFactorMatches, [
+		const name = form.matching(this.findFactorMatches, [
 			form.validators.required(),
 			form.validators.minLength(5)
 		], {

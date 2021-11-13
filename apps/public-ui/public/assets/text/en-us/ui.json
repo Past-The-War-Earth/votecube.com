@@ -142,8 +142,22 @@
         }
       },
       "MainInfo": {
+        "ageGroups": {
+          "info": "Select Age Group(s) for which this Situation applies",
+          "label": "Age Group(s)",
+          "errors": {
+            "required": "An age group is required"
+          }
+        },
         "ageSuitability": {
           "errors": {}
+        },
+        "labels": {
+          "info": "Select Labels(s) that apply to this Situation",
+          "label": "Labels",
+          "errors": {
+            "required": "At least one label is required"
+          }
         },
         "name": {
           "info": "Select the name for this Situation",
@@ -156,10 +170,6 @@
         "factors": {
           "info": "Select the Factors of the Situation",
           "error": "All 3 Factors are required"
-        },
-        "labels": {
-          "info": "Select matching Tag(s) for this Situation",
-          "label": "Tag(s)"
         },
         "locations": {
           "info": "Select the location(s) of the Situation (Continent(s), Country(ies), State(s), City(ies))",
