@@ -132,7 +132,7 @@
 	}
 	function clear() {
 		field.clear();
-		filter.value = "";
+		filterInput.value = "";
 	}
 
 	function help() {
@@ -149,7 +149,7 @@
 	}
 
 	function onDocumentKeydown(event) {
-		OPTIONS.handleKeydown(this, true, event);
+		OPTIONS.handleKeydown(formHandle, true, event);
 	}
 
 	function revert() {
@@ -170,7 +170,7 @@
 
 	function showOptions(event) {
 		OPTIONS.showFiltered(
-			this,
+			formHandle,
 			event.currentTarget,
 			event
 			// , true

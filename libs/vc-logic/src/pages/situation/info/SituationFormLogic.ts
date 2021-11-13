@@ -176,7 +176,7 @@ export class SituationFormLogic
 				maxLength: 40
 			}),
 			outcomes,
-			category,
+			// category,
 			// timeframe
 		}, [formFactory.validators.required()], text)
 	}

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {DI} from '@airport/di'
+    import {DI, IChildContainer} from '@airport/di'
     import {
         FACTOR_INFO_MAIN,
         navigateToPage,
@@ -27,7 +27,7 @@
     import * as forms from '../../../form/forms'
     import {loadForms} from '../../../libs/forms'
 
-    let container
+    let container: IChildContainer
     let delta = 0
     let error
     let form = null
