@@ -1,4 +1,4 @@
-import { ILabel, ISituation } from "../server";
+import { ILabel, ISituation } from "../generated/interfaces";
 export declare class SituationApiClient {
     getSituationsForLabels(labels: ILabel[]): Promise<ISituation[]>;
     getLeafSituations(situation: ISituation): Promise<ISituation[]>;

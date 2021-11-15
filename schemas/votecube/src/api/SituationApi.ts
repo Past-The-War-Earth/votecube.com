@@ -1,7 +1,8 @@
 import { Api } from "@airport/check-in";
 import { container, DI } from "@airport/di";
 import { ILabel, ISituation } from "../server";
-import { SITUATION_API, SITUATION_DAO } from "../tokens";
+import { SITUATION_API } from "../tokens";
+import { SITUATION_DAO } from "../server-tokens";
 
 export interface ISituationApi {
 

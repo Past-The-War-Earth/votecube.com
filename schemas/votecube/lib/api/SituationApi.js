@@ -6,7 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Api } from "@airport/check-in";
 import { container, DI } from "@airport/di";
-import { SITUATION_API, SITUATION_DAO } from "../tokens";
+import { SITUATION_API } from "../tokens";
+import { SITUATION_DAO } from "../server-tokens";
 /**
  * Version 1 situation retrieval across devices.
  *

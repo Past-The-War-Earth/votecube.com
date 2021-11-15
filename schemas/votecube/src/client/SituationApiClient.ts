@@ -1,7 +1,5 @@
 import { IOC } from "@airport/di"
-import { DeepPartial } from "@airport/pressurization";
-import { Situation } from "../ddl/ddl";
-import { ILabel, ISituation } from "../server";
+import { ILabel, ISituation } from "../generated/interfaces";
 import { SITUATION_API } from "../tokens";
 
 export class SituationApiClient {

@@ -258,11 +258,11 @@
     }
 
     function checkBuild(situation) {
-        if (!situation.ageSuitability && situation.ageSuitability !== 0) {
-            ageSuitabilityVisible = true;
-            saving = true;
-            return;
-        }
+        // if (!situation.ageSuitability && situation.ageSuitability !== 0) {
+        //     ageSuitabilityVisible = true;
+        //     saving = true;
+        //     return;
+        // }
         setAction("confirm");
     }
 
