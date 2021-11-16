@@ -1,16 +1,11 @@
 {
   "dependencies": {
     "@airport/di": "0.0.1",
-    "@airport/tower": "0.0.1",
-    "@airport/sqljs": "0.0.1",
-    "@airport/terminal": "0.0.1",
-    "@airport/terminal-map": "0.0.1",
     "@sveltejs/svelte-virtual-list": "3.0.1",
     "@votecube/cube-logic": "0.0.1",
     "@votecube/forms": "0.0.1",
     "@votecube/model": "0.0.1",
     "@votecube/vc-logic": "0.0.1",
-    "@votecube/ecclesia": "0.0.1",
     "page": "^1.11.x"
   },
   "devDependencies": {
