@@ -8,7 +8,44 @@ export const SCHEMA = {
     "versions": [
         {
             "api": {
-                "apiObjectMap": {}
+                "apiObjectMap": {
+                    "ISolutionApi": {
+                        "operationMap": {
+                            "saveSolution": {
+                                "isAsync": true,
+                                "parameters": []
+                            },
+                            "getMySolutionForSituation": {
+                                "isAsync": true,
+                                "parameters": []
+                            }
+                        }
+                    },
+                    "ISituationApi": {
+                        "operationMap": {
+                            "getSituationsForLabels": {
+                                "isAsync": true,
+                                "parameters": []
+                            },
+                            "getLeafSituations": {
+                                "isAsync": true,
+                                "parameters": []
+                            },
+                            "getStemSituation": {
+                                "isAsync": true,
+                                "parameters": []
+                            },
+                            "getSituation": {
+                                "isAsync": true,
+                                "parameters": []
+                            },
+                            "saveSituation": {
+                                "isAsync": true,
+                                "parameters": []
+                            }
+                        }
+                    }
+                }
             },
             "entities": [
                 {
@@ -3020,7 +3057,8 @@ export const SCHEMA = {
                     "tableConfig": {
                         "name": "SITUATIONS",
                         "columnIndexes": []
-                    }
+                    },
+                    "operations": {}
                 }
             ],
             "integerVersion": 1,

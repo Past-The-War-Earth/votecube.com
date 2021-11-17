@@ -1,5 +1,5 @@
 import { load } from '@votecube/votecube/lib/server'
 
-load()
+load().then()
 
 export const marker = 1

@@ -64,7 +64,9 @@ export class SituationDao extends BaseSituationDao {
         }
         return null;
     }
-    async saveSituation(repositoryDestination, situation) {
+    async saveSituation(
+    // repositoryDestination: string,
+    situation) {
         await this.db.save(situation);
     }
 }
