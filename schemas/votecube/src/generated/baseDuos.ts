@@ -173,11 +173,11 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(0)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(0)
+		super(1)
 	}
 }
 
@@ -191,11 +191,11 @@ export class BaseLabelDuo
 	implements IBaseLabelDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(6)
 	}
 	
 	constructor() {
-		super(1)
+		super(6)
 	}
 }
 
@@ -227,11 +227,11 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
-		super(3)
+		super(0)
 	}
 }
 
@@ -263,11 +263,11 @@ export class BaseSituationFactorPositionDuo
 	implements IBaseSituationFactorPositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(5)
 	}
 	
 	constructor() {
-		super(4)
+		super(5)
 	}
 }
 
@@ -281,11 +281,11 @@ export class BaseSituationLabelDuo
 	implements IBaseSituationLabelDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(7)
 	}
 	
 	constructor() {
-		super(5)
+		super(7)
 	}
 }
 
@@ -299,11 +299,11 @@ export class BaseSolutionDuo
 	implements IBaseSolutionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(7)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(7)
+		super(4)
 	}
 }
 
@@ -317,10 +317,10 @@ export class BaseSolutionFactorDuo
 	implements IBaseSolutionFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(6)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(6)
+		super(3)
 	}
 }

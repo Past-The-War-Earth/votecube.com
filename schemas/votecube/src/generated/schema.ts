@@ -8,7 +8,44 @@ export const SCHEMA = {
 	"versions": [
 		{
 			"api": {
-				"apiObjectMap": {}
+				"apiObjectMap": {
+					"ISolutionApi": {
+						"operationMap": {
+							"saveSolution": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getMySolutionForSituation": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					},
+					"ISituationApi": {
+						"operationMap": {
+							"getSituationsForLabels": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getLeafSituations": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getStemSituation": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getSituation": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"saveSituation": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					}
+				}
 			},
 			"entities": [
 				{
@@ -128,7 +165,7 @@ export const SCHEMA = {
 					"index": 0,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "Factor",
+					"name": "Position",
 					"properties": [
 						{
 							"index": 0,
@@ -211,7 +248,7 @@ export const SCHEMA = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "FACTORS",
+						"name": "POSITIONS",
 						"columnIndexes": []
 					}
 				},
@@ -332,7 +369,7 @@ export const SCHEMA = {
 					"index": 1,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "Label",
+					"name": "Factor",
 					"properties": [
 						{
 							"index": 0,
@@ -415,7 +452,7 @@ export const SCHEMA = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "LABELS",
+						"name": "FACTORS",
 						"columnIndexes": []
 					}
 				},
@@ -715,8 +752,8 @@ export const SCHEMA = {
 							"index": 5,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "NAME",
-							"notNull": true,
+							"name": "AXIS",
+							"notNull": false,
 							"propertyRefs": [
 								{
 									"index": 5
@@ -724,6 +761,155 @@ export const SCHEMA = {
 							],
 							"sinceVersion": 1,
 							"type": "STRING"
+						},
+						{
+							"index": 6,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "SHARE",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 6
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 7,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 4,
+									"oneRelationIndex": 3,
+									"oneColumnIndex": 0,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SOLUTIONS_RID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 7
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 8,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 4,
+									"oneRelationIndex": 3,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SOLUTIONS_AID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 7
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 9,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 4,
+									"oneRelationIndex": 3,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SOLUTIONS_ARID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 7
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 10,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 3,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 5,
+									"oneColumnIndex": 0,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SITUATION_FACTOR_POSITIONS_RID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 8
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 11,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 3,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 5,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SITUATION_FACTOR_POSITIONS_AID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 8
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 12,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 3,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 5,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SITUATION_FACTOR_POSITIONS_ARID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 8
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
 						}
 					],
 					"idColumnRefs": [
@@ -740,7 +926,7 @@ export const SCHEMA = {
 					"index": 3,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "Position",
+					"name": "SolutionFactor",
 					"properties": [
 						{
 							"index": 0,
@@ -793,7 +979,34 @@ export const SCHEMA = {
 							},
 							"index": 5,
 							"isId": false,
-							"name": "name",
+							"name": "axis",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 6
+							},
+							"index": 6,
+							"isId": false,
+							"name": "share",
+							"sinceVersion": 1
+						},
+						{
+							"index": 7,
+							"isId": false,
+							"name": "solution",
+							"relationRef": {
+								"index": 2
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 8,
+							"isId": false,
+							"name": "situationFactorPosition",
+							"relationRef": {
+								"index": 3
+							},
 							"sinceVersion": 1
 						}
 					],
@@ -819,11 +1032,322 @@ export const SCHEMA = {
 							"relationTableIndex": 3,
 							"relationTableSchemaIndex": 0,
 							"sinceVersion": 1
+						},
+						{
+							"index": 2,
+							"isId": false,
+							"relationType": "MANY_TO_ONE",
+							"propertyRef": {
+								"index": 7
+							},
+							"relationTableIndex": 4,
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"relationType": "MANY_TO_ONE",
+							"propertyRef": {
+								"index": 8
+							},
+							"relationTableIndex": 5,
+							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "POSITIONS",
+						"name": "SOLUTION_FACTORS",
+						"columnIndexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": 0,
+									"oneTableIndex": 1,
+									"oneColumnIndex": 0,
+									"sinceVersion": 1
+								}
+							],
+							"name": "REPOSITORY_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 1,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": 0,
+									"oneTableIndex": 3,
+									"oneColumnIndex": 0,
+									"sinceVersion": 1
+								}
+							],
+							"name": "ACTOR_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 2,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "ACTOR_RECORD_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "AGE_SUITABILITY",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "SYSTEM_WIDE_OPERATION_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 5,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 8,
+									"oneRelationIndex": 8,
+									"oneColumnIndex": 0,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SITUATIONS_RID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 5
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 6,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 8,
+									"oneRelationIndex": 8,
+									"oneColumnIndex": 1,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SITUATIONS_AID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 5
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 7,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 2,
+									"oneSchemaIndex": null,
+									"oneTableIndex": 8,
+									"oneRelationIndex": 8,
+									"oneColumnIndex": 2,
+									"sinceVersion": 1
+								}
+							],
+							"name": "SITUATIONS_ARID_1",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 5
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						}
+					],
+					"idColumnRefs": [
+						{
+							"index": 0
+						},
+						{
+							"index": 1
+						},
+						{
+							"index": 2
+						}
+					],
+					"index": 4,
+					"isLocal": false,
+					"isRepositoryEntity": true,
+					"name": "Solution",
+					"properties": [
+						{
+							"index": 0,
+							"isId": true,
+							"name": "repository",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": true,
+							"name": "actor",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": true,
+							"name": "actorRecordId",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 3
+							},
+							"index": 3,
+							"isId": false,
+							"name": "ageSuitability",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 4
+							},
+							"index": 4,
+							"isId": false,
+							"name": "systemWideOperationId",
+							"sinceVersion": 1
+						},
+						{
+							"index": 5,
+							"isId": false,
+							"name": "situation",
+							"relationRef": {
+								"index": 2
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 6,
+							"isId": false,
+							"name": "factors",
+							"relationRef": {
+								"index": 3
+							},
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": true,
+							"relationType": "MANY_TO_ONE",
+							"propertyRef": {
+								"index": 0
+							},
+							"relationTableIndex": 1,
+							"relationTableSchemaIndex": 0,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": true,
+							"relationType": "MANY_TO_ONE",
+							"propertyRef": {
+								"index": 1
+							},
+							"relationTableIndex": 3,
+							"relationTableSchemaIndex": 0,
+							"sinceVersion": 1
+						},
+						{
+							"index": 2,
+							"isId": false,
+							"relationType": "MANY_TO_ONE",
+							"propertyRef": {
+								"index": 5
+							},
+							"relationTableIndex": 8,
+							"sinceVersion": 1
+						},
+						{
+							"index": 3,
+							"isId": false,
+							"oneToManyElems": {
+								"mappedBy": "solution"
+							},
+							"relationType": "ONE_TO_MANY",
+							"propertyRef": {
+								"index": 6
+							},
+							"relationTableIndex": 3,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "SOLUTIONS",
 						"columnIndexes": []
 					}
 				},
@@ -1089,7 +1613,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 0,
+									"oneTableIndex": 1,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1111,7 +1635,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 0,
+									"oneTableIndex": 1,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -1133,7 +1657,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 0,
+									"oneTableIndex": 1,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -1155,7 +1679,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 3,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1177,7 +1701,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 3,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -1199,7 +1723,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 4,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 3,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -1226,7 +1750,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 4,
+					"index": 5,
 					"isLocal": false,
 					"isRepositoryEntity": true,
 					"name": "SituationFactorPosition",
@@ -1407,7 +1931,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 13
 							},
-							"relationTableIndex": 0,
+							"relationTableIndex": 1,
 							"sinceVersion": 1
 						},
 						{
@@ -1417,13 +1941,217 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 14
 							},
-							"relationTableIndex": 3,
+							"relationTableIndex": 0,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
 						"name": "SITUATION_FACTOR_POSITIONS",
+						"columnIndexes": []
+					}
+				},
+				{
+					"columns": [
+						{
+							"index": 0,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 0,
+									"oneSchemaIndex": 0,
+									"oneTableIndex": 1,
+									"oneColumnIndex": 0,
+									"sinceVersion": 1
+								}
+							],
+							"name": "REPOSITORY_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 0
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 1,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [
+								{
+									"manyRelationIndex": 1,
+									"oneSchemaIndex": 0,
+									"oneTableIndex": 3,
+									"oneColumnIndex": 0,
+									"sinceVersion": 1
+								}
+							],
+							"name": "ACTOR_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 1
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 2,
+							"isGenerated": true,
+							"manyRelationColumnRefs": [],
+							"name": "ACTOR_RECORD_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 2
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 3,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "AGE_SUITABILITY",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 3
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 4,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "SYSTEM_WIDE_OPERATION_ID",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 4
+								}
+							],
+							"sinceVersion": 1,
+							"type": "NUMBER"
+						},
+						{
+							"index": 5,
+							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "NAME",
+							"notNull": true,
+							"propertyRefs": [
+								{
+									"index": 5
+								}
+							],
+							"sinceVersion": 1,
+							"type": "STRING"
+						}
+					],
+					"idColumnRefs": [
+						{
+							"index": 0
+						},
+						{
+							"index": 1
+						},
+						{
+							"index": 2
+						}
+					],
+					"index": 6,
+					"isLocal": false,
+					"isRepositoryEntity": true,
+					"name": "Label",
+					"properties": [
+						{
+							"index": 0,
+							"isId": true,
+							"name": "repository",
+							"relationRef": {
+								"index": 0
+							},
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": true,
+							"name": "actor",
+							"relationRef": {
+								"index": 1
+							},
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 2
+							},
+							"index": 2,
+							"isId": true,
+							"name": "actorRecordId",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 3
+							},
+							"index": 3,
+							"isId": false,
+							"name": "ageSuitability",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 4
+							},
+							"index": 4,
+							"isId": false,
+							"name": "systemWideOperationId",
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 5
+							},
+							"index": 5,
+							"isId": false,
+							"name": "name",
+							"sinceVersion": 1
+						}
+					],
+					"relations": [
+						{
+							"index": 0,
+							"isId": true,
+							"relationType": "MANY_TO_ONE",
+							"propertyRef": {
+								"index": 0
+							},
+							"relationTableIndex": 1,
+							"relationTableSchemaIndex": 0,
+							"sinceVersion": 1
+						},
+						{
+							"index": 1,
+							"isId": true,
+							"relationType": "MANY_TO_ONE",
+							"propertyRef": {
+								"index": 1
+							},
+							"relationTableIndex": 3,
+							"relationTableSchemaIndex": 0,
+							"sinceVersion": 1
+						}
+					],
+					"sinceVersion": 1,
+					"tableConfig": {
+						"name": "LABELS",
 						"columnIndexes": []
 					}
 				},
@@ -1591,7 +2319,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 1,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1613,7 +2341,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 1,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -1635,7 +2363,7 @@ export const SCHEMA = {
 								{
 									"manyRelationIndex": 3,
 									"oneSchemaIndex": null,
-									"oneTableIndex": 1,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -1662,7 +2390,7 @@ export const SCHEMA = {
 							"index": 2
 						}
 					],
-					"index": 5,
+					"index": 7,
 					"isLocal": false,
 					"isRepositoryEntity": true,
 					"name": "SituationLabel",
@@ -1771,704 +2499,13 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 1,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "SITUATION_LABELS",
-						"columnIndexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": 0,
-									"oneTableIndex": 1,
-									"oneColumnIndex": 0,
-									"sinceVersion": 1
-								}
-							],
-							"name": "REPOSITORY_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 1,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": 0,
-									"oneTableIndex": 3,
-									"oneColumnIndex": 0,
-									"sinceVersion": 1
-								}
-							],
-							"name": "ACTOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 2,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "ACTOR_RECORD_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "AGE_SUITABILITY",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "SYSTEM_WIDE_OPERATION_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "AXIS",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": "STRING"
-						},
-						{
-							"index": 6,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "SHARE",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 6
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 7,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 7,
-									"oneRelationIndex": 3,
-									"oneColumnIndex": 0,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SOLUTIONS_RID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 7
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 8,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 7,
-									"oneRelationIndex": 3,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SOLUTIONS_AID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 7
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 9,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 7,
-									"oneRelationIndex": 3,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SOLUTIONS_ARID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 7
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 10,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 3,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 4,
-									"oneColumnIndex": 0,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SITUATION_FACTOR_POSITIONS_RID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 8
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 11,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 3,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 4,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SITUATION_FACTOR_POSITIONS_AID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 8
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 12,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 3,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 4,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SITUATION_FACTOR_POSITIONS_ARID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 8
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 0
-						},
-						{
-							"index": 1
-						},
-						{
-							"index": 2
-						}
-					],
-					"index": 6,
-					"isLocal": false,
-					"isRepositoryEntity": true,
-					"name": "SolutionFactor",
-					"properties": [
-						{
-							"index": 0,
-							"isId": true,
-							"name": "repository",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": true,
-							"name": "actor",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": true,
-							"name": "actorRecordId",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 3
-							},
-							"index": 3,
-							"isId": false,
-							"name": "ageSuitability",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 4
-							},
-							"index": 4,
-							"isId": false,
-							"name": "systemWideOperationId",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 5
-							},
-							"index": 5,
-							"isId": false,
-							"name": "axis",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 6
-							},
-							"index": 6,
-							"isId": false,
-							"name": "share",
-							"sinceVersion": 1
-						},
-						{
-							"index": 7,
-							"isId": false,
-							"name": "solution",
-							"relationRef": {
-								"index": 2
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 8,
-							"isId": false,
-							"name": "situationFactorPosition",
-							"relationRef": {
-								"index": 3
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": true,
-							"relationType": "MANY_TO_ONE",
-							"propertyRef": {
-								"index": 0
-							},
-							"relationTableIndex": 1,
-							"relationTableSchemaIndex": 0,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": true,
-							"relationType": "MANY_TO_ONE",
-							"propertyRef": {
-								"index": 1
-							},
-							"relationTableIndex": 3,
-							"relationTableSchemaIndex": 0,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": "MANY_TO_ONE",
-							"propertyRef": {
-								"index": 7
-							},
-							"relationTableIndex": 7,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"relationType": "MANY_TO_ONE",
-							"propertyRef": {
-								"index": 8
-							},
-							"relationTableIndex": 4,
-							"sinceVersion": 1
-						}
-					],
-					"sinceVersion": 1,
-					"tableConfig": {
-						"name": "SOLUTION_FACTORS",
-						"columnIndexes": []
-					}
-				},
-				{
-					"columns": [
-						{
-							"index": 0,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 0,
-									"oneSchemaIndex": 0,
-									"oneTableIndex": 1,
-									"oneColumnIndex": 0,
-									"sinceVersion": 1
-								}
-							],
-							"name": "REPOSITORY_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 0
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 1,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 1,
-									"oneSchemaIndex": 0,
-									"oneTableIndex": 3,
-									"oneColumnIndex": 0,
-									"sinceVersion": 1
-								}
-							],
-							"name": "ACTOR_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 1
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 2,
-							"isGenerated": true,
-							"manyRelationColumnRefs": [],
-							"name": "ACTOR_RECORD_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 2
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 3,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "AGE_SUITABILITY",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 3
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 4,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [],
-							"name": "SYSTEM_WIDE_OPERATION_ID",
-							"notNull": true,
-							"propertyRefs": [
-								{
-									"index": 4
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 5,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 8,
-									"oneRelationIndex": 8,
-									"oneColumnIndex": 0,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SITUATIONS_RID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 6,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 8,
-									"oneRelationIndex": 8,
-									"oneColumnIndex": 1,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SITUATIONS_AID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						},
-						{
-							"index": 7,
-							"isGenerated": false,
-							"manyRelationColumnRefs": [
-								{
-									"manyRelationIndex": 2,
-									"oneSchemaIndex": null,
-									"oneTableIndex": 8,
-									"oneRelationIndex": 8,
-									"oneColumnIndex": 2,
-									"sinceVersion": 1
-								}
-							],
-							"name": "SITUATIONS_ARID_1",
-							"notNull": false,
-							"propertyRefs": [
-								{
-									"index": 5
-								}
-							],
-							"sinceVersion": 1,
-							"type": "NUMBER"
-						}
-					],
-					"idColumnRefs": [
-						{
-							"index": 0
-						},
-						{
-							"index": 1
-						},
-						{
-							"index": 2
-						}
-					],
-					"index": 7,
-					"isLocal": false,
-					"isRepositoryEntity": true,
-					"name": "Solution",
-					"properties": [
-						{
-							"index": 0,
-							"isId": true,
-							"name": "repository",
-							"relationRef": {
-								"index": 0
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": true,
-							"name": "actor",
-							"relationRef": {
-								"index": 1
-							},
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 2
-							},
-							"index": 2,
-							"isId": true,
-							"name": "actorRecordId",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 3
-							},
-							"index": 3,
-							"isId": false,
-							"name": "ageSuitability",
-							"sinceVersion": 1
-						},
-						{
-							"columnRef": {
-								"index": 4
-							},
-							"index": 4,
-							"isId": false,
-							"name": "systemWideOperationId",
-							"sinceVersion": 1
-						},
-						{
-							"index": 5,
-							"isId": false,
-							"name": "situation",
-							"relationRef": {
-								"index": 2
-							},
-							"sinceVersion": 1
-						},
-						{
-							"index": 6,
-							"isId": false,
-							"name": "factors",
-							"relationRef": {
-								"index": 3
-							},
-							"sinceVersion": 1
-						}
-					],
-					"relations": [
-						{
-							"index": 0,
-							"isId": true,
-							"relationType": "MANY_TO_ONE",
-							"propertyRef": {
-								"index": 0
-							},
-							"relationTableIndex": 1,
-							"relationTableSchemaIndex": 0,
-							"sinceVersion": 1
-						},
-						{
-							"index": 1,
-							"isId": true,
-							"relationType": "MANY_TO_ONE",
-							"propertyRef": {
-								"index": 1
-							},
-							"relationTableIndex": 3,
-							"relationTableSchemaIndex": 0,
-							"sinceVersion": 1
-						},
-						{
-							"index": 2,
-							"isId": false,
-							"relationType": "MANY_TO_ONE",
-							"propertyRef": {
-								"index": 5
-							},
-							"relationTableIndex": 8,
-							"sinceVersion": 1
-						},
-						{
-							"index": 3,
-							"isId": false,
-							"oneToManyElems": {
-								"mappedBy": "solution"
-							},
-							"relationType": "ONE_TO_MANY",
-							"propertyRef": {
-								"index": 6
-							},
 							"relationTableIndex": 6,
 							"sinceVersion": 1
 						}
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "SOLUTIONS",
+						"name": "SITUATION_LABELS",
 						"columnIndexes": []
 					}
 				},
@@ -2986,7 +3023,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 10
 							},
-							"relationTableIndex": 5,
+							"relationTableIndex": 7,
 							"sinceVersion": 1
 						},
 						{
@@ -2999,7 +3036,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 4,
+							"relationTableIndex": 5,
 							"sinceVersion": 1
 						},
 						{
@@ -3012,7 +3049,7 @@ export const SCHEMA = {
 							"propertyRef": {
 								"index": 12
 							},
-							"relationTableIndex": 7,
+							"relationTableIndex": 4,
 							"sinceVersion": 1
 						}
 					],
