@@ -21,7 +21,7 @@ export interface ISituationDao {
     findByRepositoryUuId(
         repositorySource: string,
         situationReposioryUuid: string
-    ): Promise<Situation>
+    ): Promise<ISituation>
 
     saveSituation(
         situation: ISituation
@@ -30,7 +30,8 @@ export interface ISituationDao {
 }
 
 export class SituationDao
-    extends BaseSituationDao {
+    extends BaseSituationDao
+    implements ISituationDao {
 
     /*
      * Are UuIds necessary for child records (they cause joins)?
@@ -105,7 +106,7 @@ export class SituationDao
     }
 
     async saveSituation(
-        repositoryDestination: string,
+        // repositoryDestination: string,
         situation: ISituation
     ): Promise<void> {
         await this.db.save(situation)

@@ -1,5 +1,5 @@
 import { API_REGISTRY, } from '@airport/check-in';
-import { container, DI, SYSTEM } from '@airport/di';
+import { container, DI, system } from '@airport/di';
 import { SCHEMA_INITIALIZER } from '@airport/landing';
 import { APPLICATION_INITIALIZER } from '@airport/security-check';
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff';
@@ -19,7 +19,7 @@ export class ApplicationInitializer {
         ddlObjectRetriever.lastIds = lastIds;
         await schemaInitializer.initializeForAIRportApp(SCHEMA);
         apiRegistry.initialize(SCHEMA.versions[0].api);
-        SYSTEM.mapLibraryBySignature('votecube', librarySignature);
+        system('votecube').mapLibraryBySignature('votecube', librarySignature);
     }
     getSchema() {
         return SCHEMA;

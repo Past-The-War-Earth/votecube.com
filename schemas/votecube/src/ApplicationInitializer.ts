@@ -1,7 +1,7 @@
 import {
     API_REGISTRY,
 } from '@airport/check-in'
-import { container, DI, SYSTEM } from '@airport/di'
+import { container, DI, system, SYSTEM } from '@airport/di'
 import { SCHEMA_INITIALIZER } from '@airport/landing'
 import {
     APPLICATION_INITIALIZER,
@@ -36,7 +36,7 @@ export class ApplicationInitializer
 
         apiRegistry.initialize(SCHEMA.versions[0].api)
 
-        SYSTEM.mapLibraryBySignature('votecube', librarySignature)
+        system('votecube').mapLibraryBySignature('votecube', librarySignature)
     }
 
     getSchema(): JsonSchemaWithLastIds {
