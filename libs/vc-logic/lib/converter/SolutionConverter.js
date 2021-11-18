@@ -1,6 +1,7 @@
 import { container, DI } from "@airport/di";
 import { REPOSITORY_RECORD_CONVERTER } from "..";
 import { SOLUTION_CONVERTER } from "../tokens";
+import { getToDbConversionContext } from "./RepositoryRecordConverter";
 export class SolutionConverter {
     dbToUi(dbSolution) {
         const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER);
@@ -39,19 +40,20 @@ export class SolutionConverter {
         }
     }
     uiToDb(uiSolution, ageSuitability = 0, situation) {
+        const context = getToDbConversionContext();
         const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER);
         let factors = [];
-        let solution = Object.assign(Object.assign({}, repositoryRecordConverter.uiToDb(uiSolution, ageSuitability)), { situation,
+        let solution = Object.assign(Object.assign({}, repositoryRecordConverter.uiToDb(uiSolution, context, ageSuitability)), { situation,
             factors });
         for (const situationFactorPosition of situation.situationFactorPositions) {
             const uiSolutionFactor = uiSolution[this.getFactorNumber(situationFactorPosition.axis)];
-            factors.push(this.solutionFactorUiToDb(uiSolutionFactor, ageSuitability, solution, situationFactorPosition));
+            factors.push(this.solutionFactorUiToDb(uiSolutionFactor, ageSuitability, solution, situationFactorPosition, context));
         }
         return solution;
     }
-    solutionFactorUiToDb(uiSolutionFactor, ageSuitability = 0, solution, situationFactorPosition) {
+    solutionFactorUiToDb(uiSolutionFactor, ageSuitability = 0, solution, situationFactorPosition, context) {
         const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER);
-        return Object.assign(Object.assign({}, repositoryRecordConverter.uiToDb(uiSolutionFactor, ageSuitability)), { solution,
+        return Object.assign(Object.assign({}, repositoryRecordConverter.uiToDb(uiSolutionFactor, context, ageSuitability)), { solution,
             situationFactorPosition });
     }
 }

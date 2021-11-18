@@ -1,5 +1,11 @@
 import { DI } from "@airport/di";
 import { REPOSITORY_RECORD_CONVERTER } from "../tokens";
+export function getToDbConversionContext() {
+    return {
+        actorsById: new Map(),
+        repositoriesById: new Map()
+    };
+}
 export class RepositoryRecordConverter {
     dbToUi(dbRepositoryEntity) {
         return {
@@ -10,7 +16,7 @@ export class RepositoryRecordConverter {
             repositoryId: dbRepositoryEntity.repository.id,
         };
     }
-    uiToDb(uiRepositoryRecord, ageSuitability = null) {
+    uiToDb(uiRepositoryRecord, context, ageSuitability = null) {
         if (!uiRepositoryRecord) {
             return {
                 actor: {
@@ -20,22 +26,37 @@ export class RepositoryRecordConverter {
                 ageSuitability,
                 repository: {
                     id: null,
-                    uuId: null
                 }
             };
         }
         if (uiRepositoryRecord.ageSuitability || uiRepositoryRecord.ageSuitability === 0) {
             ageSuitability = uiRepositoryRecord.ageSuitability;
         }
+        let actor = null;
+        if (uiRepositoryRecord.actorId) {
+            actor = context.actorsById.get(uiRepositoryRecord.actorId);
+            if (!actor) {
+                actor = {
+                    id: uiRepositoryRecord.actorId,
+                };
+                context.actorsById.set(uiRepositoryRecord.actorId, actor);
+            }
+        }
+        let repository = null;
+        if (uiRepositoryRecord.repositoryId) {
+            repository = context.repositoriesById.get(uiRepositoryRecord.repositoryId);
+            if (!repository) {
+                repository = {
+                    id: uiRepositoryRecord.repositoryId,
+                };
+                context.repositoriesById.set(uiRepositoryRecord.repositoryId, repository);
+            }
+        }
         return {
-            actor: {
-                id: uiRepositoryRecord.actorId,
-            },
+            actor,
             actorRecordId: uiRepositoryRecord.actorRecordId,
             ageSuitability,
-            repository: {
-                id: uiRepositoryRecord.repositoryId,
-            }
+            repository
         };
     }
 }

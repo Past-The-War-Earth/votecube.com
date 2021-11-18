@@ -1,20 +1,22 @@
-import {container, DI}              from '@airport/di'
+import { container, DI } from '@airport/di'
 import {
 	Factor_Number
-}                        from '@votecube/cube-logic'
+} from '@votecube/cube-logic'
 import {
 	ITweenSolution,
 	ITweenSolutionFactor,
 	IUiSolution,
 	IUiSolutionFactor,
 	SolutionFactor_Value
-}                        from '@votecube/model'
+} from '@votecube/model'
 import {
 	Observable,
 	Subject
-}                        from 'rxjs'
-import { SITUATION_FORM_MANAGER } from '../../..'
-import {SITUATION_MAIN_LOGIC} from '../../../tokens'
+} from 'rxjs'
+import {
+	SITUATION_FORM_MANAGER,
+	SITUATION_MAIN_LOGIC
+} from '../../../tokens'
 
 type FrameDuration = number
 type FrameNumber = number
@@ -101,7 +103,7 @@ export class SituationMainLogic
 
 		// const durationMillis    = 15000
 		// const durationMillis    = 300
-		const numFrames        = Math.ceil(durationMillis / 17)
+		const numFrames = Math.ceil(durationMillis / 17)
 		let numRemainingFrames = numFrames
 
 		const config: IUiSolutionFrameConfig = {
@@ -156,37 +158,37 @@ export class SituationMainLogic
 		config.newDirFrameNumber++
 
 		const {
-			      newDirFrameNumber,
-			      newSolutionFactor,
-			      newSolutionValue,
-			      numNewDirFrames,
-			      numOldDirFrames,
-			      numRemainingOldDirFrames,
-			      oldSolutionFactor,
-			      oldSolutionValue,
-			      zeroValueFrameNumber
-		      } = config
+			newDirFrameNumber,
+			newSolutionFactor,
+			newSolutionValue,
+			numNewDirFrames,
+			numOldDirFrames,
+			numRemainingOldDirFrames,
+			oldSolutionFactor,
+			oldSolutionValue,
+			zeroValueFrameNumber
+		} = config
 
 		if (zeroValueFrameNumber) {
 			if (newSolutionFactor.outcome
 				&& numRemainingFrames === zeroValueFrameNumber) {
-				newSolutionFactor.tweenValue   = 0
+				newSolutionFactor.tweenValue = 0
 				newSolutionFactor.tweenOutcome = newSolutionFactor.outcome
 			} else if (!newSolutionFactor.outcome
 				|| numRemainingFrames > zeroValueFrameNumber) {
 				// Always go here if the factor is being removed (dir === 0)
-				newSolutionFactor.tweenValue   = Math.floor(oldSolutionValue
+				newSolutionFactor.tweenValue = Math.floor(oldSolutionValue
 					/ numOldDirFrames * numRemainingOldDirFrames) as SolutionFactor_Value
 				newSolutionFactor.tweenOutcome = oldSolutionFactor.outcome
 			} else {
-				newSolutionFactor.tweenValue   = Math.floor(newSolutionValue
+				newSolutionFactor.tweenValue = Math.floor(newSolutionValue
 					/ numNewDirFrames * newDirFrameNumber) as SolutionFactor_Value
 				newSolutionFactor.tweenOutcome = newSolutionFactor.outcome
 			}
 		} else {
-			const factorValue          = oldSolutionValue + ((newSolutionValue - oldSolutionValue)
+			const factorValue = oldSolutionValue + ((newSolutionValue - oldSolutionValue)
 				/ numNewDirFrames * newDirFrameNumber)
-			newSolutionFactor.tweenValue   = newSolutionValue > oldSolutionValue
+			newSolutionFactor.tweenValue = newSolutionValue > oldSolutionValue
 				? Math.floor(factorValue) as SolutionFactor_Value
 				: Math.ceil(factorValue) as SolutionFactor_Value
 			newSolutionFactor.tweenOutcome = newSolutionFactor.outcome
@@ -202,7 +204,7 @@ export class SituationMainLogic
 	): void {
 		newSolutionFactor.tweenOutcome = outcomeConfig.newSolutionFactor.outcome
 		// }
-		newSolutionFactor.tweenValue   = outcomeConfig.newSolutionFactor.value
+		newSolutionFactor.tweenValue = outcomeConfig.newSolutionFactor.value
 	}
 
 	private setupFactorTween(
@@ -212,27 +214,27 @@ export class SituationMainLogic
 		numFrames: NumberOfFrames
 	): IFactorFrameConfig {
 
-		const oldSolutionFactor: IUiSolutionFactor      = oldSolution[factorNumber]
+		const oldSolutionFactor: IUiSolutionFactor = oldSolution[factorNumber]
 		const newSolutionFactor: ITweenSolutionFactor = newSolution[factorNumber]
 
 		const oldSolutionValue: SolutionFactor_Value = oldSolutionFactor.value
 		const newSolutionValue: SolutionFactor_Value = newSolutionFactor.value
 
-		let zeroValueFrameNumber: FrameNumber        = 0
+		let zeroValueFrameNumber: FrameNumber = 0
 		let numNewDirFrames: NumberOfFrames
-		let numOldDirFrames: NumberOfFrames          = 0
-		let newDirFrameNumber: FrameNumber           = 0
+		let numOldDirFrames: NumberOfFrames = 0
+		let newDirFrameNumber: FrameNumber = 0
 		let numRemainingOldDirFrames: NumberOfFrames = 0
 		if (oldSolutionFactor.outcome !== newSolutionFactor.outcome) {
-			const valueDifference      = oldSolutionValue + newSolutionValue
-			const oldSolutionFraction      = oldSolutionValue / valueDifference
-			numOldDirFrames            = zeroValueFrameNumber = Math.ceil(numFrames * oldSolutionFraction)
-			numRemainingOldDirFrames   = numOldDirFrames
-			numNewDirFrames            = numFrames - numOldDirFrames
-			newDirFrameNumber          = -numOldDirFrames
+			const valueDifference = oldSolutionValue + newSolutionValue
+			const oldSolutionFraction = oldSolutionValue / valueDifference
+			numOldDirFrames = zeroValueFrameNumber = Math.ceil(numFrames * oldSolutionFraction)
+			numRemainingOldDirFrames = numOldDirFrames
+			numNewDirFrames = numFrames - numOldDirFrames
+			newDirFrameNumber = -numOldDirFrames
 			newSolutionFactor.tweenOutcome = oldSolutionFactor.outcome
 		} else {
-			numNewDirFrames            = numFrames
+			numNewDirFrames = numFrames
 			newSolutionFactor.tweenOutcome = newSolutionFactor.outcome
 		}
 

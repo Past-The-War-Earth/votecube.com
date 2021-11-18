@@ -12,6 +12,7 @@ import {
 } from "@votecube/votecube";
 import { REPOSITORY_RECORD_CONVERTER } from "..";
 import { SOLUTION_CONVERTER } from "../tokens";
+import { getToDbConversionContext, IToDbConversionContext } from "./RepositoryRecordConverter";
 
 export interface ISolutionConverter {
 
@@ -88,12 +89,13 @@ export class SolutionConverter
     uiToDb(
         uiSolution: IUiSolution,
         ageSuitability: 0 | 7 | 13 | 18 = 0,
-        situation: ISituation
+        situation: ISituation,
     ): ISolution {
+        const context = getToDbConversionContext()
         const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         let factors: ISolutionFactor[] = []
         let solution: ISolution = {
-            ...repositoryRecordConverter.uiToDb(uiSolution, ageSuitability),
+            ...repositoryRecordConverter.uiToDb(uiSolution, context, ageSuitability),
             situation,
             factors
         }
@@ -101,7 +103,7 @@ export class SolutionConverter
             const uiSolutionFactor = uiSolution[
                 this.getFactorNumber(situationFactorPosition.axis as 'x' | 'y' | 'z')]
             factors.push(this.solutionFactorUiToDb(uiSolutionFactor, ageSuitability,
-                solution, situationFactorPosition))
+                solution, situationFactorPosition, context))
         }
 
         return solution
@@ -111,11 +113,12 @@ export class SolutionConverter
         uiSolutionFactor: IUiSolutionFactor,
         ageSuitability: 0 | 7 | 13 | 18 = 0,
         solution: ISolution,
-        situationFactorPosition: ISituationFactorPosition
+        situationFactorPosition: ISituationFactorPosition,
+        context: IToDbConversionContext,
     ): ISolutionFactor {
         const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         return {
-            ...repositoryRecordConverter.uiToDb(uiSolutionFactor, ageSuitability),
+            ...repositoryRecordConverter.uiToDb(uiSolutionFactor, context, ageSuitability),
             solution,
             situationFactorPosition
         }

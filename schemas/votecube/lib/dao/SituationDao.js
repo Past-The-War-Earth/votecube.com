@@ -1,5 +1,7 @@
 import { Y } from '@airport/air-control';
 import { BaseSituationDao, Q, } from "../generated/generated";
+import { DI } from '@airport/di';
+import { SITUATION_DAO } from '../server';
 export class SituationDao extends BaseSituationDao {
     /*
      * Are UuIds necessary for child records (they cause joins)?
@@ -70,4 +72,5 @@ export class SituationDao extends BaseSituationDao {
         await this.db.save(situation);
     }
 }
+DI.set(SITUATION_DAO, SituationDao);
 //# sourceMappingURL=SituationDao.js.map

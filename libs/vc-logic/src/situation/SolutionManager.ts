@@ -1,14 +1,18 @@
 import { container, DI } from '@airport/di'
 import {
-	ISituation,
-	ISolution,
 	SolutionApiClient
 } from '@votecube/votecube'
-import { IUiRepositoryRecord, IUiSituation, IUiSolution } from '@votecube/model'
 import {
+	IUiRepositoryRecord,
+	IUiSituation,
+	IUiSolution
+} from '@votecube/model'
+import {
+	SITUATION_CONVERTER,
+	SITUATION_MANAGER,
+	SOLUTION_CONVERTER,
 	SOLUTION_MANAGER
 } from '../tokens'
-import { SITUATION_CONVERTER, SITUATION_MANAGER, SOLUTION_CONVERTER } from '..'
 
 export interface ISolutionManager {
 

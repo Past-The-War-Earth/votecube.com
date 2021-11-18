@@ -3,6 +3,22 @@ import type { IRepositoryEntity } from "@airport/holding-pattern";
 import { DI } from "@airport/di";
 import { REPOSITORY_RECORD_CONVERTER } from "../tokens";
 
+export interface IToDbConversionContext {
+    actorsById: Map<number, {
+        id: number
+    }>
+    repositoriesById: Map<number, {
+        id: number
+    }>
+}
+
+export function getToDbConversionContext(): IToDbConversionContext {
+    return {
+        actorsById: new Map(),
+        repositoriesById: new Map()
+    }
+}
+
 export interface IRepositoryRecordConverter {
 
     dbToUi(
@@ -11,7 +27,8 @@ export interface IRepositoryRecordConverter {
 
     uiToDb(
         uiRepositoryRecord: IUiRepositoryRecord,
-        ageSuitability: 0 | 7 | 13 | 18
+        context?: IToDbConversionContext,
+        ageSuitability?: 0 | 7 | 13 | 18
     ): IRepositoryEntity
 
 }
@@ -34,9 +51,10 @@ export class RepositoryRecordConverter
 
     uiToDb(
         uiRepositoryRecord: IUiRepositoryRecord,
+        context: IToDbConversionContext,
         ageSuitability: 0 | 7 | 13 | 18 = null
     ): IRepositoryEntity {
-        if(!uiRepositoryRecord) {
+        if (!uiRepositoryRecord) {
             return {
                 actor: {
                     id: null,
@@ -46,24 +64,40 @@ export class RepositoryRecordConverter
                 ageSuitability,
                 repository: {
                     id: null,
-                    uuId: null
+                    // uuId: null
                 }
             }
         }
         if (uiRepositoryRecord.ageSuitability || uiRepositoryRecord.ageSuitability === 0) {
             ageSuitability = uiRepositoryRecord.ageSuitability
         }
+        let actor = null
+        if (uiRepositoryRecord.actorId) {
+            actor = context.actorsById.get(uiRepositoryRecord.actorId)
+            if (!actor) {
+                actor = {
+                    id: uiRepositoryRecord.actorId,
+                    // uuId: uiRepositoryRecord.actorUuId
+                }
+                context.actorsById.set(uiRepositoryRecord.actorId, actor)
+            }
+        }
+        let repository = null
+        if (uiRepositoryRecord.repositoryId) {
+            repository = context.repositoriesById.get(uiRepositoryRecord.repositoryId)
+            if (!repository) {
+                repository = {
+                    id: uiRepositoryRecord.repositoryId,
+                    // uuId: uiRepositoryRecord.repositoryUuId
+                }
+                context.repositoriesById.set(uiRepositoryRecord.repositoryId, repository)
+            }
+        }
         return {
-            actor: {
-                id: uiRepositoryRecord.actorId,
-                // uuId: uiRepositoryRecord.actorUuId
-            },
+            actor,
             actorRecordId: uiRepositoryRecord.actorRecordId,
             ageSuitability,
-            repository: {
-                id: uiRepositoryRecord.repositoryId,
-                // uuId: uiRepositoryRecord.repositoryUuId
-            }
+            repository
         }
     }
 

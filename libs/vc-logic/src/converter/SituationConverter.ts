@@ -1,6 +1,5 @@
 import { container, DI } from '@airport/di'
 import {
-	ILabel,
 	IFactor,
 	IOutcome,
 	IPosition,
@@ -17,10 +16,11 @@ import {
 	IUiSituation,
 	AGE_GROUPS,
 } from '@votecube/model'
-import { SITUATION_CONVERTER } from '../tokens'
-import { RepositoryRecordConverter } from './RepositoryRecordConverter'
-import { Label } from '@votecube/votecube/lib/server'
-import { SITUATION_FORM_MANAGER } from '..'
+import {
+	SITUATION_CONVERTER,
+	SITUATION_FORM_MANAGER
+} from '../tokens'
+import { getToDbConversionContext, IToDbConversionContext, RepositoryRecordConverter } from './RepositoryRecordConverter'
 
 export interface ISituationConverter {
 
@@ -75,51 +75,60 @@ export class SituationConverter
 	uiToDb(
 		uiSituation: IUiSituation
 	): ISituation {
+		const context = getToDbConversionContext()
 		const uiParent = uiSituation.parent
 
 		const dbFactors: IFactor[] = []
 
 		return {
-			...super.uiToDb(uiSituation),
+			...super.uiToDb(uiSituation, context),
 			name: uiSituation.name,
-			outcomeA: this.getDbOutcome(uiSituation.outcomes.A, uiSituation.ageSuitability),
-			outcomeB: this.getDbOutcome(uiSituation.outcomes.B, uiSituation.ageSuitability),
-			parent: {
-				...super.uiToDb(uiParent),
-			},
+			outcomeA: this.getDbOutcome(
+				uiSituation.outcomes.A, context, uiSituation.ageSuitability),
+			outcomeB: this.getDbOutcome(
+				uiSituation.outcomes.B, context, uiSituation.ageSuitability),
+			parent: uiParent ? {
+				...super.uiToDb(uiParent, context),
+			} : null,
 			situationFactorPositions: [this.getDbSituationFactorPosition(
 				uiSituation,
 				1,
 				'A',
-				dbFactors
+				dbFactors,
+				context
 			), this.getDbSituationFactorPosition(
 				uiSituation,
 				1,
 				'B',
-				dbFactors
+				dbFactors,
+				context
 			), this.getDbSituationFactorPosition(
 				uiSituation,
 				2,
 				'A',
-				dbFactors
+				dbFactors,
+				context
 			), this.getDbSituationFactorPosition(
 				uiSituation,
 				2,
 				'B',
-				dbFactors
+				dbFactors,
+				context
 			), this.getDbSituationFactorPosition(
 				uiSituation,
 				3,
 				'A',
-				dbFactors
+				dbFactors,
+				context
 			), this.getDbSituationFactorPosition(
 				uiSituation,
 				3,
 				'B',
-				dbFactors
+				dbFactors,
+				context
 			)],
 			situationLabels: this.getDbLabels(
-				uiSituation,  uiSituation.ageGroups.concat(uiSituation.labels)),
+				uiSituation, uiSituation.ageGroups.concat(uiSituation.labels), context),
 		}
 	}
 
@@ -211,20 +220,21 @@ export class SituationConverter
 
 	private getDbLabels(
 		uiSituation: IUiSituation,
-		uiLabels: IUiLabel[]
+		uiLabels: IUiLabel[],
+		context: IToDbConversionContext,
 	): ISituationLabel[] {
 		if (!uiLabels) {
 			return []
 		}
 		return uiLabels.map(uiLabel => {
 			return {
-				...super.uiToDb(uiLabel.situationLabel, uiSituation.ageSuitability),
+				...super.uiToDb(uiLabel.situationLabel, context, uiSituation.ageSuitability),
 				label: {
-					...super.uiToDb(uiLabel, uiSituation.ageSuitability),
+					...super.uiToDb(uiLabel, context, uiSituation.ageSuitability),
 					name: uiLabel.name
 				},
 				situation: {
-					...super.uiToDb(uiSituation),
+					...super.uiToDb(uiSituation, context),
 				}
 
 			}
@@ -234,10 +244,11 @@ export class SituationConverter
 
 	private getDbOutcome(
 		uiOutcome: IUiOutcome,
+		context: IToDbConversionContext,
 		ageSuitability: 0 | 7 | 13 | 18
 	): IOutcome {
 		return {
-			...super.uiToDb(uiOutcome, ageSuitability),
+			...super.uiToDb(uiOutcome, context, ageSuitability),
 			name: uiOutcome.name,
 		}
 	}
@@ -246,21 +257,23 @@ export class SituationConverter
 		uiSituation: IUiSituation,
 		factorNumber: 1 | 2 | 3,
 		outcomeOrdinal: 'A' | 'B',
-		dbFactors: IFactor[]
+		dbFactors: IFactor[],
+		context: IToDbConversionContext,
 	): ISituationFactorPosition {
 		const uiFactor = uiSituation.factors[factorNumber]
 		const uiPosition = uiFactor.positions[outcomeOrdinal]
 
 		let factor: IFactor = dbFactors[factorNumber]
 		if (!factor) {
-			factor = this.getDbFactor(uiFactor, uiSituation.ageSuitability)
+			factor = this.getDbFactor(uiFactor, context, uiSituation.ageSuitability)
 			dbFactors[factorNumber] = factor
 		}
 
-		const position: IPosition = this.getDbPosition(uiPosition, uiSituation.ageSuitability)
+		const position: IPosition = this.getDbPosition(
+			uiPosition, context, uiSituation.ageSuitability)
 
 		return {
-			...super.uiToDb(uiSituation, uiSituation.ageSuitability),
+			...super.uiToDb(uiSituation, context, uiSituation.ageSuitability),
 			axis: uiFactor.axis,
 			blue: uiFactor.color.blue,
 			dir: uiPosition.dir,
@@ -275,20 +288,22 @@ export class SituationConverter
 
 	private getDbFactor(
 		uiFactor: IUiFactor,
+		context: IToDbConversionContext,
 		ageSuitability: 0 | 7 | 13 | 18
 	): IFactor {
 		return {
-			...super.uiToDb(uiFactor, ageSuitability),
+			...super.uiToDb(uiFactor, context, ageSuitability),
 			name: uiFactor.name,
 		}
 	}
 
 	private getDbPosition(
 		uiPosition: IUiPosition,
+		context: IToDbConversionContext,
 		ageSuitability: 0 | 7 | 13 | 18
 	): IPosition {
 		return {
-			...super.uiToDb(uiPosition, ageSuitability),
+			...super.uiToDb(uiPosition, context, ageSuitability),
 			name: uiPosition.name,
 		}
 	}

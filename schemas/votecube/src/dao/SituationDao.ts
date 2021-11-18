@@ -15,6 +15,8 @@ import {
     QRepository
 } from "@airport/holding-pattern";
 import { Situation } from "../ddl/ddl";
+import { DI } from '@airport/di';
+import { SITUATION_DAO } from '../server';
 
 export interface ISituationDao {
 
@@ -113,3 +115,4 @@ export class SituationDao
     }
 
 }
+DI.set(SITUATION_DAO, SituationDao)
