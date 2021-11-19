@@ -14,9 +14,9 @@ import {
 import {
     QRepository
 } from "@airport/holding-pattern";
-import { Situation } from "../ddl/ddl";
 import { DI } from '@airport/di';
 import { SITUATION_DAO } from '../server';
+import { IRepositoryIdentifier } from '../client/types';
 
 export interface ISituationDao {
 
@@ -27,7 +27,7 @@ export interface ISituationDao {
 
     saveSituation(
         situation: ISituation
-    ): Promise<void>
+    ): Promise<IRepositoryIdentifier>
 
 }
 
@@ -110,8 +110,13 @@ export class SituationDao
     async saveSituation(
         // repositoryDestination: string,
         situation: ISituation
-    ): Promise<void> {
-        await this.db.save(situation)
+    ): Promise<IRepositoryIdentifier> {
+        const saveResult = await this.db.save(situation)
+
+        return {
+            source: saveResult.newRepository.source,
+            uuId: saveResult.newRepository.uuId
+        }
     }
 
 }

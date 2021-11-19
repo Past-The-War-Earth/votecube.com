@@ -1,6 +1,13 @@
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/di";
-import { ILabel, ISituation } from "../server";
+import {
+    container,
+    DI
+} from "@airport/di";
+import { IRepositoryIdentifier } from "../client/types";
+import type {
+    ILabel,
+    ISituation
+} from "../server";
 import { SITUATION_API } from "../tokens";
 import { SITUATION_DAO } from "../server-tokens";
 
@@ -25,7 +32,7 @@ export interface ISituationApi {
 
     saveSituation(
         situation: ISituation
-    ): Promise<void>
+    ): Promise<IRepositoryIdentifier>
 
 }
 
@@ -82,7 +89,7 @@ export class SituationApi
     @Api()
     async saveSituation(
         situation: ISituation
-    ): Promise<void> {
+    ): Promise<IRepositoryIdentifier> {
         const situationDao = await container(this).get(SITUATION_DAO)
 
         return await situationDao.saveSituation(situation)

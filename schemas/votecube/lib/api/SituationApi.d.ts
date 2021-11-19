@@ -1,10 +1,11 @@
-import { ILabel, ISituation } from "../server";
+import { IRepositoryIdentifier } from "../client/types";
+import type { ILabel, ISituation } from "../server";
 export interface ISituationApi {
     getSituationsForLabels(labels: ILabel[]): Promise<ISituation[]>;
     getLeafSituations(situation: ISituation): Promise<ISituation[]>;
     getStemSituation(situation: ISituation): Promise<ISituation>;
     getSituation(repositorySource: string, situationRepositoryUuId: string): Promise<ISituation>;
-    saveSituation(situation: ISituation): Promise<void>;
+    saveSituation(situation: ISituation): Promise<IRepositoryIdentifier>;
 }
 /**
  * Version 1 situation retrieval across devices.
@@ -26,6 +27,6 @@ export declare class SituationApi implements ISituationApi {
     getLeafSituations(situation: ISituation): Promise<ISituation[]>;
     getStemSituation(situation: ISituation): Promise<ISituation>;
     getSituation(repositorySource: string, situationRepositoryUuId: string): Promise<ISituation>;
-    saveSituation(situation: ISituation): Promise<void>;
+    saveSituation(situation: ISituation): Promise<IRepositoryIdentifier>;
 }
 //# sourceMappingURL=SituationApi.d.ts.map

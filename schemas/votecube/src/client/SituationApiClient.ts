@@ -1,4 +1,5 @@
 import { IOC } from "@airport/di"
+import { IRepositoryIdentifier } from "./types";
 import { ILabel, ISituation } from "../generated/interfaces";
 import { SITUATION_API } from "../tokens";
 
@@ -39,7 +40,7 @@ export class SituationApiClient {
 
     async saveSituation(
         situation: ISituation
-    ): Promise<void> {
+    ): Promise<IRepositoryIdentifier> {
         const situationApi = await IOC.get(SITUATION_API)
 
         return await situationApi.saveSituation(situation)

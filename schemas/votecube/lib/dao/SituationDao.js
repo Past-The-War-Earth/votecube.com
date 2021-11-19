@@ -69,7 +69,11 @@ export class SituationDao extends BaseSituationDao {
     async saveSituation(
     // repositoryDestination: string,
     situation) {
-        await this.db.save(situation);
+        const saveResult = await this.db.save(situation);
+        return {
+            source: saveResult.newRepository.source,
+            uuId: saveResult.newRepository.uuId
+        };
     }
 }
 DI.set(SITUATION_DAO, SituationDao);
