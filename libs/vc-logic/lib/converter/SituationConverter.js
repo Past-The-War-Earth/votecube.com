@@ -1,8 +1,7 @@
 import { container, DI } from '@airport/di';
 import { AGE_GROUPS, } from '@votecube/model';
-import { SITUATION_CONVERTER } from '../tokens';
+import { SITUATION_CONVERTER, SITUATION_FORM_MANAGER } from '../tokens';
 import { getToDbConversionContext, RepositoryRecordConverter } from './RepositoryRecordConverter';
-import { SITUATION_FORM_MANAGER } from '..';
 export class SituationConverter extends RepositoryRecordConverter {
     dbToUi(dbSituation) {
         let parent = null;

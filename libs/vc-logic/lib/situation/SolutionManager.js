@@ -1,7 +1,6 @@
 import { container, DI } from '@airport/di';
 import { SolutionApiClient } from '@votecube/votecube';
-import { SOLUTION_MANAGER } from '../tokens';
-import { SITUATION_CONVERTER, SITUATION_MANAGER, SOLUTION_CONVERTER } from '..';
+import { SITUATION_CONVERTER, SITUATION_MANAGER, SOLUTION_CONVERTER, SOLUTION_MANAGER } from '../tokens';
 export class SolutionManager {
     constructor() {
         this.solutionApi = new SolutionApiClient();

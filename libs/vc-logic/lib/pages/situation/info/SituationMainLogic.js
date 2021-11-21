@@ -1,7 +1,6 @@
 import { container, DI } from '@airport/di';
 import { Subject } from 'rxjs';
-import { SITUATION_FORM_MANAGER } from '../../..';
-import { SITUATION_MAIN_LOGIC } from '../../../tokens';
+import { SITUATION_FORM_MANAGER, SITUATION_MAIN_LOGIC } from '../../../tokens';
 export class SituationMainLogic {
     solutionsEqual(lastSolution, solution) {
         return lastSolution && solution

@@ -78,7 +78,7 @@ export class SituationFormManager {
         return {
             actorId: null,
             actorRecordId: null,
-            ageSuitability: null,
+            ageSuitability: 0,
             repositoryId: null,
         };
     }
