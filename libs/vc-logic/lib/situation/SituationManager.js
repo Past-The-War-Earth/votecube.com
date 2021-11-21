@@ -17,7 +17,10 @@ export class SituationManager {
         if (!repositoryUuId || repositoryUuId === 'unsolved') {
             return this.cachedSituation.ui;
         }
-        return null;
+        const dbSituation = await this.situationApi
+            .getSituation(hostingPlatform, repositoryUuId);
+        const converter = await container(this).get(SITUATION_CONVERTER);
+        return converter.dbToUi(dbSituation);
     }
     async getAllSituations() {
         return [];
@@ -119,15 +122,16 @@ export class SituationManager {
         }
         const converter = await container(this).get(SITUATION_CONVERTER);
         const dbSituation = converter.uiToDb(ui);
-        await this.situationApi.saveSituation(dbSituation);
+        const repositoryIdentifier = await this.situationApi.saveSituation(dbSituation);
         this.theCachedSituation = {
             form: null,
             originalUi: null,
             ui: null,
         };
+        return repositoryIdentifier;
     }
     async saveCachedSituation(user) {
-        await this.saveSituation(this.cachedSituation.ui);
+        return await this.saveSituation(this.cachedSituation.ui);
     }
 }
 DI.set(SITUATION_MANAGER, SituationManager);

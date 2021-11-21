@@ -1,6 +1,6 @@
 import { IFieldGroup } from '@votecube/forms';
 import { IUiSolution, IUiSituation, IUiLabel } from '@votecube/model';
-import { SituationApiClient } from '@votecube/votecube';
+import { IRepositoryIdentifier, SituationApiClient } from '@votecube/votecube';
 export interface IPageSolution extends IUiSolution {
     changeMillis?: number;
 }
@@ -12,8 +12,8 @@ export interface ISituationManager {
     getLeafSituations(stemSituationRepositoryUuId: string): Promise<IUiSituation[]>;
     getStemSituation(leafSituationUuId: string): Promise<IUiSituation>;
     mergeForm(): Promise<void>;
-    saveSituation(situation: IUiSituation): Promise<void>;
-    saveCachedSituation(user: any): Promise<void>;
+    saveSituation(situation: IUiSituation): Promise<IRepositoryIdentifier>;
+    saveCachedSituation(user: any): Promise<IRepositoryIdentifier>;
 }
 export interface ICachedSituation {
     form?: IFieldGroup;
@@ -31,7 +31,7 @@ export declare class SituationManager implements ISituationManager {
     getStemSituation(leafSituationUuId: string): Promise<IUiSituation>;
     mergeForm(): Promise<void>;
     publishSituation(situation: IUiSituation): Promise<void>;
-    saveSituation(situation: IUiSituation): Promise<void>;
-    saveCachedSituation(user: any): Promise<void>;
+    saveSituation(situation: IUiSituation): Promise<IRepositoryIdentifier>;
+    saveCachedSituation(user: any): Promise<IRepositoryIdentifier>;
 }
 //# sourceMappingURL=SituationManager.d.ts.map

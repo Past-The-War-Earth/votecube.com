@@ -8,7 +8,10 @@ import {
 	IUiSituation,
 	IUiLabel,
 } from '@votecube/model'
-import { SituationApiClient } from '@votecube/votecube'
+import {
+	IRepositoryIdentifier,
+	SituationApiClient
+} from '@votecube/votecube'
 import {
 	CUBE_LOGIC,
 	LOGIC_UTILS,
@@ -49,11 +52,11 @@ export interface ISituationManager {
 
 	saveSituation(
 		situation: IUiSituation
-	): Promise<void>
+	): Promise<IRepositoryIdentifier>
 
 	saveCachedSituation(
 		user
-	): Promise<void>
+	): Promise<IRepositoryIdentifier>
 }
 
 export interface ICachedSituation {
@@ -84,8 +87,12 @@ export class SituationManager
 		if (!repositoryUuId || repositoryUuId === 'unsolved') {
 			return this.cachedSituation.ui
 		}
+		const dbSituation = await this.situationApi
+			.getSituation(hostingPlatform, repositoryUuId)
 
-		return null
+		const converter = await container(this).get(SITUATION_CONVERTER)
+
+		return converter.dbToUi(dbSituation)
 	}
 
 	async getAllSituations(): Promise<IUiSituation[]> {
@@ -200,7 +207,7 @@ export class SituationManager
 	 */
 	async saveSituation(
 		situation: IUiSituation
-	): Promise<void> {
+	): Promise<IRepositoryIdentifier> {
 		const originalUi = this.cachedSituation.originalUi
 		const ui = this.cachedSituation.ui
 
@@ -214,7 +221,7 @@ export class SituationManager
 
 		const dbSituation = converter.uiToDb(ui)
 
-		await this.situationApi.saveSituation(dbSituation)
+		const repositoryIdentifier = await this.situationApi.saveSituation(dbSituation)
 
 		this.theCachedSituation = {
 			form: null,
@@ -222,12 +229,13 @@ export class SituationManager
 			ui: null,
 		}
 
+		return repositoryIdentifier
 	}
 
 	async saveCachedSituation(
 		user
-	): Promise<void> {
-		await this.saveSituation(this.cachedSituation.ui)
+	): Promise<IRepositoryIdentifier> {
+		return await this.saveSituation(this.cachedSituation.ui)
 	}
 
 }

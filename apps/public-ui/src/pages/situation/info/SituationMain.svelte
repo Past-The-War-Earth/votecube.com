@@ -28,6 +28,7 @@
         DERIVATION_LIST,
         SOLUTION_MANAGER,
         ILogicUtils,
+        SITUATION_MAIN,
     } from "@votecube/vc-logic";
     import { beforeUpdate, onDestroy, onMount } from "svelte";
     import { get } from "svelte/store";
@@ -123,29 +124,26 @@
         return theSolutionFactors;
     }, delta);
 
+    let routeParamsUnsubscribe;
+
     onMount(async () => {
         cardMove.set(null);
 
         let params = get(routeParams);
-        let hostingPlatform = params.hostingPlatform;
-        let repositoryUuId = params.repositoryUuId;
 
         resize();
         if (window.location.href.indexOf("card/ClimateChange") > 0) {
-            repositoryUuId = "1e62db65-807b-457f-ba34-4410013e8d39";
+            params.repositoryUuId = "1e62db65-807b-457f-ba34-4410013e8d39";
         }
         cube.set(true);
         noOverflow.set(true);
 
         const cubeLogicModule = await import("@votecube/cube-logic");
 
-        const [cubeEventListener, cubeLogic, detailedCubeLogic, theLogicUtils] =
-            await container.get(
-                cubeLogicModule.CUBE_EVENT_LISTENER,
-                CUBE_LOGIC,
-                DETAILED_CUBE_LOGIC,
-                LOGIC_UTILS
-            );
+        const [cubeEventListener, cubeLogic] = await container.get(
+            cubeLogicModule.CUBE_EVENT_LISTENER,
+            CUBE_LOGIC
+        );
 
         cubeLogic.setCubeViewPort(
             cubeEventListener,
@@ -162,6 +160,38 @@
                 // 				percentMode = false
             }
         );
+        await loadSituation(
+            params.hostingPlatform,
+            params.repositoryUuId,
+            params.mode
+        );
+        
+        routeParamsUnsubscribe = routeParams.subscribe((params) => {
+            if (params.repositoryUuId == "unsolved") {
+                return;
+            }
+            loadSituation(
+                params.hostingPlatform,
+                params.repositoryUuId,
+                params.mode
+            ).then();
+        });
+    });
+
+    async function loadSituation(
+        hostingPlatform: string,
+        repositoryUuId: string,
+        displayMode: string
+    ) {
+        const cubeLogicModule = await import("@votecube/cube-logic");
+
+        const [cubeEventListener, cubeLogic, detailedCubeLogic, theLogicUtils] =
+            await container.get(
+                cubeLogicModule.CUBE_EVENT_LISTENER,
+                CUBE_LOGIC,
+                DETAILED_CUBE_LOGIC,
+                LOGIC_UTILS
+            );
 
         const cubeViewResult = await setupCubeView(
             hostingPlatform,
@@ -185,8 +215,8 @@
         cubeSides = cubeSideResult.cubeSides;
         loaded = true;
         logicUtils = theLogicUtils;
-        mode.set(params.mode);
-    });
+        mode.set(displayMode);
+    }
 
     onDestroy(async () => {
         setResizeCllBck(null);
@@ -200,6 +230,8 @@
         mutationApi = null;
         cube.set(false);
         noOverflow.set(false);
+
+        routeParamsUnsubscribe();
 
         DI.remove(container);
     });
@@ -443,9 +475,16 @@
         savingMessage = "Saving ...";
         const situationManager = await container.get(SITUATION_MANAGER);
         try {
-            await situationManager.saveCachedSituation($user);
+            const repositoryIdentifier =
+                await situationManager.saveCachedSituation($user);
             confirm = false;
-            navigateToPage(SITUATION_LIST);
+            // navigateToPage(SITUATION_LIST);
+
+            navigateToPage(SITUATION_MAIN, {
+                mode: "solution",
+                hostingPlatform: repositoryIdentifier.source,
+                repositoryUuId: repositoryIdentifier.uuId,
+            });
         } catch (theError) {
             error = theError;
             savingMessage = "Error";
