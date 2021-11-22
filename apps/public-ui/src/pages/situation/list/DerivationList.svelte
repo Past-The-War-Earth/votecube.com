@@ -52,7 +52,7 @@ ILogicUtils,
 	};
 
 	onMount(async () => {
-		container = DI.ui("SituationList");
+		container = DI.ui("DerivationList");
 
 		const { repositoryUuId } = get(routeParams);
 		let results = await getListingsAndOther(

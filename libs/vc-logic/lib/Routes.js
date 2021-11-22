@@ -1,6 +1,7 @@
-import { DI } from '@airport/di';
+import { DI, IOC } from '@airport/di';
 import page from 'page';
 import { get } from 'svelte/store';
+import { LOCAL_API_CLIENT } from '@airport/autopilot';
 import { currentPage, currentUrl, lastPage, lastUrl, routeParams, showSignIn, signedInState, user } from './store';
 import { ROUTES } from './tokens';
 export class Routes {
@@ -33,7 +34,7 @@ export class Routes {
         const nextPage = this.pageConf[pageKey];
         this.setInProgressState(paramMap, nextPage.url);
         // FIXME: transition navigation to saper
-        page(this.inProgressUrl);
+        this.navigateAndPostToAIRport(this.inProgressUrl);
         const previousPage = get(currentPage);
         currentPage.set(nextPage);
         lastPage.set(previousPage);
@@ -42,12 +43,19 @@ export class Routes {
         lastUrl.set(previousUrl);
         routeParams.set(paramMap);
     }
+    navigateAndPostToAIRport(url, callback) {
+        page(url, callback);
+        this.postLocationToAIRport();
+    }
+    postLocationToAIRport() {
+        IOC.getSync(LOCAL_API_CLIENT).sendMessageToAIRport('UrlManager', 'changeUrl', [window.location.href]);
+    }
     setupRoutes(pageMap, setPageComp, defaultRoutePath, errorRoutePath) {
         this.setupPage(this.pageConf[defaultRoutePath], pageMap[defaultRoutePath], setPageComp, errorRoutePath, '/');
         for (const pageKey in this.pageConf) {
             this.setupPage(this.pageConf[pageKey], pageMap[pageKey], setPageComp, errorRoutePath);
         }
-        page({
+        this.navigateAndPostToAIRport({
             hashbang: true
         });
     }
@@ -116,13 +124,13 @@ export class Routes {
                             // if (!previousPage || previousPage.authenticated) {
                             // 	navigateToPage(SITUATION_LIST)
                             // } else if (previousUrl) {
-                            // 	page(previousUrl)
+                            // 	this.navigateAndPostToAIRport(previousUrl)
                             // }
                             if (!current.currentPage || current.currentPage.authenticated) {
                                 this.navigateToPage(errorRoutePath);
                             }
                             else if (current.currentUrl) {
-                                page(current.currentUrl);
+                                this.navigateAndPostToAIRport(current.currentUrl);
                             }
                         }
                     });

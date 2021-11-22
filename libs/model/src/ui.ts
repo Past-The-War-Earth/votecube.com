@@ -1,3 +1,13 @@
+export interface IUiCustomEvent<T> {
+	detail: T
+}
+export interface IUiMenuItem {
+	auth: boolean
+	key: string
+	name: string
+	path: string
+}
+
 export interface IUiRepositoryRecord {
 	actorId: number
 	// actorUuId: string

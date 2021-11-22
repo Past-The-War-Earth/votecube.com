@@ -1,6 +1,7 @@
-import {DI}  from '@airport/di'
+import {DI, IOC}  from '@airport/di'
 import page  from 'page'
 import {get} from 'svelte/store'
+import { LOCAL_API_CLIENT } from '@airport/autopilot'
 import {
 	currentPage,
 	currentUrl,
@@ -55,6 +56,13 @@ export interface IRoutes {
 		defaultRoutePath: Route_Path,
 		errorRoutePath: Route_Path
 	): void
+
+	navigateAndPostToAIRport(
+		url: string | Object,
+		callback?
+	)
+
+	postLocationToAIRport()
 
 }
 
@@ -121,7 +129,7 @@ export class Routes
 		this.setInProgressState(paramMap, nextPage.url)
 
 		// FIXME: transition navigation to saper
-		page(this.inProgressUrl)
+		this.navigateAndPostToAIRport(this.inProgressUrl)
 
 		const previousPage: IRouteConfig = get(currentPage)
 		currentPage.set(nextPage)
@@ -130,6 +138,22 @@ export class Routes
 		currentUrl.set(nextPage.url)
 		lastUrl.set(previousUrl)
 		routeParams.set(paramMap)
+	}
+
+	navigateAndPostToAIRport(
+		url: string | Object,
+		callback?
+	) {
+		page(url, callback)
+		this.postLocationToAIRport()
+	}
+
+	postLocationToAIRport() {
+		IOC.getSync(LOCAL_API_CLIENT).sendMessageToAIRport(
+			'UrlManager',
+			'changeUrl',
+			[window.location.href]
+		)
 	}
 
 	setupRoutes(
@@ -157,7 +181,7 @@ export class Routes
 			)
 		}
 
-		page({
+		this.navigateAndPostToAIRport({
 			hashbang: true
 		})
 	}
@@ -250,12 +274,12 @@ export class Routes
 								// if (!previousPage || previousPage.authenticated) {
 								// 	navigateToPage(SITUATION_LIST)
 								// } else if (previousUrl) {
-								// 	page(previousUrl)
+								// 	this.navigateAndPostToAIRport(previousUrl)
 								// }
 								if (!current.currentPage || current.currentPage.authenticated) {
 									this.navigateToPage(errorRoutePath)
 								} else if (current.currentUrl) {
-									page(current.currentUrl)
+									this.navigateAndPostToAIRport(current.currentUrl)
 								}
 							}
 						})
