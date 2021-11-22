@@ -8,6 +8,9 @@ export function getToDbConversionContext() {
 }
 export class RepositoryRecordConverter {
     dbToUi(dbRepositoryEntity) {
+        if (!dbRepositoryEntity) {
+            return null;
+        }
         return {
             actorId: dbRepositoryEntity.actor.id,
             // actorUuId: dbRepositoryEntity.actor.uuId,

@@ -1,4 +1,4 @@
-import { Y } from '@airport/air-control';
+import { ALL_FIELDS, and } from '@airport/air-control';
 import { BaseSituationDao, Q, } from "../generated/generated";
 import { DI } from '@airport/di';
 import { SITUATION_DAO } from '../server';
@@ -28,25 +28,7 @@ export class SituationDao extends BaseSituationDao {
         let f;
         let p;
         const matchingRepositories = await this.db.findForRepository(repositorySource, situationReposioryUuid).tree({
-            select: {
-                parent: {},
-                outcomeA: {},
-                outcomeB: {},
-                situationLabels: {
-                    label: {}
-                },
-                situationFactorPositions: {
-                    axis: Y,
-                    blue: Y,
-                    dir: Y,
-                    factor: {},
-                    factorNumber: Y,
-                    green: Y,
-                    outcomeOrdinal: Y,
-                    position: {},
-                    red: Y,
-                }
-            },
+            select: Object.assign(Object.assign({}, ALL_FIELDS), { parent: {}, outcomeA: {}, outcomeB: {}, situationLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), situationFactorPositions: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
             from: [
                 s = Q.Situation,
                 r = s.repository.innerJoin(),
@@ -54,12 +36,12 @@ export class SituationDao extends BaseSituationDao {
                 o1 = s.outcomeA.innerJoin(),
                 o2 = s.outcomeB.innerJoin(),
                 sl = s.situationLabels.leftJoin(),
-                l = sl.label.innerJoin(),
+                l = sl.label.leftJoin(),
                 sfp = s.situationFactorPositions.innerJoin(),
                 f = sfp.factor.innerJoin(),
                 p = sfp.position.innerJoin()
             ],
-            where: r.uuId.equals(situationReposioryUuid)
+            where: and(r.source.equals(repositorySource), r.uuId.equals(situationReposioryUuid))
         });
         if (matchingRepositories.length) {
             return matchingRepositories[0];

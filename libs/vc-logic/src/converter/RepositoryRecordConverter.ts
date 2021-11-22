@@ -39,6 +39,10 @@ export class RepositoryRecordConverter
     dbToUi(
         dbRepositoryEntity: IRepositoryEntity
     ): IUiRepositoryRecord {
+        if (!dbRepositoryEntity) {
+            return null
+        }
+
         return {
             actorId: dbRepositoryEntity.actor.id,
             // actorUuId: dbRepositoryEntity.actor.uuId,

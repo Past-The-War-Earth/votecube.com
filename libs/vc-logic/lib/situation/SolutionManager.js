@@ -11,8 +11,11 @@ export class SolutionManager {
         if (!situationRepositoryUuid || situationRepositoryUuid === 'unsolved') {
             return this.getStubSolution();
         }
-        const solution = await this.solutionApi
+        let solution = await this.solutionApi
             .getMySolutionForSituation(situationRepositoryUuid);
+        if (!solution) {
+            return this.getStubSolution();
+        }
         const solutionConverter = await container(this).get(SOLUTION_CONVERTER);
         return solutionConverter.dbToUi(solution);
     }

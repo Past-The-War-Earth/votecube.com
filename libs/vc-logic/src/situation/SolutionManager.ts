@@ -45,8 +45,11 @@ export class SolutionManager
 			return this.getStubSolution()
 		}
 
-		const solution = await this.solutionApi
+		let solution = await this.solutionApi
 			.getMySolutionForSituation(situationRepositoryUuid)
+		if (!solution) {
+			return this.getStubSolution()
+		}
 
 		const solutionConverter = await container(this).get(SOLUTION_CONVERTER)
 

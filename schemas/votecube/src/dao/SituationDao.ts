@@ -1,4 +1,8 @@
-import { Y } from '@airport/air-control'
+import {
+    ALL_FIELDS,
+    and,
+    Y
+} from '@airport/air-control'
 import {
     BaseSituationDao,
     ISituation,
@@ -67,22 +71,18 @@ export class SituationDao
             situationReposioryUuid,
         ).tree({
             select: {
+                ...ALL_FIELDS,
                 parent: {},
                 outcomeA: {},
                 outcomeB: {},
                 situationLabels: {
+                    ...ALL_FIELDS,
                     label: {}
                 },
                 situationFactorPositions: {
-                    axis: Y,
-                    blue: Y,
-                    dir: Y,
+                    ...ALL_FIELDS,
                     factor: {},
-                    factorNumber: Y,
-                    green: Y,
-                    outcomeOrdinal: Y,
                     position: {},
-                    red: Y,
                 }
             },
             from: [
@@ -92,12 +92,15 @@ export class SituationDao
                 o1 = s.outcomeA.innerJoin(),
                 o2 = s.outcomeB.innerJoin(),
                 sl = s.situationLabels.leftJoin(),
-                l = sl.label.innerJoin(),
+                l = sl.label.leftJoin(),
                 sfp = s.situationFactorPositions.innerJoin(),
                 f = sfp.factor.innerJoin(),
                 p = sfp.position.innerJoin()
             ],
-            where: r.uuId.equals(situationReposioryUuid)
+            where: and(
+                r.source.equals(repositorySource),
+                r.uuId.equals(situationReposioryUuid)
+            )
         })
 
         if (matchingRepositories.length) {
