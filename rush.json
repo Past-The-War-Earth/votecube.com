@@ -228,11 +228,11 @@
       "shouldPublish": true
     },
     // "libs" folder (alphabetical order)
-    {
-      "packageName": "@airport/approach-lighting-system",
-      "projectFolder": "../../AIR/AIRport/libs/approach-lighting-system",
-      "shouldPublish": true
-    },
+    // {
+    //   "packageName": "@airport/approach-lighting-system",
+    //   "projectFolder": "../../AIR/AIRport/libs/approach-lighting-system",
+    //   "shouldPublish": true
+    // },
     {
       "packageName": "@airport/autopilot",
       "projectFolder": "../../AIR/AIRport/libs/autopilot",
@@ -280,13 +280,13 @@
     },
     // "nonhub" folder (alphabetical order)
     {
-      "packageName": "@airport/bulk-read-processor",
-      "projectFolder": "../../AIR/AIRport/nonhub/bulk-read-processor",
+      "packageName": "@airport/nonhub-client",
+      "projectFolder": "../../AIR/AIRport/nonhub/client",
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/gateway",
-      "projectFolder": "../../AIR/AIRport/nonhub/gateway",
+      "packageName": "@airport/nonhub-in-memory-server",
+      "projectFolder": "../../AIR/AIRport/nonhub/in-memory-server",
       "shouldPublish": true
     },
     {
@@ -299,15 +299,15 @@
       "projectFolder": "../../AIR/AIRport/nonhub/processor-common",
       "shouldPublish": true
     },
-    {
-      "packageName": "@airport/write-processor",
-      "projectFolder": "../../AIR/AIRport/nonhub/write-processor",
-      "shouldPublish": true
-    },
     // "schemas" folder (alphabetical order)
     {
       "packageName": "@airport/airport-code",
       "projectFolder": "../../AIR/AIRport/schemas/airport-code",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/airspace",
+      "projectFolder": "../../AIR/AIRport/schemas/airspace",
       "shouldPublish": true
     },
     {
@@ -345,21 +345,11 @@
       "projectFolder": "../../AIR/AIRport/schemas/point-of-destination",
       "shouldPublish": true
     },
-    {
-      "packageName": "@airport/runway-edge-lighting",
-      "projectFolder": "../../AIR/AIRport/schemas/runway-edge-lighting",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/territory",
-      "projectFolder": "../../AIR/AIRport/schemas/territory",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/traffic-pattern",
-      "projectFolder": "../../AIR/AIRport/schemas/traffic-pattern",
-      "shouldPublish": true
-    },
+    // {
+    //   "packageName": "@airport/runway-edge-lighting",
+    //   "projectFolder": "../../AIR/AIRport/schemas/runway-edge-lighting",
+    //   "shouldPublish": true
+    // },
     {
       "packageName": "@airport/travel-document-checkpoint",
       "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint",

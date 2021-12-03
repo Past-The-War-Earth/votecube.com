@@ -27,7 +27,7 @@ export class SituationDao extends BaseSituationDao {
         let sfp;
         let f;
         let p;
-        const matchingRepositories = await this.db.findForRepository(repositorySource, situationReposioryUuid).tree({
+        const matchingRepositories = await this.db.find.tree({
             select: Object.assign(Object.assign({}, ALL_FIELDS), { parent: {}, outcomeA: {}, outcomeB: {}, situationLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), situationFactorPositions: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
             from: [
                 s = Q.Situation,
@@ -42,6 +42,11 @@ export class SituationDao extends BaseSituationDao {
                 p = sfp.position.innerJoin()
             ],
             where: and(r.source.equals(repositorySource), r.uuId.equals(situationReposioryUuid))
+        }, {
+            repository: {
+                source: repositorySource,
+                uuId: situationReposioryUuid
+            }
         });
         if (matchingRepositories.length) {
             return matchingRepositories[0];

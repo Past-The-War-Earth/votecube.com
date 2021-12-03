@@ -178,6 +178,9 @@ export interface SituationFactorPositionEUpdateColumns
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
+	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
+	ORIGINAL_ACTOR_ID?: number | IQNumberField;
 	FACTOR_COORDINATE_AXIS?: string | IQStringField;
 	POSITION_ORIENTATION?: number | IQNumberField;
 	FACTOR_NUMBER?: number | IQNumberField;

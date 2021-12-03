@@ -273,4 +273,4 @@ export declare const APPLICATION: {
         versionString: string;
     }[];
 };
-//# sourceMappingURL=schema.d.ts.map
+//# sourceMappingURL=application.d.ts.map

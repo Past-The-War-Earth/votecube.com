@@ -2,22 +2,22 @@ import {
     API_REGISTRY,
 } from '@airport/check-in'
 import { container, DI, system, SYSTEM } from '@airport/di'
-import { SCHEMA_INITIALIZER } from '@airport/landing'
+import { APPLICATION_INITIALIZER } from '@airport/landing'
 import {
-    APPLICATION_INITIALIZER,
-    IApplicationInitializer,
-    JsonSchemaWithLastIds,
+    APPLICATION_LOADER,
+    IApplicationLoader,
+    JsonApplicationWithLastIds,
     LastIds
 } from '@airport/security-check'
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff'
-import { SCHEMA } from './generated/schema'
+import { APPLICATION } from './generated/application'
 
-export class ApplicationInitializer
-    implements IApplicationInitializer {
+export class ApplicationLoader
+    implements IApplicationLoader {
 
     private initializing = false
 
-    async initialize(
+    async load(
         lastIds: LastIds,
         librarySignature: string = 'votecube',
     ): Promise<void> {
@@ -28,22 +28,22 @@ export class ApplicationInitializer
 
         DI.db().context.inAIRportApp = true
 
-        const [apiRegistry, ddlObjectRetriever, schemaInitializer] = await container(this)
-            .get(API_REGISTRY, DDL_OBJECT_RETRIEVER, SCHEMA_INITIALIZER)
+        const [apiRegistry, ddlObjectRetriever, applicationInitializer] = await container(this)
+            .get(API_REGISTRY, DDL_OBJECT_RETRIEVER, APPLICATION_INITIALIZER)
         ddlObjectRetriever.lastIds = lastIds
 
-        await schemaInitializer.initializeForAIRportApp(SCHEMA as any)
+        await applicationInitializer.initializeForAIRportApp(APPLICATION as any)
 
-        apiRegistry.initialize(SCHEMA.versions[0].api)
+        apiRegistry.initialize(APPLICATION.versions[0].api)
 
         system('votecube').mapLibraryBySignature('votecube', librarySignature)
     }
 
-    getSchema(): JsonSchemaWithLastIds {
-        return SCHEMA as any
+    getApplication(): JsonApplicationWithLastIds {
+        return APPLICATION as any
     }
 }
-DI.set(APPLICATION_INITIALIZER, ApplicationInitializer)
+DI.set(APPLICATION_LOADER, ApplicationLoader)
 
 export function loadApplicationInitializer() {
     console.log('Application Initializer loaded')

@@ -29,4 +29,4 @@ export function duoDiSet(dbEntityId) {
 DI.db().eventuallyGet(AIRPORT_DATABASE).then((airDb) => {
     airDb.QM[getApplicationName(Q_APPLICATION)] = Q;
 });
-//# sourceMappingURL=qSchema.js.map
+//# sourceMappingURL=qApplication.js.map

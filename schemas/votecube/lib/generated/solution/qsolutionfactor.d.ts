@@ -46,6 +46,9 @@ export interface SolutionFactorGraph extends SolutionFactorEOptionalId, Reposito
 export interface SolutionFactorEUpdateColumns extends RepositoryEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
+    ORIGINAL_ACTOR_ID?: number | IQNumberField;
     AXIS?: string | IQStringField;
     SHARE?: number | IQNumberField;
     SOLUTIONS_RID_1?: number | IQNumberField;

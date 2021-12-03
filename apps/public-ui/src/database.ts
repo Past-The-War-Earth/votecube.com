@@ -24,7 +24,7 @@ import type { IChildContainer, IRootContainer } from '@airport/di';
 export async function init() {
     // await APP_CONTAINER.get(AIR
     // const dbManager = await APP_CONTAINER.get(DATABASE_MANAGER)
-    // await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, SCHEMA)
+    // await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, APPLICATION)
 }
 
 export function getBlankTweenSolution(

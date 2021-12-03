@@ -141,6 +141,9 @@ export interface SituationLabelEUpdateColumns
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
+	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
+	ORIGINAL_ACTOR_ID?: number | IQNumberField;
 	SITUATIONS_RID_1?: number | IQNumberField;
 	SITUATIONS_AID_1?: number | IQNumberField;
 	SITUATIONS_ARID_1?: number | IQNumberField;

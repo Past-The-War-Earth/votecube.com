@@ -66,10 +66,7 @@ export class SituationDao
         let sfp: QSituationFactorPosition
         let f: QFactor
         let p: QPosition
-        const matchingRepositories = await this.db.findForRepository(
-            repositorySource,
-            situationReposioryUuid,
-        ).tree({
+        const matchingRepositories = await this.db.find.tree({
             select: {
                 ...ALL_FIELDS,
                 parent: {},
@@ -101,6 +98,11 @@ export class SituationDao
                 r.source.equals(repositorySource),
                 r.uuId.equals(situationReposioryUuid)
             )
+        }, {
+            repository: {
+                source: repositorySource,
+                uuId: situationReposioryUuid
+            }
         })
 
         if (matchingRepositories.length) {
