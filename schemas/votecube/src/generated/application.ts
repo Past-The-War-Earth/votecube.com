@@ -138,7 +138,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
@@ -449,7 +449,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
@@ -760,7 +760,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
@@ -1071,7 +1071,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
@@ -1578,7 +1578,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
@@ -1976,7 +1976,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
@@ -2683,7 +2683,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
@@ -2994,7 +2994,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
@@ -3455,7 +3455,7 @@ export const APPLICATION = {
 						},
 						{
 							"index": 5,
-							"isGenerated": true,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [],
 							"name": "ORIGINAL_ACTOR_RECORD_ID",
 							"notNull": false,
