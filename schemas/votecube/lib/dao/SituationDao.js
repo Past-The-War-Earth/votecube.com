@@ -37,9 +37,9 @@ export class SituationDao extends BaseSituationDao {
                 o2 = s.outcomeB.innerJoin(),
                 sl = s.situationLabels.leftJoin(),
                 l = sl.label.leftJoin(),
-                sfp = s.situationFactorPositions.innerJoin(),
-                f = sfp.factor.innerJoin(),
-                p = sfp.position.innerJoin()
+                sfp = s.situationFactorPositions.leftJoin(),
+                f = sfp.factor.leftJoin(),
+                p = sfp.position.leftJoin()
             ],
             where: and(r.source.equals(repositorySource), r.uuId.equals(situationReposioryUuid))
         }, {
