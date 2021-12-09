@@ -53,7 +53,11 @@ export class SituationFormManager
 					A: this.getBlankUiNamedRecord(),
 					B: this.getBlankUiNamedRecord()
 				},
-				parent: null
+				parent: null,
+				repository: {
+					source: null,
+					uuId: null
+				}
 			}
 		}
 

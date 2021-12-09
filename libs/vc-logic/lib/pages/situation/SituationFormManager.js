@@ -10,7 +10,10 @@ export class SituationFormManager {
                 }, outcomes: {
                     A: this.getBlankUiNamedRecord(),
                     B: this.getBlankUiNamedRecord()
-                }, parent: null });
+                }, parent: null, repository: {
+                    source: null,
+                    uuId: null
+                } });
         }
         uiSituation.name = formSituation.name;
         this.transferFactorWithPositions(formSituation.factors[1], uiSituation.factors[1]);

@@ -62,13 +62,17 @@ export class SituationConverter
 				'2': this.getUiFactor(2, dbSituation.situationFactorPositions),
 				'3': this.getUiFactor(3, dbSituation.situationFactorPositions)
 			},
+			labels,
 			name: dbSituation.name,
 			outcomes: {
 				A: this.getUiOutcome(dbSituation.outcomeA),
 				B: this.getUiOutcome(dbSituation.outcomeB)
 			},
 			parent,
-			labels,
+			repository: {
+				source: dbSituation.repository.source,
+				uuId: dbSituation.repository.uuId
+			}
 		}
 	}
 

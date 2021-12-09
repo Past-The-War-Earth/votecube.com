@@ -84,9 +84,13 @@ export class SituationManager
 		hostingPlatform: string,
 		repositoryUuId: string
 	): Promise<IUiSituation> {
-		if (!repositoryUuId || repositoryUuId === ':repositoryUuId') {
-			return this.cachedSituation.ui
+		const ui = this.cachedSituation.ui
+		if (!repositoryUuId || repositoryUuId === ':repositoryUuId'
+			|| (ui && ui.repository.source === hostingPlatform
+				&& ui.repository.uuId === repositoryUuId)) {
+			return ui
 		}
+
 		const dbSituation = await this.situationApi
 			.getSituation(hostingPlatform, repositoryUuId)
 

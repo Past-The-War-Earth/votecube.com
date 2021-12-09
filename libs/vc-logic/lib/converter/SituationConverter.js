@@ -16,11 +16,13 @@ export class SituationConverter extends RepositoryRecordConverter {
                 '1': this.getUiFactor(1, dbSituation.situationFactorPositions),
                 '2': this.getUiFactor(2, dbSituation.situationFactorPositions),
                 '3': this.getUiFactor(3, dbSituation.situationFactorPositions)
-            }, name: dbSituation.name, outcomes: {
+            }, labels, name: dbSituation.name, outcomes: {
                 A: this.getUiOutcome(dbSituation.outcomeA),
                 B: this.getUiOutcome(dbSituation.outcomeB)
-            }, parent,
-            labels });
+            }, parent, repository: {
+                source: dbSituation.repository.source,
+                uuId: dbSituation.repository.uuId
+            } });
     }
     uiToDb(uiSituation) {
         const context = getToDbConversionContext();

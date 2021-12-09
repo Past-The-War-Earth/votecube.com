@@ -14,8 +14,11 @@ export class SituationManager {
         return this.theCachedSituation;
     }
     async getSituation(hostingPlatform, repositoryUuId) {
-        if (!repositoryUuId || repositoryUuId === ':repositoryUuId') {
-            return this.cachedSituation.ui;
+        const ui = this.cachedSituation.ui;
+        if (!repositoryUuId || repositoryUuId === ':repositoryUuId'
+            || (ui && ui.repository.source === hostingPlatform
+                && ui.repository.uuId === repositoryUuId)) {
+            return ui;
         }
         const dbSituation = await this.situationApi
             .getSituation(hostingPlatform, repositoryUuId);

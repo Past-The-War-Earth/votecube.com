@@ -38,6 +38,10 @@ export interface IUiOutcome extends IUiNamedRecord {
 export interface IUiPosition extends IUiNamedRecord {
     dir: -1 | 1;
 }
+export interface IUiRepository {
+    source: string;
+    uuId: string;
+}
 export interface IUiSituation extends IUiNamedRecord {
     ageGroups: IUiLabel[];
     labels: IUiLabel[];
@@ -51,6 +55,7 @@ export interface IUiSituation extends IUiNamedRecord {
         B: IUiOutcome;
     };
     parent: IUiRepositoryRecord;
+    repository: IUiRepository;
 }
 export interface INavList {
     direction: 0 | 1 | -1;

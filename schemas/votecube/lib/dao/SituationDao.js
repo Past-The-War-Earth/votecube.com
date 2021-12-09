@@ -1,4 +1,4 @@
-import { ALL_FIELDS, and } from '@airport/air-control';
+import { ALL_FIELDS, and, Y } from '@airport/air-control';
 import { BaseSituationDao, Q, } from "../generated/generated";
 import { DI } from '@airport/di';
 import { SITUATION_DAO } from '../server';
@@ -28,7 +28,10 @@ export class SituationDao extends BaseSituationDao {
         let f;
         let p;
         const matchingRepositories = await this.db.find.tree({
-            select: Object.assign(Object.assign({}, ALL_FIELDS), { parent: {}, outcomeA: {}, outcomeB: {}, situationLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), situationFactorPositions: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
+            select: Object.assign(Object.assign({}, ALL_FIELDS), { repository: {
+                    source: Y,
+                    uuId: Y
+                }, parent: {}, outcomeA: {}, outcomeB: {}, situationLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), situationFactorPositions: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
             from: [
                 s = Q.Situation,
                 r = s.repository.innerJoin(),

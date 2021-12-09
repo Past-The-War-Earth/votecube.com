@@ -53,6 +53,11 @@ export interface IUiPosition
 	dir: -1 | 1
 }
 
+export interface IUiRepository {
+	source: string
+	uuId: string
+}
+
 export interface IUiSituation
 	extends IUiNamedRecord {
 	ageGroups: IUiLabel[]
@@ -66,7 +71,8 @@ export interface IUiSituation
 		A: IUiOutcome
 		B: IUiOutcome
 	}
-	parent: IUiRepositoryRecord
+	parent: IUiRepositoryRecord,
+	repository: IUiRepository
 }
 
 export interface INavList {

@@ -69,6 +69,10 @@ export class SituationDao
         const matchingRepositories = await this.db.find.tree({
             select: {
                 ...ALL_FIELDS,
+                repository: {
+                    source: Y,
+                    uuId: Y
+                },
                 parent: {},
                 outcomeA: {},
                 outcomeB: {},
