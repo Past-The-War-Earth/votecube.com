@@ -84,7 +84,7 @@ export class SituationManager
 		hostingPlatform: string,
 		repositoryUuId: string
 	): Promise<IUiSituation> {
-		if (!repositoryUuId || repositoryUuId === 'unsolved') {
+		if (!repositoryUuId || repositoryUuId === ':repositoryUuId') {
 			return this.cachedSituation.ui
 		}
 		const dbSituation = await this.situationApi

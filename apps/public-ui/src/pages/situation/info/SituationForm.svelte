@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {DI, IChildContainer} from '@airport/di'
+    import { DI, IChildContainer } from "@airport/di";
     import {
         FACTOR_INFO_MAIN,
         navigateToPage,
@@ -11,52 +11,53 @@
         SITUATION_MANAGER,
         SITUATION_TIME_FRAME,
         routeParams,
-        text
-    } from '@votecube/vc-logic'
-    import {onDestroy, onMount} from 'svelte'
-    import {get} from 'svelte/store'
-    import CharacterButton from '../../../common/control/button/CharacterButton.svelte'
-    import PreviewButton from '../../../common/control/button/PreviewButton.svelte'
-    import AutoComplete from '../../../common/field/AutoComplete.svelte'
-    import MultiSelect from '../../../common/field/MultiSelect.svelte'
-    import Text from '../../../common/field/Text.svelte'
-    import TextArea from '../../../common/field/TextArea.svelte'
-    import ActionPopover from '../../../common/shell/ActionPopover.svelte'
-    import SelectionBlock from '../../../components/factor/SelectionBlock.svelte'
-    import {saveSituationForm} from '../../../form/cache'
-    import * as forms from '../../../form/forms'
-    import {loadForms} from '../../../libs/forms'
+        text,
+    } from "@votecube/vc-logic";
+    import { onDestroy, onMount } from "svelte";
+    import { get } from "svelte/store";
+    import CharacterButton from "../../../common/control/button/CharacterButton.svelte";
+    import PreviewButton from "../../../common/control/button/PreviewButton.svelte";
+    import AutoComplete from "../../../common/field/AutoComplete.svelte";
+    import MultiSelect from "../../../common/field/MultiSelect.svelte";
+    import Text from "../../../common/field/Text.svelte";
+    import TextArea from "../../../common/field/TextArea.svelte";
+    import ActionPopover from "../../../common/shell/ActionPopover.svelte";
+    import SelectionBlock from "../../../components/factor/SelectionBlock.svelte";
+    import { saveSituationForm } from "../../../form/cache";
+    import * as forms from "../../../form/forms";
+    import { loadForms } from "../../../libs/forms";
 
-    let container: IChildContainer
-    let delta = 0
-    let error
-    let form = null
-    let interFormNavigation
-    let invalidAlter = false
-    let isOriginal = true
-    let isValid = false
-    let modified
-    let theRouteParams = routeParams
+    let container: IChildContainer;
+    let delta = 0;
+    let error;
+    let form = null;
+    let interFormNavigation;
+    let invalidAlter = false;
+    let isOriginal = true;
+    let isValid = false;
+    let modified;
+    let theRouteParams = routeParams;
 
     let formHandle = {
         setDelta(newDelta) {
-            delta = newDelta
+            delta = newDelta;
         },
         setIsValid(newIsValid) {
-            isValid = newIsValid
+            isValid = newIsValid;
         },
         setIsOriginal(newIsOriginal) {
-            isOriginal = newIsOriginal
-        }
-    }
+            isOriginal = newIsOriginal;
+        },
+    };
 
     // cities: ({form}) => form ? form.fields.locations.fields.cities.value : [],
     // continents: ({form}) => form ? form.fields.locations.fields.continents.value : [],
     // countries: ({form}) => form ? form.fields.locations.fields.countries.value : [],
     // locations: ({form}) => form ? form.fields.locations : null,
-    $: modified = !form
-    || $theRouteParams.mode !== 'alter'
-    || isOriginal ? false : !form.isOriginal()
+    $: modified =
+        !form || $theRouteParams.mode !== "alter" || isOriginal
+            ? false
+            : !form.isOriginal();
     /*
     factorsModified: ({$routeParams, isOriginal, form}) => {
         if (!form
@@ -81,16 +82,14 @@ return !form.fields.locations.isOriginal()
     // states: ({form}) => form ? form.fields.locations.fields.states.value : [],
     $: submitHighlight = f(() => {
         if (!isValid) {
-            return 'b00'
+            return "b00";
         }
-        if ($theRouteParams.mode !== 'alter') {
-            return '0b0'
+        if ($theRouteParams.mode !== "alter") {
+            return "0b0";
         }
 
-        return modified
-            ? '0b0'
-            : 'b00'
-    }, delta)
+        return modified ? "0b0" : "b00";
+    }, delta);
     // timeframe: ({form}) => form ? form.fields.timeframe : null
 
     /*
@@ -121,41 +120,31 @@ return !form.fields.locations.isOriginal()
             */
 
     function ack() {
-        invalidAlter = false
+        invalidAlter = false;
     }
 
-    function selectFactor(
-        factorForm,
-        $routeParams
-    ) {
-        interFormNavigation = true
-        forms.setForm(forms.CREATE_FACTOR, factorForm)
-        navigateToPage(FACTOR_INFO_MAIN, $routeParams)
+    function selectFactor(factorForm, $routeParams) {
+        interFormNavigation = true;
+        forms.setForm(forms.CREATE_FACTOR, factorForm);
+        navigateToPage(FACTOR_INFO_MAIN, $routeParams);
     }
 
-    function selectLocations(
-        $routeParams
-    ) {
+    function selectLocations($routeParams) {
         // this.set({keepRepositoryUuId: $routeParams.repositoryUuId})
-        navigateToPage(SITUATION_LOCATIONS, $routeParams)
+        navigateToPage(SITUATION_LOCATIONS, $routeParams);
     }
 
-    function selectTimeframe(
-        $routeParams
-    ) {
+    function selectTimeframe($routeParams) {
         // this.set({keepRepositoryUuId: $routeParams.repositoryUuId})
-        navigateToPage(SITUATION_TIME_FRAME, $routeParams)
+        navigateToPage(SITUATION_TIME_FRAME, $routeParams);
     }
 
-    function submit(
-        $routeParams,
-        modified
-    ) {
-        doSubmit($routeParams, modified).then()
+    function submit($routeParams, modified) {
+        doSubmit($routeParams, modified).then();
     }
 
     onMount(async () => {
-        container = DI.ui('SituationForm')
+        container = DI.ui("SituationForm");
         const [
             formFactory,
             // locations,
@@ -164,91 +153,90 @@ return !form.fields.locations.isOriginal()
             loadForms(),
             // loadLocations(),
             // loadLocText(page.store, 'en-us'),
-        ])
+        ]);
 
         // let labels = await labelDao.getAll()
 
-        form = forms.getForm(forms.DEFINE_SITUATION_TOP)
+        form = forms.getForm(forms.DEFINE_SITUATION_TOP);
 
-        const theText = get(text)
+        const theText = get(text);
 
         if (!form) {
-            const {mode} = get(routeParams)
+            const { hostingPlatform, mode, repositoryUuId } = get(routeParams);
 
             try {
-                const situationManager = await container.get(SITUATION_MANAGER)
+                const situationManager = await container.get(SITUATION_MANAGER);
 
-                const cachedSituation = situationManager.cachedSituation
-                if (!cachedSituation.ui && mode !== 'build') {
-                    navigateToPage(SITUATION_LIST)
-                    return
+                const cachedSituation = situationManager.cachedSituation;
+
+                if (!cachedSituation.ui) {
+                    cachedSituation.ui = await situationManager.getSituation(
+                        hostingPlatform,
+                        repositoryUuId
+                    );
                 }
 
-                const situationFormLogic = await container.get(SITUATION_FORM_LOGIC)
+                if (!cachedSituation.ui && mode !== "build") {
+                    navigateToPage(SITUATION_LIST);
+                    return;
+                }
+
+                const situationFormLogic = await container.get(
+                    SITUATION_FORM_LOGIC
+                );
 
                 form = await situationFormLogic.getSituationForm(
                     cachedSituation,
-                    mode === 'alter',
-                    mode !== 'create',
+                    mode === "alter",
+                    mode !== "create",
                     theText,
-                    formFactory)
+                    formFactory
+                );
 
-                forms.setForm(forms.DEFINE_SITUATION_TOP, form)
+                forms.setForm(forms.DEFINE_SITUATION_TOP, form);
             } catch (theError) {
-                error = theError
-                return
+                error = theError;
+                return;
             }
         }
 
-        forms.ensureForm(form, formHandle)
+        forms.ensureForm(form, formHandle);
 
-        pageTitle.set('Situation Info')
-    })
+        pageTitle.set("Situation Info");
+    });
 
     onDestroy(() => {
-        saveSituationForm(interFormNavigation).then()
-        form && form.clearComponents()
-    })
+        saveSituationForm(interFormNavigation).then();
+        form && form.clearComponents();
+    });
 
     function f<T>(func: () => T, _delta: number): T {
-        return func()
+        return func();
     }
 
-    async function doSubmit(
-        $routeParams,
-        modified
-    ) {
-        const situationManager = await container.get(SITUATION_MANAGER)
+    async function doSubmit($routeParams, modified) {
+        const situationManager = await container.get(SITUATION_MANAGER);
 
-        const form = situationManager.cachedSituation.form
-        form.touch()
+        const form = situationManager.cachedSituation.form;
+        form.touch();
 
         if (!form.valid) {
-            return
+            return;
         }
 
-        if (
-            $routeParams.mode === 'alter'
-            && !modified) {
-            invalidAlter = true
-            return
+        if ($routeParams.mode === "alter" && !modified) {
+            invalidAlter = true;
+            return;
         }
 
-        if (!$routeParams.repositoryUuId) {
-            $routeParams.repositoryUuId = 'unsolved'
-        }
-
-        forms.navigateOnValid(form, SITUATION_MAIN, $routeParams)
+        forms.navigateOnValid(form, SITUATION_MAIN, $routeParams);
     }
-
 </script>
 
 {#if form}
     <form>
         <legend>Define Situation</legend>
-        <Text
-                field="{form.fields.name}"
-        ></Text>
+        <Text field={form.fields.name} />
         <!--
         <div class="pure-control-group">
             <AutoComplete
@@ -257,53 +245,43 @@ return !form.fields.locations.isOriginal()
         </div>
         -->
         <div class="pure-control-group">
-            <MultiSelect
-                field="{form.fields.ageGroups}"
-            ></MultiSelect>
+            <MultiSelect field={form.fields.ageGroups} />
         </div>
         <div class="pure-control-group">
-            <MultiSelect
-            field="{form.fields.labels}"
-            ></MultiSelect>
+            <MultiSelect field={form.fields.labels} />
         </div>
-        <div
-                class="outcomes"
-        >
-            <div
-                    class="A"
-            >
+        <div class="outcomes">
+            <div class="A">
                 <CharacterButton
-                        character="A"
-                        fontSize={20}
-                        fontX={12}
-                        fontY={19}
-                        size={24}
-                        strokeWidth={1}
-                ></CharacterButton>
+                    character="A"
+                    fontSize={20}
+                    fontX={12}
+                    fontY={19}
+                    size={24}
+                    strokeWidth={1}
+                />
                 <TextArea
-                        field="{form.fields.outcomes.fields.A}"
-                        floatLabel={false}
-                        mid={false}
-                        mini={true}
-                ></TextArea>
+                    field={form.fields.outcomes.fields.A}
+                    floatLabel={false}
+                    mid={false}
+                    mini={true}
+                />
             </div>
-            <div
-                    class="B"
-            >
+            <div class="B">
                 <CharacterButton
-                        character="B"
-                        fontSize={20}
-                        fontX={12}
-                        fontY={19}
-                        size={24}
-                        strokeWidth={1}
-                ></CharacterButton>
+                    character="B"
+                    fontSize={20}
+                    fontX={12}
+                    fontY={19}
+                    size={24}
+                    strokeWidth={1}
+                />
                 <TextArea
-                        field="{form.fields.outcomes.fields.B}"
-                        floatLabel={false}
-                        mid={false}
-                        mini={true}
-                ></TextArea>
+                    field={form.fields.outcomes.fields.B}
+                    floatLabel={false}
+                    mid={false}
+                    mini={true}
+                />
             </div>
         </div>
         <!--
@@ -394,50 +372,46 @@ return !form.fields.locations.isOriginal()
         </IconBlock>
         -->
         <SelectionBlock
-                factor="{form.fields.factors.fields[1]}"
-                text="{form.fields.factors.text[1]}"
-                on:select="{() => selectFactor(form.fields.factors.fields[1], $routeParams)}"
-        ></SelectionBlock>
+            factor={form.fields.factors.fields[1]}
+            text={form.fields.factors.text[1]}
+            on:select={() =>
+                selectFactor(form.fields.factors.fields[1], $routeParams)}
+        />
         <SelectionBlock
-                factor="{form.fields.factors.fields[2]}"
-                text="{form.fields.factors.text[2]}"
-                on:select="{() => selectFactor(form.fields.factors.fields[2], $routeParams)}"
-        ></SelectionBlock>
+            factor={form.fields.factors.fields[2]}
+            text={form.fields.factors.text[2]}
+            on:select={() =>
+                selectFactor(form.fields.factors.fields[2], $routeParams)}
+        />
         <SelectionBlock
-                factor="{form.fields.factors.fields[3]}"
-                text="{form.fields.factors.text[3]}"
-                on:select="{() => selectFactor(form.fields.factors.fields[3], $routeParams)}"
-        ></SelectionBlock>
+            factor={form.fields.factors.fields[3]}
+            text={form.fields.factors.text[3]}
+            on:select={() =>
+                selectFactor(form.fields.factors.fields[3], $routeParams)}
+        />
         <nav class="pure-controls">
             <PreviewButton
-                    classes="submitButton"
-                    highlightColor="{submitHighlight}"
-                    on:click="{() => submit($routeParams, modified)}"
-            ></PreviewButton>
+                classes="submitButton"
+                highlightColor={submitHighlight}
+                on:click={() => submit($routeParams, modified)}
+            />
         </nav>
     </form>
     {#if invalidAlter}
-        <ActionPopover
-                on:cancel="{ack}"
-                infoOnly={true}
-        >
-            <div slot="header">
-                Error
-            </div>
-            <div slot="content">
-                Please make a modification.
-            </div>
+        <ActionPopover on:cancel={ack} infoOnly={true}>
+            <div slot="header">Error</div>
+            <div slot="content">Please make a modification.</div>
         </ActionPopover>
     {/if}
 {/if}
 
 <style>
-
     legend {
         display: none;
     }
 
-    .A, .B {
+    .A,
+    .B {
         flex-basis: 100%;
         text-align: center;
     }

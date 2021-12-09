@@ -124,7 +124,7 @@
         return theSolutionFactors;
     }, delta);
 
-    let routeParamsUnsubscribe;
+    // let routeParamsUnsubscribe;
 
     onMount(async () => {
         cardMove.set(null);
@@ -166,16 +166,16 @@
             params.mode
         );
         
-        routeParamsUnsubscribe = routeParams.subscribe((params) => {
-            if (params.repositoryUuId == "unsolved") {
-                return;
-            }
-            loadSituation(
-                params.hostingPlatform,
-                params.repositoryUuId,
-                params.mode
-            ).then();
-        });
+        // routeParamsUnsubscribe = routeParams.subscribe((params) => {
+        //     if (params.repositoryUuId == "unsolved") {
+        //         return;
+        //     }
+        //     loadSituation(
+        //         params.hostingPlatform,
+        //         params.repositoryUuId,
+        //         params.mode
+        //     ).then();
+        // });
     });
 
     async function loadSituation(
@@ -231,7 +231,7 @@
         cube.set(false);
         noOverflow.set(false);
 
-        routeParamsUnsubscribe();
+        // routeParamsUnsubscribe();
 
         DI.remove(container);
     });
@@ -475,6 +475,7 @@
         savingMessage = "Saving ...";
         const situationManager = await container.get(SITUATION_MANAGER);
         try {
+            action = 'save'
             const repositoryIdentifier =
                 await situationManager.saveCachedSituation($user);
             confirm = false;
@@ -485,9 +486,12 @@
                 hostingPlatform: repositoryIdentifier.source,
                 repositoryUuId: repositoryIdentifier.uuId,
             });
+            
+            closeConfirm()
         } catch (theError) {
             error = theError;
             savingMessage = "Error";
+        } finally {
         }
     }
 

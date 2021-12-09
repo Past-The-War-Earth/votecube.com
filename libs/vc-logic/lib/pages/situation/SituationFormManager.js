@@ -80,6 +80,7 @@ export class SituationFormManager {
             actorRecordId: null,
             ageSuitability: 0,
             repositoryId: null,
+            // repositoryUuId: '',
         };
     }
     getBlankUiNamedRecord() {
@@ -117,6 +118,7 @@ export class SituationFormManager {
             actorRecordId: uiRepositoryRecord.actorRecordId,
             ageSuitability: uiRepositoryRecord.ageSuitability,
             repositoryId: uiRepositoryRecord.repositoryId,
+            // repositoryUuId: uiRepositoryRecord.repositoryUuId
         };
     }
     uiToFormFactor(factorData) {

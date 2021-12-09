@@ -265,23 +265,23 @@ export class Routes
 						}
 						setTimeout(() => {
 							signedInStateUnsubscribe()
-							showSignIn.set(false)
-							if (current.user) {
-								this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp)
-							} else {
-								// const previousPage = get(lastPage)
-								// const previousUrl = get(lastUrl)
-								// if (!previousPage || previousPage.authenticated) {
-								// 	navigateToPage(SITUATION_LIST)
-								// } else if (previousUrl) {
-								// 	this.navigateAndPostToAIRport(previousUrl)
-								// }
-								if (!current.currentPage || current.currentPage.authenticated) {
-									this.navigateToPage(errorRoutePath)
-								} else if (current.currentUrl) {
-									this.navigateAndPostToAIRport(current.currentUrl)
-								}
-							}
+							showSignIn.set(!current.user)
+							this.setPageComp(pageConfig, nextUrl, params, PageComp, setPageComp)
+							// if (current.user) {
+							// } else {
+							// 	// const previousPage = get(lastPage)
+							// 	// const previousUrl = get(lastUrl)
+							// 	// if (!previousPage || previousPage.authenticated) {
+							// 	// 	navigateToPage(SITUATION_LIST)
+							// 	// } else if (previousUrl) {
+							// 	// 	this.navigateAndPostToAIRport(previousUrl)
+							// 	// }
+							// 	if (!current.currentPage || current.currentPage.authenticated) {
+							// 		this.navigateToPage(errorRoutePath)
+							// 	} else if (current.currentUrl) {
+							// 		this.navigateAndPostToAIRport(current.currentUrl)
+							// 	}
+							// }
 						})
 					})
 				}, 400)

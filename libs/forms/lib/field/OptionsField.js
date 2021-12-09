@@ -85,8 +85,9 @@ export class OptionsField extends Field {
         this.onBlur();
     }
     setValue(value, resetOriginal = false) {
+        const valueIsArray = this.theValue instanceof Array;
         this.theValue = null;
-        if (this.theValue instanceof Array) {
+        if (valueIsArray) {
             this.theValue = [];
             if (!value) {
                 return;

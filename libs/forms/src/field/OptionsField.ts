@@ -157,8 +157,9 @@ export class OptionsField
 		value,
 		resetOriginal = false
 	) {
+		const valueIsArray = this.theValue instanceof Array
 		this.theValue = null
-		if (this.theValue instanceof Array) {
+		if (valueIsArray) {
 			this.theValue = []
 			if (!value) {
 				return

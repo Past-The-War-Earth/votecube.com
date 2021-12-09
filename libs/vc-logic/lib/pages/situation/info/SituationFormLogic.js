@@ -117,6 +117,8 @@ export class SituationFormLogic {
                 maxLength: 40
             }),
             outcomes,
+            // category,
+            // timeframe
         }, [formFactory.validators.required()], text);
     }
     async findOutcomeMatches(outcomeText) {

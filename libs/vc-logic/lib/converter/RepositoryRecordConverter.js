@@ -17,6 +17,7 @@ export class RepositoryRecordConverter {
             actorRecordId: dbRepositoryEntity.actorRecordId,
             ageSuitability: dbRepositoryEntity.ageSuitability,
             repositoryId: dbRepositoryEntity.repository.id,
+            // repositoryUuId: dbRepositoryEntity.repository.uuId,
         };
     }
     uiToDb(uiRepositoryRecord, context, ageSuitability = null) {
@@ -24,11 +25,13 @@ export class RepositoryRecordConverter {
             return {
                 actor: {
                     id: null,
+                    // uuId: null
                 },
                 actorRecordId: null,
                 ageSuitability,
                 repository: {
                     id: null,
+                    // uuId: null
                 }
             };
         }
@@ -41,6 +44,7 @@ export class RepositoryRecordConverter {
             if (!actor) {
                 actor = {
                     id: uiRepositoryRecord.actorId,
+                    // uuId: uiRepositoryRecord.actorUuId
                 };
                 context.actorsById.set(uiRepositoryRecord.actorId, actor);
             }
@@ -51,6 +55,7 @@ export class RepositoryRecordConverter {
             if (!repository) {
                 repository = {
                     id: uiRepositoryRecord.repositoryId,
+                    // uuId: uiRepositoryRecord.repositoryUuId
                 };
                 context.repositoriesById.set(uiRepositoryRecord.repositoryId, repository);
             }

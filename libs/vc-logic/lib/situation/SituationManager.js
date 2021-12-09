@@ -14,7 +14,7 @@ export class SituationManager {
         return this.theCachedSituation;
     }
     async getSituation(hostingPlatform, repositoryUuId) {
-        if (!repositoryUuId || repositoryUuId === 'unsolved') {
+        if (!repositoryUuId || repositoryUuId === ':repositoryUuId') {
             return this.cachedSituation.ui;
         }
         const dbSituation = await this.situationApi

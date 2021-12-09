@@ -40,6 +40,7 @@ export class SolutionManager {
             actorRecordId: null,
             ageSuitability: null,
             repositoryId: null,
+            // repositoryUuId: null,
         };
     }
 }

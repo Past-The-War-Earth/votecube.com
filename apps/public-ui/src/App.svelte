@@ -84,8 +84,7 @@ import { IOC } from "@airport/di";
 		// navigateToPage(menuItem.id, menuItem.params)
 		showMainMenu.toggle();
 		setTimeout(() => {
-			IOC.getSync(ROUTES).
-postLocationToAIRport()
+			IOC.getSync(ROUTES).postLocationToAIRport()
 		})
 	}
 
@@ -165,7 +164,7 @@ postLocationToAIRport()
 		userChanges$.subscribe((authUser) => {
 			const theCurrentPage = get(currentPage);
 			if (!authUser && theCurrentPage && theCurrentPage.authenticated) {
-				navigateToPage(SITUATION_LIST);
+				// navigateToPage(SITUATION_LIST);
 			}
 
 			user.set(authUser);
