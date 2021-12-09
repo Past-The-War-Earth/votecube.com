@@ -33,6 +33,7 @@
     import { beforeUpdate, onDestroy, onMount } from "svelte";
     import { get } from "svelte/store";
     import BuildButton from "../../../common/control/button/BuildButton.svelte";
+    import SaveButton from "../../../common/control/button/SaveButton.svelte";
     import CancelButton from "../../../common/control/button/CancelButton.svelte";
     import OutcomeButton from "../../../common/control/button/OutcomeButton.svelte";
     import PercentPicker from "../../../common/control/PercentPicker.svelte";
@@ -165,7 +166,7 @@
             params.repositoryUuId,
             params.mode
         );
-        
+
         // routeParamsUnsubscribe = routeParams.subscribe((params) => {
         //     if (params.repositoryUuId == "unsolved") {
         //         return;
@@ -285,17 +286,18 @@
     // doNotAlter() {
     // 	confirmAlter.set(false)
     // },
-    function build($user) {
-        save($user);
+    function build($user, createNewRepository: boolean) {
+        save($user, createNewRepository);
     }
 
-    function checkBuild(situation) {
+    function checkBuild(situation: IUiSituation) {
         // if (!situation.ageSuitability && situation.ageSuitability !== 0) {
         //     ageSuitabilityVisible = true;
         //     saving = true;
         //     return;
         // }
-        setAction("confirm");
+        const action = situation.repository.uuId ? "confirmUpdate" : "confirm";
+        setAction(action);
     }
 
     function closeConfirm() {
@@ -471,13 +473,16 @@
         });
     }
 
-    async function save($user) {
+    async function save($user, createNewRepository: boolean) {
         savingMessage = "Saving ...";
         const situationManager = await container.get(SITUATION_MANAGER);
         try {
-            action = 'save'
+            action = "save";
             const repositoryIdentifier =
-                await situationManager.saveCachedSituation($user);
+                await situationManager.saveCachedSituation(
+                    $user,
+                    createNewRepository
+                );
             confirm = false;
             // navigateToPage(SITUATION_LIST);
 
@@ -486,8 +491,8 @@
                 hostingPlatform: repositoryIdentifier.source,
                 repositoryUuId: repositoryIdentifier.uuId,
             });
-            
-            closeConfirm()
+
+            closeConfirm();
         } catch (theError) {
             error = theError;
             savingMessage = "Error";
@@ -760,7 +765,27 @@
                         .join(" , ")}
                 </div>
                 <div slot="actions">
-                    <BuildButton on:click={() => build($user)} />
+                    <BuildButton on:click={() => build($user, true)} />
+                </div>
+            </ActionPopover>
+        {:else if action === "confirmUpdate"}
+            <ActionPopover on:cancel={closeConfirm}>
+                <div slot="header">Please Confirm</div>
+                <div slot="content">
+                    Define a new "{situation.name}" Situation or modify existing
+                    one?
+                    <br />
+                    Age Groups: {situation.ageGroups
+                        .map((ageGroup) => ageGroup.name)
+                        .join(" , ")}
+                    <br />
+                    Labels: {situation.labels
+                        .map((label) => label.name)
+                        .join(" , ")}
+                </div>
+                <div slot="actions">
+                    <BuildButton on:click={() => build($user, true)} />
+                    <SaveButton on:click={() => build($user, false)} />
                 </div>
             </ActionPopover>
         {/if}

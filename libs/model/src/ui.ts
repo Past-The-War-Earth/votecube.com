@@ -1,3 +1,4 @@
+import { ILabel } from '@votecube/votecube'
 export interface IUiCustomEvent<T> {
 	detail: T
 }
@@ -9,11 +10,11 @@ export interface IUiMenuItem {
 }
 
 export interface IUiRepositoryRecord {
-	actorId: number
+	// actorId: number
 	// actorUuId: string
-	actorRecordId: number
+	// actorRecordId: number
 	ageSuitability: 0 | 7 | 13 | 18
-	repositoryId: number
+	// repositoryId: number
 	// repositoryUuId: string
 }
 
@@ -24,7 +25,7 @@ export interface IUiNamedRecord
 
 export interface IUiLabel
 	extends IUiNamedRecord {
-	situationLabel: IUiRepositoryRecord
+	originalDbLabel: ILabel
 }
 
 export interface IUiColor {
@@ -71,7 +72,6 @@ export interface IUiSituation
 		A: IUiOutcome
 		B: IUiOutcome
 	}
-	parent: IUiRepositoryRecord,
 	repository: IUiRepository
 }
 

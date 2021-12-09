@@ -151,7 +151,7 @@ export declare const APPLICATION: {
             };
             operations?: undefined;
         } | {
-            columns: ({
+            columns: {
                 index: number;
                 isGenerated: boolean;
                 manyRelationColumnRefs: {
@@ -168,25 +168,7 @@ export declare const APPLICATION: {
                 }[];
                 sinceVersion: number;
                 type: string;
-            } | {
-                index: number;
-                isGenerated: boolean;
-                manyRelationColumnRefs: {
-                    manyRelationIndex: number;
-                    oneApplicationIndex: any;
-                    oneTableIndex: number;
-                    oneRelationIndex: number;
-                    oneColumnIndex: number;
-                    sinceVersion: number;
-                }[];
-                name: string;
-                notNull: boolean;
-                propertyRefs: {
-                    index: number;
-                }[];
-                sinceVersion: number;
-                type: string;
-            })[];
+            }[];
             idColumnRefs: {
                 index: number;
             }[];

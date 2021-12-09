@@ -5,6 +5,7 @@ export class SituationManager {
     constructor() {
         this.situationApi = new SituationApiClient();
         this.theCachedSituation = {
+            db: null,
             form: null,
             originalUi: null,
             ui: null,
@@ -22,8 +23,10 @@ export class SituationManager {
         }
         const dbSituation = await this.situationApi
             .getSituation(hostingPlatform, repositoryUuId);
+        this.cachedSituation.db = dbSituation;
         const converter = await container(this).get(SITUATION_CONVERTER);
-        return converter.dbToUi(dbSituation);
+        this.cachedSituation.ui = converter.dbToUi(dbSituation);
+        return this.cachedSituation.ui;
     }
     async getAllSituations() {
         return [];
@@ -57,24 +60,12 @@ export class SituationManager {
         }
         if (oldUiSituation) {
             logicUtils.copyProperties(oldUiSituation, ui, [
-                'actorId',
-                'actorRecordId',
+                // 'actorId',
+                // 'actorRecordId',
                 'ageSuitability',
-                'repositoryId',
-                'repositoryUuId',
+                // 'repositoryId',
+                // 'repositoryUuId',
             ]);
-            if (oldUiSituation.parent) {
-                if (!ui.parent) {
-                    ui.parent = {};
-                }
-                logicUtils.copyProperties(oldUiSituation.parent, ui.parent, [
-                    'actorId',
-                    'actorRecordId',
-                    'ageSuitability',
-                    'repositoryId',
-                    'repositoryUuId',
-                ]);
-            }
         }
         this.cachedSituation.ui = ui;
     }
@@ -116,7 +107,7 @@ export class SituationManager {
      * screen with the same entity but the correct URL for where it is stored.
      *
      */
-    async saveSituation(situation) {
+    async saveSituation(situation, createNewRepository) {
         const originalUi = this.cachedSituation.originalUi;
         const ui = this.cachedSituation.ui;
         const logicUtils = await container(this).get(LOGIC_UTILS);
@@ -124,17 +115,20 @@ export class SituationManager {
             return;
         }
         const converter = await container(this).get(SITUATION_CONVERTER);
-        const dbSituation = converter.uiToDb(ui);
-        const repositoryIdentifier = await this.situationApi.saveSituation(dbSituation);
+        const dbSituation = converter.uiToDb(ui, this.cachedSituation.db);
+        const repositoryIdentifier = await this.situationApi
+            .saveSituation(dbSituation, createNewRepository);
+        this.cachedSituation.db = dbSituation;
         this.theCachedSituation = {
+            db: dbSituation,
             form: null,
             originalUi: null,
             ui: null,
         };
         return repositoryIdentifier;
     }
-    async saveCachedSituation(user) {
-        return await this.saveSituation(this.cachedSituation.ui);
+    async saveCachedSituation(user, createNewRepository) {
+        return await this.saveSituation(this.cachedSituation.ui, createNewRepository);
     }
 }
 DI.set(SITUATION_MANAGER, SituationManager);

@@ -10,6 +10,7 @@ import {
 } from '@votecube/model'
 import {
 	IRepositoryIdentifier,
+	ISituation,
 	SituationApiClient
 } from '@votecube/votecube'
 import {
@@ -51,15 +52,18 @@ export interface ISituationManager {
 	mergeForm(): Promise<void>
 
 	saveSituation(
-		situation: IUiSituation
+		situation: IUiSituation,
+		createNewRepository: boolean
 	): Promise<IRepositoryIdentifier>
 
 	saveCachedSituation(
-		user
+		user,
+		createNewRepository: boolean
 	): Promise<IRepositoryIdentifier>
 }
 
 export interface ICachedSituation {
+	db: ISituation
 	form?: IFieldGroup
 	originalUi: IUiSituation
 	ui: IUiSituation
@@ -71,6 +75,7 @@ export class SituationManager
 	situationApi = new SituationApiClient()
 
 	private theCachedSituation: ICachedSituation = {
+		db: null,
 		form: null,
 		originalUi: null,
 		ui: null,
@@ -93,10 +98,12 @@ export class SituationManager
 
 		const dbSituation = await this.situationApi
 			.getSituation(hostingPlatform, repositoryUuId)
+		this.cachedSituation.db = dbSituation
 
 		const converter = await container(this).get(SITUATION_CONVERTER)
+		this.cachedSituation.ui = converter.dbToUi(dbSituation)
 
-		return converter.dbToUi(dbSituation)
+		return this.cachedSituation.ui
 	}
 
 	async getAllSituations(): Promise<IUiSituation[]> {
@@ -146,24 +153,12 @@ export class SituationManager
 		}
 		if (oldUiSituation) {
 			logicUtils.copyProperties(oldUiSituation, ui, [
-				'actorId',
-				'actorRecordId',
+				// 'actorId',
+				// 'actorRecordId',
 				'ageSuitability',
-				'repositoryId',
-				'repositoryUuId',
+				// 'repositoryId',
+				// 'repositoryUuId',
 			])
-			if (oldUiSituation.parent) {
-				if (!ui.parent) {
-					ui.parent = {} as any
-				}
-				logicUtils.copyProperties(oldUiSituation.parent, ui.parent, [
-					'actorId',
-					'actorRecordId',
-					'ageSuitability',
-					'repositoryId',
-					'repositoryUuId',
-				])
-			}
 		}
 		this.cachedSituation.ui = ui
 	}
@@ -210,7 +205,8 @@ export class SituationManager
 	 * 
 	 */
 	async saveSituation(
-		situation: IUiSituation
+		situation: IUiSituation,
+		createNewRepository: boolean
 	): Promise<IRepositoryIdentifier> {
 		const originalUi = this.cachedSituation.originalUi
 		const ui = this.cachedSituation.ui
@@ -223,11 +219,14 @@ export class SituationManager
 
 		const converter = await container(this).get(SITUATION_CONVERTER)
 
-		const dbSituation = converter.uiToDb(ui)
+		const dbSituation = converter.uiToDb(ui, this.cachedSituation.db)
 
-		const repositoryIdentifier = await this.situationApi.saveSituation(dbSituation)
+		const repositoryIdentifier = await this.situationApi
+			.saveSituation(dbSituation, createNewRepository)
+		this.cachedSituation.db = dbSituation
 
 		this.theCachedSituation = {
+			db: dbSituation,
 			form: null,
 			originalUi: null,
 			ui: null,
@@ -237,9 +236,10 @@ export class SituationManager
 	}
 
 	async saveCachedSituation(
-		user
+		user,
+		createNewRepository: boolean
 	): Promise<IRepositoryIdentifier> {
-		return await this.saveSituation(this.cachedSituation.ui)
+		return await this.saveSituation(this.cachedSituation.ui, createNewRepository)
 	}
 
 }

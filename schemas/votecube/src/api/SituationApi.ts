@@ -31,7 +31,8 @@ export interface ISituationApi {
     ): Promise<ISituation>
 
     saveSituation(
-        situation: ISituation
+        situation: ISituation,
+        createNewRepository: boolean
     ): Promise<IRepositoryIdentifier>
 
 }
@@ -88,11 +89,12 @@ export class SituationApi
 
     @Api()
     async saveSituation(
-        situation: ISituation
+        situation: ISituation,
+        createNewRepository: boolean
     ): Promise<IRepositoryIdentifier> {
         const situationDao = await container(this).get(SITUATION_DAO)
 
-        return await situationDao.saveSituation(situation)
+        return await situationDao.saveSituation(situation, createNewRepository)
     }
 
 }

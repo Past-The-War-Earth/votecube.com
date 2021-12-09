@@ -1,71 +1,38 @@
 import { DI } from "@airport/di";
 import { REPOSITORY_RECORD_CONVERTER } from "../tokens";
-export function getToDbConversionContext() {
-    return {
-        actorsById: new Map(),
-        repositoriesById: new Map()
-    };
-}
 export class RepositoryRecordConverter {
     dbToUi(dbRepositoryEntity) {
         if (!dbRepositoryEntity) {
-            return null;
-        }
-        return {
-            actorId: dbRepositoryEntity.actor.id,
-            // actorUuId: dbRepositoryEntity.actor.uuId,
-            actorRecordId: dbRepositoryEntity.actorRecordId,
-            ageSuitability: dbRepositoryEntity.ageSuitability,
-            repositoryId: dbRepositoryEntity.repository.id,
-            // repositoryUuId: dbRepositoryEntity.repository.uuId,
-        };
-    }
-    uiToDb(uiRepositoryRecord, context, ageSuitability = null) {
-        if (!uiRepositoryRecord) {
             return {
-                actor: {
-                    id: null,
-                    // uuId: null
-                },
-                actorRecordId: null,
-                ageSuitability,
-                repository: {
-                    id: null,
-                    // uuId: null
-                }
+                ageSuitability: 0,
             };
         }
-        if (uiRepositoryRecord.ageSuitability || uiRepositoryRecord.ageSuitability === 0) {
-            ageSuitability = uiRepositoryRecord.ageSuitability;
-        }
-        let actor = null;
-        if (uiRepositoryRecord.actorId) {
-            actor = context.actorsById.get(uiRepositoryRecord.actorId);
-            if (!actor) {
-                actor = {
-                    id: uiRepositoryRecord.actorId,
-                    // uuId: uiRepositoryRecord.actorUuId
-                };
-                context.actorsById.set(uiRepositoryRecord.actorId, actor);
-            }
-        }
-        let repository = null;
-        if (uiRepositoryRecord.repositoryId) {
-            repository = context.repositoriesById.get(uiRepositoryRecord.repositoryId);
-            if (!repository) {
-                repository = {
-                    id: uiRepositoryRecord.repositoryId,
-                    // uuId: uiRepositoryRecord.repositoryUuId
-                };
-                context.repositoriesById.set(uiRepositoryRecord.repositoryId, repository);
-            }
-        }
         return {
-            actor,
-            actorRecordId: uiRepositoryRecord.actorRecordId,
-            ageSuitability,
-            repository
+            // actorId: dbRepositoryEntity.actor.id,
+            // actorRecordId: dbRepositoryEntity.actorRecordId,
+            ageSuitability: dbRepositoryEntity.ageSuitability,
+            // repositoryId: dbRepositoryEntity.repository.id,
         };
+    }
+    uiToDb(uiRepositoryRecord, dbRepositoryEntity, ageSuitability = null) {
+        // if (!uiRepositoryRecord) {
+        //     return
+        // }
+        if (ageSuitability || ageSuitability === 0) {
+            dbRepositoryEntity.ageSuitability = ageSuitability;
+        }
+        /*
+        if (!dbRepositoryEntity.actor) {
+            dbRepositoryEntity.actor = {
+                id: null
+            }
+        }
+        if (!dbRepositoryEntity.repository) {
+            dbRepositoryEntity.repository = {
+                id: null
+            }
+        }
+        */
     }
 }
 DI.set(REPOSITORY_RECORD_CONVERTER, RepositoryRecordConverter);

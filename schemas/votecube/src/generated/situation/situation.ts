@@ -30,7 +30,6 @@ export interface ISituation extends IRepositoryEntity {
 	name?: string;
 
 	// Non-Id Relations
-	parent?: ISituation;
 	outcomeA?: IOutcome;
 	outcomeB?: IOutcome;
 	children?: ISituation[];

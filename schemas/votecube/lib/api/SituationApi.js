@@ -37,9 +37,9 @@ export class SituationApi {
         const situationDao = await container(this).get(SITUATION_DAO);
         return await situationDao.findByRepositoryUuId(repositorySource, situationRepositoryUuId);
     }
-    async saveSituation(situation) {
+    async saveSituation(situation, createNewRepository) {
         const situationDao = await container(this).get(SITUATION_DAO);
-        return await situationDao.saveSituation(situation);
+        return await situationDao.saveSituation(situation, createNewRepository);
     }
 }
 __decorate([

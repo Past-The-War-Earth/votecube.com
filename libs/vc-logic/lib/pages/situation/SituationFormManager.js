@@ -10,7 +10,7 @@ export class SituationFormManager {
                 }, outcomes: {
                     A: this.getBlankUiNamedRecord(),
                     B: this.getBlankUiNamedRecord()
-                }, parent: null, repository: {
+                }, repository: {
                     source: null,
                     uuId: null
                 } });
@@ -43,17 +43,17 @@ export class SituationFormManager {
     }
     transferId(formField, uiRepositoryRecord) {
         if (!formField.id) {
-            uiRepositoryRecord.actorId = null;
-            uiRepositoryRecord.actorRecordId = null;
+            // uiRepositoryRecord.actorId = null
+            // uiRepositoryRecord.actorRecordId = null
             uiRepositoryRecord.ageSuitability = null;
-            uiRepositoryRecord.repositoryId = null;
+            // uiRepositoryRecord.repositoryId = null
             // uiRepositoryRecord.repositoryUuId = 'unsolved'
         }
         else {
-            uiRepositoryRecord.actorId = formField.id.actorId;
-            uiRepositoryRecord.actorRecordId = formField.id.actorRecordId;
+            // uiRepositoryRecord.actorId = formField.id.actorId
+            // uiRepositoryRecord.actorRecordId = formField.id.actorRecordId
             uiRepositoryRecord.ageSuitability = formField.id.ageSuitability;
-            uiRepositoryRecord.repositoryId = formField.id.repositoryId;
+            // uiRepositoryRecord.repositoryId = formField.id.repositoryId
             // uiRepositoryRecord.repositoryUuId = formField.id.repositoryUuId
         }
     }
@@ -75,14 +75,14 @@ export class SituationFormManager {
         });
     }
     getBlankUiLabel() {
-        return Object.assign(Object.assign({}, this.getBlankUiNamedRecord()), { situationLabel: this.getBlankUiRepositoryRecord() });
+        return Object.assign(Object.assign({}, this.getBlankUiNamedRecord()), { originalDbLabel: null });
     }
     getBlankUiRepositoryRecord() {
         return {
-            actorId: null,
-            actorRecordId: null,
+            // actorId: null,
+            // actorRecordId: null,
             ageSuitability: 0,
-            repositoryId: null,
+            // repositoryId: null,
             // repositoryUuId: '',
         };
     }
@@ -117,10 +117,10 @@ export class SituationFormManager {
     }
     copyId(uiRepositoryRecord) {
         return {
-            actorId: uiRepositoryRecord.actorId,
-            actorRecordId: uiRepositoryRecord.actorRecordId,
+            // actorId: uiRepositoryRecord.actorId,
+            // actorRecordId: uiRepositoryRecord.actorRecordId,
             ageSuitability: uiRepositoryRecord.ageSuitability,
-            repositoryId: uiRepositoryRecord.repositoryId,
+            // repositoryId: uiRepositoryRecord.repositoryId,
             // repositoryUuId: uiRepositoryRecord.repositoryUuId
         };
     }

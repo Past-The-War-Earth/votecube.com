@@ -1,4 +1,4 @@
-import { ALL_FIELDS, and, Y } from '@airport/air-control';
+import { ALL_FIELDS, and } from '@airport/air-control';
 import { BaseSituationDao, Q, } from "../generated/generated";
 import { DI } from '@airport/di';
 import { SITUATION_DAO } from '../server';
@@ -19,7 +19,6 @@ export class SituationDao extends BaseSituationDao {
     async findByRepositoryUuId(repositorySource, situationReposioryUuid) {
         let s;
         let r;
-        let s_r;
         let o1;
         let o2;
         let sl;
@@ -28,14 +27,10 @@ export class SituationDao extends BaseSituationDao {
         let f;
         let p;
         const matchingRepositories = await this.db.find.tree({
-            select: Object.assign(Object.assign({}, ALL_FIELDS), { repository: {
-                    source: Y,
-                    uuId: Y
-                }, parent: {}, outcomeA: {}, outcomeB: {}, situationLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), situationFactorPositions: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
+            select: Object.assign(Object.assign({}, ALL_FIELDS), { repository: {}, outcomeA: {}, outcomeB: {}, situationLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), situationFactorPositions: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
             from: [
                 s = Q.Situation,
                 r = s.repository.innerJoin(),
-                s_r = s.parent.leftJoin(),
                 o1 = s.outcomeA.innerJoin(),
                 o2 = s.outcomeB.innerJoin(),
                 sl = s.situationLabels.leftJoin(),
@@ -56,13 +51,21 @@ export class SituationDao extends BaseSituationDao {
         }
         return null;
     }
-    async saveSituation(
-    // repositoryDestination: string,
-    situation) {
-        const saveResult = await this.db.save(situation);
+    async saveSituation(situation, createNewRepository) {
+        let saveResult;
+        if (situation.repository && !createNewRepository) {
+            saveResult = await this.db.save(situation, {
+                source: situation.repository.source,
+                uuId: situation.repository.uuId,
+            });
+        }
+        else {
+            saveResult = await this.db.save(situation);
+        }
+        const newRepository = saveResult.newRepository;
         return {
-            source: saveResult.newRepository.source,
-            uuId: saveResult.newRepository.uuId
+            source: newRepository ? newRepository.source : situation.repository.source,
+            uuId: newRepository ? saveResult.newRepository.uuId : situation.repository.uuId
         };
     }
 }

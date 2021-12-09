@@ -44,12 +44,12 @@ export class SituationMainLogic {
     }
     getTweenSolutionFactor(solution, solutionSolution, factorNumber) {
         return {
-            actorId: null,
-            actorRecordId: null,
+            // actorId: null,
+            // actorRecordId: null,
             ageSuitability: null,
             factorNumber,
             outcome: solution[factorNumber].outcome,
-            repositoryId: null,
+            // repositoryId: null,
             tweenOutcome: solutionSolution[factorNumber].outcome,
             tweenValue: solutionSolution[factorNumber].value,
             value: solution[factorNumber].value

@@ -39,11 +39,12 @@ export class SituationApiClient {
     }
 
     async saveSituation(
-        situation: ISituation
+        situation: ISituation,
+        createNewRepository: boolean
     ): Promise<IRepositoryIdentifier> {
         const situationApi = await IOC.get(SITUATION_API)
 
-        return await situationApi.saveSituation(situation)
+        return await situationApi.saveSituation(situation, createNewRepository)
     }
 
 }

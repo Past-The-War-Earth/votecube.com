@@ -60,13 +60,12 @@ export class SolutionManager
 		situation: IUiSituation,
 		solution: IUiSolution
 	): Promise<void> {
-		const [situationConverter, solutionConverter] = await container(this)
-			.get(SITUATION_CONVERTER, SOLUTION_CONVERTER)
+		const [situationManager, solutionConverter] = await container(this)
+			.get(SITUATION_MANAGER, SOLUTION_CONVERTER)
 
-		const dbSituation = situationConverter.uiToDb(situation)
 
 		const dbSolution = solutionConverter.uiToDb(
-			solution, situation.ageSuitability, dbSituation)
+			solution, situation.ageSuitability, situationManager.cachedSituation.db)
 
 		await this.solutionApi.saveSolution(dbSolution)
 	}
@@ -104,11 +103,11 @@ export class SolutionManager
 
 	private getStubIds(): IUiRepositoryRecord {
 		return {
-			actorId: null,
+			// actorId: null,
 			// actorUuId: null,
-			actorRecordId: null,
+			// actorRecordId: null,
 			ageSuitability: null,
-			repositoryId: null,
+			// repositoryId: null,
 			// repositoryUuId: null,
 		}
 	}

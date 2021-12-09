@@ -13,7 +13,6 @@ import { Situation } from '../../ddl/situation/Situation';
  */
 export interface SituationESelect extends RepositoryEntityESelect, SituationEOptionalId {
     name?: string | IQStringField;
-    parent?: SituationESelect;
     outcomeA?: OutcomeESelect;
     outcomeB?: OutcomeESelect;
     children?: SituationESelect;
@@ -36,7 +35,6 @@ export interface SituationEOptionalId {
  */
 export interface SituationEUpdateProperties extends RepositoryEntityEUpdateProperties {
     name?: string | IQStringField;
-    parent?: SituationEOptionalId;
     outcomeA?: OutcomeEOptionalId;
     outcomeB?: OutcomeEOptionalId;
 }
@@ -45,7 +43,6 @@ export interface SituationEUpdateProperties extends RepositoryEntityEUpdatePrope
  */
 export interface SituationGraph extends SituationEOptionalId, RepositoryEntityGraph {
     name?: string | IQStringField;
-    parent?: SituationGraph;
     outcomeA?: OutcomeGraph;
     outcomeB?: OutcomeGraph;
     children?: SituationGraph[];
@@ -63,9 +60,6 @@ export interface SituationEUpdateColumns extends RepositoryEntityEUpdateColumns 
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
     NAME?: string | IQStringField;
-    SITUATIONS_RID_1?: number | IQNumberField;
-    SITUATIONS_AID_1?: number | IQNumberField;
-    SITUATIONS_ARID_1?: number | IQNumberField;
     OUTCOMES_RID_1?: number | IQNumberField;
     OUTCOMES_AID_1?: number | IQNumberField;
     OUTCOMES_ARID_1?: number | IQNumberField;
@@ -88,7 +82,6 @@ export interface SituationECreateColumns extends SituationEId, SituationEUpdateC
  */
 export interface QSituation extends QRepositoryEntity<Situation> {
     name: IQStringField;
-    parent: QSituationQRelation;
     outcomeA: QOutcomeQRelation;
     outcomeB: QOutcomeQRelation;
     children: IQOneToManyRelation<Situation, QSituation>;

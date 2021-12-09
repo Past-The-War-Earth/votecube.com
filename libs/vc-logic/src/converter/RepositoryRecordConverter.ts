@@ -3,22 +3,6 @@ import type { IRepositoryEntity } from "@airport/holding-pattern";
 import { DI } from "@airport/di";
 import { REPOSITORY_RECORD_CONVERTER } from "../tokens";
 
-export interface IToDbConversionContext {
-    actorsById: Map<number, {
-        id: number
-    }>
-    repositoriesById: Map<number, {
-        id: number
-    }>
-}
-
-export function getToDbConversionContext(): IToDbConversionContext {
-    return {
-        actorsById: new Map(),
-        repositoriesById: new Map()
-    }
-}
-
 export interface IRepositoryRecordConverter {
 
     dbToUi(
@@ -27,9 +11,9 @@ export interface IRepositoryRecordConverter {
 
     uiToDb(
         uiRepositoryRecord: IUiRepositoryRecord,
-        context?: IToDbConversionContext,
+        dbRepositoryEntity: IRepositoryEntity,
         ageSuitability?: 0 | 7 | 13 | 18
-    ): IRepositoryEntity
+    ): void
 
 }
 
@@ -40,69 +24,42 @@ export class RepositoryRecordConverter
         dbRepositoryEntity: IRepositoryEntity
     ): IUiRepositoryRecord {
         if (!dbRepositoryEntity) {
-            return null
+            return {
+                ageSuitability: 0,
+            }
         }
 
         return {
-            actorId: dbRepositoryEntity.actor.id,
-            // actorUuId: dbRepositoryEntity.actor.uuId,
-            actorRecordId: dbRepositoryEntity.actorRecordId,
+            // actorId: dbRepositoryEntity.actor.id,
+            // actorRecordId: dbRepositoryEntity.actorRecordId,
             ageSuitability: dbRepositoryEntity.ageSuitability as 0 | 7 | 13 | 18,
-            repositoryId: dbRepositoryEntity.repository.id,
-            // repositoryUuId: dbRepositoryEntity.repository.uuId,
+            // repositoryId: dbRepositoryEntity.repository.id,
         }
     }
 
     uiToDb(
         uiRepositoryRecord: IUiRepositoryRecord,
-        context: IToDbConversionContext,
+        dbRepositoryEntity: IRepositoryEntity,
         ageSuitability: 0 | 7 | 13 | 18 = null
-    ): IRepositoryEntity {
-        if (!uiRepositoryRecord) {
-            return {
-                actor: {
-                    id: null,
-                    // uuId: null
-                },
-                actorRecordId: null,
-                ageSuitability,
-                repository: {
-                    id: null,
-                    // uuId: null
-                }
+    ): void {
+        // if (!uiRepositoryRecord) {
+        //     return
+        // }
+        if (ageSuitability || ageSuitability === 0) {
+            dbRepositoryEntity.ageSuitability = ageSuitability
+        }
+        /*
+        if (!dbRepositoryEntity.actor) {
+            dbRepositoryEntity.actor = {
+                id: null
             }
         }
-        if (uiRepositoryRecord.ageSuitability || uiRepositoryRecord.ageSuitability === 0) {
-            ageSuitability = uiRepositoryRecord.ageSuitability
-        }
-        let actor = null
-        if (uiRepositoryRecord.actorId) {
-            actor = context.actorsById.get(uiRepositoryRecord.actorId)
-            if (!actor) {
-                actor = {
-                    id: uiRepositoryRecord.actorId,
-                    // uuId: uiRepositoryRecord.actorUuId
-                }
-                context.actorsById.set(uiRepositoryRecord.actorId, actor)
+        if (!dbRepositoryEntity.repository) {
+            dbRepositoryEntity.repository = {
+                id: null
             }
         }
-        let repository = null
-        if (uiRepositoryRecord.repositoryId) {
-            repository = context.repositoriesById.get(uiRepositoryRecord.repositoryId)
-            if (!repository) {
-                repository = {
-                    id: uiRepositoryRecord.repositoryId,
-                    // uuId: uiRepositoryRecord.repositoryUuId
-                }
-                context.repositoriesById.set(uiRepositoryRecord.repositoryId, repository)
-            }
-        }
-        return {
-            actor,
-            actorRecordId: uiRepositoryRecord.actorRecordId,
-            ageSuitability,
-            repository
-        }
+        */
     }
 
 }

@@ -5,7 +5,6 @@ import { SituationFactorPosition } from './SituationFactorPosition';
 import { SituationLabel } from './SituationLabel';
 export declare class Situation extends RepositoryEntity {
     name: string;
-    parent: Situation;
     outcomeA: Outcome;
     outcomeB: Outcome;
     children: Situation[];

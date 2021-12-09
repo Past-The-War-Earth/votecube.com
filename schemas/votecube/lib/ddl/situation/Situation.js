@@ -13,9 +13,6 @@ __decorate([
 ], Situation.prototype, "name", void 0);
 __decorate([
     ManyToOne()
-], Situation.prototype, "parent", void 0);
-__decorate([
-    ManyToOne()
 ], Situation.prototype, "outcomeA", void 0);
 __decorate([
     ManyToOne()

@@ -5,7 +5,6 @@ import { ISituationFactorPosition } from './situationfactorposition';
 import { ISolution } from '../solution/solution';
 export interface ISituation extends IRepositoryEntity {
     name?: string;
-    parent?: ISituation;
     outcomeA?: IOutcome;
     outcomeB?: IOutcome;
     children?: ISituation[];

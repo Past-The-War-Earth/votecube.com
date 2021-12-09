@@ -12,7 +12,6 @@ import {
 } from "@votecube/votecube";
 import { REPOSITORY_RECORD_CONVERTER } from "..";
 import { SOLUTION_CONVERTER } from "../tokens";
-import { getToDbConversionContext, IToDbConversionContext } from "./RepositoryRecordConverter";
 
 export interface ISolutionConverter {
 
@@ -91,22 +90,24 @@ export class SolutionConverter
         ageSuitability: 0 | 7 | 13 | 18 = 0,
         situation: ISituation,
     ): ISolution {
-        const context = getToDbConversionContext()
         const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         let factors: ISolutionFactor[] = []
-        let solution: ISolution = {
-            ...repositoryRecordConverter.uiToDb(uiSolution, context, ageSuitability),
+        
+        const dbSolution: ISolution = {
             situation,
             factors
-        }
+        } as any
+
+        repositoryRecordConverter.uiToDb(uiSolution, dbSolution, ageSuitability)
+
         for (const situationFactorPosition of situation.situationFactorPositions) {
             const uiSolutionFactor = uiSolution[
                 this.getFactorNumber(situationFactorPosition.axis as 'x' | 'y' | 'z')]
             factors.push(this.solutionFactorUiToDb(uiSolutionFactor, ageSuitability,
-                solution, situationFactorPosition, context))
+                dbSolution, situationFactorPosition))
         }
 
-        return solution
+        return dbSolution
     }
 
     private solutionFactorUiToDb(
@@ -114,14 +115,17 @@ export class SolutionConverter
         ageSuitability: 0 | 7 | 13 | 18 = 0,
         solution: ISolution,
         situationFactorPosition: ISituationFactorPosition,
-        context: IToDbConversionContext,
     ): ISolutionFactor {
         const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
-        return {
-            ...repositoryRecordConverter.uiToDb(uiSolutionFactor, context, ageSuitability),
+        
+        const dbSolutionFactor: ISolutionFactor = {
             solution,
             situationFactorPosition
-        }
+        } as any
+
+        repositoryRecordConverter.uiToDb(uiSolutionFactor, dbSolutionFactor, ageSuitability)
+
+        return dbSolutionFactor
     }
 
 }

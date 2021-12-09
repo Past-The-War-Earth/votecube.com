@@ -1,42 +1,60 @@
 import { container, DI } from '@airport/di';
 import { AGE_GROUPS, } from '@votecube/model';
 import { SITUATION_CONVERTER, SITUATION_FORM_MANAGER } from '../tokens';
-import { getToDbConversionContext, RepositoryRecordConverter } from './RepositoryRecordConverter';
+import { RepositoryRecordConverter } from './RepositoryRecordConverter';
 export class SituationConverter extends RepositoryRecordConverter {
     dbToUi(dbSituation) {
-        let parent = null;
-        if (dbSituation.parent) {
-            parent = super.dbToUi(dbSituation.parent);
+        let ageGroups = [];
+        let labels = [];
+        if (dbSituation.situationLabels) {
+            ageGroups = dbSituation.situationLabels.filter(situationLabel => AGE_GROUPS.includes(situationLabel.label.name))
+                .map(ageGroupLabel => this.getUiLabel(ageGroupLabel));
+            labels = dbSituation.situationLabels.filter(situationLabel => !AGE_GROUPS.includes(situationLabel.label.name))
+                .map(ageGroupLabel => this.getUiLabel(ageGroupLabel));
         }
-        const ageGroups = dbSituation.situationLabels.filter(situationLabel => AGE_GROUPS.includes(situationLabel.label.name))
-            .map(ageGroupLabel => this.getUiLabel(ageGroupLabel));
-        const labels = dbSituation.situationLabels.filter(situationLabel => !AGE_GROUPS.includes(situationLabel.label.name))
-            .map(ageGroupLabel => this.getUiLabel(ageGroupLabel));
-        return Object.assign(Object.assign({}, super.dbToUi(dbSituation.parent)), { ageGroups, factors: {
+        return Object.assign(Object.assign({}, super.dbToUi(dbSituation)), { ageGroups, factors: {
                 '1': this.getUiFactor(1, dbSituation.situationFactorPositions),
                 '2': this.getUiFactor(2, dbSituation.situationFactorPositions),
                 '3': this.getUiFactor(3, dbSituation.situationFactorPositions)
             }, labels, name: dbSituation.name, outcomes: {
                 A: this.getUiOutcome(dbSituation.outcomeA),
                 B: this.getUiOutcome(dbSituation.outcomeB)
-            }, parent, repository: {
+            }, repository: {
                 source: dbSituation.repository.source,
                 uuId: dbSituation.repository.uuId
             } });
     }
-    uiToDb(uiSituation) {
-        const context = getToDbConversionContext();
-        const uiParent = uiSituation.parent;
-        const dbFactors = [];
-        return Object.assign(Object.assign({}, super.uiToDb(uiSituation, context)), { name: uiSituation.name, outcomeA: this.getDbOutcome(uiSituation.outcomes.A, context, uiSituation.ageSuitability), outcomeB: this.getDbOutcome(uiSituation.outcomes.B, context, uiSituation.ageSuitability), parent: uiParent ? Object.assign({}, super.uiToDb(uiParent, context)) : null, situationFactorPositions: [this.getDbSituationFactorPosition(uiSituation, 1, 'A', dbFactors, context), this.getDbSituationFactorPosition(uiSituation, 1, 'B', dbFactors, context), this.getDbSituationFactorPosition(uiSituation, 2, 'A', dbFactors, context), this.getDbSituationFactorPosition(uiSituation, 2, 'B', dbFactors, context), this.getDbSituationFactorPosition(uiSituation, 3, 'A', dbFactors, context), this.getDbSituationFactorPosition(uiSituation, 3, 'B', dbFactors, context)], situationLabels: this.getDbLabels(uiSituation, uiSituation.ageGroups.concat(uiSituation.labels), context) });
+    uiToDb(uiSituation, dbSituation) {
+        if (!dbSituation) {
+            dbSituation = {};
+        }
+        super.uiToDb(uiSituation, dbSituation, uiSituation.ageSuitability);
+        if (!dbSituation.outcomeA) {
+            dbSituation.outcomeA = {};
+        }
+        this.outcomeToDb(uiSituation.outcomes.A, dbSituation.outcomeA, uiSituation.ageSuitability);
+        if (!dbSituation.outcomeB) {
+            dbSituation.outcomeB = {};
+        }
+        this.outcomeToDb(uiSituation.outcomes.B, dbSituation.outcomeB, uiSituation.ageSuitability);
+        const factor1 = this.situationFactorPositionToDb(uiSituation, dbSituation, 1, 'A');
+        this.situationFactorPositionToDb(uiSituation, dbSituation, 1, 'B', factor1);
+        const factor2 = this.situationFactorPositionToDb(uiSituation, dbSituation, 2, 'A');
+        this.situationFactorPositionToDb(uiSituation, dbSituation, 2, 'B', factor2);
+        const factor3 = this.situationFactorPositionToDb(uiSituation, dbSituation, 3, 'A');
+        this.situationFactorPositionToDb(uiSituation, dbSituation, 3, 'B', factor3);
+        dbSituation.name = uiSituation.name;
+        this.labelsToDb(uiSituation, dbSituation, uiSituation.ageGroups);
+        this.labelsToDb(uiSituation, dbSituation, uiSituation.labels);
+        return dbSituation;
     }
     getUiLabel(situationLabel) {
         if (!situationLabel) {
             const situationFormManager = container(this).getSync(SITUATION_FORM_MANAGER);
-            return Object.assign(Object.assign({}, situationFormManager.getBlankUiNamedRecord()), { situationLabel: situationFormManager.getBlankUiRepositoryRecord() });
+            return Object.assign(Object.assign({}, situationFormManager.getBlankUiNamedRecord()), { originalDbLabel: situationLabel });
         }
         const label = situationLabel.label;
-        return Object.assign(Object.assign({}, super.dbToUi(label)), { name: label.name, situationLabel: super.dbToUi(situationLabel) });
+        return Object.assign(Object.assign({}, super.dbToUi(label)), { name: label.name, originalDbLabel: situationLabel });
     }
     getUiFactor(factorNumber, factorPositions) {
         const matchingFactorPositions = factorPositions.filter(factorPosition => factorPosition.factorNumber === factorNumber);
@@ -73,35 +91,81 @@ export class SituationConverter extends RepositoryRecordConverter {
         }
         return situationLabels.map(situationLabel => this.getUiLabel(situationLabel));
     }
-    getDbLabels(uiSituation, uiLabels, context) {
-        if (!uiLabels) {
-            return [];
+    labelsToDb(uiSituation, dbSituation, uiLabels) {
+        let dbLabels = dbSituation.situationLabels;
+        if (!dbLabels) {
+            dbLabels = [];
+            dbSituation.situationLabels = dbLabels;
         }
-        return uiLabels.map(uiLabel => {
-            return Object.assign(Object.assign({}, super.uiToDb(uiLabel.situationLabel, context, uiSituation.ageSuitability)), { label: Object.assign(Object.assign({}, super.uiToDb(uiLabel, context, uiSituation.ageSuitability)), { name: uiLabel.name }), situation: Object.assign({}, super.uiToDb(uiSituation, context)) });
-        });
+        for (const uiLabel of uiLabels) {
+            const matchingDbLabels = dbLabels.filter(dbLabel => dbLabel.label.name === uiLabel.name);
+            let dbLabel;
+            if (matchingDbLabels.length) {
+                dbLabel = matchingDbLabels[0];
+            }
+            else {
+                dbLabel = {
+                    label: uiLabel.originalDbLabel
+                };
+            }
+            super.uiToDb(uiLabel, dbLabel, uiSituation.ageSuitability);
+            dbLabel.label = uiLabel.originalDbLabel;
+            dbLabels.push(dbLabel);
+        }
     }
-    getDbOutcome(uiOutcome, context, ageSuitability) {
-        return Object.assign(Object.assign({}, super.uiToDb(uiOutcome, context, ageSuitability)), { name: uiOutcome.name });
+    outcomeToDb(uiOutcome, outcome, ageSuitability) {
+        super.uiToDb(uiOutcome, outcome, ageSuitability);
+        outcome.name = uiOutcome.name;
     }
-    getDbSituationFactorPosition(uiSituation, factorNumber, outcomeOrdinal, dbFactors, context) {
+    situationFactorPositionToDb(uiSituation, dbSituation, factorNumber, outcomeOrdinal, dbFactor) {
+        let existingFactor = !!dbFactor;
         const uiFactor = uiSituation.factors[factorNumber];
         const uiPosition = uiFactor.positions[outcomeOrdinal];
-        let factor = dbFactors[factorNumber];
-        if (!factor) {
-            factor = this.getDbFactor(uiFactor, context, uiSituation.ageSuitability);
-            dbFactors[factorNumber] = factor;
+        if (!dbSituation.situationFactorPositions) {
+            dbSituation.situationFactorPositions = [];
         }
-        const position = this.getDbPosition(uiPosition, context, uiSituation.ageSuitability);
-        return Object.assign(Object.assign({}, super.uiToDb(uiSituation, context, uiSituation.ageSuitability)), { axis: uiFactor.axis, blue: uiFactor.color.blue, dir: uiPosition.dir, factorNumber,
-            factor, green: uiFactor.color.green, outcomeOrdinal,
-            position, red: uiFactor.color.red });
+        const matchingSituationFactorPositions = dbSituation.
+            situationFactorPositions.filter(situationFactorPosition => situationFactorPosition.factorNumber === factorNumber
+            && situationFactorPosition.outcomeOrdinal === outcomeOrdinal);
+        let dbPosition;
+        let dbSituationFactorPosition;
+        if (matchingSituationFactorPositions.length) {
+            dbSituationFactorPosition = matchingSituationFactorPositions[0];
+            dbFactor = dbSituationFactorPosition.factor;
+            dbPosition = dbSituationFactorPosition.position;
+        }
+        else {
+            dbSituationFactorPosition = {};
+            if (!existingFactor) {
+                dbFactor = {};
+            }
+            dbPosition = {};
+            dbSituationFactorPosition.factor = dbFactor;
+            dbSituationFactorPosition.position = dbPosition;
+            dbSituation.situationFactorPositions
+                .push(dbSituationFactorPosition);
+        }
+        if (!existingFactor) {
+            this.factorToDb(uiFactor, dbFactor, uiSituation.ageSuitability);
+        }
+        this.positionToDb(uiPosition, dbPosition, uiSituation.ageSuitability);
+        super.uiToDb({}, dbSituationFactorPosition, uiSituation.ageSuitability);
+        dbSituationFactorPosition.axis = uiFactor.axis;
+        dbSituationFactorPosition.blue = uiFactor.color.blue;
+        dbSituationFactorPosition.dir = uiPosition.dir;
+        dbSituationFactorPosition.factorNumber = factorNumber;
+        dbSituationFactorPosition.green = uiFactor.color.green;
+        dbSituationFactorPosition.outcomeOrdinal = outcomeOrdinal;
+        dbSituationFactorPosition.red = uiFactor.color.red;
+        return dbFactor;
     }
-    getDbFactor(uiFactor, context, ageSuitability) {
-        return Object.assign(Object.assign({}, super.uiToDb(uiFactor, context, ageSuitability)), { name: uiFactor.name });
+    factorToDb(uiFactor, dbFactor, ageSuitability) {
+        super.uiToDb(uiFactor, dbFactor, ageSuitability);
+        dbFactor.name = uiFactor.name;
     }
-    getDbPosition(uiPosition, context, ageSuitability) {
-        return Object.assign(Object.assign({}, super.uiToDb(uiPosition, context, ageSuitability)), { name: uiPosition.name });
+    positionToDb(uiPosition, dbPosition, ageSuitability) {
+        super.uiToDb(uiPosition, dbPosition, ageSuitability);
+        dbPosition.name = uiPosition.name;
     }
 }
 DI.set(SITUATION_CONVERTER, SituationConverter);

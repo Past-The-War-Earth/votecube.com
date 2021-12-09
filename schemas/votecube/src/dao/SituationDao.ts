@@ -21,6 +21,7 @@ import {
 import { DI } from '@airport/di';
 import { SITUATION_DAO } from '../server';
 import { IRepositoryIdentifier } from '../client/types';
+import { ISaveResult } from '@airport/ground-control';
 
 export interface ISituationDao {
 
@@ -30,7 +31,8 @@ export interface ISituationDao {
     ): Promise<ISituation>
 
     saveSituation(
-        situation: ISituation
+        situation: ISituation,
+        createNewRepository: boolean
     ): Promise<IRepositoryIdentifier>
 
 }
@@ -58,7 +60,6 @@ export class SituationDao
     ): Promise<ISituation> {
         let s: QSituation
         let r: QRepository
-        let s_r: QSituation
         let o1: QOutcome
         let o2: QOutcome
         let sl: QSituationLabel
@@ -69,11 +70,7 @@ export class SituationDao
         const matchingRepositories = await this.db.find.tree({
             select: {
                 ...ALL_FIELDS,
-                repository: {
-                    source: Y,
-                    uuId: Y
-                },
-                parent: {},
+                repository: {},
                 outcomeA: {},
                 outcomeB: {},
                 situationLabels: {
@@ -89,7 +86,6 @@ export class SituationDao
             from: [
                 s = Q.Situation,
                 r = s.repository.innerJoin(),
-                s_r = s.parent.leftJoin(),
                 o1 = s.outcomeA.innerJoin(),
                 o2 = s.outcomeB.innerJoin(),
                 sl = s.situationLabels.leftJoin(),
@@ -117,14 +113,24 @@ export class SituationDao
     }
 
     async saveSituation(
-        // repositoryDestination: string,
-        situation: ISituation
+        situation: ISituation,
+        createNewRepository: boolean
     ): Promise<IRepositoryIdentifier> {
-        const saveResult = await this.db.save(situation)
+        let saveResult: ISaveResult
+        if (situation.repository && !createNewRepository) {
+            saveResult = await this.db.save(situation, {
+                source: situation.repository.source,
+                uuId: situation.repository.uuId,
+            })
+        } else {
+            saveResult = await this.db.save(situation)
+        }
+
+        const newRepository = saveResult.newRepository
 
         return {
-            source: saveResult.newRepository.source,
-            uuId: saveResult.newRepository.uuId
+            source: newRepository ? newRepository.source : situation.repository.source,
+            uuId: newRepository ? saveResult.newRepository.uuId : situation.repository.uuId
         }
     }
 

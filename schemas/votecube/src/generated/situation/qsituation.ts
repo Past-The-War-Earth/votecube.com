@@ -106,7 +106,6 @@ export interface SituationESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	parent?: SituationESelect;
 	outcomeA?: OutcomeESelect;
 	outcomeB?: OutcomeESelect;
 	children?: SituationESelect;
@@ -146,7 +145,6 @@ export interface SituationEUpdateProperties
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	parent?: SituationEOptionalId;
 	outcomeA?: OutcomeEOptionalId;
 	outcomeB?: OutcomeEOptionalId;
 
@@ -163,7 +161,6 @@ export interface SituationGraph
 	name?: string | IQStringField;
 
 	// Relations
-	parent?: SituationGraph;
 	outcomeA?: OutcomeGraph;
 	outcomeB?: OutcomeGraph;
 	children?: SituationGraph[];
@@ -185,9 +182,6 @@ export interface SituationEUpdateColumns
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
-	SITUATIONS_RID_1?: number | IQNumberField;
-	SITUATIONS_AID_1?: number | IQNumberField;
-	SITUATIONS_ARID_1?: number | IQNumberField;
 	OUTCOMES_RID_1?: number | IQNumberField;
 	OUTCOMES_AID_1?: number | IQNumberField;
 	OUTCOMES_ARID_1?: number | IQNumberField;
@@ -231,7 +225,6 @@ export interface QSituation extends QRepositoryEntity<Situation>
 	name: IQStringField;
 
 	// Non-Id Relations
-	parent: QSituationQRelation;
 	outcomeA: QOutcomeQRelation;
 	outcomeB: QOutcomeQRelation;
 	children: IQOneToManyRelation<Situation, QSituation>;

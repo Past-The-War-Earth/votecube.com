@@ -1,6 +1,6 @@
 import { container, DI } from '@airport/di';
 import { SolutionApiClient } from '@votecube/votecube';
-import { SITUATION_CONVERTER, SITUATION_MANAGER, SOLUTION_CONVERTER, SOLUTION_MANAGER } from '../tokens';
+import { SITUATION_MANAGER, SOLUTION_CONVERTER, SOLUTION_MANAGER } from '../tokens';
 export class SolutionManager {
     constructor() {
         this.solutionApi = new SolutionApiClient();
@@ -20,10 +20,9 @@ export class SolutionManager {
         return solutionConverter.dbToUi(solution);
     }
     async saveSolution(situation, solution) {
-        const [situationConverter, solutionConverter] = await container(this)
-            .get(SITUATION_CONVERTER, SOLUTION_CONVERTER);
-        const dbSituation = situationConverter.uiToDb(situation);
-        const dbSolution = solutionConverter.uiToDb(solution, situation.ageSuitability, dbSituation);
+        const [situationManager, solutionConverter] = await container(this)
+            .get(SITUATION_MANAGER, SOLUTION_CONVERTER);
+        const dbSolution = solutionConverter.uiToDb(solution, situation.ageSuitability, situationManager.cachedSituation.db);
         await this.solutionApi.saveSolution(dbSolution);
     }
     async saveCachedSituationSolution(solution) {
@@ -35,11 +34,11 @@ export class SolutionManager {
     }
     getStubIds() {
         return {
-            actorId: null,
+            // actorId: null,
             // actorUuId: null,
-            actorRecordId: null,
+            // actorRecordId: null,
             ageSuitability: null,
-            repositoryId: null,
+            // repositoryId: null,
             // repositoryUuId: null,
         };
     }

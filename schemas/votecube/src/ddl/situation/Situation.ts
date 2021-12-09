@@ -20,9 +20,6 @@ export class Situation
 	name: string
 
 	@ManyToOne()
-	parent: Situation
-
-	@ManyToOne()
 	outcomeA: Outcome
 
 	@ManyToOne()
