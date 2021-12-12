@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ForumThread from "@votecube/forum-ui/src/ForumThread.svelte";
 	import {
 		ABOUT,
 		APP_CONTAINER,
@@ -48,7 +49,7 @@
 	import DerivationList from "./pages/situation/list/DerivationList.svelte";
 	import ReleasePlan from "./pages/ReleasePlan.svelte";
 	import type { IUiCustomEvent, IUiMenuItem } from "@votecube/model";
-import { IOC } from "@airport/di";
+	import { IOC } from "@airport/di";
 
 	// let topMenuMap
 	let appShowMainMenu = showMainMenu;
@@ -84,8 +85,8 @@ import { IOC } from "@airport/di";
 		// navigateToPage(menuItem.id, menuItem.params)
 		showMainMenu.toggle();
 		setTimeout(() => {
-			IOC.getSync(ROUTES).postLocationToAIRport()
-		})
+			IOC.getSync(ROUTES).postLocationToAIRport();
+		});
 	}
 
 	function toggleMenu() {
@@ -205,7 +206,9 @@ import { IOC } from "@airport/di";
 {#if $showSignIn}
 	<SignIn on:closed={closeSignIn} />
 {/if}
-
+<!--
+<ForumThread />
+-->
 <style>
 	@media (min-width: 62em) {
 		#main {

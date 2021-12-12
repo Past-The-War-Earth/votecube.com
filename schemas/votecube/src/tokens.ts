@@ -5,5 +5,5 @@ import { ISolutionApi } from "./api/SolutionApi";
 export const votecube = system('votecube').lib('votecube')
 votecube.signature = 'votecube'
 
-export const SITUATION_API = votecube.token<ISituationApi>('ISituationApi')
-export const SOLUTION_API = votecube.token<ISolutionApi>('ISolutionApi')
+export const SITUATION_API = votecube.token<ISituationApi>('SITUATION_API')
+export const SOLUTION_API = votecube.token<ISolutionApi>('SOLUTION_API')

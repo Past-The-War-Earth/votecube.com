@@ -16,7 +16,9 @@
                 "${workspaceFolder}/*/*/lib/**/*.js"
             ],
             "cwd": "${workspaceFolder}\\schemas\\ecclesia",
-            "runtimeArgs": ["--experimental-specifier-resolution=node"]
+            "runtimeArgs": [
+                "--experimental-specifier-resolution=node"
+            ]
         },
         {
             "type": "pwa-node",
@@ -30,7 +32,25 @@
                 "${workspaceFolder}/*/*/lib/**/*.js"
             ],
             "cwd": "${workspaceFolder}\\schemas\\votecube",
-            "runtimeArgs": ["--experimental-specifier-resolution=node"]
+            "runtimeArgs": [
+                "--experimental-specifier-resolution=node"
+            ]
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "forum",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\schemas\\forum\\node_modules\\@airport\\runway\\lib\\index.js",
+            "outFiles": [
+                "${workspaceFolder}/*/*/lib/**/*.js"
+            ],
+            "cwd": "${workspaceFolder}\\schemas\\forum",
+            "runtimeArgs": [
+                "--experimental-specifier-resolution=node"
+            ]
         }
     ]
 }

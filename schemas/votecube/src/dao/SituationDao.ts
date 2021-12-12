@@ -118,11 +118,12 @@ export class SituationDao
     ): Promise<IRepositoryIdentifier> {
         let saveResult: ISaveResult
         if (situation.repository && !createNewRepository) {
-            saveResult = await this.db.save(situation, {
-                source: situation.repository.source,
-                uuId: situation.repository.uuId,
-            })
+            saveResult = await this.db.save(situation)
         } else {
+            situation.repository = null
+            situation.actor = null
+            delete situation.actorRecordId
+
             saveResult = await this.db.save(situation)
         }
 

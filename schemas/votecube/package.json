@@ -16,7 +16,8 @@
     "@airport/pressurization": "0.0.1",
     "@airport/security-check": "0.0.1",
     "@airport/takeoff": "0.0.1",
-    "@airport/travel-document-checkpoint": "0.0.1"
+    "@airport/travel-document-checkpoint": "0.0.1",
+    "@votecube/forum": "0.0.1"
   },
   "devDependencies": {
     "@airport/runway": "0.0.1"

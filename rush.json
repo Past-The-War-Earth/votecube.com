@@ -35,6 +35,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@votecube/forum-ui",
+      "projectFolder": "libs/forum-ui",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@votecube/model",
       "projectFolder": "libs/model",
       "shouldPublish": true
@@ -53,6 +58,11 @@
     {
       "packageName": "@votecube/ecclesia",
       "projectFolder": "schemas/ecclesia",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@votecube/forum",
+      "projectFolder": "schemas/forum",
       "shouldPublish": true
     },
     {

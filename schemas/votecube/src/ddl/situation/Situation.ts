@@ -6,6 +6,7 @@ import {
 	Table
 } from '@airport/air-control'
 import { RepositoryEntity } from '@airport/holding-pattern'
+import { ForumThread } from '@votecube/forum/lib/server'
 import { Solution } from '../solution/Solution'
 import { Outcome } from './Outcome'
 import { SituationFactorPosition } from './SituationFactorPosition'
@@ -24,6 +25,9 @@ export class Situation
 
 	@ManyToOne()
 	outcomeB: Outcome
+
+	@ManyToOne()
+	thread: ForumThread
 
 	@OneToMany({ mappedBy: 'parent' })
 	children: Situation[]
