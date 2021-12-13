@@ -9,7 +9,7 @@
 		RELEASE_PLAN,
 		routeParams,
 		text,
-ILogicUtils,
+		ILogicUtils,
 	} from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
 	import { get } from "svelte/store";
@@ -23,6 +23,7 @@ ILogicUtils,
 	import * as forms from "../../../form/forms";
 	import { loadForms } from "../../../libs/forms";
 	import SituationListItem from "./SituationListItem.svelte";
+	import type { IFieldGroup } from "@votecube/forms";
 
 	let action;
 	let leafSituations: IUiSituation[];
@@ -30,7 +31,7 @@ ILogicUtils,
 	let currentSituation: IUiSituation;
 	let delta = 0;
 	let error = "";
-	let form;
+	let form: IFieldGroup;
 	let isOriginal = true;
 	let isValid = false;
 	let logicUtils: ILogicUtils;
@@ -350,7 +351,7 @@ ILogicUtils,
 				on:moveDownHierarchy={() =>
 					moveDownHierarchy(leafSituations, situation, navList)}
 				on:click={() => goTo(situation.repositoryUuId)}
-				situation={situation}
+				{situation}
 			/>
 		{/each}
 		{#if !leafSituations.length}
@@ -382,11 +383,12 @@ ILogicUtils,
 					<br />
 					<h3>
 						{#if action === "filter"}
-							Ability filter Situation results is coming right after
-							Opinions and will be released mid-Alpha.
+							Ability filter Situation results is coming right
+							after Opinions and will be released mid-Alpha.
 						{:else if action === "sort"}
-							Ability sort Situation results is at the same time as the
-							ability to filter and will be released mid-Alpha.
+							Ability sort Situation results is at the same time
+							as the ability to filter and will be released
+							mid-Alpha.
 						{/if}
 						<br />
 						<br />

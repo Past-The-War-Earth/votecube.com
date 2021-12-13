@@ -7,6 +7,7 @@
     "@votecube/forms": "0.0.1",
     "@votecube/model": "0.0.1",
     "@votecube/forum": "0.0.1",
+    "@votecube/vc-logic": "0.0.1",
     "jssha": "^2.3.x",
     "page": "^1.11.3",
     "rxjs": "~7.4.0"
