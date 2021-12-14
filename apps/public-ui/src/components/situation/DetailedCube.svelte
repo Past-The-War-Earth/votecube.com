@@ -1,171 +1,149 @@
 <script lang="ts">
-	import {DI}            from '@airport/di'
-	import {
-		CUBE_EVENT_LISTENER,
-		MUTATION_API
-	}                      from '@votecube/cube-logic'
-import type { IUiSituation, IUiSolution } from '@votecube/model';
-	import {
-		DETAILED_CUBE_LOGIC,
-		LOGIC_UTILS
-	}                      from '@votecube/vc-logic'
+	import { DI } from "@airport/di";
+	import { CUBE_EVENT_LISTENER, MUTATION_API } from "@votecube/cube-logic";
+	import type { IUiSituation, IUiSolution } from "@votecube/model";
+	import { DETAILED_CUBE_LOGIC, LOGIC_UTILS } from "@votecube/vc-logic";
 	import {
 		beforeUpdate,
 		createEventDispatcher,
 		onDestroy,
-		onMount
-	}                      from 'svelte'
-	import CharacterButton from '@votecube/ui-controls/src/button/CharacterButton.svelte'
-	import Positioner      from './create/Positioner.svelte'
+		onMount,
+	} from "svelte";
+	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
+	import Positioner from "./create/Positioner.svelte";
 
-	export let cubeSideMap
-	export let cubeSides   = []
+	export let cubeSideMap;
+	export let cubeSides = [];
 	// export let cubeView
 	// export let delta
 	// export let moveType
-	export let situation: IUiSituation
-	export let positionMode
-	export let verticalLayout
-	export let solution: IUiSolution
+	export let situation: IUiSituation;
+	export let positionMode;
+	export let verticalLayout;
+	export let solution: IUiSolution;
 
 	let changed: {
-		situation: boolean
+		situation: boolean;
 	} = {
-		situation: false
-	}
-	let container
+		situation: false,
+	};
+	let container;
 	// let factorPositionPlaces = []
-	let loading   = true
-	let logicUtils
-	let positions = []
+	let loading = true;
+	let logicUtils;
+	let positions = [];
 	let previous: {
-		situation: IUiSituation
+		situation: IUiSituation;
 	} = {
-		situation: null
-	}
-	let rotating  = false
-	let situationSet   = false
+		situation: null,
+	};
+	let rotating = false;
+	let situationSet = false;
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher();
 
-	$: horizontalLayout = !verticalLayout
+	$: horizontalLayout = !verticalLayout;
 
 	onMount(async () => {
-		ensureContainer()
-		const [cubeEventListener, mutationApi] =
-			      await container.get(
-				      CUBE_EVENT_LISTENER, MUTATION_API
-			      )
+		ensureContainer();
+		const [cubeEventListener, mutationApi] = await container.get(
+			CUBE_EVENT_LISTENER,
+			MUTATION_API
+		);
 
-		cubeEventListener.setView('cube')
+		cubeEventListener.setView("cube");
 
-		await mutationApi.recompute()
+		await mutationApi.recompute();
 
 		setTimeout(() => {
-			loading  = false
-			rotating = true
+			loading = false;
+			rotating = true;
 			setTimeout(() => {
-				rotating = false
-			}, 700)
-		}, 1)
+				rotating = false;
+			}, 700);
+		}, 1);
 
-		logicUtils = await container.get(LOGIC_UTILS)
-	})
+		logicUtils = await container.get(LOGIC_UTILS);
+	});
 
 	onDestroy(async () => {
-		const cubeEventListener = await container.get(
-			CUBE_EVENT_LISTENER)
+		const cubeEventListener = await container.get(CUBE_EVENT_LISTENER);
 
-		cubeEventListener.clearView('cube')
-		DI.remove(container)
-	})
+		cubeEventListener.clearView("cube");
+		DI.remove(container);
+	});
 
 	beforeUpdate(() => {
-		ensureContainer()
+		ensureContainer();
 		changed.situation = situation !== previous.situation;
 		previous.situation = situation;
 		if (!situationSet) {
 			if (changed.situation && situation) {
-				getCubeSides().then()
+				getCubeSides().then();
 			}
 			if (solution) {
-				solution.changeMillis = 128
-				situationSet           = true
+				solution.changeMillis = 128;
+				situationSet = true;
 			}
 		}
-	})
+	});
 
 	function ensureContainer() {
-		if(!container) {
-			container                              = DI.ui('DetailedCube')
+		if (!container) {
+			container = DI.ui("DetailedCube");
 		}
 	}
 
 	function charButtonAlignment(outcome) {
-		return outcome === 'A' ? 'left' : 'right'
+		return outcome === "A" ? "left" : "right";
 	}
 
-	function moveDown(
-		cubeSide,
-		cubeSideMap
-	) {
+	function moveDown(cubeSide, cubeSideMap) {
 		move(cubeSideMap, cubeSide, [
-			['y', 1], // x+
-			['y', 1], // x-
-			['x', -1], // y+
-			['x', -1], // y-
-			['x', -1], // z+
-			['x', -1] // z-
-		]).then()
+			["y", 1], // x+
+			["y", 1], // x-
+			["x", -1], // y+
+			["x", -1], // y-
+			["x", -1], // z+
+			["x", -1], // z-
+		]).then();
 	}
 
-	function moveLeft(
-		cubeSide,
-		cubeSideMap
-	) {
+	function moveLeft(cubeSide, cubeSideMap) {
 		move(cubeSideMap, cubeSide, [
-			['z', -1], // x+
-			['z', 1], // x-
-			['z', -1], // y+
-			['z', 1], // y-
-			['y', 1], // z+
-			['y', -1] // z-
-		]).then()
+			["z", -1], // x+
+			["z", 1], // x-
+			["z", -1], // y+
+			["z", 1], // y-
+			["y", 1], // z+
+			["y", -1], // z-
+		]).then();
 	}
 
-	function moveRight(
-		cubeSide,
-		cubeSideMap
-	) {
+	function moveRight(cubeSide, cubeSideMap) {
 		move(cubeSideMap, cubeSide, [
-			['z', 1], // x+
-			['z', -1], // x-
-			['z', 1], // y+
-			['z', -1], // y-
-			['y', -1], // z+
-			['y', 1] // z-
-		]).then()
+			["z", 1], // x+
+			["z", -1], // x-
+			["z", 1], // y+
+			["z", -1], // y-
+			["y", -1], // z+
+			["y", 1], // z-
+		]).then();
 	}
 
-	function switchDir(
-		cubeSide,
-		cubeSideMap
-	) {
-		switchPoles(cubeSideMap, cubeSide).then()
+	function switchDir(cubeSide, cubeSideMap) {
+		switchPoles(cubeSideMap, cubeSide).then();
 	}
 
-	function moveUp(
-		cubeSide,
-		cubeSideMap
-	) {
+	function moveUp(cubeSide, cubeSideMap) {
 		move(cubeSideMap, cubeSide, [
-			['y', -1], // x+
-			['y', -1], // x-
-			['x', 1], // y+
-			['x', 1], // y-
-			['x', 1], // z+
-			['x', 1] // z-
-		]).then()
+			["y", -1], // x+
+			["y", -1], // x-
+			["x", 1], // y+
+			["x", 1], // y-
+			["x", 1], // z+
+			["x", 1], // z-
+		]).then();
 	}
 
 	/*			toggleView(
@@ -211,47 +189,83 @@ import type { IUiSituation, IUiSolution } from '@votecube/model';
 	// }
 
 	async function getCubeSides() {
-		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC)
+		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC);
 
-		await doGetCubeSides(detailedCubeLogic)
+		await doGetCubeSides(detailedCubeLogic);
 	}
 
-	async function move(
-		cubeSideMap,
-		cubeSide,
-		switchToDefinitions
-	) {
-		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC)
-		detailedCubeLogic.move(cubeSideMap, cubeSide, switchToDefinitions)
-		const cubeSides = await doGetCubeSides(detailedCubeLogic)
-		dispatch('cubeAltered', cubeSides)
+	async function move(cubeSideMap, cubeSide, switchToDefinitions) {
+		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC);
+		detailedCubeLogic.move(cubeSideMap, cubeSide, switchToDefinitions);
+		const cubeSides = await doGetCubeSides(detailedCubeLogic);
+		dispatch("cubeAltered", cubeSides);
 	}
 
-	async function switchPoles(
-		cubeSideMap,
-		cubeSide
-	) {
-		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC)
-		detailedCubeLogic.switchPoles(cubeSideMap, cubeSide)
-		const cubeSides = await doGetCubeSides(detailedCubeLogic)
-		dispatch('cubeAltered', cubeSides)
+	async function switchPoles(cubeSideMap, cubeSide) {
+		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC);
+		detailedCubeLogic.switchPoles(cubeSideMap, cubeSide);
+		const cubeSides = await doGetCubeSides(detailedCubeLogic);
+		dispatch("cubeAltered", cubeSides);
 	}
 
-	async function doGetCubeSides(
-		detailedCubeLogic
-	) {
-		const results = await detailedCubeLogic.getCubeSides(situation, container)
+	async function doGetCubeSides(detailedCubeLogic) {
+		const results = await detailedCubeLogic.getCubeSides(
+			situation,
+			container
+		);
 
-		cubeSideMap = results.results
-		cubeSides   = results.cubeSides
+		cubeSideMap = results.cubeSideMap;
+		cubeSides = results.cubeSides;
 
-		return cubeSides
+		return cubeSides;
 	}
-
 </script>
 
-<style>
+<figure id="cube">
+	<!--			on:click="toggleView(cubeView, event)"-->
+	{#each cubeSides as cubeSide, i}
+		<div
+			class="surface {loading ? 'loading' : ''} {rotating
+				? 'rotating'
+				: ''}"
+			id="s{i}"
+			style="
+            background-color: #{cubeSide.colorRGB};
+              "
+		>
+			{#if !loading && !rotating}
+				<header>
+					<CharacterButton
+						character={cubeSide.outcome}
+						fontSize={23}
+						fontX={14.5}
+						fontY={23}
+						size={30}
+						strokeWidth={0}
+						styles="{charButtonAlignment(
+							cubeSide.outcome
+						)}: 1px; position: absolute; top: 0px;"
+					/>
+					{cubeSide.factor.name}
+				</header>
+				{#if positionMode}
+					<Positioner
+						on:moveRight={() => moveRight(cubeSide, cubeSideMap)}
+						on:moveDown={() => moveDown(cubeSide, cubeSideMap)}
+						on:moveLeft={() => moveLeft(cubeSide, cubeSideMap)}
+						on:moveUp={() => moveUp(cubeSide, cubeSideMap)}
+						on:switchDir={() => switchDir(cubeSide, cubeSideMap)}
+					/>
+				{/if}
+				<p style="color: #{cubeSide.textColorRGB};">
+					{cubeSide.position.name}
+				</p>
+			{/if}
+		</div>
+	{/each}
+</figure>
 
+<style>
 	/*
 	@media (min-width: 321px) {
 
@@ -304,7 +318,6 @@ import type { IUiSituation, IUiSolution } from '@votecube/model';
 		*/
 	}
 
-
 	#s0 {
 		/*background: hsla(  0, 100%, 50%, 0.95);*/
 		transform: rotateX(90deg) translateZ(160px) /*translateZ(200px)*/;
@@ -327,7 +340,8 @@ import type { IUiSituation, IUiSolution } from '@votecube/model';
 	}
 
 	#s5 {
-		transform: rotateX(-90deg) rotate(180deg) translateZ(160px) /*translateZ(200px)*/;
+		transform: rotateX(-90deg) rotate(180deg) translateZ(160px)
+			/*translateZ(200px)*/;
 	}
 
 	div {
@@ -361,7 +375,7 @@ import type { IUiSituation, IUiSolution } from '@votecube/model';
 	}
 
 	header {
-		top: 0px
+		top: 0px;
 	}
 
 	/*	footer {
@@ -390,49 +404,4 @@ import type { IUiSituation, IUiSolution } from '@votecube/model';
 	.surface {
 		position: relative;
 	}
-
 </style>
-
-<figure
-		id="cube"
->
-	<!--			on:click="toggleView(cubeView, event)"-->
-	{#each cubeSides as cubeSide, i}
-	<div
-			class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
-			id="s{i}"
-			style="
-            background-color: #{cubeSide.colorRGB};
-              "
-	>
-		{#if !loading && !rotating}
-		<header>
-			<CharacterButton
-					character="{cubeSide.outcome}"
-					fontSize={23}
-					fontX={14.5}
-					fontY={23}
-					size={30}
-					strokeWidth={0}
-					styles="{charButtonAlignment(cubeSide.outcome)}: 1px; position: absolute; top: 0px;"
-			></CharacterButton>
-			{cubeSide.factor.name}
-		</header>
-		{#if positionMode}
-		<Positioner
-				on:moveRight="{() => moveRight(cubeSide, cubeSideMap)}"
-				on:moveDown="{() => moveDown(cubeSide, cubeSideMap)}"
-				on:moveLeft="{() => moveLeft(cubeSide, cubeSideMap)}"
-				on:moveUp="{() => moveUp(cubeSide, cubeSideMap)}"
-				on:switchDir="{() => switchDir(cubeSide, cubeSideMap)}"
-		></Positioner>
-		{/if}
-		<p
-				style="color: #{cubeSide.textColorRGB};"
-		>
-			{cubeSide.position.name}
-		</p>
-		{/if}
-	</div>
-	{/each}
-</figure>

@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { IUiSituation } from "@votecube/model";
-
-	import { onMount } from "svelte";
 	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
+	import { onMount } from "svelte";
 
-	export let final;
+	export let final = true;
 	export let situation: IUiSituation;
 
 	let autosized;
@@ -31,56 +30,66 @@
 	{situation.by}
 </div>
 -->
-<summary class="title"> Category: </summary>
-<div class="category">
-	{situation.category.name}
-</div>
-<summary class="title"> Outcomes: </summary>
-<div>
-	<section class="A">
-		<header>
-			<CharacterButton
-				character="A"
-				fontSize={20}
-				fontX={12}
-				fontY={19}
-				size={24}
-				strokeWidth={1}
-			/>
-		</header>
-		<main class:final class:autosized>
-			{situation.outcomes.A.name}
-			<!--
+{#if situation}
+	<summary class="title"> Age Groups: </summary>
+	<div class="labels">
+		{#each situation.ageGroups as ageGroup}
+			{ageGroup.name}
+		{/each}
+	</div>
+	<summary class="title"> Labels: </summary>
+	<div class="labels">
+		{#each situation.labels as label}
+			{label.name}
+		{/each}
+	</div>
+	<summary class="title"> Outcomes: </summary>
+	<div>
+		<section class="A">
+			<header>
+				<CharacterButton
+					character="A"
+					fontSize={20}
+					fontX={12}
+					fontY={19}
+					size={24}
+					strokeWidth={1}
+				/>
+			</header>
+			<main class:final class:autosized>
+				{situation.outcomes.A.name}
+				<!--
 			This is outcome A, this is what we should do if A outweighs B.
 			And some reasonably wordy details below to make sure that the outcomes
 			can be quite descriptive, if needed. -->
-			<!-- Though they shouldn't be so long
+				<!-- Though they shouldn't be so long
 		 as to dis-interest the user in reading wordy and boring details. -->
-		</main>
-	</section>
-	<section class="B">
-		<header>
-			<CharacterButton
-				character="B"
-				fontSize={20}
-				fontX={12}
-				fontY={19}
-				size={24}
-				strokeWidth={1}
-			/>
-		</header>
-		<main class:final>
-			{situation.outcomes.B.name}
-			<!--
+			</main>
+		</section>
+		<section class="B">
+			<header>
+				<CharacterButton
+					character="B"
+					fontSize={20}
+					fontX={12}
+					fontY={19}
+					size={24}
+					strokeWidth={1}
+				/>
+			</header>
+			<main class:final>
+				{situation.outcomes.B.name}
+				<!--
 			This is outcome B, this is what we should do if B outweighs A.
 			And some reasonably wordy details below to make sure that the outcomes
 			can be quite descriptive, if needed.
 			 -->
-			<!-- Though they shouldn't be so long
+				<!-- Though they shouldn't be so long
 			as to dis-interest the user in reading wordy and boring details. -->
-		</main>
-	</section>
-</div>
+			</main>
+		</section>
+	</div>
+{/if}
 
 <style>
 	@media (min-width: 321px) {
@@ -158,7 +167,7 @@
 		width: 100%;
 	}
 
-	.category {
+	.labels {
 		display: block;
 		text-align: center;
 		width: 100%;

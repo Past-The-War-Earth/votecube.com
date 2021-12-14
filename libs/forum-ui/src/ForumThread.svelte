@@ -2,6 +2,7 @@
     import { DI, IChildContainer } from "@airport/di";
     import { IFieldGroup } from "@votecube/forms";
     import { pageTitle, routeParams, text } from "@votecube/ui-logic";
+    import TextArea from "@votecube/ui-controls/src/field/TextArea.svelte";
     import { onDestroy, onMount } from "svelte";
     import { get } from "svelte/store";
     import ForumPost from "./ForumPost.svelte";
@@ -53,7 +54,7 @@
                 post: formFactory.field([]),
             },
             [],
-            get(text).UI.Forum
+            get(text).UI
         );
 
         ensureForm(form, formHandle);
@@ -62,7 +63,7 @@
     });
 
     onDestroy(() => {
-        form.clearComponents();
+        form && form.clearComponents();
     });
 </script>
 
@@ -73,13 +74,16 @@
 <ForumPost />
 <ForumPost />
 
-<!--
-<TextArea
-    field={form.fields.outcomes.fields.A}
-    floatLabel={false}
-    mid={false}
-    mini={false}
-/>
--->
+{#if form}
+    <TextArea
+        field={form.fields.post}
+        floatLabel={false}
+        mid={false}
+        mini={false}
+    />
+{:else}
+    <div>No form found</div>
+{/if}
+
 <style>
 </style>

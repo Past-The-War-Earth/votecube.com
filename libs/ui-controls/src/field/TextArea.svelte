@@ -1,7 +1,7 @@
 <svelte:options immutable />
 
 <script type="ts">
-	import type { IComponent, IField, IFieldBase, IMatchingField } from "@votecube/forms";
+	import type { IComponent, IFieldBase, IMatchingField } from "@votecube/forms";
 
 	import { forms, textToast } from "@votecube/ui-logic";
 	import { onDestroy, onMount } from "svelte";

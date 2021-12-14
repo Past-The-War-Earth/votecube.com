@@ -19,7 +19,7 @@ import type {
     ITweenSolution,
     ITweenSolutionFactor
 } from '@votecube/model';
-import type { IChildContainer, IRootContainer } from '@airport/di';
+import type { IChildContainer } from '@airport/di';
 
 // import {APP_CONTAINER} from './container'
 

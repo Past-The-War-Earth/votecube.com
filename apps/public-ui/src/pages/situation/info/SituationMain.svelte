@@ -25,35 +25,30 @@
         SITUATION_LIST,
         SITUATION_MAIN_LOGIC,
         SITUATION_MANAGER,
-        RELEASE_PLAN,
         setResizeCllBck,
-        DERIVATION_LIST,
         SOLUTION_MANAGER,
         ILogicUtils,
+        situationActions,
+        situation as situationStore,
         SITUATION_MAIN,
     } from "@votecube/vc-logic";
     import { beforeUpdate, onDestroy, onMount } from "svelte";
     import { get } from "svelte/store";
-    import BuildButton from "@votecube/ui-controls/src/button/BuildButton.svelte";
-    import SaveButton from "@votecube/ui-controls/src/button/SaveButton.svelte";
-    import CancelButton from "@votecube/ui-controls/src/button/CancelButton.svelte";
-    import OutcomeButton from "@votecube/ui-controls/src/button/OutcomeButton.svelte";
-    import PercentPicker from "@votecube/ui-components/src/PercentPicker.svelte";
     import ActionPopover from "@votecube/ui-controls/src/shell/ActionPopover.svelte";
-    import AgeSuitability from "@votecube/ui-controls/src/AgeSuitability.svelte";
+    import AlignmentButton from "@votecube/ui-controls/src/button/AlignmentButton.svelte";
+    import BuildButton from "@votecube/ui-controls/src/button/BuildButton.svelte";
+    import CancelButton from "@votecube/ui-controls/src/button/CancelButton.svelte";
+    import ManualOverwriteButton from "@votecube/ui-controls/src/button/ManualOverwriteButton.svelte";
+    import PercentPicker from "@votecube/ui-components/src/PercentPicker.svelte";
+    import SaveButton from "@votecube/ui-controls/src/button/SaveButton.svelte";
     import DetailedCube from "../../../components/situation/DetailedCube.svelte";
     import FactorRanking from "../../../components/situation/FactorRanking.svelte";
-    import Outcomes from "../../../components/situation/Outcomes.svelte";
-    import SituationFab from "../../../components/situation/SituationFab.svelte";
     import SolutionComponentGraph from "../../../components/solution/SolutionComponentGraph.svelte";
-    import {
-        getBlankTweenSolution,
-        setupCubeView,
-    } from "../../../database";
+
+    import { getBlankTweenSolution, setupCubeView } from "../../../database";
     // import SolutionComponentSummary from '../../../components/solution/SolutionComponentSummary.html'
 
     let action;
-    let ageSuitabilityVisible;
     let beforeCardView = false;
     let beforeCubeView = false;
     let changed: {
@@ -72,23 +67,12 @@
     let delta = 0;
     let effectiveCubeView;
     let error;
-    let loaded;
     let logicUtils: ILogicUtils;
     let moveDelta = 0;
     let moveType;
-    let manualControlsOn = true;
     let mutationApi;
-    let outcomesVisible = false;
     let percentMode = false;
     let situation: IUiSituation = null;
-    let positionChanges = {
-        0: 0,
-        1: 1,
-        2: 2,
-        3: 3,
-        4: 4,
-        5: 5,
-    };
     let positionMode = false;
     let previous = {
         delta: 0,
@@ -101,6 +85,7 @@
     let verticalLayout = true;
     let solution: IUiSolution;
     let zoomFactor = 0.65;
+    let alignmentMode = false;
 
     $: currentSolutionFactors = f(() => {
         if (logicUtils && currentSolution) {
@@ -125,6 +110,49 @@
 
         return theSolutionFactors;
     }, delta);
+    $: routeMode = $routeParams.mode;
+    $: previewMode = routeMode === "build" || routeMode === "alter";
+    $: if ($situationActions.ageSuitabilitySave) {
+        situationActions.set({});
+        if (saving) {
+            setTimeout(() => {
+                setAction("confirm");
+            });
+        }
+        delta = delta + 1;
+    }
+    $: if ($situationActions.confirmSolution) {
+        situationActions.set({});
+        setCubeAdjustment(false).then(() => {
+            setAction("solution");
+        });
+    }
+    $: if ($situationActions.situationAlter) {
+        situationActions.set({});
+        let mode = $routeParams.mode;
+        if (mode === "solution") {
+            mode = "alter";
+        }
+        // confirmAlter.set(false)
+        navigateToPage(SITUATION_FORM, {
+            ...$routeParams,
+            mode,
+        });
+    }
+    $: if ($situationActions.checkBuild) {
+        situationActions.set({});
+        // if (!situation.ageSuitability && situation.ageSuitability !== 0) {
+        //     ageSuitabilityVisible = true;
+        //     saving = true;
+        //     return;
+        // }
+        if (situation) {
+            const action = situation.repository.uuId
+                ? "confirmUpdate"
+                : "confirm";
+            setAction(action);
+        }
+    }
 
     // let routeParamsUnsubscribe;
 
@@ -204,6 +232,7 @@
         );
 
         situation = cubeViewResult.situation;
+        situationStore.set(situation);
 
         const cubeSideResult = await detailedCubeLogic.getCubeSides(
             situation,
@@ -215,13 +244,13 @@
         solution = cubeViewResult.solution;
         cubeSideMap = cubeSideResult.cubeSideMap;
         cubeSides = cubeSideResult.cubeSides;
-        loaded = true;
         logicUtils = theLogicUtils;
         mode.set(displayMode);
     }
 
     onDestroy(async () => {
         setResizeCllBck(null);
+        situationStore.set(null);
 
         const [cubeEventListener, cubeLogic] = await container.get(
             CUBE_EVENT_LISTENER,
@@ -269,16 +298,9 @@
         return func();
     }
 
-    function alter($routeParams) {
-        let mode = $routeParams.mode;
-        if (mode === "solution") {
-            mode = "alter";
-        }
-        // confirmAlter.set(false)
-        navigateToPage(SITUATION_FORM, {
-            ...$routeParams,
-            mode,
-        });
+    function position() {
+        alignmentMode = !alignmentMode;
+        togglePositionMode();
     }
 
     // confirmAlter(event) {
@@ -291,45 +313,16 @@
         save($user, createNewRepository);
     }
 
-    function checkBuild(situation: IUiSituation) {
-        // if (!situation.ageSuitability && situation.ageSuitability !== 0) {
-        //     ageSuitabilityVisible = true;
-        //     saving = true;
-        //     return;
-        // }
-        const action = situation.repository.uuId ? "confirmUpdate" : "confirm";
-        setAction(action);
-    }
-
     function closeConfirm() {
         // setCubeAdjustment(true).then(() => {
         setAction("none");
         // })
     }
 
-    function confirmSolution() {
-        setCubeAdjustment(false).then(() => {
-            setAction("solution");
+    function showOutcomes() {
+        situationActions.set({
+            showOutcomes: true,
         });
-    }
-
-    function goToReleasePlan() {
-        navigateToPage(RELEASE_PLAN);
-    }
-
-    function goToDerivations() {
-        const { repositoryUuId } = get(routeParams);
-        navigateToPage(DERIVATION_LIST, { repositoryUuId });
-    }
-
-    function onAgeSuitabilitySave(saving) {
-        if (saving) {
-            setTimeout(() => {
-                setAction("confirm");
-            });
-        }
-        ageSuitabilityVisible = false;
-        delta = delta + 1;
     }
 
     function setAction(newAction) {
@@ -337,9 +330,10 @@
         error = "";
     }
 
-    function situationAltered(newCubeSides?) {
-        if (!newCubeSides) {
-            newCubeSides = cubeSides;
+    function situationAltered(newCubeSidesEvent?) {
+        let newCubeSides = cubeSides;
+        if (newCubeSidesEvent) {
+            newCubeSides = newCubeSidesEvent.detail;
         }
         cubeSides = newCubeSides;
         delta = delta + 1;
@@ -372,14 +366,6 @@
                 event.detail.value
             );
         });
-    }
-
-    function showAgeSuitability(newAgeSuitabilityVisible) {
-        ageSuitabilityVisible = newAgeSuitabilityVisible;
-    }
-
-    function showOutcomes(newOutcomesVisible) {
-        outcomesVisible = newOutcomesVisible;
     }
 
     function togglePercentPicker() {
@@ -581,7 +567,7 @@
         {delta}
         on:toggleView={() => toggleView(cubeView, !cubeView)}
         on:togglePercent={togglePercentPicker}
-        on:toggleChart={() => showOutcomes(true)}
+        on:toggleChart={showOutcomes}
         {situation}
         {tweenDelta}
         {solution}
@@ -626,7 +612,7 @@
             </section>
         </main>
     </section>
-    {#if solution}
+    {#if solution && situation}
         {#if percentMode}
             <PercentPicker
                 {delta}
@@ -636,41 +622,6 @@
                 {situation}
                 {solutionFactors}
             />
-        {/if}
-        <SituationFab
-            on:ageSuitability={() => showAgeSuitability(true)}
-            on:build={() => checkBuild(situation)}
-            on:confirmSolution={() => confirmSolution()}
-            on:edit={() => alter($routeParams)}
-            on:manuallyOverwrite={togglePercentPicker}
-            on:outcomes={() => showOutcomes(true)}
-            on:opinions={() => setAction("opinions")}
-            on:position={togglePositionMode}
-            on:rankings={() => setAction("rankings")}
-            on:stats={() => setAction("stats")}
-            on:derivations={goToDerivations}
-            mode={$mode}
-        />
-        {#if ageSuitabilityVisible}
-            <AgeSuitability
-                {saving}
-                on:cancel={() => showAgeSuitability(false)}
-                on:save={() => onAgeSuitabilitySave(saving)}
-                {situation}
-            />
-        {/if}
-        {#if outcomesVisible}
-            <ActionPopover customCancel={true} infoOnly={true}>
-                <div slot="header">
-                    {situation.name}
-                </div>
-                <div slot="content">
-                    <Outcomes final={loaded} {situation} />
-                </div>
-                <div slot="cancel">
-                    <OutcomeButton on:click={() => showOutcomes(false)} />
-                </div>
-            </ActionPopover>
         {/if}
         {#if action === "save"}
             <ActionPopover
@@ -685,20 +636,10 @@
                     {error}
                 </div>
             </ActionPopover>
-        {:else if ["solution", "stats", "rankings", "opinions"].indexOf(action) > -1}
+        {:else if action === "solution"}
             <!--			contentClass="smallPadding"-->
             <ActionPopover customCancel={true} on:cancel={closeConfirm}>
-                <div slot="header">
-                    {#if action === "opinions"}
-                        Almost Here - Situation Opinions
-                    {:else if action === "solution"}
-                        Coming soon - Solve
-                    {:else if action === "rankings"}
-                        Coming soon - Situation Rankings
-                    {:else if action === "stats"}
-                        Coming in Beta - Situation Statistics
-                    {/if}
-                </div>
+                <div slot="header">Coming soon - Solve</div>
                 <div slot="content">
                     <!--
                     <div>
@@ -718,21 +659,8 @@
                     -->
                     <br />
                     <h3>
-                        {#if action === "opinions"}
-                            Ability to post your opinions about Situations is
-                            coming next!
-                        {:else if action === "solution"}
-                            Voting is scheduled to be released at the end of
-                            Alpha testing period.
-                        {:else if action === "rankings"}
-                            We'll start providing basic Situation Rankings at
-                            the end of Alpha testing period. More will be added
-                            in subsequent releases.
-                        {:else if action === "stats"}
-                            Basic Situation Statistics will be available in Beta
-                            release. More advanced stats will be provided in
-                            version 1.
-                        {/if}
+                        Voting is scheduled to be released at the end of Alpha
+                        testing period.
                         <br />
                         <br />
                         Please see the <a href="/releasePlan">Release Plan</a> for
@@ -809,6 +737,17 @@
         </ActionPopover>
         {/if}-->
 </article>
+{#if effectiveCubeView}
+    <aside class="left-bottom-aside">
+        <div class="left-bottom-hover-button">
+            {#if previewMode}
+                <AlignmentButton {alignmentMode} on:click={position} />
+            {:else}
+                <ManualOverwriteButton on:click={togglePercentPicker} />
+            {/if}
+        </div>
+    </aside>
+{/if}
 
 <style>
     article {
@@ -851,6 +790,19 @@
         position: absolute;
         top: 56%;
         transform: translate(-50%, -50%);
+    }
+
+    .left-bottom-aside {
+        bottom: 5px;
+        height: 1px;
+        position: fixed;
+        z-index: 2000;
+    }
+
+    .left-bottom-hover-button {
+        bottom: 5px;
+        position: absolute;
+        left: 10px;
     }
 
     /*	.ranking {

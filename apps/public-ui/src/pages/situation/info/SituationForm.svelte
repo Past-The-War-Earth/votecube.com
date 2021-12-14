@@ -7,7 +7,7 @@
         SITUATION_LOCATIONS,
         SITUATION_MAIN,
         SITUATION_MANAGER,
-        SITUATION_TIME_FRAME
+        SITUATION_TIME_FRAME,
     } from "@votecube/vc-logic";
     import {
         navigateToPage,

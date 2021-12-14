@@ -1,22 +1,19 @@
 <script type="ts">
-	export let alignmentMode
+	export let alignmentMode;
 </script>
 
-<svg
-		height="50"
-		width="50"
->
+<svg height="50" width="50" on:click>
 	<g>
 		<circle
-				cx="25"
-				cy="25"
-				fill="#fff"
-				r="23"
-				stroke="#000"
-				stroke-width="3"
+			cx="25"
+			cy="25"
+			fill="#fff"
+			r="23"
+			stroke="#000"
+			stroke-width="3"
 		/>
 		{#if !alignmentMode}
-		<line
+			<line
 				stroke="#000000"
 				stroke-width="3"
 				stroke-linecap="round"
@@ -24,8 +21,8 @@
 				x2="25"
 				y1="10"
 				y2="40"
-		/>
-		<line
+			/>
+			<line
 				stroke-linecap="round"
 				stroke-width="3"
 				stroke="#000"
@@ -33,9 +30,9 @@
 				x2="40"
 				y1="25"
 				y2="25"
-		/>
+			/>
 
-		<line
+			<line
 				stroke="#000"
 				stroke-linecap="round"
 				stroke-width="3"
@@ -43,8 +40,8 @@
 				x2="40"
 				y1="21"
 				y2="25"
-		/>
-		<line
+			/>
+			<line
 				stroke="#000"
 				stroke-linecap="round"
 				stroke-width="3"
@@ -52,9 +49,9 @@
 				x2="40"
 				y1="29"
 				y2="25"
-		/>
-		
-		<line
+			/>
+
+			<line
 				stroke="#000"
 				stroke-linecap="round"
 				stroke-width="3"
@@ -62,8 +59,8 @@
 				x2="10"
 				y1="21"
 				y2="25"
-		/>
-		<line
+			/>
+			<line
 				stroke="#000"
 				stroke-linecap="round"
 				stroke-width="3"
@@ -71,9 +68,9 @@
 				x2="10"
 				y1="29"
 				y2="25"
-		/>
-		
-		<line
+			/>
+
+			<line
 				stroke="#000"
 				stroke-linecap="round"
 				stroke-width="3"
@@ -81,8 +78,8 @@
 				x2="21"
 				y1="10"
 				y2="14"
-		/>
-		<line
+			/>
+			<line
 				stroke="#000"
 				stroke-linecap="round"
 				stroke-width="3"
@@ -90,9 +87,9 @@
 				x2="29"
 				y1="10"
 				y2="14"
-		/>
-		
-		<line
+			/>
+
+			<line
 				stroke="#000"
 				stroke-linecap="round"
 				stroke-width="3"
@@ -100,8 +97,8 @@
 				x2="21"
 				y1="40"
 				y2="36"
-		/>
-		<line
+			/>
+			<line
 				stroke="#000"
 				stroke-linecap="round"
 				stroke-width="3"
@@ -109,7 +106,7 @@
 				x2="29"
 				y1="40"
 				y2="36"
-		/>
+			/>
 		{/if}
 	</g>
 </svg>

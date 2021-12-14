@@ -1,78 +1,124 @@
 <script>
-	import {popup}         from '@votecube/ui-logic'
+	import { popup } from "@votecube/ui-logic";
 	import {
 		beforeUpdate,
 		createEventDispatcher,
 		onDestroy,
-		onMount
-	}                      from 'svelte'
-	import AddRemoveButton from '@votecube/ui-controls/src/button/AddRemoveButton.svelte'
+		onMount,
+	} from "svelte";
+	import AddRemoveButton from "@votecube/ui-controls/src/button/AddRemoveButton.svelte";
 
-	export let opened    = false
+	export let opened = false;
 
-	let changed = {}
-	let hidden
-	let openState = 0
-	let popupUnsubscribe
-	let previous = {}
+	let changed = {};
+	let hidden;
+	let openState = 0;
+	let popupUnsubscribe;
+	let previous = {};
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher();
 
 	$: visibility = f(() => {
 		switch (openState) {
 			case 0:
-				return 'hidden'
+				return "hidden";
 			case 1:
-				return 'closed'
+				return "closed";
 			case 2:
-				return 'open'
+				return "open";
 			case 3:
-				return 'closed closing'
+				return "closed closing";
 		}
-		return ''
-	})
+		return "";
+	});
 
 	beforeUpdate(() => {
 		changed.opened = opened !== previous.opened;
 		previous.opened = opened;
 
 		if (changed.opened && !opened) {
-			toggle(true)
+			toggle(true);
 		}
-	})
+	});
 	onMount(() => {
-		popupUnsubscribe = popup.subscribe(value => {
-			hidden = value
-		})
-	})
-	onDestroy(() => popupUnsubscribe())
+		popupUnsubscribe = popup.subscribe((value) => {
+			hidden = value;
+		});
+	});
+	onDestroy(() => popupUnsubscribe());
 
 	function f(func) {
-		return func()
+		return func();
 	}
 
 	function toggle(oldOpened) {
 		if (oldOpened === undefined) {
-			oldOpened = opened
+			oldOpened = opened;
 		}
-		opened = !oldOpened
+		opened = !oldOpened;
 
 		if (opened) {
-			openState = 1
+			openState = 1;
 			setTimeout(() => {
-				openState = 2
-			}, 10)
+				openState = 2;
+			}, 10);
 		} else {
-			openState = 3
+			openState = 3;
 			setTimeout(() => {
-				openState = 0
-			}, 260)
+				openState = 0;
+			}, 260);
 		}
 	}
 </script>
 
-<style>
+<aside class:hidden>
+	<menu class="verticalButtons">
+		<!--		<slot name="vertical"></slot>-->
+		<nav class="{visibility} fabNav" id="fabNav_up1">
+			<slot name="up1" />
+		</nav>
+		<nav class="{visibility} fabNav" id="fabNav_up2">
+			<slot name="up2" />
+		</nav>
+		<nav class="{visibility} fabNav" id="fabNav_up3">
+			<slot name="up3" />
+		</nav>
+		<nav class="{visibility} fabNav" id="fabNav_up4">
+			<slot name="up4" />
+		</nav>
+		<nav class="{visibility} fabNav" id="fabNav_up5">
+			<slot name="up5" />
+		</nav>
+	</menu>
+	<menu class="horizontalButtons">
+		<nav class="{visibility} fabNav" id="fabNav_left1">
+			<slot name="left1" />
+		</nav>
+		<nav class="{visibility} fabNav" id="fabNav_left2">
+			<slot name="left2" />
+		</nav>
+		<nav class="{visibility} fabNav" id="fabNav_left3">
+			<slot name="left3" />
+		</nav>
+		<nav class="{visibility} fabNav" id="fabNav_left4">
+			<slot name="left4" />
+		</nav>
+	</menu>
+	<nav class="fab" on:click={() => toggle(opened)}>
+		<span>
+			<div class="farAway">
+				<AddRemoveButton
+					add={!opened}
+					reversible={true}
+					size="35"
+					styles="bottom: 3px; position: absolute; right: 1.5px;"
+				/>
+			</div>
+		</span>
+	</nav>
+</aside>
 
+<style>
 	aside {
 		bottom: 5px;
 		height: 1px;
@@ -205,90 +251,4 @@
 		flex-direction: column-reverse;
 		right: 0px;
 	}
-
 </style>
-
-<aside
-		class:hidden="{hidden}"
->
-	<menu
-			class="verticalButtons"
-	>
-		<!--		<slot name="vertical"></slot>-->
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_up1"
-		>
-			<slot name="up1"></slot>
-		</nav>
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_up2"
-		>
-			<slot name="up2"></slot>
-		</nav>
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_up3"
-		>
-			<slot name="up3"></slot>
-		</nav>
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_up4"
-		>
-			<slot name="up4"></slot>
-		</nav>
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_up5"
-		>
-			<slot name="up5"></slot>
-		</nav>
-	</menu>
-	<menu
-			class="horizontalButtons"
-	>
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_left1"
-		>
-			<slot name="left1"></slot>
-		</nav>
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_left2"
-		>
-			<slot name="left2"></slot>
-		</nav>
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_left3"
-		>
-			<slot name="left3"></slot>
-		</nav>
-		<nav
-				class="{visibility} fabNav"
-				id="fabNav_left4"
-		>
-			<slot name="left4"></slot>
-		</nav>
-	</menu>
-	<nav
-			class="fab"
-			on:click="{() => toggle(opened)}"
-	>
-		<span>
-		<div
-				class="farAway"
-		>
-			<AddRemoveButton
-					add="{!opened}"
-					reversible="{true}"
-					size="35"
-					styles="bottom: 3px; position: absolute; right: 1.5px;"
-			></AddRemoveButton>
-		</div>
-		</span>
-	</nav>
-</aside>

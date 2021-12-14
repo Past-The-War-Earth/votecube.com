@@ -6,6 +6,7 @@ export const FACTOR_LIST = '/factor/List';
 export const SITUATION_LIST = '/situation/List';
 export const DERIVATION_LIST = '/derivation/List/:repositoryUuId';
 export const SITUATION_FORM = '/situation/Form/:mode/:hostingPlatform/:repositoryUuId';
+export const SITUATION_FORUM = '/situation/Forum/:situationHostingPlatform/:situationRepositoryUuId/:forumHostingPlatform/:forumRepositoryUuId/';
 export const SITUATION_MAIN = '/situation/Main/:mode/:hostingPlatform/:repositoryUuId';
 export const SITUATION_LOCATIONS = '/situation/Locations/:mode';
 export const SITUATION_TIME_FRAME = '/situation/TimeFrame/:mode';

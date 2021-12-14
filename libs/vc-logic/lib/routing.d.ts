@@ -7,6 +7,7 @@ export declare const FACTOR_LIST: Route_Path;
 export declare const SITUATION_LIST: Route_Path;
 export declare const DERIVATION_LIST: Route_Path;
 export declare const SITUATION_FORM: Route_Path;
+export declare const SITUATION_FORUM: Route_Path;
 export declare const SITUATION_MAIN: Route_Path;
 export declare const SITUATION_LOCATIONS: Route_Path;
 export declare const SITUATION_TIME_FRAME: Route_Path;

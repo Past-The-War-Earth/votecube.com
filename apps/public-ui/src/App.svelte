@@ -1,5 +1,11 @@
 <script lang="ts">
+	import { IOC } from "@airport/di";
 	import ForumThread from "@votecube/forum-ui/src/ForumThread.svelte";
+	import type {
+		IUiCustomEvent,
+		IUiMenuItem,
+		IUiSituation,
+	} from "@votecube/model";
 	import {
 		AUTH,
 		authChecked,
@@ -8,34 +14,42 @@
 		isDesktop,
 		navigateToPage,
 		noOverflow,
+		routeParams,
 		ROUTES,
 		showConfirm,
 		showMainMenu,
 		showSignIn,
 		textToast,
-		user
+		user,
 	} from "@votecube/ui-logic";
 	import {
 		ABOUT,
 		APP_CONTAINER,
 		CARD_CLIMATE_CHANGE,
+		DERIVATION_LIST,
 		FACTOR_INFO_MAIN,
 		FACTOR_LIST,
 		FEEDBACK,
 		SITUATION_FORM,
+		SITUATION_FORUM,
 		SITUATION_LIST,
 		SITUATION_LOCATIONS,
 		SITUATION_MAIN,
 		SITUATION_TIME_FRAME,
 		RELEASE_PLAN,
 		scheduleToResize,
+		situation,
+		situationActions,
 		startResizeInterval,
-		DERIVATION_LIST
 	} from "@votecube/vc-logic";
+	import ActionPopover from "@votecube/ui-controls/src/shell/ActionPopover.svelte";
+	import AgeSuitability from "@votecube/ui-controls/src/AgeSuitability.svelte";
+	import CancelButton from "@votecube/ui-controls/src/button/CancelButton.svelte";
+	import OutcomeButton from "@votecube/ui-controls/src/button/OutcomeButton.svelte";
+	import TextToast from "@votecube/ui-controls/src/shell/TextToast.svelte";
 	import { onDestroy, onMount } from "svelte";
 	import { get } from "svelte/store";
 	import { loadUi } from "./libs/text/ui";
-	import TextToast from "@votecube/ui-controls/src/shell/TextToast.svelte";
 	import Menu from "./shell/menu/Menu.svelte";
 	import TopBar from "./shell/top/TopBar.svelte";
 	import SignIn from "./shell/SignIn.svelte";
@@ -44,27 +58,43 @@
 	// import FactorList      from './pages/factor/search/FactorList.html'
 	import Feedback from "./pages/feedback/FeedbackForm.svelte";
 	import SituationForm from "./pages/situation/info/SituationForm.svelte";
+	import SituationForum from "./pages/situation/info/SituationForum.svelte";
 	import SituationInfoMain from "./pages/situation/info/SituationMain.svelte";
 	// import SituationLocations   from './pages/situation/Locations.html'
 	import SituationList from "./pages/situation/search/SituationList.svelte";
 	// import SituationTimeframe   from './pages/situation/Timeframe.html'
 	import DerivationList from "./pages/situation/list/DerivationList.svelte";
 	import ReleasePlan from "./pages/ReleasePlan.svelte";
-	import type { IUiCustomEvent, IUiMenuItem } from "@votecube/model";
-	import { IOC } from "@airport/di";
+	import Outcomes from "./components/situation/Outcomes.svelte";
+	import SituationFab from "./components/situation/SituationFab.svelte";
 
-	// let topMenuMap
+	let action;
+	let mode;
+	let ageSuitabilityVisible;
 	let appShowMainMenu = showMainMenu;
 	let appIsDesktop = isDesktop;
+	let inSituation = false;
 	let lastTextToast = {};
+	let outcomesVisible = false;
 	let PageComp = null;
 	let pageMap;
 	let showTextToast = false;
 	let textToastUnsubscribe;
+	let uiSituation: IUiSituation;
 
 	$: activeClass = $appShowMainMenu ? "active" : "";
-
 	$: showLogo = $appIsDesktop || $appShowMainMenu;
+	$: {
+		mode = $routeParams ? $routeParams.mode : "none";
+	}
+	$: {
+		uiSituation = $situation;
+		inSituation = !!uiSituation;
+	}
+	$: if (inSituation && $situationActions.showOutcomes) {
+		situationActions.set({})
+		showOutcomes(true);
+	}
 
 	function clickMain() {
 		// if (DOM_API.e(menuElementIdSelector)
@@ -106,6 +136,51 @@
 		navigateToPage(view.type, view.params);
 	}
 
+	function showAgeSuitability(newAgeSuitabilityVisible) {
+		ageSuitabilityVisible = newAgeSuitabilityVisible;
+	}
+
+	function showOutcomes(newOutcomesVisible) {
+		outcomesVisible = newOutcomesVisible;
+	}
+
+	function onAgeSuitabilitySave() {
+		situationActions.set({
+			ageSuitabilitySave: true,
+		});
+	}
+
+	function goToDerivations() {
+		const { repositoryUuId } = get(routeParams);
+		navigateToPage(DERIVATION_LIST, { repositoryUuId });
+	}
+
+	function confirmSolution() {
+		situationActions.set({
+			confirmSolution: true,
+		});
+	}
+
+	function alter() {
+		situationActions.set({
+			situationAlter: true,
+		});
+	}
+
+	function setAction(newAction) {
+		action = newAction;
+	}
+
+	function checkBuild() {
+		situationActions.set({
+			checkBuild: true,
+		});
+	}
+
+	function closeConfirm() {
+		setAction("none");
+	}
+
 	onMount(async () => {
 		const routes = await APP_CONTAINER.get(ROUTES);
 
@@ -116,6 +191,7 @@
 			// [FACTOR_LIST]: FactorList,
 			[FEEDBACK]: Feedback,
 			[SITUATION_FORM]: SituationForm,
+			[SITUATION_FORUM]: SituationForum,
 			[SITUATION_LIST]: SituationList,
 			// [SITUATION_LOCATIONS]: SituationLocations,
 			[SITUATION_MAIN]: SituationInfoMain,
@@ -135,6 +211,7 @@
 			[FACTOR_LIST, false, true],
 			[FEEDBACK, false, false],
 			[SITUATION_FORM, true, false],
+			[SITUATION_FORUM, true, false],
 			[SITUATION_LIST, false, true],
 			[SITUATION_LOCATIONS, true, false],
 			[SITUATION_MAIN, false, true],
@@ -208,9 +285,105 @@
 {#if $showSignIn}
 	<SignIn on:closed={closeSignIn} />
 {/if}
-<!--
-<ForumThread />
+{#if inSituation}
+	<SituationFab
+		on:ageSuitability={() => showAgeSuitability(true)}
+		on:build={checkBuild}
+		on:confirmSolution={confirmSolution}
+		on:edit={() => alter()}
+		on:outcomes={() => showOutcomes(true)}
+		on:opinions={() => setAction("opinions")}
+		on:rankings={() => setAction("rankings")}
+		on:stats={() => setAction("stats")}
+		on:derivations={goToDerivations}
+		{mode}
+	/>
+	{#if ageSuitabilityVisible}
+		<AgeSuitability
+			on:cancel={() => showAgeSuitability(false)}
+			on:save={onAgeSuitabilitySave}
+			situation={uiSituation}
+		/>
+	{/if}
+	{#if outcomesVisible}
+		<ActionPopover customCancel={true} infoOnly={true}>
+			<div slot="header">
+				{$situation.name}
+			</div>
+			<div slot="content">
+				<Outcomes situation={$situation} />
+			</div>
+			<div slot="cancel">
+				<OutcomeButton on:click={() => showOutcomes(false)} />
+			</div>
+		</ActionPopover>
+	{/if}
+	{#if ["stats", "rankings", "opinions"].indexOf(action) > -1}
+		<!--			contentClass="smallPadding"-->
+		<ActionPopover customCancel={true} on:cancel={closeConfirm}>
+			<div slot="header">
+				{#if action === "opinions"}
+					Almost Here - Situation Opinions
+				{:else if action === "rankings"}
+					Coming soon - Situation Rankings
+				{:else if action === "stats"}
+					Coming in Beta - Situation Statistics
+				{/if}
+			</div>
+			<div slot="content">
+				<!--
+			<div>
+				{situation.name}
+			</div>
+			-->
+				<!--
+			<SolutionComponentSummary
+					bind:delta
+					bind:situation
+					verticalLayout="Y"
+					bind:solution
+					maxBarSize="{120}"
+					mode="confirm"
+					solutionFactors="{solutionFactors}"
+			></SolutionComponentSummary>
+			-->
+				<br />
+				<h3>
+					{#if action === "opinions"}
+						Ability to post your opinions about Situations is coming
+						next!
+					{:else if action === "rankings"}
+						We'll start providing basic Situation Rankings at the
+						end of Alpha testing period. More will be added in
+						subsequent releases.
+					{:else if action === "stats"}
+						Basic Situation Statistics will be available in Beta
+						release. More advanced stats will be provided in version
+						1.
+					{/if}
+					<br />
+					<br />
+					Please see the <a href="/releasePlan">Release Plan</a> for details.
+				</h3>
+				<br />
+			</div>
+			<!--
+		<div slot="actions">
+			<SolutionButton
+					on:select="submitSolution()"
+			></SolutionButton>
+		</div>
 -->
+			<div slot="cancel">
+				<CancelButton on:click={closeConfirm} />
+			</div>
+		</ActionPopover>
+	{/if}
+{/if}
+<!--
+-->
+<ForumThread />
+
 <style>
 	@media (min-width: 62em) {
 		#main {
@@ -219,7 +392,7 @@
 		}
 	}
 
-	div {
+	.logo {
 		color: white;
 		background: #191818;
 		height: 44px;

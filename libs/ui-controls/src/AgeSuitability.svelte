@@ -1,19 +1,11 @@
 <script lang="ts">
 	import type { IUiSituation } from "@votecube/model";
-
 	import { createEventDispatcher, onMount } from "svelte";
-	import BuildButton from "./button/BuildButton.svelte";
 	import SaveButton from "./button/SaveButton.svelte";
 	import Radio from "./field/Radio.svelte";
 	import ActionPopover from "./shell/ActionPopover.svelte";
 
-	ActionPopover;
-	BuildButton;
-	Radio;
-	SaveButton;
-
 	export let situation: IUiSituation;
-	export let saving;
 
 	let value;
 	let values = [0, 7, 13, 17, 21];
@@ -62,11 +54,7 @@
 		</table>
 	</div>
 	<div slot="actions">
-		{#if saving}
-			<BuildButton on:click={save} />
-		{:else}
-			<SaveButton on:click={save} />
-		{/if}
+		<SaveButton on:click={save} />
 	</div>
 </ActionPopover>
 

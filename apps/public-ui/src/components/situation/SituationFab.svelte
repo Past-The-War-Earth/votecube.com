@@ -1,53 +1,109 @@
 <script lang="ts">
-	import {createEventDispatcher} from 'svelte'
+	import { createEventDispatcher } from "svelte";
 
-	import AlignmentButton   from '@votecube/ui-controls/src/button/AlignmentButton.svelte'
-	import BellCurveButton   from '@votecube/ui-controls/src/button/BellCurveButton.svelte'
-	import BuildButton       from '@votecube/ui-controls/src/button/BuildButton.svelte'
-	import DescribedButton   from '@votecube/ui-controls/src/button/DescribedButton.svelte'
-	import EditButton        from '@votecube/ui-controls/src/button/EditButton.svelte'
-	import ManualOverwriteButton
-	                         from '@votecube/ui-controls/src/button/ManualOverwriteButton.svelte'
-	import OpinionButton     from '@votecube/ui-controls/src/button/OpinionButton.svelte'
-	import OutcomeButton     from '@votecube/ui-controls/src/button/OutcomeButton.svelte'
-	import RankingsButton    from '@votecube/ui-controls/src/button/RankingsButton.svelte'
-	import ShieldButton      from '@votecube/ui-controls/src/button/ShieldButton.svelte'
-	import UndescribedButton from '@votecube/ui-controls/src/button/UndescribedButton.svelte'
-	import SituationTreeButton
-	                         from '@votecube/ui-controls/src/button/SituationTreeButton.svelte'
-	import SolutionButton        from '@votecube/ui-controls/src/button/SolutionButton.svelte'
-	import Fab               from '@votecube/ui-components/src/Fab.svelte'
+	import BellCurveButton from "@votecube/ui-controls/src/button/BellCurveButton.svelte";
+	import BuildButton from "@votecube/ui-controls/src/button/BuildButton.svelte";
+	import DescribedButton from "@votecube/ui-controls/src/button/DescribedButton.svelte";
+	import EditButton from "@votecube/ui-controls/src/button/EditButton.svelte";
+	import OpinionButton from "@votecube/ui-controls/src/button/OpinionButton.svelte";
+	import OutcomeButton from "@votecube/ui-controls/src/button/OutcomeButton.svelte";
+	import RankingsButton from "@votecube/ui-controls/src/button/RankingsButton.svelte";
+	import ShieldButton from "@votecube/ui-controls/src/button/ShieldButton.svelte";
+	import UndescribedButton from "@votecube/ui-controls/src/button/UndescribedButton.svelte";
+	import SituationTreeButton from "@votecube/ui-controls/src/button/SituationTreeButton.svelte";
+	import SolutionButton from "@votecube/ui-controls/src/button/SolutionButton.svelte";
+	import Fab from "@votecube/ui-components/src/Fab.svelte";
 
-	export let mode
+	export let mode: string;
 
-	let alignmentMode = false
-	let opened      = false
+	let opened = false;
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher();
 
-	$: previewMode = mode === 'build' || mode === 'alter'
-	$: editSituationLabel = mode === 'build' ? 'Edit Situation' : 'Alter Situation'
+	$: previewMode = mode === "build" || mode === "alter";
+	$: editSituationLabel =
+		mode === "build" ? "Edit Situation" : "Alter Situation";
 
-	function run(
-		action
-	) {
-		opened = false
-		dispatch(action)
+	function run(action) {
+		opened = false;
+		dispatch(action);
 	}
-
-	function position(
-		newAlignmentMode,
-		previewMode
-	) {
-		if (!previewMode) {
-			run('manuallyOverwrite')
-			return
-		}
-		alignmentMode = !newAlignmentMode
-		run('position')
-	}
-
 </script>
+
+<Fab bind:opened>
+	<div slot="up4">
+		<DescribedButton
+			bind:opened
+			label="Set Age Suitability"
+			on:click={() => run("ageSuitability")}
+		>
+			<ShieldButton />
+		</DescribedButton>
+	</div>
+	<div slot="up3">
+		<DescribedButton
+			bind:opened
+			label="View Outcomes"
+			on:click={() => run("outcomes")}
+		>
+			<OutcomeButton />
+		</DescribedButton>
+	</div>
+	<div slot="up2">
+		<DescribedButton
+			bind:opened
+			label={editSituationLabel}
+			on:click={() => run("edit")}
+		>
+			<EditButton />
+		</DescribedButton>
+	</div>
+	<div slot="up1">
+		<DescribedButton
+			bind:opened
+			label={previewMode ? "Define Situation" : "Solve"}
+			on:click={() => run(previewMode ? "build" : "confirmSolution")}
+		>
+			{#if previewMode}
+				<BuildButton />
+			{:else}
+				<SolutionButton />
+			{/if}
+		</DescribedButton>
+	</div>
+	<div slot="left1">
+		<UndescribedButton>
+			<SituationTreeButton
+				on:click={() => run("derivations")}
+				styles="position: absolute; right: 0px; top: 0px;"
+			/>
+		</UndescribedButton>
+	</div>
+	<div slot="left2">
+		<UndescribedButton>
+			<OpinionButton
+				on:click={() => run("opinions")}
+				styles="position: absolute; right: 0px; top: 0px;"
+			/>
+		</UndescribedButton>
+	</div>
+	<div slot="left3">
+		<UndescribedButton>
+			<BellCurveButton
+				on:click={() => run("stats")}
+				styles="position: absolute; right: 0px; top: 0px;"
+			/>
+		</UndescribedButton>
+	</div>
+	<div slot="left4">
+		<UndescribedButton>
+			<RankingsButton
+				on:click={() => run("rankings")}
+				styles="position: absolute; right: 0px; top: 0px;"
+			/>
+		</UndescribedButton>
+	</div>
+</Fab>
 
 <style>
 	div[slot^="up"] {
@@ -62,119 +118,3 @@
 		top: 5px;
 	}
 </style>
-
-<Fab
-		bind:opened
->
-	<div
-			slot="up5"
-	>
-		<DescribedButton
-				bind:opened
-				label="Set Age Suitability"
-				on:click="{() => run('ageSuitability')}"
-		>
-			<ShieldButton
-			></ShieldButton>
-		</DescribedButton>
-	</div>
-	<div
-			slot="up4"
-	>
-		<DescribedButton
-				bind:opened
-				label="View Outcomes"
-				on:click="{() => run('outcomes')}"
-		>
-			<OutcomeButton
-			></OutcomeButton>
-		</DescribedButton>
-	</div>
-	<div
-			slot="up3"
-	>
-		<DescribedButton
-				bind:opened
-				label="{previewMode ? (alignmentMode ? 'Hide Alignment' : 'Set Alignment') : 'Manually Override'}"
-				on:click="{() => position(alignmentMode, previewMode)}"
-		>
-			{#if previewMode}
-			<AlignmentButton
-					alignmentMode="{alignmentMode}"
-			></AlignmentButton>
-			{:else}
-			<ManualOverwriteButton
-			></ManualOverwriteButton>
-			{/if}
-		</DescribedButton>
-	</div>
-	<div
-			slot="up2"
-	>
-		<DescribedButton
-				bind:opened
-				label="{editSituationLabel}"
-				on:click="{() => run('edit')}"
-		>
-			<EditButton
-			></EditButton>
-		</DescribedButton>
-	</div>
-	<div
-			slot="up1"
-	>
-		<DescribedButton
-				bind:opened
-				label="{previewMode ? 'Define Situation' : 'Solve'}"
-				on:click="{() => run(previewMode ? 'build' : 'confirmSolution')}"
-		>
-			{#if previewMode}
-			<BuildButton
-			></BuildButton>
-			{:else}
-			<SolutionButton
-			></SolutionButton>
-			{/if}
-		</DescribedButton>
-	</div>
-	<div
-			slot="left1"
-	>
-		<UndescribedButton>
-			<SituationTreeButton
-					on:click="{() => run('derivations')}"
-					styles="position: absolute; right: 0px; top: 0px;"
-			></SituationTreeButton>
-		</UndescribedButton>
-	</div>
-	<div
-			slot="left2"
-	>
-		<UndescribedButton>
-			<OpinionButton
-					on:click="{() => run('opinions')}"
-					styles="position: absolute; right: 0px; top: 0px;"
-			></OpinionButton>
-		</UndescribedButton>
-	</div>
-	<div
-			slot="left3"
-	>
-		<UndescribedButton>
-			<BellCurveButton
-					on:click="{() => run('stats')}"
-					styles="position: absolute; right: 0px; top: 0px;"
-			></BellCurveButton>
-		</UndescribedButton>
-	</div>
-	<div
-			slot="left4"
-	>
-		<UndescribedButton>
-			<RankingsButton
-					on:click="{() => run('rankings')}"
-					styles="position: absolute; right: 0px; top: 0px;"
-			></RankingsButton>
-		</UndescribedButton>
-	</div>
-</Fab>
