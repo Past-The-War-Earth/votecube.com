@@ -1,18 +1,20 @@
 <script>
 	import {
 		navigateToPage,
-		SITUATION_LIST,
 		text,
 		user
+	}                  from '@votecube/vc-logic'
+	import {
+		SITUATION_LIST
 	}                  from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount
 	}                  from 'svelte'
 	import {get}       from 'svelte/store'
-	import SaveButton   from '../../../common/control/button/SaveButton.svelte'
-	import AutoComplete from '../../../common/field/AutoComplete.svelte'
-	import TextArea     from '../../../common/field/TextArea.svelte'
+	import SaveButton   from '@votecube/ui-controls/src/button/SaveButton.svelte'
+	import AutoComplete from '@votecube/ui-controls/src/field/AutoComplete.svelte'
+	import TextArea     from '@votecube/ui-controls/src/field/TextArea.svelte'
 	import {loadForms} from '../../libs/forms'
 
 	let delta      = 0

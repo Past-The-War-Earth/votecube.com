@@ -1,5 +1,4 @@
-import {get}  from '../common/ajax'
-import {HASH} from '../helpers/hash'
+import { get, HASH } from '@votecube/vc-logic'
 
 var locations
 
@@ -8,7 +7,7 @@ export async function loadLocations() {
 		return locations
 	}
 	const text = await get(`./assets/data/locations${HASH}.json`)
-	locations  = JSON.parse(text as string)
+	locations = JSON.parse(text as string)
 
 	return locations
 }

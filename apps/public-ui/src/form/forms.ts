@@ -1,4 +1,4 @@
-import {navigateToPage} from '@votecube/vc-logic'
+import {navigateToPage} from '@votecube/ui-logic'
 
 export const DEFINE_SITUATION_TOP = 'DEFINE_SITUATION_TOP'
 export const CREATE_FACTOR   = 'CREATE_FACTOR'

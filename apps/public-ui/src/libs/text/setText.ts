@@ -1,4 +1,4 @@
-import {text} from '@votecube/vc-logic'
+import {text} from '@votecube/ui-logic'
 import {get}  from 'svelte/store'
 
 export function setText(

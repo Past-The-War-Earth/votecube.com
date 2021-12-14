@@ -5,11 +5,13 @@ import {
 import {
     ICubeLogic,
     ISituationFormManager,
-    pageTitle,
     SITUATION_FORM_MANAGER,
     SITUATION_MANAGER,
     SOLUTION_MANAGER
 } from '@votecube/vc-logic'
+import {
+    pageTitle,
+} from '@votecube/ui-logic'
 import type {
     IUiSolution,
     IUiSituation,

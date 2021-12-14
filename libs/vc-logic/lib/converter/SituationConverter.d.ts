@@ -1,6 +1,6 @@
 import { ISituation } from '@votecube/votecube';
 import { IUiSituation } from '@votecube/model';
-import { RepositoryRecordConverter } from './RepositoryRecordConverter';
+import { RepositoryRecordConverter } from '@votecube/ui-logic';
 export interface ISituationConverter {
     dbToUi(dbSituation: ISituation): IUiSituation;
     uiToDb(uiSituation: IUiSituation, dbSituation: ISituation): ISituation;

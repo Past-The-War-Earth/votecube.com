@@ -1,18 +1,13 @@
 <script lang="ts">
 	import { DI } from "@airport/di";
-	import { AUTH, text } from "@votecube/vc-logic";
+	import { AUTH, text } from "@votecube/ui-logic";
 	import { createEventDispatcher, onDestroy, onMount } from "svelte";
 	import { get } from "svelte/store";
-	import EnterButton from "../common/control/button/EnterButton.svelte";
-	import SaveButton from "../common/control/button/SaveButton.svelte";
+	import EnterButton from "@votecube/ui-controls/src/button/EnterButton.svelte";
 	// import * as forms                     from '../form/forms'
-	import Text from "../common/field/Text.svelte";
-	import MonthYearPicker from "../common/field/MonthYearPicker.svelte";
-	import ActionPopover from "../common/shell/ActionPopover.svelte";
+	import Text from "@votecube/ui-controls/src/field/Text.svelte";
+	import ActionPopover from "@votecube/ui-controls/src/shell/ActionPopover.svelte";
 	import { loadForms } from "../libs/forms";
-	import { loadLocations as loadLocText } from "../libs/text/locations";
-	import { loadLocations } from "../libs/locations";
-	import AutoComplete from "../common/field/AutoComplete.svelte";
 
 	let container;
 	let error;

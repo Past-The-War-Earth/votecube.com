@@ -1,18 +1,20 @@
 <script lang="ts">
 	import {
 		pageTitle,
-		SITUATION_FORM,
 		routeParams
+	}                      from '@votecube/ui-logic'
+	import {
+		SITUATION_FORM
 	}                      from '@votecube/vc-logic'
 	import {
 		onDestroy,
 		onMount
 	}                      from 'svelte'
-	import CharacterButton from '../../../common/control/button/CharacterButton.svelte'
-	import SaveButton      from '../../../common/control/button/SaveButton.svelte'
-	import ColorPicker     from '../../../common/field/ColorPicker.svelte'
-	import Text            from '../../../common/field/Text.svelte'
-	import TextArea        from '../../../common/field/TextArea.svelte'
+	import CharacterButton from '@votecube/ui-controls/src/button/CharacterButton.svelte'
+	import SaveButton      from '@votecube/ui-controls/src/button/SaveButton.svelte'
+	import ColorPicker     from '@votecube/ui-components/src/ColorPicker.svelte'
+	import Text            from '@votecube/ui-controls/src/field/Text.svelte'
+	import TextArea        from '@votecube/ui-controls/src/field/TextArea.svelte'
 	import {saveSituationForm}  from '../../../form/cache'
 	import {
 		CREATE_FACTOR,

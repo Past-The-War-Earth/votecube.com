@@ -1,9 +1,6 @@
-import { APP_CONTAINER } from './container'
 import {
-	Route_ParamValue,
 	Route_Path
-} from './Routes'
-import { ROUTES } from './tokens'
+} from '@votecube/ui-logic'
 
 export const ABOUT: Route_Path = '/about'
 export const FEEDBACK: Route_Path = '/feedback'
@@ -17,15 +14,3 @@ export const SITUATION_MAIN: Route_Path = '/situation/Main/:mode/:hostingPlatfor
 export const SITUATION_LOCATIONS: Route_Path = '/situation/Locations/:mode'
 export const SITUATION_TIME_FRAME: Route_Path = '/situation/TimeFrame/:mode'
 export const CARD_CLIMATE_CHANGE: Route_Path = '/card/ClimateChange'
-
-export function navigateToPage(
-	routePath: Route_Path,
-	paramMap?: {
-		[paramName: string]: Route_ParamValue
-	}
-) {
-	APP_CONTAINER.get(ROUTES).then(
-		routes => {
-			routes.navigateToPage(routePath, paramMap)
-		})
-}

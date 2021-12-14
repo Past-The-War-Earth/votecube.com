@@ -54,6 +54,21 @@
       "projectFolder": "libs/vc-logic",
       "shouldPublish": true
     },
+    {
+      "packageName": "@votecube/ui-components",
+      "projectFolder": "libs/ui-components",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@votecube/ui-controls",
+      "projectFolder": "libs/ui-controls",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@votecube/ui-logic",
+      "projectFolder": "libs/ui-logic",
+      "shouldPublish": true
+    },
     // "schemas" folder (alphabetical order)
     {
       "packageName": "@votecube/ecclesia",

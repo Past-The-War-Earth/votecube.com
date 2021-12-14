@@ -1,22 +1,22 @@
 <script lang="ts">
 	import {createEventDispatcher} from 'svelte'
 
-	import AlignmentButton   from '../../common/control/button/AlignmentButton.svelte'
-	import BellCurveButton   from '../../common/control/button/BellCurveButton.svelte'
-	import BuildButton       from '../../common/control/button/BuildButton.svelte'
-	import DescribedButton   from '../../common/control/button/DescribedButton.svelte'
-	import EditButton        from '../../common/control/button/EditButton.svelte'
+	import AlignmentButton   from '@votecube/ui-controls/src/button/AlignmentButton.svelte'
+	import BellCurveButton   from '@votecube/ui-controls/src/button/BellCurveButton.svelte'
+	import BuildButton       from '@votecube/ui-controls/src/button/BuildButton.svelte'
+	import DescribedButton   from '@votecube/ui-controls/src/button/DescribedButton.svelte'
+	import EditButton        from '@votecube/ui-controls/src/button/EditButton.svelte'
 	import ManualOverwriteButton
-	                         from '../../common/control/button/ManualOverwriteButton.svelte'
-	import OpinionButton     from '../../common/control/button/OpinionButton.svelte'
-	import OutcomeButton     from '../../common/control/button/OutcomeButton.svelte'
-	import RankingsButton    from '../../common/control/button/RankingsButton.svelte'
-	import ShieldButton      from '../../common/control/button/ShieldButton.svelte'
-	import UndescribedButton from '../../common/control/button/UndescribedButton.svelte'
+	                         from '@votecube/ui-controls/src/button/ManualOverwriteButton.svelte'
+	import OpinionButton     from '@votecube/ui-controls/src/button/OpinionButton.svelte'
+	import OutcomeButton     from '@votecube/ui-controls/src/button/OutcomeButton.svelte'
+	import RankingsButton    from '@votecube/ui-controls/src/button/RankingsButton.svelte'
+	import ShieldButton      from '@votecube/ui-controls/src/button/ShieldButton.svelte'
+	import UndescribedButton from '@votecube/ui-controls/src/button/UndescribedButton.svelte'
 	import SituationTreeButton
-	                         from '../../common/control/button/SituationTreeButton.svelte'
-	import SolutionButton        from '../../common/control/button/SolutionButton.svelte'
-	import Fab               from '../../common/control/Fab.svelte'
+	                         from '@votecube/ui-controls/src/button/SituationTreeButton.svelte'
+	import SolutionButton        from '@votecube/ui-controls/src/button/SolutionButton.svelte'
+	import Fab               from '@votecube/ui-components/src/Fab.svelte'
 
 	export let mode
 

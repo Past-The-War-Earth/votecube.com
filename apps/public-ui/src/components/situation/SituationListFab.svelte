@@ -1,11 +1,11 @@
 <script>
 	import {createEventDispatcher} from 'svelte'
-	import DescribedButton         from '../../common/control/button/DescribedButton.svelte'
-	import FactorButton            from '../../common/control/button/FactorButton.svelte'
-	import FilterButton            from '../../common/control/button/FilterButton.svelte'
-	import OutcomeButton           from '../../common/control/button/OutcomeButton.svelte'
-	import SortButton              from '../../common/control/button/SortButton.svelte'
-	import Fab                     from '../../common/control/Fab.svelte'
+	import DescribedButton         from '@votecube/ui-controls/src/button/DescribedButton.svelte'
+	import FactorButton            from '../factor/FactorButton.svelte'
+	import FilterButton            from '@votecube/ui-controls/src/button/FilterButton.svelte'
+	import OutcomeButton           from '@votecube/ui-controls/src/button/OutcomeButton.svelte'
+	import SortButton              from '@votecube/ui-controls/src/button/SortButton.svelte'
+	import Fab                     from '@votecube/ui-components/src/Fab.svelte'
 
 	let factorMode = true
 	let opened      = false

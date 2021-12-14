@@ -2,8 +2,8 @@
 	import { DI } from "@airport/di";
 	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
-	import CharacterButton from "../../common/control/button/CharacterButton.svelte";
-	import Block from "../../common/field/Block.svelte";
+	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
+	import Block from "@votecube/ui-controls/src/field/Block.svelte";
 
 	export let factor;
 	export let text;

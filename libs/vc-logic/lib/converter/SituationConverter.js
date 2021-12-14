@@ -1,7 +1,7 @@
 import { container, DI } from '@airport/di';
 import { AGE_GROUPS, } from '@votecube/model';
+import { RepositoryRecordConverter } from '@votecube/ui-logic';
 import { SITUATION_CONVERTER, SITUATION_FORM_MANAGER } from '../tokens';
-import { RepositoryRecordConverter } from './RepositoryRecordConverter';
 export class SituationConverter extends RepositoryRecordConverter {
     dbToUi(dbSituation) {
         let ageGroups = [];

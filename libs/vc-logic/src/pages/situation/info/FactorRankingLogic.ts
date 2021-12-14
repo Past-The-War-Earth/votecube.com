@@ -1,14 +1,14 @@
-import {DI}                   from '@airport/di'
+import { DI } from '@airport/di'
 import {
 	IUiSolution,
 	IUiSolutionFactor,
 	SolutionFactor_Value
-}                             from '@votecube/model'
-import {fly}                  from 'svelte/transition'
-import {ILogicUtils}          from '../../../LogicUtils'
-import {IPageSolution}            from '../../../situation/SituationManager'
-import {cardMove}             from '../../../store'
-import {FACTOR_RANKING_LOGIC} from '../../../tokens'
+} from '@votecube/model'
+import { cardMove } from '@votecube/ui-logic'
+import { fly } from 'svelte/transition'
+import { ILogicUtils } from '../../../LogicUtils'
+import { IPageSolution } from '../../../situation/SituationManager'
+import { FACTOR_RANKING_LOGIC } from '../../../tokens'
 
 export type AddOrRemove = 'add' | 'remove'
 
@@ -225,8 +225,8 @@ export class FactorRankingLogic
 		placeholder: boolean,
 	} {
 		const [_, secondFactor, thirdFactor] = solutionFactors
-		let numMoved                         = 0
-		let placeholder                      = false
+		let numMoved = 0
+		let placeholder = false
 		if (index === 0) {
 			if (
 				// Cannot add the first factor
@@ -238,7 +238,7 @@ export class FactorRankingLogic
 					placeholder
 				}
 			}
-			placeholder       = true
+			placeholder = true
 			// scheduleFactorPlaceholder()
 			solution.changeMillis = 550
 
@@ -251,7 +251,7 @@ export class FactorRankingLogic
 			}
 		}
 
-		numMoved      = 1
+		numMoved = 1
 		const outcome = solutionFactors[index].outcome
 		if (addOrRemove === 'remove') {
 			// remove
@@ -263,7 +263,7 @@ export class FactorRankingLogic
 				}
 			}
 			solution.changeMillis = 550
-			placeholder       = true
+			placeholder = true
 			// scheduleFactorPlaceholder(index, direction)
 			if (index === 1 && thirdFactor.outcome) {
 				this.onMove(1, [2, 1])
@@ -454,10 +454,10 @@ export class FactorRankingLogic
 		// doAdjust = true
 	): boolean {
 		const [
-			      firstSolutionFactor,
-			      secondSolutionFactor,
-			      thirdSolutionFactor
-		      ] = solutionFactors
+			firstSolutionFactor,
+			secondSolutionFactor,
+			thirdSolutionFactor
+		] = solutionFactors
 		switch (index) {
 			case 0: {
 				// firstFactor.dir = dir
@@ -472,9 +472,9 @@ export class FactorRankingLogic
 					// Nothing to do, just change direction
 				} else {
 					// set default distribution
-					firstSolutionFactor.value  = 55
+					firstSolutionFactor.value = 55
 					secondSolutionFactor.value = 30
-					thirdSolutionFactor.value  = 15
+					thirdSolutionFactor.value = 15
 				}
 				break
 			}
@@ -482,9 +482,9 @@ export class FactorRankingLogic
 				// secondFactor.dir = dir
 				// If the 2nd factor is being removed from the solution
 				if (!outcome) {
-					firstSolutionFactor.value  = 100
+					firstSolutionFactor.value = 100
 					secondSolutionFactor.value = 0
-					thirdSolutionFactor.value  = 0
+					thirdSolutionFactor.value = 0
 					// thirdFactor.dir    = 0
 					break
 				}
@@ -497,22 +497,22 @@ export class FactorRankingLogic
 					this.factorsAt(100, 0, 0, solutionFactors)
 				) {
 					// Add the second factor
-					firstSolutionFactor.value  = 66
+					firstSolutionFactor.value = 66
 					secondSolutionFactor.value = 34
 				} else {
 					// set default distribution
-					firstSolutionFactor.value  = 55
+					firstSolutionFactor.value = 55
 					secondSolutionFactor.value = 30
-					thirdSolutionFactor.value  = 15
+					thirdSolutionFactor.value = 15
 				}
 				break
 			}
 			case 2: {
 				// If the 3rd factor is being removed from the solution
 				if (!outcome) {
-					firstSolutionFactor.value  = 66
+					firstSolutionFactor.value = 66
 					secondSolutionFactor.value = 34
-					thirdSolutionFactor.value  = 0
+					thirdSolutionFactor.value = 0
 					break
 				}
 				// Otherwise the 3rd factor is now present in the solution
@@ -522,9 +522,9 @@ export class FactorRankingLogic
 					// Factors are already at reserved values, no need to adjust values
 				} else {
 					// set default distribution
-					firstSolutionFactor.value  = 55
+					firstSolutionFactor.value = 55
 					secondSolutionFactor.value = 30
-					thirdSolutionFactor.value  = 15
+					thirdSolutionFactor.value = 15
 				}
 				break
 			}
@@ -551,8 +551,8 @@ export class FactorRankingLogic
 			movedFactor2.value = movedFactor1.value
 		}
 
-		movedFactor1.value    = removedFactor.value
-		removedFactor.value   = 0
+		movedFactor1.value = removedFactor.value
+		removedFactor.value = 0
 		removedFactor.outcome = null
 
 		// page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
@@ -600,43 +600,43 @@ export class FactorRankingLogic
 		deltaIndex?: number,
 	): boolean {
 		const [firstSolutionFactor, secondSolutionFactor, thirdSolutionFactor]
-			      = solutionFactors
+			= solutionFactors
 		let oldHigherOutcome: 'A' | 'B'
 		let oldHigherValue: number
 		if (!oldHigherFactor) {
 			switch (index) {
 				case 0: {
 					// Only Down arrow can be pressed, no need to check delta
-					deltaIndex      = 0
+					deltaIndex = 0
 					oldHigherFactor = firstSolutionFactor
-					oldLowerFactor  = secondSolutionFactor
+					oldLowerFactor = secondSolutionFactor
 					break
 				}
 				case 1: {
 					if (delta > 0) {
-						deltaIndex      = 0
+						deltaIndex = 0
 						oldHigherFactor = firstSolutionFactor
-						oldLowerFactor  = secondSolutionFactor
+						oldLowerFactor = secondSolutionFactor
 					} else {
-						deltaIndex      = 1
+						deltaIndex = 1
 						oldHigherFactor = secondSolutionFactor
-						oldLowerFactor  = thirdSolutionFactor
+						oldLowerFactor = thirdSolutionFactor
 					}
 					break
 				}
 				case 2: {
 					// Only Up arrow can be pressed, no need to check delta
-					deltaIndex      = 1
+					deltaIndex = 1
 					oldHigherFactor = secondSolutionFactor
-					oldLowerFactor  = thirdSolutionFactor
+					oldLowerFactor = thirdSolutionFactor
 					break
 				}
 			}
 		}
-		oldHigherOutcome      = oldHigherFactor.outcome
-		oldHigherValue        = oldHigherFactor.value
+		oldHigherOutcome = oldHigherFactor.outcome
+		oldHigherValue = oldHigherFactor.value
 		oldHigherFactor.value = oldLowerFactor.value
-		oldLowerFactor.value  = oldHigherValue as SolutionFactor_Value
+		oldLowerFactor.value = oldHigherValue as SolutionFactor_Value
 
 		// page.set({factorOrderDelta: page.get().factorOrderDelta + 1})
 
@@ -661,14 +661,14 @@ export class FactorRankingLogic
 		logicUtils: ILogicUtils,
 		duration = 400
 	): void {
-		this.move(index, {y: -100, duration}, logicUtils)
+		this.move(index, { y: -100, duration }, logicUtils)
 	}
 
 	private moveDownTwo(
 		index,
 		logicUtils: ILogicUtils
 	): void {
-		this.move(index, {y: -200, duration: 800}, logicUtils)
+		this.move(index, { y: -200, duration: 800 }, logicUtils)
 	}
 
 	private moveUpOne(
@@ -676,14 +676,14 @@ export class FactorRankingLogic
 		logicUtils: ILogicUtils,
 		duration = 400
 	): void {
-		this.move(index, {y: 100, duration}, logicUtils)
+		this.move(index, { y: 100, duration }, logicUtils)
 	}
 
 	private moveUpTwo(
 		index,
 		logicUtils: ILogicUtils
 	): void {
-		this.move(index, {y: 200, duration: 800}, logicUtils)
+		this.move(index, { y: 200, duration: 800 }, logicUtils)
 	}
 
 	private factorsAt(
@@ -704,8 +704,8 @@ export class FactorRankingLogic
 			return null
 		}
 		while (node.getAttribute
-		&& !node.getAttribute('factorNumber')
-		&& node.parentNode) {
+			&& !node.getAttribute('factorNumber')
+			&& node.parentNode) {
 			node = node.parentNode as HTMLElement
 		}
 		if (node.getAttribute

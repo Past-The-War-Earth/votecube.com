@@ -12,15 +12,14 @@ import {
 	IUiFactor,
 	IUiOutcome,
 	IUiPosition,
-	IUiRepositoryRecord,
 	IUiSituation,
 	AGE_GROUPS,
 } from '@votecube/model'
+import { RepositoryRecordConverter } from '@votecube/ui-logic'
 import {
 	SITUATION_CONVERTER,
 	SITUATION_FORM_MANAGER
 } from '../tokens'
-import { RepositoryRecordConverter } from './RepositoryRecordConverter'
 
 export interface ISituationConverter {
 

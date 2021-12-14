@@ -1,7 +1,7 @@
 <script lang="ts">
     import { DI, IChildContainer } from "@airport/di";
     import { IFieldGroup } from "@votecube/forms";
-    import { pageTitle, routeParams, text } from "@votecube/vc-logic";
+    import { pageTitle, routeParams, text } from "@votecube/ui-logic";
     import { onDestroy, onMount } from "svelte";
     import { get } from "svelte/store";
     import ForumPost from "./ForumPost.svelte";
@@ -48,7 +48,7 @@
         const formFactory = await container.get(formsModule.FORM_FACTORY);
 
         form = formFactory.group(
-            "Thread",
+            "Forum",
             {
                 post: formFactory.field([]),
             },
@@ -73,5 +73,13 @@
 <ForumPost />
 <ForumPost />
 
+<!--
+<TextArea
+    field={form.fields.outcomes.fields.A}
+    floatLabel={false}
+    mid={false}
+    mini={false}
+/>
+-->
 <style>
 </style>

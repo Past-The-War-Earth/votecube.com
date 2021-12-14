@@ -2,17 +2,18 @@
 	import { DI } from "@airport/di";
 	import type { IUiMenuItem } from "@votecube/model";
 	import {
-		ABOUT,
 		AUTH,
 		emInPx,
-		FEEDBACK,
-		navigateToPage,
-		SITUATION_FORM,
-		SITUATION_LIST,
-		RELEASE_PLAN,
 		showMainMenu,
 		showSignIn,
 		user,
+	} from "@votecube/ui-logic";
+	import {
+		ABOUT,
+		FEEDBACK,
+		SITUATION_FORM,
+		SITUATION_LIST,
+		RELEASE_PLAN,
 	} from "@votecube/vc-logic";
 	import { createEventDispatcher, onMount } from "svelte";
 	import MenuItem from "./MenuItem.svelte";

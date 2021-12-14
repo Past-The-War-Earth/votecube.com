@@ -1,0 +1,88 @@
+{#if $forms}
+<a class="field" class:invalid="touched && error" class:modified="modified" class:requiredInvalid="requiredInvalid"
+	class:requiredValid="requiredValid" on:click="select()" use:id="{id}">
+	<table>
+		<tr>
+			<td class="iconCell">
+				<slot name="icon"></slot>
+			</td>
+			<td>
+				<slot name="text"></slot>
+			</td>
+		</tr>
+	</table>
+</a>
+{#if touched && error}
+<span class="pure-form-message error">{customError || error.message}</span>
+{/if}
+{/if}
+
+<style>
+	a {
+		border: 1px solid #aaa;
+		border-bottom-right-radius: 2px;
+		border-top-right-radius: 2px;
+		color: #555;
+		cursor: pointer;
+		display: block;
+		margin: 5px 0;
+		padding: 0.5em 0.5em 0.5em 0.3em;
+		text-align: center;
+		vertical-align: middle;
+		white-space: normal;
+		width: 100%;
+	}
+
+	td {
+		padding: 5px;
+	}
+
+	.iconCell {
+		width: 56px;
+	}
+</style>
+
+<script>
+	import store from '@votecube/ui-logic'
+
+	export default {
+		actions: {
+			id(node, id) {
+				if (id) {
+					node.id = id;
+				}
+			}
+		},
+		computed: {
+			error: ({ delta, fieldGroup }) => fieldGroup.error,
+			label: ({ delta, fieldGroup }) => fieldGroup.label,
+			modified: ({ delta, error, fieldGroup }) =>
+				!error && fieldGroup.rules.trackOriginal && !fieldGroup.theIsOriginal,
+			requiredInvalid: ({ delta, error, fieldGroup }) =>
+				fieldGroup.isRequired && error,
+			requiredValid: ({ delta, error, fieldGroup, modified }) =>
+				!modified && fieldGroup.isRequired && !error,
+			touched: ({ delta, fieldGroup }) => fieldGroup.touched,
+			trackOriginal: ({ delta, fieldGroup }) => fieldGroup.rules.trackOriginal
+		},
+		data() {
+			return {}
+		},
+		methods: {
+			onBlur(event) {
+				this.get().fieldGroup.onBlur()
+			},
+			select() {
+				this.get().fieldGroup.touch(true)
+				this.fire('select')
+			}
+		},
+		oncreate() {
+			this.get().fieldGroup.setAsField(this)
+		},
+		ondestroy() {
+			this.get().fieldGroup.removeComponent(this)
+		},
+		store: () => store
+	}
+</script>

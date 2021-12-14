@@ -339,6 +339,15 @@
           }
         }
       }
+    },
+    "Forum": {
+      "post": {
+        "info": "Please enter an opinion",
+        "label": "Enter your opinion",
+        "errors": {
+          "required": "An opinion is required"
+        }
+      }
     }
   }
 }

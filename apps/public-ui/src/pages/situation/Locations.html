@@ -31,14 +31,14 @@
 {/if}
 
 <script>
-	import RightButton                    from '../../common/control/button/RightButton.svelte'
-	import MultiSelect                    from '../../common/field/MultiSelect.html'
+	import RightButton                    from '@votecube/ui-controls/src/button/RightButton.svelte'
+	import MultiSelect                    from '@votecube/ui-controls/src/field/MultiSelect.html'
 	import * as formCache                 from '../../form/cache'
 	import * as forms                     from '../../form/forms'
 	import {loadLocations}                from '../../libs/locations'
 	import {loadLocations as loadLocText} from '../../libs/text/locations'
 	import * as routes                    from '@votecube/vc-logic/src/routes'
-	import store                          from '@votecube/vc-logic/src/store'
+	import store                          from '@votecube/ui-logic'
 
 	export default {
 		components: {

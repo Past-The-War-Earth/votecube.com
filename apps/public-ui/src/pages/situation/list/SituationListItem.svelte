@@ -6,9 +6,9 @@
 
 	import { createEventDispatcher } from "svelte";
 
-	import RightButton from "../../../common/control/button/RightButton.svelte";
-	import LinkIcon from "../../../common/icon/LinkIcon.svelte";
-	import TargetIcon from "../../../common/icon/TargetIcon.svelte";
+	import RightButton from "@votecube/ui-controls/src/button/RightButton.svelte";
+	import LinkIcon from "@votecube/ui-controls/src/icon/LinkIcon.svelte";
+	import TargetIcon from "@votecube/ui-controls/src/icon/TargetIcon.svelte";
 
 	export let childMode = true;
 	export let classes = "";

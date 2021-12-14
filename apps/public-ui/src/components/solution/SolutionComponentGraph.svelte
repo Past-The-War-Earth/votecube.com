@@ -5,19 +5,17 @@
 		IUiColor,
 		IUiSituation,
 		IUiSolution,
-		IUiSolutionFactor,
 	} from "@votecube/model";
-	import { cardMove, ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
+	import { cardMove } from "@votecube/ui-logic";
+	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
 	import {
 		createEventDispatcher,
-		beforeUpdate,
 		onDestroy,
 		onMount,
 	} from "svelte";
-	import { get } from "svelte/store";
 	import { fade, fly } from "svelte/transition";
-	import CharacterButton from "../../common/control/button/CharacterButton.svelte";
-	import ShieldButton from "../../common/control/button/ShieldButton.svelte";
+	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
+	import ShieldButton from "@votecube/ui-controls/src/button/ShieldButton.svelte";
 	import CubeMiniature from "../situation/CubeMiniature.svelte";
 
 	export let classes = '';

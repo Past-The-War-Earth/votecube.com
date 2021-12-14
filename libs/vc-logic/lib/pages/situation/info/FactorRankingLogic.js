@@ -1,6 +1,6 @@
 import { DI } from '@airport/di';
+import { cardMove } from '@votecube/ui-logic';
 import { fly } from 'svelte/transition';
-import { cardMove } from '../../../store';
 import { FACTOR_RANKING_LOGIC } from '../../../tokens';
 export class FactorRankingLogic {
     getFactorInfoAtCoords(x, y, factorNumberToExclude) {

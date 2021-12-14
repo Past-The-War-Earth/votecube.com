@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-	import { currentPage, user } from "@votecube/vc-logic";
+	import { currentPage, user } from "@votecube/ui-logic";
 	import type { IUiMenuItem } from "@votecube/model";
 
 	export let menuItem: IUiMenuItem;

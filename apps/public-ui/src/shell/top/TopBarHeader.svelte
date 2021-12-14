@@ -1,5 +1,5 @@
 <script>
-	import {pageTitle} from '@votecube/vc-logic'
+	import {pageTitle} from '@votecube/ui-logic'
 
 	let thePageTitle = pageTitle
 

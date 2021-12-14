@@ -11,20 +11,22 @@
     import {
         cardMove,
         cube,
-        CUBE_LOGIC,
-        DETAILED_CUBE_LOGIC,
-        LOGIC_UTILS,
         mode,
         navigateToPage,
         noOverflow,
+        routeParams,
+        user,
+    } from "@votecube/ui-logic";
+    import {
+        CUBE_LOGIC,
+        DETAILED_CUBE_LOGIC,
+        LOGIC_UTILS,
         SITUATION_FORM,
         SITUATION_LIST,
         SITUATION_MAIN_LOGIC,
         SITUATION_MANAGER,
         RELEASE_PLAN,
-        routeParams,
         setResizeCllBck,
-        user,
         DERIVATION_LIST,
         SOLUTION_MANAGER,
         ILogicUtils,
@@ -32,13 +34,13 @@
     } from "@votecube/vc-logic";
     import { beforeUpdate, onDestroy, onMount } from "svelte";
     import { get } from "svelte/store";
-    import BuildButton from "../../../common/control/button/BuildButton.svelte";
-    import SaveButton from "../../../common/control/button/SaveButton.svelte";
-    import CancelButton from "../../../common/control/button/CancelButton.svelte";
-    import OutcomeButton from "../../../common/control/button/OutcomeButton.svelte";
-    import PercentPicker from "../../../common/control/PercentPicker.svelte";
-    import ActionPopover from "../../../common/shell/ActionPopover.svelte";
-    import AgeSuitability from "../../../components/AgeSuitability.svelte";
+    import BuildButton from "@votecube/ui-controls/src/button/BuildButton.svelte";
+    import SaveButton from "@votecube/ui-controls/src/button/SaveButton.svelte";
+    import CancelButton from "@votecube/ui-controls/src/button/CancelButton.svelte";
+    import OutcomeButton from "@votecube/ui-controls/src/button/OutcomeButton.svelte";
+    import PercentPicker from "@votecube/ui-components/src/PercentPicker.svelte";
+    import ActionPopover from "@votecube/ui-controls/src/shell/ActionPopover.svelte";
+    import AgeSuitability from "@votecube/ui-controls/src/AgeSuitability.svelte";
     import DetailedCube from "../../../components/situation/DetailedCube.svelte";
     import FactorRanking from "../../../components/situation/FactorRanking.svelte";
     import Outcomes from "../../../components/situation/Outcomes.svelte";
@@ -46,7 +48,6 @@
     import SolutionComponentGraph from "../../../components/solution/SolutionComponentGraph.svelte";
     import {
         getBlankTweenSolution,
-        getBlankUiSolution,
         setupCubeView,
     } from "../../../database";
     // import SolutionComponentSummary from '../../../components/solution/SolutionComponentSummary.html'

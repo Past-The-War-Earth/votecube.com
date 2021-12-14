@@ -1,24 +1,26 @@
 <script lang="ts">
 	import { DI } from "@airport/di";
 	import {
-		LOGIC_UTILS,
 		navigateToPage,
 		pageTitle,
+		routeParams,
+		text
+	} from "@votecube/ui-logic";
+	import {
+		LOGIC_UTILS,
 		SITUATION_MAIN,
 		SITUATION_MANAGER,
 		RELEASE_PLAN,
-		routeParams,
-		text,
 		ILogicUtils,
 	} from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
 	import { get } from "svelte/store";
 	import { fade } from "svelte/transition";
 	import type { INavList, IUiSituation } from "@votecube/model";
-	import CancelButton from "../../../common/control/button/CancelButton.svelte";
-	import RightButton from "../../../common/control/button/RightButton.svelte";
+	import CancelButton from "@votecube/ui-controls/src/button/CancelButton.svelte";
+	import RightButton from "@votecube/ui-controls/src/button/RightButton.svelte";
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
-	import ActionPopover from "../../../common/shell/ActionPopover.svelte";
+	import ActionPopover from "@votecube/ui-controls/src/shell/ActionPopover.svelte";
 	import SituationListFab from "../../../components/situation/situation/SituationListFab.svelte";
 	import * as forms from "../../../form/forms";
 	import { loadForms } from "../../../libs/forms";

@@ -2,26 +2,27 @@
     import { DI, IChildContainer } from "@airport/di";
     import {
         FACTOR_INFO_MAIN,
-        navigateToPage,
-        pageTitle,
         SITUATION_FORM_LOGIC,
         SITUATION_LIST,
         SITUATION_LOCATIONS,
         SITUATION_MAIN,
         SITUATION_MANAGER,
-        SITUATION_TIME_FRAME,
+        SITUATION_TIME_FRAME
+    } from "@votecube/vc-logic";
+    import {
+        navigateToPage,
+        pageTitle,
         routeParams,
         text,
-    } from "@votecube/vc-logic";
+    } from "@votecube/ui-logic";
     import { onDestroy, onMount } from "svelte";
     import { get } from "svelte/store";
-    import CharacterButton from "../../../common/control/button/CharacterButton.svelte";
-    import PreviewButton from "../../../common/control/button/PreviewButton.svelte";
-    import AutoComplete from "../../../common/field/AutoComplete.svelte";
-    import MultiSelect from "../../../common/field/MultiSelect.svelte";
-    import Text from "../../../common/field/Text.svelte";
-    import TextArea from "../../../common/field/TextArea.svelte";
-    import ActionPopover from "../../../common/shell/ActionPopover.svelte";
+    import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
+    import PreviewButton from "@votecube/ui-controls/src/button/PreviewButton.svelte";
+    import MultiSelect from "@votecube/ui-controls/src/field/MultiSelect.svelte";
+    import Text from "@votecube/ui-controls/src/field/Text.svelte";
+    import TextArea from "@votecube/ui-controls/src/field/TextArea.svelte";
+    import ActionPopover from "@votecube/ui-controls/src/shell/ActionPopover.svelte";
     import SelectionBlock from "../../../components/factor/SelectionBlock.svelte";
     import { saveSituationForm } from "../../../form/cache";
     import * as forms from "../../../form/forms";

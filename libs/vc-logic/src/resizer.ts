@@ -1,4 +1,4 @@
-import {get} from 'svelte/store'
+import { get } from 'svelte/store'
 import {
 	checkSizeIntervalId,
 	emInPx,
@@ -7,7 +7,7 @@ import {
 	resized,
 	verticalLayout,
 	windowWidth
-}            from './store'
+} from '@votecube/ui-logic'
 
 export type ViewCallback = (
 	portalHeight: number,
@@ -41,7 +41,7 @@ export function startResizeInterval(): void {
 
 /*
 export function stopResizeInterval() {
-    clearInterval(get(checkSizeIntervalId))
+	clearInterval(get(checkSizeIntervalId))
 }*/
 
 export function scheduleToResize(): void {
@@ -49,7 +49,7 @@ export function scheduleToResize(): void {
 }
 
 function resize(): void {
-	const theWindowWidth  = window.innerWidth
+	const theWindowWidth = window.innerWidth
 	const thePortalHeight = window.innerHeight
 
 	let theVerticalLayout = true

@@ -76,6 +76,9 @@ dependencies:
   '@rush-temp/tools': 'file:projects/tools.tgz'
   '@rush-temp/tower': 'file:projects/tower.tgz'
   '@rush-temp/travel-document-checkpoint': 'file:projects/travel-document-checkpoint.tgz'
+  '@rush-temp/ui-components': 'file:projects/ui-components.tgz'
+  '@rush-temp/ui-controls': 'file:projects/ui-controls.tgz'
+  '@rush-temp/ui-logic': 'file:projects/ui-logic.tgz'
   '@rush-temp/vasi': 'file:projects/vasi.tgz'
   '@rush-temp/vc-logic': 'file:projects/vc-logic.tgz'
   '@rush-temp/votecube': 'file:projects/votecube.tgz'
@@ -7480,7 +7483,7 @@ packages:
     dev: false
     name: '@rush-temp/forum-ui'
     resolution:
-      integrity: sha512-RDJRfInk01LBG+/vIDNnfyxPDagomYnCuqXbpnqLthpbcgNhU6gnIpbk/O0ZN2p/IPemuYRO77a+b0zIa/rydw==
+      integrity: sha512-oAE9ZpzBWk+p1x5c06xl9mh8BjfI+HiQ9Xi4g2ClBghWNzx2DzqkcjiuOp9BKtaszXNpWd2xVYbpeu5NGNFakQ==
       tarball: 'file:projects/forum-ui.tgz'
     version: 0.0.0
   'file:projects/forum.tgz':
@@ -7882,7 +7885,7 @@ packages:
     dev: false
     name: '@rush-temp/public-ui'
     resolution:
-      integrity: sha512-hm3VHS2a/fAejsXSkWEYdlYxZAh0LpU0QjymWcsj+QE5tNwpsEGPt99CimnfA2orAEkkoUICriakP0/yUFLJDA==
+      integrity: sha512-hBXbAcNC0WM2PPfbEFCQWC9U4slGU7vTSJ6bK0pthwzfIAnkdrwcBmFxGBCX0IXG1yEpyZucfhTCxK07QmutEQ==
       tarball: 'file:projects/public-ui.tgz'
     version: 0.0.0
   'file:projects/ramp.tgz':
@@ -8084,6 +8087,48 @@ packages:
       integrity: sha512-ok7CQSlFTIfJYUKzhF8RoCCA5u76CT+A+YIelmwiQh055DwFvkzehKFn/LGyMKW+cPBOs8J/aKJ8i1U0e3rqjg==
       tarball: 'file:projects/travel-document-checkpoint.tgz'
     version: 0.0.0
+  'file:projects/ui-components.tgz':
+    dependencies:
+      jssha: 2.4.2
+      page: 1.11.6
+      rxjs: 7.4.0
+      svelte: 3.44.1
+      tslint: 5.20.1_typescript@4.5.2
+      typescript: 4.5.2
+    dev: false
+    name: '@rush-temp/ui-components'
+    resolution:
+      integrity: sha512-vIdDW5SZH3qNRcOBQgAL/vTmM60AOjpnRYF29R2Gj0AW9qTplS8Go04D43XfK92pWS1JO/WE9BHedVo35+Wj4w==
+      tarball: 'file:projects/ui-components.tgz'
+    version: 0.0.0
+  'file:projects/ui-controls.tgz':
+    dependencies:
+      jssha: 2.4.2
+      page: 1.11.6
+      rxjs: 7.4.0
+      svelte: 3.44.1
+      tslint: 5.20.1_typescript@4.5.2
+      typescript: 4.5.2
+    dev: false
+    name: '@rush-temp/ui-controls'
+    resolution:
+      integrity: sha512-s30+WHWDjDaIH8tzmXjKNXZWVyka68D7fWA8lWR3SnAuRhK8xyOZPcN8UT8MUyOuU4jKeeFYwJdJph6g7agv8Q==
+      tarball: 'file:projects/ui-controls.tgz'
+    version: 0.0.0
+  'file:projects/ui-logic.tgz':
+    dependencies:
+      jssha: 2.4.2
+      page: 1.11.6
+      rxjs: 7.4.0
+      svelte: 3.44.1
+      tslint: 5.20.1_typescript@4.5.2
+      typescript: 4.5.2
+    dev: false
+    name: '@rush-temp/ui-logic'
+    resolution:
+      integrity: sha512-2uD2YVcKygJ4JEEYArovLHvDyBMIwrxRURMY/u2kAmGRodoarN87yJGcGjXT/K3dhieiXI5/EzdzUAHMhB+2cA==
+      tarball: 'file:projects/ui-logic.tgz'
+    version: 0.0.0
   'file:projects/vasi.tgz':
     dev: false
     name: '@rush-temp/vasi'
@@ -8216,6 +8261,9 @@ specifiers:
   '@rush-temp/tools': 'file:./projects/tools.tgz'
   '@rush-temp/tower': 'file:./projects/tower.tgz'
   '@rush-temp/travel-document-checkpoint': 'file:./projects/travel-document-checkpoint.tgz'
+  '@rush-temp/ui-components': 'file:./projects/ui-components.tgz'
+  '@rush-temp/ui-controls': 'file:./projects/ui-controls.tgz'
+  '@rush-temp/ui-logic': 'file:./projects/ui-logic.tgz'
   '@rush-temp/vasi': 'file:./projects/vasi.tgz'
   '@rush-temp/vc-logic': 'file:./projects/vc-logic.tgz'
   '@rush-temp/votecube': 'file:./projects/votecube.tgz'

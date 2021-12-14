@@ -32,16 +32,16 @@
 	import {DI}           from '@airport/di'
 	import {FACTOR_DAO}   from '@votecube/relational-db'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
-	import AutoComplete   from '../../../common/field/AutoComplete.svelte'
-	import MultiSelect    from '../../../common/field/MultiSelect.html'
+	import AutoComplete   from '@votecube/ui-controls/src/field/AutoComplete.svelte'
+	import MultiSelect    from '@votecube/ui-controls/src/field/MultiSelect.html'
 	import {
 		clearForm,
 		ensureForm,
 		navigateOnValid
 	}                     from '../../../form/forms'
 	import {loadForms}    from '../../../libs/forms'
-	import {FACTOR_LIST}  from '@votecube/vc-logic/src/routes'
-	import store          from '@votecube/vc-logic/src/store'
+	import store          from '@votecube/ui-logic'
+	import {FACTOR_LIST}  from '@votecube/vc-logic'
 	import FactorListItem from './FactorListItem.html'
 
 	export default {

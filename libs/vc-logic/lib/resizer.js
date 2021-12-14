@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { checkSizeIntervalId, emInPx, isDesktop, portalHeight, resized, verticalLayout, windowWidth } from './store';
+import { checkSizeIntervalId, emInPx, isDesktop, portalHeight, resized, verticalLayout, windowWidth } from '@votecube/ui-logic';
 let viewCallback;
 export function setResizeCllBck(resizeCallback) {
     viewCallback = resizeCallback;

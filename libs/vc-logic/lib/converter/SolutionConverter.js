@@ -1,5 +1,5 @@
 import { container, DI } from "@airport/di";
-import { REPOSITORY_RECORD_CONVERTER } from "..";
+import { REPOSITORY_RECORD_CONVERTER } from '@votecube/ui-logic';
 import { SOLUTION_CONVERTER } from "../tokens";
 export class SolutionConverter {
     dbToUi(dbSolution) {

@@ -8,12 +8,13 @@ export * from './pages/situation/SituationFormManager';
 export * from './situation/CubeLogic';
 export * from './situation/SituationManager';
 export * from './situation/SolutionManager';
-export * from './Auth';
+export * from './utils/ajax';
+export * from './utils/colors';
+export * from './utils/hash';
+export * from './utils/textColors';
 export * from './container';
 export * from './LogicUtils';
 export * from './resizer';
-export * from './Routes';
 export * from './routing';
-export * from './store';
 export * from './tokens';
 //# sourceMappingURL=index.d.ts.map

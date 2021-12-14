@@ -1,8 +1,8 @@
 <script>
 
 	import {createEventDispatcher} from 'svelte'
-	import RightButton          from '../../../common/control/button/RightButton.svelte'
-	import SwitchPositionButton from '../../../common/control/button/SwitchPositionButton.svelte'
+	import RightButton          from '@votecube/ui-controls/src/button/RightButton.svelte'
+	import SwitchPositionButton from '@votecube/ui-controls/src/button/SwitchPositionButton.svelte'
 
 
 	const dispatch = createEventDispatcher()

@@ -2,7 +2,7 @@
 	import type { IUiSituation } from "@votecube/model";
 
 	import { onMount } from "svelte";
-	import CharacterButton from "../../common/control/button/CharacterButton.svelte";
+	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
 
 	export let final;
 	export let situation: IUiSituation;

@@ -1,5 +1,3 @@
-import { APP_CONTAINER } from './container';
-import { ROUTES } from './tokens';
 export const ABOUT = '/about';
 export const FEEDBACK = '/feedback';
 export const RELEASE_PLAN = '/releasePlan';
@@ -12,9 +10,4 @@ export const SITUATION_MAIN = '/situation/Main/:mode/:hostingPlatform/:repositor
 export const SITUATION_LOCATIONS = '/situation/Locations/:mode';
 export const SITUATION_TIME_FRAME = '/situation/TimeFrame/:mode';
 export const CARD_CLIMATE_CHANGE = '/card/ClimateChange';
-export function navigateToPage(routePath, paramMap) {
-    APP_CONTAINER.get(ROUTES).then(routes => {
-        routes.navigateToPage(routePath, paramMap);
-    });
-}
 //# sourceMappingURL=routing.js.map

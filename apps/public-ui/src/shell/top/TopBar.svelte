@@ -1,5 +1,5 @@
 <script>
-	import {showTopMenu} from '@votecube/vc-logic'
+	import {showTopMenu} from '@votecube/ui-logic'
 	import TopBarHeader  from './TopBarHeader.svelte'
 
 	let theShowTopMenu = showTopMenu

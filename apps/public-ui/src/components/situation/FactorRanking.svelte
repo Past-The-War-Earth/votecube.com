@@ -2,10 +2,12 @@
 	import {DI}            from '@airport/di'
 	import {TOUCH}         from '@votecube/cube-logic'
 import type { IUiSituation, IUiSolution, IUiSolutionFactor } from '@votecube/model';
+import {
+		windowWidth
+	}                      from '@votecube/ui-logic'
 	import {
 		FACTOR_RANKING_LOGIC,
-		LOGIC_UTILS,
-		windowWidth
+		LOGIC_UTILS
 	}                      from '@votecube/vc-logic'
 	import {
 		createEventDispatcher,
@@ -13,8 +15,8 @@ import type { IUiSituation, IUiSolution, IUiSolutionFactor } from '@votecube/mod
 		onMount
 	}                      from 'svelte'
 	import {fly}           from 'svelte/transition'
-	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
-	import MoveButton      from '../../common/control/button/MoveButton.svelte'
+	import CharacterButton from '@votecube/ui-controls/src/button/CharacterButton.svelte'
+	import MoveButton      from '@votecube/ui-controls/src/button/MoveButton.svelte'
 
 	export let delta: number
 	export let situation: IUiSituation

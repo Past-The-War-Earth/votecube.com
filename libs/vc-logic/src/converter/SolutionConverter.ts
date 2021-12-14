@@ -10,7 +10,7 @@ import {
     ISolution,
     ISolutionFactor
 } from "@votecube/votecube";
-import { REPOSITORY_RECORD_CONVERTER } from "..";
+import { REPOSITORY_RECORD_CONVERTER } from '@votecube/ui-logic'
 import { SOLUTION_CONVERTER } from "../tokens";
 
 export interface ISolutionConverter {

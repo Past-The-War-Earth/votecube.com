@@ -15,7 +15,7 @@ import type { IUiSituation, IUiSolution } from '@votecube/model';
 		onDestroy,
 		onMount
 	}                      from 'svelte'
-	import CharacterButton from '../../common/control/button/CharacterButton.svelte'
+	import CharacterButton from '@votecube/ui-controls/src/button/CharacterButton.svelte'
 	import Positioner      from './create/Positioner.svelte'
 
 	export let cubeSideMap

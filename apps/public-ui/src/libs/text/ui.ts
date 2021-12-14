@@ -1,5 +1,4 @@
-import {get}     from '../../common/ajax'
-import {HASH}    from '../../helpers/hash'
+import {get, HASH}     from '@votecube/vc-logic'
 import {setText} from './setText'
 
 export var loadUi = async (
