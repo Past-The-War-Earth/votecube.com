@@ -29,7 +29,9 @@
     async function loadThread(
         forumRepositorySource: string,
         forumRepositoryUuId: string
-    ): Promise<any> {}
+    ): Promise<any> {
+        
+    }
 
     function ensureForm(form, formHandle) {
         form.addComponent(formHandle);

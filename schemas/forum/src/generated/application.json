@@ -7,7 +7,16 @@
 	"versions": [
 		{
 			"api": {
-				"apiObjectMap": {}
+				"apiObjectMap": {
+					"IForumThreadApi": {
+						"operationMap": {
+							"createNew": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					}
+				}
 			},
 			"entities": [
 				{
@@ -445,7 +454,8 @@
 					"tableConfig": {
 						"name": "FORUM_THREAD",
 						"columnIndexes": []
-					}
+					},
+					"operations": {}
 				},
 				{
 					"columns": [

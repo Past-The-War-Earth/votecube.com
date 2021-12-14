@@ -10,6 +10,8 @@ import type {
 } from "../server";
 import { SITUATION_API } from "../tokens";
 import { SITUATION_DAO } from "../server-tokens";
+import { FORUM_THREAD_API, IForumThread } from "@votecube/forum";
+import { ENTITY_STATE_MANAGER } from "@airport/ground-control";
 
 export interface ISituationApi {
 
@@ -30,9 +32,12 @@ export interface ISituationApi {
         situationRepositoryUuId: string
     ): Promise<ISituation>
 
-    saveSituation(
-        situation: ISituation,
-        createNewRepository: boolean
+    saveNewSituation(
+        situation: ISituation
+    ): Promise<IRepositoryIdentifier>
+
+    saveExistingSituation(
+        situation: ISituation
     ): Promise<IRepositoryIdentifier>
 
 }
@@ -88,13 +93,47 @@ export class SituationApi
     }
 
     @Api()
-    async saveSituation(
-        situation: ISituation,
-        createNewRepository: boolean
+    async saveExistingSituation(
+        situation: ISituation
     ): Promise<IRepositoryIdentifier> {
+        if (!situation.repository || !situation.repository.id
+            || !situation.actor || !situation.actor.id
+            || !situation.actorRecordId) {
+            throw new Error(`Cannot save EXISTING situation without a repository, actor or actorRecordId`)
+        }
         const situationDao = await container(this).get(SITUATION_DAO)
 
-        return await situationDao.saveSituation(situation, createNewRepository)
+        return await situationDao.saveExistingSituation(situation)
+    }
+
+    @Api()
+    async saveNewSituation(
+        situation: ISituation
+    ): Promise<IRepositoryIdentifier> {
+        if (situation.repository || situation.actor || situation.actorRecordId) {
+            throw new Error(`Cannot save NEW situation with existing repository, actor or actorRecordId`)
+        }
+
+        const [entityStateManager, forumThreadApi, situationDao] = await container(this)
+            .get(ENTITY_STATE_MANAGER, FORUM_THREAD_API, SITUATION_DAO)
+
+        const forumThread = await forumThreadApi.createNew()
+
+        const forumThreadStub: IForumThread = {
+            actor: {
+                id: forumThread.actor.id
+            },
+            actorRecordId: forumThread.actorRecordId,
+            repository: {
+                id: forumThread.repository.id
+            },
+        } as IForumThread
+
+        entityStateManager.markAsStub(forumThreadStub)
+
+        situation.thread
+
+        return await situationDao.saveNewSituation(situation)
     }
 
 }

@@ -8,7 +8,16 @@ export const APPLICATION = {
 	"versions": [
 		{
 			"api": {
-				"apiObjectMap": {}
+				"apiObjectMap": {
+					"IForumThreadApi": {
+						"operationMap": {
+							"createNew": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					}
+				}
 			},
 			"entities": [
 				{
@@ -446,7 +455,8 @@ export const APPLICATION = {
 					"tableConfig": {
 						"name": "FORUM_THREAD",
 						"columnIndexes": []
-					}
+					},
+					"operations": {}
 				},
 				{
 					"columns": [

@@ -92,9 +92,11 @@
 		inSituation = !!uiSituation;
 	}
 	$: if (inSituation && $situationActions.showOutcomes) {
-		situationActions.set({})
+		situationActions.set({});
 		showOutcomes(true);
 	}
+
+	$: currentRouteParams = $routeParams
 
 	function clickMain() {
 		// if (DOM_API.e(menuElementIdSelector)
@@ -165,6 +167,10 @@
 		situationActions.set({
 			situationAlter: true,
 		});
+	}
+
+	function goToOpinions() {
+		navigateToPage(SITUATION_FORUM, currentRouteParams);
 	}
 
 	function setAction(newAction) {
@@ -292,7 +298,7 @@
 		on:confirmSolution={confirmSolution}
 		on:edit={() => alter()}
 		on:outcomes={() => showOutcomes(true)}
-		on:opinions={() => setAction("opinions")}
+		on:opinions={goToOpinions}
 		on:rankings={() => setAction("rankings")}
 		on:stats={() => setAction("stats")}
 		on:derivations={goToDerivations}
@@ -318,13 +324,11 @@
 			</div>
 		</ActionPopover>
 	{/if}
-	{#if ["stats", "rankings", "opinions"].indexOf(action) > -1}
+	{#if ["stats", "rankings"].indexOf(action) > -1}
 		<!--			contentClass="smallPadding"-->
 		<ActionPopover customCancel={true} on:cancel={closeConfirm}>
 			<div slot="header">
-				{#if action === "opinions"}
-					Almost Here - Situation Opinions
-				{:else if action === "rankings"}
+				{#if action === "rankings"}
 					Coming soon - Situation Rankings
 				{:else if action === "stats"}
 					Coming in Beta - Situation Statistics
@@ -349,10 +353,7 @@
 			-->
 				<br />
 				<h3>
-					{#if action === "opinions"}
-						Ability to post your opinions about Situations is coming
-						next!
-					{:else if action === "rankings"}
+					{#if action === "rankings"}
 						We'll start providing basic Situation Rankings at the
 						end of Alpha testing period. More will be added in
 						subsequent releases.

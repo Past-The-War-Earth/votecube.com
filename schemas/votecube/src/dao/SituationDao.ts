@@ -30,9 +30,12 @@ export interface ISituationDao {
         situationReposioryUuid: string
     ): Promise<ISituation>
 
-    saveSituation(
-        situation: ISituation,
-        createNewRepository: boolean
+    saveExistingSituation(
+        situation: ISituation
+    ): Promise<IRepositoryIdentifier>
+
+    saveNewSituation(
+        situation: ISituation
     ): Promise<IRepositoryIdentifier>
 
 }
@@ -112,26 +115,33 @@ export class SituationDao
         return null
     }
 
-    async saveSituation(
-        situation: ISituation,
-        createNewRepository: boolean
+    async saveExistingSituation(
+        situation: ISituation
     ): Promise<IRepositoryIdentifier> {
         let saveResult: ISaveResult
-        if (situation.repository && !createNewRepository) {
-            saveResult = await this.db.save(situation)
-        } else {
-            situation.repository = null
-            situation.actor = null
-            delete situation.actorRecordId
+        saveResult = await this.db.save(situation)
 
-            saveResult = await this.db.save(situation)
+        return {
+            source: situation.repository.source,
+            uuId: situation.repository.uuId
         }
+    }
+
+    async saveNewSituation(
+        situation: ISituation
+    ): Promise<IRepositoryIdentifier> {
+        let saveResult: ISaveResult
+        situation.repository = null
+        situation.actor = null
+        delete situation.actorRecordId
+
+        saveResult = await this.db.save(situation)
 
         const newRepository = saveResult.newRepository
 
         return {
-            source: newRepository ? newRepository.source : situation.repository.source,
-            uuId: newRepository ? saveResult.newRepository.uuId : situation.repository.uuId
+            source: newRepository.source,
+            uuId: newRepository.uuId
         }
     }
 
