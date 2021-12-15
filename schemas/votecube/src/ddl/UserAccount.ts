@@ -10,7 +10,6 @@ import {
 import { RepositoryEntity } from '@airport/holding-pattern'
 import { User } from '@airport/travel-document-checkpoint'
 
-export type UserAccount_Id = number
 export type UserAccount_UserName = string
 export type UserAccount_FirstName = string
 export type UserAccount_MiddleName = string
@@ -23,11 +22,6 @@ export type UserAccount_Email = string
 @Table({ name: 'USER_ACCOUNTS' })
 export class UserAccount
 	extends RepositoryEntity {
-
-	@Id()
-	@GeneratedValue()
-	@Column({ name: 'USER_ACCOUNT_ID' })
-	id: UserAccount_Id
 
 	@Column({ name: 'USER_NAME', nullable: false })
 	userName: UserAccount_UserName

@@ -141,4 +141,19 @@ BaseSolutionFactorDao.Find = new DaoQueryDecorators();
 BaseSolutionFactorDao.FindOne = new DaoQueryDecorators();
 BaseSolutionFactorDao.Search = new DaoQueryDecorators();
 BaseSolutionFactorDao.SearchOne = new DaoQueryDecorators();
+export class BaseUserAccountDao extends SQDIDao {
+    constructor() {
+        super(9);
+    }
+    static Save(config) {
+        return Dao.BaseSave(config);
+    }
+    static diSet() {
+        return duoDiSet(9);
+    }
+}
+BaseUserAccountDao.Find = new DaoQueryDecorators();
+BaseUserAccountDao.FindOne = new DaoQueryDecorators();
+BaseUserAccountDao.Search = new DaoQueryDecorators();
+BaseUserAccountDao.SearchOne = new DaoQueryDecorators();
 //# sourceMappingURL=baseDaos.js.map

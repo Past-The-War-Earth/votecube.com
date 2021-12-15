@@ -45,6 +45,17 @@ import {
 	Outcome,
 } from '../../ddl/situation/Outcome';
 import {
+	ForumThreadGraph,
+	ForumThreadEId,
+	ForumThreadEOptionalId,
+	ForumThreadEUpdateProperties,
+	ForumThreadESelect,
+	QForumThread,
+	QForumThreadQId,
+	QForumThreadQRelation,
+	ForumThread,
+} from '@votecube/forum/lib/server';
+import {
 	SituationLabelGraph,
 	SituationLabelEId,
 	SituationLabelEOptionalId,
@@ -108,6 +119,7 @@ export interface SituationESelect
   // Non-Id relations (including OneToMany's)
 	outcomeA?: OutcomeESelect;
 	outcomeB?: OutcomeESelect;
+	thread?: ForumThreadESelect;
 	children?: SituationESelect;
 	situationLabels?: SituationLabelESelect;
 	situationFactorPositions?: SituationFactorPositionESelect;
@@ -147,6 +159,7 @@ export interface SituationEUpdateProperties
 	// Non-Id Relations - ids only & no OneToMany's
 	outcomeA?: OutcomeEOptionalId;
 	outcomeB?: OutcomeEOptionalId;
+	thread?: ForumThreadEOptionalId;
 
 }
 
@@ -163,6 +176,7 @@ export interface SituationGraph
 	// Relations
 	outcomeA?: OutcomeGraph;
 	outcomeB?: OutcomeGraph;
+	thread?: ForumThreadGraph;
 	children?: SituationGraph[];
 	situationLabels?: SituationLabelGraph[];
 	situationFactorPositions?: SituationFactorPositionGraph[];
@@ -188,6 +202,9 @@ export interface SituationEUpdateColumns
 	OUTCOMES_RID_2?: number | IQNumberField;
 	OUTCOMES_AID_2?: number | IQNumberField;
 	OUTCOMES_ARID_2?: number | IQNumberField;
+	FORUM_THREAD_RID_1?: number | IQNumberField;
+	FORUM_THREAD_AID_1?: number | IQNumberField;
+	FORUM_THREAD_ARID_1?: number | IQNumberField;
 
 }
 
@@ -227,6 +244,7 @@ export interface QSituation extends QRepositoryEntity<Situation>
 	// Non-Id Relations
 	outcomeA: QOutcomeQRelation;
 	outcomeB: QOutcomeQRelation;
+	thread: QForumThreadQRelation;
 	children: IQOneToManyRelation<Situation, QSituation>;
 	situationLabels: IQOneToManyRelation<SituationLabel, QSituationLabel>;
 	situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;

@@ -5,7 +5,8 @@ export interface ISituationApi {
     getLeafSituations(situation: ISituation): Promise<ISituation[]>;
     getStemSituation(situation: ISituation): Promise<ISituation>;
     getSituation(repositorySource: string, situationRepositoryUuId: string): Promise<ISituation>;
-    saveSituation(situation: ISituation, createNewRepository: boolean): Promise<IRepositoryIdentifier>;
+    saveNewSituation(situation: ISituation): Promise<IRepositoryIdentifier>;
+    saveExistingSituation(situation: ISituation): Promise<IRepositoryIdentifier>;
 }
 /**
  * Version 1 situation retrieval across devices.
@@ -27,6 +28,7 @@ export declare class SituationApi implements ISituationApi {
     getLeafSituations(situation: ISituation): Promise<ISituation[]>;
     getStemSituation(situation: ISituation): Promise<ISituation>;
     getSituation(repositorySource: string, situationRepositoryUuId: string): Promise<ISituation>;
-    saveSituation(situation: ISituation, createNewRepository: boolean): Promise<IRepositoryIdentifier>;
+    saveExistingSituation(situation: ISituation): Promise<IRepositoryIdentifier>;
+    saveNewSituation(situation: ISituation): Promise<IRepositoryIdentifier>;
 }
 //# sourceMappingURL=SituationApi.d.ts.map

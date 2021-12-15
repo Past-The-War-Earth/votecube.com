@@ -18,6 +18,9 @@ __decorate([
     ManyToOne()
 ], Situation.prototype, "outcomeB", void 0);
 __decorate([
+    ManyToOne()
+], Situation.prototype, "thread", void 0);
+__decorate([
     OneToMany({ mappedBy: 'parent' })
 ], Situation.prototype, "children", void 0);
 __decorate([

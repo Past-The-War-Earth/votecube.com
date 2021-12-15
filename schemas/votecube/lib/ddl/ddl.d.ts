@@ -7,4 +7,5 @@ export * from './situation/SituationLabel';
 export * from './solution/Solution';
 export * from './solution/SolutionFactor';
 export * from './Label';
+export * from './UserAccount';
 //# sourceMappingURL=ddl.d.ts.map

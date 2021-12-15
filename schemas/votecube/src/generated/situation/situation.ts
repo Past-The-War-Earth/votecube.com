@@ -5,6 +5,9 @@ import {
 	IOutcome,
 } from './outcome';
 import {
+	IForumThread,
+} from '@votecube/forum';
+import {
 	ISituationLabel,
 } from './situationlabel';
 import {
@@ -32,6 +35,7 @@ export interface ISituation extends IRepositoryEntity {
 	// Non-Id Relations
 	outcomeA?: IOutcome;
 	outcomeB?: IOutcome;
+	thread?: IForumThread;
 	children?: ISituation[];
 	situationLabels?: ISituationLabel[];
 	situationFactorPositions?: ISituationFactorPosition[];

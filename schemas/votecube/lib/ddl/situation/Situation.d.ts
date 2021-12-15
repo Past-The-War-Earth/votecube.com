@@ -1,4 +1,5 @@
 import { RepositoryEntity } from '@airport/holding-pattern';
+import { ForumThread } from '@votecube/forum/lib/server';
 import { Solution } from '../solution/Solution';
 import { Outcome } from './Outcome';
 import { SituationFactorPosition } from './SituationFactorPosition';
@@ -7,6 +8,7 @@ export declare class Situation extends RepositoryEntity {
     name: string;
     outcomeA: Outcome;
     outcomeB: Outcome;
+    thread: ForumThread;
     children: Situation[];
     situationLabels: SituationLabel[];
     situationFactorPositions: SituationFactorPosition[];

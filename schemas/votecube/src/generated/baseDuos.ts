@@ -117,6 +117,19 @@ import {
 	QSolutionFactor,
 } from './solution/qsolutionfactor';
 import {
+	IUserAccount,
+} from './useraccount';
+import {
+	UserAccountESelect,
+	UserAccountECreateColumns,
+	UserAccountECreateProperties,
+	UserAccountEUpdateColumns,
+	UserAccountEUpdateProperties,
+	UserAccountEId,
+	UserAccountGraph,
+	QUserAccount,
+} from './quseraccount';
+import {
 	IDuo,
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
@@ -322,5 +335,23 @@ export class BaseSolutionFactorDuo
 	
 	constructor() {
 		super(3)
+	}
+}
+
+
+export interface IBaseUserAccountDuo
+  extends IDuo<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> {
+}
+
+export class BaseUserAccountDuo
+  extends SQDIDuo<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount>
+	implements IBaseUserAccountDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(9)
+	}
+	
+	constructor() {
+		super(9)
 	}
 }

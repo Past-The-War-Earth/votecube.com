@@ -9,6 +9,7 @@ import { QSituationFactorPosition } from './situation/qsituationfactorposition';
 import { QSituationLabel } from './situation/qsituationlabel';
 import { QSolution } from './solution/qsolution';
 import { QSolutionFactor } from './solution/qsolutionfactor';
+import { QUserAccount } from './quseraccount';
 export interface LocalQApplication extends AirportQApplication {
     db: DbApplication;
     Factor: QFactor;
@@ -20,6 +21,7 @@ export interface LocalQApplication extends AirportQApplication {
     SituationLabel: QSituationLabel;
     Solution: QSolution;
     SolutionFactor: QSolutionFactor;
+    UserAccount: QUserAccount;
 }
 export declare const Q_APPLICATION: LocalQApplication;
 export declare const Q: LocalQApplication;

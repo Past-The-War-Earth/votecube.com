@@ -16,6 +16,8 @@ import { ISolution } from './solution/solution';
 import { SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution } from './solution/qsolution';
 import { ISolutionFactor } from './solution/solutionfactor';
 import { SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor } from './solution/qsolutionfactor';
+import { IUserAccount } from './useraccount';
+import { UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount } from './quseraccount';
 import { IDao, IEntityCascadeGraph, IEntityCreateProperties, IEntityIdProperties, IEntitySelectProperties, IEntityUpdateColumns, IEntityUpdateProperties, IQEntity } from '@airport/air-control';
 import { Dao, DaoQueryDecorators } from '@airport/check-in';
 import { EntityId as DbEntityId } from '@airport/ground-control';
@@ -118,6 +120,17 @@ export declare class BaseSolutionFactorDao extends SQDIDao<ISolutionFactor, Solu
     static Search: DaoQueryDecorators<SolutionFactorESelect>;
     static SearchOne: DaoQueryDecorators<SolutionFactorESelect>;
     static Save(config: SolutionFactorGraph): PropertyDecorator;
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseUserAccountDao extends IDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> {
+}
+export declare class BaseUserAccountDao extends SQDIDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> implements IBaseUserAccountDao {
+    static Find: DaoQueryDecorators<UserAccountESelect>;
+    static FindOne: DaoQueryDecorators<UserAccountESelect>;
+    static Search: DaoQueryDecorators<UserAccountESelect>;
+    static SearchOne: DaoQueryDecorators<UserAccountESelect>;
+    static Save(config: UserAccountGraph): PropertyDecorator;
     static diSet(): boolean;
     constructor();
 }

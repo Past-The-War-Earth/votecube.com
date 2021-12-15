@@ -8,6 +8,8 @@ import { Api } from "@airport/check-in";
 import { container, DI } from "@airport/di";
 import { SITUATION_API } from "../tokens";
 import { SITUATION_DAO } from "../server-tokens";
+import { FORUM_THREAD_API } from "@votecube/forum";
+import { ENTITY_STATE_MANAGER } from "@airport/ground-control";
 /**
  * Version 1 situation retrieval across devices.
  *
@@ -37,9 +39,34 @@ export class SituationApi {
         const situationDao = await container(this).get(SITUATION_DAO);
         return await situationDao.findByRepositoryUuId(repositorySource, situationRepositoryUuId);
     }
-    async saveSituation(situation, createNewRepository) {
+    async saveExistingSituation(situation) {
+        if (!situation.repository || !situation.repository.id
+            || !situation.actor || !situation.actor.id
+            || !situation.actorRecordId) {
+            throw new Error(`Cannot save EXISTING situation without a repository, actor or actorRecordId`);
+        }
         const situationDao = await container(this).get(SITUATION_DAO);
-        return await situationDao.saveSituation(situation, createNewRepository);
+        return await situationDao.saveExistingSituation(situation);
+    }
+    async saveNewSituation(situation) {
+        if (situation.repository || situation.actor || situation.actorRecordId) {
+            throw new Error(`Cannot save NEW situation with existing repository, actor or actorRecordId`);
+        }
+        const [entityStateManager, forumThreadApi, situationDao] = await container(this)
+            .get(ENTITY_STATE_MANAGER, FORUM_THREAD_API, SITUATION_DAO);
+        const forumThread = await forumThreadApi.createNew();
+        const forumThreadStub = {
+            actor: {
+                id: forumThread.actor.id
+            },
+            actorRecordId: forumThread.actorRecordId,
+            repository: {
+                id: forumThread.repository.id
+            },
+        };
+        entityStateManager.markAsStub(forumThreadStub);
+        situation.thread;
+        return await situationDao.saveNewSituation(situation);
     }
 }
 __decorate([
@@ -56,6 +83,9 @@ __decorate([
 ], SituationApi.prototype, "getSituation", null);
 __decorate([
     Api()
-], SituationApi.prototype, "saveSituation", null);
+], SituationApi.prototype, "saveExistingSituation", null);
+__decorate([
+    Api()
+], SituationApi.prototype, "saveNewSituation", null);
 DI.set(SITUATION_API, SituationApi);
 //# sourceMappingURL=SituationApi.js.map

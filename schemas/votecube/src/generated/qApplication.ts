@@ -21,6 +21,7 @@ import { QSituationFactorPosition } from './situation/qsituationfactorposition';
 import { QSituationLabel } from './situation/qsituationlabel';
 import { QSolution } from './solution/qsolution';
 import { QSolutionFactor } from './solution/qsolutionfactor';
+import { QUserAccount } from './quseraccount';
 import {
   Factor,
   Label,
@@ -30,7 +31,8 @@ import {
   SituationFactorPosition,
   SituationLabel,
   Solution,
-  SolutionFactor
+  SolutionFactor,
+  UserAccount
 } from '../ddl/ddl';
 
 export interface LocalQApplication extends AirportQApplication {
@@ -46,6 +48,7 @@ export interface LocalQApplication extends AirportQApplication {
 	SituationLabel: QSituationLabel;
 	Solution: QSolution;
 	SolutionFactor: QSolutionFactor;
+	UserAccount: QUserAccount;
 
 }
 
@@ -58,7 +61,8 @@ const __constructors__ = {
 	SituationFactorPosition: SituationFactorPosition,
 	SituationLabel: SituationLabel,
 	Solution: Solution,
-	SolutionFactor: SolutionFactor
+	SolutionFactor: SolutionFactor,
+	UserAccount: UserAccount
 };
 
 export const Q_APPLICATION: LocalQApplication = <any>{

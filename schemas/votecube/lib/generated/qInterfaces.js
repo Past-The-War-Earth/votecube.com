@@ -1,6 +1,7 @@
 export * from './factor/qfactor';
 export * from './factor/qposition';
 export * from './qlabel';
+export * from './quseraccount';
 export * from './situation/qoutcome';
 export * from './situation/qsituation';
 export * from './situation/qsituationfactorposition';

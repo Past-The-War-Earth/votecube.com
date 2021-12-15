@@ -78,4 +78,12 @@ export class BaseSolutionFactorDuo extends SQDIDuo {
         super(3);
     }
 }
+export class BaseUserAccountDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(9);
+    }
+    constructor() {
+        super(9);
+    }
+}
 //# sourceMappingURL=baseDuos.js.map

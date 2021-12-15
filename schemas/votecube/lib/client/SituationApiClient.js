@@ -17,9 +17,13 @@ export class SituationApiClient {
         const situationApi = await IOC.get(SITUATION_API);
         return await situationApi.getSituation(repositorySource, situationRepositoryUuId);
     }
-    async saveSituation(situation, createNewRepository) {
+    async saveExistingSituation(situation) {
         const situationApi = await IOC.get(SITUATION_API);
-        return await situationApi.saveSituation(situation, createNewRepository);
+        return await situationApi.saveExistingSituation(situation);
+    }
+    async saveNewSituation(situation) {
+        const situationApi = await IOC.get(SITUATION_API);
+        return await situationApi.saveNewSituation(situation);
     }
 }
 //# sourceMappingURL=SituationApiClient.js.map

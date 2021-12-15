@@ -117,6 +117,19 @@ import {
 	QSolutionFactor,
 } from './solution/qsolutionfactor';
 import {
+	IUserAccount,
+} from './useraccount';
+import {
+	UserAccountESelect,
+	UserAccountECreateColumns,
+	UserAccountECreateProperties,
+	UserAccountEUpdateColumns,
+	UserAccountEUpdateProperties,
+	UserAccountEId,
+	UserAccountGraph,
+	QUserAccount,
+} from './quseraccount';
+import {
 	IDao,
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
@@ -413,5 +426,33 @@ export class BaseSolutionFactorDao
 	
 	constructor() {
 		super(3)
+	}
+}
+
+
+export interface IBaseUserAccountDao
+  extends IDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> {
+}
+
+export class BaseUserAccountDao
+  extends SQDIDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount>
+	implements IBaseUserAccountDao {
+	
+	static Find      = new DaoQueryDecorators<UserAccountESelect>();
+	static FindOne   = new DaoQueryDecorators<UserAccountESelect>();
+	static Search    = new DaoQueryDecorators<UserAccountESelect>();
+	static SearchOne = new DaoQueryDecorators<UserAccountESelect>();
+	static Save(
+		config: UserAccountGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<UserAccountGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(9)
+	}
+	
+	constructor() {
+		super(9)
 	}
 }

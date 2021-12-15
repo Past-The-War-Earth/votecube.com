@@ -10,6 +10,7 @@ import { SituationFactorPosition } from '../ddl/situation/SituationFactorPositio
 import { Label } from '../ddl/Label';
 import { SituationLabel } from '../ddl/situation/SituationLabel';
 import { Situation } from '../ddl/situation/Situation';
+import { UserAccount } from '../ddl/UserAccount';
 DI.db().get(AIRPORT_DATABASE).then(airDb => {
     const accumulator = airDb.getAccumulator('votecube.com', 'undefined');
     accumulator.add(Position, 0);
@@ -21,5 +22,6 @@ DI.db().get(AIRPORT_DATABASE).then(airDb => {
     accumulator.add(Label, 6);
     accumulator.add(SituationLabel, 7);
     accumulator.add(Situation, 8);
+    accumulator.add(UserAccount, 9);
 });
 //# sourceMappingURL=entityMappings.js.map

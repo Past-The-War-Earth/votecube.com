@@ -5,6 +5,7 @@ export declare class SituationApiClient {
     getLeafSituations(situation: ISituation): Promise<ISituation[]>;
     getStemSituation(situation: ISituation): Promise<ISituation>;
     getSituation(repositorySource: string, situationRepositoryUuId: string): Promise<ISituation>;
-    saveSituation(situation: ISituation, createNewRepository: boolean): Promise<IRepositoryIdentifier>;
+    saveExistingSituation(situation: ISituation): Promise<IRepositoryIdentifier>;
+    saveNewSituation(situation: ISituation): Promise<IRepositoryIdentifier>;
 }
 //# sourceMappingURL=SituationApiClient.d.ts.map

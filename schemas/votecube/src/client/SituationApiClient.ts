@@ -38,13 +38,20 @@ export class SituationApiClient {
         return await situationApi.getSituation(repositorySource, situationRepositoryUuId)
     }
 
-    async saveSituation(
-        situation: ISituation,
-        createNewRepository: boolean
+    async saveExistingSituation(
+        situation: ISituation
     ): Promise<IRepositoryIdentifier> {
         const situationApi = await IOC.get(SITUATION_API)
 
-        return await situationApi.saveSituation(situation, createNewRepository)
+        return await situationApi.saveExistingSituation(situation)
+    }
+
+    async saveNewSituation(
+        situation: ISituation
+    ): Promise<IRepositoryIdentifier> {
+        const situationApi = await IOC.get(SITUATION_API)
+
+        return await situationApi.saveNewSituation(situation)
     }
 
 }

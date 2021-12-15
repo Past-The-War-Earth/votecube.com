@@ -37,7 +37,11 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        saveSituation: {
+                        saveExistingSituation: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                        saveNewSituation: {
                             isAsync: boolean;
                             parameters: any[];
                         };

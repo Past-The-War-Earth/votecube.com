@@ -2,7 +2,7 @@ import { AIRPORT_DATABASE } from '@airport/air-control';
 import { diSet as dS, duoDiSet as ddS } from '@airport/check-in';
 import { DI } from '@airport/di';
 import { getApplicationName } from '@airport/ground-control';
-import { Factor, Label, Outcome, Position, Situation, SituationFactorPosition, SituationLabel, Solution, SolutionFactor } from '../ddl/ddl';
+import { Factor, Label, Outcome, Position, Situation, SituationFactorPosition, SituationLabel, Solution, SolutionFactor, UserAccount } from '../ddl/ddl';
 const __constructors__ = {
     Factor: Factor,
     Label: Label,
@@ -12,7 +12,8 @@ const __constructors__ = {
     SituationFactorPosition: SituationFactorPosition,
     SituationLabel: SituationLabel,
     Solution: Solution,
-    SolutionFactor: SolutionFactor
+    SolutionFactor: SolutionFactor,
+    UserAccount: UserAccount
 };
 export const Q_APPLICATION = {
     __constructors__,

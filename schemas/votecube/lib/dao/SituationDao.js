@@ -51,21 +51,24 @@ export class SituationDao extends BaseSituationDao {
         }
         return null;
     }
-    async saveSituation(situation, createNewRepository) {
+    async saveExistingSituation(situation) {
         let saveResult;
-        if (situation.repository && !createNewRepository) {
-            saveResult = await this.db.save(situation);
-        }
-        else {
-            situation.repository = null;
-            situation.actor = null;
-            delete situation.actorRecordId;
-            saveResult = await this.db.save(situation);
-        }
+        saveResult = await this.db.save(situation);
+        return {
+            source: situation.repository.source,
+            uuId: situation.repository.uuId
+        };
+    }
+    async saveNewSituation(situation) {
+        let saveResult;
+        situation.repository = null;
+        situation.actor = null;
+        delete situation.actorRecordId;
+        saveResult = await this.db.save(situation);
         const newRepository = saveResult.newRepository;
         return {
-            source: newRepository ? newRepository.source : situation.repository.source,
-            uuId: newRepository ? saveResult.newRepository.uuId : situation.repository.uuId
+            source: newRepository.source,
+            uuId: newRepository.uuId
         };
     }
 }

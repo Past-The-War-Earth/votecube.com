@@ -1,6 +1,7 @@
 import { IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { OutcomeGraph, OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from './qoutcome';
+import { ForumThreadGraph, ForumThreadEOptionalId, ForumThreadESelect, QForumThreadQRelation } from '@votecube/forum/lib/server';
 import { SituationLabelGraph, SituationLabelESelect, QSituationLabel } from './qsituationlabel';
 import { SituationLabel } from '../../ddl/situation/SituationLabel';
 import { SituationFactorPositionGraph, SituationFactorPositionESelect, QSituationFactorPosition } from './qsituationfactorposition';
@@ -15,6 +16,7 @@ export interface SituationESelect extends RepositoryEntityESelect, SituationEOpt
     name?: string | IQStringField;
     outcomeA?: OutcomeESelect;
     outcomeB?: OutcomeESelect;
+    thread?: ForumThreadESelect;
     children?: SituationESelect;
     situationLabels?: SituationLabelESelect;
     situationFactorPositions?: SituationFactorPositionESelect;
@@ -37,6 +39,7 @@ export interface SituationEUpdateProperties extends RepositoryEntityEUpdatePrope
     name?: string | IQStringField;
     outcomeA?: OutcomeEOptionalId;
     outcomeB?: OutcomeEOptionalId;
+    thread?: ForumThreadEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
@@ -45,6 +48,7 @@ export interface SituationGraph extends SituationEOptionalId, RepositoryEntityGr
     name?: string | IQStringField;
     outcomeA?: OutcomeGraph;
     outcomeB?: OutcomeGraph;
+    thread?: ForumThreadGraph;
     children?: SituationGraph[];
     situationLabels?: SituationLabelGraph[];
     situationFactorPositions?: SituationFactorPositionGraph[];
@@ -66,6 +70,9 @@ export interface SituationEUpdateColumns extends RepositoryEntityEUpdateColumns 
     OUTCOMES_RID_2?: number | IQNumberField;
     OUTCOMES_AID_2?: number | IQNumberField;
     OUTCOMES_ARID_2?: number | IQNumberField;
+    FORUM_THREAD_RID_1?: number | IQNumberField;
+    FORUM_THREAD_AID_1?: number | IQNumberField;
+    FORUM_THREAD_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -84,6 +91,7 @@ export interface QSituation extends QRepositoryEntity<Situation> {
     name: IQStringField;
     outcomeA: QOutcomeQRelation;
     outcomeB: QOutcomeQRelation;
+    thread: QForumThreadQRelation;
     children: IQOneToManyRelation<Situation, QSituation>;
     situationLabels: IQOneToManyRelation<SituationLabel, QSituationLabel>;
     situationFactorPositions: IQOneToManyRelation<SituationFactorPosition, QSituationFactorPosition>;

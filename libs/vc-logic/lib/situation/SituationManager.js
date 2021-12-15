@@ -116,8 +116,15 @@ export class SituationManager {
         }
         const converter = await container(this).get(SITUATION_CONVERTER);
         const dbSituation = converter.uiToDb(ui, this.cachedSituation.db);
-        const repositoryIdentifier = await this.situationApi
-            .saveSituation(dbSituation, createNewRepository);
+        let repositoryIdentifier;
+        if (createNewRepository) {
+            repositoryIdentifier = await this.situationApi
+                .saveNewSituation(dbSituation);
+        }
+        else {
+            repositoryIdentifier = await this.situationApi
+                .saveExistingSituation(dbSituation);
+        }
         this.cachedSituation.db = dbSituation;
         this.theCachedSituation = {
             db: dbSituation,

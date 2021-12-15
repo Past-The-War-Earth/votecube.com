@@ -16,6 +16,8 @@ import { ISolution } from './solution/solution';
 import { SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution } from './solution/qsolution';
 import { ISolutionFactor } from './solution/solutionfactor';
 import { SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor } from './solution/qsolutionfactor';
+import { IUserAccount } from './useraccount';
+import { UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount } from './quseraccount';
 import { IDuo, IEntityCascadeGraph, IEntityCreateProperties, IEntityIdProperties, IEntitySelectProperties, IEntityUpdateColumns, IEntityUpdateProperties, IQEntity } from '@airport/air-control';
 import { Duo } from '@airport/check-in';
 import { EntityId as DbEntityId } from '@airport/ground-control';
@@ -73,6 +75,12 @@ export declare class BaseSolutionDuo extends SQDIDuo<ISolution, SolutionESelect,
 export interface IBaseSolutionFactorDuo extends IDuo<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> {
 }
 export declare class BaseSolutionFactorDuo extends SQDIDuo<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> implements IBaseSolutionFactorDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseUserAccountDuo extends IDuo<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> {
+}
+export declare class BaseUserAccountDuo extends SQDIDuo<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> implements IBaseUserAccountDuo {
     static diSet(): boolean;
     constructor();
 }
