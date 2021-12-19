@@ -1,6 +1,6 @@
 import { system } from "@airport/di";
 export const votecube = system('votecube').lib('votecube');
 votecube.signature = 'votecube';
-export const SITUATION_API = votecube.token('SITUATION_API');
-export const SOLUTION_API = votecube.token('SOLUTION_API');
+export const SITUATION_API = votecube.token('ISituationApi');
+export const SOLUTION_API = votecube.token('ISolutionApi');
 //# sourceMappingURL=tokens.js.map

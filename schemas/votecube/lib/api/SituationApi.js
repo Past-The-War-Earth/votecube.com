@@ -8,8 +8,6 @@ import { Api } from "@airport/check-in";
 import { container, DI } from "@airport/di";
 import { SITUATION_API } from "../tokens";
 import { SITUATION_DAO } from "../server-tokens";
-import { FORUM_THREAD_API } from "@votecube/forum";
-import { ENTITY_STATE_MANAGER } from "@airport/ground-control";
 /**
  * Version 1 situation retrieval across devices.
  *
@@ -49,23 +47,24 @@ export class SituationApi {
         return await situationDao.saveExistingSituation(situation);
     }
     async saveNewSituation(situation) {
-        if (situation.repository || situation.actor || situation.actorRecordId) {
-            throw new Error(`Cannot save NEW situation with existing repository, actor or actorRecordId`);
-        }
-        const [entityStateManager, forumThreadApi, situationDao] = await container(this)
-            .get(ENTITY_STATE_MANAGER, FORUM_THREAD_API, SITUATION_DAO);
-        const forumThread = await forumThreadApi.createNew();
-        const forumThreadStub = {
-            actor: {
-                id: forumThread.actor.id
-            },
-            actorRecordId: forumThread.actorRecordId,
-            repository: {
-                id: forumThread.repository.id
-            },
-        };
-        entityStateManager.markAsStub(forumThreadStub);
-        situation.thread;
+        situation.repository = null;
+        situation.actor = null;
+        delete situation.actorRecordId;
+        const situationDao = await container(this).get(SITUATION_DAO);
+        // const [entityStateManager, forumThreadApi, situationDao] = await container(this)
+        //     .get(ENTITY_STATE_MANAGER, FORUM_THREAD_API, SITUATION_DAO)
+        // const forumThread = await forumThreadApi.createNew()
+        // const forumThreadStub: IForumThread = {
+        //     actor: {
+        //         id: forumThread.actor.id
+        //     },
+        //     actorRecordId: forumThread.actorRecordId,
+        //     repository: {
+        //         id: forumThread.repository.id
+        //     },
+        // } as IForumThread
+        // entityStateManager.markAsStub(forumThreadStub)
+        // situation.thread = forumThreadStub
         return await situationDao.saveNewSituation(situation);
     }
 }

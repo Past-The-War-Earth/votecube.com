@@ -130,13 +130,7 @@ export class SituationDao
     async saveNewSituation(
         situation: ISituation
     ): Promise<IRepositoryIdentifier> {
-        let saveResult: ISaveResult
-        situation.repository = null
-        situation.actor = null
-        delete situation.actorRecordId
-
-        saveResult = await this.db.save(situation)
-
+        let saveResult: ISaveResult = await this.db.save(situation)
         const newRepository = saveResult.newRepository
 
         return {

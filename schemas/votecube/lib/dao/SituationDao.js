@@ -60,11 +60,7 @@ export class SituationDao extends BaseSituationDao {
         };
     }
     async saveNewSituation(situation) {
-        let saveResult;
-        situation.repository = null;
-        situation.actor = null;
-        delete situation.actorRecordId;
-        saveResult = await this.db.save(situation);
+        let saveResult = await this.db.save(situation);
         const newRepository = saveResult.newRepository;
         return {
             source: newRepository.source,
