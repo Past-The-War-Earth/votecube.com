@@ -21,12 +21,8 @@ __decorate([
     JoinColumn({ name: 'POLL_REVISION_ID' })
 ], Position.prototype, "createdAtPollRevision", void 0);
 __decorate([
-    ManyToOne(),
-    JoinColumn({
-        name: 'PARENT_POSITION_TRANSLATION_ID',
-        referencedColumnName: 'POSITION_TRANSLATION_ID'
-    })
-], Position.prototype, "parentTranslation", void 0);
+    Column({ name: 'POSITION_NAME' })
+], Position.prototype, "name", void 0);
 __decorate([
     ManyToOne(),
     JoinColumn({

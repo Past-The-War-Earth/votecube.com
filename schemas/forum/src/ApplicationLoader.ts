@@ -1,7 +1,7 @@
 import {
     API_REGISTRY,
 } from '@airport/check-in'
-import { container, DI, system } from '@airport/di'
+import { container, DI } from '@airport/di'
 import { APPLICATION_INITIALIZER } from '@airport/landing'
 import {
     APPLICATION_LOADER,
@@ -10,6 +10,7 @@ import {
     LastIds
 } from '@airport/security-check'
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff'
+import { domain } from '@votecube/dependency-injection'
 import { APPLICATION } from './generated/application'
 
 export class ApplicationLoader
@@ -36,7 +37,7 @@ export class ApplicationLoader
 
         apiRegistry.initialize(APPLICATION.versions[0].api)
 
-        system('votecube').mapLibraryBySignature('forum', librarySignature)
+        domain.mapApplicationBySignature('forum', librarySignature)
     }
 
     getApplication(): JsonApplicationWithLastIds {

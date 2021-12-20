@@ -1,4 +1,4 @@
-import { system } from '@airport/di'
+import { app } from '@votecube/dependency-injection'
 import { ISituationConverter } from './converter/SituationConverter'
 import { ILogicUtils } from './LogicUtils'
 import { IDetailedCubeLogic } from './pages/components/situation/DetailedCubeLogic'
@@ -11,7 +11,7 @@ import { ISituationManager } from './situation/SituationManager'
 import { ISolutionManager } from './situation/SolutionManager'
 import { ISolutionConverter } from './converter/SolutionConverter'
 
-const publicLogic = system('votecube-ui').lib('vc-logic')
+const publicLogic = app('vc-logic')
 
 export const CUBE_LOGIC = publicLogic.token<ICubeLogic>('CUBE_LOGIC')
 export const DETAILED_CUBE_LOGIC = publicLogic.token<IDetailedCubeLogic>('DETAILED_CUBE_LOGIC')

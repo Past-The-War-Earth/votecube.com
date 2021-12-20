@@ -1,5 +1,5 @@
-import { system } from "@airport/di";
-export const votecube = system('votecube').lib('votecube');
+import { app } from '@votecube/dependency-injection';
+export const votecube = app('votecube');
 votecube.signature = 'votecube';
 export const SITUATION_API = votecube.token('ISituationApi');
 export const SOLUTION_API = votecube.token('ISolutionApi');

@@ -1,7 +1,7 @@
-import { system } from "@airport/di";
+import { app } from '@votecube/dependency-injection'
 import { IForumThreadApi } from "./api/ForumThreadApi";
 
-export const forum = system('votecube').lib('forum')
+export const forum = app('forum')
 forum.signature = 'forum'
 
 export const FORUM_THREAD_API = forum.token<IForumThreadApi>('FORUM_THREAD_API')

@@ -1,4 +1,4 @@
-import { Position_Id } from '../../../types/factor/position/Position';
+import { Position_Id, Position_Name } from '../../../types/factor/position/Position';
 import { AgeSuitableRow } from '../../infrastructure/row/AgeSuitableRow';
 import { PollRevision } from '../../poll/revision/PollRevision';
 import { FactorPosition } from './FactorPosition';
@@ -9,7 +9,7 @@ import { PositionTranslation } from './PositionTranslation';
 export declare class Position extends AgeSuitableRow {
     id: Position_Id;
     createdAtPollRevision: PollRevision;
-    parentTranslation: PositionTranslation;
+    name: Position_Name;
     parent: Position;
     children: Position[];
     factorPositions: FactorPosition[];

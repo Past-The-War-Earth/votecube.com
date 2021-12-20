@@ -1,6 +1,5 @@
-import { system } from '@airport/di';
-const publicLogic = system('votecube-ui')
-    .lib('ui-logic');
+import { app } from '@votecube/dependency-injection';
+const publicLogic = app('ui-logic');
 export const AUTH = publicLogic.token('AUTH');
 export const ROUTES = publicLogic.token('ROUTES');
 export const REPOSITORY_RECORD_CONVERTER = publicLogic

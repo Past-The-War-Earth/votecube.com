@@ -30,6 +30,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@votecube/dependency-injection",
+      "projectFolder": "libs/dependency-injection",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@votecube/forms",
       "projectFolder": "libs/forms",
       "shouldPublish": true

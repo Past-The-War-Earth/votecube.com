@@ -1,3 +1,5 @@
+import { domain } from '@votecube/dependency-injection'
+
 export * from './api/api'
 export * from './dao/dao'
 export * from './ddl/ddl'
@@ -11,6 +13,6 @@ import { LOCAL_API_SERVER } from "@airport/security-check";
 
 export async function load() {
     const localApiServer = await IOC.get(LOCAL_API_SERVER)
-    localApiServer.systemName = 'votecube'
+    localApiServer.domainName = domain.name
     console.log('TrumentBox App loaded')
 }

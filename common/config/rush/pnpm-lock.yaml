@@ -21,6 +21,7 @@ dependencies:
   '@rush-temp/cockroachdb': 'file:projects/cockroachdb.tgz'
   '@rush-temp/config': 'file:projects/config.tgz'
   '@rush-temp/cube-logic': 'file:projects/cube-logic.tgz'
+  '@rush-temp/dependency-injection': 'file:projects/dependency-injection.tgz'
   '@rush-temp/di': 'file:projects/di.tgz_typescript@4.5.2'
   '@rush-temp/ecclesia': 'file:projects/ecclesia.tgz'
   '@rush-temp/flight-log-archive': 'file:projects/flight-log-archive.tgz'
@@ -7436,6 +7437,16 @@ packages:
       integrity: sha512-aG3gp8zPA/YXa6ZfOO0fBsImakRqH1SFM8J4/IsN/fvTsTOlmTorGIOI0iJqi5IbahIAmKHUb4aiskfogIatMQ==
       tarball: 'file:projects/cube-logic.tgz'
     version: 0.0.0
+  'file:projects/dependency-injection.tgz':
+    dependencies:
+      tslint: 5.20.1_typescript@4.5.2
+      typescript: 4.5.2
+    dev: false
+    name: '@rush-temp/dependency-injection'
+    resolution:
+      integrity: sha512-fWPP4LmiuaSZvt8NiXwi33+xUFUyxDYvwP7TdoI3NW0TxI3KtwL20AaOp0qU/xlFLxkqi5XjqI8wJOSGh2qtPw==
+      tarball: 'file:projects/dependency-injection.tgz'
+    version: 0.0.0
   'file:projects/di.tgz_typescript@4.5.2':
     dependencies:
       tslint: 5.20.1_typescript@4.5.2
@@ -8206,6 +8217,7 @@ specifiers:
   '@rush-temp/cockroachdb': 'file:./projects/cockroachdb.tgz'
   '@rush-temp/config': 'file:./projects/config.tgz'
   '@rush-temp/cube-logic': 'file:./projects/cube-logic.tgz'
+  '@rush-temp/dependency-injection': 'file:./projects/dependency-injection.tgz'
   '@rush-temp/di': 'file:./projects/di.tgz'
   '@rush-temp/ecclesia': 'file:./projects/ecclesia.tgz'
   '@rush-temp/flight-log-archive': 'file:./projects/flight-log-archive.tgz'

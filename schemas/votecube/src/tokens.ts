@@ -1,8 +1,8 @@
-import { system } from "@airport/di";
+import { app } from '@votecube/dependency-injection'
 import { ISituationApi } from "./api/SituationApi";
 import { ISolutionApi } from "./api/SolutionApi";
 
-export const votecube = system('votecube').lib('votecube')
+export const votecube = app('votecube')
 votecube.signature = 'votecube'
 
 export const SITUATION_API = votecube.token<ISituationApi>('ISituationApi')

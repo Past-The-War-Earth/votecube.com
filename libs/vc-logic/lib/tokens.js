@@ -1,5 +1,5 @@
-import { system } from '@airport/di';
-const publicLogic = system('votecube-ui').lib('vc-logic');
+import { app } from '@votecube/dependency-injection';
+const publicLogic = app('vc-logic');
 export const CUBE_LOGIC = publicLogic.token('CUBE_LOGIC');
 export const DETAILED_CUBE_LOGIC = publicLogic.token('DETAILED_CUBE_LOGIC');
 export const FACTOR_RANKING_LOGIC = publicLogic.token('FACTOR_RANKING_LOGIC');
