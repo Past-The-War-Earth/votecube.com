@@ -3,24 +3,11 @@ export const APPLICATION = {
 	"domain": "votecube.com",
 	"index": null,
 	"name": "@votecube/votecube",
-	"packageName": "@votecube/votecube",
 	"sinceVersion": 1,
 	"versions": [
 		{
 			"api": {
 				"apiObjectMap": {
-					"ISolutionApi": {
-						"operationMap": {
-							"saveSolution": {
-								"isAsync": true,
-								"parameters": []
-							},
-							"getMySolutionForSituation": {
-								"isAsync": true,
-								"parameters": []
-							}
-						}
-					},
 					"ISituationApi": {
 						"operationMap": {
 							"getSituationsForLabels": {
@@ -44,6 +31,18 @@ export const APPLICATION = {
 								"parameters": []
 							},
 							"saveNewSituation": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					},
+					"ISolutionApi": {
+						"operationMap": {
+							"saveSolution": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getMySolutionForSituation": {
 								"isAsync": true,
 								"parameters": []
 							}
@@ -4523,7 +4522,6 @@ export const APPLICATION = {
 					"domain": "votecube.com",
 					"index": 0,
 					"name": "@votecube/forum",
-					"packageName": "@votecube/forum",
 					"sinceVersion": 1,
 					"versions": [
 						{
@@ -4538,7 +4536,6 @@ export const APPLICATION = {
 					"domain": "air",
 					"index": 1,
 					"name": "@airport/travel-document-checkpoint",
-					"packageName": "@airport/travel-document-checkpoint",
 					"sinceVersion": 1,
 					"versions": [
 						{
@@ -4553,7 +4550,6 @@ export const APPLICATION = {
 					"domain": "air",
 					"index": 2,
 					"name": "@airport/holding-pattern",
-					"packageName": "@airport/holding-pattern",
 					"sinceVersion": 1,
 					"versions": [
 						{

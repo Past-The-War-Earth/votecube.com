@@ -1,1 +1,0 @@
-{"version":3,"file":"position.d.ts","sourceRoot":"","sources":["../../../../src/generated/factor/position/position.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,iBAAiB,EACjB,MAAM,0BAA0B,CAAC;AAClC,OAAO,EACN,eAAe,EACf,MAAM,kBAAkB,CAAC;AAQ1B,MAAM,WAAW,SAAU,SAAQ,iBAAiB;IAOnD,IAAI,CAAC,EAAE,MAAM,CAAC;IAGd,eAAe,CAAC,EAAE,eAAe,EAAE,CAAC;CAMpC"}

@@ -19,8 +19,7 @@ export class ApplicationLoader
     private initializing = false
 
     async load(
-        lastIds: LastIds,
-        librarySignature: string = 'votecube',
+        lastIds: LastIds
     ): Promise<void> {
         if (this.initializing) {
             return
@@ -36,8 +35,6 @@ export class ApplicationLoader
         await applicationInitializer.initializeForAIRportApp(APPLICATION as any)
 
         apiRegistry.initialize(APPLICATION.versions[0].api)
-
-        domain.mapApplicationBySignature('votecube', librarySignature)
     }
 
     getApplication(): JsonApplicationWithLastIds {

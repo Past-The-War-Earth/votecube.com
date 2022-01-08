@@ -17,14 +17,29 @@
     "@airport/security-check": "0.0.1",
     "@airport/takeoff": "0.0.1",
     "@airport/travel-document-checkpoint": "0.0.1",
+    "@airport/web-tower": "0.0.1",
     "@votecube/dependency-injection": "0.0.1",
     "@votecube/forum": "0.0.1"
   },
   "devDependencies": {
-    "@airport/runway": "0.0.1"
+    "@airport/runway": "0.0.1",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "sirv-cli": "^1.0.0",
+    "typescript": "^4.5.2",
+    "tslib": "^2.0.0"
   },
   "main": "lib/client/index.js",
   "name": "@votecube/votecube",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public --no-clear --port 4000"
+  },
   "type": "module",
   "typings": "lib/client/index",
   "version": "0.0.1"

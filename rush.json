@@ -163,11 +163,6 @@
       "projectFolder": "../../AIR/AIRport/db/sqljs",
       "shouldPublish": true
     },
-    {
-      "packageName": "@airport/websql",
-      "projectFolder": "../../AIR/AIRport/db/websql",
-      "shouldPublish": true
-    },
     // "engines" folder (alphabetical order)
     {
       "packageName": "@airport/automated-guideway-transit",

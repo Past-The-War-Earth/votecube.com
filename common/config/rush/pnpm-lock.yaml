@@ -7,6 +7,7 @@ dependencies:
   '@node-ts/logger-core': 0.1.1_inversify@5.1.1
   '@node-ts/logger-winston': 0.1.1_48e93bc71dd88bae53ef2818d4f75448
   '@rollup/plugin-commonjs': 17.1.0
+  '@rollup/plugin-json': 4.1.0
   '@rollup/plugin-node-resolve': 11.2.1
   '@rollup/plugin-typescript': 8.3.0_tslib@2.3.1+typescript@4.5.2
   '@rush-temp/air-control': 'file:projects/air-control.tgz'
@@ -85,7 +86,6 @@ dependencies:
   '@rush-temp/votecube': 'file:projects/votecube.tgz'
   '@rush-temp/web-terminal': 'file:projects/web-terminal.tgz'
   '@rush-temp/web-tower': 'file:projects/web-tower.tgz'
-  '@rush-temp/websql': 'file:projects/websql.tgz'
   '@sveltejs/svelte-virtual-list': 3.0.1
   '@tsconfig/node16': 1.0.2
   '@tsconfig/svelte': 2.0.1
@@ -326,6 +326,23 @@ packages:
       rollup: ^2.30.0
     resolution:
       integrity: sha512-PoMdXCw0ZyvjpCMT5aV4nkL0QywxP29sODQsSGeDpr/oI49Qq9tRtAsb/LbYbDzFlOydVEqHmmZWFtXJEAX9ew==
+  /@rollup/plugin-json/4.1.0:
+    dependencies:
+      '@rollup/pluginutils': 3.1.0
+    dev: false
+    peerDependencies:
+      rollup: ^1.20.0 || ^2.0.0
+    resolution:
+      integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
+  /@rollup/plugin-json/4.1.0_rollup@2.59.0:
+    dependencies:
+      '@rollup/pluginutils': 3.1.0_rollup@2.59.0
+      rollup: 2.59.0
+    dev: false
+    peerDependencies:
+      rollup: ^1.20.0 || ^2.0.0
+    resolution:
+      integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
   /@rollup/plugin-node-resolve/11.2.1:
     dependencies:
       '@rollup/pluginutils': 3.1.0
@@ -7410,7 +7427,7 @@ packages:
     dev: false
     name: '@rush-temp/cloudfare-worker'
     resolution:
-      integrity: sha512-omMgGCG4deIv+Q0Cf/RwOJxBX50qkzoS/YQVJi6Wlbs58Q1UkV11PZLtctzXBOnJOjqJIDUhO5lG/epuaOI1Qg==
+      integrity: sha512-6F+WHqMN9zNbuBJg3h/hz1+CEY/6IP6GT4WHgfxaJw20ih0QQfksCK2J/Yv9QTA7b2+H8R7SMO5trKuzJGOyXg==
       tarball: 'file:projects/cloudfare-worker.tgz'
     version: 0.0.0
   'file:projects/cockroachdb.tgz':
@@ -7434,7 +7451,7 @@ packages:
     dev: false
     name: '@rush-temp/cube-logic'
     resolution:
-      integrity: sha512-aG3gp8zPA/YXa6ZfOO0fBsImakRqH1SFM8J4/IsN/fvTsTOlmTorGIOI0iJqi5IbahIAmKHUb4aiskfogIatMQ==
+      integrity: sha512-Y5TP1SwRTFXqcb/w4X3BOHdUA+PFxA9izKiv7qwFItiGpxJ+yWUgNj9oV2QA1WxEkZJvpy7bQtHBg84h7fSSqA==
       tarball: 'file:projects/cube-logic.tgz'
     version: 0.0.0
   'file:projects/dependency-injection.tgz':
@@ -7444,7 +7461,7 @@ packages:
     dev: false
     name: '@rush-temp/dependency-injection'
     resolution:
-      integrity: sha512-fWPP4LmiuaSZvt8NiXwi33+xUFUyxDYvwP7TdoI3NW0TxI3KtwL20AaOp0qU/xlFLxkqi5XjqI8wJOSGh2qtPw==
+      integrity: sha512-Xud7sCVFEzQJYx5SFQNsy/Bg0meymgXGG2a7Pm758TYVLaHOiHFttSO3vTArekm37nNvZybSzS+VoX9S9ozDTA==
       tarball: 'file:projects/dependency-injection.tgz'
     version: 0.0.0
   'file:projects/di.tgz_typescript@4.5.2':
@@ -7463,7 +7480,7 @@ packages:
     dev: false
     name: '@rush-temp/ecclesia'
     resolution:
-      integrity: sha512-vbTdx458hsQm3IDd2vJBB2emMSdfq7m9uTTTVOmNiqeuUx6KnUAZv/Pe9TLi9Us3EjrOKG09kostJjFoK9wGBg==
+      integrity: sha512-9tzVFQS2CRmxgkaaMAK7QW0v227ryg60bLt5HRNJxBX4NOkSgH1ggIB2laQ7kdQL2CrYVSyMdc/Y7onLQOuIBw==
       tarball: 'file:projects/ecclesia.tgz'
     version: 0.0.0
   'file:projects/flight-log-archive.tgz':
@@ -7480,7 +7497,7 @@ packages:
     dev: false
     name: '@rush-temp/forms'
     resolution:
-      integrity: sha512-RUG3uixu1B8Tp6pDx/FUIroNdHcgOx+/PyvcsvJd3wpw5QgcIutQNSiB44odh6io5ave2nrLNZzRSbSBkMNy5A==
+      integrity: sha512-hPPov8J7P0Fd4TAJHw+Y9pYEseFpUQyxC4st+Eo6ILDYzyPzMsY+DlHPsPrht6W6+rKxL190tQ6rWH3AFy+E2Q==
       tarball: 'file:projects/forms.tgz'
     version: 0.0.0
   'file:projects/forum-ui.tgz':
@@ -7494,14 +7511,14 @@ packages:
     dev: false
     name: '@rush-temp/forum-ui'
     resolution:
-      integrity: sha512-kHaqlPRa8Lr/CwcLDdT3yMhyXNw288n3Uclisod1rI7RddmtWw39T+z94gvpdzSkTPgY2cgSgr/X2N4OPamfIw==
+      integrity: sha512-H/pplYD9XxVxvQvJ4zxvCuMFikUyU4tGMZHgeMkC5uj3x8dEdcXvmiAQqzen0EDrBg6aXRRUH5KHQIk7CPqOtw==
       tarball: 'file:projects/forum-ui.tgz'
     version: 0.0.0
   'file:projects/forum.tgz':
     dev: false
     name: '@rush-temp/forum'
     resolution:
-      integrity: sha512-nVW6Tp2gWaIW/wI4EpxEG9LaRT1V6ee+jp8zJ39UEH05dwbGMxrsqipFzCDX2Ax2lU5HPj0GqQfRWshJ8FwYrw==
+      integrity: sha512-+sg/j7GSHDpzb+LA7gNBEnvd1zXuYMNar5B1U3fPabHcmqOvDpCqmC6y4CP/GAhe0IyAuDePWbm19Q9W6anKIg==
       tarball: 'file:projects/forum.tgz'
     version: 0.0.0
   'file:projects/fuel-hydrant-system.tgz':
@@ -7896,7 +7913,7 @@ packages:
     dev: false
     name: '@rush-temp/public-ui'
     resolution:
-      integrity: sha512-WLBieoJ+TojCZibwZ/78oT5ARDkd9+h6UDjvFRe3A6QCUEQUQxWaTmNiKVHA2ldap2wWaSuzXPGsrBde4pAZ0w==
+      integrity: sha512-RXdfzWRjsFQTZadP9BqAT7np86mykN4AJHgWqgYxiC4JCgPF+FepRahGmmj4noULJNdNgXi+wNpB9Bo9u9gsNA==
       tarball: 'file:projects/public-ui.tgz'
     version: 0.0.0
   'file:projects/ramp.tgz':
@@ -7926,7 +7943,7 @@ packages:
     dev: false
     name: '@rush-temp/repository-demo-frame'
     resolution:
-      integrity: sha512-byUUfTGRtCLpmIh/JKpWD3wF1N5k79Zqy4C5V9XDDNZGqLOPKT2dFZggBa1fnQ9kJNRo8nQlddE3sEhhUvdhQQ==
+      integrity: sha512-iCzDfLe69g1LhV/lS39AW/nTX921VB5slW8fCfPBtXYNInK9R7F50Gl8QH1NEcNjYDh3YY3Nl5R8uAFDlytyxg==
       tarball: 'file:projects/repository-demo-frame.tgz'
     version: 0.0.0
   'file:projects/repository-demo-framework.tgz':
@@ -8109,7 +8126,7 @@ packages:
     dev: false
     name: '@rush-temp/ui-components'
     resolution:
-      integrity: sha512-pfBCUoYahyjXIN2DgIfRH7WQmmebjfXF2ZxAi6QYMW2aVoN3A+sMf1uy5G1YCA+jyAUZjq+RSsy047kVsltTLQ==
+      integrity: sha512-SaoVzj/pk6rlrgVNHlDsnI+JE+KdbuP8fwmkaDw3NWrFl71rUyHdWoVIcWM4zKxp+6rbtFeRmdE8+ZhMSpvRBw==
       tarball: 'file:projects/ui-components.tgz'
     version: 0.0.0
   'file:projects/ui-controls.tgz':
@@ -8123,7 +8140,7 @@ packages:
     dev: false
     name: '@rush-temp/ui-controls'
     resolution:
-      integrity: sha512-Kq3soCMwZp+42StexgjuKCwe3aRXc0rWGxuPG7cJ0HaIrZqm9x5ORezEcqjrkga5DbVzX0rPdZOwEsRILDP4xg==
+      integrity: sha512-C92f93he7YI7ijrzsuI9uGFhXyS9gFpjiAM4ay0tqSmCMaPli+5t+lgzJih6cOlQ0M1YcDCB7lpUDjrOFmXU/g==
       tarball: 'file:projects/ui-controls.tgz'
     version: 0.0.0
   'file:projects/ui-logic.tgz':
@@ -8137,7 +8154,7 @@ packages:
     dev: false
     name: '@rush-temp/ui-logic'
     resolution:
-      integrity: sha512-2uD2YVcKygJ4JEEYArovLHvDyBMIwrxRURMY/u2kAmGRodoarN87yJGcGjXT/K3dhieiXI5/EzdzUAHMhB+2cA==
+      integrity: sha512-dpOTHoDwDY22T+KVHXoedg+vS6h/1cxQ37maIjyHawAuUuz/ArzfkRbDKeiul5ieKsTiujCrm6xO+6RNeqxpMA==
       tarball: 'file:projects/ui-logic.tgz'
     version: 0.0.0
   'file:projects/vasi.tgz':
@@ -8158,14 +8175,24 @@ packages:
     dev: false
     name: '@rush-temp/vc-logic'
     resolution:
-      integrity: sha512-l1fw6acE1BWaubrUEKNfJEf+CE9fs1zvRy9TeOli+edZqQe0x5FTdW2SEunnyhPrp05VFbeaT90qeZwUvbOYAg==
+      integrity: sha512-kFpWIXS2QTdqKeNxnrGndvJtAkx2Z3r8JSlZDpr4r7S4xd/9HPQyaOxY479nfYPvHLOgrn/s4yWxXrS0zxYH/Q==
       tarball: 'file:projects/vc-logic.tgz'
     version: 0.0.0
   'file:projects/votecube.tgz':
+    dependencies:
+      '@rollup/plugin-commonjs': 17.1.0_rollup@2.59.0
+      '@rollup/plugin-json': 4.1.0_rollup@2.59.0
+      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.59.0
+      '@rollup/plugin-typescript': 8.3.0_540094f6b8e281a8a0f841e38cc281bb
+      rollup: 2.59.0
+      rollup-plugin-livereload: 2.0.5
+      rollup-plugin-terser: 7.0.2_rollup@2.59.0
+      tslib: 2.3.1
+      typescript: 4.5.2
     dev: false
     name: '@rush-temp/votecube'
     resolution:
-      integrity: sha512-0Hq9GhyWbNTRR5dbsid6Ey4fkgyVl5mjIh4GF/xBkJI9FOaBDvzH3w23L/v3PLPBk3kjhBZcmI2Wj28BaXJNTQ==
+      integrity: sha512-cw3JfPzj0dhDh+ALvv44Mdvp68C69kWEohv/p++tmWCEzVJmSmdX31kR5+hTyjgzg1FOv0VJeUmOG57kTIHO3A==
       tarball: 'file:projects/votecube.tgz'
     version: 0.0.0
   'file:projects/web-terminal.tgz':
@@ -8186,13 +8213,6 @@ packages:
       integrity: sha512-R33wzu4OLZUGKRBBQ/0Kx4JoAoqCeTqXr9j2zXt5SYhvnUK9qo4MQK2RtDWeu58O30vejqK7hCKK8HoOJJYTWA==
       tarball: 'file:projects/web-tower.tgz'
     version: 0.0.0
-  'file:projects/websql.tgz':
-    dev: false
-    name: '@rush-temp/websql'
-    resolution:
-      integrity: sha512-6YQ0F8DkRe278OTN2UOnagA7t03MCoSvCUEjYsw4pDKPSFcNyrkYpxNOUX33F0Rz8XdTmcLOZnhKACq8eCm+Ww==
-      tarball: 'file:projects/websql.tgz'
-    version: 0.0.0
 registry: ''
 specifiers:
   '@node-ts/bus-core': ^0.6.3
@@ -8203,6 +8223,7 @@ specifiers:
   '@node-ts/logger-core': ^0.1.1
   '@node-ts/logger-winston': ^0.1.1
   '@rollup/plugin-commonjs': ^17.0.0
+  '@rollup/plugin-json': ^4.1.0
   '@rollup/plugin-node-resolve': ^11.0.0
   '@rollup/plugin-typescript': ^8.0.0
   '@rush-temp/air-control': 'file:./projects/air-control.tgz'
@@ -8281,7 +8302,6 @@ specifiers:
   '@rush-temp/votecube': 'file:./projects/votecube.tgz'
   '@rush-temp/web-terminal': 'file:./projects/web-terminal.tgz'
   '@rush-temp/web-tower': 'file:./projects/web-tower.tgz'
-  '@rush-temp/websql': 'file:./projects/websql.tgz'
   '@sveltejs/svelte-virtual-list': 3.0.1
   '@tsconfig/node16': 1.0.2
   '@tsconfig/svelte': ^2.0.0

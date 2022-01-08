@@ -2,23 +2,10 @@ export declare const APPLICATION: {
     domain: string;
     index: any;
     name: string;
-    packageName: string;
     sinceVersion: number;
     versions: {
         api: {
             apiObjectMap: {
-                ISolutionApi: {
-                    operationMap: {
-                        saveSolution: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
-                        getMySolutionForSituation: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
-                    };
-                };
                 ISituationApi: {
                     operationMap: {
                         getSituationsForLabels: {
@@ -42,6 +29,18 @@ export declare const APPLICATION: {
                             parameters: any[];
                         };
                         saveNewSituation: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                    };
+                };
+                ISolutionApi: {
+                    operationMap: {
+                        saveSolution: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                        getMySolutionForSituation: {
                             isAsync: boolean;
                             parameters: any[];
                         };
@@ -247,7 +246,6 @@ export declare const APPLICATION: {
             domain: string;
             index: number;
             name: string;
-            packageName: string;
             sinceVersion: number;
             versions: {
                 entities: any;

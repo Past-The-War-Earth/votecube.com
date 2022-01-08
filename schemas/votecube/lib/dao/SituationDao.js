@@ -1,7 +1,7 @@
 import { ALL_FIELDS, and } from '@airport/air-control';
 import { BaseSituationDao, Q, } from "../generated/generated";
 import { DI } from '@airport/di';
-import { SITUATION_DAO } from '../server';
+import { SITUATION_DAO } from '../server-tokens';
 export class SituationDao extends BaseSituationDao {
     /*
      * Are UuIds necessary for child records (they cause joins)?

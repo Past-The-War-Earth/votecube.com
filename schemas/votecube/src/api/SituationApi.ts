@@ -4,14 +4,12 @@ import {
     DI
 } from "@airport/di";
 import { IRepositoryIdentifier } from "../client/types";
-import type {
-    ILabel,
-    ISituation
-} from "../server";
 import { SITUATION_API } from "../tokens";
 import { SITUATION_DAO } from "../server-tokens";
-import { FORUM_THREAD_API, IForumThread } from "@votecube/forum";
-import { ENTITY_STATE_MANAGER } from "@airport/ground-control";
+import {
+    ILabel,
+    ISituation
+} from "../generated/generated";
 
 export interface ISituationApi {
 

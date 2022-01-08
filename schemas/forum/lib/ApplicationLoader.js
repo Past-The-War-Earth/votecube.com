@@ -3,13 +3,12 @@ import { container, DI } from '@airport/di';
 import { APPLICATION_INITIALIZER } from '@airport/landing';
 import { APPLICATION_LOADER } from '@airport/security-check';
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff';
-import { domain } from '@votecube/dependency-injection';
 import { APPLICATION } from './generated/application';
 export class ApplicationLoader {
     constructor() {
         this.initializing = false;
     }
-    async load(lastIds, librarySignature = 'forum') {
+    async load(lastIds) {
         if (this.initializing) {
             return;
         }
@@ -20,7 +19,6 @@ export class ApplicationLoader {
         ddlObjectRetriever.lastIds = lastIds;
         await applicationInitializer.initializeForAIRportApp(APPLICATION);
         apiRegistry.initialize(APPLICATION.versions[0].api);
-        domain.mapApplicationBySignature('forum', librarySignature);
     }
     getApplication() {
         return APPLICATION;

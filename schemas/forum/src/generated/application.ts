@@ -3,7 +3,6 @@ export const APPLICATION = {
 	"domain": "votecube.com",
 	"index": null,
 	"name": "@votecube/forum",
-	"packageName": "@votecube/forum",
 	"sinceVersion": 1,
 	"versions": [
 		{
@@ -887,7 +886,6 @@ export const APPLICATION = {
 					"domain": "air",
 					"index": 0,
 					"name": "@airport/holding-pattern",
-					"packageName": "@airport/holding-pattern",
 					"sinceVersion": 1,
 					"versions": [
 						{

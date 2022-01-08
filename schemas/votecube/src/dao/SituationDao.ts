@@ -19,7 +19,7 @@ import {
     QRepository
 } from "@airport/holding-pattern";
 import { DI } from '@airport/di';
-import { SITUATION_DAO } from '../server';
+import { SITUATION_DAO } from '../server-tokens';
 import { IRepositoryIdentifier } from '../client/types';
 import { ISaveResult } from '@airport/ground-control';
 

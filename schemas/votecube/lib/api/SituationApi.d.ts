@@ -1,5 +1,5 @@
 import { IRepositoryIdentifier } from "../client/types";
-import type { ILabel, ISituation } from "../server";
+import { ILabel, ISituation } from "../generated/generated";
 export interface ISituationApi {
     getSituationsForLabels(labels: ILabel[]): Promise<ISituation[]>;
     getLeafSituations(situation: ISituation): Promise<ISituation[]>;
