@@ -17,7 +17,7 @@ const __constructors__ = {
 };
 export const Q_APPLICATION = {
     __constructors__,
-    domain: 'votecube.com',
+    domain: 'localhost:8000',
     name: '@votecube/votecube'
 };
 export const Q = Q_APPLICATION;

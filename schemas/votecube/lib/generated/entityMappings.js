@@ -12,7 +12,7 @@ import { SituationLabel } from '../ddl/situation/SituationLabel';
 import { Situation } from '../ddl/situation/Situation';
 import { UserAccount } from '../ddl/UserAccount';
 DI.db().get(AIRPORT_DATABASE).then(airDb => {
-    const accumulator = airDb.getAccumulator('votecube.com', 'undefined');
+    const accumulator = airDb.getAccumulator('localhost:8000', 'undefined');
     accumulator.add(Position, 0);
     accumulator.add(Factor, 1);
     accumulator.add(Outcome, 2);

@@ -2,7 +2,7 @@ import {
     API_REGISTRY,
 } from '@airport/check-in'
 import { container, DI } from '@airport/di'
-import { APPLICATION_INITIALIZER } from '@airport/landing'
+import { APPLICATION_INITIALIZER } from '@airport/terminal-map'
 import {
     APPLICATION_LOADER,
     IApplicationLoader,

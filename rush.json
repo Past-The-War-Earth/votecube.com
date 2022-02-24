@@ -5,7 +5,6 @@
   "nodeSupportedVersionRange": ">=16.0.0 <17.0.0",
   "projectFolderMinDepth": 1,
   "projectFolderMaxDepth": 6,
-
   "projects": [
     // "apps" folder (alphabetical order)
     {
@@ -99,6 +98,11 @@
     {
       "packageName": "@airport/arrivals-n-departures",
       "projectFolder": "../../AIR/AIRport/apis/arrivals-n-departures",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/aviation-communication",
+      "projectFolder": "../../AIR/AIRport/apis/aviation-communication",
       "shouldPublish": true
     },
     {

@@ -1,6 +1,6 @@
 {
   "airport": {
-    "domain": "votecube.com",
+    "domain": "localhost:8000",
     "schema": "votecube",
     "daoDir": "src/dao",
     "ddlDir": "src/ddl",
@@ -16,6 +16,7 @@
     "@airport/pressurization": "0.0.1",
     "@airport/security-check": "0.0.1",
     "@airport/takeoff": "0.0.1",
+    "@airport/terminal-map": "0.0.1",
     "@airport/travel-document-checkpoint": "0.0.1",
     "@airport/web-tower": "0.0.1",
     "@votecube/dependency-injection": "0.0.1",

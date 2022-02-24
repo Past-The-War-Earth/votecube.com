@@ -1,6 +1,6 @@
 /* eslint-disable */
 export const APPLICATION = {
-	"domain": "votecube.com",
+	"domain": "localhost:8000",
 	"index": null,
 	"name": "@votecube/votecube",
 	"sinceVersion": 1,
