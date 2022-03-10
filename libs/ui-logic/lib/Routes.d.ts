@@ -16,7 +16,6 @@ export interface IRoutes {
         [pageKey: string]: Component;
     }, setPageComp: (pageComp: Component) => void, defaultRoutePath: Route_Path, errorRoutePath: Route_Path): void;
     navigateAndPostToAIRport(url: string | Object, callback?: any): any;
-    postLocationToAIRport(): any;
 }
 export interface IRouteConfig {
     authenticated: Route_Authenticated;
@@ -35,7 +34,6 @@ export declare class Routes implements IRoutes {
     getPageComponent(): Component;
     navigateToPage(pageKey: Route_Path, paramMap?: IRouteParamMap): void;
     navigateAndPostToAIRport(url: string | Object, callback?: any): void;
-    postLocationToAIRport(): void;
     setupRoutes(pageMap: {
         [pageKey: string]: Component;
     }, setPageComp: (pageComp: Component) => void, defaultRoutePath: Route_Path, errorRoutePath: Route_Path): void;

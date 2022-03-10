@@ -118,9 +118,6 @@
 	function selectMenu(menuItemEvent: IUiCustomEvent<IUiMenuItem>) {
 		// navigateToPage(menuItem.id, menuItem.params)
 		showMainMenu.toggle();
-		setTimeout(() => {
-			IOC.getSync(ROUTES).postLocationToAIRport();
-		});
 	}
 
 	function toggleMenu() {

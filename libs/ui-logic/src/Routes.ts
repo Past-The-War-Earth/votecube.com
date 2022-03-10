@@ -62,8 +62,6 @@ export interface IRoutes {
 		callback?
 	)
 
-	postLocationToAIRport()
-
 }
 
 export interface IRouteConfig {
@@ -145,15 +143,6 @@ export class Routes
 		callback?
 	) {
 		page(url, callback)
-		this.postLocationToAIRport()
-	}
-
-	postLocationToAIRport() {
-		IOC.getSync(LOCAL_API_CLIENT).sendMessageToAIRport(
-			'UrlManager',
-			'changeUrl',
-			[window.location.href]
-		)
 	}
 
 	setupRoutes(

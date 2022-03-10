@@ -1,7 +1,6 @@
-import { DI, IOC } from '@airport/di';
+import { DI } from '@airport/di';
 import page from 'page';
 import { get } from 'svelte/store';
-import { LOCAL_API_CLIENT } from '@airport/autopilot';
 import { currentPage, currentUrl, lastPage, lastUrl, routeParams, showSignIn, signedInState, user } from './store';
 import { ROUTES } from './tokens';
 export class Routes {
@@ -45,10 +44,6 @@ export class Routes {
     }
     navigateAndPostToAIRport(url, callback) {
         page(url, callback);
-        this.postLocationToAIRport();
-    }
-    postLocationToAIRport() {
-        IOC.getSync(LOCAL_API_CLIENT).sendMessageToAIRport('UrlManager', 'changeUrl', [window.location.href]);
     }
     setupRoutes(pageMap, setPageComp, defaultRoutePath, errorRoutePath) {
         this.setupPage(this.pageConf[defaultRoutePath], pageMap[defaultRoutePath], setPageComp, errorRoutePath, '/');
