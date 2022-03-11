@@ -261,7 +261,7 @@ export class Routes
 							// 	// const previousPage = get(lastPage)
 							// 	// const previousUrl = get(lastUrl)
 							// 	// if (!previousPage || previousPage.authenticated) {
-							// 	// 	navigateToPage(SITUATION_LIST)
+							// 	// 	navigateToPage(IDEA_LIST)
 							// 	// } else if (previousUrl) {
 							// 	// 	this.navigateAndPostToAIRport(previousUrl)
 							// 	// }

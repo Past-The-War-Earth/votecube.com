@@ -8,41 +8,41 @@ export const APPLICATION = {
 		{
 			"api": {
 				"apiObjectMap": {
-					"ISituationApi": {
+					"IIdeaApi": {
 						"operationMap": {
-							"getSituationsForLabels": {
+							"getIdeasForLabels": {
 								"isAsync": true,
 								"parameters": []
 							},
-							"getLeafSituations": {
+							"getLeafIdeas": {
 								"isAsync": true,
 								"parameters": []
 							},
-							"getStemSituation": {
+							"getStemIdea": {
 								"isAsync": true,
 								"parameters": []
 							},
-							"getSituation": {
+							"getIdea": {
 								"isAsync": true,
 								"parameters": []
 							},
-							"saveExistingSituation": {
+							"saveExistingIdea": {
 								"isAsync": true,
 								"parameters": []
 							},
-							"saveNewSituation": {
+							"saveNewIdea": {
 								"isAsync": true,
 								"parameters": []
 							}
 						}
 					},
-					"ISolutionApi": {
+					"IAgreementApi": {
 						"operationMap": {
-							"saveSolution": {
+							"saveAgreement": {
 								"isAsync": true,
 								"parameters": []
 							},
-							"getMySolutionForSituation": {
+							"getMyAgreementForIdea": {
 								"isAsync": true,
 								"parameters": []
 							}
@@ -1171,7 +1171,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SOLUTIONS_RID_1",
+							"name": "AGREEMENTS_RID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1194,7 +1194,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SOLUTIONS_AID_1",
+							"name": "AGREEMENTS_AID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1217,7 +1217,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SOLUTIONS_ARID_1",
+							"name": "AGREEMENTS_ARID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1239,7 +1239,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATION_FACTOR_POSITIONS_RID_1",
+							"name": "IDEA_FACTOR_POSITIONS_RID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1261,7 +1261,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATION_FACTOR_POSITIONS_AID_1",
+							"name": "IDEA_FACTOR_POSITIONS_AID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1283,7 +1283,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATION_FACTOR_POSITIONS_ARID_1",
+							"name": "IDEA_FACTOR_POSITIONS_ARID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1308,7 +1308,7 @@ export const APPLICATION = {
 					"index": 3,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "SolutionFactor",
+					"name": "AgreementFactor",
 					"properties": [
 						{
 							"index": 0,
@@ -1403,7 +1403,7 @@ export const APPLICATION = {
 						{
 							"index": 10,
 							"isId": false,
-							"name": "solution",
+							"name": "agreement",
 							"relationRef": {
 								"index": 4
 							},
@@ -1412,7 +1412,7 @@ export const APPLICATION = {
 						{
 							"index": 11,
 							"isId": false,
-							"name": "situationFactorPosition",
+							"name": "ideaFactorPosition",
 							"relationRef": {
 								"index": 5
 							},
@@ -1487,7 +1487,7 @@ export const APPLICATION = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "SOLUTION_FACTORS",
+						"name": "AGREEMENT_FACTORS",
 						"columnIndexes": []
 					}
 				},
@@ -1650,7 +1650,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_RID_1",
+							"name": "IDEAS_RID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1673,7 +1673,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_AID_1",
+							"name": "IDEAS_AID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1696,7 +1696,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_ARID_1",
+							"name": "IDEAS_ARID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -1721,7 +1721,7 @@ export const APPLICATION = {
 					"index": 4,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "Solution",
+					"name": "Agreement",
 					"properties": [
 						{
 							"index": 0,
@@ -1798,7 +1798,7 @@ export const APPLICATION = {
 						{
 							"index": 8,
 							"isId": false,
-							"name": "situation",
+							"name": "idea",
 							"relationRef": {
 								"index": 4
 							},
@@ -1873,7 +1873,7 @@ export const APPLICATION = {
 							"index": 5,
 							"isId": false,
 							"oneToManyElems": {
-								"mappedBy": "solution"
+								"mappedBy": "agreement"
 							},
 							"relationType": "ONE_TO_MANY",
 							"propertyRef": {
@@ -1885,7 +1885,7 @@ export const APPLICATION = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "SOLUTIONS",
+						"name": "AGREEMENTS",
 						"columnIndexes": []
 					}
 				},
@@ -2146,7 +2146,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_RID_1",
+							"name": "IDEAS_RID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -2169,7 +2169,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_AID_1",
+							"name": "IDEAS_AID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -2192,7 +2192,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_ARID_1",
+							"name": "IDEAS_ARID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -2349,7 +2349,7 @@ export const APPLICATION = {
 					"index": 5,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "SituationFactorPosition",
+					"name": "IdeaFactorPosition",
 					"properties": [
 						{
 							"index": 0,
@@ -2489,7 +2489,7 @@ export const APPLICATION = {
 						{
 							"index": 15,
 							"isId": false,
-							"name": "situation",
+							"name": "idea",
 							"relationRef": {
 								"index": 4
 							},
@@ -2592,7 +2592,7 @@ export const APPLICATION = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "SITUATION_FACTOR_POSITIONS",
+						"name": "IDEA_FACTOR_POSITIONS",
 						"columnIndexes": []
 					}
 				},
@@ -3066,7 +3066,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_RID_1",
+							"name": "IDEAS_RID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -3089,7 +3089,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_AID_1",
+							"name": "IDEAS_AID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -3112,7 +3112,7 @@ export const APPLICATION = {
 									"sinceVersion": 1
 								}
 							],
-							"name": "SITUATIONS_ARID_1",
+							"name": "IDEAS_ARID_1",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -3203,7 +3203,7 @@ export const APPLICATION = {
 					"index": 7,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "SituationLabel",
+					"name": "IdeaLabel",
 					"properties": [
 						{
 							"index": 0,
@@ -3280,7 +3280,7 @@ export const APPLICATION = {
 						{
 							"index": 8,
 							"isId": false,
-							"name": "situation",
+							"name": "idea",
 							"relationRef": {
 								"index": 4
 							},
@@ -3364,7 +3364,7 @@ export const APPLICATION = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "SITUATION_LABELS",
+						"name": "IDEA_LABELS",
 						"columnIndexes": []
 					}
 				},
@@ -3741,7 +3741,7 @@ export const APPLICATION = {
 					"index": 8,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "Situation",
+					"name": "Idea",
 					"properties": [
 						{
 							"index": 0,
@@ -3863,7 +3863,7 @@ export const APPLICATION = {
 						{
 							"index": 13,
 							"isId": false,
-							"name": "situationLabels",
+							"name": "ideaLabels",
 							"relationRef": {
 								"index": 8
 							},
@@ -3872,7 +3872,7 @@ export const APPLICATION = {
 						{
 							"index": 14,
 							"isId": false,
-							"name": "situationFactorPositions",
+							"name": "ideaFactorPositions",
 							"relationRef": {
 								"index": 9
 							},
@@ -3881,7 +3881,7 @@ export const APPLICATION = {
 						{
 							"index": 15,
 							"isId": false,
-							"name": "solutions",
+							"name": "agreements",
 							"relationRef": {
 								"index": 10
 							},
@@ -3981,7 +3981,7 @@ export const APPLICATION = {
 							"index": 8,
 							"isId": false,
 							"oneToManyElems": {
-								"mappedBy": "situation"
+								"mappedBy": "idea"
 							},
 							"relationType": "ONE_TO_MANY",
 							"propertyRef": {
@@ -3994,7 +3994,7 @@ export const APPLICATION = {
 							"index": 9,
 							"isId": false,
 							"oneToManyElems": {
-								"mappedBy": "situation"
+								"mappedBy": "idea"
 							},
 							"relationType": "ONE_TO_MANY",
 							"propertyRef": {
@@ -4007,7 +4007,7 @@ export const APPLICATION = {
 							"index": 10,
 							"isId": false,
 							"oneToManyElems": {
-								"mappedBy": "situation"
+								"mappedBy": "idea"
 							},
 							"relationType": "ONE_TO_MANY",
 							"propertyRef": {
@@ -4019,7 +4019,7 @@ export const APPLICATION = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "SITUATIONS",
+						"name": "IDEAS",
 						"columnIndexes": []
 					},
 					"operations": {}

@@ -5,7 +5,7 @@
 		user
 	}                  from '@votecube/ui-logic'
 	import {
-		SITUATION_LIST
+		IDEA_LIST
 	}                  from '@votecube/vc-logic'
 	import {
 		onDestroy,
@@ -90,7 +90,7 @@
 		saveFeedback(form.value).then(
 			success => {
 				if (success) {
-					navigateToPage(SITUATION_LIST)
+					navigateToPage(IDEA_LIST)
 				} else {
 					error = 'Error saving feedback, please check your network connection'
 				}

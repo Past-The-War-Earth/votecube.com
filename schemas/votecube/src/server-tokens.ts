@@ -1,4 +1,4 @@
-import { ISituationDao } from "./dao/SituationDao";
+import { IIdeaDao } from "./dao/IdeaDao";
 import { votecube } from "./tokens";
 
-export const SITUATION_DAO = votecube.token<ISituationDao>('SITUATION_DAO')
+export const IDEA_DAO = votecube.token<IIdeaDao>('IDEA_DAO')

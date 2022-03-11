@@ -43,21 +43,21 @@ export class LogicUtils {
         }
         return 'FFF';
     }
-    getSolutionFactorNodesInValueOrder(solution) {
-        if (!solution) {
+    getAgreementFactorNodesInValueOrder(agreement) {
+        if (!agreement) {
             return [];
         }
         const node1 = {
-            solutionFactor: solution[1]
+            agreementFactor: agreement[1]
         };
         const node2 = {
-            solutionFactor: solution[2]
+            agreementFactor: agreement[2]
         };
         const node3 = {
-            solutionFactor: solution[3]
+            agreementFactor: agreement[3]
         };
         let headNode;
-        if (solution[2].value >= solution[3].value) {
+        if (agreement[2].value >= agreement[3].value) {
             node2.next = node3;
             headNode = node2;
         }
@@ -65,11 +65,11 @@ export class LogicUtils {
             node3.next = node2;
             headNode = node3;
         }
-        if (headNode.solutionFactor.value < solution[1].value) {
+        if (headNode.agreementFactor.value < agreement[1].value) {
             node1.next = headNode;
             headNode = node1;
         }
-        else if (headNode.next.solutionFactor.value < solution[1].value) {
+        else if (headNode.next.agreementFactor.value < agreement[1].value) {
             const lastNode = headNode.next;
             headNode.next = node1;
             node1.next = lastNode;
@@ -78,9 +78,9 @@ export class LogicUtils {
             headNode.next.next = node1;
         }
         return [
-            headNode.solutionFactor,
-            headNode.next.solutionFactor,
-            headNode.next.next.solutionFactor
+            headNode.agreementFactor,
+            headNode.next.agreementFactor,
+            headNode.next.next.agreementFactor
         ];
     }
     overlay(from, to) {

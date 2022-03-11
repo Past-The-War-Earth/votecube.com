@@ -55,7 +55,7 @@ export class Viewport {
                 yi = cubeMovement.getMatrixIdxFromDeg(this.y, cubeMoveMatrix);
             }
             const values = cubeMoveMatrix.VALUE_MATRIX[xi][yi];
-            function getDimensionState(positivePosition, negativePosition, positionValues, solutionDimension) {
+            function getDimensionState(positivePosition, negativePosition, positionValues, agreementDimension) {
                 let outcome = 'A';
                 let value = positionValues[positivePosition];
                 if (positionValues[negativePosition]) {
@@ -65,9 +65,9 @@ export class Viewport {
                 else if (!value) {
                     outcome = null;
                 }
-                solutionDimension.outcome = outcome;
-                solutionDimension.valid = true;
-                solutionDimension.value = value;
+                agreementDimension.outcome = outcome;
+                agreementDimension.valid = true;
+                agreementDimension.value = value;
             }
             getDimensionState(0, 5, values, this.pd.x);
             getDimensionState(1, 3, values, this.pd.y);

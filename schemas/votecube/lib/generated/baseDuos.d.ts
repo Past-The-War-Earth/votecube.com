@@ -1,21 +1,21 @@
+import { IAgreement } from './agreement/agreement';
+import { AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement } from './agreement/qagreement';
+import { IAgreementFactor } from './agreement/agreementfactor';
+import { AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor } from './agreement/qagreementfactor';
 import { IFactor } from './factor/factor';
 import { FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor } from './factor/qfactor';
+import { IIdea } from './idea/idea';
+import { IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea } from './idea/qidea';
+import { IIdeaFactorPosition } from './idea/ideafactorposition';
+import { IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition } from './idea/qideafactorposition';
+import { IIdeaLabel } from './idea/idealabel';
+import { IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel } from './idea/qidealabel';
 import { ILabel } from './label';
 import { LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel } from './qlabel';
-import { IOutcome } from './situation/outcome';
-import { OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome } from './situation/qoutcome';
+import { IOutcome } from './idea/outcome';
+import { OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome } from './idea/qoutcome';
 import { IPosition } from './factor/position';
 import { PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition } from './factor/qposition';
-import { ISituation } from './situation/situation';
-import { SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation } from './situation/qsituation';
-import { ISituationFactorPosition } from './situation/situationfactorposition';
-import { SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition } from './situation/qsituationfactorposition';
-import { ISituationLabel } from './situation/situationlabel';
-import { SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel } from './situation/qsituationlabel';
-import { ISolution } from './solution/solution';
-import { SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution } from './solution/qsolution';
-import { ISolutionFactor } from './solution/solutionfactor';
-import { SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor } from './solution/qsolutionfactor';
 import { IUserAccount } from './useraccount';
 import { UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount } from './quseraccount';
 import { IDuo, IEntityCascadeGraph, IEntityCreateProperties, IEntityIdProperties, IEntitySelectProperties, IEntityUpdateColumns, IEntityUpdateProperties, IQEntity } from '@airport/air-control';
@@ -24,9 +24,39 @@ import { EntityId as DbEntityId } from '@airport/ground-control';
 export declare class SQDIDuo<Entity, EntitySelect extends IEntitySelectProperties, EntityCreate extends IEntityCreateProperties, EntityUpdateColumns extends IEntityUpdateColumns, EntityUpdateProperties extends IEntityUpdateProperties, EntityId extends IEntityIdProperties, EntityCascadeGraph extends IEntityCascadeGraph, IQE extends IQEntity<Entity>> extends Duo<Entity, EntitySelect, EntityCreate, EntityUpdateColumns, EntityUpdateProperties, EntityId, EntityCascadeGraph, IQE> {
     constructor(dbEntityId: DbEntityId);
 }
+export interface IBaseAgreementDuo extends IDuo<IAgreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement> {
+}
+export declare class BaseAgreementDuo extends SQDIDuo<IAgreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement> implements IBaseAgreementDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseAgreementFactorDuo extends IDuo<IAgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor> {
+}
+export declare class BaseAgreementFactorDuo extends SQDIDuo<IAgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor> implements IBaseAgreementFactorDuo {
+    static diSet(): boolean;
+    constructor();
+}
 export interface IBaseFactorDuo extends IDuo<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> {
 }
 export declare class BaseFactorDuo extends SQDIDuo<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> implements IBaseFactorDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseIdeaDuo extends IDuo<IIdea, IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea> {
+}
+export declare class BaseIdeaDuo extends SQDIDuo<IIdea, IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea> implements IBaseIdeaDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseIdeaFactorPositionDuo extends IDuo<IIdeaFactorPosition, IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition> {
+}
+export declare class BaseIdeaFactorPositionDuo extends SQDIDuo<IIdeaFactorPosition, IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition> implements IBaseIdeaFactorPositionDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseIdeaLabelDuo extends IDuo<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> {
+}
+export declare class BaseIdeaLabelDuo extends SQDIDuo<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> implements IBaseIdeaLabelDuo {
     static diSet(): boolean;
     constructor();
 }
@@ -45,36 +75,6 @@ export declare class BaseOutcomeDuo extends SQDIDuo<IOutcome, OutcomeESelect, Ou
 export interface IBasePositionDuo extends IDuo<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition> {
 }
 export declare class BasePositionDuo extends SQDIDuo<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition> implements IBasePositionDuo {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseSituationDuo extends IDuo<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
-}
-export declare class BaseSituationDuo extends SQDIDuo<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> implements IBaseSituationDuo {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseSituationFactorPositionDuo extends IDuo<ISituationFactorPosition, SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition> {
-}
-export declare class BaseSituationFactorPositionDuo extends SQDIDuo<ISituationFactorPosition, SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition> implements IBaseSituationFactorPositionDuo {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseSituationLabelDuo extends IDuo<ISituationLabel, SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel> {
-}
-export declare class BaseSituationLabelDuo extends SQDIDuo<ISituationLabel, SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel> implements IBaseSituationLabelDuo {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseSolutionDuo extends IDuo<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution> {
-}
-export declare class BaseSolutionDuo extends SQDIDuo<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution> implements IBaseSolutionDuo {
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseSolutionFactorDuo extends IDuo<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> {
-}
-export declare class BaseSolutionFactorDuo extends SQDIDuo<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> implements IBaseSolutionFactorDuo {
     static diSet(): boolean;
     constructor();
 }

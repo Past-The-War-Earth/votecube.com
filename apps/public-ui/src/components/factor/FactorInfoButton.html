@@ -49,8 +49,8 @@
 
 	export default {
 		computed: {
-			bottomBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, solutionFactor}) =>
-				borderColor(cubeView, delta, poll, factorNumber, solutionFactor, 'B', logicUtils),
+			bottomBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, agreementFactor}) =>
+				borderColor(cubeView, delta, poll, factorNumber, agreementFactor, 'B', logicUtils),
 			float: ({factorNumber, position, $verticalLayout}) =>
 				$verticalLayout && factorNumber === 1 && position != 'left'
 					? 'right' : 'initial',
@@ -58,10 +58,10 @@
 			margin: ({factorNumber, position, $verticalLayout}) =>
 				$verticalLayout && factorNumber === 2 && position != 'left'
 					? 'auto' : 'initial',
-			topBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, solutionFactor}) =>
-				borderColor(cubeView, delta, poll, factorNumber, solutionFactor, 'A', logicUtils),
-			percentValue: ({cubeView, delta, solutionFactor}) =>
-				getValue(cubeView ? solutionFactor.value : solutionFactor.tweenValue)
+			topBorderColor: ({cubeView, delta, factorNumber, logicUtils, poll, agreementFactor}) =>
+				borderColor(cubeView, delta, poll, factorNumber, agreementFactor, 'A', logicUtils),
+			percentValue: ({cubeView, delta, agreementFactor}) =>
+				getValue(cubeView ? agreementFactor.value : agreementFactor.tweenValue)
 		},
 		data() {
 			return {
@@ -93,18 +93,18 @@
 		delta,
 		poll,
 		factorNumber,
-		solutionFactor,
+		agreementFactor,
 		outcome,
 		logicUtils
 	) {
-		if (!solutionFactor) {
+		if (!agreementFactor) {
 			return '000'
 		} else if (cubeView) {
-			if (solutionFactor.outcome === outcome) {
+			if (agreementFactor.outcome === outcome) {
 				return '000'
 			}
 		} else {
-			if (solutionFactor.tweenOutcome === outcome) {
+			if (agreementFactor.tweenOutcome === outcome) {
 				return '000'
 			}
 		}

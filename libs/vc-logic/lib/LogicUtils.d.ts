@@ -1,4 +1,4 @@
-import { ITweenSolutionFactor, IUiColor, IUiSolution, IUiSolutionFactor } from '@votecube/model';
+import { ITweenAgreementFactor, IUiColor, IUiAgreement, IUiAgreementFactor } from '@votecube/model';
 export interface ILogicUtils {
     copyProperties(from: any, to: any, properties: string[]): void;
     getArrayValueTexts(arrayValue: Array<{
@@ -7,7 +7,7 @@ export interface ILogicUtils {
     getColor(color: IUiColor): string;
     getDate(date: Date): string;
     getTextColor(color: IUiColor): string;
-    getSolutionFactorNodesInValueOrder(solution: IUiSolution): IUiSolutionFactor[];
+    getAgreementFactorNodesInValueOrder(agreement: IUiAgreement): IUiAgreementFactor[];
     overlay(from: any, to: any): void;
     isDifferent(original: any, changed: any, excludeKeys?: string[]): boolean;
     transition(elementId: string, transitionFunction: any, options: any): void;
@@ -20,7 +20,7 @@ export declare class LogicUtils implements ILogicUtils {
     getColor(color: IUiColor): string;
     getDate(date: Date): string;
     getTextColor(color: IUiColor): string;
-    getSolutionFactorNodesInValueOrder<V extends IUiSolution = IUiSolution>(solution: V): IUiSolutionFactor[] | ITweenSolutionFactor[];
+    getAgreementFactorNodesInValueOrder<V extends IUiAgreement = IUiAgreement>(agreement: V): IUiAgreementFactor[] | ITweenAgreementFactor[];
     overlay(from: any, to: any): void;
     isDifferent(original: any, changed: any, excludeKeys?: string[]): boolean;
     transition(elementId: string, transitionFunction: any, options: any): void;

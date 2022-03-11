@@ -1,4 +1,4 @@
-import { IUiSolution, IUiSolutionFactor, SolutionFactor_Value } from '@votecube/model';
+import { IUiAgreement, IUiAgreementFactor, AgreementFactor_Value } from '@votecube/model';
 import { ICubeMoveMatrix, MatrixIndex } from './CubeMoveMatrix';
 export declare enum Bool {
     False = 0,
@@ -10,7 +10,7 @@ export declare enum Move {
     Up = 1
 }
 export declare type Direction = -1 | 0 | 1;
-export declare type PositionPercent = SolutionFactor_Value;
+export declare type PositionPercent = AgreementFactor_Value;
 export interface IPosition {
     x: number;
     y: number;
@@ -19,12 +19,12 @@ export interface IMousePosition {
     last?: IPosition;
     start: IPosition;
 }
-export interface ICubeSolution {
+export interface ICubeAgreement {
     factorToAxisMapping: IFactorToAxisMapping;
-    solution: IUiSolution;
-    x: ICubeSolutionDimension;
-    y: ICubeSolutionDimension;
-    z: ICubeSolutionDimension;
+    agreement: IUiAgreement;
+    x: ICubeAgreementDimension;
+    y: ICubeAgreementDimension;
+    z: ICubeAgreementDimension;
 }
 export declare type Factor_Axis = 'x' | 'y' | 'z';
 export interface IFactorToAxisMapping {
@@ -32,11 +32,11 @@ export interface IFactorToAxisMapping {
     2: Factor_Axis;
     3: Factor_Axis;
 }
-export interface ICubeSolutionDimension extends IUiSolutionFactor {
+export interface ICubeAgreementDimension extends IUiAgreementFactor {
     valid: boolean;
 }
-export declare type IValuesOutCallback = (solution: IUiSolution) => void;
-export declare type IValuesThruCallback = (solution: ICubeSolution) => void;
+export declare type IValuesOutCallback = (agreement: IUiAgreement) => void;
+export declare type IValuesThruCallback = (agreement: ICubeAgreement) => void;
 export interface ICubeMovement {
     mouse: IMousePosition;
     getMatrixIdxFromDeg(rotationDegrees: number, cubeMoveMatrix: ICubeMoveMatrix): MatrixIndex;

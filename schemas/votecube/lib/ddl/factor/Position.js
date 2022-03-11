@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { Column, Entity, Table } from '@airport/air-control';
 import { RepositoryEntity } from '@airport/holding-pattern';
 /**
- * This is the generic position records (not related to any Situation).
+ * This is the generic position records (not related to any Idea).
  */
 let Position = class Position extends RepositoryEntity {
 };

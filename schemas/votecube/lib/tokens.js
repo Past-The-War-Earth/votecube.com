@@ -1,5 +1,5 @@
 import { app } from '@votecube/dependency-injection';
 export const votecube = app('votecube');
-export const SITUATION_API = votecube.token('ISituationApi');
-export const SOLUTION_API = votecube.token('ISolutionApi');
+export const IDEA_API = votecube.token('IIdeaApi');
+export const AGREEMENT_API = votecube.token('IAgreementApi');
 //# sourceMappingURL=tokens.js.map

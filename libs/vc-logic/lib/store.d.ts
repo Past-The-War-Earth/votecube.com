@@ -1,12 +1,12 @@
-import { IUiSituation } from '@votecube/model';
-export interface ISituationActions {
+import { IUiIdea } from '@votecube/model';
+export interface IIdeaActions {
     ageSuitabilitySave?: boolean;
     checkBuild?: boolean;
-    confirmSolution?: boolean;
-    savingSituation?: boolean;
-    situationAlter?: boolean;
+    confirmAgreement?: boolean;
+    savingIdea?: boolean;
+    ideaAlter?: boolean;
     showOutcomes?: boolean;
 }
-export declare const situationActions: import("svelte/store").Writable<ISituationActions>;
-export declare const situation: import("svelte/store").Writable<IUiSituation>;
+export declare const ideaActions: import("svelte/store").Writable<IIdeaActions>;
+export declare const idea: import("svelte/store").Writable<IUiIdea>;
 //# sourceMappingURL=store.d.ts.map

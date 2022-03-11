@@ -1,11 +1,11 @@
 export * from './factor/Position';
 export * from './factor/Factor';
-export * from './situation/Outcome';
-export * from './situation/Situation';
-export * from './situation/SituationFactorPosition';
-export * from './situation/SituationLabel';
-export * from './solution/Solution';
-export * from './solution/SolutionFactor';
+export * from './idea/Outcome';
+export * from './idea/Idea';
+export * from './idea/IdeaFactorPosition';
+export * from './idea/IdeaLabel';
+export * from './agreement/Agreement';
+export * from './agreement/AgreementFactor';
 export * from './Label';
 export * from './UserAccount';
 //# sourceMappingURL=ddl.d.ts.map

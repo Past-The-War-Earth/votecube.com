@@ -1,8 +1,8 @@
 import {DI}            from '@airport/di'
 import {
-	IUiSolution,
-	IUiSolutionFactor,
-	SolutionFactor_Value
+	IUiAgreement,
+	IUiAgreementFactor,
+	AgreementFactor_Value
 }                      from '@votecube/model'
 import {CUBE_MOVEMENT} from '../tokens'
 import {
@@ -24,7 +24,7 @@ export enum Move {
 
 export type Direction = -1 | 0 | 1
 
-export type PositionPercent = SolutionFactor_Value
+export type PositionPercent = AgreementFactor_Value
 
 export interface IPosition {
 
@@ -40,7 +40,7 @@ export interface IMousePosition {
 
 }
 
-export interface ICubeSolution {
+export interface ICubeAgreement {
 
 	// axisToFactorMapping: {
 	// 	x: Factor_Number
@@ -48,10 +48,10 @@ export interface ICubeSolution {
 	// 	z: Factor_Number
 	// }
 	factorToAxisMapping: IFactorToAxisMapping
-	solution: IUiSolution
-	x: ICubeSolutionDimension
-	y: ICubeSolutionDimension
-	z: ICubeSolutionDimension
+	agreement: IUiAgreement
+	x: ICubeAgreementDimension
+	y: ICubeAgreementDimension
+	z: ICubeAgreementDimension
 
 }
 
@@ -65,16 +65,16 @@ export interface IFactorToAxisMapping {
 
 }
 
-export interface ICubeSolutionDimension
-	extends IUiSolutionFactor {
+export interface ICubeAgreementDimension
+	extends IUiAgreementFactor {
 	valid: boolean
 }
 
 export type IValuesOutCallback =
-	(solution: IUiSolution) => void
+	(agreement: IUiAgreement) => void
 
 export type IValuesThruCallback =
-	(solution: ICubeSolution) => void
+	(agreement: ICubeAgreement) => void
 
 export interface ICubeMovement {
 

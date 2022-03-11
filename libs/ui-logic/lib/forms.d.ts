@@ -1,4 +1,4 @@
-export declare const DEFINE_SITUATION_TOP = "DEFINE_SITUATION_TOP";
+export declare const DEFINE_IDEA_TOP = "DEFINE_IDEA_TOP";
 export declare const CREATE_FACTOR = "CREATE_FACTOR";
 export declare function setForm(name: any, newCurrentForm: any): void;
 export declare function getForm(name: any): any;

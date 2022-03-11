@@ -4,7 +4,7 @@
 		routeParams
 	}                      from '@votecube/ui-logic'
 	import {
-		SITUATION_FORM
+		IDEA_FORM
 	}                      from '@votecube/vc-logic'
 	import {
 		onDestroy,
@@ -15,7 +15,7 @@
 	import ColorPicker     from '@votecube/ui-components/src/ColorPicker.svelte'
 	import Text            from '@votecube/ui-controls/src/field/Text.svelte'
 	import TextArea        from '@votecube/ui-controls/src/field/TextArea.svelte'
-	import {saveSituationForm}  from '../../../form/cache'
+	import {saveIdeaForm}  from '../../../form/cache'
 	import {
 		CREATE_FACTOR,
 		ensureTopForm,
@@ -50,12 +50,12 @@
 	onMount(async () => {
 		form = ensureTopForm(
 			CREATE_FACTOR,
-			formHandle, SITUATION_FORM)
+			formHandle, IDEA_FORM)
 		pageTitle.set('Factor Info')
 	})
 
 	onDestroy(() => {
-		saveSituationForm(interFormNavigation).then()
+		saveIdeaForm(interFormNavigation).then()
 
 		form && form.clearComponents()
 	})
@@ -64,7 +64,7 @@
 		$routeParams
 	) {
 		interFormNavigation = true
-		navigateOnValid(form, SITUATION_FORM, $routeParams)
+		navigateOnValid(form, IDEA_FORM, $routeParams)
 	}
 
 </script>

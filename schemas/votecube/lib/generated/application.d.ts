@@ -6,41 +6,41 @@ export declare const APPLICATION: {
     versions: {
         api: {
             apiObjectMap: {
-                ISituationApi: {
+                IIdeaApi: {
                     operationMap: {
-                        getSituationsForLabels: {
+                        getIdeasForLabels: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        getLeafSituations: {
+                        getLeafIdeas: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        getStemSituation: {
+                        getStemIdea: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        getSituation: {
+                        getIdea: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        saveExistingSituation: {
+                        saveExistingIdea: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        saveNewSituation: {
+                        saveNewIdea: {
                             isAsync: boolean;
                             parameters: any[];
                         };
                     };
                 };
-                ISolutionApi: {
+                IAgreementApi: {
                     operationMap: {
-                        saveSolution: {
+                        saveAgreement: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        getMySolutionForSituation: {
+                        getMyAgreementForIdea: {
                             isAsync: boolean;
                             parameters: any[];
                         };

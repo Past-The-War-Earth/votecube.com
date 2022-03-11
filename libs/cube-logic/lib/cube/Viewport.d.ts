@@ -1,5 +1,5 @@
 import { MoveIncrement, ZoomIndex } from './CubeMoveMatrix';
-import { Bool, Direction, ICubeSolution, IValuesThruCallback, Move } from './CubeMovement';
+import { Bool, Direction, ICubeAgreement, IValuesThruCallback, Move } from './CubeMovement';
 export interface IViewport {
     cb: IValuesThruCallback;
     cr: ICubeRotation;
@@ -7,7 +7,7 @@ export interface IViewport {
         [elementId: string]: Element;
     };
     increment: MoveIncrement;
-    pd: ICubeSolution;
+    pd: ICubeAgreement;
     rmd: Dimension[];
     x: number;
     y: number;

@@ -2,7 +2,7 @@ import { DI } from '@airport/di'
 import { PERCENTAGE_POSITION_CHOOSER } from '../../tokens'
 import {
 	Direction,
-	ICubeSolution,
+	ICubeAgreement,
 	PositionPercent
 } from '../CubeMovement'
 import {
@@ -136,7 +136,7 @@ export class PercentagePositionChooser
 	}
 
 	private adjustDimension(
-		positionData: ICubeSolution,
+		positionData: ICubeAgreement,
 		dimension: Dimension,
 		currentDimensionValue: number,
 		totalValue: number

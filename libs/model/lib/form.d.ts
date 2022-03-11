@@ -11,7 +11,7 @@ export interface IFormField {
     id: IUiRepositoryRecord;
     text: string;
 }
-export interface IFormSituation {
+export interface IFormIdea {
     ageGroups: IFormField[];
     factors: {
         1: IFormFactor;

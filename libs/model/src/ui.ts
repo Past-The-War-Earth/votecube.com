@@ -59,7 +59,7 @@ export interface IUiRepository {
 	uuId: string
 }
 
-export interface IUiSituation
+export interface IUiIdea
 	extends IUiNamedRecord {
 	ageGroups: IUiLabel[]
 	labels: IUiLabel[]
@@ -79,5 +79,5 @@ export interface INavList {
 	direction: 0 | 1 | -1
 	isTarget: boolean
 	previous: INavList
-	situation: IUiSituation
+	idea: IUiIdea
 }

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { IUiSituation } from "@votecube/model";
+	import type { IUiIdea } from "@votecube/model";
 	import { createEventDispatcher, onMount } from "svelte";
 	import SaveButton from "./button/SaveButton.svelte";
 	import Radio from "./field/Radio.svelte";
 	import ActionPopover from "./shell/ActionPopover.svelte";
 
-	export let situation: IUiSituation;
+	export let idea: IUiIdea;
 
 	let value;
 	let values = [0, 7, 13, 17, 21];
@@ -13,8 +13,8 @@
 	const dispatch = createEventDispatcher();
 
 	onMount(() => {
-		if (situation.ageSuitability !== undefined) {
-			value = situation.ageSuitability;
+		if (idea.ageSuitability !== undefined) {
+			value = idea.ageSuitability;
 		}
 	});
 
@@ -27,13 +27,13 @@
 			dispatch("cancel");
 			return;
 		}
-		situation.ageSuitability = value;
+		idea.ageSuitability = value;
 		dispatch("save");
 	}
 </script>
 
 <ActionPopover on:cancel>
-	<div slot="header">Situation Age Suitability</div>
+	<div slot="header">Idea Age Suitability</div>
 	<div slot="content">
 		<table>
 			{#each values as value}

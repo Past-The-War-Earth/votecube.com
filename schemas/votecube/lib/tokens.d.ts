@@ -1,6 +1,6 @@
-import { ISituationApi } from "./api/SituationApi";
-import { ISolutionApi } from "./api/SolutionApi";
+import { IIdeaApi } from "./api/IdeaApi";
+import { IAgreementApi } from "./api/AgreementApi";
 export declare const votecube: import("@airport/di").IInjectionApplication;
-export declare const SITUATION_API: import("@airport/di").IDiToken<ISituationApi>;
-export declare const SOLUTION_API: import("@airport/di").IDiToken<ISolutionApi>;
+export declare const IDEA_API: import("@airport/di").IDiToken<IIdeaApi>;
+export declare const AGREEMENT_API: import("@airport/di").IDiToken<IAgreementApi>;
 //# sourceMappingURL=tokens.d.ts.map

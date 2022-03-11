@@ -3,7 +3,7 @@
     "Factor": {
       "Info": {
         "name": {
-          "info": "A short name for this Factor.  Factor is a particular aspect of a Situation that is being considered.",
+          "info": "A short name for this Factor.  Factor is a particular aspect of an Idea that is being considered.",
           "label": "Factor Name",
           "errors": {
             "required": "Factor Name is required",
@@ -130,11 +130,11 @@
         }
       }
     },
-    "Situation": {
+    "Idea": {
       "List": {
         "search": {
-          "info": "Search for Situations or use the filter in the top-right menu",
-          "label": "Find Situations"
+          "info": "Search for Ideas or use the filter in the top-right menu",
+          "label": "Find Ideas"
         },
         "category": {
           "info": "Pick a Category to focus your results",
@@ -143,7 +143,7 @@
       },
       "MainInfo": {
         "ageGroups": {
-          "info": "Select Age Group(s) for which this Situation applies",
+          "info": "Select Age Group(s) for which this Idea applies",
           "label": "Age Group(s)",
           "errors": {
             "required": "An age group is required"
@@ -153,43 +153,43 @@
           "errors": {}
         },
         "labels": {
-          "info": "Select Labels(s) that apply to this Situation",
+          "info": "Select Labels(s) that apply to this Idea",
           "label": "Labels",
           "errors": {
             "required": "At least one label is required"
           }
         },
         "name": {
-          "info": "Select the name for this Situation",
-          "label": "Situation Name",
+          "info": "Select the name for this Idea",
+          "label": "Idea Name",
           "errors": {
-            "required": "Situation Name is required",
-            "minLength": "Situation Name must be at least 3 characters long"
+            "required": "Idea Name is required",
+            "minLength": "Idea Name must be at least 3 characters long"
           }
         },
         "factors": {
-          "info": "Select the Factors of the Situation",
+          "info": "Select the Factors of the Idea",
           "error": "All 3 Factors are required"
         },
         "locations": {
-          "info": "Select the location(s) of the Situation (Continent(s), Country(ies), State(s), City(ies))",
+          "info": "Select the location(s) of the Idea (Continent(s), Country(ies), State(s), City(ies))",
           "error": "Correct location information is required"
         },
         "timeframe": {
-          "info": "Select the Start and End dates for the Situation",
+          "info": "Select the Start and End dates for the Idea",
           "error": "Correct time-frame information is required"
         },
         "category": {
-          "info": "Select the defining Category of this Situation",
+          "info": "Select the defining Category of this Idea",
           "label": "Category",
           "errors": {
-            "required": "Situation Category is required"
+            "required": "Idea Category is required"
           }
         }
       },
       "Outcomes": {
         "A": {
-          "info": "What is the Outcome of this Situation in case A.",
+          "info": "What is the Outcome of this Idea in case A.",
           "label": "Outcome A",
           "errors": {
             "required": "Outcome A is required",
@@ -197,7 +197,7 @@
           }
         },
         "B": {
-          "info": "What is the Outcome of the Situation in case B.",
+          "info": "What is the Outcome of the Idea in case B.",
           "label": "Outcome B",
           "errors": {
             "required": "Outcome B is required",
@@ -227,29 +227,29 @@
       },
       "Labels": {
         "labels": {
-          "info": "Select matching Tag(s) for this Situation",
+          "info": "Select matching Tag(s) for this Idea",
           "label": "Tag(s)"
         }
       },
       "Locations": {
         "cities": {
-          "info": "Select one or more Cities to which this Situation will apply",
+          "info": "Select one or more Cities to which this Idea will apply",
           "label": "City(ies)"
         },
         "continents": {
-          "info": "Select one or more Continents to which this Situation will apply",
+          "info": "Select one or more Continents to which this Idea will apply",
           "label": "Continent(s)",
           "errors": {
             "required": "Continent is required"
           }
         },
         "countries": {
-          "info": "Select one or more Countries to which this Situation will apply",
+          "info": "Select one or more Countries to which this Idea will apply",
           "label": "Country(ies)"
         },
-        "error": "Situation Geography is required",
+        "error": "Idea Geography is required",
         "states": {
-          "info": "Select one or more States to which this Situation will apply",
+          "info": "Select one or more States to which this Idea will apply",
           "label": "State(s)"
         }
       },
@@ -273,7 +273,7 @@
       },
       "Timeframe": {
         "startDate": {
-          "info": "Select the date when solving this Situation starts",
+          "info": "Select the date when solving this Idea starts",
           "label": "Start Date",
           "errors": {
             "required": "Start Date is required",
@@ -282,7 +282,7 @@
           }
         },
         "endDate": {
-          "info": "Select the last date when this Situation open for Solutions",
+          "info": "Select the last date when this Idea open for Agreements",
           "label": "End Date",
           "errors": {
             "required": "End Date is required",
@@ -291,7 +291,7 @@
             "greaterThanOrEquals": "End Date must be on or after Start Date"
           }
         },
-        "error": "Situation Time Frame is required"
+        "error": "Idea Time Frame is required"
       }
     },
     "Common": {

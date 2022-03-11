@@ -4,7 +4,7 @@
 	import type {
 		IUiCustomEvent,
 		IUiMenuItem,
-		IUiSituation,
+		IUiIdea,
 	} from "@votecube/model";
 	import {
 		AUTH,
@@ -30,16 +30,16 @@
 		FACTOR_INFO_MAIN,
 		FACTOR_LIST,
 		FEEDBACK,
-		SITUATION_FORM,
-		SITUATION_FORUM,
-		SITUATION_LIST,
-		SITUATION_LOCATIONS,
-		SITUATION_MAIN,
-		SITUATION_TIME_FRAME,
+		IDEA_FORM,
+		IDEA_FORUM,
+		IDEA_LIST,
+		IDEA_LOCATIONS,
+		IDEA_MAIN,
+		IDEA_TIME_FRAME,
 		RELEASE_PLAN,
 		scheduleToResize,
-		situation,
-		situationActions,
+		idea,
+		ideaActions,
 		startResizeInterval,
 	} from "@votecube/vc-logic";
 	import ActionPopover from "@votecube/ui-controls/src/shell/ActionPopover.svelte";
@@ -57,30 +57,30 @@
 	import FactorMain from "./pages/factor/info/FactorMain.svelte";
 	// import FactorList      from './pages/factor/search/FactorList.html'
 	import Feedback from "./pages/feedback/FeedbackForm.svelte";
-	import SituationForm from "./pages/situation/info/SituationForm.svelte";
-	import SituationForum from "./pages/situation/info/SituationForum.svelte";
-	import SituationInfoMain from "./pages/situation/info/SituationMain.svelte";
-	// import SituationLocations   from './pages/situation/Locations.html'
-	import SituationList from "./pages/situation/search/SituationList.svelte";
-	// import SituationTimeframe   from './pages/situation/Timeframe.html'
-	import DerivationList from "./pages/situation/list/DerivationList.svelte";
+	import IdeaForm from "./pages/idea/info/IdeaForm.svelte";
+	import IdeaForum from "./pages/idea/info/IdeaForum.svelte";
+	import IdeaInfoMain from "./pages/idea/info/IdeaMain.svelte";
+	// import IdeaLocations   from './pages/idea/Locations.html'
+	import IdeaList from "./pages/idea/search/IdeaList.svelte";
+	// import IdeaTimeframe   from './pages/idea/Timeframe.html'
+	import DerivationList from "./pages/idea/list/DerivationList.svelte";
 	import ReleasePlan from "./pages/ReleasePlan.svelte";
-	import Outcomes from "./components/situation/Outcomes.svelte";
-	import SituationFab from "./components/situation/SituationFab.svelte";
+	import Outcomes from "./components/idea/Outcomes.svelte";
+	import IdeaFab from "./components/idea/IdeaFab.svelte";
 
 	let action;
 	let mode;
 	let ageSuitabilityVisible;
 	let appShowMainMenu = showMainMenu;
 	let appIsDesktop = isDesktop;
-	let inSituation = false;
+	let inIdea = false;
 	let lastTextToast = {};
 	let outcomesVisible = false;
 	let PageComp = null;
 	let pageMap;
 	let showTextToast = false;
 	let textToastUnsubscribe;
-	let uiSituation: IUiSituation;
+	let uiIdea: IUiIdea;
 
 	$: activeClass = $appShowMainMenu ? "active" : "";
 	$: showLogo = $appIsDesktop || $appShowMainMenu;
@@ -88,11 +88,11 @@
 		mode = $routeParams ? $routeParams.mode : "none";
 	}
 	$: {
-		uiSituation = $situation;
-		inSituation = !!uiSituation;
+		uiIdea = $idea;
+		inIdea = !!uiIdea;
 	}
-	$: if (inSituation && $situationActions.showOutcomes) {
-		situationActions.set({});
+	$: if (inIdea && $ideaActions.showOutcomes) {
+		ideaActions.set({});
 		showOutcomes(true);
 	}
 
@@ -144,7 +144,7 @@
 	}
 
 	function onAgeSuitabilitySave() {
-		situationActions.set({
+		ideaActions.set({
 			ageSuitabilitySave: true,
 		});
 	}
@@ -154,20 +154,20 @@
 		navigateToPage(DERIVATION_LIST, { repositoryUuId });
 	}
 
-	function confirmSolution() {
-		situationActions.set({
-			confirmSolution: true,
+	function confirmAgreement() {
+		ideaActions.set({
+			confirmAgreement: true,
 		});
 	}
 
 	function alter() {
-		situationActions.set({
-			situationAlter: true,
+		ideaActions.set({
+			ideaAlter: true,
 		});
 	}
 
 	function goToOpinions() {
-		navigateToPage(SITUATION_FORUM, currentRouteParams);
+		navigateToPage(IDEA_FORUM, currentRouteParams);
 	}
 
 	function setAction(newAction) {
@@ -175,7 +175,7 @@
 	}
 
 	function checkBuild() {
-		situationActions.set({
+		ideaActions.set({
 			checkBuild: true,
 		});
 	}
@@ -189,22 +189,22 @@
 
 		pageMap = {
 			[ABOUT]: AboutUs,
-			[CARD_CLIMATE_CHANGE]: SituationInfoMain,
+			[CARD_CLIMATE_CHANGE]: IdeaInfoMain,
 			[FACTOR_INFO_MAIN]: FactorMain,
 			// [FACTOR_LIST]: FactorList,
 			[FEEDBACK]: Feedback,
-			[SITUATION_FORM]: SituationForm,
-			[SITUATION_FORUM]: SituationForum,
-			[SITUATION_LIST]: SituationList,
-			// [SITUATION_LOCATIONS]: SituationLocations,
-			[SITUATION_MAIN]: SituationInfoMain,
-			// [SITUATION_TIME_FRAME]: SituationTimeframe,
+			[IDEA_FORM]: IdeaForm,
+			[IDEA_FORUM]: IdeaForum,
+			[IDEA_LIST]: IdeaList,
+			// [IDEA_LOCATIONS]: IdeaLocations,
+			[IDEA_MAIN]: IdeaInfoMain,
+			// [IDEA_TIME_FRAME]: IdeaTimeframe,
 			[RELEASE_PLAN]: ReleasePlan,
 			[DERIVATION_LIST]: DerivationList,
 		};
 		/*		topMenuMap = {
-					[routes.SITUATION_MAIN]: SituationInfoCommonTopMenu,
-					[routes.SITUATION_LIST]: SituationListTopMenu
+					[routes.IDEA_MAIN]: IdeaInfoCommonTopMenu,
+					[routes.IDEA_LIST]: IdeaListTopMenu
 				}*/
 
 		routes.configPages([
@@ -213,17 +213,17 @@
 			[FACTOR_INFO_MAIN, false, false],
 			[FACTOR_LIST, false, true],
 			[FEEDBACK, false, false],
-			[SITUATION_FORM, true, false],
-			[SITUATION_FORUM, true, false],
-			[SITUATION_LIST, false, true],
-			[SITUATION_LOCATIONS, true, false],
-			[SITUATION_MAIN, false, true],
-			[SITUATION_TIME_FRAME, true, false],
+			[IDEA_FORM, true, false],
+			[IDEA_FORUM, true, false],
+			[IDEA_LIST, false, true],
+			[IDEA_LOCATIONS, true, false],
+			[IDEA_MAIN, false, true],
+			[IDEA_TIME_FRAME, true, false],
 			[RELEASE_PLAN, false, false],
 			[DERIVATION_LIST, false, true],
 		]);
 
-		routes.setupRoutes(pageMap, setPageComp, ABOUT, SITUATION_LIST);
+		routes.setupRoutes(pageMap, setPageComp, ABOUT, IDEA_LIST);
 
 		startResizeInterval();
 
@@ -247,7 +247,7 @@
 		userChanges$.subscribe((authUser) => {
 			const theCurrentPage = get(currentPage);
 			if (!authUser && theCurrentPage && theCurrentPage.authenticated) {
-				// navigateToPage(SITUATION_LIST);
+				// navigateToPage(IDEA_LIST);
 			}
 
 			user.set(authUser);
@@ -288,11 +288,11 @@
 {#if $showSignIn}
 	<SignIn on:closed={closeSignIn} />
 {/if}
-{#if inSituation}
-	<SituationFab
+{#if inIdea}
+	<IdeaFab
 		on:ageSuitability={() => showAgeSuitability(true)}
 		on:build={checkBuild}
-		on:confirmSolution={confirmSolution}
+		on:confirmAgreement={confirmAgreement}
 		on:edit={() => alter()}
 		on:outcomes={() => showOutcomes(true)}
 		on:opinions={goToOpinions}
@@ -305,16 +305,16 @@
 		<AgeSuitability
 			on:cancel={() => showAgeSuitability(false)}
 			on:save={onAgeSuitabilitySave}
-			situation={uiSituation}
+			idea={uiIdea}
 		/>
 	{/if}
 	{#if outcomesVisible}
 		<ActionPopover customCancel={true} infoOnly={true}>
 			<div slot="header">
-				{$situation.name}
+				{$idea.name}
 			</div>
 			<div slot="content">
-				<Outcomes situation={$situation} />
+				<Outcomes idea={$idea} />
 			</div>
 			<div slot="cancel">
 				<OutcomeButton on:click={() => showOutcomes(false)} />
@@ -326,36 +326,36 @@
 		<ActionPopover customCancel={true} on:cancel={closeConfirm}>
 			<div slot="header">
 				{#if action === "rankings"}
-					Coming soon - Situation Rankings
+					Coming soon - Idea Rankings
 				{:else if action === "stats"}
-					Coming in Beta - Situation Statistics
+					Coming in Beta - Idea Statistics
 				{/if}
 			</div>
 			<div slot="content">
 				<!--
 			<div>
-				{situation.name}
+				{idea.name}
 			</div>
 			-->
 				<!--
-			<SolutionComponentSummary
+			<AgreementComponentSummary
 					bind:delta
-					bind:situation
+					bind:idea
 					verticalLayout="Y"
-					bind:solution
+					bind:agreement
 					maxBarSize="{120}"
 					mode="confirm"
-					solutionFactors="{solutionFactors}"
-			></SolutionComponentSummary>
+					agreementFactors="{agreementFactors}"
+			></AgreementComponentSummary>
 			-->
 				<br />
 				<h3>
 					{#if action === "rankings"}
-						We'll start providing basic Situation Rankings at the
+						We'll start providing basic Idea Rankings at the
 						end of Alpha testing period. More will be added in
 						subsequent releases.
 					{:else if action === "stats"}
-						Basic Situation Statistics will be available in Beta
+						Basic Idea Statistics will be available in Beta
 						release. More advanced stats will be provided in version
 						1.
 					{/if}
@@ -367,9 +367,9 @@
 			</div>
 			<!--
 		<div slot="actions">
-			<SolutionButton
-					on:select="submitSolution()"
-			></SolutionButton>
+			<AgreementButton
+					on:select="submitAgreement()"
+			></AgreementButton>
 		</div>
 -->
 			<div slot="cancel">

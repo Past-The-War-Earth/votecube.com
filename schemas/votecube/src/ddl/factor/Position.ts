@@ -7,7 +7,7 @@ import {
 import { RepositoryEntity } from '@airport/holding-pattern'
 
 /**
- * This is the generic position records (not related to any Situation).
+ * This is the generic position records (not related to any Idea).
  */
 @Entity()
 @Table({ name: 'POSITIONS' })

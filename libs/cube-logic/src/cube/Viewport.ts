@@ -17,8 +17,8 @@ import {
 import {
 	Bool,
 	Direction,
-	ICubeSolution,
-	ICubeSolutionDimension,
+	ICubeAgreement,
+	ICubeAgreementDimension,
 	IValuesThruCallback,
 	Move
 } from './CubeMovement'
@@ -29,7 +29,7 @@ export interface IViewport {
 	cr: ICubeRotation
 	el: { [elementId: string]: Element }
 	increment: MoveIncrement
-	pd: ICubeSolution
+	pd: ICubeAgreement
 	// Recently Moved Dimension
 	rmd: Dimension[]
 	x: number
@@ -143,7 +143,7 @@ export class Viewport
 				positivePosition: ValueArrayPosition,
 				negativePosition: ValueArrayPosition,
 				positionValues: PositionValues,
-				solutionDimension: ICubeSolutionDimension
+				agreementDimension: ICubeAgreementDimension
 			): void {
 				let outcome: Outcome_Ordinal = 'A'
 				let value                    = positionValues[positivePosition]
@@ -153,9 +153,9 @@ export class Viewport
 				} else if (!value) {
 					outcome = null
 				}
-				solutionDimension.outcome = outcome
-				solutionDimension.valid   = true
-				solutionDimension.value   = value
+				agreementDimension.outcome = outcome
+				agreementDimension.valid   = true
+				agreementDimension.value   = value
 			}
 
 			getDimensionState(0, 5, values, this.pd.x)

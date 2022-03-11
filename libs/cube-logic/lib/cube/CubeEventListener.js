@@ -88,7 +88,7 @@ export class CubeEventListener {
     resumeInteraction() {
         this.suspended = false;
     }
-    setPositionData(solution, factorNumbers = [1, 2, 3]) {
+    setPositionData(agreement, factorNumbers = [1, 2, 3]) {
         const factorToAxisMapping = {
             1: null,
             2: null,
@@ -105,23 +105,23 @@ export class CubeEventListener {
             // 	z: factorNumbers[2]
             // },
             factorToAxisMapping,
-            solution,
-            x: this.getUIUiSolutionDimension(1, 
+            agreement,
+            x: this.getUIUiAgreementDimension(1, 
             // 'x',
-            solution
+            agreement
             // , 100
             ),
-            y: this.getUIUiSolutionDimension(2, 
+            y: this.getUIUiAgreementDimension(2, 
             // 'y',
-            solution),
-            z: this.getUIUiSolutionDimension(3, 
+            agreement),
+            z: this.getUIUiAgreementDimension(3, 
             // 'z',
-            solution),
+            agreement),
         };
-        return !!solution;
+        return !!agreement;
     }
-    setPositionDataAndMove(solution) {
-        if (this.setPositionData(solution)) {
+    setPositionDataAndMove(agreement) {
+        if (this.setPositionData(agreement)) {
             const viewport = container(this).getSync(VIEWPORT);
             viewport.moveToDegree();
         }
@@ -133,11 +133,11 @@ export class CubeEventListener {
     setViewPort(forCube, cb) {
         const viewport = container(this).getSync(VIEWPORT);
         viewport.reset();
-        viewport.cb = (uIUiSolution) => {
-            // this.populateSolutionFactor('x', uIUiSolution)
-            // this.populateSolutionFactor('y', uIUiSolution)
-            // this.populateSolutionFactor('z', uIUiSolution)
-            cb(uIUiSolution.solution);
+        viewport.cb = (uIUiAgreement) => {
+            // this.populateAgreementFactor('x', uIUiAgreement)
+            // this.populateAgreementFactor('y', uIUiAgreement)
+            // this.populateAgreementFactor('z', uIUiAgreement)
+            cb(uIUiAgreement.agreement);
         };
         if (forCube) {
             if (cb) {
@@ -156,14 +156,14 @@ export class CubeEventListener {
     suspendInteraction() {
         this.suspended = true;
     }
-    getUIUiSolutionDimension(factorNumber, 
+    getUIUiAgreementDimension(factorNumber, 
     // axis: Factor_Axis,
-    solution) {
-        if (!solution) {
+    agreement) {
+        if (!agreement) {
             return null;
         }
         // let dir: Position_Dir = 0
-        // if (!solution) {
+        // if (!agreement) {
         // 	return {
         // 		axis,
         // 		dir,
@@ -171,20 +171,20 @@ export class CubeEventListener {
         // 		value
         // 	}
         // }
-        const solutionFactor = solution[factorNumber];
-        // if (solutionFactor.outcome === 'A') {
+        const agreementFactor = agreement[factorNumber];
+        // if (agreementFactor.outcome === 'A') {
         // 	dir = 1
-        // } else if (solutionFactor.outcome === 'B') {
+        // } else if (agreementFactor.outcome === 'B') {
         // 	dir = -1
         // }
         // return {
         // 	axis,
         // 	dir,
         // 	valid: true,
-        // 	value: solutionFactor.value
+        // 	value: agreementFactor.value
         // }
-        solutionFactor.valid = true;
-        return solutionFactor;
+        agreementFactor.valid = true;
+        return agreementFactor;
     }
     moveViewport(event, // event
     viewport) {
@@ -272,20 +272,20 @@ export class CubeEventListener {
         return this.populateCoords(ev, ev.touches, start);
     }
     /*
-    private populateSolutionFactor(
+    private populateAgreementFactor(
         axis: Factor_Axis,
-        uiSolution: ICubeSolution
+        uiAgreement: ICubeAgreement
     ): void {
-        const solution                    = uiSolution.solution
-        const solutionFactor: IUiSolutionFactor = solution[uiSolution.axisToFactorMapping[axis]]
-        const solutionDimension           = uiSolution[axis]
-        solutionFactor.outcome            = null
-        if (solutionDimension.dir === 1) {
-            solutionFactor.outcome = 'A'
-        } else if (solutionDimension.dir === -1) {
-            solutionFactor.outcome = 'B'
+        const agreement                    = uiAgreement.agreement
+        const agreementFactor: IUiAgreementFactor = agreement[uiAgreement.axisToFactorMapping[axis]]
+        const agreementDimension           = uiAgreement[axis]
+        agreementFactor.outcome            = null
+        if (agreementDimension.dir === 1) {
+            agreementFactor.outcome = 'A'
+        } else if (agreementDimension.dir === -1) {
+            agreementFactor.outcome = 'B'
         }
-        solutionFactor.value = solutionDimension.value
+        agreementFactor.value = agreementDimension.value
     }
 */
     /**

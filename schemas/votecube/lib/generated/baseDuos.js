@@ -6,12 +6,52 @@ export class SQDIDuo extends Duo {
         super(dbEntityId, Q);
     }
 }
+export class BaseAgreementDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(4);
+    }
+    constructor() {
+        super(4);
+    }
+}
+export class BaseAgreementFactorDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(3);
+    }
+    constructor() {
+        super(3);
+    }
+}
 export class BaseFactorDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(1);
     }
     constructor() {
         super(1);
+    }
+}
+export class BaseIdeaDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(8);
+    }
+    constructor() {
+        super(8);
+    }
+}
+export class BaseIdeaFactorPositionDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(5);
+    }
+    constructor() {
+        super(5);
+    }
+}
+export class BaseIdeaLabelDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(7);
+    }
+    constructor() {
+        super(7);
     }
 }
 export class BaseLabelDuo extends SQDIDuo {
@@ -36,46 +76,6 @@ export class BasePositionDuo extends SQDIDuo {
     }
     constructor() {
         super(0);
-    }
-}
-export class BaseSituationDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(8);
-    }
-    constructor() {
-        super(8);
-    }
-}
-export class BaseSituationFactorPositionDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(5);
-    }
-    constructor() {
-        super(5);
-    }
-}
-export class BaseSituationLabelDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(7);
-    }
-    constructor() {
-        super(7);
-    }
-}
-export class BaseSolutionDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(4);
-    }
-    constructor() {
-        super(4);
-    }
-}
-export class BaseSolutionFactorDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(3);
-    }
-    constructor() {
-        super(3);
     }
 }
 export class BaseUserAccountDuo extends SQDIDuo {

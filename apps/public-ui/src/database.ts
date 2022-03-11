@@ -4,20 +4,20 @@ import {
 } from '@votecube/cube-logic'
 import {
     ICubeLogic,
-    ISituationFormManager,
-    SITUATION_FORM_MANAGER,
-    SITUATION_MANAGER,
-    SOLUTION_MANAGER
+    IIdeaFormManager,
+    IDEA_FORM_MANAGER,
+    IDEA_MANAGER,
+    AGREEMENT_MANAGER
 } from '@votecube/vc-logic'
 import {
     pageTitle,
 } from '@votecube/ui-logic'
 import type {
-    IUiSolution,
-    IUiSituation,
-    IUiSolutionFactor,
-    ITweenSolution,
-    ITweenSolutionFactor
+    IUiAgreement,
+    IUiIdea,
+    IUiAgreementFactor,
+    ITweenAgreement,
+    ITweenAgreementFactor
 } from '@votecube/model';
 import type { IChildContainer } from '@airport/di';
 
@@ -29,47 +29,47 @@ export async function init() {
     // await dbManager.init('votecube.com', StoreType.SQLITE_CORDOVA, APPLICATION)
 }
 
-export function getBlankTweenSolution(
+export function getBlankTweenAgreement(
     container: IChildContainer
-): ITweenSolution {
-    const situationFormManager = container.getSync(SITUATION_FORM_MANAGER)
+): ITweenAgreement {
+    const ideaFormManager = container.getSync(IDEA_FORM_MANAGER)
 
     return {
-        ...situationFormManager.getBlankUiRepositoryRecord(),
-        1: getBlankTweenSolutionFactor(situationFormManager),
-        2: getBlankTweenSolutionFactor(situationFormManager),
-        3: getBlankTweenSolutionFactor(situationFormManager)
+        ...ideaFormManager.getBlankUiRepositoryRecord(),
+        1: getBlankTweenAgreementFactor(ideaFormManager),
+        2: getBlankTweenAgreementFactor(ideaFormManager),
+        3: getBlankTweenAgreementFactor(ideaFormManager)
     }
 }
 
-export function getBlankUiSolution(
+export function getBlankUiAgreement(
     container: IChildContainer
-): IUiSolution {
-    const situationFormManager = container.getSync(SITUATION_FORM_MANAGER)
+): IUiAgreement {
+    const ideaFormManager = container.getSync(IDEA_FORM_MANAGER)
 
     return {
-        ...situationFormManager.getBlankUiRepositoryRecord(),
-        1: getBlankUiSolutionFactor(situationFormManager),
-        2: getBlankUiSolutionFactor(situationFormManager),
-        3: getBlankUiSolutionFactor(situationFormManager)
+        ...ideaFormManager.getBlankUiRepositoryRecord(),
+        1: getBlankUiAgreementFactor(ideaFormManager),
+        2: getBlankUiAgreementFactor(ideaFormManager),
+        3: getBlankUiAgreementFactor(ideaFormManager)
     }
 }
 
-function getBlankTweenSolutionFactor(
-    situationFormManager: ISituationFormManager
-): ITweenSolutionFactor {
+function getBlankTweenAgreementFactor(
+    ideaFormManager: IIdeaFormManager
+): ITweenAgreementFactor {
     return {
-        ...getBlankUiSolutionFactor(situationFormManager),
+        ...getBlankUiAgreementFactor(ideaFormManager),
         tweenOutcome: null,
         tweenValue: 0,
     }
 }
 
-function getBlankUiSolutionFactor(
-    situationFormManager: ISituationFormManager
-): IUiSolutionFactor {
+function getBlankUiAgreementFactor(
+    ideaFormManager: IIdeaFormManager
+): IUiAgreementFactor {
     return {
-        ...situationFormManager.getBlankUiRepositoryRecord(),
+        ...ideaFormManager.getBlankUiRepositoryRecord(),
         factorNumber: 1,
         outcome: null,
         value: 0,
@@ -83,29 +83,29 @@ export async function setupCubeView(
     cubeEventListener: ICubeEventListener,
     container: IChildContainer
 ): Promise<{
-    situation: IUiSituation,
-    solution: IUiSolution
+    idea: IUiIdea,
+    agreement: IUiAgreement
 }> {
     const [
-        mutationApi, situationManager, solutionManager
+        mutationApi, ideaManager, agreementManager
     ] = await container.get(
-        MUTATION_API, SITUATION_MANAGER, SOLUTION_MANAGER)
+        MUTATION_API, IDEA_MANAGER, AGREEMENT_MANAGER)
 
-    const solution = await solutionManager.getSolutionForSituation(
+    const agreement = await agreementManager.getAgreementForIdea(
         repositoryUuId
     );
 
-    const situation = await situationManager.getSituation(hostingPlatform, repositoryUuId)
+    const idea = await ideaManager.getIdea(hostingPlatform, repositoryUuId)
 
-    cubeEventListener.setPositionData(solution)
+    cubeEventListener.setPositionData(agreement)
     await mutationApi.recompute()
-    const setPositionDataAndMove = (solution) => cubeEventListener.setPositionDataAndMove(solution)
-    setPositionDataAndMove(solution)
+    const setPositionDataAndMove = (agreement) => cubeEventListener.setPositionDataAndMove(agreement)
+    setPositionDataAndMove(agreement)
 
-    pageTitle.set(situation.name)
+    pageTitle.set(idea.name)
 
     return {
-        situation,
-        solution
+        idea,
+        agreement
     }
 }

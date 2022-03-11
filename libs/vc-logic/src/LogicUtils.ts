@@ -1,17 +1,17 @@
 import { DI } from '@airport/di'
 import {
-	ITweenSolutionFactor,
+	ITweenAgreementFactor,
 	IUiColor,
-	IUiSolution,
-	IUiSolutionFactor
+	IUiAgreement,
+	IUiAgreementFactor
 } from '@votecube/model'
 import { create_bidirectional_transition } from 'svelte/internal'
 import { LOGIC_UTILS } from './tokens'
 
-interface IUiSolutionFactorNode {
+interface IUiAgreementFactorNode {
 
-	next?: IUiSolutionFactorNode
-	solutionFactor: IUiSolutionFactor
+	next?: IUiAgreementFactorNode
+	agreementFactor: IUiAgreementFactor
 
 }
 
@@ -41,9 +41,9 @@ export interface ILogicUtils {
 		color: IUiColor
 	): string
 
-	getSolutionFactorNodesInValueOrder(
-		solution: IUiSolution
-	): IUiSolutionFactor[]
+	getAgreementFactorNodesInValueOrder(
+		agreement: IUiAgreement
+	): IUiAgreementFactor[]
 
 	overlay(
 		from,
@@ -133,33 +133,33 @@ export class LogicUtils
 		return 'FFF'
 	}
 
-	getSolutionFactorNodesInValueOrder<V extends IUiSolution = IUiSolution>(
-		solution: V
-	): IUiSolutionFactor[] | ITweenSolutionFactor[] {
-		if (!solution) {
+	getAgreementFactorNodesInValueOrder<V extends IUiAgreement = IUiAgreement>(
+		agreement: V
+	): IUiAgreementFactor[] | ITweenAgreementFactor[] {
+		if (!agreement) {
 			return []
 		}
-		const node1: IUiSolutionFactorNode = {
-			solutionFactor: solution[1]
+		const node1: IUiAgreementFactorNode = {
+			agreementFactor: agreement[1]
 		}
-		const node2: IUiSolutionFactorNode = {
-			solutionFactor: solution[2]
+		const node2: IUiAgreementFactorNode = {
+			agreementFactor: agreement[2]
 		}
-		const node3: IUiSolutionFactorNode = {
-			solutionFactor: solution[3]
+		const node3: IUiAgreementFactorNode = {
+			agreementFactor: agreement[3]
 		}
 		let headNode
-		if (solution[2].value >= solution[3].value) {
+		if (agreement[2].value >= agreement[3].value) {
 			node2.next = node3
 			headNode = node2
 		} else {
 			node3.next = node2
 			headNode = node3
 		}
-		if (headNode.solutionFactor.value < solution[1].value) {
+		if (headNode.agreementFactor.value < agreement[1].value) {
 			node1.next = headNode
 			headNode = node1
-		} else if (headNode.next.solutionFactor.value < solution[1].value) {
+		} else if (headNode.next.agreementFactor.value < agreement[1].value) {
 			const lastNode = headNode.next
 			headNode.next = node1
 			node1.next = lastNode
@@ -168,9 +168,9 @@ export class LogicUtils
 		}
 
 		return [
-			headNode.solutionFactor,
-			headNode.next.solutionFactor,
-			headNode.next.next.solutionFactor
+			headNode.agreementFactor,
+			headNode.next.agreementFactor,
+			headNode.next.next.agreementFactor
 		]
 	}
 

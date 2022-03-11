@@ -1,5 +1,5 @@
 import { navigateToPage } from "./routing";
-export const DEFINE_SITUATION_TOP = 'DEFINE_SITUATION_TOP';
+export const DEFINE_IDEA_TOP = 'DEFINE_IDEA_TOP';
 export const CREATE_FACTOR = 'CREATE_FACTOR';
 let forms = {};
 export function setForm(name, newCurrentForm) {
@@ -15,7 +15,7 @@ export function ensureChildForm(parentFormName, childFormName, page, navigateToR
         return null;
     }
     let form = parentForm;
-    // TODO: see if nested child form resolution is needed
+    // TODO: see if nested child form reagreement is needed
     // childFormName.split('.').forEach(childNameFragment => {
     form = form.fields[childFormName];
     // })

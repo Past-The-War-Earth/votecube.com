@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { DI } from "@airport/di";
-	import type { IUiSituation, IUiSolutionFactor } from "@votecube/model";
+	import type { IUiIdea, IUiAgreementFactor } from "@votecube/model";
 	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
 	import { createEventDispatcher, onDestroy, onMount } from "svelte";
 	import LeftButton from "@votecube/ui-controls/src/button/LeftButton.svelte";
 	import RightButton from "@votecube/ui-controls/src/button/RightButton.svelte";
 
 	export let moveDelta: number;
-	export let situation: IUiSituation;
-	export let solutionFactor: IUiSolutionFactor;
+	export let idea: IUiIdea;
+	export let agreementFactor: IUiAgreementFactor;
 
 	let container;
 	let incrementInterval;
 	let interval;
 	let lastNumIncs;
-	let lastSolutionFactor: IUiSolutionFactor;
+	let lastAgreementFactor: IUiAgreementFactor;
 	let logicUtils: ILogicUtils;
 	let numIncs;
 	let numReIncs;
@@ -25,25 +25,25 @@
 	const dispatch = createEventDispatcher();
 
 	// valueBottomBorder: ({moveToValueDelta, value}) => getInputBorder(value),
-	$: leftCircleRadius = v(getRadius("A", solutionFactor), moveDelta);
-	$: rightCircleRadius = v(getRadius("B", solutionFactor), moveDelta);
-	$: leftStrokeWidth = v(getStrokeWidth("A", solutionFactor), moveDelta);
-	$: rightStrokeWidth = v(getStrokeWidth("B", solutionFactor), moveDelta);
+	$: leftCircleRadius = v(getRadius("A", agreementFactor), moveDelta);
+	$: rightCircleRadius = v(getRadius("B", agreementFactor), moveDelta);
+	$: leftStrokeWidth = v(getStrokeWidth("A", agreementFactor), moveDelta);
+	$: rightStrokeWidth = v(getStrokeWidth("B", agreementFactor), moveDelta);
 	$: leftHighlightColor = v(
-		getButtonColor(["B", null], solutionFactor),
+		getButtonColor(["B", null], agreementFactor),
 		moveDelta
 	);
 	$: rightHighlightColor = v(
-		getButtonColor(["A", null], solutionFactor),
+		getButtonColor(["A", null], agreementFactor),
 		moveDelta
 	);
-	$: leftFillColor = v(getButtonColor(["A"], solutionFactor), moveDelta);
-	$: rightFillColor = v(getButtonColor(["B"], solutionFactor), moveDelta);
+	$: leftFillColor = v(getButtonColor(["A"], agreementFactor), moveDelta);
+	$: rightFillColor = v(getButtonColor(["B"], agreementFactor), moveDelta);
 	$: factorColor = v(
-		logicUtils && solutionFactor.outcome
+		logicUtils && agreementFactor.outcome
 			? "#" +
 					logicUtils.getColor(
-						situation.factors[solutionFactor.factorNumber].color
+						idea.factors[agreementFactor.factorNumber].color
 					)
 			: "initial",
 		moveDelta
@@ -89,7 +89,7 @@
 
 	function checkInterval() {
 		numIncs = numIncs - 1;
-		if (lastSolutionFactor !== solutionFactor) {
+		if (lastAgreementFactor !== agreementFactor) {
 			clearIntrvl();
 			numIncs = 0;
 			return;
@@ -134,30 +134,30 @@
 							: '3px solid red'
 			}*/
 
-	function getRadius(outcome, solutionFactor: IUiSolutionFactor) {
-		return outcome === solutionFactor.outcome ? 24 : 23;
+	function getRadius(outcome, agreementFactor: IUiAgreementFactor) {
+		return outcome === agreementFactor.outcome ? 24 : 23;
 	}
 
-	function getStrokeWidth(outcome, solutionFactor: IUiSolutionFactor) {
-		return outcome === solutionFactor.outcome ? 0 : 3;
+	function getStrokeWidth(outcome, agreementFactor: IUiAgreementFactor) {
+		return outcome === agreementFactor.outcome ? 0 : 3;
 	}
 
-	function getButtonColor(matchingOutcomes, solutionFactor: IUiSolutionFactor) {
-		return matchingOutcomes.indexOf(solutionFactor.outcome) > -1
+	function getButtonColor(matchingOutcomes, agreementFactor: IUiAgreementFactor) {
+		return matchingOutcomes.indexOf(agreementFactor.outcome) > -1
 			? "000"
 			: "fff";
 	}
 	/*
 	function updateValue() {
 		setTimeout(() => {
-			positionInput.value = solutionFactor.value
+			positionInput.value = agreementFactor.value
 		}, 16)
 	}*/
 
 	function onPress(newOutcome) {
 		percentChange = 1;
 		lastNumIncs = 5;
-		lastSolutionFactor = solutionFactor;
+		lastAgreementFactor = agreementFactor;
 
 		dispatch("move", {
 			outcome: newOutcome,
@@ -194,14 +194,14 @@
 	</td>
 	<td>
 		<figure
-			class:factor={solutionFactor.value}
+			class:factor={agreementFactor.value}
 			style="background-color: {factorColor};"
 		>
 			<input
 				maxlength="3"
 				on:input={moveToValue}
 				bind:this={positionInput}
-				value={solutionFactor.value}
+				value={agreementFactor.value}
 			/>
 			<span>%</span>
 		</figure>

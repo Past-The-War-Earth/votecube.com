@@ -12,26 +12,26 @@ import {
 	EntityId,
 	getFullApplicationName
 }                      from '@airport/ground-control';
+import { QAgreement } from './agreement/qagreement';
+import { QAgreementFactor } from './agreement/qagreementfactor';
 import { QFactor } from './factor/qfactor';
+import { QIdea } from './idea/qidea';
+import { QIdeaFactorPosition } from './idea/qideafactorposition';
+import { QIdeaLabel } from './idea/qidealabel';
 import { QLabel } from './qlabel';
-import { QOutcome } from './situation/qoutcome';
+import { QOutcome } from './idea/qoutcome';
 import { QPosition } from './factor/qposition';
-import { QSituation } from './situation/qsituation';
-import { QSituationFactorPosition } from './situation/qsituationfactorposition';
-import { QSituationLabel } from './situation/qsituationlabel';
-import { QSolution } from './solution/qsolution';
-import { QSolutionFactor } from './solution/qsolutionfactor';
 import { QUserAccount } from './quseraccount';
 import {
+  Agreement,
+  AgreementFactor,
   Factor,
+  Idea,
+  IdeaFactorPosition,
+  IdeaLabel,
   Label,
   Outcome,
   Position,
-  Situation,
-  SituationFactorPosition,
-  SituationLabel,
-  Solution,
-  SolutionFactor,
   UserAccount
 } from '../ddl/ddl';
 
@@ -39,29 +39,29 @@ export interface LocalQApplication extends AirportQApplication {
 
   db: DbApplication;
 
+	Agreement: QAgreement;
+	AgreementFactor: QAgreementFactor;
 	Factor: QFactor;
+	Idea: QIdea;
+	IdeaFactorPosition: QIdeaFactorPosition;
+	IdeaLabel: QIdeaLabel;
 	Label: QLabel;
 	Outcome: QOutcome;
 	Position: QPosition;
-	Situation: QSituation;
-	SituationFactorPosition: QSituationFactorPosition;
-	SituationLabel: QSituationLabel;
-	Solution: QSolution;
-	SolutionFactor: QSolutionFactor;
 	UserAccount: QUserAccount;
 
 }
 
 const __constructors__ = {
+	Agreement: Agreement,
+	AgreementFactor: AgreementFactor,
 	Factor: Factor,
+	Idea: Idea,
+	IdeaFactorPosition: IdeaFactorPosition,
+	IdeaLabel: IdeaLabel,
 	Label: Label,
 	Outcome: Outcome,
 	Position: Position,
-	Situation: Situation,
-	SituationFactorPosition: SituationFactorPosition,
-	SituationLabel: SituationLabel,
-	Solution: Solution,
-	SolutionFactor: SolutionFactor,
 	UserAccount: UserAccount
 };
 

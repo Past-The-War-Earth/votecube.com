@@ -1,3 +1,3 @@
 import { votecube } from "./tokens";
-export const SITUATION_DAO = votecube.token('SITUATION_DAO');
+export const IDEA_DAO = votecube.token('IDEA_DAO');
 //# sourceMappingURL=server-tokens.js.map

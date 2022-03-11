@@ -1,10 +1,10 @@
-import type { IUiFactor, IUiSituation } from "@votecube/model"
+import type { IUiFactor, IUiIdea } from "@votecube/model"
 
-export function getSituationFactors(
-	situation: IUiSituation,
+export function getIdeaFactors(
+	idea: IUiIdea,
 	axis: 'x' | 'y' | 'z'
 ): IUiFactor {
-	return [situation.factors[1], situation.factors[2], situation.factors[3]].filter(
+	return [idea.factors[1], idea.factors[2], idea.factors[3]].filter(
 		factor =>
 			factor.axis === axis
 	)[0]
@@ -12,36 +12,36 @@ export function getSituationFactors(
 
 /*
 export function getFactorPositions(
-	situation,
+	idea,
 	axis
 ) {
-	return getSituationFactorPositions(situation, axis).map((situationFactorPosition) => {
-		return situationFactorPosition.factorPosition
+	return getIdeaFactorPositions(idea, axis).map((ideaFactorPosition) => {
+		return ideaFactorPosition.factorPosition
 	})
 }
 */
 
 /*
 export function getFactor(
-	situation,
+	idea,
 	axis
 ) {
-	return getFactorPositions(situation, axis)[0].factor
+	return getFactorPositions(idea, axis)[0].factor
 }
 */
 
 /*export function getColor(
 	delta,
-	situation,
+	idea,
 	axis
 ) {
-	return getGeneralColor(getSituationFactorPositions(situation, axis)[0].color)
+	return getGeneralColor(getIdeaFactorPositions(idea, axis)[0].color)
 }*/
 
 export function getSideText(
 	_delta: number,
 	mode,
-	sutation: IUiSituation,
+	sutation: IUiIdea,
 	axis: 'x' | 'y' | 'x',
 	dir: -1 | 1,
 	defaultDir
@@ -52,7 +52,7 @@ export function getSideText(
 	if (!dir) {
 		return ''
 	}
-	const factor = getSituationFactors(sutation, axis)
+	const factor = getIdeaFactors(sutation, axis)
 
 	const position = [factor.positions.A, factor.positions.B].filter(
 		position =>

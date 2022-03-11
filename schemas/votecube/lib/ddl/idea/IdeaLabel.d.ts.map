@@ -1,0 +1,1 @@
+{"version":3,"file":"IdeaLabel.d.ts","sourceRoot":"","sources":["../../../src/ddl/idea/IdeaLabel.ts"],"names":[],"mappings":"AAQA,OAAO,EAAE,gBAAgB,EAAE,MAAM,0BAA0B,CAAA;AAC3D,OAAO,EAAE,KAAK,EAAE,MAAM,UAAU,CAAA;AAChC,OAAO,EAAE,IAAI,EAAE,MAAM,QAAQ,CAAA;AAE7B,qBAEa,SACT,SAAQ,gBAAgB;IAGxB,IAAI,EAAE,IAAI,CAAA;IAGV,KAAK,EAAE,KAAK,CAAA;CAEf"}

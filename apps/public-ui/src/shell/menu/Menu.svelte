@@ -11,8 +11,8 @@
 	import {
 		ABOUT,
 		FEEDBACK,
-		SITUATION_FORM,
-		SITUATION_LIST,
+		IDEA_FORM,
+		IDEA_LIST,
 		RELEASE_PLAN,
 	} from "@votecube/vc-logic";
 	import { createEventDispatcher, onMount } from "svelte";
@@ -26,15 +26,15 @@
 	let menuItems: IUiMenuItem[] = [
 		{
 			auth: false,
-			key: SITUATION_LIST,
-			name: "Situations",
-			path: SITUATION_LIST,
+			key: IDEA_LIST,
+			name: "Ideas",
+			path: IDEA_LIST,
 		},
 		{
 			auth: true,
-			key: SITUATION_FORM,
-			path: SITUATION_FORM.replace(":mode", "build"),
-			name: "Define Situation",
+			key: IDEA_FORM,
+			path: IDEA_FORM.replace(":mode", "build"),
+			name: "Define Idea",
 		},
 		{
 			auth: false,

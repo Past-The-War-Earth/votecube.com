@@ -1,5 +1,31 @@
 /* eslint-disable */
 import {
+	IAgreement,
+} from './agreement/agreement';
+import {
+	AgreementESelect,
+	AgreementECreateColumns,
+	AgreementECreateProperties,
+	AgreementEUpdateColumns,
+	AgreementEUpdateProperties,
+	AgreementEId,
+	AgreementGraph,
+	QAgreement,
+} from './agreement/qagreement';
+import {
+	IAgreementFactor,
+} from './agreement/agreementfactor';
+import {
+	AgreementFactorESelect,
+	AgreementFactorECreateColumns,
+	AgreementFactorECreateProperties,
+	AgreementFactorEUpdateColumns,
+	AgreementFactorEUpdateProperties,
+	AgreementFactorEId,
+	AgreementFactorGraph,
+	QAgreementFactor,
+} from './agreement/qagreementfactor';
+import {
 	IFactor,
 } from './factor/factor';
 import {
@@ -12,6 +38,45 @@ import {
 	FactorGraph,
 	QFactor,
 } from './factor/qfactor';
+import {
+	IIdea,
+} from './idea/idea';
+import {
+	IdeaESelect,
+	IdeaECreateColumns,
+	IdeaECreateProperties,
+	IdeaEUpdateColumns,
+	IdeaEUpdateProperties,
+	IdeaEId,
+	IdeaGraph,
+	QIdea,
+} from './idea/qidea';
+import {
+	IIdeaFactorPosition,
+} from './idea/ideafactorposition';
+import {
+	IdeaFactorPositionESelect,
+	IdeaFactorPositionECreateColumns,
+	IdeaFactorPositionECreateProperties,
+	IdeaFactorPositionEUpdateColumns,
+	IdeaFactorPositionEUpdateProperties,
+	IdeaFactorPositionEId,
+	IdeaFactorPositionGraph,
+	QIdeaFactorPosition,
+} from './idea/qideafactorposition';
+import {
+	IIdeaLabel,
+} from './idea/idealabel';
+import {
+	IdeaLabelESelect,
+	IdeaLabelECreateColumns,
+	IdeaLabelECreateProperties,
+	IdeaLabelEUpdateColumns,
+	IdeaLabelEUpdateProperties,
+	IdeaLabelEId,
+	IdeaLabelGraph,
+	QIdeaLabel,
+} from './idea/qidealabel';
 import {
 	ILabel,
 } from './label';
@@ -27,7 +92,7 @@ import {
 } from './qlabel';
 import {
 	IOutcome,
-} from './situation/outcome';
+} from './idea/outcome';
 import {
 	OutcomeESelect,
 	OutcomeECreateColumns,
@@ -37,7 +102,7 @@ import {
 	OutcomeEId,
 	OutcomeGraph,
 	QOutcome,
-} from './situation/qoutcome';
+} from './idea/qoutcome';
 import {
 	IPosition,
 } from './factor/position';
@@ -51,71 +116,6 @@ import {
 	PositionGraph,
 	QPosition,
 } from './factor/qposition';
-import {
-	ISituation,
-} from './situation/situation';
-import {
-	SituationESelect,
-	SituationECreateColumns,
-	SituationECreateProperties,
-	SituationEUpdateColumns,
-	SituationEUpdateProperties,
-	SituationEId,
-	SituationGraph,
-	QSituation,
-} from './situation/qsituation';
-import {
-	ISituationFactorPosition,
-} from './situation/situationfactorposition';
-import {
-	SituationFactorPositionESelect,
-	SituationFactorPositionECreateColumns,
-	SituationFactorPositionECreateProperties,
-	SituationFactorPositionEUpdateColumns,
-	SituationFactorPositionEUpdateProperties,
-	SituationFactorPositionEId,
-	SituationFactorPositionGraph,
-	QSituationFactorPosition,
-} from './situation/qsituationfactorposition';
-import {
-	ISituationLabel,
-} from './situation/situationlabel';
-import {
-	SituationLabelESelect,
-	SituationLabelECreateColumns,
-	SituationLabelECreateProperties,
-	SituationLabelEUpdateColumns,
-	SituationLabelEUpdateProperties,
-	SituationLabelEId,
-	SituationLabelGraph,
-	QSituationLabel,
-} from './situation/qsituationlabel';
-import {
-	ISolution,
-} from './solution/solution';
-import {
-	SolutionESelect,
-	SolutionECreateColumns,
-	SolutionECreateProperties,
-	SolutionEUpdateColumns,
-	SolutionEUpdateProperties,
-	SolutionEId,
-	SolutionGraph,
-	QSolution,
-} from './solution/qsolution';
-import {
-	ISolutionFactor,
-} from './solution/solutionfactor';
-import {
-	SolutionFactorESelect,
-	SolutionFactorECreateColumns,
-	SolutionFactorECreateProperties,
-	SolutionFactorEUpdateColumns,
-	SolutionFactorEUpdateProperties,
-	SolutionFactorEId,
-	SolutionFactorGraph,
-	QSolutionFactor,
-} from './solution/qsolutionfactor';
 import {
 	IUserAccount,
 } from './useraccount';
@@ -178,6 +178,62 @@ export class SQDIDao<Entity,
 }
 
 
+export interface IBaseAgreementDao
+  extends IDao<IAgreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement> {
+}
+
+export class BaseAgreementDao
+  extends SQDIDao<IAgreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement>
+	implements IBaseAgreementDao {
+	
+	static Find      = new DaoQueryDecorators<AgreementESelect>();
+	static FindOne   = new DaoQueryDecorators<AgreementESelect>();
+	static Search    = new DaoQueryDecorators<AgreementESelect>();
+	static SearchOne = new DaoQueryDecorators<AgreementESelect>();
+	static Save(
+		config: AgreementGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<AgreementGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(4)
+	}
+	
+	constructor() {
+		super(4)
+	}
+}
+
+
+export interface IBaseAgreementFactorDao
+  extends IDao<IAgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor> {
+}
+
+export class BaseAgreementFactorDao
+  extends SQDIDao<IAgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor>
+	implements IBaseAgreementFactorDao {
+	
+	static Find      = new DaoQueryDecorators<AgreementFactorESelect>();
+	static FindOne   = new DaoQueryDecorators<AgreementFactorESelect>();
+	static Search    = new DaoQueryDecorators<AgreementFactorESelect>();
+	static SearchOne = new DaoQueryDecorators<AgreementFactorESelect>();
+	static Save(
+		config: AgreementFactorGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<AgreementFactorGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(3)
+	}
+	
+	constructor() {
+		super(3)
+	}
+}
+
+
 export interface IBaseFactorDao
   extends IDao<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> {
 }
@@ -202,6 +258,90 @@ export class BaseFactorDao
 	
 	constructor() {
 		super(1)
+	}
+}
+
+
+export interface IBaseIdeaDao
+  extends IDao<IIdea, IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea> {
+}
+
+export class BaseIdeaDao
+  extends SQDIDao<IIdea, IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea>
+	implements IBaseIdeaDao {
+	
+	static Find      = new DaoQueryDecorators<IdeaESelect>();
+	static FindOne   = new DaoQueryDecorators<IdeaESelect>();
+	static Search    = new DaoQueryDecorators<IdeaESelect>();
+	static SearchOne = new DaoQueryDecorators<IdeaESelect>();
+	static Save(
+		config: IdeaGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<IdeaGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(8)
+	}
+	
+	constructor() {
+		super(8)
+	}
+}
+
+
+export interface IBaseIdeaFactorPositionDao
+  extends IDao<IIdeaFactorPosition, IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition> {
+}
+
+export class BaseIdeaFactorPositionDao
+  extends SQDIDao<IIdeaFactorPosition, IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition>
+	implements IBaseIdeaFactorPositionDao {
+	
+	static Find      = new DaoQueryDecorators<IdeaFactorPositionESelect>();
+	static FindOne   = new DaoQueryDecorators<IdeaFactorPositionESelect>();
+	static Search    = new DaoQueryDecorators<IdeaFactorPositionESelect>();
+	static SearchOne = new DaoQueryDecorators<IdeaFactorPositionESelect>();
+	static Save(
+		config: IdeaFactorPositionGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<IdeaFactorPositionGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(5)
+	}
+	
+	constructor() {
+		super(5)
+	}
+}
+
+
+export interface IBaseIdeaLabelDao
+  extends IDao<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> {
+}
+
+export class BaseIdeaLabelDao
+  extends SQDIDao<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel>
+	implements IBaseIdeaLabelDao {
+	
+	static Find      = new DaoQueryDecorators<IdeaLabelESelect>();
+	static FindOne   = new DaoQueryDecorators<IdeaLabelESelect>();
+	static Search    = new DaoQueryDecorators<IdeaLabelESelect>();
+	static SearchOne = new DaoQueryDecorators<IdeaLabelESelect>();
+	static Save(
+		config: IdeaLabelGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<IdeaLabelGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(7)
+	}
+	
+	constructor() {
+		super(7)
 	}
 }
 
@@ -286,146 +426,6 @@ export class BasePositionDao
 	
 	constructor() {
 		super(0)
-	}
-}
-
-
-export interface IBaseSituationDao
-  extends IDao<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
-}
-
-export class BaseSituationDao
-  extends SQDIDao<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation>
-	implements IBaseSituationDao {
-	
-	static Find      = new DaoQueryDecorators<SituationESelect>();
-	static FindOne   = new DaoQueryDecorators<SituationESelect>();
-	static Search    = new DaoQueryDecorators<SituationESelect>();
-	static SearchOne = new DaoQueryDecorators<SituationESelect>();
-	static Save(
-		config: SituationGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<SituationGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(8)
-	}
-	
-	constructor() {
-		super(8)
-	}
-}
-
-
-export interface IBaseSituationFactorPositionDao
-  extends IDao<ISituationFactorPosition, SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition> {
-}
-
-export class BaseSituationFactorPositionDao
-  extends SQDIDao<ISituationFactorPosition, SituationFactorPositionESelect, SituationFactorPositionECreateProperties, SituationFactorPositionEUpdateColumns, SituationFactorPositionEUpdateProperties, SituationFactorPositionEId, SituationFactorPositionGraph, QSituationFactorPosition>
-	implements IBaseSituationFactorPositionDao {
-	
-	static Find      = new DaoQueryDecorators<SituationFactorPositionESelect>();
-	static FindOne   = new DaoQueryDecorators<SituationFactorPositionESelect>();
-	static Search    = new DaoQueryDecorators<SituationFactorPositionESelect>();
-	static SearchOne = new DaoQueryDecorators<SituationFactorPositionESelect>();
-	static Save(
-		config: SituationFactorPositionGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<SituationFactorPositionGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(5)
-	}
-	
-	constructor() {
-		super(5)
-	}
-}
-
-
-export interface IBaseSituationLabelDao
-  extends IDao<ISituationLabel, SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel> {
-}
-
-export class BaseSituationLabelDao
-  extends SQDIDao<ISituationLabel, SituationLabelESelect, SituationLabelECreateProperties, SituationLabelEUpdateColumns, SituationLabelEUpdateProperties, SituationLabelEId, SituationLabelGraph, QSituationLabel>
-	implements IBaseSituationLabelDao {
-	
-	static Find      = new DaoQueryDecorators<SituationLabelESelect>();
-	static FindOne   = new DaoQueryDecorators<SituationLabelESelect>();
-	static Search    = new DaoQueryDecorators<SituationLabelESelect>();
-	static SearchOne = new DaoQueryDecorators<SituationLabelESelect>();
-	static Save(
-		config: SituationLabelGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<SituationLabelGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(7)
-	}
-	
-	constructor() {
-		super(7)
-	}
-}
-
-
-export interface IBaseSolutionDao
-  extends IDao<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution> {
-}
-
-export class BaseSolutionDao
-  extends SQDIDao<ISolution, SolutionESelect, SolutionECreateProperties, SolutionEUpdateColumns, SolutionEUpdateProperties, SolutionEId, SolutionGraph, QSolution>
-	implements IBaseSolutionDao {
-	
-	static Find      = new DaoQueryDecorators<SolutionESelect>();
-	static FindOne   = new DaoQueryDecorators<SolutionESelect>();
-	static Search    = new DaoQueryDecorators<SolutionESelect>();
-	static SearchOne = new DaoQueryDecorators<SolutionESelect>();
-	static Save(
-		config: SolutionGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<SolutionGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(4)
-	}
-	
-	constructor() {
-		super(4)
-	}
-}
-
-
-export interface IBaseSolutionFactorDao
-  extends IDao<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor> {
-}
-
-export class BaseSolutionFactorDao
-  extends SQDIDao<ISolutionFactor, SolutionFactorESelect, SolutionFactorECreateProperties, SolutionFactorEUpdateColumns, SolutionFactorEUpdateProperties, SolutionFactorEId, SolutionFactorGraph, QSolutionFactor>
-	implements IBaseSolutionFactorDao {
-	
-	static Find      = new DaoQueryDecorators<SolutionFactorESelect>();
-	static FindOne   = new DaoQueryDecorators<SolutionFactorESelect>();
-	static Search    = new DaoQueryDecorators<SolutionFactorESelect>();
-	static SearchOne = new DaoQueryDecorators<SolutionFactorESelect>();
-	static Save(
-		config: SolutionFactorGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<SolutionFactorGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(3)
-	}
-	
-	constructor() {
-		super(3)
 	}
 }
 

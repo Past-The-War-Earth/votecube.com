@@ -7,8 +7,8 @@ import {
 	ValueArrayPosition
 }                             from '../CubeMoveMatrix'
 import {
-	ICubeSolution,
-	ICubeSolutionDimension
+	ICubeAgreement,
+	ICubeAgreementDimension
 }                             from '../CubeMovement'
 import {IViewport}            from '../Viewport'
 import {
@@ -72,7 +72,7 @@ export class MatrixValueChooser
 		// need to find the percentages that best endPoint the specified ones
 		const valueMatrix = cubeMoveMatrix.VALUE_MATRIX
 
-		const newPositionData: ICubeSolution = viewport.pd
+		const newPositionData: ICubeAgreement = viewport.pd
 
 		let lowestLargest       = 50
 		let lowestMedian        = 33
@@ -157,13 +157,13 @@ export class MatrixValueChooser
 	}
 
 	private setDimZeroPositions(
-		solutionDimension: ICubeSolutionDimension,
+		agreementDimension: ICubeAgreementDimension,
 		plusIndex: ValueArrayPosition,
 		minusIndex: ValueArrayPosition,
 		zeroedPositions: boolean[]
 	) {
-		if (solutionDimension.value) {
-			if (solutionDimension.outcome === 'A') {
+		if (agreementDimension.value) {
+			if (agreementDimension.outcome === 'A') {
 				zeroedPositions[minusIndex] = true
 			} else {
 				zeroedPositions[plusIndex] = true
@@ -175,7 +175,7 @@ export class MatrixValueChooser
 	}
 
 	private getDimensionDistance(
-		newSolutionDimension: ICubeSolutionDimension,
+		newAgreementDimension: ICubeAgreementDimension,
 		positionData: PositionValues,
 		positiveIndex: ValueArrayPosition,
 		negativeIndex: ValueArrayPosition,
@@ -185,7 +185,7 @@ export class MatrixValueChooser
 		const maximumDistance = MAX_DIST
 		if (!positionsWithZeroes[positiveIndex]) {
 			positiveDistance = Math.abs(positionData[positiveIndex]
-				- newSolutionDimension.value)
+				- newAgreementDimension.value)
 			if (positiveDistance > maximumDistance) {
 				return undefined
 			}
@@ -193,7 +193,7 @@ export class MatrixValueChooser
 		let negativeDistance = 0
 		if (!positionsWithZeroes[negativeIndex]) {
 			negativeDistance = Math.abs(positionData[negativeIndex]
-				- newSolutionDimension.value)
+				- newAgreementDimension.value)
 			if (negativeDistance > maximumDistance) {
 				return undefined
 			}

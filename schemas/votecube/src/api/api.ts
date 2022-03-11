@@ -1,2 +1,2 @@
-export * from './SituationApi'
-export * from './SolutionApi'
+export * from './IdeaApi'
+export * from './AgreementApi'

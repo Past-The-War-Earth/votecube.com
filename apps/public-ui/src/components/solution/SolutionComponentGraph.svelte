@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { DI } from "@airport/di";
 	import type {
-		ITweenSolutionFactor,
+		ITweenAgreementFactor,
 		IUiColor,
-		IUiSituation,
-		IUiSolution,
+		IUiIdea,
+		IUiAgreement,
 	} from "@votecube/model";
 	import { cardMove } from "@votecube/ui-logic";
 	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
@@ -16,19 +16,19 @@
 	import { fade, fly } from "svelte/transition";
 	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
 	import ShieldButton from "@votecube/ui-controls/src/button/ShieldButton.svelte";
-	import CubeMiniature from "../situation/CubeMiniature.svelte";
+	import CubeMiniature from "../idea/CubeMiniature.svelte";
 
 	export let classes = '';
 	export let cubeSides;
 	export let cubeView;
 	export let delta: number;
 	// export let moveType
-	export let situation: IUiSituation;
+	export let idea: IUiIdea;
 	// export let positionMode
 	export let tweenDelta;
 	// export let verticalLayout
-	export let solution: IUiSolution;
-	export let solutionFactors: ITweenSolutionFactor[] = [];
+	export let agreement: IUiAgreement;
+	export let agreementFactors: ITweenAgreementFactor[] = [];
 
 	let cardMoveUnsubscribe;
 	let container;
@@ -37,28 +37,28 @@
 	const dispatch = createEventDispatcher();
 
 	$: ageSuitability = f(() => {
-		if (!situation) {
+		if (!idea) {
 			return "?";
 		}
-		switch (situation.ageSuitability) {
+		switch (idea.ageSuitability) {
 			case 0:
 			case 7:
 			case 13:
 			case 18:
-				return situation.ageSuitability + "+";
+				return idea.ageSuitability + "+";
 			default:
 				return "?";
 		}
 	}, delta);
 	$: signedTotal = f(() => {
-		if (!solutionFactors) {
+		if (!agreementFactors) {
 			return 0;
 		}
-		return solutionFactors.reduce(
-			(total, solutionFactor) =>
+		return agreementFactors.reduce(
+			(total, agreementFactor) =>
 				total +
-				solutionFactor.tweenValue *
-					(solutionFactor.tweenOutcome === "A" ? 1 : -1),
+				agreementFactor.tweenValue *
+					(agreementFactor.tweenOutcome === "A" ? 1 : -1),
 			0
 		);
 	}, tweenDelta);
@@ -72,7 +72,7 @@
 	// outcomeFontY: ({outcome}) => outcome === 'B' ? 21 : 21
 
 	onMount(async () => {
-		container = DI.ui("SolutionComponentGraph");
+		container = DI.ui("AgreementComponentGraph");
 		logicUtils = await container.get(LOGIC_UTILS);
 
 		cardMoveUnsubscribe = cardMove.subscribe((cardMoveValue) => {
@@ -129,35 +129,35 @@
 	}
 
 	function aClass(
-		tweenSolutionFactor: ITweenSolutionFactor,
+		tweenAgreementFactor: ITweenAgreementFactor,
 		_tweenDelta: number
 	) {
-		return tweenSolutionFactor.tweenOutcome === "A" ? "leftDirection" : "";
+		return tweenAgreementFactor.tweenOutcome === "A" ? "leftDirection" : "";
 	}
 
 	function bClass(
-		tweenSolutionFactor: ITweenSolutionFactor,
+		tweenAgreementFactor: ITweenAgreementFactor,
 		_tweenDelta: number
 	) {
-		return tweenSolutionFactor.tweenOutcome === "B" ? "rightDirection" : "";
+		return tweenAgreementFactor.tweenOutcome === "B" ? "rightDirection" : "";
 	}
 
 	function tweenOutcome(
-		tweenSolutionFactor: ITweenSolutionFactor,
+		tweenAgreementFactor: ITweenAgreementFactor,
 		_tweenDelta: number
 	) {
-		return tweenSolutionFactor.tweenOutcome;
+		return tweenAgreementFactor.tweenOutcome;
 	}
 
 	function factorMiniLeft(
-		tweenSolutionFactor: ITweenSolutionFactor,
+		tweenAgreementFactor: ITweenAgreementFactor,
 		_tweenDelta: number
 	) {
-		return tweenSolutionFactor.tweenOutcome === "A" ? 0 : 19;
+		return tweenAgreementFactor.tweenOutcome === "A" ? 0 : 19;
 	}
 
-	function tweenValue(tweenSolutionFactor: ITweenSolutionFactor, _tweenDelta: number) {
-		return tweenSolutionFactor.tweenValue;
+	function tweenValue(tweenAgreementFactor: ITweenAgreementFactor, _tweenDelta: number) {
+		return tweenAgreementFactor.tweenValue;
 	}
 
 	function getColor(
@@ -171,23 +171,23 @@
 		return logicUtils.getColor(color);
 	}
 
-	function getWidth(tweenSolutionFactor: ITweenSolutionFactor, _tweenDelta: number) {
-		return tweenSolutionFactor.tweenValue;
+	function getWidth(tweenAgreementFactor: ITweenAgreementFactor, _tweenDelta: number) {
+		return tweenAgreementFactor.tweenValue;
 	}
 
 	function haveWidth(
-		tweenSolutionFactor: ITweenSolutionFactor,
+		tweenAgreementFactor: ITweenAgreementFactor,
 		outcome: string,
 		_tweenDelta: number
 	) {
-		return tweenSolutionFactor.tweenOutcome === outcome;
+		return tweenAgreementFactor.tweenOutcome === outcome;
 	}
 
 	function showPosition(
-		tweenSolutionFactor: ITweenSolutionFactor,
+		tweenAgreementFactor: ITweenAgreementFactor,
 		_tweenDelta: number
 	) {
-		return tweenSolutionFactor.value || tweenSolutionFactor.tweenValue;
+		return tweenAgreementFactor.value || tweenAgreementFactor.tweenValue;
 	}
 
 	function onClick() {
@@ -206,18 +206,18 @@
 	}
 </script>
 
-{#if situation && solution}
+{#if idea && agreement}
 	<table class={classes}>
-		{#each solutionFactors as tweenSolutionFactor, i}
+		{#each agreementFactors as tweenAgreementFactor, i}
 			<tr>
 				<td class="ranking" on:click={onClick}>
 					{#if !i && !cubeView}
-						<CubeMiniature {cubeSides} {delta} solution={solution} />
-					{:else if cubeView && showPosition(tweenSolutionFactor, tweenDelta)}
+						<CubeMiniature {cubeSides} {delta} agreement={agreement} />
+					{:else if cubeView && showPosition(tweenAgreementFactor, tweenDelta)}
 						<figure
 							style="background-color: #{getColor(
-								situation.factors[
-									tweenSolutionFactor.factorNumber
+								idea.factors[
+									tweenAgreementFactor.factorNumber
 								].color,
 								logicUtils,
 								delta
@@ -227,7 +227,7 @@
 							<header />
 							<CharacterButton
 								character={tweenOutcome(
-									tweenSolutionFactor,
+									tweenAgreementFactor,
 									tweenDelta
 								)}
 								fontSize={20}
@@ -236,7 +236,7 @@
 								size={24}
 								strokeWidth={1}
 								styles="left: {factorMiniLeft(
-									tweenSolutionFactor,
+									tweenAgreementFactor,
 									tweenDelta
 								)}px; position: absolute; top: 1px;"
 							/>
@@ -247,43 +247,43 @@
 					<table>
 						<tr>
 							<td class="a">
-								{#if haveWidth(tweenSolutionFactor, "A", tweenDelta)}
+								{#if haveWidth(tweenAgreementFactor, "A", tweenDelta)}
 									<div
 										class="bar {aClass(
-											tweenSolutionFactor,
+											tweenAgreementFactor,
 											tweenDelta
 										)}"
 										id="bar_{i}"
 										style="
         background-color: #{getColor(
-											situation.factors[
-												tweenSolutionFactor.factorNumber
+											idea.factors[
+												tweenAgreementFactor.factorNumber
 											].color,
 											logicUtils,
 											delta
 										)};
-        width: {getWidth(tweenSolutionFactor, tweenDelta)}%;
+        width: {getWidth(tweenAgreementFactor, tweenDelta)}%;
             "
 									/>
 								{/if}
 							</td>
 							<td class="b">
-								{#if haveWidth(tweenSolutionFactor, "B", tweenDelta)}
+								{#if haveWidth(tweenAgreementFactor, "B", tweenDelta)}
 									<div
 										class="bar {bClass(
-											tweenSolutionFactor,
+											tweenAgreementFactor,
 											tweenDelta
 										)}"
 										id="bar_{i}"
 										style="
         background-color: #{getColor(
-											situation.factors[
-												tweenSolutionFactor.factorNumber
+											idea.factors[
+												tweenAgreementFactor.factorNumber
 											].color,
 											logicUtils,
 											delta
 										)};
-        width: {getWidth(tweenSolutionFactor, tweenDelta)}%;
+        width: {getWidth(tweenAgreementFactor, tweenDelta)}%;
             "
 									/>
 								{/if}
@@ -295,10 +295,10 @@
 					class="percent"
 					on:click={(event) => dispatch("togglePercent", event)}
 				>
-					{#if showPosition(tweenSolutionFactor, tweenDelta)}
+					{#if showPosition(tweenAgreementFactor, tweenDelta)}
 						<!--
 			<CharacterButton
-					character="{tweenOutcome(tweenSolutionFactor)}"
+					character="{tweenOutcome(tweenAgreementFactor)}"
 					fontSize="20"
 					fontX="12"
 					fontY="19"
@@ -308,7 +308,7 @@
 			></CharacterButton>
 			-->
 						<span class="value" in:fade
-							>{tweenValue(tweenSolutionFactor, tweenDelta)}</span
+							>{tweenValue(tweenAgreementFactor, tweenDelta)}</span
 						>
 						<span class="sign" in:fade>%</span>
 					{/if}

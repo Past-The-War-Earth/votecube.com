@@ -8,14 +8,14 @@
 	<table
 			class="chart-contents"
 	>
-		{#each solutionDims as solutionDim, i}
-		{#if showPosition(solutionDim)}
+		{#each agreementDims as agreementDim, i}
+		{#if showPosition(agreementDim)}
 		<tr id="plus">
 			<td>
 				<div
 						style="
-        background-color: #{getColor(delta, situation, solutionDim.axis)};
-        width: {solutionDim.value}%;
+        background-color: #{getColor(delta, idea, agreementDim.axis)};
+        width: {agreementDim.value}%;
             "
 				>
 				</div>
@@ -23,8 +23,8 @@
 			<td>
 				<div
 						style="
-        background-color: #{getColor(delta, situation, solutionDim.axis)};
-        width: {solutionDim.value}%;
+        background-color: #{getColor(delta, idea, agreementDim.axis)};
+        width: {agreementDim.value}%;
             "
 				>
 				</div>
@@ -42,7 +42,7 @@
 		class:rightInfo="horizontalPage"
 >
 
-	{#each solutionDims as solutionDim, i}
+	{#each agreementDims as agreementDim, i}
 	<tr>
 		<td>
 			<FactorInfoButton
@@ -50,15 +50,15 @@
 					bind:mode
 					delta="{delta}"
 					on:toggle="fire('toggleX')"
-					situation="{situation}"
+					idea="{idea}"
 					position="left"
-					solutionDim="{solutionDim}"
+					agreementDim="{agreementDim}"
 			></FactorInfoButton>
 		</td>
 		<td
 				class="positionText"
 		>
-			{dirText(solutionDim, mode, situation, solution, delta)}
+			{dirText(agreementDim, mode, idea, agreement, delta)}
 		</td>
 	<tr>
 	</tr>
@@ -69,15 +69,15 @@
 				delta="{delta}"
 				float="left"
 				on:toggle="fire('toggleY')"
-				situation="{situation}"
+				idea="{idea}"
 				position="left"
-				solutionDim="{solutionDim}"
+				agreementDim="{agreementDim}"
 		></FactorInfoButton>
 	</td>
 	<td
 			class="positionText"
 	>
-		{dirText(solutionDim, mode, situation, solution, delta)}
+		{dirText(agreementDim, mode, idea, agreement, delta)}
 	</td>
 	<tr>
 		<td>
@@ -87,15 +87,15 @@
 					delta="{delta}"
 					float="left"
 					on:toggle="fire('toggleZ')"
-					situation="{situation}"
+					idea="{idea}"
 					position="left"
-					solutionDim="{solutionDim}"
+					agreementDim="{agreementDim}"
 			></FactorInfoButton>
 		</td>
 		<td
 				class="positionText"
 		>
-			{dirText(solutionDim, mode, situation, solution, delta)}
+			{dirText(agreementDim, mode, idea, agreement, delta)}
 		</td>
 	</tr>
 	{/each}
@@ -231,17 +231,17 @@
 			                 }) => {
 				return mode == 'page' && !verticalLayout
 			},
-/*			maxValue: ({situation, delta, solution}) => {
-				if (!solution) {
+/*			maxValue: ({idea, delta, agreement}) => {
+				if (!agreement) {
 					return 0
 				}
 
 				const positiveValues = []
 				const negativeValues = []
 
-				addToVals(situation, solution.x, positiveValues, negativeValues)
-				addToVals(situation, solution.y, positiveValues, negativeValues)
-				addToVals(situation, solution.z, positiveValues, negativeValues)
+				addToVals(idea, agreement.x, positiveValues, negativeValues)
+				addToVals(idea, agreement.y, positiveValues, negativeValues)
+				addToVals(idea, agreement.z, positiveValues, negativeValues)
 
 				const maxPositiveValue = getMaxVal(positiveValues)
 				const maxNegativeValue = getMaxVal(negativeValues)
@@ -259,38 +259,38 @@
 		helpers: {
 			getColor,
 /*			dirWidth: (
-				solutionDim,
+				agreementDim,
 				maxBarSize,
 				maxValue,
-				solution,
+				agreement,
 				delta,
 			) =>
-				solution ?
-					barHeight(solution[solutionDim.axis], solutionDim.dir, maxBarSize, maxValue)
+				agreement ?
+					barHeight(agreement[agreementDim.axis], agreementDim.dir, maxBarSize, maxValue)
 					: 0,*/
 			dirText: (
-				solutionDim,
+				agreementDim,
 				mode,
-				situation,
-				solution,
+				idea,
+				agreement,
 				delta
 			) =>
-				solution ?
-					positionText(delta, mode, situation, solution[solutionDim.axis])
+				agreement ?
+					positionText(delta, mode, idea, agreement[agreementDim.axis])
 					: ''
 		}
 	}
 
 /*
 	function barWidth(
-		solutionFactor,
+		agreementFactor,
 		position,
 		maxBarSize,
 		maxValue
 	) {
-		return solutionFactor
-		&& solutionFactor.dir === position
-			? solutionFactor.value * maxBarSize / (maxValue * 1.2)
+		return agreementFactor
+		&& agreementFactor.dir === position
+			? agreementFactor.value * maxBarSize / (maxValue * 1.2)
 			: 0
 	}
 */
@@ -298,23 +298,23 @@
 	function positionText(
 		delta,
 		mode,
-		situation,
-		solutionFactor
+		idea,
+		agreementFactor
 	) {
-		return getSideText(delta, mode, situation, solutionFactor.axis, solutionFactor.dir)
+		return getSideText(delta, mode, idea, agreementFactor.axis, agreementFactor.dir)
 	}
 
 /*
 	function addToVals(
-		situation,
-		solutionFactor,
+		idea,
+		agreementFactor,
 		positiveValues,
 		negativeValues
 	) {
-		if (solutionFactor.dir === 1) {
-			positiveValues.push(solutionFactor.value)
+		if (agreementFactor.dir === 1) {
+			positiveValues.push(agreementFactor.value)
 		} else {
-			negativeValues.push(solutionFactor.value)
+			negativeValues.push(agreementFactor.value)
 		}
 	}
 */

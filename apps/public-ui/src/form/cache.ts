@@ -1,19 +1,19 @@
 import {
 	APP_CONTAINER,
-	SITUATION_MANAGER
+	IDEA_MANAGER
 }                 from '@votecube/vc-logic'
 import * as forms from '../form/forms'
 
-export async function saveSituationForm(
+export async function saveIdeaForm(
 	interFormNavigation
 ) {
 	if (interFormNavigation) {
 		return
 	}
 
-	const situationManager = await APP_CONTAINER.get(SITUATION_MANAGER)
-	await situationManager.mergeForm()
+	const ideaManager = await APP_CONTAINER.get(IDEA_MANAGER)
+	await ideaManager.mergeForm()
 
-	forms.uncacheForm(forms.DEFINE_SITUATION_TOP)
+	forms.uncacheForm(forms.DEFINE_IDEA_TOP)
 	forms.uncacheForm(forms.CREATE_FACTOR)
 }

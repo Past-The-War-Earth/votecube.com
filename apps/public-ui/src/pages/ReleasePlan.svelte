@@ -11,27 +11,27 @@
 
 	<ul>
 		<li>Opinions: ability to record your comments</li>
-		<li>Labels: ability to label Situations</li>
-		<li>Review & publish Situations</li>
-		<li>Solution: recording your Solutions on Situations</li>
-		<li>Solution totals</li>
-		<li>Ranking of Situations by Solution counts</li>
-		<li>Realtime Solution total updates</li>
+		<li>Labels: ability to label Ideas</li>
+		<li>Review & publish Ideas</li>
+		<li>Agreement: recording your Agreements on Ideas</li>
+		<li>Agreement totals</li>
+		<li>Ranking of Ideas by Agreement counts</li>
+		<li>Realtime Agreement total updates</li>
 	</ul>
 
 	<h3>Beta - analytics</h3>
 
 	<ul>
-		<li>Ranking of Situations</li>
+		<li>Ranking of Ideas</li>
 		<li>Ranking of opinions</li>
 		<li>Ranking of users</li>
-		<li>Situation result verification</li>
+		<li>Idea result verification</li>
 		<li>Advertisements</li>
 	</ul>
 
 	<h3>General Availability Release</h3>
 
 	<ul>
-		<li>Private Situations</li>
+		<li>Private Ideas</li>
 	</ul>
 </article>

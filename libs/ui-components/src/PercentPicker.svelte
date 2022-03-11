@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { IUiSituation, IUiSolutionFactor } from '@votecube/model';
+import type { IUiIdea, IUiAgreementFactor } from '@votecube/model';
 
 	import {popup} from '@votecube/ui-logic'
 	import {
@@ -12,8 +12,8 @@ import type { IUiSituation, IUiSolutionFactor } from '@votecube/model';
 	import LinearPositionPicker from './LinearPositionPicker.svelte'
 
 	export let delta
-	export let situation: IUiSituation
-	export let solutionFactors: IUiSolutionFactor[]
+	export let idea: IUiIdea
+	export let agreementFactors: IUiAgreementFactor[]
 
 	let pickerDelta = 0
 
@@ -221,14 +221,14 @@ import type { IUiSituation, IUiSolutionFactor } from '@votecube/model';
 			-->
 			<!-- TODO: add support for voting value -->
 
-			{#each solutionFactors as solutionFactor, i}
+			{#each agreementFactors as agreementFactor, i}
 			<LinearPositionPicker
 					moveDelta="{moveDelta}"
-					on:move="{(event) => move(solutionFactor.factorNumber, event.detail.outcome, event.detail.percentChange)}"
-					on:moveToValue="{(event) => moveToValue(solutionFactor.factorNumber, event)}"
+					on:move="{(event) => move(agreementFactor.factorNumber, event.detail.outcome, event.detail.percentChange)}"
+					on:moveToValue="{(event) => moveToValue(agreementFactor.factorNumber, event)}"
 					on:update="{update}"
-					situation={situation}
-					solutionFactor="{solutionFactor}"
+					idea={idea}
+					agreementFactor="{agreementFactor}"
 			/>
 			{/each}
 		</table>

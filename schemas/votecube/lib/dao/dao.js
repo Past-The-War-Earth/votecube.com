@@ -1,2 +1,2 @@
-export * from './SituationDao';
+export * from './IdeaDao';
 //# sourceMappingURL=dao.js.map

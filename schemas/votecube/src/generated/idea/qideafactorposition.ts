@@ -1,0 +1,265 @@
+import {
+	IQEntityInternal,
+	IEntityIdProperties,
+	IEntityCascadeGraph,
+	IEntityUpdateColumns,
+	IEntityUpdateProperties,
+	IEntitySelectProperties,
+	IEntityDatabaseFacade,
+	IEntityFind,
+	IEntityFindOne,
+	IEntitySearch,
+	IEntitySearchOne,
+	IQBooleanField,
+	IQDateField,
+	IQNumberField,
+	IQOneToManyRelation,
+	IQStringField,
+	IQUntypedField,
+	IQEntity,
+	IQRelation,
+	RawDelete,
+	RawUpdate,
+} from '@airport/air-control';
+import {
+	RepositoryEntityGraph,
+	RepositoryEntityEId,
+	RepositoryEntityEUpdateColumns,
+	RepositoryEntityEUpdateProperties,
+	RepositoryEntityESelect,
+	QRepositoryEntityQId,
+	QRepositoryEntityQRelation,
+	QRepositoryEntity,
+} from '@airport/holding-pattern';
+import {
+	IdeaGraph,
+	IdeaEId,
+	IdeaEOptionalId,
+	IdeaEUpdateProperties,
+	IdeaESelect,
+	QIdea,
+	QIdeaQId,
+	QIdeaQRelation,
+} from './qidea';
+import {
+	Idea,
+} from '../../ddl/idea/Idea';
+import {
+	FactorGraph,
+	FactorEId,
+	FactorEOptionalId,
+	FactorEUpdateProperties,
+	FactorESelect,
+	QFactor,
+	QFactorQId,
+	QFactorQRelation,
+} from '../factor/qfactor';
+import {
+	Factor,
+} from '../../ddl/factor/Factor';
+import {
+	PositionGraph,
+	PositionEId,
+	PositionEOptionalId,
+	PositionEUpdateProperties,
+	PositionESelect,
+	QPosition,
+	QPositionQId,
+	QPositionQRelation,
+} from '../factor/qposition';
+import {
+	Position,
+} from '../../ddl/factor/Position';
+import {
+	IdeaFactorPosition,
+} from '../../ddl/idea/IdeaFactorPosition';
+
+
+declare function require(moduleName: string): any;
+
+
+//////////////////////////////
+//  API SPECIFIC INTERFACES //
+//////////////////////////////
+
+/**
+ * SELECT - All fields and relations (optional).
+ */
+export interface IdeaFactorPositionESelect
+    extends RepositoryEntityESelect, IdeaFactorPositionEOptionalId {
+	// Non-Id Properties
+	axis?: string | IQStringField;
+	dir?: number | IQNumberField;
+	factorNumber?: number | IQNumberField;
+	blue?: number | IQNumberField;
+	green?: number | IQNumberField;
+	red?: number | IQNumberField;
+	outcomeOrdinal?: string | IQStringField;
+
+	// Id Relations - full property interfaces
+
+  // Non-Id relations (including OneToMany's)
+	idea?: IdeaESelect;
+	factor?: FactorESelect;
+	position?: PositionESelect;
+
+}
+
+/**
+ * DELETE - Ids fields and relations only (required).
+ */
+export interface IdeaFactorPositionEId
+    extends RepositoryEntityEId {
+	// Id Properties
+
+	// Id Relations - Ids only
+
+}
+
+/**
+ * Ids fields and relations only (optional).
+ */
+export interface IdeaFactorPositionEOptionalId {
+	// Id Properties
+
+	// Id Relations - Ids only
+
+}
+
+/**
+ * UPDATE - non-id fields and relations (optional).
+ */
+export interface IdeaFactorPositionEUpdateProperties
+	extends RepositoryEntityEUpdateProperties {
+	// Non-Id Properties
+	axis?: string | IQStringField;
+	dir?: number | IQNumberField;
+	factorNumber?: number | IQNumberField;
+	blue?: number | IQNumberField;
+	green?: number | IQNumberField;
+	red?: number | IQNumberField;
+	outcomeOrdinal?: string | IQStringField;
+
+	// Non-Id Relations - ids only & no OneToMany's
+	idea?: IdeaEOptionalId;
+	factor?: FactorEOptionalId;
+	position?: PositionEOptionalId;
+
+}
+
+/**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface IdeaFactorPositionGraph
+	extends IdeaFactorPositionEOptionalId, RepositoryEntityGraph {
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
+	// Non-Id Properties
+	axis?: string | IQStringField;
+	dir?: number | IQNumberField;
+	factorNumber?: number | IQNumberField;
+	blue?: number | IQNumberField;
+	green?: number | IQNumberField;
+	red?: number | IQNumberField;
+	outcomeOrdinal?: string | IQStringField;
+
+	// Relations
+	idea?: IdeaGraph;
+	factor?: FactorGraph;
+	position?: PositionGraph;
+
+}
+
+/**
+ * UPDATE - non-id columns (optional).
+ */
+export interface IdeaFactorPositionEUpdateColumns
+	extends RepositoryEntityEUpdateColumns {
+	// Non-Id Columns
+	AGE_SUITABILITY?: number | IQNumberField;
+	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
+	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
+	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	FACTOR_COORDINATE_AXIS?: string | IQStringField;
+	POSITION_ORIENTATION?: number | IQNumberField;
+	FACTOR_NUMBER?: number | IQNumberField;
+	COLOR_BLUE?: number | IQNumberField;
+	COLOR_GREEN?: number | IQNumberField;
+	COLOR_RED?: number | IQNumberField;
+	OUTCOME_ORDINAL?: string | IQStringField;
+	IDEAS_RID_1?: number | IQNumberField;
+	IDEAS_AID_1?: number | IQNumberField;
+	IDEAS_ARID_1?: number | IQNumberField;
+	FACTORS_RID_1?: number | IQNumberField;
+	FACTORS_AID_1?: number | IQNumberField;
+	FACTORS_ARID_1?: number | IQNumberField;
+	POSITIONS_RID_1?: number | IQNumberField;
+	POSITIONS_AID_1?: number | IQNumberField;
+	POSITIONS_ARID_1?: number | IQNumberField;
+
+}
+
+/**
+ * CREATE - id fields and relations (required) and non-id fields and relations (optional).
+ */
+export interface IdeaFactorPositionECreateProperties
+extends Partial<IdeaFactorPositionEId>, IdeaFactorPositionEUpdateProperties {
+}
+
+/**
+ * CREATE - id columns (required) and non-id columns (optional).
+ */
+export interface IdeaFactorPositionECreateColumns
+extends IdeaFactorPositionEId, IdeaFactorPositionEUpdateColumns {
+}
+
+
+
+
+///////////////////////////////////////////////
+//  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
+///////////////////////////////////////////////
+
+/**
+ * Query Entity Query Definition (used for Q.EntityName).
+ */
+export interface QIdeaFactorPosition extends QRepositoryEntity<IdeaFactorPosition>
+{
+	// Id Fields
+
+	// Id Relations
+
+	// Non-Id Fields
+	axis: IQStringField;
+	dir: IQNumberField;
+	factorNumber: IQNumberField;
+	blue: IQNumberField;
+	green: IQNumberField;
+	red: IQNumberField;
+	outcomeOrdinal: IQStringField;
+
+	// Non-Id Relations
+	idea: QIdeaQRelation;
+	factor: QFactorQRelation;
+	position: QPositionQRelation;
+
+}
+
+
+// Entity Id Interface
+export interface QIdeaFactorPositionQId extends QRepositoryEntityQId
+{
+	
+	// Id Fields
+
+	// Id Relations
+
+
+}
+
+// Entity Relation Interface
+export interface QIdeaFactorPositionQRelation
+	extends QRepositoryEntityQRelation<IdeaFactorPosition, QIdeaFactorPosition>, QIdeaFactorPositionQId {
+}
+

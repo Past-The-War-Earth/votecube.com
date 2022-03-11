@@ -61,7 +61,7 @@
 
         ensureForm(form, formHandle);
 
-        pageTitle.set("Situations");
+        pageTitle.set("Ideas");
     });
 
     onDestroy(() => {

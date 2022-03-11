@@ -10,7 +10,7 @@ import {
 import {
 	Direction,
 	ICubeMovement,
-	ICubeSolutionDimension,
+	ICubeAgreementDimension,
 	PositionPercent
 }                              from '../CubeMovement'
 import {IViewport}             from '../Viewport'
@@ -114,11 +114,11 @@ export class FinalPositionFinder
 	}
 
 	private getDirectionVals(
-		solutionDimension: ICubeSolutionDimension
+		agreementDimension: ICubeAgreementDimension
 	): [PositionPercent, PositionPercent] {
-		return solutionDimension.outcome === 'A'
-			? [solutionDimension.value, 0]
-			: [0, solutionDimension.value]
+		return agreementDimension.outcome === 'A'
+			? [agreementDimension.value, 0]
+			: [0, agreementDimension.value]
 	}
 
 	private findVectorEndPoint(
