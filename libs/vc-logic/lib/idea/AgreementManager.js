@@ -8,7 +8,7 @@ export class AgreementManager {
     async getAgreementForIdea(
     // User-information is in AIRport
     ideaRepositoryUuid) {
-        if (!ideaRepositoryUuid || ideaRepositoryUuid === 'unsolved') {
+        if (!ideaRepositoryUuid || ideaRepositoryUuid === ':repositoryUuId') {
             return this.getStubAgreement();
         }
         let agreement = await this.agreementApi

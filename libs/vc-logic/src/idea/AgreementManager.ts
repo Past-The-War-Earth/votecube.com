@@ -41,7 +41,7 @@ export class AgreementManager
 		// User-information is in AIRport
 		ideaRepositoryUuid: string
 	): Promise<IUiAgreement> {
-		if (!ideaRepositoryUuid || ideaRepositoryUuid === 'unsolved') {
+		if (!ideaRepositoryUuid || ideaRepositoryUuid === ':repositoryUuId') {
 			return this.getStubAgreement()
 		}
 
