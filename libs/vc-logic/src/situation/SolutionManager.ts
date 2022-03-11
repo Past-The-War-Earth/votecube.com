@@ -8,6 +8,7 @@ import {
 	IUiSolution
 } from '@votecube/model'
 import {
+
 	SITUATION_CONVERTER,
 	SITUATION_MANAGER,
 	SOLUTION_CONVERTER,
@@ -41,7 +42,7 @@ export class SolutionManager
 		// User-information is in AIRport
 		situationRepositoryUuid: string
 	): Promise<IUiSolution> {
-		if (!situationRepositoryUuid || situationRepositoryUuid === 'unsolved') {
+		if (!situationRepositoryUuid || situationRepositoryUuid === ':repositoryUuId') {
 			return this.getStubSolution()
 		}
 

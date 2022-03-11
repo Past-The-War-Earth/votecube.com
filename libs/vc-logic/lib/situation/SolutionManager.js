@@ -8,7 +8,7 @@ export class SolutionManager {
     async getSolutionForSituation(
     // User-information is in AIRport
     situationRepositoryUuid) {
-        if (!situationRepositoryUuid || situationRepositoryUuid === 'unsolved') {
+        if (!situationRepositoryUuid || situationRepositoryUuid === ':repositoryUuId') {
             return this.getStubSolution();
         }
         let solution = await this.solutionApi
