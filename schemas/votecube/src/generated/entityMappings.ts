@@ -6,7 +6,7 @@ import { Factor } from '../ddl/factor/Factor';
 import { Outcome } from '../ddl/idea/Outcome';
 import { AgreementFactor } from '../ddl/agreement/AgreementFactor';
 import { Agreement } from '../ddl/agreement/Agreement';
-import { IdeaFactorPosition } from '../ddl/idea/IdeaFactorPosition';
+import { Reason } from '../ddl/idea/Reason';
 import { Label } from '../ddl/Label';
 import { IdeaLabel } from '../ddl/idea/IdeaLabel';
 import { Idea } from '../ddl/idea/Idea';
@@ -19,7 +19,7 @@ DI.db().get(AIRPORT_DATABASE).then(airDb => {
   accumulator.add(Outcome, 2);
   accumulator.add(AgreementFactor, 3);
   accumulator.add(Agreement, 4);
-  accumulator.add(IdeaFactorPosition, 5);
+  accumulator.add(Reason, 5);
   accumulator.add(Label, 6);
   accumulator.add(IdeaLabel, 7);
   accumulator.add(Idea, 8);

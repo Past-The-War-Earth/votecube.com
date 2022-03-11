@@ -1,1 +1,0 @@
-{"version":3,"file":"SolutionApiClient.d.ts","sourceRoot":"","sources":["../../src/client/SolutionApiClient.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAE,MAAM,yBAAyB,CAAC;AAGpD,qBAAa,iBAAiB;IAEpB,YAAY,CACd,QAAQ,EAAE,SAAS,GACpB,OAAO,CAAC,IAAI,CAAC;IAMV,yBAAyB,CAC3B,uBAAuB,EAAE,MAAM,GAChC,OAAO,CAAC,SAAS,CAAC;CAMxB"}

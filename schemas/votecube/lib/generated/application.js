@@ -1239,7 +1239,7 @@ export const APPLICATION = {
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "IDEA_FACTOR_POSITIONS_RID_1",
+                            "name": "REASONS_RID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -1261,7 +1261,7 @@ export const APPLICATION = {
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "IDEA_FACTOR_POSITIONS_AID_1",
+                            "name": "REASONS_AID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -1283,7 +1283,7 @@ export const APPLICATION = {
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "IDEA_FACTOR_POSITIONS_ARID_1",
+                            "name": "REASONS_ARID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -1412,7 +1412,7 @@ export const APPLICATION = {
                         {
                             "index": 11,
                             "isId": false,
-                            "name": "ideaFactorPosition",
+                            "name": "reason",
                             "relationRef": {
                                 "index": 5
                             },
@@ -2349,7 +2349,7 @@ export const APPLICATION = {
                     "index": 5,
                     "isLocal": false,
                     "isRepositoryEntity": true,
-                    "name": "IdeaFactorPosition",
+                    "name": "Reason",
                     "properties": [
                         {
                             "index": 0,
@@ -2592,7 +2592,7 @@ export const APPLICATION = {
                     ],
                     "sinceVersion": 1,
                     "tableConfig": {
-                        "name": "IDEA_FACTOR_POSITIONS",
+                        "name": "REASONS",
                         "columnIndexes": []
                     }
                 },
@@ -3872,7 +3872,7 @@ export const APPLICATION = {
                         {
                             "index": 14,
                             "isId": false,
-                            "name": "ideaFactorPositions",
+                            "name": "reasons",
                             "relationRef": {
                                 "index": 9
                             },

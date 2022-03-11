@@ -4,8 +4,8 @@ import { OutcomeGraph, OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } f
 import { ForumThreadGraph, ForumThreadEOptionalId, ForumThreadESelect, QForumThreadQRelation } from '@votecube/forum/lib/server';
 import { IdeaLabelGraph, IdeaLabelESelect, QIdeaLabel } from './qidealabel';
 import { IdeaLabel } from '../../ddl/idea/IdeaLabel';
-import { IdeaFactorPositionGraph, IdeaFactorPositionESelect, QIdeaFactorPosition } from './qideafactorposition';
-import { IdeaFactorPosition } from '../../ddl/idea/IdeaFactorPosition';
+import { ReasonGraph, ReasonESelect, QReason } from './qreason';
+import { Reason } from '../../ddl/idea/Reason';
 import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
 import { Agreement } from '../../ddl/agreement/Agreement';
 import { Idea } from '../../ddl/idea/Idea';
@@ -19,7 +19,7 @@ export interface IdeaESelect extends RepositoryEntityESelect, IdeaEOptionalId {
     thread?: ForumThreadESelect;
     children?: IdeaESelect;
     ideaLabels?: IdeaLabelESelect;
-    ideaFactorPositions?: IdeaFactorPositionESelect;
+    reasons?: ReasonESelect;
     agreements?: AgreementESelect;
 }
 /**
@@ -51,7 +51,7 @@ export interface IdeaGraph extends IdeaEOptionalId, RepositoryEntityGraph {
     thread?: ForumThreadGraph;
     children?: IdeaGraph[];
     ideaLabels?: IdeaLabelGraph[];
-    ideaFactorPositions?: IdeaFactorPositionGraph[];
+    reasons?: ReasonGraph[];
     agreements?: AgreementGraph[];
 }
 /**
@@ -94,7 +94,7 @@ export interface QIdea extends QRepositoryEntity<Idea> {
     thread: QForumThreadQRelation;
     children: IQOneToManyRelation<Idea, QIdea>;
     ideaLabels: IQOneToManyRelation<IdeaLabel, QIdeaLabel>;
-    ideaFactorPositions: IQOneToManyRelation<IdeaFactorPosition, QIdeaFactorPosition>;
+    reasons: IQOneToManyRelation<Reason, QReason>;
     agreements: IQOneToManyRelation<Agreement, QAgreement>;
 }
 export interface QIdeaQId extends QRepositoryEntityQId {

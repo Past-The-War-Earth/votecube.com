@@ -15,8 +15,8 @@ export function getFactorPositions(
 	idea,
 	axis
 ) {
-	return getIdeaFactorPositions(idea, axis).map((ideaFactorPosition) => {
-		return ideaFactorPosition.factorPosition
+	return getReasons(idea, axis).map((reason) => {
+		return reason.factorPosition
 	})
 }
 */
@@ -35,7 +35,7 @@ export function getFactor(
 	idea,
 	axis
 ) {
-	return getGeneralColor(getIdeaFactorPositions(idea, axis)[0].color)
+	return getGeneralColor(getReasons(idea, axis)[0].color)
 }*/
 
 export function getSideText(

@@ -7,7 +7,7 @@ import {
 import {
 	ICubeFactorPositionDefault,
 	ICubePosition,
-	ICubeIdeaFactorPositionDefault,
+	ICubeReasonDefault,
 } from '@votecube/model'
 import { CUBE_LOGIC } from '../tokens'
 
@@ -15,7 +15,7 @@ export interface ICubeLogic {
 
 	getDefaultCubePositions(): ICubePosition[]
 
-	getIdeaFactorPositionDefault(): ICubeIdeaFactorPositionDefault
+	getReasonDefault(): ICubeReasonDefault
 
 	shutDownCubeListener(
 		cubeEventListener: ICubeEventListener,
@@ -59,7 +59,7 @@ export class CubeLogic
 		}]
 	}
 
-	getIdeaFactorPositionDefault(): ICubeIdeaFactorPositionDefault {
+	getReasonDefault(): ICubeReasonDefault {
 		const defaultCubePositions = this.getDefaultCubePositions()
 		return {
 			1: this.getFactorPositionDefault(

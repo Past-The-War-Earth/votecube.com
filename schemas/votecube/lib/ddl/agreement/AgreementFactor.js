@@ -13,7 +13,7 @@ __decorate([
 ], AgreementFactor.prototype, "agreement", void 0);
 __decorate([
     ManyToOne()
-], AgreementFactor.prototype, "ideaFactorPosition", void 0);
+], AgreementFactor.prototype, "reason", void 0);
 AgreementFactor = __decorate([
     Entity(),
     Table({ name: 'AGREEMENT_FACTORS' })

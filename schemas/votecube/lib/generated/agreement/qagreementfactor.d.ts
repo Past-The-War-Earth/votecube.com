@@ -1,7 +1,7 @@
 import { IQNumberField, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { AgreementGraph, AgreementEOptionalId, AgreementESelect, QAgreementQRelation } from './qagreement';
-import { IdeaFactorPositionGraph, IdeaFactorPositionEOptionalId, IdeaFactorPositionESelect, QIdeaFactorPositionQRelation } from '../idea/qideafactorposition';
+import { ReasonGraph, ReasonEOptionalId, ReasonESelect, QReasonQRelation } from '../idea/qreason';
 import { AgreementFactor } from '../../ddl/agreement/AgreementFactor';
 /**
  * SELECT - All fields and relations (optional).
@@ -10,7 +10,7 @@ export interface AgreementFactorESelect extends RepositoryEntityESelect, Agreeme
     axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementESelect;
-    ideaFactorPosition?: IdeaFactorPositionESelect;
+    reason?: ReasonESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -29,7 +29,7 @@ export interface AgreementFactorEUpdateProperties extends RepositoryEntityEUpdat
     axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementEOptionalId;
-    ideaFactorPosition?: IdeaFactorPositionEOptionalId;
+    reason?: ReasonEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
@@ -38,7 +38,7 @@ export interface AgreementFactorGraph extends AgreementFactorEOptionalId, Reposi
     axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementGraph;
-    ideaFactorPosition?: IdeaFactorPositionGraph;
+    reason?: ReasonGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -54,9 +54,9 @@ export interface AgreementFactorEUpdateColumns extends RepositoryEntityEUpdateCo
     AGREEMENTS_RID_1?: number | IQNumberField;
     AGREEMENTS_AID_1?: number | IQNumberField;
     AGREEMENTS_ARID_1?: number | IQNumberField;
-    IDEA_FACTOR_POSITIONS_RID_1?: number | IQNumberField;
-    IDEA_FACTOR_POSITIONS_AID_1?: number | IQNumberField;
-    IDEA_FACTOR_POSITIONS_ARID_1?: number | IQNumberField;
+    REASONS_RID_1?: number | IQNumberField;
+    REASONS_AID_1?: number | IQNumberField;
+    REASONS_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -75,7 +75,7 @@ export interface QAgreementFactor extends QRepositoryEntity<AgreementFactor> {
     axis: IQStringField;
     share: IQNumberField;
     agreement: QAgreementQRelation;
-    ideaFactorPosition: QIdeaFactorPositionQRelation;
+    reason: QReasonQRelation;
 }
 export interface QAgreementFactorQId extends QRepositoryEntityQId {
 }

@@ -15,7 +15,7 @@ export interface ICubeFactorPositionDefault {
 	}
 }
 
-export interface ICubeIdeaFactorPositionDefault {
+export interface ICubeReasonDefault {
 	1: ICubeFactorPositionDefault
 	2: ICubeFactorPositionDefault
 	3: ICubeFactorPositionDefault

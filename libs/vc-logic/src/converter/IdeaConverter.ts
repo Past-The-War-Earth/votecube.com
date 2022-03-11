@@ -4,7 +4,7 @@ import {
 	IOutcome,
 	IPosition,
 	IIdea,
-	IIdeaFactorPosition,
+	IReason,
 	IIdeaLabel,
 } from '@votecube/votecube'
 import {
@@ -56,9 +56,9 @@ export class IdeaConverter
 			...super.dbToUi(dbIdea),
 			ageGroups,
 			factors: {
-				'1': this.getUiFactor(1, dbIdea.ideaFactorPositions),
-				'2': this.getUiFactor(2, dbIdea.ideaFactorPositions),
-				'3': this.getUiFactor(3, dbIdea.ideaFactorPositions)
+				'1': this.getUiFactor(1, dbIdea.reasons),
+				'2': this.getUiFactor(2, dbIdea.reasons),
+				'3': this.getUiFactor(3, dbIdea.reasons)
 			},
 			labels,
 			name: dbIdea.name,
@@ -93,39 +93,39 @@ export class IdeaConverter
 		}
 		this.outcomeToDb(uiIdea.outcomes.B,
 			dbIdea.outcomeB, uiIdea.ageSuitability)
-		const factor1 = this.ideaFactorPositionToDb(
+		const factor1 = this.reasonToDb(
 			uiIdea,
 			dbIdea,
 			1,
 			'A',
 		)
-		this.ideaFactorPositionToDb(
+		this.reasonToDb(
 			uiIdea,
 			dbIdea,
 			1,
 			'B',
 			factor1
 		)
-		const factor2 = this.ideaFactorPositionToDb(
+		const factor2 = this.reasonToDb(
 			uiIdea,
 			dbIdea,
 			2,
 			'A',
 		)
-		this.ideaFactorPositionToDb(
+		this.reasonToDb(
 			uiIdea,
 			dbIdea,
 			2,
 			'B',
 			factor2
 		)
-		const factor3 = this.ideaFactorPositionToDb(
+		const factor3 = this.reasonToDb(
 			uiIdea,
 			dbIdea,
 			3,
 			'A',
 		)
-		this.ideaFactorPositionToDb(
+		this.reasonToDb(
 			uiIdea,
 			dbIdea,
 			3,
@@ -161,13 +161,13 @@ export class IdeaConverter
 
 	private getUiFactor(
 		factorNumber: 1 | 2 | 3,
-		factorPositions: IIdeaFactorPosition[]
+		factorPositions: IReason[]
 	): IUiFactor {
 		const matchingFactorPositions = factorPositions.filter(factorPosition =>
 			factorPosition.factorNumber === factorNumber)
 
-		let dbFactorPositionA: IIdeaFactorPosition
-		let dbFactorPositionB: IIdeaFactorPosition
+		let dbFactorPositionA: IReason
+		let dbFactorPositionB: IReason
 
 		if (matchingFactorPositions[0].outcomeOrdinal === 'A') {
 			dbFactorPositionA = matchingFactorPositions[0]
@@ -196,13 +196,13 @@ export class IdeaConverter
 	}
 
 	private getUiPosition(
-		dbIdeaFactorPosition: IIdeaFactorPosition
+		dbReason: IReason
 	): IUiPosition {
-		const position = dbIdeaFactorPosition.position
+		const position = dbReason.position
 
 		return {
 			...super.dbToUi(position),
-			dir: dbIdeaFactorPosition.dir as -1 | 1,
+			dir: dbReason.dir as -1 | 1,
 			name: position.name,
 		}
 	}
@@ -264,7 +264,7 @@ export class IdeaConverter
 		outcome.name = uiOutcome.name
 	}
 
-	private ideaFactorPositionToDb(
+	private reasonToDb(
 		uiIdea: IUiIdea,
 		dbIdea: IIdea,
 		factorNumber: 1 | 2 | 3,
@@ -275,32 +275,32 @@ export class IdeaConverter
 		const uiFactor = uiIdea.factors[factorNumber]
 		const uiPosition = uiFactor.positions[outcomeOrdinal]
 
-		if (!dbIdea.ideaFactorPositions) {
-			dbIdea.ideaFactorPositions = []
+		if (!dbIdea.reasons) {
+			dbIdea.reasons = []
 		}
 
-		const matchingIdeaFactorPositions = dbIdea.
-			ideaFactorPositions.filter(
-				ideaFactorPosition => 
-					ideaFactorPosition.factorNumber === factorNumber
-					&& ideaFactorPosition.outcomeOrdinal === outcomeOrdinal
+		const matchingReasons = dbIdea.
+			reasons.filter(
+				reason => 
+					reason.factorNumber === factorNumber
+					&& reason.outcomeOrdinal === outcomeOrdinal
 				)
 		let dbPosition: IPosition
-		let dbIdeaFactorPosition: IIdeaFactorPosition
-		if (matchingIdeaFactorPositions.length) {
-			dbIdeaFactorPosition = matchingIdeaFactorPositions[0]
-			dbFactor = dbIdeaFactorPosition.factor
-			dbPosition = dbIdeaFactorPosition.position
+		let dbReason: IReason
+		if (matchingReasons.length) {
+			dbReason = matchingReasons[0]
+			dbFactor = dbReason.factor
+			dbPosition = dbReason.position
 		} else {
-			dbIdeaFactorPosition = {} as any
+			dbReason = {} as any
 			if (!existingFactor) {
 				dbFactor = {} as any
 			}
 			dbPosition = {} as any
-			dbIdeaFactorPosition.factor = dbFactor
-			dbIdeaFactorPosition.position = dbPosition
-			dbIdea.ideaFactorPositions
-				.push(dbIdeaFactorPosition)
+			dbReason.factor = dbFactor
+			dbReason.position = dbPosition
+			dbIdea.reasons
+				.push(dbReason)
 		}
 
 		if (!existingFactor) {
@@ -308,15 +308,15 @@ export class IdeaConverter
 		}
 		this.positionToDb(uiPosition, dbPosition, uiIdea.ageSuitability)
 
-		super.uiToDb({} as any, dbIdeaFactorPosition, uiIdea.ageSuitability)
+		super.uiToDb({} as any, dbReason, uiIdea.ageSuitability)
 
-		dbIdeaFactorPosition.axis = uiFactor.axis
-		dbIdeaFactorPosition.blue = uiFactor.color.blue
-		dbIdeaFactorPosition.dir = uiPosition.dir
-		dbIdeaFactorPosition.factorNumber = factorNumber
-		dbIdeaFactorPosition.green = uiFactor.color.green
-		dbIdeaFactorPosition.outcomeOrdinal = outcomeOrdinal
-		dbIdeaFactorPosition.red = uiFactor.color.red
+		dbReason.axis = uiFactor.axis
+		dbReason.blue = uiFactor.color.blue
+		dbReason.dir = uiPosition.dir
+		dbReason.factorNumber = factorNumber
+		dbReason.green = uiFactor.color.green
+		dbReason.outcomeOrdinal = outcomeOrdinal
+		dbReason.red = uiFactor.color.red
 
 		return dbFactor
 	}

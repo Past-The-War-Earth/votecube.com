@@ -27,7 +27,7 @@ export class IdeaDao extends BaseIdeaDao {
         let f;
         let p;
         const matchingRepositories = await this.db.find.tree({
-            select: Object.assign(Object.assign({}, ALL_FIELDS), { repository: {}, outcomeA: {}, outcomeB: {}, ideaLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), ideaFactorPositions: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
+            select: Object.assign(Object.assign({}, ALL_FIELDS), { repository: {}, outcomeA: {}, outcomeB: {}, ideaLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), reasons: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
             from: [
                 s = Q.Idea,
                 r = s.repository.innerJoin(),
@@ -35,7 +35,7 @@ export class IdeaDao extends BaseIdeaDao {
                 o2 = s.outcomeB.innerJoin(),
                 sl = s.ideaLabels.leftJoin(),
                 l = sl.label.leftJoin(),
-                sfp = s.ideaFactorPositions.leftJoin(),
+                sfp = s.reasons.leftJoin(),
                 f = sfp.factor.leftJoin(),
                 p = sfp.position.leftJoin()
             ],

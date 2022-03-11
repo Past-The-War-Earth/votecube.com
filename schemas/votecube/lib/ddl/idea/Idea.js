@@ -28,7 +28,7 @@ __decorate([
 ], Idea.prototype, "ideaLabels", void 0);
 __decorate([
     OneToMany({ mappedBy: 'idea' })
-], Idea.prototype, "ideaFactorPositions", void 0);
+], Idea.prototype, "reasons", void 0);
 __decorate([
     OneToMany({ mappedBy: 'idea' })
 ], Idea.prototype, "agreements", void 0);

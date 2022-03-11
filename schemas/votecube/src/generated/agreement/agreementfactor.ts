@@ -5,8 +5,8 @@ import {
 	IAgreement,
 } from './agreement';
 import {
-	IIdeaFactorPosition,
-} from '../idea/ideafactorposition';
+	IReason,
+} from '../idea/reason';
 
 
 
@@ -26,7 +26,7 @@ export interface IAgreementFactor extends IRepositoryEntity {
 
 	// Non-Id Relations
 	agreement?: IAgreement;
-	ideaFactorPosition?: IIdeaFactorPosition;
+	reason?: IReason;
 
 	// Transient Properties
 

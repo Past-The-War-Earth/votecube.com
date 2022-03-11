@@ -1,1 +1,0 @@
-{"version":3,"file":"solution.d.ts","sourceRoot":"","sources":["../../../src/generated/solution/solution.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,iBAAiB,EACjB,MAAM,0BAA0B,CAAC;AAClC,OAAO,EACN,UAAU,EACV,MAAM,wBAAwB,CAAC;AAChC,OAAO,EACN,eAAe,EACf,MAAM,kBAAkB,CAAC;AAQ1B,MAAM,WAAW,SAAU,SAAQ,iBAAiB;IASnD,SAAS,CAAC,EAAE,UAAU,CAAC;IACvB,OAAO,CAAC,EAAE,eAAe,EAAE,CAAC;CAM5B"}

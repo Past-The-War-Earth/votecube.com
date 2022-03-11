@@ -6,8 +6,6 @@ import { IFactor } from './factor/factor';
 import { FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor } from './factor/qfactor';
 import { IIdea } from './idea/idea';
 import { IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea } from './idea/qidea';
-import { IIdeaFactorPosition } from './idea/ideafactorposition';
-import { IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition } from './idea/qideafactorposition';
 import { IIdeaLabel } from './idea/idealabel';
 import { IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel } from './idea/qidealabel';
 import { ILabel } from './label';
@@ -16,6 +14,8 @@ import { IOutcome } from './idea/outcome';
 import { OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome } from './idea/qoutcome';
 import { IPosition } from './factor/position';
 import { PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition } from './factor/qposition';
+import { IReason } from './idea/reason';
+import { ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason } from './idea/qreason';
 import { IUserAccount } from './useraccount';
 import { UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount } from './quseraccount';
 import { IDao, IEntityCascadeGraph, IEntityCreateProperties, IEntityIdProperties, IEntitySelectProperties, IEntityUpdateColumns, IEntityUpdateProperties, IQEntity } from '@airport/air-control';
@@ -68,17 +68,6 @@ export declare class BaseIdeaDao extends SQDIDao<IIdea, IdeaESelect, IdeaECreate
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseIdeaFactorPositionDao extends IDao<IIdeaFactorPosition, IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition> {
-}
-export declare class BaseIdeaFactorPositionDao extends SQDIDao<IIdeaFactorPosition, IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition> implements IBaseIdeaFactorPositionDao {
-    static Find: DaoQueryDecorators<IdeaFactorPositionESelect>;
-    static FindOne: DaoQueryDecorators<IdeaFactorPositionESelect>;
-    static Search: DaoQueryDecorators<IdeaFactorPositionESelect>;
-    static SearchOne: DaoQueryDecorators<IdeaFactorPositionESelect>;
-    static Save(config: IdeaFactorPositionGraph): PropertyDecorator;
-    static diSet(): boolean;
-    constructor();
-}
 export interface IBaseIdeaLabelDao extends IDao<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> {
 }
 export declare class BaseIdeaLabelDao extends SQDIDao<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> implements IBaseIdeaLabelDao {
@@ -120,6 +109,17 @@ export declare class BasePositionDao extends SQDIDao<IPosition, PositionESelect,
     static Search: DaoQueryDecorators<PositionESelect>;
     static SearchOne: DaoQueryDecorators<PositionESelect>;
     static Save(config: PositionGraph): PropertyDecorator;
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseReasonDao extends IDao<IReason, ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason> {
+}
+export declare class BaseReasonDao extends SQDIDao<IReason, ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason> implements IBaseReasonDao {
+    static Find: DaoQueryDecorators<ReasonESelect>;
+    static FindOne: DaoQueryDecorators<ReasonESelect>;
+    static Search: DaoQueryDecorators<ReasonESelect>;
+    static SearchOne: DaoQueryDecorators<ReasonESelect>;
+    static Save(config: ReasonGraph): PropertyDecorator;
     static diSet(): boolean;
     constructor();
 }

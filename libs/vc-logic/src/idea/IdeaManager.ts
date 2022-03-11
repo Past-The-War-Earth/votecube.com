@@ -148,7 +148,7 @@ export class IdeaManager
 			const cubeLogic = await container(this).get(CUBE_LOGIC)
 
 			logicUtils.overlay({
-				factors: cubeLogic.getIdeaFactorPositionDefault()
+				factors: cubeLogic.getReasonDefault()
 			}, ui)
 		}
 		if (oldUiIdea) {

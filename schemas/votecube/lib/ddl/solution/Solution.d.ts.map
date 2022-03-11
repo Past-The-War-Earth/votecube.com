@@ -1,1 +1,0 @@
-{"version":3,"file":"Solution.d.ts","sourceRoot":"","sources":["../../../src/ddl/solution/Solution.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,gBAAgB,EAAE,MAAM,0BAA0B,CAAC;AAC5D,OAAO,EAAE,SAAS,EAAE,MAAM,QAAQ,CAAC;AACnC,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC;AAElD,qBAEa,QACT,SAAQ,gBAAgB;IAGxB,SAAS,EAAE,SAAS,CAAA;IAGpB,OAAO,EAAE,cAAc,EAAE,CAAA;CAE5B"}

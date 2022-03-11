@@ -4,7 +4,7 @@ import {
     Table
 } from "@airport/air-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
-import { IdeaFactorPosition } from "../ddl";
+import { Reason } from "../ddl";
 import { Agreement } from "./Agreement";
 
 @Entity()
@@ -20,6 +20,6 @@ export class AgreementFactor
     agreement: Agreement
 
     @ManyToOne()
-    ideaFactorPosition: IdeaFactorPosition
+    reason: Reason
 
 }

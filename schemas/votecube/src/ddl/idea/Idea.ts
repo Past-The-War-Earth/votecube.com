@@ -9,7 +9,7 @@ import { RepositoryEntity } from '@airport/holding-pattern'
 import { ForumThread } from '@votecube/forum/lib/server'
 import { Agreement } from '../agreement/Agreement'
 import { Outcome } from './Outcome'
-import { IdeaFactorPosition } from './IdeaFactorPosition'
+import { Reason } from './Reason'
 import { IdeaLabel } from './IdeaLabel'
 
 @Entity()
@@ -36,7 +36,7 @@ export class Idea
 	ideaLabels: IdeaLabel[]
 
 	@OneToMany({ mappedBy: 'idea' })
-	ideaFactorPositions: IdeaFactorPosition[]
+	reasons: Reason[]
 
 	@OneToMany({ mappedBy: 'idea' })
 	agreements: Agreement[]

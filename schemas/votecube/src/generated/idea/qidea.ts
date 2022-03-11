@@ -69,18 +69,18 @@ import {
 	IdeaLabel,
 } from '../../ddl/idea/IdeaLabel';
 import {
-	IdeaFactorPositionGraph,
-	IdeaFactorPositionEId,
-	IdeaFactorPositionEOptionalId,
-	IdeaFactorPositionEUpdateProperties,
-	IdeaFactorPositionESelect,
-	QIdeaFactorPosition,
-	QIdeaFactorPositionQId,
-	QIdeaFactorPositionQRelation,
-} from './qideafactorposition';
+	ReasonGraph,
+	ReasonEId,
+	ReasonEOptionalId,
+	ReasonEUpdateProperties,
+	ReasonESelect,
+	QReason,
+	QReasonQId,
+	QReasonQRelation,
+} from './qreason';
 import {
-	IdeaFactorPosition,
-} from '../../ddl/idea/IdeaFactorPosition';
+	Reason,
+} from '../../ddl/idea/Reason';
 import {
 	AgreementGraph,
 	AgreementEId,
@@ -122,7 +122,7 @@ export interface IdeaESelect
 	thread?: ForumThreadESelect;
 	children?: IdeaESelect;
 	ideaLabels?: IdeaLabelESelect;
-	ideaFactorPositions?: IdeaFactorPositionESelect;
+	reasons?: ReasonESelect;
 	agreements?: AgreementESelect;
 
 }
@@ -179,7 +179,7 @@ export interface IdeaGraph
 	thread?: ForumThreadGraph;
 	children?: IdeaGraph[];
 	ideaLabels?: IdeaLabelGraph[];
-	ideaFactorPositions?: IdeaFactorPositionGraph[];
+	reasons?: ReasonGraph[];
 	agreements?: AgreementGraph[];
 
 }
@@ -247,7 +247,7 @@ export interface QIdea extends QRepositoryEntity<Idea>
 	thread: QForumThreadQRelation;
 	children: IQOneToManyRelation<Idea, QIdea>;
 	ideaLabels: IQOneToManyRelation<IdeaLabel, QIdeaLabel>;
-	ideaFactorPositions: IQOneToManyRelation<IdeaFactorPosition, QIdeaFactorPosition>;
+	reasons: IQOneToManyRelation<Reason, QReason>;
 	agreements: IQOneToManyRelation<Agreement, QAgreement>;
 
 }

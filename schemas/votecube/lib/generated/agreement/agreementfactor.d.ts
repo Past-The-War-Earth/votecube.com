@@ -1,10 +1,10 @@
 import { IRepositoryEntity } from '@airport/holding-pattern';
 import { IAgreement } from './agreement';
-import { IIdeaFactorPosition } from '../idea/ideafactorposition';
+import { IReason } from '../idea/reason';
 export interface IAgreementFactor extends IRepositoryEntity {
     axis?: string;
     share?: number;
     agreement?: IAgreement;
-    ideaFactorPosition?: IIdeaFactorPosition;
+    reason?: IReason;
 }
 //# sourceMappingURL=agreementfactor.d.ts.map

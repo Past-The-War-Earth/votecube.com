@@ -11,8 +11,8 @@ import {
 	IIdeaLabel,
 } from './idealabel';
 import {
-	IIdeaFactorPosition,
-} from './ideafactorposition';
+	IReason,
+} from './reason';
 import {
 	IAgreement,
 } from '../agreement/agreement';
@@ -38,7 +38,7 @@ export interface IIdea extends IRepositoryEntity {
 	thread?: IForumThread;
 	children?: IIdea[];
 	ideaLabels?: IIdeaLabel[];
-	ideaFactorPositions?: IIdeaFactorPosition[];
+	reasons?: IReason[];
 	agreements?: IAgreement[];
 
 	// Transient Properties

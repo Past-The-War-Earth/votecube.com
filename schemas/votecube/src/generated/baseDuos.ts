@@ -52,19 +52,6 @@ import {
 	QIdea,
 } from './idea/qidea';
 import {
-	IIdeaFactorPosition,
-} from './idea/ideafactorposition';
-import {
-	IdeaFactorPositionESelect,
-	IdeaFactorPositionECreateColumns,
-	IdeaFactorPositionECreateProperties,
-	IdeaFactorPositionEUpdateColumns,
-	IdeaFactorPositionEUpdateProperties,
-	IdeaFactorPositionEId,
-	IdeaFactorPositionGraph,
-	QIdeaFactorPosition,
-} from './idea/qideafactorposition';
-import {
 	IIdeaLabel,
 } from './idea/idealabel';
 import {
@@ -116,6 +103,19 @@ import {
 	PositionGraph,
 	QPosition,
 } from './factor/qposition';
+import {
+	IReason,
+} from './idea/reason';
+import {
+	ReasonESelect,
+	ReasonECreateColumns,
+	ReasonECreateProperties,
+	ReasonEUpdateColumns,
+	ReasonEUpdateProperties,
+	ReasonEId,
+	ReasonGraph,
+	QReason,
+} from './idea/qreason';
 import {
 	IUserAccount,
 } from './useraccount';
@@ -249,24 +249,6 @@ export class BaseIdeaDuo
 }
 
 
-export interface IBaseIdeaFactorPositionDuo
-  extends IDuo<IIdeaFactorPosition, IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition> {
-}
-
-export class BaseIdeaFactorPositionDuo
-  extends SQDIDuo<IIdeaFactorPosition, IdeaFactorPositionESelect, IdeaFactorPositionECreateProperties, IdeaFactorPositionEUpdateColumns, IdeaFactorPositionEUpdateProperties, IdeaFactorPositionEId, IdeaFactorPositionGraph, QIdeaFactorPosition>
-	implements IBaseIdeaFactorPositionDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(5)
-	}
-	
-	constructor() {
-		super(5)
-	}
-}
-
-
 export interface IBaseIdeaLabelDuo
   extends IDuo<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> {
 }
@@ -335,6 +317,24 @@ export class BasePositionDuo
 	
 	constructor() {
 		super(0)
+	}
+}
+
+
+export interface IBaseReasonDuo
+  extends IDuo<IReason, ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason> {
+}
+
+export class BaseReasonDuo
+  extends SQDIDuo<IReason, ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason>
+	implements IBaseReasonDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(5)
+	}
+	
+	constructor() {
+		super(5)
 	}
 }
 

@@ -12,7 +12,7 @@ import {
     QOutcome,
     QPosition,
     QIdea,
-    QIdeaFactorPosition,
+    QReason,
     QIdeaLabel,
 } from "../generated/generated";
 import {
@@ -67,7 +67,7 @@ export class IdeaDao
         let o2: QOutcome
         let sl: QIdeaLabel
         let l: QLabel
-        let sfp: QIdeaFactorPosition
+        let sfp: QReason
         let f: QFactor
         let p: QPosition
         const matchingRepositories = await this.db.find.tree({
@@ -80,7 +80,7 @@ export class IdeaDao
                     ...ALL_FIELDS,
                     label: {}
                 },
-                ideaFactorPositions: {
+                reasons: {
                     ...ALL_FIELDS,
                     factor: {},
                     position: {},
@@ -93,7 +93,7 @@ export class IdeaDao
                 o2 = s.outcomeB.innerJoin(),
                 sl = s.ideaLabels.leftJoin(),
                 l = sl.label.leftJoin(),
-                sfp = s.ideaFactorPositions.leftJoin(),
+                sfp = s.reasons.leftJoin(),
                 f = sfp.factor.leftJoin(),
                 p = sfp.position.leftJoin()
             ],

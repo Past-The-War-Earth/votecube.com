@@ -6,7 +6,7 @@ import {
 } from "@votecube/model";
 import {
     IIdea,
-    IIdeaFactorPosition,
+    IReason,
     IAgreement,
     IAgreementFactor
 } from "@votecube/votecube";
@@ -65,7 +65,7 @@ export class AgreementConverter
         return {
             ...repositoryRecordConverter.dbToUi(dbAgreementFactor),
             factorNumber: this.getFactorNumber(dbAgreementFactor.axis as 'x' | 'y' | 'z'),
-            outcome: dbAgreementFactor.ideaFactorPosition.outcomeOrdinal as 'A' | 'B',
+            outcome: dbAgreementFactor.reason.outcomeOrdinal as 'A' | 'B',
             value: dbAgreementFactor.share as AgreementFactor_Value
         }
     }
@@ -100,11 +100,11 @@ export class AgreementConverter
 
         repositoryRecordConverter.uiToDb(uiAgreement, dbAgreement, ageSuitability)
 
-        for (const ideaFactorPosition of idea.ideaFactorPositions) {
+        for (const reason of idea.reasons) {
             const uiAgreementFactor = uiAgreement[
-                this.getFactorNumber(ideaFactorPosition.axis as 'x' | 'y' | 'z')]
+                this.getFactorNumber(reason.axis as 'x' | 'y' | 'z')]
             factors.push(this.agreementFactorUiToDb(uiAgreementFactor, ageSuitability,
-                dbAgreement, ideaFactorPosition))
+                dbAgreement, reason))
         }
 
         return dbAgreement
@@ -114,13 +114,13 @@ export class AgreementConverter
         uiAgreementFactor: IUiAgreementFactor,
         ageSuitability: 0 | 7 | 13 | 18 = 0,
         agreement: IAgreement,
-        ideaFactorPosition: IIdeaFactorPosition,
+        reason: IReason,
     ): IAgreementFactor {
         const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         
         const dbAgreementFactor: IAgreementFactor = {
             agreement,
-            ideaFactorPosition
+            reason
         } as any
 
         repositoryRecordConverter.uiToDb(uiAgreementFactor, dbAgreementFactor, ageSuitability)

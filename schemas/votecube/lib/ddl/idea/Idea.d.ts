@@ -2,7 +2,7 @@ import { RepositoryEntity } from '@airport/holding-pattern';
 import { ForumThread } from '@votecube/forum/lib/server';
 import { Agreement } from '../agreement/Agreement';
 import { Outcome } from './Outcome';
-import { IdeaFactorPosition } from './IdeaFactorPosition';
+import { Reason } from './Reason';
 import { IdeaLabel } from './IdeaLabel';
 export declare class Idea extends RepositoryEntity {
     name: string;
@@ -11,7 +11,7 @@ export declare class Idea extends RepositoryEntity {
     thread: ForumThread;
     children: Idea[];
     ideaLabels: IdeaLabel[];
-    ideaFactorPositions: IdeaFactorPosition[];
+    reasons: Reason[];
     agreements: Agreement[];
 }
 //# sourceMappingURL=Idea.d.ts.map

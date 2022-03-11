@@ -38,14 +38,6 @@ export class BaseIdeaDuo extends SQDIDuo {
         super(8);
     }
 }
-export class BaseIdeaFactorPositionDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(5);
-    }
-    constructor() {
-        super(5);
-    }
-}
 export class BaseIdeaLabelDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(7);
@@ -76,6 +68,14 @@ export class BasePositionDuo extends SQDIDuo {
     }
     constructor() {
         super(0);
+    }
+}
+export class BaseReasonDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(5);
+    }
+    constructor() {
+        super(5);
     }
 }
 export class BaseUserAccountDuo extends SQDIDuo {

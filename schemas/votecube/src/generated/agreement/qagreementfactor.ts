@@ -45,18 +45,18 @@ import {
 	Agreement,
 } from '../../ddl/agreement/Agreement';
 import {
-	IdeaFactorPositionGraph,
-	IdeaFactorPositionEId,
-	IdeaFactorPositionEOptionalId,
-	IdeaFactorPositionEUpdateProperties,
-	IdeaFactorPositionESelect,
-	QIdeaFactorPosition,
-	QIdeaFactorPositionQId,
-	QIdeaFactorPositionQRelation,
-} from '../idea/qideafactorposition';
+	ReasonGraph,
+	ReasonEId,
+	ReasonEOptionalId,
+	ReasonEUpdateProperties,
+	ReasonESelect,
+	QReason,
+	QReasonQId,
+	QReasonQRelation,
+} from '../idea/qreason';
 import {
-	IdeaFactorPosition,
-} from '../../ddl/idea/IdeaFactorPosition';
+	Reason,
+} from '../../ddl/idea/Reason';
 import {
 	AgreementFactor,
 } from '../../ddl/agreement/AgreementFactor';
@@ -82,7 +82,7 @@ export interface AgreementFactorESelect
 
   // Non-Id relations (including OneToMany's)
 	agreement?: AgreementESelect;
-	ideaFactorPosition?: IdeaFactorPositionESelect;
+	reason?: ReasonESelect;
 
 }
 
@@ -118,7 +118,7 @@ export interface AgreementFactorEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	agreement?: AgreementEOptionalId;
-	ideaFactorPosition?: IdeaFactorPositionEOptionalId;
+	reason?: ReasonEOptionalId;
 
 }
 
@@ -135,7 +135,7 @@ export interface AgreementFactorGraph
 
 	// Relations
 	agreement?: AgreementGraph;
-	ideaFactorPosition?: IdeaFactorPositionGraph;
+	reason?: ReasonGraph;
 
 }
 
@@ -155,9 +155,9 @@ export interface AgreementFactorEUpdateColumns
 	AGREEMENTS_RID_1?: number | IQNumberField;
 	AGREEMENTS_AID_1?: number | IQNumberField;
 	AGREEMENTS_ARID_1?: number | IQNumberField;
-	IDEA_FACTOR_POSITIONS_RID_1?: number | IQNumberField;
-	IDEA_FACTOR_POSITIONS_AID_1?: number | IQNumberField;
-	IDEA_FACTOR_POSITIONS_ARID_1?: number | IQNumberField;
+	REASONS_RID_1?: number | IQNumberField;
+	REASONS_AID_1?: number | IQNumberField;
+	REASONS_ARID_1?: number | IQNumberField;
 
 }
 
@@ -197,7 +197,7 @@ export interface QAgreementFactor extends QRepositoryEntity<AgreementFactor>
 
 	// Non-Id Relations
 	agreement: QAgreementQRelation;
-	ideaFactorPosition: QIdeaFactorPositionQRelation;
+	reason: QReasonQRelation;
 
 }
 
