@@ -1,7 +1,6 @@
 import {
     ALL_FIELDS,
-    and,
-    Y
+    and
 } from '@airport/air-control'
 import {
     BaseIdeaDao,

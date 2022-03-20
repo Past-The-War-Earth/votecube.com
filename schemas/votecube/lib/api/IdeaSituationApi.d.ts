@@ -1,8 +1,8 @@
-import { IdeaSituation } from "../app";
+import { IIdeaSituation } from "../generated/generated";
 export interface IIdeaSituationApi {
-    add(ideaSituation: IdeaSituation): Promise<void>;
+    add(ideaSituation: IIdeaSituation): Promise<void>;
 }
 export declare class IdeaSituationApi implements IIdeaSituationApi {
-    add(ideaSituation: IdeaSituation): Promise<void>;
+    add(ideaSituation: IIdeaSituation): Promise<void>;
 }
 //# sourceMappingURL=IdeaSituationApi.d.ts.map
