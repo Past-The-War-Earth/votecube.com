@@ -89,6 +89,18 @@
       "projectFolder": "schemas/votecube",
       "shouldPublish": true
     },
+    // DoBecause
+    {
+      "packageName": "@dobecause/dependency-injection",
+      "projectFolder": "../../DIN/dobecause/libs/dependency-injection",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@dobecause/core",
+      "projectFolder": "../../DIN/dobecause/apps/core",
+      "shouldPublish": true
+    },
+    // AIRport
     // "apis" folder (alphabetical order)
     {
       "packageName": "@airport/air-control",

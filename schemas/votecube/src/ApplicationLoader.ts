@@ -10,7 +10,6 @@ import {
     LastIds
 } from '@airport/security-check'
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff'
-import { domain } from '@votecube/dependency-injection'
 import { APPLICATION } from './generated/application'
 
 export class ApplicationLoader

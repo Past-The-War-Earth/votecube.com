@@ -18,6 +18,8 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
+	IQRepositoryEntityOneToManyRelation,
+	IQRepositoryEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
@@ -32,18 +34,18 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	IdeaGraph,
-	IdeaEId,
-	IdeaEOptionalId,
-	IdeaEUpdateProperties,
-	IdeaESelect,
-	QIdea,
-	QIdeaQId,
-	QIdeaQRelation,
-} from './qidea';
+	IdeaSituationGraph,
+	IdeaSituationEId,
+	IdeaSituationEOptionalId,
+	IdeaSituationEUpdateProperties,
+	IdeaSituationESelect,
+	QIdeaSituation,
+	QIdeaSituationQId,
+	QIdeaSituationQRelation,
+} from './qideasituation';
 import {
-	Idea,
-} from '../../ddl/idea/Idea';
+	IIdeaSituation,
+} from './ideasituation';
 import {
 	FactorGraph,
 	FactorEId,
@@ -55,8 +57,8 @@ import {
 	QFactorQRelation,
 } from '../factor/qfactor';
 import {
-	Factor,
-} from '../../ddl/factor/Factor';
+	IFactor,
+} from '../factor/factor';
 import {
 	PositionGraph,
 	PositionEId,
@@ -68,11 +70,11 @@ import {
 	QPositionQRelation,
 } from '../factor/qposition';
 import {
-	Position,
-} from '../../ddl/factor/Position';
+	IPosition,
+} from '../factor/position';
 import {
-	Reason,
-} from '../../ddl/idea/Reason';
+	IReason,
+} from './reason';
 
 
 declare function require(moduleName: string): any;
@@ -99,7 +101,7 @@ export interface ReasonESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	idea?: IdeaESelect;
+	ideaSituation?: IdeaSituationESelect;
 	factor?: FactorESelect;
 	position?: PositionESelect;
 
@@ -141,7 +143,7 @@ export interface ReasonEUpdateProperties
 	outcomeOrdinal?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	idea?: IdeaEOptionalId;
+	ideaSituation?: IdeaSituationEOptionalId;
 	factor?: FactorEOptionalId;
 	position?: PositionEOptionalId;
 
@@ -164,7 +166,7 @@ export interface ReasonGraph
 	outcomeOrdinal?: string | IQStringField;
 
 	// Relations
-	idea?: IdeaGraph;
+	ideaSituation?: IdeaSituationGraph;
 	factor?: FactorGraph;
 	position?: PositionGraph;
 
@@ -188,9 +190,9 @@ export interface ReasonEUpdateColumns
 	COLOR_GREEN?: number | IQNumberField;
 	COLOR_RED?: number | IQNumberField;
 	OUTCOME_ORDINAL?: string | IQStringField;
-	IDEAS_RID_1?: number | IQNumberField;
-	IDEAS_AID_1?: number | IQNumberField;
-	IDEAS_ARID_1?: number | IQNumberField;
+	IDEA_SITUATIONS_RID_1?: number | IQNumberField;
+	IDEA_SITUATIONS_AID_1?: number | IQNumberField;
+	IDEA_SITUATIONS_ARID_1?: number | IQNumberField;
 	FACTORS_RID_1?: number | IQNumberField;
 	FACTORS_AID_1?: number | IQNumberField;
 	FACTORS_ARID_1?: number | IQNumberField;
@@ -224,7 +226,7 @@ extends ReasonEId, ReasonEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QReason extends QRepositoryEntity<Reason>
+export interface QReason extends QRepositoryEntity
 {
 	// Id Fields
 
@@ -240,7 +242,7 @@ export interface QReason extends QRepositoryEntity<Reason>
 	outcomeOrdinal: IQStringField;
 
 	// Non-Id Relations
-	idea: QIdeaQRelation;
+	ideaSituation: QIdeaSituationQRelation;
 	factor: QFactorQRelation;
 	position: QPositionQRelation;
 
@@ -260,6 +262,6 @@ export interface QReasonQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QReasonQRelation
-	extends QRepositoryEntityQRelation<Reason, QReason>, QReasonQId {
+	extends QRepositoryEntityQRelation<IReason, QReason>, QReasonQId {
 }
 

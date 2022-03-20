@@ -5,17 +5,11 @@ import {
 	IOutcome,
 } from './outcome';
 import {
-	IForumThread,
-} from '@votecube/forum';
-import {
 	IIdeaLabel,
 } from './idealabel';
 import {
-	IReason,
-} from './reason';
-import {
-	IAgreement,
-} from '../agreement/agreement';
+	IIdeaSituation,
+} from './ideasituation';
 
 
 
@@ -35,11 +29,9 @@ export interface IIdea extends IRepositoryEntity {
 	// Non-Id Relations
 	outcomeA?: IOutcome;
 	outcomeB?: IOutcome;
-	thread?: IForumThread;
 	children?: IIdea[];
 	ideaLabels?: IIdeaLabel[];
-	reasons?: IReason[];
-	agreements?: IAgreement[];
+	ideaSituations?: IIdeaSituation[];
 
 	// Transient Properties
 

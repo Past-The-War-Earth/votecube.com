@@ -8,6 +8,8 @@ import { IIdea } from './idea/idea';
 import { IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea } from './idea/qidea';
 import { IIdeaLabel } from './idea/idealabel';
 import { IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel } from './idea/qidealabel';
+import { IIdeaSituation } from './idea/ideasituation';
+import { IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation } from './idea/qideasituation';
 import { ILabel } from './label';
 import { LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel } from './qlabel';
 import { IOutcome } from './idea/outcome';
@@ -16,12 +18,10 @@ import { IPosition } from './factor/position';
 import { PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition } from './factor/qposition';
 import { IReason } from './idea/reason';
 import { ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason } from './idea/qreason';
-import { IUserAccount } from './useraccount';
-import { UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount } from './quseraccount';
 import { IDao, IEntityCascadeGraph, IEntityCreateProperties, IEntityIdProperties, IEntitySelectProperties, IEntityUpdateColumns, IEntityUpdateProperties, IQEntity } from '@airport/air-control';
 import { Dao, DaoQueryDecorators } from '@airport/check-in';
 import { EntityId as DbEntityId } from '@airport/ground-control';
-export declare class SQDIDao<Entity, EntitySelect extends IEntitySelectProperties, EntityCreate extends IEntityCreateProperties, EntityUpdateColumns extends IEntityUpdateColumns, EntityUpdateProperties extends IEntityUpdateProperties, EntityId extends IEntityIdProperties, EntityCascadeGraph extends IEntityCascadeGraph, IQE extends IQEntity<Entity>> extends Dao<Entity, EntitySelect, EntityCreate, EntityUpdateColumns, EntityUpdateProperties, EntityId, EntityCascadeGraph, IQE> {
+export declare class SQDIDao<Entity, EntitySelect extends IEntitySelectProperties, EntityCreate extends IEntityCreateProperties, EntityUpdateColumns extends IEntityUpdateColumns, EntityUpdateProperties extends IEntityUpdateProperties, EntityId extends IEntityIdProperties, EntityCascadeGraph extends IEntityCascadeGraph, IQE extends IQEntity> extends Dao<Entity, EntitySelect, EntityCreate, EntityUpdateColumns, EntityUpdateProperties, EntityId, EntityCascadeGraph, IQE> {
     constructor(dbEntityId: DbEntityId);
 }
 export interface IBaseAgreementDao extends IDao<IAgreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement> {
@@ -79,6 +79,17 @@ export declare class BaseIdeaLabelDao extends SQDIDao<IIdeaLabel, IdeaLabelESele
     static diSet(): boolean;
     constructor();
 }
+export interface IBaseIdeaSituationDao extends IDao<IIdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation> {
+}
+export declare class BaseIdeaSituationDao extends SQDIDao<IIdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation> implements IBaseIdeaSituationDao {
+    static Find: DaoQueryDecorators<IdeaSituationESelect>;
+    static FindOne: DaoQueryDecorators<IdeaSituationESelect>;
+    static Search: DaoQueryDecorators<IdeaSituationESelect>;
+    static SearchOne: DaoQueryDecorators<IdeaSituationESelect>;
+    static Save(config: IdeaSituationGraph): PropertyDecorator;
+    static diSet(): boolean;
+    constructor();
+}
 export interface IBaseLabelDao extends IDao<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel> {
 }
 export declare class BaseLabelDao extends SQDIDao<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel> implements IBaseLabelDao {
@@ -120,17 +131,6 @@ export declare class BaseReasonDao extends SQDIDao<IReason, ReasonESelect, Reaso
     static Search: DaoQueryDecorators<ReasonESelect>;
     static SearchOne: DaoQueryDecorators<ReasonESelect>;
     static Save(config: ReasonGraph): PropertyDecorator;
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseUserAccountDao extends IDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> {
-}
-export declare class BaseUserAccountDao extends SQDIDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> implements IBaseUserAccountDao {
-    static Find: DaoQueryDecorators<UserAccountESelect>;
-    static FindOne: DaoQueryDecorators<UserAccountESelect>;
-    static Search: DaoQueryDecorators<UserAccountESelect>;
-    static SearchOne: DaoQueryDecorators<UserAccountESelect>;
-    static Save(config: UserAccountGraph): PropertyDecorator;
     static diSet(): boolean;
     constructor();
 }

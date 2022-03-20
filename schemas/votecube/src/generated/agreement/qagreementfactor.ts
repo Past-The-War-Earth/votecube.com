@@ -18,6 +18,8 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
+	IQRepositoryEntityOneToManyRelation,
+	IQRepositoryEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
@@ -42,8 +44,8 @@ import {
 	QAgreementQRelation,
 } from './qagreement';
 import {
-	Agreement,
-} from '../../ddl/agreement/Agreement';
+	IAgreement,
+} from './agreement';
 import {
 	ReasonGraph,
 	ReasonEId,
@@ -55,11 +57,11 @@ import {
 	QReasonQRelation,
 } from '../idea/qreason';
 import {
-	Reason,
-} from '../../ddl/idea/Reason';
+	IReason,
+} from '../idea/reason';
 import {
-	AgreementFactor,
-} from '../../ddl/agreement/AgreementFactor';
+	IAgreementFactor,
+} from './agreementfactor';
 
 
 declare function require(moduleName: string): any;
@@ -185,7 +187,7 @@ extends AgreementFactorEId, AgreementFactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QAgreementFactor extends QRepositoryEntity<AgreementFactor>
+export interface QAgreementFactor extends QRepositoryEntity
 {
 	// Id Fields
 
@@ -215,6 +217,6 @@ export interface QAgreementFactorQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QAgreementFactorQRelation
-	extends QRepositoryEntityQRelation<AgreementFactor, QAgreementFactor>, QAgreementFactorQId {
+	extends QRepositoryEntityQRelation<IAgreementFactor, QAgreementFactor>, QAgreementFactorQId {
 }
 

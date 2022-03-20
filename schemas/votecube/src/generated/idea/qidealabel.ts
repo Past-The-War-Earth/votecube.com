@@ -18,6 +18,8 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
+	IQRepositoryEntityOneToManyRelation,
+	IQRepositoryEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
@@ -42,8 +44,8 @@ import {
 	QIdeaQRelation,
 } from './qidea';
 import {
-	Idea,
-} from '../../ddl/idea/Idea';
+	IIdea,
+} from './idea';
 import {
 	LabelGraph,
 	LabelEId,
@@ -55,11 +57,11 @@ import {
 	QLabelQRelation,
 } from '../qlabel';
 import {
-	Label,
-} from '../../ddl/Label';
+	ILabel,
+} from '../label';
 import {
-	IdeaLabel,
-} from '../../ddl/idea/IdeaLabel';
+	IIdeaLabel,
+} from './idealabel';
 
 
 declare function require(moduleName: string): any;
@@ -177,7 +179,7 @@ extends IdeaLabelEId, IdeaLabelEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QIdeaLabel extends QRepositoryEntity<IdeaLabel>
+export interface QIdeaLabel extends QRepositoryEntity
 {
 	// Id Fields
 
@@ -205,6 +207,6 @@ export interface QIdeaLabelQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QIdeaLabelQRelation
-	extends QRepositoryEntityQRelation<IdeaLabel, QIdeaLabel>, QIdeaLabelQId {
+	extends QRepositoryEntityQRelation<IIdeaLabel, QIdeaLabel>, QIdeaLabelQId {
 }
 

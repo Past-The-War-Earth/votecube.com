@@ -6,6 +6,26 @@ export declare const APPLICATION: {
     versions: {
         api: {
             apiObjectMap: {
+                IAgreementApi: {
+                    operationMap: {
+                        saveAgreement: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                        getMyAgreementForIdea: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                    };
+                };
+                IIdeaSituationApi: {
+                    operationMap: {
+                        add: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                    };
+                };
                 IIdeaApi: {
                     operationMap: {
                         getIdeasForLabels: {
@@ -29,18 +49,6 @@ export declare const APPLICATION: {
                             parameters: any[];
                         };
                         saveNewIdea: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
-                    };
-                };
-                IAgreementApi: {
-                    operationMap: {
-                        saveAgreement: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
-                        getMyAgreementForIdea: {
                             isAsync: boolean;
                             parameters: any[];
                         };
@@ -154,7 +162,7 @@ export declare const APPLICATION: {
             };
             operations?: undefined;
         } | {
-            columns: {
+            columns: ({
                 index: number;
                 isGenerated: boolean;
                 manyRelationColumnRefs: {
@@ -171,7 +179,25 @@ export declare const APPLICATION: {
                 }[];
                 sinceVersion: number;
                 type: string;
-            }[];
+            } | {
+                index: number;
+                isGenerated: boolean;
+                manyRelationColumnRefs: {
+                    manyRelationIndex: number;
+                    oneApplicationIndex: any;
+                    oneTableIndex: number;
+                    oneRelationIndex: number;
+                    oneColumnIndex: number;
+                    sinceVersion: number;
+                }[];
+                name: string;
+                notNull: boolean;
+                propertyRefs: {
+                    index: number;
+                }[];
+                sinceVersion: number;
+                type: string;
+            })[];
             idColumnRefs: {
                 index: number;
             }[];

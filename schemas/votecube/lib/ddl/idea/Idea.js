@@ -18,9 +18,6 @@ __decorate([
     ManyToOne()
 ], Idea.prototype, "outcomeB", void 0);
 __decorate([
-    ManyToOne()
-], Idea.prototype, "thread", void 0);
-__decorate([
     OneToMany({ mappedBy: 'parent' })
 ], Idea.prototype, "children", void 0);
 __decorate([
@@ -28,10 +25,7 @@ __decorate([
 ], Idea.prototype, "ideaLabels", void 0);
 __decorate([
     OneToMany({ mappedBy: 'idea' })
-], Idea.prototype, "reasons", void 0);
-__decorate([
-    OneToMany({ mappedBy: 'idea' })
-], Idea.prototype, "agreements", void 0);
+], Idea.prototype, "ideaSituations", void 0);
 Idea = __decorate([
     Entity(),
     Table({ name: 'IDEAS' })

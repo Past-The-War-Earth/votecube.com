@@ -18,6 +18,8 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
+	IQRepositoryEntityOneToManyRelation,
+	IQRepositoryEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
@@ -32,8 +34,8 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	Position,
-} from '../../ddl/factor/Position';
+	IPosition,
+} from './position';
 
 
 declare function require(moduleName: string): any;
@@ -143,7 +145,7 @@ extends PositionEId, PositionEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QPosition extends QRepositoryEntity<Position>
+export interface QPosition extends QRepositoryEntity
 {
 	// Id Fields
 
@@ -170,6 +172,6 @@ export interface QPositionQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QPositionQRelation
-	extends QRepositoryEntityQRelation<Position, QPosition>, QPositionQId {
+	extends QRepositoryEntityQRelation<IPosition, QPosition>, QPositionQId {
 }
 

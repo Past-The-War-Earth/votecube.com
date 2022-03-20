@@ -1,1 +1,1 @@
-{"version":3,"file":"server-tokens.d.ts","sourceRoot":"","sources":["../src/server-tokens.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,eAAe,CAAC;AAGzC,eAAO,MAAM,QAAQ,0CAAuC,CAAA"}
+{"version":3,"file":"server-tokens.d.ts","sourceRoot":"","sources":["../src/server-tokens.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,eAAe,CAAC;AACzC,OAAO,EAAE,iBAAiB,EAAE,MAAM,wBAAwB,CAAC;AAG3D,eAAO,MAAM,QAAQ,0CAAuC,CAAA;AAC5D,eAAO,MAAM,kBAAkB,mDAA0D,CAAA"}

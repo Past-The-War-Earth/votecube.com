@@ -65,6 +65,19 @@ import {
 	QIdeaLabel,
 } from './idea/qidealabel';
 import {
+	IIdeaSituation,
+} from './idea/ideasituation';
+import {
+	IdeaSituationESelect,
+	IdeaSituationECreateColumns,
+	IdeaSituationECreateProperties,
+	IdeaSituationEUpdateColumns,
+	IdeaSituationEUpdateProperties,
+	IdeaSituationEId,
+	IdeaSituationGraph,
+	QIdeaSituation,
+} from './idea/qideasituation';
+import {
 	ILabel,
 } from './label';
 import {
@@ -117,19 +130,6 @@ import {
 	QReason,
 } from './idea/qreason';
 import {
-	IUserAccount,
-} from './useraccount';
-import {
-	UserAccountESelect,
-	UserAccountECreateColumns,
-	UserAccountECreateProperties,
-	UserAccountEUpdateColumns,
-	UserAccountEUpdateProperties,
-	UserAccountEId,
-	UserAccountGraph,
-	QUserAccount,
-} from './quseraccount';
-import {
 	IDao,
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
@@ -156,11 +156,11 @@ import {
 export class SQDIDao<Entity,
 	EntitySelect extends IEntitySelectProperties,
 	EntityCreate extends IEntityCreateProperties,
-  EntityUpdateColumns extends IEntityUpdateColumns,
+	EntityUpdateColumns extends IEntityUpdateColumns,
 	EntityUpdateProperties extends IEntityUpdateProperties,
 	EntityId extends IEntityIdProperties,
 	EntityCascadeGraph extends IEntityCascadeGraph,
-	IQE extends IQEntity<Entity>>
+	IQE extends IQEntity>
 	extends Dao<Entity,
 		EntitySelect,
 		EntityCreate,
@@ -197,11 +197,11 @@ export class BaseAgreementDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(4)
+		super(1)
 	}
 }
 
@@ -225,11 +225,11 @@ export class BaseAgreementFactorDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
-		super(3)
+		super(0)
 	}
 }
 
@@ -253,11 +253,11 @@ export class BaseFactorDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(1)
+		super(3)
 	}
 }
 
@@ -281,11 +281,11 @@ export class BaseIdeaDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(8)
+		return duoDiSet(9)
 	}
 	
 	constructor() {
-		super(8)
+		super(9)
 	}
 }
 
@@ -309,11 +309,39 @@ export class BaseIdeaLabelDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(7)
+		return duoDiSet(8)
 	}
 	
 	constructor() {
-		super(7)
+		super(8)
+	}
+}
+
+
+export interface IBaseIdeaSituationDao
+  extends IDao<IIdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation> {
+}
+
+export class BaseIdeaSituationDao
+  extends SQDIDao<IIdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation>
+	implements IBaseIdeaSituationDao {
+	
+	static Find      = new DaoQueryDecorators<IdeaSituationESelect>();
+	static FindOne   = new DaoQueryDecorators<IdeaSituationESelect>();
+	static Search    = new DaoQueryDecorators<IdeaSituationESelect>();
+	static SearchOne = new DaoQueryDecorators<IdeaSituationESelect>();
+	static Save(
+		config: IdeaSituationGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<IdeaSituationGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(5)
+	}
+	
+	constructor() {
+		super(5)
 	}
 }
 
@@ -337,11 +365,11 @@ export class BaseLabelDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(6)
+		return duoDiSet(7)
 	}
 	
 	constructor() {
-		super(6)
+		super(7)
 	}
 }
 
@@ -365,11 +393,11 @@ export class BaseOutcomeDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(2)
+		super(4)
 	}
 }
 
@@ -393,11 +421,11 @@ export class BasePositionDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(0)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(0)
+		super(2)
 	}
 }
 
@@ -421,38 +449,10 @@ export class BaseReasonDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(6)
 	}
 	
 	constructor() {
-		super(5)
-	}
-}
-
-
-export interface IBaseUserAccountDao
-  extends IDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> {
-}
-
-export class BaseUserAccountDao
-  extends SQDIDao<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount>
-	implements IBaseUserAccountDao {
-	
-	static Find      = new DaoQueryDecorators<UserAccountESelect>();
-	static FindOne   = new DaoQueryDecorators<UserAccountESelect>();
-	static Search    = new DaoQueryDecorators<UserAccountESelect>();
-	static SearchOne = new DaoQueryDecorators<UserAccountESelect>();
-	static Save(
-		config: UserAccountGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<UserAccountGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(9)
-	}
-	
-	constructor() {
-		super(9)
+		super(6)
 	}
 }

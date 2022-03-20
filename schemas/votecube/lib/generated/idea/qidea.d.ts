@@ -1,14 +1,11 @@
-import { IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-control';
+import { IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { OutcomeGraph, OutcomeEOptionalId, OutcomeESelect, QOutcomeQRelation } from './qoutcome';
-import { ForumThreadGraph, ForumThreadEOptionalId, ForumThreadESelect, QForumThreadQRelation } from '@votecube/forum/lib/server';
 import { IdeaLabelGraph, IdeaLabelESelect, QIdeaLabel } from './qidealabel';
-import { IdeaLabel } from '../../ddl/idea/IdeaLabel';
-import { ReasonGraph, ReasonESelect, QReason } from './qreason';
-import { Reason } from '../../ddl/idea/Reason';
-import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
-import { Agreement } from '../../ddl/agreement/Agreement';
-import { Idea } from '../../ddl/idea/Idea';
+import { IIdeaLabel } from './idealabel';
+import { IdeaSituationGraph, IdeaSituationESelect, QIdeaSituation } from './qideasituation';
+import { IIdeaSituation } from './ideasituation';
+import { IIdea } from './idea';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -16,11 +13,9 @@ export interface IdeaESelect extends RepositoryEntityESelect, IdeaEOptionalId {
     name?: string | IQStringField;
     outcomeA?: OutcomeESelect;
     outcomeB?: OutcomeESelect;
-    thread?: ForumThreadESelect;
     children?: IdeaESelect;
     ideaLabels?: IdeaLabelESelect;
-    reasons?: ReasonESelect;
-    agreements?: AgreementESelect;
+    ideaSituations?: IdeaSituationESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -39,7 +34,6 @@ export interface IdeaEUpdateProperties extends RepositoryEntityEUpdateProperties
     name?: string | IQStringField;
     outcomeA?: OutcomeEOptionalId;
     outcomeB?: OutcomeEOptionalId;
-    thread?: ForumThreadEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
@@ -48,11 +42,9 @@ export interface IdeaGraph extends IdeaEOptionalId, RepositoryEntityGraph {
     name?: string | IQStringField;
     outcomeA?: OutcomeGraph;
     outcomeB?: OutcomeGraph;
-    thread?: ForumThreadGraph;
     children?: IdeaGraph[];
     ideaLabels?: IdeaLabelGraph[];
-    reasons?: ReasonGraph[];
-    agreements?: AgreementGraph[];
+    ideaSituations?: IdeaSituationGraph[];
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -70,9 +62,6 @@ export interface IdeaEUpdateColumns extends RepositoryEntityEUpdateColumns {
     OUTCOMES_RID_2?: number | IQNumberField;
     OUTCOMES_AID_2?: number | IQNumberField;
     OUTCOMES_ARID_2?: number | IQNumberField;
-    FORUM_THREAD_RID_1?: number | IQNumberField;
-    FORUM_THREAD_AID_1?: number | IQNumberField;
-    FORUM_THREAD_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -87,18 +76,16 @@ export interface IdeaECreateColumns extends IdeaEId, IdeaEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QIdea extends QRepositoryEntity<Idea> {
+export interface QIdea extends QRepositoryEntity {
     name: IQStringField;
     outcomeA: QOutcomeQRelation;
     outcomeB: QOutcomeQRelation;
-    thread: QForumThreadQRelation;
-    children: IQOneToManyRelation<Idea, QIdea>;
-    ideaLabels: IQOneToManyRelation<IdeaLabel, QIdeaLabel>;
-    reasons: IQOneToManyRelation<Reason, QReason>;
-    agreements: IQOneToManyRelation<Agreement, QAgreement>;
+    children: IQRepositoryEntityOneToManyRelation<IIdea, QIdea>;
+    ideaLabels: IQRepositoryEntityOneToManyRelation<IIdeaLabel, QIdeaLabel>;
+    ideaSituations: IQRepositoryEntityOneToManyRelation<IIdeaSituation, QIdeaSituation>;
 }
 export interface QIdeaQId extends QRepositoryEntityQId {
 }
-export interface QIdeaQRelation extends QRepositoryEntityQRelation<Idea, QIdea>, QIdeaQId {
+export interface QIdeaQRelation extends QRepositoryEntityQRelation<IIdea, QIdea>, QIdeaQId {
 }
 //# sourceMappingURL=qidea.d.ts.map

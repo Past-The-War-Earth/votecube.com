@@ -17,27 +17,29 @@ export class IdeaDao extends BaseIdeaDao {
      * repositoryUuId is used for page navigation).
      */
     async findByRepositoryUuId(repositorySource, ideaReposioryUuid) {
-        let s;
+        let i;
         let r;
         let o1;
         let o2;
         let sl;
         let l;
-        let sfp;
+        let is;
+        let rs;
         let f;
         let p;
         const matchingRepositories = await this.db.find.tree({
-            select: Object.assign(Object.assign({}, ALL_FIELDS), { repository: {}, outcomeA: {}, outcomeB: {}, ideaLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), reasons: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }),
+            select: Object.assign(Object.assign({}, ALL_FIELDS), { repository: {}, outcomeA: {}, outcomeB: {}, ideaLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), ideaSituations: Object.assign(Object.assign({}, ALL_FIELDS), { reasons: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }) }),
             from: [
-                s = Q.Idea,
-                r = s.repository.innerJoin(),
-                o1 = s.outcomeA.innerJoin(),
-                o2 = s.outcomeB.innerJoin(),
-                sl = s.ideaLabels.leftJoin(),
+                i = Q.Idea,
+                r = i.repository.innerJoin(),
+                o1 = i.outcomeA.innerJoin(),
+                o2 = i.outcomeB.innerJoin(),
+                sl = i.ideaLabels.leftJoin(),
                 l = sl.label.leftJoin(),
-                sfp = s.reasons.leftJoin(),
-                f = sfp.factor.leftJoin(),
-                p = sfp.position.leftJoin()
+                is = i.ideaSituations.leftJoin(),
+                rs = is.reasons.leftJoin(),
+                f = rs.factor.leftJoin(),
+                p = rs.position.leftJoin()
             ],
             where: and(r.source.equals(repositorySource), r.uuId.equals(ideaReposioryUuid))
         }, {

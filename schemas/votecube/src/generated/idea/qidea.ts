@@ -18,6 +18,8 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
+	IQRepositoryEntityOneToManyRelation,
+	IQRepositoryEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
@@ -42,19 +44,8 @@ import {
 	QOutcomeQRelation,
 } from './qoutcome';
 import {
-	Outcome,
-} from '../../ddl/idea/Outcome';
-import {
-	ForumThreadGraph,
-	ForumThreadEId,
-	ForumThreadEOptionalId,
-	ForumThreadEUpdateProperties,
-	ForumThreadESelect,
-	QForumThread,
-	QForumThreadQId,
-	QForumThreadQRelation,
-	ForumThread,
-} from '@votecube/forum/lib/server';
+	IOutcome,
+} from './outcome';
 import {
 	IdeaLabelGraph,
 	IdeaLabelEId,
@@ -66,37 +57,24 @@ import {
 	QIdeaLabelQRelation,
 } from './qidealabel';
 import {
-	IdeaLabel,
-} from '../../ddl/idea/IdeaLabel';
+	IIdeaLabel,
+} from './idealabel';
 import {
-	ReasonGraph,
-	ReasonEId,
-	ReasonEOptionalId,
-	ReasonEUpdateProperties,
-	ReasonESelect,
-	QReason,
-	QReasonQId,
-	QReasonQRelation,
-} from './qreason';
+	IdeaSituationGraph,
+	IdeaSituationEId,
+	IdeaSituationEOptionalId,
+	IdeaSituationEUpdateProperties,
+	IdeaSituationESelect,
+	QIdeaSituation,
+	QIdeaSituationQId,
+	QIdeaSituationQRelation,
+} from './qideasituation';
 import {
-	Reason,
-} from '../../ddl/idea/Reason';
+	IIdeaSituation,
+} from './ideasituation';
 import {
-	AgreementGraph,
-	AgreementEId,
-	AgreementEOptionalId,
-	AgreementEUpdateProperties,
-	AgreementESelect,
-	QAgreement,
-	QAgreementQId,
-	QAgreementQRelation,
-} from '../agreement/qagreement';
-import {
-	Agreement,
-} from '../../ddl/agreement/Agreement';
-import {
-	Idea,
-} from '../../ddl/idea/Idea';
+	IIdea,
+} from './idea';
 
 
 declare function require(moduleName: string): any;
@@ -119,11 +97,9 @@ export interface IdeaESelect
   // Non-Id relations (including OneToMany's)
 	outcomeA?: OutcomeESelect;
 	outcomeB?: OutcomeESelect;
-	thread?: ForumThreadESelect;
 	children?: IdeaESelect;
 	ideaLabels?: IdeaLabelESelect;
-	reasons?: ReasonESelect;
-	agreements?: AgreementESelect;
+	ideaSituations?: IdeaSituationESelect;
 
 }
 
@@ -159,7 +135,6 @@ export interface IdeaEUpdateProperties
 	// Non-Id Relations - ids only & no OneToMany's
 	outcomeA?: OutcomeEOptionalId;
 	outcomeB?: OutcomeEOptionalId;
-	thread?: ForumThreadEOptionalId;
 
 }
 
@@ -176,11 +151,9 @@ export interface IdeaGraph
 	// Relations
 	outcomeA?: OutcomeGraph;
 	outcomeB?: OutcomeGraph;
-	thread?: ForumThreadGraph;
 	children?: IdeaGraph[];
 	ideaLabels?: IdeaLabelGraph[];
-	reasons?: ReasonGraph[];
-	agreements?: AgreementGraph[];
+	ideaSituations?: IdeaSituationGraph[];
 
 }
 
@@ -202,9 +175,6 @@ export interface IdeaEUpdateColumns
 	OUTCOMES_RID_2?: number | IQNumberField;
 	OUTCOMES_AID_2?: number | IQNumberField;
 	OUTCOMES_ARID_2?: number | IQNumberField;
-	FORUM_THREAD_RID_1?: number | IQNumberField;
-	FORUM_THREAD_AID_1?: number | IQNumberField;
-	FORUM_THREAD_ARID_1?: number | IQNumberField;
 
 }
 
@@ -232,7 +202,7 @@ extends IdeaEId, IdeaEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QIdea extends QRepositoryEntity<Idea>
+export interface QIdea extends QRepositoryEntity
 {
 	// Id Fields
 
@@ -244,11 +214,9 @@ export interface QIdea extends QRepositoryEntity<Idea>
 	// Non-Id Relations
 	outcomeA: QOutcomeQRelation;
 	outcomeB: QOutcomeQRelation;
-	thread: QForumThreadQRelation;
-	children: IQOneToManyRelation<Idea, QIdea>;
-	ideaLabels: IQOneToManyRelation<IdeaLabel, QIdeaLabel>;
-	reasons: IQOneToManyRelation<Reason, QReason>;
-	agreements: IQOneToManyRelation<Agreement, QAgreement>;
+	children: IQRepositoryEntityOneToManyRelation<IIdea, QIdea>;
+	ideaLabels: IQRepositoryEntityOneToManyRelation<IIdeaLabel, QIdeaLabel>;
+	ideaSituations: IQRepositoryEntityOneToManyRelation<IIdeaSituation, QIdeaSituation>;
 
 }
 
@@ -266,6 +234,6 @@ export interface QIdeaQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QIdeaQRelation
-	extends QRepositoryEntityQRelation<Idea, QIdea>, QIdeaQId {
+	extends QRepositoryEntityQRelation<IIdea, QIdea>, QIdeaQId {
 }
 

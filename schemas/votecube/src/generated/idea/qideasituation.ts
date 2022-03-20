@@ -18,6 +18,8 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
+	IQRepositoryEntityOneToManyRelation,
+	IQRepositoryEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
@@ -32,19 +34,58 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	UserGraph,
-	UserEId,
-	UserEOptionalId,
-	UserEUpdateProperties,
-	UserESelect,
-	QUser,
-	QUserQId,
-	QUserQRelation,
-	User,
-} from '@airport/travel-document-checkpoint';
+	IdeaGraph,
+	IdeaEId,
+	IdeaEOptionalId,
+	IdeaEUpdateProperties,
+	IdeaESelect,
+	QIdea,
+	QIdeaQId,
+	QIdeaQRelation,
+} from './qidea';
 import {
-	UserAccount,
-} from '../ddl/UserAccount';
+	IIdea,
+} from './idea';
+import {
+	SituationGraph,
+	SituationEId,
+	SituationEOptionalId,
+	SituationEUpdateProperties,
+	SituationESelect,
+	QSituation,
+	QSituationQId,
+	QSituationQRelation,
+	ISituation,
+} from '@dobecause/core/lib/app';
+import {
+	AgreementGraph,
+	AgreementEId,
+	AgreementEOptionalId,
+	AgreementEUpdateProperties,
+	AgreementESelect,
+	QAgreement,
+	QAgreementQId,
+	QAgreementQRelation,
+} from '../agreement/qagreement';
+import {
+	IAgreement,
+} from '../agreement/agreement';
+import {
+	ReasonGraph,
+	ReasonEId,
+	ReasonEOptionalId,
+	ReasonEUpdateProperties,
+	ReasonESelect,
+	QReason,
+	QReasonQId,
+	QReasonQRelation,
+} from './qreason';
+import {
+	IReason,
+} from './reason';
+import {
+	IIdeaSituation,
+} from './ideasituation';
 
 
 declare function require(moduleName: string): any;
@@ -57,28 +98,24 @@ declare function require(moduleName: string): any;
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface UserAccountESelect
-    extends RepositoryEntityESelect, UserAccountEOptionalId {
+export interface IdeaSituationESelect
+    extends RepositoryEntityESelect, IdeaSituationEOptionalId {
 	// Non-Id Properties
-	userName?: string | IQStringField;
-	email?: string | IQStringField;
-	passwordHash?: string | IQStringField;
-	firstName?: string | IQStringField;
-	middleName?: string | IQStringField;
-	lastName?: string | IQStringField;
-	birthDate?: Date | IQDateField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	user?: UserESelect;
+	idea?: IdeaESelect;
+	situation?: SituationESelect;
+	agreements?: AgreementESelect;
+	reasons?: ReasonESelect;
 
 }
 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface UserAccountEId
+export interface IdeaSituationEId
     extends RepositoryEntityEId {
 	// Id Properties
 
@@ -89,7 +126,7 @@ export interface UserAccountEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface UserAccountEOptionalId {
+export interface IdeaSituationEOptionalId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -99,47 +136,37 @@ export interface UserAccountEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface UserAccountEUpdateProperties
+export interface IdeaSituationEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
-	userName?: string | IQStringField;
-	email?: string | IQStringField;
-	passwordHash?: string | IQStringField;
-	firstName?: string | IQStringField;
-	middleName?: string | IQStringField;
-	lastName?: string | IQStringField;
-	birthDate?: Date | IQDateField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	user?: UserEOptionalId;
+	idea?: IdeaEOptionalId;
+	situation?: SituationEOptionalId;
 
 }
 
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface UserAccountGraph
-	extends UserAccountEOptionalId, RepositoryEntityGraph {
+export interface IdeaSituationGraph
+	extends IdeaSituationEOptionalId, RepositoryEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
-	userName?: string | IQStringField;
-	email?: string | IQStringField;
-	passwordHash?: string | IQStringField;
-	firstName?: string | IQStringField;
-	middleName?: string | IQStringField;
-	lastName?: string | IQStringField;
-	birthDate?: Date | IQDateField;
 
 	// Relations
-	user?: UserGraph;
+	idea?: IdeaGraph;
+	situation?: SituationGraph;
+	agreements?: AgreementGraph[];
+	reasons?: ReasonGraph[];
 
 }
 
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface UserAccountEUpdateColumns
+export interface IdeaSituationEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
@@ -147,29 +174,27 @@ export interface UserAccountEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
-	USER_NAME?: string | IQStringField;
-	EMAIL?: string | IQStringField;
-	PASSWORD_HASH?: string | IQStringField;
-	FIRST_NAME?: string | IQStringField;
-	MIDDLE_NAME?: string | IQStringField;
-	LAST_NAME?: string | IQStringField;
-	BIRTH_DATE?: Date | IQDateField;
-	USER_ID?: number | IQNumberField;
+	IDEAS_RID_1?: number | IQNumberField;
+	IDEAS_AID_1?: number | IQNumberField;
+	IDEAS_ARID_1?: number | IQNumberField;
+	SITUATIONS_RID_1?: number | IQNumberField;
+	SITUATIONS_AID_1?: number | IQNumberField;
+	SITUATIONS_ARID_1?: number | IQNumberField;
 
 }
 
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface UserAccountECreateProperties
-extends Partial<UserAccountEId>, UserAccountEUpdateProperties {
+export interface IdeaSituationECreateProperties
+extends Partial<IdeaSituationEId>, IdeaSituationEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface UserAccountECreateColumns
-extends UserAccountEId, UserAccountEUpdateColumns {
+export interface IdeaSituationECreateColumns
+extends IdeaSituationEId, IdeaSituationEUpdateColumns {
 }
 
 
@@ -182,29 +207,25 @@ extends UserAccountEId, UserAccountEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QUserAccount extends QRepositoryEntity<UserAccount>
+export interface QIdeaSituation extends QRepositoryEntity
 {
 	// Id Fields
 
 	// Id Relations
 
 	// Non-Id Fields
-	userName: IQStringField;
-	email: IQStringField;
-	passwordHash: IQStringField;
-	firstName: IQStringField;
-	middleName: IQStringField;
-	lastName: IQStringField;
-	birthDate: IQDateField;
 
 	// Non-Id Relations
-	user: QUserQRelation;
+	idea: QIdeaQRelation;
+	situation: QSituationQRelation;
+	agreements: IQRepositoryEntityOneToManyRelation<IAgreement, QAgreement>;
+	reasons: IQRepositoryEntityOneToManyRelation<IReason, QReason>;
 
 }
 
 
 // Entity Id Interface
-export interface QUserAccountQId extends QRepositoryEntityQId
+export interface QIdeaSituationQId extends QRepositoryEntityQId
 {
 	
 	// Id Fields
@@ -215,7 +236,7 @@ export interface QUserAccountQId extends QRepositoryEntityQId
 }
 
 // Entity Relation Interface
-export interface QUserAccountQRelation
-	extends QRepositoryEntityQRelation<UserAccount, QUserAccount>, QUserAccountQId {
+export interface QIdeaSituationQRelation
+	extends QRepositoryEntityQRelation<IIdeaSituation, QIdeaSituation>, QIdeaSituationQId {
 }
 

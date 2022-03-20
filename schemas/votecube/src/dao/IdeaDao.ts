@@ -12,6 +12,7 @@ import {
     QOutcome,
     QPosition,
     QIdea,
+    QIdeaSituation,
     QReason,
     QIdeaLabel,
 } from "../generated/generated";
@@ -61,13 +62,14 @@ export class IdeaDao
         repositorySource: string,
         ideaReposioryUuid: string
     ): Promise<IIdea> {
-        let s: QIdea
+        let i: QIdea
         let r: QRepository
         let o1: QOutcome
         let o2: QOutcome
         let sl: QIdeaLabel
         let l: QLabel
-        let sfp: QReason
+        let is: QIdeaSituation
+        let rs: QReason
         let f: QFactor
         let p: QPosition
         const matchingRepositories = await this.db.find.tree({
@@ -80,22 +82,26 @@ export class IdeaDao
                     ...ALL_FIELDS,
                     label: {}
                 },
-                reasons: {
+                ideaSituations: {
                     ...ALL_FIELDS,
-                    factor: {},
-                    position: {},
+                    reasons: {
+                        ...ALL_FIELDS,
+                        factor: {},
+                        position: {},
+                    }
                 }
             },
             from: [
-                s = Q.Idea,
-                r = s.repository.innerJoin(),
-                o1 = s.outcomeA.innerJoin(),
-                o2 = s.outcomeB.innerJoin(),
-                sl = s.ideaLabels.leftJoin(),
+                i = Q.Idea,
+                r = i.repository.innerJoin(),
+                o1 = i.outcomeA.innerJoin(),
+                o2 = i.outcomeB.innerJoin(),
+                sl = i.ideaLabels.leftJoin(),
                 l = sl.label.leftJoin(),
-                sfp = s.reasons.leftJoin(),
-                f = sfp.factor.leftJoin(),
-                p = sfp.position.leftJoin()
+                is = i.ideaSituations.leftJoin(),
+                rs = is.reasons.leftJoin(),
+                f = rs.factor.leftJoin(),
+                p = rs.position.leftJoin()
             ],
             where: and(
                 r.source.equals(repositorySource),

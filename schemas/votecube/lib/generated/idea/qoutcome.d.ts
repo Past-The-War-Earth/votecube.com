@@ -1,6 +1,6 @@
 import { IQNumberField, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
-import { Outcome } from '../../ddl/idea/Outcome';
+import { IOutcome } from './outcome';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -53,11 +53,11 @@ export interface OutcomeECreateColumns extends OutcomeEId, OutcomeEUpdateColumns
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcome extends QRepositoryEntity<Outcome> {
+export interface QOutcome extends QRepositoryEntity {
     name: IQStringField;
 }
 export interface QOutcomeQId extends QRepositoryEntityQId {
 }
-export interface QOutcomeQRelation extends QRepositoryEntityQRelation<Outcome, QOutcome>, QOutcomeQId {
+export interface QOutcomeQRelation extends QRepositoryEntityQRelation<IOutcome, QOutcome>, QOutcomeQId {
 }
 //# sourceMappingURL=qoutcome.d.ts.map

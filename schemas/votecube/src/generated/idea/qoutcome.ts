@@ -18,6 +18,8 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
+	IQRepositoryEntityOneToManyRelation,
+	IQRepositoryEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
@@ -32,8 +34,8 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	Outcome,
-} from '../../ddl/idea/Outcome';
+	IOutcome,
+} from './outcome';
 
 
 declare function require(moduleName: string): any;
@@ -143,7 +145,7 @@ extends OutcomeEId, OutcomeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcome extends QRepositoryEntity<Outcome>
+export interface QOutcome extends QRepositoryEntity
 {
 	// Id Fields
 
@@ -170,6 +172,6 @@ export interface QOutcomeQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QOutcomeQRelation
-	extends QRepositoryEntityQRelation<Outcome, QOutcome>, QOutcomeQId {
+	extends QRepositoryEntityQRelation<IOutcome, QOutcome>, QOutcomeQId {
 }
 

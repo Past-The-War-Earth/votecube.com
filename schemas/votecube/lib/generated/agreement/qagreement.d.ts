@@ -1,14 +1,14 @@
-import { IQNumberField, IQOneToManyRelation } from '@airport/air-control';
+import { IQNumberField, IQRepositoryEntityOneToManyRelation } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
-import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from '../idea/qidea';
+import { IdeaSituationGraph, IdeaSituationEOptionalId, IdeaSituationESelect, QIdeaSituationQRelation } from '../idea/qideasituation';
 import { AgreementFactorGraph, AgreementFactorESelect, QAgreementFactor } from './qagreementfactor';
-import { AgreementFactor } from '../../ddl/agreement/AgreementFactor';
-import { Agreement } from '../../ddl/agreement/Agreement';
+import { IAgreementFactor } from './agreementfactor';
+import { IAgreement } from './agreement';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface AgreementESelect extends RepositoryEntityESelect, AgreementEOptionalId {
-    idea?: IdeaESelect;
+    ideaSituation?: IdeaSituationESelect;
     factors?: AgreementFactorESelect;
 }
 /**
@@ -25,13 +25,13 @@ export interface AgreementEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface AgreementEUpdateProperties extends RepositoryEntityEUpdateProperties {
-    idea?: IdeaEOptionalId;
+    ideaSituation?: IdeaSituationEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface AgreementGraph extends AgreementEOptionalId, RepositoryEntityGraph {
-    idea?: IdeaGraph;
+    ideaSituation?: IdeaSituationGraph;
     factors?: AgreementFactorGraph[];
 }
 /**
@@ -43,9 +43,9 @@ export interface AgreementEUpdateColumns extends RepositoryEntityEUpdateColumns 
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
-    IDEAS_RID_1?: number | IQNumberField;
-    IDEAS_AID_1?: number | IQNumberField;
-    IDEAS_ARID_1?: number | IQNumberField;
+    IDEA_SITUATIONS_RID_1?: number | IQNumberField;
+    IDEA_SITUATIONS_AID_1?: number | IQNumberField;
+    IDEA_SITUATIONS_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -60,12 +60,12 @@ export interface AgreementECreateColumns extends AgreementEId, AgreementEUpdateC
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QAgreement extends QRepositoryEntity<Agreement> {
-    idea: QIdeaQRelation;
-    factors: IQOneToManyRelation<AgreementFactor, QAgreementFactor>;
+export interface QAgreement extends QRepositoryEntity {
+    ideaSituation: QIdeaSituationQRelation;
+    factors: IQRepositoryEntityOneToManyRelation<IAgreementFactor, QAgreementFactor>;
 }
 export interface QAgreementQId extends QRepositoryEntityQId {
 }
-export interface QAgreementQRelation extends QRepositoryEntityQRelation<Agreement, QAgreement>, QAgreementQId {
+export interface QAgreementQRelation extends QRepositoryEntityQRelation<IAgreement, QAgreement>, QAgreementQId {
 }
 //# sourceMappingURL=qagreement.d.ts.map

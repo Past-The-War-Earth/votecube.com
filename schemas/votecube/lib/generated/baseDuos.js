@@ -8,61 +8,13 @@ export class SQDIDuo extends Duo {
 }
 export class BaseAgreementDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(4);
-    }
-    constructor() {
-        super(4);
-    }
-}
-export class BaseAgreementFactorDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(3);
-    }
-    constructor() {
-        super(3);
-    }
-}
-export class BaseFactorDuo extends SQDIDuo {
-    static diSet() {
         return duoDiSet(1);
     }
     constructor() {
         super(1);
     }
 }
-export class BaseIdeaDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(8);
-    }
-    constructor() {
-        super(8);
-    }
-}
-export class BaseIdeaLabelDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(7);
-    }
-    constructor() {
-        super(7);
-    }
-}
-export class BaseLabelDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(6);
-    }
-    constructor() {
-        super(6);
-    }
-}
-export class BaseOutcomeDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(2);
-    }
-    constructor() {
-        super(2);
-    }
-}
-export class BasePositionDuo extends SQDIDuo {
+export class BaseAgreementFactorDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(0);
     }
@@ -70,7 +22,31 @@ export class BasePositionDuo extends SQDIDuo {
         super(0);
     }
 }
-export class BaseReasonDuo extends SQDIDuo {
+export class BaseFactorDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(3);
+    }
+    constructor() {
+        super(3);
+    }
+}
+export class BaseIdeaDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(9);
+    }
+    constructor() {
+        super(9);
+    }
+}
+export class BaseIdeaLabelDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(8);
+    }
+    constructor() {
+        super(8);
+    }
+}
+export class BaseIdeaSituationDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(5);
     }
@@ -78,12 +54,36 @@ export class BaseReasonDuo extends SQDIDuo {
         super(5);
     }
 }
-export class BaseUserAccountDuo extends SQDIDuo {
+export class BaseLabelDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(9);
+        return duoDiSet(7);
     }
     constructor() {
-        super(9);
+        super(7);
+    }
+}
+export class BaseOutcomeDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(4);
+    }
+    constructor() {
+        super(4);
+    }
+}
+export class BasePositionDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(2);
+    }
+    constructor() {
+        super(2);
+    }
+}
+export class BaseReasonDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(6);
+    }
+    constructor() {
+        super(6);
     }
 }
 //# sourceMappingURL=baseDuos.js.map

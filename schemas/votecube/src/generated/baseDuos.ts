@@ -65,6 +65,19 @@ import {
 	QIdeaLabel,
 } from './idea/qidealabel';
 import {
+	IIdeaSituation,
+} from './idea/ideasituation';
+import {
+	IdeaSituationESelect,
+	IdeaSituationECreateColumns,
+	IdeaSituationECreateProperties,
+	IdeaSituationEUpdateColumns,
+	IdeaSituationEUpdateProperties,
+	IdeaSituationEId,
+	IdeaSituationGraph,
+	QIdeaSituation,
+} from './idea/qideasituation';
+import {
 	ILabel,
 } from './label';
 import {
@@ -117,19 +130,6 @@ import {
 	QReason,
 } from './idea/qreason';
 import {
-	IUserAccount,
-} from './useraccount';
-import {
-	UserAccountESelect,
-	UserAccountECreateColumns,
-	UserAccountECreateProperties,
-	UserAccountEUpdateColumns,
-	UserAccountEUpdateProperties,
-	UserAccountEId,
-	UserAccountGraph,
-	QUserAccount,
-} from './quseraccount';
-import {
 	IDuo,
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
@@ -155,11 +155,11 @@ import {
 export class SQDIDuo<Entity,
 	EntitySelect extends IEntitySelectProperties,
 	EntityCreate extends IEntityCreateProperties,
-  EntityUpdateColumns extends IEntityUpdateColumns,
+	EntityUpdateColumns extends IEntityUpdateColumns,
 	EntityUpdateProperties extends IEntityUpdateProperties,
 	EntityId extends IEntityIdProperties,
 	EntityCascadeGraph extends IEntityCascadeGraph,
-	IQE extends IQEntity<Entity>>
+	IQE extends IQEntity>
 	extends Duo<Entity,
 		EntitySelect,
 		EntityCreate,
@@ -186,11 +186,11 @@ export class BaseAgreementDuo
 	implements IBaseAgreementDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(4)
+		super(1)
 	}
 }
 
@@ -204,11 +204,11 @@ export class BaseAgreementFactorDuo
 	implements IBaseAgreementFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
-		super(3)
+		super(0)
 	}
 }
 
@@ -222,11 +222,11 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(1)
+		super(3)
 	}
 }
 
@@ -240,11 +240,11 @@ export class BaseIdeaDuo
 	implements IBaseIdeaDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(8)
+		return duoDiSet(9)
 	}
 	
 	constructor() {
-		super(8)
+		super(9)
 	}
 }
 
@@ -258,11 +258,29 @@ export class BaseIdeaLabelDuo
 	implements IBaseIdeaLabelDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(7)
+		return duoDiSet(8)
 	}
 	
 	constructor() {
-		super(7)
+		super(8)
+	}
+}
+
+
+export interface IBaseIdeaSituationDuo
+  extends IDuo<IIdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation> {
+}
+
+export class BaseIdeaSituationDuo
+  extends SQDIDuo<IIdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation>
+	implements IBaseIdeaSituationDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(5)
+	}
+	
+	constructor() {
+		super(5)
 	}
 }
 
@@ -276,11 +294,11 @@ export class BaseLabelDuo
 	implements IBaseLabelDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(6)
+		return duoDiSet(7)
 	}
 	
 	constructor() {
-		super(6)
+		super(7)
 	}
 }
 
@@ -294,11 +312,11 @@ export class BaseOutcomeDuo
 	implements IBaseOutcomeDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(2)
+		super(4)
 	}
 }
 
@@ -312,11 +330,11 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(0)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(0)
+		super(2)
 	}
 }
 
@@ -330,28 +348,10 @@ export class BaseReasonDuo
 	implements IBaseReasonDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(6)
 	}
 	
 	constructor() {
-		super(5)
-	}
-}
-
-
-export interface IBaseUserAccountDuo
-  extends IDuo<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount> {
-}
-
-export class BaseUserAccountDuo
-  extends SQDIDuo<IUserAccount, UserAccountESelect, UserAccountECreateProperties, UserAccountEUpdateColumns, UserAccountEUpdateProperties, UserAccountEId, UserAccountGraph, QUserAccount>
-	implements IBaseUserAccountDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(9)
-	}
-	
-	constructor() {
-		super(9)
+		super(6)
 	}
 }

@@ -17,22 +17,22 @@ import { QAgreementFactor } from './agreement/qagreementfactor';
 import { QFactor } from './factor/qfactor';
 import { QIdea } from './idea/qidea';
 import { QIdeaLabel } from './idea/qidealabel';
+import { QIdeaSituation } from './idea/qideasituation';
 import { QLabel } from './qlabel';
 import { QOutcome } from './idea/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QReason } from './idea/qreason';
-import { QUserAccount } from './quseraccount';
 import {
   Agreement,
   AgreementFactor,
   Factor,
   Idea,
   IdeaLabel,
+  IdeaSituation,
   Label,
   Outcome,
   Position,
-  Reason,
-  UserAccount
+  Reason
 } from '../ddl/ddl';
 
 export interface LocalQApplication extends AirportQApplication {
@@ -44,11 +44,11 @@ export interface LocalQApplication extends AirportQApplication {
 	Factor: QFactor;
 	Idea: QIdea;
 	IdeaLabel: QIdeaLabel;
+	IdeaSituation: QIdeaSituation;
 	Label: QLabel;
 	Outcome: QOutcome;
 	Position: QPosition;
 	Reason: QReason;
-	UserAccount: QUserAccount;
 
 }
 
@@ -58,11 +58,11 @@ const __constructors__ = {
 	Factor: Factor,
 	Idea: Idea,
 	IdeaLabel: IdeaLabel,
+	IdeaSituation: IdeaSituation,
 	Label: Label,
 	Outcome: Outcome,
 	Position: Position,
-	Reason: Reason,
-	UserAccount: UserAccount
+	Reason: Reason
 };
 
 export const Q_APPLICATION: LocalQApplication = <any>{

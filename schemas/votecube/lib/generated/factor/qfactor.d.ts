@@ -1,6 +1,6 @@
 import { IQNumberField, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
-import { Factor } from '../../ddl/factor/Factor';
+import { IFactor } from './factor';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -53,11 +53,11 @@ export interface FactorECreateColumns extends FactorEId, FactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactor extends QRepositoryEntity<Factor> {
+export interface QFactor extends QRepositoryEntity {
     name: IQStringField;
 }
 export interface QFactorQId extends QRepositoryEntityQId {
 }
-export interface QFactorQRelation extends QRepositoryEntityQRelation<Factor, QFactor>, QFactorQId {
+export interface QFactorQRelation extends QRepositoryEntityQRelation<IFactor, QFactor>, QFactorQId {
 }
 //# sourceMappingURL=qfactor.d.ts.map

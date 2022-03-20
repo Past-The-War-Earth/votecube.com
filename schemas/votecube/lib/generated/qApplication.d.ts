@@ -5,11 +5,11 @@ import { QAgreementFactor } from './agreement/qagreementfactor';
 import { QFactor } from './factor/qfactor';
 import { QIdea } from './idea/qidea';
 import { QIdeaLabel } from './idea/qidealabel';
+import { QIdeaSituation } from './idea/qideasituation';
 import { QLabel } from './qlabel';
 import { QOutcome } from './idea/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QReason } from './idea/qreason';
-import { QUserAccount } from './quseraccount';
 export interface LocalQApplication extends AirportQApplication {
     db: DbApplication;
     Agreement: QAgreement;
@@ -17,11 +17,11 @@ export interface LocalQApplication extends AirportQApplication {
     Factor: QFactor;
     Idea: QIdea;
     IdeaLabel: QIdeaLabel;
+    IdeaSituation: QIdeaSituation;
     Label: QLabel;
     Outcome: QOutcome;
     Position: QPosition;
     Reason: QReason;
-    UserAccount: QUserAccount;
 }
 export declare const Q_APPLICATION: LocalQApplication;
 export declare const Q: LocalQApplication;

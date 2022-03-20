@@ -10,7 +10,7 @@ let Agreement = class Agreement extends RepositoryEntity {
 };
 __decorate([
     ManyToOne()
-], Agreement.prototype, "idea", void 0);
+], Agreement.prototype, "ideaSituation", void 0);
 __decorate([
     OneToMany({ mappedBy: 'agreement' })
 ], Agreement.prototype, "factors", void 0);

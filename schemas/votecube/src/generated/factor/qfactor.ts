@@ -18,6 +18,8 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
+	IQRepositoryEntityOneToManyRelation,
+	IQRepositoryEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-control';
@@ -32,8 +34,8 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	Factor,
-} from '../../ddl/factor/Factor';
+	IFactor,
+} from './factor';
 
 
 declare function require(moduleName: string): any;
@@ -143,7 +145,7 @@ extends FactorEId, FactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactor extends QRepositoryEntity<Factor>
+export interface QFactor extends QRepositoryEntity
 {
 	// Id Fields
 
@@ -170,6 +172,6 @@ export interface QFactorQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QFactorQRelation
-	extends QRepositoryEntityQRelation<Factor, QFactor>, QFactorQId {
+	extends QRepositoryEntityQRelation<IFactor, QFactor>, QFactorQId {
 }
 

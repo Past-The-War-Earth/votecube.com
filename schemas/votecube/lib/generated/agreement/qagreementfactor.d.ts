@@ -2,7 +2,7 @@ import { IQNumberField, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { AgreementGraph, AgreementEOptionalId, AgreementESelect, QAgreementQRelation } from './qagreement';
 import { ReasonGraph, ReasonEOptionalId, ReasonESelect, QReasonQRelation } from '../idea/qreason';
-import { AgreementFactor } from '../../ddl/agreement/AgreementFactor';
+import { IAgreementFactor } from './agreementfactor';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -71,7 +71,7 @@ export interface AgreementFactorECreateColumns extends AgreementFactorEId, Agree
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QAgreementFactor extends QRepositoryEntity<AgreementFactor> {
+export interface QAgreementFactor extends QRepositoryEntity {
     axis: IQStringField;
     share: IQNumberField;
     agreement: QAgreementQRelation;
@@ -79,6 +79,6 @@ export interface QAgreementFactor extends QRepositoryEntity<AgreementFactor> {
 }
 export interface QAgreementFactorQId extends QRepositoryEntityQId {
 }
-export interface QAgreementFactorQRelation extends QRepositoryEntityQRelation<AgreementFactor, QAgreementFactor>, QAgreementFactorQId {
+export interface QAgreementFactorQRelation extends QRepositoryEntityQRelation<IAgreementFactor, QAgreementFactor>, QAgreementFactorQId {
 }
 //# sourceMappingURL=qagreementfactor.d.ts.map

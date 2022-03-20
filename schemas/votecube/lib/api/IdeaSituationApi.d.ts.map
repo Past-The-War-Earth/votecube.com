@@ -1,0 +1,1 @@
+{"version":3,"file":"IdeaSituationApi.d.ts","sourceRoot":"","sources":["../../src/api/IdeaSituationApi.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,aAAa,EAAE,MAAM,QAAQ,CAAC;AAIvC,MAAM,WAAW,iBAAiB;IAE9B,GAAG,CACC,aAAa,EAAE,aAAa,GAC7B,OAAO,CAAC,IAAI,CAAC,CAAA;CAEnB;AAED,qBAAa,gBACT,YAAW,iBAAiB;IAGtB,GAAG,CACL,aAAa,EAAE,aAAa,GAC7B,OAAO,CAAC,IAAI,CAAC;CAMnB"}

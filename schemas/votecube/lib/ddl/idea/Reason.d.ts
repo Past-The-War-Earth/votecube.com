@@ -1,6 +1,6 @@
 import { RepositoryEntity } from '@airport/holding-pattern';
 import { Factor, Position } from '../ddl';
-import { Idea } from './Idea';
+import { IdeaSituation } from './IdeaSituation';
 export declare class Reason extends RepositoryEntity {
     axis: 'x' | 'y' | 'z';
     dir: -1 | 1;
@@ -9,7 +9,7 @@ export declare class Reason extends RepositoryEntity {
     green: number;
     red: number;
     outcomeOrdinal: 'A' | 'B';
-    idea: Idea;
+    ideaSituation: IdeaSituation;
     factor: Factor;
     position: Position;
 }

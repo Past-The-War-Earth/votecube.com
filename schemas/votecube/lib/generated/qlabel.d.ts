@@ -1,6 +1,6 @@
 import { IQNumberField, IQStringField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
-import { Label } from '../ddl/Label';
+import { ILabel } from './label';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -53,11 +53,11 @@ export interface LabelECreateColumns extends LabelEId, LabelEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QLabel extends QRepositoryEntity<Label> {
+export interface QLabel extends QRepositoryEntity {
     name: IQStringField;
 }
 export interface QLabelQId extends QRepositoryEntityQId {
 }
-export interface QLabelQRelation extends QRepositoryEntityQRelation<Label, QLabel>, QLabelQId {
+export interface QLabelQRelation extends QRepositoryEntityQRelation<ILabel, QLabel>, QLabelQId {
 }
 //# sourceMappingURL=qlabel.d.ts.map

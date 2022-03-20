@@ -6,11 +6,11 @@ import {
 	Table
 } from '@airport/air-control'
 import { RepositoryEntity } from '@airport/holding-pattern'
-import { ForumThread } from '@votecube/forum/lib/server'
 import { Agreement } from '../agreement/Agreement'
 import { Outcome } from './Outcome'
 import { Reason } from './Reason'
 import { IdeaLabel } from './IdeaLabel'
+import { IdeaSituation } from './IdeaSituation'
 
 @Entity()
 @Table({ name: 'IDEAS' })
@@ -26,9 +26,6 @@ export class Idea
 	@ManyToOne()
 	outcomeB: Outcome
 
-	@ManyToOne()
-	thread: ForumThread
-
 	@OneToMany({ mappedBy: 'parent' })
 	children: Idea[]
 
@@ -36,9 +33,6 @@ export class Idea
 	ideaLabels: IdeaLabel[]
 
 	@OneToMany({ mappedBy: 'idea' })
-	reasons: Reason[]
-
-	@OneToMany({ mappedBy: 'idea' })
-	agreements: Agreement[]
+	ideaSituations: IdeaSituation[]
 
 }

@@ -2,7 +2,7 @@ import { IQNumberField } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
 import { LabelGraph, LabelEOptionalId, LabelESelect, QLabelQRelation } from '../qlabel';
-import { IdeaLabel } from '../../ddl/idea/IdeaLabel';
+import { IIdeaLabel } from './idealabel';
 /**
  * SELECT - All fields and relations (optional).
  */
@@ -63,12 +63,12 @@ export interface IdeaLabelECreateColumns extends IdeaLabelEId, IdeaLabelEUpdateC
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QIdeaLabel extends QRepositoryEntity<IdeaLabel> {
+export interface QIdeaLabel extends QRepositoryEntity {
     idea: QIdeaQRelation;
     label: QLabelQRelation;
 }
 export interface QIdeaLabelQId extends QRepositoryEntityQId {
 }
-export interface QIdeaLabelQRelation extends QRepositoryEntityQRelation<IdeaLabel, QIdeaLabel>, QIdeaLabelQId {
+export interface QIdeaLabelQRelation extends QRepositoryEntityQRelation<IIdeaLabel, QIdeaLabel>, QIdeaLabelQId {
 }
 //# sourceMappingURL=qidealabel.d.ts.map
