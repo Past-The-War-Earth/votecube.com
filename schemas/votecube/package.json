@@ -19,7 +19,7 @@
     "@airport/terminal-map": "0.0.1",
     "@airport/travel-document-checkpoint": "0.0.1",
     "@airport/web-tower": "0.0.1",
-    "@dobecause/core": "0.0.1",
+    "@sapoto/core": "0.0.1",
     "@votecube/dependency-injection": "0.0.1",
     "@votecube/forum": "0.0.1"
   },

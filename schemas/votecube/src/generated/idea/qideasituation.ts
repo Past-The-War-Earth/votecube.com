@@ -56,7 +56,7 @@ import {
 	QSituationQId,
 	QSituationQRelation,
 	ISituation,
-} from '@dobecause/core/lib/app';
+} from '@sapoto/core/lib/app';
 import {
 	AgreementGraph,
 	AgreementEId,

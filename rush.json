@@ -89,15 +89,15 @@
       "projectFolder": "schemas/votecube",
       "shouldPublish": true
     },
-    // DoBecause
+    // Sapoto
     {
-      "packageName": "@dobecause/dependency-injection",
-      "projectFolder": "../../DIN/dobecause/libs/dependency-injection",
+      "packageName": "@sapoto/dependency-injection",
+      "projectFolder": "../../DIN/sapoto-net/libs/dependency-injection",
       "shouldPublish": true
     },
     {
-      "packageName": "@dobecause/core",
-      "projectFolder": "../../DIN/dobecause/apps/core",
+      "packageName": "@sapoto/core",
+      "projectFolder": "../../DIN/sapoto-net/apps/core",
       "shouldPublish": true
     },
     // AIRport

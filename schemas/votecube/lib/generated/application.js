@@ -8,26 +8,6 @@ export const APPLICATION = {
         {
             "api": {
                 "apiObjectMap": {
-                    "IAgreementApi": {
-                        "operationMap": {
-                            "saveAgreement": {
-                                "isAsync": true,
-                                "parameters": []
-                            },
-                            "getMyAgreementForIdea": {
-                                "isAsync": true,
-                                "parameters": []
-                            }
-                        }
-                    },
-                    "IIdeaSituationApi": {
-                        "operationMap": {
-                            "add": {
-                                "isAsync": true,
-                                "parameters": []
-                            }
-                        }
-                    },
                     "IIdeaApi": {
                         "operationMap": {
                             "getIdeasForLabels": {
@@ -51,6 +31,26 @@ export const APPLICATION = {
                                 "parameters": []
                             },
                             "saveNewIdea": {
+                                "isAsync": true,
+                                "parameters": []
+                            }
+                        }
+                    },
+                    "IAgreementApi": {
+                        "operationMap": {
+                            "saveAgreement": {
+                                "isAsync": true,
+                                "parameters": []
+                            },
+                            "getMyAgreementForIdea": {
+                                "isAsync": true,
+                                "parameters": []
+                            }
+                        }
+                    },
+                    "IIdeaSituationApi": {
+                        "operationMap": {
+                            "add": {
                                 "isAsync": true,
                                 "parameters": []
                             }
@@ -4437,7 +4437,7 @@ export const APPLICATION = {
                 {
                     "domain": "localhost:9000",
                     "index": 0,
-                    "name": "@dobecause/core",
+                    "name": "@sapoto/core",
                     "sinceVersion": 1,
                     "versions": [
                         {

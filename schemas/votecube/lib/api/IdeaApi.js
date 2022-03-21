@@ -41,7 +41,7 @@ export class IdeaApi {
         if (!idea.repository || !idea.repository.id
             || !idea.actor || !idea.actor.id
             || !idea.actorRecordId) {
-            throw new Error(`Cannot save EXISTING idea without a repository, actor or actorRecordId`);
+            throw new Error(`Cannot save EXISTING idea without a repository, an actor and an actorRecordId`);
         }
         const ideaDao = await container(this).get(IDEA_DAO);
         return await ideaDao.saveExistingIdea(idea);

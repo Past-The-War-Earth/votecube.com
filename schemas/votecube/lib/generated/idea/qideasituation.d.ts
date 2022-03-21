@@ -1,7 +1,7 @@
 import { IQNumberField, IQRepositoryEntityOneToManyRelation } from '@airport/air-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
-import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@dobecause/core/lib/app';
+import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@sapoto/core/lib/app';
 import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
 import { IAgreement } from '../agreement/agreement';
 import { ReasonGraph, ReasonESelect, QReason } from './qreason';

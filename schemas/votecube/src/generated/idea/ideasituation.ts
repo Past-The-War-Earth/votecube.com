@@ -6,7 +6,7 @@ import {
 } from './idea';
 import {
 	ISituation,
-} from '@dobecause/core';
+} from '@sapoto/core';
 import {
 	IAgreement,
 } from '../agreement/agreement';
