@@ -21,10 +21,9 @@ dependencies:
   '@rush-temp/cloudfare-worker': 'file:projects/cloudfare-worker.tgz'
   '@rush-temp/cockroachdb': 'file:projects/cockroachdb.tgz'
   '@rush-temp/config': 'file:projects/config.tgz'
-  '@rush-temp/core': 'file:projects/core.tgz'
+  '@rush-temp/core-client': 'file:projects/core-client.tgz'
   '@rush-temp/cube-logic': 'file:projects/cube-logic.tgz'
   '@rush-temp/dependency-injection': 'file:projects/dependency-injection.tgz'
-  '@rush-temp/dependency-injection-1': 'file:projects/dependency-injection-1.tgz'
   '@rush-temp/di': 'file:projects/di.tgz_typescript@4.5.2'
   '@rush-temp/ecclesia': 'file:projects/ecclesia.tgz'
   '@rush-temp/flight-log-archive': 'file:projects/flight-log-archive.tgz'
@@ -86,6 +85,8 @@ dependencies:
   '@rush-temp/vasi': 'file:projects/vasi.tgz'
   '@rush-temp/vc-logic': 'file:projects/vc-logic.tgz'
   '@rush-temp/votecube': 'file:projects/votecube.tgz'
+  '@rush-temp/votecube-client': 'file:projects/votecube-client.tgz'
+  '@rush-temp/votecube-runtime': 'file:projects/votecube-runtime.tgz'
   '@rush-temp/web-terminal': 'file:projects/web-terminal.tgz'
   '@rush-temp/web-tower': 'file:projects/web-tower.tgz'
   '@sveltejs/svelte-virtual-list': 3.0.1
@@ -7522,22 +7523,12 @@ packages:
       integrity: sha512-8So3LgeYHF0UcgpG4swUlZich4ha6otKiMi4MrZVqoGMfrypZSoaDdhJPqi4Wxb6eFBW04qMBVdtQyA6Y4LUHw==
       tarball: 'file:projects/config.tgz'
     version: 0.0.0
-  'file:projects/core.tgz':
-    dependencies:
-      '@rollup/plugin-commonjs': 17.1.0_rollup@2.59.0
-      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.59.0
-      '@rollup/plugin-typescript': 8.3.0_540094f6b8e281a8a0f841e38cc281bb
-      rollup: 2.59.0
-      rollup-plugin-livereload: 2.0.5
-      rollup-plugin-terser: 7.0.2_rollup@2.59.0
-      sirv-cli: 1.0.14
-      tslib: 2.3.1
-      typescript: 4.5.2
+  'file:projects/core-client.tgz':
     dev: false
-    name: '@rush-temp/core'
+    name: '@rush-temp/core-client'
     resolution:
-      integrity: sha512-CKm09NTUgRngd6PztlUYcMbf694sRTq33C6yMuJbLN63h5Gp1tNt+i+Y/XNA1brphlkLQ2JuNOkwBN6TC6MGXg==
-      tarball: 'file:projects/core.tgz'
+      integrity: sha512-WqI6lWp79uUUty4hkGmEOL7bET1MQjTQwF2i03f8MOxPShQMmkR+f4WZuaH7zcoGJJjDSHyKTAyLZmsBVgO8RA==
+      tarball: 'file:projects/core-client.tgz'
     version: 0.0.0
   'file:projects/cube-logic.tgz':
     dependencies:
@@ -7549,16 +7540,6 @@ packages:
       integrity: sha512-Y5TP1SwRTFXqcb/w4X3BOHdUA+PFxA9izKiv7qwFItiGpxJ+yWUgNj9oV2QA1WxEkZJvpy7bQtHBg84h7fSSqA==
       tarball: 'file:projects/cube-logic.tgz'
     version: 0.0.0
-  'file:projects/dependency-injection-1.tgz':
-    dependencies:
-      tslint: 5.20.1_typescript@4.5.2
-      typescript: 4.5.2
-    dev: false
-    name: '@rush-temp/dependency-injection-1'
-    resolution:
-      integrity: sha512-lV5+IiF4/Ko0ph+HMpER+PNqaN5ui/VLLNehY4nyTeokolKgFW2oY9cEkBxbU2Bszn5HwyS/jTMBzJFu7AKq5A==
-      tarball: 'file:projects/dependency-injection-1.tgz'
-    version: 0.0.0
   'file:projects/dependency-injection.tgz':
     dependencies:
       tslint: 5.20.1_typescript@4.5.2
@@ -7566,7 +7547,7 @@ packages:
     dev: false
     name: '@rush-temp/dependency-injection'
     resolution:
-      integrity: sha512-fWPP4LmiuaSZvt8NiXwi33+xUFUyxDYvwP7TdoI3NW0TxI3KtwL20AaOp0qU/xlFLxkqi5XjqI8wJOSGh2qtPw==
+      integrity: sha512-Xud7sCVFEzQJYx5SFQNsy/Bg0meymgXGG2a7Pm758TYVLaHOiHFttSO3vTArekm37nNvZybSzS+VoX9S9ozDTA==
       tarball: 'file:projects/dependency-injection.tgz'
     version: 0.0.0
   'file:projects/di.tgz_typescript@4.5.2':
@@ -7685,7 +7666,7 @@ packages:
     dev: false
     name: '@rush-temp/functionality-demo-schema'
     resolution:
-      integrity: sha512-a10P1WS4Bt5dtygqFR6XC1Op69zkMIPfKttE6v71mOULp4eWFln0gELI9gSmrl9hCK1K2ThJqCIs0nBNcioi6w==
+      integrity: sha512-mSnxlSsXcp13IzLQiQA14AKzYmGYn8M6yaoVmQCjDlCC8kRw9bycEfRzJSPI2hfkUKdT7tf0bqNYv3DR7EMvrw==
       tarball: 'file:projects/functionality-demo-schema.tgz'
     version: 0.0.0
   'file:projects/functionality-demo.tgz':
@@ -8283,6 +8264,29 @@ packages:
       integrity: sha512-kFpWIXS2QTdqKeNxnrGndvJtAkx2Z3r8JSlZDpr4r7S4xd/9HPQyaOxY479nfYPvHLOgrn/s4yWxXrS0zxYH/Q==
       tarball: 'file:projects/vc-logic.tgz'
     version: 0.0.0
+  'file:projects/votecube-client.tgz':
+    dev: false
+    name: '@rush-temp/votecube-client'
+    resolution:
+      integrity: sha512-NMta8fK+ZToP4ukLw/EhOd/lLtMq1JIWqZR/GfTKtL9DveJbRpTd50bsOucuUUT2dtFcs3k6ddO/Gw1zT9rrkw==
+      tarball: 'file:projects/votecube-client.tgz'
+    version: 0.0.0
+  'file:projects/votecube-runtime.tgz':
+    dependencies:
+      '@rollup/plugin-commonjs': 17.1.0_rollup@2.59.0
+      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.59.0
+      '@rollup/plugin-typescript': 8.3.0_540094f6b8e281a8a0f841e38cc281bb
+      rollup: 2.59.0
+      rollup-plugin-livereload: 2.0.5
+      rollup-plugin-terser: 7.0.2_rollup@2.59.0
+      tslib: 2.3.1
+      typescript: 4.5.2
+    dev: false
+    name: '@rush-temp/votecube-runtime'
+    resolution:
+      integrity: sha512-3lg0IdeKN0LaO/w35NDLMKPp67d8DjMYL3ueW3rgr/m14/wTIk+11TC/3ZQ1LCIdt0x/mCXkBn1GV4BF0tOXBQ==
+      tarball: 'file:projects/votecube-runtime.tgz'
+    version: 0.0.0
   'file:projects/votecube.tgz':
     dependencies:
       '@rollup/plugin-commonjs': 17.1.0_rollup@2.59.0
@@ -8298,7 +8302,7 @@ packages:
     dev: false
     name: '@rush-temp/votecube'
     resolution:
-      integrity: sha512-Ox72pzf1zyKx1sQR5SNbsMUBbYIpCWKGBSmUuKr+THl/F/9bZmejqLJo06zX4obLg7s3X8FOzF+eOf5JjrTj2w==
+      integrity: sha512-EZvRBIFWgfv7h9pd6gpQP3c0dH7Dp73snBs+3Nqxkb5Gl5N6sl9Xu+mImD179dyTQWZOk/PD9KzgNvqxA2ADUQ==
       tarball: 'file:projects/votecube.tgz'
     version: 0.0.0
   'file:projects/web-terminal.tgz':
@@ -8345,10 +8349,9 @@ specifiers:
   '@rush-temp/cloudfare-worker': 'file:./projects/cloudfare-worker.tgz'
   '@rush-temp/cockroachdb': 'file:./projects/cockroachdb.tgz'
   '@rush-temp/config': 'file:./projects/config.tgz'
-  '@rush-temp/core': 'file:./projects/core.tgz'
+  '@rush-temp/core-client': 'file:./projects/core-client.tgz'
   '@rush-temp/cube-logic': 'file:./projects/cube-logic.tgz'
   '@rush-temp/dependency-injection': 'file:./projects/dependency-injection.tgz'
-  '@rush-temp/dependency-injection-1': 'file:./projects/dependency-injection-1.tgz'
   '@rush-temp/di': 'file:./projects/di.tgz'
   '@rush-temp/ecclesia': 'file:./projects/ecclesia.tgz'
   '@rush-temp/flight-log-archive': 'file:./projects/flight-log-archive.tgz'
@@ -8410,6 +8413,8 @@ specifiers:
   '@rush-temp/vasi': 'file:./projects/vasi.tgz'
   '@rush-temp/vc-logic': 'file:./projects/vc-logic.tgz'
   '@rush-temp/votecube': 'file:./projects/votecube.tgz'
+  '@rush-temp/votecube-client': 'file:./projects/votecube-client.tgz'
+  '@rush-temp/votecube-runtime': 'file:./projects/votecube-runtime.tgz'
   '@rush-temp/web-terminal': 'file:./projects/web-terminal.tgz'
   '@rush-temp/web-tower': 'file:./projects/web-tower.tgz'
   '@sveltejs/svelte-virtual-list': 3.0.1

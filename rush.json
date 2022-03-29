@@ -4,7 +4,7 @@
   "pnpmVersion": "5.9.3",
   "nodeSupportedVersionRange": ">=16.0.0 <17.0.0",
   "projectFolderMinDepth": 1,
-  "projectFolderMaxDepth": 6,
+  "projectFolderMaxDepth": 7,
   "projects": [
     // "apps" folder (alphabetical order)
     {
@@ -89,15 +89,20 @@
       "projectFolder": "schemas/votecube",
       "shouldPublish": true
     },
-    // Sapoto
     {
-      "packageName": "@sapoto/dependency-injection",
-      "projectFolder": "../../DIN/sapoto-net/libs/dependency-injection",
+      "packageName": "@votecube/votecube-client",
+      "projectFolder": "schemas/votecube/client",
       "shouldPublish": true
     },
     {
-      "packageName": "@sapoto/core",
-      "projectFolder": "../../DIN/sapoto-net/apps/core",
+      "packageName": "@votecube/votecube-runtime",
+      "projectFolder": "schemas/votecube/runtime",
+      "shouldPublish": true
+    },
+    // Sapoto
+    {
+      "packageName": "@sapoto/core-client",
+      "projectFolder": "../../DIN/sapoto-net/apps/core/client",
       "shouldPublish": true
     },
     // AIRport
