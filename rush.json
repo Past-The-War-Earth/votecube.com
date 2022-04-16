@@ -101,6 +101,11 @@
     },
     // Sapoto
     {
+      "packageName": "@sapoto/core",
+      "projectFolder": "../../DIN/sapoto-net/apps/core",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@sapoto/core-client",
       "projectFolder": "../../DIN/sapoto-net/apps/core/client",
       "shouldPublish": true
@@ -128,11 +133,6 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/config",
-      "projectFolder": "../../AIR/AIRport/apis/config",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@airport/ground-control",
       "projectFolder": "../../AIR/AIRport/apis/ground-control",
       "shouldPublish": true
@@ -145,12 +145,6 @@
     {
       "packageName": "@airport/terminal-map",
       "projectFolder": "../../AIR/AIRport/apis/terminal-map",
-      "shouldPublish": true
-    },
-    // "common" folder (alphabetical order)
-    {
-      "packageName": "@airport/tools",
-      "projectFolder": "../../AIR/AIRport/common/tools",
       "shouldPublish": true
     },
     // "db" folder (alphabetical order)
@@ -185,16 +179,6 @@
       "shouldPublish": true
     },
     // "engines" folder (alphabetical order)
-    {
-      "packageName": "@airport/automated-guideway-transit",
-      "projectFolder": "../../AIR/AIRport/engines/automated-guideway-transit",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/tarmaq",
-      "projectFolder": "../../AIR/AIRport/engines/tarmaq",
-      "shouldPublish": true
-    },
     {
       "packageName": "@airport/terminal",
       "projectFolder": "../../AIR/AIRport/engines/terminal",
@@ -274,11 +258,6 @@
       "shouldPublish": true
     },
     // "libs" folder (alphabetical order)
-    // {
-    //   "packageName": "@airport/approach-lighting-system",
-    //   "projectFolder": "../../AIR/AIRport/libs/approach-lighting-system",
-    //   "shouldPublish": true
-    // },
     {
       "packageName": "@airport/autopilot",
       "projectFolder": "../../AIR/AIRport/libs/autopilot",
@@ -305,23 +284,8 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/jet-bridge",
-      "projectFolder": "../../AIR/AIRport/libs/jet-bridge",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/mono-rail",
-      "projectFolder": "../../AIR/AIRport/libs/mono-rail",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@airport/pressurization",
       "projectFolder": "../../AIR/AIRport/libs/pressurization",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/ramp",
-      "projectFolder": "../../AIR/AIRport/libs/ramp",
       "shouldPublish": true
     },
     // "nonhub" folder (alphabetical order)
@@ -357,21 +321,6 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/flight-log-archive",
-      "projectFolder": "../../AIR/AIRport/schemas/flight-log-archive",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/functionality-demo-schema",
-      "projectFolder": "../../AIR/AIRport/schemas/functionality-demo-schema",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/guideway",
-      "projectFolder": "../../AIR/AIRport/schemas/guideway",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@airport/holding-pattern",
       "projectFolder": "../../AIR/AIRport/schemas/holding-pattern",
       "shouldPublish": true
@@ -382,55 +331,18 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/na-kano",
-      "projectFolder": "../../AIR/AIRport/schemas/na-kano",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/point-of-destination",
-      "projectFolder": "../../AIR/AIRport/schemas/point-of-destination",
-      "shouldPublish": true
-    },
-    // {
-    //   "packageName": "@airport/runway-edge-lighting",
-    //   "projectFolder": "../../AIR/AIRport/schemas/runway-edge-lighting",
-    //   "shouldPublish": true
-    // },
-    {
       "packageName": "@airport/travel-document-checkpoint",
       "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint",
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/vasi",
-      "projectFolder": "../../AIR/AIRport/schemas/vasi",
-      "shouldPublish": true
-    },
-    // "test" folder (alphabetical order)
-    {
-      "packageName": "@airport/functionality-demo-frame",
-      "projectFolder": "../../AIR/AIRport/test/functionality-demo-frame",
+      "packageName": "@airport/travel-document-checkpoint-client",
+      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint/client",
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/functionality-demo-framework",
-      "projectFolder": "../../AIR/AIRport/test/functionality-demo-framework",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/repository-demo-framework",
-      "projectFolder": "../../AIR/AIRport/test/repository-demo-framework",
-      "shouldPublish": true
-    },
-    // "ui" folder (alphabetical order)
-    {
-      "packageName": "@airport/functionality-demo",
-      "projectFolder": "../../AIR/AIRport/ui/functionality-demo",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/todo",
-      "projectFolder": "../../AIR/AIRport/ui/todo",
+      "packageName": "@airport/travel-document-checkpoint-internal",
+      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint/internal",
       "shouldPublish": true
     }
   ]
