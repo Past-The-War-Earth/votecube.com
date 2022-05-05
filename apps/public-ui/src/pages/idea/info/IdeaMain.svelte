@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DI } from "@airport/di";
+    import { DI } from "@airport/direction-indicator";
     import { CUBE_EVENT_LISTENER, MUTATION_API } from "@votecube/cube-logic";
     import type {
         ITweenAgreement,

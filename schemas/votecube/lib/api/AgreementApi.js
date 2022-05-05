@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Api } from "@airport/check-in";
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { AGREEMENT_API } from "../tokens";
 export class AgreementApi {
     async saveAgreement(agreement) {

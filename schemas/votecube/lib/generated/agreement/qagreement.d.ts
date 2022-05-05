@@ -1,4 +1,4 @@
-import { IQNumberField, IQRepositoryEntityOneToManyRelation } from '@airport/air-control';
+import { IQNumberField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { IdeaSituationGraph, IdeaSituationEOptionalId, IdeaSituationESelect, QIdeaSituationQRelation } from '../idea/qideasituation';
 import { AgreementFactorGraph, AgreementFactorESelect, QAgreementFactor } from './qagreementfactor';

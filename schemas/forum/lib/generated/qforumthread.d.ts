@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-control';
+import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { ForumPostGraph, ForumPostESelect, QForumPost } from './qforumpost';
 import { ForumPost } from '../ddl/ForumPost';

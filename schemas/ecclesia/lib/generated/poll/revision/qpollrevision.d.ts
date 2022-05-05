@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-control';
+import { IQDateField, IQNumberField, IQOneToManyRelation } from '@airport/air-traffic-control';
 import { AgeSuitableRowGraph, AgeSuitableRowEId, AgeSuitableRowEUpdateColumns, AgeSuitableRowEUpdateProperties, AgeSuitableRowESelect, QAgeSuitableRowQId, QAgeSuitableRowQRelation, QAgeSuitableRow } from '../../infrastructure/row/qagesuitablerow';
 import { PollGraph, PollEOptionalId, PollESelect, QPollQRelation } from '../qpoll';
 import { PollRunGraph, PollRunEOptionalId, PollRunESelect, QPollRunQRelation } from '../run/qpollrun';

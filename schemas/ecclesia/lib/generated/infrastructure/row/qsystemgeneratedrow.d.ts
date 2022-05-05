@@ -1,4 +1,4 @@
-import { IQEntity } from '@airport/air-control';
+import { IQEntity } from '@airport/air-traffic-control';
 import { ImmutableRowGraph, ImmutableRowEId, ImmutableRowEUpdateColumns, ImmutableRowEUpdateProperties, ImmutableRowESelect, QImmutableRowQId, QImmutableRowQRelation, QImmutableRow } from './qimmutablerow';
 /**
  * SELECT - All fields and relations (optional).

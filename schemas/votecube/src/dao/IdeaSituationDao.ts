@@ -1,4 +1,4 @@
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { BaseIdeaSituationDao, IBaseIdeaSituationDao } from "../generated/generated";
 import { IDEA_SITUATION_DAO } from "../server-tokens";
 

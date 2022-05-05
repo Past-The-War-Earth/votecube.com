@@ -1,4 +1,4 @@
-import { IOC } from "@airport/di"
+import { IOC } from "@airport/direction-indicator"
 import { IRepositoryIdentifier } from "./types";
 import { ILabel, IIdea } from "../generated/interfaces";
 import { IDEA_API } from "../tokens";

@@ -1,5 +1,5 @@
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import { IIdeaSituation } from "../generated/generated";
 import { IDEA_SITUATION_DAO } from "../server-tokens";
 import { IDEA_SITUATION_API } from "../tokens";

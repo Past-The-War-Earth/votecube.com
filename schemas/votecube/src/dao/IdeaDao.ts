@@ -1,7 +1,7 @@
 import {
     ALL_FIELDS,
     and
-} from '@airport/air-control'
+} from '@airport/air-traffic-control'
 import {
     BaseIdeaDao,
     IIdea,

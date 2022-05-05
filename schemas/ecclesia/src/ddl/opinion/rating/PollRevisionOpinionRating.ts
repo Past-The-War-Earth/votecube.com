@@ -6,7 +6,7 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                                     from '@airport/air-control'
+}                                     from '@airport/air-traffic-control'
 import {PollRevisionOpinionRating_Id} from '../../../types/opinion/rating/PollRevisionOpinionRating'
 import {Rating}                       from '../../infrastructure/rating/Rating'
 import {ImmutableActorRow}            from '../../infrastructure/row/ImmutableActorRow'

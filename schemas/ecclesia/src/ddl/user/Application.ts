@@ -6,7 +6,7 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-}                           from '@airport/air-control'
+}                           from '@airport/air-traffic-control'
 import {
 	Application_Host,
 	Application_Id,

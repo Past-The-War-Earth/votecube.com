@@ -1,4 +1,4 @@
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import { REPOSITORY_RECORD_CONVERTER } from '@votecube/ui-logic';
 import { AGREEMENT_CONVERTER } from "../tokens";
 export class AgreementConverter {

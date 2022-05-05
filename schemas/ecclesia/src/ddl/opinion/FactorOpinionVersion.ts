@@ -7,7 +7,7 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                        from '@airport/air-control'
+}                                        from '@airport/air-traffic-control'
 import {FactorOpinionVersion_Id}         from '../../types/opinion/FactorOpinionVersion'
 import {Factor}                          from '../factor/Factor'
 import {PollRevisionOpinion}             from './PollRevisionOpinion'

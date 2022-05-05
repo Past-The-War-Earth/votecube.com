@@ -57,7 +57,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 UpdatedAt?: undefined;
             };
             importMapByModulePath: {
-                "@airport/air-control": any;
+                "@airport/air-traffic-control": any;
                 "../../../types/common": any;
                 "./ImmutableRow"?: undefined;
                 "../../user/Actor"?: undefined;
@@ -148,7 +148,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 UpdatedAt?: undefined;
             };
             importMapByModulePath: {
-                "@airport/air-control": any;
+                "@airport/air-traffic-control": any;
                 "./ImmutableRow": any;
                 "../../../types/common"?: undefined;
                 "../../user/Actor"?: undefined;
@@ -220,7 +220,7 @@ export declare const MAPPED_SUPERCLASS: ({
                     ImmutableRow?: undefined;
                 };
                 importMapByModulePath: {
-                    "@airport/air-control": any;
+                    "@airport/air-traffic-control": any;
                     "../../../types/common": any;
                     "../../user/Actor"?: undefined;
                     "../../user/UserAccount"?: undefined;
@@ -344,7 +344,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 UpdatedAt?: undefined;
             };
             importMapByModulePath: {
-                "@airport/air-control": any;
+                "@airport/air-traffic-control": any;
                 "../../user/Actor": any;
                 "../../user/UserAccount": any;
                 "./ImmutableRow": any;
@@ -510,7 +510,7 @@ export declare const MAPPED_SUPERCLASS: ({
                             };
                         };
                         importMapByModulePath: {
-                            "@airport/air-control": any;
+                            "@airport/air-traffic-control": any;
                             "../../types/user/UserAccount": any;
                             "../infrastructure/row/SystemGeneratedRow": any;
                         };
@@ -604,7 +604,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                 };
                             };
                             importMapByModulePath: {
-                                "@airport/air-control": any;
+                                "@airport/air-traffic-control": any;
                                 "./ImmutableRow": any;
                             };
                         };
@@ -667,7 +667,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                     };
                                 };
                                 importMapByModulePath: {
-                                    "@airport/air-control": any;
+                                    "@airport/air-traffic-control": any;
                                     "../../../types/common": any;
                                 };
                             };
@@ -783,7 +783,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 UpdatedAt?: undefined;
             };
             importMapByModulePath: {
-                "@airport/air-control": any;
+                "@airport/air-traffic-control": any;
                 "../../../types/common": any;
                 "./ImmutableActorRow": any;
                 "./ImmutableRow"?: undefined;
@@ -901,7 +901,7 @@ export declare const MAPPED_SUPERCLASS: ({
                     CreatedAt?: undefined;
                 };
                 importMapByModulePath: {
-                    "@airport/air-control": any;
+                    "@airport/air-traffic-control": any;
                     "../../user/Actor": any;
                     "../../user/UserAccount": any;
                     "./ImmutableRow": any;
@@ -1066,7 +1066,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                 };
                             };
                             importMapByModulePath: {
-                                "@airport/air-control": any;
+                                "@airport/air-traffic-control": any;
                                 "../../types/user/UserAccount": any;
                                 "../infrastructure/row/SystemGeneratedRow": any;
                             };
@@ -1160,7 +1160,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                     };
                                 };
                                 importMapByModulePath: {
-                                    "@airport/air-control": any;
+                                    "@airport/air-traffic-control": any;
                                     "./ImmutableRow": any;
                                 };
                             };
@@ -1223,7 +1223,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                         };
                                     };
                                     importMapByModulePath: {
-                                        "@airport/air-control": any;
+                                        "@airport/air-traffic-control": any;
                                         "../../../types/common": any;
                                     };
                                 };
@@ -1341,7 +1341,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 AgeSuitability?: undefined;
             };
             importMapByModulePath: {
-                "@airport/air-control": any;
+                "@airport/air-traffic-control": any;
                 "../../../types/common": any;
                 "./ImmutableActorRow": any;
                 "./ImmutableRow"?: undefined;
@@ -1458,7 +1458,7 @@ export declare const MAPPED_SUPERCLASS: ({
                     CreatedAt?: undefined;
                 };
                 importMapByModulePath: {
-                    "@airport/air-control": any;
+                    "@airport/air-traffic-control": any;
                     "../../user/Actor": any;
                     "../../user/UserAccount": any;
                     "./ImmutableRow": any;
@@ -1623,7 +1623,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                 };
                             };
                             importMapByModulePath: {
-                                "@airport/air-control": any;
+                                "@airport/air-traffic-control": any;
                                 "../../types/user/UserAccount": any;
                                 "../infrastructure/row/SystemGeneratedRow": any;
                             };
@@ -1717,7 +1717,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                     };
                                 };
                                 importMapByModulePath: {
-                                    "@airport/air-control": any;
+                                    "@airport/air-traffic-control": any;
                                     "./ImmutableRow": any;
                                 };
                             };
@@ -1780,7 +1780,7 @@ export declare const MAPPED_SUPERCLASS: ({
                                         };
                                     };
                                     importMapByModulePath: {
-                                        "@airport/air-control": any;
+                                        "@airport/air-traffic-control": any;
                                         "../../../types/common": any;
                                     };
                                 };
@@ -1898,7 +1898,7 @@ export declare const MAPPED_SUPERCLASS: ({
                 ImmutableActorRow?: undefined;
             };
             importMapByModulePath: {
-                "@airport/air-control": any;
+                "@airport/air-traffic-control": any;
                 "../../../types/common": any;
                 "./ImmutableRow": any;
                 "../../user/Actor"?: undefined;
@@ -1987,7 +1987,7 @@ export declare const MAPPED_SUPERCLASS: ({
                     ImmutableRow?: undefined;
                 };
                 importMapByModulePath: {
-                    "@airport/air-control": any;
+                    "@airport/air-traffic-control": any;
                     "../../../types/common": any;
                     "../../user/Actor"?: undefined;
                     "../../user/UserAccount"?: undefined;

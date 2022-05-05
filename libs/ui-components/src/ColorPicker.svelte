@@ -1,5 +1,5 @@
 <script>
-	import { DI } from "@airport/di";
+	import { DI } from "@airport/direction-indicator";
 	import { forms } from "@votecube/ui-logic";
 	import { getColorKey, getColors, LOGIC_UTILS } from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";

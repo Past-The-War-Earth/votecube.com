@@ -1,4 +1,4 @@
-import { Y } from '@airport/air-control';
+import { Y } from '@airport/air-traffic-control';
 import { DI } from '@airport/di';
 import { BasePollRevisionDao, Q, } from '../../../generated/generated';
 import { POLL_REVISION_DAO } from '../../../tokens';

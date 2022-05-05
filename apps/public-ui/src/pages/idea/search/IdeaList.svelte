@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/di";
+	import { DI } from "@airport/direction-indicator";
 	import type { IUiLabel, IUiIdea } from "@votecube/model";
 	import {
 		navigateToPage,

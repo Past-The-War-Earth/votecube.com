@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import { IDEA_API } from "../tokens";
 import { IDEA_DAO } from "../server-tokens";
 /**

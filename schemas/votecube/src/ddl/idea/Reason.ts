@@ -5,7 +5,7 @@ import {
 	Entity,
 	ManyToOne,
 	Table
-} from '@airport/air-control'
+} from '@airport/air-traffic-control'
 import { RepositoryEntity } from '@airport/holding-pattern'
 import { Factor, Position } from '../ddl'
 import { Idea } from './Idea'

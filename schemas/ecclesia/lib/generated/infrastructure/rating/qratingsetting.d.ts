@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQStringField } from '@airport/air-control';
+import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
 import { SystemGeneratedRowGraph, SystemGeneratedRowEId, SystemGeneratedRowEUpdateColumns, SystemGeneratedRowEUpdateProperties, SystemGeneratedRowESelect, QSystemGeneratedRowQId, QSystemGeneratedRowQRelation, QSystemGeneratedRow } from '../row/qsystemgeneratedrow';
 import { CountryGraph, CountryEOptionalId, CountryESelect, QCountryQRelation } from '../../location/qcountry';
 import { RatingGraph, RatingEOptionalId, RatingESelect, QRatingQRelation } from './qrating';

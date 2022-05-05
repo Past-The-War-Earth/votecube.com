@@ -4,7 +4,7 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                           from '@airport/air-control'
+}                           from '@airport/air-traffic-control'
 import {SystemGeneratedRow} from '../infrastructure/row/SystemGeneratedRow'
 import {County}             from './County'
 import {Town}               from './Town'

@@ -1,5 +1,5 @@
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import { FORUM_THREAD_DAO, IForumThread } from "../server";
 import { FORUM_THREAD_API } from "../tokens";
 

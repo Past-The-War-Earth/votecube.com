@@ -4,7 +4,7 @@ import {
     Entity,
     ManyToOne,
     Table
-} from "@airport/air-control";
+} from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { ForumThread } from "./ForumThread";
 

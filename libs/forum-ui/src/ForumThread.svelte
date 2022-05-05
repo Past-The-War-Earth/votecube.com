@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DI, IChildContainer } from "@airport/di";
+    import { DI, IChildContainer } from "@airport/direction-indicator";
     import { IFieldGroup } from "@votecube/forms";
     import { pageTitle, routeParams, text } from "@votecube/ui-logic";
     import TextArea from "@votecube/ui-controls/src/field/TextArea.svelte";

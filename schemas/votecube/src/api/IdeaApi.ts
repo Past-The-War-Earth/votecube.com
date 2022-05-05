@@ -2,7 +2,7 @@ import { Api } from "@airport/check-in";
 import {
     container,
     DI
-} from "@airport/di";
+} from "@airport/direction-indicator";
 import { IRepositoryIdentifier } from "../client/types";
 import { IDEA_API } from "../tokens";
 import { IDEA_DAO } from "../server-tokens";

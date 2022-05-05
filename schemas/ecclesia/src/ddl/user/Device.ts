@@ -5,7 +5,7 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-}                           from '@airport/air-control'
+}                           from '@airport/air-traffic-control'
 import {
 	Device_Hash,
 	Device_Id

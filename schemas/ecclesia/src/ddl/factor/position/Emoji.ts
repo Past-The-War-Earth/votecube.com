@@ -4,7 +4,7 @@ import {
 	GeneratedValue,
 	Id,
 	Table
-}                           from '@airport/air-control'
+}                           from '@airport/air-traffic-control'
 import {
 	Emoji_CssClass,
 	Emoji_Id,

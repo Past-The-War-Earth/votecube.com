@@ -1,4 +1,4 @@
-import { ALL_FIELDS, and } from '@airport/air-control';
+import { ALL_FIELDS, and } from '@airport/air-traffic-control';
 import { BaseIdeaDao, Q, } from "../generated/generated";
 import { DI } from '@airport/di';
 import { IDEA_DAO } from '../server-tokens';

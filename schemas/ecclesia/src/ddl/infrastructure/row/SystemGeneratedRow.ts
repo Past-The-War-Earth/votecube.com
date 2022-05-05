@@ -1,4 +1,4 @@
-import {MappedSuperclass} from '@airport/air-control'
+import {MappedSuperclass} from '@airport/air-traffic-control'
 import {ImmutableRow}     from './ImmutableRow'
 
 /**

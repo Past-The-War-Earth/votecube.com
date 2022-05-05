@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-control';
+import { IQDateField, IQNumberField, IQOneToManyRelation, IQStringField } from '@airport/air-traffic-control';
 import { ImmutableRowGraph, ImmutableRowEId, ImmutableRowEUpdateColumns, ImmutableRowEUpdateProperties, ImmutableRowESelect, QImmutableRowQId, QImmutableRowQRelation, QImmutableRow } from '../../infrastructure/row/qimmutablerow';
 import { SkinGraph, SkinEOptionalId, SkinESelect, QSkinQRelation } from '../../factor/qskin';
 import { PollRevisionGraph, PollRevisionEOptionalId, PollRevisionESelect, QPollRevisionQRelation } from './qpollrevision';

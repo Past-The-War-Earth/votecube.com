@@ -7,7 +7,7 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                          from '@airport/air-control'
+}                          from '@airport/air-traffic-control'
 import {Factor_Id}         from '../../types/factor/Factor'
 import {AgeSuitableRow}    from '../infrastructure/row/AgeSuitableRow'
 import {PollRevision}      from '../poll/revision/PollRevision'

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { AIRPORT_DATABASE } from '@airport/air-control';
+import { AIRPORT_DATABASE } from '@airport/air-traffic-control';
 import { DI } from '@airport/di';
 import { ImmutableRow } from '../ddl/infrastructure/row/ImmutableRow';
 import { SystemGeneratedRow } from '../ddl/infrastructure/row/SystemGeneratedRow';

@@ -1,4 +1,4 @@
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { BaseForumThreadDao, IBaseForumThreadDao } from "../server";
 import { FORUM_THREAD_DAO } from "../server-tokens";
 

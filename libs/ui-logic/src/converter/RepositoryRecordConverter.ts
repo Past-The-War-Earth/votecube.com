@@ -1,6 +1,6 @@
 import { IUiRepositoryRecord } from "@votecube/model";
 import type { IRepositoryEntity } from "@airport/holding-pattern";
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { REPOSITORY_RECORD_CONVERTER } from "../tokens";
 
 export interface IRepositoryRecordConverter {

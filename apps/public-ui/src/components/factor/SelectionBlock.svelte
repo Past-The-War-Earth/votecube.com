@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/di";
+	import { DI } from "@airport/direction-indicator";
 	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
 	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";

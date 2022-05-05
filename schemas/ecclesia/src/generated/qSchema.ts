@@ -1,7 +1,7 @@
 import {
 	AIRPORT_DATABASE,
 	QSchema as AirportQSchema
-}                      from '@airport/air-control'
+}                      from '@airport/air-traffic-control'
 import {
 	diSet as dS,
 	duoDiSet as ddS

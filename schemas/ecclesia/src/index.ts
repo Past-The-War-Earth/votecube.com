@@ -1,4 +1,4 @@
-import {IEntityContext} from '@airport/air-control'
+import {IEntityContext} from '@airport/air-traffic-control'
 import {IUserAccount}   from './generated/user/useraccount'
 
 export *          from './dao/dao'

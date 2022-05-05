@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { IOC } from "@airport/di";
+	import { IOC } from "@airport/direction-indicator";
 	import ForumThread from "@votecube/forum-ui/src/ForumThread.svelte";
 	import type {
 		IUiCustomEvent,

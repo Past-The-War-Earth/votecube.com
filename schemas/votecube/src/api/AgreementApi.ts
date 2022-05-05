@@ -1,5 +1,5 @@
 import { Api } from "@airport/check-in";
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { IAgreement } from "../generated/interfaces";
 import { AGREEMENT_API } from "../tokens";
 

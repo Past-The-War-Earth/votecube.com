@@ -1,4 +1,4 @@
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import {
     IUiAgreement,
     IUiAgreementFactor,

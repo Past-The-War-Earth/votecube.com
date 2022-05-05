@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/di";
+	import { DI } from "@airport/direction-indicator";
 	import { AUTH, text } from "@votecube/ui-logic";
 	import { createEventDispatcher, onDestroy, onMount } from "svelte";
 	import { get } from "svelte/store";

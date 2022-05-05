@@ -10,16 +10,16 @@ import { IPercentagePositionChooser } from './cube/mutation/PercentagePositionCh
 import { IViewport } from './cube/Viewport';
 import { ICubeUtils } from './utils/CubeUtils';
 import { IEventListenerMap } from './utils/EventListenerMap';
-export declare const CUBE_DIRECTION: import("@airport/di").IDiToken<ICubeDirection>;
-export declare const CUBE_EVENT_LISTENER: import("@airport/di").IDiToken<ICubeEventListener>;
-export declare const CUBE_MOVE_MATRIX: import("@airport/di").IDiToken<ICubeMoveMatrix>;
-export declare const CUBE_MOVEMENT: import("@airport/di").IDiToken<ICubeMovement>;
-export declare const CUBE_UTILS: import("@airport/di").IDiToken<ICubeUtils>;
-export declare const DEGREE_POSITION_CHOOSER: import("@airport/di").IDiToken<IDegreePositionChooser>;
-export declare const EVENT_LISTENER_MAP: import("@airport/di").IDiToken<IEventListenerMap>;
-export declare const FINAL_POSITION_FINDER: import("@airport/di").IDiToken<IFinalPositionFinder>;
-export declare const MATRIX_VALUE_CHOOSER: import("@airport/di").IDiToken<IMatrixValueChooser>;
-export declare const MUTATION_API: import("@airport/di").IDiToken<IMutationApi>;
-export declare const PERCENTAGE_POSITION_CHOOSER: import("@airport/di").IDiToken<IPercentagePositionChooser>;
-export declare const VIEWPORT: import("@airport/di").IDiToken<IViewport>;
+export declare const CUBE_DIRECTION: import("@airport/direction-indicator").IDiToken<ICubeDirection>;
+export declare const CUBE_EVENT_LISTENER: import("@airport/direction-indicator").IDiToken<ICubeEventListener>;
+export declare const CUBE_MOVE_MATRIX: import("@airport/direction-indicator").IDiToken<ICubeMoveMatrix>;
+export declare const CUBE_MOVEMENT: import("@airport/direction-indicator").IDiToken<ICubeMovement>;
+export declare const CUBE_UTILS: import("@airport/direction-indicator").IDiToken<ICubeUtils>;
+export declare const DEGREE_POSITION_CHOOSER: import("@airport/direction-indicator").IDiToken<IDegreePositionChooser>;
+export declare const EVENT_LISTENER_MAP: import("@airport/direction-indicator").IDiToken<IEventListenerMap>;
+export declare const FINAL_POSITION_FINDER: import("@airport/direction-indicator").IDiToken<IFinalPositionFinder>;
+export declare const MATRIX_VALUE_CHOOSER: import("@airport/direction-indicator").IDiToken<IMatrixValueChooser>;
+export declare const MUTATION_API: import("@airport/direction-indicator").IDiToken<IMutationApi>;
+export declare const PERCENTAGE_POSITION_CHOOSER: import("@airport/direction-indicator").IDiToken<IPercentagePositionChooser>;
+export declare const VIEWPORT: import("@airport/direction-indicator").IDiToken<IViewport>;
 //# sourceMappingURL=tokens.d.ts.map

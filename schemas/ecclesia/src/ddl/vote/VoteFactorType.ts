@@ -4,7 +4,7 @@ import {
 	Entity,
 	Id,
 	Table
-}                           from '@airport/air-control'
+}                           from '@airport/air-traffic-control'
 import {
 	VoteFactorType_Id,
 	VoteFactorType_Value

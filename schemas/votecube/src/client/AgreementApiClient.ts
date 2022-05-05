@@ -1,4 +1,4 @@
-import { IOC } from "@airport/di";
+import { IOC } from "@airport/direction-indicator";
 import { IAgreement } from "../generated/interfaces";
 import { AGREEMENT_API } from "../tokens";
 

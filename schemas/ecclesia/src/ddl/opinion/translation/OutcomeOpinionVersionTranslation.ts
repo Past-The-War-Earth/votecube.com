@@ -6,7 +6,7 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                              from '@airport/air-control'
+}                              from '@airport/air-traffic-control'
 import {
 	OutcomeOpinionVersionTranslation_Id,
 	OutcomeOpinionVersionTranslation_IsOriginal,

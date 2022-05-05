@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { AIRPORT_DATABASE } from '@airport/air-control';
+import { AIRPORT_DATABASE } from '@airport/air-traffic-control';
 import { DI } from '@airport/di';
 import { AgreementFactor } from '../ddl/agreement/AgreementFactor';
 import { Agreement } from '../ddl/agreement/Agreement';

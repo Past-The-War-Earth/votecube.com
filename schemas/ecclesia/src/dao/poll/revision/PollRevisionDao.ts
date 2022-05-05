@@ -1,7 +1,7 @@
 import {
 	ANOTHER,
 	Y
-}                          from '@airport/air-control'
+}                          from '@airport/air-traffic-control'
 import {DI}                from '@airport/di'
 import {
 	BasePollRevisionDao,

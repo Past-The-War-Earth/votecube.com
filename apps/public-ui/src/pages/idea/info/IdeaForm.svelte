@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DI, IChildContainer } from "@airport/di";
+    import { DI, IChildContainer } from "@airport/direction-indicator";
     import {
         FACTOR_INFO_MAIN,
         IDEA_FORM_LOGIC,

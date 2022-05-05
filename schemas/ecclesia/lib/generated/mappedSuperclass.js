@@ -36,7 +36,7 @@ export const MAPPED_SUPERCLASS = [
                                 "sourceName": "MappedSuperclass"
                             }
                         },
-                        "path": "@airport/air-control"
+                        "path": "@airport/air-traffic-control"
                     },
                     "MappedSuperclass": null,
                     "CreatedAt": {
@@ -53,7 +53,7 @@ export const MAPPED_SUPERCLASS = [
                     }
                 },
                 "importMapByModulePath": {
-                    "@airport/air-control": null,
+                    "@airport/air-traffic-control": null,
                     "../../../types/common": null
                 }
             },
@@ -124,7 +124,7 @@ export const MAPPED_SUPERCLASS = [
                                 "sourceName": "MappedSuperclass"
                             }
                         },
-                        "path": "@airport/air-control"
+                        "path": "@airport/air-traffic-control"
                     },
                     "ImmutableRow": {
                         "fileImports": null,
@@ -140,7 +140,7 @@ export const MAPPED_SUPERCLASS = [
                     }
                 },
                 "importMapByModulePath": {
-                    "@airport/air-control": null,
+                    "@airport/air-traffic-control": null,
                     "./ImmutableRow": null
                 }
             },
@@ -190,7 +190,7 @@ export const MAPPED_SUPERCLASS = [
                                     "sourceName": "MappedSuperclass"
                                 }
                             },
-                            "path": "@airport/air-control"
+                            "path": "@airport/air-traffic-control"
                         },
                         "MappedSuperclass": null,
                         "CreatedAt": {
@@ -207,7 +207,7 @@ export const MAPPED_SUPERCLASS = [
                         }
                     },
                     "importMapByModulePath": {
-                        "@airport/air-control": null,
+                        "@airport/air-traffic-control": null,
                         "../../../types/common": null
                     }
                 },
@@ -290,7 +290,7 @@ export const MAPPED_SUPERCLASS = [
                                 "sourceName": "MappedSuperclass"
                             }
                         },
-                        "path": "@airport/air-control"
+                        "path": "@airport/air-traffic-control"
                     },
                     "ManyToOne": null,
                     "MappedSuperclass": null,
@@ -332,7 +332,7 @@ export const MAPPED_SUPERCLASS = [
                     }
                 },
                 "importMapByModulePath": {
-                    "@airport/air-control": null,
+                    "@airport/air-traffic-control": null,
                     "../../user/Actor": null,
                     "../../user/UserAccount": null,
                     "./ImmutableRow": null
@@ -453,7 +453,7 @@ export const MAPPED_SUPERCLASS = [
                                                 "sourceName": "Table"
                                             }
                                         },
-                                        "path": "@airport/air-control"
+                                        "path": "@airport/air-traffic-control"
                                     },
                                     "Entity": null,
                                     "GeneratedValue": null,
@@ -527,7 +527,7 @@ export const MAPPED_SUPERCLASS = [
                                     }
                                 },
                                 "importMapByModulePath": {
-                                    "@airport/air-control": null,
+                                    "@airport/air-traffic-control": null,
                                     "../../types/user/UserAccount": null,
                                     "../infrastructure/row/SystemGeneratedRow": null
                                 }
@@ -761,7 +761,7 @@ export const MAPPED_SUPERCLASS = [
                                                     "sourceName": "MappedSuperclass"
                                                 }
                                             },
-                                            "path": "@airport/air-control"
+                                            "path": "@airport/air-traffic-control"
                                         },
                                         "ImmutableRow": {
                                             "fileImports": null,
@@ -777,7 +777,7 @@ export const MAPPED_SUPERCLASS = [
                                         }
                                     },
                                     "importMapByModulePath": {
-                                        "@airport/air-control": null,
+                                        "@airport/air-traffic-control": null,
                                         "./ImmutableRow": null
                                     }
                                 },
@@ -827,7 +827,7 @@ export const MAPPED_SUPERCLASS = [
                                                         "sourceName": "MappedSuperclass"
                                                     }
                                                 },
-                                                "path": "@airport/air-control"
+                                                "path": "@airport/air-traffic-control"
                                             },
                                             "MappedSuperclass": null,
                                             "CreatedAt": {
@@ -844,7 +844,7 @@ export const MAPPED_SUPERCLASS = [
                                             }
                                         },
                                         "importMapByModulePath": {
-                                            "@airport/air-control": null,
+                                            "@airport/air-traffic-control": null,
                                             "../../../types/common": null
                                         }
                                     },
@@ -938,7 +938,7 @@ export const MAPPED_SUPERCLASS = [
                                 "sourceName": "MappedSuperclass"
                             }
                         },
-                        "path": "@airport/air-control"
+                        "path": "@airport/air-traffic-control"
                     },
                     "MappedSuperclass": null,
                     "AgeSuitability": {
@@ -967,7 +967,7 @@ export const MAPPED_SUPERCLASS = [
                     }
                 },
                 "importMapByModulePath": {
-                    "@airport/air-control": null,
+                    "@airport/air-traffic-control": null,
                     "../../../types/common": null,
                     "./ImmutableActorRow": null
                 }
@@ -1048,7 +1048,7 @@ export const MAPPED_SUPERCLASS = [
                                     "sourceName": "MappedSuperclass"
                                 }
                             },
-                            "path": "@airport/air-control"
+                            "path": "@airport/air-traffic-control"
                         },
                         "ManyToOne": null,
                         "MappedSuperclass": null,
@@ -1090,7 +1090,7 @@ export const MAPPED_SUPERCLASS = [
                         }
                     },
                     "importMapByModulePath": {
-                        "@airport/air-control": null,
+                        "@airport/air-traffic-control": null,
                         "../../user/Actor": null,
                         "../../user/UserAccount": null,
                         "./ImmutableRow": null
@@ -1211,7 +1211,7 @@ export const MAPPED_SUPERCLASS = [
                                                     "sourceName": "Table"
                                                 }
                                             },
-                                            "path": "@airport/air-control"
+                                            "path": "@airport/air-traffic-control"
                                         },
                                         "Entity": null,
                                         "GeneratedValue": null,
@@ -1285,7 +1285,7 @@ export const MAPPED_SUPERCLASS = [
                                         }
                                     },
                                     "importMapByModulePath": {
-                                        "@airport/air-control": null,
+                                        "@airport/air-traffic-control": null,
                                         "../../types/user/UserAccount": null,
                                         "../infrastructure/row/SystemGeneratedRow": null
                                     }
@@ -1519,7 +1519,7 @@ export const MAPPED_SUPERCLASS = [
                                                         "sourceName": "MappedSuperclass"
                                                     }
                                                 },
-                                                "path": "@airport/air-control"
+                                                "path": "@airport/air-traffic-control"
                                             },
                                             "ImmutableRow": {
                                                 "fileImports": null,
@@ -1535,7 +1535,7 @@ export const MAPPED_SUPERCLASS = [
                                             }
                                         },
                                         "importMapByModulePath": {
-                                            "@airport/air-control": null,
+                                            "@airport/air-traffic-control": null,
                                             "./ImmutableRow": null
                                         }
                                     },
@@ -1585,7 +1585,7 @@ export const MAPPED_SUPERCLASS = [
                                                             "sourceName": "MappedSuperclass"
                                                         }
                                                     },
-                                                    "path": "@airport/air-control"
+                                                    "path": "@airport/air-traffic-control"
                                                 },
                                                 "MappedSuperclass": null,
                                                 "CreatedAt": {
@@ -1602,7 +1602,7 @@ export const MAPPED_SUPERCLASS = [
                                                 }
                                             },
                                             "importMapByModulePath": {
-                                                "@airport/air-control": null,
+                                                "@airport/air-traffic-control": null,
                                                 "../../../types/common": null
                                             }
                                         },
@@ -1698,7 +1698,7 @@ export const MAPPED_SUPERCLASS = [
                                 "sourceName": "MappedSuperclass"
                             }
                         },
-                        "path": "@airport/air-control"
+                        "path": "@airport/air-traffic-control"
                     },
                     "MappedSuperclass": null,
                     "UpdatedAt": {
@@ -1727,7 +1727,7 @@ export const MAPPED_SUPERCLASS = [
                     }
                 },
                 "importMapByModulePath": {
-                    "@airport/air-control": null,
+                    "@airport/air-traffic-control": null,
                     "../../../types/common": null,
                     "./ImmutableActorRow": null
                 }
@@ -1807,7 +1807,7 @@ export const MAPPED_SUPERCLASS = [
                                     "sourceName": "MappedSuperclass"
                                 }
                             },
-                            "path": "@airport/air-control"
+                            "path": "@airport/air-traffic-control"
                         },
                         "ManyToOne": null,
                         "MappedSuperclass": null,
@@ -1849,7 +1849,7 @@ export const MAPPED_SUPERCLASS = [
                         }
                     },
                     "importMapByModulePath": {
-                        "@airport/air-control": null,
+                        "@airport/air-traffic-control": null,
                         "../../user/Actor": null,
                         "../../user/UserAccount": null,
                         "./ImmutableRow": null
@@ -1970,7 +1970,7 @@ export const MAPPED_SUPERCLASS = [
                                                     "sourceName": "Table"
                                                 }
                                             },
-                                            "path": "@airport/air-control"
+                                            "path": "@airport/air-traffic-control"
                                         },
                                         "Entity": null,
                                         "GeneratedValue": null,
@@ -2044,7 +2044,7 @@ export const MAPPED_SUPERCLASS = [
                                         }
                                     },
                                     "importMapByModulePath": {
-                                        "@airport/air-control": null,
+                                        "@airport/air-traffic-control": null,
                                         "../../types/user/UserAccount": null,
                                         "../infrastructure/row/SystemGeneratedRow": null
                                     }
@@ -2278,7 +2278,7 @@ export const MAPPED_SUPERCLASS = [
                                                         "sourceName": "MappedSuperclass"
                                                     }
                                                 },
-                                                "path": "@airport/air-control"
+                                                "path": "@airport/air-traffic-control"
                                             },
                                             "ImmutableRow": {
                                                 "fileImports": null,
@@ -2294,7 +2294,7 @@ export const MAPPED_SUPERCLASS = [
                                             }
                                         },
                                         "importMapByModulePath": {
-                                            "@airport/air-control": null,
+                                            "@airport/air-traffic-control": null,
                                             "./ImmutableRow": null
                                         }
                                     },
@@ -2344,7 +2344,7 @@ export const MAPPED_SUPERCLASS = [
                                                             "sourceName": "MappedSuperclass"
                                                         }
                                                     },
-                                                    "path": "@airport/air-control"
+                                                    "path": "@airport/air-traffic-control"
                                                 },
                                                 "MappedSuperclass": null,
                                                 "CreatedAt": {
@@ -2361,7 +2361,7 @@ export const MAPPED_SUPERCLASS = [
                                                 }
                                             },
                                             "importMapByModulePath": {
-                                                "@airport/air-control": null,
+                                                "@airport/air-traffic-control": null,
                                                 "../../../types/common": null
                                             }
                                         },
@@ -2457,7 +2457,7 @@ export const MAPPED_SUPERCLASS = [
                                 "sourceName": "MappedSuperclass"
                             }
                         },
-                        "path": "@airport/air-control"
+                        "path": "@airport/air-traffic-control"
                     },
                     "MappedSuperclass": null,
                     "UpdatedAt": {
@@ -2486,7 +2486,7 @@ export const MAPPED_SUPERCLASS = [
                     }
                 },
                 "importMapByModulePath": {
-                    "@airport/air-control": null,
+                    "@airport/air-traffic-control": null,
                     "../../../types/common": null,
                     "./ImmutableRow": null
                 }
@@ -2560,7 +2560,7 @@ export const MAPPED_SUPERCLASS = [
                                     "sourceName": "MappedSuperclass"
                                 }
                             },
-                            "path": "@airport/air-control"
+                            "path": "@airport/air-traffic-control"
                         },
                         "MappedSuperclass": null,
                         "CreatedAt": {
@@ -2577,7 +2577,7 @@ export const MAPPED_SUPERCLASS = [
                         }
                     },
                     "importMapByModulePath": {
-                        "@airport/air-control": null,
+                        "@airport/air-traffic-control": null,
                         "../../../types/common": null
                     }
                 },

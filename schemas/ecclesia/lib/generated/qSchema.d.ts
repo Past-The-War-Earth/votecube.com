@@ -1,4 +1,4 @@
-import { QSchema as AirportQSchema } from '@airport/air-control';
+import { QSchema as AirportQSchema } from '@airport/air-traffic-control';
 import { DbSchema, EntityId } from '@airport/ground-control';
 import { QActor } from './user/qactor';
 import { QApplication } from './user/qapplication';

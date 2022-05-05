@@ -7,7 +7,7 @@ import {
 	ManyToOne,
 	OneToMany,
 	Table
-}                                   from '@airport/air-control'
+}                                   from '@airport/air-traffic-control'
 import {PollRevisionOpinion_Id}     from '../../types/opinion/PollRevisionOpinion'
 import {ImmutableActorRow}          from '../infrastructure/row/ImmutableActorRow'
 import {PollRevision}               from '../poll/revision/PollRevision'

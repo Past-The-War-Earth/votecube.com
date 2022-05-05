@@ -6,7 +6,7 @@ import {
 	JoinColumn,
 	ManyToOne,
 	Table
-}                              from '@airport/air-control'
+}                              from '@airport/air-traffic-control'
 import {PollRunCountry_Id}        from '../../../../types/poll/run/location/PollRunCountry'
 import {Country} from '../../../location/Country'
 import {PollRun} from '../PollRun'

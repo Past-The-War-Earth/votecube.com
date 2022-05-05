@@ -8,9 +8,10 @@ import {
     IApplicationLoader,
     JsonApplicationWithLastIds,
     LastIds
-} from '@airport/security-check'
+} from '@airport/apron'
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff'
 import { APPLICATION } from './generated/application'
+import { votecube } from './tokens'
 
 export class ApplicationLoader
     implements IApplicationLoader {
@@ -25,7 +26,7 @@ export class ApplicationLoader
         }
         this.initializing = true
 
-        DI.db().context.inAIRportApp = true
+        votecube.autopilot = false
 
         const [apiRegistry, ddlObjectRetriever, applicationInitializer] = await container(this)
             .get(API_REGISTRY, DDL_OBJECT_RETRIEVER, APPLICATION_INITIALIZER)
