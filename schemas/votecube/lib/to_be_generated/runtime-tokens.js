@@ -23,7 +23,7 @@ IDEA_API.setDependencies({
 });
 DEPENDENCY_INJECTION.set(IDEA_SITUATION_API, IdeaSituationApi);
 IDEA_SITUATION_API.setDependencies({
-    ideaSituationeDao: IDEA_SITUATION_DAO
+    ideaSituationDao: IDEA_SITUATION_DAO
 });
 DEPENDENCY_INJECTION.set(AGREEMENT_API, AgreementApi);
 export const APPLICATION_LOADER = votecube.token({
