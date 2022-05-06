@@ -1,9 +1,9 @@
-import { domain } from '@airport/direction-indicator'
+import { app } from '@votecube/dependency-injection'
 import type { IAgreementApi } from './wrappers/AgreementApiClient'
 import type { IIdeaApi } from './wrappers/IdeaApiClient'
 import type { IIdeaSituationApi } from './wrappers/IdeaSituationApiClient'
 
-export const core = domain('localhost:8100').app('@sapoto/core')
+export const core = app('votecube')
 
 export const AGREEMENT_API = core.token<IAgreementApi>({
     class: null,

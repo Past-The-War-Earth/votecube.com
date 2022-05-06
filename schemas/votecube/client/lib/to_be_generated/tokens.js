@@ -1,5 +1,5 @@
-import { domain } from '@airport/direction-indicator';
-export const core = domain('localhost:8100').app('@sapoto/core');
+import { app } from '@votecube/dependency-injection';
+export const core = app('votecube');
 export const AGREEMENT_API = core.token({
     class: null,
     interface: 'IAgreementApi',

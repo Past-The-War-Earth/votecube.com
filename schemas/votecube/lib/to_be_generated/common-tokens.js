@@ -1,4 +1,4 @@
-import { app } from '@sapoto/dependency-injection';
+import { app } from '@votecube/dependency-injection';
 export const votecube = app('votecube');
 export const IDEA_API = votecube.token({
     class: null,

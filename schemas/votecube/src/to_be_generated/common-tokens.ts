@@ -1,4 +1,4 @@
-import { app } from '@sapoto/dependency-injection'
+import { app } from '@votecube/dependency-injection'
 import type { IIdeaApi } from "../api/IdeaApi";
 import type { IIdeaSituationApi } from '../api/IdeaSituationApi';
 import type { IAgreementApi } from '../api/AgreementApi';
