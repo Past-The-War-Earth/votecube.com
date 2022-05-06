@@ -10,5 +10,4 @@ export declare class ApplicationLoader implements IApplicationLoader {
     initialize(): Promise<void>;
     getApplication(): JsonApplicationWithLastIds;
 }
-export declare function wireApplicationLoader(): void;
 //# sourceMappingURL=ApplicationLoader.d.ts.map
