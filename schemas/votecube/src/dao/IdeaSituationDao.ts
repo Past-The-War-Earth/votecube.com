@@ -1,15 +1,14 @@
-import { DI } from "@airport/direction-indicator";
+import { Injected } from "@airport/direction-indicator";
 import { BaseIdeaSituationDao, IBaseIdeaSituationDao } from "../generated/generated";
-import { IDEA_SITUATION_DAO } from "../server-tokens";
 
 export interface IIdeaSituationDao
     extends IBaseIdeaSituationDao {
 
 }
 
+@Injected()
 export class IdeaSituationDao
     extends BaseIdeaSituationDao
     implements IIdeaSituationDao {
 
 }
-DI.set(IDEA_SITUATION_DAO, IdeaSituationDao)

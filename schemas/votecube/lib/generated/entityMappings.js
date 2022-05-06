@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { AIRPORT_DATABASE } from '@airport/air-traffic-control';
-import { DI } from '@airport/di';
+import { DEPENDENCY_INJECTION } from '@airport/direction-indicator';
 import { AgreementFactor } from '../ddl/agreement/AgreementFactor';
 import { Agreement } from '../ddl/agreement/Agreement';
 import { Position } from '../ddl/factor/Position';
@@ -11,7 +11,7 @@ import { Reason } from '../ddl/idea/Reason';
 import { Label } from '../ddl/Label';
 import { IdeaLabel } from '../ddl/idea/IdeaLabel';
 import { Idea } from '../ddl/idea/Idea';
-DI.db().get(AIRPORT_DATABASE).then(airDb => {
+DEPENDENCY_INJECTION.db().get(AIRPORT_DATABASE).then(airDb => {
     const accumulator = airDb.getAccumulator('localhost:8000', 'undefined');
     accumulator.add(AgreementFactor, 0);
     accumulator.add(Agreement, 1);

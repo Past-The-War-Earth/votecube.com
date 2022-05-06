@@ -1,8 +1,7 @@
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/direction-indicator";
+import { Inject, Injected } from "@airport/direction-indicator";
+import { IIdeaSituationDao } from "../dao/dao";
 import { IIdeaSituation } from "../generated/generated";
-import { IDEA_SITUATION_DAO } from "../server-tokens";
-import { IDEA_SITUATION_API } from "../tokens";
 
 export interface IIdeaSituationApi {
 
@@ -12,17 +11,19 @@ export interface IIdeaSituationApi {
 
 }
 
+@Injected()
 export class IdeaSituationApi
     implements IIdeaSituationApi {
+
+    @Inject()
+    ideaSituationDao: IIdeaSituationDao
 
     @Api()
     async add(
         ideaSituation: IIdeaSituation
     ): Promise<void> {
-        const ideaSituationDao = await container(this).get(IDEA_SITUATION_DAO)
 
-        await ideaSituationDao.save(ideaSituation)
+        await this.ideaSituationDao.save(ideaSituation)
     }
 
 }
-DI.set(IDEA_SITUATION_API, IdeaSituationApi)

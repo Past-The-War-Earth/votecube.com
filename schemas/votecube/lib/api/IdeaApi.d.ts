@@ -1,12 +1,13 @@
-import { IRepositoryIdentifier } from "../client/types";
+import { IdeaDao } from "../dao/dao";
 import { ILabel, IIdea } from "../generated/generated";
+import { IRepositoryIdentifier } from "../types";
 export interface IIdeaApi {
     getIdeasForLabels(labels: ILabel[]): Promise<IIdea[]>;
     getLeafIdeas(idea: IIdea): Promise<IIdea[]>;
     getStemIdea(idea: IIdea): Promise<IIdea>;
     getIdea(repositorySource: string, ideaRepositoryUuId: string): Promise<IIdea>;
-    saveNewIdea(idea: IIdea): Promise<IRepositoryIdentifier>;
     saveExistingIdea(idea: IIdea): Promise<IRepositoryIdentifier>;
+    saveNewIdea(idea: IIdea): Promise<IRepositoryIdentifier>;
 }
 /**
  * Version 1 idea retrieval across devices.
@@ -24,6 +25,7 @@ export interface IIdeaApi {
  * repository id and returns the first one found (there should only be one).
  */
 export declare class IdeaApi implements IIdeaApi {
+    ideaDao: IdeaDao;
     getIdeasForLabels(labels: ILabel[]): Promise<IIdea[]>;
     getLeafIdeas(idea: IIdea): Promise<IIdea[]>;
     getStemIdea(idea: IIdea): Promise<IIdea>;

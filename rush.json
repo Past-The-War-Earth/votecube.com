@@ -110,6 +110,11 @@
       "projectFolder": "../../DIN/sapoto-net/apps/core/client",
       "shouldPublish": true
     },
+    {
+      "packageName": "@sapoto/dependency-injection",
+      "projectFolder": "../../DIN/sapoto-net/libs/dependency-injection",
+      "shouldPublish": true
+    },
     // AIRport
     // "apis" folder (alphabetical order)
     {
@@ -301,6 +306,16 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@airport/holding-pattern-client",
+      "projectFolder": "../../AIR/AIRport/schemas/holding-pattern/client",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/holding-pattern-runtime",
+      "projectFolder": "../../AIR/AIRport/schemas/holding-pattern/runtime",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@airport/moving-walkway",
       "projectFolder": "../../AIR/AIRport/schemas/moving-walkway",
       "shouldPublish": true
@@ -316,8 +331,8 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/travel-document-checkpoint-internal",
-      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint/internal",
+      "packageName": "@airport/travel-document-checkpoint-runtime",
+      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint/runtime",
       "shouldPublish": true
     }
   ]

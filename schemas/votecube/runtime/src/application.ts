@@ -1,0 +1,1 @@
+export * from '@votecube/votecube/lib/generated/application'

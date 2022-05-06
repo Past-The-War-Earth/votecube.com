@@ -5,21 +5,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Api } from "@airport/check-in";
-import { DI } from "@airport/direction-indicator";
-import { AGREEMENT_API } from "../tokens";
-export class AgreementApi {
+import { Injected } from "@airport/direction-indicator";
+let AgreementApi = class AgreementApi {
     async saveAgreement(agreement) {
         return null;
     }
     async getMyAgreementForIdea(ideaRepositoryUuid) {
         return null;
     }
-}
+};
 __decorate([
     Api()
 ], AgreementApi.prototype, "saveAgreement", null);
 __decorate([
     Api()
 ], AgreementApi.prototype, "getMyAgreementForIdea", null);
-DI.set(AGREEMENT_API, AgreementApi);
+AgreementApi = __decorate([
+    Injected()
+], AgreementApi);
+export { AgreementApi };
 //# sourceMappingURL=AgreementApi.js.map

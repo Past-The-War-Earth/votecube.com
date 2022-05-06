@@ -1,5 +1,5 @@
 import { RepositoryEntity } from "@airport/holding-pattern";
-import { Situation } from "@sapoto/core/lib/app";
+import { Situation } from "@sapoto/core";
 import { Agreement, Idea } from "../ddl";
 import { Reason } from "./Reason";
 export declare class IdeaSituation extends RepositoryEntity {

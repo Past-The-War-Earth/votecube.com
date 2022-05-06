@@ -1,7 +1,6 @@
 import { Api } from "@airport/check-in";
-import { DI } from "@airport/direction-indicator";
+import { Injected } from "@airport/direction-indicator";
 import { IAgreement } from "../generated/interfaces";
-import { AGREEMENT_API } from "../tokens";
 
 export interface IAgreementApi {
 
@@ -15,6 +14,7 @@ export interface IAgreementApi {
 
 }
 
+@Injected()
 export class AgreementApi
     implements IAgreementApi {
 
@@ -33,4 +33,3 @@ export class AgreementApi
     }
 
 }
-DI.set(AGREEMENT_API, AgreementApi)

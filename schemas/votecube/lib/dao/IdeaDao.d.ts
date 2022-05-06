@@ -1,5 +1,5 @@
 import { BaseIdeaDao, IIdea } from "../generated/generated";
-import { IRepositoryIdentifier } from '../client/types';
+import { IRepositoryIdentifier } from '../types';
 export interface IIdeaDao {
     findByRepositoryUuId(repositorySource: string, ideaReposioryUuid: string): Promise<IIdea>;
     saveExistingIdea(idea: IIdea): Promise<IRepositoryIdentifier>;

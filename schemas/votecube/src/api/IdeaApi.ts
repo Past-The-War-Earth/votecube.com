@@ -1,15 +1,11 @@
 import { Api } from "@airport/check-in";
-import {
-    container,
-    DI
-} from "@airport/direction-indicator";
-import { IRepositoryIdentifier } from "../client/types";
-import { IDEA_API } from "../tokens";
-import { IDEA_DAO } from "../server-tokens";
+import { Inject, Injected } from "@airport/direction-indicator";
+import { IdeaDao } from "../dao/dao"
 import {
     ILabel,
     IIdea
 } from "../generated/generated";
+import { IRepositoryIdentifier } from "../types";
 
 export interface IIdeaApi {
 
@@ -30,11 +26,11 @@ export interface IIdeaApi {
         ideaRepositoryUuId: string
     ): Promise<IIdea>
 
-    saveNewIdea(
+    saveExistingIdea(
         idea: IIdea
     ): Promise<IRepositoryIdentifier>
 
-    saveExistingIdea(
+    saveNewIdea(
         idea: IIdea
     ): Promise<IRepositoryIdentifier>
 
@@ -56,8 +52,12 @@ export interface IIdeaApi {
  * repository id and returns the first one found (there should only be one).
  */
 
+@Injected()
 export class IdeaApi
     implements IIdeaApi {
+
+    @Inject()
+    ideaDao: IdeaDao
 
     @Api()
     async getIdeasForLabels(
@@ -85,9 +85,7 @@ export class IdeaApi
         repositorySource: string,
         ideaRepositoryUuId: string
     ): Promise<IIdea> {
-        const ideaDao = await container(this).get(IDEA_DAO)
-
-        return await ideaDao.findByRepositoryUuId(repositorySource, ideaRepositoryUuId)
+        return await this.ideaDao.findByRepositoryUuId(repositorySource, ideaRepositoryUuId)
     }
 
     @Api()
@@ -99,9 +97,7 @@ export class IdeaApi
             || !idea.actorRecordId) {
             throw new Error(`Cannot save EXISTING idea without a repository, an actor and an actorRecordId`)
         }
-        const ideaDao = await container(this).get(IDEA_DAO)
-
-        return await ideaDao.saveExistingIdea(idea)
+        return await this.ideaDao.saveExistingIdea(idea)
     }
 
     @Api()
@@ -111,8 +107,6 @@ export class IdeaApi
         idea.repository = null
         idea.actor = null
         delete idea.actorRecordId
-
-        const ideaDao = await container(this).get(IDEA_DAO)
 
         // const [entityStateManager, forumThreadApi, ideaDao] = await container(this)
         //     .get(ENTITY_STATE_MANAGER, FORUM_THREAD_API, IDEA_DAO)
@@ -133,8 +127,7 @@ export class IdeaApi
 
         // idea.thread = forumThreadStub
 
-        return await ideaDao.saveNewIdea(idea)
+        return await this.ideaDao.saveNewIdea(idea)
     }
 
 }
-DI.set(IDEA_API, IdeaApi)

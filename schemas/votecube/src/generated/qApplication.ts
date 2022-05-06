@@ -1,17 +1,17 @@
 import {
 	AIRPORT_DATABASE,
 	QApplication as AirportQApplication
-}                      from '@airport/air-traffic-control'
+} from '@airport/air-traffic-control'
 import {
 	diSet as dS,
 	duoDiSet as ddS
-}                      from '@airport/check-in'
-import {DI}            from '@airport/di'
+} from '@airport/check-in'
+import { DEPENDENCY_INJECTION } from '@airport/direction-indicator'
 import {
 	DbApplication,
 	EntityId,
 	getFullApplicationName
-}                      from '@airport/ground-control';
+} from '@airport/ground-control';
 import { QAgreement } from './agreement/qagreement';
 import { QAgreementFactor } from './agreement/qagreementfactor';
 import { QFactor } from './factor/qfactor';
@@ -23,21 +23,21 @@ import { QOutcome } from './idea/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QReason } from './idea/qreason';
 import {
-  Agreement,
-  AgreementFactor,
-  Factor,
-  Idea,
-  IdeaLabel,
-  IdeaSituation,
-  Label,
-  Outcome,
-  Position,
-  Reason
+	Agreement,
+	AgreementFactor,
+	Factor,
+	Idea,
+	IdeaLabel,
+	IdeaSituation,
+	Label,
+	Outcome,
+	Position,
+	Reason
 } from '../ddl/ddl';
 
 export interface LocalQApplication extends AirportQApplication {
 
-  db: DbApplication;
+	db: DbApplication;
 
 	Agreement: QAgreement;
 	AgreementFactor: QAgreementFactor;
@@ -67,8 +67,8 @@ const __constructors__ = {
 
 export const Q_APPLICATION: LocalQApplication = <any>{
 	__constructors__,
-  domain: 'localhost:8000',
-  name: '@votecube/votecube'
+	domain: 'localhost:8000',
+	name: '@votecube/votecube'
 };
 export const Q: LocalQApplication = Q_APPLICATION
 
@@ -84,7 +84,7 @@ export function duoDiSet(
 	return ddS(Q.__dbApplication__, dbEntityId)
 }
 
-DI.db().eventuallyGet(AIRPORT_DATABASE).then((
+DEPENDENCY_INJECTION.db().eventuallyGet(AIRPORT_DATABASE).then((
 	airDb
 ) => {
 	airDb.QM[getFullApplicationName(Q_APPLICATION)] = Q

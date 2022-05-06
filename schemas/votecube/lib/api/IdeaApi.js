@@ -5,9 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/direction-indicator";
-import { IDEA_API } from "../tokens";
-import { IDEA_DAO } from "../server-tokens";
+import { Inject, Injected } from "@airport/direction-indicator";
 /**
  * Version 1 idea retrieval across devices.
  *
@@ -23,7 +21,7 @@ import { IDEA_DAO } from "../server-tokens";
  * the entire reposiory and then does a local search for all Ideas that have that
  * repository id and returns the first one found (there should only be one).
  */
-export class IdeaApi {
+let IdeaApi = class IdeaApi {
     async getIdeasForLabels(labels) {
         return [];
     }
@@ -34,8 +32,7 @@ export class IdeaApi {
         return null;
     }
     async getIdea(repositorySource, ideaRepositoryUuId) {
-        const ideaDao = await container(this).get(IDEA_DAO);
-        return await ideaDao.findByRepositoryUuId(repositorySource, ideaRepositoryUuId);
+        return await this.ideaDao.findByRepositoryUuId(repositorySource, ideaRepositoryUuId);
     }
     async saveExistingIdea(idea) {
         if (!idea.repository || !idea.repository.id
@@ -43,14 +40,12 @@ export class IdeaApi {
             || !idea.actorRecordId) {
             throw new Error(`Cannot save EXISTING idea without a repository, an actor and an actorRecordId`);
         }
-        const ideaDao = await container(this).get(IDEA_DAO);
-        return await ideaDao.saveExistingIdea(idea);
+        return await this.ideaDao.saveExistingIdea(idea);
     }
     async saveNewIdea(idea) {
         idea.repository = null;
         idea.actor = null;
         delete idea.actorRecordId;
-        const ideaDao = await container(this).get(IDEA_DAO);
         // const [entityStateManager, forumThreadApi, ideaDao] = await container(this)
         //     .get(ENTITY_STATE_MANAGER, FORUM_THREAD_API, IDEA_DAO)
         // const forumThread = await forumThreadApi.createNew()
@@ -65,9 +60,12 @@ export class IdeaApi {
         // } as IForumThread
         // entityStateManager.markAsStub(forumThreadStub)
         // idea.thread = forumThreadStub
-        return await ideaDao.saveNewIdea(idea);
+        return await this.ideaDao.saveNewIdea(idea);
     }
-}
+};
+__decorate([
+    Inject()
+], IdeaApi.prototype, "ideaDao", void 0);
 __decorate([
     Api()
 ], IdeaApi.prototype, "getIdeasForLabels", null);
@@ -86,5 +84,8 @@ __decorate([
 __decorate([
     Api()
 ], IdeaApi.prototype, "saveNewIdea", null);
-DI.set(IDEA_API, IdeaApi);
+IdeaApi = __decorate([
+    Injected()
+], IdeaApi);
+export { IdeaApi };
 //# sourceMappingURL=IdeaApi.js.map

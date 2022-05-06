@@ -5,17 +5,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/direction-indicator";
-import { IDEA_SITUATION_DAO } from "../server-tokens";
-import { IDEA_SITUATION_API } from "../tokens";
-export class IdeaSituationApi {
+import { Inject, Injected } from "@airport/direction-indicator";
+let IdeaSituationApi = class IdeaSituationApi {
     async add(ideaSituation) {
-        const ideaSituationDao = await container(this).get(IDEA_SITUATION_DAO);
-        await ideaSituationDao.save(ideaSituation);
+        await this.ideaSituationDao.save(ideaSituation);
     }
-}
+};
+__decorate([
+    Inject()
+], IdeaSituationApi.prototype, "ideaSituationDao", void 0);
 __decorate([
     Api()
 ], IdeaSituationApi.prototype, "add", null);
-DI.set(IDEA_SITUATION_API, IdeaSituationApi);
+IdeaSituationApi = __decorate([
+    Injected()
+], IdeaSituationApi);
+export { IdeaSituationApi };
 //# sourceMappingURL=IdeaSituationApi.js.map

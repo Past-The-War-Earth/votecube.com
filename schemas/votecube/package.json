@@ -8,20 +8,18 @@
   },
   "dependencies": {
     "@airport/air-traffic-control": "0.0.1",
+    "@airport/apron": "0.0.1",
     "@airport/check-in": "0.0.1",
     "@airport/direction-indicator": "0.0.1",
     "@airport/ground-control": "0.0.1",
     "@airport/holding-pattern": "0.0.1",
-    "@airport/landing": "0.0.1",
-    "@airport/pressurization": "0.0.1",
-    "@airport/apron": "0.0.1",
-    "@airport/takeoff": "0.0.1",
-    "@airport/terminal-map": "0.0.1",
     "@airport/travel-document-checkpoint": "0.0.1",
+    "@airport/tower": "0.0.1",
     "@airport/web-tower": "0.0.1",
-    "@sapoto/core-client": "0.0.1",
-    "@votecube/dependency-injection": "0.0.1",
-    "@votecube/forum": "0.0.1"
+    "@airport/terminal-map": "0.0.1",
+    "@sapoto/core": "0.0.1",
+    "@sapoto/dependency-injection": "0.0.1",
+    "@votecube/dependency-injection": "0.0.1"
   },
   "devDependencies": {
     "@airport/runway": "0.0.1",
@@ -34,13 +32,13 @@
     "typescript": "^4.5.2",
     "tslib": "^2.0.0"
   },
-  "main": "lib/client/index.js",
+  "main": "lib/to_be_generated/api-index.js",
   "name": "@votecube/votecube",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w"
   },
   "type": "module",
-  "typings": "lib/client/index",
+  "typings": "lib/to_be_generated/api-index",
   "version": "0.0.1"
 }

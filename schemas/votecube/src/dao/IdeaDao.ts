@@ -18,10 +18,9 @@ import {
 import {
     QRepository
 } from "@airport/holding-pattern";
-import { DI } from '@airport/di';
-import { IDEA_DAO } from '../server-tokens';
-import { IRepositoryIdentifier } from '../client/types';
 import { ISaveResult } from '@airport/ground-control';
+import { Injected } from '@airport/direction-indicator';
+import { IRepositoryIdentifier } from '../types';
 
 export interface IIdeaDao {
 
@@ -40,6 +39,7 @@ export interface IIdeaDao {
 
 }
 
+@Injected()
 export class IdeaDao
     extends BaseIdeaDao
     implements IIdeaDao {
@@ -145,4 +145,3 @@ export class IdeaDao
     }
 
 }
-DI.set(IDEA_DAO, IdeaDao)
