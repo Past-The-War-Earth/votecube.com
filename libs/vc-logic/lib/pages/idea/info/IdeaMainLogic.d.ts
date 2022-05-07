@@ -1,5 +1,6 @@
 import { ITweenAgreement, ITweenAgreementFactor, IUiAgreement, IUiAgreementFactor, AgreementFactor_Value } from '@votecube/model';
 import { Observable } from 'rxjs';
+import { IIdeaFormManager } from '../IdeaFormManager';
 declare type FrameDuration = number;
 declare type FrameNumber = number;
 declare type NumberOfFrames = number;
@@ -28,6 +29,7 @@ export interface IIdeaMainLogic {
     agreementsEqual(lastAgreement: IUiAgreement, agreement: IUiAgreement): boolean;
 }
 export declare class IdeaMainLogic implements IIdeaMainLogic {
+    ideaFormManager: IIdeaFormManager;
     agreementsEqual(lastAgreement: IUiAgreement, agreement: IUiAgreement): boolean;
     copyAgreementToTween(agreement: IUiAgreement, lastAgreement: IUiAgreement): ITweenAgreement;
     scheduleFactorTweens(oldAgreement: IUiAgreement, newAgreement: ITweenAgreement, durationMillis: FrameDuration): Observable<ITweenAgreement>;

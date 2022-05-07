@@ -1,5 +1,10 @@
-import { DI } from '@airport/di';
-import { CUBE_MOVEMENT } from '../tokens';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Inject, Injected } from '@airport/direction-indicator';
 export var Bool;
 (function (Bool) {
     Bool[Bool["False"] = 0] = "False";
@@ -11,7 +16,7 @@ export var Move;
     Move[Move["None"] = 0] = "None";
     Move[Move["Up"] = 1] = "Up";
 })(Move || (Move = {}));
-export class CubeMovement {
+let CubeMovement = class CubeMovement {
     constructor() {
         this.mouse = {
             start: { x: undefined, y: undefined }
@@ -32,13 +37,13 @@ export class CubeMovement {
         return remainder
     }
     */
-    getMatrixIdxFromDeg(rotationDegrees, cubeMoveMatrix) {
-        const signedMatrixIndex = Math.floor(rotationDegrees % 360 / cubeMoveMatrix.STEP_DEGS);
-        return this.normMatrixIdx(signedMatrixIndex, cubeMoveMatrix);
+    getMatrixIdxFromDeg(rotationDegrees) {
+        const signedMatrixIndex = Math.floor(rotationDegrees % 360 / this.cubeMoveMatrix.STEP_DEGS);
+        return this.normMatrixIdx(signedMatrixIndex);
     }
     moveCoordinates(
     // zoomIndex: ZoomIndex,
-    currentDegree, move, cubeMoveMatrix) {
+    currentDegree, move) {
         // not needed checked higher
         // if (!move) {
         // 	return [currentDegree, null]
@@ -49,7 +54,7 @@ export class CubeMovement {
         // } else if (zoomIndex === 2) {
         // 	zoomMultiplier = 1
         // }
-        const degreeChange = cubeMoveMatrix.STEP_DEGS;
+        const degreeChange = this.cubeMoveMatrix.STEP_DEGS;
         // * zoomMultiplier
         let zoomedMatrixIndex = Math.floor(currentDegree % 360 / degreeChange);
         const currentDegreeRemainder = currentDegree % degreeChange;
@@ -68,17 +73,23 @@ export class CubeMovement {
         const rotation = page * 360 + zoomedMatrixIndex * degreeChange;
         const matrixIndex = this.normMatrixIdx(zoomedMatrixIndex
         // * zoomMultiplier
-        , cubeMoveMatrix);
+        );
         return [rotation, matrixIndex];
     }
-    normMatrixIdx(signedMatrixIndex, cubeMoveMatrix) {
-        const numberOfMatrixDivisions = cubeMoveMatrix.NUM_DIVISIONS;
+    normMatrixIdx(signedMatrixIndex) {
+        const numberOfMatrixDivisions = this.cubeMoveMatrix.NUM_DIVISIONS;
         let normalizedMatrixIndex = signedMatrixIndex;
         if (signedMatrixIndex < 0) {
             normalizedMatrixIndex = numberOfMatrixDivisions + signedMatrixIndex;
         }
         return (normalizedMatrixIndex % numberOfMatrixDivisions);
     }
-}
-DI.set(CUBE_MOVEMENT, CubeMovement);
+};
+__decorate([
+    Inject()
+], CubeMovement.prototype, "cubeMoveMatrix", void 0);
+CubeMovement = __decorate([
+    Injected()
+], CubeMovement);
+export { CubeMovement };
 //# sourceMappingURL=CubeMovement.js.map

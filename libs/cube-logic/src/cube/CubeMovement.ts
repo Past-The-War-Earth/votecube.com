@@ -1,25 +1,23 @@
-import {DI}            from '@airport/di'
+import { Inject, Injected } from '@airport/direction-indicator'
 import {
 	IUiAgreement,
 	IUiAgreementFactor,
 	AgreementFactor_Value
-}                      from '@votecube/model'
-import {CUBE_MOVEMENT} from '../tokens'
+} from '@votecube/model'
 import {
 	ICubeMoveMatrix,
 	MatrixIndex
-}                      from './CubeMoveMatrix'
-import {Dimension}     from './Viewport'
+} from './CubeMoveMatrix'
 
 export enum Bool {
 	False = 0,
-	True  = 1
+	True = 1
 }
 
 export enum Move {
 	Down = -1,
 	None = 0,
-	Up   = 1
+	Up = 1
 }
 
 export type Direction = -1 | 0 | 1
@@ -82,28 +80,29 @@ export interface ICubeMovement {
 
 	getMatrixIdxFromDeg(
 		rotationDegrees: number,
-		cubeMoveMatrix: ICubeMoveMatrix
 	): MatrixIndex
 
 	moveCoordinates(
 		// zoomIndex: ZoomIndex,
 		currentDegree: number,
 		move: Move,
-		cubeMoveMatrix: ICubeMoveMatrix
 	): [number, MatrixIndex]
 
 	normMatrixIdx(
 		signedMatrixIndex: number,
-		cubeMoveMatrix: ICubeMoveMatrix
 	): MatrixIndex
 
 }
 
+@Injected()
 export class CubeMovement
 	implements ICubeMovement {
 
+	@Inject()
+	cubeMoveMatrix: ICubeMoveMatrix
+
 	mouse: IMousePosition = {
-		start: {x: undefined, y: undefined}
+		start: { x: undefined, y: undefined }
 	}
 
 	/*
@@ -123,19 +122,17 @@ export class CubeMovement
 	*/
 
 	getMatrixIdxFromDeg(
-		rotationDegrees: number,
-		cubeMoveMatrix: ICubeMoveMatrix
+		rotationDegrees: number
 	): MatrixIndex {
-		const signedMatrixIndex = Math.floor(rotationDegrees % 360 / cubeMoveMatrix.STEP_DEGS)
+		const signedMatrixIndex = Math.floor(rotationDegrees % 360 / this.cubeMoveMatrix.STEP_DEGS)
 
-		return this.normMatrixIdx(signedMatrixIndex, cubeMoveMatrix)
+		return this.normMatrixIdx(signedMatrixIndex)
 	}
 
 	moveCoordinates(
 		// zoomIndex: ZoomIndex,
 		currentDegree: number,
 		move: Move,
-		cubeMoveMatrix: ICubeMoveMatrix
 	): [number, MatrixIndex] {
 		// not needed checked higher
 		// if (!move) {
@@ -149,7 +146,7 @@ export class CubeMovement
 		// 	zoomMultiplier = 1
 		// }
 
-		const degreeChange    = cubeMoveMatrix.STEP_DEGS
+		const degreeChange = this.cubeMoveMatrix.STEP_DEGS
 		// * zoomMultiplier
 		let zoomedMatrixIndex = Math.floor(
 			currentDegree % 360 / degreeChange
@@ -169,10 +166,9 @@ export class CubeMovement
 			page = -Math.floor(Math.abs(currentDegree) / 360)
 		}
 
-		const rotation    = page * 360 + zoomedMatrixIndex * degreeChange
+		const rotation = page * 360 + zoomedMatrixIndex * degreeChange
 		const matrixIndex = this.normMatrixIdx(zoomedMatrixIndex
 			// * zoomMultiplier
-			, cubeMoveMatrix
 		)
 
 		return [rotation, matrixIndex]
@@ -180,9 +176,8 @@ export class CubeMovement
 
 	normMatrixIdx(
 		signedMatrixIndex: number,
-		cubeMoveMatrix: ICubeMoveMatrix
 	): MatrixIndex {
-		const numberOfMatrixDivisions = cubeMoveMatrix.NUM_DIVISIONS
+		const numberOfMatrixDivisions = this.cubeMoveMatrix.NUM_DIVISIONS
 
 		let normalizedMatrixIndex = signedMatrixIndex
 		if (signedMatrixIndex < 0) {
@@ -193,5 +188,3 @@ export class CubeMovement
 	}
 
 }
-
-DI.set(CUBE_MOVEMENT, CubeMovement)

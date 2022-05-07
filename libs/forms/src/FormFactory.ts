@@ -1,5 +1,3 @@
-import { DI } from '@airport/di'
-import { FORM_FACTORY } from './tokens'
 import {
 	ColorField,
 	IColorField
@@ -35,6 +33,7 @@ import {
 	Validators
 } from './validator/Validator'
 import { IMonthYearField, MonthYearField } from './field/date/MonthYearField'
+import { Injected } from '@airport/direction-indicator'
 
 
 export interface IFormFactory {
@@ -84,6 +83,7 @@ export interface IFormFactory {
 
 }
 
+@Injected()
 export class FormFactory
 	implements IFormFactory {
 
@@ -123,7 +123,7 @@ export class FormFactory
 	matching(
 		matchCallback: (
 			text: string
-		) => Promise<IMatch[]>,		
+		) => Promise<IMatch[]>,
 		validators?: IValidator[],
 		rules?: IFieldRules
 	): IMatchingField {
@@ -153,5 +153,3 @@ export class FormFactory
 	}
 
 }
-
-DI.set(FORM_FACTORY, FormFactory)

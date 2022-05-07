@@ -1,8 +1,13 @@
-import { container, DI } from '@airport/di';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import { AGE_GROUPS, } from '@votecube/model';
 import { RepositoryRecordConverter } from '@votecube/ui-logic';
-import { IDEA_CONVERTER, IDEA_FORM_MANAGER } from '../tokens';
-export class IdeaConverter extends RepositoryRecordConverter {
+import { Injected } from '@airport/direction-indicator';
+let IdeaConverter = class IdeaConverter extends RepositoryRecordConverter {
     dbToUi(dbIdea) {
         let ageGroups = [];
         let labels = [];
@@ -13,9 +18,9 @@ export class IdeaConverter extends RepositoryRecordConverter {
                 .map(ageGroupLabel => this.getUiLabel(ageGroupLabel));
         }
         return Object.assign(Object.assign({}, super.dbToUi(dbIdea)), { ageGroups, factors: {
-                '1': this.getUiFactor(1, dbIdea.ideaFactorPositions),
-                '2': this.getUiFactor(2, dbIdea.ideaFactorPositions),
-                '3': this.getUiFactor(3, dbIdea.ideaFactorPositions)
+                '1': this.getUiFactor(1, dbIdea.reasons),
+                '2': this.getUiFactor(2, dbIdea.reasons),
+                '3': this.getUiFactor(3, dbIdea.reasons)
             }, labels, name: dbIdea.name, outcomes: {
                 A: this.getUiOutcome(dbIdea.outcomeA),
                 B: this.getUiOutcome(dbIdea.outcomeB)
@@ -37,12 +42,12 @@ export class IdeaConverter extends RepositoryRecordConverter {
             dbIdea.outcomeB = {};
         }
         this.outcomeToDb(uiIdea.outcomes.B, dbIdea.outcomeB, uiIdea.ageSuitability);
-        const factor1 = this.ideaFactorPositionToDb(uiIdea, dbIdea, 1, 'A');
-        this.ideaFactorPositionToDb(uiIdea, dbIdea, 1, 'B', factor1);
-        const factor2 = this.ideaFactorPositionToDb(uiIdea, dbIdea, 2, 'A');
-        this.ideaFactorPositionToDb(uiIdea, dbIdea, 2, 'B', factor2);
-        const factor3 = this.ideaFactorPositionToDb(uiIdea, dbIdea, 3, 'A');
-        this.ideaFactorPositionToDb(uiIdea, dbIdea, 3, 'B', factor3);
+        const factor1 = this.reasonToDb(uiIdea, dbIdea, 1, 'A');
+        this.reasonToDb(uiIdea, dbIdea, 1, 'B', factor1);
+        const factor2 = this.reasonToDb(uiIdea, dbIdea, 2, 'A');
+        this.reasonToDb(uiIdea, dbIdea, 2, 'B', factor2);
+        const factor3 = this.reasonToDb(uiIdea, dbIdea, 3, 'A');
+        this.reasonToDb(uiIdea, dbIdea, 3, 'B', factor3);
         dbIdea.name = uiIdea.name;
         this.labelsToDb(uiIdea, dbIdea, uiIdea.ageGroups);
         this.labelsToDb(uiIdea, dbIdea, uiIdea.labels);
@@ -50,8 +55,7 @@ export class IdeaConverter extends RepositoryRecordConverter {
     }
     getUiLabel(ideaLabel) {
         if (!ideaLabel) {
-            const ideaFormManager = container(this).getSync(IDEA_FORM_MANAGER);
-            return Object.assign(Object.assign({}, ideaFormManager.getBlankUiNamedRecord()), { originalDbLabel: ideaLabel });
+            return Object.assign(Object.assign({}, this.ideaFormManager.getBlankUiNamedRecord()), { originalDbLabel: ideaLabel });
         }
         const label = ideaLabel.label;
         return Object.assign(Object.assign({}, super.dbToUi(label)), { name: label.name, originalDbLabel: ideaLabel });
@@ -78,9 +82,9 @@ export class IdeaConverter extends RepositoryRecordConverter {
                 B: this.getUiPosition(dbFactorPositionB),
             } });
     }
-    getUiPosition(dbIdeaFactorPosition) {
-        const position = dbIdeaFactorPosition.position;
-        return Object.assign(Object.assign({}, super.dbToUi(position)), { dir: dbIdeaFactorPosition.dir, name: position.name });
+    getUiPosition(dbReason) {
+        const position = dbReason.position;
+        return Object.assign(Object.assign({}, super.dbToUi(position)), { dir: dbReason.dir, name: position.name });
     }
     getUiOutcome(outcome) {
         return Object.assign(Object.assign({}, super.dbToUi(outcome)), { name: outcome.name });
@@ -117,46 +121,46 @@ export class IdeaConverter extends RepositoryRecordConverter {
         super.uiToDb(uiOutcome, outcome, ageSuitability);
         outcome.name = uiOutcome.name;
     }
-    ideaFactorPositionToDb(uiIdea, dbIdea, factorNumber, outcomeOrdinal, dbFactor) {
+    reasonToDb(uiIdea, dbIdea, factorNumber, outcomeOrdinal, dbFactor) {
         let existingFactor = !!dbFactor;
         const uiFactor = uiIdea.factors[factorNumber];
         const uiPosition = uiFactor.positions[outcomeOrdinal];
-        if (!dbIdea.ideaFactorPositions) {
-            dbIdea.ideaFactorPositions = [];
+        if (!dbIdea.reasons) {
+            dbIdea.reasons = [];
         }
-        const matchingIdeaFactorPositions = dbIdea.
-            ideaFactorPositions.filter(ideaFactorPosition => ideaFactorPosition.factorNumber === factorNumber
-            && ideaFactorPosition.outcomeOrdinal === outcomeOrdinal);
+        const matchingReasons = dbIdea.
+            reasons.filter(reason => reason.factorNumber === factorNumber
+            && reason.outcomeOrdinal === outcomeOrdinal);
         let dbPosition;
-        let dbIdeaFactorPosition;
-        if (matchingIdeaFactorPositions.length) {
-            dbIdeaFactorPosition = matchingIdeaFactorPositions[0];
-            dbFactor = dbIdeaFactorPosition.factor;
-            dbPosition = dbIdeaFactorPosition.position;
+        let dbReason;
+        if (matchingReasons.length) {
+            dbReason = matchingReasons[0];
+            dbFactor = dbReason.factor;
+            dbPosition = dbReason.position;
         }
         else {
-            dbIdeaFactorPosition = {};
+            dbReason = {};
             if (!existingFactor) {
                 dbFactor = {};
             }
             dbPosition = {};
-            dbIdeaFactorPosition.factor = dbFactor;
-            dbIdeaFactorPosition.position = dbPosition;
-            dbIdea.ideaFactorPositions
-                .push(dbIdeaFactorPosition);
+            dbReason.factor = dbFactor;
+            dbReason.position = dbPosition;
+            dbIdea.reasons
+                .push(dbReason);
         }
         if (!existingFactor) {
             this.factorToDb(uiFactor, dbFactor, uiIdea.ageSuitability);
         }
         this.positionToDb(uiPosition, dbPosition, uiIdea.ageSuitability);
-        super.uiToDb({}, dbIdeaFactorPosition, uiIdea.ageSuitability);
-        dbIdeaFactorPosition.axis = uiFactor.axis;
-        dbIdeaFactorPosition.blue = uiFactor.color.blue;
-        dbIdeaFactorPosition.dir = uiPosition.dir;
-        dbIdeaFactorPosition.factorNumber = factorNumber;
-        dbIdeaFactorPosition.green = uiFactor.color.green;
-        dbIdeaFactorPosition.outcomeOrdinal = outcomeOrdinal;
-        dbIdeaFactorPosition.red = uiFactor.color.red;
+        super.uiToDb({}, dbReason, uiIdea.ageSuitability);
+        dbReason.axis = uiFactor.axis;
+        dbReason.blue = uiFactor.color.blue;
+        dbReason.dir = uiPosition.dir;
+        dbReason.factorNumber = factorNumber;
+        dbReason.green = uiFactor.color.green;
+        dbReason.outcomeOrdinal = outcomeOrdinal;
+        dbReason.red = uiFactor.color.red;
         return dbFactor;
     }
     factorToDb(uiFactor, dbFactor, ageSuitability) {
@@ -167,6 +171,9 @@ export class IdeaConverter extends RepositoryRecordConverter {
         super.uiToDb(uiPosition, dbPosition, ageSuitability);
         dbPosition.name = uiPosition.name;
     }
-}
-DI.set(IDEA_CONVERTER, IdeaConverter);
+};
+IdeaConverter = __decorate([
+    Injected()
+], IdeaConverter);
+export { IdeaConverter };
 //# sourceMappingURL=IdeaConverter.js.map

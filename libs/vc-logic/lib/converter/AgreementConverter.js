@@ -1,9 +1,5 @@
-import { container, DI } from "@airport/direction-indicator";
-import { REPOSITORY_RECORD_CONVERTER } from '@votecube/ui-logic';
-import { AGREEMENT_CONVERTER } from "../tokens";
 export class AgreementConverter {
     dbToUi(dbAgreement) {
-        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER);
         let agreementFactor1;
         let agreementFactor2;
         let agreementFactor3;
@@ -20,11 +16,10 @@ export class AgreementConverter {
                     break;
             }
         }
-        return Object.assign(Object.assign({}, repositoryRecordConverter.dbToUi(dbAgreement)), { "1": this.agreementFactorDbToUi(agreementFactor1), "2": this.agreementFactorDbToUi(agreementFactor2), "3": this.agreementFactorDbToUi(agreementFactor3) });
+        return Object.assign(Object.assign({}, this.repositoryRecordConverter.dbToUi(dbAgreement)), { "1": this.agreementFactorDbToUi(agreementFactor1), "2": this.agreementFactorDbToUi(agreementFactor2), "3": this.agreementFactorDbToUi(agreementFactor3) });
     }
     agreementFactorDbToUi(dbAgreementFactor) {
-        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER);
-        return Object.assign(Object.assign({}, repositoryRecordConverter.dbToUi(dbAgreementFactor)), { factorNumber: this.getFactorNumber(dbAgreementFactor.axis), outcome: dbAgreementFactor.ideaFactorPosition.outcomeOrdinal, value: dbAgreementFactor.share });
+        return Object.assign(Object.assign({}, this.repositoryRecordConverter.dbToUi(dbAgreementFactor)), { factorNumber: this.getFactorNumber(dbAgreementFactor.axis), outcome: dbAgreementFactor.reason.outcomeOrdinal, value: dbAgreementFactor.share });
     }
     getFactorNumber(axis) {
         switch (axis) {
@@ -39,28 +34,25 @@ export class AgreementConverter {
         }
     }
     uiToDb(uiAgreement, ageSuitability = 0, idea) {
-        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER);
         let factors = [];
         const dbAgreement = {
             idea,
             factors
         };
-        repositoryRecordConverter.uiToDb(uiAgreement, dbAgreement, ageSuitability);
-        for (const ideaFactorPosition of idea.ideaFactorPositions) {
-            const uiAgreementFactor = uiAgreement[this.getFactorNumber(ideaFactorPosition.axis)];
-            factors.push(this.agreementFactorUiToDb(uiAgreementFactor, ageSuitability, dbAgreement, ideaFactorPosition));
+        this.repositoryRecordConverter.uiToDb(uiAgreement, dbAgreement, ageSuitability);
+        for (const reason of idea.reasons) {
+            const uiAgreementFactor = uiAgreement[this.getFactorNumber(reason.axis)];
+            factors.push(this.agreementFactorUiToDb(uiAgreementFactor, ageSuitability, dbAgreement, reason));
         }
         return dbAgreement;
     }
-    agreementFactorUiToDb(uiAgreementFactor, ageSuitability = 0, agreement, ideaFactorPosition) {
-        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER);
+    agreementFactorUiToDb(uiAgreementFactor, ageSuitability = 0, agreement, reason) {
         const dbAgreementFactor = {
             agreement,
-            ideaFactorPosition
+            reason
         };
-        repositoryRecordConverter.uiToDb(uiAgreementFactor, dbAgreementFactor, ageSuitability);
+        this.repositoryRecordConverter.uiToDb(uiAgreementFactor, dbAgreementFactor, ageSuitability);
         return dbAgreementFactor;
     }
 }
-DI.set(AGREEMENT_CONVERTER, AgreementConverter);
 //# sourceMappingURL=AgreementConverter.js.map

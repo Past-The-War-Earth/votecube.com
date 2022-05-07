@@ -29,7 +29,7 @@
 	}
 </style>
 <script>
-	import {DI}           from '@airport/di'
+	import {DEPENDENCY_INJECTION}           from '@airport/direction-indicator'
 	import {FACTOR_DAO}   from '@votecube/relational-db'
 	// import VirtualList from '@sveltejs/svelte-virtual-list';
 	import AutoComplete   from '@votecube/ui-controls/src/field/AutoComplete.svelte'
@@ -62,13 +62,13 @@
 		ondestroy() {
 			clearForm(this)
 			const {container} = this.get()
-			DI.remove(container)
+			DEPENDENCY_INJECTION.remove(container)
 		},
 		store: () => store
 	}
 
 	async function initPage(page) {
-		const container  = DI.ui('FactorList')
+		const container  = DEPENDENCY_INJECTION.ui('FactorList')
 		const factorDao  = await container.get(FACTOR_DAO)
 		const filterForm = await initForm(page)
 

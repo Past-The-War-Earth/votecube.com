@@ -1,5 +1,4 @@
-import {DI}                 from '@airport/di'
-import {EVENT_LISTENER_MAP} from '../tokens'
+import { Injected } from "@airport/direction-indicator"
 
 export type IEventListener<E extends Event> =
 	(event: E) => void
@@ -34,6 +33,7 @@ export interface IEventListenerMap {
 
 }
 
+@Injected()
 export class EventListenerMap
 	implements IEventListenerMap {
 
@@ -139,5 +139,3 @@ export class EventListenerMap
 	}
 
 }
-
-DI.set(EVENT_LISTENER_MAP, EventListenerMap)

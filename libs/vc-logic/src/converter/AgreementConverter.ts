@@ -1,4 +1,3 @@
-import { container, DI } from "@airport/direction-indicator";
 import {
     IUiAgreement,
     IUiAgreementFactor,
@@ -9,9 +8,8 @@ import {
     IReason,
     IAgreement,
     IAgreementFactor
-} from "@votecube/votecube";
-import { REPOSITORY_RECORD_CONVERTER } from '@votecube/ui-logic'
-import { AGREEMENT_CONVERTER } from "../tokens";
+} from "@votecube/votecube-client";
+import { IRepositoryRecordConverter } from '@votecube/ui-logic'
 
 export interface IAgreementConverter {
 
@@ -30,10 +28,11 @@ export interface IAgreementConverter {
 export class AgreementConverter
     implements IAgreementConverter {
 
+    repositoryRecordConverter: IRepositoryRecordConverter
+
     dbToUi(
         dbAgreement: IAgreement
     ): IUiAgreement {
-        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         let agreementFactor1: IAgreementFactor
         let agreementFactor2: IAgreementFactor
         let agreementFactor3: IAgreementFactor
@@ -51,7 +50,7 @@ export class AgreementConverter
             }
         }
         return {
-            ...repositoryRecordConverter.dbToUi(dbAgreement),
+            ...this.repositoryRecordConverter.dbToUi(dbAgreement),
             "1": this.agreementFactorDbToUi(agreementFactor1),
             "2": this.agreementFactorDbToUi(agreementFactor2),
             "3": this.agreementFactorDbToUi(agreementFactor3)
@@ -61,9 +60,8 @@ export class AgreementConverter
     private agreementFactorDbToUi(
         dbAgreementFactor: IAgreementFactor
     ): IUiAgreementFactor {
-        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         return {
-            ...repositoryRecordConverter.dbToUi(dbAgreementFactor),
+            ...this.repositoryRecordConverter.dbToUi(dbAgreementFactor),
             factorNumber: this.getFactorNumber(dbAgreementFactor.axis as 'x' | 'y' | 'z'),
             outcome: dbAgreementFactor.reason.outcomeOrdinal as 'A' | 'B',
             value: dbAgreementFactor.share as AgreementFactor_Value
@@ -90,15 +88,14 @@ export class AgreementConverter
         ageSuitability: 0 | 7 | 13 | 18 = 0,
         idea: IIdea,
     ): IAgreement {
-        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
         let factors: IAgreementFactor[] = []
-        
+
         const dbAgreement: IAgreement = {
             idea,
             factors
         } as any
 
-        repositoryRecordConverter.uiToDb(uiAgreement, dbAgreement, ageSuitability)
+        this.repositoryRecordConverter.uiToDb(uiAgreement, dbAgreement, ageSuitability)
 
         for (const reason of idea.reasons) {
             const uiAgreementFactor = uiAgreement[
@@ -116,17 +113,14 @@ export class AgreementConverter
         agreement: IAgreement,
         reason: IReason,
     ): IAgreementFactor {
-        const repositoryRecordConverter = container(this).getSync(REPOSITORY_RECORD_CONVERTER)
-        
         const dbAgreementFactor: IAgreementFactor = {
             agreement,
             reason
         } as any
 
-        repositoryRecordConverter.uiToDb(uiAgreementFactor, dbAgreementFactor, ageSuitability)
+        this.repositoryRecordConverter.uiToDb(uiAgreementFactor, dbAgreementFactor, ageSuitability)
 
         return dbAgreementFactor
     }
 
 }
-DI.set(AGREEMENT_CONVERTER, AgreementConverter)

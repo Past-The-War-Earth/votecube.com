@@ -1,12 +1,17 @@
-import { DI } from '@airport/di';
-import { CUBE_MOVE_MATRIX } from '../tokens';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Injected } from '@airport/direction-indicator';
 export var MoveIncrement;
 (function (MoveIncrement) {
     MoveIncrement[MoveIncrement["FORTY_FIVE"] = 45] = "FORTY_FIVE";
     MoveIncrement[MoveIncrement["FIFTEEN"] = 15] = "FIFTEEN";
     MoveIncrement[MoveIncrement["FIVE"] = 5] = "FIVE";
 })(MoveIncrement || (MoveIncrement = {}));
-export class CubeMoveMatrix {
+let CubeMoveMatrix = class CubeMoveMatrix {
     constructor() {
         this.MOVE_INCREMENTS = [
             MoveIncrement.FORTY_FIVE,
@@ -132,6 +137,9 @@ export class CubeMoveMatrix {
             }
         }
     }
-}
-DI.set(CUBE_MOVE_MATRIX, CubeMoveMatrix);
+};
+CubeMoveMatrix = __decorate([
+    Injected()
+], CubeMoveMatrix);
+export { CubeMoveMatrix };
 //# sourceMappingURL=CubeMoveMatrix.js.map

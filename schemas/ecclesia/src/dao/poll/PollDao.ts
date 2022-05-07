@@ -4,7 +4,7 @@ import {
 	ANOTHER,
 	U
 }                         from '@airport/air-traffic-control'
-import {DI}               from '@airport/di'
+import {DI}               from '@airport/direction-indicator'
 import {
 	BasePollDao,
 	IBasePollDao,

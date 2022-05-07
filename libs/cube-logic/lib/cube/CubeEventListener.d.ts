@@ -1,8 +1,11 @@
 import { IUiAgreement } from '@votecube/model';
 import { Factor_Number } from './mutation/types';
-import { IPerElementEventListenerMap } from '../utils/EventListenerMap';
-import { IValuesOutCallback } from './CubeMovement';
+import { IEventListenerMap, IPerElementEventListenerMap } from '../utils/EventListenerMap';
+import { IValuesOutCallback, ICubeMovement } from './CubeMovement';
 import { IMutationApi } from './mutation/MutationApi';
+import { IViewport } from './Viewport';
+import { ICubeUtils } from '../utils/CubeUtils';
+import { ICubeDirection } from './CubeDirection';
 export declare type MovementDirection = -1 | 0 | 1;
 export declare type ChangeInPixels = number;
 export declare type DirectionVector = [
@@ -22,6 +25,12 @@ export interface ICubeEventListener {
 }
 export declare const TOUCH: boolean;
 export declare class CubeEventListener implements ICubeEventListener {
+    cubeDirection: ICubeDirection;
+    cubeMovement: ICubeMovement;
+    cubeUtils: ICubeUtils;
+    eventListenerMap: IEventListenerMap;
+    mutationApi: IMutationApi;
+    viewport: IViewport;
     private dLM;
     private lastMove;
     private suspended;

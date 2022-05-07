@@ -1,7 +1,12 @@
-import { container, DI } from '@airport/di';
-import { AgreementApiClient } from '@votecube/votecube';
-import { IDEA_MANAGER, AGREEMENT_CONVERTER, AGREEMENT_MANAGER } from '../tokens';
-export class AgreementManager {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { AgreementApiClient } from '@votecube/votecube-client';
+import { Inject, Injected } from '@airport/direction-indicator';
+let AgreementManager = class AgreementManager {
     constructor() {
         this.agreementApi = new AgreementApiClient();
     }
@@ -16,18 +21,14 @@ export class AgreementManager {
         if (!agreement) {
             return this.getStubAgreement();
         }
-        const agreementConverter = await container(this).get(AGREEMENT_CONVERTER);
-        return agreementConverter.dbToUi(agreement);
+        return this.agreementConverter.dbToUi(agreement);
     }
     async saveAgreement(idea, agreement) {
-        const [ideaManager, agreementConverter] = await container(this)
-            .get(IDEA_MANAGER, AGREEMENT_CONVERTER);
-        const dbAgreement = agreementConverter.uiToDb(agreement, idea.ageSuitability, ideaManager.cachedIdea.db);
+        const dbAgreement = this.agreementConverter.uiToDb(agreement, idea.ageSuitability, this.ideaManager.cachedIdea.db);
         await this.agreementApi.saveAgreement(dbAgreement);
     }
     async saveCachedIdeaAgreement(agreement) {
-        const ideaManager = await container(this).get(IDEA_MANAGER);
-        await this.saveAgreement(ideaManager.cachedIdea.ui, agreement);
+        await this.saveAgreement(this.ideaManager.cachedIdea.ui, agreement);
     }
     getStubAgreement() {
         return Object.assign(Object.assign({}, this.getStubIds()), { 1: Object.assign(Object.assign({}, this.getStubIds()), { factorNumber: 1, outcome: 'A', value: 33 }), 2: Object.assign(Object.assign({}, this.getStubIds()), { factorNumber: 2, outcome: 'A', value: 33 }), 3: Object.assign(Object.assign({}, this.getStubIds()), { factorNumber: 3, outcome: 'B', value: 34 }) });
@@ -42,6 +43,15 @@ export class AgreementManager {
             // repositoryUuId: null,
         };
     }
-}
-DI.set(AGREEMENT_MANAGER, AgreementManager);
+};
+__decorate([
+    Inject()
+], AgreementManager.prototype, "agreementConverter", void 0);
+__decorate([
+    Inject()
+], AgreementManager.prototype, "ideaManager", void 0);
+AgreementManager = __decorate([
+    Injected()
+], AgreementManager);
+export { AgreementManager };
 //# sourceMappingURL=AgreementManager.js.map

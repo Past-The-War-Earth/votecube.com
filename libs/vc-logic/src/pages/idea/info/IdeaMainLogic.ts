@@ -1,4 +1,4 @@
-import { container, DI } from '@airport/di'
+import { Inject, Injected } from '@airport/direction-indicator'
 import {
 	Factor_Number
 } from '@votecube/cube-logic'
@@ -13,10 +13,7 @@ import {
 	Observable,
 	Subject
 } from 'rxjs'
-import {
-	IDEA_FORM_MANAGER,
-	IDEA_MAIN_LOGIC
-} from '../../../tokens'
+import { IIdeaFormManager } from '../IdeaFormManager'
 
 type FrameDuration = number
 type FrameNumber = number
@@ -64,8 +61,12 @@ export interface IIdeaMainLogic {
 
 }
 
+@Injected()
 export class IdeaMainLogic
 	implements IIdeaMainLogic {
+
+	@Inject()
+	ideaFormManager: IIdeaFormManager
 
 	agreementsEqual(
 		lastAgreement: IUiAgreement,
@@ -84,9 +85,8 @@ export class IdeaMainLogic
 		agreement: IUiAgreement,
 		lastAgreement: IUiAgreement
 	): ITweenAgreement {
-		const ideaFormManager = container(this).getSync(IDEA_FORM_MANAGER)
 		return {
-			...ideaFormManager.getBlankUiRepositoryRecord(),
+			...this.ideaFormManager.getBlankUiRepositoryRecord(),
 			1: this.getTweenAgreementFactor(agreement, lastAgreement, 1),
 			2: this.getTweenAgreementFactor(agreement, lastAgreement, 2),
 			3: this.getTweenAgreementFactor(agreement, lastAgreement, 3)
@@ -252,5 +252,3 @@ export class IdeaMainLogic
 	}
 
 }
-
-DI.set(IDEA_MAIN_LOGIC, IdeaMainLogic)

@@ -1,18 +1,14 @@
-import { container, DI } from '@airport/di'
 import {
 	AgreementApiClient
-} from '@votecube/votecube'
+} from '@votecube/votecube-client'
 import {
 	IUiRepositoryRecord,
 	IUiIdea,
 	IUiAgreement
 } from '@votecube/model'
-import {
-	IDEA_CONVERTER,
-	IDEA_MANAGER,
-	AGREEMENT_CONVERTER,
-	AGREEMENT_MANAGER
-} from '../tokens'
+import { Inject, Injected } from '@airport/direction-indicator'
+import { IAgreementConverter } from '../converter/AgreementConverter'
+import { IIdeaManager } from './IdeaManager'
 
 export interface IAgreementManager {
 
@@ -32,8 +28,15 @@ export interface IAgreementManager {
 
 }
 
+@Injected()
 export class AgreementManager
 	implements IAgreementManager {
+
+	@Inject()
+	agreementConverter: IAgreementConverter
+
+	@Inject()
+	ideaManager: IIdeaManager
 
 	agreementApi = new AgreementApiClient()
 
@@ -51,21 +54,15 @@ export class AgreementManager
 			return this.getStubAgreement()
 		}
 
-		const agreementConverter = await container(this).get(AGREEMENT_CONVERTER)
-
-		return agreementConverter.dbToUi(agreement)
+		return this.agreementConverter.dbToUi(agreement)
 	}
 
 	async saveAgreement(
 		idea: IUiIdea,
 		agreement: IUiAgreement
 	): Promise<void> {
-		const [ideaManager, agreementConverter] = await container(this)
-			.get(IDEA_MANAGER, AGREEMENT_CONVERTER)
-
-
-		const dbAgreement = agreementConverter.uiToDb(
-			agreement, idea.ageSuitability, ideaManager.cachedIdea.db)
+		const dbAgreement = this.agreementConverter.uiToDb(
+			agreement, idea.ageSuitability, this.ideaManager.cachedIdea.db)
 
 		await this.agreementApi.saveAgreement(dbAgreement)
 	}
@@ -73,8 +70,7 @@ export class AgreementManager
 	async saveCachedIdeaAgreement(
 		agreement: IUiAgreement
 	): Promise<void> {
-		const ideaManager = await container(this).get(IDEA_MANAGER)
-		await this.saveAgreement(ideaManager.cachedIdea.ui, agreement)
+		await this.saveAgreement(this.ideaManager.cachedIdea.ui, agreement)
 	}
 
 	private getStubAgreement(): IUiAgreement {
@@ -113,5 +109,3 @@ export class AgreementManager
 	}
 
 }
-
-DI.set(AGREEMENT_MANAGER, AgreementManager)

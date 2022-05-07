@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { AIRPORT_DATABASE } from '@airport/air-traffic-control';
-import { DI } from '@airport/di';
+import { DI } from '@airport/direction-indicator';
 import { ImmutableRow } from '../ddl/infrastructure/row/ImmutableRow';
 import { SystemGeneratedRow } from '../ddl/infrastructure/row/SystemGeneratedRow';
 import { UserAccount } from '../ddl/user/UserAccount';

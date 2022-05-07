@@ -1,4 +1,4 @@
-import { DI } from '@airport/di'
+import { Injected } from '@airport/direction-indicator'
 import {
 	ICubeEventListener,
 	IMutationApi,
@@ -9,7 +9,6 @@ import {
 	ICubePosition,
 	ICubeReasonDefault,
 } from '@votecube/model'
-import { CUBE_LOGIC } from '../tokens'
 
 export interface ICubeLogic {
 
@@ -34,6 +33,7 @@ export interface ICubeLogic {
 
 }
 
+@Injected()
 export class CubeLogic
 	implements ICubeLogic {
 
@@ -131,5 +131,3 @@ export class CubeLogic
 	}
 
 }
-
-DI.set(CUBE_LOGIC, CubeLogic)

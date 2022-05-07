@@ -1,38 +1,39 @@
-import { container, DI } from '@airport/di';
-import { CUBE_MOVE_MATRIX, CUBE_MOVEMENT, CUBE_UTILS, DEGREE_POSITION_CHOOSER, FINAL_POSITION_FINDER, MATRIX_VALUE_CHOOSER, MUTATION_API, PERCENTAGE_POSITION_CHOOSER, VIEWPORT } from '../../tokens';
-export class MutationApi {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Inject, Injected } from '@airport/direction-indicator';
+let MutationApi = class MutationApi {
     /*	changeZoom(
             zoomIndex: ZoomIndex
         ): void {
             // this.vp.zm = zoomIndex
         }*/
     move(factorNumber, outcome, percentChange) {
-        container(this).get(PERCENTAGE_POSITION_CHOOSER, VIEWPORT).then(([percentagePositionChooser, viewport]) => {
-            const dimension = viewport.pd.factorToAxisMapping[factorNumber];
-            const dimensionPositionData = viewport.pd[dimension];
-            if (dimensionPositionData.value === 100
-                && dimensionPositionData.outcome === outcome) {
-                return;
-            }
-            // let percentChange = this.getPercentChange()
-            this.moveToPercent(dimension, null, percentagePositionChooser, viewport, percentChange, outcome);
-        });
-    }
-    async moveToValue(factorNumber, value) {
-        const [percentagePositionChooser, viewport] = await container(this).get(PERCENTAGE_POSITION_CHOOSER, VIEWPORT);
-        const dimension = viewport.pd.factorToAxisMapping[factorNumber];
-        const numericValue = parseInt(value);
-        viewport.pd[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100;
-        if (!viewport.pd[dimension].valid) {
-            viewport.cb(viewport.pd);
+        const dimension = this.viewport.pd.factorToAxisMapping[factorNumber];
+        const dimensionPositionData = this.viewport.pd[dimension];
+        if (dimensionPositionData.value === 100
+            && dimensionPositionData.outcome === outcome) {
             return;
         }
-        this.moveToPercent(dimension, numericValue, percentagePositionChooser, viewport);
+        // let percentChange = this.getPercentChange()
+        this.moveToPercent(dimension, null, percentChange, outcome);
+    }
+    async moveToValue(factorNumber, value) {
+        const dimension = this.viewport.pd.factorToAxisMapping[factorNumber];
+        const numericValue = parseInt(value);
+        this.viewport.pd[dimension].valid = !isNaN(value) && numericValue >= 0 && numericValue <= 100;
+        if (!this.viewport.pd[dimension].valid) {
+            this.viewport.cb(this.viewport.pd);
+            return;
+        }
+        this.moveToPercent(dimension, numericValue);
     }
     async toggleSurface(factorNumber) {
-        const viewport = await container(this).get(VIEWPORT);
-        const dimension = viewport.pd.factorToAxisMapping[factorNumber];
-        const dimensionPositionData = viewport.pd[dimension];
+        const dimension = this.viewport.pd.factorToAxisMapping[factorNumber];
+        const dimensionPositionData = this.viewport.pd[dimension];
         if (!dimensionPositionData.outcome) {
             dimensionPositionData.outcome = 'A';
         }
@@ -41,48 +42,80 @@ export class MutationApi {
         }
         switch (dimension) {
             case 'x': {
-                viewport.pd.y.outcome = null;
-                viewport.pd.z.outcome = null;
+                this.viewport.pd.y.outcome = null;
+                this.viewport.pd.z.outcome = null;
                 break;
             }
             case 'y': {
-                viewport.pd.x.outcome = null;
-                viewport.pd.z.outcome = null;
+                this.viewport.pd.x.outcome = null;
+                this.viewport.pd.z.outcome = null;
                 break;
             }
             case 'z': {
-                viewport.pd.x.outcome = null;
-                viewport.pd.y.outcome = null;
+                this.viewport.pd.x.outcome = null;
+                this.viewport.pd.y.outcome = null;
                 break;
             }
         }
-        this.moveToPercent(dimension, 100, null, null);
+        this.moveToPercent(dimension, 100);
     }
     async recompute() {
-        const [cubeMoveMatrix, cubeMovement, cubeUtils, degreePositionChooser, finalPositionFinder, matrixValueChooser, viewport] = await container(this).get(CUBE_MOVE_MATRIX, CUBE_MOVEMENT, CUBE_UTILS, DEGREE_POSITION_CHOOSER, FINAL_POSITION_FINDER, MATRIX_VALUE_CHOOSER, VIEWPORT);
-        if (!viewport.pd) {
+        if (!this.viewport.pd) {
             return;
         }
-        const closestMatrixPosition = matrixValueChooser.getClosestMatrixPosition(viewport, cubeUtils, cubeMoveMatrix);
-        const finalPosition = finalPositionFinder.findFinalPosition(closestMatrixPosition, viewport, cubeUtils, cubeMoveMatrix, cubeMovement);
-        degreePositionChooser.setFinalDegrees(finalPosition, viewport);
+        const closestMatrixPosition = this.matrixValueChooser.getClosestMatrixPosition();
+        const finalPosition = this.finalPositionFinder.findFinalPosition(closestMatrixPosition);
+        this.degreePositionChooser.setFinalDegrees(finalPosition);
     }
-    moveToPercent(dimension, newPercent, percentagePositionChooser, viewport, percentChange, outcome) {
+    moveToPercent(dimension, newPercent, percentChange, outcome) {
         // First see the order of recently moved dimensions
-        viewport.rmd = viewport.rmd.filter(changedDim => dimension !== changedDim);
-        viewport.rmd.unshift(dimension);
-        const numPreviousMoves = viewport.rmd.length;
+        this.viewport.rmd = this.viewport.rmd.filter(changedDim => dimension !== changedDim);
+        this.viewport.rmd.unshift(dimension);
+        const numPreviousMoves = this.viewport.rmd.length;
         if (numPreviousMoves > 3) {
-            viewport.rmd.pop();
+            this.viewport.rmd.pop();
         }
         if (percentChange) {
-            percentagePositionChooser.changePositionPercentages(dimension, percentChange, outcome, viewport);
+            this.percentagePositionChooser.changePositionPercentages(dimension, percentChange, outcome);
         }
         else {
-            percentagePositionChooser.setPositionPercentages(dimension, newPercent, viewport.pd[dimension].outcome, viewport);
+            this.percentagePositionChooser.setPositionPercentages(dimension, newPercent, this.viewport.pd[dimension].outcome);
         }
         this.recompute();
     }
-}
-DI.set(MUTATION_API, MutationApi);
+};
+__decorate([
+    Inject()
+], MutationApi.prototype, "cubeMoveMatrix", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "cubeMovement", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "cubeUtils", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "degreePositionChooser", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "eventListenerMap", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "finalPositionFinder", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "matrixValueChooser", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "mutationApi", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "percentagePositionChooser", void 0);
+__decorate([
+    Inject()
+], MutationApi.prototype, "viewport", void 0);
+MutationApi = __decorate([
+    Injected()
+], MutationApi);
+export { MutationApi };
 //# sourceMappingURL=MutationApi.js.map

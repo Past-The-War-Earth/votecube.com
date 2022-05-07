@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DI, IChildContainer } from "@airport/direction-indicator";
+    import { DEPENDENCY_INJECTION, IChildContainer } from "@airport/direction-indicator";
     import {
         FACTOR_INFO_MAIN,
         IDEA_FORM_LOGIC,
@@ -145,7 +145,7 @@ return !form.fields.locations.isOriginal()
     }
 
     onMount(async () => {
-        container = DI.ui("IdeaForm");
+        container = DEPENDENCY_INJECTION.ui("IdeaForm");
         const [
             formFactory,
             // locations,

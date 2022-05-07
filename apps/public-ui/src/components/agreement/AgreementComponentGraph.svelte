@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import type {
 		ITweenAgreementFactor,
 		IUiColor,
@@ -72,7 +72,7 @@
 	// outcomeFontY: ({outcome}) => outcome === 'B' ? 21 : 21
 
 	onMount(async () => {
-		container = DI.ui("AgreementComponentGraph");
+		container = DEPENDENCY_INJECTION.ui("AgreementComponentGraph");
 		logicUtils = await container.get(LOGIC_UTILS);
 
 		cardMoveUnsubscribe = cardMove.subscribe((cardMoveValue) => {
@@ -117,7 +117,7 @@
 
 	onDestroy(async () => {
 		cardMoveUnsubscribe();
-		DI.remove(container);
+		DEPENDENCY_INJECTION.remove(container);
 	});
 
 	function f<T>(func: () => T, _delta: number) {

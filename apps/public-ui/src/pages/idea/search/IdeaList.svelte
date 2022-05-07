@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import type { IUiLabel, IUiIdea } from "@votecube/model";
 	import {
 		navigateToPage,
@@ -52,13 +52,13 @@
 	};
 
 	onMount(async () => {
-		container = DI.ui("IdeaList");
+		container = DEPENDENCY_INJECTION.ui("IdeaList");
 		logicUtils = await container.get(LOGIC_UTILS);
 	});
 
 	onDestroy(() => {
 		forms.clearForm(form);
-		DI.remove(container);
+		DEPENDENCY_INJECTION.remove(container);
 	});
 
 	function getError(error) {

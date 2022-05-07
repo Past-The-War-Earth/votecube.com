@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DI } from "@airport/direction-indicator";
+    import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
     import { CUBE_EVENT_LISTENER, MUTATION_API } from "@votecube/cube-logic";
     import type {
         ITweenAgreement,
@@ -62,7 +62,7 @@
     let cubeView = false;
     // cubeTransition: false,
 
-    let container = DI.ui("IdeaMain");
+    let container = DEPENDENCY_INJECTION.ui("IdeaMain");
     let currentAgreement: ITweenAgreement = getBlankTweenAgreement(container);
     let delta = 0;
     let effectiveCubeView;
@@ -264,7 +264,7 @@
 
         // routeParamsUnsubscribe();
 
-        DI.remove(container);
+        DEPENDENCY_INJECTION.remove(container);
     });
 
     beforeUpdate(async () => {

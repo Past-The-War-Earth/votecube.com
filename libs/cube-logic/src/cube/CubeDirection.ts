@@ -1,5 +1,3 @@
-import {DI}             from '@airport/di'
-import {CUBE_DIRECTION} from '../tokens'
 import {
 	DirectionVector,
 	MovementDirection
@@ -104,5 +102,3 @@ export class CubeDirection
 		]
 	}
 }
-
-DI.set(CUBE_DIRECTION, CubeDirection)

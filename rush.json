@@ -17,11 +17,6 @@
       "projectFolder": "apps/public-ui",
       "shouldPublish": true
     },
-    {
-      "packageName": "@votecube/repository-demo-frame",
-      "projectFolder": "apps/repository-demo-frame",
-      "shouldPublish": true
-    },
     // "libs" folder (alphabetical order)
     {
       "packageName": "@votecube/cube-logic",

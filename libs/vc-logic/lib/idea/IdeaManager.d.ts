@@ -1,6 +1,10 @@
 import { IFieldGroup } from '@votecube/forms';
 import { IUiAgreement, IUiIdea, IUiLabel } from '@votecube/model';
-import { IRepositoryIdentifier, IIdea, IdeaApiClient } from '@votecube/votecube';
+import { IRepositoryIdentifier, IIdea, IdeaApiClient } from '@votecube/votecube-client';
+import { ILogicUtils } from '..';
+import { IIdeaConverter } from '../converter/IdeaConverter';
+import { IIdeaFormManager } from '../pages/idea/IdeaFormManager';
+import { ICubeLogic } from './CubeLogic';
 export interface IPageAgreement extends IUiAgreement {
     changeMillis?: number;
 }
@@ -22,6 +26,10 @@ export interface ICachedIdea {
     ui: IUiIdea;
 }
 export declare class IdeaManager implements IIdeaManager {
+    cubeLogic: ICubeLogic;
+    logicUtils: ILogicUtils;
+    ideaFormManager: IIdeaFormManager;
+    ideaConverter: IIdeaConverter;
     ideaApi: IdeaApiClient;
     private theCachedIdea;
     get cachedIdea(): ICachedIdea;

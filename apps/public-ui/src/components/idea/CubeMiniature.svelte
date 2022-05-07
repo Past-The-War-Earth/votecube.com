@@ -1,6 +1,6 @@
 <script lang="ts">
 
-	import {DI} from '@airport/di'
+	import {DEPENDENCY_INJECTION} from '@airport/direction-indicator'
 	import {
 		CUBE_EVENT_LISTENER,
 		MUTATION_API
@@ -30,7 +30,7 @@ import type { IUiAgreement } from '@votecube/model';
 	$: transformMillis = v(agreement ? agreement.changeMillis : 700, delta)
 
 	onMount(async () => {
-		container = DI.ui('CubeMiniature')
+		container = DEPENDENCY_INJECTION.ui('CubeMiniature')
 		const [
 			      cubeEventListener, cubeLogic, theLogicUtils, mutationApi
 		      ]   = await container.get(
@@ -55,7 +55,7 @@ import type { IUiAgreement } from '@votecube/model';
 	onDestroy(async () => {
 		const cubeEventListener = await container.get(CUBE_EVENT_LISTENER)
 		cubeEventListener.clearView('cubeMin')
-		DI.remove(container)
+		DEPENDENCY_INJECTION.remove(container)
 	})
 
 	function v<T>(val:T, _delta: number): T {

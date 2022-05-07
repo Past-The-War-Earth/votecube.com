@@ -1,9 +1,14 @@
-import { DI } from '@airport/di';
-import { MATRIX_VALUE_CHOOSER } from '../../tokens';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Inject, Injected } from '@airport/direction-indicator';
 const MAX_DIST = 12;
-export class MatrixValueChooser {
-    getClosestMatrixPosition(viewport, cubeUtils, cubeMoveMatrix) {
-        const x = viewport.pd.x;
+let MatrixValueChooser = class MatrixValueChooser {
+    getClosestMatrixPosition() {
+        const x = this.viewport.pd.x;
         if (x.value === 100
             && x.outcome === 'B') {
             return {
@@ -12,23 +17,23 @@ export class MatrixValueChooser {
                 // j: 36,
                 i: 20,
                 j: 36,
-                values: cubeMoveMatrix.VALUE_MATRIX[20][36]
+                values: this.cubeMoveMatrix.VALUE_MATRIX[20][36]
             };
         }
-        const positionsWithZeroes = this.getZeroedPositions(viewport);
-        const matrixPosition = this.getClosestPositionByDistanceAndMedian(positionsWithZeroes, viewport, cubeUtils, cubeMoveMatrix);
+        const positionsWithZeroes = this.getZeroedPositions();
+        const matrixPosition = this.getClosestPositionByDistanceAndMedian(positionsWithZeroes);
         matrixPosition.numNonZeroPos = 0;
-        for (let k = 0; k < cubeMoveMatrix.NUM_VALS; k++) {
+        for (let k = 0; k < this.cubeMoveMatrix.NUM_VALS; k++) {
             if (!positionsWithZeroes[k]) {
                 matrixPosition.numNonZeroPos++;
             }
         }
         return matrixPosition;
     }
-    getClosestPositionByDistanceAndMedian(positionsWithZeroes, viewport, cubeUtils, cubeMoveMatrix) {
+    getClosestPositionByDistanceAndMedian(positionsWithZeroes) {
         // need to find the percentages that best endPoint the specified ones
-        const valueMatrix = cubeMoveMatrix.VALUE_MATRIX;
-        const newPositionData = viewport.pd;
+        const valueMatrix = this.cubeMoveMatrix.VALUE_MATRIX;
+        const newPositionData = this.viewport.pd;
         let lowestLargest = 50;
         let lowestMedian = 33;
         let lowestSum = 100;
@@ -38,7 +43,7 @@ export class MatrixValueChooser {
             const dimensionMatrix = valueMatrix[i];
             value_loop: for (let j = 0; j < dimensionMatrix.length; j++) {
                 const values = dimensionMatrix[j];
-                for (let k = 0; k < cubeMoveMatrix.NUM_VALS; k++) {
+                for (let k = 0; k < this.cubeMoveMatrix.NUM_VALS; k++) {
                     if (positionsWithZeroes[k]) {
                         if (values[k]) {
                             continue value_loop;
@@ -67,7 +72,7 @@ export class MatrixValueChooser {
                 const largest = sortedValues[2];
                 const sum = xDistance + yDistance + zDistance;
                 const upsideDown = i > 18 && i < 54 ? 1 : 0;
-                if (cubeUtils.secondIsGreaterShortCircuit([
+                if (this.cubeUtils.secondIsGreaterShortCircuit([
                     [sum, lowestSum],
                     [median, lowestMedian],
                     [largest, lowestLargest],
@@ -87,8 +92,8 @@ export class MatrixValueChooser {
         }
         return position;
     }
-    getZeroedPositions(viewport) {
-        const positionData = viewport.pd;
+    getZeroedPositions() {
+        const positionData = this.viewport.pd;
         const zeroedPositions = [];
         this.setDimZeroPositions(positionData.x, 0, 5, zeroedPositions);
         this.setDimZeroPositions(positionData.y, 1, 3, zeroedPositions);
@@ -131,6 +136,18 @@ export class MatrixValueChooser {
             ? positiveDistance
             : negativeDistance);
     }
-}
-DI.set(MATRIX_VALUE_CHOOSER, MatrixValueChooser);
+};
+__decorate([
+    Inject()
+], MatrixValueChooser.prototype, "cubeMoveMatrix", void 0);
+__decorate([
+    Inject()
+], MatrixValueChooser.prototype, "cubeUtils", void 0);
+__decorate([
+    Inject()
+], MatrixValueChooser.prototype, "viewport", void 0);
+MatrixValueChooser = __decorate([
+    Injected()
+], MatrixValueChooser);
+export { MatrixValueChooser };
 //# sourceMappingURL=MatrixValueChooser.js.map

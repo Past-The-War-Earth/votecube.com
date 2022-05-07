@@ -1,8 +1,13 @@
-import { DI } from '@airport/di';
-import { PERCENTAGE_POSITION_CHOOSER } from '../../tokens';
-export class PercentagePositionChooser {
-    setPositionPercentages(dimension, percent, outcome, viewport) {
-        const positionData = viewport.pd;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Inject, Injected } from '@airport/direction-indicator';
+let PercentagePositionChooser = class PercentagePositionChooser {
+    setPositionPercentages(dimension, percent, outcome) {
+        const positionData = this.viewport.pd;
         if (percent && !outcome) {
             outcome = 'A';
         }
@@ -11,14 +16,14 @@ export class PercentagePositionChooser {
         }
         positionData[dimension].value = percent;
         positionData[dimension].outcome = outcome;
-        this.adjustDimensions(dimension, viewport);
+        this.adjustDimensions(dimension);
     }
-    changePositionPercentages(dimension, percentChange, outcome, viewport) {
-        this.updateDimensionPercent(dimension, percentChange, outcome, viewport);
-        this.adjustDimensions(dimension, viewport);
+    changePositionPercentages(dimension, percentChange, outcome) {
+        this.updateDimensionPercent(dimension, percentChange, outcome);
+        this.adjustDimensions(dimension);
     }
-    updateDimensionPercent(dimension, percentChange, outcome, viewport) {
-        const dimensionPositionData = viewport.pd[dimension];
+    updateDimensionPercent(dimension, percentChange, outcome) {
+        const dimensionPositionData = this.viewport.pd[dimension];
         if (dimensionPositionData.outcome !== outcome) {
             const existingValueToDecrease = dimensionPositionData.value;
             const decreasedValue = existingValueToDecrease - percentChange;
@@ -49,19 +54,19 @@ export class PercentagePositionChooser {
             }
         }
     }
-    adjustDimensions(dimension, viewport) {
-        const positionData = viewport.pd;
-        const newChangedDimensionValue = viewport.pd[dimension].value;
+    adjustDimensions(dimension) {
+        const positionData = this.viewport.pd;
+        const newChangedDimensionValue = this.viewport.pd[dimension].value;
         let i = -1;
-        const dimensionToPreserve = this.getDimensionToPreserve(dimension, viewport);
+        const dimensionToPreserve = this.getDimensionToPreserve(dimension);
         const dimensionToMove = this.getDimensionToMove(dimension, dimensionToPreserve);
         const otherDimensions = [dimensionToMove, dimensionToPreserve];
         let otherDimensionValues;
         let totalValue;
         do {
             otherDimensionValues = [
-                viewport.pd[dimensionToMove].value,
-                viewport.pd[dimensionToPreserve].value
+                this.viewport.pd[dimensionToMove].value,
+                this.viewport.pd[dimensionToPreserve].value
             ];
             totalValue = newChangedDimensionValue + otherDimensionValues[0] + otherDimensionValues[1];
             if (totalValue === 100) {
@@ -94,9 +99,9 @@ export class PercentagePositionChooser {
         dimensionPositionData.value = 100;
         return true;
     }
-    getDimensionToPreserve(dimension, viewport) {
-        if (viewport.rmd.length > 1) {
-            return viewport.rmd[1];
+    getDimensionToPreserve(dimension) {
+        if (this.viewport.rmd.length > 1) {
+            return this.viewport.rmd[1];
         }
         // If the order between the dimensions is the same, use the top-to-bottom
         // order of the displayed controls
@@ -136,6 +141,12 @@ export class PercentagePositionChooser {
                 }
         }
     }
-}
-DI.set(PERCENTAGE_POSITION_CHOOSER, PercentagePositionChooser);
+};
+__decorate([
+    Inject()
+], PercentagePositionChooser.prototype, "viewport", void 0);
+PercentagePositionChooser = __decorate([
+    Injected()
+], PercentagePositionChooser);
+export { PercentagePositionChooser };
 //# sourceMappingURL=PercentagePositionChooser.js.map

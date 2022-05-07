@@ -3,10 +3,13 @@ import { ICubeMoveMatrix } from '../CubeMoveMatrix';
 import { IViewport } from '../Viewport';
 import { IMatrixPosition } from './types';
 export interface IMatrixValueChooser {
-    getClosestMatrixPosition(viewport: IViewport, cubeUtils: ICubeUtils, cubeMoveMatrix: ICubeMoveMatrix): IMatrixPosition;
+    getClosestMatrixPosition(): IMatrixPosition;
 }
 export declare class MatrixValueChooser implements IMatrixValueChooser {
-    getClosestMatrixPosition(viewport: IViewport, cubeUtils: ICubeUtils, cubeMoveMatrix: ICubeMoveMatrix): IMatrixPosition;
+    cubeMoveMatrix: ICubeMoveMatrix;
+    cubeUtils: ICubeUtils;
+    viewport: IViewport;
+    getClosestMatrixPosition(): IMatrixPosition;
     private getClosestPositionByDistanceAndMedian;
     private getZeroedPositions;
     private setDimZeroPositions;

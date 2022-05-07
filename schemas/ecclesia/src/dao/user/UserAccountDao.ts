@@ -1,5 +1,5 @@
 import {I, A}                from '@airport/air-traffic-control'
-import {DI}               from '@airport/di'
+import {DI}               from '@airport/direction-indicator'
 import {
 	BaseUserAccountDao,
 	IBaseUserAccountDao,

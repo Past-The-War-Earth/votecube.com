@@ -1,4 +1,3 @@
-import { DI } from '@airport/di'
 import {
 	IUiAgreement,
 	IUiAgreementFactor,
@@ -8,7 +7,7 @@ import { cardMove } from '@votecube/ui-logic'
 import { fly } from 'svelte/transition'
 import { ILogicUtils } from '../../../LogicUtils'
 import { IPageAgreement } from '../../../idea/IdeaManager'
-import { FACTOR_RANKING_LOGIC } from '../../../tokens'
+import { Injected } from '@airport/direction-indicator'
 
 export type AddOrRemove = 'add' | 'remove'
 
@@ -93,6 +92,7 @@ export interface IFactorRankingLogic {
 
 }
 
+@Injected()
 export class FactorRankingLogic
 	implements IFactorRankingLogic {
 
@@ -719,5 +719,3 @@ export class FactorRankingLogic
 	}
 
 }
-
-DI.set(FACTOR_RANKING_LOGIC, FactorRankingLogic)

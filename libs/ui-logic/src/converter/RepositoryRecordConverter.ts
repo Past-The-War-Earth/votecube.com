@@ -1,7 +1,6 @@
 import { IUiRepositoryRecord } from "@votecube/model";
 import type { IRepositoryEntity } from "@airport/holding-pattern";
-import { DI } from "@airport/direction-indicator";
-import { REPOSITORY_RECORD_CONVERTER } from "../tokens";
+import { Injected } from "@airport/direction-indicator";
 
 export interface IRepositoryRecordConverter {
 
@@ -17,6 +16,7 @@ export interface IRepositoryRecordConverter {
 
 }
 
+@Injected()
 export class RepositoryRecordConverter
     implements IRepositoryRecordConverter {
 
@@ -63,4 +63,3 @@ export class RepositoryRecordConverter
     }
 
 }
-DI.set(REPOSITORY_RECORD_CONVERTER, RepositoryRecordConverter)

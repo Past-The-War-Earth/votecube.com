@@ -1,4 +1,3 @@
-import { container, DI } from '@airport/di'
 import {
 	IFactor,
 	IOutcome,
@@ -6,7 +5,7 @@ import {
 	IIdea,
 	IReason,
 	IIdeaLabel,
-} from '@votecube/votecube'
+} from '@votecube/votecube-client'
 import {
 	IUiLabel,
 	IUiFactor,
@@ -16,10 +15,8 @@ import {
 	AGE_GROUPS,
 } from '@votecube/model'
 import { RepositoryRecordConverter } from '@votecube/ui-logic'
-import {
-	IDEA_CONVERTER,
-	IDEA_FORM_MANAGER
-} from '../tokens'
+import { Injected } from '@airport/direction-indicator'
+import { IIdeaFormManager } from '../pages/idea/IdeaFormManager'
 
 export interface IIdeaConverter {
 
@@ -34,9 +31,12 @@ export interface IIdeaConverter {
 
 }
 
+@Injected()
 export class IdeaConverter
 	extends RepositoryRecordConverter
 	implements IIdeaConverter {
+
+	ideaFormManager: IIdeaFormManager
 
 	dbToUi(
 		dbIdea: IIdea
@@ -145,9 +145,8 @@ export class IdeaConverter
 		ideaLabel: IIdeaLabel
 	): IUiLabel {
 		if (!ideaLabel) {
-			const ideaFormManager = container(this).getSync(IDEA_FORM_MANAGER)
 			return {
-				...ideaFormManager.getBlankUiNamedRecord(),
+				...this.ideaFormManager.getBlankUiNamedRecord(),
 				originalDbLabel: ideaLabel
 			}
 		}
@@ -281,10 +280,10 @@ export class IdeaConverter
 
 		const matchingReasons = dbIdea.
 			reasons.filter(
-				reason => 
+				reason =>
 					reason.factorNumber === factorNumber
 					&& reason.outcomeOrdinal === outcomeOrdinal
-				)
+			)
 		let dbPosition: IPosition
 		let dbReason: IReason
 		if (matchingReasons.length) {
@@ -340,5 +339,3 @@ export class IdeaConverter
 	}
 
 }
-
-DI.set(IDEA_CONVERTER, IdeaConverter)

@@ -1,14 +1,10 @@
-import { container, DI } from '@airport/di'
 import {
-	FORM_FACTORY,
 	IFieldGroup,
 	IFormFactory
 } from '@votecube/forms'
-import {
-	IDEA_FORM_LOGIC,
-	IDEA_FORM_MANAGER
-} from '../../../tokens'
 import { ICachedIdea } from '../../../idea/IdeaManager'
+import { Inject, Injected } from '@airport/direction-indicator'
+import { IIdeaFormManager } from '../IdeaFormManager'
 
 export interface IIdeaFormLogic {
 
@@ -22,8 +18,12 @@ export interface IIdeaFormLogic {
 
 }
 
+@Injected()
 export class IdeaFormLogic
 	implements IIdeaFormLogic {
+
+	@Inject()
+	ideaFormManager: IIdeaFormManager
 
 	async getIdeaForm(
 		cachedIdea: ICachedIdea,
@@ -32,8 +32,6 @@ export class IdeaFormLogic
 		text,
 		formFactory: IFormFactory
 	): Promise<IFieldGroup> {
-		const ideaFormManager = await container(this).get(IDEA_FORM_MANAGER)
-
 		const form = await this.createIdeaForm(
 			// labels,
 			// locations,
@@ -48,7 +46,7 @@ export class IdeaFormLogic
 		// form.fields.locations.optionText = text.LOCATIONS
 		if (cachedIdea.ui) {
 			form.setValue(
-				ideaFormManager.toForm(cachedIdea.ui),
+				this.ideaFormManager.toForm(cachedIdea.ui),
 				true
 				// !currentCachedIdea.ui.draft
 			)
@@ -298,5 +296,3 @@ export class IdeaFormLogic
 	}
 
 }
-
-DI.set(IDEA_FORM_LOGIC, IdeaFormLogic)

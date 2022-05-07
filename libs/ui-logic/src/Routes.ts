@@ -1,7 +1,5 @@
-import {DI, IOC}  from '@airport/di'
-import page  from 'page'
-import {get} from 'svelte/store'
-import { LOCAL_API_CLIENT } from '@airport/autopilot'
+import page from 'page'
+import { get } from 'svelte/store'
 import {
 	currentPage,
 	currentUrl,
@@ -13,7 +11,7 @@ import {
 	user
 } from './store'
 
-import {ROUTES} from './tokens'
+import { Injected } from '@airport/direction-indicator'
 
 export type Route_Path = string
 
@@ -73,6 +71,7 @@ export interface IRouteConfig {
 
 }
 
+@Injected()
 export class Routes
 	implements IRoutes {
 
@@ -179,7 +178,7 @@ export class Routes
 		paramMap: IRouteParamMap,
 		url: Route_Path
 	): void {
-		this.inProgressUrl    = '' + url
+		this.inProgressUrl = '' + url
 		this.inProgressParams = paramMap
 		if (paramMap) {
 			for (const paramKey in paramMap) {
@@ -214,12 +213,12 @@ export class Routes
 		page(
 			url, (context) => {
 				let currentUser = get(user)
-				let params      = this.inProgressParams
-				let nextUrl     = this.inProgressUrl
+				let params = this.inProgressParams
+				let nextUrl = this.inProgressUrl
 
 				// if (!this.inProgressUrl) {
-					params  = this.inProgressParams = context.params
-					nextUrl = this.inProgressUrl = context.path
+				params = this.inProgressParams = context.params
+				nextUrl = this.inProgressUrl = context.path
 				// }
 
 				if (!pageConfig.authenticated || currentUser) {
@@ -240,7 +239,7 @@ export class Routes
 					}
 					showSignIn.set(true)
 
-					const signedInStateUnsubscribe = signedInState.subscribe(({changed, current}) => {
+					const signedInStateUnsubscribe = signedInState.subscribe(({ changed, current }) => {
 						if (changed.authChecked && current.user) {
 							setTimeout(() => {
 								signedInStateUnsubscribe()
@@ -278,5 +277,3 @@ export class Routes
 	}
 
 }
-
-DI.set(ROUTES, Routes)

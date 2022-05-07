@@ -1,14 +1,10 @@
-import {
-	container,
-	DI
-} from '@airport/di'
 import { Outcome_Ordinal } from './mutation/types'
 import {
 	CUBE_MOVE_MATRIX,
 	CUBE_MOVEMENT,
-	VIEWPORT
 } from '../tokens'
 import {
+	ICubeMoveMatrix,
 	MoveIncrement,
 	PositionValues,
 	ValueArrayPosition,
@@ -19,9 +15,11 @@ import {
 	Direction,
 	ICubeAgreement,
 	ICubeAgreementDimension,
+	ICubeMovement,
 	IValuesThruCallback,
 	Move
 } from './CubeMovement'
+import { Inject, Injected } from '@airport/direction-indicator'
 
 export interface IViewport {
 
@@ -71,37 +69,41 @@ export interface IVisibleDirection {
 
 export type Dimension = 'x' | 'y' | 'z'
 
+@Injected()
 export class Viewport
 	implements IViewport {
 
-	cb        = null
-	cr        = {
+	@Inject()
+	cubeMoveMatrix: ICubeMoveMatrix
+
+	@Inject()
+	cubeMovement: ICubeMovement
+
+	cb = null
+	cr = {
 		x: 0,
 		y: 0
 	}
-	el        = {}
+	el = {}
 	increment = MoveIncrement.FIVE
-	pd        = null
+	pd = null
 	// Recently moved factor
-	rmd       = []
-	vd        = {
+	rmd = []
+	vd = {
 		x: 1 as Direction,
 		y: 1 as Direction,
 		z: 1 as Direction
 	}
-	x         = 0
-	y         = 0
+	x = 0
+	y = 0
 
 	// zm: MV_INC_IDX[MoveIncrement.FIFTEEN],
 	changeZoom(
 		zoomIndex: ZoomIndex
 	): void {
-		container(this).get(CUBE_MOVE_MATRIX).then(
-			cubeMoveMatrix => {
-				this.increment = cubeMoveMatrix.MOVE_INCREMENTS[zoomIndex]
+		this.increment = this.cubeMoveMatrix.MOVE_INCREMENTS[zoomIndex]
 
-				console.log('TODO: implement')
-			})
+		console.log('TODO: implement')
 	}
 
 	move(
@@ -110,60 +112,55 @@ export class Viewport
 		moveY: Bool,
 		yBy: Move
 	): void {
-		container(this).get(CUBE_MOVE_MATRIX, CUBE_MOVEMENT).then(([
-			                                                           cubeMoveMatrix,
-			                                                           cubeMovement
-		                                                           ]) => {
-			if (!Object.keys(this.el).length) {
-				return
-			}
-			if (!moveX && !moveY) {
-				return
-			}
-			let xi
-			let yi
-			if (moveX) {
-				[this.x, xi] = cubeMovement.moveCoordinates(
-					// this.zm,
-					this.x, xBy, cubeMoveMatrix)
-			} else {
-				xi = cubeMovement.getMatrixIdxFromDeg(this.x, cubeMoveMatrix)
-			}
-			if (moveY) {
-				[this.y, yi] = cubeMovement.moveCoordinates(
-					// this.zm,
-					this.y, yBy, cubeMoveMatrix)
-			} else {
-				yi = cubeMovement.getMatrixIdxFromDeg(this.y, cubeMoveMatrix)
-			}
+		if (!Object.keys(this.el).length) {
+			return
+		}
+		if (!moveX && !moveY) {
+			return
+		}
+		let xi
+		let yi
+		if (moveX) {
+			[this.x, xi] = this.cubeMovement.moveCoordinates(
+				// this.zm,
+				this.x, xBy)
+		} else {
+			xi = this.cubeMovement.getMatrixIdxFromDeg(this.x)
+		}
+		if (moveY) {
+			[this.y, yi] = this.cubeMovement.moveCoordinates(
+				// this.zm,
+				this.y, yBy)
+		} else {
+			yi = this.cubeMovement.getMatrixIdxFromDeg(this.y)
+		}
 
-			const values = cubeMoveMatrix.VALUE_MATRIX[xi][yi]
+		const values = this.cubeMoveMatrix.VALUE_MATRIX[xi][yi]
 
-			function getDimensionState(
-				positivePosition: ValueArrayPosition,
-				negativePosition: ValueArrayPosition,
-				positionValues: PositionValues,
-				agreementDimension: ICubeAgreementDimension
-			): void {
-				let outcome: Outcome_Ordinal = 'A'
-				let value                    = positionValues[positivePosition]
-				if (positionValues[negativePosition]) {
-					outcome = 'B'
-					value   = positionValues[negativePosition]
-				} else if (!value) {
-					outcome = null
-				}
-				agreementDimension.outcome = outcome
-				agreementDimension.valid   = true
-				agreementDimension.value   = value
+		function getDimensionState(
+			positivePosition: ValueArrayPosition,
+			negativePosition: ValueArrayPosition,
+			positionValues: PositionValues,
+			agreementDimension: ICubeAgreementDimension
+		): void {
+			let outcome: Outcome_Ordinal = 'A'
+			let value = positionValues[positivePosition]
+			if (positionValues[negativePosition]) {
+				outcome = 'B'
+				value = positionValues[negativePosition]
+			} else if (!value) {
+				outcome = null
 			}
+			agreementDimension.outcome = outcome
+			agreementDimension.valid = true
+			agreementDimension.value = value
+		}
 
-			getDimensionState(0, 5, values, this.pd.x)
-			getDimensionState(1, 3, values, this.pd.y)
-			getDimensionState(2, 4, values, this.pd.z)
+		getDimensionState(0, 5, values, this.pd.x)
+		getDimensionState(1, 3, values, this.pd.y)
+		getDimensionState(2, 4, values, this.pd.z)
 
-			this.moveToDegree()
-		})
+		this.moveToDegree()
 	}
 
 	/**
@@ -190,5 +187,3 @@ export class Viewport
 	}
 
 }
-
-DI.set(VIEWPORT, Viewport)

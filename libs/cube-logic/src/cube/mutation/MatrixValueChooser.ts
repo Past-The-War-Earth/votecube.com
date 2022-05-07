@@ -1,42 +1,45 @@
-import {DI}                   from '@airport/di'
-import {MATRIX_VALUE_CHOOSER} from '../../tokens'
-import {ICubeUtils}           from '../../utils/CubeUtils'
+import { Inject, Injected } from '@airport/direction-indicator'
+import { ICubeUtils } from '../../utils/CubeUtils'
 import {
 	ICubeMoveMatrix,
 	PositionValues,
 	ValueArrayPosition
-}                             from '../CubeMoveMatrix'
+} from '../CubeMoveMatrix'
 import {
 	ICubeAgreement,
 	ICubeAgreementDimension
-}                             from '../CubeMovement'
-import {IViewport}            from '../Viewport'
+} from '../CubeMovement'
+import { IViewport } from '../Viewport'
 import {
 	DistanceFromClosestMatrixPosition,
 	IMatrixPosition
-}                             from './types'
+} from './types'
 
 const MAX_DIST = 12
 
 export interface IMatrixValueChooser {
 
 	getClosestMatrixPosition(
-		viewport: IViewport,
-		cubeUtils: ICubeUtils,
-		cubeMoveMatrix: ICubeMoveMatrix
 	): IMatrixPosition
 
 }
 
+@Injected()
 export class MatrixValueChooser
 	implements IMatrixValueChooser {
 
+	@Inject()
+	cubeMoveMatrix: ICubeMoveMatrix
+
+	@Inject()
+	cubeUtils: ICubeUtils
+
+	@Inject()
+	viewport: IViewport
+
 	getClosestMatrixPosition(
-		viewport: IViewport,
-		cubeUtils: ICubeUtils,
-		cubeMoveMatrix: ICubeMoveMatrix
 	): IMatrixPosition {
-		const x = viewport.pd.x
+		const x = this.viewport.pd.x
 		if (x.value === 100
 			&& x.outcome === 'B') {
 
@@ -46,15 +49,15 @@ export class MatrixValueChooser
 				// j: 36,
 				i: 20,
 				j: 36,
-				values: cubeMoveMatrix.VALUE_MATRIX[20][36]
+				values: this.cubeMoveMatrix.VALUE_MATRIX[20][36]
 			}
 		}
-		const positionsWithZeroes = this.getZeroedPositions(viewport)
-		const matrixPosition      = this.getClosestPositionByDistanceAndMedian(
-			positionsWithZeroes, viewport, cubeUtils, cubeMoveMatrix)
+		const positionsWithZeroes = this.getZeroedPositions()
+		const matrixPosition = this.getClosestPositionByDistanceAndMedian(
+			positionsWithZeroes)
 
 		matrixPosition.numNonZeroPos = 0 as any
-		for (let k = 0; k < cubeMoveMatrix.NUM_VALS; k++) {
+		for (let k = 0; k < this.cubeMoveMatrix.NUM_VALS; k++) {
 			if (!positionsWithZeroes[k]) {
 				matrixPosition.numNonZeroPos++
 			}
@@ -64,88 +67,84 @@ export class MatrixValueChooser
 	}
 
 	private getClosestPositionByDistanceAndMedian(
-		positionsWithZeroes: boolean[],
-		viewport: IViewport,
-		cubeUtils: ICubeUtils,
-		cubeMoveMatrix: ICubeMoveMatrix
+		positionsWithZeroes: boolean[]
 	): IMatrixPosition {
 		// need to find the percentages that best endPoint the specified ones
-		const valueMatrix = cubeMoveMatrix.VALUE_MATRIX
+		const valueMatrix = this.cubeMoveMatrix.VALUE_MATRIX
 
-		const newPositionData: ICubeAgreement = viewport.pd
+		const newPositionData: ICubeAgreement = this.viewport.pd
 
-		let lowestLargest       = 50
-		let lowestMedian        = 33
-		let lowestSum           = 100
+		let lowestLargest = 50
+		let lowestMedian = 33
+		let lowestSum = 100
 		let currentlyUpsideDown = 1
 		let position: IMatrixPosition
 
 		for (let i = 0; i < valueMatrix.length; i++) {
 			const dimensionMatrix = valueMatrix[i]
 			value_loop:
-				for (let j = 0; j < dimensionMatrix.length; j++) {
-					const values = dimensionMatrix[j]
-					for (let k = 0; k < cubeMoveMatrix.NUM_VALS; k++) {
-						if (positionsWithZeroes[k]) {
-							if (values[k]) {
-								continue value_loop
-							}
-						} else {
-							if (!values[k]) {
-								continue value_loop
-							}
+			for (let j = 0; j < dimensionMatrix.length; j++) {
+				const values = dimensionMatrix[j]
+				for (let k = 0; k < this.cubeMoveMatrix.NUM_VALS; k++) {
+					if (positionsWithZeroes[k]) {
+						if (values[k]) {
+							continue value_loop
 						}
-					}
-
-					const xDistance = this.getDimensionDistance(newPositionData.x,
-						values, 0, 5, positionsWithZeroes)
-					if (xDistance === undefined) {
-						continue
-					}
-
-					const yDistance = this.getDimensionDistance(newPositionData.y,
-						values, 1, 3, positionsWithZeroes)
-					if (yDistance === undefined) {
-						continue
-					}
-
-					const zDistance = this.getDimensionDistance(newPositionData.z,
-						values, 2, 4, positionsWithZeroes)
-					if (zDistance === undefined) {
-						continue
-					}
-
-					const sortedValues = [xDistance, yDistance, zDistance].sort()
-					const median       = sortedValues[1]
-					const largest      = sortedValues[2]
-					const sum          = xDistance + yDistance + zDistance
-					const upsideDown   = i > 18 && i < 54 ? 1 : 0
-					if (cubeUtils.secondIsGreaterShortCircuit([
-						[sum, lowestSum],
-						[median, lowestMedian],
-						[largest, lowestLargest],
-						[upsideDown, currentlyUpsideDown]
-					])) {
-						lowestLargest       = largest
-						lowestMedian        = median
-						lowestSum           = sum
-						currentlyUpsideDown = upsideDown
-						position            = {
-							i,
-							j,
-							values
+					} else {
+						if (!values[k]) {
+							continue value_loop
 						}
 					}
 				}
+
+				const xDistance = this.getDimensionDistance(newPositionData.x,
+					values, 0, 5, positionsWithZeroes)
+				if (xDistance === undefined) {
+					continue
+				}
+
+				const yDistance = this.getDimensionDistance(newPositionData.y,
+					values, 1, 3, positionsWithZeroes)
+				if (yDistance === undefined) {
+					continue
+				}
+
+				const zDistance = this.getDimensionDistance(newPositionData.z,
+					values, 2, 4, positionsWithZeroes)
+				if (zDistance === undefined) {
+					continue
+				}
+
+				const sortedValues = [xDistance, yDistance, zDistance].sort()
+				const median = sortedValues[1]
+				const largest = sortedValues[2]
+				const sum = xDistance + yDistance + zDistance
+				const upsideDown = i > 18 && i < 54 ? 1 : 0
+				if (this.cubeUtils.secondIsGreaterShortCircuit([
+					[sum, lowestSum],
+					[median, lowestMedian],
+					[largest, lowestLargest],
+					[upsideDown, currentlyUpsideDown]
+				])) {
+					lowestLargest = largest
+					lowestMedian = median
+					lowestSum = sum
+					currentlyUpsideDown = upsideDown
+					position = {
+						i,
+						j,
+						values
+					}
+				}
+			}
 		}
 
 		return position
 	}
 
 	private getZeroedPositions(
-		viewport: IViewport
 	): boolean[] {
-		const positionData = viewport.pd
+		const positionData = this.viewport.pd
 
 		const zeroedPositions: boolean[] = []
 
@@ -169,7 +168,7 @@ export class MatrixValueChooser
 				zeroedPositions[plusIndex] = true
 			}
 		} else {
-			zeroedPositions[plusIndex]  = true
+			zeroedPositions[plusIndex] = true
 			zeroedPositions[minusIndex] = true
 		}
 	}
@@ -181,7 +180,7 @@ export class MatrixValueChooser
 		negativeIndex: ValueArrayPosition,
 		positionsWithZeroes: boolean[]
 	): DistanceFromClosestMatrixPosition | undefined {
-		let positiveDistance  = 0
+		let positiveDistance = 0
 		const maximumDistance = MAX_DIST
 		if (!positionsWithZeroes[positiveIndex]) {
 			positiveDistance = Math.abs(positionData[positiveIndex]
@@ -204,5 +203,3 @@ export class MatrixValueChooser
 	}
 
 }
-
-DI.set(MATRIX_VALUE_CHOOSER, MatrixValueChooser)

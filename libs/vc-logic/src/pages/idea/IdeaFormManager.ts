@@ -1,4 +1,4 @@
-import { DI } from '@airport/di'
+import { Injected } from '@airport/direction-indicator'
 import {
 	IFormColor,
 	IFormFactor,
@@ -10,9 +10,6 @@ import {
 	IUiRepositoryRecord,
 	IUiIdea
 } from '@votecube/model'
-import {
-	IDEA_FORM_MANAGER
-} from '../../tokens'
 
 
 export interface IIdeaFormManager {
@@ -32,6 +29,7 @@ export interface IIdeaFormManager {
 
 }
 
+@Injected()
 export class IdeaFormManager
 	implements IIdeaFormManager {
 
@@ -237,5 +235,3 @@ export class IdeaFormManager
 	}
 
 }
-
-DI.set(IDEA_FORM_MANAGER, IdeaFormManager)

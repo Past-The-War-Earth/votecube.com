@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import { CUBE_EVENT_LISTENER, MUTATION_API } from "@votecube/cube-logic";
 	import type { IUiIdea, IUiAgreement } from "@votecube/model";
 	import { DETAILED_CUBE_LOGIC, LOGIC_UTILS } from "@votecube/vc-logic";
@@ -70,7 +70,7 @@
 		const cubeEventListener = await container.get(CUBE_EVENT_LISTENER);
 
 		cubeEventListener.clearView("cube");
-		DI.remove(container);
+		DEPENDENCY_INJECTION.remove(container);
 	});
 
 	beforeUpdate(() => {
@@ -90,7 +90,7 @@
 
 	function ensureContainer() {
 		if (!container) {
-			container = DI.ui("DetailedCube");
+			container = DEPENDENCY_INJECTION.ui("DetailedCube");
 		}
 	}
 

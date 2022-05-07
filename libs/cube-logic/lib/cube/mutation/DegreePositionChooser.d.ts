@@ -1,10 +1,11 @@
 import { IViewport } from '../Viewport';
 import { IFinalPosition } from './types';
 export interface IDegreePositionChooser {
-    setFinalDegrees(finalPosition: IFinalPosition, viewport: IViewport): void;
+    setFinalDegrees(finalPosition: IFinalPosition): void;
 }
 export declare class DegreePositionChooser implements IDegreePositionChooser {
-    setFinalDegrees(finalPosition: IFinalPosition, viewport: IViewport): void;
+    viewport: IViewport;
+    setFinalDegrees(finalPosition: IFinalPosition): void;
     private getDimDegrees;
 }
 //# sourceMappingURL=DegreePositionChooser.d.ts.map

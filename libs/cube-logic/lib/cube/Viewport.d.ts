@@ -1,5 +1,5 @@
-import { MoveIncrement, ZoomIndex } from './CubeMoveMatrix';
-import { Bool, Direction, ICubeAgreement, IValuesThruCallback, Move } from './CubeMovement';
+import { ICubeMoveMatrix, MoveIncrement, ZoomIndex } from './CubeMoveMatrix';
+import { Bool, Direction, ICubeAgreement, ICubeMovement, IValuesThruCallback, Move } from './CubeMovement';
 export interface IViewport {
     cb: IValuesThruCallback;
     cr: ICubeRotation;
@@ -28,6 +28,8 @@ export interface IVisibleDirection {
 }
 export declare type Dimension = 'x' | 'y' | 'z';
 export declare class Viewport implements IViewport {
+    cubeMoveMatrix: ICubeMoveMatrix;
+    cubeMovement: ICubeMovement;
     cb: any;
     cr: {
         x: number;

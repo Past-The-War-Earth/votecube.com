@@ -6,7 +6,7 @@ import {
 	diSet as dS,
 	duoDiSet as ddS
 }                      from '@airport/check-in'
-import {DI}            from '@airport/di'
+import {DI}            from '@airport/direction-indicator'
 import {
 	DbSchema,
 	EntityId,

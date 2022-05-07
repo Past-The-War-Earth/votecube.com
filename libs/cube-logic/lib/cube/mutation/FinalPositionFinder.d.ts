@@ -30,10 +30,14 @@ export declare type MatrixPositionShift = -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3
 export declare type MatrixShiftScore = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 export declare type NumberOfDimensionShifts = 0 | 1 | 2;
 export interface IFinalPositionFinder {
-    findFinalPosition(closestMatrixPosition: IMatrixPosition, viewport: IViewport, cubeUtils: ICubeUtils, cubeMoveMatrix: ICubeMoveMatrix, cubeMovement: ICubeMovement): IFinalPosition;
+    findFinalPosition(closestMatrixPosition: IMatrixPosition): IFinalPosition;
 }
 export declare class FinalPositionFinder implements IFinalPositionFinder {
-    findFinalPosition(closestMatrixPosition: IMatrixPosition, viewport: IViewport, cubeUtils: ICubeUtils, cubeMoveMatrix: ICubeMoveMatrix, cubeMovement: ICubeMovement): IFinalPosition;
+    viewport: IViewport;
+    cubeUtils: ICubeUtils;
+    cubeMoveMatrix: ICubeMoveMatrix;
+    cubeMovement: ICubeMovement;
+    findFinalPosition(closestMatrixPosition: IMatrixPosition): IFinalPosition;
     private getDirectionVals;
     private findVectorEndPoint;
     private matrixPositionsMatch;

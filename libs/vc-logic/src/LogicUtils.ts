@@ -1,4 +1,4 @@
-import { DI } from '@airport/di'
+import { Injected } from '@airport/direction-indicator'
 import {
 	ITweenAgreementFactor,
 	IUiColor,
@@ -6,7 +6,6 @@ import {
 	IUiAgreementFactor
 } from '@votecube/model'
 import { create_bidirectional_transition } from 'svelte/internal'
-import { LOGIC_UTILS } from './tokens'
 
 interface IUiAgreementFactorNode {
 
@@ -64,6 +63,7 @@ export interface ILogicUtils {
 
 }
 
+@Injected()
 export class LogicUtils
 	implements ILogicUtils {
 
@@ -237,5 +237,3 @@ export class LogicUtils
 	}
 
 }
-
-DI.set(LOGIC_UTILS, LogicUtils)

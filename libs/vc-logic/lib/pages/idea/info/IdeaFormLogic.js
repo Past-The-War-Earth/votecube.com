@@ -1,8 +1,12 @@
-import { container, DI } from '@airport/di';
-import { IDEA_FORM_LOGIC, IDEA_FORM_MANAGER } from '../../../tokens';
-export class IdeaFormLogic {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Inject, Injected } from '@airport/direction-indicator';
+let IdeaFormLogic = class IdeaFormLogic {
     async getIdeaForm(cachedIdea, trackOriginal, touch, text, formFactory) {
-        const ideaFormManager = await container(this).get(IDEA_FORM_MANAGER);
         const form = await this.createIdeaForm(
         // labels,
         // locations,
@@ -12,7 +16,7 @@ export class IdeaFormLogic {
         cachedIdea.form = form;
         // form.fields.locations.optionText = text.LOCATIONS
         if (cachedIdea.ui) {
-            form.setValue(ideaFormManager.toForm(cachedIdea.ui), true
+            form.setValue(this.ideaFormManager.toForm(cachedIdea.ui), true
             // !currentCachedIdea.ui.draft
             );
             form.validate();
@@ -219,6 +223,12 @@ export class IdeaFormLogic {
             positions,
         }, formValidators, uiText.Factor);
     }
-}
-DI.set(IDEA_FORM_LOGIC, IdeaFormLogic);
+};
+__decorate([
+    Inject()
+], IdeaFormLogic.prototype, "ideaFormManager", void 0);
+IdeaFormLogic = __decorate([
+    Injected()
+], IdeaFormLogic);
+export { IdeaFormLogic };
 //# sourceMappingURL=IdeaFormLogic.js.map

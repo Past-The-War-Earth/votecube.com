@@ -1,5 +1,4 @@
-import {DI}         from '@airport/di'
-import {CUBE_UTILS} from '../tokens'
+import { Injected } from "@airport/direction-indicator"
 
 export interface IIsKnownElementOfTag {
 	(): boolean
@@ -40,6 +39,7 @@ export interface ICubeUtils {
 
 }
 
+@Injected()
 export class CubeUtils
 	implements ICubeUtils {
 
@@ -97,5 +97,3 @@ export class CubeUtils
 	}
 
 }
-
-DI.set(CUBE_UTILS, CubeUtils)

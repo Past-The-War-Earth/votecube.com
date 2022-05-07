@@ -19,7 +19,7 @@ import type {
     ITweenAgreement,
     ITweenAgreementFactor
 } from '@votecube/model';
-import type { IChildContainer } from '@airport/di';
+import type { IChildContainer } from '@airport/direction-indicator';
 
 // import {APP_CONTAINER} from './container'
 

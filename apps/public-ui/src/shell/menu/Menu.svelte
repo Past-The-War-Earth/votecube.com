@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import type { IUiMenuItem } from "@votecube/model";
 	import {
 		AUTH,
@@ -58,7 +58,7 @@
 
 	onMount(() => {
 		emInPx.set(getEmInPx());
-		container = DI.ui("Menu");
+		container = DEPENDENCY_INJECTION.ui("Menu");
 	});
 
 	function getEmInPx(): number {

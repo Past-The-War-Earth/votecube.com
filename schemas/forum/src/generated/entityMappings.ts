@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { AIRPORT_DATABASE } from '@airport/air-traffic-control';
-import { DI } from '@airport/di';
+import { DI } from '@airport/direction-indicator';
 import { ForumThread } from '../ddl/ForumThread';
 import { ForumPost } from '../ddl/ForumPost';
 

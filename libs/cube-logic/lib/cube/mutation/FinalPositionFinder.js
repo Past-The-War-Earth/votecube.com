@@ -1,8 +1,13 @@
-import { DI } from '@airport/di';
-import { FINAL_POSITION_FINDER } from '../../tokens';
-export class FinalPositionFinder {
-    findFinalPosition(closestMatrixPosition, viewport, cubeUtils, cubeMoveMatrix, cubeMovement) {
-        const positionData = viewport.pd;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Inject, Injected } from '@airport/direction-indicator';
+let FinalPositionFinder = class FinalPositionFinder {
+    findFinalPosition(closestMatrixPosition) {
+        const positionData = this.viewport.pd;
         const [xPos, xNeg] = this.getDirectionVals(positionData.x);
         const [yPos, yNeg] = this.getDirectionVals(positionData.y);
         const [zPos, zNeg] = this.getDirectionVals(positionData.z);
@@ -14,8 +19,8 @@ export class FinalPositionFinder {
             zNeg,
             xNeg,
         ];
-        const matrixStepDegrees = cubeMoveMatrix.STEP_DEGS;
-        if (this.matrixPositionsMatch(closestMatrixPosition.values, newPosition, cubeMoveMatrix)) {
+        const matrixStepDegrees = this.cubeMoveMatrix.STEP_DEGS;
+        if (this.matrixPositionsMatch(closestMatrixPosition.values, newPosition)) {
             return {
                 x: closestMatrixPosition.i * matrixStepDegrees,
                 y: closestMatrixPosition.j * matrixStepDegrees
@@ -28,41 +33,41 @@ export class FinalPositionFinder {
             },
             exactMatches: new Map()
         };
-        this.findVectorEndPoint({}, newPosition, closestMatrixPosition, vectorPosition, cubeUtils, cubeMoveMatrix, cubeMovement);
+        this.findVectorEndPoint({}, newPosition, closestMatrixPosition, vectorPosition);
         const directionVectorMatch = vectorPosition.endPoint;
-        return this.get2DOffsetFinalPosition(closestMatrixPosition, directionVectorMatch, cubeMoveMatrix);
+        return this.get2DOffsetFinalPosition(closestMatrixPosition, directionVectorMatch);
     }
     getDirectionVals(agreementDimension) {
         return agreementDimension.outcome === 'A'
             ? [agreementDimension.value, 0]
             : [0, agreementDimension.value];
     }
-    findVectorEndPoint(processedMatches, newPosition, closestMatrixPosition, vectorPosition, cubeUtils, cubeMoveMatrix, cubeMovement) {
+    findVectorEndPoint(processedMatches, newPosition, closestMatrixPosition, vectorPosition) {
         const closestMatrixPositionKey = closestMatrixPosition.i + ':' + closestMatrixPosition.j;
         closestMatrixPosition.key = closestMatrixPositionKey;
         vectorPosition.exactMatches.set(closestMatrixPositionKey, closestMatrixPosition);
-        const endPointPosition = this.findEndPointPosition(newPosition, closestMatrixPosition, vectorPosition.exactMatches, cubeUtils, cubeMoveMatrix, cubeMovement);
+        const endPointPosition = this.findEndPointPosition(newPosition, closestMatrixPosition, vectorPosition.exactMatches);
         closestMatrixPosition.done = true;
         const newMatch = endPointPosition.match;
-        if (this.positionIsABetterMatch(vectorPosition.endPoint, newMatch.alignScore, newMatch.shiftScore, newMatch.dist, newMatch.dimShifts, cubeUtils)) {
+        if (this.positionIsABetterMatch(vectorPosition.endPoint, newMatch.alignScore, newMatch.shiftScore, newMatch.dist, newMatch.dimShifts)) {
             vectorPosition.endPoint = newMatch;
         }
         for (const [key, exactMatchPosition] of vectorPosition.exactMatches) {
             if (!exactMatchPosition.done) {
-                this.findVectorEndPoint(processedMatches, newPosition, exactMatchPosition, vectorPosition, cubeUtils, cubeMoveMatrix, cubeMovement);
+                this.findVectorEndPoint(processedMatches, newPosition, exactMatchPosition, vectorPosition);
             }
         }
     }
-    matrixPositionsMatch(vals1, vals2, cubeMoveMatrix) {
-        for (let i = 0; i < cubeMoveMatrix.NUM_VALS; i++) {
+    matrixPositionsMatch(vals1, vals2) {
+        for (let i = 0; i < this.cubeMoveMatrix.NUM_VALS; i++) {
             if (vals1[i] !== vals2[i]) {
                 return false;
             }
         }
         return true;
     }
-    findEndPointPosition(newPosition, closestMatrixPosition, exactMatches, cubeUtils, cubeMoveMatrix, cubeMovement) {
-        const numValuesInArray = cubeMoveMatrix.NUM_VALS;
+    findEndPointPosition(newPosition, closestMatrixPosition, exactMatches) {
+        const numValuesInArray = this.cubeMoveMatrix.NUM_VALS;
         let dimensionMismatchInClosestPosition = false;
         const closestValues = closestMatrixPosition.values;
         const directionFromClosestPosition = [];
@@ -86,13 +91,13 @@ export class FinalPositionFinder {
                 if (verticalMatrixShift === 0 && horizontalMatrixShift === 0) {
                     continue;
                 }
-                const neighborI = this.base72Pos(closestMatrixPosition.i, verticalMatrixShift, cubeMoveMatrix, cubeMovement);
-                const neighborJ = this.base72Pos(closestMatrixPosition.j, horizontalMatrixShift, cubeMoveMatrix, cubeMovement);
+                const neighborI = this.base72Pos(closestMatrixPosition.i, verticalMatrixShift);
+                const neighborJ = this.base72Pos(closestMatrixPosition.j, horizontalMatrixShift);
                 const neighborPositionKey = neighborI + ':' + neighborJ;
                 if (exactMatches.has(neighborPositionKey)) {
                     continue;
                 }
-                const values = cubeMoveMatrix.VALUE_MATRIX[neighborI][neighborJ];
+                const values = this.cubeMoveMatrix.VALUE_MATRIX[neighborI][neighborJ];
                 let maxDistance = 0;
                 const neighborDistance = {
                     dist: maxDistance,
@@ -156,7 +161,7 @@ export class FinalPositionFinder {
                     }
                 }
                 const [numberOfDimensionShifts, shiftScore] = this.getDimensionShift(verticalMatrixShift, horizontalMatrixShift);
-                if (this.positionIsABetterMatch(matrixPositionMatch, alignScore, shiftScore, maxDistance, numberOfDimensionShifts, cubeUtils)) {
+                if (this.positionIsABetterMatch(matrixPositionMatch, alignScore, shiftScore, maxDistance, numberOfDimensionShifts)) {
                     matrixPositionMatch = {
                         alignScore,
                         dimDists,
@@ -175,9 +180,9 @@ export class FinalPositionFinder {
             neighborDists
         };
     }
-    positionIsABetterMatch(preivousMatrixPositionMatch, newAlignScore, newMatrixShiftScore, newDistance, newNumberOfDimensionShifts, cubeUtils) {
+    positionIsABetterMatch(preivousMatrixPositionMatch, newAlignScore, newMatrixShiftScore, newDistance, newNumberOfDimensionShifts) {
         return !preivousMatrixPositionMatch
-            || cubeUtils.secondIsGreaterShortCircuit([
+            || this.cubeUtils.secondIsGreaterShortCircuit([
                 [preivousMatrixPositionMatch.alignScore, newAlignScore],
                 [newMatrixShiftScore, preivousMatrixPositionMatch.shiftScore],
                 [newDistance, preivousMatrixPositionMatch.dist],
@@ -196,12 +201,12 @@ export class FinalPositionFinder {
     }
     get2DOffsetFinalPosition(
     // newPosition: PositionValues,
-    closestMatrixPosition, directionVectorMatch, cubeMoveMatrix) {
+    closestMatrixPosition, directionVectorMatch) {
         // 0 & 5 determine x movement
         // 1,2,3,4 determine y movement
         // need to take the distances from newPosition and apply them accordingly
-        const separations = this.get2DDegreeSeparations(closestMatrixPosition, directionVectorMatch, cubeMoveMatrix);
-        const stepDegrees = cubeMoveMatrix.STEP_DEGS;
+        const separations = this.get2DDegreeSeparations(closestMatrixPosition, directionVectorMatch);
+        const stepDegrees = this.cubeMoveMatrix.STEP_DEGS;
         return {
             x: this.getFinalPositionOfDimension(closestMatrixPosition.i * stepDegrees, directionVectorMatch.iShift, separations.i),
             y: this.getFinalPositionOfDimension(closestMatrixPosition.j * stepDegrees, directionVectorMatch.jShift, separations.j)
@@ -222,8 +227,8 @@ export class FinalPositionFinder {
         }
         return closestMatrixPositionDegrees;
     }
-    get2DDegreeSeparations(closestMatrixPosition, directionVectorMatch, cubeMoveMatrix) {
-        const cellSeparationDistances = this.getDirectionalDists(closestMatrixPosition, directionVectorMatch.values, cubeMoveMatrix);
+    get2DDegreeSeparations(closestMatrixPosition, directionVectorMatch) {
+        const cellSeparationDistances = this.getDirectionalDists(closestMatrixPosition, directionVectorMatch.values);
         const [largestIDistIndex, largestIDist] = this.getLargestDistAndIdx([0, 5], cellSeparationDistances);
         const [largestJDistIndex, largestJDist] = this.getLargestDistAndIdx([1, 2, 3, 4], cellSeparationDistances);
         const iDistance = directionVectorMatch.dimDists[largestIDistIndex];
@@ -231,12 +236,12 @@ export class FinalPositionFinder {
         const jDistance = directionVectorMatch.dimDists[largestJDistIndex];
         const jRatio = largestJDist ? 1 - jDistance / largestJDist : 0;
         return {
-            i: this.getDegreeShift(directionVectorMatch.iShift, iRatio, cubeMoveMatrix),
-            j: this.getDegreeShift(directionVectorMatch.jShift, jRatio, cubeMoveMatrix)
+            i: this.getDegreeShift(directionVectorMatch.iShift, iRatio),
+            j: this.getDegreeShift(directionVectorMatch.jShift, jRatio)
         };
     }
-    getDegreeShift(matrixCellShift, ratio, cubeMoveMatrix) {
-        const matrixStepDegrees = cubeMoveMatrix.STEP_DEGS;
+    getDegreeShift(matrixCellShift, ratio) {
+        const matrixStepDegrees = this.cubeMoveMatrix.STEP_DEGS;
         let exactShift;
         // if (matrixCellShift) {
         exactShift = (matrixStepDegrees * matrixCellShift) * ratio;
@@ -245,9 +250,9 @@ export class FinalPositionFinder {
         // }
         return Math.round(exactShift);
     }
-    getDirectionalDists(closestMatrixPosition, directionVectorPositionValues, cubeMoveMatrix) {
+    getDirectionalDists(closestMatrixPosition, directionVectorPositionValues) {
         const distances = [];
-        for (let k = 0; k < cubeMoveMatrix.NUM_VALS; k++) {
+        for (let k = 0; k < this.cubeMoveMatrix.NUM_VALS; k++) {
             const currentDistance = Math.abs(directionVectorPositionValues[k]
                 - closestMatrixPosition.values[k]);
             distances.push(currentDistance);
@@ -266,9 +271,9 @@ export class FinalPositionFinder {
         }
         return [largestDistIndex, largestDist];
     }
-    base72Pos(matrixPosition, offset, cubeMoveMatrix, cubeMovement) {
-        const base72Position = (matrixPosition + offset) % cubeMoveMatrix.NUM_DIVISIONS;
-        return cubeMovement.normMatrixIdx(base72Position, cubeMoveMatrix);
+    base72Pos(matrixPosition, offset) {
+        const base72Position = (matrixPosition + offset) % this.cubeMoveMatrix.NUM_DIVISIONS;
+        return this.cubeMovement.normMatrixIdx(base72Position);
     }
     getPositionDiffDirection(from, to, index) {
         let direction = 0;
@@ -281,6 +286,21 @@ export class FinalPositionFinder {
         }
         return direction;
     }
-}
-DI.set(FINAL_POSITION_FINDER, FinalPositionFinder);
+};
+__decorate([
+    Inject()
+], FinalPositionFinder.prototype, "viewport", void 0);
+__decorate([
+    Inject()
+], FinalPositionFinder.prototype, "cubeUtils", void 0);
+__decorate([
+    Inject()
+], FinalPositionFinder.prototype, "cubeMoveMatrix", void 0);
+__decorate([
+    Inject()
+], FinalPositionFinder.prototype, "cubeMovement", void 0);
+FinalPositionFinder = __decorate([
+    Injected()
+], FinalPositionFinder);
+export { FinalPositionFinder };
 //# sourceMappingURL=FinalPositionFinder.js.map

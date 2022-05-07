@@ -1,5 +1,3 @@
-import { DI } from '@airport/di';
-import { CUBE_DIRECTION } from '../tokens';
 export class CubeDirection {
     getMove(startCoords, endCoords) {
         let dx, dy, vx, vy, moveX = 0, xBy = 0, moveY = 0, yBy = 0;
@@ -65,5 +63,4 @@ export class CubeDirection {
         ];
     }
 }
-DI.set(CUBE_DIRECTION, CubeDirection);
 //# sourceMappingURL=CubeDirection.js.map

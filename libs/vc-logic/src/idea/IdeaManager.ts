@@ -1,7 +1,4 @@
-import {
-	container,
-	DI
-} from '@airport/di'
+import { Inject, Injected } from '@airport/direction-indicator'
 import { IFieldGroup } from '@votecube/forms'
 import {
 	IUiAgreement,
@@ -12,14 +9,11 @@ import {
 	IRepositoryIdentifier,
 	IIdea,
 	IdeaApiClient
-} from '@votecube/votecube'
-import {
-	CUBE_LOGIC,
-	LOGIC_UTILS,
-	IDEA_FORM_MANAGER,
-	IDEA_MANAGER,
-	IDEA_CONVERTER
-} from '../tokens'
+} from '@votecube/votecube-client'
+import { ILogicUtils } from '..'
+import { IIdeaConverter } from '../converter/IdeaConverter'
+import { IIdeaFormManager } from '../pages/idea/IdeaFormManager'
+import { ICubeLogic } from './CubeLogic'
 
 export interface IPageAgreement
 	extends IUiAgreement {
@@ -69,8 +63,21 @@ export interface ICachedIdea {
 	ui: IUiIdea
 }
 
+@Injected()
 export class IdeaManager
 	implements IIdeaManager {
+
+	@Inject()
+	cubeLogic: ICubeLogic
+
+	@Inject()
+	logicUtils: ILogicUtils
+
+	@Inject()
+	ideaFormManager: IIdeaFormManager
+
+	@Inject()
+	ideaConverter: IIdeaConverter
 
 	ideaApi = new IdeaApiClient()
 
@@ -100,8 +107,7 @@ export class IdeaManager
 			.getIdea(hostingPlatform, repositoryUuId)
 		this.cachedIdea.db = dbIdea
 
-		const converter = await container(this).get(IDEA_CONVERTER)
-		this.cachedIdea.ui = converter.dbToUi(dbIdea)
+		this.cachedIdea.ui = this.ideaConverter.dbToUi(dbIdea)
 
 		return this.cachedIdea.ui
 	}
@@ -134,25 +140,20 @@ export class IdeaManager
 			return
 		}
 
-		const [ideaFormManager, logicUtils] = await container(this).get(
-			IDEA_FORM_MANAGER, LOGIC_UTILS)
-
-		const ui = ideaFormManager
+		const ui = this.ideaFormManager
 			.fromForm(form.value, this.cachedIdea.ui)
 
 		const oldUiIdea = this.cachedIdea.ui
 
 		if (oldUiIdea) {
-			logicUtils.overlay(oldUiIdea, ui)
+			this.logicUtils.overlay(oldUiIdea, ui)
 		} else {
-			const cubeLogic = await container(this).get(CUBE_LOGIC)
-
-			logicUtils.overlay({
-				factors: cubeLogic.getReasonDefault()
+			this.logicUtils.overlay({
+				factors: this.cubeLogic.getReasonDefault()
 			}, ui)
 		}
 		if (oldUiIdea) {
-			logicUtils.copyProperties(oldUiIdea, ui, [
+			this.logicUtils.copyProperties(oldUiIdea, ui, [
 				// 'actorId',
 				// 'actorRecordId',
 				'ageSuitability',
@@ -211,15 +212,11 @@ export class IdeaManager
 		const originalUi = this.cachedIdea.originalUi
 		const ui = this.cachedIdea.ui
 
-		const logicUtils = await container(this).get(LOGIC_UTILS)
-
-		if (!logicUtils.isDifferent(originalUi, ui)) {
+		if (!this.logicUtils.isDifferent(originalUi, ui)) {
 			return
 		}
 
-		const converter = await container(this).get(IDEA_CONVERTER)
-
-		const dbIdea = converter.uiToDb(ui, this.cachedIdea.db)
+		const dbIdea = this.ideaConverter.uiToDb(ui, this.cachedIdea.db)
 
 		let repositoryIdentifier
 		if (createNewRepository) {
@@ -250,5 +247,3 @@ export class IdeaManager
 	}
 
 }
-
-DI.set(IDEA_MANAGER, IdeaManager)

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import {
 		navigateToPage,
 		pageTitle,
@@ -55,7 +55,7 @@
 	};
 
 	onMount(async () => {
-		container = DI.ui("DerivationList");
+		container = DEPENDENCY_INJECTION.ui("DerivationList");
 
 		const { repositoryUuId } = get(routeParams);
 		let results = await getListingsAndOther(

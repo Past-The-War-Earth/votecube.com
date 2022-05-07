@@ -44,7 +44,7 @@
 </style>
 
 <script>
-	import {DI} from '@airport/di'
+	import {DEPENDENCY_INJECTION} from '@airport/direction-indicator'
 	import {LOGIC_UTILS} from '@votecube/vc-logic'
 
 	export default {
@@ -77,12 +77,12 @@
 		},
 		ondestroy() {
 			const {container} = this.get()
-			DI.remove(container)
+			DEPENDENCY_INJECTION.remove(container)
 		}
 	}
 
 	async function initPage() {
-		const container  = DI.ui('FactorInfoButton')
+		const container  = DEPENDENCY_INJECTION.ui('FactorInfoButton')
 		const logicUtils = await container.get(LOGIC_UTILS)
 
 		initPage.page.set({container, logicUtils})

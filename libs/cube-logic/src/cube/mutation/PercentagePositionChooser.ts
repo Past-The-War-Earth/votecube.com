@@ -1,7 +1,5 @@
-import { DI } from '@airport/di'
-import { PERCENTAGE_POSITION_CHOOSER } from '../../tokens'
+import { Inject, Injected } from '@airport/direction-indicator'
 import {
-	Direction,
 	ICubeAgreement,
 	PositionPercent
 } from '../CubeMovement'
@@ -17,33 +15,33 @@ import {
 
 export interface IPercentagePositionChooser {
 
-
 	changePositionPercentages(
 		dimension: Dimension,
 		percentChange: PercentChange,
-		outcome: Outcome_Ordinal,
-		viewport: IViewport
+		outcome: Outcome_Ordinal
 	): void
 
 	setPositionPercentages(
 		dimension: Dimension,
 		percent: PositionPercent,
 		outcome: Outcome_Ordinal,
-		viewport: IViewport
 	): void
 
 }
 
+@Injected()
 export class PercentagePositionChooser
 	implements IPercentagePositionChooser {
+
+	@Inject()
+	viewport: IViewport
 
 	setPositionPercentages(
 		dimension: Dimension,
 		percent: PositionPercent,
-		outcome: Outcome_Ordinal,
-		viewport: IViewport
+		outcome: Outcome_Ordinal
 	): void {
-		const positionData = viewport.pd
+		const positionData = this.viewport.pd
 		if (percent && !outcome) {
 			outcome = 'A'
 		} else if (outcome && !percent) {
@@ -52,31 +50,28 @@ export class PercentagePositionChooser
 		positionData[dimension].value = percent
 		positionData[dimension].outcome = outcome
 
-		this.adjustDimensions(dimension, viewport)
+		this.adjustDimensions(dimension)
 	}
 
 	changePositionPercentages(
 		dimension: Dimension,
 		percentChange: PercentChange,
-		outcome: Outcome_Ordinal,
-		viewport: IViewport
+		outcome: Outcome_Ordinal
 	): void {
 		this.updateDimensionPercent(
 			dimension,
 			percentChange,
-			outcome,
-			viewport
+			outcome
 		)
-		this.adjustDimensions(dimension, viewport)
+		this.adjustDimensions(dimension)
 	}
 
 	private updateDimensionPercent(
 		dimension: Dimension,
 		percentChange: PercentChange,
-		outcome: Outcome_Ordinal,
-		viewport: IViewport
+		outcome: Outcome_Ordinal
 	): void {
-		const dimensionPositionData = viewport.pd[dimension]
+		const dimensionPositionData = this.viewport.pd[dimension]
 
 		if (dimensionPositionData.outcome !== outcome) {
 			const existingValueToDecrease = dimensionPositionData.value
@@ -105,21 +100,20 @@ export class PercentagePositionChooser
 	}
 
 	private adjustDimensions(
-		dimension: Dimension,
-		viewport: IViewport,
+		dimension: Dimension
 	): void {
-		const positionData = viewport.pd
-		const newChangedDimensionValue = viewport.pd[dimension].value
+		const positionData = this.viewport.pd
+		const newChangedDimensionValue = this.viewport.pd[dimension].value
 		let i = -1
-		const dimensionToPreserve = this.getDimensionToPreserve(dimension, viewport)
+		const dimensionToPreserve = this.getDimensionToPreserve(dimension)
 		const dimensionToMove = this.getDimensionToMove(dimension, dimensionToPreserve)
 		const otherDimensions = [dimensionToMove, dimensionToPreserve]
 		let otherDimensionValues
 		let totalValue
 		do {
 			otherDimensionValues = [
-				viewport.pd[dimensionToMove].value,
-				viewport.pd[dimensionToPreserve].value
+				this.viewport.pd[dimensionToMove].value,
+				this.viewport.pd[dimensionToPreserve].value
 			]
 
 			totalValue = newChangedDimensionValue + otherDimensionValues[0] + otherDimensionValues[1]
@@ -173,11 +167,10 @@ export class PercentagePositionChooser
 	}
 
 	private getDimensionToPreserve(
-		dimension: Dimension,
-		viewport: IViewport
+		dimension: Dimension
 	): Dimension {
-		if (viewport.rmd.length > 1) {
-			return viewport.rmd[1]
+		if (this.viewport.rmd.length > 1) {
+			return this.viewport.rmd[1]
 		}
 
 		// If the order between the dimensions is the same, use the top-to-bottom
@@ -224,5 +217,3 @@ export class PercentagePositionChooser
 	}
 
 }
-
-DI.set(PERCENTAGE_POSITION_CHOOSER, PercentagePositionChooser)

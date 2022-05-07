@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import { AUTH, text } from "@votecube/ui-logic";
 	import { createEventDispatcher, onDestroy, onMount } from "svelte";
 	import { get } from "svelte/store";
@@ -80,10 +80,10 @@
 		// 	return 0;
 		// });
 
-		container = DI.ui("SignIn");
+		container = DEPENDENCY_INJECTION.ui("SignIn");
 	});
 
-	onDestroy(() => DI.remove(container));
+	onDestroy(() => DEPENDENCY_INJECTION.remove(container));
 
 	function signIn() {
 		if (!signInForm.valid) {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
 	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
@@ -22,10 +22,10 @@
 	});
 
 	onMount(async () => {
-		container = DI.ui("SelectionBlock");
+		container = DEPENDENCY_INJECTION.ui("SelectionBlock");
 		logicUtils = await container.get(LOGIC_UTILS);
 	});
-	onDestroy(() => DI.remove(container));
+	onDestroy(() => DEPENDENCY_INJECTION.remove(container));
 
 	function f(func) {
 		return func();

@@ -1,4 +1,4 @@
-import { DI } from '@airport/di'
+import { Injected } from '@airport/direction-indicator';
 import {
 	BehaviorSubject,
 	Observable
@@ -7,9 +7,6 @@ import {
 	IUserInfo,
 	user
 } from './store'
-import {
-	AUTH,
-} from './tokens'
 
 export interface IAuthError {
 
@@ -43,6 +40,7 @@ export interface IAuth {
 	*/
 }
 
+@Injected()
 export class Auth
 	implements IAuth {
 
@@ -91,5 +89,3 @@ export class Auth
 	// }
 
 }
-
-DI.set(AUTH, Auth)

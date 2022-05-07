@@ -1,7 +1,12 @@
-import { container, DI } from '@airport/di';
-import { IdeaApiClient } from '@votecube/votecube';
-import { CUBE_LOGIC, LOGIC_UTILS, IDEA_FORM_MANAGER, IDEA_MANAGER, IDEA_CONVERTER } from '../tokens';
-export class IdeaManager {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Inject, Injected } from '@airport/direction-indicator';
+import { IdeaApiClient } from '@votecube/votecube-client';
+let IdeaManager = class IdeaManager {
     constructor() {
         this.ideaApi = new IdeaApiClient();
         this.theCachedIdea = {
@@ -24,8 +29,7 @@ export class IdeaManager {
         const dbIdea = await this.ideaApi
             .getIdea(hostingPlatform, repositoryUuId);
         this.cachedIdea.db = dbIdea;
-        const converter = await container(this).get(IDEA_CONVERTER);
-        this.cachedIdea.ui = converter.dbToUi(dbIdea);
+        this.cachedIdea.ui = this.ideaConverter.dbToUi(dbIdea);
         return this.cachedIdea.ui;
     }
     async getAllIdeas() {
@@ -45,21 +49,19 @@ export class IdeaManager {
         if (!form) {
             return;
         }
-        const [ideaFormManager, logicUtils] = await container(this).get(IDEA_FORM_MANAGER, LOGIC_UTILS);
-        const ui = ideaFormManager
+        const ui = this.ideaFormManager
             .fromForm(form.value, this.cachedIdea.ui);
         const oldUiIdea = this.cachedIdea.ui;
         if (oldUiIdea) {
-            logicUtils.overlay(oldUiIdea, ui);
+            this.logicUtils.overlay(oldUiIdea, ui);
         }
         else {
-            const cubeLogic = await container(this).get(CUBE_LOGIC);
-            logicUtils.overlay({
-                factors: cubeLogic.getIdeaFactorPositionDefault()
+            this.logicUtils.overlay({
+                factors: this.cubeLogic.getReasonDefault()
             }, ui);
         }
         if (oldUiIdea) {
-            logicUtils.copyProperties(oldUiIdea, ui, [
+            this.logicUtils.copyProperties(oldUiIdea, ui, [
                 // 'actorId',
                 // 'actorRecordId',
                 'ageSuitability',
@@ -110,12 +112,10 @@ export class IdeaManager {
     async saveIdea(idea, createNewRepository) {
         const originalUi = this.cachedIdea.originalUi;
         const ui = this.cachedIdea.ui;
-        const logicUtils = await container(this).get(LOGIC_UTILS);
-        if (!logicUtils.isDifferent(originalUi, ui)) {
+        if (!this.logicUtils.isDifferent(originalUi, ui)) {
             return;
         }
-        const converter = await container(this).get(IDEA_CONVERTER);
-        const dbIdea = converter.uiToDb(ui, this.cachedIdea.db);
+        const dbIdea = this.ideaConverter.uiToDb(ui, this.cachedIdea.db);
         let repositoryIdentifier;
         if (createNewRepository) {
             repositoryIdentifier = await this.ideaApi
@@ -137,6 +137,21 @@ export class IdeaManager {
     async saveCachedIdea(user, createNewRepository) {
         return await this.saveIdea(this.cachedIdea.ui, createNewRepository);
     }
-}
-DI.set(IDEA_MANAGER, IdeaManager);
+};
+__decorate([
+    Inject()
+], IdeaManager.prototype, "cubeLogic", void 0);
+__decorate([
+    Inject()
+], IdeaManager.prototype, "logicUtils", void 0);
+__decorate([
+    Inject()
+], IdeaManager.prototype, "ideaFormManager", void 0);
+__decorate([
+    Inject()
+], IdeaManager.prototype, "ideaConverter", void 0);
+IdeaManager = __decorate([
+    Injected()
+], IdeaManager);
+export { IdeaManager };
 //# sourceMappingURL=IdeaManager.js.map

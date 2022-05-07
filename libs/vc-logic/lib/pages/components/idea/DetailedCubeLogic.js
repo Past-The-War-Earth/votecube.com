@@ -1,9 +1,14 @@
-import { DI } from '@airport/di';
-import { CUBE_LOGIC, DETAILED_CUBE_LOGIC, LOGIC_UTILS } from '../../../tokens';
-export class DetailedCubeLogic {
-    async getCubeSides(idea, container) {
-        const [cubeLogic, logicUtils] = await container.get(CUBE_LOGIC, LOGIC_UTILS);
-        const cubeSides = cubeLogic.getDefaultCubePositions();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Inject } from '@airport/direction-indicator';
+import { Injected } from '@airport/direction-indicator';
+let DetailedCubeLogic = class DetailedCubeLogic {
+    async getCubeSides(idea) {
+        const cubeSides = this.cubeLogic.getDefaultCubePositions();
         const cubeSideMap = {
             x: {},
             y: {},
@@ -18,11 +23,11 @@ export class DetailedCubeLogic {
             for (const outcome in factor.positions) {
                 const position = factor.positions[outcome];
                 const cubeSide = cubeSideMap[factor.axis][position.dir];
-                cubeSide.colorRGB = logicUtils.getColor(factor.color);
+                cubeSide.colorRGB = this.logicUtils.getColor(factor.color);
                 cubeSide.factor = factor;
                 cubeSide.outcome = outcome;
                 cubeSide.position = position;
-                cubeSide.textColorRGB = logicUtils.getTextColor(factor.color);
+                cubeSide.textColorRGB = this.logicUtils.getTextColor(factor.color);
             }
         }
         return {
@@ -106,6 +111,15 @@ export class DetailedCubeLogic {
         cubeSideTo.position.dir = cubeSideFrom.position.dir;
         cubeSideFrom.position.dir = toDir;
     }
-}
-DI.set(DETAILED_CUBE_LOGIC, DetailedCubeLogic);
+};
+__decorate([
+    Inject()
+], DetailedCubeLogic.prototype, "cubeLogic", void 0);
+__decorate([
+    Inject()
+], DetailedCubeLogic.prototype, "logicUtils", void 0);
+DetailedCubeLogic = __decorate([
+    Injected()
+], DetailedCubeLogic);
+export { DetailedCubeLogic };
 //# sourceMappingURL=DetailedCubeLogic.js.map

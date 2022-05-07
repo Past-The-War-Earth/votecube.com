@@ -1,22 +1,19 @@
 import {
-	DI,
-	IChildContainer
-}                      from '@airport/di'
+	Inject
+} from '@airport/direction-indicator'
+import { Injected } from '@airport/direction-indicator'
 import {
 	Factor_Axis,
 	Outcome_Ordinal,
-}                      from '@votecube/cube-logic'
+} from '@votecube/cube-logic'
 import {
 	ICubePosition,
 	IUiFactor,
 	IUiPosition,
 	IUiIdea,
-}                      from '@votecube/model'
-import {
-	CUBE_LOGIC,
-	DETAILED_CUBE_LOGIC,
-	LOGIC_UTILS
-}                      from '../../../tokens'
+} from '@votecube/model'
+import { ICubeLogic } from '../../../idea/CubeLogic'
+import { ILogicUtils } from '../../../LogicUtils'
 
 export type Position_Dir = -1 | 1
 
@@ -77,8 +74,7 @@ interface ISwitchRecord {
 export interface IDetailedCubeLogic {
 
 	getCubeSides(
-		idea: IUiIdea,
-		container: IChildContainer
+		idea: IUiIdea
 	): Promise<{
 		cubeSideMap: ICubeSideMap
 		cubeSides: ICubeSide[]
@@ -97,20 +93,24 @@ export interface IDetailedCubeLogic {
 
 }
 
+@Injected()
 export class DetailedCubeLogic
 	implements IDetailedCubeLogic {
 
+	@Inject()
+	cubeLogic: ICubeLogic
+
+	@Inject()
+	logicUtils: ILogicUtils
+
 	async getCubeSides(
-		idea: IUiIdea,
-		container: IChildContainer
+		idea: IUiIdea
 	): Promise<{
 		cubeSideMap: ICubeSideMap
 		cubeSides: ICubeSide[]
 	}> {
-		const [cubeLogic, logicUtils] =
-			      await container.get(CUBE_LOGIC, LOGIC_UTILS)
-		const cubeSides: ICubeSide[]  =
-			      cubeLogic.getDefaultCubePositions() as ICubeSide[]
+		const cubeSides: ICubeSide[] =
+			this.cubeLogic.getDefaultCubePositions() as ICubeSide[]
 
 		const cubeSideMap: ICubeSideMap = {
 			x: {},
@@ -131,11 +131,11 @@ export class DetailedCubeLogic
 
 				const cubeSide: ICubeSide = cubeSideMap[factor.axis][position.dir]
 
-				cubeSide.colorRGB     = logicUtils.getColor(factor.color)
-				cubeSide.factor       = factor
-				cubeSide.outcome      = outcome as Outcome_Ordinal
-				cubeSide.position     = position
-				cubeSide.textColorRGB = logicUtils.getTextColor(factor.color)
+				cubeSide.colorRGB = this.logicUtils.getColor(factor.color)
+				cubeSide.factor = factor
+				cubeSide.outcome = outcome as Outcome_Ordinal
+				cubeSide.position = position
+				cubeSide.textColorRGB = this.logicUtils.getTextColor(factor.color)
 			}
 		}
 
@@ -161,22 +161,22 @@ export class DetailedCubeLogic
 		cubeSideMap: ICubeSideMap,
 		cubeSide: ICubeSide
 	): void {
-		const axis            = cubeSide.axis
-		const dir             = cubeSide.dir
+		const axis = cubeSide.axis
+		const dir = cubeSide.dir
 		const switchPositions = [{
 			axis,
 			dir
 		},
-			{
-				axis,
-				dir: dir === 1 ? -1 : 1
-			}]
+		{
+			axis,
+			dir: dir === 1 ? -1 : 1
+		}]
 
 		const cubeSideFrom = cubeSideMap[switchPositions[0].axis][switchPositions[0].dir]
-		const cubeSideTo   = cubeSideMap[switchPositions[1].axis][switchPositions[1].dir]
+		const cubeSideTo = cubeSideMap[switchPositions[1].axis][switchPositions[1].dir]
 
-		const toDir               = cubeSideTo.position.dir
-		cubeSideTo.position.dir   = cubeSideFrom.position.dir
+		const toDir = cubeSideTo.position.dir
+		cubeSideTo.position.dir = cubeSideFrom.position.dir
 		cubeSideFrom.position.dir = toDir
 	}
 
@@ -186,7 +186,7 @@ export class DetailedCubeLogic
 		switchToDefinitions: SwitchToDefinition[]
 	): ISwitchRecord[] {
 		const switchPositionMap: ISwitchPositionMap
-			       = {
+			= {
 			x: {
 				'-1': 1,
 				'1': 0,
@@ -203,8 +203,8 @@ export class DetailedCubeLogic
 		const to = switchToDefinitions[switchPositionMap[axis][dir]]
 
 		const [toAxis, toDir] = to
-		const oppositeDir     = dir === 1 ? -1 : 1
-		const toOppositeDir   = toDir === 1 ? -1 : 1
+		const oppositeDir = dir === 1 ? -1 : 1
+		const toOppositeDir = toDir === 1 ? -1 : 1
 
 		return [{
 			from: {
@@ -232,10 +232,10 @@ export class DetailedCubeLogic
 		cubeSideMap: ICubeSideMap
 	) {
 		const cubeSideFrom = cubeSideMap[switchPosition.from.axis][switchPosition.from.dir]
-		const cubeSideTo   = cubeSideMap[switchPosition.to.axis][switchPosition.to.dir]
+		const cubeSideTo = cubeSideMap[switchPosition.to.axis][switchPosition.to.dir]
 
-		const toAxis             = cubeSideTo.factor.axis
-		cubeSideTo.factor.axis   = cubeSideFrom.factor.axis
+		const toAxis = cubeSideTo.factor.axis
+		cubeSideTo.factor.axis = cubeSideFrom.factor.axis
 		cubeSideFrom.factor.axis = toAxis
 	}
 
@@ -244,13 +244,11 @@ export class DetailedCubeLogic
 		cubeSideMap: ICubeSideMap
 	) {
 		const cubeSideFrom = cubeSideMap[switchPosition.from.axis][switchPosition.from.dir]
-		const cubeSideTo   = cubeSideMap[switchPosition.to.axis][switchPosition.to.dir]
+		const cubeSideTo = cubeSideMap[switchPosition.to.axis][switchPosition.to.dir]
 
-		const toDir               = cubeSideTo.position.dir
-		cubeSideTo.position.dir   = cubeSideFrom.position.dir
+		const toDir = cubeSideTo.position.dir
+		cubeSideTo.position.dir = cubeSideFrom.position.dir
 		cubeSideFrom.position.dir = toDir
 	}
 
 }
-
-DI.set(DETAILED_CUBE_LOGIC, DetailedCubeLogic)

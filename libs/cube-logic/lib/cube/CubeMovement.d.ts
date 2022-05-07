@@ -39,14 +39,15 @@ export declare type IValuesOutCallback = (agreement: IUiAgreement) => void;
 export declare type IValuesThruCallback = (agreement: ICubeAgreement) => void;
 export interface ICubeMovement {
     mouse: IMousePosition;
-    getMatrixIdxFromDeg(rotationDegrees: number, cubeMoveMatrix: ICubeMoveMatrix): MatrixIndex;
-    moveCoordinates(currentDegree: number, move: Move, cubeMoveMatrix: ICubeMoveMatrix): [number, MatrixIndex];
-    normMatrixIdx(signedMatrixIndex: number, cubeMoveMatrix: ICubeMoveMatrix): MatrixIndex;
+    getMatrixIdxFromDeg(rotationDegrees: number): MatrixIndex;
+    moveCoordinates(currentDegree: number, move: Move): [number, MatrixIndex];
+    normMatrixIdx(signedMatrixIndex: number): MatrixIndex;
 }
 export declare class CubeMovement implements ICubeMovement {
+    cubeMoveMatrix: ICubeMoveMatrix;
     mouse: IMousePosition;
-    getMatrixIdxFromDeg(rotationDegrees: number, cubeMoveMatrix: ICubeMoveMatrix): MatrixIndex;
-    moveCoordinates(currentDegree: number, move: Move, cubeMoveMatrix: ICubeMoveMatrix): [number, MatrixIndex];
-    normMatrixIdx(signedMatrixIndex: number, cubeMoveMatrix: ICubeMoveMatrix): MatrixIndex;
+    getMatrixIdxFromDeg(rotationDegrees: number): MatrixIndex;
+    moveCoordinates(currentDegree: number, move: Move): [number, MatrixIndex];
+    normMatrixIdx(signedMatrixIndex: number): MatrixIndex;
 }
 //# sourceMappingURL=CubeMovement.d.ts.map

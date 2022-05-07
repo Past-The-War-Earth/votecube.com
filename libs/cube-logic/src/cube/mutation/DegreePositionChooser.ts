@@ -1,27 +1,28 @@
-import {DI}                      from '@airport/di'
-import {DEGREE_POSITION_CHOOSER} from '../../tokens'
-import {IViewport}               from '../Viewport'
-import {IFinalPosition}          from './types'
+import { Inject, Injected } from '@airport/direction-indicator'
+import { IViewport } from '../Viewport'
+import { IFinalPosition } from './types'
 
 export interface IDegreePositionChooser {
 
 	setFinalDegrees(
-		finalPosition: IFinalPosition,
-		viewport: IViewport
+		finalPosition: IFinalPosition
 	): void
 
 }
 
+@Injected()
 export class DegreePositionChooser
 	implements IDegreePositionChooser {
 
+	@Inject()
+	viewport: IViewport
+
 	setFinalDegrees(
 		finalPosition: IFinalPosition,
-		viewport: IViewport
 	): void {
-		viewport.x = this.getDimDegrees(viewport.x, finalPosition.x)
-		viewport.y = this.getDimDegrees(viewport.y, finalPosition.y)
-		viewport.moveToDegree()
+		this.viewport.x = this.getDimDegrees(this.viewport.x, finalPosition.x)
+		this.viewport.y = this.getDimDegrees(this.viewport.y, finalPosition.y)
+		this.viewport.moveToDegree()
 	}
 
 	private getDimDegrees(
@@ -42,5 +43,3 @@ export class DegreePositionChooser
 	}
 
 }
-
-DI.set(DEGREE_POSITION_CHOOSER, DegreePositionChooser)

@@ -1,6 +1,7 @@
-import { IChildContainer } from '@airport/di';
 import { Outcome_Ordinal } from '@votecube/cube-logic';
 import { ICubePosition, IUiFactor, IUiPosition, IUiIdea } from '@votecube/model';
+import { ICubeLogic } from '../../../idea/CubeLogic';
+import { ILogicUtils } from '../../../LogicUtils';
 export declare type Position_Dir = -1 | 1;
 export interface ICubeSide extends ICubePosition {
     colorRGB: string;
@@ -25,7 +26,7 @@ export interface ICubeSideMap {
 }
 export declare type SwitchToDefinition = ['x' | 'y' | 'z', -1 | 1];
 export interface IDetailedCubeLogic {
-    getCubeSides(idea: IUiIdea, container: IChildContainer): Promise<{
+    getCubeSides(idea: IUiIdea): Promise<{
         cubeSideMap: ICubeSideMap;
         cubeSides: ICubeSide[];
     }>;
@@ -33,7 +34,9 @@ export interface IDetailedCubeLogic {
     switchPoles(cubeSideMap: ICubeSideMap, cubeSide: ICubeSide): void;
 }
 export declare class DetailedCubeLogic implements IDetailedCubeLogic {
-    getCubeSides(idea: IUiIdea, container: IChildContainer): Promise<{
+    cubeLogic: ICubeLogic;
+    logicUtils: ILogicUtils;
+    getCubeSides(idea: IUiIdea): Promise<{
         cubeSideMap: ICubeSideMap;
         cubeSides: ICubeSide[];
     }>;

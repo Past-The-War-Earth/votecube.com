@@ -1,5 +1,4 @@
-import {DI}               from '@airport/di'
-import {CUBE_MOVE_MATRIX} from '../tokens'
+import { Injected } from '@airport/direction-indicator'
 import {PositionPercent}  from './CubeMovement'
 
 export enum MoveIncrement {
@@ -44,6 +43,7 @@ export interface ICubeMoveMatrix {
 
 }
 
+@Injected()
 export class CubeMoveMatrix
 	implements ICubeMoveMatrix {
 
@@ -207,5 +207,3 @@ export class CubeMoveMatrix
 		}
 	}
 }
-
-DI.set(CUBE_MOVE_MATRIX, CubeMoveMatrix)

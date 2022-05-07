@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {DI}            from '@airport/di'
+	import {DEPENDENCY_INJECTION}            from '@airport/direction-indicator'
 	import {TOUCH}         from '@votecube/cube-logic'
 import type { IUiIdea, IUiAgreement, IUiAgreementFactor } from '@votecube/model';
 import {
@@ -38,11 +38,11 @@ import {
 	const dispatch = createEventDispatcher()
 
 	onMount(() => {
-		container = DI.ui('FactorRanking')
+		container = DEPENDENCY_INJECTION.ui('FactorRanking')
 	})
 
 	onDestroy(() => {
-		DI.remove(container)
+		DEPENDENCY_INJECTION.remove(container)
 	})
 
 	function canRemove(

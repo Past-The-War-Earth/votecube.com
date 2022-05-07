@@ -1,4 +1,4 @@
-import {DI}                                from '@airport/di'
+import {DI}                                from '@airport/direction-indicator'
 import {POLL_FACTOR_POSITION_REVISION_DUO} from '../../tokens'
 import {
 	BasePollRevisionFactorPositionDuo,
