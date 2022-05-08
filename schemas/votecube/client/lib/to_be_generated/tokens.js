@@ -1,5 +1,6 @@
 import { app } from '@votecube/dependency-injection';
 export const votecube = app('votecube');
+votecube.autopilot = true;
 export const AGREEMENT_API = votecube.token({
     class: null,
     interface: 'IAgreementApi',

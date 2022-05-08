@@ -10,7 +10,6 @@ import { DEPENDENCY_INJECTION } from '@airport/direction-indicator'
 import {
 	DbApplication,
 	EntityId,
-	getFullApplicationName
 } from '@airport/ground-control';
 import { QAgreement } from './agreement/qagreement';
 import { QAgreementFactor } from './agreement/qagreementfactor';
@@ -85,7 +84,7 @@ export function duoDiSet(
 }
 
 DEPENDENCY_INJECTION.db().eventuallyGet(AIRPORT_DATABASE).then((
-	airDb
+	airportDatabase,
 ) => {
-	airDb.QM[getFullApplicationName(Q_APPLICATION)] = Q
+	airportDatabase.setQApplication(Q_APPLICATION)
 })

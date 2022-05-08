@@ -4,6 +4,7 @@ import type { IIdeaApi } from './wrappers/IdeaApiClient'
 import type { IIdeaSituationApi } from './wrappers/IdeaSituationApiClient'
 
 export const votecube = app('votecube')
+votecube.autopilot = true
 
 export const AGREEMENT_API = votecube.token<IAgreementApi>({
     class: null,
