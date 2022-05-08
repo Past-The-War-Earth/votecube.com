@@ -1,4 +1,4 @@
-import { APPLICATION_STORE } from '@airport/apron';
+import { APPLICATION_LOADER, APPLICATION_STORE } from '@airport/apron';
 import { API_REGISTRY } from '@airport/check-in';
 import { APPLICATION_INITIALIZER } from '@airport/terminal-map';
 import { ApplicationLoader } from './ApplicationLoader';
@@ -25,11 +25,7 @@ IDEA_SITUATION_API.setDependencies({
     ideaSituationDao: IDEA_SITUATION_DAO
 });
 AGREEMENT_API.setClass(AgreementApi);
-export const APPLICATION_LOADER = votecube.token({
-    class: ApplicationLoader,
-    interface: 'IApplicationLoader',
-    token: 'APPLICATION_LOADER'
-});
+APPLICATION_LOADER.setClass(ApplicationLoader);
 APPLICATION_LOADER.setDependencies({
     applicationInitializer: APPLICATION_INITIALIZER,
     applicationStore: APPLICATION_STORE,
