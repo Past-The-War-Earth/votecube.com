@@ -1,6 +1,5 @@
 import { APPLICATION_LOADER, APPLICATION_STORE, IApplicationLoader } from '@airport/apron'
 import { API_REGISTRY } from '@airport/check-in'
-import { DEPENDENCY_INJECTION } from '@airport/direction-indicator'
 import { APPLICATION_INITIALIZER } from '@airport/terminal-map'
 import { ApplicationLoader } from './ApplicationLoader'
 import { votecube } from './common-tokens'
