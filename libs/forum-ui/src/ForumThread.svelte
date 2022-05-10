@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DI, IChildContainer } from "@airport/direction-indicator";
+    import { DEPENDENCY_INJECTION, IChildContainer } from "@airport/direction-indicator";
     import { IFieldGroup } from "@votecube/forms";
     import { pageTitle, routeParams, text } from "@votecube/ui-logic";
     import TextArea from "@votecube/ui-controls/src/field/TextArea.svelte";
@@ -40,7 +40,7 @@
     }
 
     onMount(async () => {
-        container = DI.ui("ForumThread");
+        container = DEPENDENCY_INJECTION.ui("ForumThread");
 
         const { forumRepositorySource, forumRepositoryUuId } = get(routeParams);
         let [forumThread, formsModule] = await Promise.all([

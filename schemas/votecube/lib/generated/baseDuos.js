@@ -8,26 +8,26 @@ export class SQDIDuo extends Duo {
 }
 export class BaseAgreementDuo extends SQDIDuo {
     static diSet() {
+        return duoDiSet(2);
+    }
+    constructor() {
+        super(2);
+    }
+}
+export class BaseAgreementFactorDuo extends SQDIDuo {
+    static diSet() {
         return duoDiSet(1);
     }
     constructor() {
         super(1);
     }
 }
-export class BaseAgreementFactorDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(0);
-    }
-    constructor() {
-        super(0);
-    }
-}
 export class BaseFactorDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(3);
+        return duoDiSet(4);
     }
     constructor() {
-        super(3);
+        super(4);
     }
 }
 export class BaseIdeaDuo extends SQDIDuo {
@@ -48,42 +48,42 @@ export class BaseIdeaLabelDuo extends SQDIDuo {
 }
 export class BaseIdeaSituationDuo extends SQDIDuo {
     static diSet() {
+        return duoDiSet(6);
+    }
+    constructor() {
+        super(6);
+    }
+}
+export class BaseLabelDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(0);
+    }
+    constructor() {
+        super(0);
+    }
+}
+export class BaseOutcomeDuo extends SQDIDuo {
+    static diSet() {
         return duoDiSet(5);
     }
     constructor() {
         super(5);
     }
 }
-export class BaseLabelDuo extends SQDIDuo {
+export class BasePositionDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(3);
+    }
+    constructor() {
+        super(3);
+    }
+}
+export class BaseReasonDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(7);
     }
     constructor() {
         super(7);
-    }
-}
-export class BaseOutcomeDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(4);
-    }
-    constructor() {
-        super(4);
-    }
-}
-export class BasePositionDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(2);
-    }
-    constructor() {
-        super(2);
-    }
-}
-export class BaseReasonDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(6);
-    }
-    constructor() {
-        super(6);
     }
 }
 //# sourceMappingURL=baseDuos.js.map

@@ -1,5 +1,5 @@
 <script>
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import { forms } from "@votecube/ui-logic";
 	import { getColorKey, getColors, LOGIC_UTILS } from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
@@ -50,7 +50,7 @@
 	$: trackOriginal = v(field.rules.trackOriginal, delta);
 
 	onMount(async () => {
-		container = DI.ui("ColorPicker");
+		container = DEPENDENCY_INJECTION.ui("ColorPicker");
 		const colorsResult = await getColors();
 		colorMap = colorsResult.colorMap;
 		colors = colorsResult.colors;
@@ -71,7 +71,7 @@
 
 	onDestroy(() => {
 		field.removeComponent(formHandle);
-		DI.remove(container);
+		DEPENDENCY_INJECTION.remove(container);
 	});
 
 	function v(val) {

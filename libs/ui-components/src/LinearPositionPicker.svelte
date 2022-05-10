@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DI } from "@airport/direction-indicator";
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import type { IUiIdea, IUiAgreementFactor } from "@votecube/model";
 	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
 	import { createEventDispatcher, onDestroy, onMount } from "svelte";
@@ -73,17 +73,17 @@
 		onPress(outcome);
 	}
 	onMount(async () => {
-		container = DI.ui("LinearPositionPicker");
+		container = DEPENDENCY_INJECTION.ui("LinearPositionPicker");
 		logicUtils = await container.get(LOGIC_UTILS);
 	});
 
 	onDestroy(() => {
 		// this.refreshListener.cancel()
-		DI.remove(container);
+		DEPENDENCY_INJECTION.remove(container);
 	});
 
 	async function initPage() {
-		container = DI.ui("LinearPositionPicker");
+		container = DEPENDENCY_INJECTION.ui("LinearPositionPicker");
 		logicUtils = await container.get(LOGIC_UTILS);
 	}
 

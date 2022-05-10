@@ -23,7 +23,7 @@
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "votecube",
+            "name": "votecube-dos",
             "skipFiles": [
                 "<node_internals>/**"
             ],
@@ -32,6 +32,22 @@
                 "${workspaceFolder}/*/*/lib/**/*.js"
             ],
             "cwd": "${workspaceFolder}\\schemas\\votecube",
+            "runtimeArgs": [
+                "--experimental-specifier-resolution=node"
+            ]
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "votecube-sh",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/schemas/votecube/node_modules/@airport/runway/lib/index.js",
+            "outFiles": [
+                "${workspaceFolder}/*/*/lib/**/*.js"
+            ],
+            "cwd": "${workspaceFolder}/schemas/votecube",
             "runtimeArgs": [
                 "--experimental-specifier-resolution=node"
             ]
