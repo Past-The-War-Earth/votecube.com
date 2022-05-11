@@ -18,6 +18,6 @@ export const IDEA_API = votecube.token<IIdeaApi>({
 })
 export const IDEA_SITUATION_API = votecube.token<IIdeaSituationApi>({
     class: null,
-    interface: 'ISituationApi',
+    interface: 'IIdeaSituationApi',
     token: 'SITUATION_API'
 })
