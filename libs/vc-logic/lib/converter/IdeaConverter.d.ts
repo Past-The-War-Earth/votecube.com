@@ -1,4 +1,4 @@
-import { IIdea } from '@votecube/votecube-client';
+import { IIdea } from '@votecube/votecube';
 import { IUiIdea } from '@votecube/model';
 import { RepositoryRecordConverter } from '@votecube/ui-logic';
 import { IIdeaFormManager } from '../pages/idea/IdeaFormManager';

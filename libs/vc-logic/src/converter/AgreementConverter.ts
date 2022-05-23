@@ -8,7 +8,7 @@ import {
     IReason,
     IAgreement,
     IAgreementFactor
-} from "@votecube/votecube-client";
+} from "@votecube/votecube";
 import { IRepositoryRecordConverter } from '@votecube/ui-logic'
 
 export interface IAgreementConverter {

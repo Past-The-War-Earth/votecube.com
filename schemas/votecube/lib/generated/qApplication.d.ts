@@ -1,4 +1,4 @@
-import { QApplication as AirportQApplication } from '@airport/air-traffic-control';
+import { QApplication } from '@airport/aviation-communication';
 import { DbApplication, EntityId } from '@airport/ground-control';
 import { QAgreement } from './agreement/qagreement';
 import { QAgreementFactor } from './agreement/qagreementfactor';
@@ -10,7 +10,7 @@ import { QLabel } from './qlabel';
 import { QOutcome } from './idea/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QReason } from './idea/qreason';
-export interface LocalQApplication extends AirportQApplication {
+export interface LocalQApplication extends QApplication {
     db: DbApplication;
     Agreement: QAgreement;
     AgreementFactor: QAgreementFactor;

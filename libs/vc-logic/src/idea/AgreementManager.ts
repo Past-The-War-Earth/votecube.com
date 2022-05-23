@@ -1,6 +1,6 @@
 import {
-	AgreementApiClient
-} from '@votecube/votecube-client'
+	AgreementApi
+} from '@votecube/votecube'
 import {
 	IUiRepositoryRecord,
 	IUiIdea,
@@ -38,7 +38,7 @@ export class AgreementManager
 	@Inject()
 	ideaManager: IIdeaManager
 
-	agreementApi = new AgreementApiClient()
+	agreementApi = new AgreementApi()
 
 	async getAgreementForIdea(
 		// User-information is in AIRport

@@ -1,6 +1,6 @@
 import { IFieldGroup } from '@votecube/forms';
 import { IUiAgreement, IUiIdea, IUiLabel } from '@votecube/model';
-import { IRepositoryIdentifier, IIdea, IdeaApiClient } from '@votecube/votecube-client';
+import { IRepositoryIdentifier, IIdea, IdeaApi } from '@votecube/votecube';
 import { ILogicUtils } from '..';
 import { IIdeaConverter } from '../converter/IdeaConverter';
 import { IIdeaFormManager } from '../pages/idea/IdeaFormManager';
@@ -30,7 +30,7 @@ export declare class IdeaManager implements IIdeaManager {
     logicUtils: ILogicUtils;
     ideaFormManager: IIdeaFormManager;
     ideaConverter: IIdeaConverter;
-    ideaApi: IdeaApiClient;
+    ideaApi: IdeaApi;
     private theCachedIdea;
     get cachedIdea(): ICachedIdea;
     getIdea(hostingPlatform: string, repositoryUuId: string): Promise<IUiIdea>;

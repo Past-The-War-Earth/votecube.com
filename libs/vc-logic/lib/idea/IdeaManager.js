@@ -5,10 +5,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Inject, Injected } from '@airport/direction-indicator';
-import { IdeaApiClient } from '@votecube/votecube-client';
+import { IdeaApi } from '@votecube/votecube';
 let IdeaManager = class IdeaManager {
     constructor() {
-        this.ideaApi = new IdeaApiClient();
+        this.ideaApi = new IdeaApi();
         this.theCachedIdea = {
             db: null,
             form: null,

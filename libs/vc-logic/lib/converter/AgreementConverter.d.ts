@@ -1,5 +1,5 @@
 import { IUiAgreement } from "@votecube/model";
-import { IIdea, IAgreement } from "@votecube/votecube-client";
+import { IIdea, IAgreement } from "@votecube/votecube";
 import { IRepositoryRecordConverter } from '@votecube/ui-logic';
 export interface IAgreementConverter {
     dbToUi(dbAgreement: IAgreement): IUiAgreement;

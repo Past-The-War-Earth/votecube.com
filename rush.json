@@ -84,25 +84,10 @@
       "projectFolder": "schemas/votecube",
       "shouldPublish": true
     },
-    {
-      "packageName": "@votecube/votecube-client",
-      "projectFolder": "schemas/votecube/client",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@votecube/votecube-runtime",
-      "projectFolder": "schemas/votecube/runtime",
-      "shouldPublish": true
-    },
     // Sapoto
     {
       "packageName": "@sapoto/core",
       "projectFolder": "../../DIN/sapoto-net/apps/core",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@sapoto/core-client",
-      "projectFolder": "../../DIN/sapoto-net/apps/core/client",
       "shouldPublish": true
     },
     {
@@ -301,16 +286,6 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/holding-pattern-client",
-      "projectFolder": "../../AIR/AIRport/schemas/holding-pattern/client",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/holding-pattern-runtime",
-      "projectFolder": "../../AIR/AIRport/schemas/holding-pattern/runtime",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@airport/moving-walkway",
       "projectFolder": "../../AIR/AIRport/schemas/moving-walkway",
       "shouldPublish": true
@@ -318,16 +293,6 @@
     {
       "packageName": "@airport/travel-document-checkpoint",
       "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/travel-document-checkpoint-client",
-      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint/client",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/travel-document-checkpoint-runtime",
-      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint/runtime",
       "shouldPublish": true
     }
   ]

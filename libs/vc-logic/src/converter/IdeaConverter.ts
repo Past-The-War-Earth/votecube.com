@@ -5,7 +5,7 @@ import {
 	IIdea,
 	IReason,
 	IIdeaLabel,
-} from '@votecube/votecube-client'
+} from '@votecube/votecube'
 import {
 	IUiLabel,
 	IUiFactor,

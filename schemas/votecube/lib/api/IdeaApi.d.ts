@@ -1,5 +1,5 @@
 import { IdeaDao } from "../dao/dao";
-import { ILabel, IIdea } from "../generated/generated";
+import { ILabel, IIdea } from "../generated/interfaces";
 import { IRepositoryIdentifier } from "../types";
 export interface IIdeaApi {
     getIdeasForLabels(labels: ILabel[]): Promise<IIdea[]>;

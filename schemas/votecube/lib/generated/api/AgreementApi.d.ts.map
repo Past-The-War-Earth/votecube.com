@@ -1,0 +1,1 @@
+{"version":3,"file":"AgreementApi.d.ts","sourceRoot":"","sources":["../../../src/generated/api/AgreementApi.ts"],"names":[],"mappings":"AAOA,OAAO,EACN,UAAU,EACV,MAAM,4BAA4B,CAAC;AAIpC,qBACa,YAAY;IAGrB,YAAY,EAAE,YAAY,CAAA;IAEnB,aAAa,CAChB,SAAS,EAAE,UAAU,GACtB,OAAO,CAAC,IAAI,CAAC;IAIT,qBAAqB,CACxB,kBAAkB,EAAE,MAAM,GAC3B,OAAO,CAAC,UAAU,CAAC;CAIzB"}

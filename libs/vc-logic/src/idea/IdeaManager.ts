@@ -8,8 +8,8 @@ import {
 import {
 	IRepositoryIdentifier,
 	IIdea,
-	IdeaApiClient
-} from '@votecube/votecube-client'
+	IdeaApi
+} from '@votecube/votecube'
 import { ILogicUtils } from '..'
 import { IIdeaConverter } from '../converter/IdeaConverter'
 import { IIdeaFormManager } from '../pages/idea/IdeaFormManager'
@@ -79,7 +79,7 @@ export class IdeaManager
 	@Inject()
 	ideaConverter: IIdeaConverter
 
-	ideaApi = new IdeaApiClient()
+	ideaApi = new IdeaApi()
 
 	private theCachedIdea: ICachedIdea = {
 		db: null,

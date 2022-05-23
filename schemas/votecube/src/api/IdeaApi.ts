@@ -4,7 +4,7 @@ import { IdeaDao } from "../dao/dao"
 import {
     ILabel,
     IIdea
-} from "../generated/generated";
+} from "../generated/interfaces";
 import { IRepositoryIdentifier } from "../types";
 
 export interface IIdeaApi {

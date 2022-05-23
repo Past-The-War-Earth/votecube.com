@@ -1,5 +1,5 @@
 import { IIdeaSituationDao } from "../dao/dao";
-import { IIdeaSituation } from "../generated/generated";
+import { IIdeaSituation } from "../generated/interfaces";
 export interface IIdeaSituationApi {
     add(ideaSituation: IIdeaSituation): Promise<void>;
 }

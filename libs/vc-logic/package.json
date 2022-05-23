@@ -9,7 +9,7 @@
     "@votecube/forms": "0.0.1",
     "@votecube/model": "0.0.1",
     "@votecube/ui-logic": "0.0.1",
-    "@votecube/votecube-client": "0.0.1",
+    "@votecube/votecube": "0.0.1",
     "jssha": "^2.3.x",
     "page": "^1.11.3",
     "rxjs": "~7.4.0"

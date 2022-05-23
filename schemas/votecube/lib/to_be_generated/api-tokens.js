@@ -1,5 +1,5 @@
 import { INTER_APP_API_CLIENT } from "@airport/ground-control";
-import { AgreementApi, IdeaApi, IdeaSituationApi } from "./api-wrappers/api-wrappers";
+import { AgreementApi, IdeaApi, IdeaSituationApi } from "../generated/api/api";
 import { AGREEMENT_API, IDEA_API, IDEA_SITUATION_API } from "./common-tokens";
 AGREEMENT_API.setClass(AgreementApi);
 AGREEMENT_API.setDependencies({

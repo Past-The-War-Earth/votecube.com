@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {
-	IAgreement,
-} from './agreement/agreement';
+	Agreement,
+} from '../ddl/agreement/agreement';
 import {
 	AgreementESelect,
 	AgreementECreateColumns,
@@ -13,8 +13,8 @@ import {
 	QAgreement,
 } from './agreement/qagreement';
 import {
-	IAgreementFactor,
-} from './agreement/agreementfactor';
+	AgreementFactor,
+} from '../ddl/agreement/agreementfactor';
 import {
 	AgreementFactorESelect,
 	AgreementFactorECreateColumns,
@@ -26,8 +26,8 @@ import {
 	QAgreementFactor,
 } from './agreement/qagreementfactor';
 import {
-	IFactor,
-} from './factor/factor';
+	Factor,
+} from '../ddl/factor/factor';
 import {
 	FactorESelect,
 	FactorECreateColumns,
@@ -39,8 +39,8 @@ import {
 	QFactor,
 } from './factor/qfactor';
 import {
-	IIdea,
-} from './idea/idea';
+	Idea,
+} from '../ddl/idea/idea';
 import {
 	IdeaESelect,
 	IdeaECreateColumns,
@@ -52,8 +52,8 @@ import {
 	QIdea,
 } from './idea/qidea';
 import {
-	IIdeaLabel,
-} from './idea/idealabel';
+	IdeaLabel,
+} from '../ddl/idea/idealabel';
 import {
 	IdeaLabelESelect,
 	IdeaLabelECreateColumns,
@@ -65,8 +65,8 @@ import {
 	QIdeaLabel,
 } from './idea/qidealabel';
 import {
-	IIdeaSituation,
-} from './idea/ideasituation';
+	IdeaSituation,
+} from '../ddl/idea/ideasituation';
 import {
 	IdeaSituationESelect,
 	IdeaSituationECreateColumns,
@@ -78,8 +78,8 @@ import {
 	QIdeaSituation,
 } from './idea/qideasituation';
 import {
-	ILabel,
-} from './label';
+	Label,
+} from '../ddl/label';
 import {
 	LabelESelect,
 	LabelECreateColumns,
@@ -91,8 +91,8 @@ import {
 	QLabel,
 } from './qlabel';
 import {
-	IOutcome,
-} from './idea/outcome';
+	Outcome,
+} from '../ddl/idea/outcome';
 import {
 	OutcomeESelect,
 	OutcomeECreateColumns,
@@ -104,8 +104,8 @@ import {
 	QOutcome,
 } from './idea/qoutcome';
 import {
-	IPosition,
-} from './factor/position';
+	Position,
+} from '../ddl/factor/position';
 import {
 	PositionESelect,
 	PositionECreateColumns,
@@ -117,8 +117,8 @@ import {
 	QPosition,
 } from './factor/qposition';
 import {
-	IReason,
-} from './idea/reason';
+	Reason,
+} from '../ddl/idea/reason';
 import {
 	ReasonESelect,
 	ReasonECreateColumns,
@@ -178,30 +178,12 @@ export class SQDIDuo<Entity,
 
 
 export interface IBaseAgreementDuo
-  extends IDuo<IAgreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement> {
+  extends IDuo<Agreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement> {
 }
 
 export class BaseAgreementDuo
-  extends SQDIDuo<IAgreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement>
+  extends SQDIDuo<Agreement, AgreementESelect, AgreementECreateProperties, AgreementEUpdateColumns, AgreementEUpdateProperties, AgreementEId, AgreementGraph, QAgreement>
 	implements IBaseAgreementDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(2)
-	}
-	
-	constructor() {
-		super(2)
-	}
-}
-
-
-export interface IBaseAgreementFactorDuo
-  extends IDuo<IAgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor> {
-}
-
-export class BaseAgreementFactorDuo
-  extends SQDIDuo<IAgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor>
-	implements IBaseAgreementFactorDuo {
 
 	static diSet(): boolean {
 		return duoDiSet(1)
@@ -213,30 +195,48 @@ export class BaseAgreementFactorDuo
 }
 
 
-export interface IBaseFactorDuo
-  extends IDuo<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> {
+export interface IBaseAgreementFactorDuo
+  extends IDuo<AgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor> {
 }
 
-export class BaseFactorDuo
-  extends SQDIDuo<IFactor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor>
-	implements IBaseFactorDuo {
+export class BaseAgreementFactorDuo
+  extends SQDIDuo<AgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor>
+	implements IBaseAgreementFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
-		super(4)
+		super(0)
+	}
+}
+
+
+export interface IBaseFactorDuo
+  extends IDuo<Factor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor> {
+}
+
+export class BaseFactorDuo
+  extends SQDIDuo<Factor, FactorESelect, FactorECreateProperties, FactorEUpdateColumns, FactorEUpdateProperties, FactorEId, FactorGraph, QFactor>
+	implements IBaseFactorDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(3)
+	}
+	
+	constructor() {
+		super(3)
 	}
 }
 
 
 export interface IBaseIdeaDuo
-  extends IDuo<IIdea, IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea> {
+  extends IDuo<Idea, IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea> {
 }
 
 export class BaseIdeaDuo
-  extends SQDIDuo<IIdea, IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea>
+  extends SQDIDuo<Idea, IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea>
 	implements IBaseIdeaDuo {
 
 	static diSet(): boolean {
@@ -250,11 +250,11 @@ export class BaseIdeaDuo
 
 
 export interface IBaseIdeaLabelDuo
-  extends IDuo<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> {
+  extends IDuo<IdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> {
 }
 
 export class BaseIdeaLabelDuo
-  extends SQDIDuo<IIdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel>
+  extends SQDIDuo<IdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel>
 	implements IBaseIdeaLabelDuo {
 
 	static diSet(): boolean {
@@ -268,48 +268,12 @@ export class BaseIdeaLabelDuo
 
 
 export interface IBaseIdeaSituationDuo
-  extends IDuo<IIdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation> {
+  extends IDuo<IdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation> {
 }
 
 export class BaseIdeaSituationDuo
-  extends SQDIDuo<IIdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation>
+  extends SQDIDuo<IdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation>
 	implements IBaseIdeaSituationDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(6)
-	}
-	
-	constructor() {
-		super(6)
-	}
-}
-
-
-export interface IBaseLabelDuo
-  extends IDuo<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel> {
-}
-
-export class BaseLabelDuo
-  extends SQDIDuo<ILabel, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel>
-	implements IBaseLabelDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(0)
-	}
-	
-	constructor() {
-		super(0)
-	}
-}
-
-
-export interface IBaseOutcomeDuo
-  extends IDuo<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome> {
-}
-
-export class BaseOutcomeDuo
-  extends SQDIDuo<IOutcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome>
-	implements IBaseOutcomeDuo {
 
 	static diSet(): boolean {
 		return duoDiSet(5)
@@ -321,31 +285,13 @@ export class BaseOutcomeDuo
 }
 
 
-export interface IBasePositionDuo
-  extends IDuo<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition> {
+export interface IBaseLabelDuo
+  extends IDuo<Label, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel> {
 }
 
-export class BasePositionDuo
-  extends SQDIDuo<IPosition, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition>
-	implements IBasePositionDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(3)
-	}
-	
-	constructor() {
-		super(3)
-	}
-}
-
-
-export interface IBaseReasonDuo
-  extends IDuo<IReason, ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason> {
-}
-
-export class BaseReasonDuo
-  extends SQDIDuo<IReason, ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason>
-	implements IBaseReasonDuo {
+export class BaseLabelDuo
+  extends SQDIDuo<Label, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel>
+	implements IBaseLabelDuo {
 
 	static diSet(): boolean {
 		return duoDiSet(7)
@@ -353,5 +299,59 @@ export class BaseReasonDuo
 	
 	constructor() {
 		super(7)
+	}
+}
+
+
+export interface IBaseOutcomeDuo
+  extends IDuo<Outcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome> {
+}
+
+export class BaseOutcomeDuo
+  extends SQDIDuo<Outcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome>
+	implements IBaseOutcomeDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(4)
+	}
+	
+	constructor() {
+		super(4)
+	}
+}
+
+
+export interface IBasePositionDuo
+  extends IDuo<Position, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition> {
+}
+
+export class BasePositionDuo
+  extends SQDIDuo<Position, PositionESelect, PositionECreateProperties, PositionEUpdateColumns, PositionEUpdateProperties, PositionEId, PositionGraph, QPosition>
+	implements IBasePositionDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(2)
+	}
+	
+	constructor() {
+		super(2)
+	}
+}
+
+
+export interface IBaseReasonDuo
+  extends IDuo<Reason, ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason> {
+}
+
+export class BaseReasonDuo
+  extends SQDIDuo<Reason, ReasonESelect, ReasonECreateProperties, ReasonEUpdateColumns, ReasonEUpdateProperties, ReasonEId, ReasonGraph, QReason>
+	implements IBaseReasonDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(6)
+	}
+	
+	constructor() {
+		super(6)
 	}
 }
