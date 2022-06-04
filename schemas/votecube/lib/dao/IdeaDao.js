@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { ALL_FIELDS, and } from '@airport/air-traffic-control';
+import { and, Y } from '@airport/air-traffic-control';
 import { BaseIdeaDao, Q, } from "../generated/generated";
 import { Injected } from '@airport/direction-indicator';
 let IdeaDao = class IdeaDao extends BaseIdeaDao {
@@ -33,7 +33,24 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
         let f;
         let p;
         const matchingRepositories = await this.db.find.tree({
-            select: Object.assign(Object.assign({}, ALL_FIELDS), { repository: {}, outcomeA: {}, outcomeB: {}, ideaLabels: Object.assign(Object.assign({}, ALL_FIELDS), { label: {} }), ideaSituations: Object.assign(Object.assign({}, ALL_FIELDS), { reasons: Object.assign(Object.assign({}, ALL_FIELDS), { factor: {}, position: {} }) }) }),
+            select: {
+                '*': Y,
+                repository: {},
+                outcomeA: {},
+                outcomeB: {},
+                ideaLabels: {
+                    '*': Y,
+                    label: {}
+                },
+                ideaSituations: {
+                    '*': Y,
+                    reasons: {
+                        '*': Y,
+                        factor: {},
+                        position: {},
+                    }
+                }
+            },
             from: [
                 i = Q.Idea,
                 r = i.repository.innerJoin(),

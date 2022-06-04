@@ -1,4 +1,4 @@
-import { INTER_APP_API_CLIENT } from "@airport/ground-control";
+import { INTER_APP_API_CLIENT } from "@airport/direction-indicator";
 import { AgreementApi, IdeaApi, IdeaSituationApi } from "../generated/api/api";
 import { AGREEMENT_API, IDEA_API, IDEA_SITUATION_API } from "./common-tokens";
 AGREEMENT_API.setClass(AgreementApi);

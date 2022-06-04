@@ -1,6 +1,6 @@
 import {
-    ALL_FIELDS,
-    and
+    and,
+    Y
 } from '@airport/air-traffic-control'
 import {
     BaseIdeaDao,
@@ -73,18 +73,18 @@ export class IdeaDao
         let p: QPosition
         const matchingRepositories = await this.db.find.tree({
             select: {
-                ...ALL_FIELDS,
+                '*': Y,
                 repository: {},
                 outcomeA: {},
                 outcomeB: {},
                 ideaLabels: {
-                    ...ALL_FIELDS,
+                    '*': Y,
                     label: {}
                 },
                 ideaSituations: {
-                    ...ALL_FIELDS,
+                    '*': Y,
                     reasons: {
-                        ...ALL_FIELDS,
+                        '*': Y,
                         factor: {},
                         position: {},
                     }
