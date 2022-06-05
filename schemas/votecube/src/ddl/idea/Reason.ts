@@ -42,7 +42,7 @@ export class Reason
 	outcomeOrdinal: 'A' | 'B'
 
 	@ManyToOne()
-	ideaSituation: SituationIdea
+	situationIdea: SituationIdea
 
 	@ManyToOne()
 	factor: Factor

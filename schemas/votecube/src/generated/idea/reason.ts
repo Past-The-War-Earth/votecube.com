@@ -33,7 +33,7 @@ export interface IReason extends IRepositoryEntity {
 	outcomeOrdinal?: string;
 
 	// Non-Id Relations
-	ideaSituation?: ISituationIdea;
+	situationIdea?: ISituationIdea;
 	factor?: IFactor;
 	position?: IPosition;
 

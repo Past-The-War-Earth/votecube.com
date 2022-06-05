@@ -15,10 +15,10 @@ __decorate([
     ManyToOne()
 ], SituationIdea.prototype, "situation", void 0);
 __decorate([
-    OneToMany({ mappedBy: 'ideaSituation' })
+    OneToMany({ mappedBy: 'situationIdea' })
 ], SituationIdea.prototype, "agreements", void 0);
 __decorate([
-    OneToMany({ mappedBy: 'ideaSituation' })
+    OneToMany({ mappedBy: 'situationIdea' })
 ], SituationIdea.prototype, "reasons", void 0);
 SituationIdea = __decorate([
     Entity(),

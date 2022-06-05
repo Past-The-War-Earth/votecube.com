@@ -101,7 +101,7 @@ export interface ReasonESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	ideaSituation?: SituationIdeaESelect;
+	situationIdea?: SituationIdeaESelect;
 	factor?: FactorESelect;
 	position?: PositionESelect;
 
@@ -143,7 +143,7 @@ export interface ReasonEUpdateProperties
 	outcomeOrdinal?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	ideaSituation?: SituationIdeaEOptionalId;
+	situationIdea?: SituationIdeaEOptionalId;
 	factor?: FactorEOptionalId;
 	position?: PositionEOptionalId;
 
@@ -166,7 +166,7 @@ export interface ReasonGraph
 	outcomeOrdinal?: string | IQStringField;
 
 	// Relations
-	ideaSituation?: SituationIdeaGraph;
+	situationIdea?: SituationIdeaGraph;
 	factor?: FactorGraph;
 	position?: PositionGraph;
 
@@ -243,7 +243,7 @@ export interface QReason extends QRepositoryEntity
 	outcomeOrdinal: IQStringField;
 
 	// Non-Id Relations
-	ideaSituation: QSituationIdeaQRelation;
+	situationIdea: QSituationIdeaQRelation;
 	factor: QFactorQRelation;
 	position: QPositionQRelation;
 

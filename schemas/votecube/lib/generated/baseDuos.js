@@ -8,26 +8,26 @@ export class SQDIDuo extends Duo {
 }
 export class BaseAgreementDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(2);
-    }
-    constructor() {
-        super(2);
-    }
-}
-export class BaseAgreementReasonDuo extends SQDIDuo {
-    static diSet() {
         return duoDiSet(1);
     }
     constructor() {
         super(1);
     }
 }
-export class BaseFactorDuo extends SQDIDuo {
+export class BaseAgreementReasonDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(4);
+        return duoDiSet(0);
     }
     constructor() {
-        super(4);
+        super(0);
+    }
+}
+export class BaseFactorDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(3);
+    }
+    constructor() {
+        super(3);
     }
 }
 export class BaseIdeaDuo extends SQDIDuo {
@@ -56,18 +56,18 @@ export class BaseIdeaTopicDuo extends SQDIDuo {
 }
 export class BaseLabelDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(0);
+        return duoDiSet(4);
     }
     constructor() {
-        super(0);
+        super(4);
     }
 }
 export class BasePositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(3);
+        return duoDiSet(2);
     }
     constructor() {
-        super(3);
+        super(2);
     }
 }
 export class BaseReasonDuo extends SQDIDuo {

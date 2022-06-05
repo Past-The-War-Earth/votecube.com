@@ -15,7 +15,7 @@ export interface ReasonESelect extends RepositoryEntityESelect, ReasonEOptionalI
     green?: number | IQNumberField;
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
-    ideaSituation?: SituationIdeaESelect;
+    situationIdea?: SituationIdeaESelect;
     factor?: FactorESelect;
     position?: PositionESelect;
 }
@@ -40,7 +40,7 @@ export interface ReasonEUpdateProperties extends RepositoryEntityEUpdateProperti
     green?: number | IQNumberField;
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
-    ideaSituation?: SituationIdeaEOptionalId;
+    situationIdea?: SituationIdeaEOptionalId;
     factor?: FactorEOptionalId;
     position?: PositionEOptionalId;
 }
@@ -55,7 +55,7 @@ export interface ReasonGraph extends ReasonEOptionalId, RepositoryEntityGraph {
     green?: number | IQNumberField;
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
-    ideaSituation?: SituationIdeaGraph;
+    situationIdea?: SituationIdeaGraph;
     factor?: FactorGraph;
     position?: PositionGraph;
 }
@@ -107,7 +107,7 @@ export interface QReason extends QRepositoryEntity {
     green: IQNumberField;
     red: IQNumberField;
     outcomeOrdinal: IQStringField;
-    ideaSituation: QSituationIdeaQRelation;
+    situationIdea: QSituationIdeaQRelation;
     factor: QFactorQRelation;
     position: QPositionQRelation;
 }

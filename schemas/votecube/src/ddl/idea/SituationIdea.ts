@@ -15,10 +15,10 @@ export class SituationIdea
     @ManyToOne()
     situation: Situation
 
-    @OneToMany({ mappedBy: 'ideaSituation' })
+    @OneToMany({ mappedBy: 'situationIdea' })
     agreements: Agreement[]
 
-    @OneToMany({ mappedBy: 'ideaSituation' })
+    @OneToMany({ mappedBy: 'situationIdea' })
     reasons: Reason[]
 
     agreementShareTotal: number

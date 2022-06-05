@@ -35,7 +35,7 @@ __decorate([
 ], Reason.prototype, "outcomeOrdinal", void 0);
 __decorate([
     ManyToOne()
-], Reason.prototype, "ideaSituation", void 0);
+], Reason.prototype, "situationIdea", void 0);
 __decorate([
     ManyToOne()
 ], Reason.prototype, "factor", void 0);

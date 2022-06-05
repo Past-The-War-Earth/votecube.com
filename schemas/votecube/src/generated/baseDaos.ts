@@ -197,11 +197,11 @@ export class BaseAgreementDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(2)
+		super(1)
 	}
 }
 
@@ -225,11 +225,11 @@ export class BaseAgreementReasonDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
-		super(1)
+		super(0)
 	}
 }
 
@@ -253,11 +253,11 @@ export class BaseFactorDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(4)
+		super(3)
 	}
 }
 
@@ -365,11 +365,11 @@ export class BaseLabelDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(0)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(0)
+		super(4)
 	}
 }
 
@@ -393,11 +393,11 @@ export class BasePositionDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(3)
+		super(2)
 	}
 }
 

@@ -18,7 +18,7 @@ import {
 
 
 export interface ISituationIdeaApi {
-    add(ideaSituation: ISituationIdea): Promise<void>;
+    add(situationIdea: ISituationIdea): Promise<void>;
 }
 
 // An API stub for other Applications and UIs to use

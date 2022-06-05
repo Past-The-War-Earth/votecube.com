@@ -9,7 +9,7 @@ export declare class Reason extends RepositoryEntity {
     green: number;
     red: number;
     outcomeOrdinal: 'A' | 'B';
-    ideaSituation: SituationIdea;
+    situationIdea: SituationIdea;
     factor: Factor;
     position: Position;
 }

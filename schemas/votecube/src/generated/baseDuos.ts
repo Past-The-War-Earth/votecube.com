@@ -186,11 +186,11 @@ export class BaseAgreementDuo
 	implements IBaseAgreementDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(2)
+		super(1)
 	}
 }
 
@@ -204,11 +204,11 @@ export class BaseAgreementReasonDuo
 	implements IBaseAgreementReasonDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return duoDiSet(0)
 	}
 	
 	constructor() {
-		super(1)
+		super(0)
 	}
 }
 
@@ -222,11 +222,11 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(4)
+		super(3)
 	}
 }
 
@@ -294,11 +294,11 @@ export class BaseLabelDuo
 	implements IBaseLabelDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(0)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(0)
+		super(4)
 	}
 }
 
@@ -312,11 +312,11 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(3)
+		super(2)
 	}
 }
 

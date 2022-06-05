@@ -6,7 +6,7 @@ import { ISituationIdea } from "../generated/interfaces";
 export interface ISituationIdeaApi {
 
     add(
-        ideaSituation: ISituationIdea
+        situationIdea: ISituationIdea
     ): Promise<void>
 
 }

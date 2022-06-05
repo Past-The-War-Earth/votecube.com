@@ -10,7 +10,7 @@ export interface IReason extends IRepositoryEntity {
     green?: number;
     red?: number;
     outcomeOrdinal?: string;
-    ideaSituation?: ISituationIdea;
+    situationIdea?: ISituationIdea;
     factor?: IFactor;
     position?: IPosition;
 }
