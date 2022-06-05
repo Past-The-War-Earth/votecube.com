@@ -5,10 +5,10 @@ export const IDEA_API = votecube.token({
     interface: 'IIdeaApi',
     token: 'IDEA_API'
 });
-export const IDEA_SITUATION_API = votecube.token({
+export const SITUATION_IDEA_API = votecube.token({
     class: null,
     interface: 'IIdeaSituationApi',
-    token: 'IDEA_SITUATION_API'
+    token: 'SITUATION_IDEA_API'
 });
 export const AGREEMENT_API = votecube.token({
     class: null,

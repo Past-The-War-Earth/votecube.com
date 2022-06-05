@@ -1,10 +1,10 @@
 import { ISituationIdea } from '../../generated/interfaces';
-export interface IIdeaSituationApi {
+export interface ISituationIdeaApi {
     add(ideaSituation: ISituationIdea): Promise<void>;
 }
-export declare class IdeaSituationApi {
+export declare class SituationIdeaApi {
     constructor();
-    ideaSituationApi: IdeaSituationApi;
+    situationIdeaApi: SituationIdeaApi;
     add(situationIdea: ISituationIdea): Promise<void>;
 }
 //# sourceMappingURL=SituationIdeaApi.d.ts.map

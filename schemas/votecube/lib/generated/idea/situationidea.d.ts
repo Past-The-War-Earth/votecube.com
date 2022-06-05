@@ -4,7 +4,7 @@ import { ISituation } from '@sapoto/core';
 import { IAgreement } from '../agreement/agreement';
 import { IReason } from './reason';
 export interface ISituationIdea extends IRepositoryEntity {
-    agreementTotal?: number;
+    agreementShareTotal?: number;
     numberOfAgreementRatings?: number;
     idea?: IIdea;
     situation?: ISituation;

@@ -8,6 +8,21 @@ export class SQDIDao extends Dao {
 }
 export class BaseAgreementDao extends SQDIDao {
     constructor() {
+        super(2);
+    }
+    static Save(config) {
+        return Dao.BaseSave(config);
+    }
+    static diSet() {
+        return duoDiSet(2);
+    }
+}
+BaseAgreementDao.Find = new DaoQueryDecorators();
+BaseAgreementDao.FindOne = new DaoQueryDecorators();
+BaseAgreementDao.Search = new DaoQueryDecorators();
+BaseAgreementDao.SearchOne = new DaoQueryDecorators();
+export class BaseAgreementReasonDao extends SQDIDao {
+    constructor() {
         super(1);
     }
     static Save(config) {
@@ -17,34 +32,19 @@ export class BaseAgreementDao extends SQDIDao {
         return duoDiSet(1);
     }
 }
-BaseAgreementDao.Find = new DaoQueryDecorators();
-BaseAgreementDao.FindOne = new DaoQueryDecorators();
-BaseAgreementDao.Search = new DaoQueryDecorators();
-BaseAgreementDao.SearchOne = new DaoQueryDecorators();
-export class BaseAgreementReasonDao extends SQDIDao {
-    constructor() {
-        super(0);
-    }
-    static Save(config) {
-        return Dao.BaseSave(config);
-    }
-    static diSet() {
-        return duoDiSet(0);
-    }
-}
 BaseAgreementReasonDao.Find = new DaoQueryDecorators();
 BaseAgreementReasonDao.FindOne = new DaoQueryDecorators();
 BaseAgreementReasonDao.Search = new DaoQueryDecorators();
 BaseAgreementReasonDao.SearchOne = new DaoQueryDecorators();
 export class BaseFactorDao extends SQDIDao {
     constructor() {
-        super(3);
+        super(4);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(3);
+        return duoDiSet(4);
     }
 }
 BaseFactorDao.Find = new DaoQueryDecorators();
@@ -98,13 +98,13 @@ BaseIdeaTopicDao.Search = new DaoQueryDecorators();
 BaseIdeaTopicDao.SearchOne = new DaoQueryDecorators();
 export class BaseLabelDao extends SQDIDao {
     constructor() {
-        super(4);
+        super(0);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(4);
+        return duoDiSet(0);
     }
 }
 BaseLabelDao.Find = new DaoQueryDecorators();
@@ -113,13 +113,13 @@ BaseLabelDao.Search = new DaoQueryDecorators();
 BaseLabelDao.SearchOne = new DaoQueryDecorators();
 export class BasePositionDao extends SQDIDao {
     constructor() {
-        super(2);
+        super(3);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(2);
+        return duoDiSet(3);
     }
 }
 BasePositionDao.Find = new DaoQueryDecorators();

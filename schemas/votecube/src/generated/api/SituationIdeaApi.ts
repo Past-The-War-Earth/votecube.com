@@ -1,5 +1,5 @@
 import {
-	IDEA_SITUATION_API,
+	SITUATION_IDEA_API,
 } from '../../to_be_generated/common-tokens';
 import {
 	DEPENDENCY_INJECTION,
@@ -17,25 +17,25 @@ import {
 } from '../../generated/interfaces';
 
 
-export interface IIdeaSituationApi {
+export interface ISituationIdeaApi {
     add(ideaSituation: ISituationIdea): Promise<void>;
 }
 
 // An API stub for other Applications and UIs to use
 @Injected()
-export class IdeaSituationApi {
+export class SituationIdeaApi {
 
     constructor() {
-        DEPENDENCY_INJECTION.db().manualInject(this, IDEA_SITUATION_API)
+        DEPENDENCY_INJECTION.db().manualInject(this, SITUATION_IDEA_API)
     }
         
     @Inject()
-    ideaSituationApi: IdeaSituationApi
+    situationIdeaApi: SituationIdeaApi
             
     async  add(
         situationIdea: ISituationIdea
     ): Promise<void> {
-        await this.ideaSituationApi.add(situationIdea)
+        await this.situationIdeaApi.add(situationIdea)
     }
 
 }

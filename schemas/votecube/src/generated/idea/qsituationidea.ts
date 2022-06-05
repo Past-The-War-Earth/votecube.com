@@ -101,7 +101,7 @@ declare function require(moduleName: string): any;
 export interface SituationIdeaESelect
     extends RepositoryEntityESelect, SituationIdeaEOptionalId {
 	// Non-Id Properties
-	agreementTotal?: number | IQNumberField;
+	agreementShareTotal?: number | IQNumberField;
 	numberOfAgreementRatings?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
@@ -141,7 +141,7 @@ export interface SituationIdeaEOptionalId {
 export interface SituationIdeaEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
-	agreementTotal?: number | IQNumberField;
+	agreementShareTotal?: number | IQNumberField;
 	numberOfAgreementRatings?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
@@ -158,7 +158,7 @@ export interface SituationIdeaGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
-	agreementTotal?: number | IQNumberField;
+	agreementShareTotal?: number | IQNumberField;
 	numberOfAgreementRatings?: number | IQNumberField;
 
 	// Relations
@@ -181,7 +181,7 @@ export interface SituationIdeaEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
-	AGREEMENTTOTAL?: number | IQNumberField;
+	AGREEMENTSHARETOTAL?: number | IQNumberField;
 	NUMBEROFAGREEMENTRATINGS?: number | IQNumberField;
 	IDEAS_RID_1?: number | IQNumberField;
 	IDEAS_AID_1?: number | IQNumberField;
@@ -223,7 +223,7 @@ export interface QSituationIdea extends QRepositoryEntity
 	// Id Relations
 
 	// Non-Id Fields
-	agreementTotal: IQNumberField;
+	agreementShareTotal: IQNumberField;
 	numberOfAgreementRatings: IQNumberField;
 
 	// Non-Id Relations

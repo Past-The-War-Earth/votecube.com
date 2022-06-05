@@ -46,7 +46,7 @@ export declare const APPLICATION: {
                         };
                     };
                 };
-                IdeaSituationApi: {
+                SituationIdeaApi: {
                     operationMap: {
                         add: {
                             isAsync: boolean;

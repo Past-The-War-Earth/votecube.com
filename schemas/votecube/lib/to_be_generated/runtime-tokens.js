@@ -4,25 +4,25 @@ import { APPLICATION_INITIALIZER, TERMINAL_STORE } from '@airport/terminal-map';
 import { ApplicationLoader } from './ApplicationLoader';
 import { votecube } from './common-tokens';
 import { IdeaDao, SituationIdeaDao } from "../dao/dao";
-import { AGREEMENT_API, IDEA_API, IDEA_SITUATION_API } from './common-tokens';
-import { AgreementApi, IdeaApi, IdeaSituationApi } from '../api/api';
+import { AGREEMENT_API, IDEA_API, SITUATION_IDEA_API } from './common-tokens';
+import { AgreementApi, IdeaApi, SituationIdeaApi } from '../api/api';
 export const IDEA_DAO = votecube.token({
     class: IdeaDao,
     interface: 'IIdeaDao',
     token: 'IDEA_DAO'
 });
-export const IDEA_SITUATION_DAO = votecube.token({
+export const SITUATION_IDEA_DAO = votecube.token({
     class: SituationIdeaDao,
     interface: 'IIdeaSituationDao',
-    token: 'IDEA_SITUATION_DAO'
+    token: 'SITUATION_IDEA_DAO'
 });
 IDEA_API.setClass(IdeaApi);
 IDEA_API.setDependencies({
     ideaDao: IDEA_DAO
 });
-IDEA_SITUATION_API.setClass(IdeaSituationApi);
-IDEA_SITUATION_API.setDependencies({
-    ideaSituationDao: IDEA_SITUATION_DAO
+SITUATION_IDEA_API.setClass(SituationIdeaApi);
+SITUATION_IDEA_API.setDependencies({
+    situationIdeaDao: SITUATION_IDEA_DAO
 });
 AGREEMENT_API.setClass(AgreementApi);
 APPLICATION_LOADER.setClass(ApplicationLoader);

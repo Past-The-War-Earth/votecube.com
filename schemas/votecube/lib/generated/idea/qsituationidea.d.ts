@@ -11,7 +11,7 @@ import { ISituationIdea } from './situationidea';
  * SELECT - All fields and relations (optional).
  */
 export interface SituationIdeaESelect extends RepositoryEntityESelect, SituationIdeaEOptionalId {
-    agreementTotal?: number | IQNumberField;
+    agreementShareTotal?: number | IQNumberField;
     numberOfAgreementRatings?: number | IQNumberField;
     idea?: IdeaESelect;
     situation?: SituationESelect;
@@ -32,7 +32,7 @@ export interface SituationIdeaEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface SituationIdeaEUpdateProperties extends RepositoryEntityEUpdateProperties {
-    agreementTotal?: number | IQNumberField;
+    agreementShareTotal?: number | IQNumberField;
     numberOfAgreementRatings?: number | IQNumberField;
     idea?: IdeaEOptionalId;
     situation?: SituationEOptionalId;
@@ -41,7 +41,7 @@ export interface SituationIdeaEUpdateProperties extends RepositoryEntityEUpdateP
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface SituationIdeaGraph extends SituationIdeaEOptionalId, RepositoryEntityGraph {
-    agreementTotal?: number | IQNumberField;
+    agreementShareTotal?: number | IQNumberField;
     numberOfAgreementRatings?: number | IQNumberField;
     idea?: IdeaGraph;
     situation?: SituationGraph;
@@ -58,7 +58,7 @@ export interface SituationIdeaEUpdateColumns extends RepositoryEntityEUpdateColu
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
-    AGREEMENTTOTAL?: number | IQNumberField;
+    AGREEMENTSHARETOTAL?: number | IQNumberField;
     NUMBEROFAGREEMENTRATINGS?: number | IQNumberField;
     IDEAS_RID_1?: number | IQNumberField;
     IDEAS_AID_1?: number | IQNumberField;
@@ -81,7 +81,7 @@ export interface SituationIdeaECreateColumns extends SituationIdeaEId, Situation
  * Query Entity Query Definition (used for Q.EntityName).
  */
 export interface QSituationIdea extends QRepositoryEntity {
-    agreementTotal: IQNumberField;
+    agreementShareTotal: IQNumberField;
     numberOfAgreementRatings: IQNumberField;
     idea: QIdeaQRelation;
     situation: QSituationQRelation;

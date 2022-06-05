@@ -6,19 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
-let IdeaSituationApi = class IdeaSituationApi {
+let SituationIdeaApi = class SituationIdeaApi {
     async add(situationIdea) {
         await this.situationIdeaDao.save(situationIdea);
     }
 };
 __decorate([
     Inject()
-], IdeaSituationApi.prototype, "situationIdeaDao", void 0);
+], SituationIdeaApi.prototype, "situationIdeaDao", void 0);
 __decorate([
     Api()
-], IdeaSituationApi.prototype, "add", null);
-IdeaSituationApi = __decorate([
+], SituationIdeaApi.prototype, "add", null);
+SituationIdeaApi = __decorate([
     Injected()
-], IdeaSituationApi);
-export { IdeaSituationApi };
+], SituationIdeaApi);
+export { SituationIdeaApi };
 //# sourceMappingURL=SituationIdeaApi.js.map
