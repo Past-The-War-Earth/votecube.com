@@ -1508,11 +1508,39 @@ export const APPLICATION = {
                             "index": 9,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [],
-                            "name": "NAME",
-                            "notNull": true,
+                            "name": "OBJECT",
+                            "notNull": false,
                             "propertyRefs": [
                                 {
                                     "index": 9
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "STRING"
+                        },
+                        {
+                            "index": 10,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "ACTION",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 10
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "STRING"
+                        },
+                        {
+                            "index": 11,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "NAME",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 11
                                 }
                             ],
                             "sinceVersion": 1,
@@ -1622,7 +1650,25 @@ export const APPLICATION = {
                             },
                             "index": 9,
                             "isId": false,
-                            "name": "name",
+                            "name": "object",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 10
+                            },
+                            "index": 10,
+                            "isId": false,
+                            "name": "action",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 11
+                            },
+                            "index": 11,
+                            "isId": false,
+                            "name": "customText",
                             "sinceVersion": 1
                         }
                     ],

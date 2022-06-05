@@ -5,7 +5,9 @@ import { IFactor } from './factor';
  * SELECT - All fields and relations (optional).
  */
 export interface FactorESelect extends RepositoryEntityESelect, FactorEOptionalId {
-    name?: string | IQStringField;
+    object?: string | IQStringField;
+    action?: string | IQStringField;
+    customText?: string | IQStringField;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -21,13 +23,17 @@ export interface FactorEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface FactorEUpdateProperties extends RepositoryEntityEUpdateProperties {
-    name?: string | IQStringField;
+    object?: string | IQStringField;
+    action?: string | IQStringField;
+    customText?: string | IQStringField;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface FactorGraph extends FactorEOptionalId, RepositoryEntityGraph {
-    name?: string | IQStringField;
+    object?: string | IQStringField;
+    action?: string | IQStringField;
+    customText?: string | IQStringField;
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -39,6 +45,8 @@ export interface FactorEUpdateColumns extends RepositoryEntityEUpdateColumns {
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    OBJECT?: string | IQStringField;
+    ACTION?: string | IQStringField;
     NAME?: string | IQStringField;
 }
 /**
@@ -55,7 +63,9 @@ export interface FactorECreateColumns extends FactorEId, FactorEUpdateColumns {
  * Query Entity Query Definition (used for Q.EntityName).
  */
 export interface QFactor extends QRepositoryEntity {
-    name: IQStringField;
+    object: IQStringField;
+    action: IQStringField;
+    customText: IQStringField;
 }
 export interface QFactorQId extends QRepositoryEntityQId {
 }

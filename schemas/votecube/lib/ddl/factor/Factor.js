@@ -9,8 +9,14 @@ import { RepositoryEntity } from '@airport/holding-pattern';
 let Factor = class Factor extends RepositoryEntity {
 };
 __decorate([
-    Column({ name: 'NAME', nullable: false })
-], Factor.prototype, "name", void 0);
+    Column({ name: 'OBJECT', nullable: true })
+], Factor.prototype, "object", void 0);
+__decorate([
+    Column({ name: 'ACTION', nullable: true })
+], Factor.prototype, "action", void 0);
+__decorate([
+    Column({ name: 'NAME', nullable: true })
+], Factor.prototype, "customText", void 0);
 Factor = __decorate([
     Entity(),
     Table({ name: 'FACTORS' })

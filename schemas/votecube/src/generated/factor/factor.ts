@@ -15,7 +15,9 @@ export interface IFactor extends IRepositoryEntity {
 	// Id Relations
 
 	// Non-Id Properties
-	name?: string;
+	object?: string;
+	action?: string;
+	customText?: string;
 
 	// Non-Id Relations
 

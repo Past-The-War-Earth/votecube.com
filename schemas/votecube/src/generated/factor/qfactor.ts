@@ -51,7 +51,9 @@ declare function require(moduleName: string): any;
 export interface FactorESelect
     extends RepositoryEntityESelect, FactorEOptionalId {
 	// Non-Id Properties
-	name?: string | IQStringField;
+	object?: string | IQStringField;
+	action?: string | IQStringField;
+	customText?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -86,7 +88,9 @@ export interface FactorEOptionalId {
 export interface FactorEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
-	name?: string | IQStringField;
+	object?: string | IQStringField;
+	action?: string | IQStringField;
+	customText?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 
@@ -100,7 +104,9 @@ export interface FactorGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
-	name?: string | IQStringField;
+	object?: string | IQStringField;
+	action?: string | IQStringField;
+	customText?: string | IQStringField;
 
 	// Relations
 
@@ -118,6 +124,8 @@ export interface FactorEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	OBJECT?: string | IQStringField;
+	ACTION?: string | IQStringField;
 	NAME?: string | IQStringField;
 
 }
@@ -153,7 +161,9 @@ export interface QFactor extends QRepositoryEntity
 	// Id Relations
 
 	// Non-Id Fields
-	name: IQStringField;
+	object: IQStringField;
+	action: IQStringField;
+	customText: IQStringField;
 
 	// Non-Id Relations
 
