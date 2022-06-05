@@ -1,5 +1,5 @@
 import type { IIdeaApi } from "../api/IdeaApi";
-import type { IIdeaSituationApi } from '../api/IdeaSituationApi';
+import type { IIdeaSituationApi } from '../api/SituationIdeaApi';
 import type { IAgreementApi } from '../api/AgreementApi';
 export declare const votecube: import("@airport/direction-indicator").IInjectionApplication;
 export declare const IDEA_API: import("@airport/direction-indicator").IDependencyInjectionToken<IIdeaApi>;

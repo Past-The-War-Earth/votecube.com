@@ -21,7 +21,7 @@ BaseAgreementDao.Find = new DaoQueryDecorators();
 BaseAgreementDao.FindOne = new DaoQueryDecorators();
 BaseAgreementDao.Search = new DaoQueryDecorators();
 BaseAgreementDao.SearchOne = new DaoQueryDecorators();
-export class BaseAgreementFactorDao extends SQDIDao {
+export class BaseAgreementReasonDao extends SQDIDao {
     constructor() {
         super(0);
     }
@@ -32,10 +32,10 @@ export class BaseAgreementFactorDao extends SQDIDao {
         return duoDiSet(0);
     }
 }
-BaseAgreementFactorDao.Find = new DaoQueryDecorators();
-BaseAgreementFactorDao.FindOne = new DaoQueryDecorators();
-BaseAgreementFactorDao.Search = new DaoQueryDecorators();
-BaseAgreementFactorDao.SearchOne = new DaoQueryDecorators();
+BaseAgreementReasonDao.Find = new DaoQueryDecorators();
+BaseAgreementReasonDao.FindOne = new DaoQueryDecorators();
+BaseAgreementReasonDao.Search = new DaoQueryDecorators();
+BaseAgreementReasonDao.SearchOne = new DaoQueryDecorators();
 export class BaseFactorDao extends SQDIDao {
     constructor() {
         super(3);
@@ -68,21 +68,6 @@ BaseIdeaDao.Search = new DaoQueryDecorators();
 BaseIdeaDao.SearchOne = new DaoQueryDecorators();
 export class BaseIdeaLabelDao extends SQDIDao {
     constructor() {
-        super(8);
-    }
-    static Save(config) {
-        return Dao.BaseSave(config);
-    }
-    static diSet() {
-        return duoDiSet(8);
-    }
-}
-BaseIdeaLabelDao.Find = new DaoQueryDecorators();
-BaseIdeaLabelDao.FindOne = new DaoQueryDecorators();
-BaseIdeaLabelDao.Search = new DaoQueryDecorators();
-BaseIdeaLabelDao.SearchOne = new DaoQueryDecorators();
-export class BaseIdeaSituationDao extends SQDIDao {
-    constructor() {
         super(5);
     }
     static Save(config) {
@@ -92,26 +77,26 @@ export class BaseIdeaSituationDao extends SQDIDao {
         return duoDiSet(5);
     }
 }
-BaseIdeaSituationDao.Find = new DaoQueryDecorators();
-BaseIdeaSituationDao.FindOne = new DaoQueryDecorators();
-BaseIdeaSituationDao.Search = new DaoQueryDecorators();
-BaseIdeaSituationDao.SearchOne = new DaoQueryDecorators();
-export class BaseLabelDao extends SQDIDao {
+BaseIdeaLabelDao.Find = new DaoQueryDecorators();
+BaseIdeaLabelDao.FindOne = new DaoQueryDecorators();
+BaseIdeaLabelDao.Search = new DaoQueryDecorators();
+BaseIdeaLabelDao.SearchOne = new DaoQueryDecorators();
+export class BaseIdeaTopicDao extends SQDIDao {
     constructor() {
-        super(7);
+        super(8);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(7);
+        return duoDiSet(8);
     }
 }
-BaseLabelDao.Find = new DaoQueryDecorators();
-BaseLabelDao.FindOne = new DaoQueryDecorators();
-BaseLabelDao.Search = new DaoQueryDecorators();
-BaseLabelDao.SearchOne = new DaoQueryDecorators();
-export class BaseOutcomeDao extends SQDIDao {
+BaseIdeaTopicDao.Find = new DaoQueryDecorators();
+BaseIdeaTopicDao.FindOne = new DaoQueryDecorators();
+BaseIdeaTopicDao.Search = new DaoQueryDecorators();
+BaseIdeaTopicDao.SearchOne = new DaoQueryDecorators();
+export class BaseLabelDao extends SQDIDao {
     constructor() {
         super(4);
     }
@@ -122,10 +107,10 @@ export class BaseOutcomeDao extends SQDIDao {
         return duoDiSet(4);
     }
 }
-BaseOutcomeDao.Find = new DaoQueryDecorators();
-BaseOutcomeDao.FindOne = new DaoQueryDecorators();
-BaseOutcomeDao.Search = new DaoQueryDecorators();
-BaseOutcomeDao.SearchOne = new DaoQueryDecorators();
+BaseLabelDao.Find = new DaoQueryDecorators();
+BaseLabelDao.FindOne = new DaoQueryDecorators();
+BaseLabelDao.Search = new DaoQueryDecorators();
+BaseLabelDao.SearchOne = new DaoQueryDecorators();
 export class BasePositionDao extends SQDIDao {
     constructor() {
         super(2);
@@ -156,4 +141,19 @@ BaseReasonDao.Find = new DaoQueryDecorators();
 BaseReasonDao.FindOne = new DaoQueryDecorators();
 BaseReasonDao.Search = new DaoQueryDecorators();
 BaseReasonDao.SearchOne = new DaoQueryDecorators();
+export class BaseSituationIdeaDao extends SQDIDao {
+    constructor() {
+        super(7);
+    }
+    static Save(config) {
+        return Dao.BaseSave(config);
+    }
+    static diSet() {
+        return duoDiSet(7);
+    }
+}
+BaseSituationIdeaDao.Find = new DaoQueryDecorators();
+BaseSituationIdeaDao.FindOne = new DaoQueryDecorators();
+BaseSituationIdeaDao.Search = new DaoQueryDecorators();
+BaseSituationIdeaDao.SearchOne = new DaoQueryDecorators();
 //# sourceMappingURL=baseDaos.js.map

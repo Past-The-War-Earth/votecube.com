@@ -1,2 +1,2 @@
 export * from './IdeaDao'
-export * from './IdeaSituationDao'
+export * from './SituationIdeaDao'

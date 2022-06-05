@@ -1,6 +1,6 @@
 import { app } from '@votecube/dependency-injection'
 import type { IIdeaApi } from "../api/IdeaApi";
-import type { IIdeaSituationApi } from '../api/IdeaSituationApi';
+import type { IIdeaSituationApi } from '../api/SituationIdeaApi';
 import type { IAgreementApi } from '../api/AgreementApi';
 
 export const votecube = app('votecube')

@@ -1,13 +1,12 @@
 import { RepositoryEntity } from '@airport/holding-pattern';
-import { Outcome } from './Outcome';
 import { IdeaLabel } from './IdeaLabel';
-import { IdeaSituation } from './IdeaSituation';
+import { SituationIdea } from './SituationIdea';
+import { IdeaTopic } from './IdeaTopic';
 export declare class Idea extends RepositoryEntity {
     name: string;
-    outcomeA: Outcome;
-    outcomeB: Outcome;
     children: Idea[];
     ideaLabels: IdeaLabel[];
-    ideaSituations: IdeaSituation[];
+    situationIdeas: SituationIdea[];
+    ideaTopics: IdeaTopic[];
 }
 //# sourceMappingURL=Idea.d.ts.map

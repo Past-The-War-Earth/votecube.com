@@ -1,5 +1,5 @@
 import { IRepositoryEntity } from '@airport/holding-pattern';
-import { IIdeaSituation } from './ideasituation';
+import { ISituationIdea } from './situationidea';
 import { IFactor } from '../factor/factor';
 import { IPosition } from '../factor/position';
 export interface IReason extends IRepositoryEntity {
@@ -10,7 +10,7 @@ export interface IReason extends IRepositoryEntity {
     green?: number;
     red?: number;
     outcomeOrdinal?: string;
-    ideaSituation?: IIdeaSituation;
+    ideaSituation?: ISituationIdea;
     factor?: IFactor;
     position?: IPosition;
 }

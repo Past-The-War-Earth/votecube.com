@@ -1,27 +1,27 @@
 import { QApplication } from '@airport/aviation-communication';
 import { DbApplication, EntityId } from '@airport/ground-control';
 import { QAgreement } from './agreement/qagreement';
-import { QAgreementFactor } from './agreement/qagreementfactor';
+import { QAgreementReason } from './agreement/qagreementreason';
 import { QFactor } from './factor/qfactor';
 import { QIdea } from './idea/qidea';
 import { QIdeaLabel } from './idea/qidealabel';
-import { QIdeaSituation } from './idea/qideasituation';
+import { QIdeaTopic } from './idea/qideatopic';
 import { QLabel } from './qlabel';
-import { QOutcome } from './idea/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QReason } from './idea/qreason';
+import { QSituationIdea } from './idea/qsituationidea';
 export interface LocalQApplication extends QApplication {
     db: DbApplication;
     Agreement: QAgreement;
-    AgreementFactor: QAgreementFactor;
+    AgreementReason: QAgreementReason;
     Factor: QFactor;
     Idea: QIdea;
     IdeaLabel: QIdeaLabel;
-    IdeaSituation: QIdeaSituation;
+    IdeaTopic: QIdeaTopic;
     Label: QLabel;
-    Outcome: QOutcome;
     Position: QPosition;
     Reason: QReason;
+    SituationIdea: QSituationIdea;
 }
 export declare const Q_APPLICATION: LocalQApplication;
 export declare const Q: LocalQApplication;

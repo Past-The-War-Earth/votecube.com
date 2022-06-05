@@ -1,3 +1,3 @@
 export * from './IdeaDao';
-export * from './IdeaSituationDao';
+export * from './SituationIdeaDao';
 //# sourceMappingURL=dao.d.ts.map

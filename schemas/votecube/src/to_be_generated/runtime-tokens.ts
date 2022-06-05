@@ -4,7 +4,7 @@ import { APPLICATION_INITIALIZER, TERMINAL_STORE } from '@airport/terminal-map'
 import { ApplicationLoader } from './ApplicationLoader'
 import { votecube } from './common-tokens'
 
-import { IIdeaDao, IdeaDao, IIdeaSituationDao, IdeaSituationDao } from "../dao/dao";
+import { IIdeaDao, IdeaDao, ISituationIdeaDao, SituationIdeaDao } from "../dao/dao";
 import { AGREEMENT_API, IDEA_API, IDEA_SITUATION_API } from './common-tokens'
 import { AgreementApi, IdeaApi, IdeaSituationApi } from '../api/api'
 
@@ -13,8 +13,8 @@ export const IDEA_DAO = votecube.token<IIdeaDao>({
     interface: 'IIdeaDao',
     token: 'IDEA_DAO'
 })
-export const IDEA_SITUATION_DAO = votecube.token<IIdeaSituationDao>({
-    class: IdeaSituationDao,
+export const IDEA_SITUATION_DAO = votecube.token<ISituationIdeaDao>({
+    class: SituationIdeaDao,
     interface: 'IIdeaSituationDao',
     token: 'IDEA_SITUATION_DAO'
 })

@@ -1,8 +1,8 @@
 import { IRepositoryEntity } from '@airport/holding-pattern';
-import { IIdeaSituation } from '../idea/ideasituation';
-import { IAgreementFactor } from './agreementfactor';
+import { ISituationIdea } from '../idea/situationidea';
+import { IAgreementReason } from './agreementreason';
 export interface IAgreement extends IRepositoryEntity {
-    ideaSituation?: IIdeaSituation;
-    factors?: IAgreementFactor[];
+    situationIdea?: ISituationIdea;
+    agreementReasons?: IAgreementReason[];
 }
 //# sourceMappingURL=agreement.d.ts.map

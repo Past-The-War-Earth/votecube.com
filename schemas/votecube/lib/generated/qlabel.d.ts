@@ -1,4 +1,4 @@
-import { IQNumberField, IQStringField } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { ILabel } from './label';
 /**
@@ -34,6 +34,7 @@ export interface LabelGraph extends LabelEOptionalId, RepositoryEntityGraph {
  */
 export interface LabelEUpdateColumns extends RepositoryEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
+    CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;

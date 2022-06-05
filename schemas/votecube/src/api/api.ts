@@ -1,3 +1,3 @@
 export * from './IdeaApi'
-export * from './IdeaSituationApi'
+export * from './SituationIdeaApi'
 export * from './AgreementApi'

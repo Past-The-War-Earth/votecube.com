@@ -13,18 +13,18 @@ import {
 	QAgreement,
 } from './agreement/qagreement';
 import {
-	AgreementFactor,
-} from '../ddl/agreement/agreementfactor';
+	AgreementReason,
+} from '../ddl/agreement/agreementreason';
 import {
-	AgreementFactorESelect,
-	AgreementFactorECreateColumns,
-	AgreementFactorECreateProperties,
-	AgreementFactorEUpdateColumns,
-	AgreementFactorEUpdateProperties,
-	AgreementFactorEId,
-	AgreementFactorGraph,
-	QAgreementFactor,
-} from './agreement/qagreementfactor';
+	AgreementReasonESelect,
+	AgreementReasonECreateColumns,
+	AgreementReasonECreateProperties,
+	AgreementReasonEUpdateColumns,
+	AgreementReasonEUpdateProperties,
+	AgreementReasonEId,
+	AgreementReasonGraph,
+	QAgreementReason,
+} from './agreement/qagreementreason';
 import {
 	Factor,
 } from '../ddl/factor/factor';
@@ -65,18 +65,18 @@ import {
 	QIdeaLabel,
 } from './idea/qidealabel';
 import {
-	IdeaSituation,
-} from '../ddl/idea/ideasituation';
+	IdeaTopic,
+} from '../ddl/idea/ideatopic';
 import {
-	IdeaSituationESelect,
-	IdeaSituationECreateColumns,
-	IdeaSituationECreateProperties,
-	IdeaSituationEUpdateColumns,
-	IdeaSituationEUpdateProperties,
-	IdeaSituationEId,
-	IdeaSituationGraph,
-	QIdeaSituation,
-} from './idea/qideasituation';
+	IdeaTopicESelect,
+	IdeaTopicECreateColumns,
+	IdeaTopicECreateProperties,
+	IdeaTopicEUpdateColumns,
+	IdeaTopicEUpdateProperties,
+	IdeaTopicEId,
+	IdeaTopicGraph,
+	QIdeaTopic,
+} from './idea/qideatopic';
 import {
 	Label,
 } from '../ddl/label';
@@ -90,19 +90,6 @@ import {
 	LabelGraph,
 	QLabel,
 } from './qlabel';
-import {
-	Outcome,
-} from '../ddl/idea/outcome';
-import {
-	OutcomeESelect,
-	OutcomeECreateColumns,
-	OutcomeECreateProperties,
-	OutcomeEUpdateColumns,
-	OutcomeEUpdateProperties,
-	OutcomeEId,
-	OutcomeGraph,
-	QOutcome,
-} from './idea/qoutcome';
 import {
 	Position,
 } from '../ddl/factor/position';
@@ -129,6 +116,19 @@ import {
 	ReasonGraph,
 	QReason,
 } from './idea/qreason';
+import {
+	SituationIdea,
+} from '../ddl/idea/situationidea';
+import {
+	SituationIdeaESelect,
+	SituationIdeaECreateColumns,
+	SituationIdeaECreateProperties,
+	SituationIdeaEUpdateColumns,
+	SituationIdeaEUpdateProperties,
+	SituationIdeaEId,
+	SituationIdeaGraph,
+	QSituationIdea,
+} from './idea/qsituationidea';
 import {
 	IDuo,
 	IEntityCascadeGraph,
@@ -195,13 +195,13 @@ export class BaseAgreementDuo
 }
 
 
-export interface IBaseAgreementFactorDuo
-  extends IDuo<AgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor> {
+export interface IBaseAgreementReasonDuo
+  extends IDuo<AgreementReason, AgreementReasonESelect, AgreementReasonECreateProperties, AgreementReasonEUpdateColumns, AgreementReasonEUpdateProperties, AgreementReasonEId, AgreementReasonGraph, QAgreementReason> {
 }
 
-export class BaseAgreementFactorDuo
-  extends SQDIDuo<AgreementFactor, AgreementFactorESelect, AgreementFactorECreateProperties, AgreementFactorEUpdateColumns, AgreementFactorEUpdateProperties, AgreementFactorEId, AgreementFactorGraph, QAgreementFactor>
-	implements IBaseAgreementFactorDuo {
+export class BaseAgreementReasonDuo
+  extends SQDIDuo<AgreementReason, AgreementReasonESelect, AgreementReasonECreateProperties, AgreementReasonEUpdateColumns, AgreementReasonEUpdateProperties, AgreementReasonEId, AgreementReasonGraph, QAgreementReason>
+	implements IBaseAgreementReasonDuo {
 
 	static diSet(): boolean {
 		return duoDiSet(0)
@@ -258,29 +258,29 @@ export class BaseIdeaLabelDuo
 	implements IBaseIdeaLabelDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(8)
-	}
-	
-	constructor() {
-		super(8)
-	}
-}
-
-
-export interface IBaseIdeaSituationDuo
-  extends IDuo<IdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation> {
-}
-
-export class BaseIdeaSituationDuo
-  extends SQDIDuo<IdeaSituation, IdeaSituationESelect, IdeaSituationECreateProperties, IdeaSituationEUpdateColumns, IdeaSituationEUpdateProperties, IdeaSituationEId, IdeaSituationGraph, QIdeaSituation>
-	implements IBaseIdeaSituationDuo {
-
-	static diSet(): boolean {
 		return duoDiSet(5)
 	}
 	
 	constructor() {
 		super(5)
+	}
+}
+
+
+export interface IBaseIdeaTopicDuo
+  extends IDuo<IdeaTopic, IdeaTopicESelect, IdeaTopicECreateProperties, IdeaTopicEUpdateColumns, IdeaTopicEUpdateProperties, IdeaTopicEId, IdeaTopicGraph, QIdeaTopic> {
+}
+
+export class BaseIdeaTopicDuo
+  extends SQDIDuo<IdeaTopic, IdeaTopicESelect, IdeaTopicECreateProperties, IdeaTopicEUpdateColumns, IdeaTopicEUpdateProperties, IdeaTopicEId, IdeaTopicGraph, QIdeaTopic>
+	implements IBaseIdeaTopicDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(8)
+	}
+	
+	constructor() {
+		super(8)
 	}
 }
 
@@ -292,24 +292,6 @@ export interface IBaseLabelDuo
 export class BaseLabelDuo
   extends SQDIDuo<Label, LabelESelect, LabelECreateProperties, LabelEUpdateColumns, LabelEUpdateProperties, LabelEId, LabelGraph, QLabel>
 	implements IBaseLabelDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(7)
-	}
-	
-	constructor() {
-		super(7)
-	}
-}
-
-
-export interface IBaseOutcomeDuo
-  extends IDuo<Outcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome> {
-}
-
-export class BaseOutcomeDuo
-  extends SQDIDuo<Outcome, OutcomeESelect, OutcomeECreateProperties, OutcomeEUpdateColumns, OutcomeEUpdateProperties, OutcomeEId, OutcomeGraph, QOutcome>
-	implements IBaseOutcomeDuo {
 
 	static diSet(): boolean {
 		return duoDiSet(4)
@@ -353,5 +335,23 @@ export class BaseReasonDuo
 	
 	constructor() {
 		super(6)
+	}
+}
+
+
+export interface IBaseSituationIdeaDuo
+  extends IDuo<SituationIdea, SituationIdeaESelect, SituationIdeaECreateProperties, SituationIdeaEUpdateColumns, SituationIdeaEUpdateProperties, SituationIdeaEId, SituationIdeaGraph, QSituationIdea> {
+}
+
+export class BaseSituationIdeaDuo
+  extends SQDIDuo<SituationIdea, SituationIdeaESelect, SituationIdeaECreateProperties, SituationIdeaEUpdateColumns, SituationIdeaEUpdateProperties, SituationIdeaEId, SituationIdeaGraph, QSituationIdea>
+	implements IBaseSituationIdeaDuo {
+
+	static diSet(): boolean {
+		return duoDiSet(7)
+	}
+	
+	constructor() {
+		super(7)
 	}
 }

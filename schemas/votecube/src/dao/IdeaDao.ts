@@ -8,10 +8,9 @@ import {
     Q,
     QFactor,
     QLabel,
-    QOutcome,
     QPosition,
     QIdea,
-    QIdeaSituation,
+    QSituationIdea,
     QReason,
     QIdeaLabel,
 } from "../generated/generated";
@@ -63,11 +62,9 @@ export class IdeaDao
     ): Promise<IIdea> {
         let i: QIdea
         let r: QRepository
-        let o1: QOutcome
-        let o2: QOutcome
         let sl: QIdeaLabel
         let l: QLabel
-        let is: QIdeaSituation
+        let is: QSituationIdea
         let rs: QReason
         let f: QFactor
         let p: QPosition
@@ -75,13 +72,11 @@ export class IdeaDao
             select: {
                 '*': Y,
                 repository: {},
-                outcomeA: {},
-                outcomeB: {},
                 ideaLabels: {
                     '*': Y,
                     label: {}
                 },
-                ideaSituations: {
+                situationIdeas: {
                     '*': Y,
                     reasons: {
                         '*': Y,
@@ -93,11 +88,9 @@ export class IdeaDao
             from: [
                 i = Q.Idea,
                 r = i.repository.innerJoin(),
-                o1 = i.outcomeA.innerJoin(),
-                o2 = i.outcomeB.innerJoin(),
                 sl = i.ideaLabels.leftJoin(),
                 l = sl.label.leftJoin(),
-                is = i.ideaSituations.leftJoin(),
+                is = i.situationIdeas.leftJoin(),
                 rs = is.reasons.leftJoin(),
                 f = rs.factor.leftJoin(),
                 p = rs.position.leftJoin()

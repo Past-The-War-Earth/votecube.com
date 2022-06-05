@@ -1,7 +1,7 @@
 import { Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
-import { Idea, IdeaSituation } from "../ddl";
-import { AgreementFactor } from "./AgreementFactor";
+import { SituationIdea } from "../ddl";
+import { AgreementReason } from "./AgreementReason";
 
 @Entity()
 @Table({ name: 'AGREEMENTS' })
@@ -9,9 +9,9 @@ export class Agreement
     extends RepositoryEntity {
 
     @ManyToOne()
-    ideaSituation: IdeaSituation
+    situationIdea: SituationIdea
 
     @OneToMany({ mappedBy: 'agreement' })
-    factors: AgreementFactor[]
+    agreementReasons: AgreementReason[]
 
 }

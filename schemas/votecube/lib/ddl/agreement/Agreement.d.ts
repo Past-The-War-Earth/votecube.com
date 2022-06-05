@@ -1,8 +1,8 @@
 import { RepositoryEntity } from "@airport/holding-pattern";
-import { IdeaSituation } from "../ddl";
-import { AgreementFactor } from "./AgreementFactor";
+import { SituationIdea } from "../ddl";
+import { AgreementReason } from "./AgreementReason";
 export declare class Agreement extends RepositoryEntity {
-    ideaSituation: IdeaSituation;
-    factors: AgreementFactor[];
+    situationIdea: SituationIdea;
+    agreementReasons: AgreementReason[];
 }
 //# sourceMappingURL=Agreement.d.ts.map

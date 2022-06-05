@@ -1,4 +1,4 @@
 export * from './AgreementApi';
 export * from './IdeaApi';
-export * from './IdeaSituationApi';
+export * from './SituationIdeaApi';
 //# sourceMappingURL=api.d.ts.map

@@ -7,26 +7,26 @@ import {
     EntityId,
 }                      from '@airport/ground-control';
 import { QAgreement } from './agreement/qagreement';
-import { QAgreementFactor } from './agreement/qagreementfactor';
+import { QAgreementReason } from './agreement/qagreementreason';
 import { QFactor } from './factor/qfactor';
 import { QIdea } from './idea/qidea';
 import { QIdeaLabel } from './idea/qidealabel';
-import { QIdeaSituation } from './idea/qideasituation';
+import { QIdeaTopic } from './idea/qideatopic';
 import { QLabel } from './qlabel';
-import { QOutcome } from './idea/qoutcome';
 import { QPosition } from './factor/qposition';
 import { QReason } from './idea/qreason';
+import { QSituationIdea } from './idea/qsituationidea';
 import {
   Agreement,
-  AgreementFactor,
+  AgreementReason,
   Factor,
   Idea,
   IdeaLabel,
-  IdeaSituation,
+  IdeaTopic,
   Label,
-  Outcome,
   Position,
-  Reason
+  Reason,
+  SituationIdea
 } from '../ddl/ddl';
 
 export interface LocalQApplication extends QApplication {
@@ -34,29 +34,29 @@ export interface LocalQApplication extends QApplication {
     db: DbApplication;
 
   Agreement: QAgreement;
-	AgreementFactor: QAgreementFactor;
+	AgreementReason: QAgreementReason;
 	Factor: QFactor;
 	Idea: QIdea;
 	IdeaLabel: QIdeaLabel;
-	IdeaSituation: QIdeaSituation;
+	IdeaTopic: QIdeaTopic;
 	Label: QLabel;
-	Outcome: QOutcome;
 	Position: QPosition;
 	Reason: QReason;
+	SituationIdea: QSituationIdea;
 
 }
 
 const __constructors__ = {
 	Agreement: Agreement,
-	AgreementFactor: AgreementFactor,
+	AgreementReason: AgreementReason,
 	Factor: Factor,
 	Idea: Idea,
 	IdeaLabel: IdeaLabel,
-	IdeaSituation: IdeaSituation,
+	IdeaTopic: IdeaTopic,
 	Label: Label,
-	Outcome: Outcome,
 	Position: Position,
-	Reason: Reason
+	Reason: Reason,
+	SituationIdea: SituationIdea
 };
 
 export const Q_APPLICATION: LocalQApplication = <any>{

@@ -7,7 +7,7 @@ import {
     IIdea,
     IReason,
     IAgreement,
-    IAgreementFactor
+    IAgreementReason
 } from "@votecube/votecube";
 import { IRepositoryRecordConverter } from '@votecube/ui-logic'
 
@@ -33,9 +33,9 @@ export class AgreementConverter
     dbToUi(
         dbAgreement: IAgreement
     ): IUiAgreement {
-        let agreementFactor1: IAgreementFactor
-        let agreementFactor2: IAgreementFactor
-        let agreementFactor3: IAgreementFactor
+        let agreementFactor1: IAgreementReason
+        let agreementFactor2: IAgreementReason
+        let agreementFactor3: IAgreementReason
         for (const dbAgreementFactor of dbAgreement.factors) {
             switch (dbAgreementFactor.axis) {
                 case 'x':
@@ -58,7 +58,7 @@ export class AgreementConverter
     }
 
     private agreementFactorDbToUi(
-        dbAgreementFactor: IAgreementFactor
+        dbAgreementFactor: IAgreementReason
     ): IUiAgreementFactor {
         return {
             ...this.repositoryRecordConverter.dbToUi(dbAgreementFactor),
@@ -88,7 +88,7 @@ export class AgreementConverter
         ageSuitability: 0 | 7 | 13 | 18 = 0,
         idea: IIdea,
     ): IAgreement {
-        let factors: IAgreementFactor[] = []
+        let factors: IAgreementReason[] = []
 
         const dbAgreement: IAgreement = {
             idea,

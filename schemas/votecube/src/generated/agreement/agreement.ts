@@ -2,11 +2,11 @@ import {
 	IRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	IIdeaSituation,
-} from '../idea/ideasituation';
+	ISituationIdea,
+} from '../idea/situationidea';
 import {
-	IAgreementFactor,
-} from './agreementfactor';
+	IAgreementReason,
+} from './agreementreason';
 
 
 
@@ -23,8 +23,8 @@ export interface IAgreement extends IRepositoryEntity {
 	// Non-Id Properties
 
 	// Non-Id Relations
-	ideaSituation?: IIdeaSituation;
-	factors?: IAgreementFactor[];
+	situationIdea?: ISituationIdea;
+	agreementReasons?: IAgreementReason[];
 
 	// Transient Properties
 

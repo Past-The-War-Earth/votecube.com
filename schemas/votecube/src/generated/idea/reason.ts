@@ -2,8 +2,8 @@ import {
 	IRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	IIdeaSituation,
-} from './ideasituation';
+	ISituationIdea,
+} from './situationidea';
 import {
 	IFactor,
 } from '../factor/factor';
@@ -33,7 +33,7 @@ export interface IReason extends IRepositoryEntity {
 	outcomeOrdinal?: string;
 
 	// Non-Id Relations
-	ideaSituation?: IIdeaSituation;
+	ideaSituation?: ISituationIdea;
 	factor?: IFactor;
 	position?: IPosition;
 

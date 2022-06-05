@@ -1,16 +1,13 @@
 import {
 	Column,
 	Entity,
-	ManyToOne,
 	OneToMany,
 	Table
 } from '@airport/air-traffic-control'
 import { RepositoryEntity } from '@airport/holding-pattern'
-import { Agreement } from '../agreement/Agreement'
-import { Outcome } from './Outcome'
-import { Reason } from './Reason'
 import { IdeaLabel } from './IdeaLabel'
-import { IdeaSituation } from './IdeaSituation'
+import { SituationIdea } from './SituationIdea'
+import { IdeaTopic } from './IdeaTopic'
 
 @Entity()
 @Table({ name: 'IDEAS' })
@@ -19,13 +16,7 @@ export class Idea
 
 	@Column({ name: 'NAME', nullable: false })
 	name: string
-
-	@ManyToOne()
-	outcomeA: Outcome
-
-	@ManyToOne()
-	outcomeB: Outcome
-
+ 
 	@OneToMany({ mappedBy: 'parent' })
 	children: Idea[]
 
@@ -33,6 +24,9 @@ export class Idea
 	ideaLabels: IdeaLabel[]
 
 	@OneToMany({ mappedBy: 'idea' })
-	ideaSituations: IdeaSituation[]
+	situationIdeas: SituationIdea[]
+
+	@OneToMany({ mappedBy: 'idea' })
+	ideaTopics: IdeaTopic[]
 
 }

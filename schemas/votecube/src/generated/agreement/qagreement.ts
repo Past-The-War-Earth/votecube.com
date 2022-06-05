@@ -34,31 +34,31 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	IdeaSituationGraph,
-	IdeaSituationEId,
-	IdeaSituationEOptionalId,
-	IdeaSituationEUpdateProperties,
-	IdeaSituationESelect,
-	QIdeaSituation,
-	QIdeaSituationQId,
-	QIdeaSituationQRelation,
-} from '../idea/qideasituation';
+	SituationIdeaGraph,
+	SituationIdeaEId,
+	SituationIdeaEOptionalId,
+	SituationIdeaEUpdateProperties,
+	SituationIdeaESelect,
+	QSituationIdea,
+	QSituationIdeaQId,
+	QSituationIdeaQRelation,
+} from '../idea/qsituationidea';
 import {
-	IIdeaSituation,
-} from '../idea/ideasituation';
+	ISituationIdea,
+} from '../idea/situationidea';
 import {
-	AgreementFactorGraph,
-	AgreementFactorEId,
-	AgreementFactorEOptionalId,
-	AgreementFactorEUpdateProperties,
-	AgreementFactorESelect,
-	QAgreementFactor,
-	QAgreementFactorQId,
-	QAgreementFactorQRelation,
-} from './qagreementfactor';
+	AgreementReasonGraph,
+	AgreementReasonEId,
+	AgreementReasonEOptionalId,
+	AgreementReasonEUpdateProperties,
+	AgreementReasonESelect,
+	QAgreementReason,
+	QAgreementReasonQId,
+	QAgreementReasonQRelation,
+} from './qagreementreason';
 import {
-	IAgreementFactor,
-} from './agreementfactor';
+	IAgreementReason,
+} from './agreementreason';
 import {
 	IAgreement,
 } from './agreement';
@@ -81,8 +81,8 @@ export interface AgreementESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	ideaSituation?: IdeaSituationESelect;
-	factors?: AgreementFactorESelect;
+	situationIdea?: SituationIdeaESelect;
+	agreementReasons?: AgreementReasonESelect;
 
 }
 
@@ -115,7 +115,7 @@ export interface AgreementEUpdateProperties
 	// Non-Id Properties
 
 	// Non-Id Relations - ids only & no OneToMany's
-	ideaSituation?: IdeaSituationEOptionalId;
+	situationIdea?: SituationIdeaEOptionalId;
 
 }
 
@@ -129,8 +129,8 @@ export interface AgreementGraph
 	// Non-Id Properties
 
 	// Relations
-	ideaSituation?: IdeaSituationGraph;
-	factors?: AgreementFactorGraph[];
+	situationIdea?: SituationIdeaGraph;
+	agreementReasons?: AgreementReasonGraph[];
 
 }
 
@@ -141,13 +141,14 @@ export interface AgreementEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
-	IDEA_SITUATIONS_RID_1?: number | IQNumberField;
-	IDEA_SITUATIONS_AID_1?: number | IQNumberField;
-	IDEA_SITUATIONS_ARID_1?: number | IQNumberField;
+	SITUATION_IDEAS_RID_1?: number | IQNumberField;
+	SITUATION_IDEAS_AID_1?: number | IQNumberField;
+	SITUATION_IDEAS_ARID_1?: number | IQNumberField;
 
 }
 
@@ -184,8 +185,8 @@ export interface QAgreement extends QRepositoryEntity
 	// Non-Id Fields
 
 	// Non-Id Relations
-	ideaSituation: QIdeaSituationQRelation;
-	factors: IQRepositoryEntityOneToManyRelation<IAgreementFactor, QAgreementFactor>;
+	situationIdea: QSituationIdeaQRelation;
+	agreementReasons: IQRepositoryEntityOneToManyRelation<IAgreementReason, QAgreementReason>;
 
 }
 

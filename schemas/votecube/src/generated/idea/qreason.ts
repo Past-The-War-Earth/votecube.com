@@ -34,18 +34,18 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	IdeaSituationGraph,
-	IdeaSituationEId,
-	IdeaSituationEOptionalId,
-	IdeaSituationEUpdateProperties,
-	IdeaSituationESelect,
-	QIdeaSituation,
-	QIdeaSituationQId,
-	QIdeaSituationQRelation,
-} from './qideasituation';
+	SituationIdeaGraph,
+	SituationIdeaEId,
+	SituationIdeaEOptionalId,
+	SituationIdeaEUpdateProperties,
+	SituationIdeaESelect,
+	QSituationIdea,
+	QSituationIdeaQId,
+	QSituationIdeaQRelation,
+} from './qsituationidea';
 import {
-	IIdeaSituation,
-} from './ideasituation';
+	ISituationIdea,
+} from './situationidea';
 import {
 	FactorGraph,
 	FactorEId,
@@ -101,7 +101,7 @@ export interface ReasonESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	ideaSituation?: IdeaSituationESelect;
+	ideaSituation?: SituationIdeaESelect;
 	factor?: FactorESelect;
 	position?: PositionESelect;
 
@@ -143,7 +143,7 @@ export interface ReasonEUpdateProperties
 	outcomeOrdinal?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	ideaSituation?: IdeaSituationEOptionalId;
+	ideaSituation?: SituationIdeaEOptionalId;
 	factor?: FactorEOptionalId;
 	position?: PositionEOptionalId;
 
@@ -166,7 +166,7 @@ export interface ReasonGraph
 	outcomeOrdinal?: string | IQStringField;
 
 	// Relations
-	ideaSituation?: IdeaSituationGraph;
+	ideaSituation?: SituationIdeaGraph;
 	factor?: FactorGraph;
 	position?: PositionGraph;
 
@@ -179,6 +179,7 @@ export interface ReasonEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
@@ -190,9 +191,9 @@ export interface ReasonEUpdateColumns
 	COLOR_GREEN?: number | IQNumberField;
 	COLOR_RED?: number | IQNumberField;
 	OUTCOME_ORDINAL?: string | IQStringField;
-	IDEA_SITUATIONS_RID_1?: number | IQNumberField;
-	IDEA_SITUATIONS_AID_1?: number | IQNumberField;
-	IDEA_SITUATIONS_ARID_1?: number | IQNumberField;
+	SITUATION_IDEAS_RID_1?: number | IQNumberField;
+	SITUATION_IDEAS_AID_1?: number | IQNumberField;
+	SITUATION_IDEAS_ARID_1?: number | IQNumberField;
 	FACTORS_RID_1?: number | IQNumberField;
 	FACTORS_AID_1?: number | IQNumberField;
 	FACTORS_ARID_1?: number | IQNumberField;
@@ -242,7 +243,7 @@ export interface QReason extends QRepositoryEntity
 	outcomeOrdinal: IQStringField;
 
 	// Non-Id Relations
-	ideaSituation: QIdeaSituationQRelation;
+	ideaSituation: QSituationIdeaQRelation;
 	factor: QFactorQRelation;
 	position: QPositionQRelation;
 

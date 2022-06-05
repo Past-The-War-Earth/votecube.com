@@ -1,16 +1,16 @@
 import { airApi } from '@airport/aviation-communication';
-import { Agreement, AgreementFactor, Factor, Idea, IdeaLabel, IdeaSituation, Label, Outcome, Position, Reason } from '../ddl/ddl';
+import { Agreement, AgreementReason, Factor, Idea, IdeaLabel, IdeaTopic, Label, Position, Reason, SituationIdea } from '../ddl/ddl';
 const __constructors__ = {
     Agreement: Agreement,
-    AgreementFactor: AgreementFactor,
+    AgreementReason: AgreementReason,
     Factor: Factor,
     Idea: Idea,
     IdeaLabel: IdeaLabel,
-    IdeaSituation: IdeaSituation,
+    IdeaTopic: IdeaTopic,
     Label: Label,
-    Outcome: Outcome,
     Position: Position,
-    Reason: Reason
+    Reason: Reason,
+    SituationIdea: SituationIdea
 };
 export const Q_APPLICATION = {
     __constructors__,

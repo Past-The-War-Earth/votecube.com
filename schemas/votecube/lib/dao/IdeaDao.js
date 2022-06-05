@@ -24,8 +24,6 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
     async findByRepositoryUuId(repositorySource, ideaReposioryUuid) {
         let i;
         let r;
-        let o1;
-        let o2;
         let sl;
         let l;
         let is;
@@ -36,13 +34,11 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
             select: {
                 '*': Y,
                 repository: {},
-                outcomeA: {},
-                outcomeB: {},
                 ideaLabels: {
                     '*': Y,
                     label: {}
                 },
-                ideaSituations: {
+                situationIdeas: {
                     '*': Y,
                     reasons: {
                         '*': Y,
@@ -54,11 +50,9 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
             from: [
                 i = Q.Idea,
                 r = i.repository.innerJoin(),
-                o1 = i.outcomeA.innerJoin(),
-                o2 = i.outcomeB.innerJoin(),
                 sl = i.ideaLabels.leftJoin(),
                 l = sl.label.leftJoin(),
-                is = i.ideaSituations.leftJoin(),
+                is = i.situationIdeas.leftJoin(),
                 rs = is.reasons.leftJoin(),
                 f = rs.factor.leftJoin(),
                 p = rs.position.leftJoin()

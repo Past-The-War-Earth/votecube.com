@@ -34,19 +34,6 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
-	OutcomeGraph,
-	OutcomeEId,
-	OutcomeEOptionalId,
-	OutcomeEUpdateProperties,
-	OutcomeESelect,
-	QOutcome,
-	QOutcomeQId,
-	QOutcomeQRelation,
-} from './qoutcome';
-import {
-	IOutcome,
-} from './outcome';
-import {
 	IdeaLabelGraph,
 	IdeaLabelEId,
 	IdeaLabelEOptionalId,
@@ -60,18 +47,31 @@ import {
 	IIdeaLabel,
 } from './idealabel';
 import {
-	IdeaSituationGraph,
-	IdeaSituationEId,
-	IdeaSituationEOptionalId,
-	IdeaSituationEUpdateProperties,
-	IdeaSituationESelect,
-	QIdeaSituation,
-	QIdeaSituationQId,
-	QIdeaSituationQRelation,
-} from './qideasituation';
+	SituationIdeaGraph,
+	SituationIdeaEId,
+	SituationIdeaEOptionalId,
+	SituationIdeaEUpdateProperties,
+	SituationIdeaESelect,
+	QSituationIdea,
+	QSituationIdeaQId,
+	QSituationIdeaQRelation,
+} from './qsituationidea';
 import {
-	IIdeaSituation,
-} from './ideasituation';
+	ISituationIdea,
+} from './situationidea';
+import {
+	IdeaTopicGraph,
+	IdeaTopicEId,
+	IdeaTopicEOptionalId,
+	IdeaTopicEUpdateProperties,
+	IdeaTopicESelect,
+	QIdeaTopic,
+	QIdeaTopicQId,
+	QIdeaTopicQRelation,
+} from './qideatopic';
+import {
+	IIdeaTopic,
+} from './ideatopic';
 import {
 	IIdea,
 } from './idea';
@@ -95,11 +95,10 @@ export interface IdeaESelect
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	outcomeA?: OutcomeESelect;
-	outcomeB?: OutcomeESelect;
 	children?: IdeaESelect;
 	ideaLabels?: IdeaLabelESelect;
-	ideaSituations?: IdeaSituationESelect;
+	situationIdeas?: SituationIdeaESelect;
+	ideaTopics?: IdeaTopicESelect;
 
 }
 
@@ -133,8 +132,6 @@ export interface IdeaEUpdateProperties
 	name?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
-	outcomeA?: OutcomeEOptionalId;
-	outcomeB?: OutcomeEOptionalId;
 
 }
 
@@ -149,11 +146,10 @@ export interface IdeaGraph
 	name?: string | IQStringField;
 
 	// Relations
-	outcomeA?: OutcomeGraph;
-	outcomeB?: OutcomeGraph;
 	children?: IdeaGraph[];
 	ideaLabels?: IdeaLabelGraph[];
-	ideaSituations?: IdeaSituationGraph[];
+	situationIdeas?: SituationIdeaGraph[];
+	ideaTopics?: IdeaTopicGraph[];
 
 }
 
@@ -164,17 +160,12 @@ export interface IdeaEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
 	NAME?: string | IQStringField;
-	OUTCOMES_RID_1?: number | IQNumberField;
-	OUTCOMES_AID_1?: number | IQNumberField;
-	OUTCOMES_ARID_1?: number | IQNumberField;
-	OUTCOMES_RID_2?: number | IQNumberField;
-	OUTCOMES_AID_2?: number | IQNumberField;
-	OUTCOMES_ARID_2?: number | IQNumberField;
 
 }
 
@@ -212,11 +203,10 @@ export interface QIdea extends QRepositoryEntity
 	name: IQStringField;
 
 	// Non-Id Relations
-	outcomeA: QOutcomeQRelation;
-	outcomeB: QOutcomeQRelation;
 	children: IQRepositoryEntityOneToManyRelation<IIdea, QIdea>;
 	ideaLabels: IQRepositoryEntityOneToManyRelation<IIdeaLabel, QIdeaLabel>;
-	ideaSituations: IQRepositoryEntityOneToManyRelation<IIdeaSituation, QIdeaSituation>;
+	situationIdeas: IQRepositoryEntityOneToManyRelation<ISituationIdea, QSituationIdea>;
+	ideaTopics: IQRepositoryEntityOneToManyRelation<IIdeaTopic, QIdeaTopic>;
 
 }
 

@@ -3,7 +3,7 @@ import { API_REGISTRY } from '@airport/check-in';
 import { APPLICATION_INITIALIZER, TERMINAL_STORE } from '@airport/terminal-map';
 import { ApplicationLoader } from './ApplicationLoader';
 import { votecube } from './common-tokens';
-import { IdeaDao, IdeaSituationDao } from "../dao/dao";
+import { IdeaDao, SituationIdeaDao } from "../dao/dao";
 import { AGREEMENT_API, IDEA_API, IDEA_SITUATION_API } from './common-tokens';
 import { AgreementApi, IdeaApi, IdeaSituationApi } from '../api/api';
 export const IDEA_DAO = votecube.token({
@@ -12,7 +12,7 @@ export const IDEA_DAO = votecube.token({
     token: 'IDEA_DAO'
 });
 export const IDEA_SITUATION_DAO = votecube.token({
-    class: IdeaSituationDao,
+    class: SituationIdeaDao,
     interface: 'IIdeaSituationDao',
     token: 'IDEA_SITUATION_DAO'
 });

@@ -9,7 +9,7 @@ import {
 import { RepositoryEntity } from '@airport/holding-pattern'
 import { Factor, Position } from '../ddl'
 import { Idea } from './Idea'
-import { IdeaSituation } from './IdeaSituation'
+import { SituationIdea } from './SituationIdea'
 
 @Entity()
 @Table({ name: 'REASONS' })
@@ -42,7 +42,7 @@ export class Reason
 	outcomeOrdinal: 'A' | 'B'
 
 	@ManyToOne()
-	ideaSituation: IdeaSituation
+	ideaSituation: SituationIdea
 
 	@ManyToOne()
 	factor: Factor
