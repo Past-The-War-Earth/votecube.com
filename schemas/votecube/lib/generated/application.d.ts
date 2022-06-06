@@ -52,6 +52,14 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
+                        setAgreement: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                        updateAgreementShare: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
                     };
                 };
             };
@@ -160,7 +168,7 @@ export declare const APPLICATION: {
                 name: string;
                 columnIndexes: any[];
             };
-            operations?: undefined;
+            operations: {};
         } | {
             columns: ({
                 index: number;
@@ -234,24 +242,9 @@ export declare const APPLICATION: {
                 relationTableIndex: number;
                 relationTableApplicationIndex: number;
                 sinceVersion: number;
-                oneToManyElems?: undefined;
             } | {
                 index: number;
                 isId: boolean;
-                relationType: string;
-                propertyRef: {
-                    index: number;
-                };
-                relationTableIndex: number;
-                sinceVersion: number;
-                relationTableApplicationIndex?: undefined;
-                oneToManyElems?: undefined;
-            } | {
-                index: number;
-                isId: boolean;
-                oneToManyElems: {
-                    mappedBy: string;
-                };
                 relationType: string;
                 propertyRef: {
                     index: number;
@@ -265,7 +258,7 @@ export declare const APPLICATION: {
                 name: string;
                 columnIndexes: any[];
             };
-            operations: {};
+            operations?: undefined;
         })[];
         integerVersion: number;
         referencedApplications: {

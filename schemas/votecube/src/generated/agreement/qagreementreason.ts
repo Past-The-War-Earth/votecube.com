@@ -153,7 +153,7 @@ export interface AgreementReasonEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
-	AXIS?: string | IQStringField;
+	THREED_COORDINATE_AXIS?: string | IQStringField;
 	SHARE?: number | IQNumberField;
 	AGREEMENTS_RID_1?: number | IQNumberField;
 	AGREEMENTS_AID_1?: number | IQNumberField;

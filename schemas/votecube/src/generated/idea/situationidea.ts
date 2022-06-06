@@ -28,7 +28,7 @@ export interface ISituationIdea extends IRepositoryEntity {
 
 	// Non-Id Properties
 	agreementShareTotal?: number;
-	numberOfAgreementRatings?: number;
+	numberOfAgreements?: number;
 
 	// Non-Id Relations
 	idea?: IIdea;

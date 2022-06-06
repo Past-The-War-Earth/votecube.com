@@ -12,7 +12,7 @@ import { ISituationIdea } from './situationidea';
  */
 export interface SituationIdeaESelect extends RepositoryEntityESelect, SituationIdeaEOptionalId {
     agreementShareTotal?: number | IQNumberField;
-    numberOfAgreementRatings?: number | IQNumberField;
+    numberOfAgreements?: number | IQNumberField;
     idea?: IdeaESelect;
     situation?: SituationESelect;
     agreements?: AgreementESelect;
@@ -33,7 +33,7 @@ export interface SituationIdeaEOptionalId {
  */
 export interface SituationIdeaEUpdateProperties extends RepositoryEntityEUpdateProperties {
     agreementShareTotal?: number | IQNumberField;
-    numberOfAgreementRatings?: number | IQNumberField;
+    numberOfAgreements?: number | IQNumberField;
     idea?: IdeaEOptionalId;
     situation?: SituationEOptionalId;
 }
@@ -42,7 +42,7 @@ export interface SituationIdeaEUpdateProperties extends RepositoryEntityEUpdateP
  */
 export interface SituationIdeaGraph extends SituationIdeaEOptionalId, RepositoryEntityGraph {
     agreementShareTotal?: number | IQNumberField;
-    numberOfAgreementRatings?: number | IQNumberField;
+    numberOfAgreements?: number | IQNumberField;
     idea?: IdeaGraph;
     situation?: SituationGraph;
     agreements?: AgreementGraph[];
@@ -58,8 +58,8 @@ export interface SituationIdeaEUpdateColumns extends RepositoryEntityEUpdateColu
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
-    AGREEMENTSHARETOTAL?: number | IQNumberField;
-    NUMBEROFAGREEMENTRATINGS?: number | IQNumberField;
+    AGREEMENT_SHARE_TOTAL?: number | IQNumberField;
+    NUMBER_OF_AGREEMENTS?: number | IQNumberField;
     IDEAS_RID_1?: number | IQNumberField;
     IDEAS_AID_1?: number | IQNumberField;
     IDEAS_ARID_1?: number | IQNumberField;
@@ -82,7 +82,7 @@ export interface SituationIdeaECreateColumns extends SituationIdeaEId, Situation
  */
 export interface QSituationIdea extends QRepositoryEntity {
     agreementShareTotal: IQNumberField;
-    numberOfAgreementRatings: IQNumberField;
+    numberOfAgreements: IQNumberField;
     idea: QIdeaQRelation;
     situation: QSituationQRelation;
     agreements: IQRepositoryEntityOneToManyRelation<IAgreement, QAgreement>;

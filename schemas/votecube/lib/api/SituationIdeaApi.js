@@ -10,13 +10,54 @@ let SituationIdeaApi = class SituationIdeaApi {
     async add(situationIdea) {
         await this.situationIdeaDao.save(situationIdea);
     }
+    async setAgreement(agreement) {
+        const existingAgreement = await this.agreementDao.findForSituationIdeaAndUser(agreement.situationIdea, agreement.actor.user);
+        if (existingAgreement) {
+            const leftOverAgreementReasonsById = this.agreementReasonDao
+                .mapById(existingAgreement.agreementReasons);
+            for (const agreementReason of agreement.agreementReasons) {
+                leftOverAgreementReasonsById.delete(agreementReason.id);
+            }
+            for (const leftOverAgreementReason of leftOverAgreementReasonsById.values()) {
+                leftOverAgreementReason.axis = null;
+                leftOverAgreementReason.share = 0;
+                agreement.agreementReasons.push(leftOverAgreementReason);
+            }
+            existingAgreement.agreementReasons = agreement.agreementReasons;
+            agreement = existingAgreement;
+        }
+        await this.agreementDao.save(agreement);
+    }
+    // FIXME: Recompute all agreements for a SituationIdea when it's loaded
+    // Do this only in non-server environments since the counts can be widely off across
+    // different save branches
+    async updateAgreementShare(situationIdeaId) {
+        // const situationIdea = this.situationIdeaDao.findById(situationIdeaId);
+        // const agreementReasons = this.agreementReasonDao.findAllForSituationIdea(situationIdeaId);
+        // Recompute all situationIdea level counts
+        // await this.situationIdeaDao.save(situationIdea)
+    }
 };
+__decorate([
+    Inject()
+], SituationIdeaApi.prototype, "agreementDao", void 0);
+__decorate([
+    Inject()
+], SituationIdeaApi.prototype, "agreementReasonDao", void 0);
 __decorate([
     Inject()
 ], SituationIdeaApi.prototype, "situationIdeaDao", void 0);
 __decorate([
     Api()
 ], SituationIdeaApi.prototype, "add", null);
+__decorate([
+    Api()
+], SituationIdeaApi.prototype, "setAgreement", null);
+__decorate([
+    Api(
+    // { server: false }
+    )
+], SituationIdeaApi.prototype, "updateAgreementShare", null);
 SituationIdeaApi = __decorate([
     Injected()
 ], SituationIdeaApi);

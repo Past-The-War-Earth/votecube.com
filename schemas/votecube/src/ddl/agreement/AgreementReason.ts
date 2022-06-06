@@ -1,4 +1,5 @@
 import {
+    Column,
     Entity,
     ManyToOne,
     Table
@@ -12,6 +13,7 @@ import { Agreement } from "./Agreement";
 export class AgreementReason
     extends RepositoryEntity {
 
+    @Column({ name: 'THREED_COORDINATE_AXIS', nullable: true })
     axis: string // 'x' | 'y' | 'z'
 
     share: number // 0 - 100

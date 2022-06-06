@@ -10,8 +10,17 @@ import {
 	Api,
 } from '@airport/check-in';
 import {
+	AgreementDao,
+} from '../../dao/AgreementDao';
+import {
+	AgreementReasonDao,
+} from '../../dao/AgreementReasonDao';
+import {
 	ISituationIdeaDao,
 } from '../../dao/dao';
+import {
+	Agreement,
+} from '../../ddl/ddl';
 import {
 	ISituationIdea,
 } from '../../generated/interfaces';
@@ -36,6 +45,18 @@ export class SituationIdeaApi {
         situationIdea: ISituationIdea
     ): Promise<void> {
         await this.situationIdeaApi.add(situationIdea)
+    }
+
+    async  setAgreement(
+        agreement: Agreement
+    ): Promise<void> {
+        await this.situationIdeaApi.setAgreement(agreement)
+    }
+
+    async  updateAgreementShare(
+        situationIdeaId: string
+    ): Promise<void> {
+        await this.situationIdeaApi.updateAgreementShare(situationIdeaId)
     }
 
 }

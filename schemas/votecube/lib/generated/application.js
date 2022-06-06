@@ -53,6 +53,14 @@ export const APPLICATION = {
                             "add": {
                                 "isAsync": true,
                                 "parameters": []
+                            },
+                            "setAgreement": {
+                                "isAsync": true,
+                                "parameters": []
+                            },
+                            "updateAgreementShare": {
+                                "isAsync": true,
+                                "parameters": []
                             }
                         }
                     }
@@ -223,7 +231,7 @@ export const APPLICATION = {
                             "index": 9,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [],
-                            "name": "AXIS",
+                            "name": "THREED_COORDINATE_AXIS",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -587,7 +595,8 @@ export const APPLICATION = {
                     "tableConfig": {
                         "name": "AGREEMENT_REASONS",
                         "columnIndexes": []
-                    }
+                    },
+                    "operations": {}
                 },
                 {
                     "columns": [
@@ -1008,7 +1017,8 @@ export const APPLICATION = {
                     "tableConfig": {
                         "name": "AGREEMENTS",
                         "columnIndexes": []
-                    }
+                    },
+                    "operations": {}
                 },
                 {
                     "columns": [
@@ -3436,7 +3446,7 @@ export const APPLICATION = {
                             "index": 9,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [],
-                            "name": "AGREEMENTSHARETOTAL",
+                            "name": "AGREEMENT_SHARE_TOTAL",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -3450,7 +3460,7 @@ export const APPLICATION = {
                             "index": 10,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [],
-                            "name": "NUMBEROFAGREEMENTRATINGS",
+                            "name": "NUMBER_OF_AGREEMENTS",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -3744,7 +3754,7 @@ export const APPLICATION = {
                             },
                             "index": 14,
                             "isId": false,
-                            "name": "numberOfAgreementRatings",
+                            "name": "numberOfAgreements",
                             "sinceVersion": 1
                         }
                     ],

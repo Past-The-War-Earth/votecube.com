@@ -102,7 +102,7 @@ export interface SituationIdeaESelect
     extends RepositoryEntityESelect, SituationIdeaEOptionalId {
 	// Non-Id Properties
 	agreementShareTotal?: number | IQNumberField;
-	numberOfAgreementRatings?: number | IQNumberField;
+	numberOfAgreements?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -142,7 +142,7 @@ export interface SituationIdeaEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
 	agreementShareTotal?: number | IQNumberField;
-	numberOfAgreementRatings?: number | IQNumberField;
+	numberOfAgreements?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	idea?: IdeaEOptionalId;
@@ -159,7 +159,7 @@ export interface SituationIdeaGraph
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 	agreementShareTotal?: number | IQNumberField;
-	numberOfAgreementRatings?: number | IQNumberField;
+	numberOfAgreements?: number | IQNumberField;
 
 	// Relations
 	idea?: IdeaGraph;
@@ -181,8 +181,8 @@ export interface SituationIdeaEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
-	AGREEMENTSHARETOTAL?: number | IQNumberField;
-	NUMBEROFAGREEMENTRATINGS?: number | IQNumberField;
+	AGREEMENT_SHARE_TOTAL?: number | IQNumberField;
+	NUMBER_OF_AGREEMENTS?: number | IQNumberField;
 	IDEAS_RID_1?: number | IQNumberField;
 	IDEAS_AID_1?: number | IQNumberField;
 	IDEAS_ARID_1?: number | IQNumberField;
@@ -224,7 +224,7 @@ export interface QSituationIdea extends QRepositoryEntity
 
 	// Non-Id Fields
 	agreementShareTotal: IQNumberField;
-	numberOfAgreementRatings: IQNumberField;
+	numberOfAgreements: IQNumberField;
 
 	// Non-Id Relations
 	idea: QIdeaQRelation;

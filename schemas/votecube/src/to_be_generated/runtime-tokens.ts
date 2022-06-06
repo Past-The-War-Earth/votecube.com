@@ -7,7 +7,13 @@ import { votecube } from './common-tokens'
 import { IIdeaDao, IdeaDao, ISituationIdeaDao, SituationIdeaDao } from "../dao/dao";
 import { AGREEMENT_API, IDEA_API, SITUATION_IDEA_API } from './common-tokens'
 import { AgreementApi, IdeaApi, SituationIdeaApi } from '../api/api'
+import { AgreementDao } from '../dao/AgreementDao'
 
+export const AGREEMENT_DAO = votecube.token<AgreementDao>({
+    class: AgreementDao,
+    interface: 'AgreementDao',
+    token: 'AGREEMENT_DAO'
+})
 export const IDEA_DAO = votecube.token<IIdeaDao>({
     class: IdeaDao,
     interface: 'IIdeaDao',
@@ -25,6 +31,7 @@ IDEA_API.setDependencies({
 })
 SITUATION_IDEA_API.setClass(SituationIdeaApi)
 SITUATION_IDEA_API.setDependencies({
+    agreementDao: AGREEMENT_DAO,
     situationIdeaDao: SITUATION_IDEA_DAO
 })
 AGREEMENT_API.setClass(AgreementApi)

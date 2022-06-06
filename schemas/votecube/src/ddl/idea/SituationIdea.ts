@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
+import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { Situation } from "@sapoto/core";
 import { Agreement, Idea } from "../ddl";
@@ -21,8 +21,10 @@ export class SituationIdea
     @OneToMany({ mappedBy: 'situationIdea' })
     reasons: Reason[]
 
+    @Column({ name: 'AGREEMENT_SHARE_TOTAL' })
     agreementShareTotal: number
 
-    numberOfAgreementRatings: number
+    @Column({ name: 'NUMBER_OF_AGREEMENTS' })
+    numberOfAgreements: number
 
 }

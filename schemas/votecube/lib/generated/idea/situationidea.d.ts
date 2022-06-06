@@ -5,7 +5,7 @@ import { IAgreement } from '../agreement/agreement';
 import { IReason } from './reason';
 export interface ISituationIdea extends IRepositoryEntity {
     agreementShareTotal?: number;
-    numberOfAgreementRatings?: number;
+    numberOfAgreements?: number;
     idea?: IIdea;
     situation?: ISituation;
     agreements?: IAgreement[];

@@ -8,6 +8,6 @@ export declare class SituationIdea extends RepositoryEntity {
     agreements: Agreement[];
     reasons: Reason[];
     agreementShareTotal: number;
-    numberOfAgreementRatings: number;
+    numberOfAgreements: number;
 }
 //# sourceMappingURL=SituationIdea.d.ts.map
