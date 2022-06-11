@@ -18,20 +18,20 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
-	IQRepositoryEntityOneToManyRelation,
-	IQRepositoryEntityRelation,
+	IQAirEntityOneToManyRelation,
+	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-traffic-control';
 import {
-	RepositoryEntityGraph,
-	RepositoryEntityEId,
-	RepositoryEntityEUpdateColumns,
-	RepositoryEntityEUpdateProperties,
-	RepositoryEntityESelect,
-	QRepositoryEntityQId,
-	QRepositoryEntityQRelation,
-	QRepositoryEntity,
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
 } from '@airport/holding-pattern';
 import {
 	IFactor,
@@ -49,7 +49,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface FactorESelect
-    extends RepositoryEntityESelect, FactorEOptionalId {
+    extends AirEntityESelect, FactorEOptionalId {
 	// Non-Id Properties
 	object?: string | IQStringField;
 	action?: string | IQStringField;
@@ -65,7 +65,7 @@ export interface FactorESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface FactorEId
-    extends RepositoryEntityEId {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -86,7 +86,7 @@ export interface FactorEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface FactorEUpdateProperties
-	extends RepositoryEntityEUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	object?: string | IQStringField;
 	action?: string | IQStringField;
@@ -100,7 +100,7 @@ export interface FactorEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface FactorGraph
-	extends FactorEOptionalId, RepositoryEntityGraph {
+	extends FactorEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -116,7 +116,7 @@ export interface FactorGraph
  * UPDATE - non-id columns (optional).
  */
 export interface FactorEUpdateColumns
-	extends RepositoryEntityEUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	CREATED_AT?: Date | IQDateField;
@@ -154,7 +154,7 @@ extends FactorEId, FactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactor extends QRepositoryEntity
+export interface QFactor extends QAirEntity
 {
 	// Id Fields
 
@@ -171,7 +171,7 @@ export interface QFactor extends QRepositoryEntity
 
 
 // Entity Id Interface
-export interface QFactorQId extends QRepositoryEntityQId
+export interface QFactorQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -183,6 +183,6 @@ export interface QFactorQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QFactorQRelation
-	extends QRepositoryEntityQRelation<IFactor, QFactor>, QFactorQId {
+	extends QAirEntityQRelation<IFactor, QFactor>, QFactorQId {
 }
 

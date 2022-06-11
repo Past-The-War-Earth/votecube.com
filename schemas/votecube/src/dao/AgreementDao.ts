@@ -21,7 +21,10 @@ export class AgreementDao
         return await this._findUnique({
             select: {
                 '*': Y,
-                agreementReasons: {}
+                agreementReasons: {
+                    '*': Y,
+                    uuId: Y
+                }
             },
             from: [
                 ag = Q.Agreement,

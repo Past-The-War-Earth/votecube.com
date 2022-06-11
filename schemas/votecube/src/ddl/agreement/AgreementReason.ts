@@ -4,14 +4,14 @@ import {
     ManyToOne,
     Table
 } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { Reason } from "../ddl";
 import { Agreement } from "./Agreement";
 
 @Entity()
 @Table({ name: 'AGREEMENT_REASONS' })
 export class AgreementReason
-    extends RepositoryEntity {
+    extends AirEntity {
 
     @Column({ name: 'THREED_COORDINATE_AXIS', nullable: true })
     axis: string // 'x' | 'y' | 'z'

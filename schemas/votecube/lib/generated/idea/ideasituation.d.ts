@@ -1,9 +1,9 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { IIdea } from './idea';
 import { ISituation } from '@sapoto/core';
 import { IAgreement } from '../agreement/agreement';
 import { IReason } from './reason';
-export interface IIdeaSituation extends IRepositoryEntity {
+export interface IIdeaSituation extends IAirEntity {
     idea?: IIdea;
     situation?: ISituation;
     agreements?: IAgreement[];

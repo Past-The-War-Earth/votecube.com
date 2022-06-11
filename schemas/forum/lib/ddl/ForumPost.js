@@ -5,8 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { DbDate, DbString, Entity, ManyToOne, Table } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
-let ForumPost = class ForumPost extends RepositoryEntity {
+import { AirEntity } from "@airport/holding-pattern";
+let ForumPost = class ForumPost extends AirEntity {
 };
 __decorate([
     DbString()

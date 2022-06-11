@@ -258,7 +258,7 @@
 					],
 					"index": 0,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "ForumThread",
 					"properties": [
 						{
@@ -710,7 +710,7 @@
 					],
 					"index": 1,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "ForumPost",
 					"properties": [
 						{

@@ -22,14 +22,14 @@ import {
 	RawUpdate,
 } from '@airport/air-traffic-control';
 import {
-	RepositoryEntityGraph,
-	RepositoryEntityEId,
-	RepositoryEntityEUpdateColumns,
-	RepositoryEntityEUpdateProperties,
-	RepositoryEntityESelect,
-	QRepositoryEntityQId,
-	QRepositoryEntityQRelation,
-	QRepositoryEntity,
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
 } from '@airport/holding-pattern';
 import {
 	ForumThreadGraph,
@@ -60,7 +60,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface ForumPostESelect
-    extends RepositoryEntityESelect, ForumPostEOptionalId {
+    extends AirEntityESelect, ForumPostEOptionalId {
 	// Non-Id Properties
 	text?: string | IQStringField;
 	createdAt?: Date | IQDateField;
@@ -76,7 +76,7 @@ export interface ForumPostESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface ForumPostEId
-    extends RepositoryEntityEId {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -97,7 +97,7 @@ export interface ForumPostEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface ForumPostEUpdateProperties
-	extends RepositoryEntityEUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	text?: string | IQStringField;
 	createdAt?: Date | IQDateField;
@@ -111,7 +111,7 @@ export interface ForumPostEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ForumPostGraph
-	extends ForumPostEOptionalId, RepositoryEntityGraph {
+	extends ForumPostEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -127,7 +127,7 @@ export interface ForumPostGraph
  * UPDATE - non-id columns (optional).
  */
 export interface ForumPostEUpdateColumns
-	extends RepositoryEntityEUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -166,7 +166,7 @@ extends ForumPostEId, ForumPostEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QForumPost extends QRepositoryEntity<ForumPost>
+export interface QForumPost extends QAirEntity<ForumPost>
 {
 	// Id Fields
 
@@ -183,7 +183,7 @@ export interface QForumPost extends QRepositoryEntity<ForumPost>
 
 
 // Entity Id Interface
-export interface QForumPostQId extends QRepositoryEntityQId
+export interface QForumPostQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -195,6 +195,6 @@ export interface QForumPostQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QForumPostQRelation
-	extends QRepositoryEntityQRelation<ForumPost, QForumPost>, QForumPostQId {
+	extends QAirEntityQRelation<ForumPost, QForumPost>, QForumPostQId {
 }
 

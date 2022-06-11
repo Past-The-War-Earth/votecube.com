@@ -1,16 +1,16 @@
 import { IQNumberField, IQStringField } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IOutcome } from './outcome';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface OutcomeESelect extends RepositoryEntityESelect, OutcomeEOptionalId {
+export interface OutcomeESelect extends AirEntityESelect, OutcomeEOptionalId {
     name?: string | IQStringField;
 }
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface OutcomeEId extends RepositoryEntityEId {
+export interface OutcomeEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -20,19 +20,19 @@ export interface OutcomeEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface OutcomeEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface OutcomeEUpdateProperties extends AirEntityEUpdateProperties {
     name?: string | IQStringField;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface OutcomeGraph extends OutcomeEOptionalId, RepositoryEntityGraph {
+export interface OutcomeGraph extends OutcomeEOptionalId, AirEntityGraph {
     name?: string | IQStringField;
 }
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface OutcomeEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface OutcomeEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
@@ -53,11 +53,11 @@ export interface OutcomeECreateColumns extends OutcomeEId, OutcomeEUpdateColumns
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcome extends QRepositoryEntity {
+export interface QOutcome extends QAirEntity {
     name: IQStringField;
 }
-export interface QOutcomeQId extends QRepositoryEntityQId {
+export interface QOutcomeQId extends QAirEntityQId {
 }
-export interface QOutcomeQRelation extends QRepositoryEntityQRelation<IOutcome, QOutcome>, QOutcomeQId {
+export interface QOutcomeQRelation extends QAirEntityQRelation<IOutcome, QOutcome>, QOutcomeQId {
 }
 //# sourceMappingURL=qoutcome.d.ts.map

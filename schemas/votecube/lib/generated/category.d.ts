@@ -1,5 +1,5 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
-export interface ICategory extends IRepositoryEntity {
+import { IAirEntity } from '@airport/holding-pattern';
+export interface ICategory extends IAirEntity {
     name?: string;
     childCategories?: ICategory[];
     parentCategory?: ICategory;

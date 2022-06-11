@@ -1,8 +1,8 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { ISituationIdea } from './situationidea';
 import { IFactor } from '../factor/factor';
 import { IPosition } from '../factor/position';
-export interface IReason extends IRepositoryEntity {
+export interface IReason extends IAirEntity {
     axis?: string;
     dir?: number;
     factorNumber?: number;

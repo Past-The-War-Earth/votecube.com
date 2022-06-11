@@ -1,11 +1,11 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { ForumThreadGraph, ForumThreadEOptionalId, ForumThreadESelect, QForumThreadQRelation } from './qforumthread';
 import { ForumPost } from '../ddl/ForumPost';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface ForumPostESelect extends RepositoryEntityESelect, ForumPostEOptionalId {
+export interface ForumPostESelect extends AirEntityESelect, ForumPostEOptionalId {
     text?: string | IQStringField;
     createdAt?: Date | IQDateField;
     thread?: ForumThreadESelect;
@@ -13,7 +13,7 @@ export interface ForumPostESelect extends RepositoryEntityESelect, ForumPostEOpt
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface ForumPostEId extends RepositoryEntityEId {
+export interface ForumPostEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -23,7 +23,7 @@ export interface ForumPostEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface ForumPostEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface ForumPostEUpdateProperties extends AirEntityEUpdateProperties {
     text?: string | IQStringField;
     createdAt?: Date | IQDateField;
     thread?: ForumThreadEOptionalId;
@@ -31,7 +31,7 @@ export interface ForumPostEUpdateProperties extends RepositoryEntityEUpdatePrope
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ForumPostGraph extends ForumPostEOptionalId, RepositoryEntityGraph {
+export interface ForumPostGraph extends ForumPostEOptionalId, AirEntityGraph {
     text?: string | IQStringField;
     createdAt?: Date | IQDateField;
     thread?: ForumThreadGraph;
@@ -39,7 +39,7 @@ export interface ForumPostGraph extends ForumPostEOptionalId, RepositoryEntityGr
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface ForumPostEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface ForumPostEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
@@ -64,13 +64,13 @@ export interface ForumPostECreateColumns extends ForumPostEId, ForumPostEUpdateC
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QForumPost extends QRepositoryEntity<ForumPost> {
+export interface QForumPost extends QAirEntity<ForumPost> {
     text: IQStringField;
     createdAt: IQDateField;
     thread: QForumThreadQRelation;
 }
-export interface QForumPostQId extends QRepositoryEntityQId {
+export interface QForumPostQId extends QAirEntityQId {
 }
-export interface QForumPostQRelation extends QRepositoryEntityQRelation<ForumPost, QForumPost>, QForumPostQId {
+export interface QForumPostQRelation extends QAirEntityQRelation<ForumPost, QForumPost>, QForumPostQId {
 }
 //# sourceMappingURL=qforumpost.d.ts.map

@@ -3,12 +3,12 @@ import {
     Entity,
     Table
 } from '@airport/air-traffic-control'
-import { RepositoryEntity } from '@airport/holding-pattern'
+import { AirEntity } from '@airport/holding-pattern'
 
 @Entity()
 @Table({ name: 'LABELS' })
 export class Label
-    extends RepositoryEntity {
+    extends AirEntity {
 
     @Column({ name: 'NAME', nullable: false })
     name: string

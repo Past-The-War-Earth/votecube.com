@@ -1,7 +1,7 @@
-import { RepositoryEntity } from '@airport/holding-pattern';
+import { AirEntity } from '@airport/holding-pattern';
 import { Factor, Position } from '../ddl';
 import { SituationIdea } from './SituationIdea';
-export declare class Reason extends RepositoryEntity {
+export declare class Reason extends AirEntity {
     axis: 'x' | 'y' | 'z';
     dir: -1 | 1;
     factorNumber: 1 | 2 | 3;

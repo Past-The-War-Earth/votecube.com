@@ -1,16 +1,16 @@
 import { IUiRepositoryRecord } from "@votecube/model";
-import type { IRepositoryEntity } from "@airport/holding-pattern";
+import type { IAirEntity } from "@airport/holding-pattern";
 import { Injected } from "@airport/direction-indicator";
 
 export interface IRepositoryRecordConverter {
 
     dbToUi(
-        dbRepositoryEntity: IRepositoryEntity
+        dbAirEntity: IAirEntity
     ): IUiRepositoryRecord
 
     uiToDb(
         uiRepositoryRecord: IUiRepositoryRecord,
-        dbRepositoryEntity: IRepositoryEntity,
+        dbAirEntity: IAirEntity,
         ageSuitability?: 0 | 7 | 13 | 18
     ): void
 
@@ -21,41 +21,41 @@ export class RepositoryRecordConverter
     implements IRepositoryRecordConverter {
 
     dbToUi(
-        dbRepositoryEntity: IRepositoryEntity
+        dbAirEntity: IAirEntity
     ): IUiRepositoryRecord {
-        if (!dbRepositoryEntity) {
+        if (!dbAirEntity) {
             return {
                 ageSuitability: 0,
             }
         }
 
         return {
-            // actorId: dbRepositoryEntity.actor.id,
-            // actorRecordId: dbRepositoryEntity.actorRecordId,
-            ageSuitability: dbRepositoryEntity.ageSuitability as 0 | 7 | 13 | 18,
-            // repositoryId: dbRepositoryEntity.repository.id,
+            // actorId: dbAirEntity.actor.id,
+            // actorRecordId: dbAirEntity.actorRecordId,
+            ageSuitability: dbAirEntity.ageSuitability as 0 | 7 | 13 | 18,
+            // repositoryId: dbAirEntity.repository.id,
         }
     }
 
     uiToDb(
         uiRepositoryRecord: IUiRepositoryRecord,
-        dbRepositoryEntity: IRepositoryEntity,
+        dbAirEntity: IAirEntity,
         ageSuitability: 0 | 7 | 13 | 18 = null
     ): void {
         // if (!uiRepositoryRecord) {
         //     return
         // }
         if (ageSuitability || ageSuitability === 0) {
-            dbRepositoryEntity.ageSuitability = ageSuitability
+            dbAirEntity.ageSuitability = ageSuitability
         }
         /*
-        if (!dbRepositoryEntity.actor) {
-            dbRepositoryEntity.actor = {
+        if (!dbAirEntity.actor) {
+            dbAirEntity.actor = {
                 id: null
             }
         }
-        if (!dbRepositoryEntity.repository) {
-            dbRepositoryEntity.repository = {
+        if (!dbAirEntity.repository) {
+            dbAirEntity.repository = {
                 id: null
             }
         }

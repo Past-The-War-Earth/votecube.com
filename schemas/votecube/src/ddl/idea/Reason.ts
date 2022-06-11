@@ -6,7 +6,7 @@ import {
 	ManyToOne,
 	Table
 } from '@airport/air-traffic-control'
-import { RepositoryEntity } from '@airport/holding-pattern'
+import { AirEntity } from '@airport/holding-pattern'
 import { Factor, Position } from '../ddl'
 import { Idea } from './Idea'
 import { SituationIdea } from './SituationIdea'
@@ -14,7 +14,7 @@ import { SituationIdea } from './SituationIdea'
 @Entity()
 @Table({ name: 'REASONS' })
 export class Reason
-	extends RepositoryEntity {
+	extends AirEntity {
 
 	@Column({ name: 'FACTOR_COORDINATE_AXIS', nullable: false })
 	@DbString()

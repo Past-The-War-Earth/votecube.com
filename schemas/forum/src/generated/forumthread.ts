@@ -1,5 +1,5 @@
 import {
-	IRepositoryEntity,
+	IAirEntity,
 } from '@airport/holding-pattern';
 import {
 	IForumPost,
@@ -11,7 +11,7 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IForumThread extends IRepositoryEntity {
+export interface IForumThread extends IAirEntity {
 	
 	// Id Properties
 

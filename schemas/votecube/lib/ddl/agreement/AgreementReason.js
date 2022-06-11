@@ -5,8 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, ManyToOne, Table } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
-let AgreementReason = class AgreementReason extends RepositoryEntity {
+import { AirEntity } from "@airport/holding-pattern";
+let AgreementReason = class AgreementReason extends AirEntity {
 };
 __decorate([
     Column({ name: 'THREED_COORDINATE_AXIS', nullable: true })

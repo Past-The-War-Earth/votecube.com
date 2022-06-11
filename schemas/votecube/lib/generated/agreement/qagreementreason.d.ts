@@ -1,12 +1,12 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { AgreementGraph, AgreementEOptionalId, AgreementESelect, QAgreementQRelation } from './qagreement';
 import { ReasonGraph, ReasonEOptionalId, ReasonESelect, QReasonQRelation } from '../idea/qreason';
 import { IAgreementReason } from './agreementreason';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface AgreementReasonESelect extends RepositoryEntityESelect, AgreementReasonEOptionalId {
+export interface AgreementReasonESelect extends AirEntityESelect, AgreementReasonEOptionalId {
     axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementESelect;
@@ -15,7 +15,7 @@ export interface AgreementReasonESelect extends RepositoryEntityESelect, Agreeme
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface AgreementReasonEId extends RepositoryEntityEId {
+export interface AgreementReasonEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -25,7 +25,7 @@ export interface AgreementReasonEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface AgreementReasonEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface AgreementReasonEUpdateProperties extends AirEntityEUpdateProperties {
     axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementEOptionalId;
@@ -34,7 +34,7 @@ export interface AgreementReasonEUpdateProperties extends RepositoryEntityEUpdat
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface AgreementReasonGraph extends AgreementReasonEOptionalId, RepositoryEntityGraph {
+export interface AgreementReasonGraph extends AgreementReasonEOptionalId, AirEntityGraph {
     axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementGraph;
@@ -43,7 +43,7 @@ export interface AgreementReasonGraph extends AgreementReasonEOptionalId, Reposi
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface AgreementReasonEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface AgreementReasonEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -72,14 +72,14 @@ export interface AgreementReasonECreateColumns extends AgreementReasonEId, Agree
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QAgreementReason extends QRepositoryEntity {
+export interface QAgreementReason extends QAirEntity {
     axis: IQStringField;
     share: IQNumberField;
     agreement: QAgreementQRelation;
     reason: QReasonQRelation;
 }
-export interface QAgreementReasonQId extends QRepositoryEntityQId {
+export interface QAgreementReasonQId extends QAirEntityQId {
 }
-export interface QAgreementReasonQRelation extends QRepositoryEntityQRelation<IAgreementReason, QAgreementReason>, QAgreementReasonQId {
+export interface QAgreementReasonQRelation extends QAirEntityQRelation<IAgreementReason, QAgreementReason>, QAgreementReasonQId {
 }
 //# sourceMappingURL=qagreementreason.d.ts.map

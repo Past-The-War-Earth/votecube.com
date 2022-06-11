@@ -6,7 +6,7 @@ import {
     OneToMany,
     Table
 } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { ForumPost } from "./ForumPost";
 
 export type ForumThread_CreatedAt = Date
@@ -14,7 +14,7 @@ export type ForumThread_CreatedAt = Date
 @Entity()
 @Table({ name: "FORUM_THREAD" })
 export class ForumThread
-    extends RepositoryEntity {
+    extends AirEntity {
 
     @Column({ name: "CREATED_AT" })
     @DbDate()

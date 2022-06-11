@@ -39,15 +39,16 @@ export class SituationIdeaApi
     async setAgreement(
         agreement: Agreement
     ): Promise<void> {
-        const existingAgreement = await this.agreementDao.findForSituationIdeaAndUser(
-            agreement.situationIdea,
-            agreement.actor.user
-        )
+        const existingAgreement = await this.agreementDao
+            .findForSituationIdeaAndUser(
+                agreement.situationIdea,
+                agreement.actor.user
+            )
         if (existingAgreement) {
             const leftOverAgreementReasonsById = this.agreementReasonDao
-                .mapById(existingAgreement.agreementReasons)
+                .mapByUuId(existingAgreement.agreementReasons)
             for (const agreementReason of agreement.agreementReasons) {
-                leftOverAgreementReasonsById.delete(agreementReason.id)
+                leftOverAgreementReasonsById.delete(agreementReason.uuId)
             }
             for (const leftOverAgreementReason of leftOverAgreementReasonsById.values()) {
                 leftOverAgreementReason.axis = null

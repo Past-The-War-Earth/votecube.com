@@ -18,20 +18,20 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
-	IQRepositoryEntityOneToManyRelation,
-	IQRepositoryEntityRelation,
+	IQAirEntityOneToManyRelation,
+	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-traffic-control';
 import {
-	RepositoryEntityGraph,
-	RepositoryEntityEId,
-	RepositoryEntityEUpdateColumns,
-	RepositoryEntityEUpdateProperties,
-	RepositoryEntityESelect,
-	QRepositoryEntityQId,
-	QRepositoryEntityQRelation,
-	QRepositoryEntity,
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
 } from '@airport/holding-pattern';
 import {
 	IOutcome,
@@ -49,7 +49,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface OutcomeESelect
-    extends RepositoryEntityESelect, OutcomeEOptionalId {
+    extends AirEntityESelect, OutcomeEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -63,7 +63,7 @@ export interface OutcomeESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface OutcomeEId
-    extends RepositoryEntityEId {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -84,7 +84,7 @@ export interface OutcomeEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface OutcomeEUpdateProperties
-	extends RepositoryEntityEUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 
@@ -96,7 +96,7 @@ export interface OutcomeEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface OutcomeGraph
-	extends OutcomeEOptionalId, RepositoryEntityGraph {
+	extends OutcomeEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -110,7 +110,7 @@ export interface OutcomeGraph
  * UPDATE - non-id columns (optional).
  */
 export interface OutcomeEUpdateColumns
-	extends RepositoryEntityEUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -145,7 +145,7 @@ extends OutcomeEId, OutcomeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QOutcome extends QRepositoryEntity
+export interface QOutcome extends QAirEntity
 {
 	// Id Fields
 
@@ -160,7 +160,7 @@ export interface QOutcome extends QRepositoryEntity
 
 
 // Entity Id Interface
-export interface QOutcomeQId extends QRepositoryEntityQId
+export interface QOutcomeQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -172,6 +172,6 @@ export interface QOutcomeQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QOutcomeQRelation
-	extends QRepositoryEntityQRelation<IOutcome, QOutcome>, QOutcomeQId {
+	extends QAirEntityQRelation<IOutcome, QOutcome>, QOutcomeQId {
 }
 

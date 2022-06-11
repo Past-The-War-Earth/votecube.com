@@ -1,19 +1,19 @@
 import { IQDateField, IQNumberField } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
 import { LabelGraph, LabelEOptionalId, LabelESelect, QLabelQRelation } from '../qlabel';
 import { IIdeaLabel } from './idealabel';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface IdeaLabelESelect extends RepositoryEntityESelect, IdeaLabelEOptionalId {
+export interface IdeaLabelESelect extends AirEntityESelect, IdeaLabelEOptionalId {
     idea?: IdeaESelect;
     label?: LabelESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface IdeaLabelEId extends RepositoryEntityEId {
+export interface IdeaLabelEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -23,21 +23,21 @@ export interface IdeaLabelEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface IdeaLabelEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface IdeaLabelEUpdateProperties extends AirEntityEUpdateProperties {
     idea?: IdeaEOptionalId;
     label?: LabelEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface IdeaLabelGraph extends IdeaLabelEOptionalId, RepositoryEntityGraph {
+export interface IdeaLabelGraph extends IdeaLabelEOptionalId, AirEntityGraph {
     idea?: IdeaGraph;
     label?: LabelGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface IdeaLabelEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface IdeaLabelEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -64,12 +64,12 @@ export interface IdeaLabelECreateColumns extends IdeaLabelEId, IdeaLabelEUpdateC
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QIdeaLabel extends QRepositoryEntity {
+export interface QIdeaLabel extends QAirEntity {
     idea: QIdeaQRelation;
     label: QLabelQRelation;
 }
-export interface QIdeaLabelQId extends QRepositoryEntityQId {
+export interface QIdeaLabelQId extends QAirEntityQId {
 }
-export interface QIdeaLabelQRelation extends QRepositoryEntityQRelation<IIdeaLabel, QIdeaLabel>, QIdeaLabelQId {
+export interface QIdeaLabelQRelation extends QAirEntityQRelation<IIdeaLabel, QIdeaLabel>, QIdeaLabelQId {
 }
 //# sourceMappingURL=qidealabel.d.ts.map

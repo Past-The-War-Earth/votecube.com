@@ -5,8 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, DbDate, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
-let ForumThread = class ForumThread extends RepositoryEntity {
+import { AirEntity } from "@airport/holding-pattern";
+let ForumThread = class ForumThread extends AirEntity {
 };
 __decorate([
     Column({ name: "CREATED_AT" }),

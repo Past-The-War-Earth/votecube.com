@@ -5,11 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, Table } from '@airport/air-traffic-control';
-import { RepositoryEntity } from '@airport/holding-pattern';
+import { AirEntity } from '@airport/holding-pattern';
 /**
  * This is the generic position records (not related to any Idea).
  */
-let Position = class Position extends RepositoryEntity {
+let Position = class Position extends AirEntity {
 };
 __decorate([
     Column({ name: 'NAME', nullable: false })

@@ -1,5 +1,5 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
-export interface IFactor extends IRepositoryEntity {
+import { IAirEntity } from '@airport/holding-pattern';
+export interface IFactor extends IAirEntity {
     object?: string;
     action?: string;
     customText?: string;

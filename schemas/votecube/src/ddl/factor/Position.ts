@@ -4,7 +4,7 @@ import {
 	OneToMany,
 	Table
 } from '@airport/air-traffic-control'
-import { RepositoryEntity } from '@airport/holding-pattern'
+import { AirEntity } from '@airport/holding-pattern'
 
 /**
  * This is the generic position records (not related to any Idea).
@@ -12,7 +12,7 @@ import { RepositoryEntity } from '@airport/holding-pattern'
 @Entity()
 @Table({ name: 'POSITIONS' })
 export class Position
-	extends RepositoryEntity {
+	extends AirEntity {
 
 	@Column({ name: 'NAME', nullable: false })
 	name: string

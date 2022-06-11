@@ -1,10 +1,10 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IFactor } from './factor';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface FactorESelect extends RepositoryEntityESelect, FactorEOptionalId {
+export interface FactorESelect extends AirEntityESelect, FactorEOptionalId {
     object?: string | IQStringField;
     action?: string | IQStringField;
     customText?: string | IQStringField;
@@ -12,7 +12,7 @@ export interface FactorESelect extends RepositoryEntityESelect, FactorEOptionalI
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface FactorEId extends RepositoryEntityEId {
+export interface FactorEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -22,7 +22,7 @@ export interface FactorEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface FactorEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface FactorEUpdateProperties extends AirEntityEUpdateProperties {
     object?: string | IQStringField;
     action?: string | IQStringField;
     customText?: string | IQStringField;
@@ -30,7 +30,7 @@ export interface FactorEUpdateProperties extends RepositoryEntityEUpdateProperti
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface FactorGraph extends FactorEOptionalId, RepositoryEntityGraph {
+export interface FactorGraph extends FactorEOptionalId, AirEntityGraph {
     object?: string | IQStringField;
     action?: string | IQStringField;
     customText?: string | IQStringField;
@@ -38,7 +38,7 @@ export interface FactorGraph extends FactorEOptionalId, RepositoryEntityGraph {
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface FactorEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface FactorEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -62,13 +62,13 @@ export interface FactorECreateColumns extends FactorEId, FactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QFactor extends QRepositoryEntity {
+export interface QFactor extends QAirEntity {
     object: IQStringField;
     action: IQStringField;
     customText: IQStringField;
 }
-export interface QFactorQId extends QRepositoryEntityQId {
+export interface QFactorQId extends QAirEntityQId {
 }
-export interface QFactorQRelation extends QRepositoryEntityQRelation<IFactor, QFactor>, QFactorQId {
+export interface QFactorQRelation extends QAirEntityQRelation<IFactor, QFactor>, QFactorQId {
 }
 //# sourceMappingURL=qfactor.d.ts.map

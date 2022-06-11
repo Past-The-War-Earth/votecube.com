@@ -404,7 +404,7 @@ export const APPLICATION = {
                     ],
                     "index": 0,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "AgreementReason",
                     "properties": [
                         {
@@ -841,7 +841,7 @@ export const APPLICATION = {
                     ],
                     "index": 1,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "Agreement",
                     "properties": [
                         {
@@ -1208,7 +1208,7 @@ export const APPLICATION = {
                     ],
                     "index": 2,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "Position",
                     "properties": [
                         {
@@ -1570,7 +1570,7 @@ export const APPLICATION = {
                     ],
                     "index": 3,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "Factor",
                     "properties": [
                         {
@@ -1922,7 +1922,7 @@ export const APPLICATION = {
                     ],
                     "index": 4,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "Label",
                     "properties": [
                         {
@@ -2377,7 +2377,7 @@ export const APPLICATION = {
                     ],
                     "index": 5,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "IdeaLabel",
                     "properties": [
                         {
@@ -3025,7 +3025,7 @@ export const APPLICATION = {
                     ],
                     "index": 6,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "Reason",
                     "properties": [
                         {
@@ -3619,7 +3619,7 @@ export const APPLICATION = {
                     ],
                     "index": 7,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "SituationIdea",
                     "properties": [
                         {
@@ -3999,7 +3999,7 @@ export const APPLICATION = {
                     "idColumnRefs": [],
                     "index": 8,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "IdeaTopic",
                     "properties": [
                         {
@@ -4238,7 +4238,7 @@ export const APPLICATION = {
                     ],
                     "index": 9,
                     "isLocal": false,
-                    "isRepositoryEntity": true,
+                    "isAirEntity": true,
                     "name": "Idea",
                     "properties": [
                         {

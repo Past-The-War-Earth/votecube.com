@@ -1,8 +1,8 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { IIdeaLabel } from './idealabel';
 import { ISituationIdea } from './situationidea';
 import { IIdeaTopic } from './ideatopic';
-export interface IIdea extends IRepositoryEntity {
+export interface IIdea extends IAirEntity {
     name?: string;
     children?: IIdea[];
     ideaLabels?: IIdeaLabel[];

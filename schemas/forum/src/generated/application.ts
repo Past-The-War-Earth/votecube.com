@@ -259,7 +259,7 @@ export const APPLICATION = {
 					],
 					"index": 0,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "ForumThread",
 					"properties": [
 						{
@@ -711,7 +711,7 @@ export const APPLICATION = {
 					],
 					"index": 1,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "ForumPost",
 					"properties": [
 						{

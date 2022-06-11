@@ -6,34 +6,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Injected } from "@airport/direction-indicator";
 let RepositoryRecordConverter = class RepositoryRecordConverter {
-    dbToUi(dbRepositoryEntity) {
-        if (!dbRepositoryEntity) {
+    dbToUi(dbAirEntity) {
+        if (!dbAirEntity) {
             return {
                 ageSuitability: 0,
             };
         }
         return {
-            // actorId: dbRepositoryEntity.actor.id,
-            // actorRecordId: dbRepositoryEntity.actorRecordId,
-            ageSuitability: dbRepositoryEntity.ageSuitability,
-            // repositoryId: dbRepositoryEntity.repository.id,
+            // actorId: dbAirEntity.actor.id,
+            // actorRecordId: dbAirEntity.actorRecordId,
+            ageSuitability: dbAirEntity.ageSuitability,
+            // repositoryId: dbAirEntity.repository.id,
         };
     }
-    uiToDb(uiRepositoryRecord, dbRepositoryEntity, ageSuitability = null) {
+    uiToDb(uiRepositoryRecord, dbAirEntity, ageSuitability = null) {
         // if (!uiRepositoryRecord) {
         //     return
         // }
         if (ageSuitability || ageSuitability === 0) {
-            dbRepositoryEntity.ageSuitability = ageSuitability;
+            dbAirEntity.ageSuitability = ageSuitability;
         }
         /*
-        if (!dbRepositoryEntity.actor) {
-            dbRepositoryEntity.actor = {
+        if (!dbAirEntity.actor) {
+            dbAirEntity.actor = {
                 id: null
             }
         }
-        if (!dbRepositoryEntity.repository) {
-            dbRepositoryEntity.repository = {
+        if (!dbAirEntity.repository) {
+            dbAirEntity.repository = {
                 id: null
             }
         }

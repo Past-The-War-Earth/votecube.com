@@ -18,20 +18,20 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
-	IQRepositoryEntityOneToManyRelation,
-	IQRepositoryEntityRelation,
+	IQAirEntityOneToManyRelation,
+	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-traffic-control';
 import {
-	RepositoryEntityGraph,
-	RepositoryEntityEId,
-	RepositoryEntityEUpdateColumns,
-	RepositoryEntityEUpdateProperties,
-	RepositoryEntityESelect,
-	QRepositoryEntityQId,
-	QRepositoryEntityQRelation,
-	QRepositoryEntity,
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
 } from '@airport/holding-pattern';
 import {
 	AgreementGraph,
@@ -75,7 +75,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface AgreementFactorESelect
-    extends RepositoryEntityESelect, AgreementFactorEOptionalId {
+    extends AirEntityESelect, AgreementFactorEOptionalId {
 	// Non-Id Properties
 	axis?: string | IQStringField;
 	share?: number | IQNumberField;
@@ -92,7 +92,7 @@ export interface AgreementFactorESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface AgreementFactorEId
-    extends RepositoryEntityEId {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -113,7 +113,7 @@ export interface AgreementFactorEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface AgreementFactorEUpdateProperties
-	extends RepositoryEntityEUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	axis?: string | IQStringField;
 	share?: number | IQNumberField;
@@ -128,7 +128,7 @@ export interface AgreementFactorEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface AgreementFactorGraph
-	extends AgreementFactorEOptionalId, RepositoryEntityGraph {
+	extends AgreementFactorEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -145,7 +145,7 @@ export interface AgreementFactorGraph
  * UPDATE - non-id columns (optional).
  */
 export interface AgreementFactorEUpdateColumns
-	extends RepositoryEntityEUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -187,7 +187,7 @@ extends AgreementFactorEId, AgreementFactorEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QAgreementFactor extends QRepositoryEntity
+export interface QAgreementFactor extends QAirEntity
 {
 	// Id Fields
 
@@ -205,7 +205,7 @@ export interface QAgreementFactor extends QRepositoryEntity
 
 
 // Entity Id Interface
-export interface QAgreementFactorQId extends QRepositoryEntityQId
+export interface QAgreementFactorQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -217,6 +217,6 @@ export interface QAgreementFactorQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QAgreementFactorQRelation
-	extends QRepositoryEntityQRelation<IAgreementFactor, QAgreementFactor>, QAgreementFactorQId {
+	extends QAirEntityQRelation<IAgreementFactor, QAgreementFactor>, QAgreementFactorQId {
 }
 

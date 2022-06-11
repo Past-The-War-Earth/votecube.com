@@ -1,6 +1,6 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { IForumThread } from './forumthread';
-export interface IForumPost extends IRepositoryEntity {
+export interface IForumPost extends IAirEntity {
     text?: string;
     createdAt?: Date;
     thread?: IForumThread;

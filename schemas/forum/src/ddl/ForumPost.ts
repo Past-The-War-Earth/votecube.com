@@ -5,7 +5,7 @@ import {
     ManyToOne,
     Table
 } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { ForumThread } from "./ForumThread";
 
 export type ForumPost_Text = string
@@ -14,7 +14,7 @@ export type ForumPost_CreatedAt = Date
 @Entity()
 @Table({ name: "FORUM_POST" })
 export class ForumPost
-    extends RepositoryEntity {
+    extends AirEntity {
 
     @DbString()
     text: ForumPost_Text

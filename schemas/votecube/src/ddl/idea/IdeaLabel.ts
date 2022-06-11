@@ -6,14 +6,14 @@ import {
     OneToMany,
     Table
 } from '@airport/air-traffic-control'
-import { RepositoryEntity } from '@airport/holding-pattern'
+import { AirEntity } from '@airport/holding-pattern'
 import { Label } from '../Label'
 import { Idea } from './Idea'
 
 @Entity()
 @Table({ name: 'IDEA_LABELS' })
 export class IdeaLabel
-    extends RepositoryEntity {
+    extends AirEntity {
 
     @ManyToOne()
     idea: Idea

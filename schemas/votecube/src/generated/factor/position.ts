@@ -1,5 +1,5 @@
 import {
-	IRepositoryEntity,
+	IAirEntity,
 } from '@airport/holding-pattern';
 
 
@@ -8,7 +8,7 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IPosition extends IRepositoryEntity {
+export interface IPosition extends IAirEntity {
 	
 	// Id Properties
 

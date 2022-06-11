@@ -147,7 +147,7 @@ export const SCHEMA = {
                     ],
                     "index": 0,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "UserAccount",
                     "properties": [
                         {
@@ -292,7 +292,7 @@ export const SCHEMA = {
                     ],
                     "index": 1,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Device",
                     "properties": [
                         {
@@ -396,7 +396,7 @@ export const SCHEMA = {
                     ],
                     "index": 2,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Application",
                     "properties": [
                         {
@@ -561,7 +561,7 @@ export const SCHEMA = {
                     ],
                     "index": 3,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Actor",
                     "properties": [
                         {
@@ -729,7 +729,7 @@ export const SCHEMA = {
                     ],
                     "index": 4,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "CountyTown",
                     "properties": [
                         {
@@ -860,7 +860,7 @@ export const SCHEMA = {
                     ],
                     "index": 5,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "StateTown",
                     "properties": [
                         {
@@ -993,7 +993,7 @@ export const SCHEMA = {
                     ],
                     "index": 6,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "State",
                     "properties": [
                         {
@@ -1147,7 +1147,7 @@ export const SCHEMA = {
                     ],
                     "index": 7,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "County",
                     "properties": [
                         {
@@ -1301,7 +1301,7 @@ export const SCHEMA = {
                     ],
                     "index": 8,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Town",
                     "properties": [
                         {
@@ -1431,7 +1431,7 @@ export const SCHEMA = {
                     ],
                     "index": 9,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "CountryTown",
                     "properties": [
                         {
@@ -1564,7 +1564,7 @@ export const SCHEMA = {
                     ],
                     "index": 10,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Country",
                     "properties": [
                         {
@@ -1718,7 +1718,7 @@ export const SCHEMA = {
                     ],
                     "index": 11,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Continent",
                     "properties": [
                         {
@@ -1845,7 +1845,7 @@ export const SCHEMA = {
                     ],
                     "index": 12,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "DesignPattern",
                     "properties": [
                         {
@@ -1958,7 +1958,7 @@ export const SCHEMA = {
                     ],
                     "index": 13,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Emoji",
                     "properties": [
                         {
@@ -2071,7 +2071,7 @@ export const SCHEMA = {
                     ],
                     "index": 14,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Theme",
                     "properties": [
                         {
@@ -2170,7 +2170,7 @@ export const SCHEMA = {
                     ],
                     "index": 15,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollType",
                     "properties": [
                         {
@@ -2277,7 +2277,7 @@ export const SCHEMA = {
                     ],
                     "index": 16,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRunContinent",
                     "properties": [
                         {
@@ -2405,7 +2405,7 @@ export const SCHEMA = {
                     ],
                     "index": 17,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRunCountry",
                     "properties": [
                         {
@@ -2533,7 +2533,7 @@ export const SCHEMA = {
                     ],
                     "index": 18,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRunCounty",
                     "properties": [
                         {
@@ -2661,7 +2661,7 @@ export const SCHEMA = {
                     ],
                     "index": 19,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRunState",
                     "properties": [
                         {
@@ -2789,7 +2789,7 @@ export const SCHEMA = {
                     ],
                     "index": 20,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRunTown",
                     "properties": [
                         {
@@ -2958,7 +2958,7 @@ export const SCHEMA = {
                     ],
                     "index": 21,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRun",
                     "properties": [
                         {
@@ -3242,7 +3242,7 @@ export const SCHEMA = {
                     ],
                     "index": 22,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "VoteType",
                     "properties": [
                         {
@@ -3341,7 +3341,7 @@ export const SCHEMA = {
                     ],
                     "index": 23,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Language",
                     "properties": [
                         {
@@ -3521,7 +3521,7 @@ export const SCHEMA = {
                     ],
                     "index": 24,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "FactorTranslation",
                     "properties": [
                         {
@@ -3822,7 +3822,7 @@ export const SCHEMA = {
                     ],
                     "index": 25,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Factor",
                     "properties": [
                         {
@@ -4145,7 +4145,7 @@ export const SCHEMA = {
                     ],
                     "index": 26,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PositionTranslation",
                     "properties": [
                         {
@@ -4423,7 +4423,7 @@ export const SCHEMA = {
                     ],
                     "index": 27,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Position",
                     "properties": [
                         {
@@ -4699,7 +4699,7 @@ export const SCHEMA = {
                     ],
                     "index": 28,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "FactorPosition",
                     "properties": [
                         {
@@ -4888,7 +4888,7 @@ export const SCHEMA = {
                     ],
                     "index": 29,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Skin",
                     "properties": [
                         {
@@ -5244,7 +5244,7 @@ export const SCHEMA = {
                     ],
                     "index": 30,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevisionFactorPosition",
                     "properties": [
                         {
@@ -5487,7 +5487,7 @@ export const SCHEMA = {
                     ],
                     "index": 31,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "VoteFactorType",
                     "properties": [
                         {
@@ -5630,7 +5630,7 @@ export const SCHEMA = {
                     ],
                     "index": 32,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "VoteFactor",
                     "properties": [
                         {
@@ -5800,7 +5800,7 @@ export const SCHEMA = {
                     ],
                     "index": 33,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "VoteVersion",
                     "properties": [
                         {
@@ -5986,7 +5986,7 @@ export const SCHEMA = {
                     ],
                     "index": 34,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Vote",
                     "properties": [
                         {
@@ -6210,7 +6210,7 @@ export const SCHEMA = {
                     ],
                     "index": 35,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "FactorOpinionVersionTranslation",
                     "properties": [
                         {
@@ -6397,7 +6397,7 @@ export const SCHEMA = {
                     ],
                     "index": 36,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "FactorOpinionVersion",
                     "properties": [
                         {
@@ -6571,7 +6571,7 @@ export const SCHEMA = {
                     ],
                     "index": 37,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "TranslationType",
                     "properties": [
                         {
@@ -6772,7 +6772,7 @@ export const SCHEMA = {
                     ],
                     "index": 38,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "OutcomeTranslation",
                     "properties": [
                         {
@@ -7047,7 +7047,7 @@ export const SCHEMA = {
                     ],
                     "index": 39,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Outcome",
                     "properties": [
                         {
@@ -7334,7 +7334,7 @@ export const SCHEMA = {
                     ],
                     "index": 40,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "OutcomeOpinionVersionTranslation",
                     "properties": [
                         {
@@ -7521,7 +7521,7 @@ export const SCHEMA = {
                     ],
                     "index": 41,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "OutcomeOpinionVersion",
                     "properties": [
                         {
@@ -7767,7 +7767,7 @@ export const SCHEMA = {
                     ],
                     "index": 42,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevisionOpinionVersionTranslation",
                     "properties": [
                         {
@@ -7946,7 +7946,7 @@ export const SCHEMA = {
                     ],
                     "index": 43,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevisionOpinionVersion",
                     "properties": [
                         {
@@ -8183,7 +8183,7 @@ export const SCHEMA = {
                     ],
                     "index": 44,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PositionOpinionVersionTranslation",
                     "properties": [
                         {
@@ -8370,7 +8370,7 @@ export const SCHEMA = {
                     ],
                     "index": 45,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PositionOpinionVersion",
                     "properties": [
                         {
@@ -8603,7 +8603,7 @@ export const SCHEMA = {
                     ],
                     "index": 46,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "RatingSetting",
                     "properties": [
                         {
@@ -8755,7 +8755,7 @@ export const SCHEMA = {
                     ],
                     "index": 47,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "RatingType",
                     "properties": [
                         {
@@ -8876,7 +8876,7 @@ export const SCHEMA = {
                     ],
                     "index": 48,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Rating",
                     "properties": [
                         {
@@ -9061,7 +9061,7 @@ export const SCHEMA = {
                     ],
                     "index": 49,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevisionOpinionRating",
                     "properties": [
                         {
@@ -9275,7 +9275,7 @@ export const SCHEMA = {
                     ],
                     "index": 50,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevisionOpinion",
                     "properties": [
                         {
@@ -9632,7 +9632,7 @@ export const SCHEMA = {
                     ],
                     "index": 51,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "Poll",
                     "properties": [
                         {
@@ -9933,7 +9933,7 @@ export const SCHEMA = {
                     ],
                     "index": 52,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevisionRating",
                     "properties": [
                         {
@@ -10170,7 +10170,7 @@ export const SCHEMA = {
                     ],
                     "index": 53,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevisionTranslationRating",
                     "properties": [
                         {
@@ -10471,7 +10471,7 @@ export const SCHEMA = {
                     ],
                     "index": 54,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevisionTranslation",
                     "properties": [
                         {
@@ -10874,7 +10874,7 @@ export const SCHEMA = {
                     ],
                     "index": 55,
                     "isLocal": true,
-                    "isRepositoryEntity": false,
+                    "isAirEntity": false,
                     "name": "PollRevision",
                     "properties": [
                         {

@@ -5,8 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Entity, ManyToOne, Table } from '@airport/air-traffic-control';
-import { RepositoryEntity } from '@airport/holding-pattern';
-let IdeaLabel = class IdeaLabel extends RepositoryEntity {
+import { AirEntity } from '@airport/holding-pattern';
+let IdeaLabel = class IdeaLabel extends AirEntity {
 };
 __decorate([
     ManyToOne()

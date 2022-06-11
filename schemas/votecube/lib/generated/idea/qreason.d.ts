@@ -1,5 +1,5 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationIdeaGraph, SituationIdeaEOptionalId, SituationIdeaESelect, QSituationIdeaQRelation } from './qsituationidea';
 import { FactorGraph, FactorEOptionalId, FactorESelect, QFactorQRelation } from '../factor/qfactor';
 import { PositionGraph, PositionEOptionalId, PositionESelect, QPositionQRelation } from '../factor/qposition';
@@ -7,7 +7,7 @@ import { IReason } from './reason';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface ReasonESelect extends RepositoryEntityESelect, ReasonEOptionalId {
+export interface ReasonESelect extends AirEntityESelect, ReasonEOptionalId {
     axis?: string | IQStringField;
     dir?: number | IQNumberField;
     factorNumber?: number | IQNumberField;
@@ -22,7 +22,7 @@ export interface ReasonESelect extends RepositoryEntityESelect, ReasonEOptionalI
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface ReasonEId extends RepositoryEntityEId {
+export interface ReasonEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -32,7 +32,7 @@ export interface ReasonEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface ReasonEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface ReasonEUpdateProperties extends AirEntityEUpdateProperties {
     axis?: string | IQStringField;
     dir?: number | IQNumberField;
     factorNumber?: number | IQNumberField;
@@ -47,7 +47,7 @@ export interface ReasonEUpdateProperties extends RepositoryEntityEUpdateProperti
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ReasonGraph extends ReasonEOptionalId, RepositoryEntityGraph {
+export interface ReasonGraph extends ReasonEOptionalId, AirEntityGraph {
     axis?: string | IQStringField;
     dir?: number | IQNumberField;
     factorNumber?: number | IQNumberField;
@@ -62,7 +62,7 @@ export interface ReasonGraph extends ReasonEOptionalId, RepositoryEntityGraph {
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface ReasonEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface ReasonEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -99,7 +99,7 @@ export interface ReasonECreateColumns extends ReasonEId, ReasonEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QReason extends QRepositoryEntity {
+export interface QReason extends QAirEntity {
     axis: IQStringField;
     dir: IQNumberField;
     factorNumber: IQNumberField;
@@ -111,8 +111,8 @@ export interface QReason extends QRepositoryEntity {
     factor: QFactorQRelation;
     position: QPositionQRelation;
 }
-export interface QReasonQId extends QRepositoryEntityQId {
+export interface QReasonQId extends QAirEntityQId {
 }
-export interface QReasonQRelation extends QRepositoryEntityQRelation<IReason, QReason>, QReasonQId {
+export interface QReasonQRelation extends QAirEntityQRelation<IReason, QReason>, QReasonQId {
 }
 //# sourceMappingURL=qreason.d.ts.map

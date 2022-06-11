@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { Situation } from "@sapoto/core";
 import { Agreement, Idea } from "../ddl";
 import { Reason } from "./Reason";
@@ -7,7 +7,7 @@ import { Reason } from "./Reason";
 @Entity()
 @Table({ name: 'SITUATION_IDEAS' })
 export class SituationIdea
-    extends RepositoryEntity {
+    extends AirEntity {
 
     @ManyToOne()
     idea: Idea

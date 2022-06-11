@@ -403,7 +403,7 @@
 					],
 					"index": 0,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "AgreementReason",
 					"properties": [
 						{
@@ -840,7 +840,7 @@
 					],
 					"index": 1,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "Agreement",
 					"properties": [
 						{
@@ -1207,7 +1207,7 @@
 					],
 					"index": 2,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "Position",
 					"properties": [
 						{
@@ -1569,7 +1569,7 @@
 					],
 					"index": 3,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "Factor",
 					"properties": [
 						{
@@ -1921,7 +1921,7 @@
 					],
 					"index": 4,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "Label",
 					"properties": [
 						{
@@ -2376,7 +2376,7 @@
 					],
 					"index": 5,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "IdeaLabel",
 					"properties": [
 						{
@@ -3024,7 +3024,7 @@
 					],
 					"index": 6,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "Reason",
 					"properties": [
 						{
@@ -3618,7 +3618,7 @@
 					],
 					"index": 7,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "SituationIdea",
 					"properties": [
 						{
@@ -3998,7 +3998,7 @@
 					"idColumnRefs": [],
 					"index": 8,
 					"isLocal": true,
-					"isRepositoryEntity": false,
+					"isAirEntity": false,
 					"name": "IdeaTopic",
 					"properties": [
 						{
@@ -4237,7 +4237,7 @@
 					],
 					"index": 9,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "Idea",
 					"properties": [
 						{

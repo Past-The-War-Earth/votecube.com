@@ -1,5 +1,5 @@
-import { IQNumberField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { IQNumberField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@sapoto/core';
 import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
@@ -10,7 +10,7 @@ import { IIdeaSituation } from './ideasituation';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface IdeaSituationESelect extends RepositoryEntityESelect, IdeaSituationEOptionalId {
+export interface IdeaSituationESelect extends AirEntityESelect, IdeaSituationEOptionalId {
     idea?: IdeaESelect;
     situation?: SituationESelect;
     agreements?: AgreementESelect;
@@ -19,7 +19,7 @@ export interface IdeaSituationESelect extends RepositoryEntityESelect, IdeaSitua
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface IdeaSituationEId extends RepositoryEntityEId {
+export interface IdeaSituationEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -29,14 +29,14 @@ export interface IdeaSituationEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface IdeaSituationEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface IdeaSituationEUpdateProperties extends AirEntityEUpdateProperties {
     idea?: IdeaEOptionalId;
     situation?: SituationEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface IdeaSituationGraph extends IdeaSituationEOptionalId, RepositoryEntityGraph {
+export interface IdeaSituationGraph extends IdeaSituationEOptionalId, AirEntityGraph {
     idea?: IdeaGraph;
     situation?: SituationGraph;
     agreements?: AgreementGraph[];
@@ -45,7 +45,7 @@ export interface IdeaSituationGraph extends IdeaSituationEOptionalId, Repository
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface IdeaSituationEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface IdeaSituationEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
@@ -71,14 +71,14 @@ export interface IdeaSituationECreateColumns extends IdeaSituationEId, IdeaSitua
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QIdeaSituation extends QRepositoryEntity {
+export interface QIdeaSituation extends QAirEntity {
     idea: QIdeaQRelation;
     situation: QSituationQRelation;
-    agreements: IQRepositoryEntityOneToManyRelation<IAgreement, QAgreement>;
-    reasons: IQRepositoryEntityOneToManyRelation<IReason, QReason>;
+    agreements: IQAirEntityOneToManyRelation<IAgreement, QAgreement>;
+    reasons: IQAirEntityOneToManyRelation<IReason, QReason>;
 }
-export interface QIdeaSituationQId extends QRepositoryEntityQId {
+export interface QIdeaSituationQId extends QAirEntityQId {
 }
-export interface QIdeaSituationQRelation extends QRepositoryEntityQRelation<IIdeaSituation, QIdeaSituation>, QIdeaSituationQId {
+export interface QIdeaSituationQRelation extends QAirEntityQRelation<IIdeaSituation, QIdeaSituation>, QIdeaSituationQId {
 }
 //# sourceMappingURL=qideasituation.d.ts.map

@@ -5,8 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Column, Entity, Table } from '@airport/air-traffic-control';
-import { RepositoryEntity } from '@airport/holding-pattern';
-let Label = class Label extends RepositoryEntity {
+import { AirEntity } from '@airport/holding-pattern';
+let Label = class Label extends AirEntity {
 };
 __decorate([
     Column({ name: 'NAME', nullable: false })
