@@ -1,1 +1,1 @@
-{"version":3,"file":"Factor.d.ts","sourceRoot":"","sources":["../../../src/ddl/factor/Factor.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,gBAAgB,EAAE,MAAM,0BAA0B,CAAA;AAE3D,qBAEa,MACZ,SAAQ,gBAAgB;IAGxB,MAAM,EAAE,MAAM,CAAA;IAGd,MAAM,EAAE,MAAM,CAAA;IAGd,UAAU,EAAE,MAAM,CAAA;CAElB"}
+{"version":3,"file":"Factor.d.ts","sourceRoot":"","sources":["../../../src/ddl/factor/Factor.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,SAAS,EAAE,MAAM,0BAA0B,CAAA;AAEpD,qBAEa,MACZ,SAAQ,SAAS;IAGjB,MAAM,EAAE,MAAM,CAAA;IAGd,MAAM,EAAE,MAAM,CAAA;IAGd,UAAU,EAAE,MAAM,CAAA;CAElB"}

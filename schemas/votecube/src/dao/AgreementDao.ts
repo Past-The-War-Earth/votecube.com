@@ -5,19 +5,20 @@ import { QUser, User } from "@airport/travel-document-checkpoint";
 import { Agreement, SituationIdea } from "../ddl/ddl";
 import { BaseAgreementDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
-import { QAgreement } from "../generated/qInterfaces";
+import { QAgreement, QSituationIdea } from "../generated/qInterfaces";
 
 @Injected()
 export class AgreementDao
     extends BaseAgreementDao {
 
     async findForSituationIdeaAndUser(
-        situationIdeaOrUuid: string | SituationIdea,
-        userOrUuId: string | User
+        situationIdeaUuid: string | SituationIdea,
+        userUuId: string
     ): Promise<Agreement> {
         let ag: QAgreement,
             a: QActor,
-            u: QUser
+            u: QUser,
+            si: QSituationIdea
         return await this._findUnique({
             select: {
                 '*': Y,
@@ -29,11 +30,12 @@ export class AgreementDao
             from: [
                 ag = Q.Agreement,
                 a = ag.actor.leftJoin(),
-                u = a.user.leftJoin()
+                u = a.user.leftJoin(),
+                si = ag.situationIdea.leftJoin()
             ],
             where: and(
-                ag.situationIdea.equals(situationIdeaOrUuid),
-                u.equals(userOrUuId)
+                si.equals(situationIdeaUuid),
+                u.equals(userUuId)
             )
         })
     }

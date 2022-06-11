@@ -42,7 +42,7 @@ export class SituationIdeaApi
         const existingAgreement = await this.agreementDao
             .findForSituationIdeaAndUser(
                 agreement.situationIdea,
-                agreement.actor.user
+                agreement.actor.user.uuId
             )
         if (existingAgreement) {
             const leftOverAgreementReasonsById = this.agreementReasonDao
@@ -69,10 +69,10 @@ export class SituationIdeaApi
         // { server: false }
     )
     async updateAgreementShare(
-        situationIdeaId: string
+        situationIdeaUuId: string
     ): Promise<void> {
-        // const situationIdea = this.situationIdeaDao.findById(situationIdeaId);
-        // const agreementReasons = this.agreementReasonDao.findAllForSituationIdea(situationIdeaId);
+        // const situationIdea = this.situationIdeaDao.findById(situationIdeaUuId);
+        // const agreementReasons = this.agreementReasonDao.findAllForSituationIdea(situationIdeaUuId);
 
         // Recompute all situationIdea level counts
 

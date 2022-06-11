@@ -9,19 +9,23 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseAgreementDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 let AgreementDao = class AgreementDao extends BaseAgreementDao {
-    async findForSituationIdeaAndUser(situationIdeaOrUuid, userOrUuId) {
-        let ag, a, u;
+    async findForSituationIdeaAndUser(situationIdeaUuid, userUuId) {
+        let ag, a, u, si;
         return await this._findUnique({
             select: {
                 '*': Y,
-                agreementReasons: {}
+                agreementReasons: {
+                    '*': Y,
+                    uuId: Y
+                }
             },
             from: [
                 ag = Q.Agreement,
                 a = ag.actor.leftJoin(),
-                u = a.user.leftJoin()
+                u = a.user.leftJoin(),
+                si = ag.situationIdea.leftJoin()
             ],
-            where: and(ag.situationIdea.equals(situationIdeaOrUuid), u.equals(userOrUuId))
+            where: and(si.equals(situationIdeaUuid), u.equals(userUuId))
         });
     }
 };
