@@ -54,9 +54,9 @@ export class SituationIdeaApi {
     }
 
     async  updateAgreementShare(
-        situationIdeaId: string
+        situationIdeaUuId: string
     ): Promise<void> {
-        await this.situationIdeaApi.updateAgreementShare(situationIdeaId)
+        await this.situationIdeaApi.updateAgreementShare(situationIdeaUuId)
     }
 
 }

@@ -8,6 +8,6 @@ export declare class SituationIdeaApi {
     situationIdeaApi: SituationIdeaApi;
     add(situationIdea: ISituationIdea): Promise<void>;
     setAgreement(agreement: Agreement): Promise<void>;
-    updateAgreementShare(situationIdeaId: string): Promise<void>;
+    updateAgreementShare(situationIdeaUuId: string): Promise<void>;
 }
 //# sourceMappingURL=SituationIdeaApi.d.ts.map

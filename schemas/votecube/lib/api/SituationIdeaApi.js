@@ -32,9 +32,9 @@ let SituationIdeaApi = class SituationIdeaApi {
     // FIXME: Recompute all agreements for a SituationIdea when it's loaded
     // Do this only in non-server environments since the counts can be widely off across
     // different save branches
-    async updateAgreementShare(situationIdeaId) {
-        // const situationIdea = this.situationIdeaDao.findById(situationIdeaId);
-        // const agreementReasons = this.agreementReasonDao.findAllForSituationIdea(situationIdeaId);
+    async updateAgreementShare(situationIdeaUuId) {
+        // const situationIdea = this.situationIdeaDao.findById(situationIdeaUuId);
+        // const agreementReasons = this.agreementReasonDao.findAllForSituationIdea(situationIdeaUuId);
         // Recompute all situationIdea level counts
         // await this.situationIdeaDao.save(situationIdea)
     }

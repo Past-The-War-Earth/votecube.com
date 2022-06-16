@@ -17,8 +17,8 @@ let SituationIdeaApi = class SituationIdeaApi {
     async setAgreement(agreement) {
         await this.situationIdeaApi.setAgreement(agreement);
     }
-    async updateAgreementShare(situationIdeaId) {
-        await this.situationIdeaApi.updateAgreementShare(situationIdeaId);
+    async updateAgreementShare(situationIdeaUuId) {
+        await this.situationIdeaApi.updateAgreementShare(situationIdeaUuId);
     }
 };
 __decorate([
