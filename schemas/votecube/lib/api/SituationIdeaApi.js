@@ -28,6 +28,16 @@ let SituationIdeaApi = class SituationIdeaApi {
             agreement = existingAgreement;
         }
         await this.agreementDao.save(agreement);
+        const allSituationIdeaAgreements = await this.agreementDao
+            .findAllAgreementSharesForSituationIdea(agreement.situationIdea);
+        existingAgreement.situationIdea.numberOfAgreements = allSituationIdeaAgreements.length;
+        existingAgreement.situationIdea.agreementShareTotal = 0;
+        for (const agreement of allSituationIdeaAgreements) {
+            for (const agreementReason of agreement.agreementReasons) {
+                existingAgreement.situationIdea.agreementShareTotal += agreementReason.share;
+            }
+        }
+        await this.situationIdeaDao.save(existingAgreement.situationIdea);
     }
     // FIXME: Recompute all agreements for a SituationIdea when it's loaded
     // Do this only in non-server environments since the counts can be widely off across

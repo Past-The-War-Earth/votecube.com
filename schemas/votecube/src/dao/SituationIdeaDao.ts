@@ -1,5 +1,7 @@
+import { and, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
-import { BaseSituationIdeaDao, IBaseSituationIdeaDao } from "../generated/generated";
+import { SituationIdea } from "../ddl/ddl";
+import { BaseSituationIdeaDao, IBaseSituationIdeaDao, Q, QAgreement, QAgreementReason, QSituationIdea } from "../generated/generated";
 
 export interface ISituationIdeaDao
     extends IBaseSituationIdeaDao {
@@ -10,5 +12,5 @@ export interface ISituationIdeaDao
 export class SituationIdeaDao
     extends BaseSituationIdeaDao
     implements ISituationIdeaDao {
-
+        
 }

@@ -17,6 +17,10 @@ let AgreementDao = class AgreementDao extends BaseAgreementDao {
                 agreementReasons: {
                     '*': Y,
                     uuId: Y
+                },
+                situationIdea: {
+                    agreementShareTotal: Y,
+                    numberOfAgreements: Y,
                 }
             },
             from: [
@@ -26,6 +30,22 @@ let AgreementDao = class AgreementDao extends BaseAgreementDao {
                 si = ag.situationIdea.leftJoin()
             ],
             where: and(si.equals(situationIdeaUuid), u.equals(userUuId))
+        });
+    }
+    async findAllAgreementSharesForSituationIdea(situationIdeaUuId) {
+        let si, a, ar;
+        return await this._find({
+            select: {
+                agreementReasons: {
+                    share: Y,
+                }
+            },
+            from: [
+                a = Q.Agreement,
+                si = a.situationIdea.innerJoin(),
+                ar = a.agreementReasons.innerJoin()
+            ],
+            where: and(si.equals(situationIdeaUuId), ar.share.greaterThan(0))
         });
     }
 };

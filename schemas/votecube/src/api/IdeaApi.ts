@@ -108,25 +108,6 @@ export class IdeaApi
         idea.actor = null
         delete idea.actorRecordId
 
-        // const [entityStateManager, forumThreadApi, ideaDao] = await container(this)
-        //     .get(ENTITY_STATE_MANAGER, FORUM_THREAD_API, IDEA_DAO)
-
-        // const forumThread = await forumThreadApi.createNew()
-
-        // const forumThreadStub: IForumThread = {
-        //     actor: {
-        //         id: forumThread.actor.id
-        //     },
-        //     actorRecordId: forumThread.actorRecordId,
-        //     repository: {
-        //         id: forumThread.repository.id
-        //     },
-        // } as IForumThread
-
-        // entityStateManager.markAsStub(forumThreadStub)
-
-        // idea.thread = forumThreadStub
-
         return await this.ideaDao.saveNewIdea(idea)
     }
 

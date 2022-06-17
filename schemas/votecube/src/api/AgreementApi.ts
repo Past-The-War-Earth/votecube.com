@@ -1,5 +1,6 @@
 import { Api } from "@airport/check-in";
 import { Injected } from "@airport/direction-indicator";
+import { Agreement, SituationIdea } from "../ddl/ddl";
 import { IAgreement } from "../generated/interfaces";
 
 export interface IAgreementApi {
