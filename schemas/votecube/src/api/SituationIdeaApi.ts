@@ -3,7 +3,8 @@ import { Inject, Injected } from "@airport/direction-indicator";
 import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
 import { ISituationIdeaDao } from "../dao/dao";
-import { Agreement } from "../ddl/ddl";
+import { ReasonDao } from "../dao/ReasonDao";
+import { Agreement, AgreementReason, Reason } from "../ddl/ddl";
 import { ISituationIdea } from "../generated/interfaces";
 
 export interface ISituationIdeaApi {
@@ -25,7 +26,13 @@ export class SituationIdeaApi
     agreementReasonDao: AgreementReasonDao
 
     @Inject()
+    reasonDao: ReasonDao
+
+    @Inject()
     situationIdeaDao: ISituationIdeaDao
+
+    @Inject()
+    request: Request
 
     @Api()
     async add(
@@ -39,6 +46,59 @@ export class SituationIdeaApi
     async setAgreement(
         agreement: Agreement
     ): Promise<void> {
+        await this.ensureValidReasons(agreement)
+        agreement = await this.removeSharesFromNotSelectedAgreementReasons(agreement)
+        await this.agreementDao.save(agreement)
+        await this.updateSituationIdeaAgreementShares(agreement)
+    }
+
+    private async ensureValidReasons(
+        agreement: Agreement
+    ): Promise<void> {
+        const agreementReasonWithNewReasonMap: Map<string, AgreementReason> = new Map()
+        const existingIncomingReasonMap: Map<string, Reason> = new Map()
+        for (const incomingAgreementReason of agreement.agreementReasons) {
+            const incomingReason = incomingAgreementReason.reason
+            if (!incomingReason.actorRecordId) {
+                const reasonUuId = incomingReason.factor.uuId + '-' + incomingReason.position.uuId
+                if (agreementReasonWithNewReasonMap.has(reasonUuId)) {
+                    throw new Error(`Reason for Factor ${incomingReason.factor.uuId} and Position ${incomingReason.position.uuId}
+is found more than once.`)
+                }
+                agreementReasonWithNewReasonMap.set(reasonUuId, incomingAgreementReason)
+            } else {
+                const uuId = incomingReason.uuId
+                if (existingIncomingReasonMap.has(uuId)) {
+                    throw new Error(`Reason with UuId: ${uuId} is found more than once.`)
+                }
+                existingIncomingReasonMap.set(uuId, incomingReason)
+            }
+        }
+
+        const situationIdeaReasons = await this.reasonDao.findAllForSituationIdea(agreement.situationIdea)
+        let existingReasonMap: Map<string, Reason> = new Map()
+        let existingReasonMapByFactorAndPositionUuIds = new Map()
+        for (const reason of situationIdeaReasons) {
+            existingReasonMap.set(reason.uuId, reason)
+            existingReasonMapByFactorAndPositionUuIds.set(reason.factor.uuId + '-' + reason.position.uuId, reason)
+        }
+
+        for (const existingIncomingReason of existingIncomingReasonMap.values()) {
+            if (!existingReasonMap.has(existingIncomingReason.uuId)) {
+                throw new Error(`Reason ${existingIncomingReason.uuId} does not exist`)
+            }
+        }
+        for (const [newReasonFactorAndPositionUuId, agreementReason] of agreementReasonWithNewReasonMap) {
+            let existingReason = existingReasonMapByFactorAndPositionUuIds.get(newReasonFactorAndPositionUuId)
+            if (existingReason) {
+                agreementReason.reason = existingReason
+            }
+        }
+    }
+
+    private async removeSharesFromNotSelectedAgreementReasons(
+        agreement: Agreement
+    ): Promise<Agreement> {
         const existingAgreement = await this.agreementDao
             .findForSituationIdeaAndUser(
                 agreement.situationIdea,
@@ -56,24 +116,21 @@ export class SituationIdeaApi
                 agreement.agreementReasons.push(leftOverAgreementReason)
             }
             existingAgreement.agreementReasons = agreement.agreementReasons
-            agreement = existingAgreement
+            return existingAgreement
         }
+        return agreement
+    }
 
-        await this.agreementDao.save(agreement)
-
+    private async updateSituationIdeaAgreementShares(
+        agreement: Agreement
+    ): Promise<void> {
         const allSituationIdeaAgreements = await this.agreementDao
             .findAllAgreementSharesForSituationIdea(agreement.situationIdea)
 
-        existingAgreement.situationIdea.numberOfAgreements = allSituationIdeaAgreements.length
-        existingAgreement.situationIdea.agreementShareTotal = 0;
+        agreement.situationIdea.numberOfAgreements = allSituationIdeaAgreements.length
+        agreement.situationIdea.agreementShareTotal = 0;
 
-        for (const agreement of allSituationIdeaAgreements) {
-            for (const agreementReason of agreement.agreementReasons) {
-                existingAgreement.situationIdea.agreementShareTotal += agreementReason.share
-            }
-        }
-
-        await this.situationIdeaDao.save(existingAgreement.situationIdea)
+        await this.situationIdeaDao.save(agreement.situationIdea)
     }
 
     // FIXME: Recompute all agreements for a SituationIdea when it's loaded
