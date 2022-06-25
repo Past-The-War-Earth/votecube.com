@@ -7,15 +7,27 @@ import { IdeaDao, SituationIdeaDao } from "../dao/dao";
 import { AGREEMENT_API, IDEA_API, SITUATION_IDEA_API } from './common-tokens';
 import { AgreementApi, IdeaApi, SituationIdeaApi } from '../api/api';
 import { AgreementDao } from '../dao/AgreementDao';
+import { AgreementReasonDao } from '../dao/AgreementReasonDao';
+import { ReasonDao } from '../dao/ReasonDao';
 export const AGREEMENT_DAO = votecube.token({
     class: AgreementDao,
     interface: 'AgreementDao',
     token: 'AGREEMENT_DAO'
 });
+export const AGREEMENT_REASON_DAO = votecube.token({
+    class: AgreementReasonDao,
+    interface: 'AgreementReasonDao',
+    token: 'AGREEMENT_REASON_DAO'
+});
 export const IDEA_DAO = votecube.token({
     class: IdeaDao,
     interface: 'IIdeaDao',
     token: 'IDEA_DAO'
+});
+export const REASON_DAO = votecube.token({
+    class: ReasonDao,
+    interface: 'ReasonDao',
+    token: 'REASON_DAO'
 });
 export const SITUATION_IDEA_DAO = votecube.token({
     class: SituationIdeaDao,
@@ -29,6 +41,8 @@ IDEA_API.setDependencies({
 SITUATION_IDEA_API.setClass(SituationIdeaApi);
 SITUATION_IDEA_API.setDependencies({
     agreementDao: AGREEMENT_DAO,
+    agreementReasonDao: AGREEMENT_REASON_DAO,
+    reasonDao: REASON_DAO,
     situationIdeaDao: SITUATION_IDEA_DAO
 });
 AGREEMENT_API.setClass(AgreementApi);

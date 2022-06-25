@@ -1,6 +1,7 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { IdeaDao } from "../dao/dao"
+import { Idea } from "../ddl/ddl";
 import {
     ILabel,
     IIdea
@@ -24,7 +25,7 @@ export interface IIdeaApi {
     getIdea(
         repositorySource: string,
         ideaRepositoryUuId: string
-    ): Promise<IIdea>
+    ): Promise<Idea>
 
     saveExistingIdea(
         idea: IIdea
@@ -84,7 +85,7 @@ export class IdeaApi
     async getIdea(
         repositorySource: string,
         ideaRepositoryUuId: string
-    ): Promise<IIdea> {
+    ): Promise<Idea> {
         return await this.ideaDao.findByRepositoryUuId(repositorySource, ideaRepositoryUuId)
     }
 

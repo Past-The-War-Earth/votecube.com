@@ -20,13 +20,14 @@ import {
 import { ISaveResult } from '@airport/ground-control';
 import { Injected } from '@airport/direction-indicator';
 import { IRepositoryIdentifier } from '../types';
+import { Idea } from '../ddl/ddl';
 
 export interface IIdeaDao {
 
     findByRepositoryUuId(
         repositorySource: string,
         ideaReposioryUuid: string
-    ): Promise<IIdea>
+    ): Promise<Idea>
 
     saveExistingIdea(
         idea: IIdea
@@ -59,7 +60,7 @@ export class IdeaDao
     async findByRepositoryUuId(
         repositorySource: string,
         ideaReposioryUuid: string
-    ): Promise<IIdea> {
+    ): Promise<Idea> {
         let i: QIdea
         let r: QRepository
         let sl: QIdeaLabel

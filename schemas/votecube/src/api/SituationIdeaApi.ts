@@ -4,7 +4,7 @@ import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
 import { ISituationIdeaDao } from "../dao/dao";
 import { ReasonDao } from "../dao/ReasonDao";
-import { Agreement, AgreementReason, Reason } from "../ddl/ddl";
+import { Agreement, AgreementReason, Reason, SituationIdea } from "../ddl/ddl";
 import { ISituationIdea } from "../generated/interfaces";
 
 export interface ISituationIdeaApi {
@@ -46,21 +46,60 @@ export class SituationIdeaApi
     async setAgreement(
         agreement: Agreement
     ): Promise<void> {
-        await this.ensureValidReasons(agreement)
+        const situationIdeaReasons: Reason[] = await this.
+            ensureValidFactorsAndPositions(agreement)
+        await this.ensureValidReasons(agreement, situationIdeaReasons)
         agreement = await this.removeSharesFromNotSelectedAgreementReasons(agreement)
         await this.agreementDao.save(agreement)
         await this.updateSituationIdeaAgreementShares(agreement)
     }
 
-    private async ensureValidReasons(
+    private async ensureValidFactorsAndPositions(
         agreement: Agreement
+    ): Promise<Reason[]> {
+        if (!agreement.situationIdea.uuId) {
+            throw new Error(`passed in agreement.situationIdea doesn't have a UuId`)
+        }
+        let situationIdea: SituationIdea = await this.situationIdeaDao
+            .findByUuId(agreement.situationIdea.uuId)
+        if (!situationIdea) {
+            throw new Error(`SituationIdea with UuId "${agreement.situationIdea.uuId}" does not exist.`)
+        }
+        for (const incomingAgreementReason of agreement.agreementReasons) {
+            if (!incomingAgreementReason) {
+                throw new Error(`Recieved a null agreementReason`)
+            }
+            const incomingReason: Reason = incomingAgreementReason.reason
+            if (!incomingReason) {
+                throw new Error(`Recieved a null reason`)
+            }
+            if (!incomingReason.factor) {
+                throw new Error(`Recieved a null factor`)
+            }
+            if (!incomingReason.position) {
+                throw new Error(`Recieved a null position`)
+            }
+        }
+
+        const situationIdeaReasons: Reason[] = await this.
+            reasonDao.findAllForSituationIdea(agreement.situationIdea)
+
+
+
+        return situationIdeaReasons
+    }
+
+    private async ensureValidReasons(
+        agreement: Agreement,
+        situationIdeaReasons: Reason[]
     ): Promise<void> {
         const agreementReasonWithNewReasonMap: Map<string, AgreementReason> = new Map()
         const existingIncomingReasonMap: Map<string, Reason> = new Map()
         for (const incomingAgreementReason of agreement.agreementReasons) {
-            const incomingReason = incomingAgreementReason.reason
+            const incomingReason: Reason = incomingAgreementReason.reason
             if (!incomingReason.actorRecordId) {
-                const reasonUuId = incomingReason.factor.uuId + '-' + incomingReason.position.uuId
+                const reasonUuId: string = incomingReason.factor.uuId + '-'
+                    + incomingReason.position.uuId
                 if (agreementReasonWithNewReasonMap.has(reasonUuId)) {
                     throw new Error(`Reason for Factor ${incomingReason.factor.uuId} and Position ${incomingReason.position.uuId}
 is found more than once.`)
@@ -75,9 +114,8 @@ is found more than once.`)
             }
         }
 
-        const situationIdeaReasons = await this.reasonDao.findAllForSituationIdea(agreement.situationIdea)
         let existingReasonMap: Map<string, Reason> = new Map()
-        let existingReasonMapByFactorAndPositionUuIds = new Map()
+        let existingReasonMapByFactorAndPositionUuIds: Map<string, Reason> = new Map()
         for (const reason of situationIdeaReasons) {
             existingReasonMap.set(reason.uuId, reason)
             existingReasonMapByFactorAndPositionUuIds.set(reason.factor.uuId + '-' + reason.position.uuId, reason)
@@ -89,7 +127,8 @@ is found more than once.`)
             }
         }
         for (const [newReasonFactorAndPositionUuId, agreementReason] of agreementReasonWithNewReasonMap) {
-            let existingReason = existingReasonMapByFactorAndPositionUuIds.get(newReasonFactorAndPositionUuId)
+            let existingReason: Reason = existingReasonMapByFactorAndPositionUuIds
+                .get(newReasonFactorAndPositionUuId)
             if (existingReason) {
                 agreementReason.reason = existingReason
             }
