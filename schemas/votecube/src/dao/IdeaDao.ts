@@ -30,11 +30,11 @@ export interface IIdeaDao {
     ): Promise<Idea>
 
     saveExistingIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier>
 
     saveNewIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier>
 
 }
@@ -115,7 +115,7 @@ export class IdeaDao
     }
 
     async saveExistingIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier> {
         let saveResult: ISaveResult
         saveResult = await this.db.save(idea)
@@ -127,7 +127,7 @@ export class IdeaDao
     }
 
     async saveNewIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier> {
         let saveResult: ISaveResult = await this.db.save(idea)
         const newRepository = saveResult.newRepository

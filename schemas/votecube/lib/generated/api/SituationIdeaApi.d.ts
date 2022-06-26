@@ -1,12 +1,11 @@
-import { Agreement } from '../../ddl/ddl';
-import { ISituationIdea } from '../../generated/interfaces';
+import { Agreement, SituationIdea } from '../../ddl/ddl';
 export interface ISituationIdeaApi {
-    add(situationIdea: ISituationIdea): Promise<void>;
+    add(situationIdea: SituationIdea): Promise<void>;
 }
 export declare class SituationIdeaApi {
     constructor();
     situationIdeaApi: SituationIdeaApi;
-    add(situationIdea: ISituationIdea): Promise<void>;
+    add(situationIdea: SituationIdea): Promise<void>;
     setAgreement(agreement: Agreement): Promise<void>;
     updateAgreementShare(situationIdeaUuId: string): Promise<void>;
 }

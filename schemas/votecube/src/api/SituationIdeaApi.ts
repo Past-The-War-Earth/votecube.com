@@ -5,12 +5,11 @@ import { AgreementReasonDao } from "../dao/AgreementReasonDao";
 import { ISituationIdeaDao } from "../dao/dao";
 import { ReasonDao } from "../dao/ReasonDao";
 import { Agreement, AgreementReason, Reason, SituationIdea } from "../ddl/ddl";
-import { ISituationIdea } from "../generated/interfaces";
 
 export interface ISituationIdeaApi {
 
     add(
-        situationIdea: ISituationIdea
+        situationIdea: SituationIdea
     ): Promise<void>
 
 }
@@ -36,7 +35,7 @@ export class SituationIdeaApi
 
     @Api()
     async add(
-        situationIdea: ISituationIdea
+        situationIdea: SituationIdea
     ): Promise<void> {
 
         await this.situationIdeaDao.save(situationIdea)

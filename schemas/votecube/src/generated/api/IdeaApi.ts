@@ -13,21 +13,21 @@ import {
 	IdeaDao,
 } from '../../dao/dao';
 import {
-	ILabel,
-	IIdea,
-} from '../../generated/interfaces';
+	Idea,
+	Label,
+} from '../../ddl/ddl';
 import {
 	IRepositoryIdentifier,
 } from '../../types';
 
 
 export interface IIdeaApi {
-    getIdeasForLabels(labels: ILabel[]): Promise<IIdea[]>;
-    getLeafIdeas(idea: IIdea): Promise<IIdea[]>;
-    getStemIdea(idea: IIdea): Promise<IIdea>;
-    getIdea(repositorySource: string, ideaRepositoryUuId: string): Promise<IIdea>;
-    saveExistingIdea(idea: IIdea): Promise<IRepositoryIdentifier>;
-    saveNewIdea(idea: IIdea): Promise<IRepositoryIdentifier>;
+    getIdeasForLabels(labels: Label[]): Promise<Idea[]>;
+    getLeafIdeas(idea: Idea): Promise<Idea[]>;
+    getStemIdea(idea: Idea): Promise<Idea>;
+    getIdea(repositorySource: string, ideaRepositoryUuId: string): Promise<Idea>;
+    saveExistingIdea(idea: Idea): Promise<IRepositoryIdentifier>;
+    saveNewIdea(idea: Idea): Promise<IRepositoryIdentifier>;
 }
 
 // An API stub for other Applications and UIs to use
@@ -42,27 +42,27 @@ export class IdeaApi {
     ideaApi: IdeaApi
             
     async  getIdeasForLabels(
-        labels: ILabel[]
-    ): Promise<IIdea[]> {
+        labels: Label[]
+    ): Promise<Idea[]> {
         return await this.ideaApi.getIdeasForLabels(labels)
     }
 
     async  getLeafIdeas(
-        idea: IIdea
-    ): Promise<IIdea[]> {
+        idea: Idea
+    ): Promise<Idea[]> {
         return await this.ideaApi.getLeafIdeas(idea)
     }
 
     async  getStemIdea(
-        idea: IIdea
-    ): Promise<IIdea> {
+        idea: Idea
+    ): Promise<Idea> {
         return await this.ideaApi.getStemIdea(idea)
     }
 
     async  getIdea(
         repositorySource: string,
         ideaRepositoryUuId: string
-    ): Promise<IIdea> {
+    ): Promise<Idea> {
         return await this.ideaApi.getIdea(
             repositorySource,
             ideaRepositoryUuId
@@ -70,13 +70,13 @@ export class IdeaApi {
     }
 
     async  saveExistingIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier> {
         return await this.ideaApi.saveExistingIdea(idea)
     }
 
     async  saveNewIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier> {
         return await this.ideaApi.saveNewIdea(idea)
     }

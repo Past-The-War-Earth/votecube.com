@@ -1,26 +1,22 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { IdeaDao } from "../dao/dao"
-import { Idea } from "../ddl/ddl";
-import {
-    ILabel,
-    IIdea
-} from "../generated/interfaces";
+import { Idea, Label } from "../ddl/ddl";
 import { IRepositoryIdentifier } from "../types";
 
 export interface IIdeaApi {
 
     getIdeasForLabels(
-        labels: ILabel[]
-    ): Promise<IIdea[]>
+        labels: Label[]
+    ): Promise<Idea[]>
 
     getLeafIdeas(
-        idea: IIdea
-    ): Promise<IIdea[]>
+        idea: Idea
+    ): Promise<Idea[]>
 
     getStemIdea(
-        idea: IIdea
-    ): Promise<IIdea>
+        idea: Idea
+    ): Promise<Idea>
 
     getIdea(
         repositorySource: string,
@@ -28,11 +24,11 @@ export interface IIdeaApi {
     ): Promise<Idea>
 
     saveExistingIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier>
 
     saveNewIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier>
 
 }
@@ -62,22 +58,22 @@ export class IdeaApi
 
     @Api()
     async getIdeasForLabels(
-        labels: ILabel[]
-    ): Promise<IIdea[]> {
+        labels: Label[]
+    ): Promise<Idea[]> {
         return []
     }
 
     @Api()
     async getLeafIdeas(
-        idea: IIdea
-    ): Promise<IIdea[]> {
+        idea: Idea
+    ): Promise<Idea[]> {
         return []
     }
 
     @Api()
     async getStemIdea(
-        idea: IIdea
-    ): Promise<IIdea> {
+        idea: Idea
+    ): Promise<Idea> {
         return null
     }
 
@@ -91,7 +87,7 @@ export class IdeaApi
 
     @Api()
     async saveExistingIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier> {
         if (!idea.repository || !idea.repository.id
             || !idea.actor || !idea.actor.id
@@ -103,7 +99,7 @@ export class IdeaApi
 
     @Api()
     async saveNewIdea(
-        idea: IIdea
+        idea: Idea
     ): Promise<IRepositoryIdentifier> {
         idea.repository = null
         idea.actor = null

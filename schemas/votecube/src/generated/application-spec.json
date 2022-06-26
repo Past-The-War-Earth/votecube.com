@@ -3279,7 +3279,8 @@
 					"tableConfig": {
 						"name": "REASONS",
 						"columnIndexes": []
-					}
+					},
+					"operations": {}
 				},
 				{
 					"columns": [

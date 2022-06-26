@@ -2,10 +2,9 @@ import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
 import { ISituationIdeaDao } from "../dao/dao";
 import { ReasonDao } from "../dao/ReasonDao";
-import { Agreement } from "../ddl/ddl";
-import { ISituationIdea } from "../generated/interfaces";
+import { Agreement, SituationIdea } from "../ddl/ddl";
 export interface ISituationIdeaApi {
-    add(situationIdea: ISituationIdea): Promise<void>;
+    add(situationIdea: SituationIdea): Promise<void>;
 }
 export declare class SituationIdeaApi implements ISituationIdeaApi {
     agreementDao: AgreementDao;
@@ -13,7 +12,7 @@ export declare class SituationIdeaApi implements ISituationIdeaApi {
     reasonDao: ReasonDao;
     situationIdeaDao: ISituationIdeaDao;
     request: Request;
-    add(situationIdea: ISituationIdea): Promise<void>;
+    add(situationIdea: SituationIdea): Promise<void>;
     setAgreement(agreement: Agreement): Promise<void>;
     private ensureValidFactorsAndPositions;
     private ensureValidReasons;

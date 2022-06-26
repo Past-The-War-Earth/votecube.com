@@ -3280,7 +3280,8 @@ export const APPLICATION = {
 					"tableConfig": {
 						"name": "REASONS",
 						"columnIndexes": []
-					}
+					},
+					"operations": {}
 				},
 				{
 					"columns": [

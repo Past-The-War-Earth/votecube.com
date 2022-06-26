@@ -19,15 +19,18 @@ import {
 	ISituationIdeaDao,
 } from '../../dao/dao';
 import {
-	Agreement,
-} from '../../ddl/ddl';
+	ReasonDao,
+} from '../../dao/ReasonDao';
 import {
-	ISituationIdea,
-} from '../../generated/interfaces';
+	Agreement,
+	AgreementReason,
+	Reason,
+	SituationIdea,
+} from '../../ddl/ddl';
 
 
 export interface ISituationIdeaApi {
-    add(situationIdea: ISituationIdea): Promise<void>;
+    add(situationIdea: SituationIdea): Promise<void>;
 }
 
 // An API stub for other Applications and UIs to use
@@ -42,7 +45,7 @@ export class SituationIdeaApi {
     situationIdeaApi: SituationIdeaApi
             
     async  add(
-        situationIdea: ISituationIdea
+        situationIdea: SituationIdea
     ): Promise<void> {
         await this.situationIdeaApi.add(situationIdea)
     }
