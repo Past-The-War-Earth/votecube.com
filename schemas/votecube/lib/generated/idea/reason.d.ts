@@ -1,5 +1,6 @@
 import { IAirEntity } from '@airport/holding-pattern';
 import { ISituationIdea } from './situationidea';
+import { IIdea } from './idea';
 import { IFactor } from '../factor/factor';
 import { IPosition } from '../factor/position';
 export interface IReason extends IAirEntity {
@@ -11,6 +12,7 @@ export interface IReason extends IAirEntity {
     red?: number;
     outcomeOrdinal?: string;
     situationIdea?: ISituationIdea;
+    idea?: IIdea;
     factor?: IFactor;
     position?: IPosition;
 }

@@ -5,6 +5,7 @@ import { QAgreementReason } from './agreement/qagreementreason';
 import { QFactor } from './factor/qfactor';
 import { QIdea } from './idea/qidea';
 import { QIdeaLabel } from './idea/qidealabel';
+import { QIdeaRating } from './idea/qidearating';
 import { QIdeaTopic } from './idea/qideatopic';
 import { QLabel } from './qlabel';
 import { QPosition } from './factor/qposition';
@@ -17,6 +18,7 @@ export interface LocalQApplication extends QApplication {
     Factor: QFactor;
     Idea: QIdea;
     IdeaLabel: QIdeaLabel;
+    IdeaRating: QIdeaRating;
     IdeaTopic: QIdeaTopic;
     Label: QLabel;
     Position: QPosition;

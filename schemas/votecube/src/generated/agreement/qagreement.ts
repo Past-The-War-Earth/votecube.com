@@ -47,6 +47,19 @@ import {
 	ISituationIdea,
 } from '../idea/situationidea';
 import {
+	IdeaRatingGraph,
+	IdeaRatingEId,
+	IdeaRatingEOptionalId,
+	IdeaRatingEUpdateProperties,
+	IdeaRatingESelect,
+	QIdeaRating,
+	QIdeaRatingQId,
+	QIdeaRatingQRelation,
+} from '../idea/qidearating';
+import {
+	IIdeaRating,
+} from '../idea/idearating';
+import {
 	AgreementReasonGraph,
 	AgreementReasonEId,
 	AgreementReasonEOptionalId,
@@ -82,6 +95,7 @@ export interface AgreementESelect
 
   // Non-Id relations (including OneToMany's)
 	situationIdea?: SituationIdeaESelect;
+	idea?: IdeaRatingESelect;
 	agreementReasons?: AgreementReasonESelect;
 
 }
@@ -116,6 +130,7 @@ export interface AgreementEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situationIdea?: SituationIdeaEOptionalId;
+	idea?: IdeaRatingEOptionalId;
 
 }
 
@@ -130,6 +145,7 @@ export interface AgreementGraph
 
 	// Relations
 	situationIdea?: SituationIdeaGraph;
+	idea?: IdeaRatingGraph;
 	agreementReasons?: AgreementReasonGraph[];
 
 }
@@ -149,6 +165,9 @@ export interface AgreementEUpdateColumns
 	SITUATION_IDEAS_RID_1?: number | IQNumberField;
 	SITUATION_IDEAS_AID_1?: number | IQNumberField;
 	SITUATION_IDEAS_ARID_1?: number | IQNumberField;
+	IDEA_RATINGS_RID_1?: number | IQNumberField;
+	IDEA_RATINGS_AID_1?: number | IQNumberField;
+	IDEA_RATINGS_ARID_1?: number | IQNumberField;
 
 }
 
@@ -186,6 +205,7 @@ export interface QAgreement extends QAirEntity
 
 	// Non-Id Relations
 	situationIdea: QSituationIdeaQRelation;
+	idea: QIdeaRatingQRelation;
 	agreementReasons: IQAirEntityOneToManyRelation<IAgreementReason, QAgreementReason>;
 
 }

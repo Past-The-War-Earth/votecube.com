@@ -1,6 +1,7 @@
 import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationIdeaGraph, SituationIdeaEOptionalId, SituationIdeaESelect, QSituationIdeaQRelation } from './qsituationidea';
+import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
 import { FactorGraph, FactorEOptionalId, FactorESelect, QFactorQRelation } from '../factor/qfactor';
 import { PositionGraph, PositionEOptionalId, PositionESelect, QPositionQRelation } from '../factor/qposition';
 import { IReason } from './reason';
@@ -16,6 +17,7 @@ export interface ReasonESelect extends AirEntityESelect, ReasonEOptionalId {
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
     situationIdea?: SituationIdeaESelect;
+    idea?: IdeaESelect;
     factor?: FactorESelect;
     position?: PositionESelect;
 }
@@ -41,6 +43,7 @@ export interface ReasonEUpdateProperties extends AirEntityEUpdateProperties {
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
     situationIdea?: SituationIdeaEOptionalId;
+    idea?: IdeaEOptionalId;
     factor?: FactorEOptionalId;
     position?: PositionEOptionalId;
 }
@@ -56,6 +59,7 @@ export interface ReasonGraph extends ReasonEOptionalId, AirEntityGraph {
     red?: number | IQNumberField;
     outcomeOrdinal?: string | IQStringField;
     situationIdea?: SituationIdeaGraph;
+    idea?: IdeaGraph;
     factor?: FactorGraph;
     position?: PositionGraph;
 }
@@ -79,6 +83,9 @@ export interface ReasonEUpdateColumns extends AirEntityEUpdateColumns {
     SITUATION_IDEAS_RID_1?: number | IQNumberField;
     SITUATION_IDEAS_AID_1?: number | IQNumberField;
     SITUATION_IDEAS_ARID_1?: number | IQNumberField;
+    IDEAS_RID_1?: number | IQNumberField;
+    IDEAS_AID_1?: number | IQNumberField;
+    IDEAS_ARID_1?: number | IQNumberField;
     FACTORS_RID_1?: number | IQNumberField;
     FACTORS_AID_1?: number | IQNumberField;
     FACTORS_ARID_1?: number | IQNumberField;
@@ -108,6 +115,7 @@ export interface QReason extends QAirEntity {
     red: IQNumberField;
     outcomeOrdinal: IQStringField;
     situationIdea: QSituationIdeaQRelation;
+    idea: QIdeaQRelation;
     factor: QFactorQRelation;
     position: QPositionQRelation;
 }

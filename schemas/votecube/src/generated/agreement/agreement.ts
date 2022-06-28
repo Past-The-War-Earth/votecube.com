@@ -5,6 +5,9 @@ import {
 	ISituationIdea,
 } from '../idea/situationidea';
 import {
+	IIdeaRating,
+} from '../idea/idearating';
+import {
 	IAgreementReason,
 } from './agreementreason';
 
@@ -24,6 +27,7 @@ export interface IAgreement extends IAirEntity {
 
 	// Non-Id Relations
 	situationIdea?: ISituationIdea;
+	idea?: IIdeaRating;
 	agreementReasons?: IAgreementReason[];
 
 	// Transient Properties

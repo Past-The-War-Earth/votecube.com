@@ -9,8 +9,11 @@ import { AirEntity } from "@airport/holding-pattern";
 let Agreement = class Agreement extends AirEntity {
 };
 __decorate([
-    ManyToOne()
+    ManyToOne({ optional: true })
 ], Agreement.prototype, "situationIdea", void 0);
+__decorate([
+    ManyToOne()
+], Agreement.prototype, "idea", void 0);
 __decorate([
     OneToMany({ mappedBy: 'agreement' })
 ], Agreement.prototype, "agreementReasons", void 0);

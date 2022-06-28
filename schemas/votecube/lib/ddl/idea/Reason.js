@@ -34,8 +34,11 @@ __decorate([
     DbString()
 ], Reason.prototype, "outcomeOrdinal", void 0);
 __decorate([
-    ManyToOne()
+    ManyToOne({ optional: true })
 ], Reason.prototype, "situationIdea", void 0);
+__decorate([
+    ManyToOne()
+], Reason.prototype, "idea", void 0);
 __decorate([
     ManyToOne()
 ], Reason.prototype, "factor", void 0);

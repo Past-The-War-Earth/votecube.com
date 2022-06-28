@@ -8,6 +8,8 @@ import { Idea } from '../ddl/idea/idea';
 import { IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea } from './idea/qidea';
 import { IdeaLabel } from '../ddl/idea/idealabel';
 import { IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel } from './idea/qidealabel';
+import { IdeaRating } from '../ddl/idea/idearating';
+import { IdeaRatingESelect, IdeaRatingECreateProperties, IdeaRatingEUpdateColumns, IdeaRatingEUpdateProperties, IdeaRatingEId, IdeaRatingGraph, QIdeaRating } from './idea/qidearating';
 import { IdeaTopic } from '../ddl/idea/ideatopic';
 import { IdeaTopicESelect, IdeaTopicECreateProperties, IdeaTopicEUpdateColumns, IdeaTopicEUpdateProperties, IdeaTopicEId, IdeaTopicGraph, QIdeaTopic } from './idea/qideatopic';
 import { Label } from '../ddl/label';
@@ -51,6 +53,12 @@ export declare class BaseIdeaDuo extends SQDIDuo<Idea, IdeaESelect, IdeaECreateP
 export interface IBaseIdeaLabelDuo extends IDuo<IdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> {
 }
 export declare class BaseIdeaLabelDuo extends SQDIDuo<IdeaLabel, IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel> implements IBaseIdeaLabelDuo {
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseIdeaRatingDuo extends IDuo<IdeaRating, IdeaRatingESelect, IdeaRatingECreateProperties, IdeaRatingEUpdateColumns, IdeaRatingEUpdateProperties, IdeaRatingEId, IdeaRatingGraph, QIdeaRating> {
+}
+export declare class BaseIdeaRatingDuo extends SQDIDuo<IdeaRating, IdeaRatingESelect, IdeaRatingECreateProperties, IdeaRatingEUpdateColumns, IdeaRatingEUpdateProperties, IdeaRatingEId, IdeaRatingGraph, QIdeaRating> implements IBaseIdeaRatingDuo {
     static diSet(): boolean;
     constructor();
 }

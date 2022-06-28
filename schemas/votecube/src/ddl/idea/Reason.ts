@@ -41,8 +41,11 @@ export class Reason
 	@DbString()
 	outcomeOrdinal: 'A' | 'B'
 
-	@ManyToOne()
+	@ManyToOne({ optional: true })
 	situationIdea: SituationIdea
+
+	@ManyToOne()
+	idea: Idea
 
 	@ManyToOne()
 	factor: Factor

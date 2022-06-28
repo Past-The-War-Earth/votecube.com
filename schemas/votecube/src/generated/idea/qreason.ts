@@ -47,6 +47,19 @@ import {
 	ISituationIdea,
 } from './situationidea';
 import {
+	IdeaGraph,
+	IdeaEId,
+	IdeaEOptionalId,
+	IdeaEUpdateProperties,
+	IdeaESelect,
+	QIdea,
+	QIdeaQId,
+	QIdeaQRelation,
+} from './qidea';
+import {
+	IIdea,
+} from './idea';
+import {
 	FactorGraph,
 	FactorEId,
 	FactorEOptionalId,
@@ -102,6 +115,7 @@ export interface ReasonESelect
 
   // Non-Id relations (including OneToMany's)
 	situationIdea?: SituationIdeaESelect;
+	idea?: IdeaESelect;
 	factor?: FactorESelect;
 	position?: PositionESelect;
 
@@ -144,6 +158,7 @@ export interface ReasonEUpdateProperties
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situationIdea?: SituationIdeaEOptionalId;
+	idea?: IdeaEOptionalId;
 	factor?: FactorEOptionalId;
 	position?: PositionEOptionalId;
 
@@ -167,6 +182,7 @@ export interface ReasonGraph
 
 	// Relations
 	situationIdea?: SituationIdeaGraph;
+	idea?: IdeaGraph;
 	factor?: FactorGraph;
 	position?: PositionGraph;
 
@@ -194,6 +210,9 @@ export interface ReasonEUpdateColumns
 	SITUATION_IDEAS_RID_1?: number | IQNumberField;
 	SITUATION_IDEAS_AID_1?: number | IQNumberField;
 	SITUATION_IDEAS_ARID_1?: number | IQNumberField;
+	IDEAS_RID_1?: number | IQNumberField;
+	IDEAS_AID_1?: number | IQNumberField;
+	IDEAS_ARID_1?: number | IQNumberField;
 	FACTORS_RID_1?: number | IQNumberField;
 	FACTORS_AID_1?: number | IQNumberField;
 	FACTORS_ARID_1?: number | IQNumberField;
@@ -244,6 +263,7 @@ export interface QReason extends QAirEntity
 
 	// Non-Id Relations
 	situationIdea: QSituationIdeaQRelation;
+	idea: QIdeaQRelation;
 	factor: QFactorQRelation;
 	position: QPositionQRelation;
 

@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Column, Entity, OneToMany, Table } from '@airport/air-traffic-control';
+import { Column, Entity, ManyToOne, OneToMany, Table } from '@airport/air-traffic-control';
 import { AirEntity } from '@airport/holding-pattern';
 let Idea = class Idea extends AirEntity {
 };
@@ -12,8 +12,32 @@ __decorate([
     Column({ name: 'NAME', nullable: false })
 ], Idea.prototype, "name", void 0);
 __decorate([
+    Column({ name: 'AGREEMENT_SHARE_TOTAL' })
+], Idea.prototype, "agreementShareTotal", void 0);
+__decorate([
+    Column({ name: 'NUMBER_OF_AGREEMENTS' })
+], Idea.prototype, "numberOfAgreements", void 0);
+__decorate([
+    Column({ name: 'URGENCY_TOTAL' })
+], Idea.prototype, "urgencyTotal", void 0);
+__decorate([
+    Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
+], Idea.prototype, "numberOfUrgencyRatings", void 0);
+__decorate([
+    ManyToOne({ optional: true })
+], Idea.prototype, "parent", void 0);
+__decorate([
     OneToMany({ mappedBy: 'parent' })
 ], Idea.prototype, "children", void 0);
+__decorate([
+    OneToMany({ mappedBy: 'idea' })
+], Idea.prototype, "ideaRatings", void 0);
+__decorate([
+    OneToMany({ mappedBy: 'situationIdea' })
+], Idea.prototype, "agreements", void 0);
+__decorate([
+    OneToMany({ mappedBy: 'situationIdea' })
+], Idea.prototype, "reasons", void 0);
 __decorate([
     OneToMany({ mappedBy: 'idea' })
 ], Idea.prototype, "ideaLabels", void 0);

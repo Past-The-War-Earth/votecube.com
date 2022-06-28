@@ -8,6 +8,9 @@ import {
 	ISituation,
 } from '@sapoto/core';
 import {
+	IIdeaRating,
+} from './idearating';
+import {
 	IAgreement,
 } from '../agreement/agreement';
 import {
@@ -29,10 +32,13 @@ export interface ISituationIdea extends IAirEntity {
 	// Non-Id Properties
 	agreementShareTotal?: number;
 	numberOfAgreements?: number;
+	urgencyTotal?: number;
+	numberOfUrgencyRatings?: number;
 
 	// Non-Id Relations
 	idea?: IIdea;
 	situation?: ISituation;
+	ideaRatings?: IIdeaRating;
 	agreements?: IAgreement[];
 	reasons?: IReason[];
 

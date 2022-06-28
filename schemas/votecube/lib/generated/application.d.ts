@@ -137,7 +137,7 @@ export declare const APPLICATION: {
                 relationTableIndex: number;
                 relationTableApplicationIndex: number;
                 sinceVersion: number;
-                oneToManyElems?: undefined;
+                manyToOneElems?: undefined;
             } | {
                 index: number;
                 isId: boolean;
@@ -148,12 +148,12 @@ export declare const APPLICATION: {
                 relationTableIndex: number;
                 sinceVersion: number;
                 relationTableApplicationIndex?: undefined;
-                oneToManyElems?: undefined;
+                manyToOneElems?: undefined;
             } | {
                 index: number;
                 isId: boolean;
-                oneToManyElems: {
-                    mappedBy: string;
+                manyToOneElems: {
+                    optional: boolean;
                 };
                 relationType: string;
                 propertyRef: {
@@ -168,7 +168,7 @@ export declare const APPLICATION: {
                 name: string;
                 columnIndexes: any[];
             };
-            operations: {};
+            operations?: undefined;
         } | {
             columns: ({
                 index: number;
@@ -242,6 +242,22 @@ export declare const APPLICATION: {
                 relationTableIndex: number;
                 relationTableApplicationIndex: number;
                 sinceVersion: number;
+                manyToOneElems?: undefined;
+                oneToManyElems?: undefined;
+            } | {
+                index: number;
+                isId: boolean;
+                manyToOneElems: {
+                    optional: boolean;
+                };
+                relationType: string;
+                propertyRef: {
+                    index: number;
+                };
+                relationTableIndex: number;
+                sinceVersion: number;
+                relationTableApplicationIndex?: undefined;
+                oneToManyElems?: undefined;
             } | {
                 index: number;
                 isId: boolean;
@@ -252,13 +268,29 @@ export declare const APPLICATION: {
                 relationTableIndex: number;
                 sinceVersion: number;
                 relationTableApplicationIndex?: undefined;
+                manyToOneElems?: undefined;
+                oneToManyElems?: undefined;
+            } | {
+                index: number;
+                isId: boolean;
+                oneToManyElems: {
+                    mappedBy: string;
+                };
+                relationType: string;
+                propertyRef: {
+                    index: number;
+                };
+                relationTableIndex: number;
+                sinceVersion: number;
+                relationTableApplicationIndex?: undefined;
+                manyToOneElems?: undefined;
             })[];
             sinceVersion: number;
             tableConfig: {
                 name: string;
                 columnIndexes: any[];
             };
-            operations?: undefined;
+            operations: {};
         })[];
         integerVersion: number;
         referencedApplications: {

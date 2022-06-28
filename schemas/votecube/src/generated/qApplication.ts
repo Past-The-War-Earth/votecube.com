@@ -11,6 +11,7 @@ import { QAgreementReason } from './agreement/qagreementreason';
 import { QFactor } from './factor/qfactor';
 import { QIdea } from './idea/qidea';
 import { QIdeaLabel } from './idea/qidealabel';
+import { QIdeaRating } from './idea/qidearating';
 import { QIdeaTopic } from './idea/qideatopic';
 import { QLabel } from './qlabel';
 import { QPosition } from './factor/qposition';
@@ -22,6 +23,7 @@ import {
   Factor,
   Idea,
   IdeaLabel,
+  IdeaRating,
   IdeaTopic,
   Label,
   Position,
@@ -38,6 +40,7 @@ export interface LocalQApplication extends QApplication {
 	Factor: QFactor;
 	Idea: QIdea;
 	IdeaLabel: QIdeaLabel;
+	IdeaRating: QIdeaRating;
 	IdeaTopic: QIdeaTopic;
 	Label: QLabel;
 	Position: QPosition;
@@ -52,6 +55,7 @@ const __constructors__ = {
 	Factor: Factor,
 	Idea: Idea,
 	IdeaLabel: IdeaLabel,
+	IdeaRating: IdeaRating,
 	IdeaTopic: IdeaTopic,
 	Label: Label,
 	Position: Position,

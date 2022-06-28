@@ -8,6 +8,8 @@ import { Idea } from '../ddl/idea/idea';
 import { IdeaESelect, IdeaECreateProperties, IdeaEUpdateColumns, IdeaEUpdateProperties, IdeaEId, IdeaGraph, QIdea } from './idea/qidea';
 import { IdeaLabel } from '../ddl/idea/idealabel';
 import { IdeaLabelESelect, IdeaLabelECreateProperties, IdeaLabelEUpdateColumns, IdeaLabelEUpdateProperties, IdeaLabelEId, IdeaLabelGraph, QIdeaLabel } from './idea/qidealabel';
+import { IdeaRating } from '../ddl/idea/idearating';
+import { IdeaRatingESelect, IdeaRatingECreateProperties, IdeaRatingEUpdateColumns, IdeaRatingEUpdateProperties, IdeaRatingEId, IdeaRatingGraph, QIdeaRating } from './idea/qidearating';
 import { IdeaTopic } from '../ddl/idea/ideatopic';
 import { IdeaTopicESelect, IdeaTopicECreateProperties, IdeaTopicEUpdateColumns, IdeaTopicEUpdateProperties, IdeaTopicEId, IdeaTopicGraph, QIdeaTopic } from './idea/qideatopic';
 import { Label } from '../ddl/label';
@@ -76,6 +78,17 @@ export declare class BaseIdeaLabelDao extends SQDIDao<IdeaLabel, IdeaLabelESelec
     static Search: DaoQueryDecorators<IdeaLabelESelect>;
     static SearchOne: DaoQueryDecorators<IdeaLabelESelect>;
     static Save(config: IdeaLabelGraph): PropertyDecorator;
+    static diSet(): boolean;
+    constructor();
+}
+export interface IBaseIdeaRatingDao extends IDao<IdeaRating, IdeaRatingESelect, IdeaRatingECreateProperties, IdeaRatingEUpdateColumns, IdeaRatingEUpdateProperties, IdeaRatingEId, IdeaRatingGraph, QIdeaRating> {
+}
+export declare class BaseIdeaRatingDao extends SQDIDao<IdeaRating, IdeaRatingESelect, IdeaRatingECreateProperties, IdeaRatingEUpdateColumns, IdeaRatingEUpdateProperties, IdeaRatingEId, IdeaRatingGraph, QIdeaRating> implements IBaseIdeaRatingDao {
+    static Find: DaoQueryDecorators<IdeaRatingESelect>;
+    static FindOne: DaoQueryDecorators<IdeaRatingESelect>;
+    static Search: DaoQueryDecorators<IdeaRatingESelect>;
+    static SearchOne: DaoQueryDecorators<IdeaRatingESelect>;
+    static Save(config: IdeaRatingGraph): PropertyDecorator;
     static diSet(): boolean;
     constructor();
 }

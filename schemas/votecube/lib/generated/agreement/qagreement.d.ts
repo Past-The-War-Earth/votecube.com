@@ -1,6 +1,7 @@
 import { IQDateField, IQNumberField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationIdeaGraph, SituationIdeaEOptionalId, SituationIdeaESelect, QSituationIdeaQRelation } from '../idea/qsituationidea';
+import { IdeaRatingGraph, IdeaRatingEOptionalId, IdeaRatingESelect, QIdeaRatingQRelation } from '../idea/qidearating';
 import { AgreementReasonGraph, AgreementReasonESelect, QAgreementReason } from './qagreementreason';
 import { IAgreementReason } from './agreementreason';
 import { IAgreement } from './agreement';
@@ -9,6 +10,7 @@ import { IAgreement } from './agreement';
  */
 export interface AgreementESelect extends AirEntityESelect, AgreementEOptionalId {
     situationIdea?: SituationIdeaESelect;
+    idea?: IdeaRatingESelect;
     agreementReasons?: AgreementReasonESelect;
 }
 /**
@@ -26,12 +28,14 @@ export interface AgreementEOptionalId {
  */
 export interface AgreementEUpdateProperties extends AirEntityEUpdateProperties {
     situationIdea?: SituationIdeaEOptionalId;
+    idea?: IdeaRatingEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface AgreementGraph extends AgreementEOptionalId, AirEntityGraph {
     situationIdea?: SituationIdeaGraph;
+    idea?: IdeaRatingGraph;
     agreementReasons?: AgreementReasonGraph[];
 }
 /**
@@ -47,6 +51,9 @@ export interface AgreementEUpdateColumns extends AirEntityEUpdateColumns {
     SITUATION_IDEAS_RID_1?: number | IQNumberField;
     SITUATION_IDEAS_AID_1?: number | IQNumberField;
     SITUATION_IDEAS_ARID_1?: number | IQNumberField;
+    IDEA_RATINGS_RID_1?: number | IQNumberField;
+    IDEA_RATINGS_AID_1?: number | IQNumberField;
+    IDEA_RATINGS_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -63,6 +70,7 @@ export interface AgreementECreateColumns extends AgreementEId, AgreementEUpdateC
  */
 export interface QAgreement extends QAirEntity {
     situationIdea: QSituationIdeaQRelation;
+    idea: QIdeaRatingQRelation;
     agreementReasons: IQAirEntityOneToManyRelation<IAgreementReason, QAgreementReason>;
 }
 export interface QAgreementQId extends QAirEntityQId {

@@ -2,6 +2,7 @@ import { IQDateField, IQNumberField, IQAirEntityOneToManyRelation } from '@airpo
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@sapoto/core';
+import { IdeaRatingGraph, IdeaRatingESelect, QIdeaRatingQRelation } from './qidearating';
 import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
 import { IAgreement } from '../agreement/agreement';
 import { ReasonGraph, ReasonESelect, QReason } from './qreason';
@@ -13,8 +14,11 @@ import { ISituationIdea } from './situationidea';
 export interface SituationIdeaESelect extends AirEntityESelect, SituationIdeaEOptionalId {
     agreementShareTotal?: number | IQNumberField;
     numberOfAgreements?: number | IQNumberField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
     idea?: IdeaESelect;
     situation?: SituationESelect;
+    ideaRatings?: IdeaRatingESelect;
     agreements?: AgreementESelect;
     reasons?: ReasonESelect;
 }
@@ -34,6 +38,8 @@ export interface SituationIdeaEOptionalId {
 export interface SituationIdeaEUpdateProperties extends AirEntityEUpdateProperties {
     agreementShareTotal?: number | IQNumberField;
     numberOfAgreements?: number | IQNumberField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
     idea?: IdeaEOptionalId;
     situation?: SituationEOptionalId;
 }
@@ -43,8 +49,11 @@ export interface SituationIdeaEUpdateProperties extends AirEntityEUpdateProperti
 export interface SituationIdeaGraph extends SituationIdeaEOptionalId, AirEntityGraph {
     agreementShareTotal?: number | IQNumberField;
     numberOfAgreements?: number | IQNumberField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
     idea?: IdeaGraph;
     situation?: SituationGraph;
+    ideaRatings?: IdeaRatingGraph;
     agreements?: AgreementGraph[];
     reasons?: ReasonGraph[];
 }
@@ -60,6 +69,8 @@ export interface SituationIdeaEUpdateColumns extends AirEntityEUpdateColumns {
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
     AGREEMENT_SHARE_TOTAL?: number | IQNumberField;
     NUMBER_OF_AGREEMENTS?: number | IQNumberField;
+    URGENCY_TOTAL?: number | IQNumberField;
+    NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
     IDEAS_RID_1?: number | IQNumberField;
     IDEAS_AID_1?: number | IQNumberField;
     IDEAS_ARID_1?: number | IQNumberField;
@@ -83,8 +94,11 @@ export interface SituationIdeaECreateColumns extends SituationIdeaEId, Situation
 export interface QSituationIdea extends QAirEntity {
     agreementShareTotal: IQNumberField;
     numberOfAgreements: IQNumberField;
+    urgencyTotal: IQNumberField;
+    numberOfUrgencyRatings: IQNumberField;
     idea: QIdeaQRelation;
     situation: QSituationQRelation;
+    ideaRatings: QIdeaRatingQRelation;
     agreements: IQAirEntityOneToManyRelation<IAgreement, QAgreement>;
     reasons: IQAirEntityOneToManyRelation<IReason, QReason>;
 }

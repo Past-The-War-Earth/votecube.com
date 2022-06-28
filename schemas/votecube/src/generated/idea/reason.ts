@@ -5,6 +5,9 @@ import {
 	ISituationIdea,
 } from './situationidea';
 import {
+	IIdea,
+} from './idea';
+import {
 	IFactor,
 } from '../factor/factor';
 import {
@@ -34,6 +37,7 @@ export interface IReason extends IAirEntity {
 
 	// Non-Id Relations
 	situationIdea?: ISituationIdea;
+	idea?: IIdea;
 	factor?: IFactor;
 	position?: IPosition;
 

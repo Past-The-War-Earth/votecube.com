@@ -9,6 +9,18 @@ import { AirEntity } from "@airport/holding-pattern";
 let SituationIdea = class SituationIdea extends AirEntity {
 };
 __decorate([
+    Column({ name: 'AGREEMENT_SHARE_TOTAL' })
+], SituationIdea.prototype, "agreementShareTotal", void 0);
+__decorate([
+    Column({ name: 'NUMBER_OF_AGREEMENTS' })
+], SituationIdea.prototype, "numberOfAgreements", void 0);
+__decorate([
+    Column({ name: 'URGENCY_TOTAL' })
+], SituationIdea.prototype, "urgencyTotal", void 0);
+__decorate([
+    Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
+], SituationIdea.prototype, "numberOfUrgencyRatings", void 0);
+__decorate([
     ManyToOne()
 ], SituationIdea.prototype, "idea", void 0);
 __decorate([
@@ -16,16 +28,13 @@ __decorate([
 ], SituationIdea.prototype, "situation", void 0);
 __decorate([
     OneToMany({ mappedBy: 'situationIdea' })
+], SituationIdea.prototype, "ideaRatings", void 0);
+__decorate([
+    OneToMany({ mappedBy: 'situationIdea' })
 ], SituationIdea.prototype, "agreements", void 0);
 __decorate([
     OneToMany({ mappedBy: 'situationIdea' })
 ], SituationIdea.prototype, "reasons", void 0);
-__decorate([
-    Column({ name: 'AGREEMENT_SHARE_TOTAL' })
-], SituationIdea.prototype, "agreementShareTotal", void 0);
-__decorate([
-    Column({ name: 'NUMBER_OF_AGREEMENTS' })
-], SituationIdea.prototype, "numberOfAgreements", void 0);
 SituationIdea = __decorate([
     Entity(),
     Table({ name: 'SITUATION_IDEAS' })
