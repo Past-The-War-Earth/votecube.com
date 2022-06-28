@@ -19,5 +19,8 @@ export declare class Idea extends AirEntity {
     ideaLabels: IdeaLabel[];
     situationIdeas: SituationIdea[];
     ideaTopics: IdeaTopic[];
+    userIdeaRating?: IdeaRating;
+    userAgreement?: Agreement;
+    userReasons: Reason[];
 }
 //# sourceMappingURL=Idea.d.ts.map

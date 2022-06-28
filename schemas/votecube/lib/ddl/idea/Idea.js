@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Column, Entity, ManyToOne, OneToMany, Table } from '@airport/air-traffic-control';
+import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from '@airport/air-traffic-control';
 import { AirEntity } from '@airport/holding-pattern';
 let Idea = class Idea extends AirEntity {
 };
@@ -33,10 +33,10 @@ __decorate([
     OneToMany({ mappedBy: 'idea' })
 ], Idea.prototype, "ideaRatings", void 0);
 __decorate([
-    OneToMany({ mappedBy: 'situationIdea' })
+    OneToMany({ mappedBy: 'idea' })
 ], Idea.prototype, "agreements", void 0);
 __decorate([
-    OneToMany({ mappedBy: 'situationIdea' })
+    OneToMany({ mappedBy: 'idea' })
 ], Idea.prototype, "reasons", void 0);
 __decorate([
     OneToMany({ mappedBy: 'idea' })
@@ -47,6 +47,15 @@ __decorate([
 __decorate([
     OneToMany({ mappedBy: 'idea' })
 ], Idea.prototype, "ideaTopics", void 0);
+__decorate([
+    Transient()
+], Idea.prototype, "userIdeaRating", void 0);
+__decorate([
+    Transient()
+], Idea.prototype, "userAgreement", void 0);
+__decorate([
+    Transient()
+], Idea.prototype, "userReasons", void 0);
 Idea = __decorate([
     Entity(),
     Table({ name: 'IDEAS' })

@@ -1220,6 +1220,7 @@ export const APPLICATION = {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
                                     "oneTableIndex": 5,
+                                    "oneRelationIndex": 8,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
@@ -1242,6 +1243,7 @@ export const APPLICATION = {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
                                     "oneTableIndex": 5,
+                                    "oneRelationIndex": 8,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
                                 }
@@ -1264,6 +1266,7 @@ export const APPLICATION = {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
                                     "oneTableIndex": 5,
+                                    "oneRelationIndex": 8,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
                                 }
@@ -3143,7 +3146,7 @@ export const APPLICATION = {
                             "index": 7,
                             "isId": false,
                             "oneToManyElems": {
-                                "mappedBy": "situationIdea"
+                                "mappedBy": "idea"
                             },
                             "relationType": "ONE_TO_MANY",
                             "propertyRef": {
@@ -3156,7 +3159,7 @@ export const APPLICATION = {
                             "index": 8,
                             "isId": false,
                             "oneToManyElems": {
-                                "mappedBy": "situationIdea"
+                                "mappedBy": "idea"
                             },
                             "relationType": "ONE_TO_MANY",
                             "propertyRef": {

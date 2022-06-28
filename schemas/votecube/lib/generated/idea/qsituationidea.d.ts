@@ -2,7 +2,8 @@ import { IQDateField, IQNumberField, IQAirEntityOneToManyRelation } from '@airpo
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@sapoto/core';
-import { IdeaRatingGraph, IdeaRatingESelect, QIdeaRatingQRelation } from './qidearating';
+import { IdeaRatingGraph, IdeaRatingESelect, QIdeaRating } from './qidearating';
+import { IIdeaRating } from './idearating';
 import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
 import { IAgreement } from '../agreement/agreement';
 import { ReasonGraph, ReasonESelect, QReason } from './qreason';
@@ -53,7 +54,7 @@ export interface SituationIdeaGraph extends SituationIdeaEOptionalId, AirEntityG
     numberOfUrgencyRatings?: number | IQNumberField;
     idea?: IdeaGraph;
     situation?: SituationGraph;
-    ideaRatings?: IdeaRatingGraph;
+    ideaRatings?: IdeaRatingGraph[];
     agreements?: AgreementGraph[];
     reasons?: ReasonGraph[];
 }
@@ -98,7 +99,7 @@ export interface QSituationIdea extends QAirEntity {
     numberOfUrgencyRatings: IQNumberField;
     idea: QIdeaQRelation;
     situation: QSituationQRelation;
-    ideaRatings: QIdeaRatingQRelation;
+    ideaRatings: IQAirEntityOneToManyRelation<IIdeaRating, QIdeaRating>;
     agreements: IQAirEntityOneToManyRelation<IAgreement, QAgreement>;
     reasons: IQAirEntityOneToManyRelation<IReason, QReason>;
 }

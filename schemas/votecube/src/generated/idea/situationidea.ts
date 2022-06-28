@@ -2,6 +2,15 @@ import {
 	IAirEntity,
 } from '@airport/holding-pattern';
 import {
+	IdeaRating,
+} from '../../ddl/idea/IdeaRating';
+import {
+	Agreement,
+} from '../../ddl/ddl';
+import {
+	Reason,
+} from '../../ddl/idea/Reason';
+import {
 	IIdea,
 } from './idea';
 import {
@@ -38,11 +47,14 @@ export interface ISituationIdea extends IAirEntity {
 	// Non-Id Relations
 	idea?: IIdea;
 	situation?: ISituation;
-	ideaRatings?: IIdeaRating;
+	ideaRatings?: IIdeaRating[];
 	agreements?: IAgreement[];
 	reasons?: IReason[];
 
 	// Transient Properties
+	userIdeaRating?: IdeaRating;
+	userAgreement?: Agreement;
+	userReasons?: Reason[];
 
 	// Public Methods
 	

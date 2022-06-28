@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
+import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
 import { Situation } from "@sapoto/core";
 import { Agreement, Idea } from "../ddl";
@@ -29,12 +29,21 @@ export class SituationIdea
     situation: Situation
 
     @OneToMany({ mappedBy: 'situationIdea' })
-    ideaRatings: IdeaRating
+    ideaRatings: IdeaRating[]
 
     @OneToMany({ mappedBy: 'situationIdea' })
     agreements: Agreement[]
 
     @OneToMany({ mappedBy: 'situationIdea' })
     reasons: Reason[]
+
+    @Transient()
+    userIdeaRating?: IdeaRating
+
+    @Transient()
+    userAgreement?: Agreement
+
+    @Transient()
+    userReasons: Reason[]
 
 }

@@ -1,4 +1,7 @@
 import { IAirEntity } from '@airport/holding-pattern';
+import { IdeaRating } from '../../ddl/idea/IdeaRating';
+import { Agreement } from '../../ddl/agreement/Agreement';
+import { Reason } from '../../ddl/idea/Reason';
 import { IIdeaRating } from './idearating';
 import { IAgreement } from '../agreement/agreement';
 import { IReason } from './reason';
@@ -19,5 +22,8 @@ export interface IIdea extends IAirEntity {
     ideaLabels?: IIdeaLabel[];
     situationIdeas?: ISituationIdea[];
     ideaTopics?: IIdeaTopic[];
+    userIdeaRating?: IdeaRating;
+    userAgreement?: Agreement;
+    userReasons?: Reason[];
 }
 //# sourceMappingURL=idea.d.ts.map

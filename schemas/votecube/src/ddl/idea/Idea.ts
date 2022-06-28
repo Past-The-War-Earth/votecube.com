@@ -3,7 +3,8 @@ import {
 	Entity,
 	ManyToOne,
 	OneToMany,
-	Table
+	Table,
+	Transient
 } from '@airport/air-traffic-control'
 import { AirEntity } from '@airport/holding-pattern'
 import { IdeaLabel } from './IdeaLabel'
@@ -42,10 +43,10 @@ export class Idea
 	@OneToMany({ mappedBy: 'idea' })
 	ideaRatings: IdeaRating
 
-	@OneToMany({ mappedBy: 'situationIdea' })
+	@OneToMany({ mappedBy: 'idea' })
 	agreements: Agreement[]
 
-	@OneToMany({ mappedBy: 'situationIdea' })
+	@OneToMany({ mappedBy: 'idea' })
 	reasons: Reason[]
 
 	@OneToMany({ mappedBy: 'idea' })
@@ -56,5 +57,14 @@ export class Idea
 
 	@OneToMany({ mappedBy: 'idea' })
 	ideaTopics: IdeaTopic[]
+
+	@Transient()
+	userIdeaRating?: IdeaRating
+
+	@Transient()
+	userAgreement?: Agreement
+
+	@Transient()
+	userReasons: Reason[]
 
 }

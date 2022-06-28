@@ -1,4 +1,7 @@
 import { IAirEntity } from '@airport/holding-pattern';
+import { IdeaRating } from '../../ddl/idea/IdeaRating';
+import { Agreement } from '../../ddl/ddl';
+import { Reason } from '../../ddl/idea/Reason';
 import { IIdea } from './idea';
 import { ISituation } from '@sapoto/core';
 import { IIdeaRating } from './idearating';
@@ -11,8 +14,11 @@ export interface ISituationIdea extends IAirEntity {
     numberOfUrgencyRatings?: number;
     idea?: IIdea;
     situation?: ISituation;
-    ideaRatings?: IIdeaRating;
+    ideaRatings?: IIdeaRating[];
     agreements?: IAgreement[];
     reasons?: IReason[];
+    userIdeaRating?: IdeaRating;
+    userAgreement?: Agreement;
+    userReasons?: Reason[];
 }
 //# sourceMappingURL=situationidea.d.ts.map

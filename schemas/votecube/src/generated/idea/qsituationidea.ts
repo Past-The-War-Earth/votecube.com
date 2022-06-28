@@ -184,7 +184,7 @@ export interface SituationIdeaGraph
 	// Relations
 	idea?: IdeaGraph;
 	situation?: SituationGraph;
-	ideaRatings?: IdeaRatingGraph;
+	ideaRatings?: IdeaRatingGraph[];
 	agreements?: AgreementGraph[];
 	reasons?: ReasonGraph[];
 
@@ -254,7 +254,7 @@ export interface QSituationIdea extends QAirEntity
 	// Non-Id Relations
 	idea: QIdeaQRelation;
 	situation: QSituationQRelation;
-	ideaRatings: QIdeaRatingQRelation;
+	ideaRatings: IQAirEntityOneToManyRelation<IIdeaRating, QIdeaRating>;
 	agreements: IQAirEntityOneToManyRelation<IAgreement, QAgreement>;
 	reasons: IQAirEntityOneToManyRelation<IReason, QReason>;
 

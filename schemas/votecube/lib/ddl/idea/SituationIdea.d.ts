@@ -10,8 +10,11 @@ export declare class SituationIdea extends AirEntity {
     numberOfUrgencyRatings: number;
     idea: Idea;
     situation: Situation;
-    ideaRatings: IdeaRating;
+    ideaRatings: IdeaRating[];
     agreements: Agreement[];
     reasons: Reason[];
+    userIdeaRating?: IdeaRating;
+    userAgreement?: Agreement;
+    userReasons: Reason[];
 }
 //# sourceMappingURL=SituationIdea.d.ts.map
