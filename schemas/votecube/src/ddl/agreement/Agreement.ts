@@ -1,6 +1,6 @@
-import { Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
+import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
-import { IdeaRating } from "../idea/IdeaRating";
+import { Idea } from "../idea/Idea";
 import { SituationIdea } from "../idea/SituationIdea";
 import { AgreementReason } from "./AgreementReason";
 
@@ -9,12 +9,14 @@ import { AgreementReason } from "./AgreementReason";
 export class Agreement
     extends AirEntity {
 
+    @Column({ name: "SHARE_TOTAL" })
+    shareTotal: number
+
     @ManyToOne({ optional: true })
     situationIdea: SituationIdea
 
     @ManyToOne()
-    idea: IdeaRating
-
+    idea: Idea
 
     @OneToMany({ mappedBy: 'agreement' })
     agreementReasons: AgreementReason[]

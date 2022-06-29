@@ -253,11 +253,11 @@ export class BaseIdeaDuo
 	implements IBaseIdeaDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(5)
+		return duoDiSet(6)
 	}
 	
 	constructor() {
-		super(5)
+		super(6)
 	}
 }
 
@@ -289,11 +289,11 @@ export class BaseIdeaRatingDuo
 	implements IBaseIdeaRatingDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(6)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(6)
+		super(2)
 	}
 }
 
@@ -307,11 +307,11 @@ export class BaseIdeaTopicDuo
 	implements IBaseIdeaTopicDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return duoDiSet(5)
 	}
 	
 	constructor() {
-		super(4)
+		super(5)
 	}
 }
 
@@ -361,11 +361,11 @@ export class BaseReasonDuo
 	implements IBaseReasonDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(3)
 	}
 	
 	constructor() {
-		super(2)
+		super(3)
 	}
 }
 
@@ -379,10 +379,10 @@ export class BaseSituationIdeaDuo
 	implements IBaseSituationIdeaDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(4)
 	}
 	
 	constructor() {
-		super(3)
+		super(4)
 	}
 }

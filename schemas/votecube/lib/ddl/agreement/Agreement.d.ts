@@ -1,10 +1,11 @@
 import { AirEntity } from "@airport/holding-pattern";
-import { IdeaRating } from "../idea/IdeaRating";
+import { Idea } from "../idea/Idea";
 import { SituationIdea } from "../idea/SituationIdea";
 import { AgreementReason } from "./AgreementReason";
 export declare class Agreement extends AirEntity {
+    shareTotal: number;
     situationIdea: SituationIdea;
-    idea: IdeaRating;
+    idea: Idea;
     agreementReasons: AgreementReason[];
 }
 //# sourceMappingURL=Agreement.d.ts.map

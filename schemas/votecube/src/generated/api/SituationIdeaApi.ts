@@ -16,6 +16,7 @@ import {
 	AgreementReasonDao,
 } from '../../dao/AgreementReasonDao';
 import {
+	IIdeaDao,
 	ISituationIdeaDao,
 } from '../../dao/dao';
 import {
@@ -24,6 +25,7 @@ import {
 import {
 	Agreement,
 	AgreementReason,
+	Idea,
 	Reason,
 	SituationIdea,
 } from '../../ddl/ddl';
@@ -48,18 +50,6 @@ export class SituationIdeaApi {
         situationIdea: SituationIdea
     ): Promise<void> {
         await this.situationIdeaApi.add(situationIdea)
-    }
-
-    async  setAgreement(
-        agreement: Agreement
-    ): Promise<void> {
-        await this.situationIdeaApi.setAgreement(agreement)
-    }
-
-    async  updateAgreementShare(
-        situationIdeaUuId: string
-    ): Promise<void> {
-        await this.situationIdeaApi.updateAgreementShare(situationIdeaUuId)
     }
 
 }

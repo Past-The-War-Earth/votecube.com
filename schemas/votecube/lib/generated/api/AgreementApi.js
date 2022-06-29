@@ -17,6 +17,9 @@ let AgreementApi = class AgreementApi {
     async getMyAgreementForIdea(ideaRepositoryUuid) {
         return await this.agreementApi.getMyAgreementForIdea(ideaRepositoryUuid);
     }
+    async setAgreement(agreement) {
+        await this.agreementApi.setAgreement(agreement);
+    }
 };
 __decorate([
     Inject()

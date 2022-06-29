@@ -1,7 +1,8 @@
-import { Agreement, SituationIdea } from "../ddl/ddl";
+import { User } from "@airport/travel-document-checkpoint";
+import { Agreement, Idea, SituationIdea } from "../ddl/ddl";
 import { BaseAgreementDao } from "../generated/baseDaos";
 export declare class AgreementDao extends BaseAgreementDao {
-    findForSituationIdeaAndUser(situationIdeaUuid: string | SituationIdea, userUuId: string): Promise<Agreement>;
-    findAllAgreementSharesForSituationIdea(situationIdeaUuId: string | SituationIdea): Promise<Agreement[]>;
+    findForSituationIdeaAndUser(situationIdea: SituationIdea | string, user: User | string): Promise<Agreement>;
+    findForIdeaOnlyAndUser(idea: Idea | string, user: User | string): Promise<Agreement>;
 }
 //# sourceMappingURL=AgreementDao.d.ts.map

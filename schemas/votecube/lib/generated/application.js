@@ -17,6 +17,10 @@ export const APPLICATION = {
                             "getMyAgreementForIdea": {
                                 "isAsync": true,
                                 "parameters": []
+                            },
+                            "setAgreement": {
+                                "isAsync": true,
+                                "parameters": []
                             }
                         }
                     },
@@ -53,12 +57,12 @@ export const APPLICATION = {
                             "add": {
                                 "isAsync": true,
                                 "parameters": []
-                            },
-                            "setAgreement": {
-                                "isAsync": true,
-                                "parameters": []
-                            },
-                            "updateAgreementShare": {
+                            }
+                        }
+                    },
+                    "IdeaRatingApi": {
+                        "operationMap": {
+                            "setIdeaRating": {
                                 "isAsync": true,
                                 "parameters": []
                             }
@@ -568,7 +572,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 9,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
@@ -591,7 +595,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 9,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
@@ -614,7 +618,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 9,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
@@ -865,7 +869,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 9
                             },
-                            "relationTableIndex": 5,
+                            "relationTableIndex": 6,
                             "sinceVersion": 1
                         },
                         {
@@ -884,6 +888,520 @@ export const APPLICATION = {
                         "name": "IDEA_LABELS",
                         "columnIndexes": []
                     }
+                },
+                {
+                    "columns": [
+                        {
+                            "index": 0,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 0,
+                                    "oneApplicationIndex": 1,
+                                    "oneTableIndex": 4,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "REPOSITORY_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 0
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 1,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 1,
+                                    "oneApplicationIndex": 1,
+                                    "oneTableIndex": 0,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "ACTOR_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 1
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 2,
+                            "isGenerated": true,
+                            "manyRelationColumnRefs": [],
+                            "name": "ACTOR_RECORD_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 2
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 3,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "AGE_SUITABILITY",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 3
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 4,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "CREATED_AT",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 4
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "DATE"
+                        },
+                        {
+                            "index": 5,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "SYSTEM_WIDE_OPERATION_ID",
+                            "notNull": true,
+                            "propertyRefs": [
+                                {
+                                    "index": 5
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 6,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "ORIGINAL_ACTOR_RECORD_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 8
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 7,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 2,
+                                    "oneApplicationIndex": 1,
+                                    "oneTableIndex": 4,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "ORIGINAL_REPOSITORY_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 6
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 8,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 3,
+                                    "oneApplicationIndex": 1,
+                                    "oneTableIndex": 0,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "ORIGINAL_ACTOR_ID",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 7
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 9,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "URGENCY_RATING",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 9
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 10,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 4,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 6,
+                                    "oneRelationIndex": 6,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "IDEAS_RID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 10
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 11,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 4,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 6,
+                                    "oneRelationIndex": 6,
+                                    "oneColumnIndex": 1,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "IDEAS_AID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 10
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 12,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 4,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 6,
+                                    "oneRelationIndex": 6,
+                                    "oneColumnIndex": 2,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "IDEAS_ARID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 10
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 13,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 5,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 4,
+                                    "oneRelationIndex": 6,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "SITUATION_IDEAS_RID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 11
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 14,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 5,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 4,
+                                    "oneRelationIndex": 6,
+                                    "oneColumnIndex": 1,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "SITUATION_IDEAS_AID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 11
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 15,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 5,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 4,
+                                    "oneRelationIndex": 6,
+                                    "oneColumnIndex": 2,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "SITUATION_IDEAS_ARID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 11
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        }
+                    ],
+                    "idColumnRefs": [
+                        {
+                            "index": 0
+                        },
+                        {
+                            "index": 1
+                        },
+                        {
+                            "index": 2
+                        }
+                    ],
+                    "index": 2,
+                    "isLocal": false,
+                    "isAirEntity": true,
+                    "name": "IdeaRating",
+                    "properties": [
+                        {
+                            "index": 0,
+                            "isId": true,
+                            "name": "repository",
+                            "relationRef": {
+                                "index": 0
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": true,
+                            "name": "actor",
+                            "relationRef": {
+                                "index": 1
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 2
+                            },
+                            "index": 2,
+                            "isId": true,
+                            "name": "actorRecordId",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 3
+                            },
+                            "index": 3,
+                            "isId": false,
+                            "name": "ageSuitability",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 4
+                            },
+                            "index": 4,
+                            "isId": false,
+                            "name": "createdAt",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 5
+                            },
+                            "index": 5,
+                            "isId": false,
+                            "name": "systemWideOperationId",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 6,
+                            "isId": false,
+                            "name": "originalRepository",
+                            "relationRef": {
+                                "index": 2
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 7,
+                            "isId": false,
+                            "name": "originalActor",
+                            "relationRef": {
+                                "index": 3
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 6
+                            },
+                            "index": 8,
+                            "isId": false,
+                            "name": "originalActorRecordId",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 9
+                            },
+                            "index": 9,
+                            "isId": false,
+                            "name": "urgencyRating",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 10,
+                            "isId": false,
+                            "name": "idea",
+                            "relationRef": {
+                                "index": 4
+                            },
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 11,
+                            "isId": false,
+                            "name": "situationIdea",
+                            "relationRef": {
+                                "index": 5
+                            },
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "relations": [
+                        {
+                            "index": 0,
+                            "isId": true,
+                            "relationType": "MANY_TO_ONE",
+                            "propertyRef": {
+                                "index": 0
+                            },
+                            "relationTableIndex": 4,
+                            "relationTableApplicationIndex": 1,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 1,
+                            "isId": true,
+                            "relationType": "MANY_TO_ONE",
+                            "propertyRef": {
+                                "index": 1
+                            },
+                            "relationTableIndex": 0,
+                            "relationTableApplicationIndex": 1,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 2,
+                            "isId": false,
+                            "relationType": "MANY_TO_ONE",
+                            "propertyRef": {
+                                "index": 6
+                            },
+                            "relationTableIndex": 4,
+                            "relationTableApplicationIndex": 1,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 3,
+                            "isId": false,
+                            "relationType": "MANY_TO_ONE",
+                            "propertyRef": {
+                                "index": 7
+                            },
+                            "relationTableIndex": 0,
+                            "relationTableApplicationIndex": 1,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 4,
+                            "isId": false,
+                            "relationType": "MANY_TO_ONE",
+                            "propertyRef": {
+                                "index": 10
+                            },
+                            "relationTableIndex": 6,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 5,
+                            "isId": false,
+                            "manyToOneElems": {
+                                "optional": true
+                            },
+                            "relationType": "MANY_TO_ONE",
+                            "propertyRef": {
+                                "index": 11
+                            },
+                            "relationTableIndex": 4,
+                            "sinceVersion": 1
+                        }
+                    ],
+                    "sinceVersion": 1,
+                    "tableConfig": {
+                        "name": "IDEA_RATINGS",
+                        "columnIndexes": []
+                    },
+                    "operations": {}
                 },
                 {
                     "columns": [
@@ -1150,7 +1668,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
+                                    "oneTableIndex": 4,
                                     "oneRelationIndex": 8,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
@@ -1173,7 +1691,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
+                                    "oneTableIndex": 4,
                                     "oneRelationIndex": 8,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
@@ -1196,7 +1714,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
+                                    "oneTableIndex": 4,
                                     "oneRelationIndex": 8,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
@@ -1219,7 +1737,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 8,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
@@ -1242,7 +1760,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 8,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
@@ -1265,7 +1783,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 8,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
@@ -1425,7 +1943,7 @@ export const APPLICATION = {
                             "index": 2
                         }
                     ],
-                    "index": 2,
+                    "index": 3,
                     "isLocal": false,
                     "isAirEntity": true,
                     "name": "Reason",
@@ -1666,7 +2184,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 16
                             },
-                            "relationTableIndex": 3,
+                            "relationTableIndex": 4,
                             "sinceVersion": 1
                         },
                         {
@@ -1676,7 +2194,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 17
                             },
-                            "relationTableIndex": 5,
+                            "relationTableIndex": 6,
                             "sinceVersion": 1
                         },
                         {
@@ -1930,7 +2448,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 10,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
@@ -1953,7 +2471,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 10,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
@@ -1976,7 +2494,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 10,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
@@ -2070,7 +2588,7 @@ export const APPLICATION = {
                             "index": 2
                         }
                     ],
-                    "index": 3,
+                    "index": 4,
                     "isLocal": false,
                     "isAirEntity": true,
                     "name": "SituationIdea",
@@ -2290,7 +2808,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 13
                             },
-                            "relationTableIndex": 5,
+                            "relationTableIndex": 6,
                             "sinceVersion": 1
                         },
                         {
@@ -2314,7 +2832,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 15
                             },
-                            "relationTableIndex": 6,
+                            "relationTableIndex": 2,
                             "sinceVersion": 1
                         },
                         {
@@ -2340,7 +2858,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 17
                             },
-                            "relationTableIndex": 2,
+                            "relationTableIndex": 3,
                             "sinceVersion": 1
                         }
                     ],
@@ -2360,7 +2878,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 0,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 11,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
@@ -2383,7 +2901,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 0,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 11,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
@@ -2406,7 +2924,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 0,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 11,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
@@ -2490,7 +3008,7 @@ export const APPLICATION = {
                         }
                     ],
                     "idColumnRefs": [],
-                    "index": 4,
+                    "index": 5,
                     "isLocal": true,
                     "isAirEntity": false,
                     "name": "IdeaTopic",
@@ -2522,7 +3040,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 0
                             },
-                            "relationTableIndex": 5,
+                            "relationTableIndex": 6,
                             "sinceVersion": 1
                         },
                         {
@@ -2780,7 +3298,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 5,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
@@ -2803,7 +3321,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 5,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
@@ -2826,7 +3344,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
+                                    "oneTableIndex": 6,
                                     "oneRelationIndex": 5,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
@@ -2854,7 +3372,7 @@ export const APPLICATION = {
                             "index": 2
                         }
                     ],
-                    "index": 5,
+                    "index": 6,
                     "isLocal": false,
                     "isAirEntity": true,
                     "name": "Idea",
@@ -3113,7 +3631,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 14
                             },
-                            "relationTableIndex": 5,
+                            "relationTableIndex": 6,
                             "sinceVersion": 1
                         },
                         {
@@ -3126,7 +3644,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 15
                             },
-                            "relationTableIndex": 5,
+                            "relationTableIndex": 6,
                             "sinceVersion": 1
                         },
                         {
@@ -3139,7 +3657,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 16
                             },
-                            "relationTableIndex": 6,
+                            "relationTableIndex": 2,
                             "sinceVersion": 1
                         },
                         {
@@ -3165,7 +3683,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 18
                             },
-                            "relationTableIndex": 2,
+                            "relationTableIndex": 3,
                             "sinceVersion": 1
                         },
                         {
@@ -3191,7 +3709,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 20
                             },
-                            "relationTableIndex": 3,
+                            "relationTableIndex": 4,
                             "sinceVersion": 1
                         },
                         {
@@ -3204,7 +3722,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 21
                             },
-                            "relationTableIndex": 4,
+                            "relationTableIndex": 5,
                             "sinceVersion": 1
                         }
                     ],
@@ -3214,519 +3732,6 @@ export const APPLICATION = {
                         "columnIndexes": []
                     },
                     "operations": {}
-                },
-                {
-                    "columns": [
-                        {
-                            "index": 0,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 0,
-                                    "oneApplicationIndex": 1,
-                                    "oneTableIndex": 4,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "REPOSITORY_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 0
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 1,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 1,
-                                    "oneApplicationIndex": 1,
-                                    "oneTableIndex": 0,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "ACTOR_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 1
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 2,
-                            "isGenerated": true,
-                            "manyRelationColumnRefs": [],
-                            "name": "ACTOR_RECORD_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 2
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 3,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "AGE_SUITABILITY",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 3
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 4,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "CREATED_AT",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 4
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "DATE"
-                        },
-                        {
-                            "index": 5,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "SYSTEM_WIDE_OPERATION_ID",
-                            "notNull": true,
-                            "propertyRefs": [
-                                {
-                                    "index": 5
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 6,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "ORIGINAL_ACTOR_RECORD_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 8
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 7,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 2,
-                                    "oneApplicationIndex": 1,
-                                    "oneTableIndex": 4,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "ORIGINAL_REPOSITORY_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 6
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 8,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 3,
-                                    "oneApplicationIndex": 1,
-                                    "oneTableIndex": 0,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "ORIGINAL_ACTOR_ID",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 7
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 9,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "URGENCY_RATING",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 9
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 10,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 4,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "IDEAS_RID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 10
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 11,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 4,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "IDEAS_AID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 10
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 12,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 4,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 5,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 2,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "IDEAS_ARID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 10
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 13,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 5,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "SITUATION_IDEAS_RID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 11
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 14,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 5,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "SITUATION_IDEAS_AID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 11
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 15,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 5,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 2,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "SITUATION_IDEAS_ARID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 11
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        }
-                    ],
-                    "idColumnRefs": [
-                        {
-                            "index": 0
-                        },
-                        {
-                            "index": 1
-                        },
-                        {
-                            "index": 2
-                        }
-                    ],
-                    "index": 6,
-                    "isLocal": false,
-                    "isAirEntity": true,
-                    "name": "IdeaRating",
-                    "properties": [
-                        {
-                            "index": 0,
-                            "isId": true,
-                            "name": "repository",
-                            "relationRef": {
-                                "index": 0
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": true,
-                            "name": "actor",
-                            "relationRef": {
-                                "index": 1
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 2
-                            },
-                            "index": 2,
-                            "isId": true,
-                            "name": "actorRecordId",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 3
-                            },
-                            "index": 3,
-                            "isId": false,
-                            "name": "ageSuitability",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 4
-                            },
-                            "index": 4,
-                            "isId": false,
-                            "name": "createdAt",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 5
-                            },
-                            "index": 5,
-                            "isId": false,
-                            "name": "systemWideOperationId",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 6,
-                            "isId": false,
-                            "name": "originalRepository",
-                            "relationRef": {
-                                "index": 2
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 7,
-                            "isId": false,
-                            "name": "originalActor",
-                            "relationRef": {
-                                "index": 3
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 6
-                            },
-                            "index": 8,
-                            "isId": false,
-                            "name": "originalActorRecordId",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 9
-                            },
-                            "index": 9,
-                            "isId": false,
-                            "name": "urgencyRating",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 10,
-                            "isId": false,
-                            "name": "idea",
-                            "relationRef": {
-                                "index": 4
-                            },
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 11,
-                            "isId": false,
-                            "name": "situationIdea",
-                            "relationRef": {
-                                "index": 5
-                            },
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "relations": [
-                        {
-                            "index": 0,
-                            "isId": true,
-                            "relationType": "MANY_TO_ONE",
-                            "propertyRef": {
-                                "index": 0
-                            },
-                            "relationTableIndex": 4,
-                            "relationTableApplicationIndex": 1,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 1,
-                            "isId": true,
-                            "relationType": "MANY_TO_ONE",
-                            "propertyRef": {
-                                "index": 1
-                            },
-                            "relationTableIndex": 0,
-                            "relationTableApplicationIndex": 1,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 2,
-                            "isId": false,
-                            "relationType": "MANY_TO_ONE",
-                            "propertyRef": {
-                                "index": 6
-                            },
-                            "relationTableIndex": 4,
-                            "relationTableApplicationIndex": 1,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 3,
-                            "isId": false,
-                            "relationType": "MANY_TO_ONE",
-                            "propertyRef": {
-                                "index": 7
-                            },
-                            "relationTableIndex": 0,
-                            "relationTableApplicationIndex": 1,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 4,
-                            "isId": false,
-                            "relationType": "MANY_TO_ONE",
-                            "propertyRef": {
-                                "index": 10
-                            },
-                            "relationTableIndex": 5,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 5,
-                            "isId": false,
-                            "manyToOneElems": {
-                                "optional": true
-                            },
-                            "relationType": "MANY_TO_ONE",
-                            "propertyRef": {
-                                "index": 11
-                            },
-                            "relationTableIndex": 3,
-                            "sinceVersion": 1
-                        }
-                    ],
-                    "sinceVersion": 1,
-                    "tableConfig": {
-                        "name": "IDEA_RATINGS",
-                        "columnIndexes": []
-                    }
                 },
                 {
                     "columns": [
@@ -3992,7 +3997,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 2,
+                                    "oneTableIndex": 3,
                                     "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
@@ -4014,7 +4019,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 2,
+                                    "oneTableIndex": 3,
                                     "oneColumnIndex": 1,
                                     "sinceVersion": 1
                                 }
@@ -4036,7 +4041,7 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 2,
+                                    "oneTableIndex": 3,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
                                 }
@@ -4248,7 +4253,7 @@ export const APPLICATION = {
                             "propertyRef": {
                                 "index": 12
                             },
-                            "relationTableIndex": 2,
+                            "relationTableIndex": 3,
                             "sinceVersion": 1
                         }
                     ],
@@ -4422,17 +4427,8 @@ export const APPLICATION = {
                         {
                             "index": 9,
                             "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 4,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
-                                    "oneRelationIndex": 7,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "SITUATION_IDEAS_RID_1",
+                            "manyRelationColumnRefs": [],
+                            "name": "SHARE_TOTAL",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -4449,17 +4445,17 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
+                                    "oneTableIndex": 4,
                                     "oneRelationIndex": 7,
-                                    "oneColumnIndex": 1,
+                                    "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "SITUATION_IDEAS_AID_1",
+                            "name": "SITUATION_IDEAS_RID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 9
+                                    "index": 10
                                 }
                             ],
                             "sinceVersion": 1,
@@ -4472,17 +4468,17 @@ export const APPLICATION = {
                                 {
                                     "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
+                                    "oneTableIndex": 4,
                                     "oneRelationIndex": 7,
-                                    "oneColumnIndex": 2,
+                                    "oneColumnIndex": 1,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "SITUATION_IDEAS_ARID_1",
+                            "name": "SITUATION_IDEAS_AID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 9
+                                    "index": 10
                                 }
                             ],
                             "sinceVersion": 1,
@@ -4493,14 +4489,15 @@ export const APPLICATION = {
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
-                                    "manyRelationIndex": 5,
+                                    "manyRelationIndex": 4,
                                     "oneApplicationIndex": null,
-                                    "oneTableIndex": 6,
-                                    "oneColumnIndex": 0,
+                                    "oneTableIndex": 4,
+                                    "oneRelationIndex": 7,
+                                    "oneColumnIndex": 2,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "IDEA_RATINGS_RID_1",
+                            "name": "SITUATION_IDEAS_ARID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
@@ -4518,15 +4515,16 @@ export const APPLICATION = {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
                                     "oneTableIndex": 6,
-                                    "oneColumnIndex": 1,
+                                    "oneRelationIndex": 7,
+                                    "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "IDEA_RATINGS_AID_1",
+                            "name": "IDEAS_RID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 10
+                                    "index": 11
                                 }
                             ],
                             "sinceVersion": 1,
@@ -4540,15 +4538,39 @@ export const APPLICATION = {
                                     "manyRelationIndex": 5,
                                     "oneApplicationIndex": null,
                                     "oneTableIndex": 6,
+                                    "oneRelationIndex": 7,
+                                    "oneColumnIndex": 1,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "IDEAS_AID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 11
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 15,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 5,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 6,
+                                    "oneRelationIndex": 7,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "IDEA_RATINGS_ARID_1",
+                            "name": "IDEAS_ARID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 10
+                                    "index": 11
                                 }
                             ],
                             "sinceVersion": 1,
@@ -4653,7 +4675,16 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
+                            "columnRef": {
+                                "index": 9
+                            },
                             "index": 9,
+                            "isId": false,
+                            "name": "shareTotal",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 10,
                             "isId": false,
                             "name": "situationIdea",
                             "relationRef": {
@@ -4662,7 +4693,7 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
-                            "index": 10,
+                            "index": 11,
                             "isId": false,
                             "name": "idea",
                             "relationRef": {
@@ -4671,7 +4702,7 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
-                            "index": 11,
+                            "index": 12,
                             "isId": false,
                             "name": "agreementReasons",
                             "relationRef": {
@@ -4733,9 +4764,9 @@ export const APPLICATION = {
                             },
                             "relationType": "MANY_TO_ONE",
                             "propertyRef": {
-                                "index": 9
+                                "index": 10
                             },
-                            "relationTableIndex": 3,
+                            "relationTableIndex": 4,
                             "sinceVersion": 1
                         },
                         {
@@ -4743,7 +4774,7 @@ export const APPLICATION = {
                             "isId": false,
                             "relationType": "MANY_TO_ONE",
                             "propertyRef": {
-                                "index": 10
+                                "index": 11
                             },
                             "relationTableIndex": 6,
                             "sinceVersion": 1
@@ -4756,7 +4787,7 @@ export const APPLICATION = {
                             },
                             "relationType": "ONE_TO_MANY",
                             "propertyRef": {
-                                "index": 11
+                                "index": 12
                             },
                             "relationTableIndex": 7,
                             "sinceVersion": 1

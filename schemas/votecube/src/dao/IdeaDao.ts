@@ -1,10 +1,10 @@
 import {
     and,
+    plus,
     Y
 } from '@airport/air-traffic-control'
 import {
     BaseIdeaDao,
-    IIdea,
     Q,
     QFactor,
     QLabel,
@@ -13,6 +13,7 @@ import {
     QSituationIdea,
     QReason,
     QIdeaLabel,
+    IBaseIdeaDao,
 } from "../generated/generated";
 import {
     QRepository
@@ -21,8 +22,10 @@ import { ISaveResult } from '@airport/ground-control';
 import { Injected } from '@airport/direction-indicator';
 import { IRepositoryIdentifier } from '../types';
 import { Idea } from '../ddl/ddl';
+import { ITotalDelta } from './TotalDelta';
 
-export interface IIdeaDao {
+export interface IIdeaDao
+    extends IBaseIdeaDao {
 
     findByRepositoryUuId(
         repositorySource: string,
@@ -36,6 +39,16 @@ export interface IIdeaDao {
     saveNewIdea(
         idea: Idea
     ): Promise<IRepositoryIdentifier>
+
+    updateShareTotal(
+        delta: ITotalDelta,
+        idea: Idea
+    ): Promise<void>
+
+    updateUrgencyTotal(
+        delta: ITotalDelta,
+        idea: Idea
+    ): Promise<void>
 
 }
 
@@ -136,6 +149,37 @@ export class IdeaDao
             source: newRepository.source,
             uuId: newRepository.uuId
         }
+    }
+
+    async updateShareTotal(
+        delta: ITotalDelta,
+        idea: Idea
+    ): Promise<void> {
+        const i = Q.Idea
+        await this.db.updateWhere({
+            update: i,
+            set: {
+                agreementShareTotal: plus(i.agreementShareTotal, delta.totalDelta),
+                numberOfAgreements: plus(i.numberOfAgreements, delta.numberDelta)
+            },
+            where: i.equals(idea)
+        })
+    }
+
+    async updateUrgencyTotal(
+        delta: ITotalDelta,
+        idea: Idea
+    ): Promise<void> {
+        const i = Q.Idea
+        await this.db.updateWhere({
+            update: i,
+            set: {
+                urgencyTotal: plus(i.urgencyTotal, delta.totalDelta),
+                numberOfUrgencyRatings: plus(i.numberOfUrgencyRatings,
+                    delta.numberDelta)
+            },
+            where: i.equals(idea)
+        })
     }
 
 }

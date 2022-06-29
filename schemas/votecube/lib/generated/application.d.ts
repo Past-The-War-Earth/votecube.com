@@ -16,6 +16,10 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
+                        setAgreement: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
                     };
                 };
                 IdeaApi: {
@@ -52,11 +56,11 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        setAgreement: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
-                        updateAgreementShare: {
+                    };
+                };
+                IdeaRatingApi: {
+                    operationMap: {
+                        setIdeaRating: {
                             isAsync: boolean;
                             parameters: any[];
                         };
@@ -137,24 +141,9 @@ export declare const APPLICATION: {
                 relationTableIndex: number;
                 relationTableApplicationIndex: number;
                 sinceVersion: number;
-                manyToOneElems?: undefined;
             } | {
                 index: number;
                 isId: boolean;
-                relationType: string;
-                propertyRef: {
-                    index: number;
-                };
-                relationTableIndex: number;
-                sinceVersion: number;
-                relationTableApplicationIndex?: undefined;
-                manyToOneElems?: undefined;
-            } | {
-                index: number;
-                isId: boolean;
-                manyToOneElems: {
-                    optional: boolean;
-                };
                 relationType: string;
                 propertyRef: {
                     index: number;

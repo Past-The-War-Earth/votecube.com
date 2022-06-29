@@ -9,7 +9,7 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseAgreementDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 let AgreementDao = class AgreementDao extends BaseAgreementDao {
-    async findForSituationIdeaAndUser(situationIdeaUuid, userUuId) {
+    async findForSituationIdeaAndUser(situationIdea, user) {
         let ag, a, u, si;
         return await this._findUnique({
             select: {
@@ -18,10 +18,6 @@ let AgreementDao = class AgreementDao extends BaseAgreementDao {
                     '*': Y,
                     uuId: Y
                 },
-                situationIdea: {
-                    agreementShareTotal: Y,
-                    numberOfAgreements: Y,
-                }
             },
             from: [
                 ag = Q.Agreement,
@@ -29,23 +25,26 @@ let AgreementDao = class AgreementDao extends BaseAgreementDao {
                 u = a.user.leftJoin(),
                 si = ag.situationIdea.leftJoin()
             ],
-            where: and(si.equals(situationIdeaUuid), u.equals(userUuId))
+            where: and(si.equals(situationIdea), u.equals(user))
         });
     }
-    async findAllAgreementSharesForSituationIdea(situationIdeaUuId) {
-        let si, a, ar;
-        return await this._find({
+    async findForIdeaOnlyAndUser(idea, user) {
+        let ag, a, u, i;
+        return await this._findUnique({
             select: {
+                '*': Y,
                 agreementReasons: {
-                    share: Y,
-                }
+                    '*': Y,
+                    uuId: Y
+                },
             },
             from: [
-                a = Q.Agreement,
-                si = a.situationIdea.innerJoin(),
-                ar = a.agreementReasons.innerJoin()
+                ag = Q.Agreement,
+                a = ag.actor.leftJoin(),
+                u = a.user.leftJoin(),
+                i = ag.idea.leftJoin()
             ],
-            where: and(si.equals(situationIdeaUuId), ar.share.greaterThan(0))
+            where: and(i.equals(idea), ag.situationIdea.isNull(), u.equals(user))
         });
     }
 };

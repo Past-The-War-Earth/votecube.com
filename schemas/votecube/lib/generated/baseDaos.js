@@ -53,13 +53,13 @@ BaseFactorDao.Search = new DaoQueryDecorators();
 BaseFactorDao.SearchOne = new DaoQueryDecorators();
 export class BaseIdeaDao extends SQDIDao {
     constructor() {
-        super(5);
+        super(6);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(5);
+        return duoDiSet(6);
     }
 }
 BaseIdeaDao.Find = new DaoQueryDecorators();
@@ -83,13 +83,13 @@ BaseIdeaLabelDao.Search = new DaoQueryDecorators();
 BaseIdeaLabelDao.SearchOne = new DaoQueryDecorators();
 export class BaseIdeaRatingDao extends SQDIDao {
     constructor() {
-        super(6);
+        super(2);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(6);
+        return duoDiSet(2);
     }
 }
 BaseIdeaRatingDao.Find = new DaoQueryDecorators();
@@ -98,13 +98,13 @@ BaseIdeaRatingDao.Search = new DaoQueryDecorators();
 BaseIdeaRatingDao.SearchOne = new DaoQueryDecorators();
 export class BaseIdeaTopicDao extends SQDIDao {
     constructor() {
-        super(4);
+        super(5);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(4);
+        return duoDiSet(5);
     }
 }
 BaseIdeaTopicDao.Find = new DaoQueryDecorators();
@@ -143,13 +143,13 @@ BasePositionDao.Search = new DaoQueryDecorators();
 BasePositionDao.SearchOne = new DaoQueryDecorators();
 export class BaseReasonDao extends SQDIDao {
     constructor() {
-        super(2);
+        super(3);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(2);
+        return duoDiSet(3);
     }
 }
 BaseReasonDao.Find = new DaoQueryDecorators();
@@ -158,13 +158,13 @@ BaseReasonDao.Search = new DaoQueryDecorators();
 BaseReasonDao.SearchOne = new DaoQueryDecorators();
 export class BaseSituationIdeaDao extends SQDIDao {
     constructor() {
-        super(3);
+        super(4);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(3);
+        return duoDiSet(4);
     }
 }
 BaseSituationIdeaDao.Find = new DaoQueryDecorators();

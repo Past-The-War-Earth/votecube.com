@@ -47,18 +47,18 @@ import {
 	ISituationIdea,
 } from '../idea/situationidea';
 import {
-	IdeaRatingGraph,
-	IdeaRatingEId,
-	IdeaRatingEOptionalId,
-	IdeaRatingEUpdateProperties,
-	IdeaRatingESelect,
-	QIdeaRating,
-	QIdeaRatingQId,
-	QIdeaRatingQRelation,
-} from '../idea/qidearating';
+	IdeaGraph,
+	IdeaEId,
+	IdeaEOptionalId,
+	IdeaEUpdateProperties,
+	IdeaESelect,
+	QIdea,
+	QIdeaQId,
+	QIdeaQRelation,
+} from '../idea/qidea';
 import {
-	IIdeaRating,
-} from '../idea/idearating';
+	IIdea,
+} from '../idea/idea';
 import {
 	AgreementReasonGraph,
 	AgreementReasonEId,
@@ -90,12 +90,13 @@ declare function require(moduleName: string): any;
 export interface AgreementESelect
     extends AirEntityESelect, AgreementEOptionalId {
 	// Non-Id Properties
+	shareTotal?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
 	situationIdea?: SituationIdeaESelect;
-	idea?: IdeaRatingESelect;
+	idea?: IdeaESelect;
 	agreementReasons?: AgreementReasonESelect;
 
 }
@@ -127,10 +128,11 @@ export interface AgreementEOptionalId {
 export interface AgreementEUpdateProperties
 	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
+	shareTotal?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situationIdea?: SituationIdeaEOptionalId;
-	idea?: IdeaRatingEOptionalId;
+	idea?: IdeaEOptionalId;
 
 }
 
@@ -142,10 +144,11 @@ export interface AgreementGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
+	shareTotal?: number | IQNumberField;
 
 	// Relations
 	situationIdea?: SituationIdeaGraph;
-	idea?: IdeaRatingGraph;
+	idea?: IdeaGraph;
 	agreementReasons?: AgreementReasonGraph[];
 
 }
@@ -162,12 +165,13 @@ export interface AgreementEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	SHARE_TOTAL?: number | IQNumberField;
 	SITUATION_IDEAS_RID_1?: number | IQNumberField;
 	SITUATION_IDEAS_AID_1?: number | IQNumberField;
 	SITUATION_IDEAS_ARID_1?: number | IQNumberField;
-	IDEA_RATINGS_RID_1?: number | IQNumberField;
-	IDEA_RATINGS_AID_1?: number | IQNumberField;
-	IDEA_RATINGS_ARID_1?: number | IQNumberField;
+	IDEAS_RID_1?: number | IQNumberField;
+	IDEAS_AID_1?: number | IQNumberField;
+	IDEAS_ARID_1?: number | IQNumberField;
 
 }
 
@@ -202,10 +206,11 @@ export interface QAgreement extends QAirEntity
 	// Id Relations
 
 	// Non-Id Fields
+	shareTotal: IQNumberField;
 
 	// Non-Id Relations
 	situationIdea: QSituationIdeaQRelation;
-	idea: QIdeaRatingQRelation;
+	idea: QIdeaQRelation;
 	agreementReasons: IQAirEntityOneToManyRelation<IAgreementReason, QAgreementReason>;
 
 }

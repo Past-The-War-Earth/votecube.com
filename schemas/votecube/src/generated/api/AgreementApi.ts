@@ -10,7 +10,25 @@ import {
 	Api,
 } from '@airport/check-in';
 import {
+	AgreementDao,
+} from '../../dao/AgreementDao';
+import {
+	AgreementReasonDao,
+} from '../../dao/AgreementReasonDao';
+import {
+	IIdeaDao,
+} from '../../dao/IdeaDao';
+import {
+	ReasonDao,
+} from '../../dao/ReasonDao';
+import {
+	ISituationIdeaDao,
+} from '../../dao/SituationIdeaDao';
+import {
 	Agreement,
+	AgreementReason,
+	Idea,
+	Reason,
 	SituationIdea,
 } from '../../ddl/ddl';
 import {
@@ -44,6 +62,12 @@ export class AgreementApi {
         ideaRepositoryUuid: string
     ): Promise<IAgreement> {
         return await this.agreementApi.getMyAgreementForIdea(ideaRepositoryUuid)
+    }
+
+    async  setAgreement(
+        agreement: Agreement
+    ): Promise<void> {
+        await this.agreementApi.setAgreement(agreement)
     }
 
 }

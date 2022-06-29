@@ -14,12 +14,6 @@ let SituationIdeaApi = class SituationIdeaApi {
     async add(situationIdea) {
         await this.situationIdeaApi.add(situationIdea);
     }
-    async setAgreement(agreement) {
-        await this.situationIdeaApi.setAgreement(agreement);
-    }
-    async updateAgreementShare(situationIdeaUuId) {
-        await this.situationIdeaApi.updateAgreementShare(situationIdeaUuId);
-    }
 };
 __decorate([
     Inject()

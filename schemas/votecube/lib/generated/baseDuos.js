@@ -32,10 +32,10 @@ export class BaseFactorDuo extends SQDIDuo {
 }
 export class BaseIdeaDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(5);
+        return duoDiSet(6);
     }
     constructor() {
-        super(5);
+        super(6);
     }
 }
 export class BaseIdeaLabelDuo extends SQDIDuo {
@@ -48,18 +48,18 @@ export class BaseIdeaLabelDuo extends SQDIDuo {
 }
 export class BaseIdeaRatingDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(6);
+        return duoDiSet(2);
     }
     constructor() {
-        super(6);
+        super(2);
     }
 }
 export class BaseIdeaTopicDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(4);
+        return duoDiSet(5);
     }
     constructor() {
-        super(4);
+        super(5);
     }
 }
 export class BaseLabelDuo extends SQDIDuo {
@@ -80,18 +80,18 @@ export class BasePositionDuo extends SQDIDuo {
 }
 export class BaseReasonDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(2);
-    }
-    constructor() {
-        super(2);
-    }
-}
-export class BaseSituationIdeaDuo extends SQDIDuo {
-    static diSet() {
         return duoDiSet(3);
     }
     constructor() {
         super(3);
+    }
+}
+export class BaseSituationIdeaDuo extends SQDIDuo {
+    static diSet() {
+        return duoDiSet(4);
+    }
+    constructor() {
+        super(4);
     }
 }
 //# sourceMappingURL=baseDuos.js.map

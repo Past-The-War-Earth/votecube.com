@@ -1,7 +1,7 @@
 import { IQDateField, IQNumberField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationIdeaGraph, SituationIdeaEOptionalId, SituationIdeaESelect, QSituationIdeaQRelation } from '../idea/qsituationidea';
-import { IdeaRatingGraph, IdeaRatingEOptionalId, IdeaRatingESelect, QIdeaRatingQRelation } from '../idea/qidearating';
+import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from '../idea/qidea';
 import { AgreementReasonGraph, AgreementReasonESelect, QAgreementReason } from './qagreementreason';
 import { IAgreementReason } from './agreementreason';
 import { IAgreement } from './agreement';
@@ -9,8 +9,9 @@ import { IAgreement } from './agreement';
  * SELECT - All fields and relations (optional).
  */
 export interface AgreementESelect extends AirEntityESelect, AgreementEOptionalId {
+    shareTotal?: number | IQNumberField;
     situationIdea?: SituationIdeaESelect;
-    idea?: IdeaRatingESelect;
+    idea?: IdeaESelect;
     agreementReasons?: AgreementReasonESelect;
 }
 /**
@@ -27,15 +28,17 @@ export interface AgreementEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface AgreementEUpdateProperties extends AirEntityEUpdateProperties {
+    shareTotal?: number | IQNumberField;
     situationIdea?: SituationIdeaEOptionalId;
-    idea?: IdeaRatingEOptionalId;
+    idea?: IdeaEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface AgreementGraph extends AgreementEOptionalId, AirEntityGraph {
+    shareTotal?: number | IQNumberField;
     situationIdea?: SituationIdeaGraph;
-    idea?: IdeaRatingGraph;
+    idea?: IdeaGraph;
     agreementReasons?: AgreementReasonGraph[];
 }
 /**
@@ -48,12 +51,13 @@ export interface AgreementEUpdateColumns extends AirEntityEUpdateColumns {
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    SHARE_TOTAL?: number | IQNumberField;
     SITUATION_IDEAS_RID_1?: number | IQNumberField;
     SITUATION_IDEAS_AID_1?: number | IQNumberField;
     SITUATION_IDEAS_ARID_1?: number | IQNumberField;
-    IDEA_RATINGS_RID_1?: number | IQNumberField;
-    IDEA_RATINGS_AID_1?: number | IQNumberField;
-    IDEA_RATINGS_ARID_1?: number | IQNumberField;
+    IDEAS_RID_1?: number | IQNumberField;
+    IDEAS_AID_1?: number | IQNumberField;
+    IDEAS_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -69,8 +73,9 @@ export interface AgreementECreateColumns extends AgreementEId, AgreementEUpdateC
  * Query Entity Query Definition (used for Q.EntityName).
  */
 export interface QAgreement extends QAirEntity {
+    shareTotal: IQNumberField;
     situationIdea: QSituationIdeaQRelation;
-    idea: QIdeaRatingQRelation;
+    idea: QIdeaQRelation;
     agreementReasons: IQAirEntityOneToManyRelation<IAgreementReason, QAgreementReason>;
 }
 export interface QAgreementQId extends QAirEntityQId {

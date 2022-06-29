@@ -1,23 +1,16 @@
+import { IRequestManager } from "@airport/arrivals-n-departures";
 import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
-import { ISituationIdeaDao } from "../dao/dao";
+import { IIdeaDao, ISituationIdeaDao } from "../dao/dao";
 import { ReasonDao } from "../dao/ReasonDao";
-import { Agreement, SituationIdea } from "../ddl/ddl";
-export interface ISituationIdeaApi {
-    add(situationIdea: SituationIdea): Promise<void>;
-}
-export declare class SituationIdeaApi implements ISituationIdeaApi {
+import { SituationIdea } from "../ddl/ddl";
+export declare class SituationIdeaApi {
     agreementDao: AgreementDao;
     agreementReasonDao: AgreementReasonDao;
+    ideaDao: IIdeaDao;
     reasonDao: ReasonDao;
     situationIdeaDao: ISituationIdeaDao;
-    request: Request;
+    requestManager: IRequestManager;
     add(situationIdea: SituationIdea): Promise<void>;
-    setAgreement(agreement: Agreement): Promise<void>;
-    private ensureValidFactorsAndPositions;
-    private ensureValidReasons;
-    private removeSharesFromNotSelectedAgreementReasons;
-    private updateSituationIdeaAgreementShares;
-    updateAgreementShare(situationIdeaUuId: string): Promise<void>;
 }
 //# sourceMappingURL=SituationIdeaApi.d.ts.map

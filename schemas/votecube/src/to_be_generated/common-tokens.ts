@@ -1,22 +1,24 @@
 import { app } from '@votecube/dependency-injection'
-import type { IIdeaApi } from "../api/IdeaApi";
-import type { ISituationIdeaApi } from '../api/SituationIdeaApi';
-import type { IAgreementApi } from '../api/AgreementApi';
 
 export const votecube = app('votecube')
 
-export const IDEA_API = votecube.token<IIdeaApi>({
+export const AGREEMENT_API = votecube.token<any>({
     class: null,
-    interface: 'IIdeaApi',
+    interface: 'AgreementApi',
+    token: 'AGREEMENT_API'
+})
+export const IDEA_API = votecube.token<any>({
+    class: null,
+    interface: 'IdeaApi',
     token: 'IDEA_API'
 })
-export const SITUATION_IDEA_API = votecube.token<ISituationIdeaApi>({
+export const IDEA_RATING_API = votecube.token<any>({
     class: null,
-    interface: 'IIdeaSituationApi',
-    token: 'SITUATION_IDEA_API'
+    interface: 'IdeaRatingApi',
+    token: 'IDEA_RATING_API'
 })
-export const AGREEMENT_API = votecube.token<IAgreementApi>({
+export const SITUATION_IDEA_API = votecube.token<any>({
     class: null,
-    interface: 'IAgreementApi',
-    token: 'AGREEMENT_API'
+    interface: 'SituationIdeaApi',
+    token: 'SITUATION_IDEA_API'
 })

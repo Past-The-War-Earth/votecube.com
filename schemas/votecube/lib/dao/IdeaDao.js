@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { and, Y } from '@airport/air-traffic-control';
+import { and, plus, Y } from '@airport/air-traffic-control';
 import { BaseIdeaDao, Q, } from "../generated/generated";
 import { Injected } from '@airport/direction-indicator';
 let IdeaDao = class IdeaDao extends BaseIdeaDao {
@@ -84,6 +84,28 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
             source: newRepository.source,
             uuId: newRepository.uuId
         };
+    }
+    async updateShareTotal(delta, idea) {
+        const i = Q.Idea;
+        await this.db.updateWhere({
+            update: i,
+            set: {
+                agreementShareTotal: plus(i.agreementShareTotal, delta.totalDelta),
+                numberOfAgreements: plus(i.numberOfAgreements, delta.numberDelta)
+            },
+            where: i.equals(idea)
+        });
+    }
+    async updateUrgencyTotal(delta, idea) {
+        const i = Q.Idea;
+        await this.db.updateWhere({
+            update: i,
+            set: {
+                urgencyTotal: plus(i.urgencyTotal, delta.totalDelta),
+                numberOfUrgencyRatings: plus(i.numberOfUrgencyRatings, delta.numberDelta)
+            },
+            where: i.equals(idea)
+        });
     }
 };
 IdeaDao = __decorate([

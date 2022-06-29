@@ -9,6 +9,25 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseReasonDao } from "../generated/baseDaos";
 import { Q } from "../generated/generated";
 let ReasonDao = class ReasonDao extends BaseReasonDao {
+    async findAllForIdea(idea) {
+        let r, i;
+        return await this._find({
+            select: {
+                uuId: Y,
+                factor: {
+                    uuId: Y
+                },
+                position: {
+                    uuId: Y
+                }
+            },
+            from: [
+                r = Q.Reason,
+                i = r.idea.leftJoin()
+            ],
+            where: i.equals(idea)
+        });
+    }
     async findAllForSituationIdea(situationIdea) {
         let r, si;
         return await this._find({
