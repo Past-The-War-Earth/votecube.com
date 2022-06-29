@@ -21,7 +21,7 @@ let IdeaRatingApi = class IdeaRatingApi {
         if (!ideaRating.idea.uuId) {
             throw new Error(`passed in ideaRating.idea doesn't have a UuId`);
         }
-        let idea = await this.ideaDao.findByUuId(ideaRating.idea.uuId);
+        let idea = await this.ideaDao.findByUuId(ideaRating.idea.uuId, true);
         if (!idea) {
             throw new Error(`Idea with UuId "${ideaRating.idea.uuId}" does not exist.`);
         }
@@ -31,7 +31,7 @@ let IdeaRatingApi = class IdeaRatingApi {
                 throw new Error(`passed in agreement.situationIdea doesn't have a UuId`);
             }
             let situationIdea = await this.situationIdeaDao
-                .findByUuId(ideaRating.situationIdea.uuId);
+                .findByUuId(ideaRating.situationIdea.uuId, true);
             if (!situationIdea) {
                 throw new Error(`SituationIdea with UuId "${ideaRating.situationIdea.uuId}" does not exist.`);
             }

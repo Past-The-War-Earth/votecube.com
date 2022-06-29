@@ -74,7 +74,7 @@ export class AgreementApi
         if (!agreement.idea.uuId) {
             throw new Error(`passed in agreement.idea doesn't have a UuId`)
         }
-        let idea: Idea = await this.ideaDao.findByUuId(agreement.idea.uuId)
+        let idea: Idea = await this.ideaDao.findByUuId(agreement.idea.uuId, true)
         if (!idea) {
             throw new Error(`Idea with UuId "${agreement.idea.uuId}" does not exist.`)
         }
@@ -85,7 +85,7 @@ export class AgreementApi
                 throw new Error(`passed in agreement.situationIdea doesn't have a UuId`)
             }
             let situationIdea: SituationIdea = await this.situationIdeaDao
-                .findByUuId(agreement.situationIdea.uuId)
+                .findByUuId(agreement.situationIdea.uuId, true)
             if (!situationIdea) {
                 throw new Error(`SituationIdea with UuId "${agreement.situationIdea.uuId}" does not exist.`)
             }
