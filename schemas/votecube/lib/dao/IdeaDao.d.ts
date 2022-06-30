@@ -1,7 +1,7 @@
 import { BaseIdeaDao, IBaseIdeaDao } from "../generated/generated";
 import { IRepositoryIdentifier } from '../types';
 import { Idea } from '../ddl/ddl';
-import { ITotalDelta } from './TotalDelta';
+import { ITotalDelta } from '../ddl/TotalDelta';
 export interface IIdeaDao extends IBaseIdeaDao {
     findByRepositoryUuId(repositorySource: string, ideaReposioryUuid: string): Promise<Idea>;
     saveExistingIdea(idea: Idea): Promise<IRepositoryIdentifier>;

@@ -2,7 +2,7 @@ import { plus } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { SituationIdea } from "../ddl/ddl";
 import { BaseSituationIdeaDao, IBaseSituationIdeaDao, Q } from "../generated/generated";
-import { ITotalDelta } from "./TotalDelta";
+import { ITotalDelta } from "../ddl/TotalDelta";
 
 export interface ISituationIdeaDao
     extends IBaseSituationIdeaDao {

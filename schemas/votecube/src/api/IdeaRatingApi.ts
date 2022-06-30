@@ -1,10 +1,9 @@
-import { IRequestManager } from "@airport/arrivals-n-departures";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { IIdeaDao } from "../dao/IdeaDao";
 import { IIdeaRatingDao } from "../dao/IdeaRatingDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
-import { ITotalDelta } from "../dao/TotalDelta";
+import { ITotalDelta } from "../ddl/TotalDelta";
 import { Idea, IdeaRating, SituationIdea } from "../ddl/ddl";
 
 @Injected()
