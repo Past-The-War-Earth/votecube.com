@@ -8,16 +8,16 @@ import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let IdeaRatingApi = class IdeaRatingApi {
     async setIdeaRating(inIdeaRating) {
-        await this.ensureValidFactorsAndPositions(inIdeaRating);
+        if (inIdeaRating.urgencyRating < 1 || inIdeaRating.urgencyRating > 5) {
+            throw new Error(`Invalid ideaRating.urgencyRating total`);
+        }
+        inIdeaRating.urgencyRating = Math.floor(inIdeaRating.urgencyRating);
+        await this.validateIdeas(inIdeaRating);
         const { ideaRating, delta } = await this.getUrgencyRatingDeltas(inIdeaRating);
         await this.ideaRatingDao.save(ideaRating);
         await this.updateUrgencyTotals(ideaRating, delta);
     }
-    async ensureValidFactorsAndPositions(ideaRating) {
-        if (ideaRating.urgencyRating < 1 || ideaRating.urgencyRating > 5) {
-            throw new Error(`Invalid ideaRating.urgencyRating total`);
-        }
-        ideaRating.urgencyRating = Math.floor(ideaRating.urgencyRating);
+    async validateIdeas(ideaRating) {
         if (!ideaRating.idea.uuId) {
             throw new Error(`passed in ideaRating.idea doesn't have a UuId`);
         }

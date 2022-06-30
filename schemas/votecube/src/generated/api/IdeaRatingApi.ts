@@ -7,13 +7,24 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
-	IRequestManager,
-} from '@airport/arrivals-n-departures';
-import {
 	Api,
 } from '@airport/check-in';
 import {
+	IIdeaDao,
+} from '../../dao/IdeaDao';
+import {
+	IIdeaRatingDao,
+} from '../../dao/IdeaRatingDao';
+import {
+	ISituationIdeaDao,
+} from '../../dao/SituationIdeaDao';
+import {
+	ITotalDelta,
+} from '../../ddl/TotalDelta';
+import {
+	Idea,
 	IdeaRating,
+	SituationIdea,
 } from '../../ddl/ddl';
 
 
@@ -30,9 +41,9 @@ export class IdeaRatingApi {
     ideaRatingApi: IdeaRatingApi
             
     async  setIdeaRating(
-        ideaRating: IdeaRating
+        inIdeaRating: IdeaRating
     ): Promise<void> {
-        await this.ideaRatingApi.setIdeaRating(ideaRating)
+        await this.ideaRatingApi.setIdeaRating(inIdeaRating)
     }
 
 }

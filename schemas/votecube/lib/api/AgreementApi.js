@@ -14,13 +14,14 @@ let AgreementApi = class AgreementApi {
         return null;
     }
     async setAgreement(inAgreement) {
-        await this.ensureValidFactorsAndPositions(inAgreement);
-        await this.ensureValidReasons(inAgreement);
+        await this.validateIdeas(inAgreement);
+        await this.validateFactorsAndPositions(inAgreement);
+        await this.validateReasons(inAgreement);
         const { agreement, delta } = await this.removeSharesFromNotSelectedAgreementReasons(inAgreement);
         await this.agreementDao.save(agreement);
         await this.updateAgreementShareTotals(agreement, delta);
     }
-    async ensureValidFactorsAndPositions(agreement) {
+    async validateIdeas(agreement) {
         if (!agreement.idea.uuId) {
             throw new Error(`passed in agreement.idea doesn't have a UuId`);
         }
@@ -44,6 +45,8 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
             }
             agreement.situationIdea = situationIdea;
         }
+    }
+    async validateFactorsAndPositions(agreement) {
         let shareTotal = 0;
         for (const agreementReason of agreement.agreementReasons) {
             if (!agreementReason) {
@@ -72,13 +75,15 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
             if (!reason.position) {
                 throw new Error(`Recieved a null position`);
             }
+            // TODO: Collect factors and positions
         }
+        // TODO: Verify factor and position existance and create new ones if necessary
         if (shareTotal < -100 || shareTotal > 100) {
             throw new Error(`Invalid agreementReason.share total`);
         }
         agreement.shareTotal = Math.floor(shareTotal);
     }
-    async ensureValidReasons(agreement) {
+    async validateReasons(agreement) {
         let existingReasons;
         if (agreement.situationIdea) {
             existingReasons = await this.
@@ -120,11 +125,15 @@ is found more than once.`);
                 throw new Error(`Reason ${existingIncomingReason.uuId} does not exist`);
             }
         }
+        let newReasonsMap = new Map();
         for (const [newReasonFactorAndPositionUuId, agreementReason] of agreementReasonWithNewReasonMap) {
             let existingReason = existingReasonMapByFactorAndPositionUuIds
                 .get(newReasonFactorAndPositionUuId);
             if (existingReason) {
                 agreementReason.reason = existingReason;
+            }
+            else {
+                newReasonsMap.set(newReasonFactorAndPositionUuId, agreementReason.reason);
             }
         }
     }

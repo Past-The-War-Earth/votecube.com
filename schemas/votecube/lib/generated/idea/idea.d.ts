@@ -14,6 +14,7 @@ export interface IIdea extends IAirEntity {
     numberOfAgreements?: number;
     urgencyTotal?: number;
     numberOfUrgencyRatings?: number;
+    numberOfReasons?: number;
     parent?: IIdea;
     children?: IIdea[];
     ideaRatings?: IIdeaRating;

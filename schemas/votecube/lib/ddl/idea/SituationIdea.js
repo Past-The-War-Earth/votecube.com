@@ -21,6 +21,9 @@ __decorate([
     Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
 ], SituationIdea.prototype, "numberOfUrgencyRatings", void 0);
 __decorate([
+    Column({ name: 'NUMBER_OF_REASONS' })
+], SituationIdea.prototype, "numberOfReasons", void 0);
+__decorate([
     ManyToOne()
 ], SituationIdea.prototype, "idea", void 0);
 __decorate([

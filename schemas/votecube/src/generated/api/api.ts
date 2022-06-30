@@ -1,7 +1,7 @@
 export * from './AgreementApi'
 export * from './IdeaApi'
-export * from './SituationIdeaApi'
 export * from './IdeaRatingApi'
+export * from './SituationIdeaApi'
 
 import { loadAutopilot } from '@airport/autopilot'
        

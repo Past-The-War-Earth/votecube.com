@@ -11,6 +11,7 @@ export declare class Idea extends AirEntity {
     numberOfAgreements: number;
     urgencyTotal: number;
     numberOfUrgencyRatings: number;
+    numberOfReasons: number;
     parent: Idea;
     children: Idea[];
     ideaRatings: IdeaRating;

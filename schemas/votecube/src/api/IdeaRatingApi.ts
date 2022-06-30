@@ -22,7 +22,12 @@ export class IdeaRatingApi {
     async setIdeaRating(
         inIdeaRating: IdeaRating
     ): Promise<void> {
-        await this.ensureValidFactorsAndPositions(inIdeaRating)
+        if (inIdeaRating.urgencyRating < 1 || inIdeaRating.urgencyRating > 5) {
+            throw new Error(`Invalid ideaRating.urgencyRating total`)
+        }
+        inIdeaRating.urgencyRating = Math.floor(inIdeaRating.urgencyRating)
+
+        await this.validateIdeas(inIdeaRating)
         const {
             ideaRating,
             delta
@@ -31,14 +36,9 @@ export class IdeaRatingApi {
         await this.updateUrgencyTotals(ideaRating, delta)
     }
 
-    private async ensureValidFactorsAndPositions(
+    private async validateIdeas(
         ideaRating: IdeaRating
     ): Promise<void> {
-        if (ideaRating.urgencyRating < 1 || ideaRating.urgencyRating > 5) {
-            throw new Error(`Invalid ideaRating.urgencyRating total`)
-        }
-        ideaRating.urgencyRating = Math.floor(ideaRating.urgencyRating)
-
         if (!ideaRating.idea.uuId) {
             throw new Error(`passed in ideaRating.idea doesn't have a UuId`)
         }

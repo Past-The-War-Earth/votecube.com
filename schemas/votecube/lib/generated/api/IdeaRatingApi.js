@@ -11,8 +11,8 @@ let IdeaRatingApi = class IdeaRatingApi {
     constructor() {
         DEPENDENCY_INJECTION.db().manualInject(this, IDEA_RATING_API);
     }
-    async setIdeaRating(ideaRating) {
-        await this.ideaRatingApi.setIdeaRating(ideaRating);
+    async setIdeaRating(inIdeaRating) {
+        await this.ideaRatingApi.setIdeaRating(inIdeaRating);
     }
 };
 __decorate([

@@ -8,6 +8,7 @@ export declare class SituationIdea extends AirEntity {
     numberOfAgreements: number;
     urgencyTotal: number;
     numberOfUrgencyRatings: number;
+    numberOfReasons: number;
     idea: Idea;
     situation: Situation;
     ideaRatings: IdeaRating[];

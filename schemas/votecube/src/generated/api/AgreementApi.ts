@@ -25,6 +25,9 @@ import {
 	ISituationIdeaDao,
 } from '../../dao/SituationIdeaDao';
 import {
+	ITotalDelta,
+} from '../../ddl/TotalDelta';
+import {
 	Agreement,
 	AgreementReason,
 	Idea,
@@ -65,9 +68,9 @@ export class AgreementApi {
     }
 
     async  setAgreement(
-        agreement: Agreement
+        inAgreement: Agreement
     ): Promise<void> {
-        await this.agreementApi.setAgreement(agreement)
+        await this.agreementApi.setAgreement(inAgreement)
     }
 
 }

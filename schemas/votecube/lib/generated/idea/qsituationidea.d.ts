@@ -17,6 +17,7 @@ export interface SituationIdeaESelect extends AirEntityESelect, SituationIdeaEOp
     numberOfAgreements?: number | IQNumberField;
     urgencyTotal?: number | IQNumberField;
     numberOfUrgencyRatings?: number | IQNumberField;
+    numberOfReasons?: number | IQNumberField;
     idea?: IdeaESelect;
     situation?: SituationESelect;
     ideaRatings?: IdeaRatingESelect;
@@ -41,6 +42,7 @@ export interface SituationIdeaEUpdateProperties extends AirEntityEUpdateProperti
     numberOfAgreements?: number | IQNumberField;
     urgencyTotal?: number | IQNumberField;
     numberOfUrgencyRatings?: number | IQNumberField;
+    numberOfReasons?: number | IQNumberField;
     idea?: IdeaEOptionalId;
     situation?: SituationEOptionalId;
 }
@@ -52,6 +54,7 @@ export interface SituationIdeaGraph extends SituationIdeaEOptionalId, AirEntityG
     numberOfAgreements?: number | IQNumberField;
     urgencyTotal?: number | IQNumberField;
     numberOfUrgencyRatings?: number | IQNumberField;
+    numberOfReasons?: number | IQNumberField;
     idea?: IdeaGraph;
     situation?: SituationGraph;
     ideaRatings?: IdeaRatingGraph[];
@@ -72,6 +75,7 @@ export interface SituationIdeaEUpdateColumns extends AirEntityEUpdateColumns {
     NUMBER_OF_AGREEMENTS?: number | IQNumberField;
     URGENCY_TOTAL?: number | IQNumberField;
     NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
+    NUMBER_OF_REASONS?: number | IQNumberField;
     IDEAS_RID_1?: number | IQNumberField;
     IDEAS_AID_1?: number | IQNumberField;
     IDEAS_ARID_1?: number | IQNumberField;
@@ -97,6 +101,7 @@ export interface QSituationIdea extends QAirEntity {
     numberOfAgreements: IQNumberField;
     urgencyTotal: IQNumberField;
     numberOfUrgencyRatings: IQNumberField;
+    numberOfReasons: IQNumberField;
     idea: QIdeaQRelation;
     situation: QSituationQRelation;
     ideaRatings: IQAirEntityOneToManyRelation<IIdeaRating, QIdeaRating>;

@@ -50,17 +50,17 @@ export declare const APPLICATION: {
                         };
                     };
                 };
-                SituationIdeaApi: {
+                IdeaRatingApi: {
                     operationMap: {
-                        add: {
+                        setIdeaRating: {
                             isAsync: boolean;
                             parameters: any[];
                         };
                     };
                 };
-                IdeaRatingApi: {
+                SituationIdeaApi: {
                     operationMap: {
-                        setIdeaRating: {
+                        add: {
                             isAsync: boolean;
                             parameters: any[];
                         };

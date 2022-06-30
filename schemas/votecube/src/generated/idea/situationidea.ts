@@ -43,6 +43,7 @@ export interface ISituationIdea extends IAirEntity {
 	numberOfAgreements?: number;
 	urgencyTotal?: number;
 	numberOfUrgencyRatings?: number;
+	numberOfReasons?: number;
 
 	// Non-Id Relations
 	idea?: IIdea;

@@ -34,6 +34,9 @@ export class Idea
 	@Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
 	numberOfUrgencyRatings: number
 
+	@Column({ name: 'NUMBER_OF_REASONS' })
+	numberOfReasons: number
+
 	@ManyToOne({ optional: true })
 	parent: Idea
 

@@ -58,8 +58,9 @@ export class AgreementApi
     async setAgreement(
         inAgreement: Agreement
     ): Promise<void> {
-        await this.ensureValidFactorsAndPositions(inAgreement)
-        await this.ensureValidReasons(inAgreement)
+        await this.validateIdeas(inAgreement)
+        await this.validateFactorsAndPositions(inAgreement)
+        await this.validateReasons(inAgreement)
         const {
             agreement,
             delta
@@ -68,7 +69,7 @@ export class AgreementApi
         await this.updateAgreementShareTotals(agreement, delta)
     }
 
-    private async ensureValidFactorsAndPositions(
+    private async validateIdeas(
         agreement: Agreement
     ): Promise<void> {
         if (!agreement.idea.uuId) {
@@ -95,7 +96,11 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
             }
             agreement.situationIdea = situationIdea
         }
+    }
 
+    private async validateFactorsAndPositions(
+        agreement: Agreement
+    ): Promise<void> {
         let shareTotal = 0
         for (const agreementReason of agreement.agreementReasons) {
             if (!agreementReason) {
@@ -125,7 +130,10 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
             if (!reason.position) {
                 throw new Error(`Recieved a null position`)
             }
+            // TODO: Collect factors and positions
         }
+
+        // TODO: Verify factor and position existance and create new ones if necessary
 
         if (shareTotal < -100 || shareTotal > 100) {
             throw new Error(`Invalid agreementReason.share total`)
@@ -133,7 +141,7 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
         agreement.shareTotal = Math.floor(shareTotal)
     }
 
-    private async ensureValidReasons(
+    private async validateReasons(
         agreement: Agreement,
     ): Promise<void> {
         let existingReasons: Reason[];
@@ -178,11 +186,14 @@ is found more than once.`)
                 throw new Error(`Reason ${existingIncomingReason.uuId} does not exist`)
             }
         }
+        let newReasonsMap: Map<string, Reason> = new Map()
         for (const [newReasonFactorAndPositionUuId, agreementReason] of agreementReasonWithNewReasonMap) {
             let existingReason: Reason = existingReasonMapByFactorAndPositionUuIds
                 .get(newReasonFactorAndPositionUuId)
             if (existingReason) {
                 agreementReason.reason = existingReason
+            } else {
+                newReasonsMap.set(newReasonFactorAndPositionUuId, agreementReason.reason)
             }
         }
     }

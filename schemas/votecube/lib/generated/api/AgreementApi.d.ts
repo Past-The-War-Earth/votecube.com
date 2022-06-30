@@ -9,6 +9,6 @@ export declare class AgreementApi {
     agreementApi: AgreementApi;
     saveAgreement(agreement: IAgreement): Promise<void>;
     getMyAgreementForIdea(ideaRepositoryUuid: string): Promise<IAgreement>;
-    setAgreement(agreement: Agreement): Promise<void>;
+    setAgreement(inAgreement: Agreement): Promise<void>;
 }
 //# sourceMappingURL=AgreementApi.d.ts.map

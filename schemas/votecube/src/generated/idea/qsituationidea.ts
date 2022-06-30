@@ -118,6 +118,7 @@ export interface SituationIdeaESelect
 	numberOfAgreements?: number | IQNumberField;
 	urgencyTotal?: number | IQNumberField;
 	numberOfUrgencyRatings?: number | IQNumberField;
+	numberOfReasons?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -161,6 +162,7 @@ export interface SituationIdeaEUpdateProperties
 	numberOfAgreements?: number | IQNumberField;
 	urgencyTotal?: number | IQNumberField;
 	numberOfUrgencyRatings?: number | IQNumberField;
+	numberOfReasons?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	idea?: IdeaEOptionalId;
@@ -180,6 +182,7 @@ export interface SituationIdeaGraph
 	numberOfAgreements?: number | IQNumberField;
 	urgencyTotal?: number | IQNumberField;
 	numberOfUrgencyRatings?: number | IQNumberField;
+	numberOfReasons?: number | IQNumberField;
 
 	// Relations
 	idea?: IdeaGraph;
@@ -206,6 +209,7 @@ export interface SituationIdeaEUpdateColumns
 	NUMBER_OF_AGREEMENTS?: number | IQNumberField;
 	URGENCY_TOTAL?: number | IQNumberField;
 	NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
+	NUMBER_OF_REASONS?: number | IQNumberField;
 	IDEAS_RID_1?: number | IQNumberField;
 	IDEAS_AID_1?: number | IQNumberField;
 	IDEAS_ARID_1?: number | IQNumberField;
@@ -250,6 +254,7 @@ export interface QSituationIdea extends QAirEntity
 	numberOfAgreements: IQNumberField;
 	urgencyTotal: IQNumberField;
 	numberOfUrgencyRatings: IQNumberField;
+	numberOfReasons: IQNumberField;
 
 	// Non-Id Relations
 	idea: QIdeaQRelation;

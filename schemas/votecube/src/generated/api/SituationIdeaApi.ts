@@ -7,6 +7,9 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
+	IRequestManager,
+} from '@airport/arrivals-n-departures';
+import {
 	Api,
 } from '@airport/check-in';
 import {
@@ -23,17 +26,10 @@ import {
 	ReasonDao,
 } from '../../dao/ReasonDao';
 import {
-	Agreement,
-	AgreementReason,
-	Idea,
-	Reason,
 	SituationIdea,
 } from '../../ddl/ddl';
 
 
-export interface ISituationIdeaApi {
-    add(situationIdea: SituationIdea): Promise<void>;
-}
 
 // An API stub for other Applications and UIs to use
 @Injected()

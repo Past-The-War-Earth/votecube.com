@@ -22,6 +22,9 @@ export class SituationIdea
     @Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
     numberOfUrgencyRatings: number
 
+	@Column({ name: 'NUMBER_OF_REASONS' })
+	numberOfReasons: number
+
     @ManyToOne()
     idea: Idea
 

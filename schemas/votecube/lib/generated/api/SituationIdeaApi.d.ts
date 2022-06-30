@@ -1,7 +1,4 @@
 import { SituationIdea } from '../../ddl/ddl';
-export interface ISituationIdeaApi {
-    add(situationIdea: SituationIdea): Promise<void>;
-}
 export declare class SituationIdeaApi {
     constructor();
     situationIdeaApi: SituationIdeaApi;

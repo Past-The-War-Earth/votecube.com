@@ -12,6 +12,7 @@ export interface ISituationIdea extends IAirEntity {
     numberOfAgreements?: number;
     urgencyTotal?: number;
     numberOfUrgencyRatings?: number;
+    numberOfReasons?: number;
     idea?: IIdea;
     situation?: ISituation;
     ideaRatings?: IIdeaRating[];

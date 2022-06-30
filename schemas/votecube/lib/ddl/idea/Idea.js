@@ -24,6 +24,9 @@ __decorate([
     Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
 ], Idea.prototype, "numberOfUrgencyRatings", void 0);
 __decorate([
+    Column({ name: 'NUMBER_OF_REASONS' })
+], Idea.prototype, "numberOfReasons", void 0);
+__decorate([
     ManyToOne({ optional: true })
 ], Idea.prototype, "parent", void 0);
 __decorate([
