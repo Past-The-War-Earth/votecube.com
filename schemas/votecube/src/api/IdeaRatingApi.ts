@@ -1,9 +1,9 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
+import { ITotalDelta } from "@sapoto/core";
 import { IIdeaDao } from "../dao/IdeaDao";
 import { IIdeaRatingDao } from "../dao/IdeaRatingDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
-import { ITotalDelta } from "../ddl/TotalDelta";
 import { Idea, IdeaRating, SituationIdea } from "../ddl/ddl";
 
 @Injected()
@@ -20,7 +20,15 @@ export class IdeaRatingApi {
 
     @Api()
     async setIdeaRating(
-        inIdeaRating: IdeaRating
+        inIdeaRating: IdeaRating,
+    ): Promise<void> {
+        await this.doSetIdeaRating(inIdeaRating, false, false)
+    }
+
+    async doSetIdeaRating(
+        inIdeaRating: IdeaRating,
+        isNewIdea: boolean,
+        isNewSituationIdea: boolean
     ): Promise<void> {
         if (inIdeaRating.urgencyRating < 1 || inIdeaRating.urgencyRating > 5) {
             throw new Error(`Invalid ideaRating.urgencyRating total`)

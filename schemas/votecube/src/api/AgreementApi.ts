@@ -1,11 +1,11 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
+import { ITotalDelta } from "@sapoto/core";
 import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
 import { IIdeaDao } from "../dao/IdeaDao";
 import { ReasonDao } from "../dao/ReasonDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
-import { ITotalDelta } from "../ddl/TotalDelta";
 import { Agreement, AgreementReason, Idea, Reason, SituationIdea } from "../ddl/ddl";
 import { IAgreement } from "../generated/interfaces";
 

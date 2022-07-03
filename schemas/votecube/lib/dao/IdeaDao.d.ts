@@ -1,7 +1,7 @@
 import { BaseIdeaDao, IBaseIdeaDao } from "../generated/generated";
+import { ITotalDelta } from '@sapoto/core';
 import { IRepositoryIdentifier } from '../types';
 import { Idea } from '../ddl/ddl';
-import { ITotalDelta } from '../ddl/TotalDelta';
 export interface IIdeaDao extends IBaseIdeaDao {
     findByRepositoryUuId(repositorySource: string, ideaReposioryUuid: string): Promise<Idea>;
     saveExistingIdea(idea: Idea): Promise<IRepositoryIdentifier>;

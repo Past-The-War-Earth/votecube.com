@@ -20,9 +20,9 @@ import {
 } from "@airport/holding-pattern";
 import { ISaveResult } from '@airport/ground-control';
 import { Injected } from '@airport/direction-indicator';
+import { ITotalDelta } from '@sapoto/core';
 import { IRepositoryIdentifier } from '../types';
 import { Idea } from '../ddl/ddl';
-import { ITotalDelta } from '../ddl/TotalDelta';
 
 export interface IIdeaDao
     extends IBaseIdeaDao {

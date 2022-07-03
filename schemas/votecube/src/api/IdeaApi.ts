@@ -1,8 +1,9 @@
+import { RequestManager } from "@airport/arrivals-n-departures";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
+import { IRepositoryIdParts } from "@airport/ground-control";
 import { IdeaDao } from "../dao/dao"
 import { Idea, Label } from "../ddl/ddl";
-import { IRepositoryIdentifier } from "../types";
 
 export interface IIdeaApi {
 
@@ -23,13 +24,9 @@ export interface IIdeaApi {
         ideaRepositoryUuId: string
     ): Promise<Idea>
 
-    saveExistingIdea(
+    saveIdea(
         idea: Idea
-    ): Promise<IRepositoryIdentifier>
-
-    saveNewIdea(
-        idea: Idea
-    ): Promise<IRepositoryIdentifier>
+    ): Promise<IRepositoryIdParts>
 
 }
 
@@ -55,6 +52,9 @@ export class IdeaApi
 
     @Inject()
     ideaDao: IdeaDao
+
+    @Inject()
+    requestManager: RequestManager
 
     @Api()
     async getIdeasForLabels(
@@ -86,26 +86,33 @@ export class IdeaApi
     }
 
     @Api()
-    async saveExistingIdea(
+    async saveIdea(
         idea: Idea
-    ): Promise<IRepositoryIdentifier> {
-        if (!idea.repository || !idea.repository.id
-            || !idea.actor || !idea.actor.id
-            || !idea.actorRecordId) {
-            throw new Error(`Cannot save EXISTING idea without a repository, an actor and an actorRecordId`)
-        }
-        return await this.ideaDao.saveExistingIdea(idea)
-    }
-
-    @Api()
-    async saveNewIdea(
-        idea: Idea
-    ): Promise<IRepositoryIdentifier> {
+    ): Promise<IRepositoryIdParts> {
         idea.repository = null
         idea.actor = null
         delete idea.actorRecordId
 
-        return await this.ideaDao.saveNewIdea(idea)
+        let parentIdea: Idea = idea.parent
+        if (idea.parent) {
+            if (!parentIdea.uuId) {
+                throw new Error(`Parent idea must have an Id`)
+            }
+            parentIdea = await this.ideaDao.findByUuId(parentIdea)
+        }
+        idea.parent = parentIdea
+
+        if (idea.userAgreement) {
+            idea.userAgreement.actor = this.requestManager.actor
+        }
+
+        if (idea.userIdeaRating) {
+            idea.userIdeaRating.actor = this.requestManager.actor
+        }
+
+        const saveResult = await this.ideaDao.save(idea)
+
+        return saveResult.repositoryIdParts
     }
 
 }

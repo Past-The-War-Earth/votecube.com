@@ -68,6 +68,6 @@ export class Idea
 	userAgreement?: Agreement
 
 	@Transient()
-	userReasons: Reason[]
+	userReasons?: Reason[]
 
 }

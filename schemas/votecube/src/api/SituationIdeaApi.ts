@@ -1,37 +1,41 @@
-import { IRequestManager } from "@airport/arrivals-n-departures";
+import { RequestManager } from "@airport/arrivals-n-departures";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
-import { AgreementDao } from "../dao/AgreementDao";
-import { AgreementReasonDao } from "../dao/AgreementReasonDao";
-import { IIdeaDao, ISituationIdeaDao } from "../dao/dao";
-import { ReasonDao } from "../dao/ReasonDao";
+import { SituationApi } from "@sapoto/core";
+import { ISituationIdeaDao } from "../dao/dao";
 import { SituationIdea } from "../ddl/ddl";
+import { IdeaApi } from "./IdeaApi";
 
 @Injected()
 export class SituationIdeaApi {
 
     @Inject()
-    agreementDao: AgreementDao
+    ideaApi: IdeaApi
 
     @Inject()
-    agreementReasonDao: AgreementReasonDao
+    requestManager: RequestManager
 
     @Inject()
-    ideaDao: IIdeaDao
-
-    @Inject()
-    reasonDao: ReasonDao
+    situationApi: SituationApi
 
     @Inject()
     situationIdeaDao: ISituationIdeaDao
-
-    @Inject()
-    requestManager: IRequestManager
 
     @Api()
     async add(
         situationIdea: SituationIdea
     ): Promise<void> {
+        if (situationIdea.uuId) {
+            throw new Error(`New SituationIdea cannot have uuId defined`)
+        }
+        const situation = await this.situationApi.findById(situationIdea.situation)
+        if (!situation) {
+            throw new Error(`No situation "${situation.uuId}" found.`)
+        }
+        situationIdea.situation = situation
+        if (!situationIdea.idea.uuId) {
+            
+        }
 
         await this.situationIdeaDao.save(situationIdea)
     }
