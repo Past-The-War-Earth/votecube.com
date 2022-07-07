@@ -1,24 +1,16 @@
 import {
-	IDEA_API,
+    IDEA_API,
 } from '../../to_be_generated/common-tokens';
 import {
-	DEPENDENCY_INJECTION,
-	Inject,
-	Injected,
+    DEPENDENCY_INJECTION,
+    Inject,
+    Injected,
 } from '@airport/direction-indicator';
 import {
-	Api,
-} from '@airport/check-in';
-import {
-	IdeaDao,
-} from '../../dao/dao';
-import {
-	Idea,
-	Label,
+    Idea,
+    Label,
 } from '../../ddl/ddl';
-import {
-	IRepositoryIdentifier,
-} from '../../types';
+import { IRepositoryIdentifier } from '@airport/holding-pattern';
 
 
 export interface IIdeaApi {
@@ -37,29 +29,29 @@ export class IdeaApi {
     constructor() {
         DEPENDENCY_INJECTION.db().manualInject(this, IDEA_API)
     }
-        
+
     @Inject()
     ideaApi: IdeaApi
-            
-    async  getIdeasForLabels(
+
+    async getIdeasForLabels(
         labels: Label[]
     ): Promise<Idea[]> {
         return await this.ideaApi.getIdeasForLabels(labels)
     }
 
-    async  getLeafIdeas(
+    async getLeafIdeas(
         idea: Idea
     ): Promise<Idea[]> {
         return await this.ideaApi.getLeafIdeas(idea)
     }
 
-    async  getStemIdea(
+    async getStemIdea(
         idea: Idea
     ): Promise<Idea> {
         return await this.ideaApi.getStemIdea(idea)
     }
 
-    async  getIdea(
+    async getIdea(
         repositorySource: string,
         ideaRepositoryUuId: string
     ): Promise<Idea> {
@@ -69,13 +61,13 @@ export class IdeaApi {
         )
     }
 
-    async  saveExistingIdea(
+    async saveExistingIdea(
         idea: Idea
     ): Promise<IRepositoryIdentifier> {
         return await this.ideaApi.saveExistingIdea(idea)
     }
 
-    async  saveNewIdea(
+    async saveNewIdea(
         idea: Idea
     ): Promise<IRepositoryIdentifier> {
         return await this.ideaApi.saveNewIdea(idea)

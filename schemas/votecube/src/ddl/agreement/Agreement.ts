@@ -9,6 +9,13 @@ import { AgreementReason } from "./AgreementReason";
 export class Agreement
     extends AirEntity {
 
+    constructor(
+        entityGUID: string
+    ) {
+        super(entityGUID)
+        this.agreementReasons = []
+    }
+
     @Column({ name: "SHARE_TOTAL" })
     shareTotal: number
 

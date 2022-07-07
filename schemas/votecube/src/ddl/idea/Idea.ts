@@ -19,6 +19,19 @@ import { Reason } from './Reason'
 export class Idea
 	extends AirEntity {
 
+	constructor(
+		entityGUID: string
+	) {
+		super(entityGUID)
+		this.agreements = []
+		this.children = []
+		this.ideaLabels = []
+		this.ideaTopics = []
+		this.reasons = []
+		this.situationIdeas = []
+		this.userReasons = []
+	}
+
 	@Column({ name: 'NAME', nullable: false })
 	name: string
 

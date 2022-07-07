@@ -91,11 +91,11 @@ export class IdeaApi
     ): Promise<IRepositoryIdParts> {
         idea.repository = null
         idea.actor = null
-        delete idea.actorRecordId
+        delete idea._actorRecordId
 
         let parentIdea: Idea = idea.parent
         if (idea.parent) {
-            if (!parentIdea.uuId) {
+            if (!parentIdea.id) {
                 throw new Error(`Parent idea must have an Id`)
             }
             parentIdea = await this.ideaDao.findByUuId(parentIdea)

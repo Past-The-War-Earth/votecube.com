@@ -10,6 +10,16 @@ import { Reason } from "./Reason";
 export class SituationIdea
     extends AirEntity {
 
+    constructor(
+        entityGUID: string
+    ) {
+        super(entityGUID)
+        this.agreements = []
+        this.ideaRatings = []
+        this.reasons = []
+        this.userReasons = []
+    }
+
     @Column({ name: 'AGREEMENT_SHARE_TOTAL' })
     agreementShareTotal: number
 
@@ -22,8 +32,8 @@ export class SituationIdea
     @Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
     numberOfUrgencyRatings: number
 
-	@Column({ name: 'NUMBER_OF_REASONS' })
-	numberOfReasons: number
+    @Column({ name: 'NUMBER_OF_REASONS' })
+    numberOfReasons: number
 
     @ManyToOne()
     idea: Idea

@@ -72,7 +72,7 @@ export class AgreementApi
     private async validateIdeas(
         agreement: Agreement
     ): Promise<void> {
-        if (!agreement.idea.uuId) {
+        if (!agreement.idea.id) {
             throw new Error(`passed in agreement.idea doesn't have a UuId`)
         }
         let idea: Idea = await this.ideaDao.findByUuId(agreement.idea.uuId, true)

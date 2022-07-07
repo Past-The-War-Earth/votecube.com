@@ -6,14 +6,14 @@ import {
 	IUiLabel,
 } from '@votecube/model'
 import {
-	IRepositoryIdentifier,
 	IIdea,
 	IdeaApi
 } from '@votecube/votecube'
-import { ILogicUtils } from '..'
+import { ILogicUtils } from '../LogicUtils'
 import { IIdeaConverter } from '../converter/IdeaConverter'
 import { IIdeaFormManager } from '../pages/idea/IdeaFormManager'
 import { ICubeLogic } from './CubeLogic'
+import { IRepositoryIdentifier } from '@airport/holding-pattern'
 
 export interface IPageAgreement
 	extends IUiAgreement {

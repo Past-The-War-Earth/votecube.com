@@ -1,7 +1,7 @@
 import { IFieldGroup } from '@votecube/forms';
 import { IUiAgreement, IUiIdea, IUiLabel } from '@votecube/model';
-import { IRepositoryIdentifier, IIdea, IdeaApi } from '@votecube/votecube';
-import { ILogicUtils } from '..';
+import { IIdea, IdeaApi } from '@votecube/votecube';
+import { ILogicUtils } from '../LogicUtils';
 import { IIdeaConverter } from '../converter/IdeaConverter';
 import { IIdeaFormManager } from '../pages/idea/IdeaFormManager';
 import { ICubeLogic } from './CubeLogic';
