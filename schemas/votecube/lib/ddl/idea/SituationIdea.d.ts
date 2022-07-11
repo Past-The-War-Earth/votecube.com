@@ -4,6 +4,7 @@ import { Agreement, Idea } from "../ddl";
 import { IdeaRating } from "./IdeaRating";
 import { Reason } from "./Reason";
 export declare class SituationIdea extends AirEntity {
+    constructor(entityGUID: string);
     agreementShareTotal: number;
     numberOfAgreements: number;
     urgencyTotal: number;

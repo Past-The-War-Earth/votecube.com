@@ -1,7 +1,7 @@
-import { and, Y } from "@airport/air-traffic-control";
+import { and, Y } from "@airport/tarmaq-query";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { QUser, User } from "@airport/travel-document-checkpoint";
+import { QUserAccount, UserAccount } from "@airport/travel-document-checkpoint";
 import { Agreement, Idea, SituationIdea } from "../ddl/ddl";
 import { BaseAgreementDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
@@ -13,11 +13,11 @@ export class AgreementDao
 
     async findForSituationIdeaAndUser(
         situationIdea: SituationIdea | string,
-        user: User | string
+        user: UserAccount | string
     ): Promise<Agreement> {
         let ag: QAgreement,
             a: QActor,
-            u: QUser,
+            u: QUserAccount,
             si: QSituationIdea
         return await this._findUnique({
             select: {
@@ -27,7 +27,7 @@ export class AgreementDao
             from: [
                 ag = Q.Agreement,
                 a = ag.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                u = a.userAccount.leftJoin(),
                 si = ag.situationIdea.leftJoin()
             ],
             where: and(
@@ -39,11 +39,11 @@ export class AgreementDao
 
     async findForIdeaOnlyAndUser(
         idea: Idea | string,
-        user: User | string
+        user: UserAccount | string
     ): Promise<Agreement> {
         let ag: QAgreement,
             a: QActor,
-            u: QUser,
+            u: QUserAccount,
             i: QIdea
         return await this._findUnique({
             select: {
@@ -53,7 +53,7 @@ export class AgreementDao
             from: [
                 ag = Q.Agreement,
                 a = ag.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                u = a.userAccount.leftJoin(),
                 i = ag.idea.leftJoin()
             ],
             where: and(

@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationIdeaGraph, SituationIdeaEOptionalId, SituationIdeaESelect, QSituationIdeaQRelation } from './qsituationidea';
 import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
@@ -69,10 +69,10 @@ export interface ReasonGraph extends ReasonEOptionalId, AirEntityGraph {
 export interface ReasonEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     FACTOR_COORDINATE_AXIS?: string | IQStringField;
     POSITION_ORIENTATION?: number | IQNumberField;
     FACTOR_NUMBER?: number | IQNumberField;
@@ -104,7 +104,7 @@ export interface ReasonECreateProperties extends Partial<ReasonEId>, ReasonEUpda
 export interface ReasonECreateColumns extends ReasonEId, ReasonEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QReason extends QAirEntity {
     axis: IQStringField;

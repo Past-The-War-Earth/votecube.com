@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Injected } from '@airport/direction-indicator';
 import { BaseIdeaRatingDao, Q, } from "../generated/generated";
-import { and, Y } from '@airport/air-traffic-control';
+import { and, Y } from '@airport/tarmaq-query';
 let IdeaRatingDao = class IdeaRatingDao extends BaseIdeaRatingDao {
     async findForSituationIdeaAndUser(situationIdea, user) {
         let ir, a, u, si;
@@ -17,7 +17,7 @@ let IdeaRatingDao = class IdeaRatingDao extends BaseIdeaRatingDao {
             from: [
                 ir = Q.IdeaRating,
                 a = ir.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                u = a.userAccount.leftJoin(),
                 si = ir.situationIdea.leftJoin()
             ],
             where: and(si.equals(situationIdea), u.equals(user))
@@ -32,7 +32,7 @@ let IdeaRatingDao = class IdeaRatingDao extends BaseIdeaRatingDao {
             from: [
                 ir = Q.IdeaRating,
                 a = ir.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                u = a.userAccount.leftJoin(),
                 i = ir.idea.leftJoin()
             ],
             where: and(i.equals(idea), ir.situationIdea.isNull(), u.equals(user))

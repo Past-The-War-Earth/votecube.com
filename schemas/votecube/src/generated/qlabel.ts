@@ -5,11 +5,6 @@ import {
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
-	IEntityDatabaseFacade,
-	IEntityFind,
-	IEntityFindOne,
-	IEntitySearch,
-	IEntitySearchOne,
 	IQBooleanField,
 	IQDateField,
 	IQNumberField,
@@ -22,7 +17,7 @@ import {
 	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
-} from '@airport/air-traffic-control';
+} from '@airport/tarmaq-query';
 import {
 	AirEntityGraph,
 	AirEntityEId,
@@ -88,7 +83,7 @@ export interface LabelEUpdateProperties
 	// Non-Id Properties
 	name?: string | IQStringField;
 
-	// Non-Id Relations - ids only & no OneToMany's
+	// Non-Id Relations - _localIds only & no OneToMany's
 
 }
 
@@ -114,10 +109,10 @@ export interface LabelEUpdateColumns
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	CREATED_AT?: Date | IQDateField;
-	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+	SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+	ORIGINAL_ACTOR_LID?: number | IQNumberField;
 	NAME?: string | IQStringField;
 
 }
@@ -144,7 +139,7 @@ extends LabelEId, LabelEUpdateColumns {
 ///////////////////////////////////////////////
 
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QLabel extends QAirEntity
 {

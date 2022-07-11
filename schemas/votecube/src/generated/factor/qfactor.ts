@@ -5,11 +5,6 @@ import {
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
-	IEntityDatabaseFacade,
-	IEntityFind,
-	IEntityFindOne,
-	IEntitySearch,
-	IEntitySearchOne,
 	IQBooleanField,
 	IQDateField,
 	IQNumberField,
@@ -22,7 +17,7 @@ import {
 	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
-} from '@airport/air-traffic-control';
+} from '@airport/tarmaq-query';
 import {
 	AirEntityGraph,
 	AirEntityEId,
@@ -92,7 +87,7 @@ export interface FactorEUpdateProperties
 	action?: string | IQStringField;
 	customText?: string | IQStringField;
 
-	// Non-Id Relations - ids only & no OneToMany's
+	// Non-Id Relations - _localIds only & no OneToMany's
 
 }
 
@@ -120,10 +115,10 @@ export interface FactorEUpdateColumns
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	CREATED_AT?: Date | IQDateField;
-	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+	SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+	ORIGINAL_ACTOR_LID?: number | IQNumberField;
 	OBJECT?: string | IQStringField;
 	ACTION?: string | IQStringField;
 	NAME?: string | IQStringField;
@@ -152,7 +147,7 @@ extends FactorEId, FactorEUpdateColumns {
 ///////////////////////////////////////////////
 
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QFactor extends QAirEntity
 {

@@ -47,27 +47,27 @@ export class IdeaRatingApi {
     private async validateIdeas(
         ideaRating: IdeaRating
     ): Promise<void> {
-        if (!ideaRating.idea.uuId) {
-            throw new Error(`passed in ideaRating.idea doesn't have a UuId`)
+        if (!ideaRating.idea.id) {
+            throw new Error(`passed in ideaRating.idea doesn't have a Id`)
         }
-        let idea: Idea = await this.ideaDao.findByUuId(ideaRating.idea.uuId, true)
+        let idea: Idea = await this.ideaDao.findOne(ideaRating.idea, true)
         if (!idea) {
-            throw new Error(`Idea with UuId "${ideaRating.idea.uuId}" does not exist.`)
+            throw new Error(`Idea with UuId "${ideaRating.idea.id}" does not exist.`)
         }
         ideaRating.idea = idea
 
         if (ideaRating.situationIdea) {
-            if (!ideaRating.situationIdea.uuId) {
-                throw new Error(`passed in agreement.situationIdea doesn't have a UuId`)
+            if (!ideaRating.situationIdea.id) {
+                throw new Error(`passed in agreement.situationIdea doesn't have a Id`)
             }
             let situationIdea: SituationIdea = await this.situationIdeaDao
-                .findByUuId(ideaRating.situationIdea.uuId, true)
+                .findOne(ideaRating.situationIdea, true)
             if (!situationIdea) {
-                throw new Error(`SituationIdea with UuId "${ideaRating.situationIdea.uuId}" does not exist.`)
+                throw new Error(`SituationIdea with UuId "${ideaRating.situationIdea.id}" does not exist.`)
             }
-            if (situationIdea.idea.uuId !== idea.uuId) {
-                throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.uuId})
-doesn't match agreement.idea.uuId (${idea.uuId})`);
+            if (situationIdea.idea.id !== idea.id) {
+                throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.id})
+doesn't match agreement.idea.uuId (${idea.id})`);
             }
             ideaRating.situationIdea = situationIdea
         }
@@ -84,13 +84,13 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
             existingIdeaRating = await this.ideaRatingDao
                 .findForSituationIdeaAndUser(
                     ideaRating.situationIdea,
-                    ideaRating.actor.user
+                    ideaRating.actor.userAccount
                 )
         } else {
             existingIdeaRating = await this.ideaRatingDao
                 .findForIdeaOnlyAndUser(
                     ideaRating.idea,
-                    ideaRating.actor.user
+                    ideaRating.actor.userAccount
                 )
         }
         if (existingIdeaRating) {

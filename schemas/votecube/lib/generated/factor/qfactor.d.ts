@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IFactor } from './factor';
 /**
@@ -41,10 +41,10 @@ export interface FactorGraph extends FactorEOptionalId, AirEntityGraph {
 export interface FactorEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     OBJECT?: string | IQStringField;
     ACTION?: string | IQStringField;
     NAME?: string | IQStringField;
@@ -60,7 +60,7 @@ export interface FactorECreateProperties extends Partial<FactorEId>, FactorEUpda
 export interface FactorECreateColumns extends FactorEId, FactorEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QFactor extends QAirEntity {
     object: IQStringField;

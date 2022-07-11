@@ -1,5 +1,5 @@
-import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
+import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/tarmaq-entity";
 import { Idea } from "../idea/Idea";
 import { SituationIdea } from "../idea/SituationIdea";
 import { AgreementReason } from "./AgreementReason";

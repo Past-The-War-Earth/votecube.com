@@ -25,15 +25,15 @@ export class SituationIdeaApi {
     async add(
         situationIdea: SituationIdea
     ): Promise<void> {
-        if (situationIdea.uuId) {
-            throw new Error(`New SituationIdea cannot have uuId defined`)
+        if (situationIdea.id) {
+            throw new Error(`New SituationIdea cannot have an Id defined`)
         }
         const situation = await this.situationApi.findById(situationIdea.situation)
         if (!situation) {
-            throw new Error(`No situation "${situation.uuId}" found.`)
+            throw new Error(`No situation "${situation.id}" found.`)
         }
         situationIdea.situation = situation
-        if (!situationIdea.idea.uuId) {
+        if (!situationIdea.idea.id) {
             
         }
 

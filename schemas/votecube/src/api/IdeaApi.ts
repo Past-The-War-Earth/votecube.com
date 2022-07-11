@@ -82,7 +82,7 @@ export class IdeaApi
         repositorySource: string,
         ideaRepositoryUuId: string
     ): Promise<Idea> {
-        return await this.ideaDao.findByRepositoryUuId(repositorySource, ideaRepositoryUuId)
+        return await this.ideaDao.findByRepositoryGUID(repositorySource, ideaRepositoryUuId)
     }
 
     @Api()
@@ -98,7 +98,7 @@ export class IdeaApi
             if (!parentIdea.id) {
                 throw new Error(`Parent idea must have an Id`)
             }
-            parentIdea = await this.ideaDao.findByUuId(parentIdea)
+            parentIdea = await this.ideaDao.findOne(parentIdea)
         }
         idea.parent = parentIdea
 

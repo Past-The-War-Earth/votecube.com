@@ -1,4 +1,4 @@
-import { Dao, DaoQueryDecorators, } from '@airport/check-in';
+import { Dao, DaoQueryDecorators, } from '@airport/tarmaq-dao';
 import { Q, duoDiSet, } from './qApplication';
 // Application Q object Dependency Injection readiness detection Dao
 export class SQDIDao extends Dao {
@@ -38,13 +38,13 @@ BaseAgreementReasonDao.Search = new DaoQueryDecorators();
 BaseAgreementReasonDao.SearchOne = new DaoQueryDecorators();
 export class BaseFactorDao extends SQDIDao {
     constructor() {
-        super(10);
+        super(9);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(10);
+        return duoDiSet(9);
     }
 }
 BaseFactorDao.Find = new DaoQueryDecorators();
@@ -128,13 +128,13 @@ BaseLabelDao.Search = new DaoQueryDecorators();
 BaseLabelDao.SearchOne = new DaoQueryDecorators();
 export class BasePositionDao extends SQDIDao {
     constructor() {
-        super(9);
+        super(10);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(9);
+        return duoDiSet(10);
     }
 }
 BasePositionDao.Find = new DaoQueryDecorators();

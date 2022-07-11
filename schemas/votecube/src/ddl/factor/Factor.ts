@@ -1,9 +1,9 @@
+import { AirEntity } from '@airport/holding-pattern'
 import {
 	Column,
 	Entity,
 	Table
-} from '@airport/air-traffic-control'
-import { AirEntity } from '@airport/holding-pattern'
+} from '@airport/tarmaq-entity'
 
 @Entity()
 @Table({ name: 'FACTORS' })

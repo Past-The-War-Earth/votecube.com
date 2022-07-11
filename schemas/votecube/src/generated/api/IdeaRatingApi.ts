@@ -10,6 +10,9 @@ import {
 	Api,
 } from '@airport/check-in';
 import {
+	ITotalDelta,
+} from '@sapoto/core';
+import {
 	IIdeaDao,
 } from '../../dao/IdeaDao';
 import {
@@ -18,9 +21,6 @@ import {
 import {
 	ISituationIdeaDao,
 } from '../../dao/SituationIdeaDao';
-import {
-	ITotalDelta,
-} from '../../ddl/TotalDelta';
 import {
 	Idea,
 	IdeaRating,

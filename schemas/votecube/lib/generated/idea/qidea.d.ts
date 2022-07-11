@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IdeaRatingGraph, IdeaRatingESelect, QIdeaRatingQRelation } from './qidearating';
 import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
@@ -78,10 +78,10 @@ export interface IdeaGraph extends IdeaEOptionalId, AirEntityGraph {
 export interface IdeaEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     NAME?: string | IQStringField;
     AGREEMENT_SHARE_TOTAL?: number | IQNumberField;
     NUMBER_OF_AGREEMENTS?: number | IQNumberField;
@@ -103,7 +103,7 @@ export interface IdeaECreateProperties extends Partial<IdeaEId>, IdeaEUpdateProp
 export interface IdeaECreateColumns extends IdeaEId, IdeaEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QIdea extends QAirEntity {
     name: IQStringField;

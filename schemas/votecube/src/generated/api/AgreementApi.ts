@@ -10,6 +10,9 @@ import {
 	Api,
 } from '@airport/check-in';
 import {
+	ITotalDelta,
+} from '@sapoto/core';
+import {
 	AgreementDao,
 } from '../../dao/AgreementDao';
 import {
@@ -24,9 +27,6 @@ import {
 import {
 	ISituationIdeaDao,
 } from '../../dao/SituationIdeaDao';
-import {
-	ITotalDelta,
-} from '../../ddl/TotalDelta';
 import {
 	Agreement,
 	AgreementReason,

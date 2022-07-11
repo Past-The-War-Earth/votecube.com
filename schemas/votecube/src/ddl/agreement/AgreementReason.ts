@@ -1,10 +1,10 @@
+import { AirEntity } from "@airport/holding-pattern";
 import {
     Column,
     Entity,
     ManyToOne,
     Table
-} from "@airport/air-traffic-control";
-import { AirEntity } from "@airport/holding-pattern";
+} from "@airport/tarmaq-entity";
 import { Reason } from "../ddl";
 import { Agreement } from "./Agreement";
 

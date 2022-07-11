@@ -1,5 +1,5 @@
 import { Injected } from '@airport/direction-indicator';
-import { QUser, User } from '@airport/travel-document-checkpoint';
+import { QUserAccount, UserAccount } from '@airport/travel-document-checkpoint';
 import {
     BaseIdeaRatingDao,
     IBaseIdeaRatingDao,
@@ -10,19 +10,19 @@ import {
 } from "../generated/generated";
 import { Idea, IdeaRating, SituationIdea } from '../ddl/ddl';
 import { QActor } from '@airport/holding-pattern';
-import { and, Y } from '@airport/air-traffic-control';
+import { and, Y } from '@airport/tarmaq-query';
 
 export interface IIdeaRatingDao
     extends IBaseIdeaRatingDao {
 
     findForSituationIdeaAndUser(
         situationIdea: SituationIdea | string,
-        user: User | string
+        user: UserAccount | string
     ): Promise<IdeaRating>
 
     findForIdeaOnlyAndUser(
         idea: Idea | string,
-        user: User | string
+        user: UserAccount | string
     ): Promise<IdeaRating>
 
 }
@@ -34,11 +34,11 @@ export class IdeaRatingDao
 
     async findForSituationIdeaAndUser(
         situationIdea: SituationIdea | string,
-        user: User | string
+        user: UserAccount | string
     ): Promise<IdeaRating> {
         let ir: QIdeaRating,
             a: QActor,
-            u: QUser,
+            u: QUserAccount,
             si: QSituationIdea
         return await this._findUnique({
             select: {
@@ -47,7 +47,7 @@ export class IdeaRatingDao
             from: [
                 ir = Q.IdeaRating,
                 a = ir.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                u = a.userAccount.leftJoin(),
                 si = ir.situationIdea.leftJoin()
             ],
             where: and(
@@ -59,11 +59,11 @@ export class IdeaRatingDao
 
     async findForIdeaOnlyAndUser(
         idea: Idea | string,
-        user: User | string
+        user: UserAccount | string
     ): Promise<IdeaRating> {
         let ir: QIdeaRating,
             a: QActor,
-            u: QUser,
+            u: QUserAccount,
             i: QIdea
         return await this._findUnique({
             select: {
@@ -72,7 +72,7 @@ export class IdeaRatingDao
             from: [
                 ir = Q.IdeaRating,
                 a = ir.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                u = a.userAccount.leftJoin(),
                 i = ir.idea.leftJoin()
             ],
             where: and(

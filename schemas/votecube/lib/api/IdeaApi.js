@@ -32,26 +32,36 @@ let IdeaApi = class IdeaApi {
         return null;
     }
     async getIdea(repositorySource, ideaRepositoryUuId) {
-        return await this.ideaDao.findByRepositoryUuId(repositorySource, ideaRepositoryUuId);
+        return await this.ideaDao.findByRepositoryGUID(repositorySource, ideaRepositoryUuId);
     }
-    async saveExistingIdea(idea) {
-        if (!idea.repository || !idea.repository.id
-            || !idea.actor || !idea.actor.id
-            || !idea.actorRecordId) {
-            throw new Error(`Cannot save EXISTING idea without a repository, an actor and an actorRecordId`);
-        }
-        return await this.ideaDao.saveExistingIdea(idea);
-    }
-    async saveNewIdea(idea) {
+    async saveIdea(idea) {
         idea.repository = null;
         idea.actor = null;
-        delete idea.actorRecordId;
-        return await this.ideaDao.saveNewIdea(idea);
+        delete idea._actorRecordId;
+        let parentIdea = idea.parent;
+        if (idea.parent) {
+            if (!parentIdea.id) {
+                throw new Error(`Parent idea must have an Id`);
+            }
+            parentIdea = await this.ideaDao.findOne(parentIdea);
+        }
+        idea.parent = parentIdea;
+        if (idea.userAgreement) {
+            idea.userAgreement.actor = this.requestManager.actor;
+        }
+        if (idea.userIdeaRating) {
+            idea.userIdeaRating.actor = this.requestManager.actor;
+        }
+        const saveResult = await this.ideaDao.save(idea);
+        return saveResult.repositoryIdParts;
     }
 };
 __decorate([
     Inject()
 ], IdeaApi.prototype, "ideaDao", void 0);
+__decorate([
+    Inject()
+], IdeaApi.prototype, "requestManager", void 0);
 __decorate([
     Api()
 ], IdeaApi.prototype, "getIdeasForLabels", null);
@@ -66,10 +76,7 @@ __decorate([
 ], IdeaApi.prototype, "getIdea", null);
 __decorate([
     Api()
-], IdeaApi.prototype, "saveExistingIdea", null);
-__decorate([
-    Api()
-], IdeaApi.prototype, "saveNewIdea", null);
+], IdeaApi.prototype, "saveIdea", null);
 IdeaApi = __decorate([
     Injected()
 ], IdeaApi);

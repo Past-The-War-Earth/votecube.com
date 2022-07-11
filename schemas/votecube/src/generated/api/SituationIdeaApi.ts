@@ -7,27 +7,23 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
-	IRequestManager,
+	RequestManager,
 } from '@airport/arrivals-n-departures';
 import {
 	Api,
 } from '@airport/check-in';
 import {
-	AgreementDao,
-} from '../../dao/AgreementDao';
+	SituationApi,
+} from '@sapoto/core';
 import {
-	AgreementReasonDao,
-} from '../../dao/AgreementReasonDao';
-import {
-	IIdeaDao,
 	ISituationIdeaDao,
 } from '../../dao/dao';
 import {
-	ReasonDao,
-} from '../../dao/ReasonDao';
-import {
 	SituationIdea,
 } from '../../ddl/ddl';
+import {
+	IdeaApi,
+} from './IdeaApi';
 
 
 

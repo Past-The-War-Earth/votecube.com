@@ -1,6 +1,7 @@
+import { IAirEntity } from '@airport/holding-pattern';
 import { IIdea } from './idea';
 import { ITopic } from '@sapoto/core';
-export interface IIdeaTopic {
+export interface IIdeaTopic extends IAirEntity {
     idea?: IIdea;
     topic?: ITopic;
 }

@@ -1,16 +1,27 @@
 import {
-    IDEA_API,
+	IDEA_API,
 } from '../../to_be_generated/common-tokens';
 import {
-    DEPENDENCY_INJECTION,
-    Inject,
-    Injected,
+	DEPENDENCY_INJECTION,
+	Inject,
+	Injected,
 } from '@airport/direction-indicator';
 import {
-    Idea,
-    Label,
+	RequestManager,
+} from '@airport/arrivals-n-departures';
+import {
+	Api,
+} from '@airport/check-in';
+import {
+	IRepositoryIdParts,
+} from '@airport/ground-control';
+import {
+	IdeaDao,
+} from '../../dao/dao';
+import {
+	Idea,
+	Label,
 } from '../../ddl/ddl';
-import { IRepositoryIdentifier } from '@airport/holding-pattern';
 
 
 export interface IIdeaApi {
@@ -18,8 +29,7 @@ export interface IIdeaApi {
     getLeafIdeas(idea: Idea): Promise<Idea[]>;
     getStemIdea(idea: Idea): Promise<Idea>;
     getIdea(repositorySource: string, ideaRepositoryUuId: string): Promise<Idea>;
-    saveExistingIdea(idea: Idea): Promise<IRepositoryIdentifier>;
-    saveNewIdea(idea: Idea): Promise<IRepositoryIdentifier>;
+    saveIdea(idea: Idea): Promise<IRepositoryIdParts>;
 }
 
 // An API stub for other Applications and UIs to use
@@ -29,29 +39,29 @@ export class IdeaApi {
     constructor() {
         DEPENDENCY_INJECTION.db().manualInject(this, IDEA_API)
     }
-
+        
     @Inject()
     ideaApi: IdeaApi
-
-    async getIdeasForLabels(
+            
+    async  getIdeasForLabels(
         labels: Label[]
     ): Promise<Idea[]> {
         return await this.ideaApi.getIdeasForLabels(labels)
     }
 
-    async getLeafIdeas(
+    async  getLeafIdeas(
         idea: Idea
     ): Promise<Idea[]> {
         return await this.ideaApi.getLeafIdeas(idea)
     }
 
-    async getStemIdea(
+    async  getStemIdea(
         idea: Idea
     ): Promise<Idea> {
         return await this.ideaApi.getStemIdea(idea)
     }
 
-    async getIdea(
+    async  getIdea(
         repositorySource: string,
         ideaRepositoryUuId: string
     ): Promise<Idea> {
@@ -61,16 +71,10 @@ export class IdeaApi {
         )
     }
 
-    async saveExistingIdea(
+    async  saveIdea(
         idea: Idea
-    ): Promise<IRepositoryIdentifier> {
-        return await this.ideaApi.saveExistingIdea(idea)
-    }
-
-    async saveNewIdea(
-        idea: Idea
-    ): Promise<IRepositoryIdentifier> {
-        return await this.ideaApi.saveNewIdea(idea)
+    ): Promise<IRepositoryIdParts> {
+        return await this.ideaApi.saveIdea(idea)
     }
 
 }

@@ -23,11 +23,8 @@ let IdeaApi = class IdeaApi {
     async getIdea(repositorySource, ideaRepositoryUuId) {
         return await this.ideaApi.getIdea(repositorySource, ideaRepositoryUuId);
     }
-    async saveExistingIdea(idea) {
-        return await this.ideaApi.saveExistingIdea(idea);
-    }
-    async saveNewIdea(idea) {
-        return await this.ideaApi.saveNewIdea(idea);
+    async saveIdea(idea) {
+        return await this.ideaApi.saveIdea(idea);
     }
 };
 __decorate([

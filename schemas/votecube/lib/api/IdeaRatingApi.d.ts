@@ -7,6 +7,7 @@ export declare class IdeaRatingApi {
     ideaRatingDao: IIdeaRatingDao;
     situationIdeaDao: ISituationIdeaDao;
     setIdeaRating(inIdeaRating: IdeaRating): Promise<void>;
+    doSetIdeaRating(inIdeaRating: IdeaRating, isNewIdea: boolean, isNewSituationIdea: boolean): Promise<void>;
     private validateIdeas;
     private getUrgencyRatingDeltas;
     private updateUrgencyTotals;

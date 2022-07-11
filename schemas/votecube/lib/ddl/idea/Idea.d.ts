@@ -6,6 +6,7 @@ import { IdeaRating } from './IdeaRating';
 import { Agreement } from '../agreement/Agreement';
 import { Reason } from './Reason';
 export declare class Idea extends AirEntity {
+    constructor(entityGUID: string);
     name: string;
     agreementShareTotal: number;
     numberOfAgreements: number;
@@ -22,6 +23,6 @@ export declare class Idea extends AirEntity {
     ideaTopics: IdeaTopic[];
     userIdeaRating?: IdeaRating;
     userAgreement?: Agreement;
-    userReasons: Reason[];
+    userReasons?: Reason[];
 }
 //# sourceMappingURL=Idea.d.ts.map

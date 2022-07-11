@@ -8,6 +8,9 @@ import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let IdeaRatingApi = class IdeaRatingApi {
     async setIdeaRating(inIdeaRating) {
+        await this.doSetIdeaRating(inIdeaRating, false, false);
+    }
+    async doSetIdeaRating(inIdeaRating, isNewIdea, isNewSituationIdea) {
         if (inIdeaRating.urgencyRating < 1 || inIdeaRating.urgencyRating > 5) {
             throw new Error(`Invalid ideaRating.urgencyRating total`);
         }
@@ -18,26 +21,26 @@ let IdeaRatingApi = class IdeaRatingApi {
         await this.updateUrgencyTotals(ideaRating, delta);
     }
     async validateIdeas(ideaRating) {
-        if (!ideaRating.idea.uuId) {
-            throw new Error(`passed in ideaRating.idea doesn't have a UuId`);
+        if (!ideaRating.idea.id) {
+            throw new Error(`passed in ideaRating.idea doesn't have a Id`);
         }
-        let idea = await this.ideaDao.findByUuId(ideaRating.idea.uuId, true);
+        let idea = await this.ideaDao.findOne(ideaRating.idea, true);
         if (!idea) {
-            throw new Error(`Idea with UuId "${ideaRating.idea.uuId}" does not exist.`);
+            throw new Error(`Idea with UuId "${ideaRating.idea.id}" does not exist.`);
         }
         ideaRating.idea = idea;
         if (ideaRating.situationIdea) {
-            if (!ideaRating.situationIdea.uuId) {
-                throw new Error(`passed in agreement.situationIdea doesn't have a UuId`);
+            if (!ideaRating.situationIdea.id) {
+                throw new Error(`passed in agreement.situationIdea doesn't have a Id`);
             }
             let situationIdea = await this.situationIdeaDao
-                .findByUuId(ideaRating.situationIdea.uuId, true);
+                .findOne(ideaRating.situationIdea, true);
             if (!situationIdea) {
-                throw new Error(`SituationIdea with UuId "${ideaRating.situationIdea.uuId}" does not exist.`);
+                throw new Error(`SituationIdea with UuId "${ideaRating.situationIdea.id}" does not exist.`);
             }
-            if (situationIdea.idea.uuId !== idea.uuId) {
-                throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.uuId})
-doesn't match agreement.idea.uuId (${idea.uuId})`);
+            if (situationIdea.idea.id !== idea.id) {
+                throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.id})
+doesn't match agreement.idea.uuId (${idea.id})`);
             }
             ideaRating.situationIdea = situationIdea;
         }
@@ -46,11 +49,11 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
         let existingIdeaRating;
         if (ideaRating.situationIdea) {
             existingIdeaRating = await this.ideaRatingDao
-                .findForSituationIdeaAndUser(ideaRating.situationIdea, ideaRating.actor.user);
+                .findForSituationIdeaAndUser(ideaRating.situationIdea, ideaRating.actor.userAccount);
         }
         else {
             existingIdeaRating = await this.ideaRatingDao
-                .findForIdeaOnlyAndUser(ideaRating.idea, ideaRating.actor.user);
+                .findForIdeaOnlyAndUser(ideaRating.idea, ideaRating.actor.userAccount);
         }
         if (existingIdeaRating) {
             existingIdeaRating.idea = ideaRating.idea;

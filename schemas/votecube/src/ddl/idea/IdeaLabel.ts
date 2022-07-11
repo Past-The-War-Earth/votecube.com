@@ -1,3 +1,4 @@
+import { AirEntity } from '@airport/holding-pattern'
 import {
     Column,
     DbString,
@@ -5,8 +6,7 @@ import {
     ManyToOne,
     OneToMany,
     Table
-} from '@airport/air-traffic-control'
-import { AirEntity } from '@airport/holding-pattern'
+} from '@airport/tarmaq-entity'
 import { Label } from '../Label'
 import { Idea } from './Idea'
 

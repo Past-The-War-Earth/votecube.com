@@ -75,24 +75,24 @@ export class AgreementApi
         if (!agreement.idea.id) {
             throw new Error(`passed in agreement.idea doesn't have a UuId`)
         }
-        let idea: Idea = await this.ideaDao.findByUuId(agreement.idea.uuId, true)
+        let idea: Idea = await this.ideaDao.findOne(agreement.idea, true)
         if (!idea) {
-            throw new Error(`Idea with UuId "${agreement.idea.uuId}" does not exist.`)
+            throw new Error(`Idea with UuId "${agreement.idea.id}" does not exist.`)
         }
         agreement.idea = idea
 
         if (agreement.situationIdea) {
-            if (!agreement.situationIdea.uuId) {
-                throw new Error(`passed in agreement.situationIdea doesn't have a UuId`)
+            if (!agreement.situationIdea.id) {
+                throw new Error(`passed in agreement.situationIdea doesn't have an Id`)
             }
             let situationIdea: SituationIdea = await this.situationIdeaDao
-                .findByUuId(agreement.situationIdea.uuId, true)
+                .findOne(agreement.situationIdea, true)
             if (!situationIdea) {
-                throw new Error(`SituationIdea with UuId "${agreement.situationIdea.uuId}" does not exist.`)
+                throw new Error(`SituationIdea with UuId "${agreement.situationIdea.id}" does not exist.`)
             }
-            if (situationIdea.idea.uuId !== idea.uuId) {
-                throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.uuId})
-doesn't match agreement.idea.uuId (${idea.uuId})`);
+            if (situationIdea.idea.id !== idea.id) {
+                throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.id})
+doesn't match agreement.idea.uuId (${idea.id})`);
             }
             agreement.situationIdea = situationIdea
         }
@@ -114,15 +114,17 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
             if (!reason) {
                 throw new Error(`Recieved a null reason`)
             }
-            if (!reason.idea || reason.idea.uuId !== agreement.idea.uuId) {
-                throw new Error(`Invalid Idea for Reason '${reason.uuId}'`)
+            if (!reason.idea || reason.idea.id !== agreement.idea.id) {
+                throw new Error(`Invalid Idea for Reason '${reason.id}'`)
             }
             if (agreement.situationIdea && (
-                !reason.situationIdea || reason.situationIdea.uuId !== agreement.situationIdea.uuId
+                !reason.situationIdea || reason.situationIdea.id !== agreement.situationIdea.id
             )) {
-                throw new Error(`Invalid SituationIdea for Reason '${reason.uuId}'`)
+                throw new Error(`Invalid SituationIdea for Reason '${reason.id}'`)
             } else if (reason.situationIdea) {
-                throw new Error(`SituationIdea is Not specified for Agreement but is specified for Reason '${reason.uuId}'`)
+                throw new Error(`SituationIdea is Not specified for Agreement but is specified for Reason
+'${reason.id}'
+`)
             }
             if (!reason.factor) {
                 throw new Error(`Recieved a null factor`)
@@ -157,33 +159,37 @@ doesn't match agreement.idea.uuId (${idea.uuId})`);
         const existingIncomingReasonMap: Map<string, Reason> = new Map()
         for (const incomingAgreementReason of agreement.agreementReasons) {
             const incomingReason: Reason = incomingAgreementReason.reason
-            if (!incomingReason.actorRecordId) {
-                const reasonUuId: string = incomingReason.factor.uuId + '-'
-                    + incomingReason.position.uuId
-                if (agreementReasonWithNewReasonMap.has(reasonUuId)) {
-                    throw new Error(`Reason for Factor ${incomingReason.factor.uuId} and Position ${incomingReason.position.uuId}
-is found more than once.`)
+            if (!incomingReason.id) {
+                const reasonId: string = incomingReason.factor.id + '-'
+                    + incomingReason.position.id
+                if (agreementReasonWithNewReasonMap.has(reasonId)) {
+                    throw new Error(`Reason for Factor
+${incomingReason.factor.id}
+                    and Position
+${incomingReason.position.id}
+    is found more than once.`)
                 }
-                agreementReasonWithNewReasonMap.set(reasonUuId, incomingAgreementReason)
+                agreementReasonWithNewReasonMap.set(reasonId, incomingAgreementReason)
             } else {
-                const uuId = incomingReason.uuId
-                if (existingIncomingReasonMap.has(uuId)) {
-                    throw new Error(`Reason with UuId: ${uuId} is found more than once.`)
+                const id = incomingReason.id
+                if (existingIncomingReasonMap.has(id)) {
+                    throw new Error(`Reason with Id: ${id} is found more than once.`)
                 }
-                existingIncomingReasonMap.set(uuId, incomingReason)
+                existingIncomingReasonMap.set(id, incomingReason)
             }
         }
 
         let existingReasonMap: Map<string, Reason> = new Map()
         let existingReasonMapByFactorAndPositionUuIds: Map<string, Reason> = new Map()
         for (const reason of existingReasons) {
-            existingReasonMap.set(reason.uuId, reason)
-            existingReasonMapByFactorAndPositionUuIds.set(reason.factor.uuId + '-' + reason.position.uuId, reason)
+            existingReasonMap.set(reason.id, reason)
+            existingReasonMapByFactorAndPositionUuIds.set(
+                reason.factor.id + '-' + reason.position.id, reason)
         }
 
         for (const existingIncomingReason of existingIncomingReasonMap.values()) {
-            if (!existingReasonMap.has(existingIncomingReason.uuId)) {
-                throw new Error(`Reason ${existingIncomingReason.uuId} does not exist`)
+            if (!existingReasonMap.has(existingIncomingReason.id)) {
+                throw new Error(`Reason ${existingIncomingReason.id} does not exist`)
             }
         }
         let newReasonsMap: Map<string, Reason> = new Map()
@@ -209,21 +215,21 @@ is found more than once.`)
             existingAgreement = await this.agreementDao
                 .findForSituationIdeaAndUser(
                     agreement.situationIdea,
-                    agreement.actor.user.uuId
+                    agreement.actor.userAccount.GUID
                 )
         } else {
             existingAgreement = await this.agreementDao
                 .findForIdeaOnlyAndUser(
                     agreement.idea,
-                    agreement.actor.user.uuId
+                    agreement.actor.userAccount.GUID
                 )
         }
         if (existingAgreement) {
             const leftOverAgreementReasonsById = this.agreementReasonDao
-                .mapByUuId(existingAgreement.agreementReasons)
+                .mapById(existingAgreement.agreementReasons)
             for (const agreementReason of agreement.agreementReasons) {
-                if (agreementReason.uuId) {
-                    leftOverAgreementReasonsById.delete(agreementReason.uuId)
+                if (agreementReason.id) {
+                    leftOverAgreementReasonsById.delete(agreementReason.id)
                 }
             }
             for (const leftOverAgreementReason of leftOverAgreementReasonsById.values()) {

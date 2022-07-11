@@ -1,12 +1,11 @@
+import { IRepositoryIdParts } from '@airport/ground-control';
 import { Idea, Label } from '../../ddl/ddl';
-import { IRepositoryIdentifier } from '../../types';
 export interface IIdeaApi {
     getIdeasForLabels(labels: Label[]): Promise<Idea[]>;
     getLeafIdeas(idea: Idea): Promise<Idea[]>;
     getStemIdea(idea: Idea): Promise<Idea>;
     getIdea(repositorySource: string, ideaRepositoryUuId: string): Promise<Idea>;
-    saveExistingIdea(idea: Idea): Promise<IRepositoryIdentifier>;
-    saveNewIdea(idea: Idea): Promise<IRepositoryIdentifier>;
+    saveIdea(idea: Idea): Promise<IRepositoryIdParts>;
 }
 export declare class IdeaApi {
     constructor();
@@ -15,7 +14,6 @@ export declare class IdeaApi {
     getLeafIdeas(idea: Idea): Promise<Idea[]>;
     getStemIdea(idea: Idea): Promise<Idea>;
     getIdea(repositorySource: string, ideaRepositoryUuId: string): Promise<Idea>;
-    saveExistingIdea(idea: Idea): Promise<IRepositoryIdentifier>;
-    saveNewIdea(idea: Idea): Promise<IRepositoryIdentifier>;
+    saveIdea(idea: Idea): Promise<IRepositoryIdParts>;
 }
 //# sourceMappingURL=IdeaApi.d.ts.map

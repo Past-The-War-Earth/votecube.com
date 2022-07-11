@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQStringField } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { ILabel } from './label';
 /**
@@ -35,10 +35,10 @@ export interface LabelGraph extends LabelEOptionalId, AirEntityGraph {
 export interface LabelEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     NAME?: string | IQStringField;
 }
 /**
@@ -52,7 +52,7 @@ export interface LabelECreateProperties extends Partial<LabelEId>, LabelEUpdateP
 export interface LabelECreateColumns extends LabelEId, LabelEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QLabel extends QAirEntity {
     name: IQStringField;

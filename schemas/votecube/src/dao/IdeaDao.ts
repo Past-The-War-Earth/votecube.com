@@ -1,8 +1,13 @@
+import { Injected } from '@airport/direction-indicator';
+import {
+    QRepository
+} from "@airport/holding-pattern";
 import {
     and,
     plus,
     Y
-} from '@airport/air-traffic-control'
+} from '@airport/tarmaq-query'
+import { ITotalDelta } from '@sapoto/core';
 import {
     BaseIdeaDao,
     Q,
@@ -12,11 +17,6 @@ import {
     QIdeaLabel,
     IBaseIdeaDao,
 } from "../generated/generated";
-import {
-    QRepository
-} from "@airport/holding-pattern";
-import { Injected } from '@airport/direction-indicator';
-import { ITotalDelta } from '@sapoto/core';
 import { Idea } from '../ddl/ddl';
 
 export interface IIdeaDao
@@ -44,19 +44,6 @@ export class IdeaDao
     extends BaseIdeaDao
     implements IIdeaDao {
 
-    /*
-     * Are GUIDs necessary for child records (they cause joins)?
-     *    Updates are performed by AIRport internally so just the
-     *    repository and actor _localids (embedded in the record)
-     *    are sufficient.
-     *    The UI itself does not need them - again lookups are done
-     *    though AIRport as well.
-     * 
-     * So, no need to join to repository and actor tables for
-     * child tables.  For the root record the repositoryUuId is 
-     * already passed in anyway and actor uuid is not used (
-     * repositoryUuId is used for page navigation).
-     */
     async findByRepositoryGUID(
         repositorySource: string,
         ideaReposioryGUID: string

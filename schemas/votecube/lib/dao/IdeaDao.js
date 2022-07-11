@@ -4,32 +4,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { and, plus, Y } from '@airport/air-traffic-control';
-import { BaseIdeaDao, Q, } from "../generated/generated";
 import { Injected } from '@airport/direction-indicator';
+import { and, plus, Y } from '@airport/tarmaq-query';
+import { BaseIdeaDao, Q, } from "../generated/generated";
 let IdeaDao = class IdeaDao extends BaseIdeaDao {
-    /*
-     * Are UuIds necessary for child records (they cause joins)?
-     *    Updates are performed by AIRport internally so just the
-     *    repository and actor numeric ids (embedded in the record)
-     *    are sufficient.
-     *    The UI itself does not need them - again lookups are done
-     *    though AIRport as well.
-     *
-     * So, no need to join to repository and actor tables for
-     * child tables.  For the root record the repositoryUuId is
-     * already passed in anyway and actor uuid is not used (
-     * repositoryUuId is used for page navigation).
-     */
-    async findByRepositoryUuId(repositorySource, ideaReposioryUuid) {
+    async findByRepositoryGUID(repositorySource, ideaReposioryGUID) {
         let i;
         let r;
         let sl;
-        let l;
         let is;
         let rs;
-        let f;
-        let p;
         const matchingRepositories = await this.db.find.tree({
             select: {
                 '*': Y,
@@ -51,39 +35,23 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
                 i = Q.Idea,
                 r = i.repository.innerJoin(),
                 sl = i.ideaLabels.leftJoin(),
-                l = sl.label.leftJoin(),
+                sl.label.leftJoin(),
                 is = i.situationIdeas.leftJoin(),
                 rs = is.reasons.leftJoin(),
-                f = rs.factor.leftJoin(),
-                p = rs.position.leftJoin()
+                rs.factor.leftJoin(),
+                rs.position.leftJoin()
             ],
-            where: and(r.source.equals(repositorySource), r.uuId.equals(ideaReposioryUuid))
+            where: and(r.source.equals(repositorySource), r.GUID.equals(ideaReposioryGUID))
         }, {
             repository: {
                 source: repositorySource,
-                uuId: ideaReposioryUuid
+                GUID: ideaReposioryGUID
             }
         });
         if (matchingRepositories.length) {
             return matchingRepositories[0];
         }
         return null;
-    }
-    async saveExistingIdea(idea) {
-        let saveResult;
-        saveResult = await this.db.save(idea);
-        return {
-            source: idea.repository.source,
-            uuId: idea.repository.uuId
-        };
-    }
-    async saveNewIdea(idea) {
-        let saveResult = await this.db.save(idea);
-        const newRepository = saveResult.newRepository;
-        return {
-            source: newRepository.source,
-            uuId: newRepository.uuId
-        };
     }
     async updateShareTotal(delta, idea) {
         const i = Q.Idea;

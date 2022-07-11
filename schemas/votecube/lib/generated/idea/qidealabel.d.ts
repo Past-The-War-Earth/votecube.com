@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { IdeaGraph, IdeaEOptionalId, IdeaESelect, QIdeaQRelation } from './qidea';
 import { LabelGraph, LabelEOptionalId, LabelESelect, QLabelQRelation } from '../qlabel';
@@ -40,10 +40,10 @@ export interface IdeaLabelGraph extends IdeaLabelEOptionalId, AirEntityGraph {
 export interface IdeaLabelEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     IDEAS_RID_1?: number | IQNumberField;
     IDEAS_AID_1?: number | IQNumberField;
     IDEAS_ARID_1?: number | IQNumberField;
@@ -62,7 +62,7 @@ export interface IdeaLabelECreateProperties extends Partial<IdeaLabelEId>, IdeaL
 export interface IdeaLabelECreateColumns extends IdeaLabelEId, IdeaLabelEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QIdeaLabel extends QAirEntity {
     idea: QIdeaQRelation;

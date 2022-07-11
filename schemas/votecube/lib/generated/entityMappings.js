@@ -10,8 +10,8 @@ import { IdeaTopic } from '../ddl/idea/IdeaTopic';
 import { Idea } from '../ddl/idea/Idea';
 import { AgreementReason } from '../ddl/agreement/AgreementReason';
 import { Agreement } from '../ddl/agreement/Agreement';
-import { Position } from '../ddl/factor/Position';
 import { Factor } from '../ddl/factor/Factor';
+import { Position } from '../ddl/factor/Position';
 DEPENDENCY_INJECTION.db().get(AIRPORT_DATABASE).then(airDb => {
     const accumulator = airDb.getAccumulator('localhost:8000', 'undefined');
     accumulator.add(Label, 0);
@@ -23,7 +23,7 @@ DEPENDENCY_INJECTION.db().get(AIRPORT_DATABASE).then(airDb => {
     accumulator.add(Idea, 6);
     accumulator.add(AgreementReason, 7);
     accumulator.add(Agreement, 8);
-    accumulator.add(Position, 9);
-    accumulator.add(Factor, 10);
+    accumulator.add(Factor, 9);
+    accumulator.add(Position, 10);
 });
 //# sourceMappingURL=entityMappings.js.map

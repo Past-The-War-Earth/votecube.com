@@ -1,4 +1,4 @@
-import { Y } from "@airport/air-traffic-control";
+import { Y } from "@airport/tarmaq-query";
 import { Injected } from "@airport/direction-indicator";
 import { Idea, Reason, SituationIdea } from "../ddl/ddl";
 import { BaseReasonDao } from "../generated/baseDaos";
@@ -15,13 +15,9 @@ export class ReasonDao
             i: QIdea
         return await this._find({
             select: {
-                uuId: Y,
-                factor: {
-                    uuId: Y
-                },
-                position: {
-                    uuId: Y
-                }
+                '*': Y,
+                factor: {},
+                position: {}
             },
             from: [
                 r = Q.Reason,
@@ -38,13 +34,9 @@ export class ReasonDao
             si: QSituationIdea
         return await this._find({
             select: {
-                uuId: Y,
-                factor: {
-                    uuId: Y
-                },
-                position: {
-                    uuId: Y
-                }
+                '*': Y,
+                factor: {},
+                position: {}
             },
             from: [
                 r = Q.Reason,

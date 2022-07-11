@@ -5,11 +5,6 @@ import {
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
-	IEntityDatabaseFacade,
-	IEntityFind,
-	IEntityFindOne,
-	IEntitySearch,
-	IEntitySearchOne,
 	IQBooleanField,
 	IQDateField,
 	IQNumberField,
@@ -22,7 +17,17 @@ import {
 	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
-} from '@airport/air-traffic-control';
+} from '@airport/tarmaq-query';
+import {
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
+} from '@airport/holding-pattern';
 import {
 	IdeaGraph,
 	IdeaEId,
@@ -63,7 +68,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface IdeaTopicESelect
-    extends IEntitySelectProperties, IdeaTopicEOptionalId {
+    extends AirEntityESelect, IdeaTopicEOptionalId {
 	// Non-Id Properties
 
 	// Id Relations - full property interfaces
@@ -78,7 +83,7 @@ export interface IdeaTopicESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface IdeaTopicEId
-    extends IEntityIdProperties {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -99,10 +104,10 @@ export interface IdeaTopicEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface IdeaTopicEUpdateProperties
-	extends IEntityUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 
-	// Non-Id Relations - ids only & no OneToMany's
+	// Non-Id Relations - _localIds only & no OneToMany's
 	idea?: IdeaEOptionalId;
 	topic?: TopicEOptionalId;
 
@@ -112,7 +117,7 @@ export interface IdeaTopicEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface IdeaTopicGraph
-	extends IdeaTopicEOptionalId, IEntityCascadeGraph {
+	extends IdeaTopicEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -127,8 +132,14 @@ export interface IdeaTopicGraph
  * UPDATE - non-id columns (optional).
  */
 export interface IdeaTopicEUpdateColumns
-	extends IEntityUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
+	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
+	SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
+	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
+	ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+	ORIGINAL_ACTOR_LID?: number | IQNumberField;
 	IDEAS_RID_1?: number | IQNumberField;
 	IDEAS_AID_1?: number | IQNumberField;
 	IDEAS_ARID_1?: number | IQNumberField;
@@ -160,9 +171,9 @@ extends IdeaTopicEId, IdeaTopicEUpdateColumns {
 ///////////////////////////////////////////////
 
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
-export interface QIdeaTopic extends IQEntity
+export interface QIdeaTopic extends QAirEntity
 {
 	// Id Fields
 
@@ -178,7 +189,7 @@ export interface QIdeaTopic extends IQEntity
 
 
 // Entity Id Interface
-export interface QIdeaTopicQId
+export interface QIdeaTopicQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -190,6 +201,6 @@ export interface QIdeaTopicQId
 
 // Entity Relation Interface
 export interface QIdeaTopicQRelation
-	extends IQRelation<QIdeaTopic>, QIdeaTopicQId {
+	extends QAirEntityQRelation<IIdeaTopic, QIdeaTopic>, QIdeaTopicQId {
 }
 

@@ -1,10 +1,9 @@
+import { AirEntity } from '@airport/holding-pattern'
 import {
 	Column,
 	Entity,
-	OneToMany,
 	Table
-} from '@airport/air-traffic-control'
-import { AirEntity } from '@airport/holding-pattern'
+} from '@airport/tarmaq-entity'
 
 /**
  * This is the generic position records (not related to any Idea).

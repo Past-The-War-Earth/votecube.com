@@ -1,4 +1,4 @@
-import { Duo, } from '@airport/check-in';
+import { Duo, } from '@airport/tarmaq-dao';
 import { Q, duoDiSet, } from './qApplication';
 // Application Q object Dependency Injection readiness detection Duo
 export class SQDIDuo extends Duo {
@@ -24,10 +24,10 @@ export class BaseAgreementReasonDuo extends SQDIDuo {
 }
 export class BaseFactorDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(10);
+        return duoDiSet(9);
     }
     constructor() {
-        super(10);
+        super(9);
     }
 }
 export class BaseIdeaDuo extends SQDIDuo {
@@ -72,10 +72,10 @@ export class BaseLabelDuo extends SQDIDuo {
 }
 export class BasePositionDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(9);
+        return duoDiSet(10);
     }
     constructor() {
-        super(9);
+        super(10);
     }
 }
 export class BaseReasonDuo extends SQDIDuo {

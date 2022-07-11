@@ -1,3 +1,4 @@
+import { AirEntity } from '@airport/holding-pattern'
 import {
 	Column,
 	Entity,
@@ -5,8 +6,7 @@ import {
 	OneToMany,
 	Table,
 	Transient
-} from '@airport/air-traffic-control'
-import { AirEntity } from '@airport/holding-pattern'
+} from '@airport/tarmaq-entity'
 import { IdeaLabel } from './IdeaLabel'
 import { SituationIdea } from './SituationIdea'
 import { IdeaTopic } from './IdeaTopic'

@@ -143,7 +143,6 @@ import {
 	QSituationIdea,
 } from './idea/qsituationidea';
 import {
-	IDuo,
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
 	IEntityIdProperties,
@@ -151,12 +150,13 @@ import {
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IQEntity,
-} from '@airport/air-traffic-control';
+} from '@airport/tarmaq-query';
 import {
+	IDuo,
 	Duo,
-} from '@airport/check-in';
+} from '@airport/tarmaq-dao';
 import {
-	EntityId as DbEntityId,
+	ApplicationEntity_LocalId as DbEntityId,
 } from '@airport/ground-control';
 import {
 	Q,
@@ -170,7 +170,7 @@ export class SQDIDuo<Entity,
 	EntityCreate extends IEntityCreateProperties,
 	EntityUpdateColumns extends IEntityUpdateColumns,
 	EntityUpdateProperties extends IEntityUpdateProperties,
-	EntityId extends IEntityIdProperties,
+	ApplicationEntity_LocalId extends IEntityIdProperties,
 	EntityCascadeGraph extends IEntityCascadeGraph,
 	IQE extends IQEntity>
 	extends Duo<Entity,
@@ -178,7 +178,7 @@ export class SQDIDuo<Entity,
 		EntityCreate,
 		EntityUpdateColumns,
 		EntityUpdateProperties,
-		EntityId,
+		ApplicationEntity_LocalId,
 		EntityCascadeGraph,
 		IQE> {
 
@@ -235,11 +235,11 @@ export class BaseFactorDuo
 	implements IBaseFactorDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(10)
+		return duoDiSet(9)
 	}
 	
 	constructor() {
-		super(10)
+		super(9)
 	}
 }
 
@@ -343,11 +343,11 @@ export class BasePositionDuo
 	implements IBasePositionDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(9)
+		return duoDiSet(10)
 	}
 	
 	constructor() {
-		super(9)
+		super(10)
 	}
 }
 
