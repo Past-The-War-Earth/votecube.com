@@ -13,6 +13,8 @@ import { IdeaRatingApi } from '../api/IdeaRatingApi'
 import { IdeaRatingDao, IIdeaRatingDao } from '../dao/IdeaRatingDao'
 import { REQUEST_MANAGER } from '@airport/arrivals-n-departures'
 import { SITUATION_API } from '@sapoto/core'
+import { FactorDao } from '../dao/FactorDao'
+import { PositionDao } from '../dao/PositionDao'
 
 export const AGREEMENT_DAO = votecube.token<AgreementDao>({
     class: AgreementDao,
@@ -34,6 +36,16 @@ export const IDEA_RATING_DAO = votecube.token<IIdeaRatingDao>({
     interface: 'IIdeaRatingDao',
     token: 'IDEA_RATING_DAO'
 })
+export const FACTOR_DAO = votecube.token<FactorDao>({
+    class: FactorDao,
+    interface: 'class FactorDao',
+    token: 'FACTOR_DAO'
+})
+export const POSITION_DAO = votecube.token<PositionDao>({
+    class: PositionDao,
+    interface: 'class PositionDao',
+    token: 'POSITION_DAO'
+})
 export const REASON_DAO = votecube.token<ReasonDao>({
     class: ReasonDao,
     interface: 'ReasonDao',
@@ -49,7 +61,9 @@ AGREEMENT_API.setClass(AgreementApi)
 AGREEMENT_API.setDependencies({
     agreementDao: AGREEMENT_DAO,
     agreementReasonDao: AGREEMENT_REASON_DAO,
+    factorDao: FACTOR_DAO,
     ideaDao: IDEA_DAO,
+    positionDao: POSITION_DAO,
     reasonDao: REASON_DAO,
     situationIdeaDao: SITUATION_IDEA_DAO
 })

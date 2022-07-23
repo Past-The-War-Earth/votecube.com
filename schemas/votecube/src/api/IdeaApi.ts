@@ -99,18 +99,24 @@ export class IdeaApi
                 throw new Error(`Parent idea must have an Id`)
             }
             parentIdea = await this.ideaDao.findOne(parentIdea)
+            if (!parentIdea) {
+                throw new Error(`Parent idea '${parentIdea.id}' not found`)
+            }
         }
-        idea.parent = parentIdea
 
-        if (idea.userAgreement) {
-            idea.userAgreement.actor = this.requestManager.actor
+        idea.parent = parentIdea
+        idea.actor = this.requestManager.actor
+        const saveResult = await this.ideaDao.save(idea)
+
+        let userAgreement = idea.userAgreement
+        if (userAgreement) {
+            userAgreement.situationIdea = null
+            userAgreement.actor = this.requestManager.actor
         }
 
         if (idea.userIdeaRating) {
             idea.userIdeaRating.actor = this.requestManager.actor
         }
-
-        const saveResult = await this.ideaDao.save(idea)
 
         return saveResult.repositoryIdParts
     }

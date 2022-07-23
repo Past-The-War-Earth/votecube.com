@@ -1,12 +1,15 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
+import { exists } from "@airport/tarmaq-query";
 import { ITotalDelta } from "@sapoto/core";
 import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
+import { FactorDao } from "../dao/FactorDao";
 import { IIdeaDao } from "../dao/IdeaDao";
+import { PositionDao } from "../dao/PositionDao";
 import { ReasonDao } from "../dao/ReasonDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
-import { Agreement, AgreementReason, Idea, Reason, SituationIdea } from "../ddl/ddl";
+import { Agreement, AgreementReason, Factor, Idea, Position, Reason, SituationIdea } from "../ddl/ddl";
 import { IAgreement } from "../generated/interfaces";
 
 export interface IAgreementApi {
@@ -32,13 +35,22 @@ export class AgreementApi
     agreementReasonDao: AgreementReasonDao
 
     @Inject()
+    factorDao: FactorDao
+
+    @Inject()
     ideaDao: IIdeaDao
+
+    @Inject()
+    positionDao: PositionDao
 
     @Inject()
     reasonDao: ReasonDao
 
     @Inject()
     situationIdeaDao: ISituationIdeaDao
+
+    @Inject()
+    agreementDuo
 
     @Api()
     async saveAgreement(
@@ -72,12 +84,23 @@ export class AgreementApi
     private async validateIdeas(
         agreement: Agreement
     ): Promise<void> {
+        this.agreementDuo.validate(agreement => ({
+            agreementReasons: {
+
+            },
+            id: true,
+            idea: exists(),
+            situationIdea: nullOr({
+                id: true,
+                idea: equals(agreement.idea)
+            })
+        }))
         if (!agreement.idea.id) {
-            throw new Error(`passed in agreement.idea doesn't have a UuId`)
+            throw new Error(`passed in agreement.idea doesn't have an Id`)
         }
         let idea: Idea = await this.ideaDao.findOne(agreement.idea, true)
         if (!idea) {
-            throw new Error(`Idea with UuId "${agreement.idea.id}" does not exist.`)
+            throw new Error(`Idea with Id "${agreement.idea.id}" does not exist.`)
         }
         agreement.idea = idea
 
@@ -88,20 +111,43 @@ export class AgreementApi
             let situationIdea: SituationIdea = await this.situationIdeaDao
                 .findOne(agreement.situationIdea, true)
             if (!situationIdea) {
-                throw new Error(`SituationIdea with UuId "${agreement.situationIdea.id}" does not exist.`)
+                throw new Error(`SituationIdea with Id "${agreement.situationIdea.id}" does not exist.`)
             }
             if (situationIdea.idea.id !== idea.id) {
                 throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.id})
-doesn't match agreement.idea.uuId (${idea.id})`);
+doesn't match agreement.idea.id (${idea.id})`);
             }
             agreement.situationIdea = situationIdea
         }
     }
 
-    private async validateFactorsAndPositions(
+    async validateFactorsAndPositions(
         agreement: Agreement
     ): Promise<void> {
+
+        this.agreementDuo.validate({
+            agreementReasons: {
+                reason: exists({
+                    idea: equals(agreement.idea),
+                    situationIdea: or(
+                        isNullIf(!agreement.situationIdea),
+                        equals(agreement.situationIdea)
+                    ),
+                    share: between(-100, 100)
+                },
+                idea: exists(),
+                situationIdea: or(
+                    isNull(),
+                    {
+                    idea: equals(agreement.idea)
+                })
+        })
         let shareTotal = 0
+        let existingFactorMapById: Map<string, Factor> = new Map()
+        let newFactors: Factor[] = []
+        let existingPositionMapById: Map<string, Position> = new Map()
+        let newPositions: Position[] = []
+
         for (const agreementReason of agreement.agreementReasons) {
             if (!agreementReason) {
                 throw new Error(`Recieved a null agreementReason`)
@@ -126,16 +172,37 @@ doesn't match agreement.idea.uuId (${idea.id})`);
 '${reason.id}'
 `)
             }
-            if (!reason.factor) {
+            const factor = reason.factor
+            const position = reason.position
+            if (!factor) {
                 throw new Error(`Recieved a null factor`)
             }
-            if (!reason.position) {
+            if (!position) {
                 throw new Error(`Recieved a null position`)
             }
-            // TODO: Collect factors and positions
+            if (factor.id) {
+                existingFactorMapById.set(factor.id, factor)
+            } else {
+                newFactors.push(factor)
+            }
+            if (position.id) {
+                existingPositionMapById.set(position.id, position)
+            } else {
+                newPositions.push(position)
+            }
         }
 
         // TODO: Verify factor and position existance and create new ones if necessary
+
+        const foundFactors = await this.factorDao.findIn(Array.from(existingFactorMapById.values()))
+        const foundFactorMapById = this.factorDao.mapById(foundFactors)
+        for (const existingFactor of existingFactorMapById.values()) {
+            if (!foundFactorMapById.has(existingFactor.id)) {
+                throw new Error(`Factor with Id '${existingFactor.id}' does not exist.`)
+            }
+        }
+
+        const foundPositions = await this.positionDao.f
 
         if (shareTotal < -100 || shareTotal > 100) {
             throw new Error(`Invalid agreementReason.share total`)
@@ -143,7 +210,7 @@ doesn't match agreement.idea.uuId (${idea.id})`);
         agreement.shareTotal = Math.floor(shareTotal)
     }
 
-    private async validateReasons(
+    async validateReasons(
         agreement: Agreement,
     ): Promise<void> {
         let existingReasons: Reason[];

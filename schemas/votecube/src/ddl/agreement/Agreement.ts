@@ -10,7 +10,7 @@ export class Agreement
     extends AirEntity {
 
     constructor(
-        entityGUID: string
+        entityGUID?: string
     ) {
         super(entityGUID)
         this.agreementReasons = []
