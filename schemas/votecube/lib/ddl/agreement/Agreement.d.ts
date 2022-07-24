@@ -3,7 +3,7 @@ import { Idea } from "../idea/Idea";
 import { SituationIdea } from "../idea/SituationIdea";
 import { AgreementReason } from "./AgreementReason";
 export declare class Agreement extends AirEntity {
-    constructor(entityGUID: string);
+    constructor(entityGUID?: string);
     shareTotal: number;
     situationIdea: SituationIdea;
     idea: Idea;

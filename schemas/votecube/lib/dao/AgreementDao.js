@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { and, Y } from "@airport/tarmaq-query";
+import { AND, Y } from "@airport/tarmaq-query";
 import { Injected } from "@airport/direction-indicator";
 import { BaseAgreementDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
@@ -12,33 +12,33 @@ let AgreementDao = class AgreementDao extends BaseAgreementDao {
     async findForSituationIdeaAndUser(situationIdea, user) {
         let ag, a, u, si;
         return await this._findUnique({
-            select: {
+            SELECT: {
                 '*': Y,
                 agreementReasons: {},
             },
-            from: [
+            FROM: [
                 ag = Q.Agreement,
                 a = ag.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 si = ag.situationIdea.leftJoin()
             ],
-            where: and(si.equals(situationIdea), u.equals(user))
+            WHERE: AND(si.equals(situationIdea), u.equals(user))
         });
     }
     async findForIdeaOnlyAndUser(idea, user) {
         let ag, a, u, i;
         return await this._findUnique({
-            select: {
+            SELECT: {
                 '*': Y,
                 agreementReasons: {},
             },
-            from: [
+            FROM: [
                 ag = Q.Agreement,
                 a = ag.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 i = ag.idea.leftJoin()
             ],
-            where: and(i.equals(idea), ag.situationIdea.isNull(), u.equals(user))
+            WHERE: AND(i.equals(idea), ag.situationIdea.isNull(), u.equals(user))
         });
     }
 };

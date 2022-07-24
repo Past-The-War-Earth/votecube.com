@@ -12,31 +12,31 @@ let ReasonDao = class ReasonDao extends BaseReasonDao {
     async findAllForIdea(idea) {
         let r, i;
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 factor: {},
                 position: {}
             },
-            from: [
+            FROM: [
                 r = Q.Reason,
                 i = r.idea.leftJoin()
             ],
-            where: i.equals(idea)
+            WHERE: i.equals(idea)
         });
     }
     async findAllForSituationIdea(situationIdea) {
         let r, si;
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 factor: {},
                 position: {}
             },
-            from: [
+            FROM: [
                 r = Q.Reason,
                 si = r.situationIdea.leftJoin()
             ],
-            where: si.equals(situationIdea)
+            WHERE: si.equals(situationIdea)
         });
     }
 };

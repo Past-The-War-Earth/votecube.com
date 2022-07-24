@@ -10,7 +10,7 @@ import {
 } from "../generated/generated";
 import { Idea, IdeaRating, SituationIdea } from '../ddl/ddl';
 import { QActor } from '@airport/holding-pattern';
-import { and, Y } from '@airport/tarmaq-query';
+import { AND, Y } from '@airport/tarmaq-query';
 
 export interface IIdeaRatingDao
     extends IBaseIdeaRatingDao {
@@ -41,16 +41,16 @@ export class IdeaRatingDao
             u: QUserAccount,
             si: QSituationIdea
         return await this._findUnique({
-            select: {
+            SELECT: {
                 '*': Y
             },
-            from: [
+            FROM: [
                 ir = Q.IdeaRating,
                 a = ir.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 si = ir.situationIdea.leftJoin()
             ],
-            where: and(
+            WHERE: AND(
                 si.equals(situationIdea),
                 u.equals(user)
             )
@@ -66,16 +66,16 @@ export class IdeaRatingDao
             u: QUserAccount,
             i: QIdea
         return await this._findUnique({
-            select: {
+            SELECT: {
                 '*': Y
             },
-            from: [
+            FROM: [
                 ir = Q.IdeaRating,
                 a = ir.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 i = ir.idea.leftJoin()
             ],
-            where: and(
+            WHERE: AND(
                 i.equals(idea),
                 ir.situationIdea.isNull(),
                 u.equals(user)

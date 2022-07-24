@@ -1,0 +1,1 @@
+{"version":3,"file":"FactorDao.js","sourceRoot":"","sources":["../../src/dao/FactorDao.ts"],"names":[],"mappings":";;;;;;AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,8BAA8B,CAAC;AACxD,OAAO,EAAE,aAAa,EAAE,MAAM,uBAAuB,CAAC;AAGtD,IAAa,SAAS,GAAtB,MAAa,SACT,SAAQ,aAAa;CAExB,CAAA;AAHY,SAAS;IADrB,QAAQ,EAAE;GACE,SAAS,CAGrB;SAHY,SAAS"}

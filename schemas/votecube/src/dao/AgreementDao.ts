@@ -1,4 +1,4 @@
-import { and, Y } from "@airport/tarmaq-query";
+import { AND, Y } from "@airport/tarmaq-query";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
 import { QUserAccount, UserAccount } from "@airport/travel-document-checkpoint";
@@ -20,17 +20,17 @@ export class AgreementDao
             u: QUserAccount,
             si: QSituationIdea
         return await this._findUnique({
-            select: {
+            SELECT: {
                 '*': Y,
                 agreementReasons: {},
             },
-            from: [
+            FROM: [
                 ag = Q.Agreement,
                 a = ag.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 si = ag.situationIdea.leftJoin()
             ],
-            where: and(
+            WHERE: AND(
                 si.equals(situationIdea),
                 u.equals(user)
             )
@@ -46,17 +46,17 @@ export class AgreementDao
             u: QUserAccount,
             i: QIdea
         return await this._findUnique({
-            select: {
+            SELECT: {
                 '*': Y,
                 agreementReasons: {},
             },
-            from: [
+            FROM: [
                 ag = Q.Agreement,
                 a = ag.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 i = ag.idea.leftJoin()
             ],
-            where: and(
+            WHERE: AND(
                 i.equals(idea),
                 ag.situationIdea.isNull(),
                 u.equals(user)

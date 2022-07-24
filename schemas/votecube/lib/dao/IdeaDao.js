@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Injected } from '@airport/direction-indicator';
-import { and, plus, Y } from '@airport/tarmaq-query';
+import { AND, PLUS, Y } from '@airport/tarmaq-query';
 import { BaseIdeaDao, Q, } from "../generated/generated";
 let IdeaDao = class IdeaDao extends BaseIdeaDao {
     async findByRepositoryGUID(repositorySource, ideaReposioryGUID) {
@@ -15,7 +15,7 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
         let is;
         let rs;
         const matchingRepositories = await this.db.find.tree({
-            select: {
+            SELECT: {
                 '*': Y,
                 repository: {},
                 ideaLabels: {
@@ -31,7 +31,7 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
                     }
                 }
             },
-            from: [
+            FROM: [
                 i = Q.Idea,
                 r = i.repository.innerJoin(),
                 sl = i.ideaLabels.leftJoin(),
@@ -41,7 +41,7 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
                 rs.factor.leftJoin(),
                 rs.position.leftJoin()
             ],
-            where: and(r.source.equals(repositorySource), r.GUID.equals(ideaReposioryGUID))
+            WHERE: AND(r.source.equals(repositorySource), r.GUID.equals(ideaReposioryGUID))
         }, {
             repository: {
                 source: repositorySource,
@@ -56,23 +56,23 @@ let IdeaDao = class IdeaDao extends BaseIdeaDao {
     async updateShareTotal(delta, idea) {
         const i = Q.Idea;
         await this.db.updateWhere({
-            update: i,
-            set: {
-                agreementShareTotal: plus(i.agreementShareTotal, delta.totalDelta),
-                numberOfAgreements: plus(i.numberOfAgreements, delta.numberDelta)
+            UPDATE: i,
+            SET: {
+                agreementShareTotal: PLUS(i.agreementShareTotal, delta.totalDelta),
+                numberOfAgreements: PLUS(i.numberOfAgreements, delta.numberDelta)
             },
-            where: i.equals(idea)
+            WHERE: i.equals(idea)
         });
     }
     async updateUrgencyTotal(delta, idea) {
         const i = Q.Idea;
         await this.db.updateWhere({
-            update: i,
-            set: {
-                urgencyTotal: plus(i.urgencyTotal, delta.totalDelta),
-                numberOfUrgencyRatings: plus(i.numberOfUrgencyRatings, delta.numberDelta)
+            UPDATE: i,
+            SET: {
+                urgencyTotal: PLUS(i.urgencyTotal, delta.totalDelta),
+                numberOfUrgencyRatings: PLUS(i.numberOfUrgencyRatings, delta.numberDelta)
             },
-            where: i.equals(idea)
+            WHERE: i.equals(idea)
         });
     }
 };

@@ -1,4 +1,4 @@
-import { plus } from "@airport/tarmaq-query";
+import { PLUS } from "@airport/tarmaq-query";
 import { Injected } from "@airport/direction-indicator";
 import { ITotalDelta } from "@sapoto/core";
 import { SituationIdea } from "../ddl/ddl";
@@ -30,12 +30,12 @@ export class SituationIdeaDao
     ): Promise<void> {
         const si = Q.SituationIdea
         await this.db.updateWhere({
-            update: si,
-            set: {
-                agreementShareTotal: plus(si.agreementShareTotal, delta.totalDelta),
-                numberOfAgreements: plus(si.numberOfAgreements, delta.numberDelta)
+            UPDATE: si,
+            SET: {
+                agreementShareTotal: PLUS(si.agreementShareTotal, delta.totalDelta),
+                numberOfAgreements: PLUS(si.numberOfAgreements, delta.numberDelta)
             },
-            where: si.equals(situationIdea)
+            WHERE: si.equals(situationIdea)
         })
     }
 
@@ -45,13 +45,13 @@ export class SituationIdeaDao
     ): Promise<void> {
         const si = Q.SituationIdea
         await this.db.updateWhere({
-            update: si,
-            set: {
-                urgencyTotal: plus(si.urgencyTotal, delta.totalDelta),
-                numberOfUrgencyRatings: plus(si.numberOfUrgencyRatings,
+            UPDATE: si,
+            SET: {
+                urgencyTotal: PLUS(si.urgencyTotal, delta.totalDelta),
+                numberOfUrgencyRatings: PLUS(si.numberOfUrgencyRatings,
                     delta.numberDelta)
             },
-            where: si.equals(situationIdea)
+            WHERE: si.equals(situationIdea)
         })
     }
 }

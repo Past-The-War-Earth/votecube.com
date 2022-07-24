@@ -14,16 +14,16 @@ export class ReasonDao
         let r: QReason,
             i: QIdea
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 factor: {},
                 position: {}
             },
-            from: [
+            FROM: [
                 r = Q.Reason,
                 i = r.idea.leftJoin()
             ],
-            where: i.equals(idea)
+            WHERE: i.equals(idea)
         })
     }
 
@@ -33,16 +33,16 @@ export class ReasonDao
         let r: QReason,
             si: QSituationIdea
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 factor: {},
                 position: {}
             },
-            from: [
+            FROM: [
                 r = Q.Reason,
                 si = r.situationIdea.leftJoin()
             ],
-            where: si.equals(situationIdea)
+            WHERE: si.equals(situationIdea)
         })
     }
 

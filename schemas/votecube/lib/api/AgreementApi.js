@@ -22,12 +22,22 @@ let AgreementApi = class AgreementApi {
         await this.updateAgreementShareTotals(agreement, delta);
     }
     async validateIdeas(agreement) {
+        // this.agreementDuo.validate(agreement => ({
+        //     agreementReasons: {
+        //     },
+        //     id: true,
+        //     idea: exists(),
+        //     situationIdea: nullOr({
+        //         id: true,
+        //         idea: equals(agreement.idea)
+        //     })
+        // }))
         if (!agreement.idea.id) {
-            throw new Error(`passed in agreement.idea doesn't have a UuId`);
+            throw new Error(`passed in agreement.idea doesn't have an Id`);
         }
         let idea = await this.ideaDao.findOne(agreement.idea, true);
         if (!idea) {
-            throw new Error(`Idea with UuId "${agreement.idea.id}" does not exist.`);
+            throw new Error(`Idea with Id "${agreement.idea.id}" does not exist.`);
         }
         agreement.idea = idea;
         if (agreement.situationIdea) {
@@ -37,17 +47,38 @@ let AgreementApi = class AgreementApi {
             let situationIdea = await this.situationIdeaDao
                 .findOne(agreement.situationIdea, true);
             if (!situationIdea) {
-                throw new Error(`SituationIdea with UuId "${agreement.situationIdea.id}" does not exist.`);
+                throw new Error(`SituationIdea with Id "${agreement.situationIdea.id}" does not exist.`);
             }
             if (situationIdea.idea.id !== idea.id) {
                 throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.id})
-doesn't match agreement.idea.uuId (${idea.id})`);
+doesn't match agreement.idea.id (${idea.id})`);
             }
             agreement.situationIdea = situationIdea;
         }
     }
     async validateFactorsAndPositions(agreement) {
+        // this.agreementDuo.validate({
+        //     agreementReasons: {
+        //         reason: exists({
+        //             idea: equals(agreement.idea),
+        //             situationIdea: or(
+        //                 isNullIf(!agreement.situationIdea),
+        //                 equals(agreement.situationIdea)
+        //             ),
+        //             share: between(-100, 100)
+        //         },
+        //         idea: exists(),
+        //         situationIdea: or(
+        //             isNull(),
+        //             {
+        //             idea: equals(agreement.idea)
+        //         })
+        // })
         let shareTotal = 0;
+        let existingFactorMapById = new Map();
+        let newFactors = [];
+        let existingPositionMapById = new Map();
+        let newPositions = [];
         for (const agreementReason of agreement.agreementReasons) {
             if (!agreementReason) {
                 throw new Error(`Recieved a null agreementReason`);
@@ -71,15 +102,36 @@ doesn't match agreement.idea.uuId (${idea.id})`);
 '${reason.id}'
 `);
             }
-            if (!reason.factor) {
+            const factor = reason.factor;
+            const position = reason.position;
+            if (!factor) {
                 throw new Error(`Recieved a null factor`);
             }
-            if (!reason.position) {
+            if (!position) {
                 throw new Error(`Recieved a null position`);
             }
-            // TODO: Collect factors and positions
+            if (factor.id) {
+                existingFactorMapById.set(factor.id, factor);
+            }
+            else {
+                newFactors.push(factor);
+            }
+            if (position.id) {
+                existingPositionMapById.set(position.id, position);
+            }
+            else {
+                newPositions.push(position);
+            }
         }
         // TODO: Verify factor and position existance and create new ones if necessary
+        const foundFactors = await this.factorDao.findIn(Array.from(existingFactorMapById.values()));
+        const foundFactorMapById = this.factorDao.mapById(foundFactors);
+        for (const existingFactor of existingFactorMapById.values()) {
+            if (!foundFactorMapById.has(existingFactor.id)) {
+                throw new Error(`Factor with Id '${existingFactor.id}' does not exist.`);
+            }
+        }
+        // const foundPositions = await this.positionDao.f
         if (shareTotal < -100 || shareTotal > 100) {
             throw new Error(`Invalid agreementReason.share total`);
         }
@@ -199,13 +251,22 @@ __decorate([
 ], AgreementApi.prototype, "agreementReasonDao", void 0);
 __decorate([
     Inject()
+], AgreementApi.prototype, "factorDao", void 0);
+__decorate([
+    Inject()
 ], AgreementApi.prototype, "ideaDao", void 0);
+__decorate([
+    Inject()
+], AgreementApi.prototype, "positionDao", void 0);
 __decorate([
     Inject()
 ], AgreementApi.prototype, "reasonDao", void 0);
 __decorate([
     Inject()
 ], AgreementApi.prototype, "situationIdeaDao", void 0);
+__decorate([
+    Inject()
+], AgreementApi.prototype, "agreementDuo", void 0);
 __decorate([
     Api()
 ], AgreementApi.prototype, "saveAgreement", null);

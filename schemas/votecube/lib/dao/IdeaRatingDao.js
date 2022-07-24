@@ -6,36 +6,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Injected } from '@airport/direction-indicator';
 import { BaseIdeaRatingDao, Q, } from "../generated/generated";
-import { and, Y } from '@airport/tarmaq-query';
+import { AND, Y } from '@airport/tarmaq-query';
 let IdeaRatingDao = class IdeaRatingDao extends BaseIdeaRatingDao {
     async findForSituationIdeaAndUser(situationIdea, user) {
         let ir, a, u, si;
         return await this._findUnique({
-            select: {
+            SELECT: {
                 '*': Y
             },
-            from: [
+            FROM: [
                 ir = Q.IdeaRating,
                 a = ir.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 si = ir.situationIdea.leftJoin()
             ],
-            where: and(si.equals(situationIdea), u.equals(user))
+            WHERE: AND(si.equals(situationIdea), u.equals(user))
         });
     }
     async findForIdeaOnlyAndUser(idea, user) {
         let ir, a, u, i;
         return await this._findUnique({
-            select: {
+            SELECT: {
                 '*': Y
             },
-            from: [
+            FROM: [
                 ir = Q.IdeaRating,
                 a = ir.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 i = ir.idea.leftJoin()
             ],
-            where: and(i.equals(idea), ir.situationIdea.isNull(), u.equals(user))
+            WHERE: AND(i.equals(idea), ir.situationIdea.isNull(), u.equals(user))
         });
     }
 };

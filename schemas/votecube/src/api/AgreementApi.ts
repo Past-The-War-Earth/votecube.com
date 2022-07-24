@@ -1,6 +1,5 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
-import { exists } from "@airport/tarmaq-query";
 import { ITotalDelta } from "@sapoto/core";
 import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
@@ -84,17 +83,17 @@ export class AgreementApi
     private async validateIdeas(
         agreement: Agreement
     ): Promise<void> {
-        this.agreementDuo.validate(agreement => ({
-            agreementReasons: {
+        // this.agreementDuo.validate(agreement => ({
+        //     agreementReasons: {
 
-            },
-            id: true,
-            idea: exists(),
-            situationIdea: nullOr({
-                id: true,
-                idea: equals(agreement.idea)
-            })
-        }))
+        //     },
+        //     id: true,
+        //     idea: exists(),
+        //     situationIdea: nullOr({
+        //         id: true,
+        //         idea: equals(agreement.idea)
+        //     })
+        // }))
         if (!agreement.idea.id) {
             throw new Error(`passed in agreement.idea doesn't have an Id`)
         }
@@ -125,23 +124,23 @@ doesn't match agreement.idea.id (${idea.id})`);
         agreement: Agreement
     ): Promise<void> {
 
-        this.agreementDuo.validate({
-            agreementReasons: {
-                reason: exists({
-                    idea: equals(agreement.idea),
-                    situationIdea: or(
-                        isNullIf(!agreement.situationIdea),
-                        equals(agreement.situationIdea)
-                    ),
-                    share: between(-100, 100)
-                },
-                idea: exists(),
-                situationIdea: or(
-                    isNull(),
-                    {
-                    idea: equals(agreement.idea)
-                })
-        })
+        // this.agreementDuo.validate({
+        //     agreementReasons: {
+        //         reason: exists({
+        //             idea: equals(agreement.idea),
+        //             situationIdea: or(
+        //                 isNullIf(!agreement.situationIdea),
+        //                 equals(agreement.situationIdea)
+        //             ),
+        //             share: between(-100, 100)
+        //         },
+        //         idea: exists(),
+        //         situationIdea: or(
+        //             isNull(),
+        //             {
+        //             idea: equals(agreement.idea)
+        //         })
+        // })
         let shareTotal = 0
         let existingFactorMapById: Map<string, Factor> = new Map()
         let newFactors: Factor[] = []
@@ -202,7 +201,7 @@ doesn't match agreement.idea.id (${idea.id})`);
             }
         }
 
-        const foundPositions = await this.positionDao.f
+        // const foundPositions = await this.positionDao.f
 
         if (shareTotal < -100 || shareTotal > 100) {
             throw new Error(`Invalid agreementReason.share total`)
