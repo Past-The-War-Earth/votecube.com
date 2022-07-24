@@ -18,9 +18,9 @@ let AgreementDao = class AgreementDao extends BaseAgreementDao {
             },
             FROM: [
                 ag = Q.Agreement,
-                a = ag.actor.leftJoin(),
-                u = a.userAccount.leftJoin(),
-                si = ag.situationIdea.leftJoin()
+                a = ag.actor.LEFT_JOIN(),
+                u = a.userAccount.LEFT_JOIN(),
+                si = ag.situationIdea.LEFT_JOIN()
             ],
             WHERE: AND(si.equals(situationIdea), u.equals(user))
         });
@@ -34,11 +34,11 @@ let AgreementDao = class AgreementDao extends BaseAgreementDao {
             },
             FROM: [
                 ag = Q.Agreement,
-                a = ag.actor.leftJoin(),
-                u = a.userAccount.leftJoin(),
-                i = ag.idea.leftJoin()
+                a = ag.actor.LEFT_JOIN(),
+                u = a.userAccount.LEFT_JOIN(),
+                i = ag.idea.LEFT_JOIN()
             ],
-            WHERE: AND(i.equals(idea), ag.situationIdea.isNull(), u.equals(user))
+            WHERE: AND(i.equals(idea), ag.situationIdea.IS_NULL(), u.equals(user))
         });
     }
 };

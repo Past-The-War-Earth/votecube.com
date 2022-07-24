@@ -16,9 +16,9 @@ let IdeaRatingDao = class IdeaRatingDao extends BaseIdeaRatingDao {
             },
             FROM: [
                 ir = Q.IdeaRating,
-                a = ir.actor.leftJoin(),
-                u = a.userAccount.leftJoin(),
-                si = ir.situationIdea.leftJoin()
+                a = ir.actor.LEFT_JOIN(),
+                u = a.userAccount.LEFT_JOIN(),
+                si = ir.situationIdea.LEFT_JOIN()
             ],
             WHERE: AND(si.equals(situationIdea), u.equals(user))
         });
@@ -31,11 +31,11 @@ let IdeaRatingDao = class IdeaRatingDao extends BaseIdeaRatingDao {
             },
             FROM: [
                 ir = Q.IdeaRating,
-                a = ir.actor.leftJoin(),
-                u = a.userAccount.leftJoin(),
-                i = ir.idea.leftJoin()
+                a = ir.actor.LEFT_JOIN(),
+                u = a.userAccount.LEFT_JOIN(),
+                i = ir.idea.LEFT_JOIN()
             ],
-            WHERE: AND(i.equals(idea), ir.situationIdea.isNull(), u.equals(user))
+            WHERE: AND(i.equals(idea), ir.situationIdea.IS_NULL(), u.equals(user))
         });
     }
 };

@@ -21,7 +21,7 @@ export class ReasonDao
             },
             FROM: [
                 r = Q.Reason,
-                i = r.idea.leftJoin()
+                i = r.idea.LEFT_JOIN()
             ],
             WHERE: i.equals(idea)
         })
@@ -40,7 +40,7 @@ export class ReasonDao
             },
             FROM: [
                 r = Q.Reason,
-                si = r.situationIdea.leftJoin()
+                si = r.situationIdea.LEFT_JOIN()
             ],
             WHERE: si.equals(situationIdea)
         })

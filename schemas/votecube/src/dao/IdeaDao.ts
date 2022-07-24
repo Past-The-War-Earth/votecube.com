@@ -72,13 +72,13 @@ export class IdeaDao
             },
             FROM: [
                 i = Q.Idea,
-                r = i.repository.innerJoin(),
-                sl = i.ideaLabels.leftJoin(),
-                sl.label.leftJoin(),
-                is = i.situationIdeas.leftJoin(),
-                rs = is.reasons.leftJoin(),
-                rs.factor.leftJoin(),
-                rs.position.leftJoin()
+                r = i.repository.INNER_JOIN(),
+                sl = i.ideaLabels.LEFT_JOIN(),
+                sl.label.LEFT_JOIN(),
+                is = i.situationIdeas.LEFT_JOIN(),
+                rs = is.reasons.LEFT_JOIN(),
+                rs.factor.LEFT_JOIN(),
+                rs.position.LEFT_JOIN()
             ],
             WHERE: AND(
                 r.source.equals(repositorySource),
