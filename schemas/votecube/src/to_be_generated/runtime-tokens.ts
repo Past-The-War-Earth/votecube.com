@@ -15,11 +15,17 @@ import { REQUEST_MANAGER } from '@airport/arrivals-n-departures'
 import { SITUATION_API } from '@sapoto/core'
 import { FactorDao } from '../dao/FactorDao'
 import { PositionDao } from '../dao/PositionDao'
+import { AgreementDvo } from '../dvo/AgreementDvo'
 
 export const AGREEMENT_DAO = votecube.token<AgreementDao>({
     class: AgreementDao,
     interface: 'AgreementDao',
     token: 'AGREEMENT_DAO'
+})
+export const AGREEMENT_DVO = votecube.token<AgreementDvo>({
+    class: AgreementDvo,
+    interface: 'AgreementDvo',
+    token: 'AGREEMENT_DVO'
 })
 export const AGREEMENT_REASON_DAO = votecube.token<AgreementReasonDao>({
     class: AgreementReasonDao,
@@ -60,6 +66,7 @@ export const SITUATION_IDEA_DAO = votecube.token<ISituationIdeaDao>({
 AGREEMENT_API.setClass(AgreementApi)
 AGREEMENT_API.setDependencies({
     agreementDao: AGREEMENT_DAO,
+    agreementDvo: AGREEMENT_DVO,
     agreementReasonDao: AGREEMENT_REASON_DAO,
     factorDao: FACTOR_DAO,
     ideaDao: IDEA_DAO,

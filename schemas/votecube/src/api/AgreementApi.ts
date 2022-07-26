@@ -1,3 +1,4 @@
+import { between, equals, exists, isNull, or } from "@airport/airbridge-validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { ITotalDelta } from "@sapoto/core";
@@ -9,6 +10,7 @@ import { PositionDao } from "../dao/PositionDao";
 import { ReasonDao } from "../dao/ReasonDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
 import { Agreement, AgreementReason, Factor, Idea, Position, Reason, SituationIdea } from "../ddl/ddl";
+import { AgreementDvo } from "../dvo/AgreementDvo";
 import { IAgreement } from "../generated/interfaces";
 
 export interface IAgreementApi {
@@ -49,7 +51,7 @@ export class AgreementApi
     situationIdeaDao: ISituationIdeaDao
 
     @Inject()
-    agreementDuo
+    agreementDvo: AgreementDvo
 
     @Api()
     async saveAgreement(
@@ -123,24 +125,24 @@ doesn't match agreement.idea.id (${idea.id})`);
     async validateFactorsAndPositions(
         agreement: Agreement
     ): Promise<void> {
-
-        // this.agreementDuo.validate({
-        //     agreementReasons: {
-        //         reason: exists({
-        //             idea: equals(agreement.idea),
-        //             situationIdea: or(
-        //                 isNull(!agreement.situationIdea),
-        //                 equals(agreement.situationIdea)
-        //             ),
-        //             share: between(-100, 100)
-        //         }),
-        //         idea: exists(),
-        //         situationIdea: or(
-        //             isNull(),
-        //             {
-        //             idea: equals(agreement.idea)
-        //         })
-        // })
+        await this.agreementDvo.validate(agreement, {
+            agreementReasons: {
+                reason: exists({
+                    idea: equals(agreement.idea),
+                    situationIdea: or(
+                        isNull(!agreement.situationIdea),
+                        equals(agreement.situationIdea)
+                    ),
+                    share: between(-100, 100)
+                })
+            },
+            idea: exists(),
+            situationIdea: or(
+                isNull(),
+                {
+                    idea: equals(agreement.idea)
+                })
+        })
         let shareTotal = 0
         let existingFactorMapById: Map<string, Factor> = new Map()
         let newFactors: Factor[] = []
