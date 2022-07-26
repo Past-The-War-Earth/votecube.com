@@ -10,6 +10,7 @@ dependencies:
   '@rollup/plugin-node-resolve': 11.2.1
   '@rollup/plugin-typescript': 8.3.0_tslib@2.3.1+typescript@4.5.2
   '@rush-temp/air-traffic-control': 'file:projects/air-traffic-control.tgz'
+  '@rush-temp/airbridge-validate': 'file:projects/airbridge-validate.tgz'
   '@rush-temp/airport-code': 'file:projects/airport-code.tgz'
   '@rush-temp/airspace': 'file:projects/airspace.tgz'
   '@rush-temp/apron': 'file:projects/apron.tgz'
@@ -3796,18 +3797,27 @@ packages:
       integrity: sha512-4mJfvmdnP88AU+tn0PYR1JZVbI7Ap7la4K+N5AuSbA5jKVfj1j8Jp/2RMdC2zMkbMkktZpr1Us91+WQoEijAhQ==
       tarball: 'file:projects/air-traffic-control.tgz'
     version: 0.0.0
+  'file:projects/airbridge-validate.tgz':
+    dependencies:
+      rxjs: 7.4.0
+    dev: false
+    name: '@rush-temp/airbridge-validate'
+    resolution:
+      integrity: sha512-fdzGy3HnJxqTmmHurhX9XTA1T4To6LN8zAEXehX+RnGUkDsMVxq5/cR/RH1NKN6IcLT9iee69kutZ3xTu39DzQ==
+      tarball: 'file:projects/airbridge-validate.tgz'
+    version: 0.0.0
   'file:projects/airport-code.tgz':
     dev: false
     name: '@rush-temp/airport-code'
     resolution:
-      integrity: sha512-nFVzkRd6qjAti0TdETMEGlPolS+GAzg4ttqVTvYRCtJ0UBRJ0gqdziBg4FdE8xtqvfAoVtGsL+cKhP8ZndjR0Q==
+      integrity: sha512-WUdiaLG/KyvQEqzQn5XYEN6yr0oEXdsVev9NxGNPmsdsVapu23JLkgVYmAQRZmlM2KvR1HuoBfjmeuKzYO4DcA==
       tarball: 'file:projects/airport-code.tgz'
     version: 0.0.0
   'file:projects/airspace.tgz':
     dev: false
     name: '@rush-temp/airspace'
     resolution:
-      integrity: sha512-lMDokhXRK6yR1mwwTBtluUS+YoCfmBgQW5/niPfnsM8wTzE25JU9jBRiAnpirooWWxb1Usie85YSGJlLNk4tLw==
+      integrity: sha512-pua3Vo2xXXZBpT27MigDzCt3Lr5TwRojXK3PaIdlAK75XfymK1NDLRABdDJUpLuveGg/sNoaKcLKZjER8H5baw==
       tarball: 'file:projects/airspace.tgz'
     version: 0.0.0
   'file:projects/apron.tgz':
@@ -3893,7 +3903,7 @@ packages:
     dev: false
     name: '@rush-temp/core'
     resolution:
-      integrity: sha512-hFpiOB17dZFRTnvy7OQniOoEcni0GUK5jpOukLfrt2kfrcUDSf8mf2kdYpJN8B/sYuYQyWakglPgo37EjdhS7Q==
+      integrity: sha512-K+gObjnQLqaPwHE8KH2YIGnEjCryAZ40qYSO++cddkUTz6HoeASxBbA+2tu+EeNU9f+27vgiheJdv5Bs77uULw==
       tarball: 'file:projects/core.tgz'
     version: 0.0.0
   'file:projects/cube-logic.tgz':
@@ -4023,7 +4033,7 @@ packages:
     dev: false
     name: '@rush-temp/holding-pattern'
     resolution:
-      integrity: sha512-4nRrjDsuLtGUo70r1nR+vPBIsWmIAZNycuquR01bK/vzOhGSQ96cDwG1kHJuuESxYd3IishJqJLEhQP9qHydpQ==
+      integrity: sha512-vLdhyTzq39uSbcP6ZRFZ9Fa5d8JWcu/aQkWKrGv56iS2sAL4DT8vPts/zeF9XidNMRexAeT+BnkeCNCQXMGciA==
       tarball: 'file:projects/holding-pattern.tgz'
     version: 0.0.0
   'file:projects/hw-control.tgz':
@@ -4092,7 +4102,7 @@ packages:
     dev: false
     name: '@rush-temp/layover'
     resolution:
-      integrity: sha512-7Tc4s+ttvdyuYJBmVHg4mA0CmQ3Su9mw4+gJhroL5rzCXDMyrZXFExtHR1piA7Hz7vPf+Y/TQburKQsFtt9xwQ==
+      integrity: sha512-TGWE2EbbdEzunFNOpfYTyzXj3bG6QKJ8SBXL+EHklcq4TPz3oLwFhhN6gHGJ29XHLWJaBeEwyfeu8/nEwo3UDA==
       tarball: 'file:projects/layover.tgz'
     version: 0.0.0
   'file:projects/model.tgz':
@@ -4354,7 +4364,7 @@ packages:
     dev: false
     name: '@rush-temp/travel-document-checkpoint'
     resolution:
-      integrity: sha512-VK94IRPSmz/ttLFxWtupLR2vTu6yhnEXGqnPp6gmx0UhN3oKY6IM3WuV/bMhyo/TQVeIa3D8yoCUACcMqW+BSA==
+      integrity: sha512-9g8mYta2K0/uARILFvFYFg0uB66MZLivXUMG/98iJNpTfY/fW4Ha/emfRsK7vwrnVIWqPKLPQIFQLBZhYNuNKA==
       tarball: 'file:projects/travel-document-checkpoint.tgz'
     version: 0.0.0
   'file:projects/ui-components.tgz':
@@ -4428,7 +4438,7 @@ packages:
     dev: false
     name: '@rush-temp/votecube'
     resolution:
-      integrity: sha512-jwh8ankwJPN6ygRaXT7sM2EAHBbdWCGYkGc3Pkur4ecSvyh51hzLIz0edBxCqKss8lC3gq0b8L0/nuHFVh4NuA==
+      integrity: sha512-BvtDEaXbWHwieXY104+Q/mda6JhINxmWssyY8b7z7zDt5e0EE9MyOKVy5cPrpxSKZphSavXJIoWWqv8W843KkQ==
       tarball: 'file:projects/votecube.tgz'
     version: 0.0.0
   'file:projects/web-terminal.tgz':
@@ -4465,6 +4475,7 @@ specifiers:
   '@rollup/plugin-node-resolve': ^11.0.0
   '@rollup/plugin-typescript': ^8.0.0
   '@rush-temp/air-traffic-control': 'file:./projects/air-traffic-control.tgz'
+  '@rush-temp/airbridge-validate': 'file:./projects/airbridge-validate.tgz'
   '@rush-temp/airport-code': 'file:./projects/airport-code.tgz'
   '@rush-temp/airspace': 'file:./projects/airspace.tgz'
   '@rush-temp/apron': 'file:./projects/apron.tgz'

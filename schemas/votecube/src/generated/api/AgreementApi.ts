@@ -19,8 +19,14 @@ import {
 	AgreementReasonDao,
 } from '../../dao/AgreementReasonDao';
 import {
+	FactorDao,
+} from '../../dao/FactorDao';
+import {
 	IIdeaDao,
 } from '../../dao/IdeaDao';
+import {
+	PositionDao,
+} from '../../dao/PositionDao';
 import {
 	ReasonDao,
 } from '../../dao/ReasonDao';
@@ -30,7 +36,9 @@ import {
 import {
 	Agreement,
 	AgreementReason,
+	Factor,
 	Idea,
+	Position,
 	Reason,
 	SituationIdea,
 } from '../../ddl/ddl';

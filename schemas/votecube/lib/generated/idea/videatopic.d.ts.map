@@ -1,0 +1,1 @@
+{"version":3,"file":"videatopic.d.ts","sourceRoot":"","sources":["../../../src/generated/idea/videatopic.ts"],"names":[],"mappings":"AAQA,OAAO,EACN,oBAAoB,EACpB,MAAM,4DAA4D,CAAC;AACpE,OAAO,EACN,eAAe,EACf,MAAM,SAAS,CAAC;AAIjB,OAAO,EACN,gBAAgB,EAEhB,MAAM,gDAAgD,CAAC;AAWxD,MAAM,WAAW,oBACb,SAAQ,oBAAoB;IAQ/B,IAAI,CAAC,EAAE,eAAe,CAAC;IACvB,KAAK,CAAC,EAAE,gBAAgB,CAAC;CAEzB"}

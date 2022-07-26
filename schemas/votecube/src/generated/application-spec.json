@@ -5512,7 +5512,8 @@
 					"tableConfig": {
 						"name": "FACTORS",
 						"columnIndexes": []
-					}
+					},
+					"operations": {}
 				},
 				{
 					"columns": [
@@ -5846,7 +5847,8 @@
 					"tableConfig": {
 						"name": "POSITIONS",
 						"columnIndexes": []
-					}
+					},
+					"operations": {}
 				}
 			],
 			"integerVersion": 1,

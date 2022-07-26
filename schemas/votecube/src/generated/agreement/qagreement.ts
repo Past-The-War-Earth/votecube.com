@@ -72,9 +72,6 @@ import {
 } from './agreement';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -185,8 +182,6 @@ extends AgreementEId, AgreementEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -210,7 +205,6 @@ export interface QAgreement extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QAgreementQId extends QAirEntityQId
 {
@@ -226,4 +220,3 @@ export interface QAgreementQId extends QAirEntityQId
 export interface QAgreementQRelation
 	extends QAirEntityQRelation<IAgreement, QAgreement>, QAgreementQId {
 }
-

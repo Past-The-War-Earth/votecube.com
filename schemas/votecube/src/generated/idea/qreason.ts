@@ -85,9 +85,6 @@ import {
 } from './reason';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -232,8 +229,6 @@ extends ReasonEId, ReasonEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -264,7 +259,6 @@ export interface QReason extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QReasonQId extends QAirEntityQId
 {
@@ -280,4 +274,3 @@ export interface QReasonQId extends QAirEntityQId
 export interface QReasonQRelation
 	extends QAirEntityQRelation<IReason, QReason>, QReasonQId {
 }
-

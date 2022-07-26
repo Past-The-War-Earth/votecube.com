@@ -96,9 +96,6 @@ import {
 } from './situationidea';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -229,8 +226,6 @@ extends SituationIdeaEId, SituationIdeaEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -260,7 +255,6 @@ export interface QSituationIdea extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QSituationIdeaQId extends QAirEntityQId
 {
@@ -276,4 +270,3 @@ export interface QSituationIdeaQId extends QAirEntityQId
 export interface QSituationIdeaQRelation
 	extends QAirEntityQRelation<ISituationIdea, QSituationIdea>, QSituationIdeaQId {
 }
-

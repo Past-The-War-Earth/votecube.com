@@ -59,9 +59,6 @@ import {
 } from './agreementreason';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -174,8 +171,6 @@ extends AgreementReasonEId, AgreementReasonEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -199,7 +194,6 @@ export interface QAgreementReason extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QAgreementReasonQId extends QAirEntityQId
 {
@@ -215,4 +209,3 @@ export interface QAgreementReasonQId extends QAirEntityQId
 export interface QAgreementReasonQRelation
 	extends QAirEntityQRelation<IAgreementReason, QAgreementReason>, QAgreementReasonQId {
 }
-

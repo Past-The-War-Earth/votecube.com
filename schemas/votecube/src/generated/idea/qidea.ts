@@ -111,9 +111,6 @@ import {
 } from './idea';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -250,8 +247,6 @@ extends IdeaEId, IdeaEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -285,7 +280,6 @@ export interface QIdea extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QIdeaQId extends QAirEntityQId
 {
@@ -301,4 +295,3 @@ export interface QIdeaQId extends QAirEntityQId
 export interface QIdeaQRelation
 	extends QAirEntityQRelation<IIdea, QIdea>, QIdeaQId {
 }
-

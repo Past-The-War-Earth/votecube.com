@@ -33,9 +33,6 @@ import {
 } from './position';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -132,8 +129,6 @@ extends PositionEId, PositionEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -154,7 +149,6 @@ export interface QPosition extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QPositionQId extends QAirEntityQId
 {
@@ -170,4 +164,3 @@ export interface QPositionQId extends QAirEntityQId
 export interface QPositionQRelation
 	extends QAirEntityQRelation<IPosition, QPosition>, QPositionQId {
 }
-

@@ -5513,7 +5513,8 @@ export const APPLICATION = {
                     "tableConfig": {
                         "name": "FACTORS",
                         "columnIndexes": []
-                    }
+                    },
+                    "operations": {}
                 },
                 {
                     "columns": [
@@ -5847,7 +5848,8 @@ export const APPLICATION = {
                     "tableConfig": {
                         "name": "POSITIONS",
                         "columnIndexes": []
-                    }
+                    },
+                    "operations": {}
                 }
             ],
             "integerVersion": 1,

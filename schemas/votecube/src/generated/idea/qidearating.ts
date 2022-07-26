@@ -59,9 +59,6 @@ import {
 } from './idearating';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -170,8 +167,6 @@ extends IdeaRatingEId, IdeaRatingEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -194,7 +189,6 @@ export interface QIdeaRating extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QIdeaRatingQId extends QAirEntityQId
 {
@@ -210,4 +204,3 @@ export interface QIdeaRatingQId extends QAirEntityQId
 export interface QIdeaRatingQRelation
 	extends QAirEntityQRelation<IIdeaRating, QIdeaRating>, QIdeaRatingQId {
 }
-

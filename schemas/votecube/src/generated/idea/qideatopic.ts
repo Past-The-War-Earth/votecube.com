@@ -57,9 +57,6 @@ import {
 } from './ideatopic';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -164,8 +161,6 @@ extends IdeaTopicEId, IdeaTopicEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -187,7 +182,6 @@ export interface QIdeaTopic extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QIdeaTopicQId extends QAirEntityQId
 {
@@ -203,4 +197,3 @@ export interface QIdeaTopicQId extends QAirEntityQId
 export interface QIdeaTopicQRelation
 	extends QAirEntityQRelation<IIdeaTopic, QIdeaTopic>, QIdeaTopicQId {
 }
-

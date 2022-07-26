@@ -33,9 +33,6 @@ import {
 } from './label';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -132,8 +129,6 @@ extends LabelEId, LabelEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -154,7 +149,6 @@ export interface QLabel extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QLabelQId extends QAirEntityQId
 {
@@ -170,4 +164,3 @@ export interface QLabelQId extends QAirEntityQId
 export interface QLabelQRelation
 	extends QAirEntityQRelation<ILabel, QLabel>, QLabelQId {
 }
-

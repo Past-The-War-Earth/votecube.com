@@ -62,11 +62,11 @@ doesn't match agreement.idea.id (${idea.id})`);
         //         reason: exists({
         //             idea: equals(agreement.idea),
         //             situationIdea: or(
-        //                 isNullIf(!agreement.situationIdea),
+        //                 isNull(!agreement.situationIdea),
         //                 equals(agreement.situationIdea)
         //             ),
         //             share: between(-100, 100)
-        //         },
+        //         }),
         //         idea: exists(),
         //         situationIdea: or(
         //             isNull(),

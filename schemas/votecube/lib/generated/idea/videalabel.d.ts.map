@@ -1,0 +1,1 @@
+{"version":3,"file":"videalabel.d.ts","sourceRoot":"","sources":["../../../src/generated/idea/videalabel.ts"],"names":[],"mappings":"AAQA,OAAO,EACN,oBAAoB,EACpB,MAAM,4DAA4D,CAAC;AACpE,OAAO,EACN,eAAe,EACf,MAAM,SAAS,CAAC;AAIjB,OAAO,EACN,gBAAgB,EAChB,MAAM,WAAW,CAAC;AAcnB,MAAM,WAAW,oBACb,SAAQ,oBAAoB;IAQ/B,IAAI,CAAC,EAAE,eAAe,CAAC;IACvB,KAAK,CAAC,EAAE,gBAAgB,CAAC;CAEzB"}

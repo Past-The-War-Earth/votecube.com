@@ -33,9 +33,6 @@ import {
 } from './factor';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -140,8 +137,6 @@ extends FactorEId, FactorEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -164,7 +159,6 @@ export interface QFactor extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QFactorQId extends QAirEntityQId
 {
@@ -180,4 +174,3 @@ export interface QFactorQId extends QAirEntityQId
 export interface QFactorQRelation
 	extends QAirEntityQRelation<IFactor, QFactor>, QFactorQId {
 }
-

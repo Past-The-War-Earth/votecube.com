@@ -59,9 +59,6 @@ import {
 } from './idealabel';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -166,8 +163,6 @@ extends IdeaLabelEId, IdeaLabelEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -189,7 +184,6 @@ export interface QIdeaLabel extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QIdeaLabelQId extends QAirEntityQId
 {
@@ -205,4 +199,3 @@ export interface QIdeaLabelQId extends QAirEntityQId
 export interface QIdeaLabelQRelation
 	extends QAirEntityQRelation<IIdeaLabel, QIdeaLabel>, QIdeaLabelQId {
 }
-

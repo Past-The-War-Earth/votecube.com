@@ -1,12 +1,12 @@
-import { Duo, } from '@airport/tarmaq-dao';
+import { Dvo, } from '@airport/airbridge-validate';
 import { Q, duoDiSet, } from './qApplication';
-// Application Q object Dependency Injection readiness detection Duo
-export class SQDIDuo extends Duo {
+// Application Q object Dependency Injection readiness detection Dvo
+export class SQDIDvo extends Dvo {
     constructor(dbEntityId) {
         super(dbEntityId, Q);
     }
 }
-export class BaseAgreementDuo extends SQDIDuo {
+export class BaseAgreementDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(8);
     }
@@ -14,7 +14,7 @@ export class BaseAgreementDuo extends SQDIDuo {
         super(8);
     }
 }
-export class BaseAgreementReasonDuo extends SQDIDuo {
+export class BaseAgreementReasonDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(7);
     }
@@ -22,7 +22,7 @@ export class BaseAgreementReasonDuo extends SQDIDuo {
         super(7);
     }
 }
-export class BaseFactorDuo extends SQDIDuo {
+export class BaseFactorDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(9);
     }
@@ -30,7 +30,7 @@ export class BaseFactorDuo extends SQDIDuo {
         super(9);
     }
 }
-export class BaseIdeaDuo extends SQDIDuo {
+export class BaseIdeaDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(6);
     }
@@ -38,7 +38,7 @@ export class BaseIdeaDuo extends SQDIDuo {
         super(6);
     }
 }
-export class BaseIdeaLabelDuo extends SQDIDuo {
+export class BaseIdeaLabelDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(1);
     }
@@ -46,7 +46,7 @@ export class BaseIdeaLabelDuo extends SQDIDuo {
         super(1);
     }
 }
-export class BaseIdeaRatingDuo extends SQDIDuo {
+export class BaseIdeaRatingDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(2);
     }
@@ -54,7 +54,7 @@ export class BaseIdeaRatingDuo extends SQDIDuo {
         super(2);
     }
 }
-export class BaseIdeaTopicDuo extends SQDIDuo {
+export class BaseIdeaTopicDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(5);
     }
@@ -62,7 +62,7 @@ export class BaseIdeaTopicDuo extends SQDIDuo {
         super(5);
     }
 }
-export class BaseLabelDuo extends SQDIDuo {
+export class BaseLabelDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(0);
     }
@@ -70,7 +70,7 @@ export class BaseLabelDuo extends SQDIDuo {
         super(0);
     }
 }
-export class BasePositionDuo extends SQDIDuo {
+export class BasePositionDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(10);
     }
@@ -78,7 +78,7 @@ export class BasePositionDuo extends SQDIDuo {
         super(10);
     }
 }
-export class BaseReasonDuo extends SQDIDuo {
+export class BaseReasonDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(3);
     }
@@ -86,7 +86,7 @@ export class BaseReasonDuo extends SQDIDuo {
         super(3);
     }
 }
-export class BaseSituationIdeaDuo extends SQDIDuo {
+export class BaseSituationIdeaDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(4);
     }
@@ -94,4 +94,4 @@ export class BaseSituationIdeaDuo extends SQDIDuo {
         super(4);
     }
 }
-//# sourceMappingURL=baseDuos.js.map
+//# sourceMappingURL=baseDvos.js.map
