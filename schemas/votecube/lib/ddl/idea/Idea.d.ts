@@ -4,7 +4,7 @@ import { SituationIdea } from './SituationIdea';
 import { IdeaTopic } from './IdeaTopic';
 import { IdeaRating } from './IdeaRating';
 import { Agreement } from '../agreement/Agreement';
-import { Reason } from './Reason';
+import { Reason } from '../reason/Reason';
 export declare class Idea extends AirEntity {
     constructor(entityGUID: string);
     name: string;

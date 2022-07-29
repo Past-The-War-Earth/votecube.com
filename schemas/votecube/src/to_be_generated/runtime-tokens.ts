@@ -8,7 +8,7 @@ import { AGREEMENT_API, IDEA_API, SITUATION_IDEA_API } from './common-tokens'
 import { AgreementApi, IdeaApi, SituationIdeaApi } from '../api/api'
 import { AgreementDao } from '../dao/AgreementDao'
 import { AgreementReasonDao } from '../dao/AgreementReasonDao'
-import { ReasonDao } from '../dao/ReasonDao'
+import { ReasonDao } from '../dao/reason/ReasonDao'
 import { IdeaRatingApi } from '../api/IdeaRatingApi'
 import { IdeaRatingDao, IIdeaRatingDao } from '../dao/IdeaRatingDao'
 import { REQUEST_MANAGER } from '@airport/arrivals-n-departures'
@@ -16,6 +16,9 @@ import { SITUATION_API } from '@sapoto/core'
 import { FactorDao } from '../dao/FactorDao'
 import { PositionDao } from '../dao/PositionDao'
 import { AgreementDvo } from '../dvo/AgreementDvo'
+import { IdeaDvo } from './runtime-index'
+import { IdeaRatingDvo } from '../dvo/IdeaRatingDvo'
+import { SituationIdeaDvo } from '../dvo/SituationIdeaDvo'
 
 export const AGREEMENT_DAO = votecube.token<AgreementDao>({
     class: AgreementDao,
@@ -37,10 +40,20 @@ export const IDEA_DAO = votecube.token<IIdeaDao>({
     interface: 'IIdeaDao',
     token: 'IDEA_DAO'
 })
+export const IDEA_DVO = votecube.token<IdeaDvo>({
+    class: IdeaDvo,
+    interface: 'IIdeaDvo',
+    token: 'IDEA_DVO'
+})
 export const IDEA_RATING_DAO = votecube.token<IIdeaRatingDao>({
     class: IdeaRatingDao,
     interface: 'IIdeaRatingDao',
     token: 'IDEA_RATING_DAO'
+})
+export const IDEA_RATING_DVO = votecube.token<IdeaRatingDvo>({
+    class: IdeaRatingDvo,
+    interface: 'IIdeaRatingDvo',
+    token: 'IDEA_RATING_DVO'
 })
 export const FACTOR_DAO = votecube.token<FactorDao>({
     class: FactorDao,
@@ -62,6 +75,11 @@ export const SITUATION_IDEA_DAO = votecube.token<ISituationIdeaDao>({
     interface: 'IIdeaSituationDao',
     token: 'SITUATION_IDEA_DAO'
 })
+export const SITUATION_IDEA_DVO = votecube.token<SituationIdeaDvo>({
+    class: SituationIdeaDvo,
+    interface: 'IIdeaSituationDvo',
+    token: 'SITUATION_IDEA_DVO'
+})
 
 AGREEMENT_API.setClass(AgreementApi)
 AGREEMENT_API.setDependencies({
@@ -76,12 +94,14 @@ AGREEMENT_API.setDependencies({
 })
 IDEA_API.setClass(IdeaApi)
 IDEA_API.setDependencies({
-    ideaDao: IDEA_DAO
+    ideaDao: IDEA_DAO,
+    ideaDvo: IDEA_DVO
 })
 IDEA_RATING_API.setClass(IdeaRatingApi)
 IDEA_RATING_API.setDependencies({
     ideaDao: IDEA_DAO,
     ideaRatingDao: IDEA_RATING_DAO,
+    ideaRatingDvo: IDEA_RATING_DVO,
     situationIdeaDao: SITUATION_IDEA_DAO
 })
 SITUATION_IDEA_API.setClass(SituationIdeaApi)
@@ -89,7 +109,8 @@ SITUATION_IDEA_API.setDependencies({
     ideaApi: IDEA_API,
     requestManager: REQUEST_MANAGER,
     situationApi: SITUATION_API,
-    situationIdeaDao: SITUATION_IDEA_DAO
+    situationIdeaDao: SITUATION_IDEA_DAO,
+    situationIdeaDvo: SITUATION_IDEA_DVO
 })
 APPLICATION_LOADER.setClass(ApplicationLoader)
 APPLICATION_LOADER.setDependencies({

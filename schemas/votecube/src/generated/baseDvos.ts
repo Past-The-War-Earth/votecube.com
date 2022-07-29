@@ -36,6 +36,12 @@ import {
 	IdeaRatingVDescriptor,
 } from './idea/videarating';
 import {
+	IdeaReason,
+} from '../ddl/reason/ideareason';
+import {
+	IdeaReasonVDescriptor,
+} from './reason/videareason';
+import {
 	IdeaTopic,
 } from '../ddl/idea/ideatopic';
 import {
@@ -55,16 +61,28 @@ import {
 } from './factor/vposition';
 import {
 	Reason,
-} from '../ddl/idea/reason';
+} from '../ddl/reason/reason';
 import {
 	ReasonVDescriptor,
-} from './idea/vreason';
+} from './reason/vreason';
+import {
+	ReasonCubeDisplay,
+} from '../ddl/reason/reasoncubedisplay';
+import {
+	ReasonCubeDisplayVDescriptor,
+} from './reason/vreasoncubedisplay';
 import {
 	SituationIdea,
 } from '../ddl/idea/situationidea';
 import {
 	SituationIdeaVDescriptor,
 } from './idea/vsituationidea';
+import {
+	SituationIdeaReason,
+} from '../ddl/reason/situationideareason';
+import {
+	SituationIdeaReasonVDescriptor,
+} from './reason/vsituationideareason';
 import {
 	IDvo,
 	Dvo,
@@ -91,11 +109,11 @@ export class SQDIDvo<Entity, EntityVDescriptor>
 
 
 export interface IBaseAgreementDvo
-  extends IDvo<Agreement, AgreementVDescriptor> {
+  extends IDvo<Agreement, AgreementVDescriptor<Agreement>> {
 }
 
 export class BaseAgreementDvo
-  extends SQDIDvo<Agreement, AgreementVDescriptor>
+  extends SQDIDvo<Agreement, AgreementVDescriptor<Agreement>>
 	implements IBaseAgreementDvo {
 
 	static diSet(): boolean {
@@ -109,11 +127,11 @@ export class BaseAgreementDvo
 
 
 export interface IBaseAgreementReasonDvo
-  extends IDvo<AgreementReason, AgreementReasonVDescriptor> {
+  extends IDvo<AgreementReason, AgreementReasonVDescriptor<AgreementReason>> {
 }
 
 export class BaseAgreementReasonDvo
-  extends SQDIDvo<AgreementReason, AgreementReasonVDescriptor>
+  extends SQDIDvo<AgreementReason, AgreementReasonVDescriptor<AgreementReason>>
 	implements IBaseAgreementReasonDvo {
 
 	static diSet(): boolean {
@@ -127,11 +145,11 @@ export class BaseAgreementReasonDvo
 
 
 export interface IBaseFactorDvo
-  extends IDvo<Factor, FactorVDescriptor> {
+  extends IDvo<Factor, FactorVDescriptor<Factor>> {
 }
 
 export class BaseFactorDvo
-  extends SQDIDvo<Factor, FactorVDescriptor>
+  extends SQDIDvo<Factor, FactorVDescriptor<Factor>>
 	implements IBaseFactorDvo {
 
 	static diSet(): boolean {
@@ -145,11 +163,11 @@ export class BaseFactorDvo
 
 
 export interface IBaseIdeaDvo
-  extends IDvo<Idea, IdeaVDescriptor> {
+  extends IDvo<Idea, IdeaVDescriptor<Idea>> {
 }
 
 export class BaseIdeaDvo
-  extends SQDIDvo<Idea, IdeaVDescriptor>
+  extends SQDIDvo<Idea, IdeaVDescriptor<Idea>>
 	implements IBaseIdeaDvo {
 
 	static diSet(): boolean {
@@ -163,11 +181,11 @@ export class BaseIdeaDvo
 
 
 export interface IBaseIdeaLabelDvo
-  extends IDvo<IdeaLabel, IdeaLabelVDescriptor> {
+  extends IDvo<IdeaLabel, IdeaLabelVDescriptor<IdeaLabel>> {
 }
 
 export class BaseIdeaLabelDvo
-  extends SQDIDvo<IdeaLabel, IdeaLabelVDescriptor>
+  extends SQDIDvo<IdeaLabel, IdeaLabelVDescriptor<IdeaLabel>>
 	implements IBaseIdeaLabelDvo {
 
 	static diSet(): boolean {
@@ -181,11 +199,11 @@ export class BaseIdeaLabelDvo
 
 
 export interface IBaseIdeaRatingDvo
-  extends IDvo<IdeaRating, IdeaRatingVDescriptor> {
+  extends IDvo<IdeaRating, IdeaRatingVDescriptor<IdeaRating>> {
 }
 
 export class BaseIdeaRatingDvo
-  extends SQDIDvo<IdeaRating, IdeaRatingVDescriptor>
+  extends SQDIDvo<IdeaRating, IdeaRatingVDescriptor<IdeaRating>>
 	implements IBaseIdeaRatingDvo {
 
 	static diSet(): boolean {
@@ -198,12 +216,30 @@ export class BaseIdeaRatingDvo
 }
 
 
+export interface IBaseIdeaReasonDvo
+  extends IDvo<IdeaReason, IdeaReasonVDescriptor<IdeaReason>> {
+}
+
+export class BaseIdeaReasonDvo
+  extends SQDIDvo<IdeaReason, IdeaReasonVDescriptor<IdeaReason>>
+	implements IBaseIdeaReasonDvo {
+
+	static diSet(): boolean {
+		return duoDiSet(12)
+	}
+	
+	constructor() {
+		super(12)
+	}
+}
+
+
 export interface IBaseIdeaTopicDvo
-  extends IDvo<IdeaTopic, IdeaTopicVDescriptor> {
+  extends IDvo<IdeaTopic, IdeaTopicVDescriptor<IdeaTopic>> {
 }
 
 export class BaseIdeaTopicDvo
-  extends SQDIDvo<IdeaTopic, IdeaTopicVDescriptor>
+  extends SQDIDvo<IdeaTopic, IdeaTopicVDescriptor<IdeaTopic>>
 	implements IBaseIdeaTopicDvo {
 
 	static diSet(): boolean {
@@ -217,11 +253,11 @@ export class BaseIdeaTopicDvo
 
 
 export interface IBaseLabelDvo
-  extends IDvo<Label, LabelVDescriptor> {
+  extends IDvo<Label, LabelVDescriptor<Label>> {
 }
 
 export class BaseLabelDvo
-  extends SQDIDvo<Label, LabelVDescriptor>
+  extends SQDIDvo<Label, LabelVDescriptor<Label>>
 	implements IBaseLabelDvo {
 
 	static diSet(): boolean {
@@ -235,11 +271,11 @@ export class BaseLabelDvo
 
 
 export interface IBasePositionDvo
-  extends IDvo<Position, PositionVDescriptor> {
+  extends IDvo<Position, PositionVDescriptor<Position>> {
 }
 
 export class BasePositionDvo
-  extends SQDIDvo<Position, PositionVDescriptor>
+  extends SQDIDvo<Position, PositionVDescriptor<Position>>
 	implements IBasePositionDvo {
 
 	static diSet(): boolean {
@@ -253,11 +289,11 @@ export class BasePositionDvo
 
 
 export interface IBaseReasonDvo
-  extends IDvo<Reason, ReasonVDescriptor> {
+  extends IDvo<Reason, ReasonVDescriptor<Reason>> {
 }
 
 export class BaseReasonDvo
-  extends SQDIDvo<Reason, ReasonVDescriptor>
+  extends SQDIDvo<Reason, ReasonVDescriptor<Reason>>
 	implements IBaseReasonDvo {
 
 	static diSet(): boolean {
@@ -270,12 +306,30 @@ export class BaseReasonDvo
 }
 
 
+export interface IBaseReasonCubeDisplayDvo
+  extends IDvo<ReasonCubeDisplay, ReasonCubeDisplayVDescriptor<ReasonCubeDisplay>> {
+}
+
+export class BaseReasonCubeDisplayDvo
+  extends SQDIDvo<ReasonCubeDisplay, ReasonCubeDisplayVDescriptor<ReasonCubeDisplay>>
+	implements IBaseReasonCubeDisplayDvo {
+
+	static diSet(): boolean {
+		return duoDiSet(11)
+	}
+	
+	constructor() {
+		super(11)
+	}
+}
+
+
 export interface IBaseSituationIdeaDvo
-  extends IDvo<SituationIdea, SituationIdeaVDescriptor> {
+  extends IDvo<SituationIdea, SituationIdeaVDescriptor<SituationIdea>> {
 }
 
 export class BaseSituationIdeaDvo
-  extends SQDIDvo<SituationIdea, SituationIdeaVDescriptor>
+  extends SQDIDvo<SituationIdea, SituationIdeaVDescriptor<SituationIdea>>
 	implements IBaseSituationIdeaDvo {
 
 	static diSet(): boolean {
@@ -284,5 +338,23 @@ export class BaseSituationIdeaDvo
 	
 	constructor() {
 		super(4)
+	}
+}
+
+
+export interface IBaseSituationIdeaReasonDvo
+  extends IDvo<SituationIdeaReason, SituationIdeaReasonVDescriptor<SituationIdeaReason>> {
+}
+
+export class BaseSituationIdeaReasonDvo
+  extends SQDIDvo<SituationIdeaReason, SituationIdeaReasonVDescriptor<SituationIdeaReason>>
+	implements IBaseSituationIdeaReasonDvo {
+
+	static diSet(): boolean {
+		return duoDiSet(13)
+	}
+	
+	constructor() {
+		super(13)
 	}
 }

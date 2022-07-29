@@ -1,0 +1,1 @@
+{"version":3,"file":"IdeaReasonDao.d.ts","sourceRoot":"","sources":["../../../src/dao/reason/IdeaReasonDao.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,IAAI,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AACjD,OAAO,EAAE,iBAAiB,EAAE,MAAM,0BAA0B,CAAC;AAG7D,qBACa,aACT,SAAQ,iBAAiB;IAEnB,cAAc,CAChB,IAAI,EAAE,IAAI,GACX,OAAO,CAAC,UAAU,EAAE,CAAC;CAoB3B"}

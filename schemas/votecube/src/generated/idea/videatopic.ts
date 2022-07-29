@@ -13,11 +13,11 @@ import {
 	IdeaVDescriptor,
 } from './videa';
 import {
-	IIdea,
-} from './idea';
+	Idea,
+} from '../../ddl/idea/Idea';
 import {
 	TopicVDescriptor,
-	ITopic,
+	Topic,
 } from '@sapoto/core/lib/to_be_generated/runtime-index';
 import {
 	IIdeaTopic,
@@ -29,8 +29,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface IdeaTopicVDescriptor
-    extends AirEntityVDescriptor {
+export interface IdeaTopicVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -38,8 +38,8 @@ export interface IdeaTopicVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	idea?: IdeaVDescriptor;
-	topic?: TopicVDescriptor;
+	idea?: IdeaVDescriptor<Idea>
+	topic?: TopicVDescriptor<Topic>
 
 }
 

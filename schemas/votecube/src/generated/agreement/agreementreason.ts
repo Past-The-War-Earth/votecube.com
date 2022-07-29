@@ -6,7 +6,7 @@ import {
 } from './agreement';
 import {
 	IReason,
-} from '../idea/reason';
+} from '../reason/reason';
 
 
 
@@ -21,7 +21,6 @@ export interface IAgreementReason extends IAirEntity {
 	// Id Relations
 
 	// Non-Id Properties
-	axis?: string;
 	share?: number;
 
 	// Non-Id Relations

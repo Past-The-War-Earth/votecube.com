@@ -13,14 +13,14 @@ import {
 	IdeaVDescriptor,
 } from './videa';
 import {
-	IIdea,
-} from './idea';
+	Idea,
+} from '../../ddl/idea/Idea';
 import {
 	SituationIdeaVDescriptor,
 } from './vsituationidea';
 import {
-	ISituationIdea,
-} from './situationidea';
+	SituationIdea,
+} from '../../ddl/idea/SituationIdea';
 import {
 	IIdeaRating,
 } from './idearating';
@@ -31,8 +31,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface IdeaRatingVDescriptor
-    extends AirEntityVDescriptor {
+export interface IdeaRatingVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -41,8 +41,8 @@ export interface IdeaRatingVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	idea?: IdeaVDescriptor;
-	situationIdea?: SituationIdeaVDescriptor;
+	idea?: IdeaVDescriptor<Idea>
+	situationIdea?: SituationIdeaVDescriptor<SituationIdea>
 
 }
 

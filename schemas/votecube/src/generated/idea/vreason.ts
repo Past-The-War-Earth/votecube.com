@@ -13,26 +13,26 @@ import {
 	SituationIdeaVDescriptor,
 } from './vsituationidea';
 import {
-	ISituationIdea,
-} from './situationidea';
+	SituationIdea,
+} from '../../ddl/idea/SituationIdea';
 import {
 	IdeaVDescriptor,
 } from './videa';
 import {
-	IIdea,
-} from './idea';
+	Idea,
+} from '../../ddl/idea/Idea';
 import {
 	FactorVDescriptor,
 } from '../factor/vfactor';
 import {
-	IFactor,
-} from '../factor/factor';
+	Factor,
+} from '../../ddl/factor/Factor';
 import {
 	PositionVDescriptor,
 } from '../factor/vposition';
 import {
-	IPosition,
-} from '../factor/position';
+	Position,
+} from '../../ddl/factor/Position';
 import {
 	IReason,
 } from './reason';
@@ -43,8 +43,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface ReasonVDescriptor
-    extends AirEntityVDescriptor {
+export interface ReasonVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -59,10 +59,10 @@ export interface ReasonVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	situationIdea?: SituationIdeaVDescriptor;
-	idea?: IdeaVDescriptor;
-	factor?: FactorVDescriptor;
-	position?: PositionVDescriptor;
+	situationIdea?: SituationIdeaVDescriptor<SituationIdea>
+	idea?: IdeaVDescriptor<Idea>
+	factor?: FactorVDescriptor<Factor>
+	position?: PositionVDescriptor<Position>
 
 }
 

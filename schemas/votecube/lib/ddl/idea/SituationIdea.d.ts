@@ -2,7 +2,7 @@ import { AirEntity } from "@airport/holding-pattern";
 import { Situation } from "@sapoto/core";
 import { Agreement, Idea } from "../ddl";
 import { IdeaRating } from "./IdeaRating";
-import { Reason } from "./Reason";
+import { Reason } from "../reason/Reason";
 export declare class SituationIdea extends AirEntity {
     constructor(entityGUID: string);
     agreementShareTotal: number;

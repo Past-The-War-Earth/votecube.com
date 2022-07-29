@@ -9,6 +9,7 @@ import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/tarmaq-ent
 let Agreement = class Agreement extends AirEntity {
     constructor(entityGUID) {
         super(entityGUID);
+        // FIXME: this should be done automatically, by the framework
         this.agreementReasons = [];
     }
 };

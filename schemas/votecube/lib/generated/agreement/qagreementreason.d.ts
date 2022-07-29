@@ -1,13 +1,12 @@
-import { IQDateField, IQNumberField, IQStringField } from '@airport/tarmaq-query';
+import { IQDateField, IQNumberField } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { AgreementGraph, AgreementEOptionalId, AgreementESelect, QAgreementQRelation } from './qagreement';
-import { ReasonGraph, ReasonEOptionalId, ReasonESelect, QReasonQRelation } from '../idea/qreason';
+import { ReasonGraph, ReasonEOptionalId, ReasonESelect, QReasonQRelation } from '../reason/qreason';
 import { IAgreementReason } from './agreementreason';
 /**
  * SELECT - All fields and relations (optional).
  */
 export interface AgreementReasonESelect extends AirEntityESelect, AgreementReasonEOptionalId {
-    axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementESelect;
     reason?: ReasonESelect;
@@ -26,7 +25,6 @@ export interface AgreementReasonEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface AgreementReasonEUpdateProperties extends AirEntityEUpdateProperties {
-    axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementEOptionalId;
     reason?: ReasonEOptionalId;
@@ -35,7 +33,6 @@ export interface AgreementReasonEUpdateProperties extends AirEntityEUpdateProper
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface AgreementReasonGraph extends AgreementReasonEOptionalId, AirEntityGraph {
-    axis?: string | IQStringField;
     share?: number | IQNumberField;
     agreement?: AgreementGraph;
     reason?: ReasonGraph;
@@ -50,7 +47,6 @@ export interface AgreementReasonEUpdateColumns extends AirEntityEUpdateColumns {
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_LID?: number | IQNumberField;
-    THREED_COORDINATE_AXIS?: string | IQStringField;
     SHARE?: number | IQNumberField;
     AGREEMENTS_RID_1?: number | IQNumberField;
     AGREEMENTS_AID_1?: number | IQNumberField;
@@ -73,7 +69,6 @@ export interface AgreementReasonECreateColumns extends AgreementReasonEId, Agree
  * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QAgreementReason extends QAirEntity {
-    axis: IQStringField;
     share: IQNumberField;
     agreement: QAgreementQRelation;
     reason: QReasonQRelation;

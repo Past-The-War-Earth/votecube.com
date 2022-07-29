@@ -63,10 +63,10 @@ import {
 	QReason,
 	QReasonQId,
 	QReasonQRelation,
-} from './qreason';
+} from '../reason/qreason';
 import {
 	IReason,
-} from './reason';
+} from '../reason/reason';
 import {
 	IdeaLabelGraph,
 	IdeaLabelEId,

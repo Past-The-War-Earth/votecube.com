@@ -19,8 +19,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface PositionVDescriptor
-    extends AirEntityVDescriptor {
+export interface PositionVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties

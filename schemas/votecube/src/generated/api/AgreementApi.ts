@@ -7,6 +7,15 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
+	between,
+	equals,
+	exists,
+	isNull,
+	or,
+	typed,
+	value,
+} from '@airport/airbridge-validate';
+import {
 	Api,
 } from '@airport/check-in';
 import {
@@ -29,7 +38,7 @@ import {
 } from '../../dao/PositionDao';
 import {
 	ReasonDao,
-} from '../../dao/ReasonDao';
+} from '../../dao/reason/ReasonDao';
 import {
 	ISituationIdeaDao,
 } from '../../dao/SituationIdeaDao';
@@ -37,11 +46,12 @@ import {
 	Agreement,
 	AgreementReason,
 	Factor,
-	Idea,
 	Position,
 	Reason,
-	SituationIdea,
 } from '../../ddl/ddl';
+import {
+	AgreementDvo,
+} from '../../dvo/AgreementDvo';
 import {
 	IAgreement,
 } from '../../generated/interfaces';
@@ -76,9 +86,9 @@ export class AgreementApi {
     }
 
     async  setAgreement(
-        inAgreement: Agreement
+        agreement: Agreement
     ): Promise<void> {
-        await this.agreementApi.setAgreement(inAgreement)
+        await this.agreementApi.setAgreement(agreement)
     }
 
 }

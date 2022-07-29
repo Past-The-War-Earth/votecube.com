@@ -13,6 +13,7 @@ export class Agreement
         entityGUID?: string
     ) {
         super(entityGUID)
+        // FIXME: this should be done automatically, by the framework
         this.agreementReasons = []
     }
 

@@ -1,9 +1,11 @@
+import { byId, exists, isNull, or } from "@airport/airbridge-validate";
 import { RequestManager } from "@airport/arrivals-n-departures";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { IRepositoryIdParts } from "@airport/ground-control";
 import { IdeaDao } from "../dao/dao"
 import { Idea, Label } from "../ddl/ddl";
+import { IdeaDvo } from "../dvo/IdeaDvo";
 
 export interface IIdeaApi {
 
@@ -54,6 +56,9 @@ export class IdeaApi
     ideaDao: IdeaDao
 
     @Inject()
+    ideaDvo: IdeaDvo
+
+    @Inject()
     requestManager: RequestManager
 
     @Api()
@@ -89,22 +94,18 @@ export class IdeaApi
     async saveIdea(
         idea: Idea
     ): Promise<IRepositoryIdParts> {
-        idea.repository = null
-        idea.actor = null
-        delete idea._actorRecordId
+        this.ideaDvo.validate(idea, {
+            _actorRecordId: isNull(),
+            actor: isNull(),
+            parent: or(
+                isNull(),
+                exists(byId())
+            ),
+            repository: isNull(),
+            // TODO: add support for transient entity properites in validator generation
+            userAgreement: null
+        })
 
-        let parentIdea: Idea = idea.parent
-        if (idea.parent) {
-            if (!parentIdea.id) {
-                throw new Error(`Parent idea must have an Id`)
-            }
-            parentIdea = await this.ideaDao.findOne(parentIdea)
-            if (!parentIdea) {
-                throw new Error(`Parent idea '${parentIdea.id}' not found`)
-            }
-        }
-
-        idea.parent = parentIdea
         idea.actor = this.requestManager.actor
         const saveResult = await this.ideaDao.save(idea)
 

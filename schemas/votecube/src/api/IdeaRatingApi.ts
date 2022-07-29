@@ -1,3 +1,4 @@
+import { and, between, byId, equals, exists, isInteger, isNull, or, value } from "@airport/airbridge-validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { ITotalDelta } from "@sapoto/core";
@@ -5,6 +6,7 @@ import { IIdeaDao } from "../dao/IdeaDao";
 import { IIdeaRatingDao } from "../dao/IdeaRatingDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
 import { Idea, IdeaRating, SituationIdea } from "../ddl/ddl";
+import { IdeaRatingDvo } from "../dvo/IdeaRatingDvo";
 
 @Injected()
 export class IdeaRatingApi {
@@ -14,6 +16,9 @@ export class IdeaRatingApi {
 
     @Inject()
     ideaRatingDao: IIdeaRatingDao
+
+    @Inject()
+    ideaRatingDvo: IdeaRatingDvo
 
     @Inject()
     situationIdeaDao: ISituationIdeaDao
@@ -26,57 +31,35 @@ export class IdeaRatingApi {
     }
 
     async doSetIdeaRating(
-        inIdeaRating: IdeaRating,
+        ideaRating: IdeaRating,
         isNewIdea: boolean,
         isNewSituationIdea: boolean
     ): Promise<void> {
-        if (inIdeaRating.urgencyRating < 1 || inIdeaRating.urgencyRating > 5) {
-            throw new Error(`Invalid ideaRating.urgencyRating total`)
-        }
-        inIdeaRating.urgencyRating = Math.floor(inIdeaRating.urgencyRating)
+        this.ideaRatingDvo.validate(ideaRating, {
+            _actorRecordId: null,
+            actor: null,
+            idea: exists(byId()),
+            repository: null,
+            situationIdea: or(
+                isNull(),
+                exists(byId(), {
+                    idea: equals(value(ideaRating.idea))
+                })),
+            urgencyRating: isInteger(between(1, 5))
+        })
 
-        await this.validateIdeas(inIdeaRating)
         const {
-            ideaRating,
+            updatedIdeaRating,
             delta
-        } = await this.getUrgencyRatingDeltas(inIdeaRating)
-        await this.ideaRatingDao.save(ideaRating)
-        await this.updateUrgencyTotals(ideaRating, delta)
-    }
-
-    private async validateIdeas(
-        ideaRating: IdeaRating
-    ): Promise<void> {
-        if (!ideaRating.idea.id) {
-            throw new Error(`passed in ideaRating.idea doesn't have a Id`)
-        }
-        let idea: Idea = await this.ideaDao.findOne(ideaRating.idea, true)
-        if (!idea) {
-            throw new Error(`Idea with UuId "${ideaRating.idea.id}" does not exist.`)
-        }
-        ideaRating.idea = idea
-
-        if (ideaRating.situationIdea) {
-            if (!ideaRating.situationIdea.id) {
-                throw new Error(`passed in agreement.situationIdea doesn't have a Id`)
-            }
-            let situationIdea: SituationIdea = await this.situationIdeaDao
-                .findOne(ideaRating.situationIdea, true)
-            if (!situationIdea) {
-                throw new Error(`SituationIdea with UuId "${ideaRating.situationIdea.id}" does not exist.`)
-            }
-            if (situationIdea.idea.id !== idea.id) {
-                throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.id})
-doesn't match agreement.idea.uuId (${idea.id})`);
-            }
-            ideaRating.situationIdea = situationIdea
-        }
+        } = await this.getUrgencyRatingDeltas(ideaRating)
+        await this.ideaRatingDao.save(updatedIdeaRating)
+        await this.updateUrgencyTotals(updatedIdeaRating, delta)
     }
 
     private async getUrgencyRatingDeltas(
         ideaRating: IdeaRating
     ): Promise<{
-        ideaRating: IdeaRating,
+        updatedIdeaRating: IdeaRating,
         delta: ITotalDelta
     }> {
         let existingIdeaRating: IdeaRating
@@ -97,7 +80,7 @@ doesn't match agreement.idea.uuId (${idea.id})`);
             existingIdeaRating.idea = ideaRating.idea
             existingIdeaRating.situationIdea = ideaRating.situationIdea
             return {
-                ideaRating: existingIdeaRating,
+                updatedIdeaRating: existingIdeaRating,
                 delta: {
                     totalDelta: ideaRating.urgencyRating - existingIdeaRating.urgencyRating,
                     numberDelta: 0
@@ -105,7 +88,7 @@ doesn't match agreement.idea.uuId (${idea.id})`);
             }
         }
         return {
-            ideaRating: ideaRating,
+            updatedIdeaRating: ideaRating,
             delta: {
                 totalDelta: ideaRating.urgencyRating,
                 numberDelta: 1

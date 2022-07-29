@@ -3,8 +3,8 @@ import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdate
 import { IdeaRatingGraph, IdeaRatingESelect, QIdeaRatingQRelation } from './qidearating';
 import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
 import { IAgreement } from '../agreement/agreement';
-import { ReasonGraph, ReasonESelect, QReason } from './qreason';
-import { IReason } from './reason';
+import { ReasonGraph, ReasonESelect, QReason } from '../reason/qreason';
+import { IReason } from '../reason/reason';
 import { IdeaLabelGraph, IdeaLabelESelect, QIdeaLabel } from './qidealabel';
 import { IIdeaLabel } from './idealabel';
 import { SituationIdeaGraph, SituationIdeaESelect, QSituationIdea } from './qsituationidea';

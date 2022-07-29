@@ -13,30 +13,30 @@ import {
 	IdeaVDescriptor,
 } from './videa';
 import {
-	IIdea,
-} from './idea';
+	Idea,
+} from '../../ddl/idea/Idea';
 import {
 	SituationVDescriptor,
-	ISituation,
+	Situation,
 } from '@sapoto/core/lib/to_be_generated/runtime-index';
 import {
 	IdeaRatingVDescriptor,
 } from './videarating';
 import {
-	IIdeaRating,
-} from './idearating';
+	IdeaRating,
+} from '../../ddl/idea/IdeaRating';
 import {
 	AgreementVDescriptor,
 } from '../agreement/vagreement';
 import {
-	IAgreement,
-} from '../agreement/agreement';
+	Agreement,
+} from '../../ddl/agreement/Agreement';
 import {
 	ReasonVDescriptor,
-} from './vreason';
+} from '../reason/vreason';
 import {
-	IReason,
-} from './reason';
+	Reason,
+} from '../../ddl/reason/Reason';
 import {
 	ISituationIdea,
 } from './situationidea';
@@ -47,8 +47,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface SituationIdeaVDescriptor
-    extends AirEntityVDescriptor {
+export interface SituationIdeaVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -61,11 +61,11 @@ export interface SituationIdeaVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	idea?: IdeaVDescriptor;
-	situation?: SituationVDescriptor;
-	ideaRatings?: IdeaRatingVDescriptor;
-	agreements?: AgreementVDescriptor;
-	reasons?: ReasonVDescriptor;
+	idea?: IdeaVDescriptor<Idea>
+	situation?: SituationVDescriptor<Situation>
+	ideaRatings?: IdeaRatingVDescriptor<IdeaRating>
+	agreements?: AgreementVDescriptor<Agreement>
+	reasons?: ReasonVDescriptor<Reason>
 
 }
 

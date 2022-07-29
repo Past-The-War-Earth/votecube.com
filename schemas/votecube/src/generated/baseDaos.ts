@@ -78,6 +78,19 @@ import {
 	QIdeaRating,
 } from './idea/qidearating';
 import {
+	IdeaReason,
+} from '../ddl/reason/ideareason';
+import {
+	IdeaReasonESelect,
+	IdeaReasonECreateColumns,
+	IdeaReasonECreateProperties,
+	IdeaReasonEUpdateColumns,
+	IdeaReasonEUpdateProperties,
+	IdeaReasonEId,
+	IdeaReasonGraph,
+	QIdeaReason,
+} from './reason/qideareason';
+import {
 	IdeaTopic,
 } from '../ddl/idea/ideatopic';
 import {
@@ -118,7 +131,7 @@ import {
 } from './factor/qposition';
 import {
 	Reason,
-} from '../ddl/idea/reason';
+} from '../ddl/reason/reason';
 import {
 	ReasonESelect,
 	ReasonECreateColumns,
@@ -128,7 +141,20 @@ import {
 	ReasonEId,
 	ReasonGraph,
 	QReason,
-} from './idea/qreason';
+} from './reason/qreason';
+import {
+	ReasonCubeDisplay,
+} from '../ddl/reason/reasoncubedisplay';
+import {
+	ReasonCubeDisplayESelect,
+	ReasonCubeDisplayECreateColumns,
+	ReasonCubeDisplayECreateProperties,
+	ReasonCubeDisplayEUpdateColumns,
+	ReasonCubeDisplayEUpdateProperties,
+	ReasonCubeDisplayEId,
+	ReasonCubeDisplayGraph,
+	QReasonCubeDisplay,
+} from './reason/qreasoncubedisplay';
 import {
 	SituationIdea,
 } from '../ddl/idea/situationidea';
@@ -142,6 +168,19 @@ import {
 	SituationIdeaGraph,
 	QSituationIdea,
 } from './idea/qsituationidea';
+import {
+	SituationIdeaReason,
+} from '../ddl/reason/situationideareason';
+import {
+	SituationIdeaReasonESelect,
+	SituationIdeaReasonECreateColumns,
+	SituationIdeaReasonECreateProperties,
+	SituationIdeaReasonEUpdateColumns,
+	SituationIdeaReasonEUpdateProperties,
+	SituationIdeaReasonEId,
+	SituationIdeaReasonGraph,
+	QSituationIdeaReason,
+} from './reason/qsituationideareason';
 import {
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
@@ -359,6 +398,34 @@ export class BaseIdeaRatingDao
 }
 
 
+export interface IBaseIdeaReasonDao
+  extends IDao<IdeaReason, IdeaReasonESelect, IdeaReasonECreateProperties, IdeaReasonEUpdateColumns, IdeaReasonEUpdateProperties, IdeaReasonEId, IdeaReasonGraph, QIdeaReason> {
+}
+
+export class BaseIdeaReasonDao
+  extends SQDIDao<IdeaReason, IdeaReasonESelect, IdeaReasonECreateProperties, IdeaReasonEUpdateColumns, IdeaReasonEUpdateProperties, IdeaReasonEId, IdeaReasonGraph, QIdeaReason>
+	implements IBaseIdeaReasonDao {
+	
+	static Find      = new DaoQueryDecorators<IdeaReasonESelect>();
+	static FindOne   = new DaoQueryDecorators<IdeaReasonESelect>();
+	static Search    = new DaoQueryDecorators<IdeaReasonESelect>();
+	static SearchOne = new DaoQueryDecorators<IdeaReasonESelect>();
+	static Save(
+		config: IdeaReasonGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<IdeaReasonGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(12)
+	}
+	
+	constructor() {
+		super(12)
+	}
+}
+
+
 export interface IBaseIdeaTopicDao
   extends IDao<IdeaTopic, IdeaTopicESelect, IdeaTopicECreateProperties, IdeaTopicEUpdateColumns, IdeaTopicEUpdateProperties, IdeaTopicEId, IdeaTopicGraph, QIdeaTopic> {
 }
@@ -471,6 +538,34 @@ export class BaseReasonDao
 }
 
 
+export interface IBaseReasonCubeDisplayDao
+  extends IDao<ReasonCubeDisplay, ReasonCubeDisplayESelect, ReasonCubeDisplayECreateProperties, ReasonCubeDisplayEUpdateColumns, ReasonCubeDisplayEUpdateProperties, ReasonCubeDisplayEId, ReasonCubeDisplayGraph, QReasonCubeDisplay> {
+}
+
+export class BaseReasonCubeDisplayDao
+  extends SQDIDao<ReasonCubeDisplay, ReasonCubeDisplayESelect, ReasonCubeDisplayECreateProperties, ReasonCubeDisplayEUpdateColumns, ReasonCubeDisplayEUpdateProperties, ReasonCubeDisplayEId, ReasonCubeDisplayGraph, QReasonCubeDisplay>
+	implements IBaseReasonCubeDisplayDao {
+	
+	static Find      = new DaoQueryDecorators<ReasonCubeDisplayESelect>();
+	static FindOne   = new DaoQueryDecorators<ReasonCubeDisplayESelect>();
+	static Search    = new DaoQueryDecorators<ReasonCubeDisplayESelect>();
+	static SearchOne = new DaoQueryDecorators<ReasonCubeDisplayESelect>();
+	static Save(
+		config: ReasonCubeDisplayGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<ReasonCubeDisplayGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(11)
+	}
+	
+	constructor() {
+		super(11)
+	}
+}
+
+
 export interface IBaseSituationIdeaDao
   extends IDao<SituationIdea, SituationIdeaESelect, SituationIdeaECreateProperties, SituationIdeaEUpdateColumns, SituationIdeaEUpdateProperties, SituationIdeaEId, SituationIdeaGraph, QSituationIdea> {
 }
@@ -495,5 +590,33 @@ export class BaseSituationIdeaDao
 	
 	constructor() {
 		super(4)
+	}
+}
+
+
+export interface IBaseSituationIdeaReasonDao
+  extends IDao<SituationIdeaReason, SituationIdeaReasonESelect, SituationIdeaReasonECreateProperties, SituationIdeaReasonEUpdateColumns, SituationIdeaReasonEUpdateProperties, SituationIdeaReasonEId, SituationIdeaReasonGraph, QSituationIdeaReason> {
+}
+
+export class BaseSituationIdeaReasonDao
+  extends SQDIDao<SituationIdeaReason, SituationIdeaReasonESelect, SituationIdeaReasonECreateProperties, SituationIdeaReasonEUpdateColumns, SituationIdeaReasonEUpdateProperties, SituationIdeaReasonEId, SituationIdeaReasonGraph, QSituationIdeaReason>
+	implements IBaseSituationIdeaReasonDao {
+	
+	static Find      = new DaoQueryDecorators<SituationIdeaReasonESelect>();
+	static FindOne   = new DaoQueryDecorators<SituationIdeaReasonESelect>();
+	static Search    = new DaoQueryDecorators<SituationIdeaReasonESelect>();
+	static SearchOne = new DaoQueryDecorators<SituationIdeaReasonESelect>();
+	static Save(
+		config: SituationIdeaReasonGraph
+	): PropertyDecorator {
+		return Dao.BaseSave<SituationIdeaReasonGraph>(config);
+  }
+
+	static diSet(): boolean {
+		return duoDiSet(13)
+	}
+	
+	constructor() {
+		super(13)
 	}
 }

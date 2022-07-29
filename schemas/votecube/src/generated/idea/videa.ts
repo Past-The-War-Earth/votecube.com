@@ -10,41 +10,44 @@ import {
 	AirEntityVDescriptor,
 } from '@airport/holding-pattern/lib/to_be_generated/runtime-index';
 import {
+	Idea,
+} from '../../ddl/idea/Idea';
+import {
 	IdeaRatingVDescriptor,
 } from './videarating';
 import {
-	IIdeaRating,
-} from './idearating';
+	IdeaRating,
+} from '../../ddl/idea/IdeaRating';
 import {
 	AgreementVDescriptor,
 } from '../agreement/vagreement';
 import {
-	IAgreement,
-} from '../agreement/agreement';
+	Agreement,
+} from '../../ddl/agreement/Agreement';
 import {
 	ReasonVDescriptor,
-} from './vreason';
+} from '../reason/vreason';
 import {
-	IReason,
-} from './reason';
+	Reason,
+} from '../../ddl/reason/Reason';
 import {
 	IdeaLabelVDescriptor,
 } from './videalabel';
 import {
-	IIdeaLabel,
-} from './idealabel';
+	IdeaLabel,
+} from '../../ddl/idea/IdeaLabel';
 import {
 	SituationIdeaVDescriptor,
 } from './vsituationidea';
 import {
-	ISituationIdea,
-} from './situationidea';
+	SituationIdea,
+} from '../../ddl/idea/SituationIdea';
 import {
 	IdeaTopicVDescriptor,
 } from './videatopic';
 import {
-	IIdeaTopic,
-} from './ideatopic';
+	IdeaTopic,
+} from '../../ddl/idea/IdeaTopic';
 import {
 	IIdea,
 } from './idea';
@@ -55,8 +58,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface IdeaVDescriptor
-    extends AirEntityVDescriptor {
+export interface IdeaVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -70,14 +73,14 @@ export interface IdeaVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	parent?: IdeaVDescriptor;
-	children?: IdeaVDescriptor;
-	ideaRatings?: IdeaRatingVDescriptor;
-	agreements?: AgreementVDescriptor;
-	reasons?: ReasonVDescriptor;
-	ideaLabels?: IdeaLabelVDescriptor;
-	situationIdeas?: SituationIdeaVDescriptor;
-	ideaTopics?: IdeaTopicVDescriptor;
+	parent?: IdeaVDescriptor<Idea>
+	children?: IdeaVDescriptor<Idea>
+	ideaRatings?: IdeaRatingVDescriptor<IdeaRating>
+	agreements?: AgreementVDescriptor<Agreement>
+	reasons?: ReasonVDescriptor<Reason>
+	ideaLabels?: IdeaLabelVDescriptor<IdeaLabel>
+	situationIdeas?: SituationIdeaVDescriptor<SituationIdea>
+	ideaTopics?: IdeaTopicVDescriptor<IdeaTopic>
 
 }
 

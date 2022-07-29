@@ -19,8 +19,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface FactorVDescriptor
-    extends AirEntityVDescriptor {
+export interface FactorVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties

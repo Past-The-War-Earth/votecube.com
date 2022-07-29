@@ -19,8 +19,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface LabelVDescriptor
-    extends AirEntityVDescriptor {
+export interface LabelVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties

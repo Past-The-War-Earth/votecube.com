@@ -13,14 +13,14 @@ import {
 	AgreementVDescriptor,
 } from './vagreement';
 import {
-	IAgreement,
-} from './agreement';
+	Agreement,
+} from '../../ddl/agreement/Agreement';
 import {
 	ReasonVDescriptor,
-} from '../idea/vreason';
+} from '../reason/vreason';
 import {
-	IReason,
-} from '../idea/reason';
+	Reason,
+} from '../../ddl/reason/Reason';
 import {
 	IAgreementReason,
 } from './agreementreason';
@@ -31,19 +31,18 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface AgreementReasonVDescriptor
-    extends AirEntityVDescriptor {
+export interface AgreementReasonVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
-	axis?: string | IVStringField;
 	share?: number | IVNumberField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	agreement?: AgreementVDescriptor;
-	reason?: ReasonVDescriptor;
+	agreement?: AgreementVDescriptor<Agreement>
+	reason?: ReasonVDescriptor<Reason>
 
 }
 

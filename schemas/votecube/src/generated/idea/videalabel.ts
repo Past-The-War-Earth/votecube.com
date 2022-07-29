@@ -13,14 +13,14 @@ import {
 	IdeaVDescriptor,
 } from './videa';
 import {
-	IIdea,
-} from './idea';
+	Idea,
+} from '../../ddl/idea/Idea';
 import {
 	LabelVDescriptor,
 } from '../vlabel';
 import {
-	ILabel,
-} from '../label';
+	Label,
+} from '../../ddl/Label';
 import {
 	IIdeaLabel,
 } from './idealabel';
@@ -31,8 +31,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface IdeaLabelVDescriptor
-    extends AirEntityVDescriptor {
+export interface IdeaLabelVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -40,8 +40,8 @@ export interface IdeaLabelVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	idea?: IdeaVDescriptor;
-	label?: LabelVDescriptor;
+	idea?: IdeaVDescriptor<Idea>
+	label?: LabelVDescriptor<Label>
 
 }
 

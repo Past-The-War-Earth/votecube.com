@@ -1,11 +1,12 @@
-import { IVNumberField, IVStringField } from '@airport/airbridge-validate';
+import { IVNumberField } from '@airport/airbridge-validate';
 import { AirEntityVDescriptor } from '@airport/holding-pattern/lib/to_be_generated/runtime-index';
 import { AgreementVDescriptor } from './vagreement';
-import { ReasonVDescriptor } from '../idea/vreason';
-export interface AgreementReasonVDescriptor extends AirEntityVDescriptor {
-    axis?: string | IVStringField;
+import { Agreement } from '../../ddl/agreement/Agreement';
+import { ReasonVDescriptor } from '../reason/vreason';
+import { Reason } from '../../ddl/reason/Reason';
+export interface AgreementReasonVDescriptor<T> extends AirEntityVDescriptor<T> {
     share?: number | IVNumberField;
-    agreement?: AgreementVDescriptor;
-    reason?: ReasonVDescriptor;
+    agreement?: AgreementVDescriptor<Agreement>;
+    reason?: ReasonVDescriptor<Reason>;
 }
 //# sourceMappingURL=vagreementreason.d.ts.map

@@ -1,12 +1,12 @@
 import { IAirEntity } from '@airport/holding-pattern';
 import { IdeaRating } from '../../ddl/idea/IdeaRating';
 import { Agreement } from '../../ddl/ddl';
-import { Reason } from '../../ddl/idea/Reason';
+import { Reason } from '../../ddl/reason/Reason';
 import { IIdea } from './idea';
 import { ISituation } from '@sapoto/core';
 import { IIdeaRating } from './idearating';
 import { IAgreement } from '../agreement/agreement';
-import { IReason } from './reason';
+import { IReason } from '../reason/reason';
 export interface ISituationIdea extends IAirEntity {
     agreementShareTotal?: number;
     numberOfAgreements?: number;

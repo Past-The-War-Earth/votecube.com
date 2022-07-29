@@ -50,10 +50,10 @@ import {
 	QReason,
 	QReasonQId,
 	QReasonQRelation,
-} from '../idea/qreason';
+} from '../reason/qreason';
 import {
 	IReason,
-} from '../idea/reason';
+} from '../reason/reason';
 import {
 	IAgreementReason,
 } from './agreementreason';
@@ -69,7 +69,6 @@ import {
 export interface AgreementReasonESelect
     extends AirEntityESelect, AgreementReasonEOptionalId {
 	// Non-Id Properties
-	axis?: string | IQStringField;
 	share?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
@@ -107,7 +106,6 @@ export interface AgreementReasonEOptionalId {
 export interface AgreementReasonEUpdateProperties
 	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
-	axis?: string | IQStringField;
 	share?: number | IQNumberField;
 
 	// Non-Id Relations - _localIds only & no OneToMany's
@@ -124,7 +122,6 @@ export interface AgreementReasonGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
-	axis?: string | IQStringField;
 	share?: number | IQNumberField;
 
 	// Relations
@@ -145,7 +142,6 @@ export interface AgreementReasonEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
 	ORIGINAL_ACTOR_LID?: number | IQNumberField;
-	THREED_COORDINATE_AXIS?: string | IQStringField;
 	SHARE?: number | IQNumberField;
 	AGREEMENTS_RID_1?: number | IQNumberField;
 	AGREEMENTS_AID_1?: number | IQNumberField;
@@ -185,7 +181,6 @@ export interface QAgreementReason extends QAirEntity
 	// Id Relations
 
 	// Non-Id Fields
-	axis: IQStringField;
 	share: IQNumberField;
 
 	// Non-Id Relations

@@ -13,20 +13,20 @@ import {
 	SituationIdeaVDescriptor,
 } from '../idea/vsituationidea';
 import {
-	ISituationIdea,
-} from '../idea/situationidea';
+	SituationIdea,
+} from '../../ddl/idea/SituationIdea';
 import {
 	IdeaVDescriptor,
 } from '../idea/videa';
 import {
-	IIdea,
-} from '../idea/idea';
+	Idea,
+} from '../../ddl/idea/Idea';
 import {
 	AgreementReasonVDescriptor,
 } from './vagreementreason';
 import {
-	IAgreementReason,
-} from './agreementreason';
+	AgreementReason,
+} from '../../ddl/agreement/AgreementReason';
 import {
 	IAgreement,
 } from './agreement';
@@ -37,8 +37,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface AgreementVDescriptor
-    extends AirEntityVDescriptor {
+export interface AgreementVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -47,9 +47,9 @@ export interface AgreementVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	situationIdea?: SituationIdeaVDescriptor;
-	idea?: IdeaVDescriptor;
-	agreementReasons?: AgreementReasonVDescriptor;
+	situationIdea?: SituationIdeaVDescriptor<SituationIdea>
+	idea?: IdeaVDescriptor<Idea>
+	agreementReasons?: AgreementReasonVDescriptor<AgreementReason>
 
 }
 

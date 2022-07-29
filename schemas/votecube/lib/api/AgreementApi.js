@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { between, equals, exists, isNull, or, typed, value } from "@airport/airbridge-validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let AgreementApi = class AgreementApi {
@@ -13,87 +14,47 @@ let AgreementApi = class AgreementApi {
     async getMyAgreementForIdea(ideaRepositoryUuid) {
         return null;
     }
-    async setAgreement(inAgreement) {
-        await this.validateIdeas(inAgreement);
+    async setAgreement(agreement) {
+        await this.agreementDvo.validate(agreement, {
+            agreementReasons: {
+                reason: {
+                    idea: equals(value(agreement.idea)),
+                    situationIdea: or(isNull(!agreement.situationIdea), equals(value(agreement.situationIdea)))
+                },
+                share: between(-100, 100)
+            },
+            idea: exists(),
+            situationIdea: or(isNull(), exists(typed(), {
+                idea: equals(value(agreement.idea))
+            }))
+        });
         await this.validateFactorsAndPositions(inAgreement);
         await this.validateReasons(inAgreement);
         const { agreement, delta } = await this.removeSharesFromNotSelectedAgreementReasons(inAgreement);
         await this.agreementDao.save(agreement);
         await this.updateAgreementShareTotals(agreement, delta);
     }
-    async validateIdeas(agreement) {
-        // this.agreementDuo.validate(agreement => ({
-        //     agreementReasons: {
-        //     },
-        //     id: true,
-        //     idea: exists(),
-        //     situationIdea: nullOr({
-        //         id: true,
-        //         idea: equals(agreement.idea)
-        //     })
-        // }))
-        if (!agreement.idea.id) {
-            throw new Error(`passed in agreement.idea doesn't have an Id`);
-        }
-        let idea = await this.ideaDao.findOne(agreement.idea, true);
-        if (!idea) {
-            throw new Error(`Idea with Id "${agreement.idea.id}" does not exist.`);
-        }
-        agreement.idea = idea;
-        if (agreement.situationIdea) {
-            if (!agreement.situationIdea.id) {
-                throw new Error(`passed in agreement.situationIdea doesn't have an Id`);
-            }
-            let situationIdea = await this.situationIdeaDao
-                .findOne(agreement.situationIdea, true);
-            if (!situationIdea) {
-                throw new Error(`SituationIdea with Id "${agreement.situationIdea.id}" does not exist.`);
-            }
-            if (situationIdea.idea.id !== idea.id) {
-                throw new Error(`agreement.situationIdea.idea (${situationIdea.idea.id})
-doesn't match agreement.idea.id (${idea.id})`);
-            }
-            agreement.situationIdea = situationIdea;
-        }
-    }
     async validateFactorsAndPositions(agreement) {
-        // this.agreementDuo.validate({
-        //     agreementReasons: {
-        //         reason: exists({
-        //             idea: equals(agreement.idea),
-        //             situationIdea: or(
-        //                 isNull(!agreement.situationIdea),
-        //                 equals(agreement.situationIdea)
-        //             ),
-        //             share: between(-100, 100)
-        //         }),
-        //         idea: exists(),
-        //         situationIdea: or(
-        //             isNull(),
-        //             {
-        //             idea: equals(agreement.idea)
-        //         })
-        // })
         let shareTotal = 0;
         let existingFactorMapById = new Map();
         let newFactors = [];
         let existingPositionMapById = new Map();
         let newPositions = [];
         for (const agreementReason of agreement.agreementReasons) {
-            if (!agreementReason) {
-                throw new Error(`Recieved a null agreementReason`);
-            }
-            if (agreementReason.share < -100 || agreementReason.share > 100) {
-                throw new Error(`Invalid agreementReason.share`);
-            }
+            // if (!agreementReason) {
+            //     throw new Error(`Recieved a null agreementReason`)
+            // }
+            // if (agreementReason.share < -100 || agreementReason.share > 100) {
+            //     throw new Error(`Invalid agreementReason.share`)
+            // }
             shareTotal += agreementReason.share;
             const reason = agreementReason.reason;
-            if (!reason) {
-                throw new Error(`Recieved a null reason`);
-            }
-            if (!reason.idea || reason.idea.id !== agreement.idea.id) {
-                throw new Error(`Invalid Idea for Reason '${reason.id}'`);
-            }
+            // if (!reason) {
+            //     throw new Error(`Recieved a null reason`)
+            // }
+            // if (!reason.idea || reason.idea.id !== agreement.idea.id) {
+            //     throw new Error(`Invalid Idea for Reason '${reason.id}'`)
+            // }
             if (agreement.situationIdea && (!reason.situationIdea || reason.situationIdea.id !== agreement.situationIdea.id)) {
                 throw new Error(`Invalid SituationIdea for Reason '${reason.id}'`);
             }
@@ -266,7 +227,7 @@ __decorate([
 ], AgreementApi.prototype, "situationIdeaDao", void 0);
 __decorate([
     Inject()
-], AgreementApi.prototype, "agreementDuo", void 0);
+], AgreementApi.prototype, "agreementDvo", void 0);
 __decorate([
     Api()
 ], AgreementApi.prototype, "saveAgreement", null);

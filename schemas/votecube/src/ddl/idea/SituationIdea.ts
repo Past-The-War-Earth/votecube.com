@@ -10,7 +10,7 @@ import {
 import { Situation } from "@sapoto/core";
 import { Agreement, Idea } from "../ddl";
 import { IdeaRating } from "./IdeaRating";
-import { Reason } from "./Reason";
+import { Reason } from "../reason/Reason";
 
 @Entity()
 @Table({ name: 'SITUATION_IDEAS' })

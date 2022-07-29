@@ -5,12 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { AirEntity } from "@airport/holding-pattern";
-import { Column, Entity, ManyToOne, Table } from "@airport/tarmaq-entity";
+import { Entity, ManyToOne, Table } from "@airport/tarmaq-entity";
 let AgreementReason = class AgreementReason extends AirEntity {
 };
-__decorate([
-    Column({ name: 'THREED_COORDINATE_AXIS', nullable: true })
-], AgreementReason.prototype, "axis", void 0);
 __decorate([
     ManyToOne()
 ], AgreementReason.prototype, "agreement", void 0);

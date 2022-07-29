@@ -6,8 +6,8 @@ import { IdeaRatingGraph, IdeaRatingESelect, QIdeaRating } from './qidearating';
 import { IIdeaRating } from './idearating';
 import { AgreementGraph, AgreementESelect, QAgreement } from '../agreement/qagreement';
 import { IAgreement } from '../agreement/agreement';
-import { ReasonGraph, ReasonESelect, QReason } from './qreason';
-import { IReason } from './reason';
+import { ReasonGraph, ReasonESelect, QReason } from '../reason/qreason';
+import { IReason } from '../reason/reason';
 import { ISituationIdea } from './situationidea';
 /**
  * SELECT - All fields and relations (optional).

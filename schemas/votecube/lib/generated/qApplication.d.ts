@@ -6,11 +6,14 @@ import { QFactor } from './factor/qfactor';
 import { QIdea } from './idea/qidea';
 import { QIdeaLabel } from './idea/qidealabel';
 import { QIdeaRating } from './idea/qidearating';
+import { QIdeaReason } from './reason/qideareason';
 import { QIdeaTopic } from './idea/qideatopic';
 import { QLabel } from './qlabel';
 import { QPosition } from './factor/qposition';
-import { QReason } from './idea/qreason';
+import { QReason } from './reason/qreason';
+import { QReasonCubeDisplay } from './reason/qreasoncubedisplay';
 import { QSituationIdea } from './idea/qsituationidea';
+import { QSituationIdeaReason } from './reason/qsituationideareason';
 export interface LocalQApplication extends QApplication {
     db: DbApplication;
     Agreement: QAgreement;
@@ -19,11 +22,14 @@ export interface LocalQApplication extends QApplication {
     Idea: QIdea;
     IdeaLabel: QIdeaLabel;
     IdeaRating: QIdeaRating;
+    IdeaReason: QIdeaReason;
     IdeaTopic: QIdeaTopic;
     Label: QLabel;
     Position: QPosition;
     Reason: QReason;
+    ReasonCubeDisplay: QReasonCubeDisplay;
     SituationIdea: QSituationIdea;
+    SituationIdeaReason: QSituationIdeaReason;
 }
 export declare const Q_APPLICATION: LocalQApplication;
 export declare const Q: LocalQApplication;

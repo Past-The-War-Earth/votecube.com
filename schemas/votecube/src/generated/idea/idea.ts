@@ -9,7 +9,7 @@ import {
 } from '../../ddl/agreement/Agreement';
 import {
 	Reason,
-} from '../../ddl/idea/Reason';
+} from '../../ddl/reason/Reason';
 import {
 	IIdeaRating,
 } from './idearating';
@@ -18,7 +18,7 @@ import {
 } from '../agreement/agreement';
 import {
 	IReason,
-} from './reason';
+} from '../reason/reason';
 import {
 	IIdeaLabel,
 } from './idealabel';

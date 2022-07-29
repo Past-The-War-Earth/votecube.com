@@ -54,6 +54,14 @@ export class BaseIdeaRatingDvo extends SQDIDvo {
         super(2);
     }
 }
+export class BaseIdeaReasonDvo extends SQDIDvo {
+    static diSet() {
+        return duoDiSet(12);
+    }
+    constructor() {
+        super(12);
+    }
+}
 export class BaseIdeaTopicDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(5);
@@ -86,12 +94,28 @@ export class BaseReasonDvo extends SQDIDvo {
         super(3);
     }
 }
+export class BaseReasonCubeDisplayDvo extends SQDIDvo {
+    static diSet() {
+        return duoDiSet(11);
+    }
+    constructor() {
+        super(11);
+    }
+}
 export class BaseSituationIdeaDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(4);
     }
     constructor() {
         super(4);
+    }
+}
+export class BaseSituationIdeaReasonDvo extends SQDIDvo {
+    static diSet() {
+        return duoDiSet(13);
+    }
+    constructor() {
+        super(13);
     }
 }
 //# sourceMappingURL=baseDvos.js.map

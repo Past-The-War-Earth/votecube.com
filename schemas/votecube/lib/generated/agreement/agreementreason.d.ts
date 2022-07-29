@@ -1,8 +1,7 @@
 import { IAirEntity } from '@airport/holding-pattern';
 import { IAgreement } from './agreement';
-import { IReason } from '../idea/reason';
+import { IReason } from '../reason/reason';
 export interface IAgreementReason extends IAirEntity {
-    axis?: string;
     share?: number;
     agreement?: IAgreement;
     reason?: IReason;

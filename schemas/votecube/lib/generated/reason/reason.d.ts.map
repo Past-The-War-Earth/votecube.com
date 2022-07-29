@@ -1,0 +1,1 @@
+{"version":3,"file":"reason.d.ts","sourceRoot":"","sources":["../../../src/generated/reason/reason.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,UAAU,EACV,MAAM,0BAA0B,CAAC;AAClC,OAAO,EACN,OAAO,EACP,MAAM,kBAAkB,CAAC;AAC1B,OAAO,EACN,SAAS,EACT,MAAM,oBAAoB,CAAC;AAQ5B,MAAM,WAAW,OAAQ,SAAQ,UAAU;IAS1C,MAAM,CAAC,EAAE,OAAO,CAAC;IACjB,QAAQ,CAAC,EAAE,SAAS,CAAC;CAMrB"}

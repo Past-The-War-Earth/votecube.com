@@ -13,9 +13,6 @@ import { Agreement } from "./Agreement";
 export class AgreementReason
     extends AirEntity {
 
-    @Column({ name: 'THREED_COORDINATE_AXIS', nullable: true })
-    axis: string // 'x' | 'y' | 'z'
-
     share: number // 0 - 100
 
     @ManyToOne()
