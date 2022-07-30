@@ -1,7 +1,18 @@
-import { and, between, byId, equals, exists, isNull, length, oneOf, or, typed, uniqueIn, value } from "@airport/airbridge-validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
-import { isInsertOrNull } from "@airport/tarmaq-query";
+import { 
+    and,
+    between,
+    byId,
+    equals,
+    exists,
+    isNull,
+    length,
+    oneOfStrings,
+    or,
+    uniqueIn,
+    value
+} from "@airport/airbridge-validate";
 import { ITotalDelta } from "@sapoto/core";
 import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
@@ -10,7 +21,7 @@ import { IIdeaDao } from "../dao/IdeaDao";
 import { PositionDao } from "../dao/PositionDao";
 import { ReasonDao } from "../dao/reason/ReasonDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
-import { Agreement, AgreementReason, Factor, Position, Reason } from "../ddl/ddl";
+import { Agreement } from "../ddl/ddl";
 import { AgreementDvo } from "../dvo/AgreementDvo";
 import { IAgreement } from "../generated/interfaces";
 
@@ -96,9 +107,9 @@ export class AgreementApi
                                 action: isNull(),
                                 object: isNull()
                             }, {
-                                action: oneOf('Helps', 'Lets'),
+                                action: oneOfStrings('Helps', 'Lets'),
                                 customText: isNull(),
-                                object: oneOf('Me', 'Them', 'Us', 'You'),
+                                object: oneOfStrings('Me', 'Them', 'Us', 'You'),
                             }),
                             position: or(
                                 exists(or(
