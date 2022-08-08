@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { byId, exists, isNull, or } from "@airbridge/validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 /**
@@ -35,20 +36,14 @@ let IdeaApi = class IdeaApi {
         return await this.ideaDao.findByRepositoryGUID(repositorySource, ideaRepositoryUuId);
     }
     async saveIdea(idea) {
-        idea.repository = null;
-        idea.actor = null;
-        delete idea._actorRecordId;
-        let parentIdea = idea.parent;
-        if (idea.parent) {
-            if (!parentIdea.id) {
-                throw new Error(`Parent idea must have an Id`);
-            }
-            parentIdea = await this.ideaDao.findOne(parentIdea);
-            if (!parentIdea) {
-                throw new Error(`Parent idea '${parentIdea.id}' not found`);
-            }
-        }
-        idea.parent = parentIdea;
+        this.ideaDvo.validate(idea, {
+            _actorRecordId: isNull(),
+            actor: isNull(),
+            parent: or(isNull(), exists(byId())),
+            repository: isNull(),
+            // TODO: add support for transient entity properites in validator generation
+            userAgreement: null
+        });
         idea.actor = this.requestManager.actor;
         const saveResult = await this.ideaDao.save(idea);
         let userAgreement = idea.userAgreement;
@@ -65,6 +60,9 @@ let IdeaApi = class IdeaApi {
 __decorate([
     Inject()
 ], IdeaApi.prototype, "ideaDao", void 0);
+__decorate([
+    Inject()
+], IdeaApi.prototype, "ideaDvo", void 0);
 __decorate([
     Inject()
 ], IdeaApi.prototype, "requestManager", void 0);

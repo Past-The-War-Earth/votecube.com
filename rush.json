@@ -169,6 +169,11 @@
       "projectFolder": "../../BD/AIRport/engines/tower",
       "shouldPublish": true
     },
+    {
+      "packageName": "@airport/web-tower",
+      "projectFolder": "../../BD/AIRport/platforms/web-tower",
+      "shouldPublish": true
+    },
     // "generators" folder (alphabetical order)
     {
       "packageName": "@airport/landing",
@@ -185,33 +190,7 @@
       "projectFolder": "../../BD/AIRport/generators/takeoff",
       "shouldPublish": true
     },
-    // "highway" folder (alphabetical order)
-    {
-      "packageName": "@airport/hw-control",
-      "projectFolder": "../../BD/AIRport/highway/control",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/hw-flow",
-      "projectFolder": "../../BD/AIRport/highway/flow",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/hw-scylladb",
-      "projectFolder": "../../BD/AIRport/highway/scylladb",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/hw-vespa",
-      "projectFolder": "../../BD/AIRport/highway/vespa",
-      "shouldPublish": true
-    },
     // "libs" folder (alphabetical order)
-    {
-      "packageName": "@airport/airbridge-validate",
-      "projectFolder": "../../BD/AIRport/libs/airbridge/validate",
-      "shouldPublish": true
-    },
     {
       "packageName": "@airport/autopilot",
       "projectFolder": "../../BD/AIRport/libs/autopilot",
@@ -247,27 +226,6 @@
       "projectFolder": "../../BD/AIRport/libs/pressurization",
       "shouldPublish": true
     },
-    // "nonhub" folder (alphabetical order)
-    {
-      "packageName": "@airport/nonhub-client",
-      "projectFolder": "../../BD/AIRport/nonhub/client",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/nonhub-in-memory-server",
-      "projectFolder": "../../BD/AIRport/nonhub/in-memory-server",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/nonhub-types",
-      "projectFolder": "../../BD/AIRport/nonhub/nonhub-types",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/processor-common",
-      "projectFolder": "../../BD/AIRport/nonhub/processor-common",
-      "shouldPublish": true
-    },
     // "ORMs" folder (alphabetical order)
     {
       "packageName": "@airport/tarmaq-dao",
@@ -288,11 +246,6 @@
     {
       "packageName": "@airport/web-terminal",
       "projectFolder": "../../BD/AIRport/platforms/web-terminal",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/web-tower",
-      "projectFolder": "../../BD/AIRport/platforms/web-tower",
       "shouldPublish": true
     },
     // "schemas" folder (alphabetical order)
@@ -319,6 +272,54 @@
     {
       "packageName": "@airport/travel-document-checkpoint",
       "projectFolder": "../../BD/AIRport/schemas/travel-document-checkpoint",
+      "shouldPublish": true
+    },
+    // AIRbridge (alphabetical order)
+    {
+      "packageName": "@airbridge/validate",
+      "projectFolder": "../../BD/AIRbridge/validate",
+      "shouldPublish": true
+    },
+    // AIRway (alphabetical order)
+    {
+      "packageName": "@airway/client",
+      "projectFolder": "../../BD/AIRway/client",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airway/in-memory-server",
+      "projectFolder": "../../BD/AIRway/in-memory-server",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airway/types",
+      "projectFolder": "../../BD/AIRway/types",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airway/processor-common",
+      "projectFolder": "../../BD/AIRway/processor-common",
+      "shouldPublish": true
+    },
+    // Highway (alphabetical order)
+    {
+      "packageName": "@highway/control",
+      "projectFolder": "../../BD/highway/control",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@highway/flow",
+      "projectFolder": "../../BD/highway/flow",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@highway/scylladb",
+      "projectFolder": "../../BD/highway/scylladb",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@highway/vespa",
+      "projectFolder": "../../BD/highway/vespa",
       "shouldPublish": true
     }
   ]

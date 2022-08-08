@@ -4,20 +4,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { byId, exists, or } from "@airbridge/validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let SituationIdeaApi = class SituationIdeaApi {
     async add(situationIdea) {
-        if (situationIdea.id) {
-            throw new Error(`New SituationIdea cannot have an Id defined`);
-        }
-        const situation = await this.situationApi.findById(situationIdea.situation);
-        if (!situation) {
-            throw new Error(`No situation "${situation.id}" found.`);
-        }
-        situationIdea.situation = situation;
-        if (!situationIdea.idea.id) {
-        }
+        // TODO: add validateNew to automate checking of
+        // _actorRecordId: isNull()
+        // actor: isNull()
+        // repository: isNull()
+        // Actually no need - if any of those fields are
+        // present validator will fail, since they
+        // don't have an explicit validator set
+        this.situationIdeaDvo.validate(situationIdea, {
+            idea: or(exists(byId()), {
+            // TODO: tie in validation from IdeaDvo (currently
+            // coded in IdeaApi)
+            }),
+            situation: exists(byId())
+        });
         await this.situationIdeaDao.save(situationIdea);
     }
 };
@@ -33,6 +38,9 @@ __decorate([
 __decorate([
     Inject()
 ], SituationIdeaApi.prototype, "situationIdeaDao", void 0);
+__decorate([
+    Inject()
+], SituationIdeaApi.prototype, "situationIdeaDvo", void 0);
 __decorate([
     Api()
 ], SituationIdeaApi.prototype, "add", null);

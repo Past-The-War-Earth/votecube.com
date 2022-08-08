@@ -2,6 +2,7 @@ import { RequestManager } from "@airport/arrivals-n-departures";
 import { IRepositoryIdParts } from "@airport/ground-control";
 import { IdeaDao } from "../dao/dao";
 import { Idea, Label } from "../ddl/ddl";
+import { IdeaDvo } from "../dvo/IdeaDvo";
 export interface IIdeaApi {
     getIdeasForLabels(labels: Label[]): Promise<Idea[]>;
     getLeafIdeas(idea: Idea): Promise<Idea[]>;
@@ -26,6 +27,7 @@ export interface IIdeaApi {
  */
 export declare class IdeaApi implements IIdeaApi {
     ideaDao: IdeaDao;
+    ideaDvo: IdeaDvo;
     requestManager: RequestManager;
     getIdeasForLabels(labels: Label[]): Promise<Idea[]>;
     getLeafIdeas(idea: Idea): Promise<Idea[]>;

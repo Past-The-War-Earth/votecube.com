@@ -7,6 +7,17 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
+	and,
+	between,
+	byId,
+	equals,
+	exists,
+	isInteger,
+	isNull,
+	or,
+	value,
+} from '@airbridge/validate';
+import {
 	Api,
 } from '@airport/check-in';
 import {
@@ -26,6 +37,9 @@ import {
 	IdeaRating,
 	SituationIdea,
 } from '../../ddl/ddl';
+import {
+	IdeaRatingDvo,
+} from '../../dvo/IdeaRatingDvo';
 
 
 

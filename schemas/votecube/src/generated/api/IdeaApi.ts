@@ -7,6 +7,12 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
+	byId,
+	exists,
+	isNull,
+	or,
+} from '@airbridge/validate';
+import {
 	RequestManager,
 } from '@airport/arrivals-n-departures';
 import {
@@ -22,6 +28,9 @@ import {
 	Idea,
 	Label,
 } from '../../ddl/ddl';
+import {
+	IdeaDvo,
+} from '../../dvo/IdeaDvo';
 
 
 export interface IIdeaApi {

@@ -24,8 +24,7 @@ export declare class AgreementApi implements IAgreementApi {
     saveAgreement(agreement: IAgreement): Promise<void>;
     getMyAgreementForIdea(ideaRepositoryUuid: string): Promise<IAgreement>;
     setAgreement(agreement: Agreement): Promise<void>;
-    validateFactorsAndPositions(agreement: Agreement): Promise<void>;
-    validateReasons(agreement: Agreement): Promise<void>;
+    calculateShareTotal(agreement: Agreement): Promise<void>;
     private removeSharesFromNotSelectedAgreementReasons;
     private updateAgreementShareTotals;
 }

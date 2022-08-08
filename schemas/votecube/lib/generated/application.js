@@ -6527,7 +6527,8 @@ export const APPLICATION = {
                     "tableConfig": {
                         "name": "IDEA_REASONS",
                         "columnIndexes": []
-                    }
+                    },
+                    "operations": {}
                 },
                 {
                     "columns": [

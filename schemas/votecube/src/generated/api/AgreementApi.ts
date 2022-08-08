@@ -7,17 +7,21 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
+	Api,
+} from '@airport/check-in';
+import {
+	and,
 	between,
+	byId,
 	equals,
 	exists,
 	isNull,
+	length,
+	oneOfStrings,
 	or,
-	typed,
+	uniqueIn,
 	value,
-} from '@airport/airbridge-validate';
-import {
-	Api,
-} from '@airport/check-in';
+} from '@airbridge/validate';
 import {
 	ITotalDelta,
 } from '@sapoto/core';
@@ -44,10 +48,6 @@ import {
 } from '../../dao/SituationIdeaDao';
 import {
 	Agreement,
-	AgreementReason,
-	Factor,
-	Position,
-	Reason,
 } from '../../ddl/ddl';
 import {
 	AgreementDvo,

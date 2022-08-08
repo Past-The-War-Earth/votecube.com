@@ -26,7 +26,7 @@ import { SituationIdea } from '../ddl/idea/situationidea';
 import { SituationIdeaVDescriptor } from './idea/vsituationidea';
 import { SituationIdeaReason } from '../ddl/reason/situationideareason';
 import { SituationIdeaReasonVDescriptor } from './reason/vsituationideareason';
-import { IDvo, Dvo } from '@airport/airbridge-validate';
+import { IDvo, Dvo } from '@airbridge/validate';
 import { ApplicationEntity_LocalId as DbEntityId } from '@airport/ground-control';
 export declare class SQDIDvo<Entity, EntityVDescriptor> extends Dvo<Entity, EntityVDescriptor> {
     constructor(dbEntityId: DbEntityId);

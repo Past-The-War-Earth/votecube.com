@@ -7,6 +7,11 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
+	byId,
+	exists,
+	or,
+} from '@airbridge/validate';
+import {
 	RequestManager,
 } from '@airport/arrivals-n-departures';
 import {
@@ -21,6 +26,9 @@ import {
 import {
 	SituationIdea,
 } from '../../ddl/ddl';
+import {
+	SituationIdeaDvo,
+} from '../../dvo/SituationIdeaDvo';
 import {
 	IdeaApi,
 } from './IdeaApi';

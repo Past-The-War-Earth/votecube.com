@@ -1,4 +1,4 @@
-import { byId, exists, or } from "@airport/airbridge-validate";
+import { byId, exists, or } from "@airbridge/validate";
 import { RequestManager } from "@airport/arrivals-n-departures";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";

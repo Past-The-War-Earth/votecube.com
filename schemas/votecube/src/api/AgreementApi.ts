@@ -12,7 +12,7 @@ import {
     or,
     uniqueIn,
     value
-} from "@airport/airbridge-validate";
+} from "@airbridge/validate";
 import { ITotalDelta } from "@sapoto/core";
 import { AgreementDao } from "../dao/AgreementDao";
 import { AgreementReasonDao } from "../dao/AgreementReasonDao";
