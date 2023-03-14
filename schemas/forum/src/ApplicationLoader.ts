@@ -10,7 +10,6 @@ import {
     LastIds
 } from '@airport/apron'
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff'
-import { domain } from '@votecube/dependency-injection'
 import { APPLICATION } from './generated/application'
 import { forum } from './tokens'
 

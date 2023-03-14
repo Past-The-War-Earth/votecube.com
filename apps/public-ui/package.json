@@ -4,7 +4,6 @@
     "@airport/direction-indicator": "0.0.1",
     "@sveltejs/svelte-virtual-list": "3.0.1",
     "@votecube/cube-logic": "0.0.1",
-    "@votecube/dependency-injection": "0.0.1",
     "@votecube/forms": "0.0.1",
     "@votecube/forum-ui": "0.0.1",
     "@votecube/model": "0.0.1",

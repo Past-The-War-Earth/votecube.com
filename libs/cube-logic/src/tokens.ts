@@ -1,4 +1,4 @@
-import { app } from '@votecube/dependency-injection'
+import { app } from '@airport/direction-indicator'
 import { CubeDirection, ICubeDirection } from './cube/CubeDirection'
 import { CubeEventListener, ICubeEventListener } from './cube/CubeEventListener'
 import { CubeMoveMatrix, ICubeMoveMatrix } from './cube/CubeMoveMatrix'
