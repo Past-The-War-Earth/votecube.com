@@ -1,8 +1,8 @@
 import { byId, exists, isNull, or } from "@airbridge/validate";
-import { RequestManager } from "@airport/arrivals-n-departures";
-import { Api } from "@airport/check-in";
+import { Api } from "@airport/air-traffic-control";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { IRepositoryIdParts } from "@airport/ground-control";
+import { RequestManager } from "@airport/web-tower";
 import { IdeaDao } from "../dao/dao"
 import { Idea, Label } from "../ddl/ddl";
 import { IdeaDvo } from "../dvo/IdeaDvo";
@@ -103,7 +103,7 @@ export class IdeaApi
             ),
             repository: isNull(),
             // TODO: add support for transient entity properites in validator generation
-            userAgreement: null
+            agreements: null
         })
 
         idea.actor = this.requestManager.actor

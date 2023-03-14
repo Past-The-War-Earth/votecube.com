@@ -10,13 +10,17 @@ import {
 import { ITotalDelta } from '@sapoto/core';
 import {
     BaseIdeaDao,
-    Q,
+    IBaseIdeaDao
+} from "../generated/baseDaos";
+import {
+    Q_localhost_colon_8000____at_votecube_slash_votecube as Q
+} from "../generated/qApplication";
+import {
     QIdea,
     QSituationIdea,
     QReason,
-    QIdeaLabel,
-    IBaseIdeaDao,
-} from "../generated/generated";
+    QIdeaLabel
+} from "../generated/qInterfaces";
 import { Idea } from '../ddl/ddl';
 
 export interface IIdeaDao

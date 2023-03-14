@@ -7,7 +7,7 @@ import { AgreementReasonDao } from '../dao/AgreementReasonDao'
 import { ReasonDao } from '../dao/reason/ReasonDao'
 import { IdeaRatingApi } from '../api/IdeaRatingApi'
 import { IdeaRatingDao } from '../dao/IdeaRatingDao'
-import { SITUATION_API } from '@sapoto/core'
+import { SituationApi } from '@sapoto/core'
 import { FactorDao } from '../dao/FactorDao'
 import { PositionDao } from '../dao/PositionDao'
 import { AgreementDvo } from '../dvo/AgreementDvo'
@@ -57,7 +57,7 @@ votecube.setDependencies(IdeaRatingApi, {
 votecube.setDependencies(SituationIdeaApi, {
     ideaApi: IdeaApi,
     requestManager: RequestManager,
-    situationApi: SITUATION_API,
+    situationApi: SituationApi,
     situationIdeaDao: SituationIdeaDao,
     situationIdeaDvo: SituationIdeaDvo
 })

@@ -1,11 +1,11 @@
-import { and, between, byId, equals, exists, isInteger, isNull, or, value } from "@airbridge/validate";
-import { Api } from "@airport/check-in";
+import { between, byId, equals, exists, isInteger, isNull, or, value } from "@airbridge/validate";
+import { Api } from "@airport/air-traffic-control";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { ITotalDelta } from "@sapoto/core";
 import { IIdeaDao } from "../dao/IdeaDao";
 import { IIdeaRatingDao } from "../dao/IdeaRatingDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
-import { Idea, IdeaRating, SituationIdea } from "../ddl/ddl";
+import { IdeaRating } from "../ddl/ddl";
 import { IdeaRatingDvo } from "../dvo/IdeaRatingDvo";
 
 @Injected()

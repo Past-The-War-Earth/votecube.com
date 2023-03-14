@@ -2,7 +2,8 @@ import { PLUS } from "@airport/tarmaq-query";
 import { Injected } from "@airport/direction-indicator";
 import { ITotalDelta } from "@sapoto/core";
 import { SituationIdea } from "../ddl/ddl";
-import { BaseSituationIdeaDao, IBaseSituationIdeaDao, Q } from "../generated/generated";
+import { BaseSituationIdeaDao, IBaseSituationIdeaDao } from "../generated/baseDaos";
+import { Q_localhost_colon_8000____at_votecube_slash_votecube as Q } from "../generated/qApplication";
 
 export interface ISituationIdeaDao
     extends IBaseSituationIdeaDao {

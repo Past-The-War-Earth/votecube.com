@@ -1,4 +1,3 @@
-import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { 
     and,
@@ -23,17 +22,17 @@ import { ReasonDao } from "../dao/reason/ReasonDao";
 import { ISituationIdeaDao } from "../dao/SituationIdeaDao";
 import { Agreement } from "../ddl/ddl";
 import { AgreementDvo } from "../dvo/AgreementDvo";
-import { IAgreement } from "../generated/interfaces";
+import { Api } from "@airport/air-traffic-control";
 
 export interface IAgreementApi {
 
     saveAgreement(
-        agreement: IAgreement
+        agreement: Agreement
     ): Promise<void>
 
     getMyAgreementForIdea(
         ideaRepositoryUuid: string
-    ): Promise<IAgreement>
+    ): Promise<Agreement>
 
 }
 
@@ -67,7 +66,7 @@ export class AgreementApi
 
     @Api()
     async saveAgreement(
-        agreement: IAgreement
+        agreement: Agreement
     ): Promise<void> {
         return null
     }
@@ -75,7 +74,7 @@ export class AgreementApi
     @Api()
     async getMyAgreementForIdea(
         ideaRepositoryUuid: string
-    ): Promise<IAgreement> {
+    ): Promise<Agreement> {
         return null
     }
 
@@ -166,13 +165,13 @@ export class AgreementApi
             existingAgreement = await this.agreementDao
                 .findForSituationIdeaAndUser(
                     agreement.situationIdea,
-                    agreement.actor.userAccount.GUID
+                    agreement.actor.userAccount.accountPublicSigningKey
                 )
         } else {
             existingAgreement = await this.agreementDao
                 .findForIdeaOnlyAndUser(
                     agreement.idea,
-                    agreement.actor.userAccount.GUID
+                    agreement.actor.userAccount.accountPublicSigningKey
                 )
         }
         if (existingAgreement) {

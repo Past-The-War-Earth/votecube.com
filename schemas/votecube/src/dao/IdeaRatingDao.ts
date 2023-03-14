@@ -2,12 +2,16 @@ import { Injected } from '@airport/direction-indicator';
 import { QUserAccount, UserAccount } from '@airport/travel-document-checkpoint';
 import {
     BaseIdeaRatingDao,
-    IBaseIdeaRatingDao,
-    Q,
+    IBaseIdeaRatingDao
+} from "../generated/baseDaos";
+import {
+    Q_localhost_colon_8000____at_votecube_slash_votecube as Q
+} from "../generated/qApplication";
+import {
     QIdea,
     QIdeaRating,
     QSituationIdea,
-} from "../generated/generated";
+} from "../generated/qInterfaces";
 import { Idea, IdeaRating, SituationIdea } from '../ddl/ddl';
 import { QActor } from '@airport/holding-pattern';
 import { AND, Y } from '@airport/tarmaq-query';

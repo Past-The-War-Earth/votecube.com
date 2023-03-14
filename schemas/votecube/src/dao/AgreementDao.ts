@@ -4,7 +4,7 @@ import { QActor } from "@airport/holding-pattern";
 import { QUserAccount, UserAccount } from "@airport/travel-document-checkpoint";
 import { Agreement, Idea, SituationIdea } from "../ddl/ddl";
 import { BaseAgreementDao } from "../generated/baseDaos";
-import { Q } from "../generated/qApplication";
+import { Q_localhost_colon_8000____at_votecube_slash_votecube as Q } from "../generated/qApplication";
 import { QAgreement, QIdea, QSituationIdea } from "../generated/qInterfaces";
 
 @Injected()
