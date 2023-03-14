@@ -1,1 +1,0 @@
-{"version":3,"file":"useraccount.d.ts","sourceRoot":"","sources":["../../../src/generated/user/useraccount.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,mBAAmB,EACnB,MAAM,0CAA0C,CAAC;AAQlD,MAAM,WAAW,YAAa,SAAQ,mBAAmB;IAGxD,EAAE,EAAE,MAAM,CAAC;IAKX,QAAQ,CAAC,EAAE,MAAM,CAAC;IAClB,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,SAAS,CAAC,EAAE,IAAI,CAAC;CAQjB"}

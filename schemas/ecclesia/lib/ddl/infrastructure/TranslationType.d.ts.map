@@ -1,1 +1,0 @@
-{"version":3,"file":"TranslationType.d.ts","sourceRoot":"","sources":["../../../src/ddl/infrastructure/TranslationType.ts"],"names":[],"mappings":"AAOA,OAAO,EACN,oBAAoB,EACpB,kBAAkB,EAClB,MAAgC,4CAA4C,CAAA;AAC7E,OAAO,EAAC,kBAAkB,EAAC,MAAM,0BAA0B,CAAA;AAE3D;;;;;;;;;GASG;AACH,qBAEa,eAAgB,SAAQ,kBAAkB;IAKtD,EAAE,EAAE,kBAAkB,CAAA;IAGtB,IAAI,EAAE,oBAAoB,CAAA;CAE1B"}

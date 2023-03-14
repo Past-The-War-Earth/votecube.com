@@ -1,1 +1,0 @@
-{"version":3,"file":"ForumThreadApiClient.js","sourceRoot":"","sources":["../../src/client/ForumThreadApiClient.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,aAAa,CAAA;AACjC,OAAO,EAAE,gBAAgB,EAAE,MAAM,GAAG,CAAC;AAErC,MAAM,OAAO,oBAAoB;IAE7B,KAAK,CAAC,WAAW,CACb,SAAS;QAET,MAAM,cAAc,GAAG,MAAM,GAAG,CAAC,GAAG,CAAC,gBAAgB,CAAC,CAAA;QAEtD,yDAAyD;IAC7D,CAAC;CAGJ"}

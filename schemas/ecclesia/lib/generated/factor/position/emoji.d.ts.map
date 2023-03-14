@@ -1,1 +1,0 @@
-{"version":3,"file":"emoji.d.ts","sourceRoot":"","sources":["../../../../src/generated/factor/position/emoji.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,mBAAmB,EACnB,MAAM,6CAA6C,CAAC;AAQrD,MAAM,WAAW,MAAO,SAAQ,mBAAmB;IAGlD,EAAE,EAAE,MAAM,CAAC;IAKX,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,QAAQ,CAAC,EAAE,MAAM,CAAC;CAQlB"}

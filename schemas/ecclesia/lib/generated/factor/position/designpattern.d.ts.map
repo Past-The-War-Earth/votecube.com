@@ -1,1 +1,0 @@
-{"version":3,"file":"designpattern.d.ts","sourceRoot":"","sources":["../../../../src/generated/factor/position/designpattern.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,mBAAmB,EACnB,MAAM,6CAA6C,CAAC;AAQrD,MAAM,WAAW,cAAe,SAAQ,mBAAmB;IAG1D,EAAE,EAAE,MAAM,CAAC;IAKX,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,QAAQ,CAAC,EAAE,MAAM,CAAC;CAQlB"}

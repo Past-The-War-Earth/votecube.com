@@ -1,1 +1,0 @@
-{"version":3,"file":"AgeSuitableRow.d.ts","sourceRoot":"","sources":["../../../../src/ddl/infrastructure/row/AgeSuitableRow.ts"],"names":[],"mappings":"AAIA,OAAO,EAAC,cAAc,EAAC,MAAS,uBAAuB,CAAA;AACvD,OAAO,EAAC,iBAAiB,EAAC,MAAM,qBAAqB,CAAA;AAErD,8BACsB,cACrB,SAAQ,iBAAiB;IAGzB,cAAc,EAAE,cAAc,CAAA;CAE9B"}

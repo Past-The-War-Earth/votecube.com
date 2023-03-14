@@ -1,1 +1,0 @@
-{"version":3,"file":"MutableActorRow.d.ts","sourceRoot":"","sources":["../../../../src/ddl/infrastructure/row/MutableActorRow.ts"],"names":[],"mappings":"AAIA,OAAO,EAAC,SAAS,EAAC,MAAc,uBAAuB,CAAA;AACvD,OAAO,EAAC,iBAAiB,EAAC,MAAM,qBAAqB,CAAA;AAErD,8BACsB,eACrB,SAAQ,iBAAiB;IAGzB,SAAS,EAAE,SAAS,CAAA;CAEpB"}

@@ -1,5 +1,0 @@
-//////////////////////////////
-//     ENTITY INTERFACE     //
-//////////////////////////////
-export {};
-//# sourceMappingURL=immutablerow.js.map

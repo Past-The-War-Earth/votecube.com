@@ -1,1 +1,0 @@
-{"version":3,"file":"statetown.d.ts","sourceRoot":"","sources":["../../../src/generated/location/statetown.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,mBAAmB,EACnB,MAAM,0CAA0C,CAAC;AAClD,OAAO,EACN,MAAM,EACN,MAAM,SAAS,CAAC;AACjB,OAAO,EACN,KAAK,EACL,MAAM,QAAQ,CAAC;AAQhB,MAAM,WAAW,UAAW,SAAQ,mBAAmB;IAKtD,KAAK,EAAE,MAAM,CAAC;IACd,IAAI,EAAE,KAAK,CAAC;CAUZ"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"votetype.d.ts","sourceRoot":"","sources":["../../../src/generated/vote/votetype.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,mBAAmB,EACnB,MAAM,0CAA0C,CAAC;AAQlD,MAAM,WAAW,SAAU,SAAQ,mBAAmB;IAGrD,EAAE,EAAE,MAAM,CAAC;IAKX,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,WAAW,CAAC,EAAE,MAAM,CAAC;CAQrB"}
