@@ -4,7 +4,6 @@
 	import type { IMonthYearField, Month } from "@votecube/forms";
 	import { forms } from "@votecube/ui-logic";
 	import { onDestroy, onMount } from "svelte";
-	import ClearIcon from "../icon/ClearIcon.svelte";
 
 	export let field: IMonthYearField;
 	export let focused = false;

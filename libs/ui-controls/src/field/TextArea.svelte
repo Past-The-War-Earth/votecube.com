@@ -117,7 +117,6 @@
 					on:blur={onBlur}
 					on:input={onInput}
 					{placeholder}
-					type="text"
 					maxlength={maxlength}
 					rows="5"
 					{value}
