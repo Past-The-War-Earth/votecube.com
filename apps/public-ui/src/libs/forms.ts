@@ -5,5 +5,5 @@ export async function loadForms() {
 
 	forms.set(formsModule)
 
-	return await APP_CONTAINER.get(formsModule.FORM_FACTORY)
+	return await APP_CONTAINER.get(formsModule.FormFactory)
 }

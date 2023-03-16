@@ -1,56 +1,51 @@
 <script lang="ts">
-	import {DEPENDENCY_INJECTION}            from '@airport/direction-indicator'
-	import {TOUCH}         from '@votecube/cube-logic'
-import type { IUiIdea, IUiAgreement, IUiAgreementFactor } from '@votecube/model';
-import {
-		windowWidth
-	}                      from '@votecube/ui-logic'
-	import {
-		FACTOR_RANKING_LOGIC,
-		LOGIC_UTILS
-	}                      from '@votecube/vc-logic'
-	import {
-		createEventDispatcher,
-		onDestroy,
-		onMount
-	}                      from 'svelte'
-	import {fly}           from 'svelte/transition'
-	import CharacterButton from '@votecube/ui-controls/src/button/CharacterButton.svelte'
-	import MoveButton      from '@votecube/ui-controls/src/button/MoveButton.svelte'
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
+	import { TOUCH } from "@votecube/cube-logic";
+	import type {
+		IUiIdea,
+		IUiAgreement,
+		IUiAgreementFactor,
+	} from "@votecube/model";
+	import { windowWidth } from "@votecube/ui-logic";
+	import { FactorRankingLogic, LogicUtils } from "@votecube/vc-logic";
+	import { createEventDispatcher, onDestroy, onMount } from "svelte";
+	import { fly } from "svelte/transition";
+	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
+	import MoveButton from "@votecube/ui-controls/src/button/MoveButton.svelte";
 
-	export let delta: number
-	export let idea: IUiIdea
+	export let delta: number;
+	export let idea: IUiIdea;
 	// export let verticalLayout
-	export let agreement: IUiAgreement
-	export let agreementFactors: IUiAgreementFactor[] = []
+	export let agreement: IUiAgreement;
+	export let agreementFactors: IUiAgreementFactor[] = [];
 
-	let container
-	let factorOrderDelta      = 0
-	let lastMoveStart
-	let movingAgreementFactor
-	let movingAgreementFactorDelta = 0
-	let removeCount           = 0
-	let removeDoneCount       = 0
-	let showTransition        = true
-	let switchingOutcome      = false
-	let timeoutHandle
+	let container;
+	let factorOrderDelta = 0;
+	let lastMoveStart;
+	let movingAgreementFactor;
+	let movingAgreementFactorDelta = 0;
+	let removeCount = 0;
+	let removeDoneCount = 0;
+	let showTransition = true;
+	let switchingOutcome = false;
+	let timeoutHandle;
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher();
 
 	onMount(() => {
-		container = DEPENDENCY_INJECTION.ui('FactorRanking')
-	})
+		container = DEPENDENCY_INJECTION.ui("FactorRanking");
+	});
 
 	onDestroy(() => {
-		DEPENDENCY_INJECTION.remove(container)
-	})
+		DEPENDENCY_INJECTION.remove(container);
+	});
 
 	function canRemove(
 		agreementFactors: IUiAgreementFactor[],
 		index,
 		_delta: number
 	) {
-		return index ? true : agreementFactors[1].outcome
+		return index ? true : agreementFactors[1].outcome;
 	}
 
 	function factorHighlight(
@@ -59,14 +54,25 @@ import {
 		_movingAgreementFactorDelta,
 		_container?
 	) {
-		if (!movingAgreementFactor || index === movingAgreementFactor.index || !container) {
-			return ''
+		if (
+			!movingAgreementFactor ||
+			index === movingAgreementFactor.index ||
+			!container
+		) {
+			return "";
 		}
 
-		const factorInfo = container.getSync(FACTOR_RANKING_LOGIC).getFactorInfoAtCoords(
-			movingAgreementFactor.originalX, movingAgreementFactor.pageY, movingAgreementFactor.index)
+		const factorInfo = container
+			.getSync(FactorRankingLogic)
+			.getFactorInfoAtCoords(
+				movingAgreementFactor.originalX,
+				movingAgreementFactor.pageY,
+				movingAgreementFactor.index
+			);
 
-		return factorInfo && factorInfo.factorNumber === index ? 'highlighted' : ''
+		return factorInfo && factorInfo.factorNumber === index
+			? "highlighted"
+			: "";
 	}
 
 	function factorPosition(
@@ -75,78 +81,68 @@ import {
 		_movingAgreementFactorDelta: number
 	) {
 		if (!movingAgreementFactor.moving || !movingAgreementFactor.outcome) {
-			return ''
+			return "";
 		}
 		// let left = Math.ceil(movingAgreementFactor.offset.topLeft.x)
 		// let left = movingAgreementFactor.pageX
-		let top = movingAgreementFactor.pageY
+		let top = movingAgreementFactor.pageY;
 		if (movingAgreementFactor.offset) {
 			// left -= movingAgreementFactor.offset.x
-			top -= movingAgreementFactor.offset.y
+			top -= movingAgreementFactor.offset.y;
 		}
-		const xChange    = movingAgreementFactor.originalX - movingAgreementFactor.pageX
-		const absXChange = Math.abs(xChange)
-		const absYChange = Math.abs(movingAgreementFactor.originalY - movingAgreementFactor.pageY)
+		const xChange =
+			movingAgreementFactor.originalX - movingAgreementFactor.pageX;
+		const absXChange = Math.abs(xChange);
+		const absYChange = Math.abs(
+			movingAgreementFactor.originalY - movingAgreementFactor.pageY
+		);
 
-		if (movingAgreementFactor.index > 0
-			&& xChange > 0
-			&& absXChange > absYChange
+		if (
+			movingAgreementFactor.index > 0 &&
+			xChange > 0 &&
+			absXChange > absYChange
 		) {
 			if (movingAgreementFactor.originalTopLeftY) {
-				top = movingAgreementFactor.originalTopLeftY
+				top = movingAgreementFactor.originalTopLeftY;
 			}
 		}
-		const topOffset = $windowWidth > 320 ? 189 : 153
+		const topOffset = $windowWidth > 320 ? 189 : 153;
 
 		// left: ${left}px;
 		return `position: absolute;
 					top: ${top - topOffset}px;
 					width: ${movingAgreementFactor.width}px;
-					z-index: 5000`
+					z-index: 5000`;
 	}
 
 	function flyX(
-		agreementFactor: IUiAgreementFactor,
+		agreementFactor: IUiAgreementFactor
 		// cubeTransition
 	) {
-		return agreementFactor.outcome === 'A' ? -200 : 200
+		return agreementFactor.outcome === "A" ? -200 : 200;
 	}
 
 	// cubeTransition ? 0 : agreementFactor.outcome === 'A' ? -200 : 200,
-	function getColor(
-		color,
-		container,
-		_delta: number
-	) {
+	function getColor(color, container, _delta: number) {
 		if (!container) {
-			return 'FFF'
+			return "FFF";
 		}
-		return container.getSync(LOGIC_UTILS).getColor(color)
+		return container.getSync(LogicUtils).getColor(color);
 	}
 
-	function getTextColor(
-		color,
-		container,
-		_delta: number
-	) {
+	function getTextColor(color, container, _delta: number) {
 		if (!container) {
-			return '000'
+			return "000";
 		}
-		return container.getSync(LOGIC_UTILS).getTextColor(color)
+		return container.getSync(LogicUtils).getTextColor(color);
 	}
 
-	function isB(
-		agreementFactor,
-		_delta: number
-	) {
-		return agreementFactor.outcome === 'B'
+	function isB(agreementFactor, _delta: number) {
+		return agreementFactor.outcome === "B";
 	}
 
-	function showPlaceholder(
-		removeCount,
-		removeDoneCount
-	) {
-		return removeCount === removeDoneCount
+	function showPlaceholder(removeCount, removeDoneCount) {
+		return removeCount === removeDoneCount;
 	}
 
 	function showMovePlaceholder(
@@ -154,16 +150,19 @@ import {
 		index,
 		_movingAgreementFactorDelta
 	) {
-		return movingAgreementFactor && movingAgreementFactor.moving
-			&& index === movingAgreementFactor.index
+		return (
+			movingAgreementFactor &&
+			movingAgreementFactor.moving &&
+			index === movingAgreementFactor.index
+		);
 	}
 
 	function showPosition(
 		agreementFactor: IUiAgreementFactor,
-		_movingAgreementFactor, 
+		_movingAgreementFactor,
 		_movingAgreementFactorDelta
 	) {
-		return agreementFactor.value
+		return agreementFactor.value;
 	}
 
 	function sideMatch(
@@ -171,15 +170,17 @@ import {
 		outcome,
 		switchingOutcome
 	) {
-		return switchingOutcome || outcome === agreementFactor.outcome
+		return switchingOutcome || outcome === agreementFactor.outcome;
 	}
 
 	function transitionStyle(
 		showTransition
 		// ) => showTransition ? 'transition: transform 1000ms linear;' : ''
 	) {
-		return 'transition: left 700ms, opacity 700ms'
-			+ (showTransition ? ', transform 1000ms linear;' : ';')
+		return (
+			"transition: left 700ms, opacity 700ms" +
+			(showTransition ? ", transform 1000ms linear;" : ";")
+		);
 	}
 
 	function moveEnd(
@@ -190,125 +191,145 @@ import {
 		event
 	) {
 		if (!container) {
-			return
+			return;
 		}
 		try {
-			stopMoveEventListening()
+			stopMoveEventListening();
 
-			if (!lastMoveStart
-				||
+			if (
+				!lastMoveStart ||
 				// Already added the factor in
-				!movingAgreementFactor) {
-				return
+				!movingAgreementFactor
+			) {
+				return;
 			}
 
-			const usefulEvent                      = event.changedTouches && event.changedTouches[0]
-				? event.changedTouches[0] : event
-			const [factorRankingLogic, logicUtils] =
-				      container.getSync(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
-			const factorInfo                       = factorRankingLogic
-				.getFactorInfoAtCoords(agreementFactors[index].originalX, usefulEvent.pageY, index)
+			const usefulEvent =
+				event.changedTouches && event.changedTouches[0]
+					? event.changedTouches[0]
+					: event;
+			const [factorRankingLogic, logicUtils] = container.getSync(
+				FactorRankingLogic,
+				LogicUtils
+			);
+			const factorInfo = factorRankingLogic.getFactorInfoAtCoords(
+				agreementFactors[index].originalX,
+				usefulEvent.pageY,
+				index
+			);
 			if (factorInfo && factorInfo.factorNumber >= 0) {
-				index = factorInfo.factorNumber
+				index = factorInfo.factorNumber;
 			}
 
-			let dx      = movingAgreementFactor.pageX - movingAgreementFactor.originalX
-			let dy      = movingAgreementFactor.pageY - movingAgreementFactor.originalY
-			const absDx = Math.abs(dx)
-			const absDy = Math.abs(dy)
+			let dx =
+				movingAgreementFactor.pageX - movingAgreementFactor.originalX;
+			let dy =
+				movingAgreementFactor.pageY - movingAgreementFactor.originalY;
+			const absDx = Math.abs(dx);
+			const absDy = Math.abs(dy);
 
 			// console.log('moving: ' + index)
 			// console.log(event)
 
-			const originalIndex     = lastMoveStart.index
-			const upButtonClickMove = lastMoveStart.move
-			const addOrRemove       = lastMoveStart.addOrRemove
+			const originalIndex = lastMoveStart.index;
+			const upButtonClickMove = lastMoveStart.move;
+			const addOrRemove = lastMoveStart.addOrRemove;
 
 			if (!upButtonClickMove && originalIndex === index) {
-				singleFactorChange(absDx, absDy, addOrRemove, dx, dy, index,
-					originalIndex, upButtonClickMove, agreement,
-					agreementFactors, factorRankingLogic, logicUtils)
+				singleFactorChange(
+					absDx,
+					absDy,
+					addOrRemove,
+					dx,
+					dy,
+					index,
+					originalIndex,
+					upButtonClickMove,
+					agreement,
+					agreementFactors,
+					factorRankingLogic,
+					logicUtils
+				);
 			} else {
-				multiFactorChange(absDx, absDy, dy, index,
-					originalIndex, upButtonClickMove, agreement,
-					agreementFactors, factorRankingLogic, logicUtils)
+				multiFactorChange(
+					absDx,
+					absDy,
+					dy,
+					index,
+					originalIndex,
+					upButtonClickMove,
+					agreement,
+					agreementFactors,
+					factorRankingLogic,
+					logicUtils
+				);
 			}
 		} finally {
-			stopAgreementFactorMovement(movingAgreementFactor)
+			stopAgreementFactorMovement(movingAgreementFactor);
 		}
 	}
 
-	function moveStart(
-		agreementFactors,
-		index,
-		event
-	) {
-		let time         = new Date().getTime()
-		movingAgreementFactor = agreementFactors[index]
+	function moveStart(agreementFactors, index, event) {
+		let time = new Date().getTime();
+		movingAgreementFactor = agreementFactors[index];
 
-		const usefulEvent       = event.touches ? event.touches[0] : event
-		movingAgreementFactor.index  = index
+		const usefulEvent = event.touches ? event.touches[0] : event;
+		movingAgreementFactor.index = index;
 		// Offset is only recorded once
-		movingAgreementFactor.offset = container.getSync(FACTOR_RANKING_LOGIC)
-			.getInElementOffset(usefulEvent)
-		positionMovingAgreementFactor(movingAgreementFactor, usefulEvent)
-		movingAgreementFactor.originalX = movingAgreementFactor.pageX
-		movingAgreementFactor.originalY = movingAgreementFactor.pageY
+		movingAgreementFactor.offset = container
+			.getSync(FactorRankingLogic)
+			.getInElementOffset(usefulEvent);
+		positionMovingAgreementFactor(movingAgreementFactor, usefulEvent);
+		movingAgreementFactor.originalX = movingAgreementFactor.pageX;
+		movingAgreementFactor.originalY = movingAgreementFactor.pageY;
 
-		const move        = event.factorButtonMove
-		const addOrRemove = event.factorButtonAddOrRemove
+		const move = event.factorButtonMove;
+		const addOrRemove = event.factorButtonAddOrRemove;
 		if (addOrRemove || move) {
-			movingAgreementFactor.moving = true
+			movingAgreementFactor.moving = true;
 		}
-		movingAgreementFactor.width = document.getElementById('factorPlace_' + index).clientWidth
+		movingAgreementFactor.width = document.getElementById(
+			"factorPlace_" + index
+		).clientWidth;
 
 		lastMoveStart = {
 			index: event.factorButtonMove ? event.factorButtonIndex : index,
 			move,
 			addOrRemove,
-			time
-		}
-		incMovingDelta()
+			time,
+		};
+		incMovingDelta();
 
 		if (!addOrRemove) {
-			document.addEventListener('mousemove', onFactorMove)
-			document.addEventListener('touchmove', onFactorMove)
-			agreementFactors[index].moving = true
+			document.addEventListener("mousemove", onFactorMove);
+			document.addEventListener("touchmove", onFactorMove);
+			agreementFactors[index].moving = true;
 		}
 		// console.log('moveStart: ' + index)
 		// console.log(event)
 	}
 
-	function addOrRemove(
-		operation,
-		event
-	) {
-		event.factorButtonAddOrRemove = operation
+	function addOrRemove(operation, event) {
+		event.factorButtonAddOrRemove = operation;
 	}
 
-	function touchStart(
-		agreementFactors: IUiAgreementFactor[],
-		index,
-		event,
-	) {
+	function touchStart(agreementFactors: IUiAgreementFactor[], index, event) {
 		// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Supporting_both_TouchEvent_and_MouseEvent
-		event.preventDefault()
-		moveStart(agreementFactors, index, event)
+		event.preventDefault();
+		moveStart(agreementFactors, index, event);
 	}
 
-	function upStart(
-		index,
-		event,
-		_container
-	) {
-		event.factorButtonMove  = true
-		event.factorButtonIndex = index - 1
+	function upStart(index, event, _container) {
+		event.factorButtonMove = true;
+		event.factorButtonIndex = index - 1;
 		setTimeout(() => {
-			const [factorRankingLogic, logicUtils] =
-				      container.getSync(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
-			factorRankingLogic.move(index - 1, {y: 100}, logicUtils)
-			factorRankingLogic.move(index, {y: -100}, logicUtils)
-		}, 100)
+			const [factorRankingLogic, logicUtils] = container.getSync(
+				FactorRankingLogic,
+				LogicUtils
+			);
+			factorRankingLogic.move(index - 1, { y: 100 }, logicUtils);
+			factorRankingLogic.move(index, { y: -100 }, logicUtils);
+		}, 100);
 	}
 
 	function singleFactorChange(
@@ -326,16 +347,22 @@ import {
 		logicUtils
 	) {
 		if (!addOrRemove && absDx < 10 && absDy < 10) {
-			changeFactorPosition(agreementFactors, index, factorRankingLogic)
+			changeFactorPosition(agreementFactors, index, factorRankingLogic);
 		}
 		// Change to 1 factor only
 		else if (addOrRemove || absDx - 10 > absDy) {
 			if (!addOrRemove) {
-				addOrRemove = dx > 0 ? 'add' : 'remove'
+				addOrRemove = dx > 0 ? "add" : "remove";
 			}
-			handleMoveEffects(factorRankingLogic.addOrRemoveAFactor(
-				agreementFactors, index, addOrRemove,
-				agreement, logicUtils))
+			handleMoveEffects(
+				factorRankingLogic.addOrRemoveAFactor(
+					agreementFactors,
+					index,
+					addOrRemove,
+					agreement,
+					logicUtils
+				)
+			);
 			// if (addOrRemove === 'add') {
 			// 	setTimeout(() => {
 			// 		move(index, {x: -200, duration: 700})
@@ -343,11 +370,24 @@ import {
 			// }
 		} else if (absDy >= 10 && absDx * 2 < absDy) {
 			const index = factorRankingLogic.getAlternateIndex(
-				absDy, dy, originalIndex, !!agreementFactors[2].outcome)
+				absDy,
+				dy,
+				originalIndex,
+				!!agreementFactors[2].outcome
+			);
 			if (index !== originalIndex) {
-				multiFactorChange(absDx, absDy, dy, index,
-					originalIndex, upButtonClickMove, agreement, agreementFactors,
-					factorRankingLogic, logicUtils)
+				multiFactorChange(
+					absDx,
+					absDy,
+					dy,
+					index,
+					originalIndex,
+					upButtonClickMove,
+					agreement,
+					agreementFactors,
+					factorRankingLogic,
+					logicUtils
+				);
 			}
 			// Else a no-op
 		}
@@ -368,21 +408,33 @@ import {
 	) {
 		// Change across multiple items
 		if (upButtonClickMove || absDy - 10 > absDx) {
-			if (!agreementFactors[originalIndex].outcome
-				|| !agreementFactors[index].outcome) {
-				return
+			if (
+				!agreementFactors[originalIndex].outcome ||
+				!agreementFactors[index].outcome
+			) {
+				return;
 			}
 			// Move items
 			if (upButtonClickMove || dy > 0) {
 				handleMoveEffects({
 					numMoved: factorRankingLogic.moveFactorDown(
-						agreementFactors, agreement, originalIndex, index, logicUtils)
-				})
+						agreementFactors,
+						agreement,
+						originalIndex,
+						index,
+						logicUtils
+					),
+				});
 			} else {
 				handleMoveEffects({
 					numMoved: factorRankingLogic.moveFactorUp(
-						agreementFactors, agreement, originalIndex, index, logicUtils)
-				})
+						agreementFactors,
+						agreement,
+						originalIndex,
+						index,
+						logicUtils
+					),
+				});
 			}
 		}
 		/* Not implemented
@@ -398,147 +450,328 @@ import {
 		// Else a no-op
 	}
 
-	function changeFactorPosition(
-		agreementFactors,
-		index,
-		factorRankingLogic
-	) {
+	function changeFactorPosition(agreementFactors, index, factorRankingLogic) {
 		if (!agreementFactors[index].outcome) {
 			// If the factor isn't shown don't change position
-			return
+			return;
 		}
-		let outcome = 'B'
-		if (agreementFactors[index].outcome === 'B') {
-			outcome = 'A'
+		let outcome = "B";
+		if (agreementFactors[index].outcome === "B") {
+			outcome = "A";
 		}
-		const lastTimeoutHandle = timeoutHandle
+		const lastTimeoutHandle = timeoutHandle;
 		if (lastTimeoutHandle) {
-			clearTimeout(lastTimeoutHandle)
+			clearTimeout(lastTimeoutHandle);
 		}
-		switchingOutcome = true
+		switchingOutcome = true;
 		setTimeout(() => {
-			agreement.changeMillis = 1000
-			factorRankingLogic.setOutcome(agreementFactors, index, outcome
+			agreement.changeMillis = 1000;
+			factorRankingLogic.setOutcome(
+				agreementFactors,
+				index,
+				outcome
 				// , true
-			)
+			);
 			timeoutHandle = setTimeout(() => {
-				switchingOutcome = false
-			}, 1000)
-			dispatch('rankingAdjusted')
-		})
+				switchingOutcome = false;
+			}, 1000);
+			dispatch("rankingAdjusted");
+		});
 	}
 
 	function onFactorMove(
 		event // event
 	) {
-		const touches = event.touches
+		const touches = event.touches;
 
 		// Only perform rotation if one touch or mouse (e.g. still scale with pinch and zoom)
 		if (!TOUCH || !(touches && touches.length > 1)) {
 			try {
-				event.preventDefault()
+				event.preventDefault();
 			} catch (error) {
 				// console.log(error)
 			}
 
-			let position = touches ? touches[0] : event
+			let position = touches ? touches[0] : event;
 			// Get touch co-ords
 			// ev.originalEvent.touches ? ev = ev.originalEvent.touches[0] : null
 			// dispatch 'move-viewport' event
-			positionMovingAgreementFactor(movingAgreementFactor, position)
+			positionMovingAgreementFactor(movingAgreementFactor, position);
 
 			// If the user is swiping in the factor
-			if (movingAgreementFactor.moving && !movingAgreementFactor.outcome
-				&& movingAgreementFactor.originalX - movingAgreementFactor.pageX < -10) {
-				stopMoveEventListening(
-					// movingAgreementFactor
-				)
+			if (
+				movingAgreementFactor.moving &&
+				!movingAgreementFactor.outcome &&
+				movingAgreementFactor.originalX - movingAgreementFactor.pageX <
+					-10
+			) {
+				stopMoveEventListening();
+				// movingAgreementFactor
 				// stopping movement before adding factor to get the slide in animation
-				stopAgreementFactorMovement(movingAgreementFactor)
+				stopAgreementFactorMovement(movingAgreementFactor);
 				setTimeout(() => {
 					// Proactively swipe in the factor
-					const [factorRankingLogic, logicUtils] =
-						      container.getSync(FACTOR_RANKING_LOGIC, LOGIC_UTILS)
+					const [factorRankingLogic, logicUtils] = container.getSync(
+						FactorRankingLogic,
+						LogicUtils
+					);
 					handleMoveEffects(
 						factorRankingLogic.addOrRemoveAFactor(
-							agreementFactors, movingAgreementFactor.index, 1, agreement, logicUtils
-						))
-				})
+							agreementFactors,
+							movingAgreementFactor.index,
+							1,
+							agreement,
+							logicUtils
+						)
+					);
+				});
 			}
-			incMovingDelta()
+			incMovingDelta();
 		}
 	}
 
-	function handleMoveEffects(
-		results
-	) {
-		const {
-			      numMoved,
-			      placeholder
-		      } = results
+	function handleMoveEffects(results) {
+		const { numMoved, placeholder } = results;
 		if (numMoved) {
-			pauseRotation()
-			factorOrderDelta = factorOrderDelta + 1
-			dispatch('rankingAdjusted')
+			pauseRotation();
+			factorOrderDelta = factorOrderDelta + 1;
+			dispatch("rankingAdjusted");
 		}
 		if (placeholder) {
-			scheduleFactorPlaceholder()
+			scheduleFactorPlaceholder();
 		}
 	}
 
-	function stopMoveEventListening(
-		// movingAgreementFactor
-	) {
-		document.removeEventListener('mousemove', onFactorMove)
-		document.removeEventListener('touchmove', onFactorMove)
+	function stopMoveEventListening() {
+	// movingAgreementFactor
+		document.removeEventListener("mousemove", onFactorMove);
+		document.removeEventListener("touchmove", onFactorMove);
 	}
 
-	function stopAgreementFactorMovement(
-		movingAgreementFactor
-	) {
+	function stopAgreementFactorMovement(movingAgreementFactor) {
 		if (movingAgreementFactor) {
-			movingAgreementFactor.moving = false
+			movingAgreementFactor.moving = false;
 		}
-		movingAgreementFactor = null
-		incMovingDelta()
+		movingAgreementFactor = null;
+		incMovingDelta();
 	}
 
-	function positionMovingAgreementFactor(
-		movingAgreementFactor,
-		position
-	) {
-		movingAgreementFactor.pageX = position.pageX
-		movingAgreementFactor.pageY = position.pageY
+	function positionMovingAgreementFactor(movingAgreementFactor, position) {
+		movingAgreementFactor.pageX = position.pageX;
+		movingAgreementFactor.pageY = position.pageY;
 	}
 
 	function scheduleFactorPlaceholder() {
-		removeCount = removeCount + 1
+		removeCount = removeCount + 1;
 		setTimeout(() => {
-			removeDoneCount = removeDoneCount + 1
-		}, 701)
+			removeDoneCount = removeDoneCount + 1;
+		}, 701);
 	}
 
 	function pauseRotation() {
-		showTransition = false
+		showTransition = false;
 		setTimeout(() => {
-			showTransition = true
-		}, 701)
+			showTransition = true;
+		}, 701);
 	}
 
 	function incMovingDelta() {
-		movingAgreementFactorDelta = movingAgreementFactorDelta + 1
+		movingAgreementFactorDelta = movingAgreementFactorDelta + 1;
 		setTimeout(() => {
-			movingAgreementFactorDelta = movingAgreementFactorDelta + 1
+			movingAgreementFactorDelta = movingAgreementFactorDelta + 1;
 			setTimeout(() => {
-				movingAgreementFactorDelta = movingAgreementFactorDelta + 1
-			}, 100)
-		})
+				movingAgreementFactorDelta = movingAgreementFactorDelta + 1;
+			}, 100);
+		});
 	}
-
 </script>
 
-<style>
+{#if idea}
+	{#each agreementFactors as agreementFactor, i}
+		<section
+			on:mousedown={(event) => moveStart(agreementFactors, i, event)}
+			on:mouseup={(event) =>
+				moveEnd(
+					movingAgreementFactor,
+					agreement,
+					agreementFactors,
+					i,
+					event
+				)}
+			on:touchend={(event) =>
+				moveEnd(
+					movingAgreementFactor,
+					agreement,
+					agreementFactors,
+					i,
+					event
+				)}
+			on:touchstart={(event) => touchStart(agreementFactors, i, event)}
+			id="factorPlace_{i}"
+		>
+			{#if showPosition(agreementFactor, movingAgreementFactor, movingAgreementFactorDelta)}
+				<figure
+					class="factorFigure"
+					class:isB={isB(agreementFactor, delta)}
+					class:removingFactor={removeCount &&
+						!agreementFactor.outcome}
+					id="factor_{i}"
+					style="{factorPosition(
+						$windowWidth,
+						agreementFactor,
+						movingAgreementFactorDelta
+					)}
+					 {transitionStyle(showTransition)}"
+					in:fly={{ x: flyX(agreementFactor), duration: 700 }}
+				>
+					<!--
+			transition:fade
+			-->
+					{#if sideMatch(agreementFactor, "A", switchingOutcome)}
+						<var
+							class="factor A
+					{factorHighlight(
+								movingAgreementFactor,
+								i,
+								movingAgreementFactorDelta,
+								container
+							)}"
+							style="background-color: #{getColor(
+								idea.factors[agreementFactor.factorNumber]
+									.color,
+								container,
+								delta
+							)};"
+						>
+							<!--
+				id="factor_{i}_A"
+				-->
+							<!-- TODO: if the default starting value becomes dynamic change this -->
+							<header>
+								<CharacterButton
+									character="A"
+									fontSize={20}
+									fontX={12}
+									fontY={19}
+									size={24}
+									strokeWidth={1}
+									styles="left: 1px; position: absolute; top: -1px;"
+								/>
+								{idea.factors[agreementFactor.factorNumber]
+									.name}
+								{#if canRemove(agreementFactors, i, delta)}
+									<MoveButton
+										on:selectStart={(event) =>
+											addOrRemove("remove", event)}
+										classes="right"
+										size={19}
+										styles="left: 24px; position: absolute; top: -1.5px"
+									/>
+								{/if}
+								{#if i}
+									<MoveButton
+										on:selectStart={(event) =>
+											upStart(i, event, container)}
+										classes="up"
+										size={19}
+										styles="right: 24px; position: absolute; top: -2px"
+									/>
+								{/if}
+							</header>
+							<p
+								style="color: #{getTextColor(
+									idea.factors[agreementFactor.factorNumber]
+										.color,
+									container,
+									delta
+								)};"
+							>
+								{idea.factors[agreementFactor.factorNumber]
+									.positions.A.name}
+							</p>
+						</var>
+					{/if}
+					{#if sideMatch(agreementFactor, "B", switchingOutcome)}
+						<!--
+		transition:fly='{x: -200, duration: 1000}'
+		-->
+						<var
+							class="factor B
+					{factorHighlight(movingAgreementFactor, i, movingAgreementFactorDelta)}"
+							style="background-color: #{getColor(
+								idea.factors[agreementFactor.factorNumber]
+									.color,
+								container,
+								delta
+							)};"
+						>
+							<!--
+				id="factor_{i}_B"
+				-->
+							<header>
+								{idea.factors[agreementFactor.factorNumber]
+									.name}
+								<CharacterButton
+									character="B"
+									fontSize={20}
+									fontX={12}
+									fontY={19}
+									size={24}
+									strokeWidth={1}
+									styles="right: 1px; position: absolute; top: -1px;"
+								/>
+								{#if canRemove(agreementFactors, i, delta)}
+									<MoveButton
+										on:selectStart={(event) =>
+											addOrRemove("remove", event)}
+										classes="right"
+										size={19}
+										styles="left: 24px; position: absolute; top: -1.5px"
+									/>
+								{/if}
+								{#if i}
+									<MoveButton
+										on:selectStart={(event) =>
+											upStart(i, event, container)}
+										classes="up"
+										size={19}
+										styles="right: 24px; position: absolute; top: -2px"
+									/>
+								{/if}
+							</header>
+							<p
+								style="color: #{getTextColor(
+									idea.factors[agreementFactor.factorNumber]
+										.color,
+									container,
+									delta
+								)};"
+							>
+								{idea.factors[agreementFactor.factorNumber]
+									.positions.B.name}
+							</p>
+						</var>
+					{/if}
+				</figure>
+			{:else if showPlaceholder(removeCount, removeDoneCount)}
+				<var class="placeholder">
+					<MoveButton
+						on:selectStart={(event) => addOrRemove("add", event)}
+						size={19}
+						styles="left: 32px; position: absolute; top: 42px"
+					/>
+				</var>
+			{/if}
+			{#if showMovePlaceholder(movingAgreementFactor, i, movingAgreementFactorDelta)}
+				<figure>
+					<var class="placeholder" />
+				</figure>
+			{/if}
+		</section>
+	{/each}
+{/if}
 
+<style>
 	@media (min-width: 321px) {
 		header + p {
 			font-size: 1.1em;
@@ -579,7 +812,7 @@ import {
 	}
 
 	header {
-		top: 0px
+		top: 0px;
 	}
 
 	header + p {
@@ -642,144 +875,4 @@ import {
 		opacity: 0;
 		left: -400px;
 	}
-
 </style>
-
-{#if idea}
-{#each agreementFactors as agreementFactor, i}
-<section
-		on:mousedown="{(event) => moveStart(agreementFactors, i, event)}"
-		on:mouseup="{(event) => moveEnd(movingAgreementFactor, agreement, agreementFactors, i, event)}"
-		on:touchend="{(event) => moveEnd(movingAgreementFactor, agreement, agreementFactors, i, event)}"
-		on:touchstart="{(event) => touchStart(agreementFactors, i, event)}"
-		id="factorPlace_{i}"
->
-	{#if showPosition(agreementFactor, movingAgreementFactor, movingAgreementFactorDelta)}
-	<figure
-			class="factorFigure"
-			class:isB="{isB(agreementFactor, delta)}"
-			class:removingFactor="{removeCount && !agreementFactor.outcome}"
-			id="factor_{i}"
-			style="{factorPosition($windowWidth, agreementFactor, movingAgreementFactorDelta)}
-					 {transitionStyle(showTransition)}"
-			in:fly='{{x: flyX(agreementFactor), duration: 700}}'
-	>
-		<!--
-			transition:fade
-			-->
-		{#if sideMatch(agreementFactor, 'A', switchingOutcome)}
-		<var
-				class="factor A
-					{factorHighlight(movingAgreementFactor, i, movingAgreementFactorDelta, container)}"
-				style="background-color: #{getColor(idea.factors[agreementFactor.factorNumber].color, container, delta)};"
-		>
-			<!--
-				id="factor_{i}_A"
-				-->
-			<!-- TODO: if the default starting value becomes dynamic change this -->
-			<header>
-				<CharacterButton
-						character="A"
-						fontSize={20}
-						fontX={12}
-						fontY={19}
-						size={24}
-						strokeWidth={1}
-						styles="left: 1px; position: absolute; top: -1px;"
-				></CharacterButton>
-				{idea.factors[agreementFactor.factorNumber].name}
-				{#if canRemove(agreementFactors, i, delta)}
-				<MoveButton
-						on:selectStart="{(event) => addOrRemove('remove', event)}"
-						classes="right"
-						size={19}
-						styles="left: 24px; position: absolute; top: -1.5px"
-				></MoveButton>
-				{/if}
-				{#if i}
-				<MoveButton
-						on:selectStart="{(event) => upStart(i, event, container)}"
-						classes="up"
-						size={19}
-						styles="right: 24px; position: absolute; top: -2px"
-				></MoveButton>
-				{/if}
-			</header>
-			<p
-					style="color: #{getTextColor(idea.factors[agreementFactor.factorNumber].color, container, delta)};"
-			>
-				{idea.factors[agreementFactor.factorNumber].positions.A.name}
-			</p>
-		</var>
-		{/if}
-		{#if sideMatch(agreementFactor, 'B', switchingOutcome)}
-		<!--
-		transition:fly='{x: -200, duration: 1000}'
-		-->
-		<var
-				class="factor B
-					{factorHighlight(movingAgreementFactor, i, movingAgreementFactorDelta)}"
-				style="background-color: #{getColor(idea.factors[agreementFactor.factorNumber].color, container, delta)};"
-		>
-			<!--
-				id="factor_{i}_B"
-				-->
-			<header>
-				{idea.factors[agreementFactor.factorNumber].name}
-				<CharacterButton
-						character="B"
-						fontSize={20}
-						fontX={12}
-						fontY={19}
-						size={24}
-						strokeWidth={1}
-						styles="right: 1px; position: absolute; top: -1px;"
-				></CharacterButton>
-				{#if canRemove(agreementFactors, i, delta)}
-				<MoveButton
-						on:selectStart="{(event) => addOrRemove('remove', event)}"
-						classes="right"
-						size={19}
-						styles="left: 24px; position: absolute; top: -1.5px"
-				></MoveButton>
-				{/if}
-				{#if i}
-				<MoveButton
-						on:selectStart="{(event) => upStart(i, event, container)}"
-						classes="up"
-						size={19}
-						styles="right: 24px; position: absolute; top: -2px"
-				></MoveButton>
-				{/if}
-			</header>
-			<p
-					style="color: #{getTextColor(idea.factors[agreementFactor.factorNumber].color, container, delta)};"
-			>
-				{idea.factors[agreementFactor.factorNumber].positions.B.name}
-			</p>
-		</var>
-		{/if}
-	</figure>
-	{:else if showPlaceholder(removeCount, removeDoneCount)}
-	<var
-			class="placeholder"
-	>
-
-		<MoveButton
-				on:selectStart="{(event) => addOrRemove('add', event)}"
-				size={19}
-				styles="left: 32px; position: absolute; top: 42px"
-		></MoveButton>
-	</var>
-	{/if}
-	{#if showMovePlaceholder(movingAgreementFactor, i, movingAgreementFactorDelta)}
-	<figure>
-		<var
-				class="placeholder"
-		>
-		</var>
-	</figure>
-	{/if}
-</section>
-{/each}
-{/if}

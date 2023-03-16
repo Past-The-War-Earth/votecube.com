@@ -7,7 +7,7 @@
 		IUiIdea,
 	} from "@votecube/model";
 	import {
-		AUTH,
+		Auth,
 		authChecked,
 		cube,
 		currentPage,
@@ -15,7 +15,7 @@
 		navigateToPage,
 		noOverflow,
 		routeParams,
-		ROUTES,
+		Routes,
 		showConfirm,
 		showMainMenu,
 		showSignIn,
@@ -150,8 +150,8 @@
 	}
 
 	function goToDerivations() {
-		const { repositoryUuId } = get(routeParams);
-		navigateToPage(DERIVATION_LIST, { repositoryUuId });
+		const { repositoryGUID } = get(routeParams);
+		navigateToPage(DERIVATION_LIST, { repositoryGUID });
 	}
 
 	function confirmAgreement() {
@@ -185,7 +185,7 @@
 	}
 
 	onMount(async () => {
-		const routes = await APP_CONTAINER.get(ROUTES);
+		const routes = await APP_CONTAINER.get(Routes);
 
 		pageMap = {
 			[ABOUT]: AboutUs,
@@ -236,7 +236,7 @@
 		});
 
 		const [auth, _] = await Promise.all([
-			APP_CONTAINER.get(AUTH),
+			APP_CONTAINER.get(Auth),
 			loadUi("en-us"),
 			// init()
 		]);

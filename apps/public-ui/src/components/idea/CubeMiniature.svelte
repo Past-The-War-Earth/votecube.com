@@ -1,68 +1,101 @@
 <script lang="ts">
+	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
+	import { CubeEventListener, MutationApi } from "@votecube/cube-logic";
+	import type { IUiAgreement } from "@votecube/model";
+	import { CubeLogic, LogicUtils } from "@votecube/vc-logic";
+	import { onDestroy, onMount } from "svelte";
+	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
 
-	import {DEPENDENCY_INJECTION} from '@airport/direction-indicator'
-	import {
-		CUBE_EVENT_LISTENER,
-		MUTATION_API
-	}           from '@votecube/cube-logic'
-import type { IUiAgreement } from '@votecube/model';
-	import {
-		CUBE_LOGIC,
-		LOGIC_UTILS
-	}           from '@votecube/vc-logic'
-	import {
-		onDestroy,
-		onMount
-	}                      from 'svelte'
-	import CharacterButton from '@votecube/ui-controls/src/button/CharacterButton.svelte'
+	export let cubeSides: any[];
+	export let delta;
+	export let agreement: IUiAgreement;
 
-	export let cubeSides: any[]
-	export let delta
-	export let agreement: IUiAgreement
+	let container;
+	let loading = true;
+	let logicUtils;
+	let dataOfCubeSide = [];
+	let positions;
+	let rotating = false;
 
-	let container
-	let loading        = true
-	let logicUtils
-	let dataOfCubeSide = []
-	let positions
-	let rotating       = false
-
-	$: transformMillis = v(agreement ? agreement.changeMillis : 700, delta)
+	$: transformMillis = v(agreement ? agreement.changeMillis : 700, delta);
 
 	onMount(async () => {
-		container = DEPENDENCY_INJECTION.ui('CubeMiniature')
-		const [
-			      cubeEventListener, cubeLogic, theLogicUtils, mutationApi
-		      ]   = await container.get(
-			CUBE_EVENT_LISTENER, CUBE_LOGIC, LOGIC_UTILS, MUTATION_API
-		)
+		container = DEPENDENCY_INJECTION.ui("CubeMiniature");
+		const [cubeEventListener, cubeLogic, theLogicUtils, mutationApi] =
+			await container.get(
+				CubeEventListener,
+				CubeLogic,
+				LogicUtils,
+				MutationApi
+			);
 
-		logicUtils = theLogicUtils
+		logicUtils = theLogicUtils;
 
-		cubeEventListener.setView('cubeMin')
-		await mutationApi.recompute()
+		cubeEventListener.setView("cubeMin");
+		await mutationApi.recompute();
 		setTimeout(() => {
-			loading  = false
-			rotating = true
+			loading = false;
+			rotating = true;
 			setTimeout(() => {
-				rotating = false
-			}, 700)
-		}, 1)
+				rotating = false;
+			}, 700);
+		}, 1);
 
-		positions = cubeLogic.getDefaultCubePositions()
-	})
+		positions = cubeLogic.getDefaultCubePositions();
+	});
 
 	onDestroy(async () => {
-		const cubeEventListener = await container.get(CUBE_EVENT_LISTENER)
-		cubeEventListener.clearView('cubeMin')
-		DEPENDENCY_INJECTION.remove(container)
-	})
+		const cubeEventListener = await container.get(CubeEventListener);
+		cubeEventListener.clearView("cubeMin");
+		DEPENDENCY_INJECTION.remove(container);
+	});
 
-	function v<T>(val:T, _delta: number): T {
-		return val
+	function v<T>(val: T, _delta: number): T {
+		return val;
 	}
-
 </script>
+
+<section id="viewportMin">
+	<figure
+		id="cubeMin"
+		style="transition: transform {transformMillis}ms linear;"
+	>
+		{#each cubeSides as cubeSide, i}
+			<div
+				class="surface {loading ? 'loading' : ''} {rotating
+					? 'rotating'
+					: ''}"
+				id="sm{i}"
+				style="
+            background-color: #{cubeSide.colorRGB};
+              "
+			>
+				{#if !loading && !rotating}
+					<!--{#if position.dir == 1}-->
+					<header />
+					<!--{/if}-->
+					<p>
+						<CharacterButton
+							character={cubeSide.outcome}
+							fontSize={20}
+							fontX={12}
+							fontY={19}
+							size={24}
+							strokeWidth={1}
+							styles="left: 4px; position: absolute; top: 4px;"
+						/>
+					</p>
+					<!--
+			{#if position.dir == -1}
+			<footer>
+			</footer>
+			{/if}
+			-->
+				{/if}
+			</div>
+		{/each}
+	</figure>
+</section>
 
 <style>
 	#cubeMin {
@@ -118,7 +151,8 @@ import type { IUiAgreement } from '@votecube/model';
 	}
 
 	#sm5 {
-		transform: rotateX(-90deg) rotate(180deg) translateZ(16px) /*translateZ(200px)*/;
+		transform: rotateX(-90deg) rotate(180deg) translateZ(16px)
+			/*translateZ(200px)*/;
 	}
 
 	#viewportMin {
@@ -167,48 +201,4 @@ import type { IUiAgreement } from '@votecube/model';
 	.surface {
 		position: relative;
 	}
-
 </style>
-
-<section
-		id="viewportMin"
->
-	<figure
-			id="cubeMin"
-			style="transition: transform {transformMillis}ms linear;"
-	>
-		{#each cubeSides as cubeSide, i}
-		<div
-				class="surface {loading ? 'loading' : ''} {rotating ? 'rotating' : ''}"
-				id="sm{i}"
-				style="
-            background-color: #{cubeSide.colorRGB};
-              "
-		>
-			{#if !loading && !rotating}
-			<!--{#if position.dir == 1}-->
-			<header>
-			</header>
-			<!--{/if}-->
-			<p>
-				<CharacterButton
-						character="{cubeSide.outcome}"
-						fontSize={20}
-						fontX={12}
-						fontY={19}
-						size={24}
-						strokeWidth={1}
-						styles="left: 4px; position: absolute; top: 4px;"
-				></CharacterButton>
-			</p>
-			<!--
-			{#if position.dir == -1}
-			<footer>
-			</footer>
-			{/if}
-			-->
-			{/if}
-		</div>
-		{/each}
-	</figure>
-</section>

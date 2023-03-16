@@ -1,7 +1,7 @@
 <script>
 	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import { forms } from "@votecube/ui-logic";
-	import { getColorKey, getColors, LOGIC_UTILS } from "@votecube/vc-logic";
+	import { getColorKey, getColors, LogicUtils } from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
 	import AddRemoveButton from "@votecube/ui-controls/src/button/AddRemoveButton.svelte";
 	import UndoIcon from "@votecube/ui-controls/src/icon/UndoIcon.svelte";
@@ -57,7 +57,7 @@
 
 		color = field.value ? field.value : copyColor(colors[132]);
 
-		logicUtils = await container.get(LOGIC_UTILS);
+		logicUtils = await container.get(LogicUtils);
 
 		field.setAsField(formHandle);
 

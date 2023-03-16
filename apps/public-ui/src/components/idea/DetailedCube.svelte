@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
-	import { CUBE_EVENT_LISTENER, MUTATION_API } from "@votecube/cube-logic";
+	import { CubeEventListener, MutationApi } from "@votecube/cube-logic";
 	import type { IUiIdea, IUiAgreement } from "@votecube/model";
-	import { DETAILED_CUBE_LOGIC, LOGIC_UTILS } from "@votecube/vc-logic";
+	import { DetailedCubeLogic, LogicUtils } from "@votecube/vc-logic";
 	import {
 		beforeUpdate,
 		createEventDispatcher,
@@ -47,8 +47,8 @@
 	onMount(async () => {
 		ensureContainer();
 		const [cubeEventListener, mutationApi] = await container.get(
-			CUBE_EVENT_LISTENER,
-			MUTATION_API
+			CubeEventListener,
+			MutationApi
 		);
 
 		cubeEventListener.setView("cube");
@@ -63,11 +63,11 @@
 			}, 700);
 		}, 1);
 
-		logicUtils = await container.get(LOGIC_UTILS);
+		logicUtils = await container.get(LogicUtils);
 	});
 
 	onDestroy(async () => {
-		const cubeEventListener = await container.get(CUBE_EVENT_LISTENER);
+		const cubeEventListener = await container.get(CubeEventListener);
 
 		cubeEventListener.clearView("cube");
 		DEPENDENCY_INJECTION.remove(container);
@@ -189,20 +189,20 @@
 	// }
 
 	async function getCubeSides() {
-		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC);
+		const detailedCubeLogic = await container.get(DetailedCubeLogic);
 
 		await doGetCubeSides(detailedCubeLogic);
 	}
 
 	async function move(cubeSideMap, cubeSide, switchToDefinitions) {
-		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC);
+		const detailedCubeLogic = await container.get(DetailedCubeLogic);
 		detailedCubeLogic.move(cubeSideMap, cubeSide, switchToDefinitions);
 		const cubeSides = await doGetCubeSides(detailedCubeLogic);
 		dispatch("cubeAltered", cubeSides);
 	}
 
 	async function switchPoles(cubeSideMap, cubeSide) {
-		const detailedCubeLogic = await container.get(DETAILED_CUBE_LOGIC);
+		const detailedCubeLogic = await container.get(DetailedCubeLogic);
 		detailedCubeLogic.switchPoles(cubeSideMap, cubeSide);
 		const cubeSides = await doGetCubeSides(detailedCubeLogic);
 		dispatch("cubeAltered", cubeSides);

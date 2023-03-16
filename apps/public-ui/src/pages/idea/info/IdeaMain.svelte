@@ -1,6 +1,6 @@
 <script lang="ts">
     import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
-    import { CUBE_EVENT_LISTENER, MUTATION_API } from "@votecube/cube-logic";
+    import { CubeEventListener, MutationApi } from "@votecube/cube-logic";
     import type {
         ITweenAgreement,
         ITweenAgreementFactor,
@@ -18,15 +18,15 @@
         user,
     } from "@votecube/ui-logic";
     import {
-        CUBE_LOGIC,
-        DETAILED_CUBE_LOGIC,
-        LOGIC_UTILS,
+        CubeLogic,
+        DetailedCubeLogic,
+        LogicUtils,
         IDEA_FORM,
         IDEA_LIST,
-        IDEA_MAIN_LOGIC,
-        IDEA_MANAGER,
+        IdeaMainLogic,
+        IdeaManager,
         setResizeCllBck,
-        AGREEMENT_MANAGER,
+        AgreementManager,
         ILogicUtils,
         ideaActions,
         idea as ideaStore,
@@ -147,7 +147,7 @@
         //     return;
         // }
         if (idea) {
-            const action = idea.repository.uuId
+            const action = idea.repository.GUID
                 ? "confirmUpdate"
                 : "confirm";
             setAction(action);
@@ -163,7 +163,7 @@
 
         resize();
         if (window.location.href.indexOf("card/ClimateChange") > 0) {
-            params.repositoryUuId = "1e62db65-807b-457f-ba34-4410013e8d39";
+            params.repositoryGUID = "1e62db65-807b-457f-ba34-4410013e8d39";
         }
         cube.set(true);
         noOverflow.set(true);
@@ -171,8 +171,8 @@
         const cubeLogicModule = await import("@votecube/cube-logic");
 
         const [cubeEventListener, cubeLogic] = await container.get(
-            cubeLogicModule.CUBE_EVENT_LISTENER,
-            CUBE_LOGIC
+            cubeLogicModule.CubeEventListener,
+            CubeLogic
         );
 
         cubeLogic.setCubeViewPort(
@@ -192,17 +192,17 @@
         );
         await loadIdea(
             params.hostingPlatform,
-            params.repositoryUuId,
+            params.repositoryGUID,
             params.mode
         );
 
         // routeParamsUnsubscribe = routeParams.subscribe((params) => {
-        //     if (params.repositoryUuId == "unsolved") {
+        //     if (params.repositoryGUID == "unsolved") {
         //         return;
         //     }
         //     loadIdea(
         //         params.hostingPlatform,
-        //         params.repositoryUuId,
+        //         params.repositoryGUID,
         //         params.mode
         //     ).then();
         // });
@@ -210,22 +210,22 @@
 
     async function loadIdea(
         hostingPlatform: string,
-        repositoryUuId: string,
+        repositoryGUID: string,
         displayMode: string
     ) {
         const cubeLogicModule = await import("@votecube/cube-logic");
 
         const [cubeEventListener, cubeLogic, detailedCubeLogic, theLogicUtils] =
             await container.get(
-                cubeLogicModule.CUBE_EVENT_LISTENER,
-                CUBE_LOGIC,
-                DETAILED_CUBE_LOGIC,
-                LOGIC_UTILS
+                cubeLogicModule.CubeEventListener,
+                CubeLogic,
+                DetailedCubeLogic,
+                LogicUtils
             );
 
         const cubeViewResult = await setupCubeView(
             hostingPlatform,
-            repositoryUuId,
+            repositoryGUID,
             cubeLogic,
             cubeEventListener,
             container
@@ -235,8 +235,7 @@
         ideaStore.set(idea);
 
         const cubeSideResult = await detailedCubeLogic.getCubeSides(
-            idea,
-            container
+            idea
         );
 
         await doToggleView(!cubeView, cubeView);
@@ -253,8 +252,8 @@
         ideaStore.set(null);
 
         const [cubeEventListener, cubeLogic] = await container.get(
-            CUBE_EVENT_LISTENER,
-            CUBE_LOGIC
+            CubeEventListener,
+            CubeLogic
         );
 
         cubeLogic.shutDownCubeListener(cubeEventListener);
@@ -274,7 +273,7 @@
             return;
         }
 
-        const logic = await container.get(IDEA_MAIN_LOGIC);
+        const logic = await container.get(IdeaMainLogic);
 
         if (logic.agreementsEqual(currentAgreement, agreement)) {
             return;
@@ -342,14 +341,14 @@
 
     function ideaAdjusted() {
         ideaAltered();
-        container.get(MUTATION_API).then((mutationApi) => {
+        container.get(MutationApi).then((mutationApi) => {
             mutationApi.recompute();
         });
     }
 
     function move(event) {
         percentMode = true;
-        container.get(MUTATION_API).then((mutationApi) => {
+        container.get(MutationApi).then((mutationApi) => {
             mutationApi.move(
                 event.detail.factorNumber,
                 event.detail.outcome,
@@ -360,7 +359,7 @@
 
     function moveToValue(event) {
         percentMode = true;
-        container.get(MUTATION_API).then((mutationApi) => {
+        container.get(MutationApi).then((mutationApi) => {
             mutationApi.moveToValue(
                 event.detail.factorNumber,
                 event.detail.value
@@ -387,7 +386,7 @@
         let originalMoveType = moveType;
         moveType = "toggle";
         setTimeout(() => {
-            container.get(MUTATION_API).then((mutationApi) => {
+            container.get(MutationApi).then((mutationApi) => {
                 mutationApi.toggleSurface(factorNumber);
                 delta = delta + 1;
                 setTimeout(() => {
@@ -412,15 +411,15 @@
 
     async function setCubeAdjustment(enableCubeAdjustment) {
         const [cubeEventListener, cubeLogic] = await container.get(
-            CUBE_EVENT_LISTENER,
-            CUBE_LOGIC
+            CubeEventListener,
+            CubeLogic
         );
 
         cubeLogic.setCubeAdjustment(cubeEventListener, enableCubeAdjustment);
     }
 
     async function doToggleView(currentlyInCubeView, forCubeView) {
-        const cubeEventListener = await container.get(CUBE_EVENT_LISTENER);
+        const cubeEventListener = await container.get(CubeEventListener);
 
         if (forCubeView) {
             if (!currentlyInCubeView) {
@@ -462,7 +461,7 @@
 
     async function save($user, createNewRepository: boolean) {
         savingMessage = "Saving ...";
-        const ideaManager = await container.get(IDEA_MANAGER);
+        const ideaManager = await container.get(IdeaManager);
         try {
             action = "save";
             const repositoryIdentifier =
@@ -476,7 +475,7 @@
             navigateToPage(IDEA_MAIN, {
                 mode: "agreement",
                 hostingPlatform: repositoryIdentifier.source,
-                repositoryUuId: repositoryIdentifier.uuId,
+                repositoryGUID: repositoryIdentifier.GUID,
             });
 
             closeConfirm();
@@ -489,7 +488,7 @@
 
     async function doSubmitAgreement() {
         // confirm = false
-        const agreementManager = await container.get(AGREEMENT_MANAGER);
+        const agreementManager = await container.get(AgreementManager);
         try {
             await agreementManager.saveCachedIdeaAgreement(agreement);
             confirm = false;
@@ -578,7 +577,6 @@
     <section
         class:cube={effectiveCubeView}
         class:card={!effectiveCubeView}
-        colspan="4"
     >
         <main>
             <section

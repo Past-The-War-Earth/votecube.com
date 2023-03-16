@@ -1,6 +1,6 @@
 import {
 	APP_CONTAINER,
-	IDEA_MANAGER
+	IdeaManager
 }                 from '@votecube/vc-logic'
 import * as forms from '../form/forms'
 
@@ -11,7 +11,7 @@ export async function saveIdeaForm(
 		return
 	}
 
-	const ideaManager = await APP_CONTAINER.get(IDEA_MANAGER)
+	const ideaManager = await APP_CONTAINER.get(IdeaManager)
 	await ideaManager.mergeForm()
 
 	forms.uncacheForm(forms.DEFINE_IDEA_TOP)

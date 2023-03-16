@@ -8,9 +8,9 @@
 	} from "@votecube/ui-logic";
 	import {
 		IIdeaManager,
-		LOGIC_UTILS,
+		LogicUtils,
 		IDEA_MAIN,
-		IDEA_MANAGER
+		IdeaManager
 	} from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
 	import { get } from "svelte/store";
@@ -53,7 +53,7 @@
 
 	onMount(async () => {
 		container = DEPENDENCY_INJECTION.ui("IdeaList");
-		logicUtils = await container.get(LOGIC_UTILS);
+		logicUtils = await container.get(LogicUtils);
 	});
 
 	onDestroy(() => {
@@ -67,10 +67,10 @@
 		return error;
 	}
 
-	function goTo(repositoryUuId: string) {
+	function goTo(repositoryGUID: string) {
 		navigateToPage(IDEA_MAIN, {
 			mode: "agreement",
-			repositoryUuId: repositoryUuId,
+			repositoryGUID: repositoryGUID,
 		});
 	}
 
@@ -87,7 +87,7 @@
 	}
 
 	async function initPage() {
-		const ideaManager = await container.get(IDEA_MANAGER);
+		const ideaManager = await container.get(IdeaManager);
 		const [formFactory, originalIdeas] = await Promise.all([
 			loadForms(),
 			findIdeas(null, ideaManager),
@@ -167,7 +167,7 @@
 					<IdeaListItem
 						{logicUtils}
 						{mode}
-						on:click={() => goTo(idea.repositoryUuId)}
+						on:click={() => goTo(idea.repository.GUID)}
 						{idea}
 					/>
 				{/each}

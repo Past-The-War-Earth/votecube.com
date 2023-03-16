@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
-	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
+	import { ILogicUtils, LogicUtils } from "@votecube/vc-logic";
 	import { onDestroy, onMount } from "svelte";
 	import CharacterButton from "@votecube/ui-controls/src/button/CharacterButton.svelte";
 	import Block from "@votecube/ui-controls/src/field/Block.svelte";
@@ -23,7 +23,7 @@
 
 	onMount(async () => {
 		container = DEPENDENCY_INJECTION.ui("SelectionBlock");
-		logicUtils = await container.get(LOGIC_UTILS);
+		logicUtils = await container.get(LogicUtils);
 	});
 	onDestroy(() => DEPENDENCY_INJECTION.remove(container));
 

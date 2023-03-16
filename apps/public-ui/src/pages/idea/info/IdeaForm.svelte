@@ -2,11 +2,11 @@
     import { DEPENDENCY_INJECTION, IChildContainer } from "@airport/direction-indicator";
     import {
         FACTOR_INFO_MAIN,
-        IDEA_FORM_LOGIC,
+        IdeaFormLogic,
         IDEA_LIST,
         IDEA_LOCATIONS,
         IDEA_MAIN,
-        IDEA_MANAGER,
+        IdeaManager,
         IDEA_TIME_FRAME,
     } from "@votecube/vc-logic";
     import {
@@ -131,12 +131,12 @@ return !form.fields.locations.isOriginal()
     }
 
     function selectLocations($routeParams) {
-        // this.set({keepRepositoryUuId: $routeParams.repositoryUuId})
+        // this.set({keepRepositoryUuId: $routeParams.repositoryGUID})
         navigateToPage(IDEA_LOCATIONS, $routeParams);
     }
 
     function selectTimeframe($routeParams) {
-        // this.set({keepRepositoryUuId: $routeParams.repositoryUuId})
+        // this.set({keepRepositoryUuId: $routeParams.repositoryGUID})
         navigateToPage(IDEA_TIME_FRAME, $routeParams);
     }
 
@@ -163,17 +163,17 @@ return !form.fields.locations.isOriginal()
         const theText = get(text);
 
         if (!form) {
-            const { hostingPlatform, mode, repositoryUuId } = get(routeParams);
+            const { hostingPlatform, mode, repositoryGUID } = get(routeParams);
 
             try {
-                const ideaManager = await container.get(IDEA_MANAGER);
+                const ideaManager = await container.get(IdeaManager);
 
                 const cachedIdea = ideaManager.cachedIdea;
 
                 if (!cachedIdea.ui) {
                     cachedIdea.ui = await ideaManager.getIdea(
                         hostingPlatform,
-                        repositoryUuId
+                        repositoryGUID
                     );
                 }
 
@@ -183,7 +183,7 @@ return !form.fields.locations.isOriginal()
                 }
 
                 const ideaFormLogic = await container.get(
-                    IDEA_FORM_LOGIC
+                    IdeaFormLogic
                 );
 
                 form = await ideaFormLogic.getIdeaForm(
@@ -216,7 +216,7 @@ return !form.fields.locations.isOriginal()
     }
 
     async function doSubmit($routeParams, modified) {
-        const ideaManager = await container.get(IDEA_MANAGER);
+        const ideaManager = await container.get(IdeaManager);
 
         const form = ideaManager.cachedIdea.form;
         form.touch();

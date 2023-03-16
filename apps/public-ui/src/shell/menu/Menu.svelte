@@ -2,7 +2,7 @@
 	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import type { IUiMenuItem } from "@votecube/model";
 	import {
-		AUTH,
+		Auth,
 		emInPx,
 		showMainMenu,
 		showSignIn,
@@ -78,7 +78,7 @@
 
 	function signOut() {
 		(async () => {
-			const auth = await container.get(AUTH);
+			const auth = await container.get(Auth);
 			await auth.signOut();
 			showMainMenu.toggle();
 		})().then();

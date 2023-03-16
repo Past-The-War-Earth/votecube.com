@@ -8,10 +8,10 @@
 	import UndoIcon from "../icon/UndoIcon.svelte";
 
 	export let field;
+	export let floatLabel = true;
 	export let type = "text";
 
 	let delta = 0;
-	let floatLabel = true;
 	let isOriginal = true;
 	let isValid = false;
 

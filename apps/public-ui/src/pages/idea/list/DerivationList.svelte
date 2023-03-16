@@ -7,9 +7,9 @@
 		text
 	} from "@votecube/ui-logic";
 	import {
-		LOGIC_UTILS,
+		LogicUtils,
 		IDEA_MAIN,
-		IDEA_MANAGER,
+		IdeaManager,
 		RELEASE_PLAN,
 		ILogicUtils,
 	} from "@votecube/vc-logic";
@@ -57,9 +57,9 @@
 	onMount(async () => {
 		container = DEPENDENCY_INJECTION.ui("DerivationList");
 
-		const { repositoryUuId } = get(routeParams);
+		const { repositoryGUID } = get(routeParams);
 		let results = await getListingsAndOther(
-			repositoryUuId,
+			repositoryGUID,
 			loadForms(),
 			container
 		);
@@ -84,7 +84,7 @@
 			idea: stemIdea,
 		};
 
-		logicUtils = await container.get(LOGIC_UTILS);
+		logicUtils = await container.get(LogicUtils);
 
 		forms.ensureForm(form, formHandle);
 
@@ -104,7 +104,7 @@
 			return "";
 		}
 		const switchedToItem =
-			switchedToRepositoryUuId === currentIdea.repositoryUuId;
+			switchedToRepositoryUuId === currentIdea.repository.GUID;
 		if (switching === 1) {
 			return switchedToItem ? "" : "closing";
 		} else if (switching === 2) {
@@ -112,10 +112,10 @@
 		}
 	}
 
-	function goTo(repositoryUuId) {
+	function goTo(repositoryGUID) {
 		navigateToPage(IDEA_MAIN, {
 			mode: "agreement",
-			repositoryUuId: repositoryUuId,
+			repositoryGUID: repositoryGUID,
 		});
 	}
 
@@ -145,14 +145,14 @@
 	}
 
 	async function getListingsAndOther(
-		repositoryUuId: string,
+		repositoryGUID: string,
 		otherPromise: Promise<any>,
 		container
 	) {
-		const ideaManager = await container.get(IDEA_MANAGER);
+		const ideaManager = await container.get(IdeaManager);
 		let [stemIdea, leafIdeas, otherResult] = await Promise.all([
-			ideaManager.getIdea(repositoryUuId),
-			ideaManager.getLeafIdeas(repositoryUuId),
+			ideaManager.getIdea(repositoryGUID),
+			ideaManager.getLeafIdeas(repositoryGUID),
 			otherPromise,
 		]);
 
@@ -165,7 +165,7 @@
 		numLeafs: number
 	) {
 		switching = 1;
-		switchedToRepositoryUuId = moveToIdea.repositoryUuId;
+		switchedToRepositoryUuId = moveToIdea.repository.GUID;
 
 		setTimeout(() => {
 			switching = 2;
@@ -179,7 +179,7 @@
 		numLeafs: number
 	) {
 		switching = 1;
-		switchedToRepositoryUuId = moveToIdea.repositoryUuId;
+		switchedToRepositoryUuId = moveToIdea.repository.GUID;
 
 		setTimeout(() => {
 			switching = 2;
@@ -193,13 +193,13 @@
 		numLeafs: number
 	) {
 		const { stemIdea, leafIdeas } = await getSwitchData(
-			moveToIdea.repositoryUuId,
+			moveToIdea.repository.GUID,
 			numLeafs
 		);
 
 		if (
 			[0, 1].indexOf(navList.direction) > -1 &&
-			navList.idea.repositoryUuId !== moveToIdea.repositoryUuId
+			navList.idea.repository.GUID !== moveToIdea.repository.GUID
 		) {
 			navList = {
 				direction: 1,
@@ -209,8 +209,8 @@
 			};
 		} else if (navList.direction === -1) {
 			if (
-				navList.idea.repositoryUuId ===
-				moveToIdea.repositoryUuId
+				navList.idea.repository.GUID ===
+				moveToIdea.repository.GUID
 			) {
 				navList = navList.previous;
 			} else {
@@ -232,7 +232,7 @@
 		numLeafs: number
 	) {
 		const { stemIdea, leafIdeas } = await getSwitchData(
-			moveToIdea.parent.repositoryUuId,
+			moveToIdea.repository.GUID,
 			numLeafs
 		);
 
@@ -245,7 +245,7 @@
 			};
 		} else if (
 			navList.direction === 0 &&
-			moveToIdea.repositoryUuId !== navList.idea.repositoryUuId
+			moveToIdea.repository.GUID !== navList.idea.repository.GUID
 		) {
 			navList = {
 				direction: -1,
@@ -260,9 +260,9 @@
 		finishSwitching(leafIdeas, stemIdea, navList);
 	}
 
-	async function getSwitchData(repositoryUuId: string, numLeafs: number) {
+	async function getSwitchData(repositoryGUID: string, numLeafs: number) {
 		let [stemIdea, leafIdeas, _] = await getListingsAndOther(
-			repositoryUuId,
+			repositoryGUID,
 			new Promise<void>((resolve) => {
 				setTimeout(
 					() => {
@@ -336,7 +336,7 @@
 			{logicUtils}
 			{mode}
 			{navList}
-			on:click={() => goTo(currentIdea.repositoryUuId)}
+			on:click={() => goTo(currentIdea.repository.GUID)}
 			idea={currentIdea}
 		/>
 		<div class="divider" />
@@ -352,7 +352,7 @@
 				{navList}
 				on:moveDownHierarchy={() =>
 					moveDownHierarchy(leafIdeas, idea, navList)}
-				on:click={() => goTo(idea.repositoryUuId)}
+				on:click={() => goTo(idea.repository.GUID)}
 				{idea}
 			/>
 		{/each}

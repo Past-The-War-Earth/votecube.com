@@ -1,13 +1,13 @@
 import {
     ICubeEventListener,
-    MUTATION_API
+    MutationApi
 } from '@votecube/cube-logic'
 import {
     ICubeLogic,
     IIdeaFormManager,
-    IDEA_FORM_MANAGER,
-    IDEA_MANAGER,
-    AGREEMENT_MANAGER
+    IdeaFormManager,
+    IdeaManager,
+    AgreementManager
 } from '@votecube/vc-logic'
 import {
     pageTitle,
@@ -32,7 +32,7 @@ export async function init() {
 export function getBlankTweenAgreement(
     container: IChildContainer
 ): ITweenAgreement {
-    const ideaFormManager = container.getSync(IDEA_FORM_MANAGER)
+    const ideaFormManager = container.getSync(IdeaFormManager)
 
     return {
         ...ideaFormManager.getBlankUiRepositoryRecord(),
@@ -45,7 +45,7 @@ export function getBlankTweenAgreement(
 export function getBlankUiAgreement(
     container: IChildContainer
 ): IUiAgreement {
-    const ideaFormManager = container.getSync(IDEA_FORM_MANAGER)
+    const ideaFormManager = container.getSync(IdeaFormManager)
 
     return {
         ...ideaFormManager.getBlankUiRepositoryRecord(),
@@ -78,7 +78,7 @@ function getBlankUiAgreementFactor(
 
 export async function setupCubeView(
     hostingPlatform: string,
-    repositoryUuId: string,
+    repositoryGUID: string,
     cubeLogic: ICubeLogic,
     cubeEventListener: ICubeEventListener,
     container: IChildContainer
@@ -89,13 +89,13 @@ export async function setupCubeView(
     const [
         mutationApi, ideaManager, agreementManager
     ] = await container.get(
-        MUTATION_API, IDEA_MANAGER, AGREEMENT_MANAGER)
+        MutationApi, IdeaManager, AgreementManager)
 
     const agreement = await agreementManager.getAgreementForIdea(
-        repositoryUuId
+        repositoryGUID
     );
 
-    const idea = await ideaManager.getIdea(hostingPlatform, repositoryUuId)
+    const idea = await ideaManager.getIdea(hostingPlatform, repositoryGUID)
 
     cubeEventListener.setPositionData(agreement)
     await mutationApi.recompute()

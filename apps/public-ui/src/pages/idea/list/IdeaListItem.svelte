@@ -19,9 +19,9 @@
 
 	const dispatch = createEventDispatcher();
 
-	$: showLink = idea.repositoryUuId === navList.idea.repositoryUuId && !navList.isTarget;
+	$: showLink = idea.repository.GUID === navList.idea.repository.GUID && !navList.isTarget;
 
-	$: showTarget = idea.repositoryUuId === navList.idea.repositoryUuId && navList.isTarget;
+	$: showTarget = idea.repository.GUID === navList.idea.repository.GUID && navList.isTarget;
 </script>
 
 <!--

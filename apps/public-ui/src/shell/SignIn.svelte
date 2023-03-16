@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
-	import { AUTH, text } from "@votecube/ui-logic";
+	import { Auth, text } from "@votecube/ui-logic";
 	import { createEventDispatcher, onDestroy, onMount } from "svelte";
 	import { get } from "svelte/store";
 	import EnterButton from "@votecube/ui-controls/src/button/EnterButton.svelte";
@@ -99,7 +99,7 @@
 	}
 
 	async function doSignIn(userName, password) {
-		const auth = await container.get(AUTH);
+		const auth = await container.get(Auth);
 		try {
 			await auth.signIn(userName, password);
 			return true;
@@ -111,7 +111,7 @@
 
 <ActionPopover
 	maxWidth="400px"
-	width="400px"
+	width={400}
 	on:cancel={() => dispatch("closed")}
 >
 	<div slot="header">

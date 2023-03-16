@@ -7,7 +7,7 @@
 		IUiAgreement,
 	} from "@votecube/model";
 	import { cardMove } from "@votecube/ui-logic";
-	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
+	import { ILogicUtils, LogicUtils } from "@votecube/vc-logic";
 	import {
 		createEventDispatcher,
 		onDestroy,
@@ -73,7 +73,7 @@
 
 	onMount(async () => {
 		container = DEPENDENCY_INJECTION.ui("AgreementComponentGraph");
-		logicUtils = await container.get(LOGIC_UTILS);
+		logicUtils = await container.get(LogicUtils);
 
 		cardMoveUnsubscribe = cardMove.subscribe((cardMoveValue) => {
 			if (!cardMoveValue || cubeView) {
