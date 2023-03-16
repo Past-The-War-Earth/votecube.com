@@ -10,7 +10,7 @@ import {
 import { Situation } from "@sapoto/core";
 import { Agreement, Idea } from "../ddl";
 import { IdeaRating } from "./IdeaRating";
-import { SituationIdeaReason } from "../reason/SituationIdeaReason";
+import { IdeaReason } from "../reason/IdeaReason";
 
 @Entity()
 @Table({ name: 'SITUATION_IDEAS' })
@@ -51,7 +51,7 @@ export class SituationIdea
     agreements: Agreement[] = []
 
     @OneToMany({ mappedBy: 'situationIdea' })
-    situationIdeaReasons: SituationIdeaReason[] = []
+    ideaReasons: IdeaReason[] = []
 
     @Transient()
     userIdeaRating?: IdeaRating
@@ -60,6 +60,6 @@ export class SituationIdea
     userAgreement?: Agreement
 
     @Transient()
-    userSituationIdeaReasons: SituationIdeaReason[] = []
+    userIdeaReasons: IdeaReason[] = []
 
 }

@@ -11,7 +11,7 @@ import { SituationApi } from '@sapoto/core'
 import { FactorDao } from '../dao/FactorDao'
 import { PositionDao } from '../dao/PositionDao'
 import { AgreementDvo } from '../dvo/AgreementDvo'
-import { IdeaDvo, SituationIdeaReason } from './votecube.runtime-index'
+import { IdeaDvo } from './votecube.runtime-index'
 import { IdeaRatingDvo } from '../dvo/IdeaRatingDvo'
 import { SituationIdeaDvo } from '../dvo/SituationIdeaDvo'
 import { application } from './app-declaration'
@@ -24,11 +24,11 @@ export const votecube = app(application)
 
 votecube.register(
     AgreementApi, AgreementDao, AgreementDvo,
-    AgreementReasonDao, IdeaApi, IdeaDao, IdeaDvo,
+    AgreementReasonDao, FactorDao, IdeaApi, IdeaDao, IdeaDvo,
     IdeaRatingApi, IdeaRatingDao, IdeaRatingDvo,
-    IdeaReasonDao, FactorDao, PositionDao,
+    IdeaReasonDao, PositionDao,
     ReasonDao, SituationIdeaApi, SituationIdeaDao,
-    SituationIdeaDvo, SituationIdeaReason
+    SituationIdeaDvo
 )
 
 votecube.setDependencies(AgreementApi, {

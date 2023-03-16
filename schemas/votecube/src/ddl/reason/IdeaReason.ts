@@ -8,6 +8,7 @@ import {
 import { Reason } from './Reason'
 import { Idea } from '../idea/Idea'
 import { ReasonCubeDisplay } from './ReasonCubeDisplay'
+import { SituationIdea } from '../idea/SituationIdea'
 
 @Entity()
 @Table({ name: 'IDEA_REASONS' })
@@ -17,8 +18,11 @@ export class IdeaReason
     @Column({ name: 'IS_POSITIVE_OUTCOME', nullable: false })
     isPositiveOutcome: boolean
 
-    @ManyToOne()
+    @ManyToOne({ optional: true})
     idea: Idea
+
+    @ManyToOne({ optional: true })
+    situationIdea: SituationIdea
 
     @ManyToOne()
     reason: Reason
