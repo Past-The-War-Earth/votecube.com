@@ -1,4 +1,4 @@
-import {IField}     from '..'
+import {IField}     from '../votecube-forms.index'
 import {IValidator} from './Validator'
 
 export function greaterThanOrEquals(

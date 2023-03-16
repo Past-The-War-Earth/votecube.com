@@ -1,4 +1,4 @@
-import { IField } from '..'
+import { IField } from '../votecube-forms.index'
 import {
 	IFieldBase,
 	IFieldError

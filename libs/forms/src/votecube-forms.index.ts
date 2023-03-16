@@ -24,7 +24,7 @@ export * from './validator/username'
 export * from './validator/Validator'
 export * from './changeTracker'
 export * from './FormFactory'
-export * from './tokens'
+export * from './votecube-forms.injection'
 
 export interface IConstants {
 	rules: IRuleConstants

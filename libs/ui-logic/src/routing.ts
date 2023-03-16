@@ -1,9 +1,9 @@
 import {
+	Routes,
 	Route_ParamValue,
 	Route_Path,
 } from './Routes'
 import { APP_CONTAINER } from './container'
-import { ROUTES } from './tokens'
 
 export function navigateToPage(
 	routePath: Route_Path,
@@ -11,7 +11,7 @@ export function navigateToPage(
 		[paramName: string]: Route_ParamValue
 	}
 ) {
-	APP_CONTAINER.get(ROUTES).then(
+	APP_CONTAINER.get(Routes).then(
 		routes => {
 			routes.navigateToPage(routePath, paramMap)
 		})

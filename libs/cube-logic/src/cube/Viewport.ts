@@ -1,9 +1,5 @@
 import { Outcome_Ordinal } from './mutation/types'
 import {
-	CUBE_MOVE_MATRIX,
-	CUBE_MOVEMENT,
-} from '../tokens'
-import {
 	ICubeMoveMatrix,
 	MoveIncrement,
 	PositionValues,

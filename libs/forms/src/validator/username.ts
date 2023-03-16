@@ -1,7 +1,7 @@
 import {
 	IFieldBase,
 	IFieldError
-}                   from '..'
+}                   from '../votecube-forms.index'
 import {IValidator} from './Validator'
 
 export function username(): IValidator {

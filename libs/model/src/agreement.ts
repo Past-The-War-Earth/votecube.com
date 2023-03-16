@@ -1,4 +1,4 @@
-import { IUiRepositoryRecord } from ".";
+import { IUiRepositoryRecord } from "./votecube-model.index";
 
 export type AgreementFactor_Value =
 	0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |

@@ -1,19 +1,19 @@
 import { Inject, Injected } from '@airport/direction-indicator'
 import { IFieldGroup } from '@votecube/forms'
+import { IRepositoryIdentifier } from '@airport/ground-control'
 import {
 	IUiAgreement,
 	IUiIdea,
 	IUiLabel,
 } from '@votecube/model'
 import {
-	IIdea,
+	Idea,
 	IdeaApi
 } from '@votecube/votecube'
 import { ILogicUtils } from '../LogicUtils'
 import { IIdeaConverter } from '../converter/IdeaConverter'
 import { IIdeaFormManager } from '../pages/idea/IdeaFormManager'
 import { ICubeLogic } from './CubeLogic'
-import { IRepositoryIdentifier } from '@airport/holding-pattern'
 
 export interface IPageAgreement
 	extends IUiAgreement {
@@ -26,7 +26,7 @@ export interface IIdeaManager {
 
 	getIdea(
 		hostingPlatform: string,
-		repositoryUuId: string
+		repositoryGUID: string
 	): Promise<IUiIdea>
 
 	getAllIdeas(): Promise<IUiIdea[]>
@@ -57,7 +57,7 @@ export interface IIdeaManager {
 }
 
 export interface ICachedIdea {
-	db: IIdea
+	db: Idea
 	form?: IFieldGroup
 	originalUi: IUiIdea
 	ui: IUiIdea
@@ -94,17 +94,16 @@ export class IdeaManager
 
 	async getIdea(
 		hostingPlatform: string,
-		repositoryUuId: string
+		repositoryGUID: string
 	): Promise<IUiIdea> {
 		const ui = this.cachedIdea.ui
-		if (!repositoryUuId || repositoryUuId === ':repositoryUuId'
-			|| (ui && ui.repository.source === hostingPlatform
-				&& ui.repository.uuId === repositoryUuId)) {
+		if (!repositoryGUID || repositoryGUID === ':repositoryGUID'
+			|| (ui && ui.repository.GUID === repositoryGUID)) {
 			return ui
 		}
 
 		const dbIdea = await this.ideaApi
-			.getIdea(hostingPlatform, repositoryUuId)
+			.getIdea(hostingPlatform, repositoryGUID)
 		this.cachedIdea.db = dbIdea
 
 		this.cachedIdea.ui = this.ideaConverter.dbToUi(dbIdea)
@@ -158,7 +157,7 @@ export class IdeaManager
 				// 'actorRecordId',
 				'ageSuitability',
 				// 'repositoryId',
-				// 'repositoryUuId',
+				// 'repositoryGUID',
 			])
 		}
 		this.cachedIdea.ui = ui

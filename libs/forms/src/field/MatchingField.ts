@@ -1,4 +1,4 @@
-import { IFieldRules, IValidator } from '..'
+import { IFieldRules, IValidator } from '../votecube-forms.index'
 import {
 	Field,
 	IField
@@ -14,7 +14,7 @@ export interface IMatch {
 		actorId: number,
 		actorRecordId: number,
 		repositoryId: number,
-		repositoryUuId: string
+		repositoryGUID: string
 	}
 	text: string
 }
@@ -102,7 +102,7 @@ export class MatchingField
 					actorId: null,
 					actorRecordId: null,
 					repositoryId: null,
-					repositoryUuId: ''
+					repositoryGUID: ''
 				},
 				text: textOrValue
 			}

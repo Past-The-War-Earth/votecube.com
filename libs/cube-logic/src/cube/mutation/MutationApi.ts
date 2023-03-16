@@ -1,5 +1,5 @@
 import { Inject, Injected } from '@airport/direction-indicator'
-import { ICubeMoveMatrix, IDegreePositionChooser } from '../..'
+import { ICubeMoveMatrix, IDegreePositionChooser } from '../../cube-logic.index'
 import { ICubeUtils } from '../../utils/CubeUtils'
 import { IEventListenerMap } from '../../utils/EventListenerMap'
 import {

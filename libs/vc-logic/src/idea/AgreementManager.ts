@@ -44,7 +44,7 @@ export class AgreementManager
 		// User-information is in AIRport
 		ideaRepositoryUuid: string
 	): Promise<IUiAgreement> {
-		if (!ideaRepositoryUuid || ideaRepositoryUuid === ':repositoryUuId') {
+		if (!ideaRepositoryUuid || ideaRepositoryUuid === ':repositoryGUID') {
 			return this.getStubAgreement()
 		}
 
@@ -99,12 +99,10 @@ export class AgreementManager
 
 	private getStubIds(): IUiRepositoryRecord {
 		return {
-			// actorId: null,
-			// actorUuId: null,
-			// actorRecordId: null,
+			_actorRecordId: 0,
+			actor: null,
 			ageSuitability: null,
-			// repositoryId: null,
-			// repositoryUuId: null,
+			repository: null,
 		}
 	}
 

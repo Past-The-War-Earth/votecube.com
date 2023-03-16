@@ -52,8 +52,8 @@ export class IdeaFormManager
 					B: this.getBlankUiNamedRecord()
 				},
 				repository: {
-					source: null,
-					uuId: null
+					_localId: null,
+					GUID: null
 				}
 			}
 		}
@@ -65,9 +65,8 @@ export class IdeaFormManager
 
 		uiIdea.ageGroups = this.formLabelsToUi(formIdea.ageGroups)
 		uiIdea.labels = this.formLabelsToUi(formIdea.labels)
-		this.transferNameAndId(formIdea.outcomes.A, uiIdea.outcomes.A)
-		this.transferNameAndId(formIdea.outcomes.B, uiIdea.outcomes.B)
-
+		uiIdea.outcomes.A.name = formIdea.outcomes.A.text
+		uiIdea.outcomes.B.name = formIdea.outcomes.B.text
 		return uiIdea
 	}
 
@@ -105,13 +104,13 @@ export class IdeaFormManager
 			// uiRepositoryRecord.actorRecordId = null
 			uiRepositoryRecord.ageSuitability = null
 			// uiRepositoryRecord.repositoryId = null
-			// uiRepositoryRecord.repositoryUuId = 'unsolved'
+			// uiRepositoryRecord.repositoryGUID = 'unsolved'
 		} else {
 			// uiRepositoryRecord.actorId = formField.id.actorId
 			// uiRepositoryRecord.actorRecordId = formField.id.actorRecordId
 			uiRepositoryRecord.ageSuitability = formField.id.ageSuitability
 			// uiRepositoryRecord.repositoryId = formField.id.repositoryId
-			// uiRepositoryRecord.repositoryUuId = formField.id.repositoryUuId
+			// uiRepositoryRecord.repositoryGUID = formField.id.repositoryGUID
 		}
 	}
 
@@ -158,11 +157,10 @@ export class IdeaFormManager
 
 	getBlankUiRepositoryRecord(): IUiRepositoryRecord {
 		return {
-			// actorId: null,
-			// actorRecordId: null,
+			_actorRecordId: null,
+			actor: null,
 			ageSuitability: 0,
-			// repositoryId: null,
-			// repositoryUuId: '',
+			repository: null,
 		}
 	}
 
@@ -213,11 +211,10 @@ export class IdeaFormManager
 		uiRepositoryRecord: IUiRepositoryRecord
 	): IUiRepositoryRecord {
 		return {
-			// actorId: uiRepositoryRecord.actorId,
-			// actorRecordId: uiRepositoryRecord.actorRecordId,
+			_actorRecordId: uiRepositoryRecord._actorRecordId,
+			actor: uiRepositoryRecord.actor,
 			ageSuitability: uiRepositoryRecord.ageSuitability,
-			// repositoryId: uiRepositoryRecord.repositoryId,
-			// repositoryUuId: uiRepositoryRecord.repositoryUuId
+			repository: uiRepositoryRecord.repository,
 		}
 	}
 

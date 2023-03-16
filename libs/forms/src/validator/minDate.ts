@@ -1,4 +1,4 @@
-import {IDateField} from '..'
+import {IDateField} from '../votecube-forms.index'
 import {IValidator} from './Validator'
 
 export function minDate(

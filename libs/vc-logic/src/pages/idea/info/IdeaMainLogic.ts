@@ -139,12 +139,12 @@ export class IdeaMainLogic
 		factorNumber
 	): ITweenAgreementFactor {
 		return {
-			// actorId: null,
-			// actorRecordId: null,
+			_actorRecordId: null,
+			actor: null,
 			ageSuitability: null,
 			factorNumber,
 			outcome: agreement[factorNumber].outcome,
-			// repositoryId: null,
+			repository: null,
 			tweenOutcome: agreementAgreement[factorNumber].outcome,
 			tweenValue: agreementAgreement[factorNumber].value,
 			value: agreement[factorNumber].value

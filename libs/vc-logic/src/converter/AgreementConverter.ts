@@ -4,24 +4,25 @@ import {
     AgreementFactor_Value
 } from "@votecube/model";
 import {
-    IIdea,
-    IReason,
-    IAgreement,
-    IAgreementReason
+    Agreement,
+    AgreementIdeaReason,
+    Idea,
+    IdeaReason,
+    SituationIdea
 } from "@votecube/votecube";
 import { IRepositoryRecordConverter } from '@votecube/ui-logic'
 
 export interface IAgreementConverter {
 
     dbToUi(
-        dbAgreement: IAgreement
+        dbAgreement: Agreement
     ): IUiAgreement
 
     uiToDb(
         uiAgreement: IUiAgreement,
-        ageSuitability: 0 | 7 | 13 | 18,
-        idea: IIdea
-    ): IAgreement
+        ageSuitability: 0 | 7 | 13 | 18 | 25,
+        idea: Idea
+    ): Agreement
 
 }
 
@@ -31,40 +32,41 @@ export class AgreementConverter
     repositoryRecordConverter: IRepositoryRecordConverter
 
     dbToUi(
-        dbAgreement: IAgreement
+        dbAgreement: Agreement
     ): IUiAgreement {
-        let agreementFactor1: IAgreementReason
-        let agreementFactor2: IAgreementReason
-        let agreementFactor3: IAgreementReason
-        for (const dbAgreementFactor of dbAgreement.factors) {
-            switch (dbAgreementFactor.axis) {
+        let agreementIdeaReason1: AgreementIdeaReason
+        let agreementIdeaReason2: AgreementIdeaReason
+        let agreementIdeaReason3: AgreementIdeaReason
+        for (const dbAgreementIdeaReason of dbAgreement.agreementIdeaReasons) {
+            switch (dbAgreementIdeaReason.ideaReason.reasonCubeDisplay.axis) {
                 case 'x':
-                    agreementFactor1 = dbAgreementFactor
+                    agreementIdeaReason1 = dbAgreementIdeaReason
                     break
                 case 'y':
-                    agreementFactor2 = dbAgreementFactor
+                    agreementIdeaReason2 = dbAgreementIdeaReason
                     break
                 case 'z':
-                    agreementFactor3 = dbAgreementFactor
+                    agreementIdeaReason3 = dbAgreementIdeaReason
                     break
             }
         }
         return {
             ...this.repositoryRecordConverter.dbToUi(dbAgreement),
-            "1": this.agreementFactorDbToUi(agreementFactor1),
-            "2": this.agreementFactorDbToUi(agreementFactor2),
-            "3": this.agreementFactorDbToUi(agreementFactor3)
+            "1": this.agreementFactorDbToUi(agreementIdeaReason1),
+            "2": this.agreementFactorDbToUi(agreementIdeaReason2),
+            "3": this.agreementFactorDbToUi(agreementIdeaReason3)
         }
     }
 
     private agreementFactorDbToUi(
-        dbAgreementFactor: IAgreementReason
+        dbAgreementIdeaReason: AgreementIdeaReason
     ): IUiAgreementFactor {
         return {
-            ...this.repositoryRecordConverter.dbToUi(dbAgreementFactor),
-            factorNumber: this.getFactorNumber(dbAgreementFactor.axis as 'x' | 'y' | 'z'),
-            outcome: dbAgreementFactor.reason.outcomeOrdinal as 'A' | 'B',
-            value: dbAgreementFactor.share as AgreementFactor_Value
+            ...this.repositoryRecordConverter.dbToUi(dbAgreementIdeaReason),
+            factorNumber: this.getFactorNumber(dbAgreementIdeaReason
+                .ideaReason.reasonCubeDisplay.axis as 'x' | 'y' | 'z'),
+            outcome: dbAgreementIdeaReason.ideaReason.isPositiveOutcome ? 'A' : 'B',
+            value: dbAgreementIdeaReason.share as AgreementFactor_Value
         }
     }
 
@@ -86,23 +88,25 @@ export class AgreementConverter
     uiToDb(
         uiAgreement: IUiAgreement,
         ageSuitability: 0 | 7 | 13 | 18 = 0,
-        idea: IIdea,
-    ): IAgreement {
-        let factors: IAgreementReason[] = []
+        idea: Idea | SituationIdea,
+    ): Agreement {
+        let agreementIdeaReasons: AgreementIdeaReason[] = []
 
-        const dbAgreement: IAgreement = {
+        const dbAgreement: Agreement = {
             idea,
-            factors
+            agreementIdeaReasons
         } as any
 
         this.repositoryRecordConverter.uiToDb(uiAgreement, dbAgreement, ageSuitability)
 
-        for (const reason of idea.reasons) {
-            const uiAgreementFactor = uiAgreement[
-                this.getFactorNumber(reason.axis as 'x' | 'y' | 'z')]
-            factors.push(this.agreementFactorUiToDb(uiAgreementFactor, ageSuitability,
-                dbAgreement, reason))
-        }
+        if ((idea as Idea))
+
+            for (const ideaReason of idea.ideaReasons) {
+                const uiAgreementFactor = uiAgreement[
+                    this.getFactorNumber(ideaReason.reasonCubeDisplay.axis as 'x' | 'y' | 'z')]
+                agreementIdeaReasons.push(this.agreementFactorUiToDb(uiAgreementFactor, ageSuitability,
+                    dbAgreement, ideaReason))
+            }
 
         return dbAgreement
     }
@@ -110,17 +114,17 @@ export class AgreementConverter
     private agreementFactorUiToDb(
         uiAgreementFactor: IUiAgreementFactor,
         ageSuitability: 0 | 7 | 13 | 18 = 0,
-        agreement: IAgreement,
-        reason: IReason,
-    ): IAgreementFactor {
-        const dbAgreementFactor: IAgreementFactor = {
+        agreement: Agreement,
+        ideaReason: IdeaReason,
+    ): AgreementIdeaReason {
+        const dbAgreementIdeaReason: AgreementIdeaReason = {
             agreement,
-            reason
+            ideaReason
         } as any
 
-        this.repositoryRecordConverter.uiToDb(uiAgreementFactor, dbAgreementFactor, ageSuitability)
+        this.repositoryRecordConverter.uiToDb(uiAgreementFactor, dbAgreementIdeaReason, ageSuitability)
 
-        return dbAgreementFactor
+        return dbAgreementIdeaReason
     }
 
 }
