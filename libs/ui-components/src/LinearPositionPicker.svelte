@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DEPENDENCY_INJECTION } from "@airport/direction-indicator";
 	import type { IUiIdea, IUiAgreementFactor } from "@votecube/model";
-	import { ILogicUtils, LOGIC_UTILS } from "@votecube/vc-logic";
+	import { ILogicUtils, LogicUtils } from "@votecube/vc-logic";
 	import { createEventDispatcher, onDestroy, onMount } from "svelte";
 	import LeftButton from "@votecube/ui-controls/src/button/LeftButton.svelte";
 	import RightButton from "@votecube/ui-controls/src/button/RightButton.svelte";
@@ -74,7 +74,7 @@
 	}
 	onMount(async () => {
 		container = DEPENDENCY_INJECTION.ui("LinearPositionPicker");
-		logicUtils = await container.get(LOGIC_UTILS);
+		logicUtils = await container.get(LogicUtils);
 	});
 
 	onDestroy(() => {
@@ -84,7 +84,7 @@
 
 	async function initPage() {
 		container = DEPENDENCY_INJECTION.ui("LinearPositionPicker");
-		logicUtils = await container.get(LOGIC_UTILS);
+		logicUtils = await container.get(LogicUtils);
 	}
 
 	function checkInterval() {
