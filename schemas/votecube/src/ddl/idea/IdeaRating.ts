@@ -13,6 +13,9 @@ import { SituationIdea } from './SituationIdea'
 export class IdeaRating
     extends AirEntity {
 
+    @Column({ name: 'PRIORITY_RATING' })
+    priorityRating: number
+
     @Column({ name: 'URGENCY_RATING' })
     urgencyRating: number
 

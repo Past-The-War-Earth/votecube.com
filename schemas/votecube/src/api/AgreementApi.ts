@@ -1,5 +1,5 @@
 import { Inject, Injected } from "@airport/direction-indicator";
-import { 
+import {
     and,
     between,
     byId,
@@ -89,38 +89,35 @@ export class AgreementApi
                     or(
                         exists(byId()),
                         {
-                            factor: or(exists(or(
-                                byId(),
-                                {
-                                    customText: isNull(),
-                                    action: equals(),
-                                    object: equals()
-                                },
-                                {
-                                    customText: equals(),
-                                    action: isNull(),
-                                    object: isNull()
-                                }
-                            )), {
-                                customText: length(5, 50),
-                                action: isNull(),
-                                object: isNull()
-                            }, {
-                                action: oneOfStrings('Helps', 'Lets'),
-                                customText: isNull(),
-                                object: oneOfStrings('Me', 'Them', 'Us', 'You'),
+                            factor: or(exists(
+                                byId()
+                            ), {
+                                name: length(5, 50)
                             }),
-                            position: or(
-                                exists(or(
-                                    byId(),
-                                    {
-                                        name: equals()
-                                    }
-                                )),
-                                {
-                                    name: length(5, 100)
-                                }
-                            )
+                            position: or(exists(
+                                byId()
+                            ), {
+                                action: oneOfStrings('allow',
+                                    'begin', 'disable',
+                                    'discourage', 'enable', 'encourage',
+                                    'end', 'facilitate', 'help', 'let',
+                                    'make', 'prohibit', 'promote',
+                                    'start', 'stop'),
+                                object: oneOfStrings('all', 'everyone',
+                                    'everything', 'her', 'him', 'it', 'me',
+                                    'no one', 'none', 'nothing', 'someone',
+                                    'something', 'them', 'us', "you all", 'you'),
+                                subject: oneOfStrings('All', 'Everyone',
+                                    'Everything', 'He', 'I', 'It', 'No one',
+                                    'Nothing', 'She', 'Someone', 'Something',
+                                    'They', 'We', "You all", 'You'),
+                                text: length(5, 120),
+                            }, {
+                                action: isNull(),
+                                object: isNull(),
+                                subject: isNull(),
+                                text: length(5, 120)
+                            })
                         },
                     )
                 ),

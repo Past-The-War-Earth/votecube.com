@@ -19,7 +19,8 @@ import {
     QIdea,
     QSituationIdea,
     QReason,
-    QIdeaLabel
+    QIdeaLabel,
+    QSituationIdeaReason
 } from "../generated/qInterfaces";
 import { Idea } from '../ddl/ddl';
 
@@ -56,6 +57,7 @@ export class IdeaDao
         let r: QRepository
         let sl: QIdeaLabel
         let is: QSituationIdea
+        let isr: QSituationIdeaReason
         let rs: QReason
         const matchingRepositories = await this.db.find.tree({
             SELECT: {
@@ -67,10 +69,12 @@ export class IdeaDao
                 },
                 situationIdeas: {
                     '*': Y,
-                    reasons: {
-                        '*': Y,
-                        factor: {},
-                        position: {},
+                    situationIdeaReasons: {
+                        reason: {
+                            '*': Y,
+                            factor: {},
+                            position: {},
+                        }
                     }
                 }
             },
@@ -80,7 +84,8 @@ export class IdeaDao
                 sl = i.ideaLabels.LEFT_JOIN(),
                 sl.label.LEFT_JOIN(),
                 is = i.situationIdeas.LEFT_JOIN(),
-                rs = is.reasons.LEFT_JOIN(),
+                isr = is.situationIdeaReasons.LEFT_JOIN(),
+                rs = isr.reason.LEFT_JOIN(),
                 rs.factor.LEFT_JOIN(),
                 rs.position.LEFT_JOIN()
             ],

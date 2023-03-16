@@ -1,8 +1,6 @@
 import { AirEntity } from '@airport/final-approach'
 import {
     Column,
-    DbNumber,
-    DbString,
     Entity,
     ManyToOne,
     Table

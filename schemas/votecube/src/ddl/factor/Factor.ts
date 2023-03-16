@@ -2,21 +2,20 @@ import { AirEntity } from '@airport/final-approach'
 import {
 	Column,
 	Entity,
+	OneToMany,
 	Table
 } from '@airport/tarmaq-entity'
+import { Reason } from '../reason/Reason'
 
 @Entity()
 @Table({ name: 'FACTORS' })
 export class Factor
 	extends AirEntity {
 
-	@Column({ name: 'OBJECT', nullable: true })
-	object: string
+	@Column({ name: 'NAME', nullable: false })
+	name: string
 
-	@Column({ name: 'ACTION', nullable: true })
-	action: string
-
-	@Column({ name: 'NAME', nullable: true })
-	customText: string
+	@OneToMany({ mappedBy: 'factor' })
+	reasons: Reason[]
 
 }

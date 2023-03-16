@@ -10,28 +10,24 @@ import {
 import { Situation } from "@sapoto/core";
 import { Agreement, Idea } from "../ddl";
 import { IdeaRating } from "./IdeaRating";
-import { Reason } from "../reason/Reason";
+import { SituationIdeaReason } from "../reason/SituationIdeaReason";
 
 @Entity()
 @Table({ name: 'SITUATION_IDEAS' })
 export class SituationIdea
     extends AirEntity {
 
-    constructor(
-        entityGUID: string
-    ) {
-        super(entityGUID)
-        this.agreements = []
-        this.ideaRatings = []
-        this.reasons = []
-        this.userReasons = []
-    }
-
     @Column({ name: 'AGREEMENT_SHARE_TOTAL' })
     agreementShareTotal: number
 
     @Column({ name: 'NUMBER_OF_AGREEMENTS' })
     numberOfAgreements: number
+
+    @Column({ name: 'PROIRITY_TOTAL' })
+    priorityTotal: number
+
+    @Column({ name: 'NUMBER_OF_PRIORITY_RATINGS' })
+    numberOfPriorityRatings: number
 
     @Column({ name: 'URGENCY_TOTAL' })
     urgencyTotal: number
@@ -49,13 +45,13 @@ export class SituationIdea
     situation: Situation
 
     @OneToMany({ mappedBy: 'situationIdea' })
-    ideaRatings: IdeaRating[]
+    ideaRatings: IdeaRating[] = []
 
     @OneToMany({ mappedBy: 'situationIdea' })
-    agreements: Agreement[]
+    agreements: Agreement[] = []
 
     @OneToMany({ mappedBy: 'situationIdea' })
-    reasons: Reason[]
+    situationIdeaReasons: SituationIdeaReason[] = []
 
     @Transient()
     userIdeaRating?: IdeaRating
@@ -64,6 +60,6 @@ export class SituationIdea
     userAgreement?: Agreement
 
     @Transient()
-    userReasons: Reason[]
+    userSituationIdeaReasons: SituationIdeaReason[] = []
 
 }

@@ -9,14 +9,6 @@ import { AgreementReason } from "./AgreementReason";
 export class Agreement
     extends AirEntity {
 
-    constructor(
-        entityGUID?: string
-    ) {
-        super(entityGUID)
-        // FIXME: this should be done automatically, by the framework
-        this.agreementReasons = []
-    }
-
     @Column({ name: "SHARE_TOTAL" })
     shareTotal: number
 
@@ -27,6 +19,6 @@ export class Agreement
     idea: Idea
 
     @OneToMany({ mappedBy: 'agreement' })
-    agreementReasons: AgreementReason[]
+    agreementReasons: AgreementReason[] = []
 
 }

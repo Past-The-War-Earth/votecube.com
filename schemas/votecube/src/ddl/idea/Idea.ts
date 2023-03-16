@@ -12,25 +12,12 @@ import { SituationIdea } from './SituationIdea'
 import { IdeaTopic } from './IdeaTopic'
 import { IdeaRating } from './IdeaRating'
 import { Agreement } from '../agreement/Agreement'
-import { Reason } from '../reason/Reason'
+import { IdeaReason } from '../reason/IdeaReason'
 
 @Entity()
 @Table({ name: 'IDEAS' })
 export class Idea
 	extends AirEntity {
-
-	constructor(
-		entityGUID: string
-	) {
-		super(entityGUID)
-		this.agreements = []
-		this.children = []
-		this.ideaLabels = []
-		this.ideaTopics = []
-		this.reasons = []
-		this.situationIdeas = []
-		this.userReasons = []
-	}
 
 	@Column({ name: 'NAME', nullable: false })
 	name: string
@@ -54,25 +41,25 @@ export class Idea
 	parent: Idea
 
 	@OneToMany({ mappedBy: 'parent' })
-	children: Idea[]
+	children: Idea[] = []
 
 	@OneToMany({ mappedBy: 'idea' })
 	ideaRatings: IdeaRating
 
 	@OneToMany({ mappedBy: 'idea' })
-	agreements: Agreement[]
+	agreements: Agreement[] = []
 
 	@OneToMany({ mappedBy: 'idea' })
-	reasons: Reason[]
+	ideaReasons: IdeaReason[] = []
 
 	@OneToMany({ mappedBy: 'idea' })
-	ideaLabels: IdeaLabel[]
+	ideaLabels: IdeaLabel[] = []
 
 	@OneToMany({ mappedBy: 'idea' })
-	situationIdeas: SituationIdea[]
+	situationIdeas: SituationIdea[] = []
 
 	@OneToMany({ mappedBy: 'idea' })
-	ideaTopics: IdeaTopic[]
+	ideaTopics: IdeaTopic[] = []
 
 	@Transient()
 	userIdeaRating?: IdeaRating
@@ -81,6 +68,6 @@ export class Idea
 	userAgreement?: Agreement
 
 	@Transient()
-	userReasons?: Reason[]
+	userIdeaReasons?: IdeaReason[] = []
 
 }
