@@ -1,6 +1,6 @@
 <script lang="ts">
     import { DEPENDENCY_INJECTION, IChildContainer } from "@airport/direction-indicator";
-    import { FormFactory, IFieldGroup } from "@votecube/forms";
+    import { FormFactory, IFieldGroup, IMatchingField } from "@votecube/forms";
     import { pageTitle, routeParams, text } from "@votecube/ui-logic";
     import TextArea from "@votecube/ui-controls/src/field/TextArea.svelte";
     import { onDestroy, onMount } from "svelte";
@@ -13,6 +13,8 @@
     let form: IFieldGroup;
     let isOriginal = true;
     let isValid = false;
+
+    let field: IMatchingField = form.fields.post as IMatchingField
 
     let formHandle = {
         setDelta(newDelta) {
@@ -78,7 +80,7 @@
 
 {#if form}
     <TextArea
-        field={form.fields.post}
+        {field}
         floatLabel={false}
         mid={false}
         mini={false}
