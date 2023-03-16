@@ -1,4 +1,4 @@
-import { byId, exists, isNull, or } from "@airbridge/validate";
+import { byId, exists, isNotNull, isNull, or } from "@airbridge/validate";
 import { Api } from "@airport/air-traffic-control";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { IRepositoryIdParts } from "@airport/ground-control";
@@ -26,7 +26,11 @@ export interface IIdeaApi {
         ideaRepositoryUuId: string
     ): Promise<Idea>
 
-    saveIdea(
+    saveNewIdea(
+        idea: Idea
+    ): Promise<IRepositoryIdParts>
+    
+    saveExistingIdea(
         idea: Idea
     ): Promise<IRepositoryIdParts>
 
@@ -91,7 +95,7 @@ export class IdeaApi
     }
 
     @Api()
-    async saveIdea(
+    async saveNewIdea(
         idea: Idea
     ): Promise<IRepositoryIdParts> {
         this.ideaDvo.validate(idea, {
@@ -118,6 +122,27 @@ export class IdeaApi
         if (idea.userIdeaRating) {
             idea.userIdeaRating.actor = this.requestManager.actor
         }
+
+        return saveResult.repositoryIdParts
+    }
+
+    @Api()
+    async saveExistingIdea(
+        idea: Idea
+    ): Promise<IRepositoryIdParts> {
+        this.ideaDvo.validate(idea, {
+            _actorRecordId: isNotNull(),
+            actor: isNotNull(),
+            parent: or(
+                isNull(),
+                exists(byId())
+            ),
+            repository: isNotNull(),
+            // TODO: add support for transient entity properites in validator generation
+            agreements: null
+        })
+
+        const saveResult = await this.ideaDao.save(idea)
 
         return saveResult.repositoryIdParts
     }

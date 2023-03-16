@@ -16,7 +16,7 @@ export class IdeaReason
     extends AirEntity {
 
     @Column({ name: 'IS_POSITIVE_OUTCOME', nullable: false })
-    isPositiveOutcome: boolean
+    isPositiveOutcome: boolean = true
 
     @ManyToOne({ optional: true})
     idea: Idea

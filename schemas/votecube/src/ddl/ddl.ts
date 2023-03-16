@@ -1,5 +1,5 @@
 export * from './agreement/Agreement'
-export * from './agreement/AgreementReason'
+export * from './agreement/AgreementIdeaReason'
 export * from './factor/Factor'
 export * from './factor/Position'
 export * from './idea/Idea'

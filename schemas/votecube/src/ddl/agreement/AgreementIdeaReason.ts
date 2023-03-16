@@ -5,12 +5,12 @@ import {
     ManyToOne,
     Table
 } from "@airport/tarmaq-entity";
-import { Reason } from "../ddl";
+import { IdeaReason } from "../reason/IdeaReason";
 import { Agreement } from "./Agreement";
 
 @Entity()
-@Table({ name: 'AGREEMENT_REASONS' })
-export class AgreementReason
+@Table({ name: 'AGREEMENT_IDEA_REASONS' })
+export class AgreementIdeaReason
     extends AirEntity {
 
     share: number // 0 - 100
@@ -19,6 +19,6 @@ export class AgreementReason
     agreement: Agreement
 
     @ManyToOne()
-    reason: Reason
+    ideaReason: IdeaReason
 
 }

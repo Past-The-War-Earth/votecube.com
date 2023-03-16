@@ -3,7 +3,7 @@ import { ApplicationLoader } from './ApplicationLoader'
 import { IdeaDao, SituationIdeaDao } from "../dao/dao";
 import { AgreementApi, IdeaApi, SituationIdeaApi } from '../api/api'
 import { AgreementDao } from '../dao/AgreementDao'
-import { AgreementReasonDao } from '../dao/AgreementReasonDao'
+import { AgreementIdeaReasonDao } from '../dao/AgreementIdeaReasonDao'
 import { ReasonDao } from '../dao/reason/ReasonDao'
 import { IdeaRatingApi } from '../api/IdeaRatingApi'
 import { IdeaRatingDao } from '../dao/IdeaRatingDao'
@@ -24,7 +24,7 @@ export const votecube = app(application)
 
 votecube.register(
     AgreementApi, AgreementDao, AgreementDvo,
-    AgreementReasonDao, FactorDao, IdeaApi, IdeaDao, IdeaDvo,
+    AgreementIdeaReasonDao, FactorDao, IdeaApi, IdeaDao, IdeaDvo,
     IdeaRatingApi, IdeaRatingDao, IdeaRatingDvo,
     IdeaReasonDao, PositionDao,
     ReasonDao, SituationIdeaApi, SituationIdeaDao,
@@ -34,7 +34,7 @@ votecube.register(
 votecube.setDependencies(AgreementApi, {
     agreementDao: AgreementDao,
     agreementDvo: AgreementDvo,
-    agreementReasonDao: AgreementReasonDao,
+    agreementIdeaReasonDao: AgreementIdeaReasonDao,
     factorDao: FactorDao,
     ideaDao: IdeaDao,
     positionDao: PositionDao,

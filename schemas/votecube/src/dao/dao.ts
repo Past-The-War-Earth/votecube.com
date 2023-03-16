@@ -1,5 +1,5 @@
 export * from './AgreementDao'
-export * from './AgreementReasonDao'
+export * from './AgreementIdeaReasonDao'
 export * from './IdeaDao'
 export * from './IdeaRatingDao'
 export * from './reason/ReasonDao'

@@ -14,7 +14,7 @@ import {
 } from "@airbridge/validate";
 import { ITotalDelta } from "@sapoto/core";
 import { AgreementDao } from "../dao/AgreementDao";
-import { AgreementReasonDao } from "../dao/AgreementReasonDao";
+import { AgreementIdeaReasonDao } from "../dao/AgreementIdeaReasonDao";
 import { FactorDao } from "../dao/FactorDao";
 import { IIdeaDao } from "../dao/IdeaDao";
 import { PositionDao } from "../dao/PositionDao";
@@ -44,7 +44,7 @@ export class AgreementApi
     agreementDao: AgreementDao
 
     @Inject()
-    agreementReasonDao: AgreementReasonDao
+    agreementIdeaReasonDao: AgreementIdeaReasonDao
 
     @Inject()
     factorDao: FactorDao
@@ -83,44 +83,46 @@ export class AgreementApi
         agreement: Agreement
     ): Promise<void> {
         await this.agreementDvo.validate(agreement, {
-            agreementReasons: {
-                reason: and(
-                    uniqueIn(agreement),
-                    or(
-                        exists(byId()),
-                        {
-                            factor: or(exists(
-                                byId()
-                            ), {
-                                name: length(5, 50)
-                            }),
-                            position: or(exists(
-                                byId()
-                            ), {
-                                action: oneOfStrings('allow',
-                                    'begin', 'disable',
-                                    'discourage', 'enable', 'encourage',
-                                    'end', 'facilitate', 'help', 'let',
-                                    'make', 'prohibit', 'promote',
-                                    'start', 'stop'),
-                                object: oneOfStrings('all', 'everyone',
-                                    'everything', 'her', 'him', 'it', 'me',
-                                    'no one', 'none', 'nothing', 'someone',
-                                    'something', 'them', 'us', "you all", 'you'),
-                                subject: oneOfStrings('All', 'Everyone',
-                                    'Everything', 'He', 'I', 'It', 'No one',
-                                    'Nothing', 'She', 'Someone', 'Something',
-                                    'They', 'We', "You all", 'You'),
-                                text: length(5, 120),
-                            }, {
-                                action: isNull(),
-                                object: isNull(),
-                                subject: isNull(),
-                                text: length(5, 120)
-                            })
-                        },
+            agreementIdeaReasons: {
+                ideaReason: {
+                    reason: and(
+                        uniqueIn(agreement),
+                        or(
+                            exists(byId()),
+                            {
+                                factor: or(exists(
+                                    byId()
+                                ), {
+                                    name: length(5, 50)
+                                }),
+                                position: or(exists(
+                                    byId()
+                                ), {
+                                    action: oneOfStrings('allow',
+                                        'begin', 'disable',
+                                        'discourage', 'enable', 'encourage',
+                                        'end', 'facilitate', 'help', 'let',
+                                        'make', 'prohibit', 'promote',
+                                        'start', 'stop'),
+                                    object: oneOfStrings('all', 'everyone',
+                                        'everything', 'her', 'him', 'it', 'me',
+                                        'no one', 'none', 'nothing', 'someone',
+                                        'something', 'them', 'us', "you all", 'you'),
+                                    subject: oneOfStrings('All', 'Everyone',
+                                        'Everything', 'He', 'I', 'It', 'No one',
+                                        'Nothing', 'She', 'Someone', 'Something',
+                                        'They', 'We', "You all", 'You'),
+                                    text: length(5, 120),
+                                }, {
+                                    action: isNull(),
+                                    object: isNull(),
+                                    subject: isNull(),
+                                    text: length(5, 120)
+                                })
+                            },
+                        )
                     )
-                ),
+                },
                 share: between(-100, 100)
             },
             idea: exists(byId()),
@@ -144,8 +146,8 @@ export class AgreementApi
     ): Promise<void> {
         let shareTotal = 0
 
-        for (const agreementReason of agreement.agreementReasons) {
-            shareTotal += agreementReason.share
+        for (const agreementIdeaReason of agreement.agreementIdeaReasons) {
+            shareTotal += agreementIdeaReason.share
         }
 
         agreement.shareTotal = Math.floor(shareTotal)
@@ -172,18 +174,18 @@ export class AgreementApi
                 )
         }
         if (existingAgreement) {
-            const leftOverAgreementReasonsById = this.agreementReasonDao
-                .mapById(existingAgreement.agreementReasons)
-            for (const agreementReason of agreement.agreementReasons) {
-                if (agreementReason.id) {
-                    leftOverAgreementReasonsById.delete(agreementReason.id)
+            const leftOverAgreementIdeaReasonsById = this.agreementIdeaReasonDao
+                .mapById(existingAgreement.agreementIdeaReasons)
+            for (const agreementIdeaReason of agreement.agreementIdeaReasons) {
+                if (agreementIdeaReason.id) {
+                    leftOverAgreementIdeaReasonsById.delete(agreementIdeaReason.id)
                 }
             }
-            for (const leftOverAgreementReason of leftOverAgreementReasonsById.values()) {
-                leftOverAgreementReason.share = 0
-                agreement.agreementReasons.push(leftOverAgreementReason)
+            for (const leftOverAgreementIdeaReason of leftOverAgreementIdeaReasonsById.values()) {
+                leftOverAgreementIdeaReason.share = 0
+                agreement.agreementIdeaReasons.push(leftOverAgreementIdeaReason)
             }
-            existingAgreement.agreementReasons = agreement.agreementReasons
+            existingAgreement.agreementIdeaReasons = agreement.agreementIdeaReasons
             existingAgreement.idea = agreement.idea
             existingAgreement.situationIdea = agreement.situationIdea
             return {

@@ -2,7 +2,7 @@ import { AirEntity } from "@airport/final-approach";
 import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/tarmaq-entity";
 import { Idea } from "../idea/Idea";
 import { SituationIdea } from "../idea/SituationIdea";
-import { AgreementReason } from "./AgreementReason";
+import { AgreementIdeaReason } from "./AgreementIdeaReason";
 
 @Entity()
 @Table({ name: 'AGREEMENTS' })
@@ -19,6 +19,6 @@ export class Agreement
     idea: Idea
 
     @OneToMany({ mappedBy: 'agreement' })
-    agreementReasons: AgreementReason[] = []
+    agreementIdeaReasons: AgreementIdeaReason[] = []
 
 }

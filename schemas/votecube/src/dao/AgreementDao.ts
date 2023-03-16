@@ -22,7 +22,10 @@ export class AgreementDao
         return await this._findUnique({
             SELECT: {
                 '*': Y,
-                agreementReasons: {},
+                agreementIdeaReasons: {
+                    '*': Y,
+                    ideaReason: {}
+                },
             },
             FROM: [
                 ag = Q.Agreement,
@@ -48,7 +51,10 @@ export class AgreementDao
         return await this._findUnique({
             SELECT: {
                 '*': Y,
-                agreementReasons: {},
+                agreementIdeaReasons: {
+                    '*': Y,
+                    ideaReason: {}
+                },
             },
             FROM: [
                 ag = Q.Agreement,
