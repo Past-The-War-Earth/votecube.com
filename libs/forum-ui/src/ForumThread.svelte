@@ -1,6 +1,6 @@
 <script lang="ts">
     import { DEPENDENCY_INJECTION, IChildContainer } from "@airport/direction-indicator";
-    import { IFieldGroup } from "@votecube/forms";
+    import { FormFactory, IFieldGroup } from "@votecube/forms";
     import { pageTitle, routeParams, text } from "@votecube/ui-logic";
     import TextArea from "@votecube/ui-controls/src/field/TextArea.svelte";
     import { onDestroy, onMount } from "svelte";
@@ -48,7 +48,7 @@
             import("@votecube/forms"),
         ]);
 
-        const formFactory = await container.get(formsModule.FORM_FACTORY);
+        const formFactory = await container.get(FormFactory);
 
         form = formFactory.group(
             "Forum",
