@@ -18,4 +18,8 @@ Purple - the physical state of the troops
 
 Favorite colors of wifes of the initial group of brainstormers determined the above palette during prototyping.
 
-The card  interface can be operated with in-armor finger presses and AR gestures.  The results can be aggregated and reported up the chain of command to an updating bar chart (in the helmet overhead display), with drill down interface to lower-level unit statuses. Thus, the Votecube project found it's first clear and necessary use in [NLNM simulations](https://github.com/Past-The-War-Earth/NLNM-combat-simulation/issues/1).
+The card  interface can be operated with in-armor finger presses and AR gestures.  The results can be aggregated and reported up the chain of command to an updating bar chart (in the helmet overhead display), with drill down interface to lower-level unit statuses. 
+
+In the final NLNM simulation target of participation between military units the morale officer will monitor and report the NLNM goal objectives, the commanding officer will be in charge of the tactical objective, while the second in command will handle inputting the physical state of the troops, further simplifying the input interfaces.
+
+Thus, the Votecube project found it's first clear and necessary use in [NLNM simulations](https://github.com/Past-The-War-Earth/NLNM-combat-simulation/issues/1).
