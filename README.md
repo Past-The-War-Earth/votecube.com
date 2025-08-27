@@ -6,7 +6,7 @@ Since a cube has 6 sides, two on each dimension the idea of a decision making in
 
 After building a prototype and brainstorming it's usability with a friend a simpler input interface was built with 3 vertically arranged, flippable cards that can be dragged up or down to change the importance of the factors represented by the them.  Additionally a reporting bar chart interface allowing for bars to the left or right of the y axis was developed.
 
-Subsequently, upon involving another friend (while having yet another friend on the phone) a decision was made to move away from a fun and easy poll collection platform to a  social support network that would allow people to vote on the ideas suggested to fix a posted issue.
+Subsequently, upon involving another friend (while having yet another friend on the phone) a decision was made to move away from a fun and easy poll collection platform to a [social support network](https://github.com/past-the-war-earth/sapoto.net) that would allow people to vote on the ideas suggested to fix a posted issue.
 
 Almost immediated after NLNM simulation proposal it was clear that the Votecube widget is needed there.  It will allow to report the situation for a unit based on 3 preset factors (which became apparent today):
 
