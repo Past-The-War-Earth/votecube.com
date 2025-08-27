@@ -11,7 +11,9 @@ Subsequently, upon involving another friend (while having yet another friend on 
 Almost immediated after NLNM simulation proposal it was clear that the Votecube widget is needed there.  It will allow to report the situation for a unit based on 3 preset factors (which became apparent today):
 
 Yellow - the shared NLNM goal
+
 Orange - the tactical objective
+
 Purple - the physical state of the troops
 
 Favorite colors of wifes of the initial group of brainstormers determined the above palette during prototyping.
